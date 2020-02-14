@@ -12,25 +12,10 @@ die via NPM (siehe Abschnitt Install) in das eigene Projekt eingebunden wird.
 Die Änderungen weden in der Datei "CHANGELOG.md" dokumentiert.
 
 ## Install
-In der Datei '.npmrc' im Benutzer- oder Projektverzeichnis die folgende Zeile ergänzen: 
-
-`@ihk-gfi:registry=https://npm.pkg.github.com/`
-
-Dann muss man sich noch mit der Github-Registry verbinden. 
-
-### Anmeldung über Github-Token
-
-Der Github-Token wird in der Datei ".npmrc" eingetragen. Man ersetze XXX durch seinen eigenen Github-Token.
-
-`//npm.pkg.github.com/:_authToken=XXX`
-
-### Anmeldung über "npm login"
-`npm login --registry=https://npm.pkg.github.com`
-
-### Aktuelle Version installieren: 
+Aktuelle Version installieren: 
 
 `npm install @ihk-gfi/lux-components --save`
 
-### Spezielle Version installieren: 
+Spezielle Version installieren: 
 
 `npm install @ihk-gfi/lux-components@1.8.4 --save`

@@ -1,6 +1,6 @@
 {
   "name": "@ihk-gfi/lux-components",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "license": "IHK-GfI Open-Source-Lizenz",
   "repository": {
     "type": "git",
@@ -83,8 +83,5 @@
     "tslint-angular": "3.0.2",
     "typescript": "3.4.5",
     "zone.js": "0.10.2"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/ihk-gfi"
   }
 }
