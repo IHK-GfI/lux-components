@@ -1,0 +1,110 @@
+/*
+  Dieses Partial-SCSS dient der Verwaltung der Farb-Paletten für die LUX-Components.
+*/
+
+$lux-palette_darkblue: (
+  50 : #e7ebf0,
+  100 : #c2ceda,
+  200 : #99aec2,
+  300 : #708daa,
+  400 : #527497,
+  500 : #335c85,
+  600 : #2e547d,
+  700 : #274a72,
+  800 : #204168,
+  900 : #143055,
+  A100 : #80b9d9,
+  A200 : #4d9dca,
+  A400 : #0073b3,
+  A700 : #00569a,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$lux-palette_accentgreen: (
+  50 : #F2F7EA,
+  100 : #DFEBC9,
+  200 : #CADEA6,
+  300 : #B5D082,
+  400 : #A5C667,
+  500 : #95BC4C,
+  600 : #8DB645,
+  700 : #82AD3C,
+  800 : #78A533,
+  900 : #679724,
+  A100 : #ECFFD4,
+  A200 : #D6FFA1,
+  A400 : #BFFF6E,
+  A700 : #B4FF55,
+  contrast: (
+    50 : #333333,
+    100 : #333333,
+    200 : #333333,
+    300 : #333333,
+    400 : #333333,
+    500 : #333333,
+    600 : #333333,
+    700 : #333333,
+    800 : #333333,
+    900 : #ffffff,
+    A100 : #333333,
+    A200 : #333333,
+    A400 : #333333,
+    A700 : #333333,
+  )
+);
+
+$lux-palette_darkred: (
+  50 : #F6E3E2,
+  100 : #E7B8B8,
+  200 : #d88988,
+  300 : #c85958,
+  400 : #bc3635,
+  500 : #b01211,
+  600 : #a9100f,
+  700 : #a00d0c,
+  800 : #970a0a,
+  900 : #870505,
+  A100 : #ffb4b4,
+  A200 : #ff8181,
+  A400 : #ff4e4e,
+  A700 : #ff3535,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #ffffff,
+  )
+);
+
+$lux-primary: mat-palette($lux-palette_darkblue);
+$lux-accent: mat-palette($lux-palette_accentgreen);
+$lux-warn: mat-palette($lux-palette_darkred);
+
+$lux-warn-color: mat-color($lux-warn);
+$lux-primary-color: mat-color($lux-primary);
+$lux-accent-color: mat-color($lux-accent);

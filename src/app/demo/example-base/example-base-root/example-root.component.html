@@ -1,0 +1,48 @@
+<div
+  class="example-base-structure"
+  fxLayout="row"
+  fxLayout.sm="column"
+  fxLayout.xs="column"
+  ngClass.sm="example-mobile"
+  ngClass.xs="example-mobile"
+  fxFlexFill
+>
+  <div
+    class="example-base-components-list"
+    fxLayout="column"
+    fxFlex="auto"
+    #exampleListElement
+    *ngIf="!mediaQueryService.isXS() && !mediaQueryService.isSM()"
+  >
+    <ng-container *ngFor="let moduleName of navigationService.currentModuleNames">
+      <lux-panel luxCollapsedHeaderHeight="35px" luxExpandedHeaderHeight="35px" [luxExpanded]="true">
+        <lux-panel-header-title> lux-{{ moduleName }} </lux-panel-header-title>
+        <lux-panel-content>
+          <ng-container
+            *ngFor="let component of navigationService.sortedComponentEntries.get(moduleName) | luxAlphabeticallySorted"
+          >
+            <div
+              class="example-component-list-item"
+              tabindex="0"
+              role="button"
+              [ngClass]="{
+                'example-component-list-item-selected':
+                  navigationService.selectedComponent && navigationService.selectedComponent.label === component.label
+              }"
+              (click)="onComponentClick(component)"
+            >
+              {{ component.label }}
+            </div>
+          </ng-container>
+        </lux-panel-content>
+      </lux-panel>
+    </ng-container>
+  </div>
+  <div class="example-base-content" fxFlex="0 0 calc(100% - 250px)" fxFlex.sm="0 0 auto" fxFlex.xs="0 0 auto">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<ng-template #simpleOptionsTemplate>
+  <ng-content select="example-base-simple-options"></ng-content>
+</ng-template>

@@ -1,0 +1,89 @@
+<lux-card luxTitle="Beispiellayout für ein zweispaltiges Formular" luxTagId="form2row">
+  <lux-card-content>
+    <form [formGroup]="myGroup" #myForm>
+      <div fxLayout="column" fxLayout.gt-md="row" class="lux-flex-layout-gap-10">
+        <div formGroupName="customerDetails" fxLayout="column" fxFlex="1 1 50%">
+          <h2>Kundeninformationen</h2>
+          <lux-input luxLabel="Name" luxControlBinding="name" fxFlex="auto"></lux-input>
+          <div fxLayout="row" fxLayoutAlign="start stretch" class="lux-flex-layout-gap-10">
+            <lux-input luxLabel="PLZ" luxType="number" luxControlBinding="zip" fxFlex="25"></lux-input>
+            <lux-input luxLabel="Stadt" luxType="text" luxControlBinding="town" fxFlex="75"></lux-input>
+          </div>
+          <lux-autocomplete
+            [luxOptions]="countries"
+            luxOptionLabelProp="name"
+            luxLabel="Land"
+            [luxLookupDelay]="100"
+            luxHint="Wählen Sie ein Land aus"
+            [luxSelectAllOnClick]="false"
+            luxControlBinding="country"
+            fxFlex="auto"
+          >
+          </lux-autocomplete>
+          <div formArrayName="streets" fxLayout="column">
+            <div *ngFor="let street of streetsFormArray.controls; let i = index" [formGroupName]="i">
+              <div fxLayout="row" fxLayoutAlign="start stretch" class="lux-flex-layout-gap-10">
+                <lux-input luxLabel="Straße" luxType="text" luxControlBinding="streetName" fxFlex="auto"></lux-input>
+                <lux-input luxLabel="Nr" luxType="number" luxControlBinding="nr" fxFlex="0 0 15"></lux-input>
+                <lux-button
+                  luxIconName="fas fa-trash"
+                  (luxClicked)="removeStreet(i)"
+                  luxTagId="btnRemoveStreet"
+                  [luxDisabled]="!myGroup.enabled"
+                  [luxRounded]="true"
+                  luxColor="warn"
+                  fxFlex="initial"
+                >
+                </lux-button>
+              </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end stretch" class="lux-flex-layout-gap-10">
+              <lux-button
+                luxIconName="fa-plus"
+                (luxClicked)="addStreet()"
+                [luxRounded]="true"
+                [luxDisabled]="!latestStreetGroupValid()"
+                luxColor="primary"
+                luxTagId="btnAddStreet"
+                fxFlex="0 0 auto"
+              >
+              </lux-button>
+            </div>
+          </div>
+        </div>
+        <div formGroupName="orderDetails" fxLayout="column" fxFlex="1 1 50%">
+          <h2>Bestellinformationen</h2>
+          <lux-input luxLabel="Bestellnr." luxControlBinding="orderNo" fxFlex="nogrow"></lux-input>
+          <lux-input luxLabel="Bestellwert" luxType="text" luxControlBinding="value" fxFlex="nogrow"></lux-input>
+          <div fxLayout="row" fxLayoutAlign="start stretch" class="lux-flex-layout-gap-10">
+            <lux-datepicker luxLabel="Gültig ab" luxControlBinding="validDate" fxFlex="75"></lux-datepicker>
+            <lux-input luxLabel="Uhrzeit" luxType="time" luxControlBinding="validTime" fxFlex="25"></lux-input>
+          </div>
+        </div>
+      </div>
+
+      <lux-divider></lux-divider>
+
+      <lux-toggle luxLabel="Formular-Wert anzeigen" [(luxChecked)]="showFormValue" luxTagId="toggleFormWertAnzeigen">
+      </lux-toggle>
+      <div *ngIf="myGroup && showFormValue">
+        <pre>
+          {{ myGroup.value | json }}
+        </pre>
+      </div>
+    </form>
+  </lux-card-content>
+
+  <lux-card-actions>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="4px">
+      <lux-button luxLabel="Fehler anzeigen" (luxClicked)="highlightErrors()"></lux-button>
+      <lux-button
+        luxLabel="SPEICHERN"
+        luxColor="primary"
+        (luxClicked)="handleSaveClicked()"
+        luxTagId="btnSpeichern"
+        [luxDisabled]="!myGroup.valid"
+      ></lux-button>
+    </div>
+  </lux-card-actions>
+</lux-card>

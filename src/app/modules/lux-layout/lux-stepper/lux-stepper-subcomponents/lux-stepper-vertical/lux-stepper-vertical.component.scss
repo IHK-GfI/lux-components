@@ -1,0 +1,22 @@
+:host ::ng-deep {
+  .mat-step-label {
+    height: 44px !important;
+  }
+
+  .mat-step-optional {
+    bottom: 0;
+  }
+
+  .mat-vertical-content {
+    padding: 0 !important;
+  }
+
+  mat-step-header {
+    padding-left: 10px;
+  }
+
+  .mat-stepper-vertical-line::before {
+    top: -10px;
+    bottom: -18px;
+  }
+}

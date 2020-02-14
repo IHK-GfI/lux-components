@@ -1,0 +1,80 @@
+<mat-card
+  (click)="clicked()"
+  fxLayout="row"
+  luxTagIdHandler
+  [luxTagId]="luxTagId"
+  [ngClass]="{ 'lux-cursor': !showButtons && hasCardAction, 'lux-m-2': true, 'lux-p-3': true }"
+  [ngClass.gt-sm]="{ 'lux-cursor': !showButtons && hasCardAction, 'lux-m-3': true }"
+>
+  <div fxFlex="flex" fxLayout="column" class="lux-overflow-y-hidden lux-card-content-container">
+    <mat-card-title
+      class="lux-highlight lux-card-title"
+      [ngClass]="{ 'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent }"
+    >
+      <div fxLayout="row" fxLayoutAlign="{{ getTitleAlignment() }}" class="lux-flex-layout-gap-10">
+        <div fxFlex="none" *ngIf="showIcon">
+          <div class="lux-icon lux-highlight">
+            <ng-content select="lux-icon"></ng-content>
+          </div>
+        </div>
+
+        <div
+          fxFlex="grow"
+          class="lux-card-title-container"
+          ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
+          [ngClass]="{ 'lux-pt-1': !!luxTitle, 'lux-pb-2': !!luxTitle }"
+          title="{{ luxTitle }}"
+        >
+          {{ luxTitle }}
+        </div>
+
+        <div fxFlex="none" fxLayoutAlign="end">
+          <ng-content *ngIf="!showExpandedToggle" select="lux-card-info"></ng-content>
+          <lux-button
+            *ngIf="showExpandedToggle"
+            [luxIconName]="luxExpanded ? 'fa-angle-up' : 'fa-angle-down'"
+            (luxClicked)="changeContentExpansion($event)"
+            luxTagId="expandedButton"
+            class="lux-expanded-button"
+          ></lux-button>
+        </div>
+      </div>
+    </mat-card-title>
+
+    <mat-card-subtitle
+      title="{{ luxSubTitle }}"
+      [ngClass]="{
+        'lux-hyphenate': luxTitleLineBreak,
+        'lux-crop': !luxTitleLineBreak,
+        'lux-display-none': !luxSubTitle || luxSubTitle.length === 0,
+        'lux-pb-2': !!luxSubTitle,
+        'lux-pt-2': !!luxSubTitle,
+        'lux-icon-padding': showIcon
+      }"
+    >
+      {{ luxSubTitle }}
+    </mat-card-subtitle>
+
+    <mat-card-content fxLayout="column" class="lux-pb-4 lux-pt-4">
+      <!-- Der normale Card-Content ist immer sichtbar. -->
+      <div class="lux-card-content">
+        <ng-content select="lux-card-content"></ng-content>
+      </div>
+      <!-- Der expanded Card-Content ist nur sichtbar, wenn der Ausklapp-Button geklickt wurde. -->
+      <div
+        class="lux-card-content-expanded"
+        *ngIf="luxExpanded && contentExpandedComponent"
+        [@expansionAnim]="{ value: getAnimState(), params: { duration: getAnimDuration() } }"
+        (@expansionAnim.done)="expansionDone()"
+      >
+        <ng-content select="lux-card-content-expanded"></ng-content>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="lux-card-actions" [ngClass]="{ 'lux-display-none': !showButtons }" #luxActionButtons>
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <ng-content select="lux-card-actions"></ng-content>
+      </div>
+    </mat-card-actions>
+  </div>
+</mat-card>

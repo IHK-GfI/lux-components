@@ -1,0 +1,73 @@
+<example-base-structure
+  exampleTitle="Icon"
+  exampleIconName="fas fa-image"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/qAbqKQ"
+>
+  <example-base-content [exampleCentered]="true">
+    <lux-icon
+      [luxIconName]="iconName"
+      [luxIconSize]="iconSize"
+      [luxPadding]="padding"
+      [luxMargin]="margin"
+      [luxRounded]="rounded"
+      [luxColor]="color"
+    >
+    </lux-icon>
+  </example-base-content>
+  <example-base-simple-options>
+    <i class="lux-mb-3">
+      Wichtig: In FontAwesome ab <b>v.5</b> gibt es 4 Icon-Typen: <br />
+      <b>'fab'</b> (Brand-Icons, kostenlos), <b>'fas'</b> (Solid-Icons, kostenlos), <br />
+      <b>'far'</b> (Regular-Icons, kostenpflichtig), <b>'fal'</b> (Light-Icons, kostenpflichtig)
+    </i>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-input [(luxValue)]="iconName" luxLabel="luxIconName">
+        <lux-form-hint>
+          Diese Property bestimmt das Icon selbst (z.B. 'fab fa-android' für FontAwesome oder 'android' für
+          Material).<br />
+          Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
+        </lux-form-hint>
+      </lux-input>
+      <lux-select [(luxSelected)]="iconSize" [luxOptions]="iconSizes" luxLabel="luxIconSize">
+        <lux-form-hint>
+          Über diese Property kann die Größe des Icons festgelegt werden.<br />
+          Die Größen sind relative 'em'-Werte.
+        </lux-form-hint>
+      </lux-select>
+    </div>
+    <lux-select
+      class="example-highlight-config-option"
+      [(luxSelected)]="color"
+      [luxOptions]="colors"
+      luxLabel="luxColor"
+    >
+      <lux-form-hint>
+        Mithilfe dieser Property wird die Farbe des Icons bestimmt.<br />
+        Die Farb-Werte stammen aus der <b>luxstyles.scss</b>.
+      </lux-form-hint>
+    </lux-select>
+    <lux-checkbox class="example-highlight-config-option" [(luxChecked)]="rounded" luxLabel="luxRounded">
+      <lux-form-hint>
+        Diese Property aktiviert eine abgerundete Darstellung des Icons<br />
+        Ist nur in Kombination mit einer 'luxColor' sichtbar.
+      </lux-form-hint>
+    </lux-checkbox>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-input [(luxValue)]="margin" luxLabel="luxMargin">
+        <lux-form-hint>
+          Die Property ermöglicht es, die Margins für das Icon festzulegen<br />
+          (z.B. '4px', '10px, 5em' oder '1px, 2px, 3px, 4px').
+        </lux-form-hint>
+      </lux-input>
+      <lux-input [(luxValue)]="padding" luxLabel="luxPadding">
+        <lux-form-hint>
+          Die Property ermöglicht es, die Paddings für das Icon festzulegen<br />
+          (z.B. '4px', '10px, 5em' oder '1px, 2px, 3px, 4px').
+        </lux-form-hint>
+      </lux-input>
+    </div>
+  </example-base-advanced-options>
+</example-base-structure>

@@ -1,0 +1,112 @@
+<lux-card luxTitle="LUX-Formularcontrols in einem Formular" luxTagId="forms">
+  <lux-card-content>
+    <form [formGroup]="myGroup" #myForm>
+      <div formGroupName="user">
+        <h3>Benutzer</h3>
+        <lux-input luxLabel="Vorname" luxControlBinding="firstname"></lux-input>
+        <lux-input luxLabel="Nachname" luxControlBinding="lastname"></lux-input>
+        <lux-input luxLabel="E-Mail" luxControlBinding="email">
+          <lux-input-suffix>
+            <lux-icon luxIconName="fa-at"></lux-icon>
+          </lux-input-suffix>
+        </lux-input>
+        <lux-input luxLabel="Passwort" luxControlBinding="password" luxType="password">
+          <lux-input-suffix>
+            <lux-icon luxIconName="fa-lock"></lux-icon>
+          </lux-input-suffix>
+        </lux-input>
+      </div>
+
+      <lux-select
+        luxLabel="Hobbys"
+        luxControlBinding="hobbies"
+        [luxOptions]="hobbies"
+        luxOptionLabelProp="label"
+        [luxMultiple]="true"
+      ></lux-select>
+      <lux-toggle luxLabel="Newsletter" luxControlBinding="newsletter"></lux-toggle>
+      <lux-input luxLabel="Spende" luxControlBinding="donation" luxType="number">
+        <lux-input-prefix>
+          <lux-icon luxIconName="fa-money"></lux-icon>
+        </lux-input-prefix>
+        <lux-input-suffix>
+          €
+        </lux-input-suffix>
+      </lux-input>
+      <lux-input luxLabel="Beschreibung" luxControlBinding="description"></lux-input>
+      <lux-checkbox luxControlBinding="hungry" luxLabel="Hungrig"></lux-checkbox>
+
+      <lux-chips
+        [luxInputAllowed]="true"
+        luxInputLabel="Neuen Chip erstellen..."
+        (luxChipClicked)="chipItemClicked($event)"
+        luxOrientation="horizontal"
+        [luxNewChipGroup]="chipGroup2"
+        fxFill
+      >
+        <lux-chip [luxRemovable]="false" luxColor="warn">
+          Chip ohne Group
+        </lux-chip>
+        <lux-chip-group
+          [luxRemovable]="false"
+          luxColor="primary"
+          (luxChipClicked)="chipItemClicked($event)"
+          [(luxLabels)]="chipItems"
+          #chipGroup
+        >
+          <ng-template let-chipItem>
+            {{ chipItem | lowercase }}
+          </ng-template>
+        </lux-chip-group>
+        <lux-chip-group
+          [luxRemovable]="true"
+          luxColor="accent"
+          (luxChipClicked)="chipItemClicked($event)"
+          [(luxLabels)]="chipItems2"
+          #chipGroup2
+        >
+          <ng-template let-chipItem>
+            {{ chipItem | uppercase }}
+          </ng-template>
+        </lux-chip-group>
+      </lux-chips>
+
+      <lux-radio
+        [luxOptions]="hobbies"
+        luxGroupName="1"
+        luxControlBinding="radio"
+        [luxOrientationVertical]="false"
+        luxLabel="Hobbies"
+      >
+        <ng-template let-option>
+          {{ option['label'] }}
+        </ng-template>
+      </lux-radio>
+
+      <lux-datepicker [luxTouchUi]="true" luxLocale="de-DE" luxControlBinding="datepicker" luxLabel="Datepicker">
+      </lux-datepicker>
+
+      <lux-autocomplete
+        [luxOptions]="chipItems2"
+        luxLabel="Autocomplete"
+        [luxLookupDelay]="100"
+        [luxSelectAllOnClick]="false"
+        luxControlBinding="autocomplete"
+      >
+      </lux-autocomplete>
+    </form>
+  </lux-card-content>
+
+  <lux-card-actions>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="4px">
+      <lux-button luxLabel="Fehler anzeigen" (luxClicked)="highlightErrors()"></lux-button>
+      <lux-button
+        luxLabel="SPEICHERN"
+        luxColor="primary"
+        (luxClicked)="handleSaveClicked()"
+        luxTagId="button"
+        [luxDisabled]="!myGroup.valid"
+      ></lux-button>
+    </div>
+  </lux-card-actions>
+</lux-card>

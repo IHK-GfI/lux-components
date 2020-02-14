@@ -1,0 +1,99 @@
+<example-base-structure
+  exampleTitle="Error-Page"
+  exampleIconName="fas fa-exclamation-circle"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/KgfqKQ"
+>
+  <example-base-simple-options>
+    <div fxLayout="column">
+      <h3>Error Properties</h3>
+      <lux-input
+        class="example-highlight-config-option"
+        luxLabel="errorId"
+        luxHint="Diese Property enthält die Fehler-ID."
+        [(luxValue)]="errorConfig.errorId"
+      >
+      </lux-input>
+      <lux-input
+        class="example-highlight-config-option"
+        luxLabel="errorMessage"
+        luxHint="Die Property definiert die Fehlermeldung selbst, welche in dem Panel auf der Fehlerseite dargestellt wird."
+        [(luxValue)]="errorConfig.errorMessage"
+      >
+      </lux-input>
+    </div>
+    <div fxLayout="column" [formGroup]="configForm">
+      <h3>Error-Page Properties</h3>
+      <lux-input
+        class="example-highlight-config-option"
+        luxLabel="iconName"
+        luxHint="Diese Property definiert das Icon, das auf der Fehlerseite dargestellt wird."
+        luxControlBinding="iconName"
+      >
+      </lux-input>
+      <lux-select
+        class="example-highlight-config-option"
+        luxLabel="iconSize"
+        luxHint="Die Property stellt die (relative) Größe des Icons ein."
+        luxControlBinding="iconSize"
+        [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
+      >
+      </lux-select>
+      <lux-input
+        class="example-highlight-config-option"
+        luxLabel="errorText"
+        luxHint="Diese Property definiert den Fehlertext auf der Seite."
+        luxControlBinding="errorText"
+      >
+      </lux-input>
+      <lux-input
+        class="example-highlight-config-option"
+        luxLabel="homeRedirectText"
+        luxHint="Über diese Property kann der Text für den Home-Link bestimmt werden."
+        luxControlBinding="homeRedirectText"
+      >
+      </lux-input>
+      <lux-input
+        class="example-highlight-config-option"
+        luxLabel="homeRedirectUrl"
+        luxHint="Die Property bestimmt die URL, zu der über den entsprechenden Link gesprungen werden kann."
+        luxControlBinding="homeRedirectUrl"
+      >
+      </lux-input>
+      <lux-input class="example-highlight-config-option" luxLabel="errorPageUrl" luxControlBinding="errorPageUrl">
+        <lux-form-hint>
+          Diese Property definiert die eigentliche URL der Fehlerseite innerhalb der Angular-Applikation. Die URL muss
+          in den bekannten Routen hinterlegt sein (das Beispiel macht das in diesem Fall selbst).<br />
+          Die Navigation über den "LuxErrorService" erfolgt "still", i.e. die URL wird nicht sichtbar geändert.
+        </lux-form-hint>
+      </lux-input>
+
+      <lux-toggle
+        class="example-highlight-config-option"
+        luxLabel="skipLocationChange"
+        luxHint="Dieses Flag bestimmt, ob die URL durch das Ansteuern der Fehlerseite geändert wird oder nicht."
+        luxControlBinding="skipLocationChange"
+      >
+      </lux-toggle>
+    </div>
+  </example-base-simple-options>
+  <example-base-options-actions>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="end start">
+      <lux-button
+        class="restrict-width"
+        luxLabel="Konfiguration aktualisieren"
+        [luxRaised]="true"
+        luxColor="primary"
+        (luxClicked)="updateErrorConfig()"
+        [luxDisabled]="updateButtonDisabled"
+      >
+      </lux-button>
+      <lux-button
+        class="restrict-width"
+        luxLabel="Fehlerseite öffnen"
+        [luxRaised]="true"
+        (luxClicked)="openErrorpage()"
+      >
+      </lux-button>
+    </div>
+  </example-base-options-actions>
+</example-base-structure>

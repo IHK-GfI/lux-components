@@ -1,0 +1,215 @@
+@import './../../../../theming/luxtheme';
+
+:host {
+  position: relative;
+  display: block;
+
+  ::ng-deep {
+    .lux-stepper-content-section,
+    .mat-horizontal-stepper-content[aria-expanded='true'],
+    .mat-vertical-stepper-content {
+      padding: 8px;
+    }
+
+    .mat-horizontal-stepper-header-container {
+      padding: 8px 8px 0 8px;
+    }
+
+    .mat-vertical-stepper-header {
+      margin: 8px 8px 0 8px;
+    }
+
+    mat-step-header {
+      // Anpassungen an standard Step-Aussehen
+      .mat-step-icon,
+      .mat-step-icon-not-touched {
+        width: 40px;
+        height: 40px;
+        font-size: 2em;
+        box-sizing: border-box;
+      }
+
+      .mat-step-icon .mat-icon {
+        font-size: 32px;
+        width: 32px;
+        height: 32px;
+      }
+
+      .mat-step-label {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        font-weight: normal;
+      }
+
+      lux-step-header {
+        color: $dark-disabled-text !important;
+      }
+
+      .mat-step-icon {
+        background: $dark-disabled-text;
+        color: white;
+      }
+
+      &.lux-step-header-touched {
+        &[aria-selected='true'],
+        .mat-step-icon-state-edit + .mat-step-label {
+          lux-step-header {
+            color: $dark-primary-text !important;
+          }
+          .lux-stepper-edited-icon,
+          .lux-stepper-normal-icon {
+            i,
+            mat-icon {
+              background-color: mat-color($lux-primary, 500);
+            }
+          }
+        }
+
+        &[aria-selected='true'] .mat-step-icon-state-number,
+        .mat-step-icon-state-edit {
+          background: mat-color($lux-primary, 500);
+          color: white;
+        }
+      }
+    }
+
+    // Greift nur für unsere eigenen Step-Icons
+    .lux-ignore-mat-step-icons {
+      ::ng-deep {
+        mat-step-header {
+          // Die standard Icons ausblenden
+          .mat-step-icon,
+          .mat-step-icon-not-touched {
+            display: none;
+          }
+
+          lux-icon {
+            margin-right: 8px !important;
+            > i,
+            > .lux-material-icon {
+              font-size: 25px;
+              width: 32px;
+              height: 32px;
+              text-align: center;
+            }
+
+            > i:before {
+              padding-top: 2px;
+            }
+          }
+
+          // Immer die normalen Icons darstellen
+          lux-icon.lux-stepper-edited-icon {
+            display: none;
+          }
+
+          lux-icon.lux-stepper-normal-icon {
+            display: block;
+          }
+
+          lux-icon {
+            > i,
+            > mat-icon {
+              background-color: $dark-disabled-text;
+              color: mat-contrast($lux-primary, 500);
+            }
+
+            > i:before {
+              padding-top: 2px;
+              display: block;
+            }
+          }
+
+          // Wenn der Step erfolgreich editiert wurde, das Edited-Icon darstellen
+          .mat-step-icon-state-edit + .mat-step-label {
+            lux-icon.lux-stepper-edited-icon {
+              display: block;
+            }
+            lux-icon.lux-stepper-normal-icon {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    // Text für optionale Steps unterhalb des Labels darstellen
+    .mat-step-optional {
+      position: absolute;
+      bottom: 15px;
+      right: 0;
+      font-style: italic;
+    }
+
+    // falls eine lux-card als erste component im step-content ist, die margins von ihr entfernen
+    lux-step-content > lux-card > mat-card {
+      margin: 0 !important;
+    }
+  }
+}
+
+// Overlay, wenn der Stepper deaktiviert wurde
+.lux-stepper-disabled-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.lux-stepper-mobile ::ng-deep {
+  .lux-stepper-content-section,
+  .mat-horizontal-stepper-content[aria-expanded='true'],
+  .mat-vertical-stepper-content {
+    padding: 4px;
+  }
+
+  .mat-vertical-stepper-content {
+    padding-left: 8px;
+  }
+
+  .mat-horizontal-stepper-header-container {
+    padding: 4px 4px 0 4px;
+  }
+
+  .mat-vertical-stepper-header {
+    margin: 4px 4px 0 4px;
+  }
+
+  mat-horizontal-stepper {
+    lux-step-header {
+      display: none;
+    }
+
+    .mat-stepper-horizontal-line {
+      margin: 0;
+      min-width: 16px;
+    }
+
+    mat-step-header {
+      padding: 0 8px;
+    }
+  }
+
+  mat-horizontal-stepper.lux-ignore-mat-step-icons .mat-step-label {
+    justify-content: center;
+    min-width: 40px;
+
+    .lux-stepper-edited-icon,
+    .lux-stepper-normal-icon {
+      margin: 0 !important;
+    }
+  }
+
+  mat-horizontal-stepper:not(.lux-ignore-mat-step-icons) {
+    .mat-step-label {
+      display: none;
+    }
+    .mat-step-icon {
+      margin: 0 !important;
+    }
+  }
+}

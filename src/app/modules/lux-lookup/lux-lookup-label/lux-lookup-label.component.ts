@@ -1,0 +1,103 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
+import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
+import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
+import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
+
+@Component({
+  selector: 'lux-lookup-label',
+  templateUrl: './lux-lookup-label.component.html'
+})
+export class LuxLookupLabelComponent implements OnInit {
+  lookupService: LuxLookupService;
+  lookupHandler: LuxLookupHandlerService;
+  logger: LuxConsoleService;
+  lookupParameters: LuxLookupParameters;
+
+  entry: LuxLookupTableEntry;
+
+  @Input() luxLookupKnr: number;
+  @Input() luxLookupId: string;
+  @Input() luxLookupUrl: string = '/lookup/';
+  @Input() luxTableNo: string;
+  @Input() luxTableKey: string;
+  @Input() luxBezeichnung: string = 'kurz';
+
+  constructor(
+    lookupService: LuxLookupService,
+    lookupHandler: LuxLookupHandlerService,
+    luxConsoleLogger: LuxConsoleService
+  ) {
+    this.lookupService = lookupService;
+    this.lookupHandler = lookupHandler;
+    this.logger = luxConsoleLogger;
+  }
+
+  ngOnInit() {
+    if (!this.luxLookupId) {
+      console.error(
+        'Das Lookup-Label mit der Tabellen-Nr. ${this.luxTableNo} besitzt keine LookupId.' +
+          'Bitte tragen Sie diese nach.'
+      );
+    }
+
+    if (!this.luxTableNo) {
+      console.error(
+        'Das Lookup-Label mit der LookupId ${this.luxLookupId} besitzt keine Tabellen-Nummer. ' +
+          'Bitte tragen Sie diese nach.'
+      );
+    }
+
+    if (!this.luxTableKey) {
+      console.error(
+        'Das Lookup-Label mit der Tabellen-Nr. ${this.luxTableNo} besitzt keinen Tabellen-Key.' +
+          'Bitte tragen Sie diese nach.'
+      );
+    }
+
+    this.fetchLookupData();
+
+    this.lookupHandler.addLookupElement(this.luxLookupId);
+    this.lookupHandler.getLookupElementObsv(this.luxLookupId).subscribe(() => {
+      this.fetchLookupData();
+    });
+  }
+
+  protected fetchLookupData() {
+    const keys: string[] = [this.luxTableKey];
+
+    this.lookupParameters = new LuxLookupParameters({ knr: this.luxLookupKnr, keys });
+
+    this.lookupService
+      .getLookupTable(this.luxTableNo, this.lookupParameters, this.luxLookupUrl)
+      .subscribe((entries: LuxLookupTableEntry[]) => {
+        if (typeof entries !== 'undefined' && entries.length === 1) {
+          this.entry = entries[0];
+        }
+      });
+  }
+
+  /**
+   * liefert die Bezeichnung (Kurz- oder Langbezeichnung) des Entries für den Key zur Tabelle.
+   *
+   * @returns string
+   */
+  getBezeichnung(): string {
+    let bezeichnung = '';
+
+    if (this.entry) {
+      if ('kurz' === this.luxBezeichnung) {
+        bezeichnung = this.entry.kurzText;
+      } else if ('lang' === this.luxBezeichnung) {
+        bezeichnung = this.entry.langText1;
+
+        if (!bezeichnung) {
+          bezeichnung = this.entry.kurzText;
+        }
+      }
+    }
+
+    return bezeichnung;
+  }
+}

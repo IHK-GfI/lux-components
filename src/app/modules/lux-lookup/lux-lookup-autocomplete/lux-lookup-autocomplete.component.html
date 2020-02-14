@@ -1,0 +1,56 @@
+<lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" *ngIf="formGroup">
+  <div class="lux-input-row">
+    <input
+      type="text"
+      [placeholder]="luxPlaceholder"
+      matInput
+      [matAutocomplete]="auto"
+      (click)="onClick($event)"
+      autocomplete="off"
+      luxTagIdHandler
+      [luxTagId]="luxTagId"
+      [required]="luxRequired"
+      [readonly]="luxReadonly"
+      [formControl]="formControl"
+      [errorStateMatcher]="stateMatcher"
+      (blur)="luxBlur.emit($event)"
+      (focus)="luxFocus.emit($event)"
+      (focusin)="luxFocusIn.emit($event)"
+      (focusout)="luxFocusOut.emit($event)"
+      [id]="uid"
+      [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+      #autoCompleteInput
+    />
+
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      [class]="'lux-autocomplete-panel'"
+      [displayWith]="displayFn.bind(this)"
+      (optionSelected)="selected($event)"
+    >
+      <mat-option
+        *ngIf="entriesCount !== 1 && entriesCount > luxMaximumDisplayed && latestSearchValue"
+        [disabled]="true"
+        class="information-option"
+      >
+        <div fxLayout="row">
+          <div>
+            {{ entriesCount - luxMaximumDisplayed }} Treffer werden nicht angezeigt. <br />Bitte verfeinern Sie Ihre
+            Suche.
+          </div>
+        </div>
+      </mat-option>
+      <ng-container *ngFor="let entry of filteredEntries | async">
+        <mat-option
+          [value]="entry"
+          [ngClass]="{ invalid: entry.isUngueltig }"
+          [ngStyle]="getStyles(entry.isUngueltig)"
+          [disabled]="entry.isUngueltig && disableUngueltige()"
+          *ngIf="!entry.isUngueltig || (entry.isUngueltig && showUngueltige())"
+        >
+          <span>{{ getLabel(entry) }}</span>
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+  </div>
+</lux-form-control>

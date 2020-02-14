@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutAlign="start center">
+  <div fxFlex="calc(100% - 50px)">
+    <ng-content></ng-content>
+  </div>
+
+  <lux-button
+    (luxClicked)="clicked(toggleButton)"
+    [luxIconName]="iconName"
+    class="lux-master-header-collapse"
+    luxTagId="master-detail.toggle"
+    fxFlex="0 0 50px"
+    fxFlexAlign="start"
+    #toggleButton
+    luxAriaLabel="{{ iconName === 'keyboard_arrow_left' ? 'Masterliste zuklappen' : 'Masterliste aufklappen' }}"
+    luxAriaLabelSelector="button"
+    [luxAriaExpanded]="iconName === 'keyboard_arrow_left'"
+    luxAriaExpandedSelector="button"
+    *ngIf="!luxToggleHidden"
+  >
+  </lux-button>
+</div>

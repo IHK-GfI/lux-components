@@ -1,0 +1,198 @@
+								IHK-GfI Open-Source-Lizenz
+
+Präambel
+Diese Lizenz dient der Einräumung von Nutzungsrechten an Werken des Lizenzgebers
+
+									IHK-GfI mbH
+									Hörder Hafenstraße 5
+									44263 Dortmund.
+
+Die Lizenz verfolgt den Zweck, die von der IHK-GfI mbH im Zusammenhang mit der
+Entwicklungsplattform bereitgestellten Werke als Open-Source-Software zur Nutzung
+durch jedermann freizugeben. Die Rechte an diesen Werken werden unentgeltlich gewährt.
+Ein Verzicht des Lizenzgebers auf Urheber- und Patentrechte findet nicht statt, vielmehr werden mit
+dieser Lizenz lediglich einfache Nutzungsrechte eingeräumt.
+
+Zweck der Lizenz
+Durch die freie Zurverfügungstellung der Werke und/oder des zugrunde liegenden Quelltexts soll die
+Anwendungsentwicklung für die Domäne IHK vereinfacht und die IT-Sicherheit erhöht werden.
+Zudem soll die Möglichkeit einer Zusammenarbeit am Werk entstehen, welche Fehlerbehebungen
+und Fortentwicklungen sichern soll. Dies verpflichtet die jeweiligen Lizenznehmer zugleich, bei jeder
+Verwertung des Werks dafür Sorge zu tragen, dass neue Nutzer eine Kopie dieses Lizenztextes
+erhalten und Zugriff auf das Werk nehmen können. Eine weitere Verpflichtung der Lizenznehmer
+betrifft die Fortentwicklung des Werks: Änderungen am Werk, die ein Lizenznehmer an den
+Lizenzgeber gibt, werden erneut dieser Lizenz unterworfen und damit für jedermann freigegeben.
+Diese Vorgehensweise gewährleistet eine Weiterentwicklung des Werks im Interesse aller Nutzer.
+
+Abschluss der Lizenz und Vertretungsbefugnis
+Die vorliegenden Lizenzbestimmungen verstehen sich als Angebot an jedermann auf Abschluss eines
+Lizenzvertrags. Das Angebot bezieht sich auf alle Werke, die durch einen Hinweis diesen
+Lizenzbestimmungen unterstellt worden sind. Die Annahme erfolgt schriftlich oder in Textform oder
+durch die Vornahme entsprechender Nutzungshandlungen.
+Wenn Sie diese Vereinbarung im Namen eines Dritten oder einer anderen juristischen Person
+abschließen, erklären Sie, dass Sie befugt sind, dieses Unternehmen und seine verbundenen
+Unternehmen an diese Bedingungen zu binden. Wenn Sie keine solche Befugnis haben oder wenn Sie
+mit den Lizenzbestimmungen nicht einverstanden sind, dürfen Sie die unter diese Lizenz gestellten
+Werke nicht verwenden, bearbeiten und/oder verbreiten. Diese Vereinbarung gilt nur für die unter
+diese Lizenz gestellten Werke, unabhängig davon, ob auf andere Werke verwiesen wird und/oder
+andere Werke beschrieben werden.
+
+I. Definitionen
+
+    1.	"Lizenz" meint die Vorgaben zur Nutzung, Verarbeitung und Verbreitung, wie sie sich aus
+        diesem Dokument ergeben.
+    2.	"Lizenzgeber" meint den Urheber und/oder den Inhaber der Nutzungsrechte, der die
+        Regelungen dieser Lizenz vorgibt.
+    3.	"Sie" oder "Ihnen2 oder "Lizenznehmer" oder "Nutzer" meint eine natürliche oder juristische
+        Person, welche Rechte aus dieser Lizenz ableiten können.
+    4.	"Werk" meint das urheberrechtliche Erzeugnis (bspw. Software, Library, Control),
+        unabhängig davon, ob es sich im Quelltext oder in kompilierter Form befindet, und welches
+        unter dieser Lizenz mit Hinweis auf diese Lizenz zur Verfügung gestellt wird.
+    5.	"Abgeleitetes Werk" meint jegliches Erzeugnis, unabhängig davon, ob es sich im Quelltext
+        oder in kompilierter Form befindet, und welches auf dem Werk basiert oder davon abgeleitet
+        ist, und welches auch unter Beachtung von redaktionellen Überarbeitungen, Anmerkungen,
+        Ausarbeitungen oder anderweitige Umgestaltungen ein eigenständiges urheberrechtliches
+        Erzeugnis darstellt.
+    6.	"Mitwirkungswerk" meint ein urheberrechtliches Erzeugnis, welches die ursprüngliche
+        Version des Werks und jegliche Änderungen oder Beifügungen zu dem Werk oder dem davon
+        Abgeleiteten Werk enthalten, welches dem Lizenzgeber mit der Absicht zur Verfügung
+        gestellt wird, die Änderungen und/oder Beifügungen zu übernehmen und in das Werk
+        einzubinden. Im Sinne dieser Lizenz meint das zur Verfügung stellen jegliche Form der
+        elektronischen, mündlichen, schriftlichen Kommunikation mit dem Lizenzgeber und/oder
+        seinem Vertreter, insbesondere über elektronische Mailing-Listen, Quelltext-
+        Kontrollsysteme, Quelltext-Versionsverwaltungssysteme, Fallbearbeitungssysteme, die von
+        dem Lizenzgeber verwaltet und/oder bedient werden und der Diskussion und/oder der
+        Verbesserung des Werks dienen.
+
+II. Überlassung
+
+    (1)	Das mit dieser Lizenz verbundene Werk wird Ihnen schenkweise überlassen.
+    (2)	Die Überlassung steht unter der auflösenden Bedingung, dass die Bestimmungen dieser
+        Lizenz eingehalten werden.
+    (3)	Aufgrund der schenkweisen Überlassung ist der Lizenznehmer verpflichtet, das Werk vor einem
+        produktiven Einsatz zu testen, also bspw. Kompatibilitäts- und Sicherheitstests, sowie
+        Plausibilitätsprüfungen (insbesondere hinsichtlich der durch das Werk verarbeiteten Daten,
+        bspw. durch den Einsatz von Testdaten) auf einem Testsystem durchzuführen. Zudem stellt der
+        Lizenznehmer sicher, dass die jeweilige Infrastruktur - auf der das Werk eingesetzt wird -
+        abgesichert wird, um bspw. eine Überlastung oder Überbuchung auszuschließen. Dem
+        Lizenznehmer ist bekannt, dass das Werk auch Beifügungen durch Dritte (Contributions)
+        enthalten kann, die vom Lizenzgeber nicht umfänglich geprüft wurden. Der Lizenznehmer
+        sichert dem Lizenzgeber zu, dass er ohne einen angemessenen Test das Werk nicht produktiv
+        einsetzt.
+
+III. Einräumung von Nutzungsrechten
+
+    Der Lizenzgeber räumt dem jeweiligen Lizenznehmer an dem Werk das einfache (nicht
+    ausschließliche) Nutzungsrecht ein. Das Nutzungsrecht gilt für die derzeit bekannten und
+    üblichen Nutzungsarten im Bereich der digitalen Nutzung, bspw. Online-Nutzung im Internet,
+    Upload/Download, Web-Sites, Digitalisierung aus anderen Nutzungsarten, mobile Nutzung in
+    Apps, Embedded Content, Browsing, Application-Service-Providing, Speichern auf Datenträgern
+    und im Arbeitsspeicher, Bildschirmwiedergabe, Ausdruck.
+
+IV. Vervielfältigung, Verbreitung, Veränderung
+
+    (1) Für die Vervielfältigung und die Verbreitung des Werks gilt diese Lizenz. Sie sind verpflichtet,
+        jedem Vervielfältigungsstück des Werks eine Kopie dieser Lizenz beizulegen oder ersatzweise die
+        Lizenz zu benennen und auf die URL dieser Lizenz zu verweisen. Machen Sie das Werk öffentlich,
+        so müssen Sie dem Nutzer die Möglichkeit geben, diese Lizenz gebührenfrei herunterladen zu
+        können oder Sie haben ersatzweise die Lizenz zu benennen und auf die URL dieser Lizenz zu
+        verweisen. Sie haben bei der Verbreitung sowie bei der öffentlichen Zugänglichmachung durch
+        einen ausdrücklichen Vermerk auf die Geltung dieser Lizenz hinzuweisen.
+    (2)	Sie haben das Recht, Vervielfältigungsstücke des Werks zu bearbeiten oder auf andere Weise zu
+        verändern und entsprechend bearbeitete oder veränderte Werke (Abgeleitetes Werk) unter den
+        Bedingungen dieser Lizenz zu vervielfältigen, zu verbreiten und öffentlich zugänglich zu machen,
+        soweit Sie im übrigen die Bedingungen dieser Lizenz (insbesondere die Voraussetzungen aus
+        Abs. 1) erfüllen.
+    (3)	Es ist Ihnen ausdrücklich gestattet, das Werk oder Teile des Werks mit anderen Werken oder
+        Teilen anderer Werke, welche nicht unter dieser Lizenz stehen, innerhalb eines einheitlichen
+        Gesamtwerks zu kombinieren, soweit Sie im übrigen die Bedingungen dieser Lizenz
+        (insbesondere die Voraussetzungen aus Abs. 1) erfüllen, also das Werk an sich weiter unter
+        dieser Lizenz steht.
+    (4)	Wenn Sie durch eine Bearbeitung oder sonstige Veränderung des Werks Urheberrechte
+        erwerben, so können Sie diese dieser Lizenz unterstellen, soweit Sie das bearbeitete oder
+        veränderte Werk veröffentlichen oder verwerten.
+
+V. Mitwirkung
+
+    (1)	Wenn Sie Vervielfältigungsstücke des Werks bearbeitet oder auf andere Weise verändert haben,
+        und diese bearbeiteten oder veränderten Werke (sog. Mitwirkungswerke) an den Lizenzgeber
+        geben (submission of contribution), damit diese in das ursprüngliche Werk übernommen
+        werden (Fortentwicklung), dann stellen Sie das Mitwirkungswerk unter diese
+        Lizenzbedingungen.
+    (2)	Der Lizenznehmer hat die Mitwirkungswerke angemessenen Sicherheitstests zu unterziehen.
+        Insbesondere garantiert der Lizenznehmer, dass das Mitwirkungswerk nur den bestimmten und
+        erwartbaren Zweck erfüllt. Der Lizenznehmer behält sich das Recht vor, nicht jedes
+        Mitwirkungswerk anzunehmen.
+    (3)	Wenn Sie an dem Mitwirkungswerk ein Patent erwerben oder wenn die Nutzung des Werks in
+        vorbestehende Patente von Ihnen eingreift, so müssen Sie die Nutzung dieser Patente
+        zugunsten aller anderen gegenwärtigen und künftigen Lizenznehmer in dem Umfang gestatten,
+        der erforderlich ist, um die durch diese Lizenz gewährten Rechte an der von Ihnen
+        veröffentlichten Version des Mitwirkungswerks weiterhin uneingeschränkt und ohne zusätzliche
+        Verpflichtungen oder Kosten ausüben zu können.
+
+VI. Markenrechte
+
+    Diese Lizenz stellt keine Berechtigung dar, Markenrechte und/oder Produkt-
+    /Geschäftsbezeichnungen des Lizenzgebers zu nutzen. Davon ausgeschlossen ist die angemessene
+    Verwendung zur Beschreibung des Werks und zur Vervielfältigung einer NOTICE-Datei.
+
+VII. Haftung
+
+    (1)	Der Lizenzgeber haftet unabhängig vom Rechtsgrund unbeschränkt für Schäden und
+        Aufwendungen, die
+        *	durch die Verletzung des Lebens, des Körpers oder der Gesundheit,
+        *	vorsätzlich oder grob fahrlässig;
+        *	durch arglistig verschwiegene Rechts- oder Sachmängel verursacht wurden;
+        *	dem Umfang einer übernommenen Garantie entsprechen oder
+        *	soweit sich die Haftung nach dem Produkthaftungsgesetz richtet.
+
+    (2)	Bei fahrlässiger Verletzung einer Vertragspflicht ist die Haftung der Höhe nach auf den bei
+        Vertragsschluss typischerweise vorhersehbaren Schaden begrenzt.
+    (3)	Die Haftung für indirekte Schäden, insbesondere entgangener Gewinn und Nutzungsausfall, ist
+        ausgeschlossen.
+    (4)	Die Haftungshöchstsumme ist auf 10.000,00 Euro (in Worten: Zehntausend Euro) begrenzt.
+        Ausdrücklich ausgenommen ist hiervon die Haftung gemäß Absatz 1.
+    (5)	Im übrigen ist jegliche Haftung des Lizenzgebers über das gesetzlich geforderte Maß
+        ausgeschlossen.
+
+VIII. Verjährung
+
+    (1)	Die Verjährungsfrist für alle Ansprüche gegen den Lizenzgeber beträgt ein (1) Jahr, mit Ausnahme
+    von
+        *	Ansprüchen, die auf vorsätzlichem oder grob fahrlässigem Verhalten des Lizenzgebers
+            beruhen;
+        *	Schadenersatzansprüchen, die auf der Verletzung des Lebens, des Körpers, der Gesundheit
+            oder der Freiheit beruhen,
+        *	Ansprüche, die durch arglistig verschwiegene Rechts- oder Sachmängel der Software
+            verursacht wurden und
+        *	Ansprüchen nach dem Produkthaftungsgesetz.
+        In diesen Fällen gelten die gesetzlichen Bestimmungen.
+    (2)	Die Verjährungsfrist beginnt nach Maßgabe der gesetzlichen Bestimmungen.
+
+IX. Zuwiderhandlungen, Urheberbezeichnungen, Vermerke, Hinweise
+
+    (1)	Jede Nutzung des Werks entgegen den Bedingungen dieser Lizenz beendet unmittelbar die
+        Nutzungsrechte des Zuwiderhandelnden. Die Nutzungsrechte Dritter, die sich von dieser Lizenz
+        ableiten, bestehen weiter, soweit die Bedingungen dieser Lizenz eingehalten werden.
+    (2)	Die vom Urheber des ursprünglichen Werks und dem Urheber der Änderungen angebrachten
+        Urheberbezeichnungen und die diesbezüglichen Datumsangaben sowie alle Vermerke, die auf
+        die Geltung dieser Lizenz hinweisen, dürfen vom Lizenznehmer nicht entfernt werden.
+    (3)	Wenn bei der Installation oder beim Start des veränderten Werks Lizenz- oder
+        Vertragsbedingungen oder Hinweise auf die Rechtsinhaber angezeigt werden, dann muss ein
+        Hinweis angezeigt werden, der auf diese Lizenz, sowie auf den oder die Rechtsinhaber an den
+        ersten unter dieser Lizenz nutzbaren Werkbestandteilen hinweist.
+
+X. Ergänzende Bestimmungen
+
+    Diese Vereinbarung und alle Streitigkeiten, die sich aus oder im Zusammenhang mit dieser
+    Vereinbarung ergeben, unterliegen dem Recht der Bundesrepublik Deutschland. Die Bestimmungen
+    des UN-Kaufrechts und/oder einem Kollisionsrecht finden keine Anwendung.
+    Wenn Sie Kaufmann oder eine juristische Person des öffentlichen Rechts sind, oder keinen
+    allgemeinen Gerichtsstand im Inland haben: Ausschließlicher Gerichtsstand für alle Streitigkeiten aus
+    dieser Vereinbarung und der Geschäftsbeziehung mit dem Lizenzgeber ist Dortmund.
+    In anderen Fällen: Gerichtsstand für Streitigkeiten aus dieser Vereinbarung und der
+    Geschäftsbeziehung mit dem Lizenzgeber ist Ihr Wohnsitz oder allgemeiner Aufenthaltsort.
+    Sollten einzelne Bestimmungen dieses Vertrages unwirksam sein, so wird hierdurch die Vereinbarung
+    im übrigen nicht berührt.
+
+Stand: 26.09.2019

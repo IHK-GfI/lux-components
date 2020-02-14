@@ -1,0 +1,83 @@
+<lux-card
+  [luxTitle]="selectedDetail.title"
+  luxSubTitle="Hier finden sich die Einstellungen für die Master-Detail Component."
+>
+  <lux-card-content>
+    <div fxLayout="column" fxLayoutGap="4px">
+      <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="8px" fxLayout="column" fxLayoutGap="0">
+        <lux-input
+          luxLabel="luxEmptyLabelDetail"
+          luxHint="Diese Property bestimmt das Label welches angezeigt wird, wenn kein Detail selektiert ist."
+          [(luxValue)]="masterDetailConfig.emptyLabelDetail"
+          fxFlex.gt-sm="0 0 calc(50% - 8px)"
+        >
+        </lux-input>
+        <lux-input
+          luxLabel="luxEmptyLabelMaster"
+          luxHint="Diese Property bestimmt das Label welches angezeigt wird, wenn keine Master-Elemente vorhanden sind."
+          [(luxValue)]="masterDetailConfig.emptyLabelMaster"
+          fxFlex.gt-sm="0 0 50%"
+        >
+        </lux-input>
+      </div>
+      <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="8px" fxLayout="column" fxLayoutGap="0">
+        <lux-input
+          luxLabel="luxEmptyIconDetail"
+          luxHint="Die Property legt das Icon fest, das angezeigt wird wenn kein Detail ausgewählt ist."
+          [(luxValue)]="masterDetailConfig.emptyIconDetail"
+          fxFlex.gt-sm="0 0 calc(50% - 8px)"
+        >
+        </lux-input>
+        <lux-input
+          luxLabel="luxEmptyIconMaster"
+          luxHint="Die Property legt das Icon fest, das angezeigt wird wenn keine Master-Elemente vorhanden sind."
+          [(luxValue)]="masterDetailConfig.emptyIconMaster"
+          fxFlex.gt-sm="0 0 50%"
+        >
+        </lux-input>
+      </div>
+      <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="8px" fxLayout="column" fxLayoutGap="0">
+        <lux-select
+          luxLabel="luxEmptyIconDetailSize"
+          luxHint="Über diese Eigenschaft wird die (relative) Größe des EmptyDetail-Icons festgelegt."
+          [(luxSelected)]="masterDetailConfig.emptyIconDetailSize"
+          [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
+          fxFlex.gt-sm="0 0 calc(50% - 8px)"
+        >
+        </lux-select>
+        <lux-select
+          luxLabel="luxEmptyIconMasterSize"
+          luxHint="Über diese Eigenschaft wird die (relative) Größe des EmptyMaster-Icons festgelegt."
+          [(luxSelected)]="masterDetailConfig.emptyIconMasterSize"
+          [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
+          fxFlex.gt-sm="0 0 50%"
+        >
+        </lux-select>
+      </div>
+      <lux-toggle
+        luxLabel="luxOpen"
+        luxHint="Die Property stellt ein ob die Masterliste aufgeklappt ist."
+        [(luxChecked)]="masterDetailConfig.opened"
+      >
+      </lux-toggle>
+      <lux-toggle
+        luxLabel="luxTitleLineBreak"
+        luxHint="Mithilfe dieses Flags kann eingestellt werden, ob die Titel in der Masterliste umbrechen oder mit '...' abgekürzt werden."
+        [(luxChecked)]="masterDetailConfig.lineBreak"
+      >
+      </lux-toggle>
+      <lux-toggle
+        luxLabel="luxMasterIsReloading"
+        luxHint="Über diesen Flag kann der Spinner am Ende der Masterliste sichtbar gemacht werden."
+        [(luxChecked)]="masterDetailConfig.masterIsReloading"
+      >
+      </lux-toggle>
+      <lux-toggle
+        luxLabel="Infinite-Scrolling ignorieren"
+        luxHint="Das Nachladen weiterer Master-Einträge mithilfe von Infinite-Scrolling unterbinden."
+        [(luxChecked)]="masterDetailConfig.ignoreScrollLoading"
+      >
+      </lux-toggle>
+    </div>
+  </lux-card-content>
+</lux-card>

@@ -1,0 +1,85 @@
+<example-base-structure
+  exampleTitle="Snackbar"
+  exampleIconName="fas fa-eye"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/7AfqKQ"
+>
+  <example-base-simple-options>
+    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
+    </lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutGap.xs="4px">
+      <div class="example-highlight-config-option" fxLayout="column" fxFlex="1 0 250px" fxFlex.xs="auto">
+        <lux-input
+          luxLabel="text"
+          luxHint="Diese Property definiert den Text der Snackbar."
+          [(luxValue)]="snackbarConfig.text"
+        >
+        </lux-input>
+        <lux-select
+          luxLabel="textColor"
+          [luxOptions]="colors"
+          luxHint="Hier kann ein Farbwert für den Text eingetragen werden (aus dem entsprechenden Enum)."
+          [(luxSelected)]="snackbarConfig.textColor"
+        >
+        </lux-select>
+      </div>
+      <div class="example-highlight-config-option" fxLayout="column" fxFlex="1 0 250px" fxFlex.xs="auto">
+        <lux-input
+          luxLabel="iconName"
+          luxHint="Diese Property definiert das Icon der Snackbar."
+          [(luxValue)]="snackbarConfig.iconName"
+        >
+        </lux-input>
+        <lux-select
+          luxLabel="iconSize"
+          luxHint="Die Property bestimmt die (relative) Größe des Icons."
+          [(luxSelected)]="snackbarConfig.iconSize"
+          [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
+        >
+        </lux-select>
+        <lux-select
+          luxLabel="iconColor"
+          [luxOptions]="colors"
+          luxHint="Hier kann ein Farbwert für das Icon eingetragen werden (aus dem entsprechenden Enum)."
+          [(luxSelected)]="snackbarConfig.iconColor"
+        >
+        </lux-select>
+      </div>
+      <div class="example-highlight-config-option" fxLayout="column" fxFlex="1 0 250px" fxFlex.xs="auto">
+        <lux-input
+          luxLabel="action"
+          luxHint="Diese Property definiert die Action der Snackbar."
+          [(luxValue)]="snackbarConfig.action"
+        >
+        </lux-input>
+        <lux-select
+          luxLabel="actionColor"
+          [luxOptions]="colors"
+          luxHint="Hier kann ein Farbwert für die Action eingetragen werden (aus dem entsprechenden Enum)."
+          [(luxSelected)]="snackbarConfig.actionColor"
+        >
+        </lux-select>
+      </div>
+    </div>
+  </example-base-simple-options>
+  <example-base-options-actions>
+    <div fxLayout="row wrap">
+      <lux-button
+        class="lux-mr-3 lux-mb-3"
+        luxLabel="Snackbar einblenden"
+        luxColor="primary"
+        [luxRaised]="true"
+        (luxClicked)="openSnackbar()"
+      >
+      </lux-button>
+      <lux-button
+        class="lux-mr-3 lux-mb-3"
+        luxLabel="Snackbar ausblenden"
+        luxColor="warn"
+        [luxRaised]="true"
+        (luxClicked)="dismissSnackbar()"
+      >
+      </lux-button>
+    </div>
+  </example-base-options-actions>
+</example-base-structure>

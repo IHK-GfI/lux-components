@@ -1,0 +1,61 @@
+<example-base-structure
+  exampleTitle="Tooltip"
+  exampleIconName="fas fa-comment"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/DQbqKQ"
+>
+  <example-base-content [exampleCentered]="true">
+    <div
+      luxTooltip="{{ message }}"
+      [luxTooltipDisabled]="disabled"
+      [luxTooltipPosition]="position"
+      [luxTooltipHideDelay]="hideDelay"
+      [luxTooltipShowDelay]="showDelay"
+    >
+      Tooltip-Target (mouseover for tooltip)
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-input
+      class="example-highlight-config-option"
+      luxAutocomplete="off"
+      luxLabel="luxTooltip"
+      luxHint="Diese Property bestimmt den Text innerhalb des Tooltips."
+      [(luxValue)]="message"
+    >
+    </lux-input>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxTooltipDisabled"
+      luxHint="Mit diesem Flag lässt sich der Tooltip deaktivieren."
+      [(luxChecked)]="disabled"
+    >
+    </lux-toggle>
+    <lux-select
+      class="example-highlight-config-option"
+      luxLabel="luxTooltipPosition"
+      luxHint="Diese Property ändert die Position des Tooltips relativ zum Zielelement."
+      [(luxSelected)]="position"
+      [luxOptions]="positionOptions"
+    >
+    </lux-select>
+
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-input
+        luxType="number"
+        luxAutocomplete="off"
+        luxLabel="luxTooltipHideDelay"
+        luxHint="Mit dieser Property wird die zeitliche Verzögerung (in ms) zum Ausblenden des Tooltips eingerichtet."
+        [(luxValue)]="hideDelay"
+      >
+      </lux-input>
+      <lux-input
+        luxType="number"
+        luxAutocomplete="off"
+        luxLabel="luxTooltipShowDelay"
+        luxHint="Mit dieser Property wird die zeitliche Verzögerung (in ms) zum Einblenden des Tooltips eingerichtet."
+        [(luxValue)]="showDelay"
+      >
+      </lux-input>
+    </div>
+  </example-base-simple-options>
+</example-base-structure>

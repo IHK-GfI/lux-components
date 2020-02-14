@@ -1,0 +1,15 @@
+:host {
+  position: relative;
+  display: inline-block;
+}
+
+i.lux-fa-icon,
+.lux-material-icon {
+  text-align: center;
+}
+
+.lux-icon-rounded {
+  border-radius: 0.9em;
+  width: 1.3em;
+  line-height: 1.3em;
+}

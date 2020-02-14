@@ -1,0 +1,99 @@
+@import '../../../../theming/luxtheme.scss';
+
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.example-base-structure {
+  position: relative;
+
+  .example-base-components-list {
+    overflow-y: auto;
+    border-right: 2px solid $black-12-opacity;
+    padding: 24px 8px;
+    height: 100% !important;
+
+    lux-panel {
+      padding: 0;
+
+      ::ng-deep {
+        mat-expansion-panel {
+          box-shadow: unset;
+        }
+
+        mat-expansion-panel-header {
+          font-size: 16px;
+          margin-bottom: 2px;
+        }
+
+        mat-expansion-panel-header,
+        .mat-expansion-panel-body {
+          padding: 0 12px;
+        }
+
+        .mat-expansion-panel-body {
+          padding: 0;
+        }
+
+        lux-panel-content {
+          display: block;
+        }
+      }
+    }
+
+    .example-component-list-item {
+      cursor: pointer;
+      font-size: 16px;
+      color: mat-color($lux-primary, 500);
+      padding: 2px 0 2px 32px;
+      margin-bottom: 2px;
+    }
+  }
+
+  .example-base-content {
+    padding: 16px 8px;
+    position: relative;
+    display: flex;
+    max-height: 100%;
+    height: 100%;
+
+    router-outlet + ::ng-deep * {
+      width: 100%;
+    }
+  }
+
+  .example-base-options {
+    max-height: 100%;
+  }
+
+  &.example-mobile {
+    ::ng-deep .example-base-options {
+      max-height: unset;
+    }
+  }
+
+  &:not(.example-mobile) {
+    ::ng-deep {
+      .example-base-options {
+        mat-card {
+          margin-right: 8px !important;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .example-highlight-config-option {
+    display: flex;
+    margin: 0 0 8px 0;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    padding: 4px;
+    background: rgba(0, 0, 0, 0.03);
+    word-break: break-word;
+  }
+}

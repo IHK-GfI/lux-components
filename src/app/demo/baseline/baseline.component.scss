@@ -1,0 +1,40 @@
+.baseline-row {
+  lux-card-content > * {
+    min-width: 125px !important;
+    display: flex;
+  }
+
+  lux-card-content lux-radio {
+    width: 200px !important;
+  }
+
+  ::ng-deep {
+    .lux-chips {
+      width: 125px !important;
+    }
+  }
+}
+
+:host {
+  &.show-frames {
+    .baseline-row lux-card-content > * {
+      background: yellow !important;
+    }
+
+    ::ng-deep {
+      .baseline-row lux-card-content {
+        .lux-form-control-label {
+          background: green !important;
+        }
+
+        .lux-form-control-container {
+          background: blue !important;
+        }
+
+        .lux-form-control-misc {
+          background: red !important;
+        }
+      }
+    }
+  }
+}

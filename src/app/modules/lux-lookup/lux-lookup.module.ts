@@ -1,0 +1,34 @@
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
+import { LuxLookupComboboxComponent } from './lux-lookup-combobox/lux-lookup-combobox.component';
+import { LuxLookupService } from './lux-lookup-service/lux-lookup.service';
+import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
+import { LuxLookupAutocompleteComponent } from './lux-lookup-autocomplete/lux-lookup-autocomplete.component';
+import { LuxFormModule } from '../lux-form/lux-form.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { LuxLookupLabelComponent } from './lux-lookup-label/lux-lookup-label.component';
+import { LuxComponentsConfigModule } from '../lux-components-config/lux-components-config.module';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    LuxDirectivesModule,
+    LuxFormModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    FlexLayoutModule,
+    LuxComponentsConfigModule
+  ],
+  declarations: [LuxLookupComboboxComponent, LuxLookupAutocompleteComponent, LuxLookupLabelComponent],
+  providers: [HttpClient, LuxLookupService],
+  exports: [LuxLookupComboboxComponent, LuxLookupAutocompleteComponent, LuxLookupLabelComponent]
+})
+export class LuxLookupModule {}

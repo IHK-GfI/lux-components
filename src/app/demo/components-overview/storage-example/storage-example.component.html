@@ -1,0 +1,124 @@
+<example-base-structure
+  exampleTitle="Storage"
+  exampleIconName="fas fa-hdd"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/CwjqKQ"
+>
+  <example-base-content fxLayout="column">
+    <div class="example-storage-list">
+      <h3>Aktuelle LocalStorage-Einträge</h3>
+      <div
+        class="example-highlight-config-option"
+        fxLayout="column"
+        fxLayoutGap="5px"
+        *ngFor="let item of [].constructor(storageLength); let i = index"
+      >
+        <span><b>Key:</b> {{ localStorage.key(i) }} </span>
+        <span><b>Value:</b> {{ luxStorageService.getItemAsObservable(localStorage.key(i)) | async }} </span>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between"
+          fxFlex="1 0 auto"
+          *ngIf="!localStorage.key(i).endsWith('sensitive')"
+        >
+          <lux-input fxFlex="1 1 auto" luxLabel="Neuer Value" #luxInput></lux-input>
+          <div fxFlex="0 0 auto" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="end">
+            <lux-button
+              luxIconName="fas fa-sync"
+              luxColor="accent"
+              luxTagId="refresh-storage-entry-btn"
+              [luxRounded]="true"
+              [luxDisabled]="!luxInput.luxValue"
+              luxAriaLabel="Wert speichern"
+              (luxClicked)="updateExisting(localStorage.key(i), luxInput)"
+            >
+            </lux-button>
+            <lux-button
+              luxIconName="fas fa-times"
+              luxColor="warn"
+              luxTagId="remove-storage-entry-btn"
+              [luxRounded]="true"
+              (luxClicked)="luxStorageService.removeItem(localStorage.key(i))"
+              luxAriaLabel="Wert löschen"
+            >
+            </lux-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <div>
+      Im Chrome kann der Storage wie folgt geändert werden:
+      <ol>
+        <li>mit F12 die Developer Tools öffnen</li>
+        <li>auf den Reiter 'Application' wechseln</li>
+        <li>links den 'Local Storage' aufklappen</li>
+        <li>die URL der App anklicken</li>
+        <li>den Wert des gesuchten Schlüssels ändern (Doppelklick auf den Wert)</li>
+        <li>mit Return den neuen Wert übernehmen</li>
+      </ol>
+    </div>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-input
+        luxLabel="key"
+        luxHint="Hier kann ein Key für einen Storage-Eintrag gesetzt werden."
+        luxAutocomplete="off"
+        [(luxValue)]="key"
+      >
+      </lux-input>
+      <lux-input
+        luxLabel="value"
+        luxHint="Hier kann der Wert für den Key {{ key }} eingetragen werden."
+        luxAutocomplete="off"
+        [(luxValue)]="value"
+      >
+      </lux-input>
+      <lux-toggle luxLabel="sensitive" [(luxChecked)]="sensitive">
+        <lux-form-hint>
+          Dieser Wert bestimmt, ob der eingetragene Schlüssel als 'empfindlicher' Datensatz gilt.<br />
+          Sensible Datensätze können über den <i>LuxStorageService</i> gezielt entfernt werden.
+        </lux-form-hint>
+      </lux-toggle>
+      <div fxLayout="row" fxLayoutAlign="end">
+        <lux-button
+          luxIconName="fas fa-plus"
+          luxColor="accent"
+          [luxRounded]="true"
+          (luxClicked)="submit()"
+          [luxDisabled]="!key"
+          luxTagId="add-new-storage-entry-btn"
+          luxAriaLabel="Wert hinzufügen"
+        >
+        </lux-button>
+      </div>
+    </div>
+  </example-base-simple-options>
+  <example-base-options-actions>
+    <lux-menu
+      fxFlex="1 1 250px"
+      luxMenuIconName="fas fa-ellipsis-v"
+      [luxDisplayExtended]="true"
+      [luxMaximumExtended]="2"
+      [luxDisplayMenuLeft]="false"
+    >
+      <lux-menu-item
+        luxLabel="Sensible Daten löschen"
+        [luxRaised]="true"
+        [luxDisabled]="storageLength === 0"
+        luxColor="warn"
+        (luxClicked)="clearSensitiveItems()"
+        luxTagId="menu-sensible-data"
+      >
+      </lux-menu-item>
+      <lux-menu-item
+        luxLabel="Alle Daten löschen"
+        [luxRaised]="true"
+        [luxDisabled]="storageLength === 0"
+        luxColor="warn"
+        (luxClicked)="clearAll()"
+        luxTagId="menu-all-data"
+      >
+      </lux-menu-item>
+    </lux-menu>
+  </example-base-options-actions>
+</example-base-structure>

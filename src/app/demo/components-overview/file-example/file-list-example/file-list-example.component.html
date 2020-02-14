@@ -1,0 +1,123 @@
+<example-base-structure
+  exampleTitle="File-List"
+  exampleIconName="fas fa-cloud-upload-alt"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/RAQHKw"
+>
+  <example-base-content fxLayout="column">
+    <div fxFlex="auto" fxLayout="column">
+      <h2>Ohne ReactiveForm</h2>
+      <lux-file-list
+        [luxLabel]="label"
+        [luxRequired]="required"
+        [luxReadonly]="readonly"
+        [(luxDisabled)]="disabled"
+        [luxShowPreview]="showPreview"
+        [luxUploadUrl]="uploadUrl"
+        [luxMultiple]="multiple"
+        [luxMaxSizeMB]="maxSize"
+        [luxBackgroundIconName]="backgroundIconName"
+        [luxUploadActionConfig]="uploadActionConfig"
+        [luxViewActionConfig]="viewActionConfig"
+        [luxDeleteActionConfig]="deleteActionConfig"
+        [luxDownloadActionConfig]="downloadActionConfig"
+        [luxCapture]="capture"
+        [luxAccept]="accept"
+        [luxHint]="hint"
+        [luxDnDActive]="dndActive"
+        [luxSelectedFiles]="selected"
+        [luxContentsAsBlob]="contentAsBlob"
+        [luxUploadReportProgress]="reportProgress"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxSelectedFilesChange)="onSelectedChange($event)"
+        #filelistexamplewithoutform
+      >
+      </lux-file-list>
+    </div>
+    <div fxFlex="auto" fxLayout="column">
+      <h2>Mit ReactiveForm</h2>
+      <div [formGroup]="form">
+        <lux-file-list
+          [luxLabel]="label"
+          [luxReadonly]="readonly"
+          [(luxDisabled)]="disabled"
+          [luxShowPreview]="showPreview"
+          [luxUploadUrl]="uploadUrl"
+          [luxMultiple]="multiple"
+          [luxMaxSizeMB]="maxSize"
+          [luxBackgroundIconName]="backgroundIconName"
+          [luxUploadActionConfig]="uploadActionConfig"
+          [luxViewActionConfig]="viewActionConfigForm"
+          [luxDeleteActionConfig]="deleteActionConfig"
+          [luxDownloadActionConfig]="downloadActionConfig"
+          [luxCapture]="capture"
+          [luxAccept]="accept"
+          [luxHint]="hint"
+          [luxDnDActive]="dndActive"
+          [luxControlBinding]="controlBinding"
+          [luxContentsAsBlob]="contentAsBlob"
+          [luxUploadReportProgress]="reportProgress"
+          (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+          (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+          #filelistexamplewithform
+        >
+        </lux-file-list>
+        <div fxLayout="column" class="example-highlight-config-option">
+          <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+            <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
+              <span fxFlex="35px">Valid:</span>
+              <span fxFlex="30px">{{ form.valid }}</span>
+            </div>
+            <div fxFlex="30" fxLayout="row">
+              <span fxFlex="0 0 auto">Dirty:</span>
+              <span fxFlex="30px">{{ form.dirty }}</span>
+            </div>
+            <div fxFlex="30" fxLayout="row">
+              <span fxFlex="0 0 auto">Touched:</span>
+              <span fxFlex="30px">{{ form.touched }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
+    </lux-toggle>
+    <lux-toggle luxLabel="Backend mocken" [luxChecked]="mockBackend" (luxCheckedChange)="changeMockBackend($event)">
+      <lux-form-hint>
+        Mockt den Http-Client um das Uploaden der Dateien zu simulieren.<br />
+        Dafür muss aber auch "luxUploadUrl" gesetzt sein (beliebiger Wert).
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="showPreview"
+      luxLabel="luxShowPreview"
+      luxHint="Diese Eigenschaft definiert, ob einzelne Bilder in einer Vorschau angezeigt werden sollen."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="multiple"
+      luxLabel="luxMultiple"
+      luxHint="Dieser Flag legt fest ob nur eine oder mehrere Dateien selektiert werden können."
+    >
+    </lux-toggle>
+    <app-file-example-simple-options [fileExample]="this"></app-file-example-simple-options>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxBackgroundIconName"
+      luxHint="Diese Eigenschaft legt das Icon fest, welches bei leerer Auswahl in der Mitte des Feldes angezeigt wird."
+      [(luxValue)]="backgroundIconName"
+    >
+    </lux-input>
+    <app-file-example-advanced-options
+      [fileExample]="this"
+      [showHeaderConfigProperties]="true"
+    ></app-file-example-advanced-options>
+  </example-base-advanced-options>
+</example-base-structure>

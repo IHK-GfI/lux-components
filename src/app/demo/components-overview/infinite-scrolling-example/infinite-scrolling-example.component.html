@@ -1,0 +1,87 @@
+<example-base-structure
+  exampleTitle="Infinite-Scrolling"
+  exampleIconName="fas fa-long-arrow-alt-down"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/CAbqKQ"
+>
+  <example-base-content>
+    <ng-container *ngIf="created">
+      <lux-list
+        fxFlex="1 1 100%"
+        style="overflow: auto"
+        luxInfiniteScroll
+        [luxImmediateCallback]="immediateCallback"
+        [luxIsLoading]="isLoading"
+        [luxScrollPercent]="scrollPercent"
+        (luxScrolled)="onScroll()"
+      >
+        <lux-list-item [luxTitle]="listItem" *ngFor="let listItem of listItems; trackBy: trackByFn">
+          <lux-list-item-icon>
+            <lux-icon [luxIconName]="'fas fa-cog'"></lux-icon>
+          </lux-list-item-icon>
+          <lux-list-item-content>
+            Content
+          </lux-list-item-content>
+        </lux-list-item>
+      </lux-list>
+    </ng-container>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+    ></lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxImmediateCallback"
+      [(luxChecked)]="immediateCallback"
+    >
+      <lux-form-hint>
+        Bestimmt ob bei Initiierung ein luxScrolled-Event abgegeben wird.<br />
+        Damit diese Property greift, bitte in den Optionen den Buttpn "Neu generieren" anklicken.
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxIsLoading"
+      luxHint="Teilt der Component mit, ob gerade Daten geladen werden. Wenn true, werden keine luxScrolled-Events emittet."
+      [(luxChecked)]="isLoading"
+    >
+    </lux-toggle>
+    <lux-input
+      class="example-highlight-config-option"
+      luxType="number"
+      luxLabel="luxScrollPercent"
+      luxHint="Bestimmt die Prozentzahl in der Scrollbar, ab der das luxScrolled-Event emitted wird."
+      [(luxValue)]="scrollPercent"
+    >
+    </lux-input>
+  </example-base-simple-options>
+  <example-base-options-actions>
+    <lux-menu
+      fxFlex="0 0 250px"
+      luxMenuIconName="fas fa-ellipsis-v"
+      [luxDisplayExtended]="true"
+      [luxDisplayMenuLeft]="false"
+      [luxMaximumExtended]="4"
+    >
+      <lux-menu-item
+        luxLabel="Neu generieren"
+        luxColor="default"
+        [luxRaised]="true"
+        (luxClicked)="recreateList()"
+        luxTagId="menu-item-regenerate"
+      >
+      </lux-menu-item>
+      <lux-menu-item
+        luxLabel="Reset"
+        luxColor="default"
+        [luxRaised]="true"
+        (luxClicked)="reset()"
+        luxTagId="menu-item-reset"
+      >
+      </lux-menu-item>
+    </lux-menu>
+  </example-base-options-actions>
+</example-base-structure>

@@ -1,0 +1,17 @@
+@import '../../../../../theming/luxtheme';
+
+.snackbar-action ::ng-deep {
+  .mat-button-focus-overlay {
+    display: none;
+  }
+}
+
+/**
+ * Wir ergänzen hier die css classes für bg-colors um den font der snackbar-elemente umzufärben (luxstyles.scss).
+ **/
+@each $colorName, $colorNameHex in $componentBgColors {
+  .lux-snackbar-content .lux-bg-color-#{'' + $colorName + ''} {
+    color: $colorNameHex;
+    background-color: transparent;
+  }
+}

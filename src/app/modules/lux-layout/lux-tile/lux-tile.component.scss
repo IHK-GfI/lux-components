@@ -1,0 +1,74 @@
+@import '../../../../theming/luxtheme';
+
+:host {
+  position: relative;
+  display: flex;
+}
+
+mat-card {
+  padding: 0;
+}
+
+lux-divider {
+  margin-bottom: 0 !important;
+}
+
+h2 {
+  margin: 0;
+}
+
+.lux-highlight {
+  color: mat-color($lux-primary, A400);
+}
+
+.lux-tile-small-font {
+  flex: 0 0 140px;
+  max-width: 140px !important;
+  min-width: 140px !important;
+
+  ::ng-deep h2 > * {
+    font-size: 0.75em;
+  }
+}
+
+.lux-tile-normal-font {
+  flex: 0 0 240px;
+  max-width: 240px !important;
+  min-width: 240px !important;
+
+  ::ng-deep h2 > * {
+    font-size: 1em;
+  }
+}
+
+.lux-tile-content,
+.lux-tile-content ::ng-deep lux-image {
+  height: 100px;
+}
+
+.lux-tile-content {
+  ::ng-deep lux-icon {
+    i,
+    mat-icon {
+      font-size: 4em;
+    }
+  }
+}
+
+.lux-tile-label {
+  padding: 24px;
+  text-align: center;
+}
+
+.lux-notification-read {
+  visibility: hidden;
+}
+
+.lux-notification-new {
+  background-color: mat-color($lux-accent, 500);
+}
+
+.lux-tile-small-font ::ng-deep .mat-badge-content {
+  top: -4px !important;
+  right: -4px !important;
+}

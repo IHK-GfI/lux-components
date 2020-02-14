@@ -1,0 +1,69 @@
+<div
+  [ngClass]="{ ie: isIE }"
+  fxFlex="1 1 100%"
+  fxLayout="column"
+  fxLayout.gt-sm="row"
+  fxLayoutGap="4px"
+  fxLayoutGap.gt-sm="8px"
+>
+  <lux-card
+    [luxTitle]="exampleTitle"
+    class="example-base-container"
+    fxFlex="auto"
+    fxFlex.gt-sm="1 0 50%"
+    *ngIf="contentComponent"
+  >
+    <lux-icon [luxIconName]="exampleIconName"></lux-icon>
+    <lux-card-content>
+      <ng-content select="example-base-content"></ng-content>
+    </lux-card-content>
+    <lux-card-actions>
+      <ng-content select="example-base-content-actions"></ng-content>
+    </lux-card-actions>
+  </lux-card>
+  <lux-card
+    luxTitle="Konfiguration"
+    class="example-base-options"
+    fxFlex="auto"
+    fxFlex.gt-sm="1 0 50%"
+    *ngIf="simpleOptionsComponent || advancedOptionsComponent"
+  >
+    <lux-icon luxIconName="fas fa-toolbox"></lux-icon>
+    <lux-card-content>
+      <ng-container *ngIf="simpleOptionsComponent && !advancedOptionsComponent">
+        <ng-container *ngTemplateOutlet="simpleOptionsTemplate"></ng-container>
+      </ng-container>
+      <lux-tabs [luxTabAnimationActive]="false" *ngIf="simpleOptionsComponent && advancedOptionsComponent">
+        <lux-tab
+          luxTitle="Allgemein"
+          luxIconName="fas fa-wrench"
+          luxTagIdHeader="bsp-tab-allgemein"
+          luxTagIdContent="bsp-tab-allgemein-content"
+          *ngIf="simpleOptionsComponent"
+        >
+          <ng-template>
+            <ng-container *ngTemplateOutlet="simpleOptionsTemplate"></ng-container>
+          </ng-template>
+        </lux-tab>
+        <lux-tab
+          luxTitle="Erweitert"
+          luxIconName="fas fa-tools"
+          luxTagIdHeader="bsp-tab-erweitert"
+          luxTagIdContent="bsp-tab-erweitert-content"
+          *ngIf="advancedOptionsComponent"
+        >
+          <ng-template>
+            <ng-content select="example-base-advanced-options"></ng-content>
+          </ng-template>
+        </lux-tab>
+      </lux-tabs>
+    </lux-card-content>
+    <lux-card-actions>
+      <ng-content select="example-base-options-actions"></ng-content>
+    </lux-card-actions>
+  </lux-card>
+
+  <ng-template #simpleOptionsTemplate>
+    <ng-content select="example-base-simple-options"></ng-content>
+  </ng-template>
+</div>

@@ -1,0 +1,54 @@
+<lux-file-preview-toolbar>
+  <lux-button
+    fxFlex="none"
+    luxIconName="fas fa-search-plus"
+    *ngIf="zoomActive"
+    (luxClicked)="onZoomIn()"
+    luxRaised="true"
+    luxTagId="file-preview-zoomin-btn"
+    luxAriaLabel="Hinein zoomen"
+  ></lux-button>
+  <lux-button
+    fxFlex="none"
+    luxIconName="fas fa-search-minus"
+    (luxClicked)="onZoomOut()"
+    *ngIf="zoomActive"
+    luxRaised="true"
+    luxTagId="file-preview-zoomout-btn"
+    luxAriaLabel="Heraus zoomen"
+  ></lux-button>
+  <lux-button
+    fxFlex="none"
+    [luxIconName]="downloadIconName"
+    (luxClicked)="onDownload()"
+    luxColor="accent"
+    luxRaised="true"
+    [luxTagId]="downloadTagId"
+    [luxAriaLabel]="downloadAriaLabel"
+  ></lux-button>
+  <lux-button
+    fxFlex="none"
+    [luxIconName]="closeIconName"
+    (luxClicked)="onClose()"
+    luxRaised="true"
+    [luxTagId]="closeTagId"
+    [luxAriaLabel]="closeAriaLabel"
+  ></lux-button>
+</lux-file-preview-toolbar>
+
+<div class="overlay-content" [ngStyle]="{ 'max-width': width + 'px', 'max-height': height + 'px' }">
+  <img
+    [src]="this.sanitizer.bypassSecurityTrustResourceUrl(this.url)"
+    *ngIf="url"
+    (load)="onLoad($event)"
+    [ngStyle]="{
+      'max-width': width + zoomWidth + 'px',
+      'max-height': height + zoomWidth + 'px',
+      display: loading ? 'none' : 'block'
+    }"
+    #previewImg
+  />
+  <div *ngIf="loading && !startPhase" class="message-box">
+    Lade...
+  </div>
+</div>

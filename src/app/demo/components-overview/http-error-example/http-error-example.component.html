@@ -1,0 +1,37 @@
+<example-base-structure
+  exampleTitle="HTTP-Error"
+  exampleIconName="fas fa-server"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/FgbqKQ"
+>
+  <example-base-content>
+    <lux-http-error></lux-http-error>
+  </example-base-content>
+  <example-base-simple-options>
+    <div fxLayout="column" fxLayoutGap="5px">
+      <lux-button
+        luxLabel="Fehler ausblenden"
+        [luxRaised]="true"
+        [luxDisabled]="(getErrorsObservable() | async) === null"
+        luxColor="accent"
+        (luxClicked)="clearErrors()"
+      >
+      </lux-button>
+      <h3>Fehler einblenden</h3>
+      <lux-button luxColor="primary" luxLabel="Als Map" [luxRaised]="true" (luxClicked)="createErrors()"> </lux-button>
+      <lux-button
+        luxColor="primary"
+        luxLabel="Als String-Array"
+        [luxRaised]="true"
+        (luxClicked)="createErrorMessageStrings()"
+      >
+      </lux-button>
+      <lux-button
+        luxColor="primary"
+        luxLabel="Als Objekte"
+        [luxRaised]="true"
+        (luxClicked)="createErrorToStringObjects()"
+      >
+      </lux-button>
+    </div>
+  </example-base-simple-options>
+</example-base-structure>

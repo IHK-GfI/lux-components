@@ -1,0 +1,35 @@
+<div [ngStyle]="{ visibility: visibility }">
+  <div
+    class="lux-side-nav lux-side-nav-z-index"
+    [@expandHide]="{ value: sideNavExpanded ? 'expanded' : 'void', params: { width: width + 'px' } }"
+    (@expandHide.done)="updateSideNavAfterAnimationIsFinished()"
+    #sideNav
+  >
+    <div class="lux-side-nav-header" #sideNavHeader>
+      <ng-content select="lux-side-nav-header"></ng-content>
+    </div>
+    <div class="lux-side-nav-content" fxLayout="column" [ngStyle]="{ height: height + 'px', visibility: visibility }">
+      <ng-container *ngIf="luxDashboardLink">
+        <lux-link
+          luxIconName="fa-th"
+          [luxLabel]="luxDashboardLinkTitle"
+          [luxBlank]="luxOpenLinkBlank"
+          [luxHref]="luxDashboardLink"
+        ></lux-link>
+      </ng-container>
+      <ng-container *ngFor="let sideNavItem of directSideNavItems">
+        <ng-container [ngTemplateOutlet]="sideNavItem.templateRef"></ng-container>
+      </ng-container>
+      <ng-content select="lux-side-nav-item"></ng-content>
+    </div>
+    <div class="lux-side-nav-footer" #sideNavFooter>
+      <ng-content select="lux-side-nav-footer"></ng-content>
+    </div>
+  </div>
+  <div
+    class="lux-side-nav-overlay lux-side-nav-overlay-z-index"
+    *ngIf="sideNavExpanded"
+    [@expandHideOverlay]="sideNavExpanded ? 'expanded' : 'void'"
+    (click)="close()"
+  ></div>
+</div>

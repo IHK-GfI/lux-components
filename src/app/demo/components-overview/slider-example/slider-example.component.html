@@ -1,0 +1,271 @@
+<example-base-structure
+  exampleTitle="Slider"
+  exampleIconName="fas fa-sliders-h"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/fgbqKQ"
+>
+  <example-base-content>
+    <div fxLayout="column">
+      <h3>Beispiel ohne Reactive-Form</h3>
+      <lux-slider
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxControlValidators]="controlValidators"
+        [luxColor]="color"
+        [(luxDisabled)]="disabled"
+        [luxVertical]="vertical"
+        [luxInvert]="invert"
+        [luxShowThumbLabel]="showThumbLabel"
+        [luxTickInterval]="tickInterval"
+        [(luxValue)]="value"
+        [luxMax]="max"
+        [luxMin]="min"
+        [luxStep]="step"
+        [luxShowThumbLabelAlways]="alwaysVisible"
+        [luxReadonly]="readonly"
+        [luxDisplayWith]="useDisplayFn ? displayFn : undefined"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxValuePercent)="percentChanged($event)"
+        (luxValueChange)="log(showOutputEvents, 'Value changed', $event)"
+        luxTagId="slidernoform"
+      >
+      </lux-slider>
+      <div class="example-highlight-config-option" fxLayout="column" fxLayoutGap="5px">
+        <div fxLayout="row" fxLayoutGap="5px">
+          <span fxFlex="75px">Wert:</span>
+          <span fxFlex="auto">{{ value }}</span>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px">
+          <span fxFlex="75px">Prozentual:</span>
+          <span fxFlex="auto">{{ percent }}%</span>
+        </div>
+      </div>
+    </div>
+    <div fxLayout="column" [formGroup]="form">
+      <h3>Beispiel in Reactive-Form</h3>
+      <lux-slider
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxControlBinding]="controlBinding"
+        [luxColor]="color"
+        [(luxDisabled)]="disabled"
+        [luxVertical]="vertical"
+        [luxInvert]="invert"
+        [luxShowThumbLabel]="showThumbLabel"
+        [luxTickInterval]="tickInterval"
+        [luxMax]="max"
+        [luxMin]="min"
+        [luxStep]="step"
+        [luxShowThumbLabelAlways]="alwaysVisible"
+        [luxReadonly]="readonly"
+        [luxDisplayWith]="useDisplayFn ? displayFn : undefined"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxValuePercent)="percentReactiveChanged($event)"
+        luxTagId="sliderwithform"
+      >
+      </lux-slider>
+      <div fxLayout="column" class="example-highlight-config-option">
+        <div fxLayout="row" fxLayoutGap="5px">
+          <span fxFlex="75px">Wert:</span>
+          <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px">
+          <span fxFlex="75px">Prozentual:</span>
+          <span fxFlex="auto">{{ percentReactive }}%</span>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+          <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
+            <span fxFlex="35px">Valid:</span>
+            <span fxFlex="30px">{{ form.valid }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Dirty:</span>
+            <span fxFlex="30px">{{ form.dirty }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Touched:</span>
+            <span fxFlex="30px">{{ form.touched }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+    ></lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxLabel"
+      luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
+      [(luxValue)]="label"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxHint"
+      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+      [(luxValue)]="hint"
+    >
+    </lux-input>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="disabled"
+      luxLabel="luxDisabled"
+      luxHint="Erlaubt es, die Component zu deaktivieren."
+    >
+    </lux-toggle>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <div fxLayout="row wrap">
+        <lux-button
+          luxLabel="Enable"
+          (luxClicked)="form.get(controlBinding).enable()"
+          [luxDisabled]="!form.get(controlBinding).disabled"
+        ></lux-button>
+        <lux-button
+          luxLabel="Disable"
+          (luxClicked)="form.get(controlBinding).disable()"
+          [luxDisabled]="form.get(controlBinding).disabled"
+        ></lux-button>
+      </div>
+      <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
+    </div>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="readonly"
+      luxLabel="luxReadonly"
+      luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="vertical"
+      luxLabel="luxVertical"
+      luxHint="Diese Property schaltet die vertikale Darstellung des Sliders ein."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="invert"
+      luxLabel="luxInvert"
+      luxHint="Über diesen Flag kann die Ausrichtung des Sliders gespiegelt werden."
+    >
+    </lux-toggle>
+    <lux-select
+      class="example-highlight-config-option"
+      [luxOptions]="colorOptions"
+      luxOptionLabelProp="label"
+      luxLabel="luxColor"
+      luxHint="Diese Property bestimmt das Farbschema des Sliders."
+      [luxSelected]="colorOptions[0]"
+      (luxSelectedChange)="colorChanged($event)"
+    >
+    </lux-select>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-input
+        [(luxValue)]="min"
+        luxType="number"
+        luxLabel="luxMin"
+        luxHint="Diese Property bestimmt den minimal möglichen Wert in dem Slider."
+      ></lux-input>
+      <lux-input
+        [(luxValue)]="max"
+        luxType="number"
+        luxLabel="luxMax"
+        luxHint="Diese Property bestimmt den maximal möglichen Wert des Sliders."
+      >
+      </lux-input>
+      <lux-input
+        luxType="number"
+        [(luxValue)]="step"
+        luxLabel="luxStep"
+        luxHint="Über die Property wird die Schrittgröße, in denen der Slider die Werte ändert bestimmt."
+      >
+      </lux-input>
+      <lux-toggle
+        [luxChecked]="tickIntervalAuto"
+        (luxCheckedChange)="tickIntervalChanged($event)"
+        luxLabel="luxTickInterval - 'auto'"
+      >
+        <lux-form-hint>
+          luxTickInterval kann den Wert 'auto' erhalten, um automatisch die Anzahl an Abstandanzeigen darzustellen.<br />
+          Diese sind nur visuell und haben keine Auswirkung auf die Schrittgröße (luxStep).
+        </lux-form-hint>
+      </lux-toggle>
+      <lux-input
+        luxType="number"
+        [luxValue]="tickIntervalNumber"
+        luxLabel="luxTickInterval - 'number'"
+        luxHint="Die Property kann ebenfalls einen Zahlenwert erhalten, um so die Abstände festzulegen."
+        (luxValueChange)="tickIntervalNumberChanged($event)"
+        *ngIf="!tickIntervalAuto"
+      >
+      </lux-input>
+    </div>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-toggle
+        [(luxChecked)]="showThumbLabel"
+        luxLabel="luxShowThumbLabel"
+        luxHint="Dieser Flag schaltet die 'ThumbLabel'-Anzeige des aktuellen Wertes ein."
+      >
+      </lux-toggle>
+      <lux-toggle
+        [(luxChecked)]="alwaysVisible"
+        luxLabel="luxShowThumbLabelAlways"
+        luxHint="Diese Property schaltet den 'ThumbLabel' unabhängig vom Fokus immer ein."
+        *ngIf="showThumbLabel"
+      >
+      </lux-toggle>
+      <lux-toggle
+        luxLabel="luxDisplayWith"
+        luxHint="Eigene displayWith-Funktion für die Anzeige im 'ThumbLabel' benutzen."
+        [(luxChecked)]="useDisplayFn"
+      >
+      </lux-toggle>
+      <pre class="lux-label" *ngIf="useDisplayFn">{{ displayWithFnString }}</pre>
+    </div>
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-toggle
+        luxLabel="luxErrorMessage verwenden"
+        luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
+        [(luxChecked)]="useErrorMessage"
+      >
+      </lux-toggle>
+      <lux-input
+        luxLabel="luxErrorMessage"
+        luxHint="Über diese Property lässt sich eine feste Fehlermeldung
+                 (unabhängig vom speziellen Validierungsfehler) einstellen."
+        [(luxValue)]="errorMessage"
+        *ngIf="useErrorMessage"
+      >
+      </lux-input>
+      <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
+    </div>
+    <lux-select
+      class="example-highlight-config-option"
+      [luxOptions]="validatorOptions"
+      luxOptionLabelProp="label"
+      [luxMultiple]="true"
+      [luxPickValue]="pickValidatorValueFn"
+      luxLabel="luxControlValidators"
+      [(luxSelected)]="controlValidators"
+    >
+      <lux-form-hint>
+        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und
+        Weise trotzdem Validatoren zu übergeben.<br />
+        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die
+        entsprechende FormControl setzen.
+      </lux-form-hint>
+    </lux-select>
+  </example-base-advanced-options>
+</example-base-structure>

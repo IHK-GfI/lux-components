@@ -1,0 +1,202 @@
+@import '../../../../theming/luxtheme';
+
+:host {
+  flex: 0 0 auto;
+  max-height: 65px;
+  height: 65px;
+  max-width: 100%;
+  display: block;
+  z-index: 999;
+}
+
+.lux-app-header {
+  box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.5);
+  background-color: mat-color($lux-primary, 500);
+  z-index: 10000;
+
+  overflow: hidden;
+  white-space: nowrap;
+
+  ::ng-deep button,
+  > div {
+    height: 45px !important;
+  }
+
+  ::ng-deep button {
+    display: inline-flex;
+    justify-content: center;
+
+    .mat-button-wrapper {
+      align-items: center;
+    }
+  }
+
+  // Einheitliche Schrift und Icon-Größe sowie Farbe sicherstellen
+  & {
+    > div:not(.lux-header-action) {
+      ::ng-deep span {
+        color: mat_contrast($lux-primary, 500);
+      }
+    }
+
+    ::ng-deep {
+      span {
+        font-size: 16px;
+      }
+
+      button:not(.mat-primary):not(.mat-warn):not(.mat-accent):not(.lux-button-rounded) {
+        color: mat_contrast($lux-primary, 500);
+      }
+
+      i,
+      mat-icon {
+        font-size: 18px !important;
+      }
+    }
+  }
+
+  // Anpassungen am rechten Menu ("User-Menu")
+  .lux-header-user {
+    > div:first-child {
+      margin-right: 3px;
+    }
+
+    .lux-header-user-short {
+      margin-right: 5px;
+
+      > span {
+        display: flex !important;
+        justify-content: center;
+        width: 25px;
+        border: 1px solid;
+        border-radius: 50%;
+        color: mat-color($lux-primary, 500);
+        background: mat-contrast($lux-primary, 500);
+        padding: 0 4px;
+      }
+    }
+  }
+
+  // Anpassungen am mittleren Menu ("Action-Menu")
+  .lux-header-action {
+    min-width: 0;
+
+    ::ng-deep {
+      button {
+        padding-top: 0;
+        padding-bottom: 0;
+        font-weight: normal !important;
+
+        &.lux-button-rounded {
+          width: 36px !important;
+          height: 36px !important;
+          justify-content: center;
+          display: inline-flex;
+          box-shadow: unset;
+        }
+
+        .lux-button-label {
+          font-weight: normal !important;
+        }
+      }
+
+      .lux-menu-extended {
+        padding: 0;
+      }
+    }
+  }
+
+  .lux-header-side-nav {
+    .lux-side-nav-trigger {
+      ::ng-deep {
+        i {
+          font-size: 1.5em;
+        }
+      }
+    }
+
+    .lux-side-nav-trigger,
+    .lux-master-toggle {
+      min-width: 45px;
+      width: 45px;
+      max-width: 45px;
+      margin-right: 8px;
+
+      ::ng-deep button {
+        min-width: 45px;
+        width: 45px;
+        max-width: 45px;
+        padding: 0;
+      }
+    }
+
+    .lux-side-nav-trigger-active {
+      background: $black-12-opacity;
+    }
+
+    .lux-right-nav-trigger {
+      cursor: pointer;
+      padding-right: 8px;
+      padding-left: 8px;
+
+      ::ng-deep .mat-button-wrapper > span {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+// Anpassungen an den (ausgeklappten) Menus im Header
+::ng-deep {
+  .lux-right-nav-menu,
+  .lux-side-nav .lux-side-nav-content {
+    lux-button,
+    .lux-menu-item,
+    .lux-action-nav-menu lux-button {
+      color: mat-color($lux-primary, 500);
+
+      .mat-button-wrapper {
+        font-weight: normal !important;
+        font-size: 16px;
+      }
+    }
+
+    lux-icon {
+      color: map_get($mat-grey, 700);
+
+      i,
+      mat-icon {
+        font-size: 18px !important;
+      }
+    }
+  }
+
+  .lux-side-nav-header,
+  .lux-side-nav-footer {
+    color: mat-color($lux-primary, A400);
+  }
+}
+
+// Zusätzliche CSS-Klassen
+.lux-display-block {
+  display: block !important;
+}
+
+.lux-display-none {
+  display: none !important;
+}
+
+.lux-show-border {
+  border-left: 1px solid $light-dividers;
+}
+
+.lux-header-menu-mobile {
+  ::ng-deep .lux-menu-trigger {
+    padding: 0 4px;
+    margin: 0;
+
+    button {
+      padding: 0 6px;
+    }
+  }
+}

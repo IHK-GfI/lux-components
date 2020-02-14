@@ -1,0 +1,47 @@
+@import '../../../../theming/luxtheme';
+
+:host {
+  position: relative;
+
+  ::ng-deep {
+    .mat-checkbox-label {
+      -ms-word-break: break-word;
+      word-break: break-word;
+      white-space: normal;
+    }
+
+    .mat-checkbox-ripple {
+      display: none;
+    }
+
+    .mat-checkbox-inner-container {
+      width: 20px;
+      height: 20px;
+      margin-top: -2px;
+    }
+  }
+}
+
+.mat-checkbox-disabled ::ng-deep label {
+  color: $dark-disabled-text;
+
+  & div div.mat-checkbox-frame {
+    border-color: rgba(black, 0.15);
+  }
+}
+
+.mat-checkbox-checked:not(.mat-checkbox-disabled) ::ng-deep label div div.mat-checkbox-background {
+  background-color: mat-color($lux-primary, 500);
+
+  & svg {
+    background-color: mat-color($lux-primary, 500);
+  }
+}
+
+.lux-checkbox-wrapper {
+  padding-bottom: 12px;
+}
+
+.lux-form-label {
+  cursor: pointer;
+}

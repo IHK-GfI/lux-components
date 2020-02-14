@@ -1,0 +1,208 @@
+<example-base-structure
+  exampleTitle="Chips"
+  exampleIconName="fas fa-ship"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/SwbqKQ"
+>
+  <example-base-content>
+    <div fxLayout="column">
+      <h3>Chips (ohne Group)</h3>
+      <lux-chips
+        [luxDisabled]="disabled"
+        [luxInputAllowed]="inputAllowed"
+        [luxInputLabel]="inputLabel"
+        [luxOrientation]="chipOrientation"
+        [luxMultiple]="multiple"
+        [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
+        (luxChipAdded)="chipAdded($event)"
+      >
+        <lux-chip
+          [luxDisabled]="chip.disabled"
+          [luxColor]="chip.color"
+          [luxRemovable]="chip.removable"
+          [luxSelected]="chip.selected"
+          (luxChipSelected)="log(showOutputEvents, 'Chip selected', $event)"
+          (luxChipClicked)="log(showOutputEvents, 'Chip clicked', $event)"
+          (luxChipRemoved)="chipRemoved($event)"
+          *ngFor="let chip of chips; let i = index"
+        >
+          {{ chip.label }}
+        </lux-chip>
+      </lux-chips>
+    </div>
+    <div fxLayout="column">
+      <h3>Chips (mit Group)</h3>
+      <lux-chips
+        [luxDisabled]="disabled"
+        [luxInputAllowed]="inputAllowed"
+        [luxInputLabel]="inputLabel"
+        [luxOrientation]="chipOrientation"
+        [luxMultiple]="multiple"
+        [luxNewChipGroup]="chipGroup"
+        (luxChipAdded)="chipAdded($event)"
+        [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
+      >
+        <lux-chip-group
+          [luxRemovable]="groupRemovable"
+          [luxColor]="groupColor"
+          [luxLabels]="groupLabels"
+          [luxDisabled]="groupDisabled"
+          [luxSelected]="groupSelected"
+          (luxChipRemoved)="log(showOutputEvents, '[GROUP] Chip removed', $event)"
+          (luxChipAdded)="log(showOutputEvents, '[GROUP] Chip added', $event)"
+          (luxChipClicked)="log(showOutputEvents, '[GROUP] Chip clicked', $event)"
+          (luxChipSelected)="log(showOutputEvents, '[GROUP] Chip selected', $event)"
+          #chipGroup
+        >
+        </lux-chip-group>
+      </lux-chips>
+    </div>
+    <div class="example-highlight-config-option" fxLayout="row" fxLayoutGap="5px" *ngIf="autocomplete && inputAllowed">
+      <span fxFlex="0 0 auto">Autocomplete-Optionen:</span>
+      <span fxFlex="auto" fxLayout="column" fxLayoutGap="5px">
+        <span *ngFor="let option of autocompleteOptions">
+          {{ option | json }}
+        </span>
+      </span>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+    ></lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-toggle luxLabel="luxInputAllowed" [(luxChecked)]="inputAllowed">
+        <lux-form-hint>
+          Aktiviert das Eingabefeld für die Chips, darüber lassen sich dann neue Chips hinzufügen.<br />
+          Bei Chip-Groups werden diese automatisch hinzugefügt, bei einzelnen Chips muss der Aufrufer über den Callback
+          "luxChipAdded" selbstständig den neuen Chip ergänzen.
+        </lux-form-hint>
+      </lux-toggle>
+      <lux-input
+        luxLabel="luxInputLabel"
+        [(luxValue)]="inputLabel"
+        luxHint="Über diese Property kann das Label für das Eingabefeld dieser Component gesetzt werden."
+      >
+      </lux-input>
+
+      <lux-toggle
+        luxLabel="luxAutocompleteOptions übergeben"
+        [(luxChecked)]="autocomplete"
+        [luxDisabled]="!inputAllowed"
+      >
+        <lux-form-hint>
+          Wenn der LuxChipComponent Autocomplete-Options übergeben werden, wird automatisch die
+          Autocomplete-Funktionalität freigeschaltet.<br />
+          Voraussetzung: luxInputAllowed = true
+        </lux-form-hint>
+      </lux-toggle>
+    </div>
+
+    <lux-select
+      class="example-highlight-config-option"
+      luxLabel="luxOrientation"
+      [(luxSelected)]="chipOrientation"
+      luxHint="Über diese Property kann eine horizontale oder vertikale Darstellung gewählt werden."
+      [luxOptions]="['horizontal', 'vertical']"
+    >
+    </lux-select>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="disabled"
+      luxLabel="luxDisabled"
+      luxHint="Erlaubt es, die Component zu deaktivieren."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="multiple"
+      luxLabel="luxMultiple"
+      luxHint="Erlaubt es, mehrere Chips zu selektieren (mithilfe der Leertaste)."
+    >
+    </lux-toggle>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div fxLayout="column">
+      <h3>Einzelne Chips</h3>
+      <lux-accordion [luxMulti]="false">
+        <lux-panel (luxOpened)="openedPanel = i" *ngFor="let chip of chips; let i = index">
+          <lux-panel-header-title> Chip #{{ i + 1 }} </lux-panel-header-title>
+          <lux-panel-content *ngIf="openedPanel === i">
+            <lux-input
+              class="example-highlight-config-option"
+              luxLabel="luxLabel"
+              luxHint="Bestimmt das Label des einzelnen Chips"
+              [luxValue]="chip.label"
+              (luxValueChange)="chip.label = $event"
+            >
+            </lux-input>
+            <lux-select
+              class="example-highlight-config-option"
+              luxLabel="luxColor"
+              luxHint="Bestimmt die Farbe der Chips für eine LuxChipGroup."
+              [(luxSelected)]="chip.color"
+              [luxOptions]="colors"
+            >
+            </lux-select>
+            <lux-toggle
+              class="example-highlight-config-option"
+              luxLabel="luxDisabled"
+              luxHint="Mit dieser Property können die Chips einer Group deaktiviert werden."
+              [(luxChecked)]="chip.disabled"
+            >
+            </lux-toggle>
+            <lux-toggle
+              class="example-highlight-config-option"
+              luxLabel="luxRemovable"
+              luxHint="Diese Property markiert die Chips in einer Group als entfernbar."
+              [(luxChecked)]="chip.removable"
+            >
+            </lux-toggle>
+            <lux-toggle
+              class="example-highlight-config-option"
+              luxLabel="luxSelected"
+              luxHint="Diese Property selektiert die Chip."
+              [(luxChecked)]="chip.selected"
+            >
+            </lux-toggle>
+          </lux-panel-content>
+        </lux-panel>
+      </lux-accordion>
+    </div>
+    <div fxLayout="column">
+      <h3>Chip-Group</h3>
+      <lux-select
+        class="example-highlight-config-option"
+        luxLabel="luxColor"
+        luxHint="Bestimmt die Farbe der Chips für eine LuxChipGroup."
+        [(luxSelected)]="groupColor"
+        [luxOptions]="colors"
+      >
+      </lux-select>
+      <lux-toggle
+        class="example-highlight-config-option"
+        luxLabel="luxDisabled"
+        luxHint="Mit dieser Property können die Chips einer Group deaktiviert werden."
+        [(luxChecked)]="groupDisabled"
+      >
+      </lux-toggle>
+      <lux-toggle
+        class="example-highlight-config-option"
+        luxLabel="luxRemovable"
+        luxHint="Diese Property markiert die Chips in einer Group als entfernbar."
+        [(luxChecked)]="groupRemovable"
+      >
+      </lux-toggle>
+      <lux-toggle
+        class="example-highlight-config-option"
+        luxLabel="luxSelected"
+        luxHint="Diese Property selektiert die Chips in dieser Group."
+        [(luxChecked)]="groupSelected"
+      >
+      </lux-toggle>
+    </div>
+  </example-base-advanced-options>
+</example-base-structure>

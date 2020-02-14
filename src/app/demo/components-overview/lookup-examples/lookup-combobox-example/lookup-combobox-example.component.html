@@ -1,0 +1,355 @@
+<example-base-structure
+  exampleTitle="Lookup-Combobox"
+  exampleIconName="fas fa-binoculars"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/1wfqKQ"
+>
+  <example-base-content>
+    <div fxLayout="column">
+      <h3>Beispiel ohne Reactive-Form</h3>
+      <lux-lookup-combobox
+        [luxPlaceholder]="placeholder"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxCustomStyles]="customStyle"
+        [luxCustomInvalidStyles]="customInvalidStyle"
+        [luxRenderProp]="useRenderFn ? renderFn : renderProp"
+        [luxParameters]="parameters"
+        [luxBehandlungUngueltige]="behandlungUngueltige"
+        [luxTableNo]="tableNo"
+        [(luxDisabled)]="disabled"
+        [luxRequired]="required"
+        [luxReadonly]="readonly"
+        [(luxValue)]="value"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxControlValidators]="controlValidators"
+        [luxEntryBlockSize]="entryBlockSize"
+        (luxDataLoaded)="dataLoaded($event)"
+        (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
+        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+        luxLookupId="normalcombobox"
+        luxTagId="lkpexample1"
+      >
+      </lux-lookup-combobox>
+      <div class="example-highlight-config-option" fxLayout="row" fxLayoutGap="5px" *ngIf="value">
+        <span fxFlex="0 0 auto">Wert:</span>
+        <span fxFlex="auto">{{ value | json }}</span>
+      </div>
+    </div>
+    <div fxLayout="column">
+      <h3>Multiselect Beispiel</h3>
+      <lux-lookup-combobox
+        [luxPlaceholder]="placeholder"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxCustomStyles]="customStyle"
+        [luxCustomInvalidStyles]="customInvalidStyle"
+        [luxRenderProp]="useRenderFn ? renderFn : renderProp"
+        [luxParameters]="parameters"
+        [luxBehandlungUngueltige]="behandlungUngueltige"
+        [luxTableNo]="tableNo"
+        [(luxDisabled)]="disabled"
+        [luxReadonly]="readonly"
+        [luxRequired]="required"
+        [luxEntryBlockSize]="entryBlockSize"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxControlValidators]="controlValidators"
+        [(luxValue)]="multiValue"
+        [luxMultiple]="true"
+        (luxDataLoaded)="dataLoaded($event)"
+        (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
+        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+        luxLookupId="multicombobox"
+        luxTagId="lkpexample2"
+      >
+      </lux-lookup-combobox>
+      <div class="example-highlight-config-option" fxLayout="row" fxLayoutGap="5px" *ngIf="multiValue">
+        <span fxFlex="0 0 auto">Wert:</span>
+        <span fxFlex="auto">{{ multiValue | json }}</span>
+      </div>
+    </div>
+    <div fxLayout="column" [formGroup]="form">
+      <h3>Beispiel in Reactive-Form</h3>
+      <lux-lookup-combobox
+        [luxPlaceholder]="placeholder"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxCustomStyles]="customStyle"
+        [luxCustomInvalidStyles]="customInvalidStyle"
+        [luxRenderProp]="useRenderFn ? renderFn : renderProp"
+        [luxParameters]="parameters"
+        [luxBehandlungUngueltige]="behandlungUngueltige"
+        [luxTableNo]="tableNo"
+        [(luxDisabled)]="disabled"
+        [luxReadonly]="readonly"
+        [luxEntryBlockSize]="entryBlockSize"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxControlBinding]="controlBinding"
+        (luxDataLoaded)="dataLoaded($event)"
+        (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
+        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+        luxLookupId="reactivecombobox"
+        luxTagId="lkpexample3"
+      >
+      </lux-lookup-combobox>
+      <div fxLayout="column" class="example-highlight-config-option">
+        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+          <span fxFlex="35px">Wert:</span>
+          <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+          <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
+            <span fxFlex="35px">Valid:</span>
+            <span fxFlex="30px">{{ form.valid }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Dirty:</span>
+            <span fxFlex="30px">{{ form.dirty }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Touched:</span>
+            <span fxFlex="30px">{{ form.touched }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
+    </lux-toggle>
+    <lux-toggle
+      luxLabel="Mock-Backend benutzen"
+      luxHint="Wenn der Lookup-Service nicht erreichbar sein sollte, können über dieses Flag Mock-Resultate geholt werden."
+      (luxCheckedChange)="changeUseMock($event)"
+    >
+    </lux-toggle>
+    <lux-toggle
+      luxLabel="Invalide Ergebnisse mocken"
+      luxHint="Fügt eine Reihe invalider Ergebnisse zu den Mock-Resultaten hinzu."
+      (luxCheckedChange)="changeMockInvalid($event)"
+      [luxDisabled]="!useMock"
+    >
+    </lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <div fxLayout="column">
+      <lux-panel class="lux-mb-3" [luxDisabled]="useMock" [luxExpanded]="!useMock">
+        <lux-panel-header-title>
+          <h3>Parameter-/Tabellen-Einstellungen</h3>
+        </lux-panel-header-title>
+        <lux-panel-content>
+          <div fxLayout="column">
+            <lux-input
+              class="example-highlight-config-option"
+              luxLabel="luxTableNo"
+              [(luxValue)]="tableNo"
+              luxType="number"
+            >
+            </lux-input>
+            <div class="example-highlight-config-option" fxLayout="column">
+              <h3>Parameter</h3>
+              <lux-input
+                luxLabel="Knr"
+                [(luxValue)]="parameters.knr"
+                luxType="number"
+                [luxNumberAlignLeft]="true"
+              ></lux-input>
+              <lux-chips luxInputLabel="Key eintragen" [luxInputAllowed]="true" [luxNewChipGroup]="parameterKeyCG">
+                <lux-chip-group luxColor="primary" [luxLabels]="parameters.keys" [luxRemovable]="true" #parameterKeyCG>
+                </lux-chip-group>
+              </lux-chips>
+              <lux-select
+                [luxMultiple]="true"
+                [luxOptions]="fieldOptions"
+                luxLabel="fields"
+                luxHint="Hier sind die Felder enthalten, welche in den zurückgegebenen Objekten enthalten sein sollen."
+                [(luxSelected)]="parameters.fields"
+              >
+              </lux-select>
+              <lux-toggle
+                luxLabel="raw"
+                luxHint="Über diese Property wird definiert ob die IDs mit vorangestellten '0' übergeben werden."
+                [(luxChecked)]="parameters.raw"
+              >
+              </lux-toggle>
+              <pre class="lux-label"><b>parameters</b> = {{ parameters | json }}</pre>
+            </div>
+          </div>
+        </lux-panel-content>
+      </lux-panel>
+    </div>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxLabel"
+      luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
+      [(luxValue)]="label"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxHint"
+      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+      [(luxValue)]="hint"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxPlaceholder"
+      luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
+      [(luxValue)]="placeholder"
+    >
+    </lux-input>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="disabled"
+      luxLabel="luxDisabled"
+      luxHint="Erlaubt es, die Component zu deaktivieren."
+    >
+    </lux-toggle>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <div fxLayout="row wrap">
+        <lux-button
+          luxLabel="Enable"
+          (luxClicked)="form.get(controlBinding).enable()"
+          [luxDisabled]="!form.get(controlBinding).disabled"
+        ></lux-button>
+        <lux-button
+          luxLabel="Disable"
+          (luxClicked)="form.get(controlBinding).disable()"
+          [luxDisabled]="form.get(controlBinding).disabled"
+        ></lux-button>
+      </div>
+      <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
+    </div>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="readonly"
+      luxLabel="luxReadonly"
+      luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxRequired"
+      (luxCheckedChange)="changeRequired($event)"
+    >
+      <lux-form-hint>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
+        Reactive-Form sind.<br />
+        <b
+          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
+          Form-Control gesetzt.</b
+        >
+      </lux-form-hint>
+    </lux-toggle>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxEntryBlockSize"
+      [(luxValue)]="entryBlockSize"
+      luxType="number"
+    >
+      <lux-form-hint>
+        Mit dieser Property wird die Anzahl der maximal dargestellten Optionen bestimmt.<br />
+        Wenn mehr Datensätze vorhanden sind und der User in der Liste scrollt, wird der nächste Block gerendert.
+      </lux-form-hint>
+    </lux-input>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-toggle
+        luxLabel="Render-Funktion nutzen"
+        luxHint="Wenn 'true' wird für 'luxRenderProp' anstelle einer Render-Property (z.B. 'label') eine Callback-Funktion übergeben."
+        [(luxChecked)]="useRenderFn"
+      >
+      </lux-toggle>
+      <pre class="lux-label" *ngIf="useRenderFn"><b>renderFn</b> = {{ renderFnString }}</pre>
+      <lux-input
+        [(luxValue)]="renderProp"
+        luxLabel="luxRenderProp"
+        luxHint="Hier kann die Property festgelegt werden, welche zur Darstellung der einzelnen Einträge genutzt wird."
+        *ngIf="!useRenderFn"
+      >
+      </lux-input>
+    </div>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-toggle
+        luxLabel="luxCustomStyles übergeben"
+        luxHint="Wenn 'true', wird der Component ein Objekt mit Styles für valide Elemente übergeben."
+        (luxCheckedChange)="changeCustomStyle($event)"
+      >
+      </lux-toggle>
+      <pre class="lux-label" *ngIf="customStyle"><b>customStyles</b> = {{ customStyle | json }}</pre>
+      <lux-toggle
+        luxLabel="luxCustomInvalidStyles übergeben"
+        luxHint="Wenn 'true', wird der Component ein Objekt mit Styles für invalide Elemente übergeben."
+        (luxCheckedChange)="changeCustomInvalidStyle($event)"
+      >
+      </lux-toggle>
+      <pre
+        class="lux-label"
+        *ngIf="customInvalidStyle"
+      ><b>customInvalidStyles</b> = {{ customInvalidStyle | json }}</pre>
+    </div>
+
+    <lux-select
+      class="example-highlight-config-option"
+      luxLabel="luxBehandlungUngueltige"
+      luxOptionLabelProp="label"
+      [luxOptions]="options"
+      [luxSelected]="options[1]"
+      (luxSelectedChange)="changeOptionUngueltig($event)"
+    >
+      <lux-form-hint>
+        Über diese Property wird definiert, wie ungültige Einträge behandelt werden.<br />
+        Diese können ausgeblendet, deaktiviert oder dargestellt werden.
+      </lux-form-hint>
+    </lux-select>
+
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-toggle
+        luxLabel="luxErrorMessage verwenden"
+        luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
+        [(luxChecked)]="useErrorMessage"
+      >
+      </lux-toggle>
+      <pre class="lux-label" *ngIf="!useErrorMessage"><b>luxErrorCallback</b> = {{ errorCallbackString }}</pre>
+      <lux-input
+        luxLabel="luxErrorMessage"
+        luxHint="Über diese Property lässt sich eine feste Fehlermeldung
+                 (unabhängig vom speziellen Validierungsfehler) einstellen."
+        [(luxValue)]="errorMessage"
+        *ngIf="useErrorMessage"
+      >
+      </lux-input>
+    </div>
+    <lux-select
+      class="example-highlight-config-option"
+      [luxOptions]="validatorOptions"
+      luxOptionLabelProp="label"
+      [luxMultiple]="true"
+      [luxPickValue]="pickValidatorValueFn"
+      luxLabel="luxControlValidators"
+      [(luxSelected)]="controlValidators"
+    >
+      <lux-form-hint>
+        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und
+        Weise trotzdem Validatoren zu übergeben.<br />
+        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die
+        entsprechende FormControl setzen.
+      </lux-form-hint>
+    </lux-select>
+  </example-base-advanced-options>
+  <example-base-options-actions>
+    <lux-button luxLabel="Abfrage starten" luxColor="primary" [luxRaised]="true" (luxClicked)="start()"> </lux-button>
+  </example-base-options-actions>
+</example-base-structure>

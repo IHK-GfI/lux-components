@@ -1,0 +1,25 @@
+:host ::ng-deep {
+  .example-base-container {
+    ::ng-deep > .mat-card > .lux-card-content-container {
+      overflow-y: auto;
+
+      > mat-card-content {
+        height: 100%;
+        overflow-y: hidden !important;
+
+        > .lux-card-content {
+          height: 100%;
+
+          > lux-card-content {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+example-base-content {
+  max-height: 100%;
+  height: 100%;
+}

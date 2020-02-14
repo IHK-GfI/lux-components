@@ -1,0 +1,44 @@
+<lux-toggle class="example-highlight-config-option" [(luxChecked)]="tableExample.multiSelect">
+  <lux-form-label>luxMultiSelect</lux-form-label>
+  <lux-form-hint>Ermöglicht es, diese Tabelle mit Multiselection-Funktionalitäten zu versehen.</lux-form-hint>
+</lux-toggle>
+<lux-input class="example-highlight-config-option" [(luxValue)]="tableExample.noDataText">
+  <lux-form-label>luxNoDataText</lux-form-label>
+  <lux-form-hint
+    >Diese Property enthält den Text der angezeigt wird wenn keine Datensätze gefunden werden konnten.
+  </lux-form-hint>
+</lux-input>
+<lux-toggle class="example-highlight-config-option" [(luxChecked)]="tableExample.filter">
+  <lux-form-label>luxShowFilter</lux-form-label>
+  <lux-form-hint>Mit diesem Flag lässt sich das Filter-Inputfeld aus-/einblenden.</lux-form-hint>
+</lux-toggle>
+<lux-input
+  class="example-highlight-config-option"
+  [(luxValue)]="tableExample.filterText"
+  [luxDisabled]="!tableExample.filter"
+>
+  <lux-form-label>luxFilterText</lux-form-label>
+  <lux-form-hint>Diese Property definiert das Label des Filter-Inputfelds.</lux-form-hint>
+</lux-input>
+<div fxLayout="column" class="example-highlight-config-option">
+  <lux-toggle [(luxChecked)]="tableExample.pagination">
+    <lux-form-label>luxShowPagination</lux-form-label>
+    <lux-form-hint>Diese Property aktiviert/deaktiviert die Pagination für die Tabelle.</lux-form-hint>
+  </lux-toggle>
+  <lux-input [(luxValue)]="tableExample.pageSize" luxType="number" [luxDisabled]="!tableExample.pagination">
+    <lux-form-label>luxPageSize</lux-form-label>
+    <lux-form-hint>Hiermit kann die aktuelle Anzahl an Einträgen für die Pagination eingestellt werden. </lux-form-hint>
+  </lux-input>
+  <lux-select
+    [(luxSelected)]="tableExample.pageSizeOption"
+    [luxOptions]="tableExample.pageSizeOptions"
+    luxOptionLabelProp="label"
+    [luxDisabled]="!tableExample.pagination"
+    [luxPickValue]="tableExample.pickPageSize"
+  >
+    <lux-form-label>luxPageSizeOptions</lux-form-label>
+    <lux-form-hint
+      >Diese Property enthält ein Array mit den möglichen Optionen für die Anzahl an Einträgen.
+    </lux-form-hint>
+  </lux-select>
+</div>

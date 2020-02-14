@@ -1,0 +1,183 @@
+<example-base-structure
+  exampleTitle="App Footer"
+  exampleIconName="fas fa-shoe-prints"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/0wbqKQ"
+>
+  <example-base-simple-options>
+    <!-- Optionen für LuxAppFooterButtons -->
+    <div class="example-highlight-config-option" fxLayout="column">
+      <div
+        class="lux-mr-3 lux-ml-3"
+        fxLayout="row"
+        fxLayoutGap="5px"
+        fxLayoutAlign="space-between"
+        fxLayout.xs="column"
+      >
+        <h3>lux-app-footer-buttons</h3>
+        <div fxLayout="row" fxLayoutGap="5px">
+          <lux-button
+            class="lux-mt-2 lux-mb-2"
+            luxIconName="fas fa-plus"
+            luxColor="primary"
+            [luxRaised]="true"
+            [luxRounded]="true"
+            (luxClicked)="addFooterButton()"
+            luxTagId="btn-add"
+          >
+          </lux-button>
+          <lux-button
+            class="lux-mt-2 lux-mb-2"
+            luxIconName="fas fa-times"
+            luxColor="warn"
+            [luxRaised]="true"
+            [luxRounded]="true"
+            (luxClicked)="removeFooterButton()"
+            luxTagId="btn-remove"
+            [luxDisabled]="buttonService.buttonInfos.length === 0"
+          >
+          </lux-button>
+        </div>
+      </div>
+      <lux-accordion class="lux-mr-3 lux-ml-3 lux-mb-3" [luxMulti]="false" luxMode="flat">
+        <lux-panel *ngFor="let buttonInfo of buttonService.buttonInfos">
+          <lux-panel-header-title> Button "{{ buttonInfo.label }}" </lux-panel-header-title>
+          <lux-panel-content>
+            <lux-input
+              class="example-highlight-config-option"
+              luxLabel="cmd"
+              luxHint="Diese Property ist eine ID, anhand derer der einzelne Button identifiziert werden kann."
+              [(luxValue)]="buttonInfo.cmd"
+            >
+            </lux-input>
+            <lux-input
+              class="example-highlight-config-option"
+              luxLabel="label"
+              luxHint="Mit dieser Property wird das Label des Footer-Buttons festgelegt."
+              [(luxValue)]="buttonInfo.label"
+            >
+            </lux-input>
+            <lux-input
+              class="example-highlight-config-option"
+              luxLabel="iconName"
+              luxHint="Diese Property ermöglicht es, ein Icon für den Footer-Button einzurichten."
+              [(luxValue)]="buttonInfo.iconName"
+            >
+            </lux-input>
+            <lux-select
+              class="example-highlight-config-option"
+              luxLabel="color"
+              [(luxSelected)]="buttonInfo.color"
+              luxHint="Mithilfe der Property wird die Farbpalette des Buttons definiert."
+              [luxOptions]="['primary', 'warn', 'accent']"
+            >
+            </lux-select>
+            <lux-toggle
+              class="example-highlight-config-option"
+              luxLabel="raised"
+              luxHint="Dieser Flag hebt den Button hervor."
+              [(luxChecked)]="buttonInfo.raised"
+            >
+            </lux-toggle>
+            <lux-toggle
+              class="example-highlight-config-option"
+              luxLabel="disabled"
+              luxHint="Mit diesem Flag kann der Button deaktiviert werden."
+              [(luxChecked)]="buttonInfo.disabled"
+            >
+            </lux-toggle>
+            <lux-toggle
+              class="example-highlight-config-option"
+              luxLabel="hidden"
+              luxHint="Mit diesem Flag kann der Button ausgeblendet werden."
+              [(luxChecked)]="buttonInfo.hidden"
+            >
+            </lux-toggle>
+            <div class="example-highlight-config-option" fxLayout="column">
+              <lux-toggle luxLabel="alwaysVisible" [(luxChecked)]="buttonInfo.alwaysVisible">
+                <lux-form-hint>
+                  Dieses Flag stellt sicher, das dieser Button immer außerhalb des Menus dargestellt wird, solange der
+                  Platz noch ausreicht.<br />Andere Buttons, die dieses Flag nicht gesetzt haben, werden dann zuerst
+                  ausgeblendet.
+                </lux-form-hint>
+              </lux-toggle>
+            </div>
+          </lux-panel-content>
+        </lux-panel>
+      </lux-accordion>
+    </div>
+    <!-- Optionen für LuxAppFooterLinks -->
+    <div class="example-highlight-config-option" fxLayout="column">
+      <div
+        class="lux-mr-3 lux-ml-3"
+        fxLayout="row"
+        fxLayoutGap="5px"
+        fxLayoutAlign="space-between"
+        fxLayout.xs="column"
+      >
+        <h3>lux-app-footer-links</h3>
+        <div fxLayout="row" fxLayoutGap="5px">
+          <lux-button
+            class="lux-mt-2 lux-mb-2"
+            luxIconName="fas fa-plus"
+            luxColor="primary"
+            [luxRaised]="true"
+            [luxRounded]="true"
+            luxTagId="link-add"
+            (luxClicked)="addFooterLink()"
+          >
+          </lux-button>
+          <lux-button
+            class="lux-mt-2 lux-mb-2"
+            luxIconName="fas fa-times"
+            luxColor="warn"
+            [luxRaised]="true"
+            [luxRounded]="true"
+            luxTagId="link-remove"
+            (luxClicked)="removeFooterLink()"
+            [luxDisabled]="linkService.linkInfos.length === 0"
+          >
+          </lux-button>
+        </div>
+      </div>
+      <lux-accordion class="lux-mr-3 lux-ml-3 lux-mb-3" [luxMulti]="false" luxMode="flat">
+        <lux-panel *ngFor="let linkInfo of linkService.linkInfos">
+          <lux-panel-header-title> Link "{{ linkInfo.label }}" </lux-panel-header-title>
+          <lux-panel-content>
+            <lux-input
+              class="example-highlight-config-option"
+              luxLabel="label"
+              luxHint="Mit dieser Property wird das Label des Link-Buttons festgelegt."
+              [(luxValue)]="linkInfo.label"
+            >
+            </lux-input>
+            <lux-input
+              class="example-highlight-config-option"
+              luxLabel="path"
+              luxHint="Mit dieser Property wird der Pfad des Links bestimmt."
+              [(luxValue)]="linkInfo.path"
+            >
+            </lux-input>
+            <lux-toggle
+              class="example-highlight-config-option"
+              luxLabel="alwaysVisible"
+              [(luxChecked)]="linkInfo.alwaysVisible"
+            >
+              <lux-form-hint>
+                Dieses Flag stellt sicher, das dieser Link immer außerhalb des Menus dargestellt wird, solange der Platz
+                noch ausreicht.<br />Andere Links, die dieses Flag nicht gesetzt haben, werden dann zuerst ausgeblendet.
+              </lux-form-hint>
+            </lux-toggle>
+            <lux-toggle
+              class="example-highlight-config-option"
+              luxLabel="blank"
+              luxHint="Dieser Flag aktiviert das Öffnen des Links in einem neuen Tab (wenn externer Link)."
+              [(luxChecked)]="linkInfo.blank"
+              *ngIf="linkInfo.path.startsWith('http')"
+            >
+            </lux-toggle>
+          </lux-panel-content>
+        </lux-panel>
+      </lux-accordion>
+    </div>
+  </example-base-simple-options>
+</example-base-structure>

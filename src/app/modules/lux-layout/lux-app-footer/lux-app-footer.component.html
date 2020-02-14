@@ -1,0 +1,41 @@
+<div fxLayout="row" class="lux-app-footer lux-p-footer footerFont" fxFlexFill>
+  <div *ngIf="luxVersion" fxFlex="none" fxLayoutAlign="left center" fxShow="false" fxShow.gt-lg="true" class="version">
+    Version {{ luxVersion }}
+  </div>
+
+  <div *ngIf="getLinks()" fxFlex="none" fxLayoutAlign="left center" fxLayout="row" class="lux-app-footer-links">
+    <ng-container *ngFor="let linkItem of getLinks()">
+      <lux-link
+        [luxLabel]="linkItem.label"
+        *ngIf="linkItem.alwaysVisible || isMediumOrLargerDevice()"
+        [luxHref]="linkItem.path"
+        [luxBlank]="linkItem.blank"
+      >
+      </lux-link>
+    </ng-container>
+  </div>
+
+  <div fxFlex="auto" fxLayoutAlign="right center" class="lux-app-footer-buttons">
+    <lux-menu
+      [luxDisplayExtended]="true"
+      [luxDisplayMenuLeft]="false"
+      luxMenuIconName="fa-ellipsis-v"
+      luxTagId="app_footer_menu"
+    >
+      <ng-container *ngFor="let menuItem of getButtons()">
+        <lux-menu-item
+          [luxLabel]="menuItem.label"
+          [luxIconName]="menuItem.iconName"
+          [luxTagId]="menuItem.label"
+          [luxHidden]="menuItem.hidden"
+          [luxAlwaysVisible]="menuItem.alwaysVisible"
+          [luxDisabled]="menuItem.disabled"
+          [luxRaised]="menuItem.raised"
+          [luxColor]="menuItem.color"
+          (luxClicked)="sendButtonCommand(menuItem.cmd)"
+        >
+        </lux-menu-item>
+      </ng-container>
+    </lux-menu>
+  </div>
+</div>

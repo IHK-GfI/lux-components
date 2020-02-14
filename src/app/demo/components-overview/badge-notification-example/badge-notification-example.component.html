@@ -1,0 +1,95 @@
+<example-base-structure
+  exampleTitle="Badge-Notification"
+  exampleIconName="fas fa-bell"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/SAfqKw"
+>
+  <example-base-content [exampleCentered]="true" fxLayout="column" fxLayoutGap="28px">
+    <span
+      [luxBadgeNotification]="notification"
+      [luxBadgeColor]="color"
+      [luxBadgeDisabled]="disabled"
+      [luxBadgeHidden]="hidden"
+      [luxBadgeOverlap]="overlap"
+      [luxBadgeCap]="cap"
+      [luxBadgePosition]="position"
+      [luxBadgeSize]="size"
+    >
+      Span
+    </span>
+    <lux-button
+      [luxBadgeNotification]="notification"
+      [luxBadgeColor]="color"
+      [luxBadgeDisabled]="disabled"
+      [luxBadgeHidden]="hidden"
+      [luxBadgeOverlap]="overlap"
+      [luxBadgeCap]="cap"
+      [luxBadgePosition]="position"
+      [luxBadgeSize]="size"
+      luxLabel="Lux-Button"
+      [luxRaised]="true"
+      luxColor="primary"
+    >
+    </lux-button>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-input
+      class="example-highlight-config-option"
+      [(luxValue)]="notification"
+      luxLabel="luxBadgeNotification"
+      luxHint="Diese Property definiert den Text-Inhalt der Badge-Notification"
+    >
+    </lux-input>
+    <lux-select
+      class="example-highlight-config-option"
+      [(luxSelected)]="color"
+      luxLabel="luxBadgeColor"
+      luxHint="Diese Property definiert die Farbe der Notification"
+      [luxOptions]="['primary', 'warn', 'accent', 'default']"
+    >
+    </lux-select>
+    <lux-select
+      class="example-highlight-config-option"
+      [(luxSelected)]="position"
+      luxLabel="luxBadgePosition"
+      luxHint="Diese Property definiert die Position der Notification"
+      [luxOptions]="['above after', 'above before', 'below before', 'below after']"
+    >
+    </lux-select>
+    <lux-select
+      class="example-highlight-config-option"
+      [(luxSelected)]="size"
+      luxLabel="luxBadgeSize"
+      luxHint="Diese Property definiert die Größe der Notification"
+      [luxOptions]="['small', 'medium', 'large']"
+    >
+    </lux-select>
+    <lux-input
+      class="example-highlight-config-option"
+      [(luxValue)]="cap"
+      luxLabel="luxBadgeCap"
+      luxHint="Diese Property legt fest ob eine Maximalzahl nicht überschritten werden darf (Vorausgesetzt das der Inhalt eine Zahl ist)."
+    >
+    </lux-input>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="disabled"
+      luxLabel="luxDisabled"
+      luxHint="Dieses Flag bestimmt ob die Notification deaktiviert ist oder nicht."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="hidden"
+      luxLabel="luxHidden"
+      luxHint="Dieses Flag bestimmt ob die Notification versteckt ist oder nicht."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="overlap"
+      luxLabel="luxOverlap"
+      luxHint="Dieses Flag bestimmt ob die Notification hinter dem Quellelement liegt oder nicht."
+    >
+    </lux-toggle>
+  </example-base-simple-options>
+</example-base-structure>

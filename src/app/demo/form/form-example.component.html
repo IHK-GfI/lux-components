@@ -1,0 +1,30 @@
+<example-base-structure
+  exampleTitle="Formular-Beispiele"
+  exampleIconName="fas fa-file-alt"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/IQjqKQ"
+>
+  <example-base-content>
+    <lux-tabs luxTagId="form-tabs" [luxTabAnimationActive]="false" [luxDisplayDivider]="false">
+      <lux-tab luxIconName="fas fa-info" luxTitle="Allgemein">
+        <ng-template>
+          <app-form-common></app-form-common>
+        </ng-template>
+      </lux-tab>
+      <lux-tab luxIconName="fas fa-square" luxTitle="Einspaltig">
+        <ng-template>
+          <app-form-single-col></app-form-single-col>
+        </ng-template>
+      </lux-tab>
+      <lux-tab luxIconName="fas fa-th-large" luxTitle="Zweispaltig">
+        <ng-template>
+          <app-form-dual-col></app-form-dual-col>
+        </ng-template>
+      </lux-tab>
+      <lux-tab luxIconName="fas fa-th" luxTitle="Dreispaltig">
+        <ng-template>
+          <app-form-three-col></app-form-three-col>
+        </ng-template>
+      </lux-tab>
+    </lux-tabs>
+  </example-base-content>
+</example-base-structure>

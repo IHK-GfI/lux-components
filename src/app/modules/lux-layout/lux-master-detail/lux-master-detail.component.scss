@@ -1,0 +1,93 @@
+@import '../../../../theming/luxtheme';
+
+:focus {
+  outline: none;
+}
+
+.lux-master-detail {
+  max-width: 100%;
+  z-index: 10;
+}
+
+.lux-master-container {
+  border-right: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  min-width: 50px;
+  position: relative;
+
+  .lux-not-open {
+    padding: 12px 0;
+  }
+
+  // Wenn das passende Flag gesetzt ist und keine Mobilansicht vorliegt,
+  // für die Zentrierung der Empty-Elemente der Masterliste die relative Position des Master-Containers nutzen
+  // Folge: Empty-Elemente von Master und Detail sind gleich hoch
+  &:not(.lux-master-container-mobile).lux-empty-elements-aligned  {
+    lux-list {
+      position: static !important;
+    }
+  }
+}
+
+.lux-spinner-hidden {
+  display: none !important;
+}
+
+:host ::ng-deep lux-master-header-content div,
+:host ::ng-deep lux-master-header-content span {
+  color: mat-color($lux-primary, 50);
+}
+
+lux-list-item {
+  margin-bottom: 1px;
+
+  ::ng-deep {
+    lux-card {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+      mat-card {
+        -webkit-box-shadow: unset;
+        -moz-box-shadow: unset;
+        box-shadow: unset !important;
+
+        &:hover {
+          background: $lux-hover-color;
+        }
+      }
+    }
+  }
+}
+
+lux-list-item,
+lux-list-item-content {
+  display: block;
+}
+
+.lux-display-none {
+  display: none !important;
+}
+
+.lux-0-width {
+  width: 0;
+  min-width: 0;
+}
+
+.lux-detail-container {
+  position: relative;
+
+  .lux-detail-empty {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .lux-detail-empty-icon,
+  .lux-detail-empty-icon-text {
+    opacity: 0.6;
+    color: $dark-primary-text;
+    padding: 0 8px;
+  }
+}

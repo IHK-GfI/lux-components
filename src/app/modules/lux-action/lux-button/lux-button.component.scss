@@ -1,0 +1,60 @@
+.lux-align-baseline {
+  padding-bottom: 8px !important;
+
+  ::ng-deep {
+    .mat-button-wrapper {
+      align-items: flex-end;
+    }
+  }
+}
+
+.lux-button-label {
+  line-height: 1;
+}
+
+.lux-icon-button {
+  height: 45px;
+  padding-top: 4px;
+  padding-bottom: 2px;
+}
+
+.lux-icon-button.mat-fab {
+  width: 45px;
+  ::ng-deep {
+    lux-icon {
+      i,
+      mat-icon {
+        font-size: 1.5em;
+      }
+    }
+    .mat-button-wrapper {
+      padding: 0;
+    }
+  }
+}
+
+.lux-icon-button.mat-fab ::ng-deep .mat-button-wrapper {
+  padding: 0;
+}
+
+:host {
+  ::ng-deep {
+    .mat-button-wrapper {
+      height: 100%;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    lux-icon {
+      line-height: 1;
+      &i,
+      &mat-icon {
+        line-height: 1;
+      }
+
+      &i {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<lux-card ngClass.gt-sm="lux-error-page-desktop" id="ErrorPage" fxFlexFill>
+  <lux-card-content fxFlex="noshrink" fxLayout="column" fxLayoutAlign="center center">
+    <lux-icon
+      [luxIconName]="errorConfig.iconName"
+      [luxIconSize]="errorConfig.iconSize"
+      class="lux-semi-transparent lux-black-semi-transparent"
+      fxFlex="0 0 auto"
+      ngClass.gt-sm="lux-error-icon"
+      ngClass.sm="lux-error-icon-sm"
+      ngClass.xs="lux-error-icon-xs"
+    ></lux-icon>
+    <h2 class="lux-ml-3 lux-mr-3">{{ errorConfig.errorText }}</h2>
+    <lux-button
+      luxColor="primary"
+      [luxLabel]="errorConfig.homeRedirectText"
+      (luxClicked)="clickHomeRedirect()"
+      fxFlex="0 0 auto"
+    >
+    </lux-button>
+    <ng-container *ngIf="error">
+      <p class="lux-semi-transparent lux-black-semi-transparent" fxFlex="0 0 auto" *ngIf="error.errorId">
+        Fehlernummer: {{ error.errorId }}
+      </p>
+      <lux-panel *ngIf="error.errorMessage">
+        <lux-panel-header-title>Fehlermeldung</lux-panel-header-title>
+        <lux-panel-content>
+          {{ error.errorMessage }}
+        </lux-panel-content>
+      </lux-panel>
+    </ng-container>
+  </lux-card-content>
+</lux-card>

@@ -1,0 +1,114 @@
+<lux-master-detail
+  [luxEmptyIconDetail]="configuration.emptyIconDetail"
+  [luxEmptyIconMaster]="configuration.emptyIconMaster"
+  [luxEmptyIconDetailSize]="configuration.emptyIconDetailSize"
+  [luxEmptyIconMasterSize]="configuration.emptyIconMasterSize"
+  [luxEmptyLabelDetail]="configuration.emptyLabelDetail"
+  [luxEmptyLabelMaster]="configuration.emptyLabelMaster"
+  [luxOpen]="configuration.opened"
+  [luxTitleLineBreak]="configuration.lineBreak"
+  [luxMasterIsLoading]="configuration.masterIsReloading"
+  [luxMasterList]="masterEntries"
+  [luxSelectedDetail]="selectedDetail"
+  [luxCompareWith]="compareFn"
+  luxTagIdMaster="masterTagId"
+  luxTagIdDetail="detailTagId"
+  (luxScrolled)="onLoadListTest()"
+  (luxSelectedDetailChange)="loadDetail($event)"
+  fxFill
+>
+  <lux-master-header-content>
+    <lux-select
+      luxLabel="Filter nach Fälligkeit"
+      [luxOptions]="options"
+      [luxSelected]="options[0]"
+      luxOptionLabelProp="label"
+      (luxSelectedChange)="changeFilter($event)"
+    >
+    </lux-select>
+  </lux-master-header-content>
+
+  <lux-master-simple luxTitleProp="title" luxSubTitleProp="subtitle">
+    <!-- Zugriff auf jedes einzelne Master-Element ueber "master" -->
+    <ng-template #luxSimpleIcon let-master>
+      <lux-icon [luxIconName]="master.icon"></lux-icon>
+    </ng-template>
+    <ng-template #luxSimpleContent let-master>
+      {{ master.content }}
+      <p>
+        Fällig <b>{{ master.timestamp | luxRelativeTimestamp: 'TIMESTAMP NULL' }}</b>
+      </p>
+    </ng-template>
+  </lux-master-simple>
+
+  <lux-detail-view>
+    <!-- Zugriff auf das aktuell selektierte Element ueber "detail" -->
+    <ng-template let-detail>
+      <div class="lux-m-3">
+        <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0">
+          <lux-tab luxTitle="Konfiguration" luxIconName="fas fa-toolbox">
+            <ng-template>
+              <detail-example [masterDetailConfig]="configuration" [selectedDetail]="detail"></detail-example>
+            </ng-template>
+          </lux-tab>
+          <lux-tab luxTitle="Scroll-Example" luxIconName="fas fa-sort-amount-down">
+            <ng-template>
+              <text-example [title]="detail.title"></text-example>
+            </ng-template>
+          </lux-tab>
+        </lux-tabs>
+      </div>
+    </ng-template>
+  </lux-detail-view>
+
+  <lux-master-footer>
+    <div fxLayout="column">
+      <h3>Eintrag selektieren</h3>
+      <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="end center">
+        <lux-button
+          luxLabel="#1"
+          [luxRaised]="true"
+          luxColor="primary"
+          (luxClicked)="selectedDetail = masterEntries[0]"
+        >
+        </lux-button>
+        <lux-button
+          luxLabel="#5"
+          [luxRaised]="true"
+          luxColor="primary"
+          (luxClicked)="selectedDetail = masterEntries[4]"
+        >
+        </lux-button>
+        <lux-menu luxIconName="fa fa-bars" luxTagId="master_footer_menu">
+          <lux-menu-item
+            luxLabel="Liste umkehren"
+            luxIconName="fas fa-undo"
+            [luxDisabled]="masterEntries.length === 0"
+            (luxClicked)="reverseList()"
+          >
+          </lux-menu-item>
+          <lux-menu-item
+            luxLabel="Liste leeren"
+            luxIconName="fas fa-trash"
+            [luxDisabled]="masterEntries.length === 0"
+            (luxClicked)="clearList()"
+          >
+          </lux-menu-item>
+          <lux-menu-item luxLabel="Liste füllen" luxIconName="fas fa-fill" (luxClicked)="fillList()"> </lux-menu-item>
+          <lux-menu-item
+            luxLabel="Liste füllen (erste 10 Elemente)"
+            luxIconName="fas fa-fill"
+            (luxClicked)="fillListFirstTenItems()"
+          >
+          </lux-menu-item>
+          <lux-menu-item
+            luxLabel="Liste füllen (letzte 10 Elemente)"
+            luxIconName="fas fa-fill"
+            (luxClicked)="fillListLastTenItems()"
+          >
+          </lux-menu-item>
+        </lux-menu>
+      </div>
+    </div>
+  </lux-master-footer>
+</lux-master-detail>

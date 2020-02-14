@@ -1,0 +1,169 @@
+<example-base-structure
+  exampleTitle="Menu"
+  exampleIconName="fas fa-ellipsis-v"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/9gXqKQ"
+>
+  <example-base-content>
+    <lux-menu
+      [luxMenuIconName]="iconName"
+      [luxDisplayExtended]="displayExtended"
+      [luxClassName]="className"
+      [luxDisplayMenuLeft]="displayMenuLeft"
+      [luxMaximumExtended]="maximumExtended"
+      (luxMenuClosed)="log(showOutputEvents, 'Menu closed', $event)"
+      luxTagId="demo-menu"
+      #menu
+    >
+      <ng-container *ngFor="let item of menuItems">
+        <lux-menu-item
+          [luxIconName]="item.iconName"
+          [luxRaised]="item.raised"
+          [luxColor]="item.color"
+          [luxDisabled]="item.disabled"
+          [luxLabel]="item.label"
+          [luxAlwaysVisible]="item.alwaysVisible"
+          [luxTagId]="item.label"
+          (luxClicked)="log(showOutputEvents, 'Item clicked', $event)"
+          [luxRounded]="item.round"
+          [luxHideLabelIfExtended]="item.hideLabelIfExtended"
+          [luxHidden]="item.hidden"
+          *ngIf="item"
+        >
+        </lux-menu-item>
+      </ng-container>
+    </lux-menu>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+    ></lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxMenuIconName"
+      luxHint="Diese Property ermöglicht es, das Icon für das Menu zu ändern."
+      [(luxValue)]="iconName"
+    >
+    </lux-input>
+    <lux-input class="example-highlight-config-option" luxLabel="luxClassName" [(luxValue)]="className">
+      <lux-form-hint>
+        Über diese Property lassen sich CSS-Klassen für das ausgeklappte Menu setzen.
+        <br />
+        Um die Klassen zu beobachten, das Menu aufklappen und über die Developer-Tools (F12/CMD+ALT+I) das Menu
+        auswählen.
+      </lux-form-hint>
+    </lux-input>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxDisplayMenuLeft"
+      luxHint="Die Property ermöglicht es, den Trigger-Button für das Menu links von den
+                  ausgeklappt angezeigten Menueinträgen darzustellen."
+      [(luxChecked)]="displayMenuLeft"
+    >
+    </lux-toggle>
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-toggle
+        luxLabel="luxDisplayExtended"
+        luxHint="Diese Property bestimmt, ob Menu-Einträge bei ausreichend Platz außerhalb des
+                  Menus dargestellt werden können."
+        [(luxChecked)]="displayExtended"
+      >
+      </lux-toggle>
+      <lux-input
+        luxLabel="luxMaximumExtended"
+        luxHint="Die Property stellt ein wie viele Menu-Einträge maximal außerhalb des Menus dargestellt werden dürfen."
+        [(luxValue)]="maximumExtended"
+        luxType="number"
+        [luxDisabled]="!displayExtended"
+      >
+      </lux-input>
+    </div>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <h3>LuxMenuItemComponent</h3>
+    <br />
+    <br />
+    <lux-accordion luxMode="flat" [luxMulti]="false">
+      <lux-panel *ngFor="let item of menuItems; let i = index">
+        <lux-panel-header-description>
+          <h4>Optionen - MenuItem #{{ i }}</h4>
+        </lux-panel-header-description>
+        <lux-panel-content>
+          <lux-input
+            class="example-highlight-config-option"
+            luxLabel="luxLabel"
+            luxHint="Diese Property ermöglicht es, das Label eines Menu-Eintrags zu ändern."
+            [(luxValue)]="item.label"
+          >
+          </lux-input>
+          <lux-input
+            class="example-highlight-config-option"
+            luxLabel="luxIconName"
+            luxHint="Über diese Property kann ein Icon für den Menu-Eintrag eingerichtet werden."
+            [(luxValue)]="item.iconName"
+          >
+          </lux-input>
+          <lux-select
+            class="example-highlight-config-option"
+            luxLabel="luxColor"
+            luxHint="Die Property ermöglicht die Einstellung der Farbe für diesen Eintrag."
+            [(luxSelected)]="item.color"
+            [luxOptions]="['primary', 'warn', 'accent']"
+          ></lux-select>
+          <lux-toggle
+            class="example-highlight-config-option"
+            luxLabel="luxRaised"
+            luxHint="Dieses Flag schaltet die hervorgehobene Darstellung des Menu-Eintrags ein."
+            [(luxChecked)]="item.raised"
+          >
+          </lux-toggle>
+          <lux-toggle
+            class="example-highlight-config-option"
+            luxLabel="luxDisabled"
+            luxHint="Über dieses Flag wird der Eintrag deaktiviert."
+            [(luxChecked)]="item.disabled"
+          >
+          </lux-toggle>
+          <lux-toggle
+            class="example-highlight-config-option"
+            luxLabel="luxHidden"
+            luxHint="Über dieses Flag wird der Eintrag ausgeblendet."
+            [(luxChecked)]="item.hidden"
+          >
+          </lux-toggle>
+          <lux-toggle class="example-highlight-config-option" luxLabel="luxRounded" [(luxChecked)]="item.round">
+            <lux-form-hint>
+              Über dieses Flag kann der Eintrag als Kreis dargestellt werden.
+              <br />
+              Sollte nur in Zusammenhang mit einem Icon ohne Text genutzt werden, da dieser sonst das Layout sprengt.
+            </lux-form-hint>
+          </lux-toggle>
+          <lux-toggle
+            class="example-highlight-config-option"
+            luxLabel="luxAlwaysVisible"
+            [(luxChecked)]="item.alwaysVisible"
+            [luxDisabled]="!displayExtended"
+          >
+            <lux-form-hint>
+              Dieses Flag stellt sicher, das dieser Eintrag immer außerhalb des Menus dargestellt wird, solange der
+              Platz noch ausreicht.<br />Andere Einträge, die dieses Flag nicht gesetzt haben, werden dann zuerst
+              ausgeblendet.
+            </lux-form-hint>
+          </lux-toggle>
+          <lux-toggle
+            class="example-highlight-config-option"
+            luxLabel="luxHideLabelIfExtended"
+            [(luxChecked)]="item.hideLabelIfExtended"
+          >
+            <lux-form-hint>
+              Dieses Flag stellt ein ob das Label des MenuItems in der ausgeklappten Ansicht dargestellt werden soll
+              oder nicht.
+            </lux-form-hint>
+          </lux-toggle>
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  </example-base-advanced-options>
+</example-base-structure>

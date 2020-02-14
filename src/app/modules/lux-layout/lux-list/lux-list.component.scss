@@ -1,0 +1,25 @@
+@import '../../../../theming/luxtheme';
+
+:host {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: block;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.lux-list-empty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.lux-list-empty-icon,
+.lux-list-empty-icon-text {
+  opacity: 0.6;
+  color: $dark-primary-text;
+  padding: 0 8px;
+}

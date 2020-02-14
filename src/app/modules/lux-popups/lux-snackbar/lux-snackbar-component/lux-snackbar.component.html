@@ -1,0 +1,20 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="lux-flex-layout-gap-20 lux-snackbar-content">
+  <div fxFlex="0 0 auto">
+    <lux-icon [ngClass]="iconFontColor" [luxIconName]="config.iconName" [luxIconSize]="config.iconSize"> </lux-icon>
+  </div>
+  <div [ngClass]="textFontColor" fxFlex="auto">
+    {{ config.text }}
+  </div>
+
+  <div fxFlex="0 0 auto" *ngIf="config.action">
+    <button
+      class="snackbar-action"
+      [ngClass]="actionFontColor"
+      mat-button
+      [disableRipple]="true"
+      (click)="actionClick()"
+    >
+      {{ config.action }}
+    </button>
+  </div>
+</div>

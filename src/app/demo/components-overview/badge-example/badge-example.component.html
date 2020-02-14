@@ -1,0 +1,47 @@
+<example-base-structure
+  exampleTitle="Badge"
+  exampleIconName="fas fa-ribbon"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/9wbqKQ"
+>
+  <example-base-content [exampleCentered]="true">
+    <lux-badge [luxIconName]="iconName" [luxColor]="color" [luxUppercase]="uppercase">
+      <lux-label luxId="bsp-badge-label">
+        {{ text }}
+      </lux-label>
+    </lux-badge>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="Badge Text"
+      luxHint="Der Text-Inhalt der Badge wird über Content-Projection mithilfe der lux-label Component eingebunden."
+      [(luxValue)]="text"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxIconName"
+      luxHint="Diese Property definiert das Icon, welches in dem Badge angezeigt wird."
+      [(luxValue)]="iconName"
+    >
+    </lux-input>
+    <lux-select
+      class="example-highlight-config-option"
+      [(luxSelected)]="color"
+      [luxOptions]="colors"
+      luxLabel="luxColor"
+    >
+      <lux-form-hint>
+        Mithilfe dieser Property wird die Farbe des Icons bestimmt.<br />
+        Die Farb-Werte stammen aus der <b>luxstyles.scss</b>.
+      </lux-form-hint>
+    </lux-select>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="uppercase"
+      luxLabel="luxUppercase"
+      luxHint="Die Property ermöglicht eine Uppercase-Darstellung des Textes in der Badge einzuschalten."
+    >
+    </lux-toggle>
+  </example-base-simple-options>
+</example-base-structure>

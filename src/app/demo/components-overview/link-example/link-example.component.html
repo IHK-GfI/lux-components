@@ -1,0 +1,113 @@
+<example-base-structure
+  exampleTitle="Link"
+  exampleIconName="fas fa-link"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/6gXqKQ"
+>
+  <example-base-content [exampleCentered]="true">
+    <lux-link
+      [luxLabel]="label"
+      [luxColor]="color"
+      [luxIconName]="iconName"
+      [luxRaised]="raised"
+      [luxRounded]="round"
+      [luxIconAlignWithLabel]="align"
+      [luxDisabled]="disabled"
+      luxTagId="demo-link"
+      [luxHref]="href"
+      [luxBlank]="blank"
+      (luxClicked)="click($event)"
+    >
+    </lux-link>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+    ></lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input class="example-highlight-config-option" [(luxValue)]="href" luxLabel="luxHref">
+      <lux-form-hint>
+        Bestimmt die URL, zu der der Link routet.<br />
+        Wenn die URL nicht mit <i>http</i> beginnt, wird automatisch der Angular-Router für Routing innerhalb der
+        Applikation genommen.
+      </lux-form-hint>
+    </lux-input>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="blank"
+      luxLabel="luxBlank"
+      luxHint="Diese Property bestimmt ob (externe) Links in einem neuen Tab geöffnet werden."
+    >
+    </lux-toggle>
+
+    <lux-input
+      class="example-highlight-config-option"
+      [(luxValue)]="label"
+      luxLabel="luxLabel"
+      luxHint="Bestimmt den Text, der für den Link angezeigt wird."
+    ></lux-input>
+    <lux-input class="example-highlight-config-option" [(luxValue)]="iconName" luxLabel="luxIconName">
+      <lux-form-hint>
+        Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
+        <i>luxLabel</i> gesetzt ist).<br />
+        Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
+      </lux-form-hint>
+    </lux-input>
+    <lux-select
+      class="example-highlight-config-option"
+      [(luxSelected)]="color"
+      [luxOptions]="colors"
+      luxLabel="luxColor"
+      [luxPickValue]="pickValue"
+      luxOptionLabelProp="label"
+    >
+      <lux-form-hint>
+        Bestimmt die Farbe des Buttons.<br />
+        Die möglichen Werte sind 'primary', 'warn', 'accent', 'default' / undefined.
+      </lux-form-hint>
+    </lux-select>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="raised"
+      luxLabel="luxRaised"
+      luxHint="Über diese Property kann der Link hervorgehoben dargestellt werden."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="round"
+      luxLabel="luxRounded"
+      luxHint="Diese Property aktiviert eine runde Darstellung des Links."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="disabled"
+      luxLabel="luxDisabled"
+      luxHint="Diese Property deaktiviert den Link."
+    >
+    </lux-toggle>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="align"
+      luxLabel="luxIconAlignWithLabel"
+      luxHint="Mithilfe dieser Property werden Icon und Schrift auf einer Baseline ausgerichtet."
+      [luxDisabled]="!iconName"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="Label Uppercase"
+      [(luxChecked)]="config.labelConfiguration.allUppercase"
+      (luxCheckedChange)="updateConfiguration()"
+    >
+      <lux-form-hint>
+        Über den <i>LuxComponentsConfigService</i> kann für alle LuxLinks applikationsweit eine Uppercase-Darstellung
+        forciert werden.
+      </lux-form-hint>
+    </lux-toggle>
+  </example-base-advanced-options>
+</example-base-structure>

@@ -1,0 +1,128 @@
+<mat-tab-group
+  [dynamicHeight]="false"
+  [selectedIndex]="luxActiveTab"
+  (selectedTabChange)="tabChange$.next($event)"
+  [ngClass]="{
+    'lux-tabs-no-divider': !luxDisplayDivider,
+    'lux-tabs-no-anim': !luxTabAnimationActive,
+    'lux-tabs-mobile': queryService.isXS() || queryService.isSM()
+  }"
+  #matTabs
+  luxTagIdHandler
+  [luxTagId]="luxTagId"
+>
+  <ng-container *ngIf="luxTabAnimationActive">
+    <!-- Lazy Loading
+         ============
+         Durch die Property "luxLazyLoading" musste der mat-tab-Teil gedoppelt werden,
+         da ein *ngIf im <ng-template matTabLabel> nicht möglich war.
+         Der Testcase "luxLazyLoading=true mit Animation" war rot, da der Inhalt beim
+         Testen der Nachbedingung noch nicht zur Verfügung stand.
+    -->
+    <ng-container *ngIf="luxLazyLoading">
+      <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [disabled]="luxTab.luxDisabled">
+        <ng-template matTabLabel>
+          <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
+        </ng-template>
+        <ng-template matTabContent>
+          <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdContent" class="lux-mt-3 lux-tab-content">
+            <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
+            <span>&nbsp;</span>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </ng-container>
+    <ng-container *ngIf="!luxLazyLoading">
+      <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [disabled]="luxTab.luxDisabled">
+        <ng-template matTabLabel>
+          <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
+        </ng-template>
+        <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdContent" class="lux-mt-3 lux-tab-content">
+          <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
+          <span>&nbsp;</span>
+        </div>
+      </mat-tab>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="!luxTabAnimationActive">
+    <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [disabled]="luxTab.luxDisabled">
+      <ng-template matTabLabel>
+        <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
+      </ng-template>
+    </mat-tab>
+  </ng-container>
+</mat-tab-group>
+
+<ng-container *ngIf="!luxTabAnimationActive">
+  <ng-container *ngFor="let luxTab of luxTabs; trackBy: trackTab; let i = index">
+    <section
+      luxTagIdHandler
+      [luxTagId]="luxTab.luxTagIdContent"
+      *ngIf="!luxLazyLoading"
+      [class.lux-display-none]="i !== luxActiveTab"
+      class="lux-mt-3 lux-tab-content"
+    >
+      <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
+      <span>&nbsp;</span>
+    </section>
+    <section
+      luxTagIdHandler
+      [luxTagId]="luxTab.luxTagIdContent"
+      *ngIf="luxLazyLoading && i === luxActiveTab"
+      class="lux-mt-3 lux-tab-content"
+    >
+      <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
+      <span>&nbsp;</span>
+    </section>
+  </ng-container>
+</ng-container>
+
+<ng-template #tabLabelTemplate let-luxTab>
+  <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdHeader" class="lux-mt-3 lux-mb-3">
+    <div fxFlex="auto" fxLayout.gt-sm="column" fxLayout.xs="row">
+      <lux-icon
+        fxFlex="0 0 auto"
+        [luxIconName]="luxTab.luxIconName"
+        [luxIconSize]="luxIconSize"
+        *ngIf="luxTab.luxIconName"
+      ></lux-icon>
+
+      <div
+        fxLayout.gt-sm="row"
+        ngClass.gt-md="lux-label-lower"
+        [luxBadgeNotification]="luxTab.luxCounter"
+        [luxBadgeCap]="luxTab.luxCounterCap"
+        [luxBadgeOverlap]="false"
+      >
+        <div
+          class="lux-tab-title"
+          [ngClass]="{ 'lux-uppercase': labelUppercase }"
+          fxShow.sm="false"
+          fxShow.xs="false"
+          fxShow="true"
+          *ngIf="luxTab.luxIconName"
+        >
+          {{ luxTab.luxTitle }}
+        </div>
+        <div
+          class="lux-tab-title"
+          [ngClass]="{ 'lux-uppercase': labelUppercase }"
+          fxShow="true"
+          *ngIf="!luxTab.luxIconName"
+        >
+          {{ luxTab.luxTitle }}
+        </div>
+
+        <div
+          fxFlex="auto"
+          [ngClass]="[
+            'lux-tabs-notification-icon',
+            getNotificationIconColorClassForTab(luxTab),
+            luxTab.luxCounter !== null && luxTab.luxCounter !== undefined ? 'lux-badge-notification-visible' : ''
+          ]"
+          *ngIf="luxTab.luxShowNotification"
+        ></div>
+      </div>
+    </div>
+  </div>
+</ng-template>

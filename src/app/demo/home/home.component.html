@@ -1,0 +1,29 @@
+<div fxLayout="row" class="lux-mt-3">
+  <div fxShow="false" fxShow.gt-xs="true" fxFlex="15%"></div>
+  <div fxFlex="100%" fxFlex.gt-xs="auto">
+    <div fxLayout="row wrap" fxFlex="1 1 auto" fxLayoutAlign="center stretch">
+      <lux-tile (luxClicked)="goTo('Components')" luxLabel="Komponenten">
+        <lux-icon luxIconName="fas fa-toolbox"></lux-icon>
+      </lux-tile>
+      <lux-tile (luxClicked)="goTo('MasterDetail')" luxLabel="Master-Detail">
+        <lux-icon luxIconName="fas fa-th-list"></lux-icon>
+      </lux-tile>
+      <lux-tile (luxClicked)="goTo('Stepper')" luxLabel="Stepper">
+        <lux-icon luxIconName="fas fa-chevron-circle-right"></lux-icon>
+      </lux-tile>
+      <lux-tile (luxClicked)="goTo('Tabs')" luxLabel="Tabs">
+        <lux-icon luxIconName="fas fa-columns"></lux-icon>
+      </lux-tile>
+      <lux-tile (luxClicked)="goTo('Form')" luxLabel="Form">
+        <lux-icon luxIconName="fas fa-file-alt"></lux-icon>
+      </lux-tile>
+      <lux-tile (luxClicked)="goTo('Configuration')" luxLabel="Konfiguration">
+        <lux-icon luxIconName="fas fa-wrench"></lux-icon>
+      </lux-tile>
+      <lux-tile (luxClicked)="goTo('Baseline')" luxLabel="Baseline">
+        <lux-icon luxIconName="fas fa-align-left"></lux-icon>
+      </lux-tile>
+    </div>
+  </div>
+  <div fxShow="false" fxShow.gt-xs="true" fxFlex="15%"></div>
+</div>

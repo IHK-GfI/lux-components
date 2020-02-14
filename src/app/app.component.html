@@ -1,0 +1,131 @@
+<div class="lux-app-container">
+  <lux-app-header
+    luxAppTitle="LUX Components"
+    luxAppTitleShort="Components"
+    luxUserName="Max Mustermann"
+    luxIconName="far fa-lightbulb"
+  >
+    <lux-side-nav luxDashboardLink="https://lux-dashboard-entw.gfi.ihk.de/home" [luxOpenLinkBlank]="true">
+      <lux-side-nav-header>
+        <h3>Willkommen, Herr Mustermann</h3>
+      </lux-side-nav-header>
+      <lux-side-nav-item
+        luxLabel="Home"
+        luxIconName="fas fa-home"
+        (luxClicked)="goToHome()"
+        luxTagId="home-side-nav-item"
+        [luxSelected]="window.location.href.endsWith('home')"
+      >
+      </lux-side-nav-item>
+      <lux-side-nav-item
+        luxLabel="Master-Detail"
+        luxIconName="fas fa-th-list"
+        (luxClicked)="goToMasterDetail()"
+        luxTagId="md-side-nav-item"
+        [luxSelected]="window.location.href.endsWith('master-detail')"
+      >
+      </lux-side-nav-item>
+      <lux-side-nav-item
+        luxLabel="Stepper"
+        luxIconName="fas fa-chevron-circle-right"
+        (luxClicked)="goToStepper()"
+        luxTagId="stepper-side-nav-item"
+        [luxSelected]="window.location.href.endsWith('stepper')"
+      >
+      </lux-side-nav-item>
+      <lux-side-nav-item
+        luxLabel="Tabs"
+        luxIconName="fas fa-columns"
+        (luxClicked)="goToTabs()"
+        luxTagId="tabs-side-nav-item"
+        [luxSelected]="window.location.href.endsWith('tabs')"
+      >
+      </lux-side-nav-item>
+      <lux-side-nav-item
+        luxLabel="Form"
+        luxIconName="fas fa-file-alt"
+        (luxClicked)="goToForm()"
+        luxTagId="form-side-nav-item"
+        [luxSelected]="window.location.href.endsWith('form')"
+      >
+      </lux-side-nav-item>
+      <lux-side-nav-item
+        luxLabel="Konfiguration"
+        luxIconName="fas fa-wrench"
+        (luxClicked)="goToConfig()"
+        luxTagId="config-side-nav-item"
+        [luxSelected]="window.location.href.endsWith('configuration')"
+      >
+      </lux-side-nav-item>
+      <lux-side-nav-item
+        luxLabel="Baseline"
+        luxIconName="fas fa-align-left"
+        (luxClicked)="goToBaseline()"
+        luxTagId="baseline-side-nav-item"
+        [luxSelected]="window.location.href.endsWith('baseline')"
+      >
+      </lux-side-nav-item>
+      <lux-side-nav-item
+        luxLabel="Komponenten"
+        luxIconName="fas fa-toolbox"
+        (luxClicked)="goToComponents()"
+        luxTagId="cmp-side-nav-item"
+        [luxSelected]="window.location.href.endsWith('components-overview')"
+      >
+        <lux-side-nav-item
+          [luxLabel]="'lux-' + moduleName"
+          [luxExpandable]="true"
+          [luxExpanded]="navigationService.currentModules.get(moduleName)"
+          [luxCloseOnClick]="false"
+          luxIconName="fas fa-puzzle-piece"
+          [luxTagId]="'lux-' + moduleName + '-module'"
+          (luxClicked)="onModuleClicked(moduleName)"
+          *ngFor="let moduleName of navigationService.currentModuleNames"
+        >
+          <ng-container
+            *ngFor="let component of navigationService.sortedComponentEntries.get(moduleName) | luxAlphabeticallySorted"
+          >
+            <lux-side-nav-item
+              [luxLabel]="component.label"
+              [luxTagId]="component.label + '-side-nav-item'"
+              luxIconName="fas fa-circle"
+              [luxSelected]="window.location.href.endsWith(component.label.toLowerCase())"
+              (luxClicked)="component.onclick()"
+            >
+            </lux-side-nav-item>
+          </ng-container>
+        </lux-side-nav-item>
+      </lux-side-nav-item>
+      <lux-side-nav-footer>
+        <div fxLayout="row" fxLayoutAlign="end center">
+          <lux-button luxLabel="Datenschutz" [luxRaised]="true"></lux-button>
+          <lux-button luxLabel="Impressum" [luxRaised]="true"></lux-button>
+        </div>
+      </lux-side-nav-footer>
+    </lux-side-nav>
+    <lux-app-header-action-nav>
+      <lux-app-header-action-nav-item
+        luxIconName="fas fa-bell"
+        luxColor="accent"
+        luxAriaLabel="Nachrichten anzeigen"
+        luxTagId="action0"
+        (luxClicked)="actionClicked('#0 Action clicked!')"
+      >
+      </lux-app-header-action-nav-item>
+      <lux-app-header-action-nav-item
+        luxIconName="fas fa-trash"
+        luxColor="warn"
+        luxAriaLabel="Nachrichten löschen"
+        luxTagId="action1"
+        [luxDisabled]="true"
+        (luxClicked)="actionClicked('#1 Action clicked!')"
+      >
+      </lux-app-header-action-nav-item>
+    </lux-app-header-action-nav>
+    <lux-app-header-right-nav>
+      <lux-menu-item luxLabel="Abmelden" luxIconName="fa-power-off" luxTagId="abmelden-menu-item"></lux-menu-item>
+    </lux-app-header-right-nav>
+  </lux-app-header>
+  <lux-app-content></lux-app-content>
+  <lux-app-footer luxVersion="1.8.3"></lux-app-footer>
+</div>

@@ -1,0 +1,28 @@
+<mat-card
+  (click)="clicked()"
+  (keydown.enter)="clicked()"
+  (keydown.space)="clicked()"
+  luxTagIdHandler
+  [luxTagId]="luxTagId"
+  tabindex="0"
+  class="lux-cursor lux-highlight"
+  ngClass="lux-tile-small-font lux-m-2"
+  ngClass.gt-sm="lux-tile-normal-font lux-m-3"
+  [luxBadgeNotification]="luxCounter"
+  [luxBadgeCap]="luxCounterCap"
+  [luxBadgeOverlap]="true"
+>
+  <mat-card-content>
+    <div fxLayout="column" fxFill>
+      <div fxFlex="1 1 100px" fxLayoutAlign="center center" class="lux-tile-content">
+        <ng-content select="lux-icon"></ng-content>
+        <ng-content select="lux-image"></ng-content>
+      </div>
+      <lux-divider fxFlex="0 0 2px" *ngIf="luxLabel" aria-hidden="true"></lux-divider>
+
+      <h2 fxFlex="0 1 45px" fxLayoutAlign="center center" class="lux-tile-label" [attr.aria-label]="luxLabel">
+        <span>{{ luxLabel }}</span>
+      </h2>
+    </div>
+  </mat-card-content>
+</mat-card>

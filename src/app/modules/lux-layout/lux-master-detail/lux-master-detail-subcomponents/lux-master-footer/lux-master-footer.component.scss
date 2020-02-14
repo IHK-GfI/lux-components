@@ -1,0 +1,9 @@
+@import '../../../../../../theming/luxtheme';
+
+:host {
+  border-top: 1px solid lightgray;
+  background-color: mat-color($lux-primary, 50);
+  padding: 12px 24px 12px 24px;
+  font-weight: 500;
+  z-index: 100;
+}

@@ -1,0 +1,32 @@
+<lux-dialog-structure>
+  <lux-dialog-title>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+      <span fxFlex="0 0 auto">Speichern</span>
+      <span fxFlex="0 0 auto"><i>Sichern Sie Ihre Daten</i></span>
+    </div>
+  </lux-dialog-title>
+  <lux-dialog-content>
+    <div fxLayout="column" fxLayoutGap="8px">
+      <span>Ihre Daten werden im Anschluss an diesen Dialog gespeichert.</span>
+      <span>{{ luxDialogRef.data }}</span>
+      <b>Zusatzinformationen</b>
+      <lux-textarea luxLabel="Anmerkung" luxPlaceholder="Anmerkungen" luxMinRows="1"> </lux-textarea>
+      <lux-toggle
+        luxLabel="AGB gelesen"
+        luxHint="Ich habe die AGB und Datenschutzvereinbarungen gelesen und akzeptiere diese."
+        [luxRequired]="true"
+        #agbAcceptedToggle
+      >
+      </lux-toggle>
+    </div>
+  </lux-dialog-content>
+  <lux-dialog-actions>
+    <lux-button
+      luxLabel="OK"
+      luxColor="primary"
+      [luxDisabled]="!agbAcceptedToggle.luxChecked"
+      [luxRaised]="true"
+      (luxClicked)="luxDialogRef.closeDialog(true)"
+    ></lux-button>
+  </lux-dialog-actions>
+</lux-dialog-structure>

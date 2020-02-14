@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+.lux-panel-mobile {
+  .mat-expansion-panel-header {
+    padding: 0 12px !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0 12px 8px !important;
+
+    .mat-expansion-panel-header,
+    .mat-expansion-panel-content {
+      position: relative;
+    }
+  }
+}

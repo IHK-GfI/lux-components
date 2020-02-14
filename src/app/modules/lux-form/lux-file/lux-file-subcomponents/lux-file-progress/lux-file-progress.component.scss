@@ -1,0 +1,46 @@
+@import '../../../../../../theming/luxtheme';
+
+$animationDuration: 8s;
+
+@mixin lux-progress-animation() {
+  -webkit-animation-duration: $animationDuration !important;
+  -moz-animation-duration: $animationDuration !important;
+  -o-animation-duration: $animationDuration !important;
+  animation-duration: $animationDuration !important;
+}
+
+.lux-file-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $dark-focused;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  pointer-events: none;
+
+  /*
+    Leider müssen wir hier den Progress erneut stylen, weil wir nicht LuxProgress nutzen können.
+    (Stand: 12.06.2019, LuxProgress ist Teil des LuxCommonModule und sorgt für Cycle-Dependencies) - DRon
+  */
+  mat-spinner,
+  mat-spinner ::ng-deep svg {
+    height: 48px !important;
+    width: 48px !important;
+
+    ::ng-deep {
+      circle {
+        stroke: mat-color($lux-primary);
+        background: mat-color($lux-primary);
+
+        @include lux-progress-animation;
+      }
+    }
+  }
+
+  mat-spinner {
+    background: transparent !important;
+  }
+}

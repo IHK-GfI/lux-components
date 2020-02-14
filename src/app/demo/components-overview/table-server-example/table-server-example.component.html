@@ -1,0 +1,116 @@
+<example-base-structure
+  exampleTitle="Tabelle (mit serverseitigen Daten)"
+  exampleIconName="fas fa-table"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/dAfqKQ"
+>
+  <example-base-content>
+    <div [ngStyle]="{ height: calculateProportions ? tableHeightPx + 'px' : 'unset' }">
+      <lux-table
+        [luxMinWidthPx]="minWidthPx"
+        [luxShowPagination]="pagination"
+        [luxColWidthsPercent]="columnWidthOption"
+        [luxShowFilter]="filter"
+        [luxFilterText]="filterText"
+        [luxPageSize]="pageSize"
+        [luxClasses]="cssClass"
+        [luxPageSizeOptions]="pageSizeOption"
+        [luxMultiSelect]="multiSelect"
+        [luxNoDataText]="noDataText"
+        [luxHttpDAO]="httpDAO"
+        [luxSelected]="selected"
+        [luxCompareWith]="compareFn"
+        [luxHideBorders]="hideBorders"
+        [luxAutoPaginate]="autoPagination"
+      >
+        <lux-table-column
+          luxColumnDef="name"
+          [luxSortable]="nameConfig.sortable"
+          [luxSticky]="nameConfig.sticky"
+          [luxResponsiveAt]="nameConfig.responsiveAt"
+          [luxResponsiveBehaviour]="nameConfig.responsiveBehaviour?.value"
+        >
+          <lux-table-column-header>
+            <ng-template>Name</ng-template>
+          </lux-table-column-header>
+          <lux-table-column-content>
+            <ng-template let-element
+              ><span>{{ element.name }}</span></ng-template
+            >
+          </lux-table-column-content>
+          <lux-table-column-footer>
+            <ng-template>
+              Name Footer
+            </ng-template>
+          </lux-table-column-footer>
+        </lux-table-column>
+        <lux-table-column
+          luxColumnDef="symbol"
+          [luxSortable]="symbolConfig.sortable"
+          [luxSticky]="symbolConfig.sticky"
+          [luxResponsiveAt]="symbolConfig.responsiveAt"
+          [luxResponsiveBehaviour]="symbolConfig.responsiveBehaviour?.value"
+        >
+          <lux-table-column-header>
+            <ng-template>Symbol</ng-template>
+          </lux-table-column-header>
+          <lux-table-column-content>
+            <ng-template let-element
+              ><span>{{ element.symbol | lowercase }}</span></ng-template
+            >
+          </lux-table-column-content>
+          <lux-table-column-footer>
+            <ng-template>
+              Symbol Footer
+            </ng-template>
+          </lux-table-column-footer>
+        </lux-table-column>
+        <lux-table-column
+          luxColumnDef="date"
+          [luxSortable]="dateConfig.sortable"
+          [luxSticky]="dateConfig.sticky"
+          [luxResponsiveAt]="dateConfig.responsiveAt"
+          [luxResponsiveBehaviour]="dateConfig.responsiveBehaviour?.value"
+        >
+          <lux-table-column-header>
+            <ng-template>Datum</ng-template>
+          </lux-table-column-header>
+          <lux-table-column-content>
+            <ng-template let-element
+              ><span>{{ element.date | date: 'dd.MM.yyyy' }}</span></ng-template
+            >
+          </lux-table-column-content>
+          <lux-table-column-footer>
+            <ng-template>
+              Datum Footer
+            </ng-template>
+          </lux-table-column-footer>
+        </lux-table-column>
+      </lux-table>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <table-example-simple-options [tableExample]="this"></table-example-simple-options>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <table-example-advanced-options [tableExample]="this"></table-example-advanced-options>
+  </example-base-advanced-options>
+  <example-base-options-actions>
+    <lux-menu
+      fxFlex="0 0 250px"
+      luxMenuIconName="fas fa-ellipsis-v"
+      [luxDisplayExtended]="true"
+      [luxMaximumExtended]="4"
+      [luxDisplayMenuLeft]="false"
+    >
+      <lux-menu-item
+        luxLabel="Ersten 5 auswählen"
+        luxColor="default"
+        [luxRaised]="true"
+        [luxDisabled]="!multiSelect"
+        luxTagId="menu-select-5"
+        (luxClicked)="preselect()"
+      >
+      </lux-menu-item>
+    </lux-menu>
+  </example-base-options-actions>
+</example-base-structure>

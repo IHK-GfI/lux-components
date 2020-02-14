@@ -1,0 +1,39 @@
+@import '../../../../theming/luxtheme';
+
+:host {
+  ::ng-deep .mat-slide-toggle-ripple.mat-ripple {
+    display: none;
+  }
+
+  ::ng-deep .mat-slide-toggle-bar {
+    margin-top: -2px;
+  }
+}
+
+.mat-checked:not(.mat-disabled) ::ng-deep label {
+  & div div div.mat-slide-toggle-thumb {
+    background-color: mat-color($lux-primary, 500);
+  }
+
+  & div.mat-slide-toggle-bar {
+    background-color: mat-color($lux-primary, 100);
+  }
+}
+
+.mat-disabled {
+  &.mat-checked ::ng-deep label div div div.mat-slide-toggle-thumb {
+    background-color: $dark-primary-text;
+  }
+
+  & ::ng-deep label {
+    color: black;
+
+    & div.mat-slide-toggle-bar {
+      background-color: mat-color($lux-primary, 100);
+    }
+  }
+}
+
+.lux-form-label {
+  cursor: pointer;
+}

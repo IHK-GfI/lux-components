@@ -1,0 +1,42 @@
+{
+  "rulesDirectory": [
+    "node_modules/codelyzer"
+  ],
+  "extends": [
+    "tslint-angular"
+  ],
+  "rules": {
+    "template-banana-in-box": true,
+    "template-no-negated-async": true,
+    "directive-selector": [
+      true,
+      "attribute",
+      "",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "",
+      "kebab-case"
+    ],
+    "no-inputs-metadata-property": true,
+    "no-outputs-metadata-property": true,
+    "no-host-metadata-property": false,
+    "use-component-view-encapsulation": true,
+    "no-attribute-decorator": true,
+    "no-input-rename": false,
+    "no-output-rename": false,
+    "no-forward-ref": false,
+    "no-unused-css": true,
+    "no-inferrable-types": false,
+    "use-lifecycle-interface": true,
+    "contextual-lifecycle": true,
+    "use-pipe-transform-interface": true,
+    "component-class-suffix": true,
+    "directive-class-suffix": true,
+    "no-pipe-impure": false,
+    "template-i18n": false,
+    "semicolon": [true, "ignore-bound-class-methods"]
+  }
+}

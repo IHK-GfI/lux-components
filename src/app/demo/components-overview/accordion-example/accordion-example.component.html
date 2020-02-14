@@ -1,0 +1,154 @@
+<example-base-structure
+  exampleTitle="Accordion"
+  exampleIconName="fas fa-stream"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/xwbqKQ"
+>
+  <example-base-content>
+    <!-- Beispiel-Component mit allen Input-/Output-Properties -->
+    <lux-accordion
+      [luxMode]="displayMode"
+      [luxDisabled]="disabled"
+      [luxExpandedHeaderHeight]="expandedHeaderHeight"
+      [luxCollapsedHeaderHeight]="collapsedHeaderHeight"
+      [luxHideToggle]="hideToggle"
+      [luxMulti]="multiMode"
+    >
+      <!-- Mehrere Panels mit ihren Input-/Output-Properties -->
+      <lux-panel
+        [luxHideToggle]="hideToggle1Panel"
+        [luxDisabled]="disabled1Panel"
+        [luxExpandedHeaderHeight]="expandedHeaderHeight1Panel"
+        [luxCollapsedHeaderHeight]="collapsedHeaderHeight1Panel"
+        (luxOpened)="log(showOutputEvents, 'luxOpened', $event)"
+        (luxClosed)="log(showOutputEvents, 'luxClosed', $event)"
+        (luxExpandedChange)="log(showOutputEvents, 'luxExpandedChange', $event)"
+      >
+        <lux-panel-header-title>Panel #1</lux-panel-header-title>
+        <lux-panel-header-description>Beschreibung Panel #1</lux-panel-header-description>
+        <lux-panel-content>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+        </lux-panel-content>
+      </lux-panel>
+      <lux-panel
+        [luxHideToggle]="hideToggle2Panel"
+        [luxDisabled]="disabled2Panel"
+        [luxExpandedHeaderHeight]="expandedHeaderHeight2Panel"
+        [luxCollapsedHeaderHeight]="collapsedHeaderHeight2Panel"
+        (luxOpened)="log(showOutputEvents, 'luxOpened', $event)"
+        (luxClosed)="log(showOutputEvents, 'luxClosed', $event)"
+        (luxExpandedChange)="log(showOutputEvents, 'luxExpandedChange', $event)"
+      >
+        <lux-panel-header-title>Panel #2</lux-panel-header-title>
+        <lux-panel-header-description>Beschreibung Panel #2</lux-panel-header-description>
+        <lux-panel-content>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+          clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+    ></lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-toggle luxLabel="luxMulti" class="example-highlight-config-option" [(luxChecked)]="multiMode">
+      <lux-form-hint>
+        Diese Property bestimmt, ob mehrere Panels gleichzeitig aufklappbar sind oder nicht.
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle luxLabel="luxDisabled" class="example-highlight-config-option" [(luxChecked)]="disabled">
+      <lux-form-hint>
+        Diese Property deaktiviert die Component.
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle luxLabel="luxHideToggle" class="example-highlight-config-option" [(luxChecked)]="hideToggle">
+      <lux-form-hint>
+        Diese Property ermöglicht es, die Toggle-Icons für alle Panels auszublenden.
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-radio
+      luxLabel="luxMode"
+      class="example-highlight-config-option"
+      [luxOptions]="displayModes"
+      [(luxSelected)]="displayMode"
+      [luxOrientationVertical]="false"
+    >
+      <lux-form-hint>
+        Diese Property bestimmt die Darstellung der ausgeklappten Panels.<br />
+        luxMode: 'flat' => Kein Abstand zwischen den Panels<br />
+        luxMode: 'default' => Leichter Abstand zwischen den Panels
+      </lux-form-hint>
+    </lux-radio>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-input luxLabel="luxExpandedHeaderHeight" [(luxValue)]="expandedHeaderHeight" class="title-input">
+        <lux-form-hint>
+          Diese Property bestimmt die Höhe aller Panel-Header im ausgeklappten Zustand.
+        </lux-form-hint>
+      </lux-input>
+      <lux-input luxLabel="luxCollapsedHeaderHeight" [(luxValue)]="collapsedHeaderHeight" class="title-input">
+        <lux-form-hint>
+          Diese Property bestimmt die Höhe aller Panel-Header im eingeklappten Zustand.
+        </lux-form-hint>
+      </lux-input>
+    </div>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between start">
+      <div fxLayout="column" fxFlex="1 1 auto">
+        <h3>Panel #1</h3>
+        <lux-toggle luxLabel="luxDisabled" class="example-highlight-config-option" [(luxChecked)]="disabled1Panel">
+          <lux-form-hint>
+            Diese Property deaktiviert das Panel.
+          </lux-form-hint>
+        </lux-toggle>
+        <lux-toggle luxLabel="luxHideToggle" class="example-highlight-config-option" [(luxChecked)]="hideToggle1Panel">
+          <lux-form-hint>
+            Diese Property ermöglicht es, das Toggle-Icons für das Panel auszublenden.
+          </lux-form-hint>
+        </lux-toggle>
+        <div class="example-highlight-config-option" fxLayout="column">
+          <lux-input luxLabel="luxExpandedHeaderHeight" [(luxValue)]="expandedHeaderHeight1Panel" class="title-input">
+            <lux-form-hint>
+              Diese Property bestimmt die Höhe des Panel-Headers im ausgeklappten Zustand.
+            </lux-form-hint>
+          </lux-input>
+          <lux-input luxLabel="luxCollapsedHeaderHeight" [(luxValue)]="collapsedHeaderHeight1Panel" class="title-input">
+            <lux-form-hint>
+              Diese Property bestimmt die Höhe des Panel-Headers im eingeklappten Zustand.
+            </lux-form-hint>
+          </lux-input>
+        </div>
+      </div>
+      <div fxLayout="column" fxFlex="1 1 auto">
+        <h3>Panel #2</h3>
+        <lux-toggle luxLabel="luxDisabled" class="example-highlight-config-option" [(luxChecked)]="disabled2Panel">
+          <lux-form-hint>
+            Diese Property deaktiviert das Panel.
+          </lux-form-hint>
+        </lux-toggle>
+        <lux-toggle luxLabel="luxHideToggle" class="example-highlight-config-option" [(luxChecked)]="hideToggle2Panel">
+          <lux-form-hint>
+            Diese Property ermöglicht es, das Toggle-Icons für das Panel auszublenden.
+          </lux-form-hint>
+        </lux-toggle>
+        <div class="example-highlight-config-option" fxLayout="column">
+          <lux-input luxLabel="luxExpandedHeaderHeight" [(luxValue)]="expandedHeaderHeight2Panel">
+            <lux-form-hint>
+              Diese Property bestimmt die Höhe des Panel-Headers im ausgeklappten Zustand.
+            </lux-form-hint>
+          </lux-input>
+          <lux-input luxLabel="luxCollapsedHeaderHeight" [(luxValue)]="collapsedHeaderHeight2Panel">
+            <lux-form-hint>
+              Diese Property bestimmt die Höhe des Panel-Headers im eingeklappten Zustand.
+            </lux-form-hint>
+          </lux-input>
+        </div>
+      </div>
+    </div>
+  </example-base-advanced-options>
+</example-base-structure>

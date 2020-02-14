@@ -1,0 +1,279 @@
+@import '../../../../theming/luxtheme';
+
+@mixin crop {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin placeholderStyle {
+  color: $dark-disabled-text;
+  opacity: 1;
+}
+
+@mixin bottomBorder {
+  content: '';
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  left: 0;
+  right: 0;
+  position: absolute;
+  height: 2px;
+}
+
+$borderColor: rgba(0, 0, 0, 0.42);
+$defaultHeightNotScalable: 30px;
+$controlHeight: 24px;
+$controlHeightSmall: 18px;
+$fontSize: 15px;
+$fontSizeSmall: 12px;
+
+:host {
+  max-width: 100%;
+  width: 100%;
+  outline: none !important;
+}
+
+:-webkit-autofill {
+  display: none !important;
+}
+
+.lux-form-control {
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  padding: 4px;
+
+  .lux-form-control-label {
+    padding-top: 2px;
+    min-height: 15px;
+    > * {
+      @include crop;
+    }
+  }
+
+  .lux-form-control-container {
+    position: relative;
+    box-sizing: border-box;
+    padding: 6px 0 0 0;
+    min-height: $defaultHeightNotScalable;
+    &:after {
+      @include bottomBorder;
+      border-bottom: 1px solid $borderColor;
+    }
+  }
+
+  .lux-form-control-misc {
+    box-sizing: border-box;
+    position: relative;
+    margin-bottom: 2px;
+    margin-top: 4px;
+    min-height: 15px;
+
+    > * {
+      padding-top: 2px;
+    }
+  }
+
+  ::ng-deep {
+    // Die Placeholder-Einträge müssen separat aufgeführt werden, die meisten Engines greifen diese sonst nicht auf.
+    ::-webkit-input-placeholder {
+      @include placeholderStyle;
+    }
+
+    ::-moz-placeholder {
+      @include placeholderStyle;
+    }
+
+    // Der IE benötigt nur ein :-Symbol
+    :-ms-input-placeholder {
+      @include placeholderStyle;
+    }
+
+    ::placeholder {
+      @include placeholderStyle;
+    }
+
+    // Umstylen des Standard-Aussehens von Inputs/Textareas
+    input,
+    textarea {
+      font: inherit;
+      background: 0 0;
+      color: currentColor;
+      border: none;
+      outline: 0;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+      vertical-align: bottom;
+      text-align: inherit;
+      font-size: $fontSize;
+
+      &:required {
+        -webkit-box-shadow: unset;
+        -moz-box-shadow: unset;
+        box-shadow: unset;
+      }
+    }
+
+    textarea {
+      min-height: $controlHeight;
+    }
+
+    .lux-input-row {
+      height: $controlHeight;
+      font-size: $fontSize;
+
+      > * {
+        height: 17px;
+      }
+
+      .lux-input-prefix-container,
+      .lux-input-suffix-container {
+        width: auto;
+        white-space: nowrap;
+
+        ::ng-deep {
+          i,
+          mat-icon {
+            padding: 0 !important;
+            margin: 0;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+
+    // Toggle von Datepickern anpassen, um analog zu anderen Inputs auszusehen
+    mat-datepicker-toggle {
+      height: $controlHeightSmall;
+
+      button {
+        height: $controlHeightSmall;
+        width: $controlHeightSmall;
+        .mat-button-wrapper {
+          display: flex;
+          height: $controlHeightSmall;
+          svg {
+            height: $controlHeightSmall;
+            width: $controlHeightSmall;
+          }
+        }
+      }
+    }
+
+    // Höhe des Checkbox-Labels an andere Höhen angleichen
+    mat-checkbox,
+    mat-slide-toggle {
+      .mat-checkbox-label,
+      .mat-slide-toggle-label {
+        height: $controlHeightSmall;
+        line-height: $controlHeightSmall;
+        font-size: $fontSize;
+      }
+    }
+
+    // Checkbox sonst buggy in IE
+    .mat-checkbox-layout {
+      cursor: inherit;
+      display: inline-flex;
+      white-space: nowrap;
+      align-items: stretch;
+      vertical-align: top;
+    }
+
+    // Höhe der Radio-Buttons etwas anheben
+    mat-radio-button {
+      height: 21px;
+      font-size: $fontSize;
+
+      .mat-radio-label {
+        vertical-align: unset;
+        align-items: end;
+      }
+    }
+
+    // Anpassen des horizontalen Sliders
+    mat-slider {
+      &.mat-slider-horizontal {
+        height: $defaultHeightNotScalable;
+      }
+    }
+
+    // Feinjustierungen für Mat-Select
+    mat-select {
+      height: $controlHeight;
+      .mat-select-trigger {
+        line-height: $controlHeightSmall;
+        .mat-select-value {
+          font-size: $fontSize;
+        }
+      }
+    }
+
+    .lux-label,
+    mat-hint,
+    mat-error {
+      font-size: $fontSizeSmall !important;
+    }
+  }
+}
+
+// Greift nur, wenn das FormControl gerade einen Fehler anzeigt
+.lux-form-control-error {
+  .lux-form-control-label {
+    > * {
+      color: $lux-warn-color !important;
+    }
+  }
+
+  .lux-form-control-container {
+    border-color: $lux-warn-color !important;
+  }
+
+  .lux-form-control-misc {
+    > * {
+      color: $lux-warn-color !important;
+    }
+  }
+}
+
+.lux-form-control-disabled {
+  .lux-form-control-container {
+    color: $dark-disabled-text !important;
+    &:after {
+      @include bottomBorder;
+      border-bottom: 1px dashed $dark-disabled-text;
+    }
+  }
+}
+
+// Zusatzoptionen, basierend auf Klassen der Component
+:host {
+  &:not(.lux-form-control-scalable-height) {
+    .lux-form-control-container {
+      max-height: $defaultHeightNotScalable;
+    }
+  }
+
+  &.lux-form-control-borderless {
+    .lux-form-control-container {
+      background: unset !important;
+    }
+
+    .lux-form-control-container:after {
+      @include bottomBorder;
+      border-bottom: none !important;
+      border-bottom: unset !important;
+    }
+  }
+}
+
+::ng-deep {
+  .lux-form-control-readonly {
+    pointer-events: none;
+  }
+}

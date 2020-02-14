@@ -1,0 +1,28 @@
+@import '../lux-file-style/lux-file-common';
+
+lux-form-control {
+  display: block;
+}
+
+.lux-file-container {
+  input {
+    width: auto !important;
+  }
+
+  lux-menu {
+    height: 40px;
+    margin-top: 0;
+
+    ::ng-deep {
+      > div {
+        height: 40px;
+      }
+
+      .lux-menu-extended {
+        lux-button {
+          height: 15px;
+        }
+      }
+    }
+  }
+}

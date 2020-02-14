@@ -1,0 +1,32 @@
+<lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" *ngIf="formGroup">
+  <mat-select
+    [placeholder]="luxPlaceholder"
+    [multiple]="luxMultiple"
+    [required]="luxRequired"
+    [formControl]="formControl"
+    luxTagIdHandler
+    [luxTagId]="luxTagId"
+    [panelClass]="'lux-select-panel'"
+    [errorStateMatcher]="stateMatcher"
+    [compareWith]="compareByKey"
+    (focusin)="luxFocusIn.emit($event)"
+    [panelClass]="'lux-lookup-panel'"
+    (focusout)="luxFocusOut.emit($event)"
+    [id]="uid"
+    [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+    [attr.aria-invalid]="formControl.invalid"
+    [attr.aria-required]="luxRequired"
+  >
+    <ng-container *ngFor="let entry of displayedEntries">
+      <mat-option
+        [value]="entry"
+        [ngClass]="{ invalid: entry.isUngueltig }"
+        [ngStyle]="getStyles(entry.isUngueltig)"
+        [disabled]="entry.isUngueltig && disableUngueltige()"
+        *ngIf="!entry.isUngueltig || (entry.isUngueltig && showUngueltige())"
+      >
+        <span>{{ getLabel(entry) }}</span>
+      </mat-option>
+    </ng-container>
+  </mat-select>
+</lux-form-control>

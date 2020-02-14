@@ -1,0 +1,373 @@
+/*
+     __   __  __   _  __        ____  __           __
+    / /  / / / /  | |/_/ ____  / __/ / /_  __ __  / / ___   ___
+   / /__/ /_/ /  _>  <  /___/ _\ \  / __/ / // / / / / -_) (_-<
+  /____/\____/  /_/|_|       /___/  \__/  \_, / /_/  \__/ /___/
+                                         /___/
+Version 1.11
+- CSS-Class lux-hint hinzugefügt.
+
+Version 1.10
+  - CSS-Classes für luxBadgeNotification ergänzt.
+
+Version 1.9
+  - CSS-Class lux-form-field entfernt.
+  - SCSS-Variablen $lux-warn-color und $lux-primary-color hinzugefügt.
+
+Version 1.8
+  - lux-snackbar: Absolute-Position, um Header-Navbar benutzbar zu lassen.
+  - CSS-Class lux-snackbar um min-width: unset ergänzt.
+
+  Version 1.7
+  - lux-m-x und lux-p-x (x=1,2,3,...) ergänzt.
+
+  Version 1.6
+  - CSS für html und body und .lux-app-container um height: 100% ergänzt. .lux-app-container jetzt mit column-FlexLayout.
+
+  Version 1.5
+  - CSS-Classes "lux-font-color-[white, black]" und "lux-bg-color-[red, green, yellow, blue, gray, orange, brown] hinzugefügt"
+  - CSS für Lux-Buttons so angepasst, das mit bestimmten Unterklassen der Text Uppercase dargestellt wird.
+
+  Version 1.4
+  - CSS-Class "lux-card-grow" erweitert, so dass auch der Titel bei [luxTitleLineBreak]="false" korrekt abgeschnitten wird.
+
+  Version 1.3
+  - CSS-Class "lux-card-grow" erweitert, so dass die Actions immer unten angezeigt werden und nicht direkt nach dem Karteninhalt.
+
+  Version 1.2
+   - CSS-Class "lux-card-grow" eingeführt. Dieser Style sorgt dafür, dass lux-cards wachsen und alle gleich hoch innerhalb einer Zeile sind.
+
+  Version 1.1
+    - CSS-Class "lux-label" eingeführt.
+    - CSS: Für den Body "-webkit-overflow-scrolling: touch;" gesetzt, um das Scrollverhalten auf mobilen Geräten (besonders Apple-Geräten) verbessert.
+
+  Version 1.0
+    - CSS-Class "lux-snackbar" eingeführt. Die Snackbar wird jetzt vollständig im Inhaltsbereich angezeigt und überdeckt nicht länger das Headermenü.
+
+  Version 0.9
+    - CSS-Classes "lux-flex-layout-gap-xx" angepasst um auch auf Statements wie "fxLayout.gt-sm='row'" reagieren zu können.
+
+  Version 0.8
+    - CSS-Classes "lux-[p,m][t,b,r,l]-2" für 4px Margins/Paddings in die jeweilige Richtung hinzugefügt.
+
+  Version 0.7
+    - CSS-Classes "lux-[p,m][t,b,r,l]-1" für 2px Margins/Paddings in die jeweilige Richtung hinzugefügt.
+
+  Version 0.6
+    - CSS-Classes "lux-flex-layout-gap-xx" angepasst um abhängig von fxLayout="column" bzw. fxLayout="row" zu reagieren.
+    - CSS-Classes "lux-header-padding" und "lux-footer-padding" in "lux-p-header" und "lux-p-footer" umbenannt.
+    - "component" aus den Margin- und Padding-Classes entfernt.
+      Stattdessen gibt es jetzt die Klassen: lux-m[t,b,l,r]-[0,3] und  lux-p[t,b,l,r]-[0,3] für die Margins und Paddings in jede Richtung.
+      0 entspricht 0px und 3 entspricht 8px.
+    - CSS-Class "lux-font-uppercase-bold" entfernt.
+    - CSS-Classes "lux-uppercase", "lux-lowercase", "lux-bold" hinzugefügt.
+    - CSS-Classes "lux-z-index-[100,500,1000]" hinzugefügt.
+
+  Version 0.5
+    - CSS-Classes lux-footer-padding, lux-header-padding, lux-component-padding-horizontal, lux-component-padding-vertical, lux-component-margin-horizontal,
+      lux-component-margin-vertical, lux-flex-layout-gap-10, lux-flex-layout-gap-20, lux-flex-layout-gap-30, lux-overflow-y-auto angelegt
+    - CSS-Class "lux-overflow-hidden" in "lux-overflow-y-hidden" geändert
+
+  Version 0.4
+    - CSS-Class "lux-block-pointer-events" hinzugefügt.
+
+  Version 0.3
+    - CSS-Class "lux-button" in "lux-font-uppercase-bold" geändert.
+    - CSS-Class "lux-default-font" in "lux-font-family-roboto" geändert.
+
+  Version 0.2
+    - Component "lux-button": lux-vertical-align in "luxstyles.css" verschoben.
+    - CSS-Class "lux-form-field" in "luxstyles.css" verschoben.
+    - CSS-Class "crop" in "lux-crop" umbenannt.
+    - CSS-Class "lux-cursor" in "luxstyles.css" verschoben.
+    - CSS-Class "nowrap" in "lux-nowrap" umbenannt und in "luxstyles.css" verschoben".
+    - CSS-Class "lux-hidden" umgestellt um stattdessen "visibility: hidden" darzustellen, "lux-display-none" für "display: none".
+    - CSS-Class "lux-semi-transparent" hinzugefügt für dunklere Texte hinzugefügt.
+    - SCSS-Variablen für Header und Footer Padding sowie die Lux-Font-Family erstellt
+
+  Version 0.1
+    - Initial angelegt.
+*/
+
+/*
+ * Über diese Eigenschaft wird das Scrollverhalten angepasst. Umso stärker man wischt, desto schneller wird
+ * gescrollt. Dies ist besonders für die Apple-Geräte nötig, da dort das Scrollen sonst sehr langsam funktioniert.
+ */
+html,
+body,
+.lux-app-container {
+  height: 100%;
+}
+
+.lux-app-container {
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+div {
+  font-family: Roboto, Helvetica Neue, sans-serif;
+}
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  &.lux-file-preview-backdrop {
+    background: #000;
+    opacity: 0.8 !important;
+  }
+}
+
+lux-card.lux-card-grow {
+  display: flex;
+  flex: 1 1 auto;
+  width: 400px;
+  min-width: 0;
+
+  mat-card {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  mat-card-content {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+.lux-crop {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.lux-label {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 75%;
+}
+
+.lux-hint {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+}
+
+.lux-display-none {
+  display: none;
+}
+
+.lux-hidden {
+  visibility: hidden;
+}
+
+.lux-nowrap {
+  white-space: nowrap;
+}
+
+.lux-cursor {
+  cursor: pointer;
+}
+
+.lux-block-pointer-events {
+  pointer-events: none;
+}
+
+.lux-vertical-align-baseline {
+  vertical-align: baseline !important;
+}
+
+.lux-black-semi-transparent {
+  color: $dark-primary-text;
+}
+
+.lux-semi-transparent {
+  opacity: 0.6;
+}
+
+.lux-overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+.lux-overflow-y-auto {
+  overflow-y: auto;
+}
+
+.lux-overflow-wrap-break-word {
+  overflow-wrap: break-word;
+}
+
+.lux-bold {
+  font-weight: bold !important;;
+}
+
+.lux-uppercase {
+  text-transform: uppercase !important;;
+}
+
+.lux-lowercase {
+  text-transform: lowercase !important;;
+}
+
+.lux-hyphenate {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: normal;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  overflow-x: auto;
+}
+
+/* <MARGINS / PADDINGS> */
+
+.lux-p-footer {
+  padding: 8px;
+}
+
+.lux-p-header {
+  padding: 8px;
+}
+
+.lux-snackbar {
+  top: 68px;
+  right: 8px;
+  position: absolute;
+  margin: 0 !important;
+  min-width: unset !important;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.mat-snack-bar-handset .lux-snackbar {
+  left: 8px;
+  width: auto !important;
+}
+
+/*
+  Berechnet das Quadrat einer Zahl und gibt das Ergebnis mit
+  einer Einheit (z.B. px) zurueck.
+*/
+@function pow($number, $exponent, $unit) {
+  $value: 0;
+
+  @if $exponent > 0 {
+    $value: 1;
+    @for $i from 1 through $exponent {
+      $value: ($value * $number);
+    }
+  }
+
+  @return $value + $unit;
+}
+
+/*
+  Zum Anpassen der Schritte einfach pxStep erhoehen oder fuer Weitere CSS-Klassen
+  steps um zusaetzliche Eintraege ergaenzen (z.B. 1,2,4, etc.).
+
+  Generiert fuer Padding: lux-p[t,b,l,r]-xx
+  Generiert fuer Margin: lux-m[t,b,l,r]-xx
+ */
+$directions: "t", "b", "l", "r";
+$directionsLong: "top", "bottom", "left", "right";
+$pxStep: 2;
+$steps: 0, 1, 2, 3, 4;
+
+@for $i from 1 through length($directions) {
+  @each $step in $steps {
+    .lux-m-#{$step} {
+      margin: pow($pxStep, $step, px);
+    }
+    .lux-m#{nth($directions, $i)}-#{$step} {
+      margin-#{nth($directionsLong, $i)}: pow($pxStep, $step, px);
+    }
+    .lux-p-#{$step} {
+      padding: pow($pxStep, $step, px);
+    }
+    .lux-p#{nth($directions, $i)}-#{$step} {
+      padding-#{nth($directionsLong, $i)}: pow($pxStep, $step, px);
+    }
+  }
+}
+
+/*
+  Erstellt die Layout-Gaps (Margin-Abstände für Children von fxLayouts).
+  Um weitere Steps hinzufuegen die Variable gapSteps um die entsprechenden Werte ergaenzen.
+ */
+$gapSteps: 10, 20, 30;
+
+@each $gapStep in $gapSteps {
+  .lux-flex-layout-gap-#{$gapStep}[style*="row"] > *:not(:last-child) {
+    margin-right: #{$gapStep}px;
+  }
+  .lux-flex-layout-gap-#{$gapStep}[style*="column"] > *:not(:last-child) {
+    margin-bottom: #{$gapStep}px;
+  }
+}
+
+/*
+  Erstellt die Z-Indizes.
+  Um weitere Z-Indizes anzulegen, die Variable zindexSteps um die entsprechenden Werte ergaenzen.
+ */
+$zindexSteps: 100, 500, 1000;
+
+@each $zindexStep in $zindexSteps {
+  .lux-z-index-#{$zindexStep} {
+    z-index: #{$zindexStep};
+  }
+}
+
+/*
+  Für die Darstellung von uppercase-Labels wenn die Configuration das erlaubt.
+ */
+.lux-uppercase > lux-button,
+lux-button.lux-uppercase {
+  .lux-button-label {
+    text-transform: uppercase;
+  }
+}
+
+$componentBgColors: (
+  "red": #b01211,
+  "green": #95bc4c,
+  "yellow": #ebc000,
+  "blue": #335c85,
+  "gray": #c8c8c8,
+  "orange": #ec9c1b,
+  "brown": #783f04
+);
+
+@each $colorName, $colorNameHex in $componentBgColors {
+  .lux-bg-color-#{''+$colorName+''} {
+    background: $colorNameHex;
+  }
+}
+
+$componentFontColors: (
+  black: #000000,
+  white: #ffffff
+);
+
+@each $colorName, $colorNameHex in $componentFontColors {
+  .lux-font-color-#{''+$colorName+''} {
+    color: $colorNameHex;
+  }
+}
+
+.lux-badge-notification {
+  &.mat-badge-large {
+    .mat-badge-content {
+      font-size: 15px;
+    }
+  }
+
+  &.lux-badge-color-default {
+    .mat-badge-content {
+      color: black;
+      background: white;
+      border: 1px solid $dark-primary-text;
+    }
+  }
+}

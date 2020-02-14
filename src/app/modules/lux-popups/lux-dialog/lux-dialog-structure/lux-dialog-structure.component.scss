@@ -1,0 +1,23 @@
+@import '../../../../../theming/luxtheme';
+
+.lux-dialog {
+  // Das Element kann fokussiert werden, das muss aber nicht zwingend mit der Outline gezeigt werden
+  outline-width: 0;
+
+  // Farbe des Dialog-Titels auf unsere Primärfarbe setzen
+  .lux-dialog-title {
+    color: mat-color($lux-primary);
+  }
+
+  // der Mat-Dialog-Content hat negativen Margin und einen passenden Padding (wieso auch immer)
+  // wir schalten das ab, damit das Fokus-Highlighting passend zum Header aussieht
+  .lux-dialog-content {
+    margin: 0;
+    padding: 0;
+  }
+
+  // Leichten Abstand zum Content setzen
+  .lux-dialog-actions {
+    margin: 32px 0 0 0;
+  }
+}

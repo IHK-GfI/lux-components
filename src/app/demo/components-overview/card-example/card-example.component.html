@@ -1,0 +1,109 @@
+<example-base-structure
+  exampleTitle="Card"
+  exampleIconName="fas fa-square"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/AAfqKQ"
+>
+  <example-base-content>
+    <lux-card
+      [luxTitle]="title"
+      [luxSubTitle]="subTitle"
+      [luxExpanded]="expanded"
+      [luxDisabled]="disabled"
+      [luxTitleLineBreak]="titleLineBreak"
+      (luxClicked)="onCardClicked()"
+    >
+      <lux-icon luxIconName="fas fa-cogs" *ngIf="showIcon"></lux-icon>
+      <lux-card-info *ngIf="showInfo && !useExpandableContent">
+        <lux-icon luxIconName="fas fa-home"></lux-icon>
+      </lux-card-info>
+      <lux-card-content>
+        <div>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+        </div>
+      </lux-card-content>
+      <lux-card-content-expanded *ngIf="useExpandableContent">
+        <div fxLayout="column">
+          <lux-divider></lux-divider>
+          Example text of the expanded content.
+          <lux-checkbox luxLabel="Example Checkbox #1"></lux-checkbox>
+          <lux-checkbox luxLabel="Example Checkbox #2"></lux-checkbox>
+        </div>
+      </lux-card-content-expanded>
+      <lux-card-actions *ngIf="showActions">
+        <lux-button luxLabel="Action-Button" [luxRaised]="true" luxColor="warn"></lux-button>
+      </lux-card-actions>
+    </lux-card>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxTitle"
+      luxHint="Diese Property enthält den Textinhalt für den Titel der Card."
+      [(luxValue)]="title"
+    >
+    </lux-input>
+
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxSubTitle"
+      luxHint="Diese Property enthält den Textinhalt für den Untertitel der Card."
+      [(luxValue)]="subTitle"
+    >
+    </lux-input>
+
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxDisabled"
+      [(luxChecked)]="disabled"
+      [luxDisabled]="showActions"
+    >
+      <lux-form-hint>
+        Über diese Property werden die Klick-Events der Card unterbunden.<br />
+        Diese Property greift nicht, wenn Card-Actions dargestellt werden.
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle class="example-highlight-config-option" luxLabel="luxTitleLineBreak" [(luxChecked)]="titleLineBreak">
+      <lux-form-hint>
+        Dieser Flag aktiviert den Zeilenumbruch bei zu langen Titeln. <br />
+        Wenn 'false', wird der Titel mit '...' abgekürzt.
+      </lux-form-hint>
+    </lux-toggle>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxIcon anzeigen"
+      luxHint="Das linksbündige Icon für die Card darstellen."
+      [(luxChecked)]="showIcon"
+    >
+    </lux-toggle>
+
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxCardActions anzeigen"
+      luxHint="Die Card-Action für das Beispiel darstellen."
+      [(luxChecked)]="showActions"
+    >
+    </lux-toggle>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-toggle luxLabel="luxCardInfo anzeigen" [luxChecked]="showInfo" (luxCheckedChange)="changeInfo($event)">
+        <lux-form-hint>
+          Die Component für die Darstellung von Zusatzinfos rechts vom Titel anzeigen.<br />
+          Sie wird nur dargestellt, wenn die Card keinen ausklappbaren oder austauschbaren Content besitzt und somit
+          kein Toggle-Button vorhanden ist. (hier in dem Beispiel ist es das rechtsbündige "i"-Icon)
+        </lux-form-hint>
+      </lux-toggle>
+      <lux-toggle
+        luxLabel="luxCardContentExpanded aktivieren"
+        [luxChecked]="useExpandableContent"
+        (luxCheckedChange)="changeExpandable($event)"
+      >
+        <lux-form-hint>
+          Den ausklappbaren Inhalt für die Card aktivieren.<br />
+          Dieser wird dann unterhalb des eigentlichen Inhalts dargestellt.
+        </lux-form-hint>
+      </lux-toggle>
+    </div>
+  </example-base-advanced-options>
+</example-base-structure>

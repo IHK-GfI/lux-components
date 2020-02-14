@@ -1,0 +1,37 @@
+<lux-form-control
+  [luxFormComponent]="this"
+  [luxHideBottomBorder]="true"
+  [formGroup]="formGroup"
+  [luxScalableHeight]="luxVertical"
+  *ngIf="formGroup"
+>
+  <mat-slider
+    luxTagIdHandler
+    [luxTagId]="luxTagId"
+    [color]="luxColor"
+    [invert]="luxInvert"
+    [max]="luxMax"
+    [min]="luxMin"
+    [step]="luxStep"
+    [thumbLabel]="luxShowThumbLabel"
+    [tickInterval]="luxTickInterval"
+    [vertical]="luxVertical"
+    [value]="luxValue"
+    [displayWith]="luxDisplayWith"
+    (change)="onChange($event)"
+    (input)="onInput($event)"
+    [formControl]="formControl"
+    [ngClass]="{
+      'lux-show-thumb-label-always': luxShowThumbLabelAlways && luxShowThumbLabel,
+      'lux-thumb-label-1k': luxValue >= 1000,
+      'lux-thumb-label-10k': luxValue >= 10000
+    }"
+    [id]="uid"
+    [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+    [luxAriaInvalid]="formControl.invalid"
+    [luxAriaRequired]="luxRequired"
+    [luxAriaLabel]="luxLabel"
+    tabIndex="{{ luxReadonly ? -1 : 0 }}"
+  >
+  </mat-slider>
+</lux-form-control>

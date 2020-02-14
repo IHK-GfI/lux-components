@@ -1,0 +1,32 @@
+<ng-template>
+  <div class="lux-side-nav-item-container">
+    <div class="lux-side-nav-item-button" [ngClass]="{ 'lux-side-nav-item-expandable': luxExpandable }">
+      <lux-button
+        (luxClicked)="onClick($event)"
+        [luxLabel]="luxLabel"
+        [luxIconName]="luxIconName"
+        [luxDisabled]="luxDisabled"
+        [luxTagId]="luxTagId"
+        class="lux-side-nav-item"
+        [ngClass]="{ 'lux-side-nav-item-selected': luxSelected }"
+      >
+      </lux-button>
+      <ng-container *ngIf="luxExpandable">
+        <lux-icon
+          class="lux-side-nav-item-expansion-icon"
+          [luxIconName]="luxExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"
+        >
+        </lux-icon>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="luxExpanded">
+      <ng-container *ngFor="let sideNavItem of sideNavItems; let i = index">
+        <div class="lux-side-nav-sub-item" *ngIf="i > 0">
+          <ng-container [ngTemplateOutlet]="sideNavItem.templateRef"></ng-container>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <ng-content select="lux-divider"></ng-content>
+</ng-template>
+<ng-content select="lux-side-nav-item"></ng-content>

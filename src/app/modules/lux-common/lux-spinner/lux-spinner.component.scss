@@ -1,0 +1,27 @@
+@import '../../../../theming/luxtheme';
+
+:host ::ng-deep .mat-progress-spinner {
+  margin-top: 8px;
+  -webkit-animation-duration: 8s !important;
+  -moz-animation-duration: 8s !important;
+  -o-animation-duration: 8s !important;
+  animation-duration: 8s !important;
+}
+
+:host ::ng-deep .mat-progress-spinner > svg > circle {
+  -webkit-animation-duration: 8s !important;
+  -moz-animation-duration: 8s !important;
+  -o-animation-duration: 8s !important;
+  animation-duration: 8s !important;
+  stroke: mat-color($lux-primary, A400);
+}
+
+:host ::ng-deep .mat-progress-spinner,
+:host ::ng-deep .mat-progress-spinner > svg {
+  height: 33px !important;
+  width: 33px !important;
+}
+
+.lux-spinner-ie-dasharray ::ng-deep .mat-progress-spinner > svg > circle {
+  stroke-dasharray: 200px !important;
+}

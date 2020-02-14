@@ -1,0 +1,100 @@
+<lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" *ngIf="formGroup">
+  <div class="lux-file-container lux-input-row" fxLayout="row">
+    <!-- Das Input ist nur für die visuelle Darstellung der ausgewählten Dateien zuständig -->
+    <input
+      class="lux-file-visible-input"
+      matInput
+      luxTagIdHandler
+      type="text"
+      autocomplete="off"
+      [luxTagId]="luxTagId"
+      [placeholder]="luxPlaceholder"
+      [required]="luxRequired"
+      [readonly]="true"
+      [id]="uid"
+      [value]="luxSelectedFiles?.name"
+      (blur)="luxBlur.emit($event)"
+      (focus)="luxFocus.emit($event)"
+      (focusin)="onFocusIn($event)"
+      (focusout)="luxFocusOut.emit($event)"
+      [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+      fxFlex="1 0 100px"
+      #visibleInput
+    />
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 65px">
+      <lux-menu
+        luxMenuIconName="fas fa-ellipsis-v"
+        luxTagId="{{ 'lux-file-input-actions' }}"
+        [luxToggleDisabled]="luxDisabled || luxReadonly"
+        [luxDisplayExtended]="true"
+      >
+        <lux-menu-item
+          luxTagId="lux-file-view"
+          [luxIconName]="luxViewActionConfig.iconName"
+          [luxDisabled]="luxViewActionConfig.disabled || luxDisabled || !luxSelectedFiles || luxReadonly"
+          [luxLabel]="luxViewActionConfig.label"
+          [luxHideLabelIfExtended]="true"
+          [luxAlwaysVisible]="false"
+          luxColor="primary"
+          (luxClicked)="viewFile(luxSelectedFiles)"
+          [luxHidden]="!!luxViewActionConfig.hidden"
+        >
+        </lux-menu-item>
+        <lux-menu-item
+          luxTagId="lux-file-download"
+          [luxIconName]="luxDownloadActionConfig.iconName"
+          [luxDisabled]="luxDownloadActionConfig.disabled || luxDisabled || !luxSelectedFiles || luxReadonly"
+          [luxLabel]="luxDownloadActionConfig.label"
+          [luxHideLabelIfExtended]="true"
+          [luxAlwaysVisible]="false"
+          luxColor="primary"
+          (luxClicked)="downloadFile(luxSelectedFiles)"
+          [luxHidden]="!!luxDownloadActionConfig.hidden"
+        >
+        </lux-menu-item>
+        <lux-menu-item
+          luxTagId="lux-file-remove"
+          [luxIconName]="luxDeleteActionConfig.iconName"
+          [luxDisabled]="!luxSelectedFiles || luxDisabled || luxDeleteActionConfig.disabled || luxReadonly"
+          [luxLabel]="luxDeleteActionConfig.label"
+          [luxHideLabelIfExtended]="true"
+          [luxAlwaysVisible]="false"
+          luxColor="primary"
+          (luxClicked)="clearFiles($event)"
+          [luxHidden]="!!luxDeleteActionConfig.hidden"
+        >
+        </lux-menu-item>
+        <lux-menu-item
+          luxTagId="lux-file-upload"
+          [luxIconName]="luxUploadActionConfig.iconName"
+          [luxDisabled]="luxUploadActionConfig.disabled || luxDisabled || luxReadonly"
+          [luxLabel]="luxUploadActionConfig.label"
+          [luxHideLabelIfExtended]="true"
+          [luxAlwaysVisible]="false"
+          luxColor="primary"
+          (luxClicked)="fileupload.click()"
+          [luxHidden]="!!luxUploadActionConfig.hidden"
+        >
+        </lux-menu-item>
+      </lux-menu>
+    </div>
+  </div>
+</lux-form-control>
+
+<!-- Das tatsächliche Input-Element für die File-Auswahl -->
+<input
+  class="lux-file-input"
+  type="file"
+  [multiple]="false"
+  [accept]="luxAccept"
+  [luxFileCapture]="luxCapture"
+  [required]="luxRequired"
+  (change)="selectFiles($event.target.files)"
+  #fileupload
+/>
+
+<!-- Download-Node -->
+<a class="lux-file-download-anchor" download="" #downloadLink></a>
+
+<!-- Ladeanzeige für den File-Upload -->
+<lux-file-progress [luxMode]="progressMode" [luxProgress]="progress" *ngIf="isProgressVisible"> </lux-file-progress>

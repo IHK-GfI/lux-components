@@ -1,0 +1,70 @@
+<example-base-structure
+  exampleTitle="Tile"
+  exampleIconName="fas fa-qrcode"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/uwfqKQ"
+>
+  <example-base-content [exampleCentered]="true">
+    <lux-tile
+      [luxLabel]="label"
+      [luxCounter]="counter"
+      [luxCounterCap]="counterCap"
+      [luxShowNotification]="showNotification"
+      luxTagId="example-tile"
+      (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
+    >
+      <lux-icon luxIconName="fas fa-video" luxIconSize="4x" *ngIf="showIcon"></lux-icon>
+      <lux-image
+        luxImageSrc="assets/svg/red_power_button.svg"
+        luxImageWidth="50px"
+        luxImageHeight="50px"
+        *ngIf="!showIcon"
+      ></lux-image>
+    </lux-tile>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
+    </lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxLabel"
+      luxHint="Die Property bestimmt das Label, welches in dem unteren Kasten des Tiles dargestellt wird."
+      [(luxValue)]="label"
+    >
+    </lux-input>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-toggle luxLabel="luxIcon anzeigen" [(luxChecked)]="showIcon">
+        <lux-form-hint>
+          Ein LuxIconComponent in dem Tile anzeigen.<br />
+          Wenn 'false' wird stattdessen in dem Beispiel ein LuxImageComponent genutzt.
+        </lux-form-hint>
+      </lux-toggle>
+    </div>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxShowNotification"
+      [(luxChecked)]="showNotification"
+    >
+      <lux-form-hint>
+        Diese Property aktiviert eine Notifizierungsansicht an der Tile.<br />
+        Wenn 'undefined', wird nichts angezeigt. Bei 'true' wird ein blauer Kreis dargestellt und bei 'false' ein
+        ausgegrauter Kreis.
+      </lux-form-hint>
+    </lux-toggle>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-input luxLabel="luxCounter" [(luxValue)]="counter" luxType="number">
+        <lux-form-hint>
+          Die Property definiert den aktuellen Zähler für die Tile.<br />
+          Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
+        </lux-form-hint>
+      </lux-input>
+      <lux-input luxLabel="luxCounterCap" [(luxValue)]="counterCap" luxType="number">
+        <lux-form-hint>
+          Diese Property bestimmt die Obergrenze für luxCounter.
+        </lux-form-hint>
+      </lux-input>
+    </div>
+  </example-base-advanced-options>
+</example-base-structure>

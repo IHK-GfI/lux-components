@@ -1,0 +1,109 @@
+<example-base-structure
+  exampleTitle="File-Input"
+  exampleIconName="fas fa-cloud-upload-alt"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/wAMHKw"
+>
+  <example-base-content fxLayout="column">
+    <div fxFlex="auto" fxLayout="column">
+      <h2>Ohne ReactiveForm</h2>
+      <lux-file-input
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxPlaceholder]="placeholder"
+        [luxRequired]="required"
+        [luxReadonly]="readonly"
+        [(luxDisabled)]="disabled"
+        [luxUploadUrl]="uploadUrl"
+        [luxMaxSizeMB]="maxSize"
+        [luxUploadActionConfig]="uploadActionConfig"
+        [luxViewActionConfig]="viewActionConfig"
+        [luxDeleteActionConfig]="deleteActionConfig"
+        [luxDownloadActionConfig]="downloadActionConfig"
+        [luxDnDActive]="dndActive"
+        [luxCapture]="capture"
+        [luxAccept]="accept"
+        [luxContentsAsBlob]="contentAsBlob"
+        [luxUploadReportProgress]="reportProgress"
+        [luxSelectedFiles]="selected"
+        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+        (luxSelectedFilesChange)="onSelectedChange($event)"
+        #fileinputexamplewithoutform
+      >
+      </lux-file-input>
+    </div>
+    <div fxFlex="auto" fxLayout="column">
+      <h2>Mit ReactiveForm</h2>
+      <div [formGroup]="form">
+        <lux-file-input
+          [luxLabel]="label"
+          [luxHint]="hint"
+          [luxPlaceholder]="placeholder"
+          [luxReadonly]="readonly"
+          [(luxDisabled)]="disabled"
+          [luxUploadUrl]="uploadUrl"
+          [luxMaxSizeMB]="maxSize"
+          [luxUploadActionConfig]="uploadActionConfig"
+          [luxViewActionConfig]="viewActionConfigForm"
+          [luxDeleteActionConfig]="deleteActionConfig"
+          [luxDownloadActionConfig]="downloadActionConfig"
+          [luxDnDActive]="dndActive"
+          [luxCapture]="capture"
+          [luxAccept]="accept"
+          [luxContentsAsBlob]="contentAsBlob"
+          [luxUploadReportProgress]="reportProgress"
+          [luxControlBinding]="controlBinding"
+          (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
+          (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+          (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+          (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+          #fileinputexamplewithform
+        >
+        </lux-file-input>
+        <div fxLayout="column" class="example-highlight-config-option">
+          <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+            <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
+              <span fxFlex="35px">Valid:</span>
+              <span fxFlex="30px">{{ form.valid }}</span>
+            </div>
+            <div fxFlex="30" fxLayout="row">
+              <span fxFlex="0 0 auto">Dirty:</span>
+              <span fxFlex="30px">{{ form.dirty }}</span>
+            </div>
+            <div fxFlex="30" fxLayout="row">
+              <span fxFlex="0 0 auto">Touched:</span>
+              <span fxFlex="30px">{{ form.touched }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
+    </lux-toggle>
+    <lux-toggle luxLabel="Backend mocken" [luxChecked]="mockBackend" (luxCheckedChange)="changeMockBackend($event)">
+      <lux-form-hint>
+        Mockt den Http-Client um das Uploaden der Dateien zu simulieren.<br />
+        Dafür muss aber auch "luxUploadUrl" gesetzt sein (beliebiger Wert).
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxPlaceholder"
+      luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
+      [(luxValue)]="placeholder"
+    >
+    </lux-input>
+    <app-file-example-simple-options [fileExample]="this"></app-file-example-simple-options>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <app-file-example-advanced-options
+      [fileExample]="this"
+      [showHeaderConfigProperties]="false"
+    ></app-file-example-advanced-options>
+  </example-base-advanced-options>
+</example-base-structure>

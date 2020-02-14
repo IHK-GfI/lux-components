@@ -1,0 +1,87 @@
+@import '../../../../theming/luxtheme';
+
+mat-tab-group.lux-tabs-no-divider ::ng-deep mat-tab-header {
+  border-bottom: none;
+}
+
+.lux-tabs-notification-icon {
+  margin-top: -4px;
+  border: 1px solid black;
+  height: 12px;
+  width: 12px;
+  border-radius: 9px;
+}
+
+.lux-tabs-notification-icon {
+  position: absolute;
+
+  right: -12px;
+  top: 4px;
+
+  &.lux-badge-notification-visible {
+    top: -8px;
+    right: -27px;
+    z-index: 1;
+  }
+}
+
+.lux-tab-title {
+  margin-left: 4px;
+  margin-top: 3px;
+}
+
+.lux-notification-read {
+  visibility: hidden;
+}
+
+.lux-notification-new {
+  background-color: mat-color($lux-accent, 500);
+}
+
+.lux-counter-offset {
+  margin-right: -7px;
+}
+
+.lux-label-lower {
+  padding-top: 4px;
+}
+
+.lux-tabs-no-anim {
+  &.lux-tabs-mobile {
+  }
+
+  ::ng-deep .mat-ink-bar {
+    transition: none !important;
+  }
+}
+
+.lux-locked {
+  pointer-events: none;
+  background: red;
+  color: red;
+}
+
+:host ::ng-deep {
+  .mat-tab-label {
+    min-height: 60px;
+    height: auto;
+    position: relative;
+
+    mat-chip {
+      background: white !important;
+    }
+  }
+
+  @media ($mat-small) {
+    :host ::ng-deep .mat-tab-label {
+      min-width: 108px;
+    }
+  }
+
+  @media ($mat-xsmall) {
+    :host ::ng-deep .mat-tab-label {
+      min-width: 70px;
+      width: 70px;
+    }
+  }
+}

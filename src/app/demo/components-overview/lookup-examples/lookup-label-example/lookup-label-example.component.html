@@ -1,0 +1,56 @@
+<example-base-structure
+  exampleTitle="Lookup-Label"
+  exampleIconName="fas fa-binoculars"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/3wfqKQ"
+>
+  <example-base-content>
+    <lux-lookup-label
+      [luxBezeichnung]="bezeichnung"
+      [luxLookupKnr]="knr"
+      [luxTableNo]="tableNo"
+      [luxTableKey]="tableKey"
+      [luxLookupId]="'label-example'"
+    >
+    </lux-lookup-label>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle
+      luxLabel="Mock-Backend benutzen"
+      luxHint="Wenn der Lookup-Service nicht erreichbar sein sollte, können über dieses Flag Mock-Resultate geholt werden."
+      (luxCheckedChange)="changeUseMock($event)"
+    >
+    </lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <div fxLayout="column">
+      <lux-input luxLabel="Knr" [(luxValue)]="knr" luxType="number" [luxNumberAlignLeft]="true"></lux-input>
+      <lux-input class="example-highlight-config-option" luxLabel="luxTableNo" [(luxValue)]="tableNo" luxType="number">
+        <lux-form-hint>
+          Die Property bestimmt die Schlüsseltabelle aus der die Daten geladen werden sollen.<br />
+          Wenn Mock-Resultate aufgerufen werden, hat die Property keine Auswirkung.
+        </lux-form-hint>
+      </lux-input>
+      <lux-input
+        class="example-highlight-config-option"
+        luxLabel="luxTableKey"
+        (luxBlur)="start()"
+        [(luxValue)]="tableKey"
+        luxType="number"
+      >
+        <lux-form-hint>
+          Diese Property legt den einzelnen Key des gesuchten Schlüsseltabelleneintrags fest (z.B. 4, 5, 6).
+        </lux-form-hint>
+      </lux-input>
+      <lux-select
+        class="example-highlight-config-option"
+        luxLabel="luxBezeichnung"
+        [(luxSelected)]="bezeichnung"
+        [luxOptions]="['kurz', 'lang']"
+        luxHint="Diese Property bestimmt welche Bezeichnung benutzt wird, um den Schlüsseltabelleneintrag darzustellen."
+      >
+      </lux-select>
+    </div>
+  </example-base-simple-options>
+  <example-base-options-actions>
+    <lux-button luxLabel="Abfrage starten" luxColor="primary" [luxRaised]="true" (luxClicked)="start()"> </lux-button>
+  </example-base-options-actions>
+</example-base-structure>

@@ -1,0 +1,23 @@
+<div fxLayout="column" [@messageBoxVisibility] luxAriaRole="list" *ngIf="luxMessages && luxMessages.length > 0">
+  <ng-container *ngFor="let displayedMessage of displayedMessages">
+    <lux-message
+      class="lux-message-box mat-elevation-z1"
+      [luxMessage]="displayedMessage"
+      (luxMessageClosed)="messageClosed($event)"
+    >
+    </lux-message>
+  </ng-container>
+  <div
+    class="lux-message-box-footer"
+    [ngClass]="{ 'lux-display-none': luxMessages.length === 1 || luxMaximumDisplayed >= luxMessages.length }"
+  >
+    <mat-paginator
+      [length]="luxMessages.length"
+      [pageSize]="luxMaximumDisplayed"
+      [hidePageSize]="true"
+      [pageIndex]="luxIndex"
+      (page)="pageChanged($event)"
+    >
+    </mat-paginator>
+  </div>
+</div>

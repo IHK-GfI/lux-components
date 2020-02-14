@@ -1,0 +1,11 @@
+<div class="lux-dialog" fxLayout="column" cdkTrapFocus tabindex="0" #dialogBase>
+  <div mat-dialog-title class="lux-dialog-title" fxFlex="0 0 auto">
+    <ng-content select="lux-dialog-title"></ng-content>
+  </div>
+  <div mat-dialog-content class="lux-dialog-content" fxFlex="0 0 auto">
+    <ng-content select="lux-dialog-content"></ng-content>
+  </div>
+  <div mat-dialog-actions class="lux-dialog-actions" fxFlex="auto" fxLayout="row wrap" fxLayoutAlign="end center">
+    <ng-content select="lux-dialog-actions"></ng-content>
+  </div>
+</div>

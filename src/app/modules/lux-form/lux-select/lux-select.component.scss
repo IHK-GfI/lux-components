@@ -1,0 +1,11 @@
+@import '../../../../theming/luxtheme';
+
+::ng-deep .mat-pseudo-checkbox-checked {
+  background-color: mat-color($lux-primary, 500) !important;
+}
+
+::ng-deep .lux-select-panel {
+  mat-option:not(:last-of-type) {
+    margin-bottom: 2px;
+  }
+}

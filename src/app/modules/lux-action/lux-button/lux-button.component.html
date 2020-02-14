@@ -1,0 +1,60 @@
+<button
+  *ngIf="luxRaised && !luxRounded"
+  mat-raised-button
+  [color]="luxColor"
+  (click)="clicked($event)"
+  [disabled]="luxDisabled"
+  [type]="luxType"
+  class="lux-button lux-bold lux-align-center"
+  luxTagIdHandler
+  [luxTagId]="luxTagId"
+  [ngClass]="{ 'lux-align-baseline': luxIconAlignWithLabel && !!luxIconName, 'lux-icon-button': !!luxIconName }"
+  [attr.aria-label]="luxLabel ? luxLabel : ''"
+>
+  <ng-container *ngTemplateOutlet="luxIconName ? iconTemplate : noIconTemplate"></ng-container>
+  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName }" *ngIf="luxLabel">
+    {{ luxLabel }}
+  </span>
+</button>
+
+<button
+  *ngIf="!luxRaised && !luxRounded"
+  mat-button
+  [color]="luxColor"
+  (click)="clicked($event)"
+  [disabled]="luxDisabled"
+  [type]="luxType"
+  class="lux-button lux-bold lux-align-center"
+  luxTagIdHandler
+  [luxTagId]="luxTagId"
+  [ngClass]="{ 'lux-align-baseline': luxIconAlignWithLabel && !!luxIconName, 'lux-icon-button': !!luxIconName }"
+  [attr.aria-label]="luxLabel ? luxLabel : ''"
+>
+  <ng-container *ngTemplateOutlet="luxIconName ? iconTemplate : noIconTemplate"></ng-container>
+  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName }" *ngIf="luxLabel">
+    {{ luxLabel }}
+  </span>
+</button>
+
+<button
+  *ngIf="luxRounded"
+  mat-fab
+  [color]="luxColor"
+  (click)="clicked($event)"
+  [disabled]="luxDisabled"
+  [type]="luxType"
+  class="lux-button lux-bold lux-align-center lux-button-rounded mat-elevation-z1"
+  luxTagIdHandler
+  [luxTagId]="luxTagId"
+  [ngClass]="{ 'lux-align-baseline': luxIconAlignWithLabel && !!luxIconName, 'lux-icon-button': !!luxIconName }"
+  [attr.aria-label]="luxLabel ? luxLabel : ''"
+>
+  <ng-container *ngTemplateOutlet="luxIconName ? iconTemplate : noIconTemplate"></ng-container>
+  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName }" *ngIf="luxLabel">
+    {{ luxLabel }}
+  </span>
+</button>
+<ng-template #iconTemplate>
+  <lux-icon [luxIconName]="luxIconName" [luxIconSize]="iconSize" luxMargin="0" luxPadding="0"></lux-icon>
+</ng-template>
+<ng-template #noIconTemplate></ng-template>

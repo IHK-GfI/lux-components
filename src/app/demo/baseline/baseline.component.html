@@ -1,0 +1,82 @@
+<lux-card class="baseline-options">
+  <lux-card-content fxLayout="column">
+    <i>Optionen</i>
+    <div fxLayout="row wrap" fxLayoutGap="10px">
+      <lux-toggle (luxCheckedChange)="toggleErrors($event)" fxFlex="0 0 200px">
+        <lux-form-label>Fehler anzeigen</lux-form-label>
+      </lux-toggle>
+      <div fxLayout="column" fxFlex="0 0 200px">
+        <lux-toggle (luxCheckedChange)="showFrames = $event">
+          <lux-form-label>Frames anzeigen</lux-form-label>
+        </lux-toggle>
+        <i class="lux-label">Gelb -> FormComponent</i>
+        <i class="lux-label">Grün -> Label</i>
+        <i class="lux-label">Blau -> Content</i>
+        <i class="lux-label">Rot -> Misc</i>
+      </div>
+      <lux-toggle (luxCheckedChange)="showAsColumn = $event" fxFlex="0 0 200px">
+        <lux-form-label>Als Column darstellen</lux-form-label>
+      </lux-toggle>
+      <lux-toggle (luxCheckedChange)="disabled = $event" fxFlex="0 0 200px">
+        <lux-form-label>Deaktivieren</lux-form-label>
+      </lux-toggle>
+    </div>
+  </lux-card-content>
+</lux-card>
+<lux-card class="baseline-row">
+  <lux-card-content [fxLayout]="showAsColumn ? 'column' : 'row wrap'" fxLayoutGap="5px" [formGroup]="form">
+    <lux-input luxPlaceholder="Input" luxControlBinding="input" luxAutocomplete="off" [luxDisabled]="disabled">
+      <lux-form-label>Input</lux-form-label>
+      <lux-form-hint>Input<br />Auch gerne mehrzeilig.</lux-form-hint>
+      <lux-input-prefix> <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp; </lux-input-prefix>
+      <lux-input-suffix>
+        .00 EUR
+      </lux-input-suffix>
+    </lux-input>
+    <lux-file-input luxLabel="Fileupload" luxHint="Fileupload" [luxDisabled]="disabled"> </lux-file-input>
+    <lux-select
+      [luxOptions]="['Test1', 'Test2']"
+      luxPlaceholder="Select"
+      luxControlBinding="select"
+      [luxDisabled]="disabled"
+    >
+      <lux-form-label>Select</lux-form-label>
+      <lux-form-hint>Select</lux-form-hint>
+    </lux-select>
+    <lux-toggle luxControlBinding="toggle" [luxDisabled]="disabled">
+      <lux-form-label>Toggle</lux-form-label>
+      <lux-form-hint>Toggle</lux-form-hint>
+    </lux-toggle>
+    <lux-checkbox luxControlBinding="checkbox" luxHint="Checkbox" [luxDisabled]="disabled">
+      <lux-form-label>Checkbox</lux-form-label>
+    </lux-checkbox>
+    <lux-textarea luxControlBinding="textarea" luxLabel="Textarea" luxPlaceholder="Textarea" [luxDisabled]="disabled">
+      <lux-form-hint>Textarea</lux-form-hint>
+    </lux-textarea>
+    <lux-radio
+      [luxOptions]="['Test1', 'Test2']"
+      luxControlBinding="radio"
+      [luxOrientationVertical]="false"
+      [luxDisabled]="disabled"
+    >
+      <lux-form-label>Radio</lux-form-label>
+      <lux-form-hint>Hallo Hint!<br />Bin sogar mehrzeilig!</lux-form-hint>
+    </lux-radio>
+    <lux-datepicker luxPlaceholder="Datepicker" luxControlBinding="datepicker" [luxDisabled]="disabled">
+      <lux-form-label>Datepicker</lux-form-label>
+      <lux-form-hint>Datepicker</lux-form-hint>
+    </lux-datepicker>
+    <lux-autocomplete
+      [luxOptions]="[{ label: 'Test1' }, { label: 'Test2' }]"
+      luxOptionLabelProp="label"
+      luxPlaceholder="Autocomplete"
+      luxControlBinding="autocomplete"
+      [luxDisabled]="disabled"
+    >
+      <lux-form-label>Autocomplete</lux-form-label>
+      <lux-form-hint>Autocomplete</lux-form-hint>
+    </lux-autocomplete>
+    <lux-slider luxLabel="Slider" luxControlBinding="slider" luxHint="Slider" [luxDisabled]="disabled"></lux-slider>
+    <lux-slider [luxVertical]="true" luxControlBinding="slider2" [luxDisabled]="disabled"></lux-slider>
+  </lux-card-content>
+</lux-card>

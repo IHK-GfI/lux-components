@@ -1,0 +1,26 @@
+<div
+  class="lux-message-container {{ backgroundCSSClass }} {{ fontCSSClass }}"
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  luxAriaRole="listitem"
+  [luxAriaLabel]="luxMessage.text"
+  tabindex="0"
+  *ngIf="luxMessage"
+>
+  <div class="lux-message-icon" fxFlex="0 0 50px" fxLayoutAlign="start center">
+    <lux-icon [luxIconName]="luxMessage.iconName" *ngIf="luxMessage.iconName"></lux-icon>
+  </div>
+  <div fxFlex="100" fxFlexFill fxLayoutAlign="space-between center">
+    <div class="lux-message-text" fxFlex="1 1 auto" fxLayoutAlign="start">
+      <p>{{ luxMessage.text }}</p>
+    </div>
+    <lux-button
+      class="lux-close-message-btn"
+      luxIconName="fas fa-times"
+      luxTagId="lux-message-box-close-btn"
+      (luxClicked)="close()"
+      luxAriaLabel="Nachricht schließen"
+    >
+    </lux-button>
+  </div>
+</div>

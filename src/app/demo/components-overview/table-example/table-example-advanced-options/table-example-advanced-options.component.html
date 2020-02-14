@@ -1,0 +1,91 @@
+<lux-select
+  class="example-highlight-config-option"
+  [(luxSelected)]="tableExample.cssClass"
+  [luxOptions]="tableExample.tableCSS"
+  luxOptionLabelProp="class"
+>
+  <lux-form-label>luxClasses</lux-form-label>
+  <lux-form-hint>
+    Dieses Property enthält ein Objekt/Array welches das Interface ICustomCSSConfig implementiert.<br />
+    Das Interface bietet einen Klassennamen und eine Callback-Funktion an, um auf spezielle Elemente in der Tabelle
+    angewendet zu werden.
+  </lux-form-hint>
+</lux-select>
+<lux-input class="example-highlight-config-option" luxType="number" [(luxValue)]="tableExample.minWidthPx">
+  <lux-form-label>luxMinWidthPx</lux-form-label>
+  <lux-form-hint
+    >Bestimmt die Minimalbreite der Tabelle in PX (greift erst ab dem nächsten Resize des Fensters).
+  </lux-form-hint>
+</lux-input>
+<div fxLayout="column" class="example-highlight-config-option">
+  <lux-toggle [(luxChecked)]="tableExample.calculateProportions">
+    <lux-form-label>Höhe festlegen</lux-form-label>
+    <lux-form-hint>
+      Die Höhe des Parent-Divs dieser Tabelle auf eine bestimmte Höhe festlegen.<br />
+      Wenn mehr Einträge vorhanden sind, als durch die Höhe darstellbar, wird die Tabelle automatisch scrollbar.
+    </lux-form-hint>
+  </lux-toggle>
+  <lux-input
+    luxType="number"
+    [(luxValue)]="tableExample.tableHeightPx"
+    [luxDisabled]="!tableExample.calculateProportions"
+  >
+    <lux-form-label>Höhe</lux-form-label>
+    <lux-form-hint>Höhe des Parent-Elements für die LuxTable.</lux-form-hint>
+  </lux-input>
+</div>
+<lux-toggle class="example-highlight-config-option" [(luxChecked)]="tableExample.autoPagination">
+  <lux-form-label>luxAutoPaginate</lux-form-label>
+  <lux-form-hint>
+    Diese Property aktiviert/deaktiviert die automatische Freischaltung der Pagination ab 100 auf einmal dargestellten
+    Einträgen.
+  </lux-form-hint>
+</lux-toggle>
+<lux-toggle class="example-highlight-config-option" [(luxChecked)]="tableExample.hideBorders">
+  <lux-form-label>luxHideBorders</lux-form-label>
+  <lux-form-hint>Mithilfe dieser Property können die Borders der Table ausgeschaltet werden.</lux-form-hint>
+</lux-toggle>
+<lux-select
+  class="example-highlight-config-option"
+  [(luxSelected)]="tableExample.columnWidthOption"
+  [luxOptions]="tableExample.columnWidthOptions"
+  luxOptionLabelProp="label"
+  [luxPickValue]="tableExample.pickColWidth"
+>
+  <lux-form-label>luxColWidthsPercent</lux-form-label>
+  <lux-form-hint
+    >Enthält ein Array von Strings, welche einen %-Wert für die Breite der jeweiligen Spalte beinhalten.
+  </lux-form-hint>
+</lux-select>
+<div class="example-highlight-config-option" fxLayout="column">
+  <h3 class="lux-mr-3 lux-ml-3">Optionen der Spalten</h3>
+  <lux-accordion class="lux-mr-3 lux-ml-3 lux-mb-3" luxMode="flat">
+    <lux-panel *ngFor="let config of tableExample.columnConfigs">
+      <lux-panel-header-title> Spalte "{{ config.label }}" </lux-panel-header-title>
+      <lux-panel-content>
+        <lux-toggle [(luxChecked)]="config.sortable">
+          <lux-form-label>Sortierbar</lux-form-label>
+        </lux-toggle>
+        <lux-toggle [(luxChecked)]="config.sticky" [luxDisabled]="config.sticky === undefined">
+          <lux-form-label>Sticky</lux-form-label>
+        </lux-toggle>
+        <lux-select
+          [luxOptions]="BEHAVIOURS | responsiveBehaviourFiltered: config"
+          luxOptionLabelProp="label"
+          [(luxSelected)]="config.responsiveBehaviour"
+        >
+          <lux-form-label>Responsive Verhalten</lux-form-label>
+        </lux-select>
+        <lux-select
+          [luxMultiple]="true"
+          [luxOptions]="tableExample.mediaQueryOptions"
+          [(luxSelected)]="config.responsiveAt"
+          [luxDisabled]="config.responsiveBehaviour.value === null ? true : false"
+          [luxRequired]="true"
+        >
+          <lux-form-label>Responsive MediaQueries</lux-form-label>
+        </lux-select>
+      </lux-panel-content>
+    </lux-panel>
+  </lux-accordion>
+</div>

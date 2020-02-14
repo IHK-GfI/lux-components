@@ -1,0 +1,6 @@
+lux-button {
+  width: 200px;
+  ::ng-deep button {
+    width: 200px;
+  }
+}

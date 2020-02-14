@@ -1,0 +1,212 @@
+<div fxLayout="column" fxFlex="0 0 100%" class="lux-table">
+  <!-- Progress für das Laden/Filtern von Daten -->
+  <div fxFlex="0 0 15px">
+    <lux-progress
+      luxTagId="tableProgress"
+      luxType="Progressbar"
+      class="lux-mb-3"
+      *ngIf="isLoadingResults"
+    ></lux-progress>
+  </div>
+  <!-- Input-Feld für das Filtern der Datensätze dieser Tabelle -->
+  <lux-input
+    class="lux-table-filter"
+    [luxTagId]="luxFilterText"
+    [luxLabel]="luxFilterText"
+    (luxValueChange)="filtered$.next($event)"
+    [ngClass]="{ 'lux-hide': !luxShowFilter }"
+    #filter
+  >
+  </lux-input>
+  <!-- Die eigentliche Struktur der Tabelle -->
+  <div
+    [ngStyle]="{ height: tableHeightCSSCalc }"
+    class="lux-table"
+    [ngClass]="{ 'lux-block-pointer-events': isLoadingResults, 'lux-hide-borders': luxHideBorders }"
+    #tableContainer
+  >
+    <!-- Overlay, welches bei der Anzeige des Ladebalkens die Interaktion mit der Tabelle unterbindet -->
+    <div class="lux-table-overlay" [ngClass]="{ 'lux-table-overlay-active': isLoadingResults }"></div>
+
+    <div class="lux-table-content">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        [ngClass]="{ 'lux-table-ie': isIE, 'lux-multiselect-table': luxMultiSelect }"
+        [ngStyle]="{ 'min-width': tableMinWidth }"
+        [trackBy]="trackFn"
+        matSort
+        (matSortChange)="announceSortChange($event)"
+        #table
+      >
+        <ng-container *ngIf="tableColumns">
+          <!-- Zellen, welche nur bei Multiselect-Tabellen dargestellt werden und die Checkboxen + Counter beinhalten -->
+          <ng-container matColumnDef="multiSelect" *ngIf="luxMultiSelect">
+            <th
+              class="lux-multiselect-th"
+              [luxAriaLabel]="'Spalte multiSelect ' + getAriaSortingLabel('multiSelect')"
+              luxAriaLabelSelector="button"
+              mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              <div fxLayout="column">
+                <span class="lux-selected-count"
+                  >{{ luxSelected.size }} {{ !luxHttpDAO ? '/ ' + dataSource.totalElements : '' }}</span
+                >
+              </div>
+            </th>
+            <td class="lux-multiselect-td" mat-cell *matCellDef="let element; let i = index">
+              <lux-checkbox
+                luxTagId="lux-table-multiselect-content-{{ i }}"
+                class="lux-multiselect-toggle"
+                luxTabIndex="-1"
+                [luxApplyToChildren]="['input']"
+                [luxAriaLabel]="'Reihe ' + i"
+                luxAriaLabelSelector="input"
+                [luxChecked]="luxSelected.has(element)"
+              >
+              </lux-checkbox>
+            </td>
+            <td
+              class="lux-multiselect-tf"
+              [ngClass]="{ 'lux-ignore-multiselect-tf': !!luxHttpDAO }"
+              mat-footer-cell
+              *matFooterCellDef
+            >
+              <div
+                fxLayout="column"
+                fxLayoutAlign="center"
+                fxFill
+                class="lux-multiselect-toggle-all-wrapper"
+                *ngIf="!luxHttpDAO"
+              >
+                <lux-checkbox
+                  luxTagId="lux-table-multiselect-header"
+                  class="lux-multiselect-toggle-all"
+                  luxAriaLabel="Alle Einträge"
+                  luxAriaLabelSelector="input"
+                  luxTabIndex="-1"
+                  [luxApplyToChildren]="['input']"
+                  [luxChecked]="allSelected"
+                >
+                </lux-checkbox>
+              </div>
+            </td>
+          </ng-container>
+          <!-- Diese Zelle wird nur dargestellt wenn keine Daten/die dataSource.totalElements === 0 sind -->
+          <ng-container matColumnDef="noData">
+            <th mat-header-cell *matHeaderCellDef [colSpan]="tableColumns.length">
+              <span class="lux-no-data-text">{{ luxNoDataText }}</span>
+            </th>
+          </ng-container>
+          <!-- Hier sind die eigentlichen Inhalts-Zellen -->
+          <ng-container *ngFor="let tableColumn of tableColumns.toArray(); let i = index">
+            <ng-container
+              [matColumnDef]="tableColumn.luxColumnDef"
+              [sticky]="i === 0 && tableColumn.luxSticky"
+              [stickyEnd]="i === tableColumns.length - 1 && tableColumn.luxSticky"
+            >
+              <th
+                [luxAriaLabel]="
+                  'Spalte ' + tableColumn.luxColumnDef + ' ' + getAriaSortingLabel(tableColumn.luxColumnDef)
+                "
+                luxAriaLabelSelector="button"
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                [ngClass]="
+                  'lux-table-column-header-' +
+                  i +
+                  (!tableColumn.luxSortable ? ' lux-table-header-blocked' : '') +
+                  (!tableColumn.header ? ' lux-table-column-header-empty' : '')
+                "
+                [ngStyle]="{
+                  width: luxColWidthsPercent && luxColWidthsPercent[i] ? luxColWidthsPercent[i] + '%' : 'unset'
+                }"
+              >
+                <ng-container *ngTemplateOutlet="tableColumn.header?.tempRef"></ng-container>
+              </th>
+
+              <!-- Hier enstehen die Zellen mit den Inhalten -->
+              <td
+                mat-cell
+                *matCellDef="let element"
+                [ngStyle]="{
+                  width: luxColWidthsPercent && luxColWidthsPercent[i] ? luxColWidthsPercent[i] + '%' : 'unset'
+                }"
+              >
+                <ng-container
+                  *ngTemplateOutlet="tableColumn.content?.tempRef; context: { $implicit: element }"
+                ></ng-container>
+
+                <!-- Hier werden die aufgrund von Responsive-Verhalten verschobenen Spalten innerhalb dieser Spalte dargestellt -->
+                <ng-container *ngFor="let movedTableColumn of movedTableColumns">
+                  <ng-container *ngIf="movedTableColumn.luxResponsiveBehaviour === tableColumn.luxColumnDef">
+                    <div class="lux-moved-header-title lux-label">
+                      <ng-container *ngTemplateOutlet="movedTableColumn.header?.tempRef"></ng-container>
+                    </div>
+                    <div>
+                      <ng-container
+                        *ngTemplateOutlet="movedTableColumn.content.tempRef; context: { $implicit: element }"
+                      ></ng-container>
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </td>
+              <td mat-footer-cell *matFooterCellDef>
+                <ng-container *ngTemplateOutlet="tableColumn.footer?.tempRef"></ng-container>
+              </td>
+            </ng-container>
+          </ng-container>
+
+          <!-- Die Table-Row für die Header (standardmäßig sticky) -->
+          <tr mat-header-row *matHeaderRowDef="dataColumnDefs; sticky: true"></tr>
+          <!-- Die Table-Row für die "no-data"-Anzeige -->
+          <tr
+            mat-header-row
+            *matHeaderRowDef="['noData']; sticky: true"
+            class="lux-table-header-no-data"
+            [ngClass]="{ 'lux-display-none': dataSource.totalElements > 0 && dataSource.filteredData.length > 0 }"
+          ></tr>
+          <!-- Die Table-Rows für alle Inhalts-Spalten -->
+          <tr
+            mat-row
+            *matRowDef="let rowData; columns: dataColumnDefs; let i = index"
+            class="lux-row {{ getCustomClassesForIndex(rowData) }}"
+            tabindex="0"
+            [ngClass]="{ 'lux-multiselect-field': luxMultiSelect, 'lux-row-selected': luxSelected.has(rowData) }"
+            (click)="changeSelectedEntry(rowData)"
+            (keydown.space)="changeSelectedEntry(rowData)"
+            (keydown.enter)="changeSelectedEntry(rowData)"
+          ></tr>
+          <!-- Die Table-Row für den Footer dieser Tabelle -->
+          <tr
+            mat-footer-row
+            *matFooterRowDef="dataColumnDefs; sticky: true"
+            ngClass="lux-footer-row"
+            [ngClass]="{
+              'lux-display-none': !anyFootersAvailable(),
+              'lux-multiselect-field': luxMultiSelect && !luxHttpDAO
+            }"
+            tabindex="0"
+            (click)="changeSelectedEntries()"
+            (keydown.space)="changeSelectedEntries()"
+            (keydown.enter)="changeSelectedEntries()"
+          ></tr>
+        </ng-container>
+      </table>
+    </div>
+  </div>
+  <mat-paginator
+    #paginator
+    [length]="dataSource.totalElements"
+    [pageSize]="luxPageSize"
+    [pageSizeOptions]="luxPageSizeOptions"
+    [showFirstLastButtons]="true"
+    [ngClass]="{ 'lux-hide': !luxShowPagination }"
+    [ngClass.xs]="{ 'lux-paginator-xs': true, 'lux-hide': !luxShowPagination }"
+    fxFlex="auto"
+  >
+  </mat-paginator>
+</div>

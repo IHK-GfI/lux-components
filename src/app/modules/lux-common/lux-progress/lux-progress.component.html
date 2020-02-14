@@ -1,0 +1,23 @@
+<div [class]="animDurationCSS" [ngSwitch]="luxType" [ngClass]="['lux-progress-' + luxSize]">
+  <ng-container *ngSwitchCase="'Progressbar'">
+    <mat-progress-bar
+      luxTagIdHandler
+      [luxTagId]="luxTagId"
+      [ngClass]="[typeCSS, 'lux-bg-color-' + luxColor]"
+      [mode]="luxMode"
+      [value]="luxValue"
+    >
+    </mat-progress-bar>
+  </ng-container>
+  <ng-container *ngSwitchCase="'Spinner'">
+    <mat-progress-spinner
+      luxTagIdHandler
+      [luxTagId]="luxTagId"
+      [ngClass]="[typeCSS, 'lux-bg-color-' + luxColor]"
+      [mode]="luxMode"
+      [value]="luxValue"
+      [class.lux-ie-dasharray]="isIE"
+    >
+    </mat-progress-spinner>
+  </ng-container>
+</div>

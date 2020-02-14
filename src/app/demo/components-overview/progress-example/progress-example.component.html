@@ -1,0 +1,55 @@
+<example-base-structure
+  exampleTitle="Progress"
+  exampleIconName="fas fa-battery-half"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/VQfqKQ"
+>
+  <example-base-content>
+    <lux-progress
+      luxType="Progressbar"
+      luxTagId="pb-example"
+      [luxColor]="color"
+      [luxValue]="value"
+      [luxMode]="mode"
+      [luxSize]="size"
+    >
+    </lux-progress>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-select class="example-highlight-config-option" [luxOptions]="sizes" [(luxSelected)]="size" luxLabel="luxSize">
+      <lux-form-hint>
+        Diese Property legt die Größe der Component fest.<br />
+        Dabei sind die Eingaben 'small', 'medium' und 'large' erlaubt.
+      </lux-form-hint>
+    </lux-select>
+    <lux-select
+      class="example-highlight-config-option"
+      luxLabel="luxColor"
+      [luxOptions]="colors"
+      luxHint="Hier kann eine Farbe aus der Farbpalette aus luxstyles.scss ausgewählt werden."
+      [(luxSelected)]="color"
+    >
+    </lux-select>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-select
+        [luxOptions]="modes"
+        [(luxSelected)]="mode"
+        luxLabel="luxMode"
+        luxHint="Die Property bestimmt ob die ProgressBar im Modus 'determinate' (= endlich) oder 'indeterminate' (= endlos) ist."
+      >
+      </lux-select>
+      <ng-container *ngIf="mode === 'determinate'">
+        <lux-input
+          luxLabel="luxValue"
+          luxHint="Diese Property setzt den Wert in dem ProgressBar, vorausgesetzt es ist im Modus 'determinate'"
+          luxType="number"
+          [(luxValue)]="value"
+        >
+        </lux-input>
+        <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
+          <lux-button luxLabel="+10" (luxClicked)="addBarProgress()" [luxRaised]="true"></lux-button>
+          <lux-button luxLabel="-10" (luxClicked)="subtractBarProgress()" [luxRaised]="true"></lux-button>
+        </div>
+      </ng-container>
+    </div>
+  </example-base-simple-options>
+</example-base-structure>

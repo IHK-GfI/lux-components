@@ -1,0 +1,35 @@
+<ng-container [ngSwitch]="luxVerticalStepper">
+  <!-- VERTIKALER STEPPER -->
+  <lux-stepper-vertical
+    [luxStepperConfig]="stepperConfiguration"
+    (luxMatStepperLoaded)="matStepper = $event"
+    (luxMatStepLabelsLoaded)="matStepLabels = $event"
+    (luxStepChanged)="onStepChanged($event)"
+    (luxFinButtonClicked)="luxFinishButtonClicked.emit($event)"
+    (luxPrevButtonClicked)="stepperService.previousStep(this)"
+    (luxNextButtonClicked)="stepperService.nextStep(this)"
+    (luxCheckValidation)="checkValidation()"
+    ngClass.sm="lux-stepper-mobile"
+    ngClass.xs="lux-stepper-mobile"
+    *ngSwitchCase="true"
+  >
+  </lux-stepper-vertical>
+  <!-- HORIZONTALER STEPPER -->
+  <lux-stepper-horizontal
+    [luxStepperConfig]="stepperConfiguration"
+    (luxMatStepperLoaded)="matStepper = $event"
+    (luxMatStepLabelsLoaded)="matStepLabels = $event"
+    (luxStepChanged)="onStepChanged($event)"
+    (luxFinButtonClicked)="luxFinishButtonClicked.emit($event)"
+    (luxPrevButtonClicked)="stepperService.previousStep(this)"
+    (luxNextButtonClicked)="stepperService.nextStep(this)"
+    (luxCheckValidation)="checkValidation()"
+    ngClass.sm="lux-stepper-mobile"
+    ngClass.xs="lux-stepper-mobile"
+    *ngSwitchDefault
+  >
+  </lux-stepper-horizontal>
+</ng-container>
+
+<ng-content select="lux-step"></ng-content>
+<div class="lux-stepper-disabled-overlay" [class.lux-hidden]="!luxDisabled"></div>

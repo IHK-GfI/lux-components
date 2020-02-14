@@ -1,0 +1,141 @@
+<example-base-structure
+  exampleTitle="Message-Box"
+  exampleIconName="fas fa-comments"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/SgfqKQ"
+>
+  <example-base-content>
+    <lux-message-box
+      [luxMessages]="messages"
+      [luxIndex]="messageIndex"
+      [luxMaximumDisplayed]="maximumDisplayed"
+      (luxMessageClosed)="logClosed($event)"
+      (luxMessageBoxClosed)="logBoxClosed()"
+      (luxMessageChanged)="logChanged($event)"
+    >
+    </lux-message-box>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
+    </lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxIndex"
+      luxHint="Diese Property bestimmt die aktuell angezeigte Page aus dem Paginator (maximal die letzte mögliche Seite)."
+      luxType="number"
+      [(luxValue)]="messageIndex"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxMaximumDisplayed"
+      luxType="number"
+      [(luxValue)]="maximumDisplayed"
+    >
+      <lux-form-hint>
+        Die Property legt fest wie viele Nachrichten gleichzeitig dargestellt werden können.<br />
+        Wenn mehr Nachrichten vorhanden sind, sind diese über eine Pagination erreichbar.
+      </lux-form-hint>
+    </lux-input>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div fxLayout="column">
+      <h3>Neue Message</h3>
+      <div class="example-highlight-config-option" fxLayout="column">
+        <lux-textarea
+          luxLabel="text"
+          luxHint="Die Property bestimmt den Text für die neue Nachricht."
+          [(luxValue)]="newMessage.text"
+          fxFlex="auto"
+        >
+        </lux-textarea>
+        <lux-input
+          luxLabel="iconName"
+          luxHint="Über diese Property wird optional ein Icon festgelegt."
+          [(luxValue)]="newMessage.iconName"
+          fxFlex="auto"
+        >
+        </lux-input>
+        <lux-select
+          luxLabel="color"
+          [luxOptions]="colors"
+          luxHint="Hier kann eine Farbe aus der Farbpalette aus luxstyles.scss ausgewählt werden."
+          [(luxSelected)]="newMessage.color"
+          fxFlex="auto"
+        >
+        </lux-select>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end">
+        <lux-button
+          luxIconName="fa-plus"
+          luxColor="primary"
+          (luxClicked)="add()"
+          [luxRounded]="true"
+          fxFlex="0 0 45px"
+          [luxDisabled]="!newMessage.text"
+          luxTagId="example-msg-add"
+        >
+        </lux-button>
+      </div>
+    </div>
+    <h3>Einzelne Messages</h3>
+    <lux-accordion [luxMulti]="false" luxMode="flat" luxExpandedHeaderHeight="65px" luxCollapsedHeaderHeight="65px">
+      <lux-panel [luxHideToggle]="true" *ngFor="let message of messages; let i = index">
+        <lux-panel-header-title>
+          {{ message.text }}
+        </lux-panel-header-title>
+        <lux-panel-header-description>
+          <div fxLayout="row" fxLayoutAlign="end">
+            <lux-button
+              luxIconName="fa-times"
+              (luxClicked)="remove(i)"
+              [luxRounded]="true"
+              luxColor="warn"
+              fxFlex="0 0 45px"
+              luxTagId="example-msg-remove-{{ i }}"
+            ></lux-button>
+          </div>
+        </lux-panel-header-description>
+        <lux-panel-content>
+          <div fxLayout="column">
+            <lux-textarea
+              class="example-highlight-config-option"
+              luxLabel="text"
+              luxHint="Die Property bestimmt den Text für die Nachricht."
+              [(luxValue)]="message.text"
+              fxFlex="auto"
+            >
+            </lux-textarea>
+            <lux-input
+              class="example-highlight-config-option"
+              luxLabel="iconName"
+              luxHint="Über diese Property wird optional ein Icon festgelegt."
+              [(luxValue)]="message.iconName"
+              fxFlex="auto"
+            >
+            </lux-input>
+            <lux-select
+              class="example-highlight-config-option"
+              luxLabel="color"
+              [luxOptions]="colors"
+              luxHint="Hier kann eine Farbe aus der Farbpalette aus luxstyles.scss ausgewählt werden."
+              [(luxSelected)]="message.color"
+              fxFlex="auto"
+            >
+            </lux-select>
+          </div>
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  </example-base-advanced-options>
+  <example-base-options-actions>
+    <lux-button
+      luxLabel="Messages zurücksetzen"
+      (luxClicked)="setMessages()"
+      [luxRaised]="true"
+      luxColor="primary"
+      luxTagId="example-msg-reset"
+    >
+    </lux-button>
+  </example-base-options-actions>
+</example-base-structure>

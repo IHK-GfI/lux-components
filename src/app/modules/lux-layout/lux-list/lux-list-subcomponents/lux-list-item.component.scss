@@ -1,0 +1,21 @@
+@import '../../../../../theming/luxtheme';
+
+.lux-card-footer {
+  margin: 0;
+}
+
+.lux-item {
+  display: block;
+}
+
+.lux-item-aria-description,
+.lux-item-aria-label {
+  position: absolute;
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+:host ::ng-deep lux-card > mat-card.mat-card {
+  margin: 0;
+}

@@ -1,0 +1,28 @@
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+  z-index: 1;
+  padding: 8px;
+}
+
+:host ::ng-deep lux-button button {
+  padding: 5px !important;
+  min-width: 45px !important;
+}
+
+:host ::ng-deep lux-select lux-form-control div {
+  background-color: white;
+  outline-width: 0 !important;
+  outline-style: none;
+
+  & div.lux-form-control-label {
+    display: none;
+  }
+}
+
+:host ::ng-deep .lux-button-disabled button {
+  background-color: rgba(gray, 0.5) !important;
+}

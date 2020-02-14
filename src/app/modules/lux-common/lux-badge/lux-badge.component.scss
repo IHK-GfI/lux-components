@@ -1,0 +1,14 @@
+.lux-badge {
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  flex: initial;
+}
+
+.lux-badge.lux-badge-uppercase ::ng-deep * {
+  text-transform: uppercase;
+}
+
+.lux-badge > lux-icon ::ng-deep * {
+  padding: 0 !important;
+}

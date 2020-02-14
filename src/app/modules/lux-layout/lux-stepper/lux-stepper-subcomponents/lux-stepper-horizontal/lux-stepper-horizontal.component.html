@@ -1,0 +1,62 @@
+<!-- Horizontaler Stepper, die Konfiguration stammt aus dem LuxStepper und wird hier angewandt -->
+<mat-horizontal-stepper
+  [linear]="luxStepperConfig.luxLinear"
+  [selectedIndex]="luxStepperConfig.luxCurrentStepNumber"
+  [ngClass]="{
+    'lux-ignore-mat-step-icons': luxStepperConfig.luxUseCustomIcons,
+    'lux-block-pointer-events': luxStepperConfig.luxDisabled,
+    'lux-linear-stepper': luxStepperConfig.luxLinear,
+    'lux-no-animation': !luxStepperConfig.luxHorizontalStepAnimationActive
+  }"
+  (selectionChange)="luxStepChanged.emit($event)"
+  #stepper
+>
+  <!-- Alle aktuell bekannten Steps zeichnen -->
+  <ng-container *ngFor="let luxStep of luxStepperConfig.luxSteps; let i = index">
+    <mat-step [completed]="luxStep.isCompleted()" [optional]="luxStep.luxOptional" [editable]="luxStep.luxEditable">
+      <!-- Header des Steps -->
+      <ng-template matStepLabel>
+        <div fxLayout="row" fxLayoutAlign="start center" (click)="luxCheckValidation.emit()">
+          <ng-template #matStepLabel></ng-template>
+          <ng-container *ngTemplateOutlet="luxStep.headerTemplate"></ng-container>
+        </div>
+      </ng-template>
+      <!-- Content des Steps, wenn Animationen aktiviert sind -->
+      <ng-container *ngIf="luxStepperConfig.luxHorizontalStepAnimationActive">
+        <ng-container *ngTemplateOutlet="luxStep.contentTemplate"></ng-container>
+        <ng-container *ngTemplateOutlet="navButtonsTemplate; context: { index: i, step: luxStep }"></ng-container>
+      </ng-container>
+    </mat-step>
+  </ng-container>
+</mat-horizontal-stepper>
+
+<!-- Content des Steps, wenn Animationen deaktiviert sind -->
+<ng-container *ngIf="!luxStepperConfig.luxHorizontalStepAnimationActive">
+  <ng-container *ngFor="let luxStep of luxStepperConfig.luxSteps; let i = index">
+    <section
+      class="lux-stepper-content-section"
+      [class.lux-display-none]="i !== matStepper.selectedIndex"
+      *ngIf="matStepper"
+    >
+      <ng-container
+        *ngTemplateOutlet="luxStep.contentTemplate ? luxStep.contentTemplate : noDataTemplate"
+      ></ng-container>
+      <ng-container *ngTemplateOutlet="navButtonsTemplate; context: { index: i, step: luxStep }"></ng-container>
+    </section>
+  </ng-container>
+</ng-container>
+<ng-template #noDataTemplate></ng-template>
+
+<!-- Nav-Buttons in separatem Template (da 2 mal hier verwendet) -->
+<ng-template #navButtonsTemplate let-i="index" let-step="step">
+  <lux-stepper-nav-buttons
+    [luxIndex]="i"
+    [luxStep]="step"
+    [luxStepperConfig]="luxStepperConfig"
+    (luxPrevClick)="luxPrevButtonClicked.emit()"
+    (luxNextClick)="luxNextButtonClicked.emit()"
+    (luxFinClick)="luxFinButtonClicked.emit()"
+    *ngIf="luxStepperConfig.luxShowNavigationButtons"
+  >
+  </lux-stepper-nav-buttons>
+</ng-template>

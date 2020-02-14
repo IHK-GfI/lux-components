@@ -1,0 +1,11 @@
+@import './../lux-lookup-model/lux-lookup-component';
+
+::ng-deep .lux-lookup-panel.mat-select-panel {
+  max-width: 100% !important;
+}
+
+::ng-deep .lux-select-panel {
+  mat-option:not(:last-of-type) {
+    margin-bottom: 2px;
+  }
+}

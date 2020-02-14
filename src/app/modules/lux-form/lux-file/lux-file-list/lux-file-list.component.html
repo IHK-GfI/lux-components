@@ -1,0 +1,225 @@
+<lux-card
+  class="lux-file-list"
+  [ngClass]="{ 'lux-file-list-disabled': luxDisabled }"
+  [luxTitle]="(luxLabel ? luxLabel : '') + (luxRequired ? ' *' : '')"
+  [luxAriaInvalid]="formControl?.invalid"
+  tabindex="0"
+>
+  <lux-card-info *ngIf="luxMultiple || !luxSelectedFiles">
+    <lux-button
+      class="lux-file-list-header-clear"
+      [luxIconName]="luxDeleteActionConfig.iconNameHeader"
+      luxTagId="lux-file-clear"
+      luxColor="primary"
+      [luxDisabled]="
+        !luxSelectedFiles ||
+        luxSelectedFiles.length === 0 ||
+        luxDeleteActionConfig.disabledHeader ||
+        luxDisabled ||
+        luxReadonly
+      "
+      (luxClicked)="clearFiles($event)"
+      fxFlex="0 0 auto"
+      [luxAriaLabel]="luxDeleteActionConfig.labelHeader"
+      luxAriaLabelSelector="button"
+      *ngIf="!luxDeleteActionConfig.hiddenHeader"
+    >
+    </lux-button>
+    <lux-button
+      class="lux-file-list-header-add"
+      [luxIconName]="luxUploadActionConfig.iconNameHeader"
+      luxTagId="lux-file-add"
+      (luxClicked)="fileupload.click()"
+      fxFlex="0 0 auto"
+      [luxDisabled]="luxUploadActionConfig.disabledHeader || luxDisabled || luxReadonly"
+      luxColor="primary"
+      [luxAriaLabel]="luxUploadActionConfig.labelHeader"
+      luxAriaLabelSelector="button"
+      *ngIf="!luxUploadActionConfig.hiddenHeader"
+    >
+    </lux-button>
+  </lux-card-info>
+  <lux-card-content>
+    <div
+      class="lux-file-list-content"
+      fxFlex="1 0 75px"
+      fxLayout="column"
+      fxLayoutAlign="{{ !luxSelectedFiles || luxSelectedFiles.length === 0 ? 'center center' : 'start start' }}"
+    >
+      <div
+        class="lux-file-icon-hint"
+        fxFlexFill
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        *ngIf="!luxSelectedFiles || luxSelectedFiles.length === 0"
+      >
+        <lux-divider></lux-divider>
+        <lux-icon
+          class="lux-file-icon"
+          [luxIconSize]="'3x'"
+          [luxIconName]="luxUploadActionConfig.iconName"
+          [luxPadding]="'0'"
+          [luxMargin]="'0'"
+          *ngIf="luxUploadActionConfig.iconName"
+        >
+        </lux-icon>
+        <mat-hint [id]="uid + '-misc'" fxFlexOffset="8px" *ngIf="formHintComponent || luxHint">
+          <ng-container *ngIf="luxHint; else formHintTemplate">
+            {{ luxHint }}
+          </ng-container>
+          <ng-template #formHintTemplate>
+            <ng-container *ngTemplateOutlet="formHintComponent.templateRef"></ng-container>
+          </ng-template>
+        </mat-hint>
+      </div>
+      <div class="lux-file-list-entries" fxFlexFill *ngIf="luxSelectedFiles">
+        <!-- Mehrere Dateien ausgewählt -->
+        <ng-container *ngIf="isArray(luxSelectedFiles)">
+          <lux-divider></lux-divider>
+          <ng-container *ngFor="let selectedFile of luxSelectedFiles; let i = index">
+            <ng-container *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: selectedFile, index: i }">
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <!-- Nur eine Datei ausgewählt -->
+        <ng-container *ngIf="!isArray(luxSelectedFiles)">
+          <lux-divider></lux-divider>
+          <ng-container
+            *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: luxSelectedFiles, index: 0 }"
+          >
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </lux-card-content>
+  <lux-card-actions fxLayout="column" fxFlexFill *ngIf="errorMessage && formControl?.touched">
+    <mat-error [id]="uid + '-misc'">
+      {{ errorMessage }}
+    </mat-error>
+  </lux-card-actions>
+</lux-card>
+<!-- Template für eine File-Entry -->
+<ng-template let-selectedFile="selectedFile" let-index="index" #fileListEntryTemplate>
+  <div
+    class="lux-file-list-entry lux-mt-2 lux-mb-2"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    tabindex="0"
+    [attr.aria-label]="'Datei ' + selectedFile.name"
+    #fileEntry
+  >
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="0 1 100%">
+      <!-- Icon bzw. Img der Datei -->
+      <ng-container [ngSwitch]="shouldDisplayPreviewImg(index)">
+        <ng-container *ngSwitchCase="false">
+          <lux-icon
+            class="lux-file-list-entry-icon"
+            luxPadding="0"
+            luxMargin="0"
+            [luxIconName]="fileIcons[index]"
+            luxIconSize="2x"
+            fxFlex="0 0 30px"
+            aria-hidden
+          >
+          </lux-icon>
+        </ng-container>
+        <ng-container *ngSwitchCase="true">
+          <img fxFlex="0 0 30px" aria-hidden />
+        </ng-container>
+      </ng-container>
+      <!-- Der Name der Datei -->
+      <span class="lux-file-list-entry-label lux-mr-3" fxFlex="0 1 auto" fxFlexOffset="8px">
+        {{ selectedFile.name }}
+      </span>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center" [fxFlex]="'1 0 ' + iconActionBarWidth + 'px'">
+      <!-- Buttons zum erneuten Hochladen bzw. Löschen der Datei -->
+      <lux-menu
+        luxMenuIconName="fas fa-ellipsis-v"
+        luxTagId="{{ 'lux-file-list-entry-' + index + '-actions' }}"
+        (luxMenuClosed)="fileEntry.focus()"
+        [luxToggleDisabled]="luxDisabled || luxReadonly"
+        [luxDisplayExtended]="true"
+      >
+        <lux-menu-item
+          luxTagId="lux-file-list-entry-view"
+          [luxIconName]="luxViewActionConfig.iconName"
+          [luxDisabled]="luxViewActionConfig.disabled || luxDisabled || luxReadonly"
+          [luxLabel]="luxViewActionConfig.label"
+          [luxHideLabelIfExtended]="true"
+          [luxAlwaysVisible]="alwaysVisibleView"
+          luxColor="primary"
+          (luxClicked)="viewFile(selectedFile)"
+          [luxHidden]="!!luxViewActionConfig.hidden"
+        >
+        </lux-menu-item>
+        <lux-menu-item
+          luxTagId="lux-file-list-entry-download"
+          [luxIconName]="luxDownloadActionConfig.iconName"
+          [luxDisabled]="luxDownloadActionConfig.disabled || luxDisabled || luxReadonly"
+          [luxLabel]="luxDownloadActionConfig.label"
+          [luxHideLabelIfExtended]="true"
+          [luxAlwaysVisible]="alwaysVisibleDownload"
+          luxColor="primary"
+          (luxClicked)="downloadFile(selectedFile)"
+          [luxHidden]="!!luxDownloadActionConfig.hidden"
+        >
+        </lux-menu-item>
+        <lux-menu-item
+          luxTagId="lux-file-list-entry-remove"
+          [luxIconName]="luxDeleteActionConfig.iconName"
+          [luxDisabled]="luxDeleteActionConfig.disabled || luxDisabled || luxReadonly"
+          [luxLabel]="luxDeleteActionConfig.label"
+          [luxHideLabelIfExtended]="true"
+          [luxAlwaysVisible]="alwaysVisibleDelete"
+          luxColor="primary"
+          (luxClicked)="removeFile(index)"
+          [luxHidden]="!!luxDeleteActionConfig.hidden"
+        >
+        </lux-menu-item>
+        <lux-menu-item
+          luxTagId="lux-file-list-entry-upload"
+          [luxIconName]="luxUploadActionConfig.iconName"
+          [luxDisabled]="luxUploadActionConfig.disabled || luxDisabled || luxReadonly"
+          [luxLabel]="luxUploadActionConfig.label"
+          [luxHideLabelIfExtended]="true"
+          [luxAlwaysVisible]="alwaysVisibleUpload"
+          luxColor="primary"
+          (luxClicked)="fileuploadSingle.click()"
+          [luxHidden]="!!luxUploadActionConfig.hidden"
+        >
+        </lux-menu-item>
+      </lux-menu>
+    </div>
+  </div>
+  <ng-container *ngIf="luxSelectedFiles.length">
+    <lux-divider *ngIf="index !== this.luxSelectedFiles.length - 1"></lux-divider>
+  </ng-container>
+</ng-template>
+
+<!-- File-Upload Input -->
+<input
+  class="lux-file-input lux-file-input-multiple"
+  type="file"
+  [multiple]="luxMultiple"
+  [accept]="luxAccept"
+  [luxFileCapture]="luxCapture"
+  (change)="selectFiles($event.target.files)"
+  #fileupload
+/>
+<!-- File-Upload Single Input -->
+<input
+  class="lux-file-input lux-file-input-single"
+  type="file"
+  [multiple]="false"
+  [accept]="luxAccept"
+  [luxFileCapture]="luxCapture"
+  (change)="selectFiles($event.target.files)"
+  #fileuploadSingle
+/>
+
+<!-- Download-Node -->
+<a class="lux-file-download" #downloadLink></a>
+
+<!-- Ladeanzeige für den File-Upload -->
+<lux-file-progress [luxMode]="progressMode" [luxProgress]="progress" *ngIf="isProgressVisible"> </lux-file-progress>

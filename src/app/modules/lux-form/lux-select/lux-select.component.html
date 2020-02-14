@@ -1,0 +1,40 @@
+<lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" *ngIf="formGroup">
+  <mat-select
+    luxTagIdHandler
+    [luxTagId]="luxTagId"
+    [placeholder]="luxPlaceholder"
+    [multiple]="luxMultiple"
+    [compareWith]="compareObjects"
+    [required]="luxRequired"
+    [formControl]="formControl"
+    [attr.aria-invalid]="formControl.invalid"
+    [attr.aria-required]="luxRequired"
+    [id]="uid"
+    [panelClass]="'lux-select-panel'"
+    [luxAriaLabelledby]="uid + '-label'"
+    [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+    (focusin)="luxFocusIn.emit($event)"
+    (focusout)="luxFocusOut.emit($event)"
+  >
+    <mat-option *ngFor="let item of luxOptions" [value]="luxPickValue ? luxPickValue(item) : item">
+      <ng-container
+        *ngTemplateOutlet="
+          tempRef && !luxOptionLabelProp ? tempRef : noTemplateRefTemplate;
+          context: { $implicit: item }
+        "
+      >
+      </ng-container>
+    </mat-option>
+  </mat-select>
+</lux-form-control>
+
+<ng-template #noTemplateRefTemplate let-option>
+  <ng-container *ngIf="option && option[luxOptionLabelProp]; else showObjectTemplate">
+    {{ option | luxRenderProperty: luxOptionLabelProp }}
+  </ng-container>
+  <ng-template #showObjectTemplate>
+    <ng-container *ngIf="!!option">
+      {{ option }}
+    </ng-container>
+  </ng-template>
+</ng-template>

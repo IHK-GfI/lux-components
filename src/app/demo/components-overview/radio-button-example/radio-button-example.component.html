@@ -1,0 +1,247 @@
+<example-base-structure
+  exampleTitle="Radio-Buttons"
+  exampleIconName="fas fa-circle"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/awbqKQ"
+>
+  <example-base-content>
+    <div fxLayout="column">
+      <h3>Beispiel ohne Reactive-Form</h3>
+      <lux-radio
+        [luxOptionLabelProp]="useTemplatesForLabels ? undefined : 'label'"
+        [luxOptions]="useSimpleArray ? optionsPrimitive : options"
+        [luxGroupName]="groupNameNormal"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [(luxDisabled)]="disabled"
+        [luxRequired]="required"
+        [luxReadonly]="readonly"
+        [luxOrientationVertical]="isVertical"
+        [luxPickValue]="useValueFn ? pickValueFn : undefined"
+        [(luxSelected)]="value"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxCompareWith]="useCompareWithFn ? compareWithFn : undefined"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxSelectedChange)="log(showOutputEvents, 'luxSelectedChange', $event)"
+        #defaultRadioComp
+      >
+        <ng-template let-item>via Template {{ item | json }}</ng-template>
+      </lux-radio>
+
+      <div class="example-highlight-config-option" fxLayout="row" fxLayoutGap="5px">
+        <span fxFlex="0 0 auto">Wert:</span>
+        <span fxFlex="auto">{{ value | json }}</span>
+      </div>
+    </div>
+    <div fxLayout="column" [formGroup]="form">
+      <h3>Beispiel in Reactive-Form</h3>
+      <lux-radio
+        [luxOptionLabelProp]="useTemplatesForLabels ? undefined : 'label'"
+        [luxOptions]="useSimpleArray ? optionsPrimitive : options"
+        [luxGroupName]="groupNameReactive"
+        [luxControlBinding]="controlBinding"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [(luxDisabled)]="disabled"
+        [luxReadonly]="readonly"
+        [luxOrientationVertical]="isVertical"
+        [luxPickValue]="useValueFn ? pickValueFn : undefined"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxCompareWith]="useCompareWithFn ? compareWithFn : undefined"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        #reactiveRadioComp
+      >
+        <ng-template let-item>via Template {{ item | json }}</ng-template>
+      </lux-radio>
+      <div fxLayout="column" class="example-highlight-config-option">
+        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+          <span fxFlex="35px">Wert:</span>
+          <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+          <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
+            <span fxFlex="35px">Valid:</span>
+            <span fxFlex="30px">{{ form.valid }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Dirty:</span>
+            <span fxFlex="30px">{{ form.dirty }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Touched:</span>
+            <span fxFlex="30px">{{ form.touched }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
+    </lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxLabel"
+      luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
+      [(luxValue)]="label"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxHint"
+      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+      [(luxValue)]="hint"
+    >
+    </lux-input>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="disabled"
+      luxLabel="luxDisabled"
+      luxHint="Erlaubt es, die Component zu deaktivieren."
+    >
+    </lux-toggle>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <div fxLayout="row wrap">
+        <lux-button
+          luxLabel="Enable"
+          (luxClicked)="form.get(controlBinding).enable()"
+          [luxDisabled]="!form.get(controlBinding).disabled"
+        ></lux-button>
+        <lux-button
+          luxLabel="Disable"
+          (luxClicked)="form.get(controlBinding).disable()"
+          [luxDisabled]="form.get(controlBinding).disabled"
+        ></lux-button>
+      </div>
+      <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
+    </div>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="readonly"
+      luxLabel="luxReadonly"
+      luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxRequired"
+      (luxCheckedChange)="changeRequired($event)"
+    >
+      <lux-form-hint>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
+        Reactive-Form sind.<br />
+        <b
+          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
+          Form-Control gesetzt.</b
+        >
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="isVertical"
+      luxLabel="luxOrientationVertical"
+      luxHint="Über dieses Flag kann gesteuert werden, ob die Radio-Buttons horizontal oder vertikal dargestellt werden."
+    >
+    </lux-toggle>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="useSimpleArray"
+      luxLabel="String-Array nutzen"
+      (luxCheckedChange)="changeUseSimpleArray($event)"
+    >
+      <lux-form-hint>
+        Für die Beispiele einfache String-Arrays anstelle von Arrays mit Objekten nutzen.
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="useValueFn"
+      luxLabel="pickValue-Funktion nutzen"
+      (luxCheckedChange)="changeUseValueFn($event)"
+    >
+      <lux-form-hint>
+        Anstelle der Objekte ist es über eine pickValue-Funktion auch möglich, nur mit einzelnen Properties zu arbeiten.
+        <div class="lux-mt-2">
+          <b>{{ pickValueFn }}</b>
+        </div>
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="useCompareWithFn"
+      luxLabel="compareWith-Funktion nutzen"
+      (luxCheckedChange)="changeCompareWithFn($event)"
+    >
+      <lux-form-hint>
+        Mithilfe der compareWith-Funktion ist es möglich ganze Objekte an die Radio-Component zu übergeben, aber dennoch
+        gezielt einzelne Properties zum Vergleichen heranzuziehen.
+        <div class="lux-mt-2">
+          <b>{{ compareWithFnString }}</b>
+        </div>
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="useTemplatesForLabels"
+      luxLabel="Labels via Templates"
+    >
+      <lux-form-hint>
+        Die Labels können über in die Component eingereichte Template-Tags erstellt werden.
+      </lux-form-hint>
+    </lux-toggle>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-input luxLabel="luxGroupName - normales Beispiel" [(luxValue)]="groupNameNormal" fxFlex="auto">
+        <lux-form-hint>
+          Diese Property definiert die Radio-Group, zu der die einzelnen Radio-Buttons gehören sollen.<br />
+          Wenn derselbe Name für 2 Radio-Components genutzt wird, agieren diese wie eine gemeinsame Group.
+        </lux-form-hint>
+      </lux-input>
+      <lux-input luxLabel="luxGroupName - ReactiveForm Beispiel" [(luxValue)]="groupNameReactive" fxFlex="auto">
+        <lux-form-hint>
+          Diese Property definiert die Radio-Group, zu der die einzelnen Radio-Buttons gehören sollen.<br />
+          Wenn derselbe Name für 2 Radio-Components genutzt wird, agieren diese wie eine gemeinsame Group.
+        </lux-form-hint>
+      </lux-input>
+    </div>
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-toggle
+        luxLabel="luxErrorMessage verwenden"
+        luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
+        [(luxChecked)]="useErrorMessage"
+      >
+      </lux-toggle>
+      <lux-input
+        luxLabel="luxErrorMessage"
+        luxHint="Über diese Property lässt sich eine feste Fehlermeldung
+                 (unabhängig vom speziellen Validierungsfehler) einstellen."
+        [(luxValue)]="errorMessage"
+        *ngIf="useErrorMessage"
+      >
+      </lux-input>
+      <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
+    </div>
+  </example-base-advanced-options>
+  <example-base-options-actions>
+    <div fxLayout="row wrap" fxLayoutGap="8px">
+      <lux-button
+        [luxRaised]="true"
+        luxLabel="Werte resetten"
+        (luxClicked)="reset()"
+        luxColor="warn"
+        fxFlex="0 0 auto"
+      ></lux-button>
+      <lux-button
+        [luxRaised]="true"
+        luxLabel="Fehler anzeigen"
+        luxColor="primary"
+        (luxClicked)="showErrors(defaultRadioComp, reactiveRadioComp)"
+        fxFlex="0 0 auto"
+      ></lux-button>
+    </div>
+  </example-base-options-actions>
+</example-base-structure>

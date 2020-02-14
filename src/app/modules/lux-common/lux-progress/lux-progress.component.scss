@@ -1,0 +1,80 @@
+@import '../../../../theming/luxtheme';
+
+$animationDuration: 8s;
+
+@mixin lux-progress-animation() {
+  -webkit-animation-duration: $animationDuration !important;
+  -moz-animation-duration: $animationDuration !important;
+  -o-animation-duration: $animationDuration !important;
+  animation-duration: $animationDuration !important;
+}
+
+.lux-ie-dasharray ::ng-deep .mat-progress-spinner > svg > circle {
+  stroke-dasharray: 200px !important;
+}
+
+:host ::ng-deep {
+  .mat-progress-bar-fill:after,
+  .mat-progress-spinner > svg > circle {
+    stroke: mat-color($lux-primary, A400);
+    background: mat-color($lux-primary, A400);
+  }
+  .lux-progress-spinner,
+  .lux-progress-bar {
+    @include lux-progress-animation();
+    svg > circle {
+      @include lux-progress-animation();
+    }
+    .mat-progress-bar-background {
+      @include lux-progress-animation();
+    }
+    .mat-progress-bar-primary,
+    .mat-progress-bar-primary:after,
+    .mat-progress-bar-secondary,
+    .mat-progress-bar-secondary:after {
+      @include lux-progress-animation();
+    }
+  }
+}
+
+mat-progress-spinner {
+  background: transparent !important;
+}
+
+/** Einstellung der Höhe des Progresses **/
+$sizes: 'small', 'medium', 'large';
+$sizesPx: '6px', '12px', '24px';
+$sizesPxSpinner: '24px', '48px', '96px';
+
+@for $i from 1 through length($sizes) {
+  .lux-progress-#{nth($sizes, $i)} ::ng-deep {
+    mat-progress-bar {
+      height: #{nth($sizesPx, $i)};
+    }
+
+    mat-progress-spinner,
+    mat-progress-spinner > svg {
+      height: #{nth($sizesPxSpinner, $i)} !important;
+      width: #{nth($sizesPxSpinner, $i)} !important;
+    }
+  }
+}
+
+/** Einstellung der Farbe (Ergänzung zu den CSS-Klassen aus luxstyles.scss) **/
+@each $colorName, $colorNameHex in $componentBgColors {
+  .lux-bg-color-#{'' + $colorName + ''} ::ng-deep {
+    .mat-progress-bar-primary:after,
+    .mat-progress-bar-secondary:after {
+      background: $colorNameHex;
+    }
+  }
+}
+
+/** Einstellung der Farbe (Ergänzung zu den CSS-Klassen aus luxstyles.scss) **/
+@each $colorName, $colorNameHex in $componentBgColors {
+  mat-progress-spinner.lux-bg-color-#{'' + $colorName + ''} ::ng-deep {
+    circle {
+      stroke: $colorNameHex;
+    }
+  }
+}

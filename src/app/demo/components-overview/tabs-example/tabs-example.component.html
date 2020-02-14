@@ -1,0 +1,152 @@
+<example-base-structure
+  exampleTitle="Tabs"
+  exampleIconName="fas fa-columns"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/oQfqKQ"
+>
+  <example-base-content>
+    <lux-tabs
+      [luxActiveTab]="activeTab"
+      [luxTabAnimationActive]="animationActive"
+      [luxIconSize]="iconSize"
+      [luxDisplayDivider]="displayDivider"
+      [luxLazyLoading]="lazyLoading"
+      (luxActiveTabChanged)="activeTabChanged($event)"
+    >
+      <lux-tab
+        [luxTitle]="tab.title"
+        [luxDisabled]="tab.disabled"
+        [luxIconName]="tab.iconName"
+        [luxShowNotification]="tab.showNotification"
+        [luxCounterCap]="tab.counterCap"
+        [luxCounter]="tab.counter"
+        [luxTagIdHeader]="tab.title + 'header'"
+        [luxTagIdContent]="tab.title + '-content'"
+        *ngFor="let tab of tabs; let i = index"
+      >
+        <ng-template>
+          <div fxLayout="column">
+            <lux-input luxLabel="Beispiel Eingabefeld #{{ 1 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}"></lux-input>
+            <lux-input luxLabel="Beispiel Eingabefeld #{{ 2 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}"></lux-input>
+            <lux-textarea luxLabel="Beispiel Eingabefeld #{{ 3 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}"></lux-textarea>
+            <app-tabs-content (created)="tabContentCreated(tab)"></app-tabs-content>
+          </div>
+        </ng-template>
+      </lux-tab>
+    </lux-tabs>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+    ></lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxActiveTab"
+      luxHint="Diese Property ermöglicht es, das aktuell aktive Tab zu setzen."
+      luxType="number"
+      [(luxValue)]="activeTab"
+    >
+    </lux-input>
+    <lux-select
+      class="example-highlight-config-option"
+      luxLabel="luxIconSize"
+      luxHint="Die Property setzt die (relative) Icon-Größe für alle Tabs."
+      [(luxSelected)]="iconSize"
+      [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
+    >
+    </lux-select>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxTabAnimationActive"
+      luxHint="Dieser Flag aktiviert die horizontale Animation des Tab-Contents."
+      [(luxChecked)]="animationActive"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxDisplayDivider"
+      luxHint="Dieser Flag schaltet die Trennlinie zwischen Tab-Header und Tab-Content ein."
+      [(luxChecked)]="displayDivider"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxLazyLoading"
+      luxHint="Wenn dieser Flag den Wert 'true' besitzt, werden die Inhalte der einzelnen Tabs erst zum Aktivierungszeitpunkt erzeugt."
+      [(luxChecked)]="lazyLoading"
+    >
+    </lux-toggle>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <lux-accordion [luxMulti]="false" luxMode="flat">
+      <lux-panel *ngFor="let tab of tabs; let i = index">
+        <lux-panel-header-title> Tab #{{ i + 1 }} </lux-panel-header-title>
+        <lux-panel-content fxLayout="column">
+          <lux-input
+            class="example-highlight-config-option"
+            luxLabel="luxTitle"
+            luxHint="Diese Property ermöglicht es, den Titel des Tabs festzulegen."
+            [(luxValue)]="tab.title"
+          >
+          </lux-input>
+          <lux-input
+            class="example-highlight-config-option"
+            luxLabel="luxIconName"
+            luxHint="Diese Property legt das Icon für den Tab fest."
+            [(luxValue)]="tab.iconName"
+          >
+          </lux-input>
+          <lux-toggle
+            class="example-highlight-config-option"
+            luxLabel="luxDisabled"
+            luxHint="Dieses Flag ermöglicht es, den Tab zu deaktivieren."
+            [(luxChecked)]="tab.disabled"
+          >
+          </lux-toggle>
+          <lux-toggle
+            class="example-highlight-config-option"
+            luxLabel="luxShowNotification"
+            [(luxChecked)]="tab.showNotification"
+          >
+            <lux-form-hint>
+              Diese Property aktiviert eine Notifizierungsansicht an dem Tab.<br />
+              Wenn 'undefined', wird nichts angezeigt. Bei 'true' wird ein blauer Kreis dargestellt und bei 'false' ein
+              ausgegrauter Kreis.
+            </lux-form-hint>
+          </lux-toggle>
+          <div class="example-highlight-config-option" fxLayout="column">
+            <lux-toggle
+              luxLabel="luxCounter aktiv"
+              (luxCheckedChange)="$event ? (tab.counter = 0) : (tab.counter = undefined)"
+            >
+              <lux-form-hint>
+                Wenn der luxCounter einen Zahlenwert besitzt, wird dieser auch an dem Tab angezeigt.<br />
+                Erhält er den Wert null/undefined, wird kein Counter dargestellt.
+              </lux-form-hint>
+            </lux-toggle>
+            <lux-input
+              luxLabel="luxCounter"
+              [(luxValue)]="tab.counter"
+              luxType="number"
+              [luxDisabled]="tab.counter === undefined"
+            >
+              <lux-form-hint>
+                Die Property definiert den aktuellen Zähler für den Tab.<br />
+                Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
+              </lux-form-hint>
+            </lux-input>
+            <lux-input
+              luxLabel="luxCounterCap"
+              luxHint="Diese Property bestimmt die Obergrenze für luxCounter."
+              luxType="number"
+              [(luxValue)]="tab.counterCap"
+            >
+            </lux-input>
+          </div>
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  </example-base-advanced-options>
+</example-base-structure>

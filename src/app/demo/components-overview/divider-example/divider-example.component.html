@@ -1,0 +1,27 @@
+<example-base-structure
+  exampleTitle="Divider"
+  exampleIconName="fas fa-divide"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/IQfqKQ"
+>
+  <example-base-content fxLayout="{{ vertical ? 'row' : 'column' }}">
+    <h2>Example h2 #1</h2>
+    <lux-divider [luxInset]="inset" [luxVertical]="vertical"></lux-divider>
+    <h2>Example h2 #2</h2>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle class="example-highlight-config-option" luxLabel="luxInset" [(luxChecked)]="inset">
+      <lux-form-hint>
+        Diese Property schaltet den Divider von eine absoluten in eine statische Position um.<br />
+        Das hat zur Folge, dass der Divider sein Parent-Element nicht mehr überragt.
+      </lux-form-hint>
+    </lux-toggle>
+
+    <lux-toggle class="example-highlight-config-option" luxLabel="luxVertical" [(luxChecked)]="vertical">
+      <lux-form-hint>
+        Diese Property schaltet den Divider von einer horizontalen in eine vertikale Ansicht um.<br />
+        Die umgebenden Elemente müssen allerdings auch passend ausgerichtet sein, zum Beispiel wird hier die Ausrichtung
+        für die vertikale Ansicht von "column" zu "row" geändert.
+      </lux-form-hint>
+    </lux-toggle>
+  </example-base-simple-options>
+</example-base-structure>

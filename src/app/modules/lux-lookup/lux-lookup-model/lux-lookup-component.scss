@@ -1,0 +1,29 @@
+@import '../../../../theming/luxtheme';
+
+mat-error,
+mat-hint {
+  font-size: 0.75em;
+  position: absolute;
+  top: 0;
+}
+
+.mat-form-field-invalid + .hint-error-box .mat-hint {
+  display: none;
+}
+
+.hint-error-box {
+  position: relative;
+  margin-top: -2em;
+}
+
+::ng-deep mat-option {
+  border-left: 2px solid white;
+
+  &.invalid {
+    border-left: 2px solid $lux-warn-color;
+  }
+}
+
+.lux-readonly {
+  pointer-events: none;
+}

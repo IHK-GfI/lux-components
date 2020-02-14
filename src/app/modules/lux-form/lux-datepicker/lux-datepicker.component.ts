@@ -1,0 +1,250 @@
+import { Platform } from '@angular/cdk/platform';
+import {
+  ChangeDetectorRef,
+  Component,
+  DoCheck,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Optional,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
+import { ControlContainer } from '@angular/forms';
+import { DateAdapter, MAT_DATE_FORMATS, MatDatepicker } from '@angular/material';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { Subscription } from 'rxjs';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
+import { LuxUtil } from '../../lux-util/lux-util';
+import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
+import { LuxDatepickerAdapter } from './lux-datepicker-adapter';
+
+export const APP_DATE_FORMATS = {
+  parse: {
+    dateInput: { month: '2-digit', year: 'numeric', day: '2-digit' }
+  },
+  display: {
+    dateInput: { month: '2-digit', year: 'numeric', day: '2-digit' },
+    monthYearLabel: { year: 'numeric', month: 'long' },
+    dateA11yLabel: { year: 'numeric', month: 'long', day: 'numeric' },
+    monthYearA11yLabel: { year: 'numeric', month: 'long' }
+  }
+};
+
+@Component({
+  selector: 'lux-datepicker',
+  templateUrl: './lux-datepicker.component.html',
+  providers: [
+    { provide: DateAdapter, useClass: LuxDatepickerAdapter, deps: [MAT_DATE_LOCALE, Platform] },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ]
+})
+export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnInit, OnChanges, OnDestroy, DoCheck {
+  private originalTouchUi;
+  private mediaSubscription: Subscription;
+  private previousISO: string;
+
+  min: Date;
+  max: Date;
+  start: Date;
+
+  @Input() luxStartView: 'month' | 'year' = 'month';
+  @Input() luxTouchUi: boolean = false;
+  @Input() luxOpened: boolean = false;
+  @Input() luxStartDate: string = null;
+  @Input() luxShowToggle: boolean = true;
+  @Input() luxLocale: string = 'de-DE';
+  @Input() luxCustomFilter: any = undefined;
+  @Input() luxMaxDate: string = undefined;
+  @Input() luxMinDate: string = undefined;
+
+  @ViewChild(MatDatepicker, { static: false }) matDatepicker: MatDatepicker<any>;
+  @ViewChild('datepickerInput', { read: ElementRef, static: false }) datepickerInput: ElementRef;
+
+  get luxValue(): string {
+    return this.getValue();
+  }
+
+  @Input() set luxValue(value: string) {
+    this.setValue(value);
+  }
+
+  constructor(
+    @Optional() controlContainer: ControlContainer,
+    private dateAdapter: DateAdapter<Date>,
+    private mediaObserver: LuxMediaQueryObserverService,
+    private elementRef: ElementRef,
+    cdr: ChangeDetectorRef,
+    logger: LuxConsoleService,
+    config: LuxComponentsConfigService
+  ) {
+    super(controlContainer, cdr, logger, config);
+    // den Standard-Wert für Autocomplete für Datepicker ausschalten
+    this.luxAutocomplete = 'off';
+    this.dateAdapter.setLocale(this.luxLocale);
+  }
+
+  ngOnChanges(simpleChanges: SimpleChanges) {
+    super.ngOnChanges(simpleChanges);
+    if (simpleChanges.luxOpened) {
+      // Evtl. gibt es ohne das Timeout sonst Fehler, weil der matDatepicker noch nicht gesetzt ist
+      setTimeout(() => {
+        this.triggerOpenClose();
+      });
+    }
+    if (simpleChanges.luxLocale && simpleChanges.luxLocale.currentValue) {
+      this.dateAdapter.setLocale(simpleChanges.luxLocale.currentValue);
+    }
+    if (simpleChanges.luxMaxDate && typeof simpleChanges.luxMaxDate.currentValue === 'string') {
+      this.max = this.dateAdapter.parse(simpleChanges.luxMaxDate.currentValue, {});
+    }
+    if (simpleChanges.luxMinDate && typeof simpleChanges.luxMinDate.currentValue === 'string') {
+      this.min = this.dateAdapter.parse(simpleChanges.luxMinDate.currentValue, {});
+    }
+    if (simpleChanges.luxStartDate && typeof simpleChanges.luxStartDate.currentValue === 'string') {
+      this.start = this.dateAdapter.parse(simpleChanges.luxStartDate.currentValue, {});
+    }
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
+    this.originalTouchUi = this.luxTouchUi;
+    this.mediaSubscription = this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(() => {
+      this.checkMediaObserver();
+    });
+  }
+
+  ngOnDestroy() {
+    this.mediaSubscription.unsubscribe();
+  }
+
+  /**
+   * Erzeugt für die Unter- bzw. Überschreitung
+   * @param value
+   * @param errors
+   */
+  errorMessageModifier(value, errors) {
+    if (errors.matDatepickerMin) {
+      return 'Das Datum unterschreitet den Minimalwert';
+    } else if (errors.matDatepickerMax) {
+      return 'Das Datum überschreitet den Maximalwert';
+    } else if (errors.required) {
+      if (this.datepickerInput && this.datepickerInput.nativeElement.value) {
+        return 'Das Datum ist ungültig';
+      } else {
+        return 'Das Datum darf nicht leer sein';
+      }
+    }
+
+    return undefined;
+  }
+
+  /**
+   * Checkt ob eine mobile Media-Query vorliegt.
+   * Wenn ja, wird automagisch die TouchUI aktiviert.
+   * Wenn nein, wird der vom Aufrufer/originale luxTouchUI-Wert genutzt.
+   */
+  private checkMediaObserver() {
+    if (this.mediaObserver.isXS() || this.mediaObserver.isSM()) {
+      this.luxTouchUi = true;
+    } else {
+      this.luxTouchUi = this.originalTouchUi;
+    }
+  }
+
+  /**
+   * Führt .open() bzw. .close() vom MatDatepicker aus, abhängig vom Wert für luxOpened.
+   */
+  private triggerOpenClose() {
+    if (this.luxOpened) {
+      this.matDatepicker.open();
+    } else {
+      this.matDatepicker.close();
+    }
+  }
+
+  /**
+   * Aktualisiert den FormControl-Value und den Wert im Parent über valueChange mithilfe des übergebenen ISO-Strings.
+   * @param isoValue
+   */
+  private setISOValue(isoValue: string) {
+    setTimeout(() => {
+      this.previousISO = isoValue;
+
+      // valueChange-Emitter anstoßen
+      this.notifyFormValueChanged(isoValue);
+
+      // "silently" den FormControl auf den (potentiell) geänderten Wert aktualisieren
+      this.formControl.setValue(isoValue, {
+        emitEvent: false,
+        emitModelToViewChange: false,
+        emitViewToModelChange: false
+      });
+
+      // Per Hand dem Input-Element einen formatierten String übergeben
+      if (!this.datepickerInput.nativeElement.value && isoValue) {
+        this.datepickerInput.nativeElement.value = this.dateAdapter.format(
+          <any>isoValue,
+          APP_DATE_FORMATS.display.dateInput
+        );
+      }
+    });
+  }
+
+  // region overridden methods
+
+  protected setValue(value: any) {
+    if (value !== this.luxValue) {
+      if (!this.formControl) {
+        this._initialValue = value;
+        return;
+      }
+      this.formControl.setValue(value);
+    }
+  }
+
+  protected initFormValueSubscription() {
+    // Aktualisierungen an dem FormControl-Value sollen auch via EventEmitter bekannt gemacht werden
+    this._formValueChangeSubscr = this.formControl.valueChanges.subscribe((value: any) => {
+      this.updateDateValue(value);
+    });
+
+    if (this.formControl.value) {
+      // Es kann vorkommen, dass der initiale Wert nicht im ISO-Format angegeben ist.
+      // Dann muss der Wert noch umgewandelt werden.
+      this.updateDateValue(this.formControl.value);
+    } else if (this._initialValue !== null && this._initialValue !== undefined) {
+      // Vorhandenen Initialwert setzen
+      this.formControl.setValue(this._initialValue);
+    }
+  }
+
+  private updateDateValue(value: any) {
+    if (!value) {
+      this.setISOValue(value);
+      return;
+    }
+
+    // Nachfolgend erstellen
+    if (typeof value === 'string') {
+      value = this.dateAdapter.parse(value, {});
+    }
+
+    const eventDate: Date = value;
+    const tempDate = new Date(0);
+    tempDate.setUTCFullYear(eventDate.getFullYear(), eventDate.getMonth(), eventDate.getDate());
+    tempDate.setUTCHours(0, 0, 0, 0);
+
+    // Sicherheitshalber noch einmal prüfen, kann vorkommen das ein unsinniger Wert eingetragen wird
+    // z.B. 'asdf', das führt zu InvalidDate's
+    if (LuxUtil.isDate(tempDate) && this.previousISO !== tempDate.toISOString()) {
+      this.setISOValue(tempDate.toISOString());
+    }
+  }
+
+  // endregion
+}

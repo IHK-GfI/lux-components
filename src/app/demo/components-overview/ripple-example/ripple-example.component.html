@@ -1,0 +1,77 @@
+<example-base-structure
+  exampleTitle="Ripple"
+  exampleIconName="fas fa-water"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/_wD-Kw"
+>
+  <example-base-content [exampleCentered]="true">
+    <div
+      style="width: 250px; height: 100px;"
+      class="mat-elevation-z4"
+      fxLayoutAlign="center center"
+      lux-ripple
+      [luxRippleDisabled]="disabled"
+      [luxRippleColor]="color"
+      [luxRippleEnterDuration]="enterDuration"
+      [luxRippleExitDuration]="exitDuration"
+      [luxRippleCentered]="centered"
+      [luxRippleRadius]="radius"
+      [luxRippleUnbounded]="unbounded"
+    >
+      Ripple-Target
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxRippleColor"
+      luxHint="Diese Property ermöglicht es, die Farbe der Component zu setzen."
+      [(luxValue)]="color"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxRippleRadius"
+      luxHint="Diese Property ermöglicht es, den Radius der Animation festzulegen. Wenn 0 werden die Begrenzungen der Zielcomponent genommen."
+      luxType="number"
+      [(luxValue)]="radius"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxRippleEnterDuration"
+      luxHint="Diese Property ermöglicht es, die Dauer der Eingangsanimation zu bestimmen."
+      luxType="number"
+      [(luxValue)]="enterDuration"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxRippleExitDuration"
+      luxHint="Diese Property ermöglicht es, die Dauer der Ausgangsanimation zu bestimmen."
+      luxType="number"
+      [(luxValue)]="exitDuration"
+    >
+    </lux-input>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxRippleDisabled"
+      luxHint="Dieser Flag deaktiviert das Auslösen der Ripple-Animationen über Maus-Klicks."
+      [(luxChecked)]="disabled"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxRippleCentered"
+      luxHint="Dieser Flag stellt ein ob die Animation aus dem Zentrum der Zielcomponent läuft oder vom jeweiligen Klick."
+      [(luxChecked)]="centered"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxRippleUnbounded"
+      luxHint="Dieser Flag stellt ein ob die Animation über die Zielcomponent hinauslaufen kann."
+      [(luxChecked)]="unbounded"
+    >
+    </lux-toggle>
+  </example-base-simple-options>
+</example-base-structure>

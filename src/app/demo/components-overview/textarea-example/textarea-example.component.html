@@ -1,0 +1,216 @@
+<example-base-structure
+  exampleTitle="Textarea"
+  exampleIconName="fas fa-text-height"
+  exampleDocumentationHref="https://confluence.gfi.ihk.de/x/hAbqKQ"
+>
+  <example-base-content>
+    <div fxLayout="column">
+      <h3>Beispiel ohne Reactive-Form</h3>
+      <lux-textarea
+        [(luxDisabled)]="disabled"
+        [luxRequired]="required"
+        [luxReadonly]="readonly"
+        [(luxValue)]="value"
+        [luxAutocomplete]="autocomplete"
+        [luxPlaceholder]="placeholder"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxMaxLength]="maxLength"
+        [luxControlValidators]="controlValidators"
+        [luxMinRows]="min"
+        [luxMaxRows]="max"
+        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+      >
+      </lux-textarea>
+      <div class="example-highlight-config-option" fxLayout="row" fxLayoutGap="5px" *ngIf="value">
+        <span fxFlex="0 0 auto">Wert:</span>
+        <span fxFlex="auto">{{ value | json }}</span>
+      </div>
+    </div>
+    <div fxLayout="column" [formGroup]="form">
+      <h3>Beispiel in Reactive-Form</h3>
+      <lux-textarea
+        [(luxDisabled)]="disabled"
+        [luxReadonly]="readonly"
+        [luxAutocomplete]="autocomplete"
+        [luxPlaceholder]="placeholder"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxMaxLength]="maxLength"
+        [luxControlBinding]="controlBinding"
+        [luxMinRows]="min"
+        [luxMaxRows]="max"
+        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+      >
+      </lux-textarea>
+      <div fxLayout="column" class="example-highlight-config-option">
+        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+          <span fxFlex="35px">Wert:</span>
+          <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+          <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
+            <span fxFlex="35px">Valid:</span>
+            <span fxFlex="30px">{{ form.valid }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Dirty:</span>
+            <span fxFlex="30px">{{ form.dirty }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Touched:</span>
+            <span fxFlex="30px">{{ form.touched }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+    ></lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxLabel"
+      luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
+      [(luxValue)]="label"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxHint"
+      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+      [(luxValue)]="hint"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxPlaceholder"
+      luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
+      [(luxValue)]="placeholder"
+    >
+    </lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxMaxLength"
+      luxHint="Über diese Property kann die maximale Länge angegeben werden."
+      luxType="number"
+      luxNumberAlignLeft="true"
+      [(luxValue)]="maxLength"
+    >
+    </lux-input>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="disabled"
+      luxLabel="luxDisabled"
+      luxHint="Erlaubt es, die Component zu deaktivieren."
+    >
+    </lux-toggle>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <div fxLayout="row wrap">
+        <lux-button
+          luxLabel="Enable"
+          (luxClicked)="form.get(controlBinding).enable()"
+          [luxDisabled]="!form.get(controlBinding).disabled"
+        ></lux-button>
+        <lux-button
+          luxLabel="Disable"
+          (luxClicked)="form.get(controlBinding).disable()"
+          [luxDisabled]="form.get(controlBinding).disabled"
+        ></lux-button>
+      </div>
+      <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
+    </div>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="readonly"
+      luxLabel="luxReadonly"
+      luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxRequired"
+      (luxCheckedChange)="changeRequired($event)"
+    >
+      <lux-form-hint>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
+        Reactive-Form sind.<br />
+        <b
+          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
+          Form-Control gesetzt.</b
+        >
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-select
+      class="example-highlight-config-option"
+      luxLabel="luxAutocomplete"
+      luxHint="Dieser Flag schaltet die Einblendung früherer Eingabungen für dieses Feld durch den Browser ein."
+      [luxOptions]="autocompleteOptions"
+      [(luxSelected)]="autocomplete"
+    >
+    </lux-select>
+    <lux-input
+      class="example-highlight-config-option"
+      [(luxValue)]="min"
+      luxType="number"
+      luxLabel="luxMinRows"
+      luxHint="Diese Property definiert die minimale Anzahl an Reihen für die Textarea."
+    ></lux-input>
+    <lux-input
+      class="example-highlight-config-option"
+      [(luxValue)]="max"
+      luxType="number"
+      luxLabel="luxMaxRows"
+      luxHint="Diese Property definiert die maximale Anzahl an Reihen für die Textarea."
+    ></lux-input>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-toggle
+        luxLabel="luxErrorMessage verwenden"
+        luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
+        [(luxChecked)]="useErrorMessage"
+      >
+      </lux-toggle>
+      <lux-input
+        luxLabel="luxErrorMessage"
+        luxHint="Über diese Property lässt sich eine feste Fehlermeldung
+                 (unabhängig vom speziellen Validierungsfehler) einstellen."
+        [(luxValue)]="errorMessage"
+        *ngIf="useErrorMessage"
+      >
+      </lux-input>
+      <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
+    </div>
+    <lux-select
+      class="example-highlight-config-option"
+      [luxOptions]="validatorOptions"
+      luxOptionLabelProp="label"
+      [luxMultiple]="true"
+      [luxPickValue]="pickValidatorValueFn"
+      luxLabel="luxControlValidators"
+      [(luxSelected)]="controlValidators"
+    >
+      <lux-form-hint>
+        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und
+        Weise trotzdem Validatoren zu übergeben.<br />
+        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die
+        entsprechende FormControl setzen.
+      </lux-form-hint>
+    </lux-select>
+  </example-base-advanced-options>
+</example-base-structure>
