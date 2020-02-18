@@ -23,7 +23,7 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - name: Publish NPM
-        working-directory: dist
+        working-directory: ./dist
         run: |
           ls -l
           npm publish --access public --dry-run
@@ -41,7 +41,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@ihk-gfi'
       - name: Publish Github
-        working-directory: dist
+        working-directory: ./dist
         run: |
           ls -l
           npm publish --access public --dry-run
