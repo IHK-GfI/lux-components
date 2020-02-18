@@ -12,8 +12,6 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: npm run packagr
-      - run: cd dist
-      - run: ls -l
 
   publish-npm:
     needs: build
@@ -24,8 +22,11 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: ls -l
-      - run: npm publish --access public --dry-run
+      - name: Publish NPM
+        working-directory: dist
+        run: |
+          ls -l
+          npm publish --access public --dry-run
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM}}
 
@@ -39,7 +40,10 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
           scope: '@ihk-gfi'
-      - run: ls -l
-      - run: npm publish --dry-run
+      - name: Publish Github
+        working-directory: dist
+        run: |
+          ls -l
+          npm publish --access public --dry-run
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB}}
