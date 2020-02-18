@@ -26,8 +26,8 @@ jobs:
         run: |
           npm ci
           npm run packagr
-          ls -l
           cd dist
+          ls -l
           npm publish --access public --dry-run
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM}}
@@ -46,8 +46,8 @@ jobs:
         run: |
           npm ci
           npm run packagr
-          ls -l
           cd dist
+          ls -l
           npm publish --access public --dry-run
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB}}
