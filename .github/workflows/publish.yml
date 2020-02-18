@@ -1,33 +1,20 @@
-name: Publish
+name: publish
 
-on:
-  release:
-    types: [create]
+on: [push]
 
 jobs:
   build:
-
-    runs-on: [ubuntu-latest]
-
-    strategy:
-      matrix:
-        node-version: [10.x]
-
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: node --version
-    - run: npm --version
-    - run: npm install
-    - run: npm run lint --bailOnLintError true
-    - run: npm run build-aot
-    - run: npm run test_single_run
-      env:
-        CI: true
- 
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm run packagr
+      - run: cd dist
+      - run: ls -l
+
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
@@ -35,12 +22,24 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 12
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm run packagr
-      - run: cd dist
-      - run: npm publish --access public
+      - run: ls -l
+      - run: npm publish --access public --dry-run
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}       
-  
+          NODE_AUTH_TOKEN: ${{secrets.NPM}}
+
+  publish-gpr:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          scope: '@ihk-gfi'
+      - run: ls -l
+      - run: npm publish --dry-run
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB}}
