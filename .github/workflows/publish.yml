@@ -30,7 +30,7 @@ jobs:
           npm run packagr
           cd dist
           ls -l
-          npm publish --access public --dry-run
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM}}
 
@@ -50,6 +50,6 @@ jobs:
           npm run packagr
           cd dist
           ls -l
-          npm publish --access public --dry-run
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB}}
