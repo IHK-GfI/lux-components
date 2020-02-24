@@ -53,7 +53,7 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
         raised: true,
         alwaysVisible: false,
         onClick: () => {
-          window.open('https://confluence.gfi.ihk.de/x/BAbqKQ', '_blank');
+          window.open('https://github.com/IHK-GfI/lux-components/wiki/config', '_blank');
         }
       }),
       LuxAppFooterButtonInfo.generateInfo({
