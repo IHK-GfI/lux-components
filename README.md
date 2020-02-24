@@ -70,3 +70,12 @@ npx @angular/cli@8 generate @ihk-gfi/lux-components-update:lux-version-x.y.z
 
 Details können der Dokumentation des [LUX-Componentsupdaters](https://github.com/IHK-GfI/lux-components-update)
 entnommen werden.
+
+## Demo
+Die LUX-Components enthalten auch eine Demo.
+- LUX-Components via Git runterladen. 
+- In das entsprechende Verzeichnis wechseln.
+- npm install ausführen.
+- ng serve ausführen.
+- http://localhost:4200/ öffnen.
+- Ausprobieren!

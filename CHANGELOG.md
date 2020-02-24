@@ -1,3 +1,7 @@
+# Version 1.8.6 (xx.02.2020)
+- **allgemein**: Alle Confluence-Verweise auf Github umgestellt. 
+- **allgemein**: README.md erweitert.
+
 # Version 1.8.5 (14.02.2020)
 
 - **allgemein**: Die LUX-Components können jetzt über https://www.npmjs.com bezogen werden.
