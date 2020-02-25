@@ -63,7 +63,7 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
         raised: true,
         alwaysVisible: false,
         onClick: () => {
-          window.open('https://confluence.gfi.ihk.de/x/QgfqKQ', '_blank');
+          window.open('https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90master%E2%80%90detail', '_blank');
         }
       }),
       LuxAppFooterButtonInfo.generateInfo({
