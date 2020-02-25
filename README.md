@@ -21,9 +21,11 @@ Die Änderungen weden in der Datei [CHANGELOG.md](https://github.com/IHK-GfI/lux
 Stellen Sie zunächst sicher, dass Sie die Node-Version 8 oder höher installiert haben. 
 Installieren Sie anschließend die folgenden zwei NPM-Pakte global:
 
-Die aktuellste Version unterstützt nur @angular/cli@8. Deswegen wird @angular/cli nicht über npm installiert, sondern on-demand via npx aufgerufen. So wird eure bestehende Version nicht verändert.
+Die aktuellste Version unterstützt die @angular/cli@8. Deswegen wird @angular/cli nicht über 
+npm installiert, sondern on-demand via npx aufgerufen. So wird eure bestehende Version nicht 
+verändert.
 
-Die Schematics-CLI wird trotzdem benötigt.
+Die Schematics-CLI installieren.
 ```bash
 npm install -g @angular-devkit/schematics-cli
 ```
@@ -48,28 +50,19 @@ npm install @ihk-gfi/lux-components-update --save-dev
 Dann kann man über den LUX-Componentsupdater die LUX-Components seiner App hinzufügen: 
 
 ```bash
-npx @angular/cli@8 generate @ihk-gfi/lux-components-update:add-lux-components-1.8
+ng generate @ihk-gfi/lux-components-update:add-lux-components-1.8
 ```
 
 Jetzt kann die App normal gestartet werden: 
 
 ```bash
-npx @angular/cli@8 serve
+ng serve
 ```
 
 Die Dokumentation der LUX-Components befindet sich [hier](https://github.com/IHK-GfI/lux-components/wiki).
 
-## Die LUX-Components aktualisieren
-
-Um die LUX-Components zu aktualisieren, kann der [LUX-Componentsupdater](https://github.com/IHK-GfI/lux-components-update)
-verwendet werden. 
-
-```bash
-npx @angular/cli@8 generate @ihk-gfi/lux-components-update:lux-version-x.y.z
-```
-
-Details können der Dokumentation des [LUX-Componentsupdaters](https://github.com/IHK-GfI/lux-components-update)
-entnommen werden.
+## LUX-Components aktualisieren
+Wie man seine LUX-Components aktualisiert, steht im [Update Guide](https://github.com/IHK-GfI/lux-components/wiki/update-guide).
 
 ## Demo
 Die LUX-Components enthalten auch eine Demo.
