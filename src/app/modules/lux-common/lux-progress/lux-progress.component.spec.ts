@@ -3,7 +3,8 @@ import { LuxProgressComponent } from './lux-progress.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { MatProgressBar, MatProgressSpinner } from '@angular/material';
+import { MatProgressBar } from '@angular/material/progress-bar';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 describe('LuxProgressComponent', () => {
   LuxTestHelper.configureTestSuite();

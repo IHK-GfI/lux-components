@@ -17,7 +17,7 @@ import { ILuxStepperButtonConfig } from './lux-stepper-model/lux-stepper-button-
 import { LuxStepperHelperService } from './lux-stepper-helper.service';
 import { LuxStepComponent } from './lux-stepper-subcomponents/lux-step.component';
 import { ILuxStepperConfiguration } from './lux-stepper-model/lux-stepper-configuration.interface';
-import { MatHorizontalStepper, MatVerticalStepper } from '@angular/material';
+import { MatHorizontalStepper, MatVerticalStepper } from '@angular/material/stepper';
 import { LuxIconComponent } from '../../lux-icon/lux-icon/lux-icon.component';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';

@@ -1,6 +1,6 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
-import { MatSnackBar, MatSnackBarDismiss } from '@angular/material';
+import { MatSnackBar, MatSnackBarDismiss } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { LuxSnackbarComponent } from './lux-snackbar-component/lux-snackbar.component';
 import { LuxSnackbarConfig } from './lux-snackbar-config';

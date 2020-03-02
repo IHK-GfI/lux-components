@@ -8,7 +8,7 @@ import { LuxBackgroundColorsEnum } from '../../lux-util/lux-colors.enum';
 import { By } from '@angular/platform-browser';
 import { ILuxMessageChangeEvent } from './lux-message-box-model/lux-message-events.interface';
 import { LuxMessageComponent } from './lux-message-box-subcomponents/lux-message.component';
-import { MatPaginator } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
 
 describe('LuxMessageBoxComponent', () => {
   LuxTestHelper.configureTestSuite();

@@ -52,7 +52,8 @@ import { MessageBoxExampleComponent } from './message-box-example/message-box-ex
 import { CheckboxExampleComponent } from './checkbox-example/checkbox-example.component';
 import { MenuExampleComponent } from './menu-example/menu-example.component';
 import { AppFooterExampleComponent } from './app-footer-example/app-footer-example.component';
-import { MatBadgeModule, MatFormFieldModule } from '@angular/material';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { TableExampleSimpleOptionsComponent } from './table-example/table-example-simple-options/table-example-simple-options.component';
 import { TableExampleAdvancedOptionsComponent } from './table-example/table-example-advanced-options/table-example-advanced-options.component';
 import { ToggleExampleComponent } from './toggle-example/toggle-example.component';

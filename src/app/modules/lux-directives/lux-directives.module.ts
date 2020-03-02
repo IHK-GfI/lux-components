@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { LuxAriaLabelDirective } from './lux-aria/lux-aria-label.directive';
-import { MatBadgeModule, MatRippleModule, MatTooltipModule } from '@angular/material';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatRippleModule } from '@angular/material/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { LuxInfiniteScrollDirective } from './lux-infinite-scroll/lux-infinite-scroll.directive';
 import { LuxTagIdDirective } from './lux-tag-id/lux-tag-id.directive';
 import { LuxTooltipDirective } from './lux-tooltip/lux-tooltip.directive';

@@ -11,7 +11,7 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { MatExpansionPanel } from '@angular/material';
+import { MatExpansionPanel } from '@angular/material/expansion';
 import { LuxAccordionComponent } from '../lux-accordion/lux-accordion.component';
 import { Subscription } from 'rxjs';
 

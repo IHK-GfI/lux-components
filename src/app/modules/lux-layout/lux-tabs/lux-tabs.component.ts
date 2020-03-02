@@ -14,7 +14,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { LuxTabComponent } from './lux-tabs-subcomponents/lux-tab.component';
-import { MatTabChangeEvent } from '@angular/material';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ReplaySubject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';

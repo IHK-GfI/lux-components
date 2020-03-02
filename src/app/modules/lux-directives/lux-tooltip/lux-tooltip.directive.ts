@@ -15,13 +15,7 @@ import {
   SimpleChanges,
   ViewContainerRef
 } from '@angular/core';
-import {
-  MAT_TOOLTIP_DEFAULT_OPTIONS,
-  MAT_TOOLTIP_SCROLL_STRATEGY,
-  MatTooltip,
-  MatTooltipDefaultOptions,
-  TooltipPosition
-} from '@angular/material';
+import { MAT_TOOLTIP_DEFAULT_OPTIONS, MAT_TOOLTIP_SCROLL_STRATEGY, MatTooltip, MatTooltipDefaultOptions, TooltipPosition } from '@angular/material/tooltip';
 
 @Directive({
   selector: '[luxTooltip]',

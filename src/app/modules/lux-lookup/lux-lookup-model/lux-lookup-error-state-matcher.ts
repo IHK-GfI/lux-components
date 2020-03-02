@@ -1,5 +1,5 @@
 import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { LuxLookupComponent } from '../lux-lookup-model/lux-lookup-component';
 
 export class LuxLookupErrorStateMatcher implements ErrorStateMatcher {

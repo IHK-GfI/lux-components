@@ -1,4 +1,4 @@
-import { GestureConfig } from '@angular/material';
+import { GestureConfig } from '@angular/material/core';
 import { Injectable } from '@angular/core';
 
 declare var Hammer: any;

@@ -12,7 +12,8 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger, MatOptionSelectionChange } from '@angular/material';
+import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { MatOptionSelectionChange } from '@angular/material/core';
 import { LuxFormComponentBase } from '../lux-form-model/lux-form-component-base.class';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 import { Observable, ReplaySubject } from 'rxjs';

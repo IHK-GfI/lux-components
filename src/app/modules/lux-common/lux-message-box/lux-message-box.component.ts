@@ -2,7 +2,7 @@ import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@an
 import { visibilityTrigger } from './lux-message-box-model/lux-message-box.animations';
 import { ILuxMessageChangeEvent, ILuxMessageCloseEvent } from './lux-message-box-model/lux-message-events.interface';
 import { ILuxMessage } from './lux-message-box-model/lux-message.interface';
-import { MatPaginatorIntl, PageEvent } from '@angular/material';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { LuxPaginatorIntl } from '../../lux-util/lux-paginator-intl';
 
 @Component({

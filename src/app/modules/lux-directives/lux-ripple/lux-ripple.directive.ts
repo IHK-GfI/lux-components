@@ -1,7 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { Directive, ElementRef, Inject, Input, NgZone, OnDestroy, OnInit, Optional } from '@angular/core';
 import { ANIMATION_MODULE_TYPE } from '@angular/platform-browser/animations';
-import { MAT_RIPPLE_GLOBAL_OPTIONS, MatRipple, RippleGlobalOptions } from '@angular/material';
+import { MAT_RIPPLE_GLOBAL_OPTIONS, MatRipple, RippleGlobalOptions } from '@angular/material/core';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { Subscription } from 'rxjs';
 
