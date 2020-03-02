@@ -6,7 +6,7 @@ import { Component, ContentChild, OnInit, TemplateRef } from '@angular/core';
   styles: ['']
 })
 export class LuxDetailViewComponent implements OnInit {
-  @ContentChild(TemplateRef, { static: false }) tempRef: TemplateRef<any>;
+  @ContentChild(TemplateRef) tempRef: TemplateRef<any>;
 
   constructor() {}
 

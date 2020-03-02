@@ -40,11 +40,11 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
 
   hideToggle: boolean = false;
 
-  @ViewChild('defaultTrigger', { read: ElementRef, static: false }) defaultTriggerElRef: ElementRef;
-  @ViewChild('menuTrigger', { read: ElementRef, static: false }) menuTriggerElRef: ElementRef;
+  @ViewChild('defaultTrigger', { read: ElementRef }) defaultTriggerElRef: ElementRef;
+  @ViewChild('menuTrigger', { read: ElementRef }) menuTriggerElRef: ElementRef;
   @ViewChild('menuExtendedContainer', { read: ElementRef, static: true }) menuExtendedContainer: ElementRef;
   @ContentChildren(LuxMenuItemComponent) luxMenuItemComponents: QueryList<LuxMenuItemComponent>;
-  @ContentChild(LuxMenuTriggerComponent, { static: false }) luxMenuTriggerComponent: LuxMenuTriggerComponent;
+  @ContentChild(LuxMenuTriggerComponent) luxMenuTriggerComponent: LuxMenuTriggerComponent;
 
   @Output() luxMenuClosed: EventEmitter<void> = new EventEmitter<void>();
 

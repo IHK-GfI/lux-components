@@ -1,5 +1,5 @@
 import { ControlContainer, ValidatorFn, Validators } from '@angular/forms';
-import { ChangeDetectorRef, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, Input, Output, SimpleChanges, Directive } from '@angular/core';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxFormComponentBase } from './lux-form-component-base.class';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';

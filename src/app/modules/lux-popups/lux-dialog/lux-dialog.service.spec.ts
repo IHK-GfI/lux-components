@@ -325,7 +325,7 @@ describe('LuxDialogService', () => {
   `
 })
 class MockDialogComponent {
-  @ViewChild('testContentTemplate', { static: false }) templateRef: TemplateRef<any>;
+  @ViewChild('testContentTemplate') templateRef: TemplateRef<any>;
 
   constructor(public dialogService: LuxDialogService) {}
 

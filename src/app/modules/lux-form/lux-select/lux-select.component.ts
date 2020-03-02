@@ -22,7 +22,7 @@ import { MatOption } from '@angular/material';
 })
 export class LuxSelectComponent extends LuxFormSelectableBase {
   // Potentiell eingebettetes Template für Darstellung der Labels
-  @ContentChild(TemplateRef, { static: false }) tempRef: TemplateRef<any>;
+  @ContentChild(TemplateRef) tempRef: TemplateRef<any>;
   @ViewChildren(MatOption) matOptions: QueryList<MatOption>;
 
   @Input() luxPlaceholder: string;

@@ -20,9 +20,9 @@ export class LuxTableColumnComponent implements OnInit, OnChanges {
   @Input() luxResponsiveBehaviour: string;
   @Input() luxResponsiveAt: string | string[];
 
-  @ContentChild(LuxTableColumnHeaderComponent, { static: false }) header: LuxTableColumnHeaderComponent;
-  @ContentChild(LuxTableColumnContentComponent, { static: false }) content: LuxTableColumnContentComponent;
-  @ContentChild(LuxTableColumnFooterComponent, { static: false }) footer: LuxTableColumnFooterComponent;
+  @ContentChild(LuxTableColumnHeaderComponent) header: LuxTableColumnHeaderComponent;
+  @ContentChild(LuxTableColumnContentComponent) content: LuxTableColumnContentComponent;
+  @ContentChild(LuxTableColumnFooterComponent) footer: LuxTableColumnFooterComponent;
 
   constructor() {}
 

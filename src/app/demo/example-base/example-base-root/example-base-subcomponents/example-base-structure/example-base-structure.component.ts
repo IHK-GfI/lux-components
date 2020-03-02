@@ -21,10 +21,10 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
   @Input() exampleIconName: string;
   @Input() exampleDocumentationHref: string;
 
-  @ContentChild(ExampleBaseContentComponent, { static: false }) contentComponent: ExampleBaseContentComponent;
-  @ContentChild(ExampleBaseSimpleOptionsComponent, { static: false })
+  @ContentChild(ExampleBaseContentComponent) contentComponent: ExampleBaseContentComponent;
+  @ContentChild(ExampleBaseSimpleOptionsComponent)
   simpleOptionsComponent: ExampleBaseSimpleOptionsComponent;
-  @ContentChild(ExampleBaseAdvancedOptionsComponent, { static: false })
+  @ContentChild(ExampleBaseAdvancedOptionsComponent)
   advancedOptionsComponent: ExampleBaseAdvancedOptionsComponent;
 
   isIE: boolean = LuxUtil.isIE();

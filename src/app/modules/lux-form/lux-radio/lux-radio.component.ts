@@ -24,7 +24,7 @@ export class LuxRadioComponent extends LuxFormSelectableBase implements OnDestro
   forceVertical: boolean = false;
 
   // Potentiell eingebettetes Template für Darstellung der Labels
-  @ContentChild(TemplateRef, { static: false }) tempRef: TemplateRef<any>;
+  @ContentChild(TemplateRef) tempRef: TemplateRef<any>;
 
   @HostBinding('class.lux-pb-3') pb3: boolean = true;
   @Input() luxGroupName: string = '';

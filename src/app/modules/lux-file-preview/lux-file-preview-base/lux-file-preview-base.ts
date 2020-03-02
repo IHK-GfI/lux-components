@@ -1,5 +1,5 @@
 import { ESCAPE } from '@angular/cdk/keycodes';
-import { HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
+import { HostListener, Inject, OnDestroy, OnInit, Directive } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { LUX_FILE_PREVIEW_DATA } from '../lux-file-preview-config';

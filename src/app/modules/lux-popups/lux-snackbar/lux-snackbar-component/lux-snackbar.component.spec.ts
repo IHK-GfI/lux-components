@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, Injectable } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material';
 import { By } from '@angular/platform-browser';
@@ -98,6 +98,7 @@ function findToggleElement(toggleElement) {
 })
 class MockSnackbarComponent {}
 
+@Injectable()
 class MockMobileHelperService {
   masterCollapsedObservable = of({});
   isRegisteredObservable = of({});
@@ -108,6 +109,7 @@ class MockMobileHelperService {
   }
 }
 
+@Injectable()
 class MockStorageService {
   getItem() {
     return 1;

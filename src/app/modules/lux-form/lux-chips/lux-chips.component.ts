@@ -45,8 +45,8 @@ export class LuxChipsComponent implements OnDestroy {
   @ContentChildren(LuxChipGroupComponent) luxChipGroupComponents: QueryList<LuxChipGroupComponent>;
   @ViewChildren(MatChip) matChips: QueryList<MatChip>;
 
-  @ViewChild('input', { read: MatAutocompleteTrigger, static: false }) matAutocompleteTrigger: MatAutocompleteTrigger;
-  @ViewChild('auto', { read: MatAutocomplete, static: false }) matAutocomplete: MatAutocomplete;
+  @ViewChild('input', { read: MatAutocompleteTrigger }) matAutocompleteTrigger: MatAutocompleteTrigger;
+  @ViewChild('auto', { read: MatAutocomplete }) matAutocomplete: MatAutocomplete;
 
   get luxDisabled(): boolean {
     return this._luxDisabled;

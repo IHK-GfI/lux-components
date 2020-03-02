@@ -35,8 +35,8 @@ describe('LuxLookupLabelComponent', () => {
 
       expect(myComponent).not.toBeNull('Component ist null');
       expect(myComponent.nativeElement.innerHTML).toEqual('Jungholz (ausl. Adresse)');
-      TestBed.get(LuxLookupService).changeTableValue();
-      TestBed.get(LuxLookupHandlerService).reloadData('meineId');
+      TestBed.inject(LuxLookupService).changeTableValue();
+      TestBed.inject(LuxLookupHandlerService).reloadData('meineId');
 
       fixture.detectChanges();
 

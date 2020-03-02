@@ -26,7 +26,7 @@ export declare type SLIDER_COLORS = 'primary' | 'accent' | 'warn';
   styleUrls: ['./lux-slider.component.scss']
 })
 export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, OnChanges {
-  @ViewChild(MatSlider, { static: false }) matSlider: MatSlider;
+  @ViewChild(MatSlider) matSlider: MatSlider;
 
   @Output() luxChange: EventEmitter<MatSliderChange> = new EventEmitter<MatSliderChange>();
   @Output() luxInput: EventEmitter<MatSliderChange> = new EventEmitter<MatSliderChange>();

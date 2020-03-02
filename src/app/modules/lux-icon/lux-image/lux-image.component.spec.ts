@@ -78,5 +78,5 @@ describe('LuxImageComponent', () => {
 class MockComponent {
   href: string;
   raw: boolean;
-  @ViewChild(LuxImageComponent, { static: false }) imageCmp: LuxImageComponent;
+  @ViewChild(LuxImageComponent) imageCmp: LuxImageComponent;
 }

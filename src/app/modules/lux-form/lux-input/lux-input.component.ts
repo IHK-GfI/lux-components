@@ -17,9 +17,9 @@ export class LuxInputComponent extends LuxFormInputBaseClass {
   @Input() luxType: string = 'text';
   @Input() luxNumberAlignLeft: boolean = false;
   @Input() luxMaxLength: number;
-  @ContentChild(LuxInputPrefixComponent, { static: false }) inputPrefix: LuxInputPrefixComponent;
-  @ContentChild(LuxInputSuffixComponent, { static: false }) inputSuffix: LuxInputSuffixComponent;
-  @ViewChild('input', { read: ElementRef, static: false }) inputElement: ElementRef;
+  @ContentChild(LuxInputPrefixComponent) inputPrefix: LuxInputPrefixComponent;
+  @ContentChild(LuxInputSuffixComponent) inputSuffix: LuxInputSuffixComponent;
+  @ViewChild('input', { read: ElementRef }) inputElement: ElementRef;
 
   constructor(
     @Optional() controlContainer: ControlContainer,

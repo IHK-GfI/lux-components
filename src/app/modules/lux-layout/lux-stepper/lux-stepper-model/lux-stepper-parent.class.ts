@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  EventEmitter,
-  Input,
-  Output,
-  QueryList,
-  ViewChild,
-  ViewChildren,
-  ViewContainerRef
-} from '@angular/core';
+import { AfterViewInit, EventEmitter, Input, Output, QueryList, ViewChild, ViewChildren, ViewContainerRef, Directive } from '@angular/core';
 import { MatHorizontalStepper, MatVerticalStepper } from '@angular/material';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ILuxStepperConfiguration } from './lux-stepper-configuration.interface';

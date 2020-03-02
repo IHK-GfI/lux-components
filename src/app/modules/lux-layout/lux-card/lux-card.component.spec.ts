@@ -377,7 +377,7 @@ class CardActionComponent {
   `
 })
 class ExpandedCardComponent {
-  @ViewChild(LuxCardComponent, { static: false }) card: LuxCardComponent;
+  @ViewChild(LuxCardComponent) card: LuxCardComponent;
 }
 
 @Component({
@@ -389,7 +389,7 @@ class ExpandedCardComponent {
   `
 })
 class ExpandedClickableCardComponent {
-  @ViewChild(LuxCardComponent, { static: false }) card: LuxCardComponent;
+  @ViewChild(LuxCardComponent) card: LuxCardComponent;
 
   onCardClickedTest() {}
 }
@@ -405,7 +405,7 @@ class ExpandedClickableCardComponent {
 class LuxContentExpandedComponent {
   expanded = false;
 
-  @ViewChild(LuxCardComponent, { static: false }) card: LuxCardComponent;
+  @ViewChild(LuxCardComponent) card: LuxCardComponent;
 
   onExpanded(expanded: boolean) {}
 }

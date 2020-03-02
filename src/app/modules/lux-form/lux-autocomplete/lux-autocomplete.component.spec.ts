@@ -407,7 +407,7 @@ class LuxAutoCompleteInFormAttributeComponent {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  @ViewChild(LuxAutocompleteComponent, { static: false }) autocomplete: LuxAutocompleteComponent;
+  @ViewChild(LuxAutocompleteComponent) autocomplete: LuxAutocompleteComponent;
 
   formGroup: FormGroup;
 
@@ -435,7 +435,7 @@ class LuxValueAttributeComponent {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  @ViewChild(LuxAutocompleteComponent, { static: false }) autocomplete: LuxAutocompleteComponent;
+  @ViewChild(LuxAutocompleteComponent) autocomplete: LuxAutocompleteComponent;
 }
 
 @Component({
@@ -454,7 +454,7 @@ class LuxOptionSelectedComponent {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  @ViewChild(LuxAutocompleteComponent, { static: false }) autocomplete: LuxAutocompleteComponent;
+  @ViewChild(LuxAutocompleteComponent) autocomplete: LuxAutocompleteComponent;
 
   setSelected(selected: any) {
     this.selected = selected;
@@ -481,7 +481,7 @@ class MockAutocompleteComponent implements OnInit {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  @ViewChild(LuxAutocompleteComponent, { static: false }) autocomplete: LuxAutocompleteComponent;
+  @ViewChild(LuxAutocompleteComponent) autocomplete: LuxAutocompleteComponent;
 
   constructor() {}
 

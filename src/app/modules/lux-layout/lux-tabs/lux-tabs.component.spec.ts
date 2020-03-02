@@ -438,7 +438,7 @@ class LuxActiveTabChangedTabsComponent {
   currentTabIndex: number;
   currentTabLabel: string;
 
-  @ViewChild(LuxTabsComponent, { static: false }) luxTabs: LuxTabsComponent;
+  @ViewChild(LuxTabsComponent) luxTabs: LuxTabsComponent;
   @ViewChildren(LuxTabComponent) luxTabList: QueryList<LuxTabComponent>;
 
   constructor() {}
@@ -475,7 +475,7 @@ class LuxMockTabsComponent implements OnInit, AfterViewInit {
   animated: boolean = false;
   currentTabIndex: number;
 
-  @ViewChild(LuxTabsComponent, { static: false }) luxTabs: LuxTabsComponent;
+  @ViewChild(LuxTabsComponent) luxTabs: LuxTabsComponent;
   @ViewChildren(LuxTabComponent) luxTabList: QueryList<LuxTabComponent>;
 
   constructor() {}
@@ -540,8 +540,8 @@ class LuxTabWithoutNumberComponent {}
   `
 })
 class LuxTabLazyLoadingComponent {
-  @ViewChild('aaa', { static: false }) labelAaa: LuxLabelComponent;
-  @ViewChild('bbb', { static: false }) labelBbb: LuxLabelComponent;
+  @ViewChild('aaa') labelAaa: LuxLabelComponent;
+  @ViewChild('bbb') labelBbb: LuxLabelComponent;
 
   currentTabIndex = 0;
   animationActive = false;

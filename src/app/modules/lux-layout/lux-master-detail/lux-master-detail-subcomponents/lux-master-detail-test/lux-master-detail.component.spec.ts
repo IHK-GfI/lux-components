@@ -454,8 +454,8 @@ class LuxMockDetailComponent implements OnInit {
 class LuxMockMasterDetailComponent implements OnInit, AfterViewInit {
   mockItems: any[];
   detail: any;
-  @ViewChild('detailMock', { static: false }) detailMock: LuxMockDetailComponent;
-  @ViewChild(LuxMasterDetailComponent, { static: false }) masterDetail: LuxMasterDetailComponent;
+  @ViewChild('detailMock') detailMock: LuxMockDetailComponent;
+  @ViewChild(LuxMasterDetailComponent) masterDetail: LuxMasterDetailComponent;
 
   constructor() {}
 

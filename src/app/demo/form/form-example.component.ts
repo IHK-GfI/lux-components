@@ -10,10 +10,10 @@ import { IUnsavedDataCheck } from './unsaved-data-guard/unsaved-data-check.inter
   templateUrl: './form-example.component.html'
 })
 export class FormExampleComponent implements IUnsavedDataCheck {
-  @ViewChild(FormCommonComponent, { static: false }) formCommon: FormCommonComponent;
-  @ViewChild(FormSingleColComponent, { static: false }) formSingle: FormSingleColComponent;
-  @ViewChild(FormDualColComponent, { static: false }) formDuo: FormDualColComponent;
-  @ViewChild(FormThreeColComponent, { static: false }) formThree: FormThreeColComponent;
+  @ViewChild(FormCommonComponent) formCommon: FormCommonComponent;
+  @ViewChild(FormSingleColComponent) formSingle: FormSingleColComponent;
+  @ViewChild(FormDualColComponent) formDuo: FormDualColComponent;
+  @ViewChild(FormThreeColComponent) formThree: FormThreeColComponent;
 
   constructor() {}
 

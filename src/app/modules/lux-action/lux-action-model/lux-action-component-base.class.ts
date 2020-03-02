@@ -1,4 +1,4 @@
-import { EventEmitter, Input, Output } from '@angular/core';
+import { EventEmitter, Input, Output, Directive } from '@angular/core';
 
 /**
  * Base-Klasse der LuxActionComponents.

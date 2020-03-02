@@ -846,7 +846,7 @@ describe('LuxSelectComponent', () => {
   `
 })
 class SelectInsideFormComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
 
   allHobbies = [
     { label: 'Reiten', value: 'r' },
@@ -879,7 +879,7 @@ class SelectInsideFormComponent {
   `
 })
 class SelectOutsideFormComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
 
   label;
   hint;
@@ -917,7 +917,7 @@ class SelectOutsideFormComponent {
   `
 })
 class SelectCustomCompareComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
 
   selectedOption: any = null;
 
@@ -946,7 +946,7 @@ class SelectCustomCompareComponent {
   `
 })
 class SelectStringArrayComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
   selectedOption: any = null;
   options = ['A', 'B', 'C', 'D'];
 }
@@ -963,7 +963,7 @@ class SelectStringArrayComponent {
   `
 })
 class SelectValueHookComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
   selectedOption: any = null;
   options = [
     { label: 'Meine Aufgaben', value: 'A' },
@@ -992,7 +992,7 @@ class SelectValueHookComponent {
   `
 })
 class SelectValueHookFormComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
   selectedOption: any = null;
   options = [
     { label: 'Meine Aufgaben', value: 'A' },

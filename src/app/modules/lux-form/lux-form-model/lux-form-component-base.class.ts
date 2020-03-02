@@ -10,7 +10,8 @@ import {
   OnInit,
   Output,
   SimpleChange,
-  SimpleChanges
+  SimpleChanges,
+  Directive
 } from '@angular/core';
 import { AbstractControl, ControlContainer, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxUtil } from '../../lux-util/lux-util';
@@ -48,8 +49,8 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
 
   uid: string = 'lux-form-control-' + luxFormControlUID++;
 
-  @ContentChild(LuxFormLabelComponent, { static: false }) formLabelComponent: LuxFormLabelComponent;
-  @ContentChild(LuxFormHintComponent, { static: false }) formHintComponent: LuxFormHintComponent;
+  @ContentChild(LuxFormLabelComponent) formLabelComponent: LuxFormLabelComponent;
+  @ContentChild(LuxFormHintComponent) formHintComponent: LuxFormHintComponent;
 
   @HostBinding('class.lux-form-control-readonly') cssReadonly = this._luxReadonly;
 

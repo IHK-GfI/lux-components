@@ -392,7 +392,7 @@ describe('LuxAppHeaderComponent', () => {
 
     it('Sollte den Dashboard-Link innerhalb der Applikation routen', fakeAsync(() => {
       // Vorbedingungen prüfen
-      const spy = spyOn(TestBed.get(Router), 'navigate').and.returnValue(Promise.resolve());
+      const spy = spyOn(TestBed.inject(Router), 'navigate').and.returnValue(Promise.resolve());
 
       testComponent.dashboardTitle = 'Dashboard';
       testComponent.dashboardLink = '/mock-route';

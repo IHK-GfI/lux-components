@@ -44,9 +44,9 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
   @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
 
-  @ViewChild('autoCompleteInput', { read: MatAutocompleteTrigger, static: false })
+  @ViewChild('autoCompleteInput', { read: MatAutocompleteTrigger })
   matAutoComplete: MatAutocompleteTrigger;
-  @ViewChild('autoCompleteInput', { read: ElementRef, static: false }) matInput: ElementRef;
+  @ViewChild('autoCompleteInput', { read: ElementRef }) matInput: ElementRef;
 
   get luxValue(): any {
     return this.getValue();

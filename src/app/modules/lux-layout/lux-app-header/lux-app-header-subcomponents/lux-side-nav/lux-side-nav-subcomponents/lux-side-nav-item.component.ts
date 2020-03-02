@@ -19,7 +19,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LuxSideNavItemComponent implements AfterViewInit, OnChanges {
-  @ViewChild(TemplateRef, { static: false }) templateRef: TemplateRef<any>;
+  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 
   @Input() luxLabel: string;
   @Input() luxDisabled: boolean = false;

@@ -1,4 +1,5 @@
 import { GestureConfig } from '@angular/material';
+import { Injectable } from '@angular/core';
 
 declare var Hammer: any;
 
@@ -7,6 +8,7 @@ declare var Hammer: any;
  *
  * Verhindert durch providen den Bug im Safari, dass kein Scrollen mehr möglich ist.
  */
+@Injectable()
 export class LuxComponentsHammerConfig extends GestureConfig {
   buildHammer(element: HTMLElement) {
     // Wenn es sich um die MD-Component handelt, vertikales Scrolling

@@ -11,9 +11,9 @@ import { LuxFilePreviewPdfViewerComponent } from './lux-file-preview-pdfviewer/l
   styleUrls: ['./lux-file-preview.component.scss']
 })
 export class LuxFilePreviewComponent implements OnInit {
-  @ViewChild(LuxFilePreviewPdfViewerComponent, { static: false }) pdfViewer: LuxFilePreviewPdfViewerComponent;
-  @ViewChild(LuxFilePreviewImgViewerComponent, { static: false }) imgViewer: LuxFilePreviewImgViewerComponent;
-  @ViewChild(LuxFilePreviewNotSupportedViewerComponent, { static: false })
+  @ViewChild(LuxFilePreviewPdfViewerComponent) pdfViewer: LuxFilePreviewPdfViewerComponent;
+  @ViewChild(LuxFilePreviewImgViewerComponent) imgViewer: LuxFilePreviewImgViewerComponent;
+  @ViewChild(LuxFilePreviewNotSupportedViewerComponent)
   notSupportedViewer: LuxFilePreviewNotSupportedViewerComponent;
 
   fileType: 'img' | 'pdf' | 'notsupported' = 'notsupported';

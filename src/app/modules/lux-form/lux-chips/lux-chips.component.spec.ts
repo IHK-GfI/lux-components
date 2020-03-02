@@ -377,7 +377,7 @@ class ChipsComponent {
   groupLabels = [];
 
   chipGroup;
-  @ViewChild(LuxChipGroupComponent, { static: false }) chipGroupComponent: LuxChipGroupComponent;
+  @ViewChild(LuxChipGroupComponent) chipGroupComponent: LuxChipGroupComponent;
 
   chipAdded($event: string) {
     this.chips.push({

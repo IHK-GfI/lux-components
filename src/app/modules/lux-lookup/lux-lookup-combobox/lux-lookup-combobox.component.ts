@@ -19,7 +19,7 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
   @Input() luxEntryBlockSize: number = 25;
 
   displayedEntries: LuxLookupTableEntry[];
-  @ViewChild(MatSelect, { static: false }) matSelect: MatSelect;
+  @ViewChild(MatSelect) matSelect: MatSelect;
 
   constructor(
     lookupService: LuxLookupService,

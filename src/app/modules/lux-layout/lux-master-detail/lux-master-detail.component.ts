@@ -48,17 +48,17 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   @Output() luxSelectedDetailChange: EventEmitter<any> = new EventEmitter();
   @Output() luxScrolled: EventEmitter<any> = new EventEmitter();
 
-  @ContentChild(LuxMasterSimpleComponent, { static: false }) masterSimple;
-  @ContentChild(LuxDetailViewComponent, { static: false }) detailView;
-  @ContentChild(LuxMasterFooterComponent, { static: false, read: ElementRef }) masterFooter: ElementRef;
+  @ContentChild(LuxMasterSimpleComponent) masterSimple;
+  @ContentChild(LuxDetailViewComponent) detailView;
+  @ContentChild(LuxMasterFooterComponent, { read: ElementRef }) masterFooter: ElementRef;
 
   @ViewChildren(LuxListComponent, { read: ElementRef }) luxMasterQueryList: QueryList<ElementRef>;
   @ViewChildren(LuxListItemComponent) luxMasterListItemQueryList: QueryList<LuxListItemComponent>;
   @ViewChild(LuxMasterHeaderComponent, { read: ElementRef, static: true }) masterHeader: ElementRef;
-  @ViewChild(LuxListItemComponent, { read: ElementRef, static: false }) luxMasterEntryElementRef: ElementRef;
-  @ContentChild(LuxTabsComponent, { static: false }) tabsComponent: LuxTabsComponent;
+  @ViewChild(LuxListItemComponent, { read: ElementRef }) luxMasterEntryElementRef: ElementRef;
+  @ContentChild(LuxTabsComponent) tabsComponent: LuxTabsComponent;
   @ViewChild('masterSpinnerCard', { read: ElementRef, static: true }) masterSpinnerCard: ElementRef;
-  @ViewChild('detailContainer', { read: ElementRef, static: false }) detailFrame: ElementRef;
+  @ViewChild('detailContainer', { read: ElementRef }) detailFrame: ElementRef;
   @ViewChild('detailEmpty', { read: ElementRef, static: true }) detailEmpty: ElementRef;
   @ViewChild('detailViewContainerRef', { read: ViewContainerRef, static: true })
   detailViewContainerRef: ViewContainerRef;
