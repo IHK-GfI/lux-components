@@ -78,7 +78,6 @@
     "retire": "2.0.3",
     "rxjs": "6.5.3",
     "ts-node": "8.4.1",
-    "tsickle": "0.37.0",
     "tslint": "5.20.0",
     "tslint-angular": "3.0.2",
     "typescript": "3.4.5",
