@@ -1,7 +1,7 @@
 // tslint:disable:max-line-length
 
 import {
-  ChangeDetectorRef,
+  ChangeDetectorRef, Directive,
   EventEmitter,
   Input,
   OnChanges,
@@ -22,6 +22,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { Subscription } from 'rxjs';
 import { LuxComponentsConfigParameters } from '../../lux-components-config/lux-components-config-parameters.interface';
 
+@Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxLookupComponent extends LuxFormComponentBase implements OnInit, OnChanges, OnDestroy {
   LuxBehandlungsOptionenUngueltige = LuxBehandlungsOptionenUngueltige;
 

@@ -14,9 +14,8 @@ import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
 import { LuxStorageService } from '../../../lux-util/lux-storage.service';
 
 describe('LuxFileInputComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [
         LuxConsoleService,

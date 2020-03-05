@@ -30,7 +30,7 @@
   },
   "private": false,
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.900.4",
+    "@angular-devkit/build-angular": "0.900.4",
     "@angular/animations": "9.0.4",
     "@angular/cdk": "9.1.0",
     "@angular/cli": "9.0.4",

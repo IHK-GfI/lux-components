@@ -23,9 +23,8 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Subject } from 'rxjs';
 
 describe('LuxSelectComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [
         { provide: Directionality, useFactory: () => (dir = { value: 'ltr' }) },

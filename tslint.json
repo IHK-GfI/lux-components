@@ -34,7 +34,7 @@
     "contextual-lifecycle": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
-    "directive-class-suffix": true,
+    "directive-class-suffix": false,
     "no-pipe-impure": false,
     "template-i18n": false,
     "semicolon": [true, "ignore-bound-class-methods"]

@@ -9,9 +9,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxStepperHelperService } from './lux-stepper-helper.service';
 
 describe('LuxStepperComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([LuxStepperHelperService], [MockStepperComponent]);
   });
 

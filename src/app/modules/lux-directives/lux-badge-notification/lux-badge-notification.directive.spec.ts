@@ -5,16 +5,12 @@ import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testi
 import { By } from '@angular/platform-browser';
 
 describe('LuxBadgeNotificationDirective', () => {
-  LuxTestHelper.configureTestSuite();
-
   let fixture: ComponentFixture<MockComponent>;
   let mockComp: MockComponent;
 
-  beforeAll(async () => {
-    LuxTestHelper.configureTestModule([], [MockComponent]);
-  });
-
   beforeEach(async(() => {
+    LuxTestHelper.configureTestModule([], [MockComponent]);
+
     fixture = TestBed.createComponent(MockComponent);
     mockComp = fixture.componentInstance;
     fixture.detectChanges();

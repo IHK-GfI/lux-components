@@ -40,11 +40,6 @@ import { LuxPipesModule } from '../../lux-pipes/lux-pipes.module';
 import { LuxLookupModule } from '../../lux-lookup/lux-lookup.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LuxComponentsConfigModule } from '../../lux-components-config/lux-components-config.module';
-// Wichtig, damit die Testhelper-Funktion "configureTestSuite" funktioniert (darf nicht wegformatiert werden).
-// import 'jasmine' hat leider nicht den gewünschten Effekt.
-// import {} from 'jasmine';
-// noinspection ES6UnusedImports
-import {} from 'jasmine';
 import { LuxErrorModule } from '../../lux-error/lux-error.module';
 import { LuxCommonModule } from '../../lux-common/lux-common.module';
 import { LuxPopupsModule } from '../../lux-popups/lux-popups.module';
@@ -165,7 +160,6 @@ export class LuxTestHelper {
    * @param component
    * @param providers
    * @param declarations
-   * @deprecated Stattdessen configureTestModule in Kombination mit configureTestSuite verwenden --> erheblich performanter
    */
   public static createComponent(
     component: any,
@@ -295,34 +289,6 @@ export class LuxTestHelper {
   public static stringWithoutASCIIChars(dateString: string): string {
     const exp = new RegExp('[^A-Za-z 0-9 \\.,\\?""!@#\\$%\\^&\\*\\(\\)-_=\\+;:<>\\/\\\\\\|\\}\\{\\[\\]`~]*', 'g');
     return dateString.replace(exp, '');
-  }
-
-  /**
-   *  Deaktiviert den Reset des Testmoduls am Ende eines Testdurchlaufs.
-   *  Verbessert die Performance der Karma-Tests erheblich.
-   *  Am Ende der Testsuite wird diese Funktion wieder aktiviert.
-   *
-   *  Funktion dafür einfach am Anfang einer Testsuite (erstes describe) aufrufen und in einem beforeAll das Testmodul
-   *  erzeugen. Dieses wird nun nicht mehr nach jedem Test neu erzeugt.
-   */
-  public static configureTestSuite() {
-    const testBedApi: any = getTestBed();
-    const originReset = TestBed.resetTestingModule;
-
-    beforeAll(() => {
-      TestBed.resetTestingModule();
-      TestBed.resetTestingModule = () => TestBed;
-    });
-
-    afterEach(() => {
-      testBedApi._activeFixtures.forEach((fixture: ComponentFixture<any>) => fixture.destroy());
-      testBedApi._instantiated = false;
-    });
-
-    afterAll(() => {
-      TestBed.resetTestingModule = originReset;
-      TestBed.resetTestingModule();
-    });
   }
 
   /**

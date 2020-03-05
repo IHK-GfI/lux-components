@@ -8,9 +8,8 @@ import { LuxAutocompleteComponent } from './lux-autocomplete.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
 describe('LuxAutocompleteComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService],
       [

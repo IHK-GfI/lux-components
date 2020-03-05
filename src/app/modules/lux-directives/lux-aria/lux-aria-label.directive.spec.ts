@@ -6,9 +6,8 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxAriaLabelDirective } from './lux-aria-label.directive';
 
 describe('LuxAriaLabelDirective', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxComponentsConfigService],
       [LuxWithSelectorComponent, LuxWithoutSelectorComponent]

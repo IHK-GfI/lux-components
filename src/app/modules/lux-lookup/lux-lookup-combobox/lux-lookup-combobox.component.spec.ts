@@ -7,23 +7,28 @@ import { Validators } from '@angular/forms';
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupComboboxComponent } from './lux-lookup-combobox.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
+import { LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
+import { Observable, of } from 'rxjs';
+import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
 
 describe('LuxLookupComboboxComponent', () => {
-  LuxTestHelper.configureTestSuite();
-
-  beforeAll(async () => {
-    LuxTestHelper.configureTestModule([LuxLookupHandlerService, LuxConsoleService], [LuxNoFormComponent]);
+  beforeEach(async () => {
+    LuxTestHelper.configureTestModule(
+      [LuxLookupHandlerService, LuxConsoleService, { provide: LuxLookupService, useClass: MockLookupService }],
+      [LuxNoFormComponent]
+    );
   });
 
   describe('Außerhalb einer Form', () => {
     let fixture: ComponentFixture<LuxNoFormComponent>;
     let component: LuxNoFormComponent;
-    let autocomplete: LuxLookupComboboxComponent;
+    let combobox: LuxLookupComboboxComponent;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(LuxNoFormComponent);
       component = fixture.componentInstance;
-      autocomplete = fixture.debugElement.query(By.directive(LuxLookupComboboxComponent)).componentInstance;
+      combobox = fixture.debugElement.query(By.directive(LuxLookupComboboxComponent)).componentInstance;
       fixture.detectChanges();
     });
 
@@ -31,20 +36,20 @@ describe('LuxLookupComboboxComponent', () => {
       // Vorbedingungen testen
       let errorEl = fixture.debugElement.query(By.css('mat-error'));
       expect(errorEl).toBeNull(`Vorbedingung 1`);
-      expect(autocomplete.formControl.valid).toBeTruthy(`Vorbedingung 2`);
+      expect(combobox.formControl.valid).toBeTruthy(`Vorbedingung 2`);
 
       // Änderungen durchführen
       component.validators = Validators.compose([Validators.required]);
       LuxTestHelper.wait(fixture);
-      autocomplete.formControl.markAsTouched();
-      autocomplete.formControl.updateValueAndValidity();
+      combobox.formControl.markAsTouched();
+      combobox.formControl.updateValueAndValidity();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
       errorEl = fixture.debugElement.query(By.css('mat-error'));
       expect(errorEl).toBeTruthy(`Nachbedingung 1`);
       expect(errorEl.nativeElement.innerText.trim()).toEqual('Dieses Feld darf nicht leer sein', `Nachbedingung 1`);
-      expect(autocomplete.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+      expect(combobox.formControl.valid).toBeFalsy(`Nachbedingung 2`);
 
       discardPeriodicTasks();
     }));
@@ -54,15 +59,15 @@ describe('LuxLookupComboboxComponent', () => {
       component.value = { value: 'test', label: 'test' };
       LuxTestHelper.wait(fixture);
 
-      expect(autocomplete.luxValue).toEqual(component.value);
+      expect(combobox.luxValue).toEqual(component.value);
 
       // Änderungen durchführen
       component.required = true;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(autocomplete.luxValue).not.toBe(null);
-      expect(component.value).not.toBe(null);
+      expect(combobox.luxValue).not.toEqual(null);
+      expect(component.value).not.toEqual(null);
     }));
   });
 });
@@ -82,4 +87,10 @@ class LuxNoFormComponent {
   validators;
   value;
   required;
+}
+
+class MockLookupService {
+  getLookupTable(tableNo: string, parameters: LuxLookupParameters, url: string): Observable<LuxLookupTableEntry[]> {
+    return of([]);
+  }
 }

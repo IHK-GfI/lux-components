@@ -11,9 +11,8 @@ import { LuxMessageComponent } from './lux-message-box-subcomponents/lux-message
 import { MatPaginator } from '@angular/material/paginator';
 
 describe('LuxMessageBoxComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [LuxMockMessageBoxComponent]);
   });
 

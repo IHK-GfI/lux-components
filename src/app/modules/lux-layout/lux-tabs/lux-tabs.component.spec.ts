@@ -6,13 +6,12 @@ import { LuxLabelComponent } from '../../lux-common/lux-label/lux-label.componen
 import { LuxTabsComponent } from './lux-tabs.component';
 import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
-import { MatTabChangeEvent } from '@angular/material/typings/tabs';
 import { LuxTabComponent } from './lux-tabs-subcomponents/lux-tab.component';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 describe('LuxTabsComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [],
       [

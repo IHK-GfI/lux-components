@@ -8,9 +8,8 @@ import { LuxCheckboxComponent } from './lux-checkbox.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
 describe('LuxCheckboxComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService],
       [

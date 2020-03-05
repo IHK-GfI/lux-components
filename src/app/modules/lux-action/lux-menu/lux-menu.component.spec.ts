@@ -12,13 +12,11 @@ describe('LuxMenuComponent', () => {
     LuxTestHelper.wait(fixture);
   };
 
-  LuxTestHelper.configureTestSuite();
-
   let component: MockComponent;
   let fixture: ComponentFixture<MockComponent>;
   let menuComponent: LuxMenuComponent;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockComponent]);
   });
 

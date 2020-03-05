@@ -8,9 +8,8 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { FocusMonitor } from '@angular/cdk/a11y';
 
 describe('LuxTooltipDirective', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockComponent]);
   });
 

@@ -1,6 +1,6 @@
 import {
   ChangeDetectorRef,
-  ContentChild,
+  ContentChild, Directive,
   DoCheck,
   EventEmitter,
   HostBinding,
@@ -10,8 +10,7 @@ import {
   OnInit,
   Output,
   SimpleChange,
-  SimpleChanges,
-  Directive
+  SimpleChanges
 } from '@angular/core';
 import { AbstractControl, ControlContainer, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxUtil } from '../../lux-util/lux-util';
@@ -24,6 +23,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 
 let luxFormControlUID: number = 0;
 
+@Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck, OnDestroy {
   protected static readonly DEFAULT_CTRL_NAME: string = 'control';
 

@@ -9,9 +9,8 @@ import { LuxPopupsModule } from '../lux-popups.module';
 import { LuxActionModule } from '../../lux-action/lux-action.module';
 
 describe('LuxDialogService', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([LuxDialogService], [MockDialogComponent], [TestModule]);
   });
 

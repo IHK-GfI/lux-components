@@ -5,9 +5,8 @@ import { LuxAccordionComponent } from '../../../modules/lux-layout/lux-accordion
 import { LuxTestHelper } from '../../../modules/lux-util/testing/lux-test-helper';
 
 describe('LuxAccordionComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [],
       [

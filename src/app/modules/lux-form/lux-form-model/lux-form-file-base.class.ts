@@ -1,5 +1,6 @@
 import {
   ChangeDetectorRef,
+  Directive,
   ElementRef,
   EventEmitter,
   HostBinding,
@@ -22,6 +23,7 @@ import { ILuxFileObject } from '../lux-file/lux-file-model/lux-file-object.inter
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 
+@Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormFileBase extends LuxFormComponentBase {
   defaultReadFileDelay: number = 1000;
 

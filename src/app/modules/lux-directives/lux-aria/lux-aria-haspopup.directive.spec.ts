@@ -5,9 +5,8 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxAriaHasPopupDirective', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxComponentsConfigService],
       [LuxWithSelectorComponent, LuxWithoutSelectorComponent]

@@ -8,9 +8,8 @@ import { LuxCardContentComponent } from './lux-card-subcomponents/lux-card-conte
 import { LuxCardComponent } from './lux-card.component';
 
 describe('LuxCardComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [],
       [
@@ -175,7 +174,7 @@ describe('LuxCardComponent', () => {
 
       // Änderungen durchführen
       component.card.luxExpanded = false;
-      fixture.detectChanges();
+      LuxTestHelper.wait(fixture, 500);
 
       // Nachbedingungen testen
       contentEl = fixture.debugElement.query(By.directive(LuxCardContentComponent));
@@ -214,7 +213,7 @@ describe('LuxCardComponent', () => {
 
       // Änderungen durchführen
       toggleEl.nativeElement.click();
-      fixture.detectChanges();
+      LuxTestHelper.wait(fixture, 500);
 
       // Nachbedingungen testen
       contentEl = fixture.debugElement.query(By.directive(LuxCardContentComponent));

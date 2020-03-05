@@ -7,9 +7,8 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 describe('LuxProgressComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [LuxMockProgressBarComponent]);
   });
 

@@ -4,9 +4,8 @@ import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxBadgeComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [LuxBadgeComponent, LuxBadgeIconNameComponent]);
   });
 

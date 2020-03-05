@@ -37,9 +37,7 @@ describe('LuxMasterDetailComponent', () => {
 
   // endregion
 
-  LuxTestHelper.configureTestSuite();
-
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [
         LuxMediaQueryObserverService,

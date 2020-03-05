@@ -14,9 +14,8 @@ import { LuxSnackbarService } from '../lux-snackbar.service';
 import { LuxSnackbarComponent } from './lux-snackbar.component';
 
 describe('LuxSnackbarComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [MockSnackbarModule]
     });

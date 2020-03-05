@@ -15,7 +15,13 @@ import {
   SimpleChanges,
   ViewContainerRef
 } from '@angular/core';
-import { MAT_TOOLTIP_DEFAULT_OPTIONS, MAT_TOOLTIP_SCROLL_STRATEGY, MatTooltip, MatTooltipDefaultOptions, TooltipPosition } from '@angular/material/tooltip';
+import {
+  MAT_TOOLTIP_DEFAULT_OPTIONS,
+  MAT_TOOLTIP_SCROLL_STRATEGY,
+  MatTooltip,
+  MatTooltipDefaultOptions,
+  TooltipPosition
+} from '@angular/material/tooltip';
 
 @Directive({
   selector: '[luxTooltip]',
@@ -60,14 +66,6 @@ export class LuxTooltipDirective extends MatTooltip implements OnChanges {
 
   @HostListener('longpress') _handleLongPress() {
     super.show(this.luxTooltipShowDelay);
-  }
-
-  @HostListener('keydown', ['$event']) _handleKeydown(event) {
-    super._handleKeydown(event);
-  }
-
-  @HostListener('touchend') _handleTouchend() {
-    super._handleTouchend();
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {

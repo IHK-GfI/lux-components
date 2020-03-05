@@ -27,9 +27,7 @@ describe('LuxInfiniteScrollDirective', () => {
     flush();
   };
 
-  LuxTestHelper.configureTestSuite();
-
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockComponent, MockWithoutScrollBarAndImmediateCallbackComponent]);
   });
 

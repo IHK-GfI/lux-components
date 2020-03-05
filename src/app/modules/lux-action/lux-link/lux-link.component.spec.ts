@@ -6,9 +6,8 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 describe('LuxLinkComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockLinkComponent]);
   });
 

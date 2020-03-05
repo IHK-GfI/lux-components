@@ -130,7 +130,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
     if (this.masterListLength && value && this.masterListLength < value.length) {
       this.announcePossibleInfiniteScrolling();
     }
-    this._luxMasterList.next(value);
+    this._luxMasterList.next(value ? value : []);
     this.masterListLength = value ? value.length : 0;
   }
 

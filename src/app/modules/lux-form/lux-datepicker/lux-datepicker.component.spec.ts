@@ -11,9 +11,8 @@ import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 describe('LuxDatepickerComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService],
       [LuxFormTestComponent, LuxNoFormAttributeTestComponent, LuxFormCustomValidatorComponent]
