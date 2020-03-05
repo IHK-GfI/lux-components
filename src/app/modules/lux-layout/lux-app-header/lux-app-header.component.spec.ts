@@ -34,7 +34,7 @@ describe('LuxAppHeaderComponent', () => {
       testComponent = fixture.componentInstance;
       testComponent.testUseRightNav = false;
       testComponent.testUseSideNav = false;
-      fixture.detectChanges();
+      LuxTestHelper.wait(fixture);
     }));
 
     beforeEach(inject([LuxMasterDetailMobileHelperService], (service: MockMasterDetailHelperService) => {
