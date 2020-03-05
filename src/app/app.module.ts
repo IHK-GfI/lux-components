@@ -31,7 +31,7 @@ import { LuxPipesModule } from './modules/lux-pipes/lux-pipes.module';
 import { ExampleBaseModule } from './demo/example-base/example-base.module';
 import { LuxCommonModule } from './modules/lux-common/lux-common.module';
 import { LuxErrorModule } from './modules/lux-error/lux-error.module';
-import "hammerjs";
+import 'hammerjs';
 
 const myConfiguration: LuxComponentsConfigParameters = {
   generateLuxTagIds: environment.generateLuxTagIds,
