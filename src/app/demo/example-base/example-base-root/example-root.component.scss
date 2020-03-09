@@ -12,11 +12,11 @@
   .example-base-components-list {
     overflow-y: auto;
     border-right: 2px solid $black-12-opacity;
-    padding: 24px 8px;
+    padding: 16px 8px;
     height: 100% !important;
 
     lux-panel {
-      padding: 0;
+      padding: 0 0 16px 0;
 
       ::ng-deep {
         mat-expansion-panel {
