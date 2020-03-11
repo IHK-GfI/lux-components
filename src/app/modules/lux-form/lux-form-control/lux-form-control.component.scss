@@ -267,7 +267,6 @@ $fontSizeSmall: 12px;
     .lux-form-control-container:after {
       @include bottomBorder;
       border-bottom: none !important;
-      border-bottom: unset !important;
     }
   }
 }
