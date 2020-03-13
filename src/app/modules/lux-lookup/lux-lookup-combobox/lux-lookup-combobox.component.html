@@ -17,6 +17,9 @@
     [attr.aria-invalid]="formControl.invalid"
     [attr.aria-required]="luxRequired"
   >
+    <ng-container *ngIf='withEmptyEntry'>
+      <mat-option></mat-option>
+    </ng-container>
     <ng-container *ngFor="let entry of displayedEntries">
       <mat-option
         [value]="entry"
