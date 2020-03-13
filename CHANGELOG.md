@@ -1,3 +1,6 @@
+# Version 1.8.7
+- **lux-app-footer**: Es werden nur 5 Buttons in der Footerleiste angezeigt. [Issue 1](https://github.com/IHK-GfI/lux-components/issues/1) 
+
 # Version 1.8.6
 - **allgemein**: Alle Confluence-Verweise auf Github umgestellt. 
 - **allgemein**: README.md erweitert.
