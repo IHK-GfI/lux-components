@@ -19,8 +19,10 @@
     <lux-menu
       [luxDisplayExtended]="true"
       [luxDisplayMenuLeft]="false"
+      [luxMaximumExtended]="10"
       luxMenuIconName="fa-ellipsis-v"
       luxTagId="app_footer_menu"
+      #buttonMenu
     >
       <ng-container *ngFor="let menuItem of getButtons()">
         <lux-menu-item
