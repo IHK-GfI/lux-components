@@ -34,7 +34,6 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
 
   @Input() set luxOptions(options: any[]) {
     this._luxOptions = options;
-    this.checkSelectedAndUpdate(this.luxSelected);
   }
 
   protected constructor(

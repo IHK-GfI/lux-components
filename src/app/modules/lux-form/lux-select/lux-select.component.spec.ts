@@ -141,7 +141,7 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen prüfen
       expect(notFoundSpy).toHaveBeenCalledTimes(0); // Nachbedingung 1
-      expect(checkSelectedSpy).toHaveBeenCalledTimes(1); // Nachbedingung 2
+      expect(checkSelectedSpy).toHaveBeenCalledTimes(0); // Nachbedingung 2
 
       // Änderungen durchführen
       testComponent.formGroup.get('hobbies').setValue([{ test: true }]);
@@ -149,7 +149,7 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen prüfen
       expect(notFoundSpy).toHaveBeenCalledTimes(1); // Nachbedingung 3
-      expect(checkSelectedSpy).toHaveBeenCalledTimes(2); // Nachbedingung 4
+      expect(checkSelectedSpy).toHaveBeenCalledTimes(1); // Nachbedingung 4
     }));
 
     it('Sollte required sein', fakeAsync(() => {

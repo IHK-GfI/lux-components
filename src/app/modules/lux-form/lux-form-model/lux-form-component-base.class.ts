@@ -34,7 +34,6 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
   private hasHadRequiredValidator: boolean = false;
 
   protected latestErrors: any = null;
-  protected preventUnwantedValueChange: boolean = false;
   protected displayBindingDebugHint: boolean = false;
   protected _initialValue: any;
   protected _luxDisabled: boolean;
@@ -105,8 +104,6 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
     } else {
       this._luxRequired = required;
       this.updateValidators(this.luxControlValidators);
-      // flag um ungewollte Wertänderungen von undefined zu null zu unterbinden
-      this.preventUnwantedValueChange = true;
       this.cdr.detectChanges();
     }
   }
@@ -294,6 +291,7 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
         control: new FormControl()
       });
       this.formControl = this.formGroup.get(LuxFormComponentBase.DEFAULT_CTRL_NAME);
+      this.formControl.setValue(this._initialValue);
     }
   }
 
@@ -319,10 +317,6 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
 
     // Aktualisierungen an dem FormControl-Value sollen auch via EventEmitter bekannt gemacht werden
     this._formValueChangeSubscr = this.formControl.valueChanges.pipe(distinctUntilChanged()).subscribe((value: any) => {
-      if (this.preventUnwantedValueChange && value === null) {
-        this.preventUnwantedValueChange = false;
-        return;
-      }
       this.notifyFormValueChanged(value);
     });
   }
