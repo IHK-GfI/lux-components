@@ -74,17 +74,19 @@ export class SelectExampleComponent implements OnInit {
     this.compareWithFnString = '' + this.compareWithFn;
     this.errorCallbackString = '' + this.errorCallback;
 
-    this.reset();
   }
 
   ngOnInit() {}
 
   showErrors(...comps: LuxFormSelectableBase[]) {
-    this.multiselectValue = [1, 2];
-    this.form.get(this.controlBinding).setValue(1);
+    this.value =  null;
+    this.multiselectValue = null;
+    this.form.get(this.controlBinding).setValue(null);
+
+    this.changeRequired(true);
+
     comps.forEach((comp: LuxFormSelectableBase) => {
       comp.formControl.markAsTouched();
-      comp.formControl.updateValueAndValidity();
     });
   }
 
@@ -117,9 +119,13 @@ export class SelectExampleComponent implements OnInit {
 
   emptyCallback() {}
 
-  reset() {
+  reset(...comps: LuxFormSelectableBase[]) {
     this.value = undefined;
     this.multiselectValue = undefined;
     this.form.get(this.controlBinding).setValue(undefined);
+
+    comps.forEach((comp: LuxFormSelectableBase) => {
+      comp.formControl.markAsUntouched();
+    });
   }
 }

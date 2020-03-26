@@ -1,5 +1,5 @@
 import { LuxFormComponentBase } from './lux-form-component-base.class';
-import {ChangeDetectorRef, Directive, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
+import { ChangeDetectorRef, Directive, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -75,9 +75,7 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
           this.luxSelected = selected;
         }
         this.checkSelectedInOptions(selected);
-        setTimeout(() => {
-          this.luxSelectedChange.emit(selected);
-        });
+        this.luxSelectedChange.emit(selected);
       }
     }
   }

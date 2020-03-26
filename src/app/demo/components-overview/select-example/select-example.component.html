@@ -243,7 +243,13 @@
   </example-base-advanced-options>
   <example-base-options-actions>
     <div fxLayout="row wrap" fxLayoutGap="8px">
-      <lux-button [luxRaised]="true" luxLabel="Werte resetten" luxColor="warn" (luxClicked)="reset()" fxFlex="0 0 auto">
+      <lux-button
+        [luxRaised]="true"
+        luxLabel="Werte resetten"
+        luxColor="warn"
+        (luxClicked)="reset(defaultSelectComp, multiselectComp, reactiveSelectComp)"
+        fxFlex="0 0 auto"
+      >
       </lux-button>
       <lux-button
         [luxRaised]="true"

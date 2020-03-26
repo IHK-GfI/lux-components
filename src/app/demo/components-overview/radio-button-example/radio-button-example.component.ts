@@ -8,6 +8,7 @@ import {
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+import { LuxFormSelectableBase } from '../../../modules/lux-form/lux-form-model/lux-form-selectable-base.class';
 
 @Component({
   selector: 'app-radio-button-example',
@@ -77,16 +78,18 @@ export class RadioButtonExampleComponent implements OnInit {
     this.pickValueFnString = '' + this.pickValueFn;
     this.compareWithFnString = '' + this.compareWithFn;
     this.errorCallbackString = '' + this.errorCallback;
-
-    this.reset();
   }
 
   ngOnInit() {}
 
   showErrors(...radioComponents: LuxRadioComponent[]) {
-    radioComponents.forEach((radioComponent: LuxRadioComponent) => {
-      radioComponent.formControl.markAsTouched();
-      radioComponent.formControl.updateValueAndValidity();
+    this.value = null;
+    this.form.get('radioExample').setValue(null);
+
+    this.changeRequired(true);
+
+    radioComponents.forEach((comp: LuxRadioComponent) => {
+      comp.formControl.markAsTouched();
     });
   }
 
@@ -119,8 +122,12 @@ export class RadioButtonExampleComponent implements OnInit {
 
   emptyCallback() {}
 
-  reset() {
+  reset(...radioComponents: LuxRadioComponent[]) {
     this.value = undefined;
     this.form.get(this.controlBinding).setValue(undefined);
+
+    radioComponents.forEach((comp: LuxRadioComponent) => {
+      comp.formControl.markAsUntouched();
+    });
   }
 }
