@@ -14,7 +14,7 @@ import {
 import { LuxListItemComponent } from './lux-list-subcomponents/lux-list-item.component';
 import { Subscription } from 'rxjs';
 import { FocusKeyManager } from '@angular/cdk/a11y';
-import { DOWN_ARROW, END, ENTER, HOME, SPACE, UP_ARROW } from '@angular/cdk/keycodes';
+import { LuxUtil } from '../../lux-util/lux-util';
 
 @Component({
   selector: 'lux-list',
@@ -101,31 +101,27 @@ export class LuxListComponent implements OnInit, AfterViewInit, OnDestroy {
    * @param $event
    */
   keydown($event: KeyboardEvent) {
-    const keyCode = $event.keyCode;
-    switch (keyCode) {
-      case SPACE:
-      case ENTER:
-        this.select(this.keyManager.activeItemIndex);
-        $event.preventDefault();
-        break;
-      case HOME:
-      case END:
-        keyCode === HOME ? this.keyManager.setFirstItemActive() : this.keyManager.setLastItemActive();
-        this.focus(this.keyManager.activeItemIndex);
-        $event.preventDefault();
-        break;
-      case UP_ARROW:
-        this.keyManager.setPreviousItemActive();
-        this.focus(this.keyManager.activeItemIndex);
-        $event.preventDefault();
-        break;
-      case DOWN_ARROW:
-        this.keyManager.setNextItemActive();
-        this.focus(this.keyManager.activeItemIndex);
-        $event.preventDefault();
-        break;
-      default:
-        this.keyManager.onKeydown($event);
+    if (LuxUtil.isKeySpace($event) || LuxUtil.isKeyEnter($event)) {
+      this.select(this.keyManager.activeItemIndex);
+      $event.preventDefault();
+    } else if (LuxUtil.isKeyHome($event)) {
+      this.keyManager.setFirstItemActive();
+      this.focus(this.keyManager.activeItemIndex);
+      $event.preventDefault();
+    } else if (LuxUtil.isKeyEnd($event)) {
+      this.keyManager.setLastItemActive();
+      this.focus(this.keyManager.activeItemIndex);
+      $event.preventDefault();
+    } else if (LuxUtil.isKeyArrowUp($event)) {
+      this.keyManager.setPreviousItemActive();
+      this.focus(this.keyManager.activeItemIndex);
+      $event.preventDefault();
+    } else if (LuxUtil.isKeyArrowDown($event)) {
+      this.keyManager.setNextItemActive();
+      this.focus(this.keyManager.activeItemIndex);
+      $event.preventDefault();
+    } else {
+      this.keyManager.onKeydown($event);
     }
   }
 

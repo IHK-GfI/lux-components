@@ -13,6 +13,7 @@ import {
 import { LuxSideNavItemComponent } from './lux-side-nav-subcomponents/lux-side-nav-item.component';
 import { Subscription } from 'rxjs';
 import { sideNavAnimation, sideNavOverlayAnimation } from './lux-side-nav-model/lux-side-nav-animations';
+import { LuxUtil } from '../../../../lux-util/lux-util';
 
 @Component({
   selector: 'lux-side-nav',
@@ -44,7 +45,7 @@ export class LuxSideNavComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    if (event.key === 'Escape' && this.sideNavExpanded) {
+    if (LuxUtil.isKeyEscape(event) && this.sideNavExpanded) {
       // Escape soll nur das Menü schließen, wenn es auch geöffnet ist.
       this.toggle();
     }
