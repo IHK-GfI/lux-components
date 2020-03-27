@@ -7,6 +7,7 @@ import { ILuxStepperConfiguration } from './lux-stepper-configuration.interface'
  * Parent-Klasse für den LuxStepperVertical und LuxStepperHorizontal, beide Komponenten werden ausschließlich von
  * dem LuxStepper zur Darstellung genutzt.
  */
+@Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export class LuxStepperParent implements AfterViewInit {
   // Diese Outputs werden bei den Klicks auf die Stepper-eigenen Navigations-Buttons augelöst und informieren die
   // LuxStepperComponent

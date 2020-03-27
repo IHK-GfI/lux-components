@@ -17,10 +17,11 @@ import { ILuxStepperButtonConfig } from './lux-stepper-model/lux-stepper-button-
 import { LuxStepperHelperService } from './lux-stepper-helper.service';
 import { LuxStepComponent } from './lux-stepper-subcomponents/lux-step.component';
 import { ILuxStepperConfiguration } from './lux-stepper-model/lux-stepper-configuration.interface';
-import { MatHorizontalStepper, MatVerticalStepper } from '@angular/material/stepper';
+import { MatHorizontalStepper, MatStepHeader, MatVerticalStepper } from '@angular/material/stepper';
 import { LuxIconComponent } from '../../lux-icon/lux-icon/lux-icon.component';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { skip } from 'rxjs/operators';
 
 @Component({
   selector: 'lux-stepper',
@@ -47,6 +48,7 @@ export class LuxStepperComponent implements AfterViewInit {
 
   matStepper: MatHorizontalStepper | MatVerticalStepper;
   matStepLabels: ViewContainerRef[];
+  matStepHeaders: MatStepHeader[];
 
   stepperConfiguration: ILuxStepperConfiguration = {
     luxCurrentStepNumber: 0,
@@ -84,20 +86,30 @@ export class LuxStepperComponent implements AfterViewInit {
       this.generateCustomIcons();
     }
 
+    // Workaround: this.matStepper._stepHeader
+    // Normalerweise sollte man über this.matStepper._stepHeader an die MatStepHeader kommen,
+    // aber leider ist mit Angular 9 die QueryList<MatStepHeader> nur in diesem Lifecycle Hook
+    // "ngAfterViewInit" gefüllt und danach immer leer. Deshalb werden hier die MatStepHeader
+    // zwischengespeichert.
+    this.matStepHeaders = this.matStepper._stepHeader.toArray();
+
     // Auf next/previous Aufrufe aus dem Service horchen und entsprechend reagieren
-    this.stepperService.getObservable(this).subscribe((next: boolean) => {
-      // Voraussetzung: Stepper nicht deaktiviert
-      if (!this.stepperConfiguration.luxDisabled) {
-        if (next === true) {
-          this.checkValidation();
-          this.matStepper.next();
-          this.matStepper._stepHeader.toArray()[this.matStepper.selectedIndex].focus();
-        } else if (next === false) {
-          this.matStepper.previous();
-          this.matStepper._stepHeader.toArray()[this.matStepper.selectedIndex].focus();
+    this.stepperService
+      .getObservable(this)
+      .pipe(skip(1))
+      .subscribe((next: boolean) => {
+        // Voraussetzung: Stepper nicht deaktiviert
+        if (!this.stepperConfiguration.luxDisabled) {
+          if (next === true) {
+            this.checkValidation();
+            this.matStepper.next();
+            this.matStepHeaders[this.matStepper.selectedIndex].focus();
+          } else if (next === false) {
+            this.matStepper.previous();
+            this.matStepHeaders[this.matStepper.selectedIndex].focus();
+          }
         }
-      }
-    });
+      });
 
     // Änderungen an den Icons jedes einzelnen Steps führt zu Neugenerierung aller individuellen Icons
     // ==> Material erlaubt leider nur alle Icons identisch zu ändern, nicht für jeden Step einzeln, deshalb
