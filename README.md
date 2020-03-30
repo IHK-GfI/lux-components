@@ -18,7 +18,7 @@ Die Änderungen weden in der Datei [CHANGELOG.md](https://github.com/IHK-GfI/lux
 
 ## Eine App auf Basis der LUX-Components erstellen
 
-Stellen Sie zunächst sicher, dass Sie die Node-Version 8 oder höher installiert haben. 
+Stellen Sie zunächst sicher, dass Sie die Node-Version 10.16.3 oder höher installiert haben. 
 Installieren Sie anschließend die folgenden zwei NPM-Pakte global:
 
 Die aktuellste Version unterstützt die @angular/cli@8. Deswegen wird @angular/cli nicht über 

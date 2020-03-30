@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxAppFooterButtonInfo } from './lux-app-footer-button-info';
 import { LuxAppFooterButtonService } from './lux-app-footer-button.service';
 import { LuxAppFooterLinkInfo } from './lux-app-footer-link-info';
 import { LuxAppFooterLinkService } from './lux-app-footer-link.service';
+import { LuxMenuComponent } from '../../lux-action/lux-menu/lux-menu.component';
 
 @Component({
   selector: 'lux-app-footer',
@@ -11,6 +12,8 @@ import { LuxAppFooterLinkService } from './lux-app-footer-link.service';
   styleUrls: ['./lux-app-footer.component.scss']
 })
 export class LuxAppFooterComponent {
+  @ViewChild('buttonMenu', { static: true }) buttonMenu: LuxMenuComponent;
+
   @Input() luxVersion: string;
 
   constructor(
