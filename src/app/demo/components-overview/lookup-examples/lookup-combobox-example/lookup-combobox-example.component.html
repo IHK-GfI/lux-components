@@ -24,6 +24,7 @@
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxControlValidators]="controlValidators"
         [luxEntryBlockSize]="entryBlockSize"
+        [luxWithEmptyEntry]="bLuxWithEmptyEntry"
         (luxDataLoaded)="dataLoaded($event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
@@ -60,6 +61,7 @@
         [luxControlValidators]="controlValidators"
         [(luxValue)]="multiValue"
         [luxMultiple]="true"
+        [luxWithEmptyEntry]="bLuxWithEmptyEntry"
         (luxDataLoaded)="dataLoaded($event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
@@ -93,6 +95,7 @@
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxControlBinding]="controlBinding"
+        [luxWithEmptyEntry]="bLuxWithEmptyEntry"
         (luxDataLoaded)="dataLoaded($event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
@@ -280,6 +283,14 @@
         *ngIf="!useRenderFn"
       >
       </lux-input>
+    </div>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-toggle
+        luxLabel="Leereintrag erlauben"
+        luxHint="Wenn 'true' wird 'luxWithEmptyEntry' auf 'true' gesetzt."
+        [(luxChecked)]="bLuxWithEmptyEntry"
+      >
+      </lux-toggle>
     </div>
     <div class="example-highlight-config-option" fxLayout="column">
       <lux-toggle
