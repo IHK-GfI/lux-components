@@ -17,6 +17,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 export class LuxLookupComboboxComponent extends LuxLookupComponent implements AfterViewInit {
   @Input() luxMultiple: boolean = false;
   @Input() luxEntryBlockSize: number = 25;
+  @Input() luxWithEmptyEntry: boolean = true;
 
   displayedEntries: LuxLookupTableEntry[];
   @ViewChild(MatSelect) matSelect: MatSelect;

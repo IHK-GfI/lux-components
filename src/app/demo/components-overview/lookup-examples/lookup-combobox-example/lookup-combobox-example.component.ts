@@ -14,6 +14,7 @@ import { LuxSnackbarService } from '../../../../modules/lux-popups/lux-snackbar/
 export class LookupComboboxExampleComponent extends LookupExampleComponent implements OnInit, AfterViewInit {
   multiValue;
   entryBlockSize: number = 25;
+  bLuxWithEmptyEntry = true;
 
   @ViewChildren(LuxLookupComboboxComponent) lookupComboboxCmp: QueryList<LuxLookupComboboxComponent>;
 

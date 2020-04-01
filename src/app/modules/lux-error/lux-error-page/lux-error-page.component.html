@@ -15,6 +15,7 @@
       [luxLabel]="errorConfig.homeRedirectText"
       (luxClicked)="clickHomeRedirect()"
       fxFlex="0 0 auto"
+      *ngIf="errorConfig.homeRedirectText && errorConfig.homeRedirectUrl"
     >
     </lux-button>
     <ng-container *ngIf="error">
