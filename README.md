@@ -21,7 +21,7 @@ Die Änderungen weden in der Datei [CHANGELOG.md](https://github.com/IHK-GfI/lux
 Stellen Sie zunächst sicher, dass Sie die Node-Version 10.16.3 oder höher installiert haben. 
 Installieren Sie anschließend die folgenden zwei NPM-Pakte global:
 
-Die aktuellste Version unterstützt die @angular/cli@8. Deswegen wird @angular/cli nicht über 
+Die aktuellste Version unterstützt die @angular/cli@9. Deswegen wird @angular/cli nicht über 
 npm installiert, sondern on-demand via npx aufgerufen. So wird eure bestehende Version nicht 
 verändert.
 
@@ -33,7 +33,7 @@ npm install -g @angular-devkit/schematics-cli
 Zuerst erzeugt man über die Angular CLI eine neue App.
 
 ```bash
-npx @angular/cli@8 new my-new-app
+npx @angular/cli@9 new my-new-app
 ? Would you like to add Angular routing? Yes
 ? Which stylesheet format would you like to use? SCSS
 
@@ -50,7 +50,7 @@ npm install @ihk-gfi/lux-components-update --save-dev
 Dann kann man über den LUX-Componentsupdater die LUX-Components seiner App hinzufügen: 
 
 ```bash
-ng generate @ihk-gfi/lux-components-update:add-lux-components-1.8
+ng generate @ihk-gfi/lux-components-update:add-lux-components-1.9
 ```
 
 Jetzt kann die App normal gestartet werden: 
