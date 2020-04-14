@@ -1,6 +1,6 @@
 import {
   ChangeDetectorRef,
-  ContentChild,
+  ContentChild, Directive,
   DoCheck,
   EventEmitter,
   HostBinding,
@@ -23,6 +23,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 
 let luxFormControlUID: number = 0;
 
+@Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck, OnDestroy {
   protected static readonly DEFAULT_CTRL_NAME: string = 'control';
 
@@ -33,7 +34,6 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
   private hasHadRequiredValidator: boolean = false;
 
   protected latestErrors: any = null;
-  protected preventUnwantedValueChange: boolean = false;
   protected displayBindingDebugHint: boolean = false;
   protected _initialValue: any;
   protected _luxDisabled: boolean;
@@ -48,8 +48,8 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
 
   uid: string = 'lux-form-control-' + luxFormControlUID++;
 
-  @ContentChild(LuxFormLabelComponent, { static: false }) formLabelComponent: LuxFormLabelComponent;
-  @ContentChild(LuxFormHintComponent, { static: false }) formHintComponent: LuxFormHintComponent;
+  @ContentChild(LuxFormLabelComponent) formLabelComponent: LuxFormLabelComponent;
+  @ContentChild(LuxFormHintComponent) formHintComponent: LuxFormHintComponent;
 
   @HostBinding('class.lux-form-control-readonly') cssReadonly = this._luxReadonly;
 
@@ -104,8 +104,6 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
     } else {
       this._luxRequired = required;
       this.updateValidators(this.luxControlValidators);
-      // flag um ungewollte Wertänderungen von undefined zu null zu unterbinden
-      this.preventUnwantedValueChange = true;
       this.cdr.detectChanges();
     }
   }
@@ -293,6 +291,7 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
         control: new FormControl()
       });
       this.formControl = this.formGroup.get(LuxFormComponentBase.DEFAULT_CTRL_NAME);
+      this.formControl.setValue(this._initialValue);
     }
   }
 
@@ -318,10 +317,6 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
 
     // Aktualisierungen an dem FormControl-Value sollen auch via EventEmitter bekannt gemacht werden
     this._formValueChangeSubscr = this.formControl.valueChanges.pipe(distinctUntilChanged()).subscribe((value: any) => {
-      if (this.preventUnwantedValueChange && value === null) {
-        this.preventUnwantedValueChange = false;
-        return;
-      }
       this.notifyFormValueChanged(value);
     });
   }

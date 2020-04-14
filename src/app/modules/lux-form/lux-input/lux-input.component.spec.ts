@@ -8,9 +8,8 @@ import { LuxInputComponent } from './lux-input.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
 describe('LuxInputComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService],
       [
@@ -800,7 +799,7 @@ describe('LuxInputComponent', () => {
     it('Sollte den Placeholder anpassen', fakeAsync(() => {
       // Vorbedingungen prüfen
       const input = fixture.debugElement.query(By.css('input'));
-      expect(input.attributes.placeholder).toEqual(null);
+      expect(input.attributes.placeholder).toBeFalsy();
 
       // Änderungen durchführen
       testComponent.placeholder = 'Amet';
@@ -813,7 +812,7 @@ describe('LuxInputComponent', () => {
     it('Sollte readonly sein', fakeAsync(() => {
       // Vorbedingungen prüfen
       const input = fixture.debugElement.query(By.css('input'));
-      expect(input.attributes.readonly).toEqual(null);
+      expect(input.attributes.readonly).toBeFalsy();
 
       // Änderungen durchführen
       testComponent.readonly = true;

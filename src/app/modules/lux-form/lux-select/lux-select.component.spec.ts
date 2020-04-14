@@ -23,9 +23,8 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Subject } from 'rxjs';
 
 describe('LuxSelectComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [
         { provide: Directionality, useFactory: () => (dir = { value: 'ltr' }) },
@@ -142,7 +141,7 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen prüfen
       expect(notFoundSpy).toHaveBeenCalledTimes(0); // Nachbedingung 1
-      expect(checkSelectedSpy).toHaveBeenCalledTimes(1); // Nachbedingung 2
+      expect(checkSelectedSpy).toHaveBeenCalledTimes(0); // Nachbedingung 2
 
       // Änderungen durchführen
       testComponent.formGroup.get('hobbies').setValue([{ test: true }]);
@@ -150,7 +149,7 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen prüfen
       expect(notFoundSpy).toHaveBeenCalledTimes(1); // Nachbedingung 3
-      expect(checkSelectedSpy).toHaveBeenCalledTimes(2); // Nachbedingung 4
+      expect(checkSelectedSpy).toHaveBeenCalledTimes(1); // Nachbedingung 4
     }));
 
     it('Sollte required sein', fakeAsync(() => {
@@ -846,7 +845,7 @@ describe('LuxSelectComponent', () => {
   `
 })
 class SelectInsideFormComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
 
   allHobbies = [
     { label: 'Reiten', value: 'r' },
@@ -879,7 +878,7 @@ class SelectInsideFormComponent {
   `
 })
 class SelectOutsideFormComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
 
   label;
   hint;
@@ -917,7 +916,7 @@ class SelectOutsideFormComponent {
   `
 })
 class SelectCustomCompareComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
 
   selectedOption: any = null;
 
@@ -946,7 +945,7 @@ class SelectCustomCompareComponent {
   `
 })
 class SelectStringArrayComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
   selectedOption: any = null;
   options = ['A', 'B', 'C', 'D'];
 }
@@ -963,7 +962,7 @@ class SelectStringArrayComponent {
   `
 })
 class SelectValueHookComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
   selectedOption: any = null;
   options = [
     { label: 'Meine Aufgaben', value: 'A' },
@@ -992,7 +991,7 @@ class SelectValueHookComponent {
   `
 })
 class SelectValueHookFormComponent {
-  @ViewChild(LuxSelectComponent, { static: false }) select: LuxSelectComponent;
+  @ViewChild(LuxSelectComponent) select: LuxSelectComponent;
   selectedOption: any = null;
   options = [
     { label: 'Meine Aufgaben', value: 'A' },

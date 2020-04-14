@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material';
+import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
 import { LuxSnackbarConfig } from '../lux-snackbar-config';
 import { Observable, Subject } from 'rxjs';
 import { LuxUtil } from '../../../lux-util/lux-util';

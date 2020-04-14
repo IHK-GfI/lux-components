@@ -21,9 +21,7 @@ describe('LuxListComponent', () => {
     LuxTestHelper.dispatchEvent(target, event);
   };
 
-  LuxTestHelper.configureTestSuite();
-
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockListComponent]);
   });
 

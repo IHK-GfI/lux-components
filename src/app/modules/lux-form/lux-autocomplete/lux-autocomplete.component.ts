@@ -12,7 +12,8 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger, MatOptionSelectionChange } from '@angular/material';
+import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { MatOptionSelectionChange } from '@angular/material/core';
 import { LuxFormComponentBase } from '../lux-form-model/lux-form-component-base.class';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 import { Observable, ReplaySubject } from 'rxjs';
@@ -44,9 +45,9 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
   @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
 
-  @ViewChild('autoCompleteInput', { read: MatAutocompleteTrigger, static: false })
+  @ViewChild('autoCompleteInput', { read: MatAutocompleteTrigger })
   matAutoComplete: MatAutocompleteTrigger;
-  @ViewChild('autoCompleteInput', { read: ElementRef, static: false }) matInput: ElementRef;
+  @ViewChild('autoCompleteInput', { read: ElementRef }) matInput: ElementRef;
 
   get luxValue(): any {
     return this.getValue();

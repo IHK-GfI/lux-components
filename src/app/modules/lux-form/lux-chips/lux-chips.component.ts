@@ -11,7 +11,8 @@ import {
   ViewChildren
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { MatAutocomplete, MatAutocompleteTrigger, MatChip } from '@angular/material';
+import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
+import { MatChip } from '@angular/material/chips';
 import { LuxChipGroupComponent } from './lux-chips-subcomponents/lux-chip-group.component';
 import { LuxChipComponent } from './lux-chips-subcomponents/lux-chip.component';
 import { Subject, Subscription } from 'rxjs';
@@ -45,8 +46,8 @@ export class LuxChipsComponent implements OnDestroy {
   @ContentChildren(LuxChipGroupComponent) luxChipGroupComponents: QueryList<LuxChipGroupComponent>;
   @ViewChildren(MatChip) matChips: QueryList<MatChip>;
 
-  @ViewChild('input', { read: MatAutocompleteTrigger, static: false }) matAutocompleteTrigger: MatAutocompleteTrigger;
-  @ViewChild('auto', { read: MatAutocomplete, static: false }) matAutocomplete: MatAutocomplete;
+  @ViewChild('input', { read: MatAutocompleteTrigger }) matAutocompleteTrigger: MatAutocompleteTrigger;
+  @ViewChild('auto', { read: MatAutocomplete }) matAutocomplete: MatAutocomplete;
 
   get luxDisabled(): boolean {
     return this._luxDisabled;

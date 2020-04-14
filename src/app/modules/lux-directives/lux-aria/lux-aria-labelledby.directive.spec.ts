@@ -6,9 +6,8 @@ import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 
 describe('LuxAriaLabelledbyDirective', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxComponentsConfigService],
       [LuxWithSelectorComponent, LuxWithoutSelectorComponent]

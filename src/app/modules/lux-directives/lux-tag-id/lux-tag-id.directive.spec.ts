@@ -7,12 +7,10 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { By } from '@angular/platform-browser';
 
 describe('LuxTagIdDirective', () => {
-  LuxTestHelper.configureTestSuite();
-
   let fixture: ComponentFixture<MockComponent>;
   let mockComp: MockComponent;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [
         {

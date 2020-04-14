@@ -9,9 +9,8 @@ import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { of } from 'rxjs';
 
 describe('LuxLookupLabelComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [{ provide: LuxLookupService, useClass: MockLuxLookupLabelService }, LuxLookupHandlerService, LuxConsoleService],
       [LuxNoFormComponent]
@@ -35,8 +34,8 @@ describe('LuxLookupLabelComponent', () => {
 
       expect(myComponent).not.toBeNull('Component ist null');
       expect(myComponent.nativeElement.innerHTML).toEqual('Jungholz (ausl. Adresse)');
-      TestBed.get(LuxLookupService).changeTableValue();
-      TestBed.get(LuxLookupHandlerService).reloadData('meineId');
+      (TestBed.inject(LuxLookupService) as MockLuxLookupLabelService).changeTableValue();
+      TestBed.inject(LuxLookupHandlerService).reloadData('meineId');
 
       fixture.detectChanges();
 

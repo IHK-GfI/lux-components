@@ -14,7 +14,7 @@ export class LuxTabComponent implements OnInit {
   @Input() luxTagIdHeader: string;
   @Input() luxTagIdContent: string;
 
-  @ContentChild(TemplateRef, { static: false }) contentTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef) contentTemplate: TemplateRef<any>;
 
   constructor() {}
 

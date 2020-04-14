@@ -9,9 +9,8 @@ import { LuxPopupsModule } from '../lux-popups.module';
 import { LuxActionModule } from '../../lux-action/lux-action.module';
 
 describe('LuxDialogService', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([LuxDialogService], [MockDialogComponent], [TestModule]);
   });
 
@@ -325,7 +324,7 @@ describe('LuxDialogService', () => {
   `
 })
 class MockDialogComponent {
-  @ViewChild('testContentTemplate', { static: false }) templateRef: TemplateRef<any>;
+  @ViewChild('testContentTemplate') templateRef: TemplateRef<any>;
 
   constructor(public dialogService: LuxDialogService) {}
 

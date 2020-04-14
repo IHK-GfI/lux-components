@@ -1,5 +1,5 @@
 import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
-import { ThemePalette } from '@angular/material';
+import { ThemePalette } from '@angular/material/core';
 import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface';
 
 @Component({
@@ -9,7 +9,7 @@ import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface
 export class LuxChipGroupComponent implements OnInit {
   private _luxColor: ThemePalette = 'primary';
 
-  @ContentChild(TemplateRef, { static: false }) tempRef: TemplateRef<any>;
+  @ContentChild(TemplateRef) tempRef: TemplateRef<any>;
 
   @Output() luxChipClicked = new EventEmitter<number>();
   @Output() luxChipAdded = new EventEmitter<string>();

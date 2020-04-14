@@ -5,5 +5,5 @@ import { Component, ContentChild, TemplateRef } from '@angular/core';
   template: ''
 })
 export class LuxTableColumnContentComponent {
-  @ContentChild(TemplateRef, { static: false }) tempRef: TemplateRef<any>;
+  @ContentChild(TemplateRef) tempRef: TemplateRef<any>;
 }

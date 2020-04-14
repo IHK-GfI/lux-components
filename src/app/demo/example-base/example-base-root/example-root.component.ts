@@ -13,7 +13,7 @@ export class ExampleRootComponent implements OnInit, AfterViewInit, OnDestroy {
   private routerSubscription: Subscription;
   private blockScrolling: boolean = false;
 
-  @ViewChild('exampleListElement', { static: false }) exampleListElement: ElementRef;
+  @ViewChild('exampleListElement') exampleListElement: ElementRef;
 
   constructor(
     private router: Router,

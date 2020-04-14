@@ -6,9 +6,8 @@ import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 describe('LuxLinkComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockLinkComponent]);
   });
 
@@ -22,7 +21,7 @@ describe('LuxLinkComponent', () => {
     fixture.detectChanges();
     component = fixture.componentInstance;
     linkComponent = fixture.debugElement.query(By.directive(LuxLinkComponent)).componentInstance;
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
   }));
 
   it('Sollte erstellt werden', fakeAsync(() => {

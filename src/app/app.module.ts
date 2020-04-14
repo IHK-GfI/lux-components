@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, HammerModule} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -31,6 +31,7 @@ import { LuxPipesModule } from './modules/lux-pipes/lux-pipes.module';
 import { ExampleBaseModule } from './demo/example-base/example-base.module';
 import { LuxCommonModule } from './modules/lux-common/lux-common.module';
 import { LuxErrorModule } from './modules/lux-error/lux-error.module';
+import 'hammerjs';
 
 const myConfiguration: LuxComponentsConfigParameters = {
   generateLuxTagIds: environment.generateLuxTagIds,
@@ -48,6 +49,7 @@ const myConfiguration: LuxComponentsConfigParameters = {
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HammerModule,
     FlexLayoutModule,
     LuxLayoutModule,
     LuxActionModule,

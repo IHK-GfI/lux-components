@@ -8,9 +8,8 @@ import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper
 import { LuxChipGroupComponent } from './lux-chips-subcomponents/lux-chip-group.component';
 
 describe('LuxChipComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [ChipsComponent]);
   });
 
@@ -377,7 +376,7 @@ class ChipsComponent {
   groupLabels = [];
 
   chipGroup;
-  @ViewChild(LuxChipGroupComponent, { static: false }) chipGroupComponent: LuxChipGroupComponent;
+  @ViewChild(LuxChipGroupComponent) chipGroupComponent: LuxChipGroupComponent;
 
   chipAdded($event: string) {
     this.chips.push({

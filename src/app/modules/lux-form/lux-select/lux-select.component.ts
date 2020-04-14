@@ -13,7 +13,7 @@ import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxFormSelectableBase } from '../lux-form-model/lux-form-selectable-base.class';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatOption } from '@angular/material';
+import { MatOption } from '@angular/material/core';
 
 @Component({
   selector: 'lux-select',
@@ -22,7 +22,7 @@ import { MatOption } from '@angular/material';
 })
 export class LuxSelectComponent extends LuxFormSelectableBase {
   // Potentiell eingebettetes Template für Darstellung der Labels
-  @ContentChild(TemplateRef, { static: false }) tempRef: TemplateRef<any>;
+  @ContentChild(TemplateRef) tempRef: TemplateRef<any>;
   @ViewChildren(MatOption) matOptions: QueryList<MatOption>;
 
   @Input() luxPlaceholder: string;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatError } from '@angular/material';
+import { MatError } from '@angular/material/form-field';
 import { By } from '@angular/platform-browser';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
@@ -11,9 +11,8 @@ import { LuxRadioComponent } from './lux-radio.component';
 import { Observable, of } from 'rxjs';
 
 describe('LuxRadioComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService, { provide: LuxMediaQueryObserverService, useClass: MockMediaObserver }],
       [
@@ -245,6 +244,7 @@ describe('LuxRadioComponent', () => {
       testComponent.pickValueFn = o1 => {
         return o1 ? o1.value : o1;
       };
+      fixture.detectChanges();
 
       const radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Meine Aufgaben', 'Vorbedingung 1');
@@ -349,6 +349,8 @@ describe('LuxRadioComponent', () => {
       testComponent.compareFn = (o1, o2) => {
         return o1.value === o2.value;
       };
+      fixture.detectChanges();
+
       expect(errorSpy).toHaveBeenCalledTimes(0); // Vorbedingung 1
       expect(radioComponent.luxSelected).toBeFalsy('Vorbedingung 2');
 

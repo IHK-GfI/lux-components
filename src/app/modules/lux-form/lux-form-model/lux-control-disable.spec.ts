@@ -5,12 +5,11 @@ import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxControlDisable', () => {
-  LuxTestHelper.configureTestSuite();
 
   let fixture: ComponentFixture<LuxControlDisableComponent>;
   let testComponent: LuxControlDisableComponent;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [LuxControlDisableComponent]);
   });
 

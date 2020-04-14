@@ -6,9 +6,8 @@ import { By } from '@angular/platform-browser';
 import { LuxHttpErrorInterceptor } from './lux-http-error-interceptor';
 
 describe('LuxHttpErrorComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [LuxMockHttpErrorComponent]);
   });
 

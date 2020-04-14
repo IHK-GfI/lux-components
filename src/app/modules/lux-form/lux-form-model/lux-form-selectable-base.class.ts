@@ -1,5 +1,5 @@
 import { LuxFormComponentBase } from './lux-form-component-base.class';
-import { ChangeDetectorRef, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Directive, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -8,6 +8,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
  * Basis-Klasse für FormComponents, die einen ähnlichen Grundaufbau für die Auswahl von
  * Optionen aus einem Array anbieten (Radio-Buttons und Selects z.B.).
  */
+@Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
   private _luxOptions: any[] = [];
 
@@ -33,7 +34,6 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
 
   @Input() set luxOptions(options: any[]) {
     this._luxOptions = options;
-    this.checkSelectedAndUpdate(this.luxSelected);
   }
 
   protected constructor(
@@ -75,9 +75,7 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
           this.luxSelected = selected;
         }
         this.checkSelectedInOptions(selected);
-        setTimeout(() => {
-          this.luxSelectedChange.emit(selected);
-        });
+        this.luxSelectedChange.emit(selected);
       }
     }
   }

@@ -3,7 +3,7 @@ import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry'
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
 import { LuxLookupComponent } from '../lux-lookup-model/lux-lookup-component';
-import { MatSelect, MatSelectChange } from '@angular/material';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupErrorStateMatcher } from '../lux-lookup-model/lux-lookup-error-state-matcher';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -20,7 +20,7 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
   @Input() luxWithEmptyEntry: boolean = true;
 
   displayedEntries: LuxLookupTableEntry[];
-  @ViewChild(MatSelect, { static: false }) matSelect: MatSelect;
+  @ViewChild(MatSelect) matSelect: MatSelect;
 
   constructor(
     lookupService: LuxLookupService,

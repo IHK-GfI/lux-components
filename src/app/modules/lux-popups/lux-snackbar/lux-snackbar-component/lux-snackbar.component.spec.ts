@@ -1,6 +1,6 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, Injectable } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
-import { MatSnackBarModule } from '@angular/material';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
@@ -14,9 +14,8 @@ import { LuxSnackbarService } from '../lux-snackbar.service';
 import { LuxSnackbarComponent } from './lux-snackbar.component';
 
 describe('LuxSnackbarComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [MockSnackbarModule]
     });
@@ -98,6 +97,7 @@ function findToggleElement(toggleElement) {
 })
 class MockSnackbarComponent {}
 
+@Injectable()
 class MockMobileHelperService {
   masterCollapsedObservable = of({});
   isRegisteredObservable = of({});
@@ -108,6 +108,7 @@ class MockMobileHelperService {
   }
 }
 
+@Injectable()
 class MockStorageService {
   getItem() {
     return 1;

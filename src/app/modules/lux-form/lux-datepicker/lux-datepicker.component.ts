@@ -13,7 +13,8 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS, MatDatepicker } from '@angular/material';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -62,8 +63,8 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
   @Input() luxMaxDate: string = undefined;
   @Input() luxMinDate: string = undefined;
 
-  @ViewChild(MatDatepicker, { static: false }) matDatepicker: MatDatepicker<any>;
-  @ViewChild('datepickerInput', { read: ElementRef, static: false }) datepickerInput: ElementRef;
+  @ViewChild(MatDatepicker) matDatepicker: MatDatepicker<any>;
+  @ViewChild('datepickerInput', { read: ElementRef }) datepickerInput: ElementRef;
 
   get luxValue(): string {
     return this.getValue();

@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LuxFormModule } from '../lux-form/lux-form.module';
-import {
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatSortModule,
-  MatTableModule
-} from '@angular/material';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { LuxComponentsConfigModule } from '../lux-components-config/lux-components-config.module';
 import { LuxSpinnerComponent } from './lux-spinner/lux-spinner.component';
 import { LuxLabelComponent } from './lux-label/lux-label.component';

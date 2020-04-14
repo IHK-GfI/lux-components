@@ -7,9 +7,8 @@ import { LuxToggleComponent } from './lux-toggle.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
 describe('LuxToggleComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService],
       [

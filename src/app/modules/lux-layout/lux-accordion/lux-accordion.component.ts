@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatAccordion } from '@angular/material';
+import { MatAccordion } from '@angular/material/expansion';
 import { Subject } from 'rxjs';
 
 @Component({

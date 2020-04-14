@@ -2,17 +2,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatDividerModule,
-  MatExpansionModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatProgressSpinnerModule,
-  MatStepperModule,
-  MatTabsModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
 import { LuxActionModule } from '../lux-action/lux-action.module';
 import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';

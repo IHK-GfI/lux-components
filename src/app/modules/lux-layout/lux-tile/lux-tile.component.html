@@ -26,3 +26,14 @@
     </div>
   </mat-card-content>
 </mat-card>
+
+<div
+  fxFlex="auto"
+  [ngClass]="[
+    'lux-tile-notification-icon',
+    getNotificationIconColorClass(),
+    luxCounter !== null && luxCounter !== undefined ? 'lux-badge-notification-visible' : '',
+    queryService.isSM() || queryService.isXS() ? 'lux-tile-notification-mobile' : ''
+  ]"
+  *ngIf="luxShowNotification !== undefined && luxShowNotification !== null"
+></div>

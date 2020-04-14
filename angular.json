@@ -25,12 +25,16 @@
               "src/styles.scss",
               "src/theming/luxtheme.scss"
             ],
-            "scripts": [
-              "node_modules/hammerjs/hammer.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -48,6 +52,12 @@
               ]
             },
             "es5": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "tsConfig": "src/tsconfig.app.ie.json"
             }
           }
@@ -79,9 +89,7 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [
-              "node_modules/hammerjs/hammer.min.js"
-            ],
+            "scripts": [],
             "styles": [
               "src/styles.scss",
               "src/theming/luxtheme.scss"
@@ -143,7 +151,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "lux",
-      "styleext": "scss"
+      "style": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "lux"

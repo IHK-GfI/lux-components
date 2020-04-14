@@ -12,9 +12,8 @@ import { LuxUtil } from '../../lux-util/lux-util';
 import { delay } from 'rxjs/operators';
 
 describe('LuxTableComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [
         { provide: LuxMediaQueryObserverService, useClass: MockMediaObserverService },

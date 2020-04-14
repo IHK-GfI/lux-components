@@ -13,7 +13,8 @@ import {
   QueryList,
   ViewChild
 } from '@angular/core';
-import { MatPaginator, MatPaginatorIntl, MatSort, Sort } from '@angular/material';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { ICustomCSSConfig } from './lux-table-custom-css-config.interface';
 import { LuxTableDataSource } from './lux-table-data-source';
 import { ILuxTableHttpDaoStructure } from './lux-table-http/lux-table-http-dao-structure.interface';

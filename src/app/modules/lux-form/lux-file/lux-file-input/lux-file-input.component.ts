@@ -23,7 +23,7 @@ import { LuxComponentsConfigService } from '../../../lux-components-config/lux-c
   styleUrls: ['./lux-file-input.component.scss']
 })
 export class LuxFileInputComponent extends LuxFormFileBase {
-  @ViewChild('visibleInput', { read: ElementRef, static: false }) visibleInput: ElementRef;
+  @ViewChild('visibleInput', { read: ElementRef }) visibleInput: ElementRef;
 
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
   @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();

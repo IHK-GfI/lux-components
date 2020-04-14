@@ -4,34 +4,30 @@ import { DebugElement, Provider } from '@angular/core';
 import { ComponentFixture, getTestBed, TestBed, tick } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  MatAutocompleteModule,
-  MatBadgeModule,
-  MatButtonModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatChipsModule,
-  MatCommonModule,
-  MatDatepickerModule,
-  MatDividerModule,
-  MatExpansionModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatNativeDateModule,
-  MatOptionModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
-  MatSelectModule,
-  MatSliderModule,
-  MatSortModule,
-  MatStepperModule,
-  MatTableModule,
-  MatTabsModule,
-  MatTooltipModule
-} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCommonModule, MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSortModule } from '@angular/material/sort';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -44,11 +40,6 @@ import { LuxPipesModule } from '../../lux-pipes/lux-pipes.module';
 import { LuxLookupModule } from '../../lux-lookup/lux-lookup.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LuxComponentsConfigModule } from '../../lux-components-config/lux-components-config.module';
-// Wichtig, damit die Testhelper-Funktion "configureTestSuite" funktioniert (darf nicht wegformatiert werden).
-// import 'jasmine' hat leider nicht den gewünschten Effekt.
-// import {} from 'jasmine';
-// noinspection ES6UnusedImports
-import {} from 'jasmine';
 import { LuxErrorModule } from '../../lux-error/lux-error.module';
 import { LuxCommonModule } from '../../lux-common/lux-common.module';
 import { LuxPopupsModule } from '../../lux-popups/lux-popups.module';
@@ -169,7 +160,6 @@ export class LuxTestHelper {
    * @param component
    * @param providers
    * @param declarations
-   * @deprecated Stattdessen configureTestModule in Kombination mit configureTestSuite verwenden --> erheblich performanter
    */
   public static createComponent(
     component: any,
@@ -299,34 +289,6 @@ export class LuxTestHelper {
   public static stringWithoutASCIIChars(dateString: string): string {
     const exp = new RegExp('[^A-Za-z 0-9 \\.,\\?""!@#\\$%\\^&\\*\\(\\)-_=\\+;:<>\\/\\\\\\|\\}\\{\\[\\]`~]*', 'g');
     return dateString.replace(exp, '');
-  }
-
-  /**
-   *  Deaktiviert den Reset des Testmoduls am Ende eines Testdurchlaufs.
-   *  Verbessert die Performance der Karma-Tests erheblich.
-   *  Am Ende der Testsuite wird diese Funktion wieder aktiviert.
-   *
-   *  Funktion dafür einfach am Anfang einer Testsuite (erstes describe) aufrufen und in einem beforeAll das Testmodul
-   *  erzeugen. Dieses wird nun nicht mehr nach jedem Test neu erzeugt.
-   */
-  public static configureTestSuite() {
-    const testBedApi: any = getTestBed();
-    const originReset = TestBed.resetTestingModule;
-
-    beforeAll(() => {
-      TestBed.resetTestingModule();
-      TestBed.resetTestingModule = () => TestBed;
-    });
-
-    afterEach(() => {
-      testBedApi._activeFixtures.forEach((fixture: ComponentFixture<any>) => fixture.destroy());
-      testBedApi._instantiated = false;
-    });
-
-    afterAll(() => {
-      TestBed.resetTestingModule = originReset;
-      TestBed.resetTestingModule();
-    });
   }
 
   /**

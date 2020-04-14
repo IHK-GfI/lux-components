@@ -7,7 +7,7 @@ import { LuxActionComponentBaseClass } from '../../lux-action-model/lux-action-c
   template: ''
 })
 export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
-  @ViewChild(TemplateRef, { static: false }) templateRef: TemplateRef<any>;
+  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 
   @Output() luxHiddenChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() luxHideLabelIfExtendedChange: EventEmitter<boolean> = new EventEmitter<boolean>();

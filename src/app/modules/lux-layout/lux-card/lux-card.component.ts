@@ -42,11 +42,11 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 
   @ContentChildren(LuxIconComponent, { descendants: false }) iconComponents: QueryList<LuxIconComponent>;
-  @ContentChild(LuxCardActionsComponent, { static: false }) actionsComponent: LuxCardActionsComponent;
-  @ContentChild(LuxCardInfoComponent, { static: false }) infoComponent: LuxCardInfoComponent;
-  @ContentChild(LuxCardContentExpandedComponent, { static: false })
+  @ContentChild(LuxCardActionsComponent) actionsComponent: LuxCardActionsComponent;
+  @ContentChild(LuxCardInfoComponent) infoComponent: LuxCardInfoComponent;
+  @ContentChild(LuxCardContentExpandedComponent)
   contentExpandedComponent: LuxCardContentExpandedComponent;
-  @ContentChild(LuxCardContentComponent, { static: false }) contentComponent: LuxCardContentComponent;
+  @ContentChild(LuxCardContentComponent) contentComponent: LuxCardContentComponent;
 
   hasCardAction: boolean;
   animationDisabled: boolean = true;

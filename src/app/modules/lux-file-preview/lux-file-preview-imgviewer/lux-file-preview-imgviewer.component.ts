@@ -11,7 +11,7 @@ import { LuxFilePreviewRef } from '../lux-file-preview-ref';
   styleUrls: ['./lux-file-preview-imgviewer.component.scss']
 })
 export class LuxFilePreviewImgViewerComponent extends LuxFilePreviewBase implements OnInit, AfterViewInit {
-  @ViewChild('previewImg', { static: false }) previewImg: ElementRef;
+  @ViewChild('previewImg') previewImg: ElementRef;
 
   zoomActive = false;
   zoomWidth = 0;

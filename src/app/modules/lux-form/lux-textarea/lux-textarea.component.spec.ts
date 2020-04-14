@@ -7,9 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
 describe('LuxTextareaComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([LuxConsoleService], [LuxMockFormTextareaComponent, LuxMockTextareaComponent]);
   });
 
@@ -269,7 +268,7 @@ describe('LuxTextareaComponent', () => {
     it('Sollte readonly sein', fakeAsync(() => {
       // Vorbedingungen testen
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.css('textarea')).attributes.readonly).toBe(null);
+      expect(fixture.debugElement.query(By.css('textarea')).attributes.readonly).toBeFalsy();
 
       // Änderungen durchführen
       component.readonly = true;

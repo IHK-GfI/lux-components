@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
-import { ThemePalette } from '@angular/material';
+import { ThemePalette } from '@angular/material/core';
 import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface';
 
 @Component({

@@ -7,12 +7,17 @@ import { By } from '@angular/platform-browser';
 import { Validators } from '@angular/forms';
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
+import { Observable, of } from 'rxjs';
+import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
+import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 
 describe('LuxLookupAutocompleteComponent', () => {
-  LuxTestHelper.configureTestSuite();
-
-  beforeAll(async () => {
-    LuxTestHelper.configureTestModule([LuxLookupHandlerService, LuxConsoleService], [LuxNoFormComponent]);
+  beforeEach(async () => {
+    LuxTestHelper.configureTestModule(
+      [LuxLookupHandlerService, LuxConsoleService, { provide: LuxLookupService, useClass: MockLookupService }],
+      [LuxNoFormComponent]
+    );
   });
 
   describe('Außerhalb einer Form', () => {
@@ -64,4 +69,10 @@ describe('LuxLookupAutocompleteComponent', () => {
 class LuxNoFormComponent {
   validators;
   value;
+}
+
+class MockLookupService {
+  getLookupTable(tableNo: string, parameters: LuxLookupParameters, url: string): Observable<LuxLookupTableEntry[]> {
+    return of([]);
+  }
 }

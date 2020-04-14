@@ -2,15 +2,14 @@ import { Component, DebugElement } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, flushMicrotasks, inject, TestBed, tick } from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxTooltipDirective } from './lux-tooltip.directive';
-import { TooltipPosition } from '@angular/material';
+import { TooltipPosition } from '@angular/material/tooltip';
 import { By } from '@angular/platform-browser';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { FocusMonitor } from '@angular/cdk/a11y';
 
 describe('LuxTooltipDirective', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockComponent]);
   });
 

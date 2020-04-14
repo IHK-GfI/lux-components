@@ -1,5 +1,5 @@
 import { LuxFormComponentBase } from './lux-form-component-base.class';
-import { ChangeDetectorRef, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import {ChangeDetectorRef, Directive, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -8,6 +8,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
  * Basis-Klasse für FormComponents, die einen ähnlichen Grundaufbau für das Eintippen von String-Daten haben
  * (Input und Textarea z.B.).
  */
+@Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormInputBaseClass extends LuxFormComponentBase {
   @Output() luxValueChange: EventEmitter<string> = new EventEmitter();
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();

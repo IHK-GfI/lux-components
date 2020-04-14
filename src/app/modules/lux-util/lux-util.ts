@@ -1,5 +1,21 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { LuxBackgroundColorsEnum, LuxFontColorsEnum } from './lux-colors.enum';
+import {
+  BACKSPACE,
+  DELETE,
+  DOWN_ARROW,
+  END,
+  ENTER,
+  ESCAPE,
+  HOME,
+  LEFT_ARROW,
+  PAGE_DOWN,
+  PAGE_UP,
+  RIGHT_ARROW,
+  SPACE,
+  TAB,
+  UP_ARROW
+} from '@angular/cdk/keycodes';
 
 export class LuxUtil {
   public static readonly ISO_8601_FULL = new RegExp(
@@ -195,5 +211,163 @@ export class LuxUtil {
       bytes[i] = binaryString.charCodeAt(i);
     }
     return bytes;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die ArrowLeft-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyArrowLeft(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'ArrowLeft' || key === LEFT_ARROW;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die ArrowUp-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyArrowUp(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'ArrowUp' || key === UP_ARROW;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die ArrowRight-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyArrowRight(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'ArrowRight' || key === RIGHT_ARROW;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die ArrowDown-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyArrowDown(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'ArrowDown' || key === DOWN_ARROW;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die Home-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyHome(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'Home' || key === HOME;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die End-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyEnd(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'End' || key === END;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die PageDown-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyPageDown(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'PageDown' || key === PAGE_DOWN;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die PageUp-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyPageUp(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'PageUp' || key === PAGE_UP;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die Enter-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyEnter(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'Enter' || key === ENTER;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die Tab-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyTab(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'Tab' || key === TAB;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die Backspace-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyBackspace(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'Backspace' || key === BACKSPACE;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die Space-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeySpace(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'Space' || key === 'Spacebar' || key === ' ' || key === SPACE;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die Delete-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyDelete(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'Delete' || key === 'Del' || key === DELETE;
+  }
+
+  /**
+   * Diese Methode liefert true zurück, wenn es sich um die Escape-Taste handelt, false sonst.
+   *
+   * @param event Ein beliebiges KeyboardEvent
+   */
+  public static isKeyEscape(event: KeyboardEvent) {
+    const key = this.getKey(event);
+
+    return key === 'Escape' || key === 'Esc' || key === ESCAPE;
+  }
+
+  private static getKey(event: KeyboardEvent): string | number {
+    return event.key || event.keyCode;
   }
 }

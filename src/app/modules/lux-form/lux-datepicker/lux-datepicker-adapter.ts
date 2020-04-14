@@ -1,4 +1,4 @@
-import { NativeDateAdapter } from '@angular/material';
+import { NativeDateAdapter } from '@angular/material/core';
 import { Injectable } from '@angular/core';
 import { LuxUtil } from '../../lux-util/lux-util';
 import DateTimeFormatOptions = Intl.DateTimeFormatOptions;

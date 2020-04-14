@@ -23,26 +23,32 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges {
 
   userNameShort: string;
 
-  @ViewChild('customTrigger', { read: ElementRef, static: false }) customTrigger: ElementRef;
+  @ViewChild('customTrigger', { read: ElementRef }) customTrigger: ElementRef;
 
-  @ContentChild(LuxAppHeaderActionNavComponent, { static: false }) actionNav: LuxAppHeaderActionNavComponent;
-  @ContentChild(LuxAppHeaderRightNavComponent, { static: false }) rightNav: LuxAppHeaderRightNavComponent;
-  @ContentChild(LuxSideNavComponent, { static: false }) sideNav: LuxSideNavComponent;
+  @ContentChild(LuxAppHeaderActionNavComponent) actionNav: LuxAppHeaderActionNavComponent;
+  @ContentChild(LuxAppHeaderRightNavComponent) rightNav: LuxAppHeaderRightNavComponent;
+  @ContentChild(LuxSideNavComponent) sideNav: LuxSideNavComponent;
 
   constructor(public mobileHelperService: LuxMasterDetailMobileHelperService, private logger: LuxConsoleService) {
     // Wenn die Master-Ansicht der MD-Komponente aendert, muss ein anderer Navigations-Button angezeigt werden
     this.mobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
-      this.isMasterOpen = isOpen;
+      setTimeout(() => {
+        this.isMasterOpen = isOpen;
+      });
     });
 
     // Pruefen ob ein Master-Detail aktuell vorhanden ist
     this.mobileHelperService.isRegisteredObservable.subscribe((isRegistered: boolean) => {
-      this.isMasterDetailAvailable = isRegistered;
+      setTimeout(() => {
+        this.isMasterDetailAvailable = isRegistered;
+      });
     });
 
     // Pruefen ob das Master-Detail einen Wert hat
     this.mobileHelperService.hasValueObservable.subscribe((hasValue: boolean) => {
-      this.masterHasValue = hasValue;
+      setTimeout(() => {
+        this.masterHasValue = hasValue;
+      });
     });
   }
 

@@ -9,7 +9,7 @@ import {
   Renderer2,
   SimpleChanges
 } from '@angular/core';
-import { MatBadge } from '@angular/material';
+import { MatBadge } from '@angular/material/badge';
 import { AriaDescriber } from '@angular/cdk/a11y';
 import { LuxUtil } from '../../lux-util/lux-util';
 

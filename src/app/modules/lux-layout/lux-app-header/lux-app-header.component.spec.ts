@@ -6,14 +6,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
 import { Router } from '@angular/router';
-import { LuxMenuComponent } from '../../lux-action/lux-menu/lux-menu.component';
+import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
 describe('LuxAppHeaderComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [
+        LuxMasterDetailMobileHelperService,
+        LuxConsoleService,
         {
           provide: LuxMasterDetailMobileHelperService,
           useClass: MockMasterDetailHelperService
@@ -33,7 +34,7 @@ describe('LuxAppHeaderComponent', () => {
       testComponent = fixture.componentInstance;
       testComponent.testUseRightNav = false;
       testComponent.testUseSideNav = false;
-      fixture.detectChanges();
+      LuxTestHelper.wait(fixture);
     }));
 
     beforeEach(inject([LuxMasterDetailMobileHelperService], (service: MockMasterDetailHelperService) => {
@@ -392,7 +393,7 @@ describe('LuxAppHeaderComponent', () => {
 
     it('Sollte den Dashboard-Link innerhalb der Applikation routen', fakeAsync(() => {
       // Vorbedingungen prüfen
-      const spy = spyOn(TestBed.get(Router), 'navigate').and.returnValue(Promise.resolve());
+      const spy = spyOn(TestBed.inject(Router), 'navigate').and.returnValue(Promise.resolve(true));
 
       testComponent.dashboardTitle = 'Dashboard';
       testComponent.dashboardLink = '/mock-route';

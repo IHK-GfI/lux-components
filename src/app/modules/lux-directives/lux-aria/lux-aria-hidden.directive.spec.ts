@@ -6,9 +6,8 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxAriaHiddenDirective } from './lux-aria-hidden.directive';
 
 describe('LuxAriaHiddenDirective', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxComponentsConfigService],
       [LuxWithSelectorComponent, LuxWithoutSelectorComponent]

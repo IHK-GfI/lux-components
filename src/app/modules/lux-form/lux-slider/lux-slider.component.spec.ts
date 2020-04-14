@@ -8,9 +8,8 @@ import { By } from '@angular/platform-browser';
 import { FormBuilder } from '@angular/forms';
 
 describe('LuxSliderComponent', () => {
-  LuxTestHelper.configureTestSuite();
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     LuxTestHelper.configureTestModule([LuxConsoleService], [MockSliderNoFormComponent, MockSliderFormComponent]);
   });
 

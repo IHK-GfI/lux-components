@@ -8,8 +8,8 @@ export class LuxMasterSimpleComponent implements OnInit {
   @Input() luxTitleProp: string;
   @Input() luxSubTitleProp: string;
 
-  @ContentChild('luxSimpleContent', { static: false }) contentTempRef: TemplateRef<any>;
-  @ContentChild('luxSimpleIcon', { static: false }) iconTempRef: TemplateRef<any>;
+  @ContentChild('luxSimpleContent') contentTempRef: TemplateRef<any>;
+  @ContentChild('luxSimpleIcon') iconTempRef: TemplateRef<any>;
 
   constructor() {}
 
