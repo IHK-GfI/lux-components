@@ -10,6 +10,7 @@
     <h3>Allgemeine Properties</h3>
     <lux-input
       class="example-highlight-config-option"
+      luxName="dialog_width"
       luxLabel="width"
       luxHint="Diese Property legt die Breite des Dialogs fest."
       [(luxValue)]="dialogConfig.width"
@@ -17,6 +18,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="dialog_height"
       luxLabel="height"
       luxHint="Diese Property legt die Höhe des Dialogs fest."
       [(luxValue)]="dialogConfig.height"
@@ -24,6 +26,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="dialog_panelClass"
       luxLabel="panelClass"
       [luxValue]="dialogConfig.panelClass"
       (luxBlur)="updatePanelClass(panelClassInput.luxValue)"
@@ -48,6 +51,7 @@
     <h3>Properties für Preset-Dialoge</h3>
     <lux-input
       class="example-highlight-config-option"
+      luxName="dialog_title"
       luxLabel="title"
       luxHint="Diese Property enthält den Titel des Dialogs."
       [(luxValue)]="dialogConfig.title"
@@ -63,6 +67,7 @@
       </lux-toggle>
       <pre class="lux-label" *ngIf="useContentTemplate">{{ contentTemplateString }}</pre>
       <lux-input
+        luxName="dialog_content"
         luxLabel="content"
         luxHint="Über diese Eigenschaft der eigentliche Inhalt des Dialogs bestimmt."
         [(luxValue)]="dialogConfig.content"
@@ -91,7 +96,7 @@
       </lux-panel>
     </lux-accordion>
     <h3>Beispiel für "data" für eigene Dialoge</h3>
-    <lux-input class="example-highlight-config-option" luxLabel="data" [(luxValue)]="exampleData">
+    <lux-input luxName="dialog_data" class="example-highlight-config-option" luxLabel="data" [(luxValue)]="exampleData">
       <lux-form-hint>
         Dieses Objekt wird einem eigenen Dialog während 'openComponent' mitgegeben und enthält Daten, die für die
         Dialog-Componente wichtig sein könnten.
@@ -124,9 +129,10 @@
 </ng-template>
 
 <ng-template let-actionConfig #dialogActionTemplate>
-  <lux-input luxLabel="label" luxHint="Diese Property enthält das Label der Aktion." [(luxValue)]="actionConfig.label">
+  <lux-input luxName="dialog_label" luxLabel="label" luxHint="Diese Property enthält das Label der Aktion." [(luxValue)]="actionConfig.label">
   </lux-input>
   <lux-input
+    luxName="dialog_iconName"
     luxLabel="iconName"
     luxHint="Diese Property bestimmt das Icon der Aktion"
     [(luxValue)]="actionConfig.iconName"

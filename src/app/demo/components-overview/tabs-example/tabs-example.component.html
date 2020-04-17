@@ -25,9 +25,9 @@
       >
         <ng-template>
           <div fxLayout="column">
-            <lux-input luxLabel="Beispiel Eingabefeld #{{ 1 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}"></lux-input>
-            <lux-input luxLabel="Beispiel Eingabefeld #{{ 2 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}"></lux-input>
-            <lux-textarea luxLabel="Beispiel Eingabefeld #{{ 3 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}"></lux-textarea>
+            <lux-input luxLabel="Beispiel Eingabefeld #{{ 1 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}" luxAutocomplete="off"></lux-input>
+            <lux-input luxLabel="Beispiel Eingabefeld #{{ 2 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}" luxAutocomplete="off"></lux-input>
+            <lux-textarea luxLabel="Beispiel Eingabefeld #{{ 3 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}" luxAutocomplete="off"></lux-textarea>
             <app-tabs-content (created)="tabContentCreated(tab)"></app-tabs-content>
           </div>
         </ng-template>

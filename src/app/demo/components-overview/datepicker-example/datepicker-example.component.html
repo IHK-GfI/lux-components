@@ -95,6 +95,7 @@
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
       class="example-highlight-config-option"
+      luxName="datepicker_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
@@ -102,6 +103,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="datepicker_luxHint"
       luxLabel="luxHint"
       luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
       [(luxValue)]="hint"
@@ -109,6 +111,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="datepicker_luxPlaceholder"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
       [(luxValue)]="placeholder"
@@ -182,6 +185,7 @@
     </lux-toggle>
     <lux-input
       class="example-highlight-config-option"
+      luxName="datepicker_luxLocale"
       luxLabel="luxLocale"
       luxPlaceholder="de-DE"
       [(luxValue)]="locale"
@@ -200,19 +204,19 @@
     >
     </lux-select>
     <div class="example-highlight-config-option" fxLayout="column">
-      <lux-input luxLabel="luxStartDate" luxPlaceholder="10.02.2015" [(luxValue)]="startDate">
+      <lux-input luxName="datepicker_luxStartDate" luxLabel="luxStartDate" luxPlaceholder="10.02.2015" [(luxValue)]="startDate">
         <lux-form-hint>
           Diese Property definiert das in der Datumsauswahl pre-selektierte Datum.<br />
           Dazu das Datum einfach als String (z.B. 10.02.2015) eingeben.
         </lux-form-hint>
       </lux-input>
-      <lux-input luxLabel="luxMinDate" luxPlaceholder="01.01.2000" [(luxValue)]="minDate">
+      <lux-input luxName="datepicker_luxMinDate" luxLabel="luxMinDate" luxPlaceholder="01.01.2000" [(luxValue)]="minDate">
         <lux-form-hint>
           Diese Property definiert das minimal erlaubte Datum des Datepickers.<br />
           Dazu das Datum einfach als String (z.B. 01.01.2000) eingeben.
         </lux-form-hint>
       </lux-input>
-      <lux-input luxLabel="luxMaxDate" luxPlaceholder="31.12.2099" [(luxValue)]="maxDate">
+      <lux-input luxName="datepicker_luxMaxDate" luxLabel="luxMaxDate" luxPlaceholder="31.12.2099" [(luxValue)]="maxDate">
         <lux-form-hint>
           Diese Property bestimmt maximal erlaubte Datum.<br />
           Dazu das Datum einfach als String (z.B. 31.12.2099) eingeben.
@@ -236,6 +240,7 @@
       >
       </lux-toggle>
       <lux-input
+        luxName="datepicker_luxErrorMessage"
         luxLabel="luxErrorMessage"
         luxHint="Über diese Property lässt sich eine feste Fehlermeldung
                  (unabhängig vom speziellen Validierungsfehler) einstellen."

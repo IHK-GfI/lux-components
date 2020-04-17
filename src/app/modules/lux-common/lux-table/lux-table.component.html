@@ -11,6 +11,7 @@
   <!-- Input-Feld für das Filtern der Datensätze dieser Tabelle -->
   <lux-input
     class="lux-table-filter"
+    luxAutocomplete="off"
     [luxTagId]="luxFilterText"
     [luxLabel]="luxFilterText"
     (luxValueChange)="filtered$.next($event)"

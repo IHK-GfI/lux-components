@@ -46,6 +46,7 @@
     <lux-input
       class="example-highlight-config-option"
       [(luxValue)]="emptyLabel"
+      luxName="list_luxEmptyLabel"
       luxLabel="luxEmptyLabel"
       luxHint="Diese Property stellt das Label ein, welches bei einer leeren Liste angezeigt werden soll."
     >
@@ -53,6 +54,7 @@
     <div class="example-highlight-config-option" fxLayout="column">
       <lux-input
         [(luxValue)]="emptyIconName"
+        luxName="list_luxEmptyIconName"
         luxLabel="luxEmptyIconName"
         luxHint="Über diese Property wird das Icon bestimmt, das in einer leeren Liste angezeigt werden soll."
       >
@@ -68,6 +70,7 @@
     <lux-input
       class="example-highlight-config-option"
       [(luxValue)]="selectedPosition"
+      luxName="list_luxSelectedPosition"
       luxLabel="luxSelectedPosition"
       luxHint="Diese Property bestimmt welches ListItem selektiert werden soll."
       luxType="number"
@@ -76,6 +79,7 @@
     <lux-input
       class="example-highlight-config-option"
       [(luxValue)]="focusedPosition"
+      luxName="list_luxFocusedPosition"
       luxLabel="luxFocusedPosition"
       luxHint="Diese Property bestimmt welches ListItem fokussiert werden soll."
       luxType="number"
@@ -92,18 +96,20 @@
           <div class="example-highlight-config-option" fxLayout="column">
             <lux-input
               [(luxValue)]="item.title"
+              luxName="list_luxTitle"
               luxLabel="luxTitle"
               luxHint="Diese Property bestimmt den Titel des Items."
             >
             </lux-input>
             <lux-input
               [(luxValue)]="item.subTitle"
+              luxName="list_luxSubTitle"
               luxLabel="luxSubTitle"
               luxHint="Diese Property bestimmt den Untertitel (grau) des Items."
             >
             </lux-input>
           </div>
-          <lux-input class="example-highlight-config-option" [(luxValue)]="item.iconName" luxLabel="luxIconName">
+          <lux-input luxName="list_luxIconName" class="example-highlight-config-option" [(luxValue)]="item.iconName" luxLabel="luxIconName">
             <lux-form-hint>
               Der Name des Icons für dieses Item.<br />
               Das Icon wird über Content-Projection eingebunden, die restlichen Properties hierfür entfallen der

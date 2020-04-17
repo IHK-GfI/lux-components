@@ -44,6 +44,7 @@ import { LuxTextareaComponent } from './lux-textarea/lux-textarea.component';
 import { LuxToggleComponent } from './lux-toggle/lux-toggle.component';
 import { LuxFileCaptureDirective } from './lux-file/lux-file-model/lux-file-capture.directive';
 import { LuxMaxLengthDirective } from './lux-form-control/lux-form-directives/lux-maxlength/lux-max-length.directive';
+import { LuxNameDirectiveDirective } from './lux-form-control/lux-form-directives/lux-name/lux-name-directive.directive';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { LuxMaxLengthDirective } from './lux-form-control/lux-form-directives/lu
     LuxFileInputComponent,
     LuxFileProgressComponent,
     LuxFileCaptureDirective,
-    LuxMaxLengthDirective
+    LuxMaxLengthDirective,
+    LuxNameDirectiveDirective
   ],
   imports: [
     CommonModule,

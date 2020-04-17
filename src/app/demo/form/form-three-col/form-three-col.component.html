@@ -4,8 +4,8 @@
       <div fxLayout="row wrap" class="lux-flex-layout-gap-10">
         <div formGroupName="customer" fxLayout="column" fxFlex="1 0 calc(33% - 10px)">
           <h2>Kunde</h2>
-          <lux-input luxLabel="Vorname" luxControlBinding="name" fxFlex="nogrow"></lux-input>
-          <lux-input luxLabel="Nachname" luxControlBinding="surname" fxFlex="nogrow"></lux-input>
+          <lux-input luxName="first-name" luxLabel="Vorname" luxControlBinding="name" fxFlex="nogrow"></lux-input>
+          <lux-input luxName="given-name" luxLabel="Nachname" luxControlBinding="surname" fxFlex="nogrow"></lux-input>
           <lux-radio
             [luxOrientationVertical]="false"
             [luxOptions]="genders"
@@ -21,10 +21,28 @@
         <div formGroupName="address" fxLayout="column" fxFlex="1 1 auto">
           <h2>Adresse</h2>
           <div fxLayout="row" fxLayoutAlign="start stretch" class="lux-flex-layout-gap-10">
-            <lux-input luxLabel="PLZ" luxType="number" luxControlBinding="zip" fxFlex="0 0 50px"></lux-input>
-            <lux-input luxLabel="Stadt" luxType="text" luxControlBinding="town" fxFlex="1 1 auto"></lux-input>
+            <lux-input
+              luxName="postal-code"
+              luxLabel="PLZ"
+              luxType="number"
+              luxControlBinding="zip"
+              fxFlex="0 0 50px"
+            ></lux-input>
+            <lux-input
+              luxName="form-three_Stadt"
+              luxLabel="Stadt"
+              luxType="text"
+              luxControlBinding="town"
+              fxFlex="1 1 auto"
+            ></lux-input>
           </div>
-          <lux-input luxLabel="Straße" luxType="text" luxControlBinding="street" fxFlex="nogrow"></lux-input>
+          <lux-input
+            luxName="street-address"
+            luxLabel="Straße"
+            luxType="text"
+            luxControlBinding="street"
+            fxFlex="nogrow"
+          ></lux-input>
           <lux-autocomplete
             [luxOptions]="countries"
             luxOptionLabelProp="name"
@@ -39,7 +57,13 @@
         </div>
         <div formGroupName="feedback" fxLayout="column" fxFlex="1 0 auto">
           <h2>Feedback</h2>
-          <lux-input luxLabel="Bewertung" luxControlBinding="rating" luxType="text" fxFlex="nogrow"></lux-input>
+          <lux-input
+            luxName="form-three_Bewertung"
+            luxLabel="Bewertung"
+            luxControlBinding="rating"
+            luxType="text"
+            fxFlex="nogrow"
+          ></lux-input>
           <lux-checkbox luxLabel="Anonymisieren" luxControlBinding="anonymous" fxFlex="nogrow"></lux-checkbox>
         </div>
       </div>
