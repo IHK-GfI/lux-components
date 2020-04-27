@@ -3,14 +3,14 @@
     <form [formGroup]="myGroup" #myForm>
       <div formGroupName="user">
         <h3>Benutzer</h3>
-        <lux-input luxLabel="Vorname" luxControlBinding="firstname"></lux-input>
-        <lux-input luxLabel="Nachname" luxControlBinding="lastname"></lux-input>
-        <lux-input luxLabel="E-Mail" luxControlBinding="email">
+        <lux-input luxName="first-name" luxLabel="Vorname" luxControlBinding="firstname"></lux-input>
+        <lux-input luxName="given-name" luxLabel="Nachname" luxControlBinding="lastname"></lux-input>
+        <lux-input luxName="email" luxLabel="E-Mail" luxControlBinding="email">
           <lux-input-suffix>
             <lux-icon luxIconName="fa-at"></lux-icon>
           </lux-input-suffix>
         </lux-input>
-        <lux-input luxLabel="Passwort" luxControlBinding="password" luxType="password">
+        <lux-input luxName="current-password" luxLabel="Passwort" luxControlBinding="password" luxType="password">
           <lux-input-suffix>
             <lux-icon luxIconName="fa-lock"></lux-icon>
           </lux-input-suffix>
@@ -25,7 +25,7 @@
         [luxMultiple]="true"
       ></lux-select>
       <lux-toggle luxLabel="Newsletter" luxControlBinding="newsletter"></lux-toggle>
-      <lux-input luxLabel="Spende" luxControlBinding="donation" luxType="number">
+      <lux-input luxName="form-common_Spende" luxLabel="Spende" luxControlBinding="donation" luxType="number">
         <lux-input-prefix>
           <lux-icon luxIconName="fa-money"></lux-icon>
         </lux-input-prefix>
@@ -33,7 +33,7 @@
           €
         </lux-input-suffix>
       </lux-input>
-      <lux-input luxLabel="Beschreibung" luxControlBinding="description"></lux-input>
+      <lux-input luxName="form-common_Beschreibung" luxLabel="Beschreibung" luxControlBinding="description"></lux-input>
       <lux-checkbox luxControlBinding="hungry" luxLabel="Hungrig"></lux-checkbox>
 
       <lux-chips

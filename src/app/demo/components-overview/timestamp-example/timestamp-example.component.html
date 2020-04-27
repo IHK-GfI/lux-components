@@ -61,12 +61,13 @@
     <lux-input
       class="example-highlight-config-option"
       luxAutocomplete="off"
+      luxName="timestamp_defaultText"
       luxLabel="defaultText"
       luxHint="Dieser Parameter bestimmt den Standard-Text welcher wiedergegeben wird wenn der Timestamp nicht gegeben ist."
       [(luxValue)]="defaultText"
     >
     </lux-input>
-    <lux-input class="example-highlight-config-option" luxAutocomplete="off" luxLabel="prefix" [(luxValue)]="prefix">
+    <lux-input luxName="timestamp_prefix" class="example-highlight-config-option" luxAutocomplete="off" luxLabel="prefix" [(luxValue)]="prefix">
       <lux-form-hint>
         Dieser Parameter legt den Präfix für die relativen Zeitangaben fest.<br />
         Standardmäßig werden die Präfixe 'in' und 'vor' benutzt.

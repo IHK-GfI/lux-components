@@ -154,6 +154,7 @@
           <div fxLayout="column">
             <lux-input
               class="example-highlight-config-option"
+              luxName="lookup-combobox_luxTableNo"
               luxLabel="luxTableNo"
               [(luxValue)]="tableNo"
               luxType="number"
@@ -162,6 +163,7 @@
             <div class="example-highlight-config-option" fxLayout="column">
               <h3>Parameter</h3>
               <lux-input
+                luxName="lookup-combobox_knr"
                 luxLabel="Knr"
                 [(luxValue)]="parameters.knr"
                 luxType="number"
@@ -193,6 +195,7 @@
     </div>
     <lux-input
       class="example-highlight-config-option"
+      luxName="lookup-combobox_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
@@ -200,6 +203,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="lookup-combobox_luxHint"
       luxLabel="luxHint"
       luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
       [(luxValue)]="hint"
@@ -207,6 +211,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="lookup-combobox_luxPlaceholder"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
       [(luxValue)]="placeholder"
@@ -259,6 +264,7 @@
   <example-base-advanced-options>
     <lux-input
       class="example-highlight-config-option"
+      luxName="lookup-combobox_luxEntryBlockSize"
       luxLabel="luxEntryBlockSize"
       [(luxValue)]="entryBlockSize"
       luxType="number"
@@ -278,6 +284,7 @@
       <pre class="lux-label" *ngIf="useRenderFn"><b>renderFn</b> = {{ renderFnString }}</pre>
       <lux-input
         [(luxValue)]="renderProp"
+        luxName="lookup-combobox_luxRenderProp"
         luxLabel="luxRenderProp"
         luxHint="Hier kann die Property festgelegt werden, welche zur Darstellung der einzelnen Einträge genutzt wird."
         *ngIf="!useRenderFn"
@@ -335,6 +342,7 @@
       </lux-toggle>
       <pre class="lux-label" *ngIf="!useErrorMessage"><b>luxErrorCallback</b> = {{ errorCallbackString }}</pre>
       <lux-input
+        luxName="lookup-combobox_luxErrorMessage"
         luxLabel="luxErrorMessage"
         luxHint="Über diese Property lässt sich eine feste Fehlermeldung
                  (unabhängig vom speziellen Validierungsfehler) einstellen."

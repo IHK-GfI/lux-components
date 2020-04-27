@@ -27,10 +27,11 @@
     <lux-input
       class="example-highlight-config-option"
       [(luxValue)]="label"
+      luxName="button_luxLabel"
       luxLabel="luxLabel"
       luxHint="Bestimmt den Text, der in dem Button angezeigt wird."
     ></lux-input>
-    <lux-input class="example-highlight-config-option" [(luxValue)]="iconName" luxLabel="luxIconName">
+    <lux-input luxName="button_luxIconName" class="example-highlight-config-option" [(luxValue)]="iconName" luxLabel="luxIconName">
       <lux-form-hint>
         Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
         <i>luxLabel</i> gesetzt ist).<br />

@@ -8,6 +8,7 @@
       <h3>Error Properties</h3>
       <lux-input
         class="example-highlight-config-option"
+        luxName="error-page_errorId"
         luxLabel="errorId"
         luxHint="Diese Property enthält die Fehler-ID."
         [(luxValue)]="errorConfig.errorId"
@@ -15,6 +16,7 @@
       </lux-input>
       <lux-input
         class="example-highlight-config-option"
+        luxName="error-page_errorMessage"
         luxLabel="errorMessage"
         luxHint="Die Property definiert die Fehlermeldung selbst, welche in dem Panel auf der Fehlerseite dargestellt wird."
         [(luxValue)]="errorConfig.errorMessage"
@@ -25,6 +27,7 @@
       <h3>Error-Page Properties</h3>
       <lux-input
         class="example-highlight-config-option"
+        luxName="error-page_iconName"
         luxLabel="iconName"
         luxHint="Diese Property definiert das Icon, das auf der Fehlerseite dargestellt wird."
         luxControlBinding="iconName"
@@ -40,6 +43,7 @@
       </lux-select>
       <lux-input
         class="example-highlight-config-option"
+        luxName="error-page_errorText"
         luxLabel="errorText"
         luxHint="Diese Property definiert den Fehlertext auf der Seite."
         luxControlBinding="errorText"
@@ -47,6 +51,7 @@
       </lux-input>
       <lux-input
         class="example-highlight-config-option"
+        luxName="error-page_homeRedirectText"
         luxLabel="homeRedirectText"
         luxHint="Über diese Property kann der Text für den Home-Link bestimmt werden."
         luxControlBinding="homeRedirectText"
@@ -54,12 +59,13 @@
       </lux-input>
       <lux-input
         class="example-highlight-config-option"
+        luxName="error-page_homeRedirectUrl"
         luxLabel="homeRedirectUrl"
         luxHint="Die Property bestimmt die URL, zu der über den entsprechenden Link gesprungen werden kann."
         luxControlBinding="homeRedirectUrl"
       >
       </lux-input>
-      <lux-input class="example-highlight-config-option" luxLabel="errorPageUrl" luxControlBinding="errorPageUrl">
+      <lux-input luxName="error-page_errorPageUrl" class="example-highlight-config-option" luxLabel="errorPageUrl" luxControlBinding="errorPageUrl">
         <lux-form-hint>
           Diese Property definiert die eigentliche URL der Fehlerseite innerhalb der Angular-Applikation. Die URL muss
           in den bekannten Routen hinterlegt sein (das Beispiel macht das in diesem Fall selbst).<br />

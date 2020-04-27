@@ -20,6 +20,7 @@
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
       class="example-highlight-config-option"
+      luxName="message-box_luxIndex"
       luxLabel="luxIndex"
       luxHint="Diese Property bestimmt die aktuell angezeigte Page aus dem Paginator (maximal die letzte mögliche Seite)."
       luxType="number"
@@ -28,6 +29,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="message-box_luxMaximumDisplayed"
       luxLabel="luxMaximumDisplayed"
       luxType="number"
       [(luxValue)]="maximumDisplayed"
@@ -43,6 +45,7 @@
       <h3>Neue Message</h3>
       <div class="example-highlight-config-option" fxLayout="column">
         <lux-textarea
+          luxName="message-box_text"
           luxLabel="text"
           luxHint="Die Property bestimmt den Text für die neue Nachricht."
           [(luxValue)]="newMessage.text"
@@ -50,6 +53,7 @@
         >
         </lux-textarea>
         <lux-input
+          luxName="message-box_iconName"
           luxLabel="iconName"
           luxHint="Über diese Property wird optional ein Icon festgelegt."
           [(luxValue)]="newMessage.iconName"
@@ -100,6 +104,7 @@
           <div fxLayout="column">
             <lux-textarea
               class="example-highlight-config-option"
+              luxName="message-box_text"
               luxLabel="text"
               luxHint="Die Property bestimmt den Text für die Nachricht."
               [(luxValue)]="message.text"
@@ -108,6 +113,7 @@
             </lux-textarea>
             <lux-input
               class="example-highlight-config-option"
+              luxName="message-box_iconName"
               luxLabel="iconName"
               luxHint="Über diese Property wird optional ein Icon festgelegt."
               [(luxValue)]="message.iconName"

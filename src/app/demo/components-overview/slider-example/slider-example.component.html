@@ -104,6 +104,7 @@
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
       class="example-highlight-config-option"
+      luxName="slider_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
@@ -111,6 +112,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="slider_luxHint"
       luxLabel="luxHint"
       luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
       [(luxValue)]="hint"
@@ -173,12 +175,14 @@
       <lux-input
         [(luxValue)]="min"
         luxType="number"
+        luxName="slider_luxMin"
         luxLabel="luxMin"
         luxHint="Diese Property bestimmt den minimal möglichen Wert in dem Slider."
       ></lux-input>
       <lux-input
         [(luxValue)]="max"
         luxType="number"
+        luxName="slider_luxMax"
         luxLabel="luxMax"
         luxHint="Diese Property bestimmt den maximal möglichen Wert des Sliders."
       >
@@ -186,6 +190,7 @@
       <lux-input
         luxType="number"
         [(luxValue)]="step"
+        luxName="slider_luxStep"
         luxLabel="luxStep"
         luxHint="Über die Property wird die Schrittgröße, in denen der Slider die Werte ändert bestimmt."
       >
@@ -203,6 +208,7 @@
       <lux-input
         luxType="number"
         [luxValue]="tickIntervalNumber"
+        luxName="slider_luxTickInterval"
         luxLabel="luxTickInterval - 'number'"
         luxHint="Die Property kann ebenfalls einen Zahlenwert erhalten, um so die Abstände festzulegen."
         (luxValueChange)="tickIntervalNumberChanged($event)"
@@ -242,6 +248,7 @@
       >
       </lux-toggle>
       <lux-input
+        luxName="slider_luxErrorMessage"
         luxLabel="luxErrorMessage"
         luxHint="Über diese Property lässt sich eine feste Fehlermeldung
                  (unabhängig vom speziellen Validierungsfehler) einstellen."

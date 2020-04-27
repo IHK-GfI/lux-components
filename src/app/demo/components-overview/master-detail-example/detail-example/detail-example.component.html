@@ -6,6 +6,7 @@
     <div fxLayout="column" fxLayoutGap="4px">
       <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="8px" fxLayout="column" fxLayoutGap="0">
         <lux-input
+          luxName="master-detail_luxEmptyLabelDetail"
           luxLabel="luxEmptyLabelDetail"
           luxHint="Diese Property bestimmt das Label welches angezeigt wird, wenn kein Detail selektiert ist."
           [(luxValue)]="masterDetailConfig.emptyLabelDetail"
@@ -13,6 +14,7 @@
         >
         </lux-input>
         <lux-input
+          luxName="master-detail_luxEmptyLabelMaster"
           luxLabel="luxEmptyLabelMaster"
           luxHint="Diese Property bestimmt das Label welches angezeigt wird, wenn keine Master-Elemente vorhanden sind."
           [(luxValue)]="masterDetailConfig.emptyLabelMaster"
@@ -22,6 +24,7 @@
       </div>
       <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="8px" fxLayout="column" fxLayoutGap="0">
         <lux-input
+          luxName="master-detail_luxEmptyIconDetail"
           luxLabel="luxEmptyIconDetail"
           luxHint="Die Property legt das Icon fest, das angezeigt wird wenn kein Detail ausgewählt ist."
           [(luxValue)]="masterDetailConfig.emptyIconDetail"
@@ -29,6 +32,7 @@
         >
         </lux-input>
         <lux-input
+          luxName="master-detail_luxEmptyIconMaster"
           luxLabel="luxEmptyIconMaster"
           luxHint="Die Property legt das Icon fest, das angezeigt wird wenn keine Master-Elemente vorhanden sind."
           [(luxValue)]="masterDetailConfig.emptyIconMaster"

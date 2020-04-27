@@ -2,8 +2,8 @@
   <lux-card-content>
     <form [formGroup]="myGroup" #myForm>
       <div formGroupName="userInformation">
-        <lux-input luxLabel="Username" luxControlBinding="username"></lux-input>
-        <lux-input luxLabel="Passwort" luxType="password" luxControlBinding="password">
+        <lux-input luxName="username" luxLabel="Username" luxControlBinding="username"></lux-input>
+        <lux-input luxName="current-password" luxLabel="Passwort" luxType="password" luxControlBinding="password">
           <lux-input-suffix>
             <lux-icon luxIconName="fa-lock"></lux-icon>
           </lux-input-suffix>
@@ -17,12 +17,18 @@
           luxControlBinding="salutation"
         >
         </lux-autocomplete>
-        <lux-input luxLabel="E-Mail" luxControlBinding="email">
+        <lux-input luxName="email" luxLabel="E-Mail" luxControlBinding="email">
           <lux-input-suffix>
             <lux-icon luxIconName="fa-at"></lux-icon>
           </lux-input-suffix>
         </lux-input>
-        <lux-input luxLabel="Deaktiviertes Element" luxControlBinding="deactivated" [luxDisabled]="true"> </lux-input>
+        <lux-input
+          luxName="form-single_DeaktiviertesElement"
+          luxLabel="Deaktiviertes Element"
+          luxControlBinding="deactivated"
+          [luxDisabled]="true"
+        >
+        </lux-input>
         <lux-radio
           [luxOrientationVertical]="true"
           [luxOptions]="genders"
@@ -33,7 +39,14 @@
             {{ option.name }}
           </ng-template>
         </lux-radio>
-        <lux-input luxLabel="Alter" luxControlBinding="age" luxType="number" [luxNumberAlignLeft]="true"> </lux-input>
+        <lux-input
+          luxName="form-single_Alter"
+          luxLabel="Alter"
+          luxControlBinding="age"
+          luxType="number"
+          [luxNumberAlignLeft]="true"
+        >
+        </lux-input>
         <lux-autocomplete
           [luxOptions]="countries"
           luxOptionLabelProp="name"
