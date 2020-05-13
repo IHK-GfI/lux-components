@@ -354,3 +354,19 @@ export * from './src/app/modules/lux-util/lux-media-query-observer.service';
 export * from './src/app/modules/lux-util/testing/lux-test-helper';
 export * from './src/app/modules/lux-util/testing/lux-test-overlay-helper';
 export * from './src/app/modules/lux-util/lux-paginator-intl';
+
+/**
+ *  _    _   ___  __     _   _ _____ __  __ _
+ * | |  | | | \ \/ /    | | | |_   _|  \/  | |
+ * | |  | | | |\  /_____| |_| | | | | |\/| | |
+ * | |__| |_| |/  \_____|  _  | | | | |  | | |___
+ * |_____\___//_/\_\    |_| |_| |_| |_|  |_|_____|
+ *
+ */
+export * from './src/app/modules/lux-html/lux-html.module';
+// Components
+export * from './src/app/modules/lux-html/lux-html/lux-html.component';
+// Pipes
+export * from './src/app/modules/lux-html/lux-sanitize/lux-sanitize.pipe';
+// Classes
+export * from './src/app/modules/lux-html/lux-sanitize/lux-sanitize-config';

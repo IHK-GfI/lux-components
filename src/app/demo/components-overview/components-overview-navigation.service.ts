@@ -95,7 +95,8 @@ export class ComponentsOverviewNavigationService {
       icon: 'fas fa-bell',
       label: 'Badge-Notification',
       moduleName: 'directive'
-    }
+    },
+    { onclick: () => this.goTo('html'), icon: 'fab fa-html5', label: 'Html', moduleName: 'html' }
   ];
 
   sortedComponentEntries: Map<string, any[]> = new Map<string, any[]>();
@@ -105,6 +106,7 @@ export class ComponentsOverviewNavigationService {
     ['directive', false],
     ['error', false],
     ['form', false],
+    ['html', false],
     ['icon', false],
     ['layout', false],
     ['lookup', false],

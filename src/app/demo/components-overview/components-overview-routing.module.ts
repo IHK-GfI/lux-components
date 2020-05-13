@@ -50,6 +50,7 @@ import { FileInputExampleComponent } from './file-example/file-input-example/fil
 import { FileListExampleComponent } from './file-example/file-list-example/file-list-example.component';
 import { RippleExampleComponent } from './ripple-example/ripple-example.component';
 import { BadgeNotificationExampleComponent } from './badge-notification-example/badge-notification-example.component';
+import { HtmlExampleComponent } from './html-example/html-example.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -102,7 +103,8 @@ const routes: Routes = [
       { path: 'file-input', component: FileInputExampleComponent },
       { path: 'file-list', component: FileListExampleComponent },
       { path: 'badge-notification', component: BadgeNotificationExampleComponent },
-      { path: 'ripple', component: RippleExampleComponent }
+      { path: 'ripple', component: RippleExampleComponent },
+      { path: 'html', component: HtmlExampleComponent }
     ]
   }
 ];

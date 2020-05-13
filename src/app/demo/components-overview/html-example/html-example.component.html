@@ -1,0 +1,80 @@
+<example-base-structure
+  exampleTitle="Html"
+  exampleIconName="fab fa-html5"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90html"
+>
+  <example-base-content [exampleCentered]="false">
+    <lux-html [luxData]="htmlData" [luxSanitizeConfig]="sanitizeConfig"></lux-html>
+  </example-base-content>
+  <example-base-simple-options>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-textarea luxLabel="Html-Daten" [(luxValue)]="htmlData">
+        <lux-form-hint>
+          Hier kann man beliebige HTML-Daten einfügen und ausprobieren.
+        </lux-form-hint>
+      </lux-textarea>
+    </div>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-toggle luxLabel="Folgendes verbieten" [(luxChecked)]="forbiddenTagsToggle"></lux-toggle>
+      <lux-input
+        luxLabel="Verbotene Tags"
+        [luxDisabled]="!forbiddenTagsToggle"
+        [(luxValue)]="forbiddenTags"
+        (luxValueChange)="updateTags()"
+        ><lux-form-hint>
+          Kommaseparierte Liste von Tags (z.B. a,h1,p)
+        </lux-form-hint></lux-input
+      >
+      <lux-input
+        luxLabel="Verbotene Attriubte"
+        [luxDisabled]="!forbiddenTagsToggle"
+        [(luxValue)]="forbiddenAttributes"
+        (luxValueChange)="updateTags()"
+        ><lux-form-hint>
+          Kommaseparierte Liste von Attributen (z.B. href,target)
+        </lux-form-hint></lux-input
+      >
+      <lux-toggle luxLabel="Nur folgendes erlauben" [(luxChecked)]="allowedTagsToggle"></lux-toggle>
+      <lux-input
+        luxLabel="Erlaubte Tags"
+        [luxDisabled]="!allowedTagsToggle"
+        [(luxValue)]="allowedTags"
+        (luxValueChange)="updateTags()"
+        ><lux-form-hint>
+          Kommaseparierte Liste von Tags (z.B. a,h1,p)
+        </lux-form-hint></lux-input
+      >
+      <lux-input
+        luxLabel="Erlaubte Attribute"
+        [luxDisabled]="!allowedTagsToggle"
+        [(luxValue)]="allowedAttributes"
+        (luxValueChange)="updateTags()"
+        ><lux-form-hint>
+          Kommaseparierte Liste von Attributen (z.B. href,target)
+        </lux-form-hint></lux-input
+      >
+
+      <lux-toggle luxLabel="Zusätzlich erlauben" [(luxChecked)]="addAllowedTagsToggle"></lux-toggle>
+      <lux-input
+        luxLabel="Zusätzlich erlaubte Tags"
+        [luxDisabled]="!addAllowedTagsToggle"
+        [(luxValue)]="addAllowedTags"
+        (luxValueChange)="updateTags()"
+        ><lux-form-hint>
+          Kommaseparierte Liste von Tags (z.B. a,h1,p)
+        </lux-form-hint></lux-input
+      >
+      <lux-input
+        luxLabel="Zusätzlich erlaubte Attribute"
+        [luxDisabled]="!addAllowedTagsToggle"
+        [(luxValue)]="addAllowedAttributes"
+        (luxValueChange)="updateTags()"
+        ><lux-form-hint>
+          Kommaseparierte Liste von Attributen (z.B. href,target)
+        </lux-form-hint></lux-input
+      >
+    </div>
+  </example-base-advanced-options>
+</example-base-structure>
