@@ -105,6 +105,9 @@
     "zone.js": "0.10.3"
   },
   "optionalDependencies": {
-    "fsevents": "2.1.2"
+    "fsevents": "2.1.2",
+    "ng2-pdf-viewer": "6.1.1",
+    "dompurify": "2.0.10",
+    "marked": "1.0.0"
   }
 }
