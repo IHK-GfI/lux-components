@@ -1,0 +1,117 @@
+<example-base-structure
+  exampleTitle="Markdown"
+  exampleIconName="fab fa-markdown"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90markdown"
+>
+  <example-base-content [exampleCentered]="false">
+    <lux-markdown
+      [luxData]="markdownData"
+      [luxSanitizeConfig]="sanitizeConfig"
+      [luxFlex]="flex"
+      [luxStyle]="style"
+      [luxClass]="class"
+      luxName="markdown_data"
+    ></lux-markdown>
+  </example-base-content>
+  <example-base-simple-options>
+    <div class="example-highlight-config-option" fxLayout="column" style="min-height: 700px">
+      <lux-textarea luxLabel="Markdown-Daten" [(luxValue)]="markdownData" luxName="markdown_data">
+        <lux-form-hint>
+          Hier kann man beliebige Markdown-Daten einfügen und ausprobieren.
+        </lux-form-hint>
+      </lux-textarea>
+    </div>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-input luxLabel="luxFlex" luxName="markdown_luxFlex" [(luxValue)]="flex">
+           <lux-form-hint>
+          Werte aus dem Flexlayout
+        </lux-form-hint>
+      </lux-input>
+      <lux-input luxLabel="luxStyle" luxName="markdown_luxStyle" [(luxValue)]="style">
+        <lux-form-hint>
+          Beliebige Styles (z.B. color: red; background-color: blue)
+        </lux-form-hint>
+      </lux-input>
+      <lux-input luxLabel="luxClass" luxName="markdown_luxClass" [(luxValue)]="class">
+        <lux-form-hint>
+          Beliebige CSS-Classen (z.B. lux-mt-3)
+        </lux-form-hint>
+      </lux-input>
+    </div>
+
+    <div class="example-highlight-config-option" fxLayout="column">
+      <lux-toggle luxLabel="Folgendes verbieten" [(luxChecked)]="forbiddenTagsToggle"></lux-toggle>
+      <lux-input
+        luxLabel="Verbotene Tags"
+        luxName="markdown_forbiddenTags"
+        [luxDisabled]="!forbiddenTagsToggle"
+        [(luxValue)]="forbiddenTags"
+        (luxValueChange)="updateTags()"
+      >
+        <lux-form-hint>
+          Kommaseparierte Liste von Tags (z.B. a,h1,p)
+        </lux-form-hint>
+      </lux-input>
+      <lux-input
+        luxLabel="Verbotene Attriubte"
+        luxName="markdown_forbiddenAttributes"
+        [luxDisabled]="!forbiddenTagsToggle"
+        [(luxValue)]="forbiddenAttributes"
+        (luxValueChange)="updateTags()"
+      >
+        <lux-form-hint>
+          Kommaseparierte Liste von Attributen (z.B. href,target)
+        </lux-form-hint>
+      </lux-input>
+      <lux-toggle luxLabel="Nur folgendes erlauben" [(luxChecked)]="allowedTagsToggle"></lux-toggle>
+      <lux-input
+        luxLabel="Erlaubte Tags"
+        luxName="markdown_allowedTags"
+        [luxDisabled]="!allowedTagsToggle"
+        [(luxValue)]="allowedTags"
+        (luxValueChange)="updateTags()"
+      >
+        <lux-form-hint>
+          Kommaseparierte Liste von Tags (z.B. a,h1,p)
+        </lux-form-hint>
+      </lux-input>
+      <lux-input
+        luxLabel="Erlaubte Attribute"
+        luxName="markdown_allowedAttributes"
+        [luxDisabled]="!allowedTagsToggle"
+        [(luxValue)]="allowedAttributes"
+        (luxValueChange)="updateTags()"
+      >
+        <lux-form-hint>
+          Kommaseparierte Liste von Attributen (z.B. href,target)
+        </lux-form-hint>
+      </lux-input>
+
+      <lux-toggle luxLabel="Zusätzlich erlauben" [(luxChecked)]="addAllowedTagsToggle"></lux-toggle>
+      <lux-input
+        luxLabel="Zusätzlich erlaubte Tags"
+        luxName="markdown_addAllowedTags"
+        [luxDisabled]="!addAllowedTagsToggle"
+        [(luxValue)]="addAllowedTags"
+        (luxValueChange)="updateTags()"
+      >
+        <lux-form-hint>
+          Kommaseparierte Liste von Tags (z.B. a,h1,p)
+        </lux-form-hint>
+      </lux-input>
+      <lux-input
+        luxLabel="Zusätzlich erlaubte Attribute"
+        luxName="markdown_addAllowedAttributes"
+        [luxDisabled]="!addAllowedTagsToggle"
+        [(luxValue)]="addAllowedAttributes"
+        (luxValueChange)="updateTags()"
+      >
+        <lux-form-hint>
+          Kommaseparierte Liste von Attributen (z.B. href,target)
+        </lux-form-hint>
+      </lux-input>
+    </div>
+  </example-base-advanced-options>
+</example-base-structure>

@@ -51,6 +51,7 @@ import { FileListExampleComponent } from './file-example/file-list-example/file-
 import { RippleExampleComponent } from './ripple-example/ripple-example.component';
 import { BadgeNotificationExampleComponent } from './badge-notification-example/badge-notification-example.component';
 import { HtmlExampleComponent } from './html-example/html-example.component';
+import { MarkdownExampleComponent } from './markdown-example/markdown-example.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -104,7 +105,8 @@ const routes: Routes = [
       { path: 'file-list', component: FileListExampleComponent },
       { path: 'badge-notification', component: BadgeNotificationExampleComponent },
       { path: 'ripple', component: RippleExampleComponent },
-      { path: 'html', component: HtmlExampleComponent }
+      { path: 'html', component: HtmlExampleComponent },
+      { path: 'markdown', component: MarkdownExampleComponent }
     ]
   }
 ];

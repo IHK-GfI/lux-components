@@ -370,3 +370,15 @@ export * from './src/app/modules/lux-html/lux-html/lux-html.component';
 export * from './src/app/modules/lux-html/lux-sanitize/lux-sanitize.pipe';
 // Classes
 export * from './src/app/modules/lux-html/lux-sanitize/lux-sanitize-config';
+
+/**
+ *  _    _   ___  __     __  __    _    ____  _  ______   _____        ___   _
+ * | |  | | | \ \/ /    |  \/  |  / \  |  _ \| |/ /  _ \ / _ \ \      / / \ | |
+ * | |  | | | |\  /_____| |\/| | / _ \ | |_) | ' /| | | | | | \ \ /\ / /|  \| |
+ * | |__| |_| |/  \_____| |  | |/ ___ \|  _ <| . \| |_| | |_| |\ V  V / | |\  |
+ * |_____\___//_/\_\    |_|  |_/_/   \_\_| \_\_|\_\____/ \___/  \_/\_/  |_| \_|
+ *
+ */
+export * from './src/app/modules/lux-markdown/lux-markdown.module';
+// Components
+export * from './src/app/modules/lux-markdown/lux-markdown/lux-markdown.component';

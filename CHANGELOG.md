@@ -1,6 +1,7 @@
 # Version 1.9.1
 ## New
-- **lux-html**: Component zur Anzeige von MD und HTML-Fragmenten hinzugefügt. [Issue 6](https://github.com/IHK-GfI/lux-components/issues/6)
+- **lux-html**: Component zur Anzeige HTML-Fragmenten hinzugefügt. [Issue 6](https://github.com/IHK-GfI/lux-components/issues/6)
+- **lux-markdown**: Component zur Anzeige von Markdown-Fragmenten hinzugefügt. [Issue 6](https://github.com/IHK-GfI/lux-components/issues/6)
  
 ## Features
 - **lux-table**: Die LuxTable stellt jetzt den Filter als LuxInputComponent zur Verfügung. [Issue 8](https://github.com/IHK-GfI/lux-components/issues/8)

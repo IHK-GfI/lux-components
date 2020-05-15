@@ -82,6 +82,8 @@ import { BadgeNotificationExampleComponent } from './badge-notification-example/
 import { RippleExampleComponent } from './ripple-example/ripple-example.component';
 import { HtmlExampleComponent } from './html-example/html-example.component';
 import { LuxHtmlModule } from '../../modules/lux-html/lux-html.module';
+import { MarkdownExampleComponent } from './markdown-example/markdown-example.component';
+import { LuxMarkdownModule } from '../../modules/lux-markdown/lux-markdown.module';
 
 @NgModule({
   imports: [
@@ -103,6 +105,7 @@ import { LuxHtmlModule } from '../../modules/lux-html/lux-html.module';
     LuxLookupModule,
     LuxCommonModule,
     LuxHtmlModule,
+    LuxMarkdownModule,
     LuxFilePreviewModule,
     MatFormFieldModule,
     ExampleBaseModule,
@@ -166,7 +169,8 @@ import { LuxHtmlModule } from '../../modules/lux-html/lux-html.module';
     DialogComponentExampleComponent,
     BadgeNotificationExampleComponent,
     RippleExampleComponent,
-    HtmlExampleComponent
+    HtmlExampleComponent,
+    MarkdownExampleComponent
   ],
   providers: [HttpClient, LuxLookupHandlerService, MasterDetailExampleDataService, LuxDialogService],
   entryComponents: [DialogComponentExampleComponent]
