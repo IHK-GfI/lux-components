@@ -4,7 +4,14 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90html"
 >
   <example-base-content [exampleCentered]="false">
-    <lux-html [luxData]="htmlData" [luxSanitizeConfig]="sanitizeConfig"></lux-html>
+    <lux-html
+      [luxData]="htmlData"
+      [luxSanitizeConfig]="sanitizeConfig"
+      [luxFlex]="flex"
+      [luxStyle]="style"
+      [luxClass]="class"
+      luxName="html_data"
+    ></lux-html>
   </example-base-content>
   <example-base-simple-options>
     <div class="example-highlight-config-option" fxLayout="column">
@@ -17,9 +24,28 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <div class="example-highlight-config-option" fxLayout="column">
+      <lux-input luxLabel="luxFlex" luxName="html_luxFlex" [(luxValue)]="flex">
+        <lux-form-hint>
+          Werte aus dem Flexlayout
+        </lux-form-hint>
+      </lux-input>
+      <lux-input luxLabel="luxStyle" luxName="html_luxStyle" [(luxValue)]="style">
+        <lux-form-hint>
+          Beliebige Styles (z.B. color: red; background-color: blue)
+        </lux-form-hint>
+      </lux-input>
+      <lux-input luxLabel="luxClass" luxName="html_luxClass" [(luxValue)]="class">
+        <lux-form-hint>
+          Beliebige CSS-Classen (z.B. lux-mt-3)
+        </lux-form-hint>
+      </lux-input>
+    </div>
+
+    <div class="example-highlight-config-option" fxLayout="column">
       <lux-toggle luxLabel="Folgendes verbieten" [(luxChecked)]="forbiddenTagsToggle"></lux-toggle>
       <lux-input
         luxLabel="Verbotene Tags"
+        luxName="htmls_forbiddenTags"
         [luxDisabled]="!forbiddenTagsToggle"
         [(luxValue)]="forbiddenTags"
         (luxValueChange)="updateTags()"
@@ -29,6 +55,7 @@
       >
       <lux-input
         luxLabel="Verbotene Attriubte"
+        luxName="htmls_forbiddenAttributes"
         [luxDisabled]="!forbiddenTagsToggle"
         [(luxValue)]="forbiddenAttributes"
         (luxValueChange)="updateTags()"
@@ -39,6 +66,7 @@
       <lux-toggle luxLabel="Nur folgendes erlauben" [(luxChecked)]="allowedTagsToggle"></lux-toggle>
       <lux-input
         luxLabel="Erlaubte Tags"
+        luxName="htmls_allowedTags"
         [luxDisabled]="!allowedTagsToggle"
         [(luxValue)]="allowedTags"
         (luxValueChange)="updateTags()"
@@ -48,6 +76,7 @@
       >
       <lux-input
         luxLabel="Erlaubte Attribute"
+        luxName="htmls_allowedAttributes"
         [luxDisabled]="!allowedTagsToggle"
         [(luxValue)]="allowedAttributes"
         (luxValueChange)="updateTags()"
@@ -59,6 +88,7 @@
       <lux-toggle luxLabel="Zusätzlich erlauben" [(luxChecked)]="addAllowedTagsToggle"></lux-toggle>
       <lux-input
         luxLabel="Zusätzlich erlaubte Tags"
+        luxName="htmls_addAllowedTags"
         [luxDisabled]="!addAllowedTagsToggle"
         [(luxValue)]="addAllowedTags"
         (luxValueChange)="updateTags()"
@@ -68,6 +98,7 @@
       >
       <lux-input
         luxLabel="Zusätzlich erlaubte Attribute"
+        luxName="htmls_addAllowedAttributes"
         [luxDisabled]="!addAllowedTagsToggle"
         [(luxValue)]="addAllowedAttributes"
         (luxValueChange)="updateTags()"

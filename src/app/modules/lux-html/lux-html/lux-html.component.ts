@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { LuxSanitizeConfig } from '../lux-sanitize/lux-sanitize-config';
 
 @Component({
@@ -12,6 +12,8 @@ export class LuxHtmlComponent {
   @Input() luxFlex = 'flex';
   @Input() luxStyle = '';
   @Input() luxClass = '';
+
+  @ViewChild('content', { read: ElementRef }) contentRef: ElementRef;
 
   constructor() {}
 }

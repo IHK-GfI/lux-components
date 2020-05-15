@@ -18,6 +18,10 @@ export class HtmlExampleComponent implements OnInit {
 
 <p>Schau doch mal bei der <a href="https://www.ihk-gfi.de" target="_blank">IHK-Gfi</a> vorbei. </p>`;
 
+  flex = 'flex';
+  style = '';
+  class = '';
+
   sanitizeConfig: LuxSanitizeConfig;
 
   _forbiddenTagsToggle = false;
