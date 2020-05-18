@@ -1,4 +1,16 @@
+# Version 1.9.1
+## New
+- **lux-html**: Component zur Anzeige HTML-Fragmenten hinzugefügt. [Issue 6](https://github.com/IHK-GfI/lux-components/issues/6)
+- **lux-markdown**: Component zur Anzeige von Markdown-Fragmenten hinzugefügt. [Issue 6](https://github.com/IHK-GfI/lux-components/issues/6)
+ 
+## Features
+- **lux-table**: Die LuxTable stellt jetzt den Filter als LuxInputComponent zur Verfügung. [Issue 8](https://github.com/IHK-GfI/lux-components/issues/8)
+- **lux-table**: Der Defaultwert für das Autocomplete-Attribut des Tabellenfilters ist jetzt "off". [Issue 8](https://github.com/IHK-GfI/lux-components/issues/8)
+- **lux-input**: Das Attribut "luxName" hinzugefügt. [Issue 8](https://github.com/IHK-GfI/lux-components/issues/8)
+- **lux-textarea**: Das Attribut "luxName" hinzugefügt. [Issue 8](https://github.com/IHK-GfI/lux-components/issues/8)
+
 # Version 1.9.0
+## Features
 - **allgemein**: Umstellung auf Angular 9
 
 # Version 1.8.7

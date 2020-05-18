@@ -105,6 +105,7 @@
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
       class="example-highlight-config-option"
+      luxName="autocomplete_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
@@ -112,6 +113,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="autocomplete_luxHint"
       luxLabel="luxHint"
       luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
       [(luxValue)]="hint"
@@ -119,6 +121,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="autocomplete_luxPlaceholder"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
       [(luxValue)]="placeholder"
@@ -195,6 +198,7 @@
     </lux-toggle>
     <lux-input
       class="example-highlight-config-option"
+      luxName="autocomplete_luxDelay"
       luxLabel="luxDelay"
       luxHint="Über diese Property kann die zeitliche Verzögerung für die Filterung eingestellt werden."
       [(luxValue)]="delay"
@@ -203,6 +207,7 @@
     </lux-input>
     <div fxLayout="column" class="example-highlight-config-option">
       <lux-input
+        luxName="autocomplete_luxErrorMessageNotAnOption"
         luxLabel="luxErrorMessageNotAnOption"
         luxHint="Die Property kann die Fehlermeldung für invalide Optionen einstellen."
         [(luxValue)]="errorMessageNotAnOption"
@@ -220,6 +225,7 @@
       >
       </lux-toggle>
       <lux-input
+        luxName="autocomplete_luxErrorMessage"
         luxLabel="luxErrorMessage"
         luxHint="Über diese Property lässt sich eine feste Fehlermeldung
                  (unabhängig vom speziellen Validierungsfehler) einstellen."

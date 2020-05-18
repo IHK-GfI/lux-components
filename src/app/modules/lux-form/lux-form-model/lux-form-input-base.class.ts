@@ -17,6 +17,7 @@ export abstract class LuxFormInputBaseClass extends LuxFormComponentBase {
   @Input() luxPlaceholder: string = '';
   @Input() luxReadonly: boolean;
   @Input() luxTagId: string;
+  @Input() luxName: string;
   @Input() luxAutocomplete: string = 'on';
 
   get luxValue(): string {

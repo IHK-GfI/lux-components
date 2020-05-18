@@ -27,6 +27,7 @@ import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-obs
 import { LuxTableColumnComponent } from './lux-table-subcomponents/lux-table-column.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { LuxInputComponent } from '../../lux-form/lux-input/lux-input.component';
 
 @Component({
   selector: 'lux-table',
@@ -85,6 +86,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild('paginator', { read: ElementRef, static: true }) paginatorElement: ElementRef;
   @ViewChild('filter', { read: ElementRef, static: true }) filterElement: ElementRef;
+  @ViewChild('filter', { static: true }) filterComponent: LuxInputComponent;
   @ViewChild('tableContainer', { read: ElementRef, static: true }) tableContainerElement: ElementRef;
   @ContentChildren(LuxTableColumnComponent) tableColumns: QueryList<LuxTableColumnComponent>;
 

@@ -84,6 +84,7 @@
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
       class="example-highlight-config-option"
+      luxName="radio_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
@@ -91,6 +92,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="radio_luxHint"
       luxLabel="luxHint"
       luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
       [(luxValue)]="hint"
@@ -195,13 +197,13 @@
       </lux-form-hint>
     </lux-toggle>
     <div class="example-highlight-config-option" fxLayout="column">
-      <lux-input luxLabel="luxGroupName - normales Beispiel" [(luxValue)]="groupNameNormal" fxFlex="auto">
+      <lux-input luxName="radio_luxGroupName" luxLabel="luxGroupName - normales Beispiel" [(luxValue)]="groupNameNormal" fxFlex="auto">
         <lux-form-hint>
           Diese Property definiert die Radio-Group, zu der die einzelnen Radio-Buttons gehören sollen.<br />
           Wenn derselbe Name für 2 Radio-Components genutzt wird, agieren diese wie eine gemeinsame Group.
         </lux-form-hint>
       </lux-input>
-      <lux-input luxLabel="luxGroupName - ReactiveForm Beispiel" [(luxValue)]="groupNameReactive" fxFlex="auto">
+      <lux-input luxName="radio_luxGroupName" luxLabel="luxGroupName - ReactiveForm Beispiel" [(luxValue)]="groupNameReactive" fxFlex="auto">
         <lux-form-hint>
           Diese Property definiert die Radio-Group, zu der die einzelnen Radio-Buttons gehören sollen.<br />
           Wenn derselbe Name für 2 Radio-Components genutzt wird, agieren diese wie eine gemeinsame Group.
@@ -216,6 +218,7 @@
       >
       </lux-toggle>
       <lux-input
+        luxName="radio_luxErrorMessage"
         luxLabel="luxErrorMessage"
         luxHint="Über diese Property lässt sich eine feste Fehlermeldung
                  (unabhängig vom speziellen Validierungsfehler) einstellen."

@@ -117,6 +117,7 @@
           <div fxLayout="column">
             <lux-input
               class="example-highlight-config-option"
+              luxName="lookup_autocomplete_luxTableNo"
               luxLabel="luxTableNo"
               [(luxValue)]="tableNo"
               luxType="number"
@@ -125,6 +126,7 @@
             <div class="example-highlight-config-option" fxLayout="column">
               <h3>Parameter</h3>
               <lux-input
+                luxName="lookup_autocomplete_knr"
                 luxLabel="Knr"
                 [(luxValue)]="parameters.knr"
                 luxType="number"
@@ -156,6 +158,7 @@
     </div>
     <lux-input
       class="example-highlight-config-option"
+      luxName="lookup_autocomplete_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
@@ -163,6 +166,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="lookup_autocomplete_luxHint"
       luxLabel="luxHint"
       luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
       [(luxValue)]="hint"
@@ -170,6 +174,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="lookup_autocomplete_luxPlaceholder"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
       [(luxValue)]="placeholder"
@@ -222,6 +227,7 @@
   <example-base-advanced-options>
     <lux-input
       class="example-highlight-config-option"
+      luxName="lookup_autocomplete_luxDebounceTime"
       luxLabel="luxDebounceTime"
       luxHint="Diese Property setzt die zeitliche Verzögerung, bevor die Daten nach einem neuen Suchbegriff gefiltert werden."
       [(luxValue)]="debounceTime"
@@ -229,6 +235,7 @@
     </lux-input>
     <lux-input
       class="example-highlight-config-option"
+      luxName="lookup_autocomplete_luxMaximumDisplay"
       luxLabel="luxMaximumDisplayed"
       luxHint="Hier kann eingestellt werden, wie viele Suchergebnisse im ausgeklappten Menu dargestellt werden."
       [(luxValue)]="maximumDisplayed"
@@ -244,6 +251,7 @@
       <pre class="lux-label" *ngIf="useRenderFn"><b>renderFn</b> = {{ renderFnString }}</pre>
       <lux-input
         [(luxValue)]="renderProp"
+        luxName="lookup_autocomplete_luxRenderProp"
         luxLabel="luxRenderProp"
         luxHint="Hier kann die Property festgelegt werden, welche zur Darstellung der einzelnen Einträge genutzt wird."
         *ngIf="!useRenderFn"
@@ -293,6 +301,7 @@
       </lux-toggle>
       <pre class="lux-label" *ngIf="!useErrorMessage"><b>luxErrorCallback</b> = {{ errorCallbackString }}</pre>
       <lux-input
+        luxName="lookup_autocomplete_luxErrorMessage"
         luxLabel="luxErrorMessage"
         luxHint="Über diese Property lässt sich eine feste Fehlermeldung
                  (unabhängig vom speziellen Validierungsfehler) einstellen."

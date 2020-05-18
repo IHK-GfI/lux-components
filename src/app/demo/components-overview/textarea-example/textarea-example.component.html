@@ -7,6 +7,7 @@
     <div fxLayout="column">
       <h3>Beispiel ohne Reactive-Form</h3>
       <lux-textarea
+        luxName="textarea_withoutForm"
         [(luxDisabled)]="disabled"
         [luxRequired]="required"
         [luxReadonly]="readonly"
@@ -35,6 +36,7 @@
     <div fxLayout="column" [formGroup]="form">
       <h3>Beispiel in Reactive-Form</h3>
       <lux-textarea
+        luxName="textarea_withForm"
         [(luxDisabled)]="disabled"
         [luxReadonly]="readonly"
         [luxAutocomplete]="autocomplete"

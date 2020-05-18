@@ -4,10 +4,22 @@
       <div fxLayout="column" fxLayout.gt-md="row" class="lux-flex-layout-gap-10">
         <div formGroupName="customerDetails" fxLayout="column" fxFlex="1 1 50%">
           <h2>Kundeninformationen</h2>
-          <lux-input luxLabel="Name" luxControlBinding="name" fxFlex="auto"></lux-input>
+          <lux-input luxName="name" luxLabel="Name" luxControlBinding="name" fxFlex="auto"></lux-input>
           <div fxLayout="row" fxLayoutAlign="start stretch" class="lux-flex-layout-gap-10">
-            <lux-input luxLabel="PLZ" luxType="number" luxControlBinding="zip" fxFlex="25"></lux-input>
-            <lux-input luxLabel="Stadt" luxType="text" luxControlBinding="town" fxFlex="75"></lux-input>
+            <lux-input
+              luxName="postal-code"
+              luxLabel="PLZ"
+              luxType="number"
+              luxControlBinding="zip"
+              fxFlex="25"
+            ></lux-input>
+            <lux-input
+              luxName="form-dual-Stadt"
+              luxLabel="Stadt"
+              luxType="text"
+              luxControlBinding="town"
+              fxFlex="75"
+            ></lux-input>
           </div>
           <lux-autocomplete
             [luxOptions]="countries"
@@ -23,8 +35,20 @@
           <div formArrayName="streets" fxLayout="column">
             <div *ngFor="let street of streetsFormArray.controls; let i = index" [formGroupName]="i">
               <div fxLayout="row" fxLayoutAlign="start stretch" class="lux-flex-layout-gap-10">
-                <lux-input luxLabel="Straße" luxType="text" luxControlBinding="streetName" fxFlex="auto"></lux-input>
-                <lux-input luxLabel="Nr" luxType="number" luxControlBinding="nr" fxFlex="0 0 15"></lux-input>
+                <lux-input
+                  luxName="street-address"
+                  luxLabel="Straße"
+                  luxType="text"
+                  luxControlBinding="streetName"
+                  fxFlex="auto"
+                ></lux-input>
+                <lux-input
+                  luxName="form-dual-Nr"
+                  luxLabel="Nr"
+                  luxType="number"
+                  luxControlBinding="nr"
+                  fxFlex="0 0 15"
+                ></lux-input>
                 <lux-button
                   luxIconName="fas fa-trash"
                   (luxClicked)="removeStreet(i)"
@@ -53,11 +77,28 @@
         </div>
         <div formGroupName="orderDetails" fxLayout="column" fxFlex="1 1 50%">
           <h2>Bestellinformationen</h2>
-          <lux-input luxLabel="Bestellnr." luxControlBinding="orderNo" fxFlex="nogrow"></lux-input>
-          <lux-input luxLabel="Bestellwert" luxType="text" luxControlBinding="value" fxFlex="nogrow"></lux-input>
+          <lux-input
+            luxName="form-dual-Bestellnr"
+            luxLabel="Bestellnr."
+            luxControlBinding="orderNo"
+            fxFlex="nogrow"
+          ></lux-input>
+          <lux-input
+            luxName="form-dual-Bestellwert"
+            luxLabel="Bestellwert"
+            luxType="text"
+            luxControlBinding="value"
+            fxFlex="nogrow"
+          ></lux-input>
           <div fxLayout="row" fxLayoutAlign="start stretch" class="lux-flex-layout-gap-10">
             <lux-datepicker luxLabel="Gültig ab" luxControlBinding="validDate" fxFlex="75"></lux-datepicker>
-            <lux-input luxLabel="Uhrzeit" luxType="time" luxControlBinding="validTime" fxFlex="25"></lux-input>
+            <lux-input
+              luxLabel="Uhrzeit"
+              luxType="time"
+              luxControlBinding="validTime"
+              fxFlex="25"
+              luxAutocomplete="off"
+            ></lux-input>
           </div>
         </div>
       </div>
