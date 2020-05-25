@@ -25,13 +25,20 @@
         ></lux-button>
       </ng-template>
 
-      <span class="lux-nowrap lux-header-title" fxFlex="auto">
+      <span fxLayout="row" fxLayoutAlign="center center" class="lux-nowrap lux-header-title" fxFlex="auto">
         <lux-icon
           [luxIconName]="luxIconName"
           class="lux-pr-3"
           *ngIf="luxIconName && !sideNav && !mobileHelperService.isMobile()"
-        ></lux-icon
-        >{{ mobileHelperService.isMobile() ? luxAppTitleShort : luxAppTitle }}
+        ></lux-icon>
+        <lux-image
+          [luxImageSrc]="luxImageSrc"
+          [luxImageHeight]="luxImageHeight"
+          [luxImageWidth]="isIE && luxImageSrc && luxImageSrc.endsWith('.svg') ? '100%' : 'auto'"
+          class="lux-pr-3"
+          *ngIf="luxImageSrc && !sideNav && !mobileHelperService.isMobile()"
+        ></lux-image
+        ><span fxFlex="auto">{{ mobileHelperService.isMobile() ? luxAppTitleShort : luxAppTitle }}</span>
       </span>
     </div>
   </div>
