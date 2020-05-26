@@ -5,6 +5,7 @@ import { LuxMasterDetailMobileHelperService } from '../lux-master-detail/lux-mas
 import { LuxSideNavComponent } from './lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component';
 import { LuxAppHeaderRightNavComponent } from './lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
 import { LuxAppHeaderActionNavComponent } from './lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav.component';
+import { LuxUtil } from '../../lux-util/lux-util';
 
 @Component({
   selector: 'lux-app-header',
@@ -16,12 +17,15 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges {
   @Input() luxAppTitle: string;
   @Input() luxAppTitleShort: string;
   @Input() luxIconName: string;
+  @Input() luxImageSrc: string;
+  @Input() luxImageHeight = '55px';
 
   isMasterOpen: boolean;
   isMasterDetailAvailable: boolean;
   masterHasValue: boolean;
 
   userNameShort: string;
+  isIE = LuxUtil.isIE();
 
   @ViewChild('customTrigger', { read: ElementRef }) customTrigger: ElementRef;
 
