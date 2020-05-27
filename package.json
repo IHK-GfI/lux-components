@@ -1,6 +1,6 @@
 {
   "name": "@ihk-gfi/lux-components",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "license": "IHK-GfI Open-Source-Lizenz",
   "repository": {
     "type": "git",
@@ -30,7 +30,7 @@
   },
   "private": false,
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.901.0",
+    "@angular-devkit/build-angular": "0.901.7",
     "@angular/animations": "9.1.0",
     "@angular/cdk": "9.1.0",
     "@angular/cli": "9.1.0",
