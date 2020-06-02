@@ -1,4 +1,8 @@
-<div [class]="animDurationCSS" [ngSwitch]="luxType" [ngClass]="['lux-progress-' + luxSize]" style="padding: 4px">
+<div
+  [class]="animDurationCSS"
+  [ngSwitch]="luxType"
+  [ngClass]="['lux-progress-' + luxSize, luxType === 'Spinner' ? 'spinner-padding' : '']"
+>
   <ng-container *ngSwitchCase="'Progressbar'">
     <mat-progress-bar
       luxTagIdHandler
