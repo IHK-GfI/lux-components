@@ -282,16 +282,6 @@ export class LuxTestHelper {
   }
 
   /**
-   * Entfernt nicht-ASCII-Chars aus dem String (Beim IE wichtig, dieser fügt gerne versteckte Steuerzeichen
-   * in Input-Feldern an die Strings).
-   * @param dateString
-   */
-  public static stringWithoutASCIIChars(dateString: string): string {
-    const exp = new RegExp('[^A-Za-z 0-9 \\.,\\?""!@#\\$%\\^&\\*\\(\\)-_=\\+;:<>\\/\\\\\\|\\}\\{\\[\\]`~]*', 'g');
-    return dateString.replace(exp, '');
-  }
-
-  /**
    * Konfiguriert das TestModul für eine Testsuite, kann dabei Provider und Komponenten (Deklarationen) entgegennehmen.
    * @param providers
    * @param declarations

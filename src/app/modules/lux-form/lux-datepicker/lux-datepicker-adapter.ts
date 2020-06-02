@@ -34,6 +34,16 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
 
   parse(value: string): Date | null {
     if (value) {
+      if (LuxUtil.isIE()) {
+        // IE-Problem: Das Datum (als String) im IE enthält manchmal unsichtbare Steuerzeichen, die verhindern,
+        // dass das Datum korrekt von den RegEx-Ausdrücken erkannt wird. Aus diesem Grund werden hier diese
+        // unsichtbaren Steuerzeichen entfernt.
+        const ieValue = LuxUtil.stringWithoutASCIIChars(value);
+        if (value !== ieValue) {
+          value = ieValue;
+        }
+      }
+
       // Prüfen, ob der Wert ein ISO-String ist
       if (LuxUtil.ISO_8601_FULL.test(value)) {
         return new Date(value);
