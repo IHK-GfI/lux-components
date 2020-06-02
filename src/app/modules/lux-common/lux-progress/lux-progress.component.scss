@@ -37,6 +37,10 @@ $animationDuration: 8s;
   }
 }
 
+.spinner-padding {
+  padding: 6px;
+}
+
 mat-progress-spinner {
   background: transparent !important;
 }
