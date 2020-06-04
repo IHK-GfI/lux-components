@@ -9,9 +9,9 @@ import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { LuxUtil } from '../../lux-util/lux-util';
 
 describe('LuxDatepickerComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService],
@@ -55,7 +55,7 @@ describe('LuxDatepickerComponent', () => {
 
       // Nachbedingungen testen
       const datepickerEl = fixture.debugElement.query(By.css('input'));
-      expect(LuxTestHelper.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
+      expect(LuxUtil.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
         '01.01.2019',
         'Nachbedingung 2'
       );
@@ -109,7 +109,7 @@ describe('LuxDatepickerComponent', () => {
       utcNullifiedDate.setUTCFullYear(2015, 5, 10);
       utcNullifiedDate.setUTCHours(0);
       const datepickerEl = fixture.debugElement.query(By.css('input'));
-      expect(LuxTestHelper.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
+      expect(LuxUtil.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
         '10.06.2015',
         'Nachbedingung 1'
       );
@@ -133,7 +133,7 @@ describe('LuxDatepickerComponent', () => {
       utcNullifiedDate.setUTCFullYear(2015, 5, 10);
       utcNullifiedDate.setUTCHours(0);
       let datepickerEl = fixture.debugElement.query(By.css('input'));
-      expect(LuxTestHelper.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
+      expect(LuxUtil.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
         '10.06.2015',
         'Nachbedingung 1'
       );
@@ -146,7 +146,7 @@ describe('LuxDatepickerComponent', () => {
       // Nachbedingungen testen
       utcNullifiedDate.setUTCMonth(6);
       datepickerEl = fixture.debugElement.query(By.css('input'));
-      expect(LuxTestHelper.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
+      expect(LuxUtil.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
         '10.07.2015',
         'Nachbedingung 3'
       );
@@ -244,9 +244,9 @@ describe('LuxDatepickerComponent', () => {
       flush();
 
       expect(datepickerComponent['dateAdapter']['locale']).toEqual('de-DE');
-      expect(
-        LuxTestHelper.stringWithoutASCIIChars(fixture.debugElement.query(By.css('input')).nativeElement.value)
-      ).toEqual('05.03.2019');
+      expect(LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('input')).nativeElement.value)).toEqual(
+        '05.03.2019'
+      );
     }));
 
     it('LuxValue Simple', fakeAsync(() => {
@@ -260,7 +260,7 @@ describe('LuxDatepickerComponent', () => {
 
       // Nachbedingungen testen
       const datepickerEl = fixture.debugElement.query(By.css('input'));
-      expect(LuxTestHelper.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
+      expect(LuxUtil.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
         '10.07.2015',
         'Nachbedingung 1'
       );
@@ -280,7 +280,7 @@ describe('LuxDatepickerComponent', () => {
 
       // Nachbedingungen testen
       const datepickerEl = fixture.debugElement.query(By.css('input'));
-      expect(LuxTestHelper.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
+      expect(LuxUtil.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
         '10.06.2015',
         'Nachbedingung 1'
       );
@@ -299,7 +299,7 @@ describe('LuxDatepickerComponent', () => {
 
       // Nachbedingungen testen
       const datepickerEl = fixture.debugElement.query(By.css('input'));
-      expect(LuxTestHelper.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
+      expect(LuxUtil.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
         '06/10/2015',
         'Nachbedingung 1'
       );
@@ -318,7 +318,7 @@ describe('LuxDatepickerComponent', () => {
 
       // Nachbedingungen testen
       const datepickerEl = fixture.debugElement.query(By.css('input'));
-      expect(LuxTestHelper.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
+      expect(LuxUtil.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
         '10/06/2015',
         'Nachbedingung 1'
       );

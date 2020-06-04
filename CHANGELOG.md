@@ -1,5 +1,8 @@
 # Version 1.9.3
+## Bug Fixes
+- **lux-datepicker**: Datumänderung per Tasteneingabe im IE nicht möglich. [Issue 13](https://github.com/IHK-GfI/lux-components/issues/13)
 - **lux-progress**: Überflüssiges Padding entfernt. [Issue 14](https://github.com/IHK-GfI/lux-components/issues/14)
+
 
 # Version 1.9.2
 ## New
