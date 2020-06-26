@@ -63,6 +63,11 @@ import { LuxStepperVerticalComponent } from './lux-stepper/lux-stepper-subcompon
 import { LuxAppHeaderActionNavComponent } from './lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav.component';
 import { LuxAppHeaderActionNavItemComponent } from './lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item.component';
 import { RouterModule } from '@angular/router';
+import { LuxLayoutComponent } from './lux-layout/lux-layout.component';
+import { LuxLayoutRowItemDirective } from './lux-layout/base/lux-layout-row-item.directive';
+import { LuxLayoutCardRowComponent } from './lux-layout/lux-layout-card-row/lux-layout-card-row.component';
+import { LuxLayoutFormRowComponent } from './lux-layout/lux-layout-form-row/lux-layout-form-row.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   imports: [
@@ -82,7 +87,8 @@ import { RouterModule } from '@angular/router';
     LuxDirectivesModule,
     LuxPipesModule,
     LuxComponentsConfigModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatGridListModule
   ],
   declarations: [
     LuxAppHeaderComponent,
@@ -128,7 +134,11 @@ import { RouterModule } from '@angular/router';
     LuxStepperNavButtonsComponent,
     LuxStepperVerticalComponent,
     LuxAppHeaderActionNavComponent,
-    LuxAppHeaderActionNavItemComponent
+    LuxAppHeaderActionNavItemComponent,
+    LuxLayoutRowItemDirective,
+    LuxLayoutComponent,
+    LuxLayoutCardRowComponent,
+    LuxLayoutFormRowComponent
   ],
   exports: [
     LuxAppHeaderComponent,
@@ -174,7 +184,11 @@ import { RouterModule } from '@angular/router';
     LuxStepperNavButtonsComponent,
     LuxStepperVerticalComponent,
     LuxAppHeaderActionNavComponent,
-    LuxAppHeaderActionNavItemComponent
+    LuxAppHeaderActionNavItemComponent,
+    LuxLayoutRowItemDirective,
+    LuxLayoutComponent,
+    LuxLayoutCardRowComponent,
+    LuxLayoutFormRowComponent
   ],
   providers: [LuxMediaQueryObserverService],
   entryComponents: [LuxIconComponent, LuxDetailWrapperComponent]

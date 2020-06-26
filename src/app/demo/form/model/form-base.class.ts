@@ -7,6 +7,8 @@ import { HostListener, Directive } from '@angular/core';
 export abstract class FormBase implements IUnsavedDataCheck {
   myGroup: FormGroup;
 
+  protected constructor(protected snackbar: LuxSnackbarService) {}
+
   @HostListener('window:beforeunload', ['$event'])
   handleBeforeUnload($event: any) {
     // hier muss irgendwie geprüft werden, ob es ungespeicherte Daten gibt
@@ -17,17 +19,7 @@ export abstract class FormBase implements IUnsavedDataCheck {
     }
   }
 
-  protected constructor(protected snackbar: LuxSnackbarService) {}
-
   hasUnsavedData(): boolean {
     return this.myGroup.dirty;
-  }
-
-  handleSaveClicked() {
-    this.myGroup.markAsPristine();
-
-    this.snackbar.open(2000, {
-      text: 'Daten gespeichert!'
-    });
   }
 }

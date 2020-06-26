@@ -1,95 +1,114 @@
-<lux-card luxTitle="Beispiellayout für ein dreispaltiges Formular" luxTagId="form3row">
-  <lux-card-content>
-    <form [formGroup]="myGroup" #myForm>
-      <div fxLayout="row wrap" class="lux-flex-layout-gap-10">
-        <div formGroupName="customer" fxLayout="column" fxFlex="1 0 calc(33% - 10px)">
-          <h2>Kunde</h2>
-          <lux-input luxName="first-name" luxLabel="Vorname" luxControlBinding="name" fxFlex="nogrow"></lux-input>
-          <lux-input luxName="given-name" luxLabel="Nachname" luxControlBinding="surname" fxFlex="nogrow"></lux-input>
-          <lux-radio
-            [luxOrientationVertical]="false"
-            [luxOptions]="genders"
-            luxControlBinding="gender"
-            luxLabel="Geschlecht"
-            fxFlex="nogrow"
-          >
-            <ng-template let-option>
-              {{ option.name }}
-            </ng-template>
-          </lux-radio>
-        </div>
-        <div formGroupName="address" fxLayout="column" fxFlex="1 1 auto">
-          <h2>Adresse</h2>
-          <div fxLayout="row" fxLayoutAlign="start stretch" class="lux-flex-layout-gap-10">
-            <lux-input
-              luxName="postal-code"
-              luxLabel="PLZ"
-              luxType="number"
-              luxControlBinding="zip"
-              fxFlex="0 0 50px"
-            ></lux-input>
-            <lux-input
-              luxName="form-three_Stadt"
-              luxLabel="Stadt"
-              luxType="text"
-              luxControlBinding="town"
-              fxFlex="1 1 auto"
-            ></lux-input>
-          </div>
-          <lux-input
-            luxName="street-address"
-            luxLabel="Straße"
-            luxType="text"
-            luxControlBinding="street"
-            fxFlex="nogrow"
-          ></lux-input>
-          <lux-autocomplete
-            [luxOptions]="countries"
-            luxOptionLabelProp="name"
-            luxLabel="Land"
-            [luxLookupDelay]="100"
-            luxHint="Wählen Sie ein Land aus"
-            [luxSelectAllOnClick]="false"
-            luxControlBinding="country"
-            fxFlex="nogrow"
-          >
-          </lux-autocomplete>
-        </div>
-        <div formGroupName="feedback" fxLayout="column" fxFlex="1 0 auto">
-          <h2>Feedback</h2>
-          <lux-input
-            luxName="form-three_Bewertung"
-            luxLabel="Bewertung"
-            luxControlBinding="rating"
-            luxType="text"
-            fxFlex="nogrow"
-          ></lux-input>
-          <lux-checkbox luxLabel="Anonymisieren" luxControlBinding="anonymous" fxFlex="nogrow"></lux-checkbox>
-        </div>
-      </div>
+<lux-layout>
+  <form [formGroup]="myGroup">
+    <lux-layout-card-row luxTitle="3 Karten pro Zeile">
+      <lux-card luxTitle="Kunde" *luxLayoutRowItem>
+        <lux-card-content>
+          <lux-layout formGroupName="customer">
+            <lux-layout-form-row>
+              <lux-input luxName="first-name" luxLabel="Vorname" luxControlBinding="name" *luxLayoutRowItem></lux-input>
+            </lux-layout-form-row>
+            <lux-layout-form-row>
+              <lux-input
+                luxName="given-name"
+                luxLabel="Nachname"
+                luxControlBinding="surname"
+                *luxLayoutRowItem
+              ></lux-input>
+            </lux-layout-form-row>
+            <lux-layout-form-row>
+              <lux-radio
+                [luxOrientationVertical]="false"
+                [luxOptions]="genders"
+                luxControlBinding="gender"
+                luxLabel="Geschlecht"
+                *luxLayoutRowItem
+              >
+                <ng-template let-option>
+                  {{ option.name }}
+                </ng-template>
+              </lux-radio>
+            </lux-layout-form-row>
+          </lux-layout>
+        </lux-card-content>
+      </lux-card>
+      <lux-card luxTitle="Adresse" *luxLayoutRowItem>
+        <lux-card-content>
+          <lux-layout formGroupName="address">
+            <lux-layout-form-row luxWarpAt="none">
+              <lux-input
+                luxName="postal-code"
+                luxLabel="PLZ"
+                luxType="number"
+                luxNumberAlignLeft="true"
+                luxControlBinding="zip"
+                *luxLayoutRowItem
+              ></lux-input>
+              <lux-input
+                luxName="form-three_Stadt"
+                luxLabel="Stadt"
+                luxType="text"
+                luxControlBinding="town"
+                *luxLayoutRowItem="{ colSpan: 3 }"
+              ></lux-input>
+            </lux-layout-form-row>
+            <lux-layout-form-row>
+              <lux-input
+                luxName="street-address"
+                luxLabel="Straße"
+                luxType="text"
+                luxControlBinding="street"
+                *luxLayoutRowItem="{ colSpan: 4 }"
+              ></lux-input>
+            </lux-layout-form-row>
+            <lux-layout-form-row>
+              <lux-autocomplete
+                [luxOptions]="countries"
+                luxOptionLabelProp="name"
+                luxLabel="Land"
+                [luxLookupDelay]="100"
+                luxHint="Wählen Sie ein Land aus"
+                [luxSelectAllOnClick]="false"
+                luxControlBinding="country"
+                *luxLayoutRowItem="{ colSpan: 4 }"
+              >
+              </lux-autocomplete>
+            </lux-layout-form-row>
+          </lux-layout>
+        </lux-card-content>
+      </lux-card>
+      <lux-card luxTitle="Feedbaack" *luxLayoutRowItem>
+        <lux-card-content>
+          <lux-layout formGroupName="feedback">
+            <lux-layout-form-row luxWarpAt="none">
+              <lux-input
+                luxName="form-three_Bewertung"
+                luxLabel="Bewertung"
+                luxControlBinding="rating"
+                luxType="text"
+                *luxLayoutRowItem
+              ></lux-input>
+            </lux-layout-form-row>
+            <lux-layout-form-row>
+              <lux-checkbox luxLabel="Anonymisieren" luxControlBinding="anonymous" *luxLayoutRowItem></lux-checkbox>
+            </lux-layout-form-row>
+          </lux-layout>
+        </lux-card-content>
+      </lux-card>
+    </lux-layout-card-row>
+    <lux-layout-card-row>
+      <lux-card luxTitle="Formulardaten" *luxLayoutRowItem>
+        <lux-card-content>
+          <lux-layout>
+            <lux-layout-form-row>
+              <div *luxLayoutRowItem>
+                <pre>{{ myGroup.value | json }}</pre>
+              </div>
+            </lux-layout-form-row>
+          </lux-layout>
+        </lux-card-content>
+      </lux-card>
+    </lux-layout-card-row>
+  </form>
+</lux-layout>
 
-      <lux-divider></lux-divider>
 
-      <lux-toggle luxLabel="Formular-Wert anzeigen" [(luxChecked)]="showFormValue" luxTagId="toggleFormWertAnzeigen">
-      </lux-toggle>
-      <div *ngIf="myGroup && showFormValue">
-        <pre>
-          {{ myGroup.value | json }}
-        </pre>
-      </div>
-    </form>
-  </lux-card-content>
-
-  <lux-card-actions>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="4px">
-      <lux-button luxLabel="Fehler anzeigen" (luxClicked)="highlightErrors()"></lux-button>
-      <lux-button
-        luxLabel="SPEICHERN"
-        luxColor="primary"
-        (luxClicked)="handleSaveClicked()"
-        luxTagId="btnSpeichern"
-        [luxDisabled]="!myGroup.valid"
-      ></lux-button>
-    </div>
-  </lux-card-actions>
-</lux-card>
