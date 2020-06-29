@@ -44,7 +44,7 @@
             </lux-layout-form-row>
             <div fxFlex="1 1 auto" formArrayName="streets" class="lux-mt-4">
               <lux-layout-form-row
-                luxWarpAt="none"
+                luxWrapAt="none"
                 *ngFor="let street of streetsFormArray.controls; let i = index"
                 [formGroupName]="i"
               >
@@ -75,7 +75,7 @@
                 >
                 </lux-button>
               </lux-layout-form-row>
-              <lux-layout-form-row luxWarpAt="none">
+              <lux-layout-form-row luxWrapAt="none">
                 <div *luxLayoutRowItem="{ empty: true, colSpan: 3 }"></div>
                 <lux-button
                   luxIconName="fa-plus"

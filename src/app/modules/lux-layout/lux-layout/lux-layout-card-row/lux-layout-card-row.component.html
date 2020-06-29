@@ -13,7 +13,7 @@
         [fxFlex]="rowItem.luxLayoutRowItem.flex ? rowItem.luxLayoutRowItem.flex : calculateWidth(rowItem)"
         class="row-item-container"
         *ngIf="
-          !rowItem.luxLayoutRowItem.empty || (rowItem.luxLayoutRowItem.empty && queryObserver.isGreater(this.luxWarpAt))
+          !rowItem.luxLayoutRowItem.empty || (rowItem.luxLayoutRowItem.empty && queryObserver.isGreater(this.luxWrapAt))
         "
       >
         <ng-container [ngTemplateOutlet]="rowItem.templateRef"></ng-container>

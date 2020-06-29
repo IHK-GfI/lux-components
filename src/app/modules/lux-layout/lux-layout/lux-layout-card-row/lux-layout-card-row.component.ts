@@ -39,7 +39,7 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
   luxTitle = '';
 
   @Input()
-  luxWarpAt;
+  luxWrapAt;
 
   @Input()
   get luxMargin(): LuxLayoutRowMarginConfig {
@@ -78,12 +78,12 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
     // Initialisiere das Umbrechverhalten, wenn kein individueller Wert mitgegeben wurde.
     // 1. Wenn es einen Wert in der zentralen Konfiguration gibt, wird dieser verwendet.
     // 2. Wenn es keinen Wert gibt, wird der Default aus dieser Component (siehe oben) verwendet.
-    if (!this.luxWarpAt) {
+    if (!this.luxWrapAt) {
       let wrapAtConfig = this.config.currentConfig?.layout?.cardRow?.warpAt;
       if (!wrapAtConfig) {
         wrapAtConfig = LuxLayoutCardRowComponent.DEFAULT_WRAP_AT;
       }
-      this.luxWarpAt = wrapAtConfig;
+      this.luxWrapAt = wrapAtConfig;
     }
 
     // Initialisiere die Gaps, wenn keine individuellen Werte mitgegeben wurden.
@@ -161,7 +161,7 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
   }
 
   updateLayoutOrientation() {
-    if (this.queryObserver.isGreater(this.luxWarpAt)) {
+    if (this.queryObserver.isGreater(this.luxWrapAt)) {
       this.layoutOrientation = 'row';
     } else {
       this.layoutOrientation = 'column';
@@ -178,7 +178,7 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
   }
 
   updateGaps() {
-    if (this.queryObserver.isGreater(this.luxWarpAt)) {
+    if (this.queryObserver.isGreater(this.luxWrapAt)) {
       this.rowGap = this.luxGap.row;
       this.rowItemGap = this.luxGap.rowItem;
     } else {
@@ -205,7 +205,7 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
     const width = this.calculateRowItemWidth(rowItem);
     const gap = this.calculateRowItemGap(rowItem);
 
-    return this.queryObserver.isGreater(this.luxWarpAt) ? `calc(${width}% - ${gap}px)` : '1 1 auto';
+    return this.queryObserver.isGreater(this.luxWrapAt) ? `calc(${width}% - ${gap}px)` : '1 1 auto';
   }
 
   private calculateRowItemWidth(rowItem: LuxLayoutRowItemDirective) {
