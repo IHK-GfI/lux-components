@@ -27,18 +27,40 @@
 
       <span fxLayout="row" fxLayoutAlign="center center" class="lux-nowrap lux-header-title" fxFlex="auto">
         <lux-icon
+          style="padding: 6px 5px"
           [luxIconName]="luxIconName"
-          class="lux-pr-3"
+          [ngClass]="{ 'lux-cursor': hasOnClickedListener, focused: hasOnClickedListener }"
+          (click)="onClicked($event)"
+          (keydown.enter)="onClicked($event)"
+          (keydown.space)="onClicked($event)"
+          [attr.role]="hasOnClickedListener ? 'link' : null"
+          [attr.tabindex]="hasOnClickedListener ? '0' : null"
           *ngIf="luxIconName && !sideNav && !mobileHelperService.isMobile()"
         ></lux-icon>
         <lux-image
+          style="padding: 0 5px"
           [luxImageSrc]="luxImageSrc"
           [luxImageHeight]="luxImageHeight"
           [luxImageWidth]="isIE && luxImageSrc && luxImageSrc.endsWith('.svg') ? '100%' : 'auto'"
-          class="lux-pr-3"
+          [ngClass]="{ 'lux-cursor': hasOnClickedListener, focused: hasOnClickedListener }"
+          (click)="onClicked($event)"
+          (keydown.enter)="onClicked($event)"
+          (keydown.space)="onClicked($event)"
+          [attr.role]="hasOnClickedListener ? 'link' : null"
+          [attr.tabindex]="hasOnClickedListener ? '0' : null"
           *ngIf="luxImageSrc && !sideNav && !mobileHelperService.isMobile()"
         ></lux-image
-        ><span fxFlex="auto">{{ mobileHelperService.isMobile() ? luxAppTitleShort : luxAppTitle }}</span>
+        ><span
+          fxFlex="auto"
+          style="padding: 10px 5px"
+          (click)="onClicked($event)"
+          (keydown.enter)="onClicked($event)"
+          (keydown.space)="onClicked($event)"
+          [attr.role]="hasOnClickedListener ? 'link' : null"
+          [attr.tabindex]="hasOnClickedListener ? '0' : null"
+          [ngClass]="{ 'lux-cursor': hasOnClickedListener, focused: hasOnClickedListener }"
+          >{{ mobileHelperService.isMobile() ? luxAppTitleShort : luxAppTitle }}</span
+        >
       </span>
     </div>
   </div>
