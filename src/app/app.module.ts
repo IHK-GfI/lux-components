@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {BrowserModule, HammerModule} from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { HomeModule } from './demo/home/home.module';
 import { LuxActionModule } from './modules/lux-action/lux-action.module';
@@ -32,6 +31,12 @@ import { ExampleBaseModule } from './demo/example-base/example-base.module';
 import { LuxCommonModule } from './modules/lux-common/lux-common.module';
 import { LuxErrorModule } from './modules/lux-error/lux-error.module';
 import 'hammerjs';
+import { registerLocaleData } from '@angular/common';
+import localeDE from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
+import { LOCALE_ID } from '@angular/core';
+
+registerLocaleData(localeDE, localeDeExtra);
 
 const myConfiguration: LuxComponentsConfigParameters = {
   generateLuxTagIds: environment.generateLuxTagIds,
@@ -68,6 +73,7 @@ const myConfiguration: LuxComponentsConfigParameters = {
   ],
   entryComponents: [LuxSnackbarComponent, LuxFilePreviewComponent],
   providers: [
+    { provide: LOCALE_ID, useValue: 'de-DE' },
     LuxAppFooterButtonService,
     LuxAppFooterLinkService,
     LuxSnackbarService,
