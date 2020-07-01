@@ -2,6 +2,7 @@ import { NativeDateAdapter } from '@angular/material/core';
 import { Injectable } from '@angular/core';
 import { LuxUtil } from '../../lux-util/lux-util';
 import DateTimeFormatOptions = Intl.DateTimeFormatOptions;
+import { getLocaleFirstDayOfWeek } from '@angular/common';
 
 @Injectable()
 export class LuxDatepickerAdapter extends NativeDateAdapter {
@@ -61,6 +62,24 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
       return <any>value;
     }
     return null;
+  }
+
+  getFirstDayOfWeek(): number {
+    let startDay;
+    try {
+      startDay = getLocaleFirstDayOfWeek(this.locale);
+    } catch (e) {
+      startDay = super.getFirstDayOfWeek();
+
+      console.warn(
+        `Für die Locale '${
+          this.locale
+        }' fehlt der Aufruf 'registerLocaleData(...)' aus dem Package '@angular/common' in der Datei 'app.modules.ts'. Die Woche startet mit dem Defaultwert '${
+          this.getDayOfWeekNames('long')[startDay]
+        }'.'`
+      );
+    }
+    return startDay;
   }
 
   /**
