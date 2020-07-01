@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
 describe('LuxAppHeaderComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [
@@ -20,8 +19,60 @@ describe('LuxAppHeaderComponent', () => {
           useClass: MockMasterDetailHelperService
         }
       ],
-      [MockAppHeaderComponent]
+      [
+        MockAppHeaderComponent,
+        MockLabelClickedAppHeaderComponent,
+        MockIconClickedAppHeaderComponent,
+        MockImageClickedAppHeaderComponent
+      ]
     );
+  });
+
+  describe('luxClicked', () => {
+    it('Label im App-Header sollte angeklickt werden können', fakeAsync(() => {
+      const fixture = TestBed.createComponent(MockLabelClickedAppHeaderComponent);
+      LuxTestHelper.wait(fixture);
+
+      const element = fixture.debugElement.query(By.css('span.lux-cursor'));
+      const onClickSpy = spyOn(fixture.componentInstance, 'onClicked');
+
+      element.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(element).toBeDefined();
+      expect(onClickSpy).toHaveBeenCalled();
+      expect(element.classes['lux-cursor']).toBeTrue();
+    }));
+
+    it('Icon im App-Header sollte angeklickt werden können', fakeAsync(() => {
+      const fixture = TestBed.createComponent(MockIconClickedAppHeaderComponent);
+      LuxTestHelper.wait(fixture);
+
+      const element = fixture.debugElement.query(By.css('lux-icon.lux-cursor'));
+      const onClickSpy = spyOn(fixture.componentInstance, 'onClicked');
+
+      element.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(element).toBeDefined();
+      expect(onClickSpy).toHaveBeenCalled();
+      expect(element.classes['lux-cursor']).toBeTrue();
+    }));
+
+    it('Image im App-Header sollte angeklickt werden können', fakeAsync(() => {
+      const fixture = TestBed.createComponent(MockImageClickedAppHeaderComponent);
+      LuxTestHelper.wait(fixture);
+
+      const element = fixture.debugElement.query(By.css('lux-image.lux-cursor'));
+      const onClickSpy = spyOn(fixture.componentInstance, 'onClicked');
+
+      element.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(element).toBeDefined();
+      expect(onClickSpy).toHaveBeenCalled();
+      expect(element.classes['lux-cursor']).toBeTrue();
+    }));
   });
 
   describe('ohne lux-side-nav und lux-app-header-right-nav', () => {
@@ -587,6 +638,43 @@ describe('LuxAppHeaderComponent', () => {
     }));
   });
 });
+
+@Component({
+  template: `
+    <lux-app-header (luxClicked)="onClicked()" luxAppTitle="MyClickTitle" luxAppTitleShort="MyClick"></lux-app-header>
+  `
+})
+class MockLabelClickedAppHeaderComponent {
+  onClicked() {}
+}
+
+@Component({
+  template: `
+    <lux-app-header
+      (luxClicked)="onClicked()"
+      luxImageSrc="/assets/png/example.png"
+      luxAppTitle="MyClickTitle"
+      luxAppTitleShort="MyClick"
+    ></lux-app-header>
+  `
+})
+class MockImageClickedAppHeaderComponent {
+  onClicked() {}
+}
+
+@Component({
+  template: `
+    <lux-app-header
+      (luxClicked)="onClicked()"
+      luxIconName="fa fas-user"
+      luxAppTitle="MyClickTitle"
+      luxAppTitleShort="MyClick"
+    ></lux-app-header>
+  `
+})
+class MockIconClickedAppHeaderComponent {
+  onClicked() {}
+}
 
 @Component({
   template: `

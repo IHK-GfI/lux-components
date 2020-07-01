@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   window = window;
 
   constructor(
-    private router: Router,
+    public router: Router,
     private linkService: LuxAppFooterLinkService,
     private buttonService: LuxAppFooterButtonService,
     private snackbarService: LuxSnackbarService,

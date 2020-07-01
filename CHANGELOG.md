@@ -1,4 +1,7 @@
 # Version 1.9.3
+## New
+- **lux-app-header**: Click-Event, welches beim KLick auf den App-Titel, das App-Icon (falls vorhanden) oder das App-Image (falls vorhanden) ausgelöst wird, hinzugefügt. [Issue 17](https://github.com/IHK-GfI/lux-components/issues/17)
+
 ## Bug Fixes
 - **lux-datepicker**: Datumänderung per Tasteneingabe im IE nicht möglich. [Issue 13](https://github.com/IHK-GfI/lux-components/issues/13)
 - **lux-progress**: Überflüssiges Padding entfernt. [Issue 14](https://github.com/IHK-GfI/lux-components/issues/14)

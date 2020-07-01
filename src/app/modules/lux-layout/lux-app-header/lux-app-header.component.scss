@@ -1,5 +1,19 @@
 @import '../../../../theming/luxtheme';
 
+.focused {
+  &:focus {
+    outline-width: 0 !important;
+    outline-style: unset;
+    background-color: $lux-focused-color !important;
+    border-radius: 4px;
+  }
+
+  &:hover {
+    background-color: $lux-hover-color !important;
+    border-radius: 4px;
+  }
+}
+
 :host {
   flex: 0 0 auto;
   max-height: 65px;
@@ -120,7 +134,6 @@
       min-width: 45px;
       width: 45px;
       max-width: 45px;
-      margin-right: 8px;
 
       ::ng-deep button {
         min-width: 45px;
