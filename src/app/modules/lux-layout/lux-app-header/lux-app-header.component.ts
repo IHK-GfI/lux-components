@@ -1,5 +1,15 @@
 // tslint:disable:max-line-length
-import { Component, ContentChild, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ElementRef, EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMasterDetailMobileHelperService } from '../lux-master-detail/lux-master-detail-mobile-helper.service';
 import { LuxSideNavComponent } from './lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component';
@@ -20,12 +30,15 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges {
   @Input() luxImageSrc: string;
   @Input() luxImageHeight = '55px';
 
+  @Output() luxClicked: EventEmitter<any> = new EventEmitter();
+
   isMasterOpen: boolean;
   isMasterDetailAvailable: boolean;
   masterHasValue: boolean;
 
   userNameShort: string;
   isIE = LuxUtil.isIE();
+  hasOnClickedListener: boolean;
 
   @ViewChild('customTrigger', { read: ElementRef }) customTrigger: ElementRef;
 
@@ -56,7 +69,11 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.luxClicked.observers && this.luxClicked.observers.length > 0) {
+      this.hasOnClickedListener = true;
+    }
+  }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (simpleChanges.luxUserName) {
@@ -80,6 +97,10 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges {
 
   onMenuClosed() {
     this.customTrigger.nativeElement.focus();
+  }
+
+  onClicked(event: any) {
+    this.luxClicked.emit(event);
   }
 
   private generateUserNameShort(): string {
