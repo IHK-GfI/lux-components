@@ -1321,6 +1321,7 @@ class TestHttpDao implements ILuxTableHttpDao {
   }
 }
 
+// TODO: Add Angular decorator.
 class MockMediaObserverService implements OnDestroy {
   mediaQueryChanged: BehaviorSubject<string> = new BehaviorSubject<string>('');
 

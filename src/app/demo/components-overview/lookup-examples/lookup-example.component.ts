@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { OnInit } from '@angular/core';
+import { OnInit, Directive } from '@angular/core';
 import {
   LuxBehandlungsOptionenUngueltige,
   LuxFieldValues,
@@ -15,6 +15,7 @@ import {
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
 
+@Directive()
 export abstract class LookupExampleComponent implements OnInit {
   // region Helper-Properties für das Beispiel
 

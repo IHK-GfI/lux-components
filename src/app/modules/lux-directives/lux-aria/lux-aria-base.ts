@@ -1,5 +1,6 @@
-import { AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
+import { AfterViewInit, ElementRef, Renderer2, Directive } from '@angular/core';
 
+@Directive()
 export abstract class LuxAriaBase implements AfterViewInit {
   protected init = false;
 

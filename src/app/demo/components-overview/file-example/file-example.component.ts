@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { OnInit } from '@angular/core';
+import { OnInit, Directive } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
@@ -15,6 +15,7 @@ import {
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
 
+@Directive()
 export abstract class FileExampleComponent implements OnInit {
   showOutputEvents: boolean = true;
   realBackends: any[] = [];
