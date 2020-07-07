@@ -174,6 +174,7 @@ export * from './src/app/modules/lux-form/lux-file/lux-file-model/lux-file-objec
 export * from './src/app/modules/lux-form/lux-file/lux-file-model/lux-file-capture.directive';
 export * from './src/app/modules/lux-form/lux-form-control/lux-form-directives/lux-maxlength/lux-max-length.directive';
 export * from './src/app/modules/lux-form/lux-form-control/lux-form-directives/lux-name/lux-name-directive.directive';
+export * from './src/app/modules/lux-form/lux-select/lux-select-option-height.directive';
 
 /**
  *   _    _   ___  __     _____ ___ _     _____      ____  ____  _______     _____ _______        __

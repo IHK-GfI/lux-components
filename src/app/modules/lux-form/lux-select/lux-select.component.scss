@@ -6,6 +6,14 @@
 
 ::ng-deep .lux-select-panel {
   mat-option:not(:last-of-type) {
+    // Wenn man den Wert von "margin-bottom" verändert, muss man auch die Höhenberechnung in der
+    // LuxSelectOptionHeightDirective anpassen.
     margin-bottom: 2px;
   }
+}
+
+.option-height {
+  // Wenn man den Wert von "height" verändert, muss man auch die Höhenberechnung in der
+  // LuxSelectOptionHeightDirective anpassen.
+  height: 46px !important;
 }
