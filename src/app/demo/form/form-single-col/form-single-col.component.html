@@ -1,110 +1,147 @@
-<lux-card luxTitle="Beispiellayout für ein einspaltiges Formular" luxTagId="form1row">
-  <lux-card-content>
-    <form [formGroup]="myGroup" #myForm>
-      <div formGroupName="userInformation">
-        <lux-input luxName="username" luxLabel="Username" luxControlBinding="username"></lux-input>
-        <lux-input luxName="current-password" luxLabel="Passwort" luxType="password" luxControlBinding="password">
-          <lux-input-suffix>
-            <lux-icon luxIconName="fa-lock"></lux-icon>
-          </lux-input-suffix>
-        </lux-input>
-        <lux-autocomplete
-          [luxOptions]="salutations"
-          luxLabel="Anrede"
-          [luxLookupDelay]="100"
-          [luxSelectAllOnClick]="true"
-          [luxStrict]="false"
-          luxControlBinding="salutation"
-        >
-        </lux-autocomplete>
-        <lux-input luxName="email" luxLabel="E-Mail" luxControlBinding="email">
-          <lux-input-suffix>
-            <lux-icon luxIconName="fa-at"></lux-icon>
-          </lux-input-suffix>
-        </lux-input>
-        <lux-input
-          luxName="form-single_DeaktiviertesElement"
-          luxLabel="Deaktiviertes Element"
-          luxControlBinding="deactivated"
-          [luxDisabled]="true"
-        >
-        </lux-input>
-        <lux-radio
-          [luxOrientationVertical]="true"
-          [luxOptions]="genders"
-          luxControlBinding="gender"
-          luxLabel="Geschlecht"
-        >
-          <ng-template let-option>
-            {{ option.name }}
-          </ng-template>
-        </lux-radio>
-        <lux-input
-          luxName="form-single_Alter"
-          luxLabel="Alter"
-          luxControlBinding="age"
-          luxType="number"
-          [luxNumberAlignLeft]="true"
-        >
-        </lux-input>
-        <lux-autocomplete
-          [luxOptions]="countries"
-          luxOptionLabelProp="name"
-          luxLabel="Land"
-          [luxLookupDelay]="100"
-          luxHint="Wählen Sie ein Land aus"
-          [luxSelectAllOnClick]="false"
-          luxControlBinding="country"
-        >
-        </lux-autocomplete>
-      </div>
+<lux-layout>
+  <lux-layout-card-row luxTitle="1 Karte pro Zeile">
+    <lux-card luxTitle="Einstellungen" luxTagId="form1row" *luxLayoutRowItem>
+      <lux-card-content>
+        <form [formGroup]="myGroup">
+          <div formGroupName="userInformation">
+            <lux-layout>
+              <lux-layout-form-row luxTitle="Benutzer">
+                <lux-input
+                  luxName="username"
+                  luxLabel="Username"
+                  luxControlBinding="username"
+                  *luxLayoutRowItem
+                ></lux-input>
+              </lux-layout-form-row>
+              <lux-layout-form-row>
+                <lux-input
+                  luxName="current-password"
+                  luxLabel="Passwort"
+                  luxType="password"
+                  luxControlBinding="password"
+                  *luxLayoutRowItem
+                >
+                  <lux-input-suffix>
+                    <lux-icon luxIconName="fa-lock"></lux-icon>
+                  </lux-input-suffix>
+                </lux-input>
+              </lux-layout-form-row>
+              <lux-layout-form-row>
+                <lux-autocomplete
+                  [luxOptions]="salutations"
+                  luxLabel="Anrede"
+                  [luxLookupDelay]="100"
+                  [luxSelectAllOnClick]="true"
+                  [luxStrict]="false"
+                  luxControlBinding="salutation"
+                  *luxLayoutRowItem
+                >
+                </lux-autocomplete>
+              </lux-layout-form-row>
+              <lux-layout-form-row>
+                <lux-input luxName="email" luxLabel="E-Mail" luxControlBinding="email" *luxLayoutRowItem>
+                  <lux-input-suffix>
+                    <lux-icon luxIconName="fa-at"></lux-icon>
+                  </lux-input-suffix>
+                </lux-input>
+              </lux-layout-form-row>
+              <lux-layout-form-row>
+                <lux-input
+                  luxName="form-single_DeaktiviertesElement"
+                  luxLabel="Deaktiviertes Element"
+                  luxControlBinding="deactivated"
+                  [luxDisabled]="true"
+                  *luxLayoutRowItem
+                >
+                </lux-input>
+              </lux-layout-form-row>
+              <lux-layout-form-row>
+                <lux-radio
+                  [luxOrientationVertical]="false"
+                  [luxOptions]="genders"
+                  luxControlBinding="gender"
+                  luxLabel="Geschlecht"
+                  *luxLayoutRowItem
+                >
+                  <ng-template let-option>
+                    {{ option.name }}
+                  </ng-template>
+                </lux-radio>
+              </lux-layout-form-row>
+              <lux-layout-form-row>
+                <lux-input
+                  luxName="form-single_Alter"
+                  luxLabel="Alter"
+                  luxControlBinding="age"
+                  luxType="number"
+                  [luxNumberAlignLeft]="true"
+                  *luxLayoutRowItem
+                >
+                </lux-input>
+              </lux-layout-form-row>
+              <lux-layout-form-row>
+                <lux-autocomplete
+                  [luxOptions]="countries"
+                  luxOptionLabelProp="name"
+                  luxLabel="Land"
+                  [luxLookupDelay]="100"
+                  luxHint="Wählen Sie ein Land aus"
+                  [luxSelectAllOnClick]="false"
+                  luxControlBinding="country"
+                  *luxLayoutRowItem
+                >
+                </lux-autocomplete>
+              </lux-layout-form-row>
+            </lux-layout>
+          </div>
 
-      <lux-divider></lux-divider>
-
-      <lux-select
-        luxLabel="Rollen auswählen"
-        [luxOptions]="roles"
-        luxOptionLabelProp="name"
-        luxOptionValueProp="name"
-        [luxMultiple]="true"
-        luxControlBinding="roles"
-      ></lux-select>
-
-      <lux-chips
-        [luxInputAllowed]="true"
-        luxInputLabel="Neue Rolle..."
-        luxOrientation="horizontal"
-        (luxChipAdded)="addRole($event)"
-        fxFill
-      >
-        <lux-chip (luxChipRemoved)="removeRole(i)" *ngFor="let role of roles; let i = index">
-          {{ role.name }}
-        </lux-chip>
-      </lux-chips>
-      <lux-toggle luxLabel="EULA zugestimmt" luxControlBinding="eula"></lux-toggle>
-      <lux-datepicker luxControlBinding="date" luxLabel="Läuft ab am"></lux-datepicker>
-      <lux-divider></lux-divider>
-
-      <lux-toggle luxLabel="Formular-Wert anzeigen" [(luxChecked)]="showFormValue" luxTagId="toggleFormWertAnzeigen">
-      </lux-toggle>
-      <div *ngIf="myGroup && showFormValue">
-        <pre>
-          {{ myGroup.value | json }}
-        </pre>
-      </div>
-    </form>
-  </lux-card-content>
-
-  <lux-card-actions>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="4px">
-      <lux-button luxLabel="Fehler anzeigen" (luxClicked)="highlightErrors()"></lux-button>
-      <lux-button
-        luxLabel="SPEICHERN"
-        luxColor="primary"
-        (luxClicked)="handleSaveClicked()"
-        luxTagId="btnSpeichern"
-        [luxDisabled]="!myGroup.valid"
-      ></lux-button>
-    </div>
-  </lux-card-actions>
-</lux-card>
+          <lux-layout>
+            <lux-layout-form-row luxTitle="Sonstiges" class="lux-mt-4">
+              <lux-select
+                luxLabel="Rollen auswählen"
+                [luxOptions]="roles"
+                luxOptionLabelProp="name"
+                luxOptionValueProp="name"
+                [luxMultiple]="true"
+                luxControlBinding="roles"
+                *luxLayoutRowItem
+              ></lux-select>
+            </lux-layout-form-row>
+            <lux-layout-form-row>
+              <lux-chips
+                [luxInputAllowed]="true"
+                luxInputLabel="Neue Rolle..."
+                luxOrientation="horizontal"
+                (luxChipAdded)="addRole($event)"
+                *luxLayoutRowItem
+              >
+                <lux-chip (luxChipRemoved)="removeRole(i)" *ngFor="let role of roles; let i = index">
+                  {{ role.name }}
+                </lux-chip>
+              </lux-chips>
+            </lux-layout-form-row>
+            <lux-layout-form-row>
+              <lux-toggle luxLabel="EULA zugestimmt" luxControlBinding="eula" *luxLayoutRowItem></lux-toggle>
+            </lux-layout-form-row>
+            <lux-layout-form-row>
+              <lux-datepicker luxControlBinding="date" luxLabel="Läuft ab am" *luxLayoutRowItem></lux-datepicker>
+            </lux-layout-form-row>
+          </lux-layout>
+        </form>
+      </lux-card-content>
+    </lux-card>
+  </lux-layout-card-row>
+  <lux-layout-card-row>
+    <lux-card luxTitle="Formulardaten" *luxLayoutRowItem>
+      <lux-card-content>
+        <lux-layout>
+          <lux-layout-form-row>
+            <div *luxLayoutRowItem>
+              <pre>{{ myGroup.value | json }}</pre>
+            </div>
+          </lux-layout-form-row>
+        </lux-layout>
+      </lux-card-content>
+    </lux-card>
+  </lux-layout-card-row>
+</lux-layout>

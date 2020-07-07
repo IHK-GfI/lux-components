@@ -5,7 +5,7 @@ lux-progress ::ng-deep mat-progress-bar {
 }
 
 .lux-row-selected {
-  background-color: $lux-selected-bg-color !important;
+  background-color: $lux-selected-bg-color;
 }
 
 :host {

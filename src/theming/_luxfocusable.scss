@@ -212,6 +212,16 @@ lux-table {
     }
   }
 
+  tr:focus {
+    background-color: $lux-hover-color-non-transparent !important;
+    outline: none;
+  }
+
+  .lux-row-selected:focus {
+    background-color: $lux-hover-color-non-transparent !important;
+    outline: none;
+  }
+
   th button.mat-sort-header-button:focus {
     @include lux-focused-mixin;
   }

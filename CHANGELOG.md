@@ -1,12 +1,14 @@
 # Version 1.9.3
 ## New
+- **lux-layout**: Zeilenbasiertes Layout für Karten und Formulare hinzugefügt. [Issue 18](https://github.com/IHK-GfI/lux-components/issues/18)
+- **lux-layout-form-row**: Zeilenbasiertes Layout für Formulare hinzugefügt. [Issue 18](https://github.com/IHK-GfI/lux-components/issues/18)
+- **lux-layout-card-row**: Zeilenbasiertes Layout für Karten hinzugefügt. [Issue 18](https://github.com/IHK-GfI/lux-components/issues/18)
 - **lux-app-header**: Click-Event, welches beim KLick auf den App-Titel, das App-Icon (falls vorhanden) oder das App-Image (falls vorhanden) ausgelöst wird, hinzugefügt. [Issue 17](https://github.com/IHK-GfI/lux-components/issues/17)
 
 ## Bug Fixes
 - **lux-datepicker**: Datumänderung per Tasteneingabe im IE nicht möglich. [Issue 13](https://github.com/IHK-GfI/lux-components/issues/13)
 - **lux-progress**: Überflüssiges Padding entfernt. [Issue 14](https://github.com/IHK-GfI/lux-components/issues/14)
 - **lux-select**: Option nicht immer direkt sichtbar. [Issue 22](https://github.com/IHK-GfI/lux-components/issues/22)
-
 
 # Version 1.9.2
 ## New

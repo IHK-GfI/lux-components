@@ -85,7 +85,7 @@ describe('LuxRadioComponent', () => {
       expect(error).toBeNull();
 
       // Änderungen durchführen
-      const requiredMessage = 'Dieses Feld darf nicht leer sein';
+      const requiredMessage = '* Pflichtfeld';
       LuxUtil.showValidationErrors(testComponent.form);
       fixture.detectChanges();
 
@@ -454,7 +454,7 @@ describe('LuxRadioComponent', () => {
       // Nachbedingungen prüfen
       errorMessage = fixture.debugElement.query(By.css('.mat-error'));
       expect(errorMessage.nativeElement.innerText.trim()).toEqual(
-        'Dieses Feld darf nicht leer sein',
+        '* Pflichtfeld',
         'Nachbedingung 1'
       );
     }));
