@@ -53,7 +53,7 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
       raised: true,
       alwaysVisible: true,
       onClick: () => {
-        window.open('', '_blank');
+        window.open('https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90layout%E2%80%90form%E2%80%90row', '_blank');
       }
     }),
       LuxAppFooterButtonInfo.generateInfo({
