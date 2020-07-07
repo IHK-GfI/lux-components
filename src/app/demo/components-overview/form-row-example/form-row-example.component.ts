@@ -8,7 +8,7 @@ import { LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-foot
   templateUrl: './form-row-example.component.html'
 })
 export class FormRowExampleComponent implements OnInit, OnDestroy {
-  options: any[] = ['Lorem ipsum A', 'Lorem ipsum B', 'Lorem ipsum c'];
+  options: any[] = ['Lorem ipsum A', 'Lorem ipsum B', 'Lorem ipsum C'];
 
   constructor(private router: Router, private buttonService: LuxAppFooterButtonService) {}
 
