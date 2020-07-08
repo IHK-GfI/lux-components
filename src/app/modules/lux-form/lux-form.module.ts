@@ -45,11 +45,13 @@ import { LuxToggleComponent } from './lux-toggle/lux-toggle.component';
 import { LuxFileCaptureDirective } from './lux-file/lux-file-model/lux-file-capture.directive';
 import { LuxMaxLengthDirective } from './lux-form-control/lux-form-directives/lux-maxlength/lux-max-length.directive';
 import { LuxNameDirectiveDirective } from './lux-form-control/lux-form-directives/lux-name/lux-name-directive.directive';
+import { LuxSelectOptionHeightDirective } from './lux-select/lux-select-option-height.directive';
 
 @NgModule({
   declarations: [
     LuxToggleComponent,
     LuxSelectComponent,
+    LuxSelectOptionHeightDirective,
     LuxInputComponent,
     LuxInputPrefixComponent,
     LuxInputSuffixComponent,
@@ -100,6 +102,7 @@ import { LuxNameDirectiveDirective } from './lux-form-control/lux-form-directive
   exports: [
     LuxToggleComponent,
     LuxSelectComponent,
+    LuxSelectOptionHeightDirective,
     LuxInputComponent,
     LuxInputPrefixComponent,
     LuxInputSuffixComponent,

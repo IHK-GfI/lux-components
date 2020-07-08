@@ -5,7 +5,6 @@ import { IGender } from '../model/gender.interface';
 import { IRole } from '../model/roles.interface';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { TableExampleDataProviderService } from '../table-example-data-provider.service';
-import { LuxUtil } from '../../../modules/lux-util/lux-util';
 import { FormBase } from '../model/form-base.class';
 
 @Component({
@@ -13,7 +12,6 @@ import { FormBase } from '../model/form-base.class';
   templateUrl: './form-single-col.component.html'
 })
 export class FormSingleColComponent extends FormBase implements OnInit {
-  showFormValue: boolean = false;
   roles: IRole[] = [];
   countries: ICountry[] = [];
   genders: IGender[] = [];
@@ -57,9 +55,5 @@ export class FormSingleColComponent extends FormBase implements OnInit {
 
   removeRole(i: number) {
     this.roles = this.roles.filter((role, index) => index !== i);
-  }
-
-  highlightErrors() {
-    LuxUtil.showValidationErrors(this.myGroup);
   }
 }

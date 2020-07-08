@@ -5,6 +5,7 @@ import { LuxHtmlModule } from '../../lux-html/lux-html.module';
 import { By } from '@angular/platform-browser';
 import marked from 'marked/lib/marked';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
+import { LuxUtil } from '../../lux-util/lux-util';
 
 describe('LuxMarkdownComponent', () => {
   let component: LuxMarkdownComponent;
@@ -36,13 +37,11 @@ describe('LuxMarkdownComponent', () => {
     fixture.detectChanges();
 
     // Die HTML-Daten sollten unverändert in die Component übernommen worden sein.
-    expect(LuxTestHelper.stringWithoutASCIIChars(component.luxData)).toEqual('<p>' + htmlData + '</p>');
+    expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual('<p>' + htmlData + '</p>');
 
     // Gerendert werden dürfen die schädlichen Tags allerdings nicht!
     expect(
-      LuxTestHelper.stringWithoutASCIIChars(
-        fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML
-      )
+      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
     ).toEqual('<p>Lorem ipsum  dolor sit amet</p>');
   });
 
@@ -53,44 +52,36 @@ describe('LuxMarkdownComponent', () => {
     component.luxData = '# Lorem ipsum';
     fixture.detectChanges();
 
-    expect(LuxTestHelper.stringWithoutASCIIChars(component.luxData)).toEqual('<h1>Lorem ipsum</h1>');
+    expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual('<h1>Lorem ipsum</h1>');
     expect(
-      LuxTestHelper.stringWithoutASCIIChars(
-        fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML
-      )
+      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
     ).toEqual('<h1>Lorem ipsum</h1>');
 
     // Teste h2
     component.luxData = '## Lorem ipsum';
     fixture.detectChanges();
 
-    expect(LuxTestHelper.stringWithoutASCIIChars(component.luxData)).toEqual('<h2>Lorem ipsum</h2>');
+    expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual('<h2>Lorem ipsum</h2>');
     expect(
-      LuxTestHelper.stringWithoutASCIIChars(
-        fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML
-      )
+      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
     ).toEqual('<h2>Lorem ipsum</h2>');
 
     // Teste h3
     component.luxData = '### Lorem ipsum';
     fixture.detectChanges();
 
-    expect(LuxTestHelper.stringWithoutASCIIChars(component.luxData)).toEqual('<h3>Lorem ipsum</h3>');
+    expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual('<h3>Lorem ipsum</h3>');
     expect(
-      LuxTestHelper.stringWithoutASCIIChars(
-        fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML
-      )
+      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
     ).toEqual('<h3>Lorem ipsum</h3>');
 
     // Teste h4
     component.luxData = '#### Lorem ipsum';
     fixture.detectChanges();
 
-    expect(LuxTestHelper.stringWithoutASCIIChars(component.luxData)).toEqual('<h4>Lorem ipsum</h4>');
+    expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual('<h4>Lorem ipsum</h4>');
     expect(
-      LuxTestHelper.stringWithoutASCIIChars(
-        fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML
-      )
+      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
     ).toEqual('<h4>Lorem ipsum</h4>');
   });
 
@@ -100,13 +91,11 @@ describe('LuxMarkdownComponent', () => {
     component.luxData = '[IHK-GfI](https://www.ihk-gfi.de)';
     fixture.detectChanges();
 
-    expect(LuxTestHelper.stringWithoutASCIIChars(component.luxData)).toEqual(
+    expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual(
       '<p><a href="https://www.ihk-gfi.de">IHK-GfI</a></p>'
     );
     expect(
-      LuxTestHelper.stringWithoutASCIIChars(
-        fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML
-      )
+      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
     ).toEqual('<p><a href="https://www.ihk-gfi.de">IHK-GfI</a></p>');
   });
 

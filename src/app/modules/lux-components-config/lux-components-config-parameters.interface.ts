@@ -1,6 +1,9 @@
 /**
  * Interface, welches die Konfigurationsoptionen für die LuxComponents bereitstellt.
  */
+import { LuxLayoutRowGapConfig } from '../lux-layout/lux-layout/base/lux-layout-row-gap-config';
+import { LuxLayoutRowMarginConfig } from '../lux-layout/lux-layout/base/lux-layout-row-margin-config';
+
 export interface LuxComponentsConfigParameters {
   /**
    * Bestimmt, ob die LuxTagIds (und dazugehörende) Warnungen generiert werden.
@@ -55,5 +58,21 @@ export interface LuxComponentsConfigParameters {
     radius?: number;
     disabled?: boolean;
     unbounded?: boolean;
+  };
+
+  /**
+   * Bestimmt die globalen Einstellungen für das Layout.
+   */
+  layout?: {
+    cardRow?: {
+      warpAt?: string;
+      marginConfig?: LuxLayoutRowMarginConfig;
+      gapConfig?: LuxLayoutRowGapConfig;
+    };
+    formRow?: {
+      warpAt?: string;
+      marginConfig?: LuxLayoutRowMarginConfig;
+      gapConfig?: LuxLayoutRowGapConfig;
+    };
   };
 }

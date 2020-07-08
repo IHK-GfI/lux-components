@@ -3,7 +3,6 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICountry } from '../model/country.interface';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { TableExampleDataProviderService } from '../table-example-data-provider.service';
-import { LuxUtil } from '../../../modules/lux-util/lux-util';
 import { FormBase } from '../model/form-base.class';
 
 @Component({
@@ -12,7 +11,6 @@ import { FormBase } from '../model/form-base.class';
 })
 export class FormDualColComponent extends FormBase implements OnInit {
   streetsFormArray: FormArray;
-  showFormValue: boolean = false;
   countries: ICountry[] = [];
 
   constructor(
@@ -64,9 +62,5 @@ export class FormDualColComponent extends FormBase implements OnInit {
       streetName: ['', Validators.required],
       nr: ['', Validators.min(1)]
     });
-  }
-
-  highlightErrors() {
-    LuxUtil.showValidationErrors(this.myGroup);
   }
 }

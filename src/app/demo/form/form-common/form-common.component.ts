@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxConsoleService } from '../../../modules/lux-util/lux-console.service';
-import { LuxUtil } from '../../../modules/lux-util/lux-util';
 import { FormBase } from '../model/form-base.class';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 
@@ -55,9 +54,5 @@ export class FormCommonComponent extends FormBase implements OnInit {
   chipItemClicked(event) {
     this.logger.log(event);
     this.logger.log(this.myGroup.value);
-  }
-
-  highlightErrors() {
-    LuxUtil.showValidationErrors(this.myGroup);
   }
 }

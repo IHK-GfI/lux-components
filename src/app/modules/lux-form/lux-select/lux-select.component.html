@@ -1,5 +1,6 @@
 <lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" *ngIf="formGroup">
   <mat-select
+    luxSelectOptionHeight
     luxTagIdHandler
     [luxTagId]="luxTagId"
     [placeholder]="luxPlaceholder"
@@ -16,7 +17,7 @@
     (focusin)="luxFocusIn.emit($event)"
     (focusout)="luxFocusOut.emit($event)"
   >
-    <mat-option *ngFor="let item of luxOptions" [value]="luxPickValue ? luxPickValue(item) : item">
+    <mat-option *ngFor="let item of luxOptions" [value]="luxPickValue ? luxPickValue(item) : item" class="option-height">
       <ng-container
         *ngTemplateOutlet="
           tempRef && !luxOptionLabelProp ? tempRef : noTemplateRefTemplate;

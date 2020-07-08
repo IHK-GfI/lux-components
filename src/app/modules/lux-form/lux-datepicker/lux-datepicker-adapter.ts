@@ -2,6 +2,7 @@ import { NativeDateAdapter } from '@angular/material/core';
 import { Injectable } from '@angular/core';
 import { LuxUtil } from '../../lux-util/lux-util';
 import DateTimeFormatOptions = Intl.DateTimeFormatOptions;
+import { getLocaleFirstDayOfWeek } from '@angular/common';
 
 @Injectable()
 export class LuxDatepickerAdapter extends NativeDateAdapter {
@@ -34,6 +35,16 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
 
   parse(value: string): Date | null {
     if (value) {
+      if (LuxUtil.isIE()) {
+        // IE-Problem: Das Datum (als String) im IE enthält manchmal unsichtbare Steuerzeichen, die verhindern,
+        // dass das Datum korrekt von den RegEx-Ausdrücken erkannt wird. Aus diesem Grund werden hier diese
+        // unsichtbaren Steuerzeichen entfernt.
+        const ieValue = LuxUtil.stringWithoutASCIIChars(value);
+        if (value !== ieValue) {
+          value = ieValue;
+        }
+      }
+
       // Prüfen, ob der Wert ein ISO-String ist
       if (LuxUtil.ISO_8601_FULL.test(value)) {
         return new Date(value);
@@ -51,6 +62,24 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
       return <any>value;
     }
     return null;
+  }
+
+  getFirstDayOfWeek(): number {
+    let startDay;
+    try {
+      startDay = getLocaleFirstDayOfWeek(this.locale);
+    } catch (e) {
+      startDay = super.getFirstDayOfWeek();
+
+      console.warn(
+        `Für die Locale '${
+          this.locale
+        }' fehlt der Aufruf 'registerLocaleData(...)' aus dem Package '@angular/common' in der Datei 'app.modules.ts'. Die Woche startet mit dem Defaultwert '${
+          this.getDayOfWeekNames('long')[startDay]
+        }'.'`
+      );
+    }
+    return startDay;
   }
 
   /**

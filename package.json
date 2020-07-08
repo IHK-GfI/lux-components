@@ -1,6 +1,6 @@
 {
   "name": "@ihk-gfi/lux-components",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "license": "IHK-GfI Open-Source-Lizenz",
   "repository": {
     "type": "git",
@@ -73,6 +73,7 @@
     "material-design-icons-iconfont": "5.0.1",
     "ng-packagr": "9.0.2",
     "ng2-pdf-viewer": "6.1.1",
+    "pdfjs-dist": "2.2.228",
     "node-sass": "4.14.1",
     "prettier": "1.19.1",
     "protractor": "5.4.3",
@@ -107,6 +108,7 @@
   "optionalDependencies": {
     "fsevents": "2.1.2",
     "ng2-pdf-viewer": "6.1.1",
+    "pdfjs-dist": "2.2.228",
     "dompurify": "2.0.11",
     "marked": "1.0.0"
   }
