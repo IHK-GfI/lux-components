@@ -99,7 +99,8 @@ export class ComponentsOverviewNavigationService {
     { onclick: () => this.goTo('html'), icon: 'fab fa-html5', label: 'Html', moduleName: 'html' },
     { onclick: () => this.goTo('markdown'), icon: 'fab fa-markdown', label: 'Markdown', moduleName: 'markdown' },
     { onclick: () => this.goTo('form-row'), icon: 'fas fa-grip-horizontal', label: 'Form-Row', moduleName: 'layout' },
-    { onclick: () => this.goTo('card-row'), icon: 'fas fa-grip-horizontal', label: 'Card-Row', moduleName: 'layout' }
+    { onclick: () => this.goTo('card-row'), icon: 'fas fa-grip-horizontal', label: 'Card-Row', moduleName: 'layout' },
+    { onclick: () => this.goTo('filter'), icon: 'fas fa-filter', label: 'Filter', moduleName: 'filter' }
   ];
 
   sortedComponentEntries: Map<string, any[]> = new Map<string, any[]>();
@@ -108,6 +109,7 @@ export class ComponentsOverviewNavigationService {
     ['common', false],
     ['directive', false],
     ['error', false],
+    ['filter', false],
     ['form', false],
     ['html', false],
     ['icon', false],

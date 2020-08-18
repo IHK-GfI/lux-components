@@ -1,5 +1,9 @@
 # Version 1.9.3
 ## New
+- **lux-filter-form**: Allgemeine Filterkomponente für Master-Detail-Ansichten, Tabellen, Listen,... erstellt. [Issue 29](https://github.com/IHK-GfI/lux-components/issues/29)
+
+# Version 1.9.3
+## New
 - **lux-layout**: Zeilenbasiertes Layout für Karten und Formulare hinzugefügt. [Issue 18](https://github.com/IHK-GfI/lux-components/issues/18)
 - **lux-layout-form-row**: Zeilenbasiertes Layout für Formulare hinzugefügt. [Issue 18](https://github.com/IHK-GfI/lux-components/issues/18)
 - **lux-layout-card-row**: Zeilenbasiertes Layout für Karten hinzugefügt. [Issue 18](https://github.com/IHK-GfI/lux-components/issues/18)
