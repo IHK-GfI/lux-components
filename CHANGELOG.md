@@ -1,4 +1,10 @@
 # Version 1.9.3
+## Bug Fixes
+- **lux-checkbox**: Die Checkbox unterstützt jetzt lange mehrzeilige Labels. [Issue 27](https://github.com/IHK-GfI/lux-components/issues/27)
+- **lux-toggle**: Das Toggle unterstützt jetzt lange mehrzeilige Labels. [Issue 27](https://github.com/IHK-GfI/lux-components/issues/27)
+
+
+# Version 1.9.3
 ## New
 - **lux-layout**: Zeilenbasiertes Layout für Karten und Formulare hinzugefügt. [Issue 18](https://github.com/IHK-GfI/lux-components/issues/18)
 - **lux-layout-form-row**: Zeilenbasiertes Layout für Formulare hinzugefügt. [Issue 18](https://github.com/IHK-GfI/lux-components/issues/18)
