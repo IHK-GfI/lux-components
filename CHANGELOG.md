@@ -1,4 +1,4 @@
-# Version 1.9.3
+# Version 1.9.4
 ## New
 - **lux-filter-form**: Allgemeine Filterkomponente für Master-Detail-Ansichten, Tabellen, Listen,... erstellt. [Issue 29](https://github.com/IHK-GfI/lux-components/issues/29)
 
