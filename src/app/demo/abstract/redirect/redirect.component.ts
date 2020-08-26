@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RedirectComponent implements OnInit {
 
-  url: string = 'https://duckduckgo.com/';
+  url: string = '/';
 
   constructor() { }
 
