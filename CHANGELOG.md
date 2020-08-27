@@ -1,3 +1,7 @@
+# Version 1.9.4
+## Bug Fixes
+- **lux-textarea**: Höhenberechnung von luxMaxRows fehlerhaft. [Issue 25](https://github.com/IHK-GfI/lux-components/issues/25)
+
 # Version 1.9.3
 ## New
 - **lux-layout**: Zeilenbasiertes Layout für Karten und Formulare hinzugefügt. [Issue 18](https://github.com/IHK-GfI/lux-components/issues/18)
