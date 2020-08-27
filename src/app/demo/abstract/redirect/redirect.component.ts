@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'lux-redirect',
-  templateUrl: './redirect.component.html',
-  styleUrls: ['./redirect.component.scss']
+  templateUrl: './redirect.component.html'
 })
 export class RedirectComponent implements OnInit {
 
