@@ -13,9 +13,8 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -176,8 +175,20 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
     setTimeout(() => {
       this.previousISO = isoValue;
 
-      // valueChange-Emitter anstoßen
-      this.notifyFormValueChanged(isoValue);
+      let minOk = true;
+      if (this.min && isoValue && this.dateAdapter.compareDate(new Date(isoValue), this.min) < 0) {
+        minOk = false;
+      }
+
+      let maxOk = true;
+      if (this.max && isoValue && this.dateAdapter.compareDate(new Date(isoValue), this.max) > 0) {
+        maxOk = false;
+      }
+
+      // Der valueChange-Emitter wird nur anstoßen, wenn das Datum innerhalb der Grenzen (min und max) liegt.
+      if (minOk && maxOk) {
+        this.notifyFormValueChanged(isoValue);
+      }
 
       // "silently" den FormControl auf den (potentiell) geänderten Wert aktualisieren
       this.formControl.setValue(isoValue, {
