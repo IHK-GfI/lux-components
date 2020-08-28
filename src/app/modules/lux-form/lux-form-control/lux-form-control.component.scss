@@ -120,7 +120,11 @@ $fontSizeSmall: 12px;
     }
 
     textarea {
-      min-height: $controlHeight;
+      // Hier wird explizit nicht die min-height auf die $controlHeight gesetzt,
+      // da sonst die Höhe in Bezug auf minRows und maxRows falsch berechnet wird.
+      // Damit der Abstand zwischen dem Text under unteren Border korrekt ist,
+      // wird hier ein Abstand nach unten eingefügt.
+      padding-bottom: $controlHeight - 17px;
     }
 
     .lux-input-row {
@@ -165,24 +169,26 @@ $fontSizeSmall: 12px;
       }
     }
 
-    // Höhe des Checkbox-Labels an andere Höhen angleichen
-    mat-checkbox,
+    // Höhe des Toggle-Labels an andere Höhen angleichen
     mat-slide-toggle {
-      .mat-checkbox-label,
+      height: auto;
+
       .mat-slide-toggle-label {
-        height: $controlHeightSmall;
         line-height: $controlHeightSmall;
         font-size: $fontSize;
       }
+
+      .mat-slide-toggle-content {
+        white-space: normal;
+      }
     }
 
-    // Checkbox sonst buggy in IE
-    .mat-checkbox-layout {
-      cursor: inherit;
-      display: inline-flex;
-      white-space: nowrap;
-      align-items: stretch;
-      vertical-align: top;
+    // Höhe des Checkbox-Labels an andere Höhen angleichen
+    mat-checkbox {
+      .mat-checkbox-label {
+        line-height: $controlHeightSmall;
+        font-size: $fontSize;
+      }
     }
 
     // Höhe der Radio-Buttons etwas anheben

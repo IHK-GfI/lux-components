@@ -4,12 +4,14 @@ import { HomeComponent } from './demo/home/home.component';
 import { LuxConsoleService } from './modules/lux-util/lux-console.service';
 import { ConfigurationComponent } from './demo/configuration/configuration.component';
 import { BaselineComponent } from './demo/baseline/baseline.component';
+import { PlaceholderComponent } from './demo/abstract/placeholder/placeholder.component';
+import { RedirectComponent } from './demo/abstract/redirect/redirect.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'datenschutz', component: HomeComponent },
-  { path: 'impressum', component: HomeComponent },
+  { path: 'datenschutz', component: PlaceholderComponent },
+  { path: 'impressum', component: RedirectComponent },
   {
     path: 'components-overview',
     loadChildren: () =>

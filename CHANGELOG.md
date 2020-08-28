@@ -1,3 +1,12 @@
+# Version 1.9.4
+## New
+- **Demo**: Demoseiten für den Datenschutz und Impressum hinzugefügt. [Issue 32](https://github.com/IHK-GfI/lux-components/issues/32)
+
+## Bug Fixes
+- **lux-textarea**: Höhenberechnung von luxMaxRows fehlerhaft. [Issue 25](https://github.com/IHK-GfI/lux-components/issues/25)
+- **lux-checkbox**: Die Checkbox unterstützt jetzt lange mehrzeilige Labels. [Issue 27](https://github.com/IHK-GfI/lux-components/issues/27)
+- **lux-toggle**: Das Toggle unterstützt jetzt lange mehrzeilige Labels. [Issue 27](https://github.com/IHK-GfI/lux-components/issues/27)
+
 # Version 1.9.3
 ## New
 - **lux-layout**: Zeilenbasiertes Layout für Karten und Formulare hinzugefügt. [Issue 18](https://github.com/IHK-GfI/lux-components/issues/18)
@@ -9,6 +18,7 @@
 - **lux-datepicker**: Datumänderung per Tasteneingabe im IE nicht möglich. [Issue 13](https://github.com/IHK-GfI/lux-components/issues/13)
 - **lux-progress**: Überflüssiges Padding entfernt. [Issue 14](https://github.com/IHK-GfI/lux-components/issues/14)
 - **lux-select**: Option nicht immer direkt sichtbar. [Issue 22](https://github.com/IHK-GfI/lux-components/issues/22)
+- **lux-datepicker**: Datepickerpopup zeigt immer Sonntag als ersten Wochentag an. [Issue 20](https://github.com/IHK-GfI/lux-components/issues/20)
 
 # Version 1.9.2
 ## New
