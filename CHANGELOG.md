@@ -1,12 +1,11 @@
 # Version 1.9.4
+## New
+- **Demo**: Demoseiten für den Datenschutz und Impressum hinzugefügt. [Issue 32](https://github.com/IHK-GfI/lux-components/issues/32)
+
 ## Bug Fixes
 - **lux-textarea**: Höhenberechnung von luxMaxRows fehlerhaft. [Issue 25](https://github.com/IHK-GfI/lux-components/issues/25)
-
-# Version 1.9.3
-## Bug Fixes
 - **lux-checkbox**: Die Checkbox unterstützt jetzt lange mehrzeilige Labels. [Issue 27](https://github.com/IHK-GfI/lux-components/issues/27)
 - **lux-toggle**: Das Toggle unterstützt jetzt lange mehrzeilige Labels. [Issue 27](https://github.com/IHK-GfI/lux-components/issues/27)
-
 
 # Version 1.9.3
 ## New

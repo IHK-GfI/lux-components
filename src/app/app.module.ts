@@ -35,6 +35,8 @@ import { registerLocaleData } from '@angular/common';
 import localeDE from '@angular/common/locales/de';
 import localeDeExtra from '@angular/common/locales/extra/de';
 import { LOCALE_ID } from '@angular/core';
+import { PlaceholderComponent } from './demo/abstract/placeholder/placeholder.component';
+import { RedirectComponent } from './demo/abstract/redirect/redirect.component';
 
 registerLocaleData(localeDE, localeDeExtra);
 
@@ -49,7 +51,7 @@ const myConfiguration: LuxComponentsConfigParameters = {
 };
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PlaceholderComponent, RedirectComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
