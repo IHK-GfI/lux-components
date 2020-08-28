@@ -1,3 +1,7 @@
+# Version 1.9.4
+## New
+- **Demo**: Demoseiten für den Datenschutz und Impressum hinzugefügt. [Issue 32](https://github.com/IHK-GfI/lux-components/issues/32)
+
 # Version 1.9.3
 ## New
 - **lux-layout**: Zeilenbasiertes Layout für Karten und Formulare hinzugefügt. [Issue 18](https://github.com/IHK-GfI/lux-components/issues/18)

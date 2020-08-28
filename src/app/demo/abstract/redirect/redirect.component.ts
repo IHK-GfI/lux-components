@@ -5,10 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './redirect.component.html'
 })
 export class RedirectComponent implements OnInit {
-
   url: string = '/';
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     window.location.href = this.url;

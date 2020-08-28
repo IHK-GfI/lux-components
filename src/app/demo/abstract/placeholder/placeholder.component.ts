@@ -5,10 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './placeholder.component.html'
 })
 export class PlaceholderComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
