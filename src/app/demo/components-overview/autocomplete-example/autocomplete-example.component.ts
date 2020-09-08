@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { RenderPropertyItem } from './render-property-item';
 import {
-  exampleErrorCallback,
+  exampleErrorCallback, examplePickValueFn,
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
@@ -19,10 +19,10 @@ export class AutocompleteExampleComponent implements OnInit {
   showOutputEvents: boolean = false;
 
   options = [
-    { label: 'Option #1', short: 'O1', value: '#1' },
-    { label: 'Option #2', short: 'O2', value: '#2' },
-    { label: 'Option #3', short: 'O3', value: '#3' },
-    { label: 'Option #4', short: 'O4', value: '#4' }
+    { label: 'Meine Aufgaben', value: 'A' },
+    { label: 'Gruppenaufgaben', value: 'B' },
+    { label: 'Zurückgestellte Aufgaben', value: 'C' },
+    { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
   renderProperties: RenderPropertyItem[] = [
@@ -61,6 +61,8 @@ export class AutocompleteExampleComponent implements OnInit {
   errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
+  usePickValueFn: boolean = false;
+  pickValueFn = examplePickValueFn;
 
   // endregion
 
