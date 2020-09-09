@@ -4,7 +4,7 @@ import { LuxFilter } from '../../lux-filter-base/lux-filter';
 import { LuxFilterFormComponent } from '../../lux-filter-form/lux-filter-form.component';
 
 @Component({
-  selector: 'lux-lux-filter-load-dialog',
+  selector: 'lux-filter-load-dialog',
   templateUrl: './lux-filter-load-dialog.component.html',
   styleUrls: ['./lux-filter-load-dialog.component.scss']
 })

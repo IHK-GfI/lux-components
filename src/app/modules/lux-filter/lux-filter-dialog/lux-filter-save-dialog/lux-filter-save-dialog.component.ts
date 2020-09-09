@@ -3,7 +3,7 @@ import { LuxDialogRef } from '../../../lux-popups/lux-dialog/lux-dialog-model/lu
 import { LuxInputComponent } from '../../../lux-form/lux-input/lux-input.component';
 
 @Component({
-  selector: 'lux-lux-filter-save-dialog',
+  selector: 'lux-filter-save-dialog',
   templateUrl: './lux-filter-save-dialog.component.html',
   styleUrls: ['./lux-filter-save-dialog.component.scss']
 })
