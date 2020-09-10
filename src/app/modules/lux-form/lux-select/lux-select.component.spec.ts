@@ -527,21 +527,21 @@ describe('LuxSelectComponent', () => {
 
       // Änderungen durchführen
       clickTrigger();
-      clickOption(1);
-
-      // Nachbedingungen prüfen
-      expect(testComponent.selectedOption).toBe(undefined);
-      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).toBe(null);
-      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).not.toBe(null);
-
-      // Änderungen durchführen
-      clickTrigger();
       clickOption(2);
 
       // Nachbedingungen prüfen
       expect(testComponent.selectedOption).toBe('');
       expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).not.toBe(null);
       expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).toBe(null);
+
+      // Änderungen durchführen
+      clickTrigger();
+      clickOption(1);
+
+      // Nachbedingungen prüfen
+      expect(testComponent.selectedOption).toBe(undefined);
+      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).not.toBe(null);
 
       // Änderungen durchführen
       clickTrigger();
