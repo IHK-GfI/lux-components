@@ -106,7 +106,7 @@ describe('LuxInputComponent', () => {
         // Nachbedingungen testen
         errorEl = fixture.debugElement.query(By.css('mat-error'));
         expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-        expect(errorEl.nativeElement.innerText.trim()).toEqual('Dieses Feld darf nicht leer sein', `Nachbedingung 1`);
+        expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld', `Nachbedingung 1`);
         expect(textInput.formControl.valid).toBeFalsy(`Nachbedingung 2`);
       }));
 
@@ -597,7 +597,7 @@ describe('LuxInputComponent', () => {
         // Nachbedingungen testen
         errorEl = fixture.debugElement.query(By.css('mat-error'));
         expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-        expect(errorEl.nativeElement.innerText.trim()).toEqual('Dieses Feld darf nicht leer sein', `Nachbedingung 1`);
+        expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld', `Nachbedingung 1`);
         expect(textInput.formControl.valid).toBeFalsy(`Nachbedingung 2`);
       }));
 

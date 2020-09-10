@@ -71,7 +71,7 @@ export class LuxUtil {
   public static getErrorMessage(formControl: FormControl): string {
     if (formControl) {
       if (formControl.hasError('required')) {
-        return 'Dieses Feld darf nicht leer sein';
+        return '* Pflichtfeld';
       }
 
       if (formControl.hasError('minlength')) {

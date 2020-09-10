@@ -52,6 +52,8 @@ import { RippleExampleComponent } from './ripple-example/ripple-example.componen
 import { BadgeNotificationExampleComponent } from './badge-notification-example/badge-notification-example.component';
 import { HtmlExampleComponent } from './html-example/html-example.component';
 import { MarkdownExampleComponent } from './markdown-example/markdown-example.component';
+import { FormRowExampleComponent } from './form-row-example/form-row-example.component';
+import { CardRowExampleComponent } from './card-row-example/card-row-example.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -106,7 +108,9 @@ const routes: Routes = [
       { path: 'badge-notification', component: BadgeNotificationExampleComponent },
       { path: 'ripple', component: RippleExampleComponent },
       { path: 'html', component: HtmlExampleComponent },
-      { path: 'markdown', component: MarkdownExampleComponent }
+      { path: 'markdown', component: MarkdownExampleComponent },
+      { path: 'form-row', component: FormRowExampleComponent },
+      { path: 'card-row', component: CardRowExampleComponent }
     ]
   }
 ];

@@ -16,6 +16,21 @@ Angular-Klassenbibliothek, die via NPM in das eigene Projekt eingebunden wird.
 ## Changelog
 Die Änderungen weden in der Datei [CHANGELOG.md](https://github.com/IHK-GfI/lux-components/blob/master/CHANGELOG.md) dokumentiert.
 
+## Demo
+Live-Demo vom Zweig (develop): 
+- https://lux-components-develop.gfi.ihk.de
+
+Live-Demo vom Zweig (master): 
+- https://lux-components-master.gfi.ihk.de
+
+Die Demo kann auch lokal ausgeführt werden: 
+- LUX-Components via Git runterladen. 
+- In das entsprechende Verzeichnis wechseln.
+- npm install ausführen.
+- ng serve ausführen.
+- http://localhost:4200/ öffnen.
+- Ausprobieren!
+
 ## Eine App auf Basis der LUX-Components erstellen
 
 Stellen Sie zunächst sicher, dass Sie die Node-Version 10.16.3 oder höher installiert haben. 
@@ -63,12 +78,3 @@ Die Dokumentation der LUX-Components befindet sich [hier](https://github.com/IHK
 
 ## LUX-Components aktualisieren
 Wie man seine LUX-Components aktualisiert, steht im [Update Guide](https://github.com/IHK-GfI/lux-components/wiki/update-guide).
-
-## Demo
-Die LUX-Components enthalten auch eine Demo.
-- LUX-Components via Git runterladen. 
-- In das entsprechende Verzeichnis wechseln.
-- npm install ausführen.
-- ng serve ausführen.
-- http://localhost:4200/ öffnen.
-- Ausprobieren!

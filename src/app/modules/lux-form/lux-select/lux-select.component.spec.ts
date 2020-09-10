@@ -238,7 +238,7 @@ describe('LuxSelectComponent', () => {
       // Nachbedingungen testen
       errorEl = fixture.debugElement.query(By.css('mat-error'));
       expect(errorEl.nativeElement.innerText.trim().length).toBeGreaterThan(0, `Nachbedingung 1`);
-      expect(errorEl.nativeElement.innerText.trim()).toEqual('Dieses Feld darf nicht leer sein', `Nachbedingung 1`);
+      expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld', `Nachbedingung 1`);
       expect(selectComponent.formControl.valid).toBeFalsy(`Nachbedingung 2`);
     }));
 

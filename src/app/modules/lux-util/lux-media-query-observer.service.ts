@@ -5,8 +5,8 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 
 @Injectable()
 export class LuxMediaQueryObserverService implements OnDestroy {
-  private _mediaQueryChanged: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  private _subscriptions: Subscription[] = [];
+  protected _mediaQueryChanged: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  protected _subscriptions: Subscription[] = [];
 
   constructor(private breakpointObserver: BreakpointObserver, private logger: LuxConsoleService) {
     this.addQuerySubscription(Breakpoints.XSmall, 'xs');
@@ -27,6 +27,39 @@ export class LuxMediaQueryObserverService implements OnDestroy {
 
   public getMediaQueryChangedAsObservable(): Observable<string> {
     return this._mediaQueryChanged.asObservable();
+  }
+
+  public isSmaller(query: string): boolean {
+    return this.sizeAsNumber(this._mediaQueryChanged.getValue()) - this.sizeAsNumber(query) < 0;
+  }
+
+  public isSmallerOrEqual(query: string): boolean {
+    return this.sizeAsNumber(this._mediaQueryChanged.getValue()) - this.sizeAsNumber(query) <= 0;
+  }
+
+  public isGreater(query: string): boolean {
+    return this.sizeAsNumber(this._mediaQueryChanged.getValue()) - this.sizeAsNumber(query) > 0;
+  }
+
+  public isGreaterOrEqual(query: string): boolean {
+    return this.sizeAsNumber(this._mediaQueryChanged.getValue()) - this.sizeAsNumber(query) >= 0;
+  }
+
+  private sizeAsNumber(query: string): number {
+    switch (query) {
+      case 'xs':
+        return 1;
+      case 'sm':
+        return 2;
+      case 'md':
+        return 3;
+      case 'lg':
+        return 4;
+      case 'xl':
+        return 5;
+      default:
+        return 0;
+    }
   }
 
   public isXS(): boolean {

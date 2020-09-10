@@ -97,7 +97,9 @@ export class ComponentsOverviewNavigationService {
       moduleName: 'directive'
     },
     { onclick: () => this.goTo('html'), icon: 'fab fa-html5', label: 'Html', moduleName: 'html' },
-    { onclick: () => this.goTo('markdown'), icon: 'fab fa-markdown', label: 'Markdown', moduleName: 'markdown' }
+    { onclick: () => this.goTo('markdown'), icon: 'fab fa-markdown', label: 'Markdown', moduleName: 'markdown' },
+    { onclick: () => this.goTo('form-row'), icon: 'fas fa-grip-horizontal', label: 'Form-Row', moduleName: 'layout' },
+    { onclick: () => this.goTo('card-row'), icon: 'fas fa-grip-horizontal', label: 'Card-Row', moduleName: 'layout' }
   ];
 
   sortedComponentEntries: Map<string, any[]> = new Map<string, any[]>();

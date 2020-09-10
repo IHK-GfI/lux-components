@@ -265,6 +265,11 @@ export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcom
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-side-nav/lux-side-nav-subcomponents/lux-side-nav-item.component';
 export * from './src/app/modules/lux-layout/lux-card/lux-card-subcomponents/lux-card-content-expanded.component';
 export * from './src/app/modules/lux-layout/lux-master-detail/lux-master-detail-subcomponents/lux-detail-view/lux-detail-wrapper.component';
+export * from './src/app/modules/lux-layout/lux-layout/lux-layout.component';
+export * from './src/app/modules/lux-layout/lux-layout/lux-layout-card-row/lux-layout-card-row.component';
+export * from './src/app/modules/lux-layout/lux-layout/lux-layout-form-row/lux-layout-form-row.component';
+// Directives
+export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-item.directive';
 // Services
 export * from './src/app/modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 export * from './src/app/modules/lux-layout/lux-app-footer/lux-app-footer-link.service';
@@ -277,6 +282,9 @@ export * from './src/app/modules/lux-layout/lux-stepper/lux-stepper-model/lux-st
 export { visibilityTrigger } from './src/app/modules/lux-common/lux-message-box/lux-message-box-model/lux-message-box.animations';
 export { sideNavAnimation, sideNavOverlayAnimation } from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-side-nav/lux-side-nav-model/lux-side-nav-animations';
 export { expansionAnim } from './src/app/modules/lux-layout/lux-card/lux-card-model/lux-card-animations';
+export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-item-config';
+export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-gap-config';
+export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-margin-config';
 
 /**
  *  _    _   ___  __     _     ___   ___  _  ___   _ ____

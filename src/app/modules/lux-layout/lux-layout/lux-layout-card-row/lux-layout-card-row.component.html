@@ -1,0 +1,24 @@
+<div fxLayout="row" *ngIf="luxTitle">
+  <div *ngIf="margin && luxMargin.marginLeft" [fxFlex]="margin"></div>
+  <div fxFlex="flex" [fxLayout]="layoutOrientation" [fxLayoutGap]="rowItemGap">
+    <h3 [ngStyle]="{ 'padding-left': headerPaddingLeft }" class="row-title">{{ luxTitle }}</h3>
+  </div>
+  <div *ngIf="margin && luxMargin.marginRight" [fxFlex]="margin"></div>
+</div>
+<div fxLayout="row" [ngStyle]="{ 'margin-bottom':  rowGap }">
+  <div *ngIf="margin && luxMargin.marginLeft" [fxFlex]="margin"></div>
+  <div fxFlex="flex" [fxLayout]="layoutOrientation" [fxLayoutGap]="rowItemGap">
+    <ng-container *ngFor="let rowItem of rowItems">
+      <div
+        [fxFlex]="rowItem.luxLayoutRowItem.flex ? rowItem.luxLayoutRowItem.flex : calculateWidth(rowItem)"
+        class="row-item-container"
+        *ngIf="
+          !rowItem.luxLayoutRowItem.empty || (rowItem.luxLayoutRowItem.empty && queryObserver.isGreater(this.luxWrapAt))
+        "
+      >
+        <ng-container [ngTemplateOutlet]="rowItem.templateRef"></ng-container>
+      </div>
+    </ng-container>
+  </div>
+  <div *ngIf="margin && luxMargin.marginRight" [fxFlex]="margin"></div>
+</div>
