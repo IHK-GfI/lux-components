@@ -8,11 +8,9 @@ import { ILuxTableHttpDao } from './lux-table-http/lux-table-http-dao.interface'
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
-import { LuxUtil } from '../../lux-util/lux-util';
 import { delay } from 'rxjs/operators';
 
 describe('LuxTableComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [
@@ -185,11 +183,12 @@ describe('LuxTableComponent', () => {
         { c1: 3, c2: 'Gamma' },
         { c1: 4, c2: 'Alpha' }
       ];
+      component.c1Sortable = false;
       component.c2Sortable = true;
       LuxTestHelper.wait(fixture);
 
       let col2FirstElements = document.getElementsByClassName('c2-content');
-      const sortHeaders = document.querySelectorAll('th:not(.lux-table-header-blocked) .mat-sort-header-button');
+      const sortHeaders = document.querySelectorAll('th.mat-sort-header:not(.lux-table-header-blocked)');
       const sortHeadersBlocked = document.querySelectorAll('.lux-table-header-blocked');
 
       expect(col2FirstElements.length).toBe(4, 'Vorbedingung 1');
@@ -242,7 +241,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       let col2Elements = document.getElementsByClassName('c2-content');
-      const sortHeaders = document.querySelectorAll('th:not(.lux-table-header-blocked) .mat-sort-header-button');
+      const sortHeaders = document.querySelectorAll('th.mat-sort-header:not(.lux-table-header-blocked)');
 
       expect(col2Elements.length).toBe(5, 'Vorbedingung 1');
       expect(col2Elements.item(4).textContent).toEqual('  ', 'Vorbedingung 2');
@@ -1040,8 +1039,8 @@ describe('LuxTableComponent', () => {
       // Nachbedingungen testen
       expect(component.selected.length).toBe(1, 'Nachbedingung 1');
 
-      // Änderungen durchführen
-      const sortHeader = document.querySelector('th:not(.lux-table-header-blocked) .mat-sort-header-button');
+      // Änderungen durchführen body
+      const sortHeader = document.querySelector('th.mat-sort-header');
       (<HTMLButtonElement>sortHeader).click();
       LuxTestHelper.wait(fixture, 500);
 
