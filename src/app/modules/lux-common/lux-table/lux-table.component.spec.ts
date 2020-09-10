@@ -305,26 +305,6 @@ describe('LuxTableComponent', () => {
       expect((<HTMLElement>tableHeaders.item(1)).style.width).toEqual('25%', 'Nachbedingung 1');
     }));
 
-    it('Die Header und Footer sollten sticky sein', fakeAsync(() => {
-      if (!LuxUtil.isIEorEdge()) {
-        component.dataSource = [
-          { c1: 1, c2: 'Hydrogen' },
-          { c1: 2, c2: 'Helium' }
-        ];
-        LuxTestHelper.wait(fixture);
-
-        const tableHeaders = document.getElementsByClassName('mat-header-cell');
-        const tableFooters = document.getElementsByClassName('mat-footer-cell');
-
-        expect((<HTMLElement>tableHeaders.item(0)).style.position).toContain('sticky', 'Bedingung 2');
-        expect((<HTMLElement>tableHeaders.item(1)).style.position).toContain('sticky', 'Bedingung 3');
-        expect((<HTMLElement>tableFooters.item(0)).style.position).toContain('sticky', 'Bedingung 4');
-        expect((<HTMLElement>tableFooters.item(1)).style.position).toContain('sticky', 'Bedingung 5');
-      }
-
-      flush();
-    }));
-
     it('Einzelne Spalten links und rechts fixieren', fakeAsync(() => {
       // Vorbedingungen testen
       component.dataSource = [
@@ -336,7 +316,7 @@ describe('LuxTableComponent', () => {
       expect(stickyElements.length).toBe(0, 'Vorbedingung 1');
 
       // Änderungen durchführen
-      component.c1Sticky = 'start';
+      component.c1Sticky = true;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
@@ -344,7 +324,7 @@ describe('LuxTableComponent', () => {
       expect(stickyElements.length).toBe(2, 'Nachbedingung 1');
 
       // Änderungen durchführen
-      component.c2Sticky = 'end';
+      component.c2Sticky = true;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
