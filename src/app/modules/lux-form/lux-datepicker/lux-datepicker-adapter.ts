@@ -90,7 +90,7 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
   private getUTCNulled_ddMMYYYY(dateString: string, separator: string) {
     const splitDate = dateString.split(separator);
     const tempDate = new Date(0);
-    tempDate.setUTCFullYear(+splitDate[2], +splitDate[1] - 1, +splitDate[0]);
+    tempDate.setUTCFullYear(+splitDate[2], this.calculateMonth(+splitDate[1]), +splitDate[0]);
     return tempDate;
   }
 
@@ -102,7 +102,7 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
   private getUTCNulled_YYYYMMdd(dateString: string, separator: string) {
     const splitDate = dateString.split(separator);
     const tempDate = new Date(0);
-    tempDate.setUTCFullYear(+splitDate[0], +splitDate[1] - 1, +splitDate[2]);
+    tempDate.setUTCFullYear(+splitDate[0], this.calculateMonth(+splitDate[1]), +splitDate[2]);
     return tempDate;
   }
 
@@ -114,11 +114,31 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
   private getUTCNulled_MMddYYY(dateString: string, separator: string) {
     const splitDate = dateString.split(separator);
     const tempDate = new Date(0);
-    tempDate.setUTCFullYear(+splitDate[2], +splitDate[0] - 1, +splitDate[1]);
+    tempDate.setUTCFullYear(+splitDate[2], this.calculateMonth(+splitDate[0]), +splitDate[1]);
     return tempDate;
   }
 
   isValid(date: any) {
-    return LuxUtil.isDate(date);
+    return LuxUtil.isDate(date) && this.isValidYear(date);
+  }
+
+  private calculateMonth(month: number) {
+    let newMonth = month;
+
+    if (month <= 0) {
+      newMonth = 0;
+    } else if (month >= 12) {
+      newMonth = 11;
+    } else {
+      newMonth = month - 1;
+    }
+
+    return newMonth;
+  }
+
+  private isValidYear(date: any) {
+    // Prüfen, ob das Jahr auch aus genau vier Stellen (z.B. 2020) besteht.
+    // Ohne diesen Check würden auch 5- oder 6-stellige Jahreszahlen akzeptiert.
+    return date.getFullYear() && date.getFullYear().toString().length === 4;
   }
 }
