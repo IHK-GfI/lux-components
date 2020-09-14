@@ -8,7 +8,6 @@ import { LuxInputComponent } from './lux-input.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
 describe('LuxInputComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService],
@@ -314,10 +313,16 @@ describe('LuxInputComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Testen, ob der Wert stimmt und der Wert vom Typ 'number' ist.
+        //
+        // Sonderbehandlung (z.B. [0.123, null]) für den Firefox:
+        // Der Firefox wandelt z.B. den Wert 0,123 korrekt in 0.123 um.
+        // Die anderen Browser wie z.B. Chrome und Edge liefern null zurück.
+        // Wichtig ist, dass entweder "null" oder ein Wert vom Typ 'number' im
+        // Formular steht.
         expect(0).toEqual(fixture.componentInstance.formGroup.get('amount01').value);
         expect(0).toEqual(fixture.componentInstance.formGroup.get('amount02').value);
         expect(0).toEqual(fixture.componentInstance.formGroup.get('amount03').value);
-        expect(null).toEqual(fixture.componentInstance.formGroup.get('amount04').value);
+        expect([0, null]).toContain(fixture.componentInstance.formGroup.get('amount04').value);
 
         expect(1).toEqual(fixture.componentInstance.formGroup.get('amount05').value);
         expect(10).toEqual(fixture.componentInstance.formGroup.get('amount06').value);
@@ -325,15 +330,15 @@ describe('LuxInputComponent', () => {
         expect(0.3).toEqual(fixture.componentInstance.formGroup.get('amount08').value);
 
         expect(0.12).toEqual(fixture.componentInstance.formGroup.get('amount09').value);
-        expect(null).toEqual(fixture.componentInstance.formGroup.get('amount10').value);
+        expect([0.123, null]).toContain(fixture.componentInstance.formGroup.get('amount10').value);
         expect(0.3).toEqual(fixture.componentInstance.formGroup.get('amount11').value);
-        expect(null).toEqual(fixture.componentInstance.formGroup.get('amount12').value);
+        expect([0.2, null]).toContain(fixture.componentInstance.formGroup.get('amount12').value);
 
         expect(0.123).toEqual(fixture.componentInstance.formGroup.get('amount13').value);
         expect(123).toEqual(fixture.componentInstance.formGroup.get('amount14').value);
-        expect(null).toEqual(fixture.componentInstance.formGroup.get('amount15').value);
-        expect(null).toEqual(fixture.componentInstance.formGroup.get('amount16').value);
-        expect(null).toEqual(fixture.componentInstance.formGroup.get('amount17').value);
+        expect([123.0, null]).toContain(fixture.componentInstance.formGroup.get('amount15').value);
+        expect([123.0, null]).toContain(fixture.componentInstance.formGroup.get('amount16').value);
+        expect([123.45, null]).toContain(fixture.componentInstance.formGroup.get('amount17').value);
       }));
 
       it('Sollte eingegebene Strings nicht umformatieren (via formControl)', fakeAsync(() => {
