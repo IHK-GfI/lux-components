@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { RenderPropertyItem } from './render-property-item';
 import {
-  exampleErrorCallback, examplePickValueFn,
+  exampleErrorCallback,
+  examplePickValueFn,
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
@@ -19,10 +20,10 @@ export class AutocompleteExampleComponent implements OnInit {
   showOutputEvents: boolean = false;
 
   options = [
-    { label: 'Meine Aufgaben', value: 'A' },
-    { label: 'Gruppenaufgaben', value: 'B' },
-    { label: 'Zurückgestellte Aufgaben', value: 'C' },
-    { label: 'Vertretungsaufgaben', value: 'D' }
+    { label: 'Meine Aufgaben', short: 'MA', value: 'A' },
+    { label: 'Gruppenaufgaben', short: 'GA', value: 'B' },
+    { label: 'Zurückgestellte Aufgaben', short: 'ZA', value: 'C' },
+    { label: 'Vertretungsaufgaben', short: 'VA', value: 'D' }
   ];
 
   renderProperties: RenderPropertyItem[] = [
