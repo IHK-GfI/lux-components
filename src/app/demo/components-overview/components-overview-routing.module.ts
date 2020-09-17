@@ -54,6 +54,7 @@ import { HtmlExampleComponent } from './html-example/html-example.component';
 import { MarkdownExampleComponent } from './markdown-example/markdown-example.component';
 import { FormRowExampleComponent } from './form-row-example/form-row-example.component';
 import { CardRowExampleComponent } from './card-row-example/card-row-example.component';
+import { FilterExampleComponent } from './filter-example/filter-example.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -110,7 +111,8 @@ const routes: Routes = [
       { path: 'html', component: HtmlExampleComponent },
       { path: 'markdown', component: MarkdownExampleComponent },
       { path: 'form-row', component: FormRowExampleComponent },
-      { path: 'card-row', component: CardRowExampleComponent }
+      { path: 'card-row', component: CardRowExampleComponent },
+      { path: 'filter', component: FilterExampleComponent }
     ]
   }
 ];

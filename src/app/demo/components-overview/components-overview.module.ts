@@ -86,6 +86,8 @@ import { MarkdownExampleComponent } from './markdown-example/markdown-example.co
 import { LuxMarkdownModule } from '../../modules/lux-markdown/lux-markdown.module';
 import { FormRowExampleComponent } from './form-row-example/form-row-example.component';
 import { CardRowExampleComponent } from './card-row-example/card-row-example.component';
+import { FilterExampleComponent } from './filter-example/filter-example.component';
+import { LuxFilterModule } from '../../modules/lux-filter/lux-filter.module';
 
 @NgModule({
   imports: [
@@ -110,7 +112,10 @@ import { CardRowExampleComponent } from './card-row-example/card-row-example.com
     LuxMarkdownModule,
     LuxFilePreviewModule,
     MatFormFieldModule,
-    ExampleBaseModule
+    ExampleBaseModule,
+    ExampleBaseModule,
+    MatBadgeModule,
+    LuxFilterModule
   ],
   declarations: [
     MasterDetailExampleComponent,
@@ -173,7 +178,8 @@ import { CardRowExampleComponent } from './card-row-example/card-row-example.com
     HtmlExampleComponent,
     MarkdownExampleComponent,
     FormRowExampleComponent,
-    CardRowExampleComponent
+    CardRowExampleComponent,
+    FilterExampleComponent
   ],
   providers: [HttpClient, LuxLookupHandlerService, MasterDetailExampleDataService, LuxDialogService],
   entryComponents: [DialogComponentExampleComponent]

@@ -1,0 +1,168 @@
+<example-base-structure exampleTitle="Filter" exampleIconName="fas fa-filter" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90filter%E2%80%90form">
+  <example-base-content>
+    <div fxLayout="column">
+      <lux-filter-form
+        fxFlex="1 1 auto"
+        (luxOnFilter)="onFilter($event)"
+        [(luxFilterExpanded)]="expanded"
+        [luxFilterValues]="initFilter"
+        (luxOnSave)="onSave($event)"
+        (luxOnLoad)="onLoad($event)"
+        (luxOnReset)="onReset()"
+        (luxOnDelete)="onDelete($event)"
+        [luxShowChips]="showFilterChips"
+        [luxStoredFilters]="storedFilters"
+        class="lux-ml-1 lux-mr-1 lux-mb-3"
+      >
+        <div
+          fxLayout="row wrap"
+          fxLayoutGap="12px grid"
+          fxLayout.xs="column"
+          fxLayoutGap.xs="0px"
+          fxLayout.md="column"
+          fxLayoutGap.md="0px"
+        >
+          <lux-input
+            fxFlex="1 1 calc(33% - 12px)"
+            fxFlex.xs="1 1 auto"
+            fxFlex.md="1 1 auto"
+            luxLabel="Input"
+            luxName="filter_input"
+            luxAutocomplete="off"
+            luxControlBinding="input"
+            [luxFilterDisabled]="inputDisabled"
+            [luxFilterHidden]="inputHidden"
+            luxFilterItem
+          ></lux-input>
+          <lux-autocomplete
+            fxFlex="1 1 calc(33% - 12px)"
+            fxFlex.xs="1 1 auto"
+            fxFlex.md="1 1 auto"
+            luxLabel="Autocomplete"
+            luxName="filter_autocomplete"
+            [luxOptions]="autoCompleteOptions"
+            luxControlBinding="autocomplete"
+            [luxFilterDisabled]="autoCompleteDisabled"
+            [luxFilterHidden]="autoCompleteHidden"
+            luxFilterItem
+          ></lux-autocomplete>
+          <lux-datepicker
+            fxFlex="1 1 calc(33% - 12px)"
+            fxFlex.xs="1 1 auto"
+            fxFlex.md="1 1 auto"
+            luxLabel="Datepicker"
+            luxName="filter_datepicker"
+            luxControlBinding="datepicker"
+            [luxFilterDisabled]="datepickerDisabled"
+            [luxFilterHidden]="datepickerHidden"
+            luxFilterItem
+          ></lux-datepicker>
+          <lux-select
+            fxFlex="1 1 calc(33% - 12px)"
+            fxFlex.xs="1 1 auto"
+            fxFlex.md="1 1 auto"
+            luxLabel="Single-Select"
+            luxControlBinding="singleSelect"
+            luxOptionLabelProp="label"
+            [luxMultiple]="false"
+            [luxOptions]="singleSelectOptions"
+            [luxCompareWith]="compareValueFn"
+            [luxFilterDisabled]="singleSelectDisabled"
+            [luxFilterHidden]="singleSelectHidden"
+            luxFilterColor="accent"
+            luxFilterItem
+          ></lux-select>
+          <lux-select
+            fxFlex="1 1 calc(33% - 12px)"
+            fxFlex.xs="1 1 auto"
+            fxFlex.md="1 1 auto"
+            luxLabel="Multi-Select"
+            luxControlBinding="multiSelect"
+            luxOptionLabelProp="label"
+            [luxMultiple]="true"
+            [luxOptions]="multiSelectOptions"
+            [luxCompareWith]="compareValueFn"
+            [luxFilterDisabled]="multiSelectDisabled"
+            [luxFilterHidden]="multiSelectHidden"
+            luxFilterColor="accent"
+            luxFilterItem
+          ></lux-select>
+          <lux-toggle
+            fxFlex="1 1 calc(33% - 12px)"
+            fxFlex.xs="1 1 auto"
+            fxFlex.md="1 1 auto"
+            luxLabel="Toggle"
+            luxName="filter_toggle"
+            luxControlBinding="toggle"
+            [luxFilterRenderFn]="renderToggleFn"
+            [luxFilterDisabled]="toggleSelectDisabled"
+            [luxFilterHidden]="toggleSelectHidden"
+            luxFilterColor="warn"
+            luxFilterItem
+          ></lux-toggle>
+        </div>
+      </lux-filter-form>
+      <lux-card fxFlex="1 1 auto" luxTitle="Filter">
+        <lux-card-content>
+          <pre>{{ currentFilter | json }}</pre>
+        </lux-card-content>
+      </lux-card>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <div class="example-highlight-config-option filter-config-item" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Input</div>
+      <lux-layout>
+        <lux-layout-form-row luxWrapAt="md">
+          <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="inputDisabled" *luxLayoutRowItem></lux-toggle>
+          <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="inputHidden" *luxLayoutRowItem></lux-toggle>
+        </lux-layout-form-row>
+      </lux-layout>
+    </div>
+    <div class="example-highlight-config-option filter-config-item" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Autocomplete</div>
+      <lux-layout>
+        <lux-layout-form-row luxWrapAt="md">
+          <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="autoCompleteDisabled" *luxLayoutRowItem></lux-toggle>
+          <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="autoCompleteHidden" *luxLayoutRowItem></lux-toggle>
+        </lux-layout-form-row>
+      </lux-layout>
+    </div>
+    <div class="example-highlight-config-option filter-config-item" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Datepicker</div>
+      <lux-layout>
+        <lux-layout-form-row luxWrapAt="md">
+          <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="datepickerDisabled" *luxLayoutRowItem></lux-toggle>
+          <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="datepickerHidden" *luxLayoutRowItem></lux-toggle>
+        </lux-layout-form-row>
+      </lux-layout>
+    </div>
+    <div class="example-highlight-config-option filter-config-item" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Single-Select</div>
+      <lux-layout>
+        <lux-layout-form-row luxWrapAt="md">
+          <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="singleSelectDisabled" *luxLayoutRowItem></lux-toggle>
+          <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="singleSelectHidden" *luxLayoutRowItem></lux-toggle>
+        </lux-layout-form-row>
+      </lux-layout>
+    </div>
+    <div class="example-highlight-config-option filter-config-item" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Multi-Select</div>
+      <lux-layout>
+        <lux-layout-form-row luxWrapAt="md">
+          <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="multiSelectDisabled" *luxLayoutRowItem></lux-toggle>
+          <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="multiSelectHidden" *luxLayoutRowItem></lux-toggle>
+        </lux-layout-form-row>
+      </lux-layout>
+    </div>
+    <div class="example-highlight-config-option filter-config-item" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Toggle</div>
+      <lux-layout>
+        <lux-layout-form-row luxWrapAt="md">
+          <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="toggleSelectDisabled" *luxLayoutRowItem></lux-toggle>
+          <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="toggleSelectHidden" *luxLayoutRowItem></lux-toggle>
+        </lux-layout-form-row>
+      </lux-layout>
+    </div>
+  </example-base-simple-options>
+</example-base-structure>
