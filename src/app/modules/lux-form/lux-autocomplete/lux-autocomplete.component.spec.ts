@@ -8,7 +8,6 @@ import { LuxAutocompleteComponent } from './lux-autocomplete.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
 describe('LuxAutocompleteComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService],
@@ -16,7 +15,8 @@ describe('LuxAutocompleteComponent', () => {
         LuxAutoCompleteInFormAttributeComponent,
         LuxValueAttributeComponent,
         LuxOptionSelectedComponent,
-        MockAutocompleteComponent
+        MockAutocompleteComponent,
+        MockPickValueComponent
       ]
     );
   });
@@ -389,6 +389,46 @@ describe('LuxAutocompleteComponent', () => {
       });
     });
   });
+
+  describe('luxPickValue testen', () => {
+    let component: MockPickValueComponent;
+    let fixture: ComponentFixture<MockPickValueComponent>;
+    let overlayHelper: LuxOverlayHelper;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(MockPickValueComponent);
+      component = fixture.componentInstance;
+      overlayHelper = new LuxOverlayHelper();
+      fixture.detectChanges();
+    });
+
+    it('sollte erstellt werden', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('Wert über Textfeld setzen', fakeAsync(done => {
+      expect(component.selected).toBeUndefined('Vorbedingung 1');
+      expect(component.twoWaySelected).toBeUndefined('Vorbedingung 2');
+
+      // Ein Element auswählen
+      // Änderungen durchführen
+      LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Gruppenaufgaben');
+      LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+
+      // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
+      // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
+      LuxTestHelper.dispatchFakeEvent(document, 'click');
+      LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+
+      // Nachbedingungen testen
+      expect(component.autocomplete.luxValue).toEqual(component.options[1].value);
+      expect(component.selected).toEqual(component.options[1].value);
+      expect(component.twoWaySelected).toEqual(component.options[1].value);
+      expect(component.autocomplete.matInput.nativeElement.value).toEqual(component.options[1].label);
+      discardPeriodicTasks();
+    }));
+
+  });
 });
 
 @Component({
@@ -485,4 +525,39 @@ class MockAutocompleteComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+}
+
+@Component({
+  template: `
+    <lux-autocomplete
+      luxLabel="Autocomplete"
+      [luxOptions]="options"
+      [(luxValue)]="twoWaySelected"
+      [luxPickValue]="valueFn"
+      [luxStrict]="true"
+      (luxValueChange)="setSelected($event)"
+    >
+    </lux-autocomplete>
+  `
+})
+class MockPickValueComponent {
+  selected: any;
+  twoWaySelected: any;
+
+  options = [
+    { label: 'Meine Aufgaben', value: 'A' },
+    { label: 'Gruppenaufgaben', value: 'B' },
+    { label: 'Zurückgestellte Aufgaben', value: 'C' },
+    { label: 'Vertretungsaufgaben', value: 'D' }
+  ];
+
+  @ViewChild(LuxAutocompleteComponent) autocomplete: LuxAutocompleteComponent;
+
+  setSelected(selected: any) {
+    this.selected = selected;
+  }
+
+  valueFn(option: any) {
+    return option ? option.value : null;
+  }
 }

@@ -1,5 +1,6 @@
 # Version 1.9.5
 ## New
+- **lux-autocomplete**: Neue Features "luxPickValue" für lux‐autocomplete hinzugefügt. [Issue 26](https://github.com/IHK-GfI/lux-components/issues/26)
 - **lux-filter-form**: Allgemeine Filterkomponente für Master-Detail-Ansichten, Tabellen, Listen,... erstellt. [Issue 29](https://github.com/IHK-GfI/lux-components/issues/29)
 
 ## Bug Fixes
