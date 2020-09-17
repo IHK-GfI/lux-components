@@ -22,8 +22,7 @@ export class BaselineComponent implements OnInit {
       radio: new FormControl('', Validators.required),
       checkbox: new FormControl('', Validators.requiredTrue),
       toggle: new FormControl('', Validators.requiredTrue),
-      slider: new FormControl('', Validators.min(10)),
-      slider2: new FormControl('', Validators.min(10)),
+      slider: new FormControl('4', Validators.min(10)),
       file: new FormControl('', Validators.required)
     });
   }
