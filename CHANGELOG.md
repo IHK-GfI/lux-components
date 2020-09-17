@@ -1,4 +1,7 @@
 # Version 1.9.5
+## New
+- **lux-filter-form**: Allgemeine Filterkomponente für Master-Detail-Ansichten, Tabellen, Listen,... erstellt. [Issue 29](https://github.com/IHK-GfI/lux-components/issues/29)
+
 ## Bug Fixes
 - **lux-datepicker**: luxMaxDate greift bei 5- oder 6-stelligen Jahreszahlen nicht und luxValueChange empfängt event. [Issue 28](https://github.com/IHK-GfI/lux-components/issues/28)
 
