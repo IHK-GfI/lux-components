@@ -1,0 +1,28 @@
+<lux-dialog-structure>
+  <lux-dialog-title>Filter speichern</lux-dialog-title>
+  <lux-dialog-content>
+    <div fxLayout="column" fxLayoutGap="8px">
+      <lux-input
+        luxLabel="Name"
+        luxAutocomplete="off"
+        (keydown.enter)="luxDialogRef.closeDialog(filtername.luxValue)"
+        #filtername
+      ></lux-input>
+    </div>
+  </lux-dialog-content>
+  <lux-dialog-actions fxLayout="row" fxLayoutGap="12px grid">
+    <lux-button
+      luxLabel="Speichern"
+      luxColor="primary"
+      [luxDisabled]="!filtername.luxValue"
+      [luxRaised]="true"
+      (luxClicked)="luxDialogRef.closeDialog(filtername.luxValue)"
+    ></lux-button>
+    <lux-button
+      luxLabel="Abbrechen"
+      luxColor="default"
+      [luxRaised]="true"
+      (luxClicked)="luxDialogRef.closeDialog(false)"
+    ></lux-button>
+  </lux-dialog-actions>
+</lux-dialog-structure>
