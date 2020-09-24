@@ -22,6 +22,7 @@ import { isObservable, Observable, throwError } from 'rxjs';
 import { ILuxFileObject } from '../lux-file/lux-file-model/lux-file-object.interface';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { take, takeUntil } from 'rxjs/operators';
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormFileBase extends LuxFormComponentBase {
@@ -253,7 +254,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     const callbackResult = file.contentCallback();
     // Wenn der Callback ein Observable ist, dieses auflösen und dem File-Base64 zuweisen
     if (isObservable(callbackResult)) {
-      (<Observable<string>>callbackResult).subscribe((content: any) => {
+      (<Observable<string>>callbackResult).pipe(take(1)).subscribe((content: any) => {
         file.content = content;
         this.triggerViewFileClick(file);
       });

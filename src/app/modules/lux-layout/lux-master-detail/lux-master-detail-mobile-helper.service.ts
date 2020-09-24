@@ -1,19 +1,25 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 
 @Injectable()
-export class LuxMasterDetailMobileHelperService {
+export class LuxMasterDetailMobileHelperService implements OnDestroy {
   private _mdRegistered$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private _masterCollapsed$: BehaviorSubject<boolean> = new BehaviorSubject(true);
   private _hasValue$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private subscription: Subscription;
 
   constructor(private mediaObserver: LuxMediaQueryObserverService) {
-    this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(() => {
+    this.subscription = this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(() => {
       setTimeout(() => {
         this.handleMasterCollapseState();
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    console.log('LuxMasterDetailMobileHelperService.ngOnDestroy called');
+    this.subscription.unsubscribe();
   }
 
   public get masterCollapsed$(): boolean {

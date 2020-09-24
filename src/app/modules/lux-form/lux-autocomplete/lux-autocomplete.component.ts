@@ -4,7 +4,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  Input,
+  Input, OnDestroy,
   OnInit,
   Optional,
   Output,
@@ -16,7 +16,7 @@ import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/m
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { LuxFormComponentBase } from '../lux-form-model/lux-form-component-base.class';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, Subscription } from 'rxjs';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
@@ -25,8 +25,9 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-autocomplete.component.html',
   styleUrls: ['./lux-autocomplete.component.scss']
 })
-export class LuxAutocompleteComponent extends LuxFormComponentBase implements OnInit, AfterViewInit {
+export class LuxAutocompleteComponent extends LuxFormComponentBase implements OnInit, OnDestroy, AfterViewInit {
   private selected$: ReplaySubject<any> = new ReplaySubject<any>(1);
+  private subscriptions: Subscription[] = [];
 
   filteredOptions: Observable<any>;
 
@@ -74,7 +75,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   ngOnInit() {
     super.ngOnInit();
 
-    this.selected$.pipe(distinctUntilChanged()).subscribe(value => {
+    this.subscriptions.push(this.selected$.pipe(distinctUntilChanged()).subscribe(value => {
       if (this.luxStrict) {
         if (value === '' || value === null || value === undefined) {
           this.luxOptionSelected.emit(null);
@@ -100,11 +101,17 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
         this.luxOptionSelected.emit(value);
         this.luxValueChange.emit(value);
       }
-    });
+    }));
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   ngAfterViewInit() {
-    this.matAutoComplete.panelClosingActions
+    this.subscriptions.push(this.matAutoComplete.panelClosingActions
       .pipe(debounceTime(this.luxLookupDelay))
       .subscribe((value: MatOptionSelectionChange) => {
         if (this.luxStrict) {
@@ -122,7 +129,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
 
           this.handleErrors();
         }
-      });
+      }));
 
     this.filteredOptions = this.formControl.valueChanges.pipe(
       startWith(''),

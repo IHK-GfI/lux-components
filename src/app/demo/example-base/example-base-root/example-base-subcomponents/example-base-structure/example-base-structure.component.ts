@@ -8,6 +8,7 @@ import { LuxComponentsConfigService } from '../../../../../modules/lux-component
 import { LuxComponentsConfigParameters } from '../../../../../modules/lux-components-config/lux-components-config-parameters.interface';
 import { Router } from '@angular/router';
 import { LuxUtil } from '../../../../../modules/lux-util/lux-util';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'example-base-structure',
@@ -28,18 +29,20 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
   advancedOptionsComponent: ExampleBaseAdvancedOptionsComponent;
 
   isIE: boolean = LuxUtil.isIE();
+  subscription: Subscription;
 
   constructor(
     private router: Router,
     private footerService: LuxAppFooterButtonService,
     private configService: LuxComponentsConfigService
   ) {
-    this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
-      this.initialConfig = config;
-    });
   }
 
   ngOnInit() {
+    this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
+      this.initialConfig = config;
+    });
+
     this.footerService.pushButtonInfos(
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Dokumentation',
@@ -70,5 +73,7 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
     this.footerService.clearButtonInfos();
     // Falls das Beispiel mit der Konfiguration herum spielt, sollte diese beim Verlassen wieder resettet werden.
     this.configService.updateConfiguration(this.initialConfig);
+
+    this.subscription.unsubscribe();
   }
 }

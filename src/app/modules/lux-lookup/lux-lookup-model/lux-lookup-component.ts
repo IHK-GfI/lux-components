@@ -49,7 +49,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
   >();
   entries: LuxLookupTableEntry[] = [];
 
-  private configSubscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
   protected constructor(
     lookupService: LuxLookupService,
@@ -84,23 +84,23 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
     }
 
     this.lookupHandler.addLookupElement(this.luxLookupId);
-    this.lookupHandler.getLookupElementObsv(this.luxLookupId).subscribe(() => {
+    this.subscriptions.push(this.lookupHandler.getLookupElementObsv(this.luxLookupId).subscribe(() => {
       this.fetchLookupData();
-    });
+    }));
 
-    this.configSubscription = this.componentsConfigService.config.subscribe(
+    this.subscriptions.push(this.componentsConfigService.config.subscribe(
       (newConfig: LuxComponentsConfigParameters) => {
         this.apiPath = newConfig.lookupServiceUrl;
 
         this.lookupHandler.reloadData(this.luxLookupId);
       }
-    );
+    ));
   }
 
   ngOnDestroy() {
     super.ngOnDestroy();
 
-    this.configSubscription.unsubscribe();
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   /**
@@ -194,7 +194,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
    */
   protected fetchLookupData() {
     const backendRequest = this.lookupService.getLookupTable(this.luxTableNo, this.luxParameters, this.apiPath);
-    backendRequest.subscribe(
+    this.subscriptions.push(backendRequest.subscribe(
       (entries: LuxLookupTableEntry[]) => {
         this.setLookupData(entries);
         this.luxDataLoaded.emit(true);
@@ -202,7 +202,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
       () => {
         this.luxDataLoaded.emit(false);
       }
-    );
+    ));
   }
 
   /**

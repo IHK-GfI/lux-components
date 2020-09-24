@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { LuxSnackbarService } from '../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ComponentsOverviewNavigationService {
+export class ComponentsOverviewNavigationService implements OnDestroy {
   private currentUrl: string;
 
   components: { onclick: any; label: string; icon: string; useImage?: boolean; moduleName?: string }[] = [
@@ -121,12 +122,13 @@ export class ComponentsOverviewNavigationService {
   ]);
   currentModuleNames: string[] = [];
   selectedComponent: any;
+  subscription: Subscription;
 
   constructor(private router: Router, private snackbar: LuxSnackbarService) {
     this.currentModuleNames = Array.from(this.currentModules.keys());
     this.sortComponentEntriesByModule();
 
-    this.router.events.pipe(filter((event: any) => event instanceof NavigationEnd)).subscribe((url: NavigationEnd) => {
+    this.subscription = this.router.events.pipe(filter((event: any) => event instanceof NavigationEnd)).subscribe((url: NavigationEnd) => {
       this.currentUrl = url.url;
       const urlPaths = this.currentUrl.split('/');
       const lastPath = urlPaths && urlPaths[urlPaths.length - 1] ? urlPaths[urlPaths.length - 1] : '';
@@ -141,6 +143,10 @@ export class ComponentsOverviewNavigationService {
         }
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   goTo(id: string): void {

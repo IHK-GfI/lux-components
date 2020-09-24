@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 /**
@@ -7,19 +7,25 @@ import { BehaviorSubject, Observable } from 'rxjs';
  * können diese einfach über die Methode 'clearSensitiveItems' gelöscht werden.
  */
 @Injectable()
-export class LuxStorageService {
+export class LuxStorageService implements OnDestroy {
   private readonly postfixSensitive = '.sensitive';
 
   private itemSources: Map<string, BehaviorSubject<string>> = new Map();
 
   constructor() {
-    addEventListener('storage', (event: StorageEvent) => {
+    addEventListener('storage', this.onStorageEvent.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    removeEventListener('storage', this.onStorageEvent)
+  }
+
+  private onStorageEvent(event: StorageEvent) {
       if (event.key) {
         if (this.itemSources.has(event.key)) {
           this.itemSources.get(event.key).next(event.newValue);
         }
       }
-    });
   }
 
   /**

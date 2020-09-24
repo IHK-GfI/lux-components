@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, Optional, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy, Optional, ViewChild } from '@angular/core';
 import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
@@ -8,19 +8,22 @@ import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handle
 import { LuxLookupErrorStateMatcher } from '../lux-lookup-model/lux-lookup-error-state-matcher';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'lux-lookup-combobox',
   templateUrl: './lux-lookup-combobox.component.html',
   styleUrls: ['./lux-lookup-combobox.component.scss']
 })
-export class LuxLookupComboboxComponent extends LuxLookupComponent implements AfterViewInit {
+export class LuxLookupComboboxComponent extends LuxLookupComponent implements AfterViewInit, OnDestroy {
   @Input() luxMultiple: boolean = false;
   @Input() luxEntryBlockSize: number = 25;
   @Input() luxWithEmptyEntry: boolean = true;
 
-  displayedEntries: LuxLookupTableEntry[];
   @ViewChild(MatSelect) matSelect: MatSelect;
+
+  displayedEntries: LuxLookupTableEntry[];
+  subscription: Subscription;
 
   constructor(
     lookupService: LuxLookupService,
@@ -36,11 +39,17 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
   }
 
   ngAfterViewInit() {
-    this.matSelect.openedChange.subscribe((open: boolean) => {
+    this.subscription =  this.matSelect.openedChange.subscribe((open: boolean) => {
       if (open) {
         this.registerPanelScrollEvent(this.matSelect.panel.nativeElement);
       }
     });
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+
+    this.subscription.unsubscribe();
   }
 
   /**

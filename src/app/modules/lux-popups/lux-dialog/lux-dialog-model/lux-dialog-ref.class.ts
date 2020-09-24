@@ -1,6 +1,7 @@
 import { Observable, ReplaySubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -68,7 +69,7 @@ export class LuxDialogRef {
    */
   closeDialog(result?: any) {
     this._matDialogRef.close(result);
-    this._matDialogRef.afterClosed().subscribe((dialogResult: any) => {
+    this._matDialogRef.afterClosed().pipe(take(1)).subscribe((dialogResult: any) => {
       if (dialogResult === true) {
         this._dialogConfirmed.next();
       } else if (dialogResult === false) {

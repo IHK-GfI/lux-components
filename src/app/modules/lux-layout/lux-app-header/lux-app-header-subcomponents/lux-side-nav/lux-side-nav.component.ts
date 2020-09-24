@@ -42,6 +42,7 @@ export class LuxSideNavComponent implements OnInit, AfterViewInit, OnDestroy {
   visibility = 'hidden';
 
   private itemClickSubscriptions: Subscription[] = [];
+  private subscription: Subscription;
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -60,12 +61,13 @@ export class LuxSideNavComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {}
 
   ngAfterViewInit() {
-    this.sideNavItems.changes.subscribe(() => this.updateItemClickListeners());
+    this.subscription = this.sideNavItems.changes.subscribe(() => this.updateItemClickListeners());
     this.updateItemClickListeners();
     this.calculateWidthHeight();
   }
 
   ngOnDestroy() {
+    this.subscription.unsubscribe();
     this.itemClickSubscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
@@ -136,6 +138,7 @@ export class LuxSideNavComponent implements OnInit, AfterViewInit, OnDestroy {
    */
   private updateItemClickListeners() {
     this.itemClickSubscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+
     this.sideNavItems.forEach((item: LuxSideNavItemComponent) => {
       this.itemClickSubscriptions.push(
         item.luxClicked.subscribe(() => {

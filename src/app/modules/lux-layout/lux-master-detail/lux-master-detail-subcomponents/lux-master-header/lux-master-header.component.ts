@@ -1,15 +1,17 @@
-import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { LuxMasterDetailMobileHelperService } from '../../lux-master-detail-mobile-helper.service';
 import { LuxButtonComponent } from '../../../../lux-action/lux-button/lux-button.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'lux-master-header',
   templateUrl: './lux-master-header.component.html',
   styleUrls: ['./lux-master-header.component.scss']
 })
-export class LuxMasterHeaderComponent implements OnInit {
+export class LuxMasterHeaderComponent implements OnInit, OnDestroy {
   iconName: string;
   open: boolean;
+  subscription: Subscription;
 
   @Input() luxToggleHidden: boolean;
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
@@ -17,7 +19,7 @@ export class LuxMasterHeaderComponent implements OnInit {
   @HostBinding('class.lux-no-toggle') isMobile = this.luxToggleHidden;
 
   constructor(private masterDetailMobileHelperService: LuxMasterDetailMobileHelperService) {
-    this.masterDetailMobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
+    this.subscription = this.masterDetailMobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
       if (this.masterDetailMobileHelperService.isMobile()) {
         this.iconName = 'keyboard_arrow_right';
       } else {
@@ -33,6 +35,10 @@ export class LuxMasterHeaderComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   clicked(that: LuxButtonComponent) {
     if (this.open) {

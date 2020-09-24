@@ -8,7 +8,7 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
-  Input,
+  Input, OnDestroy,
   Output,
   QueryList,
   ViewContainerRef
@@ -22,13 +22,14 @@ import { LuxIconComponent } from '../../lux-icon/lux-icon/lux-icon.component';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { skip } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'lux-stepper',
   templateUrl: './lux-stepper.component.html',
   styleUrls: ['./lux-stepper.component.scss']
 })
-export class LuxStepperComponent implements AfterViewInit {
+export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   private readonly _DEFAULT_PREV_BTN_CONF: ILuxStepperButtonConfig = {
     label: 'Zurück'
   };
@@ -57,6 +58,8 @@ export class LuxStepperComponent implements AfterViewInit {
     luxEditedIconName: 'fa-pencil'
   };
 
+  private subscriptions: Subscription[] = [];
+
   constructor(
     public stepperService: LuxStepperHelperService,
     private cdr: ChangeDetectorRef,
@@ -73,10 +76,10 @@ export class LuxStepperComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     // Änderungen an den luxSteps sollten auch dem Konfigurationsobjekt bekannt gemacht werden
-    this.luxSteps.changes.subscribe(() => {
+    this.subscriptions.push(this.luxSteps.changes.subscribe(() => {
       this.stepperConfiguration.luxSteps = this.luxSteps.toArray();
       this.cdr.detectChanges();
-    });
+    }));
     // Initial die aktuellen luxSteps in die Konfiguration schreiben
     this.stepperConfiguration.luxSteps = this.luxSteps.toArray();
     this.cdr.detectChanges();
@@ -94,7 +97,7 @@ export class LuxStepperComponent implements AfterViewInit {
     this.matStepHeaders = this.matStepper._stepHeader.toArray();
 
     // Auf next/previous Aufrufe aus dem Service horchen und entsprechend reagieren
-    this.stepperService
+    this.subscriptions.push(this.stepperService
       .getObservable(this)
       .pipe(skip(1))
       .subscribe((next: boolean) => {
@@ -109,22 +112,26 @@ export class LuxStepperComponent implements AfterViewInit {
             this.matStepHeaders[this.matStepper.selectedIndex].focus();
           }
         }
-      });
+      }));
 
     // Änderungen an den Icons jedes einzelnen Steps führt zu Neugenerierung aller individuellen Icons
     // ==> Material erlaubt leider nur alle Icons identisch zu ändern, nicht für jeden Step einzeln, deshalb
     // generieren wir selbst die Icons.
     this.luxSteps.toArray().forEach((luxStep: LuxStepComponent) => {
-      luxStep.getIconChangeObsv().subscribe((iconChange: boolean) => {
+      this.subscriptions.push(luxStep.getIconChangeObsv().subscribe((iconChange: boolean) => {
         if (this.stepperConfiguration.luxUseCustomIcons && iconChange) {
           this.clearCustomIcons();
           this.generateCustomIcons();
         }
-      });
+      }));
     });
 
     this.setFocusedCSS(this.luxCurrentStepNumber);
     this.cdr.detectChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   /**

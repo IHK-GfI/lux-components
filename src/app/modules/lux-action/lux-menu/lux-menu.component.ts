@@ -36,7 +36,8 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   // Das Canvas wird genutzt um die Breite potentieller MenuItem-Texte zu berechnen
   private readonly canvas;
 
-  private menuItemSubstcriptions: Subscription[] = [];
+  private menuItemSubscriptions: Subscription[] = [];
+  private menuItemChangeSubscription: Subscription;
 
   hideToggle: boolean = false;
 
@@ -82,17 +83,17 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
     this._menuItems = menuItems ? menuItems : [];
 
     this.menuItems.forEach(item => {
-      this.menuItemSubstcriptions.push(
+      this.menuItemSubscriptions.push(
         item.luxHiddenChange.subscribe(() => {
           this.updateExtendedMenuItems();
         })
       );
-      this.menuItemSubstcriptions.push(
+      this.menuItemSubscriptions.push(
         item.luxAlwaysVisibleChange.subscribe(() => {
           this.updateExtendedMenuItems();
         })
       );
-      this.menuItemSubstcriptions.push(
+      this.menuItemSubscriptions.push(
         item.luxHideLabelIfExtendedChange.subscribe(() => {
           this.updateExtendedMenuItems();
         })
@@ -107,10 +108,12 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked() {
-    this.luxMenuItemComponents.changes.subscribe(() => {
-      this.menuItems = this.luxMenuItemComponents.toArray();
-      this.calculateMenuItemWidths();
-    });
+    if (!this.menuItemChangeSubscription) {
+      this.menuItemChangeSubscription = this.luxMenuItemComponents.changes.subscribe(() => {
+        this.menuItems = this.luxMenuItemComponents.toArray();
+        this.calculateMenuItemWidths();
+      });
+    }
 
     this.menuItems = this.luxMenuItemComponents.toArray();
     this.calculateMenuItemWidths();
@@ -118,7 +121,9 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.menuItemSubstcriptions.forEach(menuItemSubscription => {
+    this.menuItemChangeSubscription.unsubscribe();
+
+    this.menuItemSubscriptions.forEach(menuItemSubscription => {
       menuItemSubscription.unsubscribe();
     });
   }

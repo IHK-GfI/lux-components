@@ -1,14 +1,15 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { LuxDialogService } from '../../../modules/lux-popups/lux-dialog/lux-dialog.service';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 import { ILuxDialogPresetConfig } from '../../../modules/lux-popups/lux-dialog/lux-dialog-model/lux-dialog-preset-config.interface';
 import { DialogComponentExampleComponent } from './dialog-component-example/dialog-component-example.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dialog-example',
   templateUrl: './dialog-example.component.html'
 })
-export class DialogExampleComponent implements OnInit {
+export class DialogExampleComponent implements OnInit, OnDestroy {
   @ViewChild('contentTemplate', { static: true }) contentTemplate: TemplateRef<any>;
   useContentTemplate: boolean = false;
   showOutputEvents: boolean = false;
@@ -40,24 +41,30 @@ export class DialogExampleComponent implements OnInit {
 
   exampleData;
 
+  private subscriptions: Subscription[] = [];
+
   constructor(private dialogService: LuxDialogService) {}
 
   ngOnInit() {}
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
   openDialog() {
     const dialogRef = this.dialogService.open(this.dialogConfig);
 
-    dialogRef.dialogClosed.subscribe((result: any) => {
+    this.subscriptions.push(dialogRef.dialogClosed.subscribe((result: any) => {
       this.log(this.showOutputEvents, 'dialogClosed', result);
-    });
+    }));
 
-    dialogRef.dialogDeclined.subscribe((result: any) => {
+    this.subscriptions.push(dialogRef.dialogDeclined.subscribe((result: any) => {
       this.log(this.showOutputEvents, 'dialogDeclined', result);
-    });
+    }));
 
-    dialogRef.dialogConfirmed.subscribe((result: any) => {
+    this.subscriptions.push(dialogRef.dialogConfirmed.subscribe((result: any) => {
       this.log(this.showOutputEvents, 'dialogConfirmed', result);
-    });
+    }));
   }
 
   openDialogComponent() {
@@ -67,9 +74,9 @@ export class DialogExampleComponent implements OnInit {
       this.exampleData
     );
 
-    dialogRef.dialogClosed.subscribe((result: any) => {
+    this.subscriptions.push(dialogRef.dialogClosed.subscribe((result: any) => {
       this.log(this.showOutputEvents, 'dialogClosed', result);
-    });
+    }));
   }
 
   useContentTemplateChange($event: boolean) {

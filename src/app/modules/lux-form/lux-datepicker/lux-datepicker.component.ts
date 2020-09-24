@@ -119,6 +119,8 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
   }
 
   ngOnDestroy() {
+    super.ngOnDestroy();
+
     this.mediaSubscription.unsubscribe();
   }
 

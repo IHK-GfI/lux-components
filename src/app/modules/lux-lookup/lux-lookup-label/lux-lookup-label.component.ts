@@ -1,21 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
 import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'lux-lookup-label',
   templateUrl: './lux-lookup-label.component.html'
 })
-export class LuxLookupLabelComponent implements OnInit {
+export class LuxLookupLabelComponent implements OnInit, OnDestroy {
   lookupService: LuxLookupService;
   lookupHandler: LuxLookupHandlerService;
   logger: LuxConsoleService;
   lookupParameters: LuxLookupParameters;
-
   entry: LuxLookupTableEntry;
+  subscriptions: Subscription[] = [];
 
   @Input() luxLookupKnr: number;
   @Input() luxLookupId: string;
@@ -59,9 +60,13 @@ export class LuxLookupLabelComponent implements OnInit {
     this.fetchLookupData();
 
     this.lookupHandler.addLookupElement(this.luxLookupId);
-    this.lookupHandler.getLookupElementObsv(this.luxLookupId).subscribe(() => {
+    this.subscriptions.push(this.lookupHandler.getLookupElementObsv(this.luxLookupId).subscribe(() => {
       this.fetchLookupData();
-    });
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   protected fetchLookupData() {
@@ -69,13 +74,13 @@ export class LuxLookupLabelComponent implements OnInit {
 
     this.lookupParameters = new LuxLookupParameters({ knr: this.luxLookupKnr, keys });
 
-    this.lookupService
+    this.subscriptions.push(this.lookupService
       .getLookupTable(this.luxTableNo, this.lookupParameters, this.luxLookupUrl)
       .subscribe((entries: LuxLookupTableEntry[]) => {
         if (typeof entries !== 'undefined' && entries.length === 1) {
           this.entry = entries[0];
         }
-      });
+      }));
   }
 
   /**

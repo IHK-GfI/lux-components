@@ -86,13 +86,11 @@ export class LuxListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // Sämtliche Subscriptions auflösen
     if (this.listItemsSubscription) {
       this.listItemsSubscription.unsubscribe();
     }
-    for (const subscription of this.clickSubscriptions) {
-      subscription.unsubscribe();
-    }
+
+    this.clickSubscriptions.forEach(sub => sub.unsubscribe());
   }
 
   /**
@@ -129,10 +127,7 @@ export class LuxListComponent implements OnInit, AfterViewInit, OnDestroy {
    * Auf Click-Events der hier bekannten LuxListItems hören und entsprechend das selektierte ListItem aktualisieren.
    */
   private listenForClicks() {
-    for (const subscription of this.clickSubscriptions) {
-      subscription.unsubscribe();
-    }
-
+    this.clickSubscriptions.forEach(sub => sub.unsubscribe());
     this.clickSubscriptions = [];
 
     this.luxItems.forEach((listItem: LuxListItemComponent, index: number) => {
