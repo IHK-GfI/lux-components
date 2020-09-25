@@ -17,7 +17,7 @@ export class LuxStorageService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    removeEventListener('storage', this.onStorageEvent)
+    removeEventListener('storage', this.onStorageEvent);
   }
 
   private onStorageEvent(event: StorageEvent) {
