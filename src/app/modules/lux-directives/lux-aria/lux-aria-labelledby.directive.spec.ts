@@ -1,7 +1,7 @@
 import { LuxAriaLabelledbyDirective } from './lux-aria-labelledby.directive';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 
@@ -18,7 +18,7 @@ describe('LuxAriaLabelledbyDirective', () => {
     let fixture: ComponentFixture<LuxWithSelectorComponent>;
     let component: LuxWithSelectorComponent;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       fixture = TestBed.createComponent(LuxWithSelectorComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
@@ -58,7 +58,7 @@ describe('LuxAriaLabelledbyDirective', () => {
     let fixture: ComponentFixture<LuxWithoutSelectorComponent>;
     let component: LuxWithoutSelectorComponent;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       fixture = TestBed.createComponent(LuxWithoutSelectorComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();

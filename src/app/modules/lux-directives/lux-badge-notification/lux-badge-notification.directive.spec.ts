@@ -1,14 +1,14 @@
 import { LuxBadgeNotificationDirective } from './lux-badge-notification.directive';
 import { Component } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 describe('LuxBadgeNotificationDirective', () => {
   let fixture: ComponentFixture<MockComponent>;
   let mockComp: MockComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     LuxTestHelper.configureTestModule([], [MockComponent]);
 
     fixture = TestBed.createComponent(MockComponent);

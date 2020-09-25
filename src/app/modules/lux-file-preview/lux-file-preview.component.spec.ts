@@ -2,7 +2,7 @@ import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
 import { PortalModule } from '@angular/cdk/portal';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { LuxMediaQueryObserverService } from '../lux-util/lux-media-query-observer.service';
 import { LuxTestHelper } from '../lux-util/testing/lux-test-helper';
@@ -16,7 +16,7 @@ describe('LuxFilePreviewComponent', () => {
   let fixture: ComponentFixture<LuxFilePreviewComponent>;
   const previewData = { fileComponent: null, fileObject: { type: 'application/pdf' } };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LuxFilePreviewComponent],
       imports: [OverlayModule, PortalModule],
