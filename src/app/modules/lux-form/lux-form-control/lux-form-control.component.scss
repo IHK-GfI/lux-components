@@ -123,8 +123,9 @@ $fontSizeSmall: 12px;
       // Hier wird explizit nicht die min-height auf die $controlHeight gesetzt,
       // da sonst die Höhe in Bezug auf minRows und maxRows falsch berechnet wird.
       // Damit der Abstand zwischen dem Text under unteren Border korrekt ist,
-      // wird hier ein Abstand nach unten eingefügt.
-      padding-bottom: $controlHeight - 17px;
+      // wird hier der Abstand angepasst.
+      padding: 4px 0 6px 0;
+      margin: -4px 0 0 0;
     }
 
     .lux-input-row {
