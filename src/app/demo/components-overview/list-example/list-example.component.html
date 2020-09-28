@@ -8,7 +8,7 @@
       [luxEmptyLabel]="emptyLabel"
       [luxEmptyIconName]="emptyIconName"
       [luxEmptyIconSize]="emptyIconSize"
-      [luxSelectedPosition]="selectedPosition"
+      [(luxSelectedPosition)]="selectedPosition"
       (luxFocusedItemChange)="log(showOutputEvents, 'luxFocusedItemChange', $event)"
       (luxFocusedPositionChange)="log(showOutputEvents, 'luxFocusedPositionChange', $event)"
       (luxSelectedPositionChange)="log(showOutputEvents, 'luxSelectedPositionChange', $event)"
@@ -73,15 +73,6 @@
       luxName="list_luxSelectedPosition"
       luxLabel="luxSelectedPosition"
       luxHint="Diese Property bestimmt welches ListItem selektiert werden soll."
-      luxType="number"
-    >
-    </lux-input>
-    <lux-input
-      class="example-highlight-config-option"
-      [(luxValue)]="focusedPosition"
-      luxName="list_luxFocusedPosition"
-      luxLabel="luxFocusedPosition"
-      luxHint="Diese Property bestimmt welches ListItem fokussiert werden soll."
       luxType="number"
     >
     </lux-input>
