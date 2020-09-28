@@ -328,7 +328,6 @@ describe('LuxFileListComponent', () => {
     it('Sollte das Background-Icon + Hint darstellen, wenn keine Dateien geladen sind', fakeAsync(() => {
       // Vorbedingungen prüfen
       testComponent.hint = 'Hint';
-      testComponent.bgIconName = 'fas fa-cloud-upload-alt';
       LuxTestHelper.wait(fixture);
 
       expect(fileComponent.luxSelectedFiles).toBeFalsy();
@@ -1233,7 +1232,6 @@ describe('LuxFileListComponent', () => {
       [luxSelectedFiles]="selected"
       [luxShowPreview]="showPreview"
       [luxMultiple]="multiple"
-      [luxBackgroundIconName]="bgIconName"
       [luxUploadActionConfig]="uploadActionConfig"
       [luxDownloadActionConfig]="downloadActionConfig"
       [luxDeleteActionConfig]="deleteActionConfig"
