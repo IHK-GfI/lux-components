@@ -26,7 +26,13 @@ export const logResult = (shouldLog: boolean, msg: string, event?: any) => {
   if (!shouldLog) {
     return;
   }
-  console.log(msg, event ? event : '');
+
+  // Hier wird explizit auf ungleich "undefined" und "null" geprüft und nicht auf "event ? event : ''",
+  // sonst würden z.B. die folgenden Events nicht geloggt werden:
+  // - 0, wenn Event vom Typ "number" ist,
+  // - false, wenn Event vom Typ "boolean" ist,
+  // - ...
+  console.log(msg, event !== undefined && event !== null ? event : '');
 };
 
 /**
