@@ -1,0 +1,29 @@
+<lux-dialog-structure>
+  <lux-dialog-title>Filter</lux-dialog-title>
+  <lux-dialog-content fxLayout="column" class="filter-content">
+    <lux-card *ngFor="let filter of filterArr; let index">
+      <lux-card-content>
+        {{ filter.name }}
+      </lux-card-content>
+      <lux-card-actions>
+        <lux-button
+          luxLabel="Laden"
+          [luxRaised]="true"
+          luxColor="primary"
+          (luxClicked)="luxDialogRef.closeDialog(filter.name)"
+        ></lux-button>
+        <lux-button luxLabel="Löschen" [luxRaised]="false" luxColor="warn" (luxClicked)="onDelete(index)"></lux-button>
+      </lux-card-actions>
+    </lux-card>
+
+    <div *ngIf="filterArr.length === 0">Keine Filter vorhanden.</div>
+  </lux-dialog-content>
+  <lux-dialog-actions fxLayout="row" fxLayoutGap="12px grid">
+    <lux-button
+      luxLabel="Schließen"
+      luxColor="default"
+      [luxRaised]="true"
+      (luxClicked)="luxDialogRef.closeDialog(false)"
+    ></lux-button>
+  </lux-dialog-actions>
+</lux-dialog-structure>

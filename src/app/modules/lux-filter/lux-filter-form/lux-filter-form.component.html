@@ -1,0 +1,63 @@
+<lux-accordion luxMode="flat">
+  <lux-panel
+    [(luxExpanded)]="luxFilterExpanded"
+    class="filterPanel"
+    luxCollapsedHeaderHeight="40px"
+    luxExpandedHeaderHeight="40px"
+  >
+    <lux-panel-header-description>{{ luxTitle }}</lux-panel-header-description>
+    <lux-panel-content>
+      <form [formGroup]="filterForm" class="lux-mb-4">
+        <ng-content></ng-content>
+      </form>
+    </lux-panel-content>
+    <lux-panel-action>
+      <lux-menu [luxDisplayExtended]="true" [luxMaximumExtended]="1" luxMenuIconName="fas fa-ellipsis-v">
+        <lux-menu-item
+          [luxLabel]="luxButtonFilterLabel"
+          [luxAlwaysVisible]="true"
+          luxIconName="fas fa-filter"
+          luxColor="primary"
+          [luxRaised]="luxButtonRaised"
+          (luxClicked)="onFilter()"
+        ></lux-menu-item>
+        <lux-menu-item
+          [luxLabel]="luxButtonResetLabel"
+          [luxAlwaysVisible]="false"
+          luxIconName="fas fa-redo"
+          (luxClicked)="onReset()"
+        ></lux-menu-item>
+        <lux-menu-item
+          [luxLabel]="luxButtonSaveLabel"
+          [luxAlwaysVisible]="false"
+          luxIconName="fas fa-upload"
+          (luxClicked)="openSaveDialog()"
+          *ngIf="hasSaveAction"
+        ></lux-menu-item>
+        <lux-menu-item
+          [luxLabel]="luxButtonLoadLabel"
+          [luxAlwaysVisible]="false"
+          luxIconName="fas fa-download"
+          (luxClicked)="openLoadDialog()"
+          *ngIf="hasLoadAction"
+        ></lux-menu-item>
+      </lux-menu>
+    </lux-panel-action>
+  </lux-panel>
+</lux-accordion>
+<div
+  class="lux-label"
+  ngClass.gt-sm="no-filter-active" ngClass.lt-md="no-filter-active-sm"
+  *ngIf="this.filterItems.length === 0 && !luxFilterExpanded && luxShowChips"
+>
+  {{ luxDefaultFilterMessage }}
+</div>
+<lux-chips
+  *ngIf="this.filterItems.length > 0 && !luxFilterExpanded && luxShowChips"
+  ngClass.lt-md="filterItem-sm"
+  class="filterItem"
+>
+  <lux-chip [luxColor]="item.color" *ngFor="let item of filterItems" (luxChipRemoved)="filterChipRemoved($event)"
+    >{{ item.label }}: {{ item.value }}</lux-chip
+  >
+</lux-chips>

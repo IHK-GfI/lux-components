@@ -1,3 +1,12 @@
+# Version 1.9.5
+## New
+- **allgemein**: Update auf die aktuellste 9er Angular-Version inklusive Sicherheitsupdates. 
+- **lux-autocomplete**: Neue Features "luxPickValue" für lux‐autocomplete hinzugefügt. [Issue 26](https://github.com/IHK-GfI/lux-components/issues/26)
+- **lux-filter-form**: Allgemeine Filterkomponente für Master-Detail-Ansichten, Tabellen, Listen,... erstellt. [Issue 29](https://github.com/IHK-GfI/lux-components/issues/29)
+
+## Bug Fixes
+- **lux-datepicker**: luxMaxDate greift bei 5- oder 6-stelligen Jahreszahlen nicht und luxValueChange empfängt event. [Issue 28](https://github.com/IHK-GfI/lux-components/issues/28)
+
 # Version 1.9.4
 ## New
 - **Demo**: Demoseiten für den Datenschutz und Impressum hinzugefügt. [Issue 32](https://github.com/IHK-GfI/lux-components/issues/32)

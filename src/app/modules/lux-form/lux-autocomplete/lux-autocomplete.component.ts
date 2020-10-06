@@ -39,6 +39,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   @Input() luxTagId: string;
   @Input() luxSelectAllOnClick: boolean = true;
   @Input() luxStrict: boolean = true;
+  @Input() luxPickValue: (selected: any) => any;
 
   @Output() luxValueChange: EventEmitter<any> = new EventEmitter();
   @Output() luxOptionSelected: EventEmitter<any> = new EventEmitter();
@@ -54,7 +55,11 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   }
 
   @Input() set luxValue(value: any) {
-    this.setValue(value);
+    if (this.isPickValueMode()) {
+      this.setValue(value instanceof Object ? this.luxPickValue(value) : value);
+    } else {
+      this.setValue(value);
+    }
   }
 
   constructor(
@@ -71,14 +76,24 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
 
     this.selected$.pipe(distinctUntilChanged()).subscribe(value => {
       if (this.luxStrict) {
-        if (value === '') {
+        if (value === '' || value === null || value === undefined) {
           this.luxOptionSelected.emit(null);
           this.luxValueChange.emit(null);
         } else {
-          const selectedOption = this.luxOptions.find(option => value === option);
-          if (selectedOption) {
-            this.luxOptionSelected.emit(selectedOption);
-            this.luxValueChange.emit(selectedOption);
+          let selected;
+          if (this.isPickValueMode()) {
+            const selectedOption = this.getPickValueOption(value);
+            if (selectedOption) {
+              selected = this.luxPickValue(selectedOption);
+            } else {
+              selected = null;
+            }
+          } else {
+            selected = this.luxOptions.find(option => value === option);
+          }
+          if (selected) {
+            this.luxOptionSelected.emit(selected);
+            this.luxValueChange.emit(selected);
           }
         }
       } else {
@@ -93,10 +108,16 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
       .pipe(debounceTime(this.luxLookupDelay))
       .subscribe((value: MatOptionSelectionChange) => {
         if (this.luxStrict) {
-          const filterResult = this.filter(this.getOptionLabel(this.luxValue));
+          const filterResult = this.filter(this.matInput.nativeElement.value);
 
           if (filterResult.length === 1) {
-            this.formControl.setValue(filterResult[0]);
+            let selected;
+            if (this.isPickValueMode()) {
+              selected = this.luxPickValue(filterResult[0]);
+            } else {
+              selected = filterResult[0];
+            }
+            this.formControl.setValue(selected);
           }
 
           this.handleErrors();
@@ -108,7 +129,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
       debounceTime(this.luxLookupDelay),
       map(value => this.getOptionLabel(value)),
       map(() => {
-        const filterLabel = this.getOptionLabel(this.luxValue);
+        const filterLabel = this.matInput.nativeElement.value;
         return filterLabel ? this.filter(filterLabel) : this.luxOptions;
       })
     );
@@ -129,11 +150,17 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   /**
    * Regelt die Darstellung der gewaehlten Option im Normalfall.
    * (Ausnahme: Focus-Verlust)
-   * @param option
+   * @param value
    * @returns string
    */
-  displayFn(option: any): string {
-    return this.getOptionLabel(this.luxValue);
+  displayFn(value: any): string {
+    let selected;
+    if (this.isPickValueMode()) {
+      selected = this.getPickValueOption(this.luxValue);
+    } else {
+      selected = this.luxValue;
+    }
+    return this.getOptionLabel(selected);
   }
 
   /**
@@ -182,13 +209,17 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   }
 
   selected($event: MatAutocompleteSelectedEvent) {
-    this.luxValue = $event.option.value;
+    if (this.isPickValueMode()) {
+      this.luxValue = this.luxPickValue($event.option.value);
+    } else {
+      this.luxValue = $event.option.value;
+    }
   }
 
   private handleErrors() {
     const errors = this.formControl ? this.formControl.errors : null;
     if (
-      this.luxOptions.indexOf(this.luxValue) > -1 ||
+      this.luxOptions.indexOf(this.isPickValueMode() ? this.getPickValueOption(this.luxValue) : this.luxValue) > -1 ||
       (!!errors && Object.keys(errors).length > 0 && errors['required'])
     ) {
       this.handleOtherErrors(errors);
@@ -217,11 +248,18 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
 
   // region overridden methods
   notifyFormValueChanged(formValue: any) {
-    this.selected$.next(formValue);
-    this.luxValueChange.emit(formValue);
+    let newValue;
+    if (this.isPickValueMode()) {
+      newValue = formValue instanceof Object ? this.luxPickValue(formValue) : formValue;
+    } else {
+      newValue = formValue;
+    }
 
-    if (formValue && formValue[this.luxOptionLabelProp]) {
-      this.matInput.nativeElement.value = formValue[this.luxOptionLabelProp];
+    this.selected$.next(newValue);
+    this.luxValueChange.emit(newValue);
+
+    if (newValue && newValue[this.luxOptionLabelProp]) {
+      this.matInput.nativeElement.value = newValue[this.luxOptionLabelProp];
     }
   }
 
@@ -234,4 +272,13 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   }
 
   // endregion
+
+  private isPickValueMode(): boolean {
+    return this.luxStrict && !!this.luxPickValue;
+  }
+
+  private getPickValueOption(value) {
+    const pickValue = value instanceof Object ? this.luxPickValue(value) : value;
+    return this.luxOptions.find(currentOption => pickValue === this.luxPickValue(currentOption));
+  }
 }

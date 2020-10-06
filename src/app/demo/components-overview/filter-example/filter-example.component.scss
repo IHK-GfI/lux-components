@@ -1,0 +1,9 @@
+.filter-config-item ::ng-deep {
+  div.lux-form-control-label {
+    min-height: 0 !important;
+  }
+
+  lux-toggle {
+    min-height: 40px !important;
+  }
+}

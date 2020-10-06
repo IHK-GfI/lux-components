@@ -13,6 +13,7 @@
         [luxOptionLabelProp]="renderProperty"
         [luxErrorMessageNotAnOption]="errorMessageNotAnOption"
         [luxOptions]="options"
+        [luxPickValue]="usePickValueFn && strict ? pickValueFn : undefined"
         [(luxValue)]="value"
         [luxSelectAllOnClick]="selectAllOnClick"
         [(luxDisabled)]="disabled"
@@ -45,6 +46,7 @@
         [luxOptionLabelProp]="renderProperty"
         [luxErrorMessageNotAnOption]="errorMessageNotAnOption"
         [luxOptions]="options"
+        [luxPickValue]="usePickValueFn && strict ? pickValueFn : undefined"
         [luxSelectAllOnClick]="selectAllOnClick"
         [(luxDisabled)]="disabled"
         [luxReadonly]="readonly"
@@ -182,8 +184,14 @@
     </lux-toggle>
     <lux-toggle class="example-highlight-config-option" [(luxChecked)]="strict" luxLabel="luxStrict">
       <lux-form-hint>
-        Dieser Flag aktiviert den strikten Modus dieser Component zu aktivieren<br />
+        Dieses Flag aktiviert den strikten Modus dieser Component´.<br />
         Das bedeutet, dass nur Eingaben die einer Option entsprechen als valide gelten.
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle class="example-highlight-config-option" [(luxChecked)]="usePickValueFn" luxLabel="luxPickValue" [luxDisabled]="!strict">
+      <lux-form-hint>
+        Dieses Flag aktiviert die PickValue-Funktion. Erfordert luxStrict = true. <br />
+        Das bedeutet, es wird der von der PickValue-Funktion zurückgelieferte Wert selektiert und nicht die Option als ganzes.
       </lux-form-hint>
     </lux-toggle>
   </example-base-simple-options>
