@@ -38,7 +38,6 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-ie-launcher'),
-      require('karma-edge-launcher'),
       require('karma-firefox-launcher'),
       require('karma-safari-launcher'),
       require('karma-jasmine-html-reporter'),
@@ -86,7 +85,7 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     // Für die Karmatests stehen die folgenden Browser zur Verfügung:
-    // browsers: ['Chrome', 'Firefox', 'Edge', 'IE', 'Safari'],
+    // browsers: ['Chrome', 'Firefox', 'IE', 'Safari'],
     browsers: ['Chrome'],
     singleRun: false
   });
