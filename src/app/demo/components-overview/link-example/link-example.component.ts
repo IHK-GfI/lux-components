@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LuxComponentsConfigParameters } from '../../../modules/lux-components-config/lux-components-config-parameters.interface';
 import { LuxComponentsConfigService } from '../../../modules/lux-components-config/lux-components-config.service';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-link-example',
   templateUrl: './link-example.component.html'
 })
-export class LinkExampleComponent implements OnInit {
+export class LinkExampleComponent implements OnInit, OnDestroy {
   // region Helper-Properties für das Beispiel
 
   showOutputEvents: boolean = false;
@@ -36,12 +37,18 @@ export class LinkExampleComponent implements OnInit {
 
   // endregion
 
+  subscription: Subscription;
+
   constructor(private configService: LuxComponentsConfigService) {}
 
   ngOnInit() {
-    this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
+    this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
       this.config = config;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   pickValue(option: any) {

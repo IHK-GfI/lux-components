@@ -73,7 +73,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   private masterListLength;
   private maxItemsVisible;
   private updateDetail$: ReplaySubject<any> = new ReplaySubject(1);
-  private updateDetailSubscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
   detailContext = { $implicit: {} };
   flexMaster: string;
@@ -156,7 +156,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
 
   ngOnDestroy() {
     this.mobileHelperService.unregister();
-    this.updateDetailSubscription.unsubscribe();
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   ngDoCheck() {
@@ -279,7 +279,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
    * gerade in der Liste sichtbar sein können (für das Durchschalten mit Pfeiltasten benötigt).
    */
   private handleMasterQueryList() {
-    this.luxMasterQueryList.changes.subscribe((masterListElements: QueryList<ElementRef>) => {
+    this.subscriptions.push(this.luxMasterQueryList.changes.subscribe((masterListElements: QueryList<ElementRef>) => {
       if (masterListElements.first) {
         const { nativeElement } = masterListElements.first;
         this.maxItemsVisible = Math.floor(nativeElement.offsetHeight / nativeElement.offsetHeight);
@@ -292,21 +292,21 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
           this.selectedPosition = newSelectedPosition;
         });
       }
-    });
+    }));
   }
 
   /**
    * Kümmert sich um die Kollabierung der Master-Liste, wenn zwischen Mobil- und Desktopansicht gewechselt wird.
    */
   private handleViewCollapse() {
-    this.mobileHelperService.masterCollapsedObservable.subscribe((open: boolean) => {
+    this.subscriptions.push(this.mobileHelperService.masterCollapsedObservable.subscribe((open: boolean) => {
       // Falls nichts selektiert ist, sollte die Darstellung beim Wechsel in kleine Media Queries die Masterliste zeigen
       if (this.mobileHelperService.isMobile() && !this.luxSelectedDetail && !open) {
         open = true;
       }
       this._luxOpen = open;
       this.updateOpen();
-    });
+    }));
   }
 
   /**
@@ -315,7 +315,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
    * Anschließend wird die Komponente angewiesen das neue Detail-Objekt zu rendern.
    */
   private handleDetailUpdate() {
-    this.updateDetailSubscription = this.updateDetail$.asObservable().subscribe((detail: any) => {
+    this.subscriptions.push(this.updateDetail$.asObservable().subscribe((detail: any) => {
       if (!detail) {
         this.detailViewContainerRef.clear();
         this.setNewDetail(detail);
@@ -332,9 +332,9 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
             const instance = childRef.instance;
             instance.luxDetailContext = this.detailContext;
             instance.luxDetailTemplate = this.detailView.tempRef;
-            instance.luxDetailRendered.subscribe(() => {
+            this.subscriptions.push(instance.luxDetailRendered.subscribe(() => {
               this.setNewDetail(detail);
-            });
+            }));
             // Die Detailansicht nach dem Wechsel wieder nach oben scrollen lassen
             this.detailViewContainerRef.element.nativeElement.parentNode.scrollTop = 0;
 
@@ -342,7 +342,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
           }
         }
       }
-    });
+    }));
   }
 
   /**
@@ -369,7 +369,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
    * Kümmert sich um den Fall, dass die Master-Liste selbst sich ändert.
    */
   private handleMasterListUpdate() {
-    this._luxMasterList
+    this.subscriptions.push(this._luxMasterList
       .asObservable()
       .pipe(
         // Workaround um ExpressionChanged-Fehler zu vermeiden
@@ -380,7 +380,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
           }
         })
       )
-      .subscribe();
+      .subscribe());
   }
 
   /**

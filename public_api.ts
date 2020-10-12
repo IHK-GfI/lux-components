@@ -107,7 +107,6 @@ export * from './src/app/modules/lux-components-config/lux-components-config.mod
 export * from './src/app/modules/lux-components-config/lux-components-config.service';
 // Classes
 export * from './src/app/modules/lux-components-config/lux-components-config-parameters.interface';
-export * from './src/app/modules/lux-components-config/lux-components-hammer-config.class';
 
 /**
  *  _    _   ___  __     _____ ____  ____   ___  ____

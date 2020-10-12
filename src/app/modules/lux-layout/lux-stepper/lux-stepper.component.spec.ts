@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 
 import { LuxStepperComponent } from './lux-stepper.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
@@ -18,7 +18,7 @@ describe('LuxStepperComponent', () => {
   let fixture: ComponentFixture<MockStepperComponent>;
   let stepperComponent: LuxStepperComponent;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LuxStepperComponent]
     }).compileComponents();

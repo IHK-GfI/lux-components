@@ -31,7 +31,7 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   private static _notificationNewClass = 'lux-notification-new';
   private static _notificationReadClass = 'lux-notification-read';
 
-  private configSubscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
   tabChange$: ReplaySubject<MatTabChangeEvent> = new ReplaySubject<MatTabChangeEvent>(1);
   labelUppercase: boolean;
@@ -54,17 +54,17 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   ) {}
 
   ngOnInit() {
-    this.tabChange$
+    this.subscriptions.push(this.tabChange$
       .asObservable()
       .pipe(debounceTime(LuxTabsComponent._DEBOUNCE_TIME))
       .subscribe((tabChange: MatTabChangeEvent) => {
         this.luxActiveTab = tabChange.index;
         this.luxActiveTabChanged.emit(tabChange);
-      });
+      }));
 
-    this.configSubscription = this.componentsConfigService.config.subscribe(() => {
+    this.subscriptions.push(this.componentsConfigService.config.subscribe(() => {
       this.labelUppercase = this.componentsConfigService.isLabelUppercaseForSelector('lux-tab');
-    });
+    }));
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
@@ -81,7 +81,7 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   }
 
   ngOnDestroy() {
-    this.configSubscription.unsubscribe();
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   getNotificationIconColorClassForTab(luxTab: LuxTabComponent): string {

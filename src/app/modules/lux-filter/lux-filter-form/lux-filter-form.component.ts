@@ -134,17 +134,7 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
 
     this.filterForm.patchValue(this.luxFilterValues);
 
-    // this.formElementes.forEach((item) => {
-    //   this.subscriptions.push(item.filterItem.component.luxFocusOut.subscribe(() => {}));
-    // });
-
     this.updateFilterChips();
-
-    // this.subscriptions.push(
-    //   this.filterForm.valueChanges.subscribe((event) => {
-    //     this.updateFilterChips();
-    //   })
-    // );
   }
 
   ngOnDestroy(): void {
@@ -156,21 +146,21 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   openSaveDialog() {
     const dialogRef = this.dialogService.openComponent(LuxFilterSaveDialogComponent, this.dialogConfig);
 
-    dialogRef.dialogClosed.subscribe((result: any) => {
+     this.subscriptions.push(dialogRef.dialogClosed.subscribe((result: any) => {
       if (typeof result === 'string') {
         this.onSave(result);
       }
-    });
+    }));
   }
 
   openLoadDialog() {
     const dialogRef = this.dialogService.openComponent(LuxFilterLoadDialogComponent, this.dialogConfig, this);
 
-    dialogRef.dialogClosed.subscribe((result: any) => {
+    this.subscriptions.push(dialogRef.dialogClosed.subscribe((result: any) => {
       if (typeof result === 'string') {
         this.onLoad(result);
       }
-    });
+    }));
   }
 
   onDelete(filter: LuxFilter) {

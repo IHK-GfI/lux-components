@@ -1,5 +1,5 @@
 import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
-import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
+import { ComponentPortal } from '@angular/cdk/portal';
 import { ComponentRef, Injectable, Injector } from '@angular/core';
 import { LUX_FILE_PREVIEW_DATA, LuxFilePreviewConfig } from './lux-file-preview-config';
 import { LuxFilePreviewRef } from './lux-file-preview-ref';
@@ -44,21 +44,18 @@ export class LuxFilePreviewService {
     return this.overlay.create(this.getOverlayConfig(config));
   }
 
-  private createInjector(config: LuxFilePreviewConfig, dialogRef: LuxFilePreviewRef): PortalInjector {
-    const injectionTokens = new WeakMap();
-
-    injectionTokens.set(LuxFilePreviewRef, dialogRef);
-    injectionTokens.set(LUX_FILE_PREVIEW_DATA, config.previewData);
-
-    return new PortalInjector(this.injector, injectionTokens);
+  private createInjector(config: LuxFilePreviewConfig, dialogRef: LuxFilePreviewRef): Injector {
+    return Injector.create({
+      parent: this.injector,
+      providers: [
+        { provide: LuxFilePreviewRef, useValue: dialogRef },
+        { provide: LUX_FILE_PREVIEW_DATA, useValue: config.previewData }
+      ]
+    });
   }
 
   private getOverlayConfig(config: LuxFilePreviewConfig): OverlayConfig {
-    const positionStrategy = this.overlay
-      .position()
-      .global()
-      .centerHorizontally()
-      .centerVertically();
+    const positionStrategy = this.overlay.position().global().centerHorizontally().centerVertically();
 
     const overlayConfig = new OverlayConfig({
       hasBackdrop: config.hasBackdrop,

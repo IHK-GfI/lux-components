@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { OnInit } from '@angular/core';
+import { OnInit, Directive } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { delay, map, take } from 'rxjs/operators';
 import { LuxFileListComponent } from '../../../modules/lux-form/lux-file/lux-file-list/lux-file-list.component';
 import { ILuxFileActionConfig } from '../../../modules/lux-form/lux-file/lux-file-model/lux-file-action-config.interface';
 import { ILuxFileListActionConfig } from '../../../modules/lux-form/lux-file/lux-file-model/lux-file-list-action-config.interface';
@@ -15,6 +15,7 @@ import {
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
 
+@Directive()
 export abstract class FileExampleComponent implements OnInit {
   showOutputEvents: boolean = true;
   realBackends: any[] = [];
@@ -113,7 +114,7 @@ export abstract class FileExampleComponent implements OnInit {
   ngOnInit() {
     this.http
       .get('assets/png/example.png', { responseType: 'blob' })
-      .pipe(
+      .pipe(take(1),
         map((response: Blob) => {
           const file = <any>response;
           file.name = 'example.png';

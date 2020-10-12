@@ -21,7 +21,6 @@ export class ListExampleComponent implements OnInit {
   emptyIconName: string = 'fas fa-exclamation';
   emptyIconSize: string = '5x';
   selectedPosition: number = 0;
-  focusedPosition: number = 0;
 
   // endregion
 

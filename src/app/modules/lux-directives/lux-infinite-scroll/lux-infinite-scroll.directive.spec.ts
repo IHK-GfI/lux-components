@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LuxInfiniteScrollDirective } from './lux-infinite-scroll.directive';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
@@ -35,7 +35,7 @@ describe('LuxInfiniteScrollDirective', () => {
     let fixture: ComponentFixture<MockComponent>;
     let mockComp: MockComponent;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       fixture = TestBed.createComponent(MockComponent);
       mockComp = fixture.componentInstance;
     }));
@@ -139,7 +139,7 @@ describe('LuxInfiniteScrollDirective', () => {
     let fixture: ComponentFixture<MockWithoutScrollBarAndImmediateCallbackComponent>;
     let mockComp: MockWithoutScrollBarAndImmediateCallbackComponent;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
       fixture = TestBed.createComponent(MockWithoutScrollBarAndImmediateCallbackComponent);
       mockComp = fixture.componentInstance;
     }));

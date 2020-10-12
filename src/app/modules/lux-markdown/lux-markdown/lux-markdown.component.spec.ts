@@ -1,17 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LuxMarkdownComponent } from './lux-markdown.component';
 import { LuxHtmlModule } from '../../lux-html/lux-html.module';
 import { By } from '@angular/platform-browser';
 import marked from 'marked/lib/marked';
-import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxUtil } from '../../lux-util/lux-util';
 
 describe('LuxMarkdownComponent', () => {
   let component: LuxMarkdownComponent;
   let fixture: ComponentFixture<LuxMarkdownComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LuxMarkdownComponent],
       imports: [LuxHtmlModule]

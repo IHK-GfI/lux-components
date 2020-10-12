@@ -4,7 +4,7 @@ import { Platform } from '@angular/cdk/platform';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { Component, ViewChild } from '@angular/core';
 import {
-  async,
+  waitForAsync,
   ComponentFixture,
   discardPeriodicTasks,
   fakeAsync,
@@ -69,7 +69,7 @@ describe('LuxSelectComponent', () => {
   });
 
   describe('innerhalb eines Formulars', () => {
-    beforeEach(async(() => configureMatSelectTestingModule()));
+    beforeEach(waitForAsync(() => configureMatSelectTestingModule()));
 
     let fixture: ComponentFixture<SelectInsideFormComponent>;
     let testComponent: SelectInsideFormComponent;
@@ -174,7 +174,7 @@ describe('LuxSelectComponent', () => {
   });
 
   describe('außerhalb eines Formulars', () => {
-    beforeEach(async(() => configureMatSelectTestingModule()));
+    beforeEach(waitForAsync(() => configureMatSelectTestingModule()));
 
     let fixture: ComponentFixture<SelectOutsideFormComponent>;
     let testComponent: SelectOutsideFormComponent;
@@ -384,7 +384,7 @@ describe('LuxSelectComponent', () => {
   });
 
   describe('Custom Compare', () => {
-    beforeEach(async(() => configureMatSelectTestingModule()));
+    beforeEach(waitForAsync(() => configureMatSelectTestingModule()));
 
     let fixture: ComponentFixture<SelectCustomCompareComponent>;
     let testComponent: SelectCustomCompareComponent;
@@ -417,7 +417,7 @@ describe('LuxSelectComponent', () => {
   });
 
   describe('mit simplem Daten-Array', () => {
-    beforeEach(async(() => configureMatSelectTestingModule()));
+    beforeEach(waitForAsync(() => configureMatSelectTestingModule()));
 
     let fixture: ComponentFixture<SelectStringArrayComponent>;
     let testComponent: SelectStringArrayComponent;
@@ -527,21 +527,21 @@ describe('LuxSelectComponent', () => {
 
       // Änderungen durchführen
       clickTrigger();
-      clickOption(1);
-
-      // Nachbedingungen prüfen
-      expect(testComponent.selectedOption).toBe(undefined);
-      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).toBe(null);
-      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).not.toBe(null);
-
-      // Änderungen durchführen
-      clickTrigger();
       clickOption(2);
 
       // Nachbedingungen prüfen
       expect(testComponent.selectedOption).toBe('');
       expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).not.toBe(null);
       expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).toBe(null);
+
+      // Änderungen durchführen
+      clickTrigger();
+      clickOption(1);
+
+      // Nachbedingungen prüfen
+      expect(testComponent.selectedOption).toBe(undefined);
+      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).not.toBe(null);
 
       // Änderungen durchführen
       clickTrigger();
@@ -555,7 +555,7 @@ describe('LuxSelectComponent', () => {
   });
 
   describe('mit einer gesetzten Value-Hook (ohne Formular)', () => {
-    beforeEach(async(() => configureMatSelectTestingModule()));
+    beforeEach(waitForAsync(() => configureMatSelectTestingModule()));
 
     let fixture: ComponentFixture<SelectValueHookComponent>;
     let testComponent: SelectValueHookComponent;
@@ -614,7 +614,7 @@ describe('LuxSelectComponent', () => {
   });
 
   describe('mit einer gesetzten Value-Hook (in einem Formular)', () => {
-    beforeEach(async(() => configureMatSelectTestingModule()));
+    beforeEach(waitForAsync(() => configureMatSelectTestingModule()));
 
     let fixture: ComponentFixture<SelectValueHookFormComponent>;
     let testComponent: SelectValueHookFormComponent;
@@ -650,7 +650,7 @@ describe('LuxSelectComponent', () => {
   });
 
   describe('als Multiselect', () => {
-    beforeEach(async(() => configureMatSelectTestingModule()));
+    beforeEach(waitForAsync(() => configureMatSelectTestingModule()));
 
     let fixture: ComponentFixture<SelectMultipleComponent>;
     let testComponent: SelectMultipleComponent;
@@ -773,7 +773,7 @@ describe('LuxSelectComponent', () => {
   });
 
   describe('Darstellung über Ng-Template', () => {
-    beforeEach(async(() => configureMatSelectTestingModule()));
+    beforeEach(waitForAsync(() => configureMatSelectTestingModule()));
 
     let fixture: ComponentFixture<SelectWithTemplateComponent>;
     let testComponent: SelectWithTemplateComponent;

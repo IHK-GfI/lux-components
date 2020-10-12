@@ -5,7 +5,7 @@ import { LuxAppFooterButtonService } from '../../../modules/lux-layout/lux-app-f
 import { LuxConsoleService } from '../../../modules/lux-util/lux-console.service';
 import { MasterDetailExampleDataService } from './master-detail-example-data.service';
 import { of } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
+import { delay, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-master-detail-example',
@@ -80,7 +80,7 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
     );
 
     of(this.masterEntries[1])
-      .pipe(delay(2000))
+      .pipe(take(1), delay(2000))
       .subscribe(v => (this.selectedDetail = v));
   }
 
@@ -102,6 +102,7 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
 
     of(null)
       .pipe(
+        take(1),
         delay(0),
         tap(() => {
           this.configuration.masterIsReloading = true;

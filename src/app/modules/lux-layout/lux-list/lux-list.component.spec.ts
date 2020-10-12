@@ -43,14 +43,12 @@ describe('LuxListComponent', () => {
   });
 
   it('Sollte Empty-Icon und Empty-Label anzeigen (leere Liste)', fakeAsync(() => {
-    expect(fixture.debugElement.query(By.css('.lux-list-empty'))).not.toBe(null);
     expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).not.toBe(null);
     expect(fixture.debugElement.query(By.css('span.lux-list-empty-icon-text strong'))).not.toBe(null);
   }));
 
   it('Sollte LuxListItems anzeigen (gefüllte Liste)', fakeAsync(() => {
     // Vorbedingungen prüfen
-    expect(fixture.debugElement.query(By.css('.lux-list-empty'))).not.toBe(null);
     expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).not.toBe(null);
     expect(fixture.debugElement.query(By.css('span.lux-list-empty-icon-text strong'))).not.toBe(null);
     expect(fixture.debugElement.queryAll(By.directive(LuxListItemComponent)).length).toBe(0);
@@ -60,7 +58,6 @@ describe('LuxListComponent', () => {
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    expect(fixture.debugElement.query(By.css('.lux-list-empty'))).toBe(null);
     expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).toBe(null);
     expect(fixture.debugElement.query(By.css('span.lux-list-empty-label'))).toBe(null);
     expect(fixture.debugElement.queryAll(By.directive(LuxListItemComponent)).length).toBe(5);

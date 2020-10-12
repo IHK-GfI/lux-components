@@ -15,7 +15,6 @@
         [luxUploadUrl]="uploadUrl"
         [luxMultiple]="multiple"
         [luxMaxSizeMB]="maxSize"
-        [luxBackgroundIconName]="backgroundIconName"
         [luxUploadActionConfig]="uploadActionConfig"
         [luxViewActionConfig]="viewActionConfig"
         [luxDeleteActionConfig]="deleteActionConfig"
@@ -45,7 +44,6 @@
           [luxUploadUrl]="uploadUrl"
           [luxMultiple]="multiple"
           [luxMaxSizeMB]="maxSize"
-          [luxBackgroundIconName]="backgroundIconName"
           [luxUploadActionConfig]="uploadActionConfig"
           [luxViewActionConfig]="viewActionConfigForm"
           [luxDeleteActionConfig]="deleteActionConfig"
@@ -108,13 +106,6 @@
     <app-file-example-simple-options [fileExample]="this"></app-file-example-simple-options>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <lux-input
-      class="example-highlight-config-option"
-      luxLabel="luxBackgroundIconName"
-      luxHint="Diese Eigenschaft legt das Icon fest, welches bei leerer Auswahl in der Mitte des Feldes angezeigt wird."
-      [(luxValue)]="backgroundIconName"
-    >
-    </lux-input>
     <app-file-example-advanced-options
       [fileExample]="this"
       [showHeaderConfigProperties]="true"

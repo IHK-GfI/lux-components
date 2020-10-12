@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxTagIdDirective } from './lux-tag-id.directive';
 import { of } from 'rxjs';
@@ -22,7 +22,7 @@ describe('LuxTagIdDirective', () => {
     );
   });
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     fixture = TestBed.createComponent(MockComponent);
     mockComp = fixture.componentInstance;
   }));

@@ -6,6 +6,9 @@
     "tslint-angular"
   ],
   "rules": {
+    "deprecation": {
+      "severity": "warning"
+    },
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "directive-selector": [

@@ -4,7 +4,7 @@ import {
   ContentChild,
   ElementRef, EventEmitter,
   Input,
-  OnChanges,
+  OnChanges, OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -16,13 +16,14 @@ import { LuxSideNavComponent } from './lux-app-header-subcomponents/lux-side-nav
 import { LuxAppHeaderRightNavComponent } from './lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
 import { LuxAppHeaderActionNavComponent } from './lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav.component';
 import { LuxUtil } from '../../lux-util/lux-util';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'lux-app-header',
   templateUrl: './lux-app-header.component.html',
   styleUrls: ['./lux-app-header.component.scss']
 })
-export class LuxAppHeaderComponent implements OnInit, OnChanges {
+export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   @Input() luxUserName: string;
   @Input() luxAppTitle: string;
   @Input() luxAppTitleShort: string;
@@ -39,6 +40,7 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges {
   userNameShort: string;
   isIE = LuxUtil.isIE();
   hasOnClickedListener: boolean;
+  subscriptions: Subscription[] = [];
 
   @ViewChild('customTrigger', { read: ElementRef }) customTrigger: ElementRef;
 
@@ -48,31 +50,35 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges {
 
   constructor(public mobileHelperService: LuxMasterDetailMobileHelperService, private logger: LuxConsoleService) {
     // Wenn die Master-Ansicht der MD-Komponente aendert, muss ein anderer Navigations-Button angezeigt werden
-    this.mobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
+    this.subscriptions.push(this.mobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
       setTimeout(() => {
         this.isMasterOpen = isOpen;
       });
-    });
+    }));
 
     // Pruefen ob ein Master-Detail aktuell vorhanden ist
-    this.mobileHelperService.isRegisteredObservable.subscribe((isRegistered: boolean) => {
+    this.subscriptions.push(this.mobileHelperService.isRegisteredObservable.subscribe((isRegistered: boolean) => {
       setTimeout(() => {
         this.isMasterDetailAvailable = isRegistered;
       });
-    });
+    }));
 
     // Pruefen ob das Master-Detail einen Wert hat
-    this.mobileHelperService.hasValueObservable.subscribe((hasValue: boolean) => {
+    this.subscriptions.push(this.mobileHelperService.hasValueObservable.subscribe((hasValue: boolean) => {
       setTimeout(() => {
         this.masterHasValue = hasValue;
       });
-    });
+    }));
   }
 
   ngOnInit() {
     if (this.luxClicked.observers && this.luxClicked.observers.length > 0) {
       this.hasOnClickedListener = true;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {

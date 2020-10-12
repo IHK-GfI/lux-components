@@ -67,7 +67,6 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
 
   @Input() luxShowPreview: boolean = true;
   @Input() luxMultiple: boolean = true;
-  @Input() luxBackgroundIconName: string = 'fas fa-cloud-upload-alt';
 
   get luxUploadActionConfig(): ILuxFileListActionConfig {
     return this._luxUploadActionConfig;

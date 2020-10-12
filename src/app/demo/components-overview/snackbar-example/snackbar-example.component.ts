@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { LuxSnackbarConfig } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar-config';
 import { MatSnackBarDismiss } from '@angular/material/snack-bar';
@@ -11,7 +11,7 @@ import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.en
   templateUrl: './snackbar-example.component.html',
   styleUrls: ['./snackbar-example.component.scss']
 })
-export class SnackbarExampleComponent implements OnInit {
+export class SnackbarExampleComponent implements OnInit, OnDestroy {
   private dismissSubcr: Subscription;
   private actionSubscr: Subscription;
   colors: string[] = Object.keys(LuxBackgroundColorsEnum);
@@ -32,6 +32,15 @@ export class SnackbarExampleComponent implements OnInit {
   constructor(private snackbar: LuxSnackbarService) {}
 
   ngOnInit() {}
+
+  ngOnDestroy(): void {
+    if (this.dismissSubcr) {
+      this.dismissSubcr.unsubscribe();
+    }
+    if (this.actionSubscr) {
+      this.actionSubscr.unsubscribe();
+    }
+  }
 
   openSnackbar() {
     this.snackbar.open(this.duration, this.snackbarConfig);

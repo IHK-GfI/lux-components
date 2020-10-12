@@ -1,3 +1,7 @@
+# Version 10.0.0
+## New
+- **allgemein**: Update auf Angular 10.
+
 # Version 1.9.5
 ## New
 - **allgemein**: Update auf die aktuellste 9er Angular-Version inklusive Sicherheitsupdates. 

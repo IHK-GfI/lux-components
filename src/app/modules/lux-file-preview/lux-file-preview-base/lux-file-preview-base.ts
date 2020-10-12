@@ -5,6 +5,7 @@ import { LUX_FILE_PREVIEW_DATA } from '../lux-file-preview-config';
 import { LuxFilePreviewData } from '../lux-file-preview-data';
 import { LuxFilePreviewRef } from '../lux-file-preview-ref';
 
+@Directive()
 export class LuxFilePreviewBase implements OnInit, OnDestroy {
   url: string;
   urls: string[] = [];

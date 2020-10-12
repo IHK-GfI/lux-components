@@ -31,14 +31,10 @@ import { ExampleBaseModule } from './demo/example-base/example-base.module';
 import { LuxCommonModule } from './modules/lux-common/lux-common.module';
 import { LuxErrorModule } from './modules/lux-error/lux-error.module';
 import 'hammerjs';
-import { registerLocaleData } from '@angular/common';
-import localeDE from '@angular/common/locales/de';
-import localeDeExtra from '@angular/common/locales/extra/de';
 import { LOCALE_ID } from '@angular/core';
 import { PlaceholderComponent } from './demo/abstract/placeholder/placeholder.component';
 import { RedirectComponent } from './demo/abstract/redirect/redirect.component';
-
-registerLocaleData(localeDE, localeDeExtra);
+import '@angular/common/locales/global/de';
 
 const myConfiguration: LuxComponentsConfigParameters = {
   generateLuxTagIds: environment.generateLuxTagIds,

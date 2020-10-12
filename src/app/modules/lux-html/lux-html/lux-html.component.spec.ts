@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LuxHtmlComponent } from './lux-html.component';
 import { LuxHtmlModule } from '../lux-html.module';
@@ -8,7 +8,7 @@ describe('LuxHtmlComponent', () => {
   let component: LuxHtmlComponent;
   let fixture: ComponentFixture<LuxHtmlComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LuxHtmlComponent],
       imports: [LuxHtmlModule]

@@ -1,5 +1,5 @@
 import { Component, DebugElement } from '@angular/core';
-import { async, ComponentFixture, fakeAsync, flushMicrotasks, inject, TestBed, tick } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, fakeAsync, flushMicrotasks, inject, TestBed, tick } from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxTooltipDirective } from './lux-tooltip.directive';
 import { TooltipPosition } from '@angular/material/tooltip';
@@ -34,7 +34,7 @@ describe('LuxTooltipDirective', () => {
     flushMicrotasks();
   };
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     fixture = TestBed.createComponent(MockComponent);
     mockComp = fixture.componentInstance;
     fixture.detectChanges();

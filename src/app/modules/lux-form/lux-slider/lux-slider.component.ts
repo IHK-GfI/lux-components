@@ -3,7 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges,
+  OnChanges, OnDestroy,
   OnInit,
   Optional,
   Output,
@@ -15,6 +15,7 @@ import { MatSlider, MatSliderChange } from '@angular/material/slider';
 import { LuxFormComponentBase } from '../lux-form-model/lux-form-component-base.class';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { Subscription } from 'rxjs';
 
 export declare type SLIDER_TICK_INTERVAL = 'auto' | number;
 export declare type SLIDER_COLORS = 'primary' | 'accent' | 'warn';
@@ -25,7 +26,7 @@ export declare type SLIDER_COLORS = 'primary' | 'accent' | 'warn';
   templateUrl: './lux-slider.component.html',
   styleUrls: ['./lux-slider.component.scss']
 })
-export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, OnChanges {
+export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, OnChanges, OnDestroy {
   @ViewChild(MatSlider) matSlider: MatSlider;
 
   @Output() luxChange: EventEmitter<MatSliderChange> = new EventEmitter<MatSliderChange>();
@@ -56,6 +57,8 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
   _luxRequired: boolean = false;
   _luxMin: number = 0;
   _luxStep: number = 1;
+
+  subscription: Subscription;
 
   get luxMax() {
     return this._luxMax;
@@ -117,11 +120,17 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
   ngOnInit() {
     super.ngOnInit();
 
-    this.formControl.statusChanges.subscribe((status: string) => {
+    this.subscription = this.formControl.statusChanges.subscribe((status: string) => {
       if (status === 'DISABLED') {
         this.redrawSliderWorkaround();
       }
     });
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+
+    this.subscription.unsubscribe();
   }
 
   ngOnChanges(simpleChanges) {

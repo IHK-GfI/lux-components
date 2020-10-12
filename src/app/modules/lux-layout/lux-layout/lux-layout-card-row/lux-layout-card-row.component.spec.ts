@@ -1,4 +1,4 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 
 import { LuxLayoutCardRowComponent } from './lux-layout-card-row.component';
 import { LuxMediaQueryObserverService } from '../../../lux-util/lux-media-query-observer.service';
@@ -10,7 +10,7 @@ describe('LuxLayoutCardRowComponent', () => {
   let fixture: ComponentFixture<LuxLayoutCardRowComponent>;
   let queryService: MockLuxMediaQueryObserverService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LuxLayoutCardRowComponent],
       providers: [{ provide: LuxMediaQueryObserverService, useClass: MockLuxMediaQueryObserverService }]

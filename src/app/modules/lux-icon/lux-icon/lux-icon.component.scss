@@ -13,3 +13,14 @@ i.lux-fa-icon,
   width: 1.3em;
   line-height: 1.3em;
 }
+
+mat-icon.mat-icon {
+  &.lux-icon-rounded {
+    height: unset !important;
+  }
+
+  &:not(.lux-icon-rounded) {
+    height: unset !important;
+    width: unset !important;
+  }
+}

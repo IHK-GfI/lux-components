@@ -25,7 +25,8 @@
               "src/styles.scss",
               "src/theming/luxtheme.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": ["hammerjs"]
           },
           "configurations": {
             "production": {

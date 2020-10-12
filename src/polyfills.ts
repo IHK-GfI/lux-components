@@ -34,6 +34,7 @@ import 'core-js/es/string';
 /** IE9, IE10 and IE11 requires all of the following polyfills. **/
 import 'core-js/es/symbol';
 import 'core-js/es/weak-map';
+import 'core-js/es/weak-set';
 import 'core-js/es/reflect';
 /***************************************************************************************************
  * Zone JS is required by Angular itself.
