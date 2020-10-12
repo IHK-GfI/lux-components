@@ -32,7 +32,6 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   filteredOptions: Observable<any>;
 
   @Input() luxPlaceholder: string = '';
-  @Input() luxReadonly: boolean;
   @Input() luxOptions: any[] = [];
   @Input() luxOptionLabelProp: string = 'label';
   @Input() luxLookupDelay: number = 500;

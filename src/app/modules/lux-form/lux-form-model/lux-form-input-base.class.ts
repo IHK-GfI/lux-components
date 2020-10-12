@@ -15,7 +15,6 @@ export abstract class LuxFormInputBaseClass extends LuxFormComponentBase {
   @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
 
   @Input() luxPlaceholder: string = '';
-  @Input() luxReadonly: boolean;
   @Input() luxTagId: string;
   @Input() luxName: string;
   @Input() luxAutocomplete: string = 'on';

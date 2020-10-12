@@ -17,7 +17,6 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
   @Input() luxOptionLabelProp: string = '';
   @Input() luxTagId: string;
   @Input() luxPickValue: (selected) => {};
-  @Input() luxReadonly: boolean;
   @Input() luxCompareWith = (o1, o2) => o1 === o2;
 
   get luxSelected(): any {

@@ -13,7 +13,6 @@ export abstract class LuxFormCheckableBaseClass extends LuxFormComponentBase {
   @Output() luxCheckedChange: EventEmitter<boolean> = new EventEmitter();
 
   @Input() luxTagId: string;
-  @Input() luxReadonly: boolean;
 
   get luxChecked() {
     return this.getValue();

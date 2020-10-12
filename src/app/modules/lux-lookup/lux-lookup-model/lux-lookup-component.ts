@@ -34,7 +34,6 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
   apiPath: string;
 
   @Input() luxPlaceholder: string;
-  @Input() luxReadonly: boolean;
   @Input() luxLookupId: string;
   @Input() luxTableNo: string;
   @Input() luxRenderProp: any;
