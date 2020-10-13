@@ -20,6 +20,7 @@ export class ToggleExampleComponent implements OnInit {
   controlBinding: string = 'toggleExample';
   label: string = 'Label';
   hint: string = 'Hint';
+  hintShowOnlyOnFocus: boolean = false;
   disabled = false;
   readonly: boolean;
   required: boolean;

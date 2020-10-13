@@ -15,6 +15,7 @@
         [luxPlaceholder]="placeholder"
         [luxLabel]="label"
         [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxMaxLength]="maxLength"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
@@ -29,9 +30,7 @@
         <lux-input-prefix *ngIf="showPrefix">
           <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp;
         </lux-input-prefix>
-        <lux-input-suffix *ngIf="showSuffix">
-          .00 EUR
-        </lux-input-suffix>
+        <lux-input-suffix *ngIf="showSuffix"> .00 EUR </lux-input-suffix>
       </lux-input>
       <div
         class="example-highlight-config-option"
@@ -52,6 +51,7 @@
         [luxPlaceholder]="placeholder"
         [luxLabel]="label"
         [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxMaxLength]="maxLength"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
@@ -66,9 +66,7 @@
         <lux-input-prefix *ngIf="showPrefix">
           <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp;
         </lux-input-prefix>
-        <lux-input-suffix *ngIf="showSuffix">
-          .00 EUR
-        </lux-input-suffix>
+        <lux-input-suffix *ngIf="showSuffix"> .00 EUR </lux-input-suffix>
       </lux-input>
       <div fxLayout="column" class="example-highlight-config-option">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
@@ -106,13 +104,19 @@
       [(luxValue)]="label"
     >
     </lux-input>
-    <lux-input
-      class="example-highlight-config-option"
-      luxLabel="luxHint"
-      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-      [(luxValue)]="hint"
-    >
-    </lux-input>
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-input
+        luxLabel="luxHint"
+        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+        [(luxValue)]="hint"
+      >
+      </lux-input>
+      <lux-toggle
+        luxLabel="luxHintShowOnlyOnFocus"
+        luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+        [(luxChecked)]="hintShowOnlyOnFocus"
+      ></lux-toggle>
+    </div>
     <lux-input
       class="example-highlight-config-option"
       luxLabel="luxPlaceholder"

@@ -56,6 +56,7 @@ export class SliderExampleComponent implements OnInit, AfterViewInit {
   required: boolean;
   label: string = 'Label';
   hint: string = 'Hint';
+  hintShowOnlyOnFocus: boolean = false;
   errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
   max: number = 100;
   min: number = 0;

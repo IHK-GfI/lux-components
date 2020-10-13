@@ -5,13 +5,19 @@
   [(luxValue)]="fileExample.label"
 >
 </lux-input>
-<lux-input
-  class="example-highlight-config-option"
-  luxLabel="luxHint"
-  luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-  [(luxValue)]="fileExample.hint"
->
-</lux-input>
+<div fxLayout="column" class="example-highlight-config-option">
+  <lux-input
+    luxLabel="luxHint"
+    luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+    [(luxValue)]="fileExample.hint"
+  >
+  </lux-input>
+  <lux-toggle
+    luxLabel="luxHintShowOnlyOnFocus"
+    luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+    [(luxChecked)]="fileExample.hintShowOnlyOnFocus"
+  ></lux-toggle>
+</div>
 <lux-toggle
   class="example-highlight-config-option"
   [(luxChecked)]="fileExample.disabled"
