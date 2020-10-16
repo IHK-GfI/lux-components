@@ -35,6 +35,7 @@ export class DatepickerExampleComponent implements OnInit {
   required: boolean;
   label: string = 'Label';
   hint: string = 'Hint';
+  hintShowOnlyOnFocus: boolean = false;
   placeholder: string = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
   errorMessage: string = 'Das Feld enthält keinen gültigen Wert';

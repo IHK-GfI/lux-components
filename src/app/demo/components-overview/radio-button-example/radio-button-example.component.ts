@@ -52,6 +52,7 @@ export class RadioButtonExampleComponent implements OnInit {
   isVertical: boolean;
   label: string = 'Label';
   hint: string = 'Hint';
+  hintShowOnlyOnFocus: boolean = false;
   controlValidators: ValidatorFn[] = [];
   errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
 

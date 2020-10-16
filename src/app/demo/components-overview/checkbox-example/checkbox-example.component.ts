@@ -20,6 +20,7 @@ export class CheckboxExampleComponent implements OnInit {
   controlBinding: string = 'checkboxExample';
   label: string = 'Label';
   hint: string = 'Hint';
+  hintShowOnlyOnFocus: boolean = false;
   disabled = false;
   readonly: boolean;
   required: boolean;

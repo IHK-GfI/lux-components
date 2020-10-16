@@ -10,6 +10,7 @@
         [(luxChecked)]="value"
         [luxLabel]="label"
         [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [(luxDisabled)]="disabled"
         [luxRequired]="required"
         [luxReadonly]="readonly"
@@ -27,6 +28,7 @@
       <lux-checkbox
         [luxLabel]="label"
         [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [(luxDisabled)]="disabled"
         [luxReadonly]="readonly"
         [luxControlBinding]="controlBinding"
@@ -64,13 +66,21 @@
       [(luxValue)]="label"
     >
     </lux-input>
-    <lux-input
-      class="example-highlight-config-option"
-      luxLabel="luxHint"
-      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-      [(luxValue)]="hint"
-    >
-    </lux-input>
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-input
+        luxName="checkbox_luxHint"
+        luxLabel="luxHint"
+        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+        [(luxValue)]="hint"
+      >
+      </lux-input>
+      <lux-toggle
+        luxName="checkbox_luxHintShowOnlyOnFocus"
+        luxLabel="luxHintShowOnlyOnFocus"
+        luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+        [(luxChecked)]="hintShowOnlyOnFocus"
+      ></lux-toggle>
+    </div>
     <lux-toggle
       class="example-highlight-config-option"
       [(luxChecked)]="disabled"

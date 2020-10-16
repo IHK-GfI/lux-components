@@ -10,6 +10,7 @@
         [luxPlaceholder]="placeholder"
         [luxLabel]="label"
         [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxCustomStyles]="customStyle"
         [luxCustomInvalidStyles]="customInvalidStyle"
         [luxRenderProp]="useRenderFn ? renderFn : renderProp"
@@ -27,10 +28,8 @@
         [luxWithEmptyEntry]="bLuxWithEmptyEntry"
         (luxDataLoaded)="dataLoaded($event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
-        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
-        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         luxLookupId="normalcombobox"
         luxTagId="lkpexample1"
       >
@@ -46,6 +45,7 @@
         [luxPlaceholder]="placeholder"
         [luxLabel]="label"
         [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxCustomStyles]="customStyle"
         [luxCustomInvalidStyles]="customInvalidStyle"
         [luxRenderProp]="useRenderFn ? renderFn : renderProp"
@@ -64,10 +64,8 @@
         [luxWithEmptyEntry]="bLuxWithEmptyEntry"
         (luxDataLoaded)="dataLoaded($event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
-        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
-        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         luxLookupId="multicombobox"
         luxTagId="lkpexample2"
       >
@@ -83,6 +81,7 @@
         [luxPlaceholder]="placeholder"
         [luxLabel]="label"
         [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxCustomStyles]="customStyle"
         [luxCustomInvalidStyles]="customInvalidStyle"
         [luxRenderProp]="useRenderFn ? renderFn : renderProp"
@@ -98,10 +97,8 @@
         [luxWithEmptyEntry]="bLuxWithEmptyEntry"
         (luxDataLoaded)="dataLoaded($event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
-        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
-        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         luxLookupId="reactivecombobox"
         luxTagId="lkpexample3"
       >
@@ -201,14 +198,21 @@
       [(luxValue)]="label"
     >
     </lux-input>
-    <lux-input
-      class="example-highlight-config-option"
-      luxName="lookup-combobox_luxHint"
-      luxLabel="luxHint"
-      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-      [(luxValue)]="hint"
-    >
-    </lux-input>
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-input
+        luxName="lookup-combobox_luxHint"
+        luxLabel="luxHint"
+        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+        [(luxValue)]="hint"
+      >
+      </lux-input>
+      <lux-toggle
+        luxName="lookup-combobox_luxHintShowOnlyOnFocus"
+        luxLabel="luxHintShowOnlyOnFocus"
+        luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+        [(luxChecked)]="hintShowOnlyOnFocus"
+      ></lux-toggle>
+    </div>
     <lux-input
       class="example-highlight-config-option"
       luxName="lookup-combobox_luxPlaceholder"

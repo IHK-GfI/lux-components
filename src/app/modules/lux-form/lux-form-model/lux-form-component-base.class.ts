@@ -58,6 +58,7 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
   @Output() luxDisabledChange: EventEmitter<any> = new EventEmitter<any>();
 
   @Input() luxHint: string;
+  @Input() luxHintShowOnlyOnFocus: boolean;
   @Input() luxLabel: string;
 
   @Input() luxControlBinding: string;

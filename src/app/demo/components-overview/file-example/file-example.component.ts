@@ -30,6 +30,7 @@ export abstract class FileExampleComponent implements OnInit {
   contentAsBlob = false;
   reportProgress = false;
   hint: string = 'Datei hierher ziehen oder über den Button auswählen';
+  hintShowOnlyOnFocus: boolean = false;
   label: string = 'Anhänge';
   uploadUrl: string = '';
   controlBinding: string = 'uploadExample';
