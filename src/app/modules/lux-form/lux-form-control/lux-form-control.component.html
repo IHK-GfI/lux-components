@@ -44,7 +44,7 @@
       <ng-container *ngSwitchDefault>
         <!-- Hier wird entweder das luxHint oder das übergebene Tag heraus gerendert -->
         <mat-hint
-          *ngIf="luxFormComponent.formHintComponent || luxFormComponent.luxHint"
+          *ngIf="(luxFormComponent.formHintComponent || luxFormComponent.luxHint) && (!luxFormComponent.luxHintShowOnlyOnFocus || (luxFormComponent.luxHintShowOnlyOnFocus && focused))"
           [id]="luxFormComponent.uid + '-hint'"
         >
           <ng-container *ngIf="luxFormComponent.luxHint; else formHintTemplate">

@@ -50,6 +50,7 @@ export class AutocompleteExampleComponent implements OnInit {
   renderProperty = 'label';
   label: string = 'Label';
   hint: string = 'Hint';
+  hintShowOnlyOnFocus: boolean = false;
   placeholder: string = 'Placeholder';
   disabled = false;
   readonly: boolean;

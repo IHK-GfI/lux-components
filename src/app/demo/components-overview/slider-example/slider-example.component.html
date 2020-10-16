@@ -9,6 +9,7 @@
       <lux-slider
         [luxLabel]="label"
         [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxControlValidators]="controlValidators"
         [luxColor]="color"
         [(luxDisabled)]="disabled"
@@ -48,6 +49,7 @@
       <lux-slider
         [luxLabel]="label"
         [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxControlBinding]="controlBinding"
         [luxColor]="color"
         [(luxDisabled)]="disabled"
@@ -110,14 +112,21 @@
       [(luxValue)]="label"
     >
     </lux-input>
-    <lux-input
-      class="example-highlight-config-option"
-      luxName="slider_luxHint"
-      luxLabel="luxHint"
-      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-      [(luxValue)]="hint"
-    >
-    </lux-input>
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-input
+        luxName="slider_luxHint"
+        luxLabel="luxHint"
+        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+        [(luxValue)]="hint"
+      >
+      </lux-input>
+      <lux-toggle
+        luxName="slider_luxHintShowOnlyOnFocus"
+        luxLabel="luxHintShowOnlyOnFocus"
+        luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+        [(luxChecked)]="hintShowOnlyOnFocus"
+      ></lux-toggle>
+    </div>
     <lux-toggle
       class="example-highlight-config-option"
       [(luxChecked)]="disabled"

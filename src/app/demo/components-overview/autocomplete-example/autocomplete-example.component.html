@@ -10,6 +10,7 @@
         [luxLabel]="label"
         [luxPlaceholder]="placeholder"
         [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxOptionLabelProp]="renderProperty"
         [luxErrorMessageNotAnOption]="errorMessageNotAnOption"
         [luxOptions]="options"
@@ -43,6 +44,7 @@
         [luxLabel]="label"
         [luxPlaceholder]="placeholder"
         [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxOptionLabelProp]="renderProperty"
         [luxErrorMessageNotAnOption]="errorMessageNotAnOption"
         [luxOptions]="options"
@@ -113,14 +115,21 @@
       [(luxValue)]="label"
     >
     </lux-input>
-    <lux-input
-      class="example-highlight-config-option"
-      luxName="autocomplete_luxHint"
-      luxLabel="luxHint"
-      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-      [(luxValue)]="hint"
-    >
-    </lux-input>
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-input
+        luxName="autocomplete_luxHint"
+        luxLabel="luxHint"
+        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+        [(luxValue)]="hint"
+      >
+      </lux-input>
+      <lux-toggle
+        luxName="autocomplete_luxHintShowOnlyOnFocus"
+        luxLabel="luxHintShowOnlyOnFocus"
+        luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+        [(luxChecked)]="hintShowOnlyOnFocus"
+      ></lux-toggle>
+    </div>
     <lux-input
       class="example-highlight-config-option"
       luxName="autocomplete_luxPlaceholder"
