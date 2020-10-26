@@ -334,6 +334,10 @@ lux-tile {
     &:focus {
       @include lux-focused-mixin;
     }
+
+    &:hover {
+      @include lux-focused-mixin;
+    }   
   }
 }
 

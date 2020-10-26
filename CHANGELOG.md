@@ -1,3 +1,7 @@
+# Version 10.2.0
+## New
+- **lux-tile**: UX und Barrierefreiheit: Mouseover hinzugefügt
+
 # Version 10.1.0
 ## New
 - **allgemein**: Alle Formularkomponenten (z.B. lux-input, lux-toggle,...) haben das neue Property "luxHintShowOnlyOnFocus" erhalten. [Issue 38](https://github.com/IHK-GfI/lux-components/issues/38)
