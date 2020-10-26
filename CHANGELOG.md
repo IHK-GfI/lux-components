@@ -1,6 +1,7 @@
 # Version 10.2.0
 ## New
 - **lux-tile**: UX und Barrierefreiheit: Mouseover hinzugefügt
+- **lux-tooltip**: lux-tooltips schließen sich beim Drücken der ESC-Taste
 
 # Version 10.1.0
 ## New
