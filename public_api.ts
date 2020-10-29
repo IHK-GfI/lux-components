@@ -390,3 +390,14 @@ export * from './src/app/modules/lux-html/lux-sanitize/lux-sanitize-config';
 export * from './src/app/modules/lux-markdown/lux-markdown.module';
 // Components
 export * from './src/app/modules/lux-markdown/lux-markdown/lux-markdown.component';
+
+/**
+ *  _                    _   _            _          _      _     _
+ * | |   _   ___  __    | \ | | __ _  ___| |__  _ __(_) ___| |__ | |_
+ * | |  | | | \ \/ /____|  \| |/ _` |/ __| '_ \| '__| |/ __| '_ \| __|
+ * | |__| |_| |>  <_____| |\  | (_| | (__| | | | |  | | (__| | | | |_
+ * |_____\__,_/_/\_\    |_| \_|\__,_|\___|_| |_|_|  |_|\___|_| |_|\__|
+ */
+export * from './src/app/modules/lux-nachricht/lux-nachricht.module';
+// Components
+export * from './src/app/modules/lux-nachricht/lux-nachricht.component';
