@@ -1,8 +1,10 @@
 @import '../../../../../../theming/luxtheme';
 
-$offset-size: 44px;
+$offset-size: 40px;
 $offset: 8px;
 $sideNavZIndex: 10000;
+$colorActive: #335c85;
+$colorDisabled: gray;
 
 .lux-side-nav {
   position: fixed;
@@ -12,147 +14,93 @@ $sideNavZIndex: 10000;
   background: white;
   box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.5);
 
+  .lux-side-nav-header {
+    padding: $offset;
+    position: relative;
+    border-bottom: 1px solid $dark-dividers;
+  }
+
   .lux-side-nav-content {
     overflow-y: auto;
     min-height: 100px;
+    min-width: 300px;
+
+    .lux-side-nav-dashboard-link {
+      margin-top: 8px;
+    }
 
     ::ng-deep {
-      lux-icon {
-        width: $offset-size;
-        margin-left: -$offset !important;
-        margin-right: 0 !important;
-
-        i {
-          padding-left: 0;
-        }
+      lux-button button {
+        margin: 0;
+        padding: 0;
+        text-align: left;
       }
 
-      > .lux-side-nav-item-container {
-        padding: 0 8px;
-      }
-
-      .lux-side-nav-item-container {
-        position: relative;
-        min-height: 40px;
-
-        .lux-side-nav-item-expandable {
-          .lux-side-nav-item-expansion-icon {
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            display: flex;
-            align-items: center;
-            z-index: 1;
-          }
+      lux-button button:not([disabled]) {
+        &:hover {
+          background-color: unset !important;
         }
 
-        .lux-side-nav-item-button {
-          margin-top: 8px;
-          margin-bottom: 8px;
+        &:focus {
+          background-color: unset !important;
         }
       }
 
       .lux-side-nav-item {
-        display: block;
-        width: 100%;
+        height: 40px;
+        min-height: 40px;
+        margin: 2px 8px;
 
-        button {
-          width: 100%;
-          display: block;
-          height: 40px;
-          z-index: 3;
-          padding-top: 0;
-          padding-bottom: 0;
+        cursor: pointer;
+        &.lux-side-nav-disabled {
+          cursor: default;
+        }
 
-          .mat-button-wrapper {
-            height: 40px;
+        .lux-side-nav-item-icon {
+          flex: 1 1 $offset-size;
+          max-width: $offset-size;
+          min-width: $offset-size;
+          box-sizing: border-box;
+          margin: 0;
+          text-align: center;
 
-            .lux-button-label {
-              margin-left: 0;
-            }
-          }
-
-          &[disabled] {
-            .mat-button-wrapper {
-              color: $dark-disabled-text !important;
-            }
+          color: $colorActive;
+          &.lux-side-nav-disabled {
+            color: $colorDisabled;
           }
         }
 
-        .mat-button-wrapper {
-          display: flex !important;
+        .lux-side-nav-label {
+          color: $colorActive;
+
+          &.lux-side-nav-disabled {
+            color: $colorDisabled;
+          }
+        }
+
+        .lux-side-nav-item-expansion-icon {
+          color: $colorActive;
+
+          &.lux-side-nav-disabled {
+            color: $colorDisabled;
+          }
         }
       }
 
       .lux-side-nav-sub-item {
-        .mat-button-wrapper {
-          margin-left: $offset-size - $offset;
-        }
-
-        .lux-side-nav-sub-item .mat-button-wrapper {
-          margin-left: ($offset-size - $offset) * 2;
-        }
+        margin-left: $offset-size - $offset;
       }
 
-      .lux-side-nav-item-button {
-        position: relative;
-      }
-    }
-
-    lux-link {
-      display: block;
-      min-height: 40px;
-      padding: 0 8px;
-      margin: 10px 0;
-      position: relative;
-
-      &:after {
-        content: '';
-        left: 0;
-        right: 0;
-        height: 0;
-        position: absolute;
-        margin-top: 10px;
-        border-bottom: 1px solid $dark-dividers;
-      }
-
-      ::ng-deep {
-        lux-button {
-          display: block;
-
-          button {
-            display: flex;
-            width: 100%;
-            height: 40px;
-
-            span {
-              display: flex !important;
-            }
-
-            .lux-button-label {
-              margin-left: 0;
-            }
-          }
-        }
+      .lux-side-nav-sub-item-last-child {
+        padding-bottom: 24px;
       }
     }
   }
 
-  .lux-side-nav-header,
   .lux-side-nav-footer {
     padding: $offset;
     position: relative;
-
-    ::ng-deep {
-      .lux-side-nav-footer-content {
-        padding-top: 16px;
-      }
-    }
-  }
-
-  .lux-side-nav-header {
-    border-bottom: 1px solid $dark-dividers;
+    border-top: 1px solid $dark-dividers;
   }
 }
 

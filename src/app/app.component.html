@@ -8,7 +8,7 @@
   >
     <lux-side-nav luxDashboardLink="https://github.com/IHK-GfI/lux-components/wiki" [luxOpenLinkBlank]="true">
       <lux-side-nav-header>
-        <h3>Willkommen, Herr Mustermann</h3>
+        <h3 class="lux-side-nav-header-greeting">Navigation</h3>
       </lux-side-nav-header>
       <lux-side-nav-item
         luxLabel="Home"
@@ -98,9 +98,9 @@
         </lux-side-nav-item>
       </lux-side-nav-item>
       <lux-side-nav-footer>
-        <div fxLayout="row" fxLayoutAlign="end center">
-          <lux-button luxLabel="Datenschutz" [luxRaised]="true"></lux-button>
-          <lux-button luxLabel="Impressum" [luxRaised]="true"></lux-button>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+          <lux-button luxLabel="Aufklappen" [luxRaised]="true" (luxClicked)="navigationService.onExpandAll()"></lux-button>
+          <lux-button luxLabel="Zuklappen" [luxRaised]="true" (luxClicked)="navigationService.onCollapseAll()"></lux-button>
         </div>
       </lux-side-nav-footer>
     </lux-side-nav>

@@ -62,26 +62,21 @@ $lux-selected-border-color: mat-color($lux-primary, A400);
 
 /** ########## Side-Nav ########## **/
 lux-side-nav {
-  lux-link,
   .lux-side-nav-item {
-    @include lux-selectable-mixin;
-
     &.lux-side-nav-item-selected {
       @include lux-selected-mixin;
     }
 
-    button {
-      .mat-button-focus-overlay {
-        display: none;
-      }
+    &:focus:not(.lux-side-nav-disabled) {
+      @include lux-focused-mixin;
+    }
 
-      &:focus {
-        @include lux-focused-mixin;
-      }
+    &:focus-within:not(.lux-side-nav-disabled) {
+      @include lux-focused-mixin;
+    }
 
-      &:hover {
-        @include lux-hovered-mixin;
-      }
+    &:hover:not(.lux-side-nav-disabled) {
+      @include lux-hovered-mixin;
     }
   }
 }
@@ -337,7 +332,7 @@ lux-tile {
 
     &:hover {
       @include lux-focused-mixin;
-    }   
+    }
   }
 }
 

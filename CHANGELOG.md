@@ -1,7 +1,8 @@
 # Version 10.2.0
 ## New
 - **lux-tile**: UX und Barrierefreiheit: Mouseover hinzugefügt
-- **lux-tooltip**: lux-tooltips schließen sich beim Drücken der ESC-Taste
+- **lux-tooltip**: UX und Barrierefreiheit: lux-tooltips schließen sich beim Drücken der ESC-Taste
+- **lux-side-nav**: UX und Barrierefreiheit: Appmenü angepasst
 
 # Version 10.1.0
 ## New
