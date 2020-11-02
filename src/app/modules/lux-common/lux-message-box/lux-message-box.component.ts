@@ -1,9 +1,10 @@
-import { Component, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { visibilityTrigger } from './lux-message-box-model/lux-message-box.animations';
 import { ILuxMessageChangeEvent, ILuxMessageCloseEvent } from './lux-message-box-model/lux-message-events.interface';
 import { ILuxMessage } from './lux-message-box-model/lux-message.interface';
 import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { LuxPaginatorIntl } from '../../lux-util/lux-paginator-intl';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'lux-message-box',
@@ -21,10 +22,13 @@ export class LuxMessageBoxComponent implements OnInit {
 
   @HostBinding('class.mat-elevation-z4') boxShadow: boolean = true;
 
+  @ViewChild('messagebox') messageBoxElRef: ElementRef;
+
   @Output() luxMessageChanged: EventEmitter<ILuxMessageChangeEvent> = new EventEmitter<ILuxMessageChangeEvent>();
   @Output() luxMessageClosed: EventEmitter<ILuxMessageCloseEvent> = new EventEmitter<ILuxMessageCloseEvent>();
   @Output() luxMessageBoxClosed: EventEmitter<void> = new EventEmitter<void>();
 
+  @Input() luxGrabFocus = false;
   @Input() set luxIndex(index: number) {
     if (index < 0) {
       index = 0;
@@ -58,12 +62,30 @@ export class LuxMessageBoxComponent implements OnInit {
     if (messages && messages.length > 0) {
       this._luxMessages = messages;
       this.updateDisplayedMessages(this.luxIndex);
+
+      setTimeout(() => {
+        if (this.luxGrabFocus) {
+          if (this.messageBoxElRef) {
+            this.messageBoxElRef.nativeElement.focus();
+          }
+        } else {
+          let messageText = '';
+          if (messages.length === 1) {
+            messageText += `Es gibt eine Meldung`;
+          } else {
+            messageText += `Es gibt ${messages.length} Meldungen`;
+          }
+          messages.forEach((message) => messageText += message.text + '\n');
+          this.liveAnnouncer.announce(messageText);
+        }
+      });
     } else {
       // Wenn es vorher Werte gab, ein Closed-Event ausgeben
       if (this.luxMessages.length > 0) {
         this.luxMessageBoxClosed.emit();
       }
       this._luxMessages = [];
+      this.liveAnnouncer.announce(`Es gibt keine Meldungen`);
     }
   }
 
@@ -71,7 +93,7 @@ export class LuxMessageBoxComponent implements OnInit {
     return this._luxMessages;
   }
 
-  constructor() {}
+  constructor(private liveAnnouncer: LiveAnnouncer) {}
 
   ngOnInit() {}
 

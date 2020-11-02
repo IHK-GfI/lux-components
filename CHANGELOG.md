@@ -3,6 +3,7 @@
 - **lux-tile**: UX und Barrierefreiheit: Mouseover hinzugefügt
 - **lux-tooltip**: UX und Barrierefreiheit: lux-tooltips schließen sich beim Drücken der ESC-Taste
 - **lux-side-nav**: UX und Barrierefreiheit: Appmenü angepasst
+- **lux-message-box**: UX und Barrierefreiheit: Meldungen werden vom Screenreader vorgelesen
 
 # Version 10.1.0
 ## New

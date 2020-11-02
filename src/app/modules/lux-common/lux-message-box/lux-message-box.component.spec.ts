@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 
 import { LuxMessageBoxComponent } from './lux-message-box.component';
 import { Component } from '@angular/core';
@@ -54,6 +54,9 @@ describe('LuxMessageBoxComponent', () => {
     expect(messageContainer).toBe(null, 'Nachbedingung 1');
     expect(messageText).toBe(null, 'Nachbedingung 2');
     expect(messageIcon).toBe(null, 'Nachbedingung 3');
+
+    LuxTestHelper.wait(fixture);
+    flush();
   }));
 
   it('Sollte mehrere Nachrichtenboxen untereinander anzeigen', fakeAsync(() => {
@@ -81,6 +84,9 @@ describe('LuxMessageBoxComponent', () => {
     singleMessages = fixture.debugElement.queryAll(By.directive(LuxMessageComponent));
 
     expect(singleMessages.length).toBe(3, 'Nachbedingung 3');
+
+    LuxTestHelper.wait(fixture);
+    flush();
   }));
 
   it('Sollte zur speziellen Nachricht springen und fehlerhafte Eingaben abfangen', fakeAsync(() => {
@@ -172,6 +178,9 @@ describe('LuxMessageBoxComponent', () => {
     messageContainer = fixture.debugElement.query(By.css('.lux-message-container'));
     expect(messageContainer).toBe(null, 'Nachbedingung 1');
     expect(changeSpy).toHaveBeenCalledTimes(1); // Nachbedingung 2
+
+    LuxTestHelper.wait(fixture);
+    flush();
   }));
 });
 
