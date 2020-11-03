@@ -1,9 +1,14 @@
-# Version 10.2.0
+# Version 10.3.0
 ## New
 - **lux-tile**: UX und Barrierefreiheit: Mouseover hinzugefügt
 - **lux-tooltip**: UX und Barrierefreiheit: lux-tooltips schließen sich beim Drücken der ESC-Taste
 - **lux-side-nav**: UX und Barrierefreiheit: Appmenü angepasst
 - **lux-message-box**: UX und Barrierefreiheit: Meldungen werden vom Screenreader vorgelesen
+
+# Version 10.2.0
+## New
+- **allgemein**: Sicherheitsupdates eingespielt.
+- **lux-autocomplete**: Property "luxFilterFn" hinzugefügt. [Issue 40](https://github.com/IHK-GfI/lux-components/issues/40)
 
 # Version 10.1.0
 ## New
