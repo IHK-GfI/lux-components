@@ -40,6 +40,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   @Input() luxSelectAllOnClick: boolean = true;
   @Input() luxStrict: boolean = true;
   @Input() luxPickValue: (selected: any) => any;
+  @Input() luxFilterFn: (filterTerm: string, label: string, option: any) => boolean;
 
   @Output() luxValueChange: EventEmitter<any> = new EventEmitter();
   @Output() luxOptionSelected: EventEmitter<any> = new EventEmitter();
@@ -176,14 +177,15 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
    * @returns any[]
    */
   filter(filterTerm: any) {
-    return this.luxOptions.filter(option => {
-      const compareValue = this.getOptionLabel(option);
-      return (
-        compareValue
-          .trim()
-          .toLowerCase()
-          .indexOf(filterTerm.trim().toLowerCase()) > -1
-      );
+    return this.luxOptions.filter((option) => {
+      const filterText = filterTerm.trim().toLowerCase();
+      const optionLabel = this.getOptionLabel(option).trim().toLowerCase();
+
+      if (this.luxFilterFn) {
+        return this.luxFilterFn(filterText, optionLabel, option);
+      } else {
+        return optionLabel.indexOf(filterText) > -1;
+      }
     });
   }
 

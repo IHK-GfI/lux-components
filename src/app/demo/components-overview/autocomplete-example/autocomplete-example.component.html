@@ -15,6 +15,7 @@
         [luxErrorMessageNotAnOption]="errorMessageNotAnOption"
         [luxOptions]="options"
         [luxPickValue]="usePickValueFn && strict ? pickValueFn : undefined"
+        [luxFilterFn]="useFilterFn ? onFilter : undefined"
         [(luxValue)]="value"
         [luxSelectAllOnClick]="selectAllOnClick"
         [(luxDisabled)]="disabled"
@@ -49,6 +50,7 @@
         [luxErrorMessageNotAnOption]="errorMessageNotAnOption"
         [luxOptions]="options"
         [luxPickValue]="usePickValueFn && strict ? pickValueFn : undefined"
+        [luxFilterFn]="useFilterFn ? onFilter : undefined"
         [luxSelectAllOnClick]="selectAllOnClick"
         [(luxDisabled)]="disabled"
         [luxReadonly]="readonly"
@@ -201,6 +203,12 @@
       <lux-form-hint>
         Dieses Flag aktiviert die PickValue-Funktion. Erfordert luxStrict = true. <br />
         Das bedeutet, es wird der von der PickValue-Funktion zurückgelieferte Wert selektiert und nicht die Option als ganzes.
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle class="example-highlight-config-option" [(luxChecked)]="useFilterFn" luxLabel="luxFilterFn">
+      <lux-form-hint>
+        Dieses Flag aktiviert die Filterfunktion. <br />
+        Diese Beispielfilterfunktion trennt die Eingabe anhand von Leerzeichen und prüft, ob alle Teile enthalten sind.
       </lux-form-hint>
     </lux-toggle>
   </example-base-simple-options>
