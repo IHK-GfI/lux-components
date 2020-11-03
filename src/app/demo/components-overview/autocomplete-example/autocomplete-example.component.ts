@@ -65,6 +65,7 @@ export class AutocompleteExampleComponent implements OnInit {
   errorCallbackString = this.errorCallback + '';
   usePickValueFn: boolean = false;
   pickValueFn = examplePickValueFn;
+  useFilterFn: boolean = false;
 
   // endregion
 
@@ -82,6 +83,19 @@ export class AutocompleteExampleComponent implements OnInit {
 
   pickValidatorValueFn(selected: any) {
     return selected.value;
+  }
+
+  onFilter(filterText: string, optionLabel: string, option: any): boolean {
+    const filterTerms = filterText.split(' ');
+
+    let result = true;
+    if (filterTerms.length > 1) {
+      filterTerms.forEach(term => result = result && optionLabel.indexOf(term) >= 0);
+    } else {
+      result = optionLabel.indexOf(filterTerms[0]) >= 0;
+    }
+
+    return result;
   }
 
   changeRequired($event: boolean) {
