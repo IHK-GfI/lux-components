@@ -1,3 +1,7 @@
+# Version 10.2.0
+## New
+- **allgemein**: Sicherheitsupdates eingespielt.
+
 # Version 10.1.0
 ## New
 - **allgemein**: Alle Formularkomponenten (z.B. lux-input, lux-toggle,...) haben das neue Property "luxHintShowOnlyOnFocus" erhalten. [Issue 38](https://github.com/IHK-GfI/lux-components/issues/38)
