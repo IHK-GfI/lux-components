@@ -57,5 +57,5 @@
   </lux-card-actions>
 </lux-card>
 
-<lux-nachricht-pflegen *ngIf="viewType == 'edit'" [editMode]="true" [nachricht]="selectedNachricht" [luxNachrichtConfig]="luxNachrichtConfig" (viewType)="onViewType($event)"></lux-nachricht-pflegen>
-<lux-nachricht-pflegen *ngIf="viewType == 'create'" [editMode]="false" [nachricht]="selectedNachricht" [luxNachrichtConfig]="luxNachrichtConfig" (viewType)="onViewType($event)"></lux-nachricht-pflegen>
+<lux-nachricht-pflegen *ngIf="viewType == 'edit'" [luxEditMode]="true" [luxNachricht]="selectedNachricht" [luxNachrichtConfig]="luxNachrichtConfig" (luxViewType)="onViewType($event)"></lux-nachricht-pflegen>
+<lux-nachricht-pflegen *ngIf="viewType == 'create'" [luxEditMode]="false" [luxNachricht]="selectedNachricht" [luxNachrichtConfig]="luxNachrichtConfig" (luxViewType)="onViewType($event)"></lux-nachricht-pflegen>

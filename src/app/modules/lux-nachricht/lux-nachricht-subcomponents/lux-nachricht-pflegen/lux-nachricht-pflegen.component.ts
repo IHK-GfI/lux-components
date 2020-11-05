@@ -13,10 +13,10 @@ import { ILuxNachrichtConfig } from '../../lux-nachricht-model/lux-nachricht-con
 })
 export class LuxNachrichtPflegenComponent implements OnInit {
 
-  @Input() editMode: boolean;
-  @Input() nachricht: Nachricht;
+  @Input() luxEditMode: boolean;
+  @Input() luxNachricht: Nachricht;
   @Input() luxNachrichtConfig: ILuxNachrichtConfig;
-  @Output() viewType = new EventEmitter<string>();
+  @Output() luxViewType = new EventEmitter<string>();
 
   title: string;
   formGroup: FormGroup;
@@ -43,28 +43,28 @@ export class LuxNachrichtPflegenComponent implements OnInit {
         this.selectedIhk = this.ihkliste;
       }
 
-      if (this.editMode) {
-        this.selectedIhk = this.ihkliste.filter(({ ihkNr: nr1 }) => this.nachricht.ihk.some(({ ihkNr: nr2 }) => nr1 === nr2 ));
+      if (this.luxEditMode) {
+        this.selectedIhk = this.ihkliste.filter(({ ihkNr: nr1 }) => this.luxNachricht.ihk.some(({ ihkNr: nr2 }) => nr1 === nr2 ));
       }
     });
 
-    if (this.editMode) {
+    if (this.luxEditMode) {
       this.title = 'Nachricht bearbeiten';
-      this.selectedEmpaenger = this.empfaengerliste.filter(({ bezeichnung: b1 }) => this.nachricht.empfaenger.some(({ bezeichnung: b2 }) => b1 === b2));
+      this.selectedEmpaenger = this.empfaengerliste.filter(({ bezeichnung: b1 }) => this.luxNachricht.empfaenger.some(({ bezeichnung: b2 }) => b1 === b2));
     } else {
       this.title = 'Nachricht erstellen';
     }
 
     this.formGroup = this.formBuilder.group({
-      empfaenger: new FormControl(this.nachricht.empfaenger, Validators.required),
-      ihk: new FormControl(this.nachricht.ihk),
-      betreff: new FormControl(this.nachricht.betreff, Validators.compose([Validators.required, Validators.minLength(5)])),
-      message: new FormControl(this.nachricht.message, Validators.compose([Validators.required, Validators.minLength(5)])),
-      validFrom: new FormControl(this.nachricht.validFrom, Validators.required),
-      validTo: new FormControl(this.nachricht.validTo, Validators.required),
-      timeFrom: new FormControl(this.nachrichtController.getTime(this.nachricht.validFrom), Validators.required),
-      timeTo: new FormControl(this.nachrichtController.getTime(this.nachricht.validTo), Validators.required),
-      erneutAnzeigen: new FormControl(this.nachricht.erneutAnzeigen)
+      empfaenger: new FormControl(this.luxNachricht.empfaenger, Validators.required),
+      ihk: new FormControl(this.luxNachricht.ihk),
+      betreff: new FormControl(this.luxNachricht.betreff, Validators.compose([Validators.required, Validators.minLength(5)])),
+      message: new FormControl(this.luxNachricht.message, Validators.compose([Validators.required, Validators.minLength(5)])),
+      validFrom: new FormControl(this.luxNachricht.validFrom, Validators.required),
+      validTo: new FormControl(this.luxNachricht.validTo, Validators.required),
+      timeFrom: new FormControl(this.nachrichtController.getTime(this.luxNachricht.validFrom), Validators.required),
+      timeTo: new FormControl(this.nachrichtController.getTime(this.luxNachricht.validTo), Validators.required),
+      erneutAnzeigen: new FormControl(this.luxNachricht.erneutAnzeigen)
     }, {
         validator(formGroup: FormGroup): ValidationErrors {
           const result = {};
@@ -83,24 +83,24 @@ export class LuxNachrichtPflegenComponent implements OnInit {
   }
 
   speichern(): void {
-    Object.assign(this.nachricht, {
+    Object.assign(this.luxNachricht, {
       ...this.formGroup.value,
     });
-    this.nachricht.validFrom = this.mergeDateTime(this.formGroup.controls['validFrom'].value, this.formGroup.controls['timeFrom'].value);
-    this.nachricht.validTo = this.mergeDateTime(this.formGroup.controls['validTo'].value, this.formGroup.controls['timeTo'].value);
-    this.nachricht.anwendung = new Anwendung(this.luxNachrichtConfig.anwendungKuerzel);
+    this.luxNachricht.validFrom = this.mergeDateTime(this.formGroup.controls['validFrom'].value, this.formGroup.controls['timeFrom'].value);
+    this.luxNachricht.validTo = this.mergeDateTime(this.formGroup.controls['validTo'].value, this.formGroup.controls['timeTo'].value);
+    this.luxNachricht.anwendung = new Anwendung(this.luxNachrichtConfig.anwendungKuerzel);
 
-    if (!this.editMode) {
-      this.nachrichtController.create(this.nachricht);
+    if (!this.luxEditMode) {
+      this.nachrichtController.create(this.luxNachricht);
     }
-    if (this.editMode) {
-      this.nachrichtController.update(this.nachricht);
+    if (this.luxEditMode) {
+      this.nachrichtController.update(this.luxNachricht);
     }
-    this.viewType.emit('overview');
+    this.luxViewType.emit('overview');
   }
 
   abbrechen(): void {
-    this.viewType.emit('overview');
+    this.luxViewType.emit('overview');
   }
 
   private mergeDateTime(date: Date, time: string): Date {

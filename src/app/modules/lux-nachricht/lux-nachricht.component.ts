@@ -1,12 +1,10 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Nachricht } from './lux-nachricht-model/lux-nachricht-model';
-import { NachrichtService } from './lux-nachricht-services/lux-nachricht.service';
 import { LuxNachrichtController } from './lux-nachricht-controller';
 import { LuxNachrichtAnzeigenComponent } from './lux-nachricht-subcomponents/lux-nachricht-anzeigen/lux-nachricht-anzeigen.component';
 import { ILuxNachrichtConfig } from './lux-nachricht-model/lux-nachricht-config.interface';
 import { LuxAppFooterButtonService } from '../lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxDialogService } from '../lux-popups/lux-dialog/lux-dialog.service';
-import { LuxSnackbarService } from '../lux-popups/lux-snackbar/lux-snackbar.service';
 import { LuxAppFooterButtonInfo, ILuxAppFooterButtonInfo } from '../lux-layout/lux-app-footer/lux-app-footer-button-info';
 import { ILuxDialogConfig } from '../lux-popups/lux-dialog/lux-dialog-model/lux-dialog-config.interface';
 import { ICustomCSSConfig } from '../lux-common/lux-table/lux-table-custom-css-config.interface';
@@ -36,11 +34,9 @@ export class LuxNachrichtComponent implements OnInit {
     }
   ];
 
-  constructor(private nachrichtService: NachrichtService,
-              private nachrichtController: LuxNachrichtController,
+  constructor(private nachrichtController: LuxNachrichtController,
               private dialogService: LuxDialogService,
-              private buttonService: LuxAppFooterButtonService,
-              private snackbar: LuxSnackbarService) {
+              private buttonService: LuxAppFooterButtonService) {
   }
 
   ngOnInit() {
