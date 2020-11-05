@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
-import { Nachricht, Empfaenger, Anwendung, Ihk } from '../../lux-nachricht-model/lux-nachricht';
+import { FormGroup, FormBuilder, FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { Nachricht, Empfaenger, Anwendung, Ihk } from '../../lux-nachricht-model/lux-nachricht-model';
 import { LuxNachrichtController } from '../../lux-nachricht-controller';
 import { NachrichtService } from '../../lux-nachricht-services/lux-nachricht.service';
 import { ILuxNachrichtConfig } from '../../lux-nachricht-model/lux-nachricht-config.interface';

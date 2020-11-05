@@ -1,4 +1,4 @@
-import { Ihk, Nachricht, SaveNachrichtResult } from './../lux-nachricht-model/lux-nachricht';
+import { Ihk, Nachricht, SaveNachrichtResult } from '../lux-nachricht-model/lux-nachricht-model';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';

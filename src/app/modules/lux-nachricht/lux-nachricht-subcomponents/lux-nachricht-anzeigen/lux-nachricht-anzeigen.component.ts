@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Nachricht, Empfaenger } from '../../lux-nachricht-model/lux-nachricht';
+import { Nachricht } from '../../lux-nachricht-model/lux-nachricht-model';
 import { LuxDialogRef } from '../../../lux-popups/lux-dialog/lux-dialog-model/lux-dialog-ref.class';
 
 @Component({
@@ -9,7 +9,7 @@ import { LuxDialogRef } from '../../../lux-popups/lux-dialog/lux-dialog-model/lu
 })
 export class LuxNachrichtAnzeigenComponent implements OnInit {
 
-  private nachricht: Nachricht = null;
+  nachricht: Nachricht = null;
 
   constructor(public luxDialogRef: LuxDialogRef) {
   }

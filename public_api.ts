@@ -401,3 +401,5 @@ export * from './src/app/modules/lux-markdown/lux-markdown/lux-markdown.componen
 export * from './src/app/modules/lux-nachricht/lux-nachricht.module';
 // Components
 export * from './src/app/modules/lux-nachricht/lux-nachricht.component';
+// Classes 
+export * from './src/app/modules/lux-nachricht/lux-nachricht-model/lux-nachricht-config.interface';

@@ -1,7 +1,6 @@
-import { NgModule, Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { Routes, RouterModule } from '@angular/router';
 import { LuxNachrichtComponent } from './lux-nachricht.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -51,6 +50,8 @@ import { LuxStepperHelperService } from '../lux-layout/lux-stepper/lux-stepper-h
   ],
   exports: [
     LuxNachrichtComponent,
+    LuxNachrichtPflegenComponent,
+    LuxNachrichtAnzeigenComponent,
   ]
 })
 export class LuxNachrichtModule {}

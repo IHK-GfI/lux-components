@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Nachricht, SaveNachrichtResult } from './lux-nachricht-model/lux-nachricht';
+import { Nachricht, SaveNachrichtResult } from './lux-nachricht-model/lux-nachricht-model';
 import { NachrichtService } from './lux-nachricht-services/lux-nachricht.service';
 import { LuxDialogService } from '../lux-popups/lux-dialog/lux-dialog.service';
 import { LuxSnackbarService } from '../lux-popups/lux-snackbar/lux-snackbar.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LuxNachrichtController {
 
   dataSource: Nachricht[];
@@ -53,7 +55,7 @@ export class LuxNachrichtController {
 
     dialogRef.dialogConfirmed.subscribe((result: any) => {
       this.nachrichtService.deleteNachricht(entry.id).subscribe(() => {
-        this.snackbar.openText('Nachricht wurde gelöscht.', 1000);
+        this.snackbar.openText('Nachricht wurde gelöscht.', 5000);
         this.dataSource = this.dataSource.filter(element => {
           return element.id !== entry.id;
         });
@@ -63,11 +65,11 @@ export class LuxNachrichtController {
 
   afterNachrichtSaved(saveNachrichtResult: SaveNachrichtResult): void {
     let msg = 'Nachricht wurde gespeichert.';
-    let duration = 2000;
+    let duration = 5000;
 
     if (saveNachrichtResult.startTimeChanged) {
       msg += `Die Start-Uhrzeit lag in der Vergangenheit und wurde auf ${this.getTime(saveNachrichtResult.nachricht.validFrom)} Uhr gesetzt.`;
-      duration = 6000;
+      duration = 5000;
     }
 
     this.snackbar.openText(msg, duration);

@@ -1,5 +1,5 @@
-import { Component, Inject, HostListener, Input, OnInit } from '@angular/core';
-import { Nachricht } from './lux-nachricht-model/lux-nachricht';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Nachricht } from './lux-nachricht-model/lux-nachricht-model';
 import { NachrichtService } from './lux-nachricht-services/lux-nachricht.service';
 import { LuxNachrichtController } from './lux-nachricht-controller';
 import { LuxNachrichtAnzeigenComponent } from './lux-nachricht-subcomponents/lux-nachricht-anzeigen/lux-nachricht-anzeigen.component';
