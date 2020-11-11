@@ -34,9 +34,9 @@ export class LuxNachrichtComponent implements OnInit {
     }
   ];
 
-  constructor(private nachrichtController: LuxNachrichtController,
-              private dialogService: LuxDialogService,
-              private buttonService: LuxAppFooterButtonService) {
+  constructor(public nachrichtController: LuxNachrichtController,
+              public dialogService: LuxDialogService,
+              public buttonService: LuxAppFooterButtonService) {
   }
 
   ngOnInit() {

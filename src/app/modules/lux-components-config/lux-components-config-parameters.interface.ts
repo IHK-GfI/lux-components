@@ -21,6 +21,11 @@ export interface LuxComponentsConfigParameters {
   lookupServiceUrl?: string;
 
   /**
+   * Bestimmt die URL der Nachricht-Service für die NachrichtComponents.
+   */
+  nachrichtServiceURL?: string;
+
+  /**
    * Bestimmt, ob die Labels für LuxButtons, LuxLinks, LuxMenuItems, LuxStepper, LuxSideNavItem und LuxTabs
    * immer Uppercase dargestellt werden.
    */

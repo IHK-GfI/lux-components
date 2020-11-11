@@ -16,6 +16,7 @@ export class LuxComponentsConfigService {
     displayLuxConsoleLogs: false,
     generateLuxTagIds: false,
     lookupServiceUrl: '/lookup/',
+    nachrichtServiceURL: '/nachricht/',
     labelConfiguration: {
       allUppercase: true,
       notAppliedTo: ['lux-link', 'lux-side-nav-item', 'lux-menu-item']

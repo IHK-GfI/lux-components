@@ -40,6 +40,7 @@ const myConfiguration: LuxComponentsConfigParameters = {
   generateLuxTagIds: environment.generateLuxTagIds,
   displayLuxConsoleLogs: true,
   lookupServiceUrl: '/lookup/',
+  nachrichtServiceURL: '/nachricht/',
   labelConfiguration: {
     allUppercase: true,
     notAppliedTo: ['lux-link', 'lux-side-nav-item', 'lux-menu-item', 'lux-tab', 'lux-step']

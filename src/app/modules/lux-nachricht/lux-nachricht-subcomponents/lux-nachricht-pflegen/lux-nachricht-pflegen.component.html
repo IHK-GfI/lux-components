@@ -19,8 +19,8 @@
       <lux-textarea luxLabel="Nachricht" luxPlaceholder="Ihre Nachricht" luxMinRows="3" luxMaxRows="6" luxControlBinding="message"></lux-textarea>
       <span> Hinweis: Ein Link kann im folgenden Format hinzugefügt werden: [link|Text|URL] </span>
 
-      <lux-datepicker [luxReadonly]="editMode" luxLabel="Gültig von" luxPlaceholder="Gültig von" luxLocale="de-DE" luxControlBinding="validFrom"></lux-datepicker>
-      <lux-input [luxReadonly]="editMode" luxType="time" luxControlBinding="timeFrom" luxLabel="Zeit" luxPlaceholder="hh:mm"></lux-input>
+      <lux-datepicker [luxReadonly]="luxEditMode" luxLabel="Gültig von" luxPlaceholder="Gültig von" luxLocale="de-DE" luxControlBinding="validFrom"></lux-datepicker>
+      <lux-input [luxReadonly]="luxEditMode" luxType="time" luxControlBinding="timeFrom" luxLabel="Zeit" luxPlaceholder="hh:mm"></lux-input>
 
       <lux-datepicker luxLabel="Gültig bis" luxPlaceholder="Gültig bis" luxLocale="de-DE" luxControlBinding="validTo"></lux-datepicker>
       <lux-input luxType="time" luxControlBinding="timeTo" luxLabel="Zeit" luxPlaceholder="hh:mm"></lux-input>

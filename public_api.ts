@@ -401,5 +401,11 @@ export * from './src/app/modules/lux-markdown/lux-markdown/lux-markdown.componen
 export * from './src/app/modules/lux-nachricht/lux-nachricht.module';
 // Components
 export * from './src/app/modules/lux-nachricht/lux-nachricht.component';
+export * from './src/app/modules/lux-nachricht/lux-nachricht-subcomponents/lux-nachricht-anzeigen/lux-nachricht-anzeigen.component';
+export * from './src/app/modules/lux-nachricht/lux-nachricht-subcomponents/lux-nachricht-pflegen/lux-nachricht-pflegen.component';
+// Services
+export * from './src/app/modules/lux-nachricht/lux-nachricht-services/lux-nachricht.service';
+export * from './src/app/modules/lux-nachricht/lux-nachricht-controller';
 // Classes 
 export * from './src/app/modules/lux-nachricht/lux-nachricht-model/lux-nachricht-config.interface';
+export * from './src/app/modules/lux-nachricht/lux-nachricht-model/lux-nachricht-model';
