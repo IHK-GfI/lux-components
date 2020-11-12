@@ -5,6 +5,8 @@
 }
 
 ::ng-deep .lux-select-panel {
+  padding: $outline-width !important;
+
   mat-option:not(:last-of-type) {
     // Wenn man den Wert von "margin-bottom" verändert, muss man auch die Höhenberechnung in der
     // LuxSelectOptionHeightDirective anpassen.

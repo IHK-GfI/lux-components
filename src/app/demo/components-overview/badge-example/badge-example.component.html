@@ -3,12 +3,14 @@
   exampleIconName="fas fa-ribbon"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90badge"
 >
-  <example-base-content [exampleCentered]="true">
-    <lux-badge [luxIconName]="iconName" [luxColor]="color" [luxUppercase]="uppercase">
-      <lux-label luxId="bsp-badge-label">
-        {{ text }}
-      </lux-label>
-    </lux-badge>
+  <example-base-content [exampleCentered]="true" fxLayout="column">
+    <div [ngStyle]="{ backgroundColor: backgroundColor }">
+      <lux-badge [luxIconName]="iconName" [luxColor]="color" [luxUppercase]="uppercase" *ngFor="let color of colors">
+        <lux-label luxId="bsp-badge-label">
+          {{ text }}
+        </lux-label>
+      </lux-badge>
+    </div>
   </example-base-content>
   <example-base-simple-options>
     <lux-input
@@ -25,17 +27,6 @@
       [(luxValue)]="iconName"
     >
     </lux-input>
-    <lux-select
-      class="example-highlight-config-option"
-      [(luxSelected)]="color"
-      [luxOptions]="colors"
-      luxLabel="luxColor"
-    >
-      <lux-form-hint>
-        Mithilfe dieser Property wird die Farbe des Icons bestimmt.<br />
-        Die Farb-Werte stammen aus der <b>luxstyles.scss</b>.
-      </lux-form-hint>
-    </lux-select>
     <lux-toggle
       class="example-highlight-config-option"
       [(luxChecked)]="uppercase"
@@ -43,5 +34,13 @@
       luxHint="Die Property ermöglicht eine Uppercase-Darstellung des Textes in der Badge einzuschalten."
     >
     </lux-toggle>
+    <lux-input
+      luxName="button_background_Color"
+      class="example-highlight-config-option"
+      [(luxValue)]="backgroundColor"
+      luxLabel="Hintergrundfarbe"
+    >
+      <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
+    </lux-input>
   </example-base-simple-options>
 </example-base-structure>

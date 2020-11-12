@@ -4,35 +4,49 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tabs"
 >
   <example-base-content>
-    <lux-tabs
-      [luxActiveTab]="activeTab"
-      [luxTabAnimationActive]="animationActive"
-      [luxIconSize]="iconSize"
-      [luxDisplayDivider]="displayDivider"
-      [luxLazyLoading]="lazyLoading"
-      (luxActiveTabChanged)="activeTabChanged($event)"
-    >
-      <lux-tab
-        [luxTitle]="tab.title"
-        [luxDisabled]="tab.disabled"
-        [luxIconName]="tab.iconName"
-        [luxShowNotification]="tab.showNotification"
-        [luxCounterCap]="tab.counterCap"
-        [luxCounter]="tab.counter"
-        [luxTagIdHeader]="tab.title + 'header'"
-        [luxTagIdContent]="tab.title + '-content'"
-        *ngFor="let tab of tabs; let i = index"
+    <div [ngStyle]="{ backgroundColor: backgroundColor }">
+      <lux-tabs
+        [luxActiveTab]="activeTab"
+        [luxTabAnimationActive]="animationActive"
+        [luxIconSize]="iconSize"
+        [luxDisplayDivider]="displayDivider"
+        [luxLazyLoading]="lazyLoading"
+        (luxActiveTabChanged)="activeTabChanged($event)"
       >
-        <ng-template>
-          <div fxLayout="column">
-            <lux-input luxLabel="Beispiel Eingabefeld #{{ 1 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}" luxAutocomplete="off"></lux-input>
-            <lux-input luxLabel="Beispiel Eingabefeld #{{ 2 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}" luxAutocomplete="off"></lux-input>
-            <lux-textarea luxLabel="Beispiel Eingabefeld #{{ 3 + i * 3 }}" luxTagId="BE_{{ 1 + i * 3 }}" luxAutocomplete="off"></lux-textarea>
-            <app-tabs-content (created)="tabContentCreated(tab)"></app-tabs-content>
-          </div>
-        </ng-template>
-      </lux-tab>
-    </lux-tabs>
+        <lux-tab
+          [luxTitle]="tab.title"
+          [luxDisabled]="tab.disabled"
+          [luxIconName]="tab.iconName"
+          [luxShowNotification]="tab.showNotification"
+          [luxCounterCap]="tab.counterCap"
+          [luxCounter]="tab.counter"
+          [luxTagIdHeader]="tab.title + 'header'"
+          [luxTagIdContent]="tab.title + '-content'"
+          *ngFor="let tab of tabs; let i = index"
+        >
+          <ng-template>
+            <div fxLayout="column">
+              <lux-input
+                luxLabel="Beispiel Eingabefeld #{{ 1 + i * 3 }}"
+                luxTagId="BE_{{ 1 + i * 3 }}"
+                luxAutocomplete="off"
+              ></lux-input>
+              <lux-input
+                luxLabel="Beispiel Eingabefeld #{{ 2 + i * 3 }}"
+                luxTagId="BE_{{ 1 + i * 3 }}"
+                luxAutocomplete="off"
+              ></lux-input>
+              <lux-textarea
+                luxLabel="Beispiel Eingabefeld #{{ 3 + i * 3 }}"
+                luxTagId="BE_{{ 1 + i * 3 }}"
+                luxAutocomplete="off"
+              ></lux-textarea>
+              <app-tabs-content (created)="tabContentCreated(tab)"></app-tabs-content>
+            </div>
+          </ng-template>
+        </lux-tab>
+      </lux-tabs>
+    </div>
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
@@ -78,6 +92,14 @@
       [(luxChecked)]="lazyLoading"
     >
     </lux-toggle>
+    <lux-input
+      luxName="button_background_Color"
+      class="example-highlight-config-option"
+      [(luxValue)]="backgroundColor"
+      luxLabel="Hintergrundfarbe"
+    >
+      <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
+    </lux-input>
   </example-base-simple-options>
   <example-base-advanced-options>
     <lux-accordion [luxMulti]="false" luxMode="flat">

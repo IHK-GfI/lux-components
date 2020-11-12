@@ -3,19 +3,54 @@
   exampleIconName="fas fa-bullseye"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90button"
 >
-  <example-base-content [exampleCentered]="true">
-    <lux-button
-      [luxLabel]="label"
-      [luxColor]="color"
-      [luxIconName]="iconName"
-      [luxRaised]="raised"
-      [luxRounded]="round"
-      [luxIconAlignWithLabel]="align"
-      [luxDisabled]="disabled"
-      luxTagId="demo-button"
-      (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-    >
-    </lux-button>
+  <example-base-content
+    fxLayout="row wrap"
+    fxLayoutAlign="start center"
+    fxLayoutGap="grid 12px"
+    style="padding-top: 20px; padding-bottom: 20px"
+    [ngStyle]="{ backgroundColor: backgroundColor }"
+  >
+    <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
+      <lux-button
+        *ngFor="let color of colors"
+        [luxLabel]="label"
+        [luxColor]="color.value"
+        [luxIconName]="iconName"
+        [luxRaised]="true"
+        [luxIconAlignWithLabel]="align"
+        [luxDisabled]="disabled"
+        luxTagId="demo-button"
+        (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+      >
+      </lux-button>
+    </div>
+    <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
+      <lux-button
+        *ngFor="let color of colors"
+        [luxLabel]="label"
+        [luxColor]="color.value"
+        [luxIconName]="iconName"
+        [luxRaised]="false"
+        [luxIconAlignWithLabel]="align"
+        [luxDisabled]="disabled"
+        luxTagId="demo-button"
+        (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+      >
+      </lux-button>
+    </div>
+    <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
+      <lux-button
+        *ngFor="let color of colors"
+        [luxColor]="color.value"
+        [luxIconName]="iconName"
+        [luxRounded]="true"
+        [luxIconAlignWithLabel]="align"
+        [luxDisabled]="disabled"
+        luxTagId="demo-button"
+        (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+      >
+      </lux-button>
+    </div>
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
@@ -31,40 +66,18 @@
       luxLabel="luxLabel"
       luxHint="Bestimmt den Text, der in dem Button angezeigt wird."
     ></lux-input>
-    <lux-input luxName="button_luxIconName" class="example-highlight-config-option" [(luxValue)]="iconName" luxLabel="luxIconName">
+    <lux-input
+      luxName="button_luxIconName"
+      class="example-highlight-config-option"
+      [(luxValue)]="iconName"
+      luxLabel="luxIconName"
+    >
       <lux-form-hint>
         Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
         <i>luxLabel</i> gesetzt ist).<br />
         Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
       </lux-form-hint>
     </lux-input>
-    <lux-select
-      class="example-highlight-config-option"
-      [(luxSelected)]="color"
-      [luxOptions]="colors"
-      luxLabel="luxColor"
-      [luxPickValue]="pickValue"
-      luxOptionLabelProp="label"
-    >
-      <lux-form-hint>
-        Bestimmt die Farbe des Buttons.<br />
-        Die möglichen Werte sind 'primary', 'warn', 'accent', 'default' / undefined.
-      </lux-form-hint>
-    </lux-select>
-    <lux-toggle
-      class="example-highlight-config-option"
-      [(luxChecked)]="raised"
-      luxLabel="luxRaised"
-      luxHint="Über diese Property kann der Button hervorgehoben dargestellt werden."
-    >
-    </lux-toggle>
-    <lux-toggle
-      class="example-highlight-config-option"
-      [(luxChecked)]="round"
-      luxLabel="luxRounded"
-      luxHint="Diese Property aktiviert eine runde Darstellung des Buttons."
-    >
-    </lux-toggle>
     <lux-toggle
       class="example-highlight-config-option"
       [(luxChecked)]="disabled"
@@ -72,8 +85,6 @@
       luxHint="Diese Property deaktiviert den Button."
     >
     </lux-toggle>
-  </example-base-simple-options>
-  <example-base-advanced-options>
     <lux-toggle
       class="example-highlight-config-option"
       [(luxChecked)]="align"
@@ -93,5 +104,13 @@
         forciert werden.
       </lux-form-hint>
     </lux-toggle>
-  </example-base-advanced-options>
+    <lux-input
+      luxName="button_background_Color"
+      class="example-highlight-config-option"
+      [(luxValue)]="backgroundColor"
+      luxLabel="Hintergrundfarbe"
+    >
+      <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
+    </lux-input>
+  </example-base-simple-options>
 </example-base-structure>

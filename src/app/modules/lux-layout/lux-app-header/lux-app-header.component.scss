@@ -11,11 +11,15 @@
 
 .lux-app-header {
   box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.5);
-  background-color: mat-color($lux-primary, 500);
+  background-color: $app-header-bg;
   z-index: 10000;
 
   overflow: hidden;
   white-space: nowrap;
+
+  .lux-app-header-title-label {
+  margin-left: 5px;
+  }
 
   ::ng-deep button,
   > div {

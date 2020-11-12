@@ -30,6 +30,8 @@
                   navigationService.selectedComponent && navigationService.selectedComponent.label === component.label
               }"
               (click)="onComponentClick(component)"
+              (keydown.space)="onComponentClick(component)"
+              (keydown.enter)="onComponentClick(component)"
             >
               {{ component.label }}
             </div>

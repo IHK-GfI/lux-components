@@ -19,7 +19,7 @@
 >
   <lux-master-header-content>
     <lux-select
-      luxLabel="Filter nach Fälligkeit"
+      luxLabel="Fälligkeit"
       [luxOptions]="options"
       [luxSelected]="options[0]"
       luxOptionLabelProp="label"
@@ -44,7 +44,6 @@
   <lux-detail-view>
     <!-- Zugriff auf das aktuell selektierte Element ueber "detail" -->
     <ng-template let-detail>
-      <div class="lux-m-3">
         <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0">
           <lux-tab luxTitle="Konfiguration" luxIconName="fas fa-toolbox">
             <ng-template>
@@ -57,13 +56,11 @@
             </ng-template>
           </lux-tab>
         </lux-tabs>
-      </div>
     </ng-template>
   </lux-detail-view>
 
   <lux-master-footer>
     <div fxLayout="column">
-      <h3>Eintrag selektieren</h3>
       <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="end center">
         <lux-button
           luxLabel="#1"

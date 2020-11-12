@@ -5,6 +5,10 @@
   flex: initial;
 }
 
+.lux-badge-border {
+  border: 1px solid gray;
+}
+
 .lux-badge.lux-badge-uppercase ::ng-deep * {
   text-transform: uppercase;
 }

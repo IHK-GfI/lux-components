@@ -25,7 +25,7 @@ export class MessageBoxExampleComponent implements OnInit {
   selectedPosition = 'oberhalb';
   newMessage: ILuxMessage = { text: '', iconName: '', color: LuxBackgroundColorsEnum.blue };
   messageIndex: number = 1;
-  maximumDisplayed: number = 2;
+  maximumDisplayed: number = 10;
 
   // endregion
 
@@ -37,9 +37,14 @@ export class MessageBoxExampleComponent implements OnInit {
 
   setMessages() {
     this.messages = [
-      { text: 'Message #1', iconName: 'fas fa-lightbulb', color: LuxBackgroundColorsEnum.green },
-      { text: 'Message #2', iconName: 'fas fa-bell', color: LuxBackgroundColorsEnum.blue },
-      { text: 'Message #3', iconName: 'fas fa-folder-open', color: LuxBackgroundColorsEnum.yellow }
+      { text: 'Message #1', iconName: 'fas fa-bell', color: LuxBackgroundColorsEnum.red },
+      { text: 'Message #2', iconName: 'fas fa-bell', color: LuxBackgroundColorsEnum.green },
+      { text: 'Message #3', iconName: 'fas fa-bell', color: LuxBackgroundColorsEnum.yellow },
+      { text: 'Message #4', iconName: 'fas fa-bell', color: LuxBackgroundColorsEnum.blue },
+      { text: 'Message #5', iconName: 'fas fa-bell', color: LuxBackgroundColorsEnum.gray },
+      { text: 'Message #6', iconName: 'fas fa-bell', color: LuxBackgroundColorsEnum.orange },
+      { text: 'Message #7', iconName: 'fas fa-bell', color: LuxBackgroundColorsEnum.brown },
+      { text: 'Message #8', iconName: 'fas fa-bell', color: LuxBackgroundColorsEnum.white }
     ];
   }
 
@@ -53,7 +58,7 @@ export class MessageBoxExampleComponent implements OnInit {
     this.messages = this.messages.filter((value, index) => index !== i);
   }
 
-  logChanged($event: ILuxMessageCloseEvent) {
+  logChanged($event: any) {
     this.log(this.showOutputEvents, '[Output-Event] Message wurde geändert:', $event);
   }
 

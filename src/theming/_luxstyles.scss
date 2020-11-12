@@ -99,6 +99,10 @@ body,
   height: 100%;
 }
 
+.lux-app-content-bg {
+  background-color: $app-content-bg;
+}
+
 .lux-app-container {
   flex-direction: column;
   box-sizing: border-box;
@@ -121,7 +125,7 @@ div {
 }
 
 .mat-dialog-container {
-  background-color: #f0f0f2 !important;
+  background-color: $app-content-bg !important;
 }
 
 lux-card.lux-card-grow {
@@ -333,26 +337,11 @@ lux-button.lux-uppercase {
   }
 }
 
-$componentBgColors: (
-  "red": #b01211,
-  "green": #95bc4c,
-  "yellow": #ebc000,
-  "blue": #335c85,
-  "gray": #c8c8c8,
-  "orange": #ec9c1b,
-  "brown": #783f04
-);
-
 @each $colorName, $colorNameHex in $componentBgColors {
   .lux-bg-color-#{''+$colorName+''} {
     background: $colorNameHex;
   }
 }
-
-$componentFontColors: (
-  black: #000000,
-  white: #ffffff
-);
 
 @each $colorName, $colorNameHex in $componentFontColors {
   .lux-font-color-#{''+$colorName+''} {

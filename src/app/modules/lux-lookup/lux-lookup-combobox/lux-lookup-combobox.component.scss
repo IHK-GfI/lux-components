@@ -1,11 +1,17 @@
 @import './../lux-lookup-model/lux-lookup-component';
 
-::ng-deep .lux-lookup-panel.mat-select-panel {
-  max-width: 100% !important;
-}
-
 ::ng-deep .lux-select-panel {
+  padding: $outline-width !important;
+
   mat-option:not(:last-of-type) {
+    // Wenn man den Wert von "margin-bottom" verändert, muss man auch die Höhenberechnung in der
+    // LuxSelectOptionHeightDirective anpassen.
     margin-bottom: 2px;
   }
+}
+
+.option-height {
+  // Wenn man den Wert von "height" verändert, muss man auch die Höhenberechnung in der
+  // LuxSelectOptionHeightDirective anpassen.
+  height: 46px !important;
 }

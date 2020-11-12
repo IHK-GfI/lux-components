@@ -154,7 +154,7 @@ describe('LuxMasterDetailComponent', () => {
       'Der 15te Eintrag der Masterliste sollte selektiert sein.'
     );
     expect(masterList.nativeElement.scrollTop).toBeGreaterThan(scrollPosition - 100);
-    expect(masterList.nativeElement.scrollTop).toBeLessThan(scrollPosition + 100);
+    expect(masterList.nativeElement.scrollTop).toBeLessThan(scrollPosition + 104 /* 4 für Margin */);
   }));
 
   it('sollte bei leerem Startwert die Anzeige fuer ein leeres Detail anzeigen', fakeAsync(() => {

@@ -1,9 +1,22 @@
+@import '../../../../theming/luxconstants';
+
 :host {
   display: block;
 }
 
+.lux-panel {
+  .mat-expansion-panel-header {
+    margin: $outline-width !important;
+  }
+
+  ::ng-deep lux-panel-content {
+    margin-bottom: $outline-width;
+  }
+}
+
 .lux-panel-mobile {
   .mat-expansion-panel-header {
+    margin: $outline-width;
     padding: 0 12px !important;
   }
 

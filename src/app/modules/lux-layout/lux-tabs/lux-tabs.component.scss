@@ -4,6 +4,10 @@ mat-tab-group.lux-tabs-no-divider ::ng-deep mat-tab-header {
   border-bottom: none;
 }
 
+mat-tab-group ::ng-deep div[role="tab"] {
+  margin: $outline-width;
+}
+
 .lux-tabs-notification-icon {
   margin-top: -4px;
   border: 1px solid black;

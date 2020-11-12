@@ -27,7 +27,9 @@ lux-progress ::ng-deep mat-progress-bar {
     width: 100%;
 
     table {
-      width: 100%;
+      width: calc(100% - #{$outline-width} - #{$outline-width});
+      border-spacing: 0 $outline-width;
+      margin-left: $outline-width;
 
       td.mat-table-sticky {
         z-index: 103 !important;

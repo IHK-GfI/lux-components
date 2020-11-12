@@ -1,9 +1,14 @@
 # Version 10.3.0
 ## New
+- **allgemein**: UX und Barrierefreiheit: Focus (Outline) für alle Komponenten vereinheitlicht. 
+- **allgemein**: UX und Barrierefreiheit: Kontrast der Themefarben für alle Komponenten angepasst.
+- **allgemein**: UX und Barrierefreiheit: Demoapp für Buttons, Badges, Message-Boxes,...) angepasst.
+- **lux-master-detail**: UX und Barrierefreiheit: Header und Footer umgestaltet.  
 - **lux-tile**: UX und Barrierefreiheit: Mouseover hinzugefügt
 - **lux-tooltip**: UX und Barrierefreiheit: lux-tooltips schließen sich beim Drücken der ESC-Taste
 - **lux-side-nav**: UX und Barrierefreiheit: Appmenü angepasst
 - **lux-message-box**: UX und Barrierefreiheit: Meldungen werden vom Screenreader vorgelesen
+- **lux-file-preview**: UX und Barrierefreiheit: Initialen Focus auf den ersten Button gesetzt.
 
 # Version 10.2.0
 ## New

@@ -1,10 +1,13 @@
 <mat-card
   (click)="clicked()"
+  (keydown.enter)="clicked()"
+  (keydown.space)="clicked()"
+  [attr.tabindex]="!showButtons && hasCardAction && !luxDisabled && luxUseTabIndex ? '0' : null"
   fxLayout="row"
   luxTagIdHandler
   [luxTagId]="luxTagId"
-  [ngClass]="{ 'lux-cursor': !showButtons && hasCardAction, 'lux-m-2': true, 'lux-p-3': true }"
-  [ngClass.gt-sm]="{ 'lux-cursor': !showButtons && hasCardAction, 'lux-m-3': true }"
+  [ngClass]="{ 'lux-cursor': !showButtons && hasCardAction && !luxDisabled, 'lux-m-2': true, 'lux-p-3': true }"
+  [ngClass.gt-sm]="{ 'lux-cursor': !showButtons && hasCardAction && !luxDisabled, 'lux-m-3': true }"
 >
   <div fxFlex="flex" fxLayout="column" class="lux-overflow-y-hidden lux-card-content-container">
     <mat-card-title

@@ -26,13 +26,11 @@ export class ButtonExampleComponent implements OnInit, OnDestroy {
 
   // region Properties der Component
 
-  label: string = 'Beispiel-Button';
-  color: string = 'primary';
-  iconName: string = '';
-  raised: boolean = true;
-  round: boolean = false;
+  label: string = 'Button';
+  iconName: string = 'fas fa-save';
   align: boolean = false;
   disabled: boolean = false;
+  backgroundColor = '#ffffff';
 
   subscription: Subscription;
 

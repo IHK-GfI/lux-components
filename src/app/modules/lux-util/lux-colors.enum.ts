@@ -8,7 +8,8 @@ export enum LuxBackgroundColorsEnum {
   blue = 'blue',
   gray = 'gray',
   orange = 'orange',
-  brown = 'brown'
+  brown = 'brown',
+  white = 'white'
 }
 
 /**

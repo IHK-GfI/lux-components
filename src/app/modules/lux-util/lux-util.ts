@@ -190,6 +190,7 @@ export class LuxUtil {
         case LuxBackgroundColorsEnum.gray:
         case LuxBackgroundColorsEnum.orange:
         case LuxBackgroundColorsEnum.yellow:
+        case LuxBackgroundColorsEnum.white:
           result.fontCSSClass = 'lux-font-color-' + LuxFontColorsEnum.black;
           break;
         default:

@@ -1,0 +1,48 @@
+/*
+  Dieses Partial-SCSS dient der Verwaltung der Themekonstanten für die LUX-Components.
+*/
+
+// App
+$app-header-bg: #335c85;
+$app-content-bg: #f0f0f2;
+$app-footer-bg: #c6d1dc;
+
+// Fokus
+$outline-color-bright: #ffffff;
+$outline-color-dark: #000000;
+$outline-width: 2px;
+$outline-style: dotted;
+
+// Hover
+$lux-hover-color: #e8e8e8;
+$lux-hover-color-for-dark-background: #335c85;
+
+// Hintergrundfarben (z.B. Badge oder Progress)
+$componentBgColors: (
+  "red": #b01211,
+  "green": #3e8320,
+  "yellow": #ebc000,
+  "blue": #335c85,
+  "gray": #c8c8c8,
+  "orange": #ec9c1b,
+  "brown": #783f04,
+  "white": #ffffff
+);
+
+// Vordergrundfarben (z.B. Badge)
+$componentFontColors: (
+  black: #000000,
+  white: #ffffff
+);
+
+// Farben für einen dunklen Hintergrund (z.B. Snackbar).
+$colorsForDarkBg: (
+  "red": #f17474,
+  "green": #53b12b,
+  "yellow": #ebc000,
+  "blue": #729eca,
+  "gray": #c8c8c8,
+  "orange": #ec9c1b,
+  "brown": #eb7c05,
+  "white": #ffffff
+);

@@ -17,5 +17,5 @@
 }
 
 :host ::ng-deep lux-card > mat-card.mat-card {
-  margin: 0;
+  margin: $outline-width;
 }
