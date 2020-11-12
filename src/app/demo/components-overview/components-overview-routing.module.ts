@@ -55,6 +55,7 @@ import { MarkdownExampleComponent } from './markdown-example/markdown-example.co
 import { FormRowExampleComponent } from './form-row-example/form-row-example.component';
 import { CardRowExampleComponent } from './card-row-example/card-row-example.component';
 import { FilterExampleComponent } from './filter-example/filter-example.component';
+import { LuxNachrichtExampleComponent } from './nachricht-example/nachricht-example.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -112,7 +113,8 @@ const routes: Routes = [
       { path: 'markdown', component: MarkdownExampleComponent },
       { path: 'form-row', component: FormRowExampleComponent },
       { path: 'card-row', component: CardRowExampleComponent },
-      { path: 'filter', component: FilterExampleComponent }
+      { path: 'filter', component: FilterExampleComponent },
+      { path: 'nachricht', component: LuxNachrichtExampleComponent }
     ]
   }
 ];

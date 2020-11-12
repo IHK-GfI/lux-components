@@ -44,4 +44,9 @@ export class Ihk {
 export class SaveNachrichtResult {
   nachricht: Nachricht;
   startTimeChanged: boolean;
+
+  constructor(nachricht: Nachricht, startTimeChanged: boolean) {
+    this.nachricht = nachricht;
+    this.startTimeChanged = startTimeChanged;
+  }
 }

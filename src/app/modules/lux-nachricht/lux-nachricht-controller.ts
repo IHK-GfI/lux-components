@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Nachricht, SaveNachrichtResult } from './lux-nachricht-model/lux-nachricht-model';
+import { Ihk, Nachricht, SaveNachrichtResult } from './lux-nachricht-model/lux-nachricht-model';
 import { NachrichtService } from './lux-nachricht-services/lux-nachricht.service';
 import { LuxDialogService } from '../lux-popups/lux-dialog/lux-dialog.service';
 import { LuxSnackbarService } from '../lux-popups/lux-snackbar/lux-snackbar.service';
@@ -8,14 +8,24 @@ import { LuxSnackbarService } from '../lux-popups/lux-snackbar/lux-snackbar.serv
   providedIn: 'root'
 })
 export class LuxNachrichtController {
-
+  
+  nachrichtService: NachrichtService;
   dataSource: Nachricht[];
+  ihkliste: Ihk[];
 
   constructor(private dialogService: LuxDialogService,
-              private nachrichtService: NachrichtService,
-              private snackbar: LuxSnackbarService) {
+              private snackbar: LuxSnackbarService,
+              nachrichtService: NachrichtService) {
+    this.nachrichtService = nachrichtService;
   }
 
+  getAuthorizedIhksForUser(role: string, ihkNr: number,) {
+    this.nachrichtService.getAuthorizedIhksForUser(role, ihkNr).subscribe((ihks: Ihk[]) => {
+      this.ihkliste = ihks;
+    });
+    return this.ihkliste;
+  }
+  
   read(role: string, ihkNr: number, anwendungskuerzel: string): void {
     this.nachrichtService.readNachrichten(role, ihkNr, anwendungskuerzel).subscribe((nachrichten: Nachricht[]) => {
       this.dataSource = nachrichten;
@@ -76,7 +86,10 @@ export class LuxNachrichtController {
   }
 
   getTime(date: Date) {
-    return this.fillTimeWithZero(date.getHours()) + ':' + this.fillTimeWithZero(date.getMinutes());
+    if (date) {
+      return this.fillTimeWithZero(date.getHours()) + ':' + this.fillTimeWithZero(date.getMinutes());
+    }
+    return null;
   }
 
   fillTimeWithZero(time: number): string {

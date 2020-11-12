@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, ValidationErrors } from '@angular/forms';
 import { Nachricht, Empfaenger, Anwendung, Ihk } from '../../lux-nachricht-model/lux-nachricht-model';
 import { LuxNachrichtController } from '../../lux-nachricht-controller';
-import { NachrichtService } from '../../lux-nachricht-services/lux-nachricht.service';
 import { ILuxNachrichtConfig } from '../../lux-nachricht-model/lux-nachricht-config.interface';
 
 @Component({
@@ -15,6 +14,7 @@ export class LuxNachrichtPflegenComponent implements OnInit {
 
   @Input() luxEditMode: boolean;
   @Input() luxNachricht: Nachricht;
+  @Input() luxAuthorizedIhks: Ihk[];
   @Input() luxNachrichtConfig: ILuxNachrichtConfig;
   @Output() luxViewType = new EventEmitter<string>();
 
@@ -23,13 +23,10 @@ export class LuxNachrichtPflegenComponent implements OnInit {
 
   empfaengerliste: Empfaenger[] = [];
   selectedEmpaenger: Empfaenger[];
-
-  ihkliste: Ihk[];
   selectedIhk: Ihk[];
 
   constructor(private formBuilder: FormBuilder,
-              private nachrichtController: LuxNachrichtController,
-              private nachrichtService: NachrichtService) {
+              private nachrichtController: LuxNachrichtController) {
   }
 
   ngOnInit() {
@@ -37,20 +34,14 @@ export class LuxNachrichtPflegenComponent implements OnInit {
       this.empfaengerliste.push(new Empfaenger(value));
     });
 
-    this.nachrichtService.getAuthorizedIhksForUser(this.luxNachrichtConfig.userRole, this.luxNachrichtConfig.ihkNr).subscribe((ihks: Ihk[]) => {
-      this.ihkliste = ihks;
-      if (this.luxNachrichtConfig.userRole === 'ROLE_IHKAdmin') {
-        this.selectedIhk = this.ihkliste;
-      }
-
-      if (this.luxEditMode) {
-        this.selectedIhk = this.ihkliste.filter(({ ihkNr: nr1 }) => this.luxNachricht.ihk.some(({ ihkNr: nr2 }) => nr1 === nr2 ));
-      }
-    });
+    if (this.luxNachrichtConfig.userRole === 'ROLE_IHKAdmin') {
+      this.selectedIhk = this.luxAuthorizedIhks;
+    }
 
     if (this.luxEditMode) {
       this.title = 'Nachricht bearbeiten';
       this.selectedEmpaenger = this.empfaengerliste.filter(({ bezeichnung: b1 }) => this.luxNachricht.empfaenger.some(({ bezeichnung: b2 }) => b1 === b2));
+      this.selectedIhk = this.luxAuthorizedIhks.filter(({ ihkNr: nr1 }) => this.luxNachricht.ihk.some(({ ihkNr: nr2 }) => nr1 === nr2 ));
     } else {
       this.title = 'Nachricht erstellen';
     }

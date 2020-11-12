@@ -8,7 +8,7 @@
         </ng-template>
       </lux-select>
 
-      <lux-select luxLabel="IHKs" luxControlBinding="ihk" [luxOptions]="ihkliste" [luxSelected]="selectedIhk" luxMultiple="true">
+      <lux-select luxLabel="IHKs" luxControlBinding="ihk" [luxOptions]="luxAuthorizedIhks" [luxSelected]="selectedIhk" luxMultiple="true">
         <ng-template let-option>
           {{ option.name }}
         </ng-template>

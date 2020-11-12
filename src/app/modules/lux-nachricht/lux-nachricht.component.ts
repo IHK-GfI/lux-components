@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { Nachricht } from './lux-nachricht-model/lux-nachricht-model';
+import { Ihk, Nachricht } from './lux-nachricht-model/lux-nachricht-model';
 import { LuxNachrichtController } from './lux-nachricht-controller';
 import { LuxNachrichtAnzeigenComponent } from './lux-nachricht-subcomponents/lux-nachricht-anzeigen/lux-nachricht-anzeigen.component';
 import { ILuxNachrichtConfig } from './lux-nachricht-model/lux-nachricht-config.interface';
@@ -16,12 +16,12 @@ import { ICustomCSSConfig } from '../lux-common/lux-table/lux-table-custom-css-c
   providers: [LuxNachrichtController]
 })
 export class LuxNachrichtComponent implements OnInit {
-
   @Input() luxShowCreateButton: boolean;
   @Input() luxNachrichtConfig: ILuxNachrichtConfig;
 
   height: string;
   selectedNachricht: Nachricht;
+  authorizedIhkListe: Ihk[];
   viewType: 'overview' | 'create' | 'edit' = 'overview';
 
   tableCSS: ICustomCSSConfig[] = [
@@ -41,7 +41,7 @@ export class LuxNachrichtComponent implements OnInit {
 
   ngOnInit() {
     this.nachrichtController.read(this.luxNachrichtConfig.userRole, this.luxNachrichtConfig.ihkNr, this.luxNachrichtConfig.anwendungKuerzel);
-
+ 
     if (this.luxShowCreateButton) {
       this.buttonService.buttonInfos = [
         LuxAppFooterButtonInfo.generateInfo({
@@ -88,11 +88,13 @@ export class LuxNachrichtComponent implements OnInit {
   create(): void {
     this.viewType = 'create';
     this.selectedNachricht = new Nachricht();
+    this.authorizedIhkListe = this.nachrichtController.getAuthorizedIhksForUser(this.luxNachrichtConfig.userRole, this.luxNachrichtConfig.ihkNr);   
   }
 
   update(entry: Nachricht): void {
     this.viewType = 'edit';
     this.selectedNachricht = entry;
+    this.authorizedIhkListe = this.nachrichtController.getAuthorizedIhksForUser(this.luxNachrichtConfig.userRole, this.luxNachrichtConfig.ihkNr);  
     this.buttonService.buttonInfos = null;
   }
 
