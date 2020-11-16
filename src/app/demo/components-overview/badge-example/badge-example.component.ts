@@ -10,7 +10,7 @@ export class BadgeExampleComponent {
   iconName: string = 'fa-arrow-circle-right';
   text: string = 'Badge';
   uppercase: boolean = false;
-  backgroundColor = '#ffffff';
+  backgroundColor = '';
 
   constructor() {}
 }
