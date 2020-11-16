@@ -3,10 +3,6 @@
   die ihnen zugrunde liegenden Material Components.
 */
 
-// Selektion
-$lux-selected-bg-color: rgba(mat-color($lux-primary, 300), 0.20);
-$lux-selected-border-color: mat-color($lux-primary, A400);
-
 // Fokus
 $outline-dark: $outline-width $outline-style $outline-color-dark !important;
 $outline-bright: $outline-width $outline-style $outline-color-bright !important;
@@ -17,22 +13,6 @@ $outline-bright: $outline-width $outline-style $outline-color-bright !important;
 
 @mixin focus-bright-mixin {
   outline: $outline-bright;
-}
-
-@mixin lux-focused-round-pseudo-class-mixin {
-  &:after {
-    content: "";
-    border: 1px solid $lux-selected-bg-color;
-    background-color: $lux-selected-bg-color;
-    display: block;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    border-radius: 15px;
-    z-index: 1;
-    position: absolute;
-  }
 }
 
 @mixin lux-selectable-mixin {
@@ -225,7 +205,7 @@ lux-form-control {
   .lux-form-control:not(.lux-form-control-disabled).lux-focused {
     .lux-form-control-label {
       > * {
-        color: $lux-primary-color;
+        color: $lux-selected-border-color;
       }
     }
 
@@ -233,7 +213,7 @@ lux-form-control {
     .mat-checkbox-inner-container,
     .mat-slide-toggle-thumb {
       position: relative;
-      @include lux-focused-round-pseudo-class-mixin;
+      @include focus-dark-mixin;
     }
 
     .lux-form-control-container:after {
@@ -255,7 +235,7 @@ lux-form-control {
 lux-datepicker {
   mat-datepicker-toggle {
     button:focus {
-      @include lux-focused-round-pseudo-class-mixin;
+      @include focus-dark-mixin;
     }
 
     .mat-button-focus-overlay {
@@ -367,7 +347,7 @@ lux-button {
         background-color: $lux-hover-color;
 
         &.mat-accent {
-          color: mat-color($lux-accent, 900);
+          color: map-get($lux-palette_accentgreen, 900);
         }
 
         &.mat-warn {
@@ -400,15 +380,15 @@ lux-button {
       background-color: white !important;
 
       &.mat-accent {
-        background-color: lighten(mat-color($lux-accent, 500), 5) !important;
+        background-color: lighten(map-get($lux-palette_accentgreen, 500), 5) !important;
       }
 
       &.mat-warn {
-        background-color: lighten(mat-color($lux-warn, 500), 5) !important;
+        background-color: lighten(map-get($lux-palette_darkred, 500), 5) !important;
       }
 
       &.mat-primary {
-        background-color: lighten(mat-color($lux-primary, 500), 5) !important;
+        background-color: lighten(map-get($lux-palette_darkblue, 500), 5) !important;
       }
     }
   }
@@ -434,17 +414,57 @@ lux-button {
 }
 
 /** ########## Tabs ########## **/
+@mixin tab-label-mixin {
+  color: map-get($lux-palette_darkblue, 500) !important;
+}
+
+@mixin tab-ink-bar-mixin {
+  background-color: $lux-selected-border-color !important;
+  height: 4px;
+  border-radius: 4px;
+}
+
+// Tabs außerhalb einer LUX-Card (z.B. Master-Detail)
 lux-tabs {
-  .mat-tab-label {
+  .mat-tab-label-active:not(.mat-tab-disabled) {
+    @include tab-label-mixin;
+  }
+
+  .mat-tab-label:not(.mat-tab-disabled) {
     &:focus {
       @include focus-dark-mixin;
+    }
+
+    &:hover:not(.mat-tab-disabled) {
+      @include lux-hovered-mixin;
+      background-color: $app-data-bg !important;
     }
   }
 
   mat-ink-bar.mat-ink-bar {
-    background-color: map-get($lux-palette_darkblue, A400) !important;
-    height: 4px;
-    border-radius: 4px;
+    @include tab-ink-bar-mixin;
+  }
+}
+
+// Tabs innerhalb einer LUX-Card
+mat-card lux-tabs {
+  .mat-tab-label-active:not(.mat-tab-disabled) {
+    @include tab-label-mixin;
+  }
+
+  .mat-tab-label:not(.mat-tab-disabled) {
+    &:focus {
+      @include focus-dark-mixin;
+
+    }
+
+    &:hover:not(.mat-tab-disabled) {
+      @include lux-hovered-mixin;
+    }
+  }
+
+  mat-ink-bar.mat-ink-bar {
+    @include tab-ink-bar-mixin;
   }
 }
 
@@ -494,7 +514,7 @@ lux-tile {
 
 /** ########## Panel ########## **/
 lux-panel {
-  mat-expansion-panel-header {
+  mat-expansion-panel-header:not([aria-disabled='true']) {
     &:focus {
       background-color: white !important;
       @include focus-dark-mixin;
@@ -601,7 +621,11 @@ lux-message-box {
     }
 
     & div.lux-message-text p:focus {
-      @include focus-dark-mixin;
+      @include focus-bright-mixin;
+    }
+
+    & button:not([disabled]):focus {
+      @include focus-bright-mixin;
     }
   }
 }

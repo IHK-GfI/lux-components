@@ -3,16 +3,90 @@
   exampleIconName="fas fa-image"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90icon"
 >
-  <example-base-content [exampleCentered]="true">
-    <lux-icon
-      [luxIconName]="iconName"
-      [luxIconSize]="iconSize"
-      [luxPadding]="padding"
-      [luxMargin]="margin"
-      [luxRounded]="rounded"
-      [luxColor]="color"
-    >
-    </lux-icon>
+  <example-base-content>
+    <div fxLayout="column" fxLayoutGap="24px">
+      <div fxLayout="column" class="lux-app-data-bg lux-highlight-section" [ngStyle]="{ backgroundColor: backgroundColor }">
+        <h3 class="lux-highlight-section-label">Default:</h3>
+        <div fxLayout="row wrap" fxLayoutGap="12px">
+          <lux-icon
+            *ngFor="let color of colors"
+            [luxIconName]="iconName"
+            [luxIconSize]="iconSize"
+            [luxPadding]="padding"
+            [luxMargin]="margin"
+            [luxRounded]="rounded"
+            [luxColor]="color"
+          >
+          </lux-icon>
+        </div>
+        <div fxLayout="row wrap" fxLayoutGap="12px">
+          <lux-icon
+            *ngFor="let color of colors; let i = index"
+            [luxIconName]="iconName"
+            [luxIconSize]="iconSize"
+            [luxPadding]="padding"
+            [luxMargin]="margin"
+            [luxRounded]="rounded"
+            class="{{ 'lux-color-' + (colors[i % colors.length]) }}"
+          >
+          </lux-icon>
+        </div>
+      </div>
+      <div fxLayout="column" class="lux-hover-bg lux-highlight-section">
+        <h3 class="lux-highlight-section-label">Hover:</h3>
+        <div fxLayout="row wrap" fxLayoutGap="12px">
+          <lux-icon
+            *ngFor="let color of colors"
+            [luxIconName]="iconName"
+            [luxIconSize]="iconSize"
+            [luxPadding]="padding"
+            [luxMargin]="margin"
+            [luxRounded]="rounded"
+            [luxColor]="color"
+          >
+          </lux-icon>
+        </div>
+        <div fxLayout="row wrap" fxLayoutGap="12px">
+          <lux-icon
+            *ngFor="let color of colors; let i = index"
+            [luxIconName]="iconName"
+            [luxIconSize]="iconSize"
+            [luxPadding]="padding"
+            [luxMargin]="margin"
+            [luxRounded]="rounded"
+            class="{{ 'lux-color-' + (colors[i % colors.length]) }}"
+          >
+          </lux-icon>
+        </div>
+      </div>
+      <div fxLayout="column" class="lux-selected-bg lux-highlight-section">
+        <h3 class="lux-highlight-section-label">Focus:</h3>
+        <div fxLayout="row wrap" fxLayoutGap="12px">
+          <lux-icon
+            *ngFor="let color of colors"
+            [luxIconName]="iconName"
+            [luxIconSize]="iconSize"
+            [luxPadding]="padding"
+            [luxMargin]="margin"
+            [luxRounded]="rounded"
+            [luxColor]="color"
+          >
+          </lux-icon>
+        </div>
+        <div fxLayout="row wrap" fxLayoutGap="12px">
+          <lux-icon
+            *ngFor="let color of colors; let i = index"
+            [luxIconName]="iconName"
+            [luxIconSize]="iconSize"
+            [luxPadding]="padding"
+            [luxMargin]="margin"
+            [luxRounded]="rounded"
+            class="{{ 'lux-color-' + (colors[i % colors.length]) }}"
+          >
+          </lux-icon>
+        </div>
+      </div>
+    </div>
   </example-base-content>
   <example-base-simple-options>
     <i class="lux-mb-3">
@@ -35,24 +109,21 @@
           Die Größen sind relative 'em'-Werte.
         </lux-form-hint>
       </lux-select>
+      <lux-checkbox [(luxChecked)]="rounded" luxLabel="luxRounded">
+        <lux-form-hint>
+          Diese Property aktiviert eine abgerundete Darstellung des Icons<br />
+          Ist nur in Kombination mit einer 'luxColor' sichtbar.
+        </lux-form-hint>
+      </lux-checkbox>
     </div>
-    <lux-select
+    <lux-input
+      luxName="button_background_Color"
       class="example-highlight-config-option"
-      [(luxSelected)]="color"
-      [luxOptions]="colors"
-      luxLabel="luxColor"
+      [(luxValue)]="backgroundColor"
+      luxLabel="Hintergrundfarbe"
     >
-      <lux-form-hint>
-        Mithilfe dieser Property wird die Farbe des Icons bestimmt.<br />
-        Die Farb-Werte stammen aus der <b>luxstyles.scss</b>.
-      </lux-form-hint>
-    </lux-select>
-    <lux-checkbox class="example-highlight-config-option" [(luxChecked)]="rounded" luxLabel="luxRounded">
-      <lux-form-hint>
-        Diese Property aktiviert eine abgerundete Darstellung des Icons<br />
-        Ist nur in Kombination mit einer 'luxColor' sichtbar.
-      </lux-form-hint>
-    </lux-checkbox>
+      <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen. <br/> Z.B. #f0f0f2 oder </lux-form-hint>
+    </lux-input>
   </example-base-simple-options>
   <example-base-advanced-options>
     <div class="example-highlight-config-option" fxLayout="column">

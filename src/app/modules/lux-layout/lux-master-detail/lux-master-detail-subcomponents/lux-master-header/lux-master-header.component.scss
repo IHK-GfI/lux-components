@@ -1,7 +1,7 @@
-@import '../../../../../../theming/luxtheme';
+@import '../../../../../../theming/luxcommon';
 
 :host {
-  background-color: white;
+  background-color: $app-data-bg;
   padding: 10px;
   min-height: 55px;
   font-weight: 500;

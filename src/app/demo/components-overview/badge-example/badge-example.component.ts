@@ -7,7 +7,7 @@ import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.en
 })
 export class BadgeExampleComponent {
   colors: string[] = [...Object.keys(LuxBackgroundColorsEnum)];
-  iconName: string = 'fas fa-save';
+  iconName: string = 'fa-arrow-circle-right';
   text: string = 'Badge';
   uppercase: boolean = false;
   backgroundColor = '#ffffff';

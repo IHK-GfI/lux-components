@@ -1,4 +1,4 @@
-@import './../../../../theming/luxtheme';
+@import './../../../../theming/luxcommon';
 
 :host {
   position: relative;
@@ -62,14 +62,14 @@
           .lux-stepper-normal-icon {
             i,
             mat-icon {
-              background-color: mat-color($lux-primary, 500);
+              background-color: map-get($lux-palette_darkblue, 500);
             }
           }
         }
 
         &[aria-selected='true'] .mat-step-icon-state-number,
         .mat-step-icon-state-edit {
-          background: mat-color($lux-primary, 500);
+          background: map-get($lux-palette_darkblue, 500);
           color: white;
         }
       }
@@ -113,7 +113,7 @@
             > i,
             > mat-icon {
               background-color: $dark-disabled-text;
-              color: mat-contrast($lux-primary, 500);
+              color: map-get(map-get($lux-palette-darkblue, contrast), 500);
             }
 
             > i:before {

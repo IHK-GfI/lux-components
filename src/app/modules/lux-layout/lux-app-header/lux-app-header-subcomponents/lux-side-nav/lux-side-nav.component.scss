@@ -1,4 +1,4 @@
-@import '../../../../../../theming/luxtheme';
+@import '../../../../../../theming/luxcommon';
 
 $offset-size: 40px;
 $offset: 8px;
@@ -114,7 +114,7 @@ $colorDisabled: gray;
   bottom: 0;
   right: 0;
   opacity: 0;
-  background: $black-12-opacity;
+  background: $dark-focused;
 }
 
 .lux-side-nav-z-index {

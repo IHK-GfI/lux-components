@@ -1,4 +1,4 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
 
 $animationDuration: 8s;
 
@@ -16,8 +16,8 @@ $animationDuration: 8s;
 :host ::ng-deep {
   .mat-progress-bar-fill:after,
   .mat-progress-spinner > svg > circle {
-    stroke: mat-color($lux-primary, A400);
-    background: mat-color($lux-primary, A400);
+    stroke: map-get($lux-palette_darkblue, A400);
+    background: map-get($lux-palette_darkblue, A400);
   }
   .lux-progress-spinner,
   .lux-progress-bar {

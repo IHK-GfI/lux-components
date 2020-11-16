@@ -1,7 +1,11 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
 
 .lux-highlight {
-  color: mat-color($lux-primary, A400);
+  color: $dark-primary-text;
+}
+
+mat-card-subtitle {
+  color: $dark-secondary-text;
 }
 
 .lux-icon {

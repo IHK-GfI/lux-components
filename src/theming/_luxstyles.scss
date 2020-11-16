@@ -99,8 +99,46 @@ body,
   height: 100%;
 }
 
+.lux-app-header-bg {
+  background-color: $app-header-bg;
+}
+
 .lux-app-content-bg {
   background-color: $app-content-bg;
+}
+
+.lux-app-footer-bg {
+  background-color: $app-footer-bg;
+}
+
+.lux-app-data-bg {
+  background-color: $app-data-bg;
+}
+
+.lux-selected-bg {
+  background-color: $lux-selected-bg-color;
+}
+
+.lux-hover-bg {
+  background-color: $lux-hover-color;
+}
+
+.lux-hover-dark-bg {
+  background-color: $lux-hover-color-for-dark-background;
+}
+
+.lux-highlight-section {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 8px;
+  border: 1px solid $dark-dividers;
+}
+
+.lux-highlight-section-label {
+  color: $dark-secondary-text;
+  margin-top: 0;
+  margin-left: 0;
 }
 
 .lux-app-container {
@@ -154,12 +192,12 @@ lux-card.lux-card-grow {
 }
 
 .lux-label {
-  color: rgba(0, 0, 0, 0.54);
+  color: $dark-secondary-text;
   font-size: 75%;
 }
 
 .lux-hint {
-  color: rgba(0, 0, 0, 0.6);
+  color: $dark-secondary-text;
   font-size: 12px;
 }
 
@@ -334,6 +372,12 @@ $zindexSteps: 100, 500, 1000;
 lux-button.lux-uppercase {
   .lux-button-label {
     text-transform: uppercase;
+  }
+}
+
+@each $colorName, $colorNameHex in $componentBgColors {
+  .lux-color-#{''+$colorName+''} {
+    color: $colorNameHex;
   }
 }
 

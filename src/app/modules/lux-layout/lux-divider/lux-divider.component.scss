@@ -1,3 +1,9 @@
+@import '../../../../theming/luxcommon';
+
+.mat-divider {
+  background-color: $dark-dividers;
+}
+
 .mat-divider-vertical {
   width: 0;
   height: 100%;

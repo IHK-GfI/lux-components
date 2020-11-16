@@ -1,4 +1,4 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
 
 :host {
   flex: 0 0 auto;
@@ -39,7 +39,7 @@
   & {
     > div:not(.lux-header-action) {
       ::ng-deep span {
-        color: mat_contrast($lux-primary, 500);
+        color: map-get(map-get($lux-palette-darkblue, contrast), 500);
       }
     }
 
@@ -49,7 +49,7 @@
       }
 
       button:not(.mat-primary):not(.mat-warn):not(.mat-accent):not(.lux-button-rounded) {
-        color: mat_contrast($lux-primary, 500);
+        color: map-get(map-get($lux-palette-darkblue, contrast), 500);
       }
 
       i,
@@ -74,8 +74,8 @@
         width: 25px;
         border: 1px solid;
         border-radius: 50%;
-        color: mat-color($lux-primary, 500);
-        background: mat-contrast($lux-primary, 500);
+        color: map-get($lux-palette_darkblue, 500);
+        background: map-get(map-get($lux-palette-darkblue, contrast), 500);
         padding: 0 4px;
       }
     }
@@ -134,7 +134,7 @@
     }
 
     .lux-side-nav-trigger-active {
-      background: $black-12-opacity;
+      background: $dark-focused;
     }
 
     .lux-right-nav-trigger {
@@ -156,7 +156,7 @@
     lux-button,
     .lux-menu-item,
     .lux-action-nav-menu lux-button {
-      color: mat-color($lux-primary, 500);
+      color: map-get($lux-palette_darkblue, 500);
 
       .mat-button-wrapper {
         font-weight: normal !important;
@@ -165,8 +165,6 @@
     }
 
     lux-icon {
-      color: map_get($mat-grey, 700);
-
       i,
       mat-icon {
         font-size: 18px !important;
@@ -176,7 +174,7 @@
 
   .lux-side-nav-header,
   .lux-side-nav-footer {
-    color: mat-color($lux-primary, A400);
+    color: map-get($lux-palette_darkblue, A400);
   }
 }
 

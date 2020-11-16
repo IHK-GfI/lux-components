@@ -105,6 +105,6 @@ $lux-primary: mat-palette($lux-palette_darkblue);
 $lux-accent: mat-palette($lux-palette_accentgreen);
 $lux-warn: mat-palette($lux-palette_darkred);
 
-$lux-warn-color: mat-color($lux-warn);
-$lux-primary-color: mat-color($lux-primary);
-$lux-accent-color: mat-color($lux-accent);
+$lux-warn-color: map-get($lux-palette_darkred, 500);
+$lux-primary-color: map-get($lux-palette_darkblue, 500);
+$lux-accent-color: map-get($lux-palette_accentgreen, 500);

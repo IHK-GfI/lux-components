@@ -35,6 +35,7 @@
           <ng-content *ngIf="!showExpandedToggle" select="lux-card-info"></ng-content>
           <lux-button
             *ngIf="showExpandedToggle"
+            luxColor="primary"
             [luxIconName]="luxExpanded ? 'fa-angle-up' : 'fa-angle-down'"
             (luxClicked)="changeContentExpansion($event)"
             luxTagId="expandedButton"

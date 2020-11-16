@@ -1,4 +1,4 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
 
 :host {
   position: relative;
@@ -26,15 +26,15 @@
   color: $dark-disabled-text;
 
   & div div.mat-checkbox-frame {
-    border-color: rgba(black, 0.15);
+    border-color: $dark-disabled-text;
   }
 }
 
 .mat-checkbox-checked:not(.mat-checkbox-disabled) ::ng-deep label div div.mat-checkbox-background {
-  background-color: mat-color($lux-primary, 500);
+  background-color: map-get($lux-palette_darkblue, 500);
 
   & svg {
-    background-color: mat-color($lux-primary, 500);
+    background-color: map-get($lux-palette_darkblue, 500);
   }
 }
 

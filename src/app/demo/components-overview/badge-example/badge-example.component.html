@@ -4,36 +4,60 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90badge"
 >
   <example-base-content [exampleCentered]="true" fxLayout="column">
-    <div [ngStyle]="{ backgroundColor: backgroundColor }">
-      <lux-badge [luxIconName]="iconName" [luxColor]="color" [luxUppercase]="uppercase" *ngFor="let color of colors">
-        <lux-label luxId="bsp-badge-label">
-          {{ text }}
-        </lux-label>
-      </lux-badge>
+    <div fxLayout="column" fxLayoutGap="24px">
+      <div fxLayout="column" class="lux-app-data-bg lux-highlight-section" [ngStyle]="{ backgroundColor: backgroundColor }">
+        <h3 class="lux-highlight-section-label">Default:</h3>
+        <div fxLayout="row wrap" fxLayoutGap="12px">
+          <lux-badge [luxIconName]="iconName" [luxColor]="color" [luxUppercase]="uppercase" *ngFor="let color of colors">
+            <lux-label luxId="bsp-badge-label">
+              {{ text }}
+            </lux-label>
+          </lux-badge>
+        </div>
+      </div>
+      <div fxLayout="column" class="lux-hover-bg lux-highlight-section">
+        <h3 class="lux-highlight-section-label">Hover:</h3>
+        <div fxLayout="row wrap" fxLayoutGap="12px">
+          <lux-badge [luxIconName]="iconName" [luxColor]="color" [luxUppercase]="uppercase" *ngFor="let color of colors">
+            <lux-label luxId="bsp-badge-label">
+              {{ text }}
+            </lux-label>
+          </lux-badge>
+        </div>
+      </div>
+      <div fxLayout="column" class="lux-selected-bg lux-highlight-section">
+        <h3 class="lux-highlight-section-label">Focus:</h3>
+        <div fxLayout="row wrap" fxLayoutGap="12px">
+          <lux-badge [luxIconName]="iconName" [luxColor]="color" [luxUppercase]="uppercase" *ngFor="let color of colors">
+            <lux-label luxId="bsp-badge-label">
+              {{ text }}
+            </lux-label>
+          </lux-badge>
+        </div>
+      </div>
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-input
-      class="example-highlight-config-option"
-      luxLabel="Badge Text"
-      luxHint="Der Text-Inhalt der Badge wird über Content-Projection mithilfe der lux-label Component eingebunden."
-      [(luxValue)]="text"
-    >
-    </lux-input>
-    <lux-input
-      class="example-highlight-config-option"
-      luxLabel="luxIconName"
-      luxHint="Diese Property definiert das Icon, welches in dem Badge angezeigt wird."
-      [(luxValue)]="iconName"
-    >
-    </lux-input>
-    <lux-toggle
-      class="example-highlight-config-option"
-      [(luxChecked)]="uppercase"
-      luxLabel="luxUppercase"
-      luxHint="Die Property ermöglicht eine Uppercase-Darstellung des Textes in der Badge einzuschalten."
-    >
-    </lux-toggle>
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-input
+        luxLabel="luxIconName"
+        luxHint="Diese Property definiert das Icon, welches in dem Badge angezeigt wird."
+        [(luxValue)]="iconName"
+      >
+      </lux-input>
+      <lux-input
+        luxLabel="Badge Text"
+        luxHint="Der Text-Inhalt der Badge wird über Content-Projection mithilfe der lux-label Component eingebunden."
+        [(luxValue)]="text"
+      >
+      </lux-input>
+      <lux-toggle
+        [(luxChecked)]="uppercase"
+        luxLabel="luxUppercase"
+        luxHint="Die Property ermöglicht eine Uppercase-Darstellung des Textes in der Badge einzuschalten."
+      >
+      </lux-toggle>
+    </div>
     <lux-input
       luxName="button_background_Color"
       class="example-highlight-config-option"

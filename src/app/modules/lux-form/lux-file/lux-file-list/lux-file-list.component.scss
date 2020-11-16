@@ -1,5 +1,4 @@
 @import '../lux-file-style/lux-file-common';
-@import '../../../../../theming/luxconstants';
 
 $fontSizeSmall: 12px;
 
@@ -11,7 +10,7 @@ $fontSizeSmall: 12px;
 
   lux-icon,
   span {
-    color: #bfbfbf;
+    color: $dark-secondary-text;
   }
 
   lux-button {
@@ -37,7 +36,7 @@ $fontSizeSmall: 12px;
     }
 
     .lux-card-title-container {
-      color: mat-color($lux-primary, 500);
+      color: map-get($lux-palette_darkblue, 500);
     }
   }
 
@@ -45,7 +44,8 @@ $fontSizeSmall: 12px;
     .lux-file-list-entry {
       min-height: 60px;
 
-      .lux-file-list-entry-label {
+      .lux-file-list-entry-label:not(.lux-file-list-entry-label-disabled) {
+        color: $dark-primary-text;
         -ms-word-break: break-all;
         word-break: break-all;
       }
@@ -61,13 +61,13 @@ $fontSizeSmall: 12px;
       mat-card-content,
       span,
       i {
-        color: rgba(black, 0.26);
+        color: $dark-disabled-text;
       }
     }
 
     .lux-file-icon-hint {
       span {
-        text-decoration-color: rgba(black, 0.26) !important;
+        text-decoration-color: $dark-disabled-text !important;
       }
     }
   }

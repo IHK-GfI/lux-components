@@ -14,8 +14,6 @@ export class LuxBadgeComponent implements OnInit {
   @Input() luxUppercase: boolean = true;
   @Input() luxIconName: string = '';
 
-  showBorder = false;
-
   constructor() {
     this.luxColor = this.DEFAULT_BADGE_COLOR;
   }
@@ -37,7 +35,6 @@ export class LuxBadgeComponent implements OnInit {
     const result = LuxUtil.getColorsByBgColorsEnum(color);
     this._backgroundCSSClass = result.backgroundCSSClass;
     this._fontCSSClass = result.fontCSSClass;
-    this.showBorder = color === LuxBackgroundColorsEnum.white ? true : false;
 
     if (!LuxBackgroundColorsEnum[color]) {
       this.luxColor = this.DEFAULT_BADGE_COLOR;

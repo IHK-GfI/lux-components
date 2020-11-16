@@ -1,4 +1,4 @@
-@import '../../../../../theming/luxtheme';
+@import '../../../../../theming/luxcommon';
 
 @mixin minified-button {
   lux-button {
@@ -13,10 +13,6 @@
       height: 30px;
       display: flex;
       justify-content: center;
-
-      &:focus {
-        background: mat-color($lux-primary, 0.1);
-      }
     }
   }
 }
@@ -41,7 +37,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      border: 2px dashed $dark-disabled-text;
+      border: $outline-width $outline-style $outline-color-dark;
       background: $dark-focused;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;

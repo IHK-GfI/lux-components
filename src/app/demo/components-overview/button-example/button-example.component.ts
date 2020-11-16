@@ -30,7 +30,7 @@ export class ButtonExampleComponent implements OnInit, OnDestroy {
   iconName: string = 'fas fa-save';
   align: boolean = false;
   disabled: boolean = false;
-  backgroundColor = '#ffffff';
+  backgroundColor = '';
 
   subscription: Subscription;
 
