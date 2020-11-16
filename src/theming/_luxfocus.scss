@@ -267,14 +267,14 @@ lux-datepicker {
       &:hover > div {
         @include lux-hovered-mixin;
         border-radius: 999px;
+        color: $dark-primary-text;
       }
 
-      &.mat-calendar-body-active  {
+      &.mat-calendar-body-active .mat-calendar-body-cell-content {
         @include focus-dark-mixin;
       }
     }
   }
-
 }
 
 /** ########## Table ########## **/
