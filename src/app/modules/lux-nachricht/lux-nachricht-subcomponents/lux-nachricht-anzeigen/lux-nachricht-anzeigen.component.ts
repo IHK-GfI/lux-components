@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Nachricht } from '../../lux-nachricht-model/lux-nachricht-model';
 import { LuxDialogRef } from '../../../lux-popups/lux-dialog/lux-dialog-model/lux-dialog-ref.class';
+import { LuxSanitizeConfig } from '../../../lux-html/lux-sanitize/lux-sanitize-config';
 
 @Component({
   selector: 'lux-nachricht-anzeigen',
@@ -9,6 +10,7 @@ import { LuxDialogRef } from '../../../lux-popups/lux-dialog/lux-dialog-model/lu
 })
 export class LuxNachrichtAnzeigenComponent implements OnInit {
 
+  sanitizeConfig: LuxSanitizeConfig;
   nachricht: Nachricht = null;
 
   constructor(public luxDialogRef: LuxDialogRef) {
@@ -16,6 +18,9 @@ export class LuxNachrichtAnzeigenComponent implements OnInit {
 
   ngOnInit() {
     this.nachricht = this.luxDialogRef.data.nachricht;
+    this.sanitizeConfig = {
+      allowedTags: ['a']
+    };
   }
 
   confirm(): void {

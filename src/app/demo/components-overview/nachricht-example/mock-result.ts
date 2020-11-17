@@ -22,7 +22,7 @@ export const mockNachrichtResult: Nachricht[] = [
     {
         id: 1,
         betreff: 'Hello World',
-        message: 'Das ist eine Beispielnachricht.',
+        message: 'Das ist eine Beispielnachricht. Schau doch mal bei der <a href="https://www.ihk-gfi.de">IHK-Gfi</a> vorbei.',
         validFrom: new Date(2020, 11, 17),
         validTo: new Date(2022, 1, 12),
         erneutAnzeigen: false,

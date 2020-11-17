@@ -8,7 +8,10 @@
     </div>
   </lux-dialog-title>
   <lux-dialog-content>
-    <div [innerHTML]="nachricht.message | parselink"></div>
+    <div>
+      <lux-html [luxData]="nachricht.message" [luxSanitizeConfig]="sanitizeConfig"></lux-html>
+    </div> 
+
     <div class="messageValidity"> Gültig: {{nachricht.validFrom | date: 'dd.MM.y HH:mm' }} - {{nachricht.validTo | date: 'dd.MM.y HH:mm'}}</div>
   </lux-dialog-content>
   <lux-dialog-actions>
