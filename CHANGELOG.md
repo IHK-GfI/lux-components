@@ -1,3 +1,7 @@
+# Version 10.3.0
+## New
+- **lux-app-footer**: Buttons können jetzt Tooltips anzeigen. [Issue 44](https://github.com/IHK-GfI/lux-components/issues/44)
+
 # Version 10.2.0
 ## New
 - **allgemein**: Sicherheitsupdates eingespielt.

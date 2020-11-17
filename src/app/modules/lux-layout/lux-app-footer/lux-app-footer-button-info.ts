@@ -7,6 +7,7 @@ export interface ILuxAppFooterButtonInfo {
   raised?: boolean;
   iconName?: string;
   alwaysVisible?: boolean;
+  tooltip?: string;
   onClick?: (that: ILuxAppFooterButtonInfo) => void;
 }
 
@@ -19,6 +20,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
   raised: boolean;
   iconName: string;
   alwaysVisible: boolean;
+  tooltip: string;
   onClick: (that: ILuxAppFooterButtonInfo) => void;
 
   constructor(
@@ -30,6 +32,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
     raised?: boolean,
     iconName?: string,
     alwaysVisible?: boolean,
+    tooltip?: string,
     onClick?: (that: ILuxAppFooterButtonInfo) => void
   ) {
     this.label = label;
@@ -41,6 +44,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
     this.iconName = iconName;
     this.alwaysVisible =
       alwaysVisible === undefined || alwaysVisible === null || alwaysVisible === false ? false : true;
+    this.tooltip = tooltip ? tooltip : '';
     this.onClick = onClick ? onClick : (that: ILuxAppFooterButtonInfo) => {};
   }
 
@@ -60,6 +64,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
       data.raised,
       data.iconName,
       data.alwaysVisible,
+      data.tooltip,
       data.onClick
     );
 
