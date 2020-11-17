@@ -19,6 +19,7 @@ export class MenuExampleComponent implements OnInit {
       disabled: false,
       hidden: false,
       label: 'Menu-Item 0',
+      tooltip: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false
@@ -30,6 +31,7 @@ export class MenuExampleComponent implements OnInit {
       disabled: false,
       hidden: false,
       label: 'Menu-Item 1',
+      tooltip: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false
@@ -41,6 +43,7 @@ export class MenuExampleComponent implements OnInit {
       disabled: false,
       hidden: false,
       label: 'Menu-Item 2',
+      tooltip: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false
@@ -71,6 +74,7 @@ interface ExampleMenuItem {
   disabled: boolean;
   hidden: boolean;
   label: string;
+  tooltip: string;
   alwaysVisible: boolean;
   round: false;
   hideLabelIfExtended: false;

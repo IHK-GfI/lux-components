@@ -1,4 +1,4 @@
-# Version 10.3.0
+# Version 10.4.0
 ## New
 - **allgemein**: UX und Barrierefreiheit: Focus (Outline) für alle Komponenten vereinheitlicht. 
 - **allgemein**: UX und Barrierefreiheit: Kontrast der Themefarben für alle Komponenten angepasst.
@@ -9,6 +9,10 @@
 - **lux-side-nav**: UX und Barrierefreiheit: Appmenü angepasst
 - **lux-message-box**: UX und Barrierefreiheit: Meldungen werden vom Screenreader vorgelesen
 - **lux-file-preview**: UX und Barrierefreiheit: Initialen Focus auf den ersten Button gesetzt.
+
+# Version 10.3.0
+## New
+- **lux-app-footer**: Buttons können jetzt Tooltips anzeigen. [Issue 44](https://github.com/IHK-GfI/lux-components/issues/44)
 
 # Version 10.2.0
 ## New

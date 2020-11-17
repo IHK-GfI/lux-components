@@ -21,6 +21,7 @@
           [luxColor]="item.color"
           [luxDisabled]="item.disabled"
           [luxLabel]="item.label"
+          [luxButtonTooltip]="item.tooltip"
           [luxAlwaysVisible]="item.alwaysVisible"
           [luxTagId]="item.label"
           (luxClicked)="log(showOutputEvents, 'Item clicked', $event)"
@@ -96,6 +97,13 @@
             luxLabel="luxLabel"
             luxHint="Diese Property ermöglicht es, das Label eines Menu-Eintrags zu ändern."
             [(luxValue)]="item.label"
+          >
+          </lux-input>
+          <lux-input
+            class="example-highlight-config-option"
+            luxLabel="luxButtonTooltip"
+            luxHint="Diese Property ermöglicht es, das Label eines Menu-Eintrags zu ändern."
+            [(luxValue)]="item.tooltip"
           >
           </lux-input>
           <lux-input
