@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.enum';
+import { LuxIconColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-icon-example',
@@ -8,7 +8,7 @@ import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.en
 export class IconExampleComponent implements OnInit {
   // region Helper-Properties für das Beispiel
 
-  colors: string[] = Object.keys(LuxBackgroundColorsEnum);
+  colors: string[] = LuxIconColors;
   iconSizes: string[] = ['1x', '2x', '3x', '4x', '5x'];
 
   // endregion

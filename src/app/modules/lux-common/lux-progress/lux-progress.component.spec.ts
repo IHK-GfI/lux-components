@@ -47,8 +47,8 @@ describe('LuxProgressComponent', () => {
       component.color = 'yellow';
       fixture.detectChanges();
       // Nachbedingungen prüfen
-      const yellow = fixture.debugElement.query(By.css('.lux-bg-color-yellow'));
-      expect(yellow).toBeDefined('Nachbedingung 2');
+      const purple = fixture.debugElement.query(By.css('.lux-bg-color-purple'));
+      expect(purple).toBeDefined('Nachbedingung 2');
     });
 
     it('Sollte den Wert ändern (mode = determinate)', fakeAsync(() => {
@@ -99,8 +99,8 @@ describe('LuxProgressComponent', () => {
       component.color = 'yellow';
       fixture.detectChanges();
       // Nachbedingungen prüfen
-      const yellow = fixture.debugElement.query(By.css('.lux-bg-color-yellow'));
-      expect(yellow).toBeDefined('Nachbedingung 2');
+      const purple = fixture.debugElement.query(By.css('.lux-bg-color-purple'));
+      expect(purple).toBeDefined('Nachbedingung 2');
     }));
 
     it('Sollte den Wert ändern (mode = determinate)', fakeAsync(() => {

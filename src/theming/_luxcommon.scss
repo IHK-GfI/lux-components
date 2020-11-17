@@ -44,12 +44,13 @@ $lux-selected-bg-color: #e2e8ee;
 $componentBgColors: (
   "red": #b01211,
   "green": #3e8320,
-  "yellow": #9900B8,
+  "purple": #9900B8,
   "blue": #00569a,
   "gray": $dark-secondary-text,
   "orange": #c75000,
   "brown": #783f04,
-  "white": $dark-primary-text
+  "black": $dark-primary-text,
+  "white": #ffffff
 );
 
 // Vordergrundfarben (z.B. Badge)
@@ -62,7 +63,7 @@ $componentFontColors: (
 $colorsForDarkBg: (
   "red": #f17474,
   "green": #53b12b,
-  "yellow": #e561ff,
+  "purple": #e561ff,
   "blue": #729eca,
   "gray": #c8c8c8,
   "orange": #ec9c1b,

@@ -187,7 +187,14 @@ export class LuxUtil {
 
     if (LuxBackgroundColorsEnum[color]) {
       result.backgroundCSSClass = 'lux-bg-color-' + color;
-      result.fontCSSClass = 'lux-font-color-' + LuxFontColorsEnum.white;
+      switch (color) {
+        case LuxBackgroundColorsEnum.white:
+          result.fontCSSClass = 'lux-font-color-' + LuxFontColorsEnum.black;
+          break;
+        default:
+          result.fontCSSClass = 'lux-font-color-' + LuxFontColorsEnum.white;
+          break;
+      }
     }
 
     return result;

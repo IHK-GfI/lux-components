@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.enum';
+import { LuxProgressColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-progress-example',
@@ -7,22 +7,16 @@ import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.en
   styles: ['']
 })
 export class ProgressBarExampleComponent implements OnInit {
-  // region Helper-Properties für das Beispiel
 
   sizes = ['small', 'medium', 'large'];
-  colors = Object.keys(LuxBackgroundColorsEnum);
+  colors = LuxProgressColors;
+  backgroundColor = '';
   modes = ['determinate', 'indeterminate'];
 
-  // endregion
-
-  // region Properties der Component
-
   size = 'medium';
-  color = this.colors[0];
-  mode = 'indeterminate';
-  value = 0;
+  mode = 'determinate';
+  value = 70;
 
-  // endregion
 
   constructor() {}
 

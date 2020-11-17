@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { LuxBackgroundColorsEnum } from '../../lux-util/lux-colors.enum';
+import { LuxBackgroundColorsEnum, LuxIconColor } from '../../lux-util/lux-colors.enum';
 import { LuxUtil } from '../../lux-util/lux-util';
 
 @Component({
@@ -77,7 +77,7 @@ export class LuxIconComponent {
   }
 
   @Input()
-  set luxColor(color: LuxBackgroundColorsEnum) {
+  set luxColor(color: LuxIconColor) {
     if (LuxBackgroundColorsEnum[color]) {
       const result = LuxUtil.getColorsByBgColorsEnum(color);
       this._backgroundCSSClass = result.backgroundCSSClass;

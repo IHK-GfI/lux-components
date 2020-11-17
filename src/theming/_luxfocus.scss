@@ -620,12 +620,32 @@ lux-message-box {
       @include focus-dark-mixin;
     }
 
-    & div.lux-message-text p:focus {
-      @include focus-bright-mixin;
+    & div.lux-message-container.lux-bg-color-white {
+      & div.lux-message-text p:focus {
+        @include focus-dark-mixin;
+      }
+
+      & button:not([disabled]):focus {
+        @include focus-dark-mixin;
+      }
+
+      & button:not([disabled]):hover {
+        @include lux-hovered-mixin;
+      }
     }
 
-    & button:not([disabled]):focus {
-      @include focus-bright-mixin;
+    & div.lux-message-container:not(.lux-bg-color-white) {
+      & div.lux-message-text p:focus {
+        @include focus-bright-mixin;
+      }
+
+      & button:not([disabled]):focus {
+        @include focus-bright-mixin;
+      }
+
+      & button:not([disabled]):hover {
+        @include lux-hovered-mixin;
+      }
     }
   }
 }

@@ -4,7 +4,7 @@ import { LuxSnackbarConfig } from '../../../modules/lux-popups/lux-snackbar/lux-
 import { MatSnackBarDismiss } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
-import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.enum';
+import { LuxSnackbarColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-snackbar-example',
@@ -14,7 +14,7 @@ import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.en
 export class SnackbarExampleComponent implements OnInit, OnDestroy {
   private dismissSubcr: Subscription;
   private actionSubscr: Subscription;
-  colors: string[] = Object.keys(LuxBackgroundColorsEnum);
+  colors: string[] = LuxSnackbarColors;
 
   showOutputEvents: boolean = false;
 

@@ -14,7 +14,7 @@
         <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="grid 12px">
           <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
             <lux-button
-              *ngFor="let color of colors"
+              *ngFor="let color of colors; let i = index"
               style="height: 60px"
               [luxLabel]="label"
               [luxColor]="color.value"
@@ -22,14 +22,14 @@
               [luxRaised]="true"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
-              luxTagId="demo-button"
+              luxTagId="demo-button-default{{ i }}"
               (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             >
             </lux-button>
           </div>
           <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
             <lux-button
-              *ngFor="let color of colors"
+              *ngFor="let color of colors; let i = index"
               style="height: 60px"
               [luxLabel]="label"
               [luxColor]="color.value"
@@ -37,14 +37,14 @@
               [luxRaised]="false"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
-              luxTagId="demo-button"
+              luxTagId="demo-button-hover{{ i }}"
               (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             >
             </lux-button>
           </div>
           <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
             <lux-button
-              *ngFor="let color of colors"
+              *ngFor="let color of colors; let i = index"
               style="height: 60px"
               [luxLabel]="iconName ? '' : '??'"
               [luxColor]="color.value"
@@ -52,7 +52,7 @@
               [luxRounded]="true"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
-              luxTagId="demo-button"
+              luxTagId="demo-button-focus{{ i }}"
               (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             >
             </lux-button>
