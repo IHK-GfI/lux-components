@@ -91,15 +91,13 @@ export class LuxNachrichtComponent implements OnInit {
   create(): void {
     this.viewType = 'create';
     this.selectedNachricht = new Nachricht();
-    this.authorizedIhkListe =
-      this.nachrichtController.getAuthorizedIhksForUser(this.luxNachrichtConfig.userRole, this.luxNachrichtConfig.ihkNr);
+    this.authorizedIhkListe = this.nachrichtController.getAuthorizedIhksForUser();
   }
 
   update(entry: Nachricht): void {
     this.viewType = 'edit';
     this.selectedNachricht = entry;
-    this.authorizedIhkListe =
-      this.nachrichtController.getAuthorizedIhksForUser(this.luxNachrichtConfig.userRole, this.luxNachrichtConfig.ihkNr);
+    this.authorizedIhkListe = this.nachrichtController.getAuthorizedIhksForUser();
     this.buttonService.buttonInfos = null;
   }
 

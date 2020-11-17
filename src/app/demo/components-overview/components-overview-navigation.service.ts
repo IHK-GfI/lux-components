@@ -40,7 +40,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('table-server'), icon: 'fas fa-table', label: 'Table-Server', moduleName: 'common' },
     { onclick: () => this.goTo('textarea'), icon: 'fas fa-text-height', label: 'Textarea', moduleName: 'form' },
     { onclick: () => this.goTo('tooltip'), icon: 'fas fa-mouse-pointer', label: 'Tooltip', moduleName: 'directive' },
-    { onclick: () => this.goTo('nachricht'), icon: 'fas fa-comment-dots', label: 'Nachricht', moduleName: 'common'},
+    { onclick: () => this.goTo('nachricht'), icon: 'fas fa-comment-dots', label: 'Nachricht', moduleName: 'nachricht' },
     {
       onclick: () => this.goTo('lookup-combobox'),
       icon: 'fas fa-binoculars',
@@ -118,6 +118,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     ['layout', false],
     ['lookup', false],
     ['markdown', false],
+    ['nachricht', false],
     ['pipes', false],
     ['popup', false]
   ]);

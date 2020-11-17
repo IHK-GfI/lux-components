@@ -19,10 +19,7 @@ export class LuxNachrichtController {
     this.nachrichtService = nachrichtService;
   }
 
-  getAuthorizedIhksForUser(role: string, ihkNr: number) {
-    this.nachrichtService.getAuthorizedIhksForUser(role, ihkNr).subscribe((ihks: Ihk[]) => {
-      this.ihkliste = ihks;
-    });
+  getAuthorizedIhksForUser() {
     return this.ihkliste;
   }
 
@@ -30,6 +27,10 @@ export class LuxNachrichtController {
     this.nachrichtService.readNachrichten(role, ihkNr, anwendungskuerzel).subscribe((nachrichten: Nachricht[]) => {
       this.dataSource = nachrichten;
     }, this.nachrichtService.defaultErrHandler);
+
+    this.nachrichtService.getAuthorizedIhksForUser(role, ihkNr).subscribe((ihks: Ihk[]) => {
+      this.ihkliste = ihks;
+    });
   }
 
   create(entry: Nachricht): void {

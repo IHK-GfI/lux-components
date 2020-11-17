@@ -41,11 +41,11 @@
           </lux-table-column-header>
           <lux-table-column-content>
             <ng-template let-element>
-              <lux-menu luxMenuIconName="fa-ellipsis-v" [luxDisplayExtended]="true">
-                <lux-menu-item luxLabel="Vorschau" luxIconName="fas fa-binoculars" (luxClicked)="preview(element)"></lux-menu-item>
-                <lux-menu-item luxLabel="Bearbeiten" luxIconName="fas fa-pencil-alt" (luxClicked)="update(element)"></lux-menu-item>
-                <lux-menu-item luxLabel="Löschen" luxIconName="fas fa-trash" (luxClicked)="delete(element)"></lux-menu-item>
-              </lux-menu>
+              <div fxLayout="row">
+                <lux-button luxIconName="fas fa-eye" luxColor="primary" (luxClicked)="preview(element)"></lux-button>
+                <lux-button luxIconName="fas fa-pencil-alt" luxColor="primary" (luxClicked)="update(element)"></lux-button>
+                <lux-button luxIconName="fas fa-trash" luxColor="primary" (luxClicked)="delete(element)"></lux-button>
+              </div>
             </ng-template>
           </lux-table-column-content>
         </lux-table-column>

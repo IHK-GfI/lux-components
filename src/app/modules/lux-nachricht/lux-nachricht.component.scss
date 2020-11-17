@@ -18,11 +18,3 @@
 ::ng-deep .mat-column-betreff {
   min-width: 125px;
 }
-
-::ng-deep {
-  @media screen and (min-width:800px){
-    .mat-column-actions {
-      min-width: 380px;
-    }
-  }
-}
