@@ -30,6 +30,7 @@ export class AppFooterExampleComponent implements OnDestroy {
         cmd: 'btn' + this.buttonService.buttonInfos.length,
         label: 'Neu (' + this.buttonService.buttonInfos.length + ')',
         alwaysVisible: false,
+        tooltip: '',
         onClick: this.buttonInfoClicked.bind(this)
       })
     );
