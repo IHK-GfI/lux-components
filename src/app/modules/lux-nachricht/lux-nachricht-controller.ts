@@ -8,7 +8,7 @@ import { LuxSnackbarService } from '../lux-popups/lux-snackbar/lux-snackbar.serv
   providedIn: 'root'
 })
 export class LuxNachrichtController {
-  
+
   nachrichtService: NachrichtService;
   dataSource: Nachricht[];
   ihkliste: Ihk[];
@@ -19,13 +19,13 @@ export class LuxNachrichtController {
     this.nachrichtService = nachrichtService;
   }
 
-  getAuthorizedIhksForUser(role: string, ihkNr: number,) {
+  getAuthorizedIhksForUser(role: string, ihkNr: number) {
     this.nachrichtService.getAuthorizedIhksForUser(role, ihkNr).subscribe((ihks: Ihk[]) => {
       this.ihkliste = ihks;
     });
     return this.ihkliste;
   }
-  
+
   read(role: string, ihkNr: number, anwendungskuerzel: string): void {
     this.nachrichtService.readNachrichten(role, ihkNr, anwendungskuerzel).subscribe((nachrichten: Nachricht[]) => {
       this.dataSource = nachrichten;

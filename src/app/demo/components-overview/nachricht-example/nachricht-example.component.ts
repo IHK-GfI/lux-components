@@ -22,17 +22,15 @@ export class LuxNachrichtExampleComponent {
     ihkNr: 112,
     userRole: 'ROLE_GfIAdmin',
     empfaenger: ['User A', 'User B', 'User C', 'User D']
-  }
+  };
 
-  constructor(protected snackbar: LuxSnackbarService, 
+  constructor(protected snackbar: LuxSnackbarService,
               protected componentsConfigService: LuxComponentsConfigService) {
   }
 
-  
   start() {
     if (this.useMock) {
-      this.nachrichtController.read(null,null,null);
-      
+      this.nachrichtController.read(null, null, null);
       this.snackbar.open(3000, {
         text: 'Mock-Daten geladen.',
         action: 'OK',
@@ -40,13 +38,12 @@ export class LuxNachrichtExampleComponent {
       });
     }
   }
-  
 
   changeUseMock($event) {
     if ($event) {
       const mockNachrichtService = new MockLuxNachrichtService(null, this.componentsConfigService);
 
-      this.originalService = this.nachrichtController.nachrichtService
+      this.originalService = this.nachrichtController.nachrichtService;
       this.nachrichtController.nachrichtService = mockNachrichtService;
 
     } else {

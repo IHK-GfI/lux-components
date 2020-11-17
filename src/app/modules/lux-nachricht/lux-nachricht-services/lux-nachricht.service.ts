@@ -11,9 +11,9 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 export class NachrichtService {
 
   private subscriptions: Subscription[] = [];
-  
+
   private apiPath: string;
-  
+
   constructor(private http: HttpClient, private componentsConfigService: LuxComponentsConfigService) {
     this.subscriptions.push(this.componentsConfigService.config.subscribe(
       (newConfig: LuxComponentsConfigParameters) => {

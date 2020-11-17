@@ -26,7 +26,7 @@ export class LuxNachrichtPflegenComponent implements OnInit {
   selectedIhk: Ihk[];
 
   constructor(private formBuilder: FormBuilder,
-              private nachrichtController: LuxNachrichtController) {
+    private nachrichtController: LuxNachrichtController) {
   }
 
   ngOnInit() {
@@ -40,8 +40,10 @@ export class LuxNachrichtPflegenComponent implements OnInit {
 
     if (this.luxEditMode) {
       this.title = 'Nachricht bearbeiten';
-      this.selectedEmpaenger = this.empfaengerliste.filter(({ bezeichnung: b1 }) => this.luxNachricht.empfaenger.some(({ bezeichnung: b2 }) => b1 === b2));
-      this.selectedIhk = this.luxAuthorizedIhks.filter(({ ihkNr: nr1 }) => this.luxNachricht.ihk.some(({ ihkNr: nr2 }) => nr1 === nr2 ));
+      this.selectedEmpaenger = this.empfaengerliste.filter(({ bezeichnung: b1 }) =>
+        this.luxNachricht.empfaenger.some(({ bezeichnung: b2 }) => b1 === b2));
+      this.selectedIhk = this.luxAuthorizedIhks.filter(({ ihkNr: nr1 }) =>
+        this.luxNachricht.ihk.some(({ ihkNr: nr2 }) => nr1 === nr2));
     } else {
       this.title = 'Nachricht erstellen';
     }
@@ -57,19 +59,19 @@ export class LuxNachrichtPflegenComponent implements OnInit {
       timeTo: new FormControl(this.nachrichtController.getTime(this.luxNachricht.validTo), Validators.required),
       erneutAnzeigen: new FormControl(this.luxNachricht.erneutAnzeigen)
     }, {
-        validator(formGroup: FormGroup): ValidationErrors {
-          const result = {};
+      validator(formGroup: FormGroup): ValidationErrors {
+        const result = {};
 
-          if (formGroup.get('validFrom').value > formGroup.get('validTo').value) {
-            Object.assign(result, { 'invalidDate': true });
-          }
-          if (formGroup.get('timeFrom').value > formGroup.get('timeTo').value) {
-            if (formGroup.get('validFrom').value === formGroup.get('validTo').value) {
-              Object.assign(result, { 'invalidTime': true });
-            }
-          }
-          return result;
+        if (formGroup.get('validFrom').value > formGroup.get('validTo').value) {
+          Object.assign(result, { 'invalidDate': true });
         }
+        if (formGroup.get('timeFrom').value > formGroup.get('timeTo').value) {
+          if (formGroup.get('validFrom').value === formGroup.get('validTo').value) {
+            Object.assign(result, { 'invalidTime': true });
+          }
+        }
+        return result;
+      }
     });
   }
 

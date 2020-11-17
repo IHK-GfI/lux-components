@@ -35,13 +35,14 @@ export class LuxNachrichtComponent implements OnInit {
   ];
 
   constructor(public nachrichtController: LuxNachrichtController,
-              public dialogService: LuxDialogService,
-              public buttonService: LuxAppFooterButtonService) {
+    public dialogService: LuxDialogService,
+    public buttonService: LuxAppFooterButtonService) {
   }
 
   ngOnInit() {
-    this.nachrichtController.read(this.luxNachrichtConfig.userRole, this.luxNachrichtConfig.ihkNr, this.luxNachrichtConfig.anwendungKuerzel);
- 
+    this.nachrichtController.read(this.luxNachrichtConfig.userRole,
+      this.luxNachrichtConfig.ihkNr, this.luxNachrichtConfig.anwendungKuerzel);
+
     if (this.luxShowCreateButton) {
       this.buttonService.buttonInfos = [
         LuxAppFooterButtonInfo.generateInfo({
@@ -50,7 +51,8 @@ export class LuxNachrichtComponent implements OnInit {
           disabled: false,
           cmd: 'create',
           alwaysVisible: true,
-          onClick: this.buttonCreateClicked.bind(this)})
+          onClick: this.buttonCreateClicked.bind(this)
+        })
       ];
     }
   }
@@ -72,7 +74,7 @@ export class LuxNachrichtComponent implements OnInit {
 
   onViewType(view) {
     this.viewType = view;
-    if (this.luxShowCreateButton === true ) {
+    if (this.luxShowCreateButton === true) {
       this.buttonService.buttonInfos = [
         LuxAppFooterButtonInfo.generateInfo({
           label: 'Hinzufügen',
@@ -80,7 +82,8 @@ export class LuxNachrichtComponent implements OnInit {
           disabled: false,
           cmd: 'create',
           alwaysVisible: true,
-          onClick: this.buttonCreateClicked.bind(this)})
+          onClick: this.buttonCreateClicked.bind(this)
+        })
       ];
     }
   }
@@ -88,13 +91,15 @@ export class LuxNachrichtComponent implements OnInit {
   create(): void {
     this.viewType = 'create';
     this.selectedNachricht = new Nachricht();
-    this.authorizedIhkListe = this.nachrichtController.getAuthorizedIhksForUser(this.luxNachrichtConfig.userRole, this.luxNachrichtConfig.ihkNr);   
+    this.authorizedIhkListe =
+      this.nachrichtController.getAuthorizedIhksForUser(this.luxNachrichtConfig.userRole, this.luxNachrichtConfig.ihkNr);
   }
 
   update(entry: Nachricht): void {
     this.viewType = 'edit';
     this.selectedNachricht = entry;
-    this.authorizedIhkListe = this.nachrichtController.getAuthorizedIhksForUser(this.luxNachrichtConfig.userRole, this.luxNachrichtConfig.ihkNr);  
+    this.authorizedIhkListe =
+      this.nachrichtController.getAuthorizedIhksForUser(this.luxNachrichtConfig.userRole, this.luxNachrichtConfig.ihkNr);
     this.buttonService.buttonInfos = null;
   }
 
@@ -105,8 +110,8 @@ export class LuxNachrichtComponent implements OnInit {
       height: 'auto',
     };
 
-    const dialogRef = this.dialogService.openComponent(LuxNachrichtAnzeigenComponent, dialogConfig, {nachricht: entry});
-      dialogRef.dialogClosed.subscribe((result: any) => {
+    const dialogRef = this.dialogService.openComponent(LuxNachrichtAnzeigenComponent, dialogConfig, { nachricht: entry });
+    dialogRef.dialogClosed.subscribe((result: any) => {
     });
   }
 

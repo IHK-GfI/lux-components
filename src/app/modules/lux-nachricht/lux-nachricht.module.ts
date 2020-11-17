@@ -18,6 +18,7 @@ import { LuxDialogService } from '../lux-popups/lux-dialog/lux-dialog.service';
 import { LuxAppFooterButtonService } from '../lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxStepperHelperService } from '../lux-layout/lux-stepper/lux-stepper-helper.service';
 import { LuxHtmlModule } from '../lux-html/lux-html.module';
+import { LuxNachrichtController } from './lux-nachricht-controller';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { LuxHtmlModule } from '../lux-html/lux-html.module';
     LuxDialogService,
     LuxAppFooterButtonService,
     LuxStepperHelperService,
+    LuxNachrichtController,
     NachrichtService,
   ],
   entryComponents: [
