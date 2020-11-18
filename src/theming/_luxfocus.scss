@@ -645,6 +645,7 @@ lux-message-box {
 
       & button:not([disabled]):hover {
         @include lux-hovered-mixin;
+        color: $lux-hover-color-for-dark-background;
       }
     }
   }
