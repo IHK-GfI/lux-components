@@ -30,6 +30,12 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   @Input() luxIconName: string;
   @Input() luxImageSrc: string;
   @Input() luxImageHeight = '55px';
+  @Input() luxAriaAppMenuButtonLabel = 'Anwendungsmenü / Navigation';
+  @Input() luxAriaUserMenuButtonLabel = 'Benutzermenü / Navigation';
+  @Input() luxAriaTitleIconLabel = 'Titelicon';
+  @Input() luxAriaTitleImageLabel = 'Titelbild';
+  @Input() luxAriaTitleLinkLabel;
+  @Input() luxAriaRoleHeaderLabel = 'Kopfbereich / Menübereich';
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 

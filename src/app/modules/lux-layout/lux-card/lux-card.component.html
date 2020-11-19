@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <div
+        <h2
           fxFlex="grow"
           class="lux-card-title-container"
           ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
@@ -29,7 +29,7 @@
           title="{{ luxTitle }}"
         >
           {{ luxTitle }}
-        </div>
+        </h2>
 
         <div fxFlex="none" fxLayoutAlign="end">
           <ng-content *ngIf="!showExpandedToggle" select="lux-card-info"></ng-content>

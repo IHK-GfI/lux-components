@@ -1,7 +1,7 @@
 <div fxLayout="row" *ngIf="luxTitle">
   <div *ngIf="margin && luxMargin.marginLeft" [fxFlex]="margin"></div>
   <div fxFlex="flex" [fxLayout]="layoutOrientation" [fxLayoutGap]="rowItemGap">
-    <h3 [ngStyle]="{ 'padding-left': headerPaddingLeft }" class="row-title">{{ luxTitle }}</h3>
+    <h1 [ngStyle]="{ 'padding-left': headerPaddingLeft }" class="row-title">{{ luxTitle }}</h1>
   </div>
   <div *ngIf="margin && luxMargin.marginRight" [fxFlex]="margin"></div>
 </div>

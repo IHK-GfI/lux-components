@@ -15,6 +15,7 @@ export class LuxAppFooterComponent {
   @ViewChild('buttonMenu', { static: true }) buttonMenu: LuxMenuComponent;
 
   @Input() luxVersion: string;
+  @Input() luxAriaRoleFooterLabel = 'Fußzeilenbereich / Buttonbereich';
 
   constructor(
     public buttonService: LuxAppFooterButtonService,

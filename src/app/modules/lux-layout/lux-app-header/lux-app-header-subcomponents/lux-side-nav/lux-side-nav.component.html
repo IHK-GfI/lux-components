@@ -3,6 +3,8 @@
     class="lux-side-nav lux-side-nav-z-index"
     [@expandHide]="{ value: sideNavExpanded ? 'expanded' : 'void', params: { width: width + 'px' } }"
     (@expandHide.done)="updateSideNavAfterAnimationIsFinished()"
+    [luxAriaRole]="luxAriaRoleNavigationLabel ? 'navigation' : undefined"
+    [luxAriaLabel]="luxAriaRoleNavigationLabel"
     #sideNav
   >
     <div class="lux-side-nav-header" #sideNavHeader>

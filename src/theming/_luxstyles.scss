@@ -99,6 +99,52 @@ body,
   height: 100%;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: $app-font-family;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-block-start: 1.2em;
+  margin-block-end: 14px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-block-start: 1.2em;
+  margin-block-end: 14px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-block-start: 1.2em;
+  margin-block-end: 14px;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-block-start: 1.2em;
+  margin-block-end: 14px;
+}
+
+h5 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-block-start: 2em;
+  margin-block-end: 14px;
+}
+
+h6 {
+  font-size: 12px;
+  font-weight: 700;
+  margin-block-start: 2em;
+  margin-block-end: 14px;
+}
+
 .lux-app-header-bg {
   background-color: $app-header-bg;
 }
@@ -136,7 +182,6 @@ body,
 }
 
 .lux-highlight-section-label {
-  color: $dark-secondary-text;
   margin-top: 0;
   margin-left: 0;
 }
@@ -152,7 +197,7 @@ body {
 }
 
 div {
-  font-family: Roboto, Helvetica Neue, sans-serif;
+  font-family: $app-font-family;
 }
 
 .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {

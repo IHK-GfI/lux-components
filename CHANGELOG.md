@@ -3,12 +3,17 @@
 - **allgemein**: UX und Barrierefreiheit: Focus (Outline) für alle Komponenten vereinheitlicht. 
 - **allgemein**: UX und Barrierefreiheit: Kontrast der Themefarben für alle Komponenten angepasst.
 - **allgemein**: UX und Barrierefreiheit: Demoapp für Buttons, Badges, Message-Boxes,...) angepasst.
+- **allgemein**: UX und Barrierefreiheit: Landmarks (z.B. Header, Footer, Navigation, Main,...) hinzugefügt. 
+- **allgemein**: UX und Barrierefreiheit: Überschriftenstruktur (h1..h6) angepasst. 
 - **lux-master-detail**: UX und Barrierefreiheit: Header und Footer umgestaltet.  
 - **lux-tile**: UX und Barrierefreiheit: Mouseover hinzugefügt
 - **lux-tooltip**: UX und Barrierefreiheit: lux-tooltips schließen sich beim Drücken der ESC-Taste
 - **lux-side-nav**: UX und Barrierefreiheit: Appmenü angepasst
 - **lux-message-box**: UX und Barrierefreiheit: Meldungen werden vom Screenreader vorgelesen
 - **lux-file-preview**: UX und Barrierefreiheit: Initialen Focus auf den ersten Button gesetzt.
+- **lux-app-header**: UX und Barrierefreiheit: Neue Aria-Attribute für das Menü, Icon, Image,... hinzugefügt.
+- **lux-app-content**: UX und Barrierefreiheit: Neues Attribut "luxAriaRoleMainLabel" hinzugefügt.
+- **lux-app-footer**: UX und Barrierefreiheit: Neues Attribut "luxAriaRoleFooterLabel" hinzugefügt.
 
 # Version 10.3.0
 ## New
