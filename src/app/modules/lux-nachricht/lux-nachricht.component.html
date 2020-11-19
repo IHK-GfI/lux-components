@@ -1,5 +1,5 @@
 <lux-card *ngIf="viewType == 'overview'" luxTitle="Nachrichten verwalten">
-  <lux-icon luxIconName="fas fa-comment-dots"></lux-icon>
+  <lux-icon luxIconName="fas fa-bell"></lux-icon>
   <lux-card-content>
     <div [ngStyle]="{'height': height}">
       <lux-table [luxData]="nachrichtController.dataSource" luxShowFilter="true" [luxClasses]="tableCSS">
