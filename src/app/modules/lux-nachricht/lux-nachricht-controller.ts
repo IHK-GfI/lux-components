@@ -35,7 +35,7 @@ export class LuxNachrichtController {
 
   create(entry: Nachricht): void {
     this.nachrichtService.createNachricht(entry).subscribe((saveNachrichtResult) => {
-      this.dataSource = [];
+      this.dataSource.push(saveNachrichtResult.nachricht);
       this.afterNachrichtSaved(saveNachrichtResult);
     }, this.nachrichtService.defaultErrHandler);
   }

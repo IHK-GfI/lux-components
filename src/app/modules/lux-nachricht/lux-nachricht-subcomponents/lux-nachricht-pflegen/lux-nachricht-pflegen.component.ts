@@ -17,6 +17,7 @@ export class LuxNachrichtPflegenComponent implements OnInit {
   @Input() luxAuthorizedIhks: Ihk[];
   @Input() luxNachrichtConfig: ILuxNachrichtConfig;
   @Output() luxViewType = new EventEmitter<string>();
+  @Output() luxNachrichtChange = new EventEmitter<Nachricht>();
 
   title: string;
   formGroup: FormGroup;
@@ -83,16 +84,12 @@ export class LuxNachrichtPflegenComponent implements OnInit {
     this.luxNachricht.validTo = this.mergeDateTime(this.formGroup.controls['validTo'].value, this.formGroup.controls['timeTo'].value);
     this.luxNachricht.anwendung = new Anwendung(this.luxNachrichtConfig.anwendungKuerzel);
 
-    if (!this.luxEditMode) {
-      this.nachrichtController.create(this.luxNachricht);
-    }
-    if (this.luxEditMode) {
-      this.nachrichtController.update(this.luxNachricht);
-    }
+    this.luxNachrichtChange.emit(this.luxNachricht);
     this.luxViewType.emit('overview');
   }
 
   abbrechen(): void {
+    this.luxNachrichtChange.emit(null);
     this.luxViewType.emit('overview');
   }
 

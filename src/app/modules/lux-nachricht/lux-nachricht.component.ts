@@ -88,6 +88,17 @@ export class LuxNachrichtComponent implements OnInit {
     }
   }
 
+  onNachrichtChange(nachricht: Nachricht) {
+    if (nachricht != null) {
+      if (nachricht.id != null) {
+        this.nachrichtController.update(nachricht);
+      }
+      if (nachricht.id == null) {
+        this.nachrichtController.create(nachricht);
+      }
+    }
+  }
+
   create(): void {
     this.viewType = 'create';
     this.selectedNachricht = new Nachricht();

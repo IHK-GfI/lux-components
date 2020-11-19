@@ -4,12 +4,14 @@ import { of } from 'rxjs';
 import { Nachricht, SaveNachrichtResult } from '../../../modules/lux-nachricht/lux-nachricht-model/lux-nachricht-model';
 
 export class MockLuxNachrichtService extends NachrichtService {
+    id = 5;
+
     readNachrichten() {
-        return of(mockNachrichtResult);
+        return of([...mockNachrichtResult]);
     }
 
     createNachricht(entry: Nachricht) {
-        mockNachrichtResult.push(entry);
+        entry.id = this.id++;
         return of(new SaveNachrichtResult(entry, false));
     }
 
@@ -17,9 +19,8 @@ export class MockLuxNachrichtService extends NachrichtService {
         return of(new SaveNachrichtResult(entry, false));
     }
 
-
     deleteNachricht(id: Number) {
-        return of(mockNachrichtResult);
+        return of(null);
     }
 
     getAuthorizedIhksForUser() {
