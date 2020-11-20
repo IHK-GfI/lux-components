@@ -20,6 +20,8 @@
     }
 
     mat-step-header {
+      margin: $outline-width;
+
       // Anpassungen an standard Step-Aussehen
       .mat-step-icon,
       .mat-step-icon-not-touched {
@@ -44,11 +46,11 @@
       }
 
       lux-step-header {
-        color: $dark-disabled-text !important;
+        color: $dark-secondary-text !important;
       }
 
       .mat-step-icon {
-        background: $dark-disabled-text;
+        background: $dark-secondary-text;
         color: white;
       }
 
