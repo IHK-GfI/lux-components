@@ -24,24 +24,14 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
   ];
   modifiedConfig: LuxComponentsConfigParameters;
   previousConfig: LuxComponentsConfigParameters;
+  init = true;
 
   constructor(
     public componentsConfigService: LuxComponentsConfigService,
     private router: Router,
     private footerService: LuxAppFooterButtonService,
     public snackbarService: LuxSnackbarService
-  ) {
-    this.configSubscription = componentsConfigService.config.subscribe((newConfig: LuxComponentsConfigParameters) => {
-      this.modifiedConfig = newConfig;
-      this.previousConfig = JSON.parse(JSON.stringify(newConfig));
-
-      this.snackbarService.open(2000, {
-        text: 'Konfiguration aktualisiert.',
-        iconName: 'fa-info',
-        iconSize: '2x'
-      });
-    });
-  }
+  ) {}
 
   ngOnInit() {
     this.footerService.pushButtonInfos(
@@ -68,6 +58,23 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
         }
       })
     );
+
+    this.configSubscription = this.componentsConfigService.config.subscribe(
+      (newConfig: LuxComponentsConfigParameters) => {
+        this.modifiedConfig = newConfig;
+        this.previousConfig = JSON.parse(JSON.stringify(newConfig));
+
+        if (!this.init) {
+          this.snackbarService.open(2000, {
+            text: 'Konfiguration aktualisiert.',
+            iconName: 'fa-info',
+            iconSize: '2x'
+          });
+        }
+      }
+    );
+
+    this.init = true;
   }
 
   ngOnDestroy() {
