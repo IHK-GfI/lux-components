@@ -86,7 +86,7 @@ module.exports = function (config) {
     autoWatch: true,
     // Für die Karmatests stehen die folgenden Browser zur Verfügung:
     // browsers: ['Chrome', 'Firefox', 'IE', 'Safari'],
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['Chrome'],
     singleRun: false
   });
 };
