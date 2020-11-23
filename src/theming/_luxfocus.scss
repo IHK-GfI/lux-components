@@ -360,7 +360,7 @@ lux-button {
 
     &.mat-fab:hover,
     &.mat-raised-button:hover {
-      background-color: $lux-hover-color !important;
+      background-color: darken($lux-hover-color, 10) !important;; // $lux-hover-color !important;
 
       &.mat-accent {
         background-color: lighten(map-get($lux-palette_accentgreen, 500), 10) !important;
