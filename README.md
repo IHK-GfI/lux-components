@@ -14,7 +14,7 @@ Angular-Klassenbibliothek, die via NPM in das eigene Projekt eingebunden wird.
 - Dimitrij Ron (S&N)
 
 ## Changelog
-Die Änderungen weden in der Datei [CHANGELOG.md](https://github.com/IHK-GfI/lux-components/blob/master/CHANGELOG.md) dokumentiert.
+Die Änderungen werden in der Datei [CHANGELOG.md](https://github.com/IHK-GfI/lux-components/blob/master/CHANGELOG.md) dokumentiert.
 
 ## Demo
 Live-Demo vom Zweig (develop): 
