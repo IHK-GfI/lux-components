@@ -1,5 +1,6 @@
 <lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" *ngIf="formGroup">
   <mat-select
+    luxSelectOptionHeight
     [placeholder]="luxPlaceholder"
     [multiple]="luxMultiple"
     [required]="luxRequired"
@@ -10,7 +11,6 @@
     [errorStateMatcher]="stateMatcher"
     [compareWith]="compareByKey"
     (focusin)="luxFocusIn.emit($event)"
-    [panelClass]="'lux-lookup-panel'"
     (focusout)="luxFocusOut.emit($event)"
     [id]="uid"
     [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
@@ -18,10 +18,11 @@
     [attr.aria-required]="luxRequired"
   >
     <ng-container *ngIf='luxWithEmptyEntry && !luxMultiple'>
-      <mat-option [value]="undefined"></mat-option>
+      <mat-option [value]="undefined" class="option-height"></mat-option>
     </ng-container>
     <ng-container *ngFor="let entry of displayedEntries">
       <mat-option
+        class="option-height"
         [value]="entry"
         [ngClass]="{ invalid: entry.isUngueltig }"
         [ngStyle]="getStyles(entry.isUngueltig)"

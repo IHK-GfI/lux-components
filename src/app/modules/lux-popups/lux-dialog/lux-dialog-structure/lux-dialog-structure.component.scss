@@ -1,4 +1,4 @@
-@import '../../../../../theming/luxtheme';
+@import '../../../../../theming/luxcommon';
 
 .lux-dialog {
   // Das Element kann fokussiert werden, das muss aber nicht zwingend mit der Outline gezeigt werden
@@ -6,7 +6,7 @@
 
   // Farbe des Dialog-Titels auf unsere Primärfarbe setzen
   .lux-dialog-title {
-    color: mat-color($lux-primary);
+    color: map-get($lux-palette_darkblue, 500);
   }
 
   // der Mat-Dialog-Content hat negativen Margin und einen passenden Padding (wieso auch immer)

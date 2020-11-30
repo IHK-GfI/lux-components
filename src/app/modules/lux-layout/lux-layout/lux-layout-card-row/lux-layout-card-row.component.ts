@@ -150,7 +150,7 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
     if (this.queryObserver.isGreater('sm')) {
       this.headerPaddingLeft = '28px';
     } else {
-      this.headerPaddingLeft = '16px';
+      this.headerPaddingLeft = '24px';
     }
 
     // Gap zwischen den Elementen bestimmen.

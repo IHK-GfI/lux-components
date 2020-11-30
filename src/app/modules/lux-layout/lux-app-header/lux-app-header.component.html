@@ -1,4 +1,11 @@
-<div fxLayout="row" fxLayoutAlign="start center" class="lux-app-header lux-p-header" fxFlex="100%">
+<div
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  class="lux-app-header lux-p-header"
+  fxFlex="100%"
+  [luxAriaRole]="luxAriaRoleHeaderLabel ? 'banner' : undefined"
+  [luxAriaLabel]="luxAriaRoleHeaderLabel"
+>
   <!-- ausklappbares Side-Nav (linksbündig) -->
   <div fxLayout="row" fxFlex="0 0 auto" class="lux-header-side-nav">
     <div fxLayout="row" fxLayoutAlign="start center">
@@ -20,7 +27,7 @@
           luxIconName="fas fa-bars"
           luxTagId="lux-side-nav-trigger"
           [luxAriaExpanded]="sideNav.sideNavExpanded"
-          luxAriaLabel="Appmenü"
+          [luxAriaLabel]="luxAriaAppMenuButtonLabel"
           *ngIf="sideNav"
         ></lux-button>
       </ng-template>
@@ -28,6 +35,7 @@
       <span fxLayout="row" fxLayoutAlign="center center" class="lux-nowrap lux-header-title" fxFlex="auto">
         <lux-icon
           style="padding: 6px 5px"
+          [luxAriaLabel]="luxAriaTitleIconLabel"
           [luxIconName]="luxIconName"
           [ngClass]="{ 'lux-cursor': hasOnClickedListener, focused: hasOnClickedListener }"
           (click)="onClicked($event)"
@@ -39,6 +47,7 @@
         ></lux-icon>
         <lux-image
           style="padding: 0 5px"
+          [luxAriaLabel]="luxAriaTitleImageLabel"
           [luxImageSrc]="luxImageSrc"
           [luxImageHeight]="luxImageHeight"
           [luxImageWidth]="isIE && luxImageSrc && luxImageSrc.endsWith('.svg') ? '100%' : 'auto'"
@@ -53,6 +62,8 @@
         ><span
           fxFlex="auto"
           style="padding: 10px 5px"
+          class="lux-app-header-title-label"
+          [luxAriaLabel]="luxAriaTitleLinkLabel ? luxAriaTitleLinkLabel : luxAppTitle"
           (click)="onClicked($event)"
           (keydown.enter)="onClicked($event)"
           (keydown.space)="onClicked($event)"
@@ -74,6 +85,7 @@
     fxFlex="0 0 auto"
     fxLayoutAlign="end center"
     class="lux-header-user"
+    [luxAriaLabel]="luxAriaUserMenuButtonLabel"
     [ngClass]="{ 'lux-show-border': !!actionNav }"
     *ngIf="rightNav"
   >

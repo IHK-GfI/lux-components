@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.enum';
+import { LuxBackgroundColorsEnum, LuxMessageBoxColors } from '../../../modules/lux-util/lux-colors.enum';
 import { ILuxMessage } from '../../../modules/lux-common/lux-message-box/lux-message-box-model/lux-message.interface';
 import { ILuxMessageCloseEvent } from '../../../modules/lux-common/lux-message-box/lux-message-box-model/lux-message-events.interface';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
@@ -25,7 +25,7 @@ export class MessageBoxExampleComponent implements OnInit {
   selectedPosition = 'oberhalb';
   newMessage: ILuxMessage = { text: '', iconName: '', color: LuxBackgroundColorsEnum.blue };
   messageIndex: number = 1;
-  maximumDisplayed: number = 2;
+  maximumDisplayed: number = 10;
 
   // endregion
 
@@ -36,11 +36,15 @@ export class MessageBoxExampleComponent implements OnInit {
   }
 
   setMessages() {
-    this.messages = [
-      { text: 'Message #1', iconName: 'fas fa-lightbulb', color: LuxBackgroundColorsEnum.green },
-      { text: 'Message #2', iconName: 'fas fa-bell', color: LuxBackgroundColorsEnum.blue },
-      { text: 'Message #3', iconName: 'fas fa-folder-open', color: LuxBackgroundColorsEnum.yellow }
-    ];
+    this.messages = [];
+
+    LuxMessageBoxColors.forEach((color, index) => {
+      this.messages.push({
+        text: 'Message #' + (index + 1),
+        iconName: 'fas fa-bell',
+        color: LuxBackgroundColorsEnum[color.toString()]
+      });
+    });
   }
 
   add() {
@@ -53,7 +57,7 @@ export class MessageBoxExampleComponent implements OnInit {
     this.messages = this.messages.filter((value, index) => index !== i);
   }
 
-  logChanged($event: ILuxMessageCloseEvent) {
+  logChanged($event: any) {
     this.log(this.showOutputEvents, '[Output-Event] Message wurde geändert:', $event);
   }
 

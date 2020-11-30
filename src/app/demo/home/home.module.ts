@@ -7,12 +7,14 @@ import { RouterModule } from '@angular/router';
 import { LuxIconModule } from '../../modules/lux-icon/lux-icon.module';
 import { LuxLayoutModule } from '../../modules/lux-layout/lux-layout.module';
 import { HomeComponent } from './home.component';
+import { LuxDirectivesModule } from '../../modules/lux-directives/lux-directives.module';
 
 @NgModule({
   imports: [
     CommonModule,
     LuxLayoutModule,
     LuxIconModule,
+    LuxDirectivesModule,
     HttpClientModule,
     CommonModule,
     FormsModule,

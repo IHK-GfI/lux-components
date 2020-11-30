@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="start center">
-  <div fxFlex="calc(100% - 50px)">
+  <div fxFlex="calc(100% - 55px)">
     <ng-content></ng-content>
   </div>
 
@@ -8,7 +8,7 @@
     [luxIconName]="iconName"
     class="lux-master-header-collapse"
     luxTagId="master-detail.toggle"
-    fxFlex="0 0 50px"
+    fxFlex="none"
     fxFlexAlign="start"
     #toggleButton
     luxAriaLabel="{{ iconName === 'keyboard_arrow_left' ? 'Masterliste zuklappen' : 'Masterliste aufklappen' }}"

@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LuxIconModule } from '../../modules/lux-icon/lux-icon.module';
 import { LuxLayoutModule } from '../../modules/lux-layout/lux-layout.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LuxDirectivesModule } from '../../modules/lux-directives/lux-directives.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LuxActionModule,
     LuxIconModule,
     LuxLayoutModule,
+    LuxDirectivesModule,
     FlexLayoutModule
   ],
   declarations: [ConfigurationComponent],

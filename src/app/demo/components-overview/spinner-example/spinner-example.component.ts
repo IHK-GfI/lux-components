@@ -1,27 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.enum';
+import { LuxBackgroundColorsEnum, LuxProgressColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-spinner-example',
   templateUrl: './spinner-example.component.html'
 })
 export class SpinnerExampleComponent implements OnInit {
-  // region Helper-Properties für das Beispiel
 
   sizes = ['small', 'medium', 'large'];
-  colors = Object.keys(LuxBackgroundColorsEnum);
+  colors = LuxProgressColors;
+  backgroundColor = '';
   modes = ['determinate', 'indeterminate'];
 
-  // endregion
-
-  // region Properties der Component
-
   size = 'medium';
-  color = this.colors[0];
-  mode = 'indeterminate';
-  value = 0;
-
-  // endregion
+  mode = 'determinate';
+  value = 70;
 
   constructor() {}
 

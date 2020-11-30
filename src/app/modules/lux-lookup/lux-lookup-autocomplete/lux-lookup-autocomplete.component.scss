@@ -1,17 +1,20 @@
 @import './../lux-lookup-model/lux-lookup-component';
+@import '../../../../theming/luxcommon';
 
-::ng-deep .lux-autocomplete-panel mat-option {
-  margin-bottom: 2px;
+::ng-deep .lux-autocomplete-panel {
+  padding: $outline-width;
 
-  &.information-option {
-    position: fixed;
-    background: white;
-    z-index: 1000;
-    line-height: 24px;
-    pointer-events: none;
+  mat-option:not(:last-of-type) {
+    margin-bottom: $outline-width;
   }
 
-  &.information-option + mat-option {
-    margin-top: 48px;
+  mat-option {
+    &.information-option {
+      position: fixed;
+      background: white;
+      z-index: 1000;
+      line-height: 24px;
+      pointer-events: none;
+    }
   }
 }

@@ -7,14 +7,16 @@ import { LuxSanitizeConfig } from '../../../modules/lux-html/lux-sanitize/lux-sa
 })
 export class HtmlExampleComponent implements OnInit {
   htmlData = `<h1>Lorem ipsum</h1>
-<p><b>Lorem ipsum</b> dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-   dolore magna aliquyam erat, sed diam voluptua.
-   <script>alert('Unsicher!!!!')</script>
-   At vero eos et accusam et justo duo dolores et ea rebum.</p>
+<p>
+  <b>Lorem ipsum</b> dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+   dolore magna aliquyam erat, sed diam voluptua.<script>alert('Unsicher!!!!')</script>
+   At vero eos et accusam et justo duo dolores et ea rebum.
+</p>
 
-<p>Stet clita kasd gubergren, no sea takimata sanctus est <span style="color: red">Lorem ipsum</span> dolor sit amet.
-   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-   magna aliquyam erat, sed diam voluptua.</p>
+<p>Stet clita kasd gubergren, no sea takimata sanctus est
+  <span style="color: #b01211; font-weight: bold">Lorem ipsum</span> dolor sit amet. Lorem ipsum dolor sit amet,
+  consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et doloremagna aliquyam erat,
+  sed diam voluptua.</p>
 
 <p>Schau doch mal bei der <a href="https://www.ihk-gfi.de" target="_blank">IHK-Gfi</a> vorbei. </p>`;
 

@@ -128,21 +128,23 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     this.currentModuleNames = Array.from(this.currentModules.keys());
     this.sortComponentEntriesByModule();
 
-    this.subscription = this.router.events.pipe(filter((event: any) => event instanceof NavigationEnd)).subscribe((url: NavigationEnd) => {
-      this.currentUrl = url.url;
-      const urlPaths = this.currentUrl.split('/');
-      const lastPath = urlPaths && urlPaths[urlPaths.length - 1] ? urlPaths[urlPaths.length - 1] : '';
-      for (const component of this.components) {
-        if (lastPath.toLowerCase() === component.label.toLowerCase()) {
-          this.selectedComponent = component;
-          // Alle Modules als expanded=false markieren, Ausnahme: das Modul des aktuellen Beispiels
-          this.currentModules.forEach((expanded: boolean, moduleName: string) =>
-            this.currentModules.set(moduleName, moduleName === component.moduleName)
-          );
-          break;
+    this.subscription = this.router.events
+      .pipe(filter((event: any) => event instanceof NavigationEnd))
+      .subscribe((url: NavigationEnd) => {
+        this.currentUrl = url.url;
+        const urlPaths = this.currentUrl.split('/');
+        const lastPath = urlPaths && urlPaths[urlPaths.length - 1] ? urlPaths[urlPaths.length - 1] : '';
+        for (const component of this.components) {
+          if (lastPath.toLowerCase() === component.label.toLowerCase()) {
+            this.selectedComponent = component;
+            // Alle Modules als expanded=false markieren, Ausnahme: das Modul des aktuellen Beispiels
+            this.currentModules.forEach((expanded: boolean, moduleName: string) =>
+              this.currentModules.set(moduleName, moduleName === component.moduleName)
+            );
+            break;
+          }
         }
-      }
-    });
+      });
   }
 
   ngOnDestroy(): void {
@@ -163,6 +165,14 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
 
   goToStepper() {
     this.router.navigate(['components-overview/example/stepper']);
+  }
+
+  onExpandAll() {
+    this.currentModules.forEach((expanded: boolean, moduleName: string) => this.currentModules.set(moduleName, true));
+  }
+
+  onCollapseAll() {
+    this.currentModules.forEach((expanded: boolean, moduleName: string) => this.currentModules.set(moduleName, false));
   }
 
   openSnackbar() {

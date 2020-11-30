@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { LuxFilePreviewBase } from '../lux-file-preview-base/lux-file-preview-base';
@@ -11,7 +11,7 @@ import { LuxFilePreviewRef } from '../lux-file-preview-ref';
   templateUrl: './lux-file-preview-pdfviewer.component.html',
   styleUrls: ['./lux-file-preview-pdfviewer.component.scss']
 })
-export class LuxFilePreviewPdfViewerComponent extends LuxFilePreviewBase implements OnInit {
+export class LuxFilePreviewPdfViewerComponent extends LuxFilePreviewBase implements OnInit, AfterViewInit {
   showAll = true;
 
   page = 1;
@@ -34,6 +34,7 @@ export class LuxFilePreviewPdfViewerComponent extends LuxFilePreviewBase impleme
   zoom: any = this.options[4];
 
   constructor(
+    private elementRef: ElementRef,
     protected previewRef: LuxFilePreviewRef,
     @Inject(LUX_FILE_PREVIEW_DATA) protected previewData: LuxFilePreviewData,
     protected sanitizer: DomSanitizer
@@ -46,6 +47,15 @@ export class LuxFilePreviewPdfViewerComponent extends LuxFilePreviewBase impleme
 
     this.loadingDivLeft = window.innerWidth / 2 - this.loadingDivWidth / 2;
     this.loadingDivTop = window.innerHeight / 2 - this.loadingDivHeight / 2;
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      const firstButton = (<HTMLElement>this.elementRef.nativeElement).querySelector('button');
+      if (firstButton) {
+        firstButton.focus();
+      }
+    });
   }
 
   onPrevPage() {

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LuxUtil } from '../../lux-util/lux-util';
-import { LuxBackgroundColorsEnum } from '../../lux-util/lux-colors.enum';
+import { LuxBackgroundColorsEnum, LuxProgressColor } from '../../lux-util/lux-colors.enum';
 
 export declare type PROGRESS_MODES = 'determinate' | 'indeterminate';
 export declare type PROGRESS_TYPES = 'Progressbar' | 'Spinner';
@@ -15,7 +15,7 @@ export class LuxProgressComponent implements OnInit {
 
   private _luxMode: PROGRESS_MODES;
   private _luxType: PROGRESS_TYPES;
-  private _luxColor: LuxBackgroundColorsEnum;
+  private _luxColor: LuxProgressColor;
 
   isIE: boolean = false;
   animDurationCSS: string = '';
@@ -27,7 +27,7 @@ export class LuxProgressComponent implements OnInit {
   @Input() luxTagId: string;
 
   @Input()
-  set luxColor(value: LuxBackgroundColorsEnum) {
+  set luxColor(value: LuxProgressColor) {
     this._luxColor = LuxBackgroundColorsEnum[value] ? LuxBackgroundColorsEnum[value] : this.DEFAULT_PROGRESS_COLOR;
   }
 

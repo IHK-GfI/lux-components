@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
+import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-list-example',
@@ -12,6 +13,7 @@ export class ListExampleComponent implements OnInit {
   showOutputEvents: boolean = false;
   log = logResult;
   items: any[] = [];
+  colors = Object.keys(LuxBackgroundColorsEnum);
 
   // endregion
 
@@ -26,7 +28,7 @@ export class ListExampleComponent implements OnInit {
 
   constructor() {
     this.clear();
-    this.fill(5);
+    this.fill(10);
   }
 
   ngOnInit() {}

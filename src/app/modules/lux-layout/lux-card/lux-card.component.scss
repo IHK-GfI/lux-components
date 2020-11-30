@@ -1,7 +1,11 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
 
 .lux-highlight {
-  color: mat-color($lux-primary, A400);
+  color: $dark-primary-text;
+}
+
+mat-card-subtitle {
+  color: $dark-secondary-text;
 }
 
 .lux-icon {
@@ -66,6 +70,7 @@
 
 .lux-card-title-container {
   overflow-y: hidden;
+  margin: 0 10px 0 0;
 }
 
 .lux-card-content-container {

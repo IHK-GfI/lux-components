@@ -1,4 +1,10 @@
-<div fxLayout="row" class="lux-app-footer lux-p-footer footerFont" fxFlexFill>
+<div
+  fxLayout="row"
+  class="lux-app-footer lux-p-footer footerFont"
+  fxFlexFill
+  [luxAriaRole]="luxAriaRoleFooterLabel ? 'contentinfo' : undefined"
+  [luxAriaLabel]="luxAriaRoleFooterLabel"
+>
   <div *ngIf="luxVersion" fxFlex="none" fxLayoutAlign="left center" fxShow="false" fxShow.gt-lg="true" class="version">
     Version {{ luxVersion }}
   </div>

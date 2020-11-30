@@ -1,0 +1,9 @@
+@import '../../../../theming/luxcommon';
+
+mat-datepicker-toggle ::ng-deep button {
+  color: map-get($lux-palette_darkblue, 500);
+
+  &[disabled].mat-icon-button.mat-button-disabled {
+    color: $dark-disabled-text;
+  }
+}

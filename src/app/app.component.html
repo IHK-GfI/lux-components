@@ -4,11 +4,15 @@
     luxAppTitleShort="Components"
     luxUserName="Max Mustermann"
     luxIconName="far fa-lightbulb"
+    luxImageSrc="assets/png/example.png"
+    luxAriaTitleIconLabel="Titelicon  / Zur Hauptseie"
+    luxAriaTitleImageLabel="Titelbild  / Zur Hauptseie"
+    luxAriaTitleLinkLabel="LUX Components / Zur Hauptseie"
     (luxClicked)="router.navigate(['/']);"
   >
     <lux-side-nav luxDashboardLink="https://github.com/IHK-GfI/lux-components/wiki" [luxOpenLinkBlank]="true">
       <lux-side-nav-header>
-        <h3>Willkommen, Herr Mustermann</h3>
+        <h3 class="lux-side-nav-header-greeting">Navigation</h3>
       </lux-side-nav-header>
       <lux-side-nav-item
         luxLabel="Home"
@@ -98,9 +102,9 @@
         </lux-side-nav-item>
       </lux-side-nav-item>
       <lux-side-nav-footer>
-        <div fxLayout="row" fxLayoutAlign="end center">
-          <lux-button luxLabel="Datenschutz" [luxRaised]="true"></lux-button>
-          <lux-button luxLabel="Impressum" [luxRaised]="true"></lux-button>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+          <lux-button luxLabel="Aufklappen" [luxRaised]="true" (luxClicked)="navigationService.onExpandAll()"></lux-button>
+          <lux-button luxLabel="Zuklappen" [luxRaised]="true" (luxClicked)="navigationService.onCollapseAll()"></lux-button>
         </div>
       </lux-side-nav-footer>
     </lux-side-nav>
@@ -127,6 +131,6 @@
       <lux-menu-item luxLabel="Abmelden" luxIconName="fa-power-off" luxTagId="abmelden-menu-item"></lux-menu-item>
     </lux-app-header-right-nav>
   </lux-app-header>
-  <lux-app-content></lux-app-content>
-  <lux-app-footer luxVersion="10.3.0"></lux-app-footer>
+  <lux-app-content luxAriaRoleMainLabel=""></lux-app-content>
+  <lux-app-footer luxVersion="10.4.0"></lux-app-footer>
 </div>

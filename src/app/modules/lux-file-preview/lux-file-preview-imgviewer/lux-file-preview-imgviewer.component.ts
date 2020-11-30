@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  ElementRef,
+  Inject,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LuxFilePreviewBase } from '../lux-file-preview-base/lux-file-preview-base';
 import { LUX_FILE_PREVIEW_DATA } from '../lux-file-preview-config';
@@ -18,6 +28,7 @@ export class LuxFilePreviewImgViewerComponent extends LuxFilePreviewBase impleme
   zoomStep = 250;
 
   constructor(
+    private elementRef: ElementRef,
     protected previewRef: LuxFilePreviewRef,
     @Inject(LUX_FILE_PREVIEW_DATA) protected previewData: LuxFilePreviewData,
     public sanitizer: DomSanitizer
@@ -29,6 +40,11 @@ export class LuxFilePreviewImgViewerComponent extends LuxFilePreviewBase impleme
     setTimeout(() => {
       this.zoomActive =
         this.previewImg && this.previewImg.nativeElement.naturalWidth - this.paddingWith > window.innerWidth;
+
+        const firstButton = (<HTMLElement>this.elementRef.nativeElement).querySelector('button');
+        if (firstButton) {
+          firstButton.focus();
+        }
     });
   }
 

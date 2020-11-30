@@ -68,6 +68,10 @@ export class LuxTooltipDirective extends MatTooltip implements OnChanges {
     super.show(this.luxTooltipShowDelay);
   }
 
+  @HostListener('document:keydown.escape', ['$event']) _handleEscape(event: KeyboardEvent) {
+    super.hide(0);
+  }
+
   ngOnChanges(simpleChanges: SimpleChanges) {
     this.message = this.luxTooltip;
     this.hideDelay = this.luxTooltipHideDelay;
