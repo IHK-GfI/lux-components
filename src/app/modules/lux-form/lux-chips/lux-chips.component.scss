@@ -1,7 +1,14 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
+
+::ng-deep .lux-autocomplete-panel {
+  padding: $outline-width;
+
+  mat-option:not(:last-of-type) {
+    margin-bottom: $outline-width;
+  }
+}
 
 mat-chip-list {
-  //outline: none;
   display: block;
 }
 
@@ -32,15 +39,29 @@ mat-chip-list {
     width: auto;
   }
 
-  mat-chip.mat-chip-disabled {
-    background-color: $dark-disabled-text !important;
-    color: white !important;
-    pointer-events: none;
+  mat-chip {
+    // Löschicon (luxSelected=true)
+    &.mat-chip-selected .mat-chip-remove {
+      color: white;
+      opacity: 1 !important;
+    }
 
-    lux-icon ::ng-deep {
-      i,
-      mat-icon {
-        color: white;
+    // Löschicon (luxSelected=false)
+    &:not(.mat-chip-selected) .mat-chip-remove {
+      color: $dark-primary-text;
+      opacity: 1 !important;
+    }
+
+    &.mat-chip-disabled {
+      background-color: $dark-disabled-text !important;
+      color: white !important;
+      pointer-events: none;
+
+      lux-icon ::ng-deep {
+        i,
+        mat-icon {
+          color: white;
+        }
       }
     }
   }

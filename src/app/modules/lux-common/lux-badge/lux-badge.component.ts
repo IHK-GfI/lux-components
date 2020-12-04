@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LuxBackgroundColorsEnum } from '../../lux-util/lux-colors.enum';
+import { LuxBackgroundColorsEnum, LuxBadgeColor } from '../../lux-util/lux-colors.enum';
 import { LuxUtil } from '../../lux-util/lux-util';
 
 @Component({
@@ -31,7 +31,7 @@ export class LuxBadgeComponent implements OnInit {
   }
 
   @Input()
-  set luxColor(color: LuxBackgroundColorsEnum) {
+  set luxColor(color: LuxBadgeColor) {
     const result = LuxUtil.getColorsByBgColorsEnum(color);
     this._backgroundCSSClass = result.backgroundCSSClass;
     this._fontCSSClass = result.fontCSSClass;

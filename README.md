@@ -14,7 +14,7 @@ Angular-Klassenbibliothek, die via NPM in das eigene Projekt eingebunden wird.
 - Dimitrij Ron (S&N)
 
 ## Changelog
-Die Änderungen weden in der Datei [CHANGELOG.md](https://github.com/IHK-GfI/lux-components/blob/master/CHANGELOG.md) dokumentiert.
+Die Änderungen werden in der Datei [CHANGELOG.md](https://github.com/IHK-GfI/lux-components/blob/master/CHANGELOG.md) dokumentiert.
 
 ## Demo
 Live-Demo vom Zweig (develop): 
@@ -48,7 +48,7 @@ npm install -g @angular-devkit/schematics-cli
 Zuerst erzeugt man über die Angular CLI eine neue App.
 
 ```bash
-npx @angular/cli@9 new my-new-app
+npx @angular/cli@10 new my-new-app
 ? Would you like to add Angular routing? Yes
 ? Which stylesheet format would you like to use? SCSS
 
@@ -59,13 +59,13 @@ cd my-new-app
 Im Anschluss installiert man sich den [LUX-Componentsupdater](https://github.com/IHK-GfI/lux-components-update). 
 
 ```bash
-npm install @ihk-gfi/lux-components-update --save-dev
+npm install @ihk-gfi/lux-components-update@10 --save-dev
 ```
 
 Dann kann man über den LUX-Componentsupdater die LUX-Components seiner App hinzufügen: 
 
 ```bash
-ng generate @ihk-gfi/lux-components-update:add-lux-components-1.9
+ng generate @ihk-gfi/lux-components-update:add-lux-components
 ```
 
 Jetzt kann die App normal gestartet werden: 

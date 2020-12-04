@@ -19,10 +19,10 @@
         [luxTitleLineBreak]="item.lineBreak"
         [luxSelected]="item.selected"
         (luxClicked)="click($event)"
-        *ngFor="let item of items"
+        *ngFor="let item of items; let i = index"
       >
         <lux-list-item-icon>
-          <lux-icon [luxIconName]="item.iconName"></lux-icon>
+          <lux-icon [luxIconName]="item.iconName" class="{{ 'lux-color-' + (colors[i % colors.length]) }}"></lux-icon>
         </lux-list-item-icon>
         <lux-list-item-content>
           <p>
@@ -135,7 +135,7 @@
         (luxClicked)="clear()"
       >
       </lux-button>
-      <lux-button luxLabel="Füllen" luxColor="primary" [luxRaised]="true" (luxClicked)="fill(5)"> </lux-button>
+      <lux-button luxLabel="Füllen" luxColor="primary" [luxRaised]="true" (luxClicked)="fill(10)"> </lux-button>
     </div>
   </example-base-options-actions>
 </example-base-structure>

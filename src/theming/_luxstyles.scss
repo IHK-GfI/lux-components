@@ -4,6 +4,10 @@
    / /__/ /_/ /  _>  <  /___/ _\ \  / __/ / // / / / / -_) (_-<
   /____/\____/  /_/|_|       /___/  \__/  \_, / /_/  \__/ /___/
                                          /___/
+Version 1.12
+- Überschriften (h1..h6) überarbeitet.
+- Neue CSS-Classes (z.B. lux-app-data-bg, lux-app-header-bg, lux-hover-bg,...) hinzugefügt.
+
 Version 1.11
 - CSS-Class lux-hint hinzugefügt.
 
@@ -99,6 +103,93 @@ body,
   height: 100%;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: $app-font-family;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-block-start: 1.2em;
+  margin-block-end: 14px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-block-start: 1.2em;
+  margin-block-end: 14px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-block-start: 1.2em;
+  margin-block-end: 14px;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-block-start: 1.2em;
+  margin-block-end: 14px;
+}
+
+h5 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-block-start: 2em;
+  margin-block-end: 14px;
+}
+
+h6 {
+  font-size: 12px;
+  font-weight: 700;
+  margin-block-start: 2em;
+  margin-block-end: 14px;
+}
+
+.lux-app-header-bg {
+  background-color: $app-header-bg;
+}
+
+.lux-app-content-bg {
+  background-color: $app-content-bg;
+}
+
+.lux-app-footer-bg {
+  background-color: $app-footer-bg;
+}
+
+.lux-app-data-bg {
+  background-color: $app-data-bg;
+}
+
+.lux-selected-bg {
+  background-color: $lux-selected-bg-color;
+}
+
+.lux-hover-bg {
+  background-color: $lux-hover-color;
+}
+
+.lux-hover-dark-bg {
+  background-color: $lux-hover-color-for-dark-background;
+}
+
+.lux-highlight-section {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 8px;
+  border: 1px solid $dark-dividers;
+}
+
+.lux-highlight-section-label {
+  margin-top: 0;
+  margin-left: 0;
+}
+
 .lux-app-container {
   flex-direction: column;
   box-sizing: border-box;
@@ -110,7 +201,7 @@ body {
 }
 
 div {
-  font-family: Roboto, Helvetica Neue, sans-serif;
+  font-family: $app-font-family;
 }
 
 .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
@@ -121,7 +212,7 @@ div {
 }
 
 .mat-dialog-container {
-  background-color: #f0f0f2 !important;
+  background-color: $app-content-bg !important;
 }
 
 lux-card.lux-card-grow {
@@ -150,12 +241,12 @@ lux-card.lux-card-grow {
 }
 
 .lux-label {
-  color: rgba(0, 0, 0, 0.54);
+  color: $dark-secondary-text;
   font-size: 75%;
 }
 
 .lux-hint {
-  color: rgba(0, 0, 0, 0.6);
+  color: $dark-secondary-text;
   font-size: 12px;
 }
 
@@ -333,26 +424,17 @@ lux-button.lux-uppercase {
   }
 }
 
-$componentBgColors: (
-  "red": #b01211,
-  "green": #95bc4c,
-  "yellow": #ebc000,
-  "blue": #335c85,
-  "gray": #c8c8c8,
-  "orange": #ec9c1b,
-  "brown": #783f04
-);
+@each $colorName, $colorNameHex in $componentBgColors {
+  .lux-color-#{''+$colorName+''} {
+    color: $colorNameHex;
+  }
+}
 
 @each $colorName, $colorNameHex in $componentBgColors {
   .lux-bg-color-#{''+$colorName+''} {
     background: $colorNameHex;
   }
 }
-
-$componentFontColors: (
-  black: #000000,
-  white: #ffffff
-);
 
 @each $colorName, $colorNameHex in $componentFontColors {
   .lux-font-color-#{''+$colorName+''} {

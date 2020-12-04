@@ -14,6 +14,7 @@ export class TabsExampleComponent implements OnInit {
   iconSize: string = '2x';
   displayDivider: boolean = true;
   lazyLoading: boolean = false;
+  backgroundColor = '#ffffff';
 
   tabs: any[] = [
     {

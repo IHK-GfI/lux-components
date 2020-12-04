@@ -1,9 +1,33 @@
+@import '../../../../theming/luxcommon';
+
 :host {
   display: block;
 }
 
+.lux-panel {
+  .mat-expansion-panel-header {
+    margin: $outline-width !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-header:not([aria-disabled='true']) {
+
+    .mat-expansion-panel-header-title {
+      color: $dark-primary-text;
+    }
+
+    .mat-expansion-panel-header-description {
+      color: $dark-secondary-text;
+    }
+  }
+
+  ::ng-deep lux-panel-content {
+    margin-bottom: $outline-width;
+  }
+}
+
 .lux-panel-mobile {
   .mat-expansion-panel-header {
+    margin: $outline-width;
     padding: 0 12px !important;
   }
 

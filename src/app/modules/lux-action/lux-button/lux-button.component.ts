@@ -44,7 +44,7 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
     let selector = 'lux-button';
     if (className.indexOf('lux-link') > -1) {
       selector = 'lux-link';
-    } else if (className.indexOf('lux-side-nav-item') > -1) {
+    } else if (className.indexOf('lux-side-nav-item-button') > -1) {
       selector = 'lux-side-nav-item';
     } else if (className.indexOf('lux-menu-item') > -1) {
       selector = 'lux-menu-item';

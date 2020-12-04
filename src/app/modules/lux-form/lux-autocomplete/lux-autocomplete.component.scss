@@ -1,5 +1,9 @@
+@import '../../../../theming/luxcommon';
+
 ::ng-deep .lux-autocomplete-panel {
+  padding: $outline-width;
+
   mat-option:not(:last-of-type) {
-    margin-bottom: 2px;
+    margin-bottom: $outline-width;
   }
 }

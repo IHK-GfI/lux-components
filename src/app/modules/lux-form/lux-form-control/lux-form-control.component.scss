@@ -1,4 +1,4 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
 
 @mixin crop {
   overflow: hidden;
@@ -224,6 +224,7 @@ $fontSizeSmall: 12px;
     .lux-label,
     mat-hint,
     mat-error {
+      color: $dark-secondary-text;
       font-size: $fontSizeSmall !important;
     }
   }
@@ -279,7 +280,7 @@ $fontSizeSmall: 12px;
 }
 
 ::ng-deep {
-  .lux-form-control-readonly {
+  .lux-form-control-readonly, .lux-form-control-disabled {
     pointer-events: none;
   }
 }

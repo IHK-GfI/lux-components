@@ -38,6 +38,7 @@ export const APP_DATE_FORMATS = {
 @Component({
   selector: 'lux-datepicker',
   templateUrl: './lux-datepicker.component.html',
+  styleUrls: ['./lux-datepicker.component.scss'],
   providers: [
     { provide: DateAdapter, useClass: LuxDatepickerAdapter, deps: [MAT_DATE_LOCALE, Platform] },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }

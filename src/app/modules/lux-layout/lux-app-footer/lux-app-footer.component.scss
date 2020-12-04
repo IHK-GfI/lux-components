@@ -1,4 +1,4 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
 
 :host {
   flex: 0 0 auto;
@@ -8,7 +8,7 @@
 }
 
 .lux-app-footer {
-  background-color: mat-color($lux-primary, 100);
+  background-color: $app-footer-bg;
   overflow: hidden;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .footerFont {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: $app-font-family;
   font-size: 14px;
   font-weight: 500;
 }

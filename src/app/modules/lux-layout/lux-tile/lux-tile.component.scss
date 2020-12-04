@@ -1,4 +1,4 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
 
 :host {
   position: relative;
@@ -14,11 +14,11 @@ lux-divider {
 }
 
 h2 {
-  margin: 0;
+  margin: 4px 0 0 0;
 }
 
 .lux-highlight {
-  color: mat-color($lux-primary, A400);
+  color: map-get($lux-palette_darkblue, A400);
 }
 
 .lux-tile-small-font {
@@ -87,7 +87,7 @@ h2 {
 }
 
 .lux-tile-label {
-  padding: 24px;
+  padding: 12px;
   text-align: center;
 }
 
@@ -96,7 +96,7 @@ h2 {
 }
 
 .lux-notification-new {
-  background-color: mat-color($lux-accent, 500);
+  background-color: map-get($lux-palette_accentgreen, 500);
 }
 
 .lux-tile-small-font ::ng-deep .mat-badge-content {

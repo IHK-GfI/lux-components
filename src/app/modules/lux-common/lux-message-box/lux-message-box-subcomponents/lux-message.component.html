@@ -3,8 +3,6 @@
   fxLayout="row"
   fxLayoutAlign="start center"
   luxAriaRole="listitem"
-  [luxAriaLabel]="luxMessage.text"
-  tabindex="0"
   *ngIf="luxMessage"
 >
   <div class="lux-message-icon" fxFlex="0 0 50px" fxLayoutAlign="start center">
@@ -12,14 +10,14 @@
   </div>
   <div fxFlex="100" fxFlexFill fxLayoutAlign="space-between center">
     <div class="lux-message-text" fxFlex="1 1 auto" fxLayoutAlign="start">
-      <p>{{ luxMessage.text }}</p>
+      <p tabindex="0">{{ luxMessage.text }}</p>
     </div>
     <lux-button
       class="lux-close-message-btn"
       luxIconName="fas fa-times"
       luxTagId="lux-message-box-close-btn"
       (luxClicked)="close()"
-      luxAriaLabel="Nachricht schließen"
+      luxAriaLabel="Meldung schließen"
     >
     </lux-button>
   </div>

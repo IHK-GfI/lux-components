@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 
 import { Component } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
@@ -48,6 +48,9 @@ describe('LuxHttpErrorComponent', () => {
     expect(messageIcon.nativeElement.className).toContain('fa-bug', 'Nachbedingung 3');
     expect(messageContainer.nativeElement.className).toContain('lux-bg-color-red', 'Nachbedingung 4');
     expect(messageContainer.nativeElement.className).toContain('lux-font-color-white', 'Nachbedingung 5');
+
+    LuxTestHelper.wait(fixture);
+    flush();
   }));
 
   it('Sollte die Fehler (aus Objekten mit .message) anzeigen', fakeAsync(() => {
@@ -78,6 +81,9 @@ describe('LuxHttpErrorComponent', () => {
     expect(messageIcon.nativeElement.className).toContain('fa-bug', 'Nachbedingung 3');
     expect(messageContainer.nativeElement.className).toContain('lux-bg-color-red', 'Nachbedingung 4');
     expect(messageContainer.nativeElement.className).toContain('lux-font-color-white', 'Nachbedingung 5');
+
+    LuxTestHelper.wait(fixture);
+    flush();
   }));
 
   it('Sollte die Fehler (aus Objekten mit .toString()) anzeigen', fakeAsync(() => {
@@ -108,6 +114,9 @@ describe('LuxHttpErrorComponent', () => {
     expect(messageIcon.nativeElement.className).toContain('fa-bug', 'Nachbedingung 3');
     expect(messageContainer.nativeElement.className).toContain('lux-bg-color-red', 'Nachbedingung 4');
     expect(messageContainer.nativeElement.className).toContain('lux-font-color-white', 'Nachbedingung 5');
+
+    LuxTestHelper.wait(fixture);
+    flush();
   }));
 
   it('Sollte durch die Fehler navigieren können', fakeAsync(() => {
@@ -152,6 +161,9 @@ describe('LuxHttpErrorComponent', () => {
     // Nachbedingungen prüfen
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
     expect(messageText.nativeElement.textContent).toBe('403', 'Nachbedingung 4');
+
+    LuxTestHelper.wait(fixture);
+    flush();
   }));
 });
 

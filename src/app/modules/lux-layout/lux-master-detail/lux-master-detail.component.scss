@@ -1,4 +1,4 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
 
 :focus {
   outline: none;
@@ -10,14 +10,13 @@
 }
 
 .lux-master-container {
-  border-right: 1px solid lightgray;
-  border-left: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
-  min-width: 50px;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  margin: 0 2px 2px 2px;
+  min-width: 60px;
   position: relative;
 
   .lux-not-open {
-    padding: 12px 0;
+    padding: 10px 4px;
   }
 
   // Wenn das passende Flag gesetzt ist und keine Mobilansicht vorliegt,
@@ -30,13 +29,14 @@
   }
 }
 
-.lux-spinner-hidden {
-  display: none !important;
+lux-master-view {
+  border-top: 2px solid rgba(0, 0, 0, 0.12);;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);;
+  z-index: 100
 }
 
-:host ::ng-deep lux-master-header-content div,
-:host ::ng-deep lux-master-header-content span {
-  color: mat-color($lux-primary, 50);
+.lux-spinner-hidden {
+  display: none !important;
 }
 
 lux-list-item {

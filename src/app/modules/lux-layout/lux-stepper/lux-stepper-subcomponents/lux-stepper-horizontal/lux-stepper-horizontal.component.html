@@ -9,6 +9,7 @@
     'lux-no-animation': !luxStepperConfig.luxHorizontalStepAnimationActive
   }"
   (selectionChange)="luxStepChanged.emit($event)"
+  (click)="luxCheckValidation.emit()"
   #stepper
 >
   <!-- Alle aktuell bekannten Steps zeichnen -->
@@ -16,7 +17,7 @@
     <mat-step [completed]="luxStep.isCompleted()" [optional]="luxStep.luxOptional" [editable]="luxStep.luxEditable">
       <!-- Header des Steps -->
       <ng-template matStepLabel>
-        <div fxLayout="row" fxLayoutAlign="start center" (click)="luxCheckValidation.emit()">
+        <div fxLayout="row" fxLayoutAlign="start center">
           <ng-template #matStepLabel></ng-template>
           <ng-container *ngTemplateOutlet="luxStep.headerTemplate"></ng-container>
         </div>

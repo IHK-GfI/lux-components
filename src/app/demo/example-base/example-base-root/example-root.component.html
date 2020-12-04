@@ -11,6 +11,8 @@
     class="example-base-components-list"
     fxLayout="column"
     fxFlex="auto"
+    luxAriaRole="navigation"
+    luxAriaLabel="Komponentenbeispiele"
     #exampleListElement
     *ngIf="!mediaQueryService.isXS() && !mediaQueryService.isSM()"
   >
@@ -30,6 +32,8 @@
                   navigationService.selectedComponent && navigationService.selectedComponent.label === component.label
               }"
               (click)="onComponentClick(component)"
+              (keydown.space)="onComponentClick(component)"
+              (keydown.enter)="onComponentClick(component)"
             >
               {{ component.label }}
             </div>
@@ -38,7 +42,7 @@
       </lux-panel>
     </ng-container>
   </div>
-  <div class="example-base-content" fxFlex="0 0 calc(100% - 250px)" fxFlex.sm="0 0 auto" fxFlex.xs="0 0 auto">
+  <div class="example-base-content" fxFlex="0 0 calc(100% - 250px)" fxFlex.sm="0 0 auto" fxFlex.xs="0 0 auto" luxAriaRole="main">
     <router-outlet></router-outlet>
   </div>
 </div>

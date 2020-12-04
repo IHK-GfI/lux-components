@@ -1,3 +1,30 @@
+# Version 10.4.0
+## New
+- **allgemein**: UX und Barrierefreiheit: Focus (Outline) für alle Komponenten vereinheitlicht. 
+- **allgemein**: UX und Barrierefreiheit: Kontrast der Themefarben für alle Komponenten angepasst.
+- **allgemein**: UX und Barrierefreiheit: Demoapp für Buttons, Badges, Message-Boxes,...) angepasst.
+- **allgemein**: UX und Barrierefreiheit: Landmarks (z.B. Header, Footer, Navigation, Main,...) hinzugefügt. 
+- **allgemein**: UX und Barrierefreiheit: Überschriftenstruktur (h1..h6) angepasst. 
+- **lux-master-detail**: UX und Barrierefreiheit: Header und Footer umgestaltet.  
+- **lux-tile**: UX und Barrierefreiheit: Mouseover hinzugefügt
+- **lux-tooltip**: UX und Barrierefreiheit: lux-tooltips schließen sich beim Drücken der ESC-Taste
+- **lux-side-nav**: UX und Barrierefreiheit: Appmenü angepasst
+- **lux-message-box**: UX und Barrierefreiheit: Meldungen werden vom Screenreader vorgelesen
+- **lux-file-preview**: UX und Barrierefreiheit: Initialen Focus auf den ersten Button gesetzt.
+- **lux-app-header**: UX und Barrierefreiheit: Neue Aria-Attribute für das Menü, Icon, Image,... hinzugefügt.
+- **lux-app-content**: UX und Barrierefreiheit: Neues Attribut "luxAriaRoleMainLabel" hinzugefügt.
+- **lux-app-footer**: UX und Barrierefreiheit: Neues Attribut "luxAriaRoleFooterLabel" hinzugefügt.
+
+# Version 10.3.0
+## New
+- **lux-app-footer**: Buttons können jetzt Tooltips anzeigen. [Issue 44](https://github.com/IHK-GfI/lux-components/issues/44)
+- **lux-filter-form**: Allgemeine Filterkomponente für Master-Detail-Ansichten, Tabellen, Listen,... erstellt. [Issue 29](https://github.com/IHK-GfI/lux-components/issues/29)
+
+# Version 10.2.0
+## New
+- **allgemein**: Sicherheitsupdates eingespielt.
+- **lux-autocomplete**: Property "luxFilterFn" hinzugefügt. [Issue 40](https://github.com/IHK-GfI/lux-components/issues/40)
+
 # Version 10.1.0
 ## New
 - **allgemein**: Alle Formularkomponenten (z.B. lux-input, lux-toggle,...) haben das neue Property "luxHintShowOnlyOnFocus" erhalten. [Issue 38](https://github.com/IHK-GfI/lux-components/issues/38)
@@ -10,7 +37,6 @@
 ## New
 - **allgemein**: Update auf die aktuellste 9er Angular-Version inklusive Sicherheitsupdates. 
 - **lux-autocomplete**: Neue Features "luxPickValue" für lux‐autocomplete hinzugefügt. [Issue 26](https://github.com/IHK-GfI/lux-components/issues/26)
-- **lux-filter-form**: Allgemeine Filterkomponente für Master-Detail-Ansichten, Tabellen, Listen,... erstellt. [Issue 29](https://github.com/IHK-GfI/lux-components/issues/29)
 
 ## Bug Fixes
 - **lux-datepicker**: luxMaxDate greift bei 5- oder 6-stelligen Jahreszahlen nicht und luxValueChange empfängt event. [Issue 28](https://github.com/IHK-GfI/lux-components/issues/28)

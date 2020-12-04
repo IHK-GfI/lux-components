@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'lux-app-content',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lux-app-content.component.scss']
 })
 export class LuxAppContentComponent implements OnInit {
+
+  @Input() luxAriaRoleMainLabel = 'Inhaltsbereich';
+
   constructor() {}
 
   ngOnInit() {}

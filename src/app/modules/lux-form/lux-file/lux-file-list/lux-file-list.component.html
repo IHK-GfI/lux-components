@@ -128,7 +128,7 @@
         </ng-container>
       </ng-container>
       <!-- Der Name der Datei -->
-      <span class="lux-file-list-entry-label lux-mr-3" fxFlex="0 1 auto" fxFlexOffset="8px">
+      <span class="lux-file-list-entry-label lux-mr-3" fxFlex="0 1 auto" fxFlexOffset="8px" [ngClass]="{'lux-file-list-entry-label-disabled': luxDisabled}">
         {{ selectedFile.name }}
       </span>
     </div>

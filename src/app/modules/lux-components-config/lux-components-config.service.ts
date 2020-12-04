@@ -49,10 +49,10 @@ export class LuxComponentsConfigService {
   }
 
   constructor(@Inject(LuxConfigTokenService) @Optional() config: LuxComponentsConfigParameters) {
-    // Wenn keine Konfiguration geladen werden konnte, Standard-Konfig benutzen und eine Warnung ausgeben.
+    // Wenn keine Konfiguration geladen werden konnte, Standard-Konfig benutzen und eine Info ausgeben.
     if (!config) {
-      console.warn(
-        'Achtung: Es wurde keine Konfiguration für die LuxComponents definiert.\n',
+      console.info(
+        'Es wurde keine individuelle Konfiguration für die LuxComponents definiert.\n',
         'Benutze Standard-Konfiguration:',
         LuxComponentsConfigService.DEFAULT_CONFIG
       );

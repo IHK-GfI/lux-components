@@ -9,12 +9,14 @@ import { LuxLayoutModule } from '../../modules/lux-layout/lux-layout.module';
 import { BaselineComponent } from './baseline.component';
 import { LuxFormModule } from '../../modules/lux-form/lux-form.module';
 import { LuxActionModule } from '../../modules/lux-action/lux-action.module';
+import { LuxDirectivesModule } from '../../modules/lux-directives/lux-directives.module';
 
 @NgModule({
   imports: [
     CommonModule,
     LuxLayoutModule,
     LuxIconModule,
+    LuxDirectivesModule,
     HttpClientModule,
     CommonModule,
     FormsModule,

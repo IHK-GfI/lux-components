@@ -1,3 +1,5 @@
+@import '../../../../theming/luxcommon';
+
 /* Host-Component anpassen */
 :host {
   display: block;
@@ -6,6 +8,8 @@
 
 /* Menu-Overlay-Panel anpassen */
 ::ng-deep .lux-menu-panel {
+  padding: 0 $outline-width;
+
   .lux-menu-item {
     padding: 0 8px;
     font-size: 16px;
@@ -52,6 +56,9 @@
     min-width: 45px;
     padding-left: 8px !important;
     padding-right: 8px !important;
+    margin-left: $outline-width !important;
+    margin-right: $outline-width !important;
+    color: map-get($lux-palette_darkblue, 500);
 
     .mat-button-wrapper {
       display: inherit;
@@ -67,6 +74,8 @@
 
 ::ng-deep {
   .lux-menu-item {
+    margin-top: $outline-width;
+    margin-bottom: $outline-width;
     lux-icon {
       i,
       mat-icon {

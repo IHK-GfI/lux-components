@@ -184,12 +184,11 @@ export class LuxUtil {
 
   public static getColorsByBgColorsEnum(color: LuxBackgroundColorsEnum): { backgroundCSSClass; fontCSSClass } {
     const result = { backgroundCSSClass: 'lux-bg-color-blue', fontCSSClass: 'lux-font-color-white' };
+
     if (LuxBackgroundColorsEnum[color]) {
       result.backgroundCSSClass = 'lux-bg-color-' + color;
       switch (color) {
-        case LuxBackgroundColorsEnum.gray:
-        case LuxBackgroundColorsEnum.orange:
-        case LuxBackgroundColorsEnum.yellow:
+        case LuxBackgroundColorsEnum.white:
           result.fontCSSClass = 'lux-font-color-' + LuxFontColorsEnum.black;
           break;
         default:
@@ -197,6 +196,7 @@ export class LuxUtil {
           break;
       }
     }
+
     return result;
   }
 

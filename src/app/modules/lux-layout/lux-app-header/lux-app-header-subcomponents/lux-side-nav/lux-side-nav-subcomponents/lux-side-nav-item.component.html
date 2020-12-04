@@ -1,20 +1,40 @@
 <ng-template>
   <div class="lux-side-nav-item-container">
-    <div class="lux-side-nav-item-button" [ngClass]="{ 'lux-side-nav-item-expandable': luxExpandable }">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      class="lux-side-nav-item lux-nowrap"
+      [ngClass]="{
+        'lux-side-nav-item-expandable': luxExpandable,
+        'lux-side-nav-item-selected': luxSelected && !luxDisabled,
+        'lux-side-nav-disabled': luxDisabled
+      }"
+    >
+      <lux-icon
+        (click)="onClick($event)"
+        [luxIconName]="luxIconName"
+        class="lux-side-nav-item-icon"
+        [ngClass]="{ 'lux-side-nav-disabled': luxDisabled }"
+      >
+      </lux-icon>
+
       <lux-button
         (luxClicked)="onClick($event)"
         [luxLabel]="luxLabel"
-        [luxIconName]="luxIconName"
-        [luxDisabled]="luxDisabled"
         [luxTagId]="luxTagId"
-        class="lux-side-nav-item"
-        [ngClass]="{ 'lux-side-nav-item-selected': luxSelected }"
-      >
-      </lux-button>
+        [luxDisabled]="luxDisabled"
+        fxFlex="1 0 auto"
+        class="lux-side-nav-item-button"
+        [luxAriaExpanded]="luxExpandable ? luxExpanded : undefined"
+      ></lux-button>
+
       <ng-container *ngIf="luxExpandable">
         <lux-icon
+          (click)="onClick($event)"
+          fxFlex="none"
           class="lux-side-nav-item-expansion-icon"
           [luxIconName]="luxExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"
+          [ngClass]="{ 'lux-side-nav-disabled': luxDisabled }"
         >
         </lux-icon>
       </ng-container>
@@ -25,6 +45,10 @@
           <ng-container [ngTemplateOutlet]="sideNavItem.templateRef"></ng-container>
         </div>
       </ng-container>
+      <div
+        *ngIf="sideNavItems.last && (sideNavItems.last.sideNavItems.length <= 0 || !sideNavItems.last.luxExpanded)"
+        class="lux-side-nav-sub-item-last-child"
+      ></div>
     </ng-container>
   </div>
   <ng-content select="lux-divider"></ng-content>

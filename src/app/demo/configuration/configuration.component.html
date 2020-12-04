@@ -1,21 +1,15 @@
-<div fxLayout="row wrap">
-  <lux-card class="lux-card-grow" ngClass.gt-sm="lux-min-height">
+<div fxLayout="row wrap" luxAriaRole="main">
+  <lux-card luxTitle="Konfiguration" class="lux-card-grow" ngClass.gt-sm="lux-min-height">
     <lux-icon luxIconName="fa-info"></lux-icon>
     <lux-card-content>
-      <div fxLayout="column">
-        <div fxFlex="auto">
-          <b>Angepasste Konfig</b>
+          <h3>Neue Konfiguration</h3>
           <pre>{{ modifiedConfig | json }}</pre>
-        </div>
         <lux-divider></lux-divider>
-        <div fxFlex="auto">
-          <b>Vorherige Konfig</b>
+          <h3>Aktuelle Konfiguration</h3>
           <pre>{{ previousConfig | json }}</pre>
-        </div>
-      </div>
     </lux-card-content>
   </lux-card>
-  <lux-card luxTitle="LUX-Components Konfiguration" class="lux-card-grow" ngClass.gt-sm="lux-min-height">
+  <lux-card luxTitle="LUX-Components-Konfiguration" class="lux-card-grow" ngClass.gt-sm="lux-min-height">
     <lux-icon luxIconName="fas fa-wrench"></lux-icon>
     <lux-card-content fxFill>
       <lux-checkbox luxLabel="Lux-Tag-Ids generieren" [(luxChecked)]="modifiedConfig.generateLuxTagIds"></lux-checkbox>
@@ -76,7 +70,7 @@
       <lux-button
         luxColor="primary"
         [luxRaised]="true"
-        luxLabel="Konfiguration aktualisieren"
+        luxLabel="Speichern"
         (luxClicked)="updateConfig()"
       ></lux-button>
     </lux-card-actions>

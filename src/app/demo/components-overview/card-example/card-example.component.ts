@@ -12,7 +12,7 @@ export class CardExampleComponent implements OnInit {
   showActions = true;
   showIcon = true;
   showInfo = true;
-  useExpandableContent = false;
+  useExpandableContent = true;
 
   // endregion
 
@@ -20,7 +20,7 @@ export class CardExampleComponent implements OnInit {
 
   disabled = false;
   titleLineBreak = false;
-  title = 'Lorem ipsum dolor sit amet, consectetur adipisici elit.';
+  title = 'H2 - Lorem ipsum dolor sit amet, consectetur adipisici elit.';
   subTitle = 'Sed eiusmod tempor incidunt ut labore et dolore magna aliqua.';
   expanded: boolean = false;
 

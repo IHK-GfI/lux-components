@@ -1,9 +1,13 @@
+@import '../../../../theming/luxcommon';
+
 :host {
   display: block;
   overflow: hidden;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  margin: 1px 2px 2px 1px;
 
-  .lux-message-box {
-    margin-bottom: 2px;
+  .lux-message-box-content {
+    margin: $outline-width;
   }
 
   .lux-display-none {
@@ -31,7 +35,7 @@
     }
 
     .lux-message-container {
-      padding: 0 24px;
+      padding: $outline-width 24px;
     }
 
     .lux-hidden {

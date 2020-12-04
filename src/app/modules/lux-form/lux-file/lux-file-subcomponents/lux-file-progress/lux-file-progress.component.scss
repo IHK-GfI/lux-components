@@ -1,4 +1,4 @@
-@import '../../../../../../theming/luxtheme';
+@import '../../../../../../theming/luxcommon';
 
 $animationDuration: 8s;
 
@@ -32,8 +32,8 @@ $animationDuration: 8s;
 
     ::ng-deep {
       circle {
-        stroke: mat-color($lux-primary);
-        background: mat-color($lux-primary);
+        stroke: map-get($lux-palette_darkblue, 500);
+        background: map-get($lux-palette_darkblue, 500);
 
         @include lux-progress-animation;
       }

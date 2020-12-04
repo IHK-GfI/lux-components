@@ -19,6 +19,7 @@
         luxAriaLabel="{{ menuItem.luxLabel }}"
         luxAriaLabelSelector="button"
         luxTabIndex="0"
+        [luxTooltip]="menuItem.luxButtonTooltip"
         [luxApplyToChildren]="['button']"
         [ngClass]="{ 'lux-display-none': !menuItem.extended || menuItem.luxHidden }"
       >

@@ -1,7 +1,20 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
+
+mat-tab-group ::ng-deep mat-tab-header {
+  border-color: $dark-dividers;
+}
 
 mat-tab-group.lux-tabs-no-divider ::ng-deep mat-tab-header {
   border-bottom: none;
+}
+
+mat-tab-group ::ng-deep div[role="tab"] {
+  margin: $outline-width;
+
+  &:not(.mat-tab-disabled) {
+    color: map-get($lux-palette_darkblue, 500);
+    opacity: 1;
+  }
 }
 
 .lux-tabs-notification-icon {
@@ -35,7 +48,7 @@ mat-tab-group.lux-tabs-no-divider ::ng-deep mat-tab-header {
 }
 
 .lux-notification-new {
-  background-color: mat-color($lux-accent, 500);
+  background-color: map-get($lux-palette_accentgreen, 500);
 }
 
 .lux-counter-offset {

@@ -1,4 +1,4 @@
-@import '../../../../theming/luxtheme';
+@import '../../../../theming/luxcommon';
 
 :host {
   ::ng-deep .mat-slide-toggle-ripple.mat-ripple {
@@ -12,15 +12,19 @@
 
 .mat-checked:not(.mat-disabled) ::ng-deep label {
   & div div div.mat-slide-toggle-thumb {
-    background-color: mat-color($lux-primary, 500);
+    background-color: map-get($lux-palette_darkblue, 500);
   }
 
   & div.mat-slide-toggle-bar {
-    background-color: mat-color($lux-primary, 100);
+    background-color: map-get($lux-palette_darkblue, 100);
   }
 }
 
 .mat-disabled {
+  &:not(.mat-checked) ::ng-deep label div div div.mat-slide-toggle-thumb {
+    background-color: $dark-primary-text;
+  }
+
   &.mat-checked ::ng-deep label div div div.mat-slide-toggle-thumb {
     background-color: $dark-primary-text;
   }
@@ -29,7 +33,7 @@
     color: black;
 
     & div.mat-slide-toggle-bar {
-      background-color: mat-color($lux-primary, 100);
+      background-color: $dark-disabled-text;
     }
   }
 }

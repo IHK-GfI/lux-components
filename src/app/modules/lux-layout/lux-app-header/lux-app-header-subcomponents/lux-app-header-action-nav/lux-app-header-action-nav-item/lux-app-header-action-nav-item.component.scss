@@ -1,9 +1,23 @@
+@import '../../../../../../../theming/luxcommon';
+
 lux-button {
   ::ng-deep button {
     padding: 0;
     min-width: 30px;
     max-height: 30px !important;
     min-height: 30px !important;
+
+    &.mat-accent {
+      color: map-get($lux-palette_accentgreen, A100);
+    }
+
+    &.mat-warn {
+      color: map-get($lux-palette_darkred, A100);
+    }
+
+    &.mat-primary {
+      color: map-get($lux-palette_darkblue, A100);
+    }
   }
 
   &.lux-button-with-label ::ng-deep button {

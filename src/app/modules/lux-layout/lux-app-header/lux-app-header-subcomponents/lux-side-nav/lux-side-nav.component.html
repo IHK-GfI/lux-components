@@ -3,6 +3,8 @@
     class="lux-side-nav lux-side-nav-z-index"
     [@expandHide]="{ value: sideNavExpanded ? 'expanded' : 'void', params: { width: width + 'px' } }"
     (@expandHide.done)="updateSideNavAfterAnimationIsFinished()"
+    [luxAriaRole]="luxAriaRoleNavigationLabel ? 'navigation' : undefined"
+    [luxAriaLabel]="luxAriaRoleNavigationLabel"
     #sideNav
   >
     <div class="lux-side-nav-header" #sideNavHeader>
@@ -10,12 +12,21 @@
     </div>
     <div class="lux-side-nav-content" fxLayout="column" [ngStyle]="{ height: height + 'px', visibility: visibility }">
       <ng-container *ngIf="luxDashboardLink">
-        <lux-link
-          luxIconName="fa-th"
-          [luxLabel]="luxDashboardLinkTitle"
-          [luxBlank]="luxOpenLinkBlank"
-          [luxHref]="luxDashboardLink"
-        ></lux-link>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          class="lux-side-nav-item lux-nowrap lux-side-nav-dashboard-link"
+        >
+          <lux-icon luxIconName="fa-th" class="lux-side-nav-item-icon"> </lux-icon>
+
+          <lux-link
+            fxFlex="1 1 auto"
+            [luxLabel]="luxDashboardLinkTitle"
+            [luxBlank]="luxOpenLinkBlank"
+            [luxHref]="luxDashboardLink"
+          ></lux-link>
+        </div>
+        <lux-divider></lux-divider>
       </ng-container>
       <ng-container *ngFor="let sideNavItem of directSideNavItems">
         <ng-container [ngTemplateOutlet]="sideNavItem.templateRef"></ng-container>

@@ -1,7 +1,7 @@
 <div style="overflow: auto; height: 100%;">
   <lux-layout>
     <lux-layout-card-row [luxTitle]="row1_title" [luxWrapAt]="row1_wrapAt" [luxMargin]="margin" [luxGap]="gap">
-      <lux-card luxTitle="Item 1" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem>
         <lux-card-content>
           <p>Die aktuelle Auflösung ist "{{ query }}".</p>
           <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
@@ -124,7 +124,7 @@
       </lux-card>
     </lux-layout-card-row>
     <lux-layout-card-row [luxTitle]="row2_title" [luxWrapAt]="row2_wrapAt" [luxMargin]="margin" [luxGap]="gap">
-      <lux-card luxTitle="Item 1" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem>
         <lux-card-content>
           <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
         </lux-card-content>
@@ -138,7 +138,7 @@
           ></lux-input>
         </lux-card-content-expanded>
       </lux-card>
-      <lux-card luxTitle="Item 2" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem>
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -155,7 +155,7 @@
     </lux-layout-card-row>
 
     <lux-layout-card-row [luxTitle]="row3_title" [luxWrapAt]="row3_wrapAt" [luxMargin]="margin" [luxGap]="gap">
-      <lux-card luxTitle="Item 1" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem>
         <lux-card-content>
           <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
         </lux-card-content>
@@ -169,7 +169,7 @@
           ></lux-input>
         </lux-card-content-expanded>
       </lux-card>
-      <lux-card luxTitle="Item 2" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem>
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -179,7 +179,7 @@
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </lux-card-content-expanded>
       </lux-card>
-      <lux-card luxTitle="Item 3" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 3" luxSubTitle="Item 3" *luxLayoutRowItem>
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -191,7 +191,7 @@
       </lux-card>
     </lux-layout-card-row>
     <lux-layout-card-row [luxTitle]="row4_title" [luxWrapAt]="row4_wrapAt" [luxMargin]="margin" [luxGap]="gap"
-      ><lux-card luxTitle="Item 1" *luxLayoutRowItem="{ colSpan: 2 }">
+      ><lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{ colSpan: 2 }">
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -201,7 +201,7 @@
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </lux-card-content-expanded>
       </lux-card>
-      <lux-card luxTitle="Item 2" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem>
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -213,7 +213,7 @@
       </lux-card>
     </lux-layout-card-row>
     <lux-layout-card-row [luxTitle]="row5_title" [luxWrapAt]="row5_wrapAt" [luxMargin]="margin" [luxGap]="gap"
-      ><lux-card luxTitle="Item 1" *luxLayoutRowItem>
+      ><lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem>
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -223,7 +223,7 @@
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </lux-card-content-expanded>
       </lux-card>
-      <lux-card luxTitle="Item 2" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem>
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -236,7 +236,7 @@
       <div *luxLayoutRowItem="{ empty: true }"></div>
     </lux-layout-card-row>
     <lux-layout-card-row [luxTitle]="row6_title" [luxWrapAt]="row6_wrapAt" [luxMargin]="margin" [luxGap]="gap"
-      ><lux-card luxTitle="Item 1" *luxLayoutRowItem>
+      ><lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem>
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -247,7 +247,7 @@
         </lux-card-content-expanded>
       </lux-card>
       <div *luxLayoutRowItem="{ empty: true }"></div>
-      <lux-card luxTitle="Item 2" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 3" luxSubTitle="Item 3" *luxLayoutRowItem>
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.

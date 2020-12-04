@@ -198,6 +198,25 @@ export * from './src/app/modules/lux-file-preview/lux-file-preview-data';
 export * from './src/app/modules/lux-file-preview/lux-file-preview-ref';
 
 /**
+ *  _    _   ___  __     _____ ___ _   _____ _____ ____
+ * | |  | | | \ \/ /    |  ___|_ _| | |_   _| ____|  _ \
+ * | |  | | | |\  /_____| |_   | || |   | | |  _| | |_) |
+ * | |__| |_| |/  \_____|  _|  | || |___| | | |___|  _ <
+ * |_____\___//_/\_\    |_|   |___|_____|_| |_____|_| \_\
+ *
+ */
+export * from './src/app/modules/lux-filter/lux-filter.module';
+// Components
+export * from './src/app/modules/lux-filter/lux-filter-form/lux-filter-form.component';
+export * from './src/app/modules/lux-filter/lux-filter-dialog/lux-filter-save-dialog/lux-filter-save-dialog.component';
+export * from './src/app/modules/lux-filter/lux-filter-dialog/lux-filter-load-dialog/lux-filter-load-dialog.component';
+// Directives
+export * from './src/app/modules/lux-filter/lux-filter-base/lux-filter-item.directive';
+// Classes
+export * from './src/app/modules/lux-filter/lux-filter-base/lux-filter';
+export * from './src/app/modules/lux-filter/lux-filter-base/lux-filter-item';
+
+/**
  *  _    _   ___  __    ___ ____ ___  _   _
  * | |  | | | \ \/ /   |_ _/ ___/ _ \| \ | |
  * | |  | | | |\  /_____| | |  | | | |  \| |
