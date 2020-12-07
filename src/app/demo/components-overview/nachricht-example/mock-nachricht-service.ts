@@ -2,9 +2,15 @@ import { NachrichtService } from '../../../modules/lux-nachricht/lux-nachricht-s
 import { mockIhkResult, mockNachrichtResult } from './mock-result';
 import { of } from 'rxjs';
 import { Nachricht, SaveNachrichtResult } from '../../../modules/lux-nachricht/lux-nachricht-model/lux-nachricht-model';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class MockLuxNachrichtService extends NachrichtService {
-    id = 5;
+    id = mockNachrichtResult.length;
+
+    constructor() {
+      super(null, null);
+    }
 
     readNachrichten() {
         return of([...mockNachrichtResult]);

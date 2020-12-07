@@ -1,29 +1,90 @@
 <lux-card luxTitle="{{ title }}">
   <lux-icon luxIconName="fas fa-edit"></lux-icon>
   <lux-card-content>
-    <form [formGroup]="formGroup" #myForm fxLayoutGap="5px">
-      <lux-select luxLabel="Empfänger" luxControlBinding="empfaenger" [luxOptions]="empfaengerliste" [luxSelected]="selectedEmpaenger" luxMultiple="true">
-        <ng-template let-option>
-          {{ option.bezeichnung }}
-        </ng-template>
-      </lux-select>
+    <form [formGroup]="formGroup" #myForm fxLayoutGap="5px" style="max-width: 800px">
+      <lux-layout-form-row>
+        <lux-select
+          luxLabel="Empfänger"
+          luxControlBinding="empfaenger"
+          [luxOptions]="empfaengerliste"
+          [luxSelected]="selectedEmpaenger"
+          luxMultiple="true"
+          *luxLayoutRowItem
+        >
+          <ng-template let-option>
+            {{ option.bezeichnung }}
+          </ng-template>
+        </lux-select>
 
-      <lux-select luxLabel="IHKs" luxControlBinding="ihk" [luxOptions]="luxAuthorizedIhks" [luxSelected]="selectedIhk" luxMultiple="true">
-        <ng-template let-option>
-          {{ option.name }}
-        </ng-template>
-      </lux-select>
+        <lux-select
+          luxLabel="IHKs"
+          luxControlBinding="ihk"
+          [luxOptions]="luxAuthorizedIhks"
+          [luxSelected]="selectedIhk"
+          luxMultiple="true"
+          *luxLayoutRowItem
+        >
+          <ng-template let-option>
+            {{ option.name }}
+          </ng-template>
+        </lux-select>
+      </lux-layout-form-row>
 
-      <lux-textarea luxLabel="Betreff" luxPlaceholder="Ihr Betreff" luxMinRows="1" luxMaxRows="2" luxControlBinding="betreff"></lux-textarea>
-
-      <lux-textarea luxLabel="Nachricht" luxPlaceholder="Ihre Nachricht" luxMinRows="3" luxMaxRows="6" luxControlBinding="message"></lux-textarea>
-      <span> Hinweis: Ein Link kann mit dem HTML a-Tag hinzugefügt werden </span>
-
-      <lux-datepicker [luxReadonly]="luxEditMode" luxLabel="Gültig von" luxPlaceholder="Gültig von" luxLocale="de-DE" luxControlBinding="validFrom"></lux-datepicker>
-      <lux-input [luxReadonly]="luxEditMode" luxType="time" luxControlBinding="timeFrom" luxLabel="Zeit" luxPlaceholder="hh:mm"></lux-input>
-
-      <lux-datepicker luxLabel="Gültig bis" luxPlaceholder="Gültig bis" luxLocale="de-DE" luxControlBinding="validTo"></lux-datepicker>
-      <lux-input luxType="time" luxControlBinding="timeTo" luxLabel="Zeit" luxPlaceholder="hh:mm"></lux-input>
+      <lux-layout-form-row>
+        <lux-textarea
+          luxLabel="Betreff"
+          luxPlaceholder="Ihr Betreff"
+          luxMinRows="1"
+          luxMaxRows="2"
+          luxControlBinding="betreff"
+          *luxLayoutRowItem="{ colSpan: 2 }"
+        ></lux-textarea>
+      </lux-layout-form-row>
+      <lux-layout-form-row>
+        <lux-textarea
+          luxLabel="Nachricht"
+          luxPlaceholder="Ihre Nachricht"
+          luxMinRows="3"
+          luxMaxRows="6"
+          luxControlBinding="message"
+          luxHint="Hinweis: Ein Link kann mit dem HTML a-Tag hinzugefügt werden"
+          *luxLayoutRowItem="{ colSpan: 2 }"
+        ></lux-textarea>
+      </lux-layout-form-row>
+      <lux-layout-form-row>
+        <lux-datepicker
+          [luxReadonly]="luxEditMode"
+          luxLabel="Gültig von"
+          luxPlaceholder="Gültig von"
+          luxLocale="de-DE"
+          luxControlBinding="validFrom"
+          *luxLayoutRowItem
+        ></lux-datepicker>
+        <lux-input
+          [luxReadonly]="luxEditMode"
+          luxType="time"
+          luxControlBinding="timeFrom"
+          luxLabel="Zeit"
+          luxPlaceholder="hh:mm"
+          *luxLayoutRowItem
+        ></lux-input>
+      </lux-layout-form-row>
+      <lux-layout-form-row>
+        <lux-datepicker
+          luxLabel="Gültig bis"
+          luxPlaceholder="Gültig bis"
+          luxLocale="de-DE"
+          luxControlBinding="validTo"
+          *luxLayoutRowItem
+        ></lux-datepicker>
+        <lux-input
+          luxType="time"
+          luxControlBinding="timeTo"
+          luxLabel="Zeit"
+          luxPlaceholder="hh:mm"
+          *luxLayoutRowItem
+        ></lux-input>
+      </lux-layout-form-row>
 
       <p fxLayoutGap="10px" fxLayout="row" *ngIf="formGroup.errors?.invalidDate">
         Das 'Gültig bis' muss nach dem 'Gültig von' liegen.
@@ -32,12 +93,21 @@
         Die Zeit von 'Gültig bis' muss nach der Zeit von 'Gültig von' liegen.
       </p>
 
-      <lux-checkbox luxLabel="Nachricht bei jedem Login erneut anzeigen" luxControlBinding="erneutAnzeigen"></lux-checkbox>
+      <lux-checkbox
+        luxLabel="Nachricht bei jedem Login erneut anzeigen"
+        luxControlBinding="erneutAnzeigen"
+      ></lux-checkbox>
     </form>
   </lux-card-content>
   <lux-card-actions>
     <div fxLayout="row" fxLayoutGap="10px">
-      <lux-button luxLabel="Speichern" luxColor="primary" luxRaised="true" (luxClicked)="speichern()" [luxDisabled]="!formGroup.valid"></lux-button>
+      <lux-button
+        luxLabel="Speichern"
+        luxColor="primary"
+        luxRaised="true"
+        (luxClicked)="speichern()"
+        [luxDisabled]="!formGroup.valid"
+      ></lux-button>
       <lux-button luxLabel="Abbrechen" luxRaised="true" (luxClicked)="abbrechen()"></lux-button>
     </div>
   </lux-card-actions>

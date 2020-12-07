@@ -43,8 +43,11 @@ export class LuxNachrichtPflegenComponent implements OnInit {
       this.title = 'Nachricht bearbeiten';
       this.selectedEmpaenger = this.empfaengerliste.filter(({ bezeichnung: b1 }) =>
         this.luxNachricht.empfaenger.some(({ bezeichnung: b2 }) => b1 === b2));
-      this.selectedIhk = this.luxAuthorizedIhks.filter(({ ihkNr: nr1 }) =>
-        this.luxNachricht.ihk.some(({ ihkNr: nr2 }) => nr1 === nr2));
+
+      if (this.luxNachricht.ihk) {
+        this.selectedIhk = this.luxAuthorizedIhks.filter(({ ihkNr: nr1 }) =>
+          this.luxNachricht.ihk.some(({ ihkNr: nr2 }) => nr1 === nr2));
+      }
     } else {
       this.title = 'Nachricht erstellen';
     }
@@ -56,8 +59,8 @@ export class LuxNachrichtPflegenComponent implements OnInit {
       message: new FormControl(this.luxNachricht.message, Validators.compose([Validators.required, Validators.minLength(5)])),
       validFrom: new FormControl(this.luxNachricht.validFrom, Validators.required),
       validTo: new FormControl(this.luxNachricht.validTo, Validators.required),
-      timeFrom: new FormControl(this.nachrichtController.getTime(this.luxNachricht.validFrom), Validators.required),
-      timeTo: new FormControl(this.nachrichtController.getTime(this.luxNachricht.validTo), Validators.required),
+      timeFrom: new FormControl(this.nachrichtController.getTime(this.luxNachricht.validFrom, '00:00'), Validators.required),
+      timeTo: new FormControl(this.nachrichtController.getTime(this.luxNachricht.validTo, '23:59'), Validators.required),
       erneutAnzeigen: new FormControl(this.luxNachricht.erneutAnzeigen)
     }, {
       validator(formGroup: FormGroup): ValidationErrors {

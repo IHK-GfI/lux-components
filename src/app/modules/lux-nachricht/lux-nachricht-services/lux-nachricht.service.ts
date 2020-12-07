@@ -15,11 +15,13 @@ export class NachrichtService {
   private apiPath: string;
 
   constructor(private http: HttpClient, private componentsConfigService: LuxComponentsConfigService) {
-    this.subscriptions.push(this.componentsConfigService.config.subscribe(
-      (newConfig: LuxComponentsConfigParameters) => {
-        this.apiPath = newConfig.nachrichtServiceURL;
-      }
-    ));
+    if (componentsConfigService) {
+      this.subscriptions.push(this.componentsConfigService.config.subscribe(
+        (newConfig: LuxComponentsConfigParameters) => {
+          this.apiPath = newConfig.nachrichtServiceURL;
+        }
+      ));
+    }
   }
 
   defaultErrHandler(err: any) {

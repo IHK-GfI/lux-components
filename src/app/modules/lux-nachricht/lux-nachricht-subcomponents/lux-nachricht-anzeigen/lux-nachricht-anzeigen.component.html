@@ -1,18 +1,17 @@
 <lux-dialog-structure>
-  <lux-dialog-title>
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <span fxFlex="0 0 auto"> {{nachricht.betreff}} </span>
-      <span fxFlex="0 0 auto">
-        <lux-icon luxIconName="fas fa-comments"></lux-icon>
-      </span>
-    </div>
-  </lux-dialog-title>
+  <lux-dialog-title> Nachrichtenvorschau </lux-dialog-title>
   <lux-dialog-content>
-    <div>
-      <lux-html [luxData]="nachricht.message" [luxSanitizeConfig]="sanitizeConfig"></lux-html>
-    </div> 
-
-    <div class="messageValidity"> Gültig: {{nachricht.validFrom | date: 'dd.MM.y HH:mm' }} - {{nachricht.validTo | date: 'dd.MM.y HH:mm'}}</div>
+    <lux-card
+      [luxTitle]="nachricht.betreff"
+      luxSubTitle="Gültig: {{ nachricht.validFrom | date: 'dd.MM.y HH:mm' }} Uhr - {{
+        nachricht.validTo | date: 'dd.MM.y HH:mm'
+      }} Uhr"
+      [ngClass.gt-xs]="{'lux-nachricht-preview-card-ie': isIE}"
+    >
+      <lux-card-content>
+        <lux-html [luxData]="nachricht.message" [luxSanitizeConfig]="sanitizeConfig"></lux-html>
+      </lux-card-content>
+    </lux-card>
   </lux-dialog-content>
   <lux-dialog-actions>
     <div fxLayout="row" fxLayoutGap="10px">

@@ -4,6 +4,22 @@
   height: 100%;
 }
 
+.no-card-container {
+
+  & ::ng-deep mat-card {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 !important;
+
+    & mat-card-content {
+      display: block !important;
+      overflow-y: auto;
+    }
+  }
+}
+
 lux-card ::ng-deep > mat-card {
   height: 100%;
   max-height: 100%;

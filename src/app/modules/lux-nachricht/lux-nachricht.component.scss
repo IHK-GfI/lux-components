@@ -1,4 +1,4 @@
-::ng-deep  .is-Nachricht-Expired {
+::ng-deep .is-Nachricht-Expired {
   .mat-cell {
     color: rgb(148, 148, 148);
   }
@@ -17,4 +17,21 @@
 
 ::ng-deep .mat-column-betreff {
   min-width: 125px;
+}
+
+lux-button.icon-button {
+  & ::ng-deep button {
+    min-width: 45px;
+    width: 45px;
+    max-width: 45px;
+    padding: 0;
+
+    &:hover {
+      background-color: red;
+    }
+  }
+
+  & ::ng-deep lux-icon i {
+    font-size: 1.5em;
+  }
 }

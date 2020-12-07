@@ -19,6 +19,7 @@ import { LuxAppFooterButtonService } from '../lux-layout/lux-app-footer/lux-app-
 import { LuxStepperHelperService } from '../lux-layout/lux-stepper/lux-stepper-helper.service';
 import { LuxHtmlModule } from '../lux-html/lux-html.module';
 import { LuxNachrichtController } from './lux-nachricht-controller';
+import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 
 @NgModule({
   declarations: [
@@ -37,13 +38,12 @@ import { LuxNachrichtController } from './lux-nachricht-controller';
     LuxFormModule,
     LuxCommonModule,
     LuxPopupsModule,
+    LuxDirectivesModule,
     LuxErrorModule,
     LuxHtmlModule
   ],
   providers: [
     LuxDialogService,
-    LuxAppFooterButtonService,
-    LuxStepperHelperService,
     LuxNachrichtController,
     NachrichtService,
   ],

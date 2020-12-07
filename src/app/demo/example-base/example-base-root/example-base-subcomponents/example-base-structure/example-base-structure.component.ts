@@ -21,6 +21,7 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
   @Input() exampleTitle: string;
   @Input() exampleIconName: string;
   @Input() exampleDocumentationHref: string;
+  @Input() renderInCard = true;
 
   @ContentChild(ExampleBaseContentComponent) contentComponent: ExampleBaseContentComponent;
   @ContentChild(ExampleBaseSimpleOptionsComponent)

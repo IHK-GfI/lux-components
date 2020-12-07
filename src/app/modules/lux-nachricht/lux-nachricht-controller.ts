@@ -9,14 +9,12 @@ import { LuxSnackbarService } from '../lux-popups/lux-snackbar/lux-snackbar.serv
 })
 export class LuxNachrichtController {
 
-  nachrichtService: NachrichtService;
   dataSource: Nachricht[];
   ihkliste: Ihk[];
 
   constructor(private dialogService: LuxDialogService,
               private snackbar: LuxSnackbarService,
-              nachrichtService: NachrichtService) {
-    this.nachrichtService = nachrichtService;
+              private nachrichtService: NachrichtService) {
   }
 
   getAuthorizedIhksForUser() {
@@ -86,11 +84,11 @@ export class LuxNachrichtController {
     this.snackbar.openText(msg, duration);
   }
 
-  getTime(date: Date) {
+  getTime(date: Date, emptyValue = '00:00') {
     if (date) {
       return this.fillTimeWithZero(date.getHours()) + ':' + this.fillTimeWithZero(date.getMinutes());
     }
-    return null;
+    return emptyValue;
   }
 
   fillTimeWithZero(time: number): string {

@@ -1,25 +1,35 @@
 <lux-card *ngIf="viewType == 'overview'" luxTitle="Nachrichten verwalten">
   <lux-icon luxIconName="fas fa-bell"></lux-icon>
   <lux-card-content>
-    <div [ngStyle]="{'height': height}">
+    <div [ngStyle]="{ height: height }">
       <lux-table [luxData]="nachrichtController.dataSource" luxShowFilter="true" [luxClasses]="tableCSS">
-        <lux-table-column luxColumnDef="validFrom" [luxResponsiveAt]="['xs']" luxResponsiveBehaviour="hide">
+        <lux-table-column
+          luxColumnDef="validFrom"
+          [luxSortable]="true"
+          [luxResponsiveAt]="['xs']"
+          luxResponsiveBehaviour="hide"
+        >
           <lux-table-column-header>
             <ng-template>Gültig von</ng-template>
           </lux-table-column-header>
           <lux-table-column-content>
-            <ng-template let-element>{{ element.validFrom | date: 'dd.MM.y HH:mm' }}</ng-template>
+            <ng-template let-element>{{ element.validFrom | date: 'dd.MM.y HH:mm' }} Uhr</ng-template>
           </lux-table-column-content>
         </lux-table-column>
-        <lux-table-column luxColumnDef="validTo" [luxResponsiveAt]="['xs']" luxResponsiveBehaviour="hide">
+        <lux-table-column
+          luxColumnDef="validTo"
+          [luxSortable]="true"
+          [luxResponsiveAt]="['xs']"
+          luxResponsiveBehaviour="hide"
+        >
           <lux-table-column-header>
             <ng-template>Gültig bis</ng-template>
           </lux-table-column-header>
           <lux-table-column-content>
-            <ng-template let-element>{{ element.validTo | date: 'dd.MM.y HH:mm' }}</ng-template>
+            <ng-template let-element>{{ element.validTo | date: 'dd.MM.y HH:mm' }} Uhr</ng-template>
           </lux-table-column-content>
         </lux-table-column>
-        <lux-table-column luxColumnDef="betreff">
+        <lux-table-column luxColumnDef="betreff" [luxSortable]="true">
           <lux-table-column-header>
             <ng-template>Betreff</ng-template>
           </lux-table-column-header>
@@ -42,9 +52,30 @@
           <lux-table-column-content>
             <ng-template let-element>
               <div fxLayout="row">
-                <lux-button luxIconName="fas fa-eye" luxColor="primary" (luxClicked)="preview(element)"></lux-button>
-                <lux-button luxIconName="fas fa-pencil-alt" luxColor="primary" (luxClicked)="update(element)"></lux-button>
-                <lux-button luxIconName="fas fa-trash" luxColor="primary" (luxClicked)="delete(element)"></lux-button>
+                <lux-button
+                  luxIconName="fas fa-eye"
+                  luxColor="primary"
+                  class="icon-button"
+                  luxTagId="lux-nachricht-btn-view"
+                  luxAriaLabel="Nachricht anzeigen"
+                  (luxClicked)="preview(element)"
+                ></lux-button>
+                <lux-button
+                  luxIconName="fas fa-pencil-alt"
+                  luxColor="primary"
+                  class="icon-button"
+                  luxTagId="lux-nachricht-btn-edit"
+                  luxAriaLabel="Nachricht bearbeiten"
+                  (luxClicked)="update(element)"
+                ></lux-button>
+                <lux-button
+                  luxIconName="fas fa-trash"
+                  luxColor="primary"
+                  class="icon-button"
+                  luxTagId="lux-nachricht-btn-delete"
+                  luxAriaLabel="Nachricht löschen"
+                  (luxClicked)="delete(element)"
+                ></lux-button>
               </div>
             </ng-template>
           </lux-table-column-content>
@@ -52,10 +83,26 @@
       </lux-table>
     </div>
   </lux-card-content>
-  <lux-card-actions *ngIf="!luxShowCreateButton">
-    <lux-button luxLabel="Hinzufügen" luxColor="primary" luxRaised="true" (luxClicked)="create()"></lux-button>
+  <lux-card-actions *ngIf="!luxCreateButtonInFooter">
+    <lux-button luxLabel="Hinzufügen" [luxColor]="luxCreateButtonColor" luxRaised="true" (luxClicked)="create()"></lux-button>
   </lux-card-actions>
 </lux-card>
 
-<lux-nachricht-pflegen *ngIf="viewType == 'edit'" [luxEditMode]="true" [luxAuthorizedIhks]="authorizedIhkListe" [luxNachricht]="selectedNachricht" [luxNachrichtConfig]="luxNachrichtConfig" (luxViewType)="onViewType($event)" (luxNachrichtChange)="onNachrichtChange($event)"></lux-nachricht-pflegen>
-<lux-nachricht-pflegen *ngIf="viewType == 'create'" [luxEditMode]="false" [luxAuthorizedIhks]= "authorizedIhkListe" [luxNachricht]="selectedNachricht" [luxNachrichtConfig]="luxNachrichtConfig" (luxViewType)="onViewType($event)" (luxNachrichtChange)="onNachrichtChange($event)"></lux-nachricht-pflegen>
+<lux-nachricht-pflegen
+  *ngIf="viewType == 'edit'"
+  [luxEditMode]="true"
+  [luxAuthorizedIhks]="authorizedIhkListe"
+  [luxNachricht]="selectedNachricht"
+  [luxNachrichtConfig]="luxNachrichtConfig"
+  (luxViewType)="onViewType($event)"
+  (luxNachrichtChange)="onNachrichtChange($event)"
+></lux-nachricht-pflegen>
+<lux-nachricht-pflegen
+  *ngIf="viewType == 'create'"
+  [luxEditMode]="false"
+  [luxAuthorizedIhks]="authorizedIhkListe"
+  [luxNachricht]="selectedNachricht"
+  [luxNachrichtConfig]="luxNachrichtConfig"
+  (luxViewType)="onViewType($event)"
+  (luxNachrichtChange)="onNachrichtChange($event)"
+></lux-nachricht-pflegen>

@@ -6,27 +6,35 @@
   fxLayoutGap="4px"
   fxLayoutGap.gt-sm="8px"
 >
-  <lux-card
-    [luxTitle]="exampleTitle"
-    class="example-base-container"
-    fxFlex="auto"
-    fxFlex.gt-sm="1 0 50%"
-    *ngIf="contentComponent"
-  >
-    <lux-icon [luxIconName]="exampleIconName"></lux-icon>
-    <lux-card-content>
-      <ng-content select="example-base-content"></ng-content>
-    </lux-card-content>
-    <lux-card-actions>
-      <ng-content select="example-base-content-actions"></ng-content>
-    </lux-card-actions>
-  </lux-card>
+  <ng-container *ngIf="contentComponent">
+    <lux-card
+      [luxTitle]="exampleTitle"
+      class="example-base-container"
+      fxFlex="auto"
+      [fxFlex.gt-sm]="simpleOptionsComponent || simpleOptionsComponent ?  '1 0 50%' : '1 0 100%'"
+      *ngIf="renderInCard; else renderWithoutCard"
+    >
+      <lux-icon [luxIconName]="exampleIconName"></lux-icon>
+      <lux-card-content>
+        <ng-container *ngTemplateOutlet="ngcontentexamplebasecontainer"></ng-container>
+      </lux-card-content>
+      <lux-card-actions>
+        <ng-content select="example-base-content-actions"></ng-content>
+      </lux-card-actions>
+    </lux-card>
+
+    <ng-template #renderWithoutCard>
+      <div class="example-base-container no-card-container" [fxFlex.gt-sm]="simpleOptionsComponent || simpleOptionsComponent ?  '1 0 50%' : '1 0 100%'">
+        <ng-container *ngTemplateOutlet="ngcontentexamplebasecontainer"></ng-container>
+      </div>
+    </ng-template>
+  </ng-container>
   <lux-card
     luxTitle="Konfiguration"
     class="example-base-options"
     fxFlex="auto"
     fxFlex.gt-sm="1 0 50%"
-    *ngIf="simpleOptionsComponent || advancedOptionsComponent"
+    *ngIf="simpleOptionsComponent || simpleOptionsComponent"
   >
     <lux-icon luxIconName="fas fa-toolbox"></lux-icon>
     <lux-card-content>
@@ -67,3 +75,7 @@
     <ng-content select="example-base-simple-options"></ng-content>
   </ng-template>
 </div>
+
+<ng-template #ngcontentexamplebasecontainer>
+  <ng-content select="example-base-content"></ng-content>
+</ng-template>

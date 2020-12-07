@@ -2,19 +2,13 @@
   exampleTitle="Nachricht"
   exampleIconName="fas fa-bell"
   exampleDocumentationHref="TODO"
+  [renderInCard]="false"
 >
   <example-base-content>
-    <lux-nachricht luxCreateButton="false" [luxNachrichtConfig]="nachrichtConfig"></lux-nachricht>
+    <lux-nachricht
+      luxCreateButtonColor="primary"
+      [luxCreateButtonInFooter]="false"
+      [luxNachrichtConfig]="nachrichtConfig"
+    ></lux-nachricht>
   </example-base-content>
-  <example-base-simple-options>
-    <lux-toggle
-    luxLabel="Mock-Backend benutzen"
-    luxHint="Wenn der Nachricht-Service nicht erreichbar sein sollte, können über dieses Flag Mock-Resultate geholt werden."
-    (luxCheckedChange)="changeUseMock($event)"
-    >
-    </lux-toggle>
-  </example-base-simple-options>
-  <example-base-options-actions>
-    <lux-button luxLabel="Abfrage starten" luxColor="primary" [luxRaised]="true" (luxClicked)="start()"> </lux-button>
-  </example-base-options-actions>
 </example-base-structure>
