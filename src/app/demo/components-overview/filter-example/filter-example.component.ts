@@ -4,6 +4,10 @@ import { LuxFilterItem } from '../../../modules/lux-filter/lux-filter-base/lux-f
 import { LuxFilterFormComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form.component';
 import { LuxMediaQueryObserverService } from '../../../modules/lux-util/lux-media-query-observer.service';
 import { Subscription } from 'rxjs';
+import {
+  LuxFieldValues,
+  LuxLookupParameters
+} from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
 
 @Component({
   selector: 'lux-filter-example',
@@ -12,6 +16,11 @@ import { Subscription } from 'rxjs';
 })
 export class FilterExampleComponent implements OnInit, OnDestroy {
   @ViewChild(LuxFilterFormComponent) filterComponent: LuxFilterFormComponent;
+
+  parameters = new LuxLookupParameters({
+    knr: 101,
+    fields: [LuxFieldValues.kurz, LuxFieldValues.lang1, LuxFieldValues.lang2]
+  });
 
   autoCompleteOptions: any[] = [
     { label: 'Auto A', value: 'a' },
@@ -31,7 +40,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
     { label: 'Multi 3', value: 3 }
   ];
 
-  initFilter: any = { input: 'aaa' };
+  initFilter: any = { input: 'Lorem ipsum' };
   currentFilter: any = this.initFilter;
 
   expanded = false;
@@ -41,6 +50,20 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
     {
       name: 'Vollständig',
       data: {
+        autocompleteLookup: {
+          key: '1',
+          kurzText: 'Frankreich',
+          langText1: 'Frankreich',
+          isUngueltig: false
+        },
+        comboboxLookup: [
+          {
+            key: '4',
+            kurzText: 'Deutschland',
+            langText1: 'Deutschland',
+            isUngueltig: false
+          }
+        ],
         input: 'Max Mustermann',
         autocomplete: {
           label: 'Auto A',
@@ -76,12 +99,16 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   inputHidden = false;
   autoCompleteDisabled = false;
   autoCompleteHidden = false;
+  autoCompleteLookupDisabled = false;
+  autoCompleteLookupHidden = false;
   datepickerDisabled = false;
   datepickerHidden = false;
   singleSelectDisabled = false;
   singleSelectHidden = false;
   multiSelectDisabled = false;
   multiSelectHidden = false;
+  selectLookupDisabled = false;
+  selectLookupHidden = false;
   toggleSelectDisabled = false;
   toggleSelectHidden = false;
 
@@ -138,6 +165,6 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   private loadFilter(filterName: string) {
     // Hier müssten die Filtereinstellungen (z.B. aus der Datenbank) gelesen und zurückgeliefert werden.
-    return JSON.parse(JSON.stringify(this.storedFilters.find(filter => filter.name === filterName).data));
+    return JSON.parse(JSON.stringify(this.storedFilters.find((filter) => filter.name === filterName).data));
   }
 }
