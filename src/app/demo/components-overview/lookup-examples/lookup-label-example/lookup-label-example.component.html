@@ -14,19 +14,25 @@
     </lux-lookup-label>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle
-      luxLabel="Mock-Backend benutzen"
-      luxHint="Wenn der Lookup-Service nicht erreichbar sein sollte, können über dieses Flag Mock-Resultate geholt werden."
-      (luxCheckedChange)="changeUseMock($event)"
-    >
-    </lux-toggle>
-    <lux-divider [luxInset]="true"></lux-divider>
     <div fxLayout="column">
-      <lux-input luxName="lookup-label_knr" luxLabel="Knr" [(luxValue)]="knr" luxType="number" [luxNumberAlignLeft]="true"></lux-input>
-      <lux-input luxName="lookup-label_luxTableNo" class="example-highlight-config-option" luxLabel="luxTableNo" [(luxValue)]="tableNo" luxType="number">
+      <lux-input
+        luxName="lookup-label_knr"
+        luxLabel="Knr"
+        class="example-highlight-config-option"
+        [(luxValue)]="knr"
+        luxType="number"
+        [luxNumberAlignLeft]="true"
+      ></lux-input>
+      <lux-input
+        luxName="lookup-label_luxTableNo"
+        class="example-highlight-config-option"
+        luxLabel="luxTableNo"
+        [(luxValue)]="tableNo"
+        luxType="number"
+        [luxDisabled]="true"
+      >
         <lux-form-hint>
-          Die Property bestimmt die Schlüsseltabelle aus der die Daten geladen werden sollen.<br />
-          Wenn Mock-Resultate aufgerufen werden, hat die Property keine Auswirkung.
+          Die Property bestimmt die Schlüsseltabelle aus der die Daten geladen werden sollen.
         </lux-form-hint>
       </lux-input>
       <lux-input
@@ -51,7 +57,4 @@
       </lux-select>
     </div>
   </example-base-simple-options>
-  <example-base-options-actions>
-    <lux-button luxLabel="Abfrage starten" luxColor="primary" [luxRaised]="true" (luxClicked)="start()"> </lux-button>
-  </example-base-options-actions>
 </example-base-structure>

@@ -26,7 +26,6 @@
         [luxControlValidators]="controlValidators"
         [luxEntryBlockSize]="entryBlockSize"
         [luxWithEmptyEntry]="bLuxWithEmptyEntry"
-        (luxDataLoaded)="dataLoaded($event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -62,7 +61,6 @@
         [(luxValue)]="multiValue"
         [luxMultiple]="true"
         [luxWithEmptyEntry]="bLuxWithEmptyEntry"
-        (luxDataLoaded)="dataLoaded($event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -95,7 +93,6 @@
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxControlBinding]="controlBinding"
         [luxWithEmptyEntry]="bLuxWithEmptyEntry"
-        (luxDataLoaded)="dataLoaded($event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -128,68 +125,7 @@
   <example-base-simple-options>
     <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
     </lux-toggle>
-    <lux-toggle
-      luxLabel="Mock-Backend benutzen"
-      luxHint="Wenn der Lookup-Service nicht erreichbar sein sollte, können über dieses Flag Mock-Resultate geholt werden."
-      (luxCheckedChange)="changeUseMock($event)"
-    >
-    </lux-toggle>
-    <lux-toggle
-      luxLabel="Invalide Ergebnisse mocken"
-      luxHint="Fügt eine Reihe invalider Ergebnisse zu den Mock-Resultaten hinzu."
-      (luxCheckedChange)="changeMockInvalid($event)"
-      [luxDisabled]="!useMock"
-    >
-    </lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
-    <div fxLayout="column">
-      <lux-panel class="lux-mb-3" [luxDisabled]="useMock" [luxExpanded]="!useMock">
-        <lux-panel-header-title>
-          <h3>Parameter-/Tabellen-Einstellungen</h3>
-        </lux-panel-header-title>
-        <lux-panel-content>
-          <div fxLayout="column">
-            <lux-input
-              class="example-highlight-config-option"
-              luxName="lookup-combobox_luxTableNo"
-              luxLabel="luxTableNo"
-              [(luxValue)]="tableNo"
-              luxType="number"
-            >
-            </lux-input>
-            <div class="example-highlight-config-option" fxLayout="column">
-              <h3>Parameter</h3>
-              <lux-input
-                luxName="lookup-combobox_knr"
-                luxLabel="Knr"
-                [(luxValue)]="parameters.knr"
-                luxType="number"
-                [luxNumberAlignLeft]="true"
-              ></lux-input>
-              <lux-chips luxInputLabel="Key eintragen" [luxInputAllowed]="true" [luxNewChipGroup]="parameterKeyCG">
-                <lux-chip-group luxColor="primary" [luxLabels]="parameters.keys" [luxRemovable]="true" #parameterKeyCG>
-                </lux-chip-group>
-              </lux-chips>
-              <lux-select
-                [luxMultiple]="true"
-                [luxOptions]="fieldOptions"
-                luxLabel="fields"
-                luxHint="Hier sind die Felder enthalten, welche in den zurückgegebenen Objekten enthalten sein sollen."
-                [(luxSelected)]="parameters.fields"
-              >
-              </lux-select>
-              <lux-toggle
-                luxLabel="raw"
-                luxHint="Über diese Property wird definiert ob die IDs mit vorangestellten '0' übergeben werden."
-                [(luxChecked)]="parameters.raw"
-              >
-              </lux-toggle>
-              <pre class="lux-label"><b>parameters</b> = {{ parameters | json }}</pre>
-            </div>
-          </div>
-        </lux-panel-content>
-      </lux-panel>
-    </div>
     <lux-input
       class="example-highlight-config-option"
       luxName="lookup-combobox_luxLabel"
@@ -270,6 +206,7 @@
       class="example-highlight-config-option"
       luxName="lookup-combobox_luxEntryBlockSize"
       luxLabel="luxEntryBlockSize"
+      (luxBlur)="start()"
       [(luxValue)]="entryBlockSize"
       luxType="number"
     >
@@ -372,7 +309,4 @@
       </lux-form-hint>
     </lux-select>
   </example-base-advanced-options>
-  <example-base-options-actions>
-    <lux-button luxLabel="Abfrage starten" luxColor="primary" [luxRaised]="true" (luxClicked)="start()"> </lux-button>
-  </example-base-options-actions>
 </example-base-structure>

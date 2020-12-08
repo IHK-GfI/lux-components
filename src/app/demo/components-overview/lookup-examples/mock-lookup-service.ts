@@ -1,16 +1,11 @@
-import { mockResultSomeInvalid } from './mock-result-some-invalid';
 import { mockResult } from './mock-result';
 import { LuxLookupService } from '../../../modules/lux-lookup/lux-lookup-service/lux-lookup.service';
 import { of } from 'rxjs';
 import { LuxLookupParameters } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
 
 export class MockLuxLookupService extends LuxLookupService {
-  mockInvalid: boolean;
 
   getLookupTable(tableNo, parameters) {
-    if (this.mockInvalid) {
-      return of(this.filterKeys([...mockResultSomeInvalid], parameters));
-    }
     return of(this.filterKeys([...mockResult], parameters));
   }
 
