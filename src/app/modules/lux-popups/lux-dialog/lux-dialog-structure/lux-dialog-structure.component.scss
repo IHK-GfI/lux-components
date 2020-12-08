@@ -18,6 +18,28 @@
 
   // Leichten Abstand zum Content setzen
   .lux-dialog-actions {
-    margin: 32px 0 0 0;
+    margin: 20px 0 0 0;
   }
+}
+
+@mixin small-dialog {
+  ::ng-deep .mat-dialog-container {
+    padding: 8px;
+  }
+
+  ::ng-deep .mat-dialog-title {
+    margin-bottom: 8px;
+  }
+
+  .lux-dialog .lux-dialog-actions {
+    margin: 8px 0 0 0;
+  }
+}
+
+@media ($mat-xsmall) {
+  @include small-dialog;
+}
+
+@media ($mat-small) {
+  @include small-dialog;
 }
