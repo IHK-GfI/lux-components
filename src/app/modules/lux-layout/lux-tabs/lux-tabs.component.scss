@@ -48,7 +48,7 @@ mat-tab-group ::ng-deep div[role="tab"] {
 }
 
 .lux-notification-new {
-  background-color: map-get($lux-palette_accentgreen, 500);
+  background-color: map-get($componentBgColors, "green");
 }
 
 .lux-counter-offset {

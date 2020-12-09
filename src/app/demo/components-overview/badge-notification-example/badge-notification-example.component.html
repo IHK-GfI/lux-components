@@ -4,32 +4,94 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/luxbadgenotification"
 >
   <example-base-content [exampleCentered]="true" fxLayout="column" fxLayoutGap="28px">
-    <span
-      [luxBadgeNotification]="notification"
-      [luxBadgeColor]="color"
-      [luxBadgeDisabled]="disabled"
-      [luxBadgeHidden]="hidden"
-      [luxBadgeOverlap]="overlap"
-      [luxBadgeCap]="cap"
-      [luxBadgePosition]="position"
-      [luxBadgeSize]="size"
-    >
-      Span
-    </span>
-    <lux-button
-      [luxBadgeNotification]="notification"
-      [luxBadgeColor]="color"
-      [luxBadgeDisabled]="disabled"
-      [luxBadgeHidden]="hidden"
-      [luxBadgeOverlap]="overlap"
-      [luxBadgeCap]="cap"
-      [luxBadgePosition]="position"
-      [luxBadgeSize]="size"
-      luxLabel="Lux-Button"
-      [luxRaised]="true"
-      luxColor="primary"
-    >
-    </lux-button>
+    <div fxLayout="column" fxLayoutAlign="center end" fxLayoutGap="24px">
+      <span
+        [luxBadgeNotification]="notification"
+        [luxBadgeColor]="color"
+        [luxBadgeNoBorder]="noBorder"
+        [luxBadgeDisabled]="disabled"
+        [luxBadgeHidden]="hidden"
+        [luxBadgeOverlap]="overlap"
+        [luxBadgeCap]="cap"
+        [luxBadgePosition]="position"
+        [luxBadgeSize]="size"
+        >Lorem ipsum&nbsp;&nbsp;&nbsp;</span
+      >
+      <div>
+        <lux-icon
+          luxIconName="fas fa-user"
+          luxIconSize="2x"
+          [luxBadgeNotification]="notification"
+          [luxBadgeColor]="color"
+          [luxBadgeNoBorder]="noBorder"
+          [luxBadgeDisabled]="disabled"
+          [luxBadgeHidden]="hidden"
+          [luxBadgeOverlap]="overlap"
+          [luxBadgeCap]="cap"
+          [luxBadgePosition]="position"
+          [luxBadgeSize]="size"
+        ></lux-icon>
+      </div>
+      <lux-button
+        [luxBadgeNotification]="notification"
+        [luxBadgeColor]="color"
+        [luxBadgeNoBorder]="noBorder"
+        [luxBadgeDisabled]="disabled"
+        [luxBadgeHidden]="hidden"
+        [luxBadgeOverlap]="overlap"
+        [luxBadgeCap]="cap"
+        [luxBadgePosition]="position"
+        [luxBadgeSize]="size"
+        luxLabel="Lux-Button"
+        [luxRaised]="true"
+      >
+      </lux-button>
+      <lux-button
+        [luxBadgeNotification]="notification"
+        [luxBadgeColor]="color"
+        [luxBadgeNoBorder]="noBorder"
+        [luxBadgeDisabled]="disabled"
+        [luxBadgeHidden]="hidden"
+        [luxBadgeOverlap]="overlap"
+        [luxBadgeCap]="cap"
+        [luxBadgePosition]="position"
+        [luxBadgeSize]="size"
+        luxLabel="Lux-Button"
+        [luxRaised]="true"
+        luxColor="primary"
+      >
+      </lux-button>
+      <lux-button
+        [luxBadgeNotification]="notification"
+        [luxBadgeColor]="color"
+        [luxBadgeNoBorder]="noBorder"
+        [luxBadgeDisabled]="disabled"
+        [luxBadgeHidden]="hidden"
+        [luxBadgeOverlap]="overlap"
+        [luxBadgeCap]="cap"
+        [luxBadgePosition]="position"
+        [luxBadgeSize]="size"
+        luxLabel="Lux-Button"
+        [luxRaised]="true"
+        luxColor="warn"
+      >
+      </lux-button>
+      <lux-button
+        [luxBadgeNotification]="notification"
+        [luxBadgeColor]="color"
+        [luxBadgeNoBorder]="noBorder"
+        [luxBadgeDisabled]="disabled"
+        [luxBadgeHidden]="hidden"
+        [luxBadgeOverlap]="overlap"
+        [luxBadgeCap]="cap"
+        [luxBadgePosition]="position"
+        [luxBadgeSize]="size"
+        luxLabel="Lux-Button"
+        [luxRaised]="true"
+        luxColor="accent"
+      >
+      </lux-button>
+    </div>
   </example-base-content>
   <example-base-simple-options>
     <lux-input
@@ -69,9 +131,16 @@
       [(luxValue)]="cap"
       luxName="badge-notification_luxBadgeCap"
       luxLabel="luxBadgeCap"
-      luxHint="Diese Property legt fest ob eine Maximalzahl nicht überschritten werden darf (Vorausgesetzt das der Inhalt eine Zahl ist)."
+      luxHint="Diese Property legt fest, ob eine Maximalzahl nicht überschritten werden darf (Vorausgesetzt das der Inhalt eine Zahl ist)."
     >
     </lux-input>
+    <lux-toggle
+      class="example-highlight-config-option"
+      [(luxChecked)]="noBorder"
+      luxLabel="luxBadgeNoBorder"
+      luxHint="Dieses Flag bestimmt, ob die Border transparent ist."
+    >
+    </lux-toggle>
     <lux-toggle
       class="example-highlight-config-option"
       [(luxChecked)]="disabled"

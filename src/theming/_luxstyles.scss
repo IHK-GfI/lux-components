@@ -449,11 +449,22 @@ lux-button.lux-uppercase {
     }
   }
 
+  &.mat-badge .mat-badge-content {
+    border: 2px solid white;
+  }
+
+  &.mat-badge.lux-badge-no-border .mat-badge-content {
+    border: 2px solid transparent;
+  }
+
+  &.mat-badge:not(.mat-badge-disabled).mat-badge-accent .mat-badge-content {
+    background-color: map-get($componentBgColors, "green");
+  }
+
   &.lux-badge-color-default {
-    .mat-badge-content {
-      color: black;
-      background: white;
-      border: 1px solid $dark-primary-text;
+    &.mat-badge:not(.mat-badge-disabled) .mat-badge-content {
+      color: white;
+      background: #595959;
     }
   }
 }

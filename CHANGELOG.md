@@ -1,3 +1,7 @@
+# Version 11.0.0
+## New
+- **lux-badge-notification**: Optik verbessert. [Issue 43](https://github.com/IHK-GfI/lux-components/issues/43)
+
 # Version 10.5.0
 ## Bug Fixes
 - **lux-dialog**: Buttons sind auf kleinen Bildschirmen im Querformat unerreichbar. [Issue 47](https://github.com/IHK-GfI/lux-components/issues/47)

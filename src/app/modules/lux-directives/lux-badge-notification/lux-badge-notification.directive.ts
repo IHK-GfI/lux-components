@@ -38,6 +38,7 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
   @Input() luxBadgeDisabled: boolean = false;
   @Input() luxBadgeHidden: boolean = false;
   @Input() luxBadgeOverlap: boolean = true;
+  @Input() luxBadgeNoBorder: boolean = false;
   @Input() luxBadgeCap: number;
 
   constructor(
@@ -59,6 +60,11 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
     this.disabled = this.luxBadgeDisabled;
     this.hidden = !!this.luxBadgeHidden;
     this.overlap = this.luxBadgeOverlap;
+    if (this.luxBadgeNoBorder) {
+      this.luxElementRef.nativeElement.classList.add('lux-badge-no-border');
+    } else {
+      this.luxElementRef.nativeElement.classList.remove('lux-badge-no-border');
+    }
   }
 
   ngDoCheck() {
