@@ -7,7 +7,9 @@ export const mockResult: any[] = [
   {
     key: '2',
     kurzText: 'Bellux',
-    langText1: 'Belgien und Luxemburg'
+    langText1: 'Belgien und Luxemburg',
+    gueltigkeitVon: '19900101',
+    gueltigkeitBis: '20090101'
   },
   {
     key: '3',
@@ -17,7 +19,7 @@ export const mockResult: any[] = [
   {
     key: '4',
     kurzText: 'Deutschland',
-    langText1: 'DEUTSCHLAND'
+    langText1: 'Deutschland'
   },
   {
     key: '5',
@@ -67,12 +69,16 @@ export const mockResult: any[] = [
   {
     key: '21',
     kurzText: 'Ceuta',
-    langText1: 'Ceuta'
+    langText1: 'Ceuta',
+    gueltigkeitVon: '19900101',
+    gueltigkeitBis: '20090101'
   },
   {
     key: '23',
     kurzText: 'Melilla',
-    langText1: 'Melilla'
+    langText1: 'Melilla',
+    gueltigkeitVon: '19900101',
+    gueltigkeitBis: '20090101'
   },
   {
     key: '24',
@@ -1268,10 +1274,5 @@ export const mockResult: any[] = [
     key: '958',
     kurzText: 'Nicht ermittelte Länder/Gebiete',
     langText1: 'Nicht ermittelte Länder und Gebiete'
-  },
-  {
-    key: '998',
-    kurzText: 'POMMES',
-    langText1: 'DEUTSCHLAND'
   }
 ];

@@ -8,7 +8,6 @@ import {
 import { LuxLookupService } from '../../../modules/lux-lookup/lux-lookup-service/lux-lookup.service';
 import { LuxLookupHandlerService } from '../../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupTableEntry } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-table-entry';
-import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import {
   exampleErrorCallback,
   logResult,
@@ -36,8 +35,6 @@ export abstract class LookupExampleComponent implements OnInit {
   useErrorMessage: boolean = true;
   showOutputEvents: boolean = false;
   useRenderFn: boolean;
-  useMock: boolean;
-  mockInvalid: boolean;
   log = logResult;
   form: FormGroup;
   originalServices: LuxLookupService[] = [];
@@ -52,7 +49,7 @@ export abstract class LookupExampleComponent implements OnInit {
   selected: any;
   customStyle;
   customInvalidStyle;
-  behandlungUngueltige: LuxBehandlungsOptionenUngueltige = LuxBehandlungsOptionenUngueltige.anzeigen;
+  behandlungUngueltige: LuxBehandlungsOptionenUngueltige = LuxBehandlungsOptionenUngueltige.ausgrauen;
   disabled = false;
   controlBinding = 'lookup';
   readonly: boolean;
@@ -74,7 +71,6 @@ export abstract class LookupExampleComponent implements OnInit {
 
   protected constructor(
     protected lookupHandler: LuxLookupHandlerService,
-    protected snackbar: LuxSnackbarService,
     protected fb: FormBuilder
   ) {}
 
@@ -111,23 +107,6 @@ export abstract class LookupExampleComponent implements OnInit {
 
   changeOptionUngueltig($event) {
     this.behandlungUngueltige = this.options.find(option => option.value === +$event.value).label;
-  }
-
-  showSnackbar(text: string, action: string = 'OK') {
-    this.snackbar.open(3000, {
-      text: text,
-      action: action,
-      actionColor: 'green'
-    });
-  }
-
-  dataLoaded($event: boolean) {
-    if (!$event) {
-      this.showSnackbar('Laden fehlgeschlagen.');
-    } else {
-      this.showSnackbar('Daten geladen.');
-    }
-    this.log(this.showOutputEvents, 'Daten geladen', $event);
   }
 
   changeRequired($event: boolean) {

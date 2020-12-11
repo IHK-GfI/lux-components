@@ -88,6 +88,8 @@ import { FormRowExampleComponent } from './form-row-example/form-row-example.com
 import { CardRowExampleComponent } from './card-row-example/card-row-example.component';
 import { FilterExampleComponent } from './filter-example/filter-example.component';
 import { LuxFilterModule } from '../../modules/lux-filter/lux-filter.module';
+import { LuxLookupService } from '../../modules/lux-lookup/lux-lookup-service/lux-lookup.service';
+import { MockLuxLookupService } from './lookup-examples/mock-lookup-service';
 
 @NgModule({
   imports: [
@@ -181,7 +183,13 @@ import { LuxFilterModule } from '../../modules/lux-filter/lux-filter.module';
     CardRowExampleComponent,
     FilterExampleComponent
   ],
-  providers: [HttpClient, LuxLookupHandlerService, MasterDetailExampleDataService, LuxDialogService],
+  providers: [
+    HttpClient,
+    LuxLookupHandlerService,
+    MasterDetailExampleDataService,
+    LuxDialogService,
+    { provide: LuxLookupService, useClass: MockLuxLookupService }
+  ],
   entryComponents: [DialogComponentExampleComponent]
 })
 export class ComponentsOverviewModule {}

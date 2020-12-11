@@ -8,6 +8,8 @@ import { LuxSelectComponent } from '../../lux-form/lux-select/lux-select.compone
 import { LuxFormComponentBase } from '../../lux-form/lux-form-model/lux-form-component-base.class';
 import { LuxAutocompleteComponent } from '../../lux-form/lux-autocomplete/lux-autocomplete.component';
 import { LuxCheckboxComponent } from '../../lux-form/lux-checkbox/lux-checkbox.component';
+import { LuxLookupComboboxComponent } from '../../lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
+import { LuxLookupAutocompleteComponent } from '../../lux-lookup/lux-lookup-autocomplete/lux-lookup-autocomplete.component';
 
 @Directive({
   selector: '[luxFilterItem]'
@@ -24,10 +26,12 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
   constructor(
     @Optional() private input: LuxInputComponent,
     @Optional() private autoComplete: LuxAutocompleteComponent,
+    @Optional() private autoCompleteLookup: LuxLookupAutocompleteComponent,
     @Optional() private datepicker: LuxDatepickerComponent,
     @Optional() private toggle: LuxToggleComponent,
     @Optional() private checkbox: LuxCheckboxComponent,
     @Optional() private select: LuxSelectComponent,
+    @Optional() private selectLookup: LuxLookupComboboxComponent,
 
     private elRef: ElementRef,
     private renderer: Renderer2
@@ -47,6 +51,10 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
       formComponent = this.select;
     } else if (this.autoComplete) {
       formComponent = this.autoComplete;
+    } else if (this.autoCompleteLookup) {
+      formComponent = this.autoCompleteLookup;
+    } else if (this.selectLookup) {
+      formComponent = this.selectLookup;
     }
 
     this.filterItem.label = formComponent.luxLabel;
@@ -71,7 +79,9 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
         this.filterItem.renderFn = this.renderDateFn;
       } else if (
         this.filterItem.component instanceof LuxSelectComponent ||
-        this.filterItem.component instanceof LuxAutocompleteComponent
+        this.filterItem.component instanceof LuxAutocompleteComponent ||
+        this.filterItem.component instanceof LuxLookupComboboxComponent ||
+        this.filterItem.component instanceof LuxLookupAutocompleteComponent
       ) {
         this.filterItem.renderFn = this.renderLabelFn;
       } else {
@@ -117,6 +127,8 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
       return value;
     } else if (typeof value === 'object' && value.hasOwnProperty(filterItem.component['luxOptionLabelProp'])) {
       return value[filterItem.component['luxOptionLabelProp']];
+    } else if (typeof value === 'object' && value.hasOwnProperty(filterItem.component['luxRenderProp'])) {
+      return value[filterItem.component['luxRenderProp']];
     } else {
       return value;
     }

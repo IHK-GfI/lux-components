@@ -1,3 +1,10 @@
+# Version 10.5.0
+## New
+- **lux-filter-form**: Unterstützung für Lookup-Komponenten. [Issue 46](https://github.com/IHK-GfI/lux-components/issues/46)
+
+## Bug Fixes
+- **lux-dialog**: Buttons sind auf kleinen Bildschirmen im Querformat unerreichbar. [Issue 47](https://github.com/IHK-GfI/lux-components/issues/47)
+
 # Version 10.4.0
 ## New
 - **allgemein**: UX und Barrierefreiheit: Focus (Outline) für alle Komponenten vereinheitlicht. 
