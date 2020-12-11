@@ -21,16 +21,16 @@ export class TabsExampleComponent implements OnInit {
       title: 'Title #1',
       disabled: false,
       iconName: 'fas fa-bookmark',
-      showNotification: false,
+      showNotification: true,
       counterCap: 10,
-      counter: undefined
+      counter: 10
     },
     {
       title: 'Title #2',
       disabled: false,
       iconName: 'fas fa-user',
-      showNotification: false,
-      counterCap: 10,
+      showNotification: true,
+      counterCap: undefined,
       counter: undefined
     },
     {
@@ -38,8 +38,8 @@ export class TabsExampleComponent implements OnInit {
       disabled: false,
       iconName: 'fas fa-check',
       showNotification: false,
-      counterCap: 10,
-      counter: undefined
+      counterCap: 99,
+      counter: 99
     }
   ];
 

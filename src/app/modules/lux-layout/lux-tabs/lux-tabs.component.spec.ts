@@ -339,8 +339,7 @@ describe('LuxTabsComponent', () => {
       expect(fixture.componentInstance.tabCounterCap).toEqual(10);
 
       // Nachbedingungen testen
-      const divEl = document.getElementsByClassName('mat-badge-content')[0];
-      expect(divEl.innerHTML).toEqual('0');
+      expect(getBadgeElement(fixture).innerHTML).toEqual('0');
     }));
 
     it('Anzahl 10', fakeAsync(() => {
@@ -355,8 +354,7 @@ describe('LuxTabsComponent', () => {
       flush();
 
       // Nachbedingungen testen
-      const divEl = document.getElementsByClassName('mat-badge-content')[0];
-      expect(divEl.innerHTML).toEqual('10');
+      expect(getBadgeElement(fixture).innerHTML).toEqual('10');
     }));
 
     it('Anzahl 10+', fakeAsync(() => {
@@ -371,24 +369,7 @@ describe('LuxTabsComponent', () => {
       flush();
 
       // Nachbedingungen testen
-      const divEl = document.getElementsByClassName('mat-badge-content')[0];
-      expect(divEl.innerHTML).toEqual('10+');
-    }));
-
-    it('Sollte die Tabanzahl auch in Mobile anzeigen', fakeAsync(() => {
-      // Vorbedingungen testen
-      expect((<any>document.getElementsByClassName('mat-badge-content')[0]).offsetHeight).toBeGreaterThan(0);
-
-      // Änderungen durchführen
-      viewport.set('mobile');
-      LuxTestHelper.wait(fixture);
-
-      // Nachbedingungen testen
-      expect((<any>document.getElementsByClassName('mat-badge-content')[0]).offsetHeight).toBeGreaterThan(0);
-
-      viewport.set('desktop');
-      flush();
-      discardPeriodicTasks();
+      expect(getBadgeElement(fixture).innerHTML).toEqual('10+');
     }));
   });
 
@@ -405,8 +386,7 @@ describe('LuxTabsComponent', () => {
 
     it('Attribut "tabCounter" nicht gesetzt.', fakeAsync(() => {
       // Nachbedingungen testen
-      const divEl = document.getElementsByClassName('mat-badge-content')[0];
-      expect((<any>divEl).offsetWidth).toBe(0, 'Nachbedingung 1');
+      expect(getBadgeElement(fixture).offsetWidth).toBe(0, 'Nachbedingung 1');
     }));
   });
 });
@@ -566,4 +546,15 @@ class LuxTabLazyLoadingComponent {
 class LuxTabLuxDisabledComponent {
   animationActive = false;
   disabled = false;
+}
+
+export function getBadgeElement(fixture: ComponentFixture<any>): any {
+  let badgeSelector: string;
+  if (document.body.clientWidth > 959) {
+    badgeSelector = '.lux-tab-title .mat-badge-content';
+  } else {
+    badgeSelector = '.lux-tab-icon .mat-badge-content';
+  }
+
+  return fixture.debugElement.query(By.css(badgeSelector)).nativeElement;
 }
