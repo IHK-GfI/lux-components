@@ -1,3 +1,6 @@
+# Version 10.6.0
+- **allgemein**: Sicherheitsupdate eingespielt. [Pull Request 51](https://github.com/IHK-GfI/lux-components/pull/51)
+
 # Version 10.5.0
 ## New
 - **lux-filter-form**: Unterstützung für Lookup-Komponenten. [Issue 46](https://github.com/IHK-GfI/lux-components/issues/46)
