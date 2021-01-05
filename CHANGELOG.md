@@ -1,3 +1,7 @@
+# Version 10.6.0
+## New
+- **allgemein**: Dependabot-Konfiguration hinzufügen [Issue 53](https://github.com/IHK-GfI/lux-components/issues/53)
+
 # Version 10.5.0
 ## New
 - **lux-filter-form**: Unterstützung für Lookup-Komponenten. [Issue 46](https://github.com/IHK-GfI/lux-components/issues/46)
