@@ -1,6 +1,7 @@
 # Version 10.6.0
 ## New
 - **allgemein**: Dependabot-Konfiguration hinzufügen [Issue 53](https://github.com/IHK-GfI/lux-components/issues/53)
+- **lux-card**: Überschriften-Tags (h1,h2,...) sollen individuell vergeben werden können [Issue 49](https://github.com/IHK-GfI/lux-components/issues/49)
 
 ## Bug Fixes
 - **allgemein**: Sicherheitsupdate - Dependabot CVE-2020-26870 [Issue 54](https://github.com/IHK-GfI/lux-components/issues/54)

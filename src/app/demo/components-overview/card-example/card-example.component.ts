@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-card-example',
@@ -20,9 +21,11 @@ export class CardExampleComponent implements OnInit {
 
   disabled = false;
   titleLineBreak = false;
-  title = 'H2 - Lorem ipsum dolor sit amet, consectetur adipisici elit.';
+  title = `Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
   subTitle = 'Sed eiusmod tempor incidunt ut labore et dolore magna aliqua.';
   expanded: boolean = false;
+  heading = 2;
+  headingValidator = Validators.pattern('[1-6]');
 
   // endregion
 
