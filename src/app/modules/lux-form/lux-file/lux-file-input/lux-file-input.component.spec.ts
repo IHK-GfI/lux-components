@@ -428,7 +428,7 @@ describe('LuxFileInputComponent', () => {
     });
 
     describe('Sollte eine passende Fehlermeldung abgeben,', () => {
-      it('wenn die maximale Dateigröße überschritten wird', fakeAsync(() => {
+      it('wenn die maximale Dateigröße überschritten wird (luxClearOnError = true)', fakeAsync(() => {
         // Vorbedingungen prüfen
         let files = [LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')];
         // wir mocken erstmal 2MB Dateigröße
@@ -458,6 +458,48 @@ describe('LuxFileInputComponent', () => {
         expect(fileComponent.formControl.errors[LuxFileErrorCause.MaxSizeError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
         expect(fileComponent.luxSelectedFiles).toBe(undefined);
+        expect(fileComponent.formControl.value).toBe(undefined);
+        expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+        expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
+          'Die Datei "mockfile2.txt" überschreitet mit 20MB die erlaubte Dateigröße von 5MB'
+        );
+      }));
+
+      it('wenn die maximale Dateigröße überschritten wird (luxClearOnError = false)', fakeAsync(() => {
+        // Vorbedingungen prüfen
+        let files = [LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')];
+        // wir mocken erstmal 2MB Dateigröße
+        spyOnProperty(files[0], 'size', 'get').and.returnValue(200000);
+
+        fileComponent.selectFiles(files);
+        LuxTestHelper.wait(fixture);
+
+        expect(fileComponent.formControl.errors).toBe(null);
+        expect(fileComponent.formControl.valid).toBe(true);
+        expect(fileComponent.luxSelectedFiles).toBeTruthy();
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+
+        // Änderungen durchführen
+        testComponent.maxSizeMb = 5;
+        fileComponent.luxClearOnError = false;
+        LuxTestHelper.wait(fixture);
+
+        files = [LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')];
+        // wir mocken hier jetzt 20MB Dateigröße
+        spyOnProperty(files[0], 'size', 'get').and.returnValue(20000000);
+
+        fileComponent.selectFiles(files);
+        LuxTestHelper.wait(fixture);
+
+        // Nachbedingungen prüfen
+        expect( fileComponent.luxClearOnError).toBe(false);
+        expect(fileComponent.formControl.errors).not.toBe(null);
+        expect(fileComponent.formControl.errors[LuxFileErrorCause.MaxSizeError]).toBeDefined();
+        expect(fileComponent.formControl.valid).toBe(false);
+        expect(fileComponent.luxSelectedFiles.name).toBe('mockfile1.txt');
+        expect(fileComponent.luxSelectedFiles.type).toBe('text/txt');
+        expect(fileComponent.formControl.value.name).toBe('mockfile1.txt');
+        expect(fileComponent.formControl.value.type).toBe('text/txt');
         expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
         expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
           'Die Datei "mockfile2.txt" überschreitet mit 20MB die erlaubte Dateigröße von 5MB'
@@ -891,6 +933,7 @@ class FileComponent {
         [luxDnDActive]="dndActive"
         [luxMaxSizeMB]="maxSizeMb"
         [luxUploadUrl]="uploadUrl"
+        [luxClearOnError]="clearOnError"
       >
       </lux-file-input>
     </div>
@@ -911,6 +954,7 @@ class FileFormComponent {
   iconName;
   maxSizeMb = 10;
   uploadUrl;
+  clearOnError = true;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({

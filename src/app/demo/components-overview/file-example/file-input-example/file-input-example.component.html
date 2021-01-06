@@ -26,6 +26,7 @@
         [luxContentsAsBlob]="contentAsBlob"
         [luxUploadReportProgress]="reportProgress"
         [luxSelectedFiles]="selected"
+        [luxClearOnError]="clearOnError"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -34,6 +35,17 @@
         #fileinputexamplewithoutform
       >
       </lux-file-input>
+      <div
+        fxLayout="row"
+        fxLayoutGap="12px"
+        *ngIf="
+          !clearOnError && !fileinputexamplewithoutform.formGroup.valid && fileinputexamplewithoutform.luxSelectedFiles
+        "
+      >
+        <p>Datei "{{ fileinputexamplewithoutform.luxSelectedFiles.name }}" behalten?</p>
+        <lux-button luxLabel="Ja" (luxClicked)="onKeepFileWithoutForm(true)"></lux-button>
+        <lux-button luxLabel="Nein" (luxClicked)="onKeepFileWithoutForm(false)"></lux-button>
+      </div>
     </div>
     <div fxFlex="auto" fxLayout="column">
       <h3>Mit ReactiveForm</h3>
@@ -57,6 +69,7 @@
           [luxContentsAsBlob]="contentAsBlob"
           [luxUploadReportProgress]="reportProgress"
           [luxControlBinding]="controlBinding"
+          [luxClearOnError]="clearOnError"
           (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
           (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
           (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -64,6 +77,17 @@
           #fileinputexamplewithform
         >
         </lux-file-input>
+        <div
+          fxLayout="row"
+          fxLayoutGap="12px"
+          *ngIf="
+            !clearOnError && !fileinputexamplewithform.formGroup.valid && fileinputexamplewithform.luxSelectedFiles
+          "
+        >
+          <p>Datei "{{ fileinputexamplewithform.luxSelectedFiles.name }}" behalten?</p>
+          <lux-button luxLabel="Ja" (luxClicked)="onKeepFileWithForm(true)"></lux-button>
+          <lux-button luxLabel="Nein" (luxClicked)="onKeepFileWithForm(false)"></lux-button>
+        </div>
         <div fxLayout="column" class="example-highlight-config-option">
           <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
             <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
@@ -100,6 +124,13 @@
       [(luxValue)]="placeholder"
     >
     </lux-input>
+    <lux-toggle
+      class="example-highlight-config-option"
+      luxLabel="luxClearOnError"
+      luxHint="Gibt an, ob das Control bei einem Validierungsfehler geleert wird."
+      [(luxChecked)]="clearOnError"
+    >
+    </lux-toggle>
     <app-file-example-simple-options [fileExample]="this"></app-file-example-simple-options>
   </example-base-simple-options>
   <example-base-advanced-options>

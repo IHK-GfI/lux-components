@@ -37,7 +37,7 @@ export abstract class FileExampleComponent implements OnInit {
   disabled = false;
   readonly: boolean;
   required: boolean;
-  maxSize: number = 10;
+  maxSize: number = 5;
   capture: string = '';
   accept: string;
 
