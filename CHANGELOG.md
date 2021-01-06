@@ -1,6 +1,7 @@
 # Version 10.6.0
 ## New
 - **allgemein**: Dependabot-Konfiguration hinzufügen [Issue 53](https://github.com/IHK-GfI/lux-components/issues/53)
+- **lux‐file‐input**: Anpassbares Verhalten bei Validierung im lux‐file‐input gewünscht [Issue 50](https://github.com/IHK-GfI/lux-components/issues/50)
 
 ## Bug Fixes
 - **allgemein**: Sicherheitsupdate - Dependabot CVE-2020-26870 [Issue 54](https://github.com/IHK-GfI/lux-components/issues/54)

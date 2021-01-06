@@ -6,6 +6,8 @@ import { LuxFilePreviewService } from '../../../../modules/lux-file-preview/lux-
 import { LuxFormFileBase } from '../../../../modules/lux-form/lux-form-model/lux-form-file-base.class';
 import { LuxSnackbarService } from '../../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { FileExampleComponent } from '../file-example.component';
+import { LuxUtil } from '../../../../modules/lux-util/lux-util';
+import { ILuxFileObject } from '../../../../modules/lux-form/lux-file/lux-file-model/lux-file-object.interface';
 
 @Component({
   selector: 'app-file-input-example',
@@ -13,12 +15,13 @@ import { FileExampleComponent } from '../file-example.component';
 })
 export class FileInputExampleComponent extends FileExampleComponent implements AfterViewInit {
   @ViewChildren(LuxFileInputComponent) fileInputs: QueryList<LuxFileInputComponent>;
-  @ViewChild('fileinputexamplewithoutform', { read: LuxFormFileBase, static: true })
-  fileBaseWithoutComponent: LuxFormFileBase;
-  @ViewChild('fileinputexamplewithform', { read: LuxFormFileBase, static: true })
-  fileBaseWithComponent: LuxFormFileBase;
+  @ViewChild('fileinputexamplewithoutform', { read: LuxFileInputComponent, static: true })
+  fileBaseWithoutComponent: LuxFileInputComponent;
+  @ViewChild('fileinputexamplewithform', { read: LuxFileInputComponent, static: true })
+  fileBaseWithComponent: LuxFileInputComponent;
 
   placeholder: string = 'Placeholder';
+  clearOnError = true;
 
   constructor(
     fb: FormBuilder,
@@ -35,6 +38,26 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
 
   getFileComponentWithForm(): LuxFormFileBase {
     return this.fileBaseWithComponent;
+  }
+
+  onKeepFileWithoutForm(keepFile: boolean) {
+    if (keepFile) {
+      const fileCopy = {};
+      Object.assign(fileCopy, this.selected);
+      this.fileBaseWithoutComponent.luxSelectedFiles = fileCopy;
+    } else {
+      this.fileBaseWithoutComponent.luxSelectedFiles = undefined;
+    }
+  }
+
+  onKeepFileWithForm(keepFile: boolean) {
+    if (keepFile) {
+      const fileCopy = {};
+      Object.assign(fileCopy, this.fileBaseWithComponent.luxSelectedFiles);
+      this.fileBaseWithComponent.luxSelectedFiles = fileCopy;
+    } else {
+      this.fileBaseWithComponent.luxSelectedFiles = undefined;
+    }
   }
 
   ngAfterViewInit() {

@@ -28,7 +28,8 @@ export class LuxFileInputComponent extends LuxFormFileBase {
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
   @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() luxPlaceholder: string = '';
+  @Input() luxPlaceholder = '';
+  @Input() luxClearOnError = true;
 
   constructor(
     @Optional() controlContainer: ControlContainer,
@@ -80,7 +81,9 @@ export class LuxFileInputComponent extends LuxFormFileBase {
   }
 
   protected setFormControlErrors(error: ILuxFileError) {
-    this.luxSelectedFiles = undefined;
+    if (this.luxClearOnError) {
+      this.luxSelectedFiles = undefined;
+    }
 
     super.setFormControlErrors(error);
   }
