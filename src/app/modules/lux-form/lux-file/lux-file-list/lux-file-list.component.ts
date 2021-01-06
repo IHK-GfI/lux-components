@@ -67,6 +67,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
 
   @Input() luxShowPreview: boolean = true;
   @Input() luxMultiple: boolean = true;
+  @Input() luxHeading = 2;
 
   get luxUploadActionConfig(): ILuxFileListActionConfig {
     return this._luxUploadActionConfig;

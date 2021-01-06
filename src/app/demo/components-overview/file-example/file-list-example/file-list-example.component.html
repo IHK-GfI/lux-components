@@ -8,6 +8,7 @@
       <h3>Ohne ReactiveForm</h3>
       <lux-file-list
         [luxLabel]="label"
+        [luxHeading]="heading"
         [luxRequired]="required"
         [luxReadonly]="readonly"
         [(luxDisabled)]="disabled"
@@ -39,6 +40,7 @@
       <div [formGroup]="form">
         <lux-file-list
           [luxLabel]="label"
+          [luxHeading]="heading"
           [luxReadonly]="readonly"
           [(luxDisabled)]="disabled"
           [luxShowPreview]="showPreview"
@@ -105,6 +107,13 @@
       luxHint="Dieser Flag legt fest ob nur eine oder mehrere Dateien selektiert werden können."
     >
     </lux-toggle>
+    <lux-input
+      class="example-highlight-config-option"
+      luxLabel="luxHeading"
+      luxHint="Gültige Werte sind 1-6"
+      [(luxValue)]="heading"
+      [luxControlValidators]="headingValidator"
+    ></lux-input>
     <app-file-example-simple-options [fileExample]="this"></app-file-example-simple-options>
   </example-base-simple-options>
   <example-base-advanced-options>
