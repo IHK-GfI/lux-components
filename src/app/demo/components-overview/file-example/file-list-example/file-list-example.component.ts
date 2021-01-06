@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { LuxFilePreviewService } from '../../../../modules/lux-file-preview/lux-file-preview.service';
 import { LuxFormFileBase } from '../../../../modules/lux-form/lux-form-model/lux-form-file-base.class';
@@ -21,6 +21,8 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
   backgroundIconName: string = 'fas fa-cloud-upload-alt';
   showPreview: boolean = true;
   multiple: boolean = true;
+  heading = 4;
+  headingValidator = Validators.pattern('[1-6]');
 
   constructor(
     fb: FormBuilder,

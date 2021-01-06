@@ -21,15 +21,69 @@
           </div>
         </div>
 
-        <h2
-          fxFlex="grow"
-          class="lux-card-title-container"
-          ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
-          [ngClass]="{ 'lux-pt-1': !!luxTitle, 'lux-pb-2': !!luxTitle }"
-          title="{{ luxTitle }}"
-        >
-          {{ luxTitle }}
-        </h2>
+        <ng-container [ngSwitch]="luxHeading">
+          <h1
+            *ngSwitchCase="1"
+            fxFlex="grow"
+            class="lux-card-title-container"
+            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
+            [ngClass]="{ 'lux-pt-1': !!luxTitle, 'lux-pb-2': !!luxTitle }"
+            title="{{ luxTitle }}"
+          >
+            {{ luxTitle }}
+          </h1>
+          <h2
+            *ngSwitchDefault
+            fxFlex="grow"
+            class="lux-card-title-container"
+            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
+            [ngClass]="{ 'lux-pt-1': !!luxTitle, 'lux-pb-2': !!luxTitle }"
+            title="{{ luxTitle }}"
+          >
+            {{ luxTitle }}
+          </h2>
+          <h3
+            *ngSwitchCase="3"
+            fxFlex="grow"
+            class="lux-card-title-container"
+            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
+            [ngClass]="{ 'lux-pt-1': !!luxTitle, 'lux-pb-2': !!luxTitle }"
+            title="{{ luxTitle }}"
+          >
+            {{ luxTitle }}
+          </h3>
+          <h4
+            *ngSwitchCase="4"
+            fxFlex="grow"
+            class="lux-card-title-container"
+            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
+            [ngClass]="{ 'lux-pt-1': !!luxTitle, 'lux-pb-2': !!luxTitle }"
+            title="{{ luxTitle }}"
+          >
+            {{ luxTitle }}
+          </h4>
+          <h5
+            *ngSwitchCase="5"
+            fxFlex="grow"
+            class="lux-card-title-container"
+            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
+            [ngClass]="{ 'lux-pt-1': !!luxTitle, 'lux-pb-2': !!luxTitle }"
+            title="{{ luxTitle }}"
+          >
+            {{ luxTitle }}
+          </h5>
+          <h6
+            *ngSwitchCase="6"
+            fxFlex="grow"
+            class="lux-card-title-container"
+            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
+            [ngClass]="{ 'lux-pt-1': !!luxTitle, 'lux-pb-2': !!luxTitle }"
+            title="{{ luxTitle }}"
+          >
+            {{ luxTitle }}
+          </h6>
+        </ng-container>
+
 
         <div fxFlex="none" fxLayoutAlign="end">
           <ng-content *ngIf="!showExpandedToggle" select="lux-card-info"></ng-content>

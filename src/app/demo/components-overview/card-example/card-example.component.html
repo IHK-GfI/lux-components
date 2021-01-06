@@ -9,6 +9,7 @@
       [luxSubTitle]="subTitle"
       [luxExpanded]="expanded"
       [luxDisabled]="disabled"
+      [luxHeading]="heading"
       [luxTitleLineBreak]="titleLineBreak"
       (luxClicked)="onCardClicked()"
     >
@@ -46,16 +47,23 @@
     </lux-card>
   </example-base-content>
   <example-base-simple-options>
-    <lux-input
-      class="example-highlight-config-option"
-      luxLabel="luxTitle"
-      luxHint="Diese Property enthält den Textinhalt für den Titel der Card."
-      [(luxValue)]="title"
-    >
-    </lux-input>
+    <div fxLayout="column" class="example-highlight-config-option">
+      <lux-input
+        luxLabel="luxTitle"
+        luxHint="Diese Property enthält den Textinhalt für den Titel der Card."
+        [(luxValue)]="title"
+      >
+      </lux-input>
+
+      <lux-input
+        luxLabel="luxHeading"
+        luxHint="Gültige Werte sind 1-6"
+        [(luxValue)]="heading"
+        [luxControlValidators]="headingValidator"
+      ></lux-input>
+    </div>
 
     <lux-input
-      class="example-highlight-config-option"
       luxLabel="luxSubTitle"
       luxHint="Diese Property enthält den Textinhalt für den Untertitel der Card."
       [(luxValue)]="subTitle"
