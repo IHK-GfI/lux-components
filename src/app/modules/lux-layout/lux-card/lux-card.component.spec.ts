@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxCardContentExpandedComponent } from './lux-card-subcomponents/lux-card-content-expanded.component';
 import { LuxCardContentComponent } from './lux-card-subcomponents/lux-card-content.component';
 
 import { LuxCardComponent } from './lux-card.component';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
 describe('LuxCardComponent', () => {
 
@@ -40,6 +41,7 @@ describe('LuxCardComponent', () => {
       // Änderungen durchführen
       const toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button button'));
       toggleEl.nativeElement.click();
+      LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       // Nachbedingungen testen
       expect(component.expanded).toBeTruthy('Nachbedingung 1');
@@ -49,6 +51,8 @@ describe('LuxCardComponent', () => {
 
       // Nachbedingungen testen
       expect(component.expanded).toBeFalsy('Nachbedingung 2');
+
+      discardPeriodicTasks();
     }));
 
     it('Event testen', fakeAsync(() => {
@@ -59,6 +63,7 @@ describe('LuxCardComponent', () => {
       // Änderungen durchführen
       const toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button button'));
       toggleEl.nativeElement.click();
+      LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       // Nachbedingungen testen
       expect(onExpandedSpy).toHaveBeenCalledTimes(1);
@@ -68,6 +73,8 @@ describe('LuxCardComponent', () => {
 
       // Nachbedingungen testen
       expect(onExpandedSpy).toHaveBeenCalledTimes(2);
+
+      discardPeriodicTasks();
     }));
   });
 
@@ -122,7 +129,7 @@ describe('LuxCardComponent', () => {
       // Änderungen durchführen
       // 1. Durchlauf: Aufklappen
       toggleEl.nativeElement.click();
-      fixture.detectChanges();
+      LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       // Nachbedingungen testen
       expect(cardActionspy).toHaveBeenCalledTimes(0);
@@ -134,6 +141,8 @@ describe('LuxCardComponent', () => {
 
       // Nachbedingungen testen
       expect(cardActionspy).toHaveBeenCalledTimes(0);
+
+      discardPeriodicTasks();
     }));
   });
 
@@ -199,7 +208,7 @@ describe('LuxCardComponent', () => {
 
       // Änderungen durchführen
       toggleEl.nativeElement.click();
-      fixture.detectChanges();
+      LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       // Nachbedingungen testen
       contentEl = fixture.debugElement.query(By.directive(LuxCardContentComponent));
@@ -213,7 +222,7 @@ describe('LuxCardComponent', () => {
 
       // Änderungen durchführen
       toggleEl.nativeElement.click();
-      LuxTestHelper.wait(fixture, 500);
+      LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       // Nachbedingungen testen
       contentEl = fixture.debugElement.query(By.directive(LuxCardContentComponent));
@@ -223,6 +232,8 @@ describe('LuxCardComponent', () => {
       expect(contentEl.nativeElement.innerHTML).toEqual('Lorum ipsum');
       expect(expandedEl).toBeNull('Nachbedingung 5');
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
+
+      discardPeriodicTasks();
     }));
   });
 

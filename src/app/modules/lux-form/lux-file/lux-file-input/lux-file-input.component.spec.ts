@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
 import { LuxTestHelper } from '../../../lux-util/testing/lux-test-helper';
-import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { LuxFileInputComponent } from './lux-file-input.component';
 import { By } from '@angular/platform-browser';
 import { LuxFormFileBase } from '../../lux-form-model/lux-form-file-base.class';
@@ -306,6 +306,8 @@ describe('LuxFileInputComponent', () => {
       // Nachbedingungen prüfen
       expect(fileComponent.luxSelectedFiles).toEqual(undefined);
       expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value.trim()).toEqual('');
+
+      discardPeriodicTasks();
     }));
 
     it('Sollte den Base64-String via Base64-Callback füllen', fakeAsync(() => {
@@ -335,6 +337,8 @@ describe('LuxFileInputComponent', () => {
       );
       expect(fileComponent.luxSelectedFiles['name']).toEqual('mockfile.txt');
       expect(fileComponent.luxSelectedFiles['content']).toEqual('callback base64-dummy');
+
+      discardPeriodicTasks();
     }));
 
     it('Sollte statt des Base64-Strings den Dateityp Blob nutzen', fakeAsync(() => {
@@ -386,6 +390,7 @@ describe('LuxFileInputComponent', () => {
       expect(spy).toHaveBeenCalledTimes(3);
 
       flush();
+      discardPeriodicTasks();
     }));
 
     describe('Sollte die Events mit passenden Werten emitten,', () => {
@@ -626,6 +631,8 @@ describe('LuxFileInputComponent', () => {
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(1);
           expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles);
+
+          discardPeriodicTasks();
         }));
       });
 
@@ -699,6 +706,8 @@ describe('LuxFileInputComponent', () => {
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(1);
           expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles);
+
+          discardPeriodicTasks();
         }));
       });
 
@@ -768,6 +777,8 @@ describe('LuxFileInputComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(1);
+
+          discardPeriodicTasks();
         }));
       });
 
@@ -836,6 +847,8 @@ describe('LuxFileInputComponent', () => {
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(1);
           expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles);
+
+          discardPeriodicTasks();
         }));
       });
     });

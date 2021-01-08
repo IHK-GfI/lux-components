@@ -25,6 +25,9 @@ export class LuxComponentsConfigService {
     rippleConfiguration: {
       exitDuration: 500,
       enterDuration: 500
+    },
+    buttonConfiguration: {
+      throttleTimeMs: 600
     }
   };
 
