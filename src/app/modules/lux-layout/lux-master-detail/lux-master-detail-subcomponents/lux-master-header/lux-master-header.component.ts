@@ -16,7 +16,7 @@ export class LuxMasterHeaderComponent implements OnInit, OnDestroy {
   @Input() luxToggleHidden: boolean;
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 
-  @HostBinding('class.lux-no-toggle') isMobile = this.luxToggleHidden;
+  @HostBinding('class.lux-no-toggle') isMobile;
 
   constructor(private masterDetailMobileHelperService: LuxMasterDetailMobileHelperService) {
     this.subscription = this.masterDetailMobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {

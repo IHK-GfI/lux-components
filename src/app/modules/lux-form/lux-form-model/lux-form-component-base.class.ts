@@ -51,7 +51,7 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
   @ContentChild(LuxFormLabelComponent) formLabelComponent: LuxFormLabelComponent;
   @ContentChild(LuxFormHintComponent) formHintComponent: LuxFormHintComponent;
 
-  @HostBinding('class.lux-form-control-readonly') cssReadonly = this._luxReadonly;
+  @HostBinding('class.lux-form-control-readonly') cssReadonly;
 
   @Output() luxFocusIn: EventEmitter<any> = new EventEmitter<any>();
   @Output() luxFocusOut: EventEmitter<any> = new EventEmitter<any>();

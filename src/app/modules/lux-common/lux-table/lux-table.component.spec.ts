@@ -744,6 +744,8 @@ describe('LuxTableComponent', () => {
           }).pipe(delay(2000));
         } else if (conf.filter === 'new_filter_text_earlier_arrival') {
           return of({ items: [component.httpDao.dataSourceFix[0]], totalCount: 1 }).pipe(delay(500));
+        } else {
+          throw new Error('Unreachable');
         }
       };
       fixture.detectChanges();

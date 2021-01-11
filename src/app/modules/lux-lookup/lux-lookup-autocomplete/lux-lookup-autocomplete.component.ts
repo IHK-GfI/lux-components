@@ -93,6 +93,8 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
       return option[<string>this.luxRenderProp]
         ? option[<string>this.luxRenderProp]
         : 'Fehler beim Auslesen (Property unbekannt)';
+    } else {
+      return '';
     }
   }
 
