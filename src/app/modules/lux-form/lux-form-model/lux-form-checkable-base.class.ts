@@ -1,5 +1,5 @@
 import { ControlContainer, ValidatorFn, Validators } from '@angular/forms';
-import {ChangeDetectorRef, Directive, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, Directive, EventEmitter, Input, Output} from '@angular/core';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxFormComponentBase } from './lux-form-component-base.class';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -68,14 +68,6 @@ export abstract class LuxFormCheckableBaseClass extends LuxFormComponentBase {
     }
 
     return validators;
-  }
-
-  protected triggerOutputPatternCheck() {
-    this.checkOutputPatternViolation(this.luxCheckedChange.observers);
-  }
-
-  protected triggerInputPatternCheck(simpleChanges: SimpleChanges) {
-    this.checkInputPatternViolation(simpleChanges.luxChecked);
   }
 
   // endregion

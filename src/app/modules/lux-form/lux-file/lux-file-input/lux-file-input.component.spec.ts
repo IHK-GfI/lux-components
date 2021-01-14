@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
@@ -43,9 +44,9 @@ describe('LuxFileInputComponent', () => {
       fileComponent = fixture.debugElement.query(By.directive(LuxFileInputComponent)).componentInstance;
 
       // den LiveAnnouncer abklemmen
-      fileComponent['liveAnnouncer'] = <any>{
+      fileComponent['liveAnnouncer'] = {
         announce: (...args) => {}
-      };
+      } as any;
 
       // Wir mocken hier den FileReader weg, da er nicht mit fakeAsync kompatibel ist
       spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve('base64-dummy'));
@@ -123,9 +124,9 @@ describe('LuxFileInputComponent', () => {
       fileComponent = fixture.debugElement.query(By.directive(LuxFileInputComponent)).componentInstance;
 
       // den LiveAnnouncer abklemmen
-      fileComponent['liveAnnouncer'] = <any>{
+      fileComponent['liveAnnouncer'] = {
         announce: (...args) => {}
-      };
+      } as any;
 
       // Wir mocken hier den FileReader weg, da er nicht mit fakeAsync kompatibel ist
       spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve('base64-dummy'));

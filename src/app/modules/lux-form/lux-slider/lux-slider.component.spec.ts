@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 
 import { LuxSliderComponent } from './lux-slider.component';

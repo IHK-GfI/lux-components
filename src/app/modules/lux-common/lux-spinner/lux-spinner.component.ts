@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LuxUtil } from '../../lux-util/lux-util';
 
 @Component({
@@ -6,17 +6,15 @@ import { LuxUtil } from '../../lux-util/lux-util';
   templateUrl: './lux-spinner.component.html',
   styleUrls: ['./lux-spinner.component.scss']
 })
-export class LuxSpinnerComponent implements OnInit {
-  @Input() luxIndeterminate: boolean = true;
-  @Input() luxValue: number = 0;
+export class LuxSpinnerComponent {
+  @Input() luxIndeterminate = true;
+  @Input() luxValue = 0;
 
   constructor() {}
 
   get mode() {
     return this.luxIndeterminate ? 'indeterminate' : 'determinate';
   }
-
-  ngOnInit() {}
 
   isIE(): boolean {
     return LuxUtil.isIE();

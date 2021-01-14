@@ -14,6 +14,8 @@ export class LuxStepperHelperService {
    * bekannten Stepper einen Schritt nach vorne springen.
    *
    * Voraussetzung: luxLinear = false oder aktuell Form ist valide.
+   *
+   * @param stepper
    */
   public nextStep(stepper?: LuxStepperComponent) {
     if (stepper) {
@@ -30,6 +32,8 @@ export class LuxStepperHelperService {
    * Springt im Stepper zum vorherigen Step.
    * Alternativ (ohne Stepper als Parameter) laesst die Funktion alle
    * Bekannten Stepper einen Schritt zurueckspringen.
+   *
+   * @param stepper
    */
   public previousStep(stepper?: LuxStepperComponent) {
     if (stepper) {
@@ -44,6 +48,7 @@ export class LuxStepperHelperService {
 
   /**
    * Gibt das Observable der internen Map fuer den Stepper zurueck.
+   *
    * @param stepper
    * @returns Observable<boolean> | Observable<any>
    */
@@ -54,6 +59,7 @@ export class LuxStepperHelperService {
 
   /**
    * Traegt den Stepper in die Map der dem Service bekannten Stepper ein.
+   *
    * @param stepper
    */
   public registerStepper(stepper: LuxStepperComponent) {

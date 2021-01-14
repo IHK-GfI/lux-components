@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tooltip-example',
   templateUrl: './tooltip-example.component.html'
 })
-export class TooltipExampleComponent implements OnInit {
+export class TooltipExampleComponent {
   positionOptions = ['left', 'right', 'above', 'below', 'before', 'after'];
 
   message = 'Tooltip';
@@ -14,6 +14,4 @@ export class TooltipExampleComponent implements OnInit {
   position = 'above';
 
   constructor() {}
-
-  ngOnInit() {}
 }

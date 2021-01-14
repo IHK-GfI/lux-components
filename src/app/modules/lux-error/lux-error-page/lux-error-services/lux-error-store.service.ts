@@ -30,6 +30,7 @@ export class LuxErrorStoreService {
 
   /**
    * Gibt die aktuelle Konfiguration zurueck.
+   *
    * @returns ILuxErrorPageConfig
    */
   get config() {
@@ -38,6 +39,7 @@ export class LuxErrorStoreService {
 
   /**
    * Gibt ein Array der letzten Fehler zurueck.
+   *
    * @returns Array<ILuxError[]>
    */
   get lastErrors() {
@@ -46,6 +48,7 @@ export class LuxErrorStoreService {
 
   /**
    * Gibt den aktuellen Fehler zurueck.
+   *
    * @returns ILuxError
    */
   get error(): ILuxError {
@@ -54,6 +57,7 @@ export class LuxErrorStoreService {
 
   /**
    * Sichert den Fehler in der Property und fügt ihn der "lastErrors"-Liste hinzu.
+   *
    * @param newError
    */
   set error(newError: ILuxError) {

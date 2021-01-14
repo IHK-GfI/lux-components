@@ -70,7 +70,7 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
  */
 if (!Element.prototype.matches) {
   Element.prototype.matches =
-    function (s) {
+    function(s) {
       const matches = (this.document || this.ownerDocument).querySelectorAll(s);
       let i         = matches.length;
       while (--i >= 0 && matches.item(i) !== this) {

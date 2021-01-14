@@ -14,8 +14,8 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 export class LuxInputComponent extends LuxFormInputBaseClass {
   private readonly symbolRegExp = /[,.]/;
 
-  @Input() luxType: string = 'text';
-  @Input() luxNumberAlignLeft: boolean = false;
+  @Input() luxType = 'text';
+  @Input() luxNumberAlignLeft = false;
   @Input() luxMaxLength: number;
   @ContentChild(LuxInputPrefixComponent) inputPrefix: LuxInputPrefixComponent;
   @ContentChild(LuxInputSuffixComponent) inputSuffix: LuxInputSuffixComponent;
@@ -32,6 +32,7 @@ export class LuxInputComponent extends LuxFormInputBaseClass {
 
   /**
    * Wird bei jedem Tastendruck auf dem Inputfeld aufgerufen.
+   *
    * @param $event
    */
   onKeyDown($event: KeyboardEvent) {

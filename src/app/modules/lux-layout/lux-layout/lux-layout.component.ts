@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'lux-layout',
   templateUrl: './lux-layout.component.html',
   styleUrls: ['./lux-layout.component.scss']
 })
-export class LuxLayoutComponent implements OnInit {
+export class LuxLayoutComponent {
   constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -133,15 +133,14 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
       this.masterEntries = this.allMasterEntries;
       this.configuration.ignoreScrollLoading = false;
     } else {
-      this.masterEntries = this.allMasterEntries.filter(entry => {
-        return entry.timestamp < $event.value;
-      });
+      this.masterEntries = this.allMasterEntries.filter(entry => entry.timestamp < $event.value);
       this.configuration.ignoreScrollLoading = true;
     }
   }
 
   /**
    * Master-Detail nutzt die Funktion, um Objekte in der MasterListe miteinander zu vergleichen.
+   *
    * @param o1
    * @param o2
    */

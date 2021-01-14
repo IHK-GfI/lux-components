@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICountry } from '../model/country.interface';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
@@ -9,7 +9,7 @@ import { FormBase } from '../model/form-base.class';
   selector: 'app-form-dual-col',
   templateUrl: './form-dual-col.component.html'
 })
-export class FormDualColComponent extends FormBase implements OnInit {
+export class FormDualColComponent extends FormBase {
   streetsFormArray: FormArray;
   countries: ICountry[] = [];
 
@@ -39,8 +39,6 @@ export class FormDualColComponent extends FormBase implements OnInit {
 
     this.countries = this.dataProvider.countries;
   }
-
-  ngOnInit() {}
 
   addStreet() {
     this.streetsFormArray.push(this.createStreetFormGroup());

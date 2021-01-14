@@ -17,6 +17,7 @@ export class LuxErrorService {
    * Ueberschreibt die aktuelle Konfiguration fuer die Fehlerseite.
    * Uebernimmt so viele Werte wie moeglich aus der uebergebenen Konfiguration,
    * sonst werden die Default-Werte genutzt.
+   *
    * @param luxErrorPageConfig
    */
   setConfig(luxErrorPageConfig: ILuxErrorPageConfig) {
@@ -30,6 +31,7 @@ export class LuxErrorService {
   /**
    * Navigiert zur Fehlerkomponente und versucht einen Fehler
    * (wenn mitgegeben) zu sichern.
+   *
    * @param error
    * @returns Observable<any>
    */

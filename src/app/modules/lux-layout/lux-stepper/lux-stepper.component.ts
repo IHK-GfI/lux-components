@@ -136,6 +136,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**
    * Wird beim Wechsel des aktuellen Steps (Klick auf Tab oder .next()/.previous() Aufruf) aufgerufen.
+   *
    * @param $event
    */
   onStepChanged($event: StepperSelectionEvent) {
@@ -183,6 +184,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**
    * Generiert die Icons fuer einen einzelnen Step
+   *
    * @param stepLabel
    * @param luxStep
    * @param factory

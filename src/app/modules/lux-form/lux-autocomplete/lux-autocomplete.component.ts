@@ -8,7 +8,6 @@ import {
   OnInit,
   Optional,
   Output,
-  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
@@ -31,14 +30,14 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
 
   filteredOptions: Observable<any>;
 
-  @Input() luxPlaceholder: string = '';
+  @Input() luxPlaceholder = '';
   @Input() luxOptions: any[] = [];
-  @Input() luxOptionLabelProp: string = 'label';
-  @Input() luxLookupDelay: number = 500;
-  @Input() luxErrorMessageNotAnOption: string = 'Der eingegebene Wert ist nicht Teil der Auswahl.';
+  @Input() luxOptionLabelProp = 'label';
+  @Input() luxLookupDelay = 500;
+  @Input() luxErrorMessageNotAnOption = 'Der eingegebene Wert ist nicht Teil der Auswahl.';
   @Input() luxTagId: string;
-  @Input() luxSelectAllOnClick: boolean = true;
-  @Input() luxStrict: boolean = true;
+  @Input() luxSelectAllOnClick = true;
+  @Input() luxStrict = true;
   @Input() luxPickValue: (selected: any) => any;
   @Input() luxFilterFn: (filterTerm: string, label: string, option: any) => boolean;
 
@@ -143,7 +142,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   }
 
   /**
-   * @override errorMessageModifier - Modifikation der Fehlermeldung
+   * @override
    * @param value
    * @param errors
    */
@@ -157,6 +156,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   /**
    * Regelt die Darstellung der gewaehlten Option im Normalfall.
    * (Ausnahme: Focus-Verlust)
+   *
    * @param value
    * @returns string
    */
@@ -173,6 +173,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   /**
    * Filtert das Options-Array nach dem filterTerm und
    * gibt das Ergebnis als Array zurueck.
+   *
    * @param filterTerm
    * @returns any[]
    */
@@ -192,6 +193,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   /**
    * Click-Event Handling
    * Selektiert den gesamten Text im Input, wenn selectAllOnClick = true ist.
+   *
    * @param clickEvent
    */
   onClick(clickEvent: any) {
@@ -203,6 +205,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   /**
    * Gibt den darzustellenden Wert einer Option bzw.
    * die Option selbst (wenn string) wider.
+   *
    * @param option
    * @returns any
    */
@@ -269,14 +272,6 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
     if (newValue && newValue[this.luxOptionLabelProp]) {
       this.matInput.nativeElement.value = newValue[this.luxOptionLabelProp];
     }
-  }
-
-  protected triggerOutputPatternCheck() {
-    this.checkOutputPatternViolation(this.luxValueChange.observers);
-  }
-
-  protected triggerInputPatternCheck(simpleChanges: SimpleChanges) {
-    this.checkInputPatternViolation(simpleChanges.luxValue);
   }
 
   // endregion

@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+// no-shadow meldet fälschlicherweise einen Fehler
 /**
  * Enums, welche die auswaehlbaren Felder fuer den Response einer Lookup-Service-Abfrage beinhaltet.
  */
@@ -14,6 +16,7 @@ export enum LuxBehandlungsOptionenUngueltige {
   ausgrauen = 'ausgrauen',
   ausblenden = 'ausblenden'
 }
+/* eslint-enable no-shadow */
 
 /**
  * Class, welche benutzt wird um die Abfrage an den Lookup-Service zu modifizeren.

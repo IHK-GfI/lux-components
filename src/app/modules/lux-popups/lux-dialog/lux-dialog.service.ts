@@ -14,12 +14,13 @@ import { LuxDialogPresetComponent } from './lux-dialog-preset/lux-dialog-preset.
 export class LuxDialogService {
   private static readonly ALREADY_OPENED_ERROR: string = 'Aktuell ist bereits ein Dialog geöffnet';
 
-  private dialogOpened: boolean = false;
+  private dialogOpened = false;
 
   constructor(private matDialog: MatDialog, private logger: LuxConsoleService, private luxDialogRef: LuxDialogRef) {}
 
   /**
    * Öffnet einen Dialog basierend auf der übergebenen Component und den entsprechenden Daten.
+   *
    * @param component
    * @param config
    * @param data
@@ -31,6 +32,7 @@ export class LuxDialogService {
 
   /**
    * Öffnet einen Dialog basierend auf der LuxDialogComponent und der LuxDialogConfig.
+   *
    * @param config
    */
   open(config?: ILuxDialogPresetConfig): LuxDialogRef {
@@ -42,6 +44,7 @@ export class LuxDialogService {
   /**
    * Prüft ob bereits ein Dialog geöffnet ist und etwaige CSS-Klassen für den Dialog gegeben sind.
    * Anschließend wird der Dialog mit den übergebenen Config-Optionen und Data-Informationen geöffnet.
+   *
    * @param component
    * @param config
    * @param data
@@ -78,7 +81,7 @@ export class LuxDialogService {
       autoFocus: false,
       restoreFocus: true,
       disableClose: config.disableClose,
-      panelClass: panelClass
+      panelClass
     });
 
     this.luxDialogRef.init(matDialogRef, data);

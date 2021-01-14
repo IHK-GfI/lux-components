@@ -7,7 +7,6 @@ import {
   OnInit,
   Optional,
   Output,
-  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
@@ -35,10 +34,10 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
   @Output() luxValuePercent: EventEmitter<number> = new EventEmitter<number>();
 
   @Input() luxColor: SLIDER_COLORS = 'primary';
-  @Input() luxVertical: boolean = false;
-  @Input() luxInvert: boolean = false;
-  @Input() luxShowThumbLabel: boolean = true;
-  @Input() luxShowThumbLabelAlways: boolean = true;
+  @Input() luxVertical = false;
+  @Input() luxInvert = false;
+  @Input() luxShowThumbLabel = true;
+  @Input() luxShowThumbLabelAlways = true;
   @Input() luxTickInterval: SLIDER_TICK_INTERVAL = 0;
   @Input() luxTagId: string = undefined;
   @Input() luxDisplayWith: (value: number | null) => string | number;
@@ -53,10 +52,10 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
     }
   }
 
-  _luxMax: number = 100;
-  _luxRequired: boolean = false;
-  _luxMin: number = 0;
-  _luxStep: number = 1;
+  _luxMax = 100;
+  _luxRequired = false;
+  _luxMin = 0;
+  _luxStep = 1;
 
   subscription: Subscription;
 
@@ -134,7 +133,6 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
   }
 
   ngOnChanges(simpleChanges) {
-    super.ngOnChanges(simpleChanges);
     if (simpleChanges.luxDisabled) {
       this.redrawSliderWorkaround();
     }
@@ -142,6 +140,7 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
 
   /**
    * Wird beim Aendern des Slider-Wertes aufgerufen.
+   *
    * @param changeEvent
    */
   onChange(changeEvent: MatSliderChange) {
@@ -151,6 +150,7 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
 
   /**
    * Wird beim Bewegen des Sliders aufgerufen.
+   *
    * @param inputEvent
    */
   onInput(inputEvent: MatSliderChange) {
@@ -191,13 +191,5 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
     setTimeout(() => {
       this.matSlider.step = this.luxStep;
     });
-  }
-
-  protected triggerOutputPatternCheck() {
-    this.checkOutputPatternViolation(this.luxValueChange.observers);
-  }
-
-  protected triggerInputPatternCheck(simpleChanges: SimpleChanges) {
-    this.checkInputPatternViolation(simpleChanges.luxValue);
   }
 }

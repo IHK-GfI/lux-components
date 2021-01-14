@@ -1,5 +1,5 @@
 import { LuxFormComponentBase } from './lux-form-component-base.class';
-import { ChangeDetectorRef, Directive, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Directive, EventEmitter, Input, Output } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -14,9 +14,9 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
 
   @Output() luxSelectedChange: EventEmitter<any> = new EventEmitter();
 
-  @Input() luxOptionLabelProp: string = '';
+  @Input() luxOptionLabelProp = '';
   @Input() luxTagId: string;
-  @Input() luxPickValue: (selected) => {};
+  @Input() luxPickValue: (selected: any) => any;
   @Input() luxCompareWith = (o1, o2) => o1 === o2;
 
   get luxSelected(): any {
@@ -55,6 +55,7 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
   /**
    * Versucht, wenn Options und FormControl vorhanden sind, den selected-Wert mit den Options
    * zu vergleichen und dann auch wenn möglich als luxSelected-Wert zu sichern.
+   *
    * @param selected
    */
   private checkSelectedAndUpdate(selected: any) {
@@ -83,6 +84,7 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
    * Prüft ob der übergebene Wert in den luxOptions ist.
    * Kann auch ein Array als "selected" enthalten.
    * Wenn der Wert nicht gefunden werden konnte wird eine Fehlermeldung in der console ausgegeben.
+   *
    * @param selected
    */
   private checkSelectedInOptions(selected: any) {
@@ -95,6 +97,7 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
 
   /**
    * Prüft ob die übergebenen Select-Objekte in den luxOptions enthalten sind.
+   *
    * @param selectedAsArray
    */
   private allSelectedInOptions(selectedAsArray: any[]): boolean {
@@ -113,11 +116,9 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
           ? this.luxPickValue(optionEntry) === selectedAsArray
           : this.compareObjects(optionEntry, selectedAsArray);
       } else {
-        return selectedAsArray.find((selectedEntry: any | any[]) => {
-          return this.luxPickValue
+        return selectedAsArray.find((selectedEntry: any | any[]) => this.luxPickValue
             ? this.luxPickValue(optionEntry) === selectedEntry
-            : this.compareObjects(optionEntry, selectedEntry);
-        });
+            : this.compareObjects(optionEntry, selectedEntry));
       }
     }).length;
 
@@ -127,6 +128,7 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
   /**
    * Loggt die Fehlermeldung in die Console, wenn das neue Value-Objekt nicht in den Options gefunden
    * werden konnte.
+   *
    * @param selected
    */
   private logSelectedNotFound(selected: any) {
@@ -140,6 +142,7 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
   /**
    * Kapselung von der übergebenen luxCompareWith-Funktion.
    * Fängt undefinierte Objekte ab und returned stattdessen false.
+   *
    * @param o1
    * @param o2
    */
@@ -153,11 +156,4 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
     }
   };
 
-  protected triggerOutputPatternCheck() {
-    this.checkOutputPatternViolation(this.luxSelectedChange.observers);
-  }
-
-  protected triggerInputPatternCheck(simpleChanges: SimpleChanges) {
-    this.checkInputPatternViolation(simpleChanges.luxSelected);
-  }
 }

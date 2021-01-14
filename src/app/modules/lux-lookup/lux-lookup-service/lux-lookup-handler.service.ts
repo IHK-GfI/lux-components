@@ -9,7 +9,9 @@ export class LuxLookupHandlerService {
 
   /**
    * Fügt ein LookupComponent zu der Map hinzu.
+   *
    * @param string name
+   * @param name
    */
   addLookupElement(name: string) {
     this.lookupElements.set(name, new Subject<boolean>());
@@ -17,7 +19,9 @@ export class LuxLookupHandlerService {
 
   /**
    * Gibt das Subject einer LookupComponent als Observable zurück (oder null).
+   *
    * @param string name
+   * @param name
    * @returns Observable<any> | null
    */
   getLookupElementObsv(name: string): Observable<any> | null {
@@ -30,7 +34,9 @@ export class LuxLookupHandlerService {
 
   /**
    * Gibt das Subject einer LookupComponent zurück (oder null).
+   *
    * @param string name
+   * @param name
    * @returns Observable<any> | null
    */
   getLookupElementSubject(name: string) {
@@ -43,7 +49,9 @@ export class LuxLookupHandlerService {
 
   /**
    * Stößt das Neuladen von Schlüsseltabellendaten einer LookupComponent an.
+   *
    * @param string name
+   * @param lookupId
    */
   reloadData(lookupId: string) {
     const lookupEl = this.getLookupElementSubject(lookupId);

@@ -1,4 +1,3 @@
-// tslint:disable:max-line-length
 /**
  * Diese API beschreibt die öffentliche Schnittstelle der LUX-Components.
  *

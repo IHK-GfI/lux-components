@@ -26,7 +26,7 @@ export class LuxSnackbarService {
    */
   public openText(message: string, duration: number, actionName?: string): void {
     this.snackBar.open(message, actionName, {
-      duration: duration,
+      duration,
       verticalPosition: LuxSnackbarService.VERTICAL_POSITION,
       horizontalPosition: LuxSnackbarService.HORIZONTAL_POSITION,
       panelClass: 'lux-snackbar'
@@ -44,8 +44,8 @@ export class LuxSnackbarService {
    */
   public openComponent(component: ComponentType<any>, duration: number = 0, data?: any) {
     this.snackBar.openFromComponent(component, {
-      duration: duration,
-      data: data,
+      duration,
+      data,
       verticalPosition: LuxSnackbarService.VERTICAL_POSITION,
       horizontalPosition: LuxSnackbarService.HORIZONTAL_POSITION,
       panelClass: 'lux-snackbar'
@@ -55,11 +55,13 @@ export class LuxSnackbarService {
   /**
    * Oeffnet eine Snackbar anhand der uebergebenen Konfiguration.
    * Ermoeglicht eine genaue Konfiguration der Snackbar.
+   *
+   * @param duration
    * @param config
    */
   public open(duration: number, config?: LuxSnackbarConfig) {
     this.snackBar.openFromComponent(LuxSnackbarComponent, {
-      duration: duration,
+      duration,
       data: config,
       verticalPosition: LuxSnackbarService.VERTICAL_POSITION,
       horizontalPosition: LuxSnackbarService.HORIZONTAL_POSITION,

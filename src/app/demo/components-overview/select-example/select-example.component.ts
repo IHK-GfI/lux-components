@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { LuxFormSelectableBase } from '../../../modules/lux-form/lux-form-model/lux-form-selectable-base.class';
 import {
@@ -13,15 +13,15 @@ import {
   selector: 'app-select-example',
   templateUrl: './select-example.component.html'
 })
-export class SelectExampleComponent implements OnInit {
+export class SelectExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  useErrorMessage: boolean = true;
-  useTemplatesForLabels: boolean = false;
-  useCompareWithFn: boolean = false;
+  useErrorMessage = true;
+  useTemplatesForLabels = false;
+  useCompareWithFn = false;
   useValueFn: boolean;
   useSimpleArray: boolean;
-  showOutputEvents: boolean = false;
+  showOutputEvents = false;
 
   options: { label: string; value: number }[] = [
     { label: 'Afghanistan', value: 1 },
@@ -76,16 +76,16 @@ export class SelectExampleComponent implements OnInit {
 
   // region Properties der Component
 
-  controlBinding: string = 'selectExample';
+  controlBinding = 'selectExample';
   disabled = false;
   readonly: boolean;
   required: boolean;
-  label: string = 'Label';
-  hint: string = 'Hint';
-  hintShowOnlyOnFocus: boolean = false;
-  placeholder: string = 'Placeholder';
+  label = 'Label';
+  hint = 'Hint';
+  hintShowOnlyOnFocus = false;
+  placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
-  errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
+  errorMessage = 'Das Feld enthält keinen gültigen Wert';
 
   value;
   multiselectValue;
@@ -100,9 +100,7 @@ export class SelectExampleComponent implements OnInit {
 
   // endregion
 
-  defaultCompareWith = (o1, o2) => {
-    return o1 === o2;
-  };
+  defaultCompareWith = (o1, o2) => o1 === o2;
 
   constructor(private _fb: FormBuilder) {
     this.form = this._fb.group({
@@ -113,8 +111,6 @@ export class SelectExampleComponent implements OnInit {
     this.compareWithFnString = '' + this.compareWithFn;
     this.errorCallbackString = '' + this.errorCallback;
   }
-
-  ngOnInit() {}
 
   showErrors(...comps: LuxFormSelectableBase[]) {
     this.value = null;

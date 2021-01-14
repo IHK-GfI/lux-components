@@ -2,7 +2,6 @@ import { Platform } from '@angular/cdk/platform';
 import {
   ChangeDetectorRef,
   Component,
-  DoCheck,
   ElementRef,
   Input,
   OnChanges,
@@ -44,7 +43,7 @@ export const APP_DATE_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
   ]
 })
-export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnInit, OnChanges, OnDestroy, DoCheck {
+export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnInit, OnChanges, OnDestroy {
   private originalTouchUi;
   private mediaSubscription: Subscription;
   private previousISO: string;
@@ -54,11 +53,11 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
   start: Date;
 
   @Input() luxStartView: 'month' | 'year' = 'month';
-  @Input() luxTouchUi: boolean = false;
-  @Input() luxOpened: boolean = false;
+  @Input() luxTouchUi = false;
+  @Input() luxOpened = false;
   @Input() luxStartDate: string = null;
-  @Input() luxShowToggle: boolean = true;
-  @Input() luxLocale: string = 'de-DE';
+  @Input() luxShowToggle = true;
+  @Input() luxLocale = 'de-DE';
   @Input() luxCustomFilter: any = undefined;
   @Input() luxMaxDate: string = undefined;
   @Input() luxMinDate: string = undefined;
@@ -90,7 +89,6 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
-    super.ngOnChanges(simpleChanges);
     if (simpleChanges.luxOpened) {
       // Evtl. gibt es ohne das Timeout sonst Fehler, weil der matDatepicker noch nicht gesetzt ist
       setTimeout(() => {
@@ -127,6 +125,7 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
 
   /**
    * Erzeugt für die Unter- bzw. Überschreitung
+   *
    * @param value
    * @param errors
    */
@@ -172,6 +171,7 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
 
   /**
    * Aktualisiert den FormControl-Value und den Wert im Parent über valueChange mithilfe des übergebenen ISO-Strings.
+   *
    * @param isoValue
    */
   private setISOValue(isoValue: string) {
@@ -203,7 +203,7 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
       // Per Hand dem Input-Element einen formatierten String übergeben
       if (!this.datepickerInput.nativeElement.value && isoValue) {
         this.datepickerInput.nativeElement.value = this.dateAdapter.format(
-          <any>isoValue,
+          isoValue as any,
           APP_DATE_FORMATS.display.dateInput
         );
       }

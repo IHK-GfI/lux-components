@@ -22,19 +22,17 @@ describe('LuxControlDisable', () => {
 
   it('Controls über luxDisabled (de-)aktivieren', fakeAsync(() => {
     // Vorbedingungen testen
-    const inputEl = <HTMLInputElement>fixture.debugElement.query(By.css('#input input')).nativeElement;
-    const autocompleteEl = <HTMLInputElement>fixture.debugElement.query(By.css('#autocomplete input')).nativeElement;
-    const checkboxEl = <HTMLInputElement>fixture.debugElement.query(By.css('#checkbox input')).nativeElement;
-    const datepickerEl = <HTMLInputElement>fixture.debugElement.query(By.css('#datepicker input')).nativeElement;
-    const fileinputEl = <HTMLInputElement>(
-      fixture.debugElement.query(By.css('#fileinput div.lux-form-control')).nativeElement
-    );
-    const filelistEl = <HTMLInputElement>fixture.debugElement.query(By.css('#filelist lux-card')).nativeElement;
+    const inputEl = fixture.debugElement.query(By.css('#input input')).nativeElement as HTMLInputElement;
+    const autocompleteEl = fixture.debugElement.query(By.css('#autocomplete input')).nativeElement as HTMLInputElement;
+    const checkboxEl = fixture.debugElement.query(By.css('#checkbox input')).nativeElement as HTMLInputElement;
+    const datepickerEl = fixture.debugElement.query(By.css('#datepicker input')).nativeElement as HTMLInputElement;
+    const fileinputEl = fixture.debugElement.query(By.css('#fileinput div.lux-form-control')).nativeElement as HTMLInputElement;
+    const filelistEl = fixture.debugElement.query(By.css('#filelist lux-card')).nativeElement as HTMLInputElement;
     let radioEl = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
-    const selectEl = <HTMLInputElement>fixture.debugElement.query(By.css('#select mat-select')).nativeElement;
-    const sliderEl = <HTMLInputElement>fixture.debugElement.query(By.css('#slider mat-slider')).nativeElement;
-    const textareaEl = <HTMLInputElement>fixture.debugElement.query(By.css('#textarea textarea')).nativeElement;
-    const toggleEl = <HTMLInputElement>fixture.debugElement.query(By.css('#toggle input')).nativeElement;
+    const selectEl = fixture.debugElement.query(By.css('#select mat-select')).nativeElement as HTMLInputElement;
+    const sliderEl = fixture.debugElement.query(By.css('#slider mat-slider')).nativeElement as HTMLInputElement;
+    const textareaEl = fixture.debugElement.query(By.css('#textarea textarea')).nativeElement as HTMLInputElement;
+    const toggleEl = fixture.debugElement.query(By.css('#toggle input')).nativeElement as HTMLInputElement;
 
     expect(inputEl.disabled).toBe(false);
     expect(autocompleteEl.disabled).toBe(false);
@@ -111,19 +109,17 @@ describe('LuxControlDisable', () => {
 
   it('Controls über das Formular (de-)aktivieren', fakeAsync(() => {
     // Vorbedingungen testen
-    const inputEl = <HTMLInputElement>fixture.debugElement.query(By.css('#input input')).nativeElement;
-    const autocompleteEl = <HTMLInputElement>fixture.debugElement.query(By.css('#autocomplete input')).nativeElement;
-    const checkboxEl = <HTMLInputElement>fixture.debugElement.query(By.css('#checkbox input')).nativeElement;
-    const datepickerEl = <HTMLInputElement>fixture.debugElement.query(By.css('#datepicker input')).nativeElement;
-    const fileinputEl = <HTMLInputElement>(
-      fixture.debugElement.query(By.css('#fileinput div.lux-form-control')).nativeElement
-    );
-    const filelistEl = <HTMLInputElement>fixture.debugElement.query(By.css('#filelist lux-card')).nativeElement;
+    const inputEl = fixture.debugElement.query(By.css('#input input')).nativeElement as HTMLInputElement;
+    const autocompleteEl = fixture.debugElement.query(By.css('#autocomplete input')).nativeElement as HTMLInputElement;
+    const checkboxEl = fixture.debugElement.query(By.css('#checkbox input')).nativeElement as HTMLInputElement;
+    const datepickerEl = fixture.debugElement.query(By.css('#datepicker input')).nativeElement as HTMLInputElement;
+    const fileinputEl = fixture.debugElement.query(By.css('#fileinput div.lux-form-control')).nativeElement as HTMLInputElement;
+    const filelistEl = fixture.debugElement.query(By.css('#filelist lux-card')).nativeElement as HTMLInputElement;
     let radioEl = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
-    const selectEl = <HTMLInputElement>fixture.debugElement.query(By.css('#select mat-select')).nativeElement;
-    const sliderEl = <HTMLInputElement>fixture.debugElement.query(By.css('#slider mat-slider')).nativeElement;
-    const textareaEl = <HTMLInputElement>fixture.debugElement.query(By.css('#textarea textarea')).nativeElement;
-    const toggleEl = <HTMLInputElement>fixture.debugElement.query(By.css('#toggle input')).nativeElement;
+    const selectEl = fixture.debugElement.query(By.css('#select mat-select')).nativeElement as HTMLInputElement;
+    const sliderEl = fixture.debugElement.query(By.css('#slider mat-slider')).nativeElement as HTMLInputElement;
+    const textareaEl = fixture.debugElement.query(By.css('#textarea textarea')).nativeElement as HTMLInputElement;
+    const toggleEl = fixture.debugElement.query(By.css('#toggle input')).nativeElement as HTMLInputElement;
 
     expect(inputEl.disabled).toBe(false);
     expect(autocompleteEl.disabled).toBe(false);
@@ -218,19 +214,17 @@ describe('LuxControlDisable', () => {
 
   it('Controls über das Formular deaktivieren und über LuxDisabled aktivieren', fakeAsync(() => {
     // Vorbedingungen testen
-    const inputEl = <HTMLInputElement>fixture.debugElement.query(By.css('#input input')).nativeElement;
-    const autocompleteEl = <HTMLInputElement>fixture.debugElement.query(By.css('#autocomplete input')).nativeElement;
-    const checkboxEl = <HTMLInputElement>fixture.debugElement.query(By.css('#checkbox input')).nativeElement;
-    const datepickerEl = <HTMLInputElement>fixture.debugElement.query(By.css('#datepicker input')).nativeElement;
-    const fileinputEl = <HTMLInputElement>(
-      fixture.debugElement.query(By.css('#fileinput div.lux-form-control')).nativeElement
-    );
-    const filelistEl = <HTMLInputElement>fixture.debugElement.query(By.css('#filelist lux-card')).nativeElement;
+    const inputEl = fixture.debugElement.query(By.css('#input input')).nativeElement as HTMLInputElement;
+    const autocompleteEl = fixture.debugElement.query(By.css('#autocomplete input')).nativeElement as HTMLInputElement;
+    const checkboxEl = fixture.debugElement.query(By.css('#checkbox input')).nativeElement as HTMLInputElement;
+    const datepickerEl = fixture.debugElement.query(By.css('#datepicker input')).nativeElement as HTMLInputElement;
+    const fileinputEl = fixture.debugElement.query(By.css('#fileinput div.lux-form-control')).nativeElement as HTMLInputElement;
+    const filelistEl = fixture.debugElement.query(By.css('#filelist lux-card')).nativeElement as HTMLInputElement;
     let radioEl = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
-    const selectEl = <HTMLInputElement>fixture.debugElement.query(By.css('#select mat-select')).nativeElement;
-    const sliderEl = <HTMLInputElement>fixture.debugElement.query(By.css('#slider mat-slider')).nativeElement;
-    const textareaEl = <HTMLInputElement>fixture.debugElement.query(By.css('#textarea textarea')).nativeElement;
-    const toggleEl = <HTMLInputElement>fixture.debugElement.query(By.css('#toggle input')).nativeElement;
+    const selectEl = fixture.debugElement.query(By.css('#select mat-select')).nativeElement as HTMLInputElement;
+    const sliderEl = fixture.debugElement.query(By.css('#slider mat-slider')).nativeElement as HTMLInputElement;
+    const textareaEl = fixture.debugElement.query(By.css('#textarea textarea')).nativeElement as HTMLInputElement;
+    const toggleEl = fixture.debugElement.query(By.css('#toggle input')).nativeElement as HTMLInputElement;
 
     expect(inputEl.disabled).toBe(false);
     expect(autocompleteEl.disabled).toBe(false);
@@ -315,19 +309,17 @@ describe('LuxControlDisable', () => {
 
   it('Controls über luxDisabled deaktivieren und übers Formular aktivieren', fakeAsync(() => {
     // Vorbedingungen testen
-    const inputEl = <HTMLInputElement>fixture.debugElement.query(By.css('#input input')).nativeElement;
-    const autocompleteEl = <HTMLInputElement>fixture.debugElement.query(By.css('#autocomplete input')).nativeElement;
-    const checkboxEl = <HTMLInputElement>fixture.debugElement.query(By.css('#checkbox input')).nativeElement;
-    const datepickerEl = <HTMLInputElement>fixture.debugElement.query(By.css('#datepicker input')).nativeElement;
-    const fileinputEl = <HTMLInputElement>(
-      fixture.debugElement.query(By.css('#fileinput div.lux-form-control')).nativeElement
-    );
-    const filelistEl = <HTMLInputElement>fixture.debugElement.query(By.css('#filelist lux-card')).nativeElement;
+    const inputEl = fixture.debugElement.query(By.css('#input input')).nativeElement as HTMLInputElement;
+    const autocompleteEl = fixture.debugElement.query(By.css('#autocomplete input')).nativeElement as HTMLInputElement;
+    const checkboxEl = fixture.debugElement.query(By.css('#checkbox input')).nativeElement as HTMLInputElement;
+    const datepickerEl = fixture.debugElement.query(By.css('#datepicker input')).nativeElement as HTMLInputElement;
+    const fileinputEl = fixture.debugElement.query(By.css('#fileinput div.lux-form-control')).nativeElement as HTMLInputElement;
+    const filelistEl = fixture.debugElement.query(By.css('#filelist lux-card')).nativeElement as HTMLInputElement;
     let radioEl = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
-    const selectEl = <HTMLInputElement>fixture.debugElement.query(By.css('#select mat-select')).nativeElement;
-    const sliderEl = <HTMLInputElement>fixture.debugElement.query(By.css('#slider mat-slider')).nativeElement;
-    const textareaEl = <HTMLInputElement>fixture.debugElement.query(By.css('#textarea textarea')).nativeElement;
-    const toggleEl = <HTMLInputElement>fixture.debugElement.query(By.css('#toggle input')).nativeElement;
+    const selectEl = fixture.debugElement.query(By.css('#select mat-select')).nativeElement as HTMLInputElement;
+    const sliderEl = fixture.debugElement.query(By.css('#slider mat-slider')).nativeElement as HTMLInputElement;
+    const textareaEl = fixture.debugElement.query(By.css('#textarea textarea')).nativeElement as HTMLInputElement;
+    const toggleEl = fixture.debugElement.query(By.css('#toggle input')).nativeElement as HTMLInputElement;
 
     expect(inputEl.disabled).toBe(false);
     expect(autocompleteEl.disabled).toBe(false);

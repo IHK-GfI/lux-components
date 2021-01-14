@@ -36,12 +36,12 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   tabChange$: ReplaySubject<MatTabChangeEvent> = new ReplaySubject<MatTabChangeEvent>(1);
   labelUppercase: boolean;
 
-  @Input() luxTabAnimationActive: boolean = true;
-  @Input() luxActiveTab: number = 0;
-  @Input() luxIconSize: string = '2x';
-  @Input() luxDisplayDivider: boolean = true;
+  @Input() luxTabAnimationActive = true;
+  @Input() luxActiveTab = 0;
+  @Input() luxIconSize = '2x';
+  @Input() luxDisplayDivider = true;
   @Input() luxTagId: string;
-  @Input() luxLazyLoading: boolean = false;
+  @Input() luxLazyLoading = false;
 
   @Output() readonly luxActiveTabChanged: EventEmitter<any> = new EventEmitter<any>();
 

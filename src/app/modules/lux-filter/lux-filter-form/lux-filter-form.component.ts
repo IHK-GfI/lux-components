@@ -64,7 +64,7 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
     return this._luxFilterValues;
   }
 
-  set luxFilterValues(filter: object) {
+  set luxFilterValues(filter: any) {
     this._luxFilterValues = JSON.parse(JSON.stringify(filter));
 
     if (this.formElementes) {

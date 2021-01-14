@@ -7,7 +7,6 @@ import {
   HostListener,
   Input,
   OnDestroy,
-  OnInit,
   Output,
   QueryList
 } from '@angular/core';
@@ -21,8 +20,8 @@ import { LuxUtil } from '../../lux-util/lux-util';
   templateUrl: './lux-list.component.html',
   styleUrls: ['./lux-list.component.scss']
 })
-export class LuxListComponent implements OnInit, AfterViewInit, OnDestroy {
-  private _luxSelectedPosition: number = 0;
+export class LuxListComponent implements AfterViewInit, OnDestroy {
+  private _luxSelectedPosition = 0;
 
   private previousFocusedPosition: number;
   private clickSubscriptions: Subscription[] = [];
@@ -63,8 +62,6 @@ export class LuxListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor() {}
 
-  ngOnInit() {}
-
   isEmpty() {
     return !this.luxItems || this.luxItems.length === 0;
   }
@@ -90,12 +87,13 @@ export class LuxListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.listItemsSubscription.unsubscribe();
     }
 
-    this.clickSubscriptions.forEach(sub => sub.unsubscribe());
+    this.clickSubscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   /**
    * Wird beim Drücken einer Taste ausgeführt und handelt die Aktionen bei speziellen Tasten
    * (UP_ARROW || DOWN_ARROW werden vom KeyManager selbstständig gepflegt)
+   *
    * @param $event
    */
   keydown($event: KeyboardEvent) {
@@ -127,7 +125,7 @@ export class LuxListComponent implements OnInit, AfterViewInit, OnDestroy {
    * Auf Click-Events der hier bekannten LuxListItems hören und entsprechend das selektierte ListItem aktualisieren.
    */
   private listenForClicks() {
-    this.clickSubscriptions.forEach(sub => sub.unsubscribe());
+    this.clickSubscriptions.forEach((sub) => sub.unsubscribe());
     this.clickSubscriptions = [];
 
     this.luxItems.forEach((listItem: LuxListItemComponent, index: number) => {
@@ -143,6 +141,7 @@ export class LuxListComponent implements OnInit, AfterViewInit, OnDestroy {
   /**
    * Merkt sich die position als Selektions-Position und aktualisiert den luxSelected-Wert
    * aller luxItems, die hier bekannt sind.
+   *
    * @param position
    */
   private select(position: number) {
@@ -164,6 +163,7 @@ export class LuxListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /**
    * Merkt sich die position als Fokus-Position und aktualisiert die CSS-Klassen der ListItems.
+   *
    * @param position
    */
   private focus(position: number) {
@@ -177,6 +177,7 @@ export class LuxListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /**
    * Scrollt zu dem Element an der position.
+   *
    * @param position
    */
   private scroll(position: number) {
@@ -191,11 +192,10 @@ export class LuxListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /**
    * Gibt das ListItem an der position zurück bzw. null wenn die luxItems undefined/null sind.
+   *
    * @param position
    */
   private findListItem(position: number): LuxListItemComponent {
-    return this.luxItems
-      ? this.luxItems.find((listItem: LuxListItemComponent, index: number) => index === position)
-      : null;
+    return this.luxItems ? this.luxItems.find((listItem: LuxListItemComponent, index: number) => index === position) : null;
   }
 }

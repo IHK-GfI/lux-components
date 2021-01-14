@@ -35,8 +35,8 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() luxSubTitle: string;
   @Input() luxDisabled: boolean;
   @Input() luxTagId: string;
-  @Input() luxTitleLineBreak: boolean = true;
-  @Input() luxExpanded: boolean = false;
+  @Input() luxTitleLineBreak = true;
+  @Input() luxExpanded = false;
   @Input() luxUseTabIndex = true;
   @Input() luxHeading = 2;
   @Output() luxExpandedChange: EventEmitter<boolean> = new EventEmitter();
@@ -51,7 +51,7 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   @ContentChild(LuxCardContentComponent) contentComponent: LuxCardContentComponent;
 
   hasCardAction: boolean;
-  animationDisabled: boolean = true;
+  animationDisabled = true;
 
   constructor(private componentsConfigService: LuxComponentsConfigService, private cdr: ChangeDetectorRef) {}
 

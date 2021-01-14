@@ -1,15 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ContentChildren,
-  ElementRef,
-  HostListener,
-  Input,
-  OnDestroy,
-  OnInit,
-  QueryList,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, ElementRef, HostListener, Input, OnDestroy, QueryList, ViewChild } from '@angular/core';
 import { LuxSideNavItemComponent } from './lux-side-nav-subcomponents/lux-side-nav-item.component';
 import { Subscription } from 'rxjs';
 import { sideNavAnimation, sideNavOverlayAnimation } from './lux-side-nav-model/lux-side-nav-animations';
@@ -21,23 +10,21 @@ import { LuxUtil } from '../../../../lux-util/lux-util';
   styleUrls: ['./lux-side-nav.component.scss'],
   animations: [sideNavAnimation, sideNavOverlayAnimation]
 })
-export class LuxSideNavComponent implements OnInit, AfterViewInit, OnDestroy {
+export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
   @Input() luxDashboardLink: string;
-  @Input() luxDashboardLinkTitle: string = 'LUX Dashboard';
+  @Input() luxDashboardLinkTitle = 'LUX Dashboard';
   @Input() luxOpenLinkBlank: boolean;
   @Input() luxAriaRoleNavigationLabel = 'Anwendungsmenü / Navigation';
 
   @ContentChildren(LuxSideNavItemComponent, { descendants: true }) sideNavItems: QueryList<LuxSideNavItemComponent>;
-  @ContentChildren(LuxSideNavItemComponent, { descendants: false }) directSideNavItems: QueryList<
-    LuxSideNavItemComponent
-  >;
+  @ContentChildren(LuxSideNavItemComponent, { descendants: false }) directSideNavItems: QueryList<LuxSideNavItemComponent>;
 
   @ViewChild('sideNav', { read: ElementRef, static: true }) sideNavEl: ElementRef;
   @ViewChild('sideNavHeader', { read: ElementRef, static: true }) sideNavHeaderEl: ElementRef;
   @ViewChild('sideNavFooter', { read: ElementRef, static: true }) sideNavFooterEl: ElementRef;
 
   focusElement: any;
-  sideNavExpanded: boolean = false;
+  sideNavExpanded = false;
   height: number;
   width: number;
   visibility = 'hidden';
@@ -58,8 +45,6 @@ export class LuxSideNavComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   constructor() {}
-
-  ngOnInit() {}
 
   ngAfterViewInit() {
     this.subscription = this.sideNavItems.changes.subscribe(() => this.updateItemClickListeners());
@@ -101,7 +86,7 @@ export class LuxSideNavComponent implements OnInit, AfterViewInit, OnDestroy {
     // Den Fokus auf den ersten Button setzen
     if (this.sideNavExpanded && this.sideNavEl && this.sideNavEl.nativeElement) {
       setTimeout(() => {
-        const firstButton = (<HTMLElement>this.sideNavEl.nativeElement).querySelector('button');
+        const firstButton = (this.sideNavEl.nativeElement as HTMLElement).querySelector('button');
         if (firstButton) {
           firstButton.focus();
         }

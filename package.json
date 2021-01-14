@@ -20,7 +20,7 @@
     "test_no_sm": "ng test --no-sourceMap",
     "test_single_run": "ng test --watch=false --browsers=ChromeHeadless",
     "test_coverage": "ng test --watch=false --code-coverage=true",
-    "lint": "ng run lux-components:app-lint --format=stylish && ng run lux-components:spec-lint --format=stylish",
+    "lint": "ng lint --fix",
     "e2e": "ng e2e",
     "packagr": "ng-packagr -p ng-package.json",
     "doc": "compodoc -p src/tsconfig.app.json -n 'LUX-Components'",
@@ -78,9 +78,19 @@
     "rxjs": "^6.6.3",
     "ts-node": "^8.10.2",
     "tslib": "^2.0.0",
-    "tslint": "~6.1.0",
-    "tslint-angular": "^3.0.3",
     "typescript": "~4.0.5",
-    "zone.js": "^0.10.3"
-  }
+    "zone.js": "^0.10.3",
+    "eslint": "^7.6.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsdoc": "30.7.6",
+    "eslint-plugin-prefer-arrow": "1.2.2",
+    "@angular-eslint/builder": "1.0.0",
+    "@angular-eslint/eslint-plugin": "1.0.0",
+    "@angular-eslint/eslint-plugin-template": "1.0.0",
+    "@angular-eslint/schematics": "1.0.0",
+    "@angular-eslint/template-parser": "1.0.0",
+    "@typescript-eslint/eslint-plugin": "4.3.0",
+    "@typescript-eslint/parser": "4.3.0"
+  },
+  "dependencies": {}
 }

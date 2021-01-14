@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 /**
  * Diese Component stellt eine Grundstruktur für Dialoge dar und kann von Aufrufern als Alternative
@@ -9,15 +9,13 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
   templateUrl: './lux-dialog-structure.component.html',
   styleUrls: ['./lux-dialog-structure.component.scss']
 })
-export class LuxDialogStructureComponent implements OnInit, AfterViewInit {
+export class LuxDialogStructureComponent implements AfterViewInit {
   @ViewChild('dialogBase', { read: ElementRef, static: true }) dialogBase: ElementRef;
 
   constructor() {}
 
-  ngOnInit() {}
-
   ngAfterViewInit() {
     // den Fokus auf den Dialog selbst setzen (damit eine Tastatur-Steuerung von oben nach unten stattfinden kann)
-    (<HTMLHeadingElement>this.dialogBase.nativeElement).focus();
+    (this.dialogBase.nativeElement as HTMLHeadingElement).focus();
   }
 }

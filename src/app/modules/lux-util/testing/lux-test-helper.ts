@@ -109,6 +109,10 @@ export class LuxTestHelper {
 
   /**
    * Wichtig: aus fakeAsync-Block heraus aufrufen, da hier tick() genutzt wird.
+   *
+   * @param input
+   * @param value
+   * @param fixture
    */
   public static setInputValue(input: any, value: any, fixture: any) {
     if (input) {
@@ -123,6 +127,7 @@ export class LuxTestHelper {
   /**
    * Wichtig: aus fakeAsync-Block heraus aufrufen, da hier tick() genutzt wird.
    * Wartet asynchrone Aufrufe ab und ruft die ChangeDetection auf
+   *
    * @param fixture
    * @param tickDuration
    */
@@ -135,8 +140,10 @@ export class LuxTestHelper {
   /**
    * Wichtig: aus fakeAsync-Block heraus aufrufen, da hier tick() genutzt wird.
    * Sendet ein Klick-Event ab und wartet dann.
+   *
    * @param fixture
    * @param DebugElement
+   * @param debugElement
    */
   public static click(fixture: any, debugElement: DebugElement) {
     debugElement.triggerEventHandler('click', null);
@@ -146,8 +153,10 @@ export class LuxTestHelper {
   /**
    * Wichtig: aus fakeAsync-Block heraus aufrufen, da hier tick() genutzt wird.
    * Sendet ein Change-Event ab und wartet dann.
+   *
    * @param fixture
    * @param DebugElement
+   * @param radioButton
    */
   public static radioButtonChange(fixture: any, radioButton: DebugElement) {
     radioButton.nativeElement.dispatchEvent(LuxTestHelper.createFakeEvent('change'));
@@ -157,6 +166,7 @@ export class LuxTestHelper {
   /**
    * Erstellt eine ComponentFixture fuer die mitgegebene Komponente, optional ist es moeglich
    * weitere Provider und Declarations einzutragen. Diese werden dann im Testmodul eingetragen.
+   *
    * @param component
    * @param providers
    * @param declarations
@@ -181,23 +191,47 @@ export class LuxTestHelper {
     return TestBed.createComponent(component);
   }
 
-  /** Utility to dispatch any event on a Node. */
+  /**
+   * Utility to dispatch any event on a Node.
+   *
+   * @param node
+   * @param event
+   */
   public static dispatchEvent(node: Node | Window, event: Event): Event {
     node.dispatchEvent(event);
     return event;
   }
 
-  /** Shorthand to dispatch a fake event on a specified node. */
+  /**
+   * Shorthand to dispatch a fake event on a specified node.
+   *
+   * @param node
+   * @param type
+   * @param canBubble
+   */
   public static dispatchFakeEvent(node: Node | Window, type: string, canBubble?: boolean): Event {
     return LuxTestHelper.dispatchEvent(node, LuxTestHelper.createFakeEvent(type, canBubble));
   }
 
-  /** Shorthand to dispatch a keyboard event with a specified key code. */
+  /**
+   * Shorthand to dispatch a keyboard event with a specified key code.
+   *
+   * @param node
+   * @param type
+   * @param keyCode
+   * @param target
+   */
   public static dispatchKeyboardEvent(node: Node, type: string, keyCode: number, target?: Element): KeyboardEvent {
     return LuxTestHelper.dispatchEvent(node, LuxTestHelper.createKeyboardEvent(type, keyCode, target)) as KeyboardEvent;
   }
 
-  /** Focuses an input and sets its value. Dispatches an fake input event afterwards. */
+  /**
+   * Focuses an input and sets its value. Dispatches an fake input event afterwards.
+   *
+   * @param element
+   * @param value
+   * @param noInputEvent
+   */
   public static typeInElement(element: HTMLInputElement, value: string, noInputEvent?: boolean) {
     element.focus();
     element.value = value;
@@ -211,6 +245,11 @@ export class LuxTestHelper {
   /**
    * Inserts data into an input field, that has to update asynchrounos before calling a callback-function
    * Allows to use RxJs Interval-Timers within the Target-Components.
+   *
+   * @param text
+   * @param fixture
+   * @param element
+   * @param callback
    */
   public static typeInElementAsynch(text: string, fixture: ComponentFixture<any>, element: HTMLInputElement, callback) {
     fixture.whenStable().then(() => {
@@ -228,7 +267,14 @@ export class LuxTestHelper {
     });
   }
 
-  /** Dispatches a keydown event from an element. */
+  /**
+   * Dispatches a keydown event from an element.
+   *
+   * @param type
+   * @param keyCode
+   * @param target
+   * @param key
+   */
   public static createKeyboardEvent(type: string, keyCode: number, target?: Element, key?: string) {
     const event = document.createEvent('KeyboardEvent') as any;
     // Firefox does not support `initKeyboardEvent`, but supports `initKeyEvent`.
@@ -254,7 +300,13 @@ export class LuxTestHelper {
     return event;
   }
 
-  /** Creates a fake event object with any desired event type. */
+  /**
+   * Creates a fake event object with any desired event type.
+   *
+   * @param type
+   * @param canBubble
+   * @param cancelable
+   */
   public static createFakeEvent(type: string, canBubble = false, cancelable = true) {
     let event;
     if (typeof Event === 'function') {
@@ -269,6 +321,9 @@ export class LuxTestHelper {
 
   /**
    * Selektiert ein Element anhand der Query von dem Fixture
+   *
+   * @param fixture
+   * @param query
    */
   public static selectOneFromFixture(fixture: ComponentFixture<any>, query: string): DebugElement {
     return fixture.debugElement.query(By.css(query));
@@ -276,6 +331,9 @@ export class LuxTestHelper {
 
   /**
    * Selektiert ein Array von Elementen anhand der Query von dem Fixture
+   *
+   * @param fixture
+   * @param query
    */
   public static selectAllFromFixture(fixture: ComponentFixture<any>, query: string): DebugElement[] {
     return fixture.debugElement.queryAll(By.css(query));
@@ -283,6 +341,7 @@ export class LuxTestHelper {
 
   /**
    * Konfiguriert das TestModul für eine Testsuite, kann dabei Provider und Komponenten (Deklarationen) entgegennehmen.
+   *
    * @param providers
    * @param declarations
    * @param imports
@@ -304,13 +363,14 @@ export class LuxTestHelper {
 
   /**
    * Erstellt ein leeres File-Objekt mit Namen und Typ via Blob-Constructor (um Edge/IE-Fehler zu vermeiden).
+   *
    * @param name
    * @param type
    */
   public static createFileBrowserSafe(name, type) {
-    const file = new Blob([''], { type: type });
+    const file = new Blob([''], { type });
     file['name'] = name;
 
-    return <File>file;
+    return file as File;
   }
 }

@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
 
   actionClicked(text: string) {
     this.snackbarService.open(2000, {
-      text: text
+      text
     });
   }
 

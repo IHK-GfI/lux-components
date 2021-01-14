@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnDestroy, Output } from '@angular/core';
 import { LuxMasterDetailMobileHelperService } from '../../lux-master-detail-mobile-helper.service';
 import { LuxButtonComponent } from '../../../../lux-action/lux-button/lux-button.component';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './lux-master-header.component.html',
   styleUrls: ['./lux-master-header.component.scss']
 })
-export class LuxMasterHeaderComponent implements OnInit, OnDestroy {
+export class LuxMasterHeaderComponent implements OnDestroy {
   iconName: string;
   open: boolean;
   subscription: Subscription;
@@ -33,8 +33,6 @@ export class LuxMasterHeaderComponent implements OnInit, OnDestroy {
       this.isMobile = this.luxToggleHidden;
     });
   }
-
-  ngOnInit() {}
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

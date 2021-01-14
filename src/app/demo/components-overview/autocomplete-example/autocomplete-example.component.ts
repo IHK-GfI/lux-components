@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { RenderPropertyItem } from './render-property-item';
 import {
@@ -13,11 +13,11 @@ import {
   templateUrl: './autocomplete-example.component.html',
   styleUrls: ['./autocomplete-example.component.scss']
 })
-export class AutocompleteExampleComponent implements OnInit {
+export class AutocompleteExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  useErrorMessage: boolean = true;
-  showOutputEvents: boolean = false;
+  useErrorMessage = true;
+  showOutputEvents = false;
 
   options = [
     { label: 'Meine Aufgaben', short: 'MA', value: 'A' },
@@ -46,26 +46,26 @@ export class AutocompleteExampleComponent implements OnInit {
   // region Properties der Component
 
   value;
-  controlBinding: string = 'autocompleteExample';
+  controlBinding = 'autocompleteExample';
   renderProperty = 'label';
-  label: string = 'Label';
-  hint: string = 'Hint';
-  hintShowOnlyOnFocus: boolean = false;
-  placeholder: string = 'Placeholder';
+  label = 'Label';
+  hint = 'Hint';
+  hintShowOnlyOnFocus = false;
+  placeholder = 'Placeholder';
   disabled = false;
   readonly: boolean;
   required: boolean;
   strict = true;
   selectAllOnClick = true;
-  delay: number = 500;
+  delay = 500;
   controlValidators: ValidatorFn[] = [];
-  errorMessageNotAnOption: string = 'Der eingegebene Wert ist nicht Teil der Auswahl.';
-  errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
+  errorMessageNotAnOption = 'Der eingegebene Wert ist nicht Teil der Auswahl.';
+  errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
-  usePickValueFn: boolean = false;
+  usePickValueFn = false;
   pickValueFn = examplePickValueFn;
-  useFilterFn: boolean = false;
+  useFilterFn = false;
 
   // endregion
 
@@ -74,8 +74,6 @@ export class AutocompleteExampleComponent implements OnInit {
       autocompleteExample: []
     });
   }
-
-  ngOnInit() {}
 
   onRenderProperty(renderProperty: RenderPropertyItem) {
     this.renderProperty = renderProperty.value;
@@ -90,7 +88,7 @@ export class AutocompleteExampleComponent implements OnInit {
 
     let result = true;
     if (filterTerms.length > 1) {
-      filterTerms.forEach(term => result = result && optionLabel.indexOf(term) >= 0);
+      filterTerms.forEach((term) => (result = result && optionLabel.indexOf(term) >= 0));
     } else {
       result = optionLabel.indexOf(filterTerms[0]) >= 0;
     }

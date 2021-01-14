@@ -1,4 +1,4 @@
-import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface';
 
@@ -6,7 +6,7 @@ import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface
   selector: 'lux-chip-group',
   template: ''
 })
-export class LuxChipGroupComponent implements OnInit {
+export class LuxChipGroupComponent {
   private _luxColor: ThemePalette = 'primary';
 
   @ContentChild(TemplateRef) tempRef: TemplateRef<any>;
@@ -17,9 +17,9 @@ export class LuxChipGroupComponent implements OnInit {
   @Output() luxChipSelected = new EventEmitter<ILuxChipSelected>();
 
   @Input() luxLabels: string[] = [];
-  @Input() luxDisabled: boolean = false;
-  @Input() luxRemovable: boolean = true;
-  @Input() luxSelected: boolean = true;
+  @Input() luxDisabled = false;
+  @Input() luxRemovable = true;
+  @Input() luxSelected = true;
 
   get luxColor(): ThemePalette {
     return this._luxColor;
@@ -33,8 +33,6 @@ export class LuxChipGroupComponent implements OnInit {
   }
 
   constructor() {}
-
-  ngOnInit() {}
 
   add(label: string) {
     this.luxLabels.push(label);

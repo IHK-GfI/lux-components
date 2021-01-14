@@ -41,7 +41,7 @@ export class LuxFilePreviewImgViewerComponent extends LuxFilePreviewBase impleme
       this.zoomActive =
         this.previewImg && this.previewImg.nativeElement.naturalWidth - this.paddingWith > window.innerWidth;
 
-        const firstButton = (<HTMLElement>this.elementRef.nativeElement).querySelector('button');
+        const firstButton = (this.elementRef.nativeElement as HTMLElement).querySelector('button');
         if (firstButton) {
           firstButton.focus();
         }

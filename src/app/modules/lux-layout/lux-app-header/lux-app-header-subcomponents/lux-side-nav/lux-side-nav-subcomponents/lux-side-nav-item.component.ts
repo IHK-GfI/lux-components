@@ -22,13 +22,13 @@ export class LuxSideNavItemComponent implements AfterViewInit, OnChanges {
   @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 
   @Input() luxLabel: string;
-  @Input() luxDisabled: boolean = false;
+  @Input() luxDisabled = false;
   @Input() luxTagId: string;
-  @Input() luxSelected: boolean = false;
-  @Input() luxCloseOnClick: boolean = true;
+  @Input() luxSelected = false;
+  @Input() luxCloseOnClick = true;
   @Input() luxIconName: string;
-  @Input() luxExpandable: boolean = false;
-  @Input() luxExpanded: boolean = true;
+  @Input() luxExpandable = false;
+  @Input() luxExpanded = true;
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 

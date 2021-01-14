@@ -19,14 +19,20 @@
             "assets": [
               "src/assets",
               "src/favicon.ico",
-              { "glob": "**/*", "input": "./node_modules/pdfjs-dist/cmaps/", "output": "./assets/cmaps" }
+              {
+                "glob": "**/*",
+                "input": "./node_modules/pdfjs-dist/cmaps/",
+                "output": "./assets/cmaps"
+              }
             ],
             "styles": [
               "src/styles.scss",
               "src/theming/luxtheme.scss"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["hammerjs"]
+            "allowedCommonJsDependencies": [
+              "hammerjs"
+            ]
           },
           "configurations": {
             "production": {
@@ -97,26 +103,21 @@
             "assets": [
               "src/assets",
               "src/favicon.ico",
-              { "glob": "**/*", "input": "./node_modules/pdfjs-dist/cmaps/", "output": "./assets/cmaps" }
+              {
+                "glob": "**/*",
+                "input": "./node_modules/pdfjs-dist/cmaps/",
+                "output": "./assets/cmaps"
+              }
             ]
           }
         },
-        "app-lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json"
-            ],
-            "tslintConfig": "./tslint.json"
-          }
-        },
-        "spec-lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.spec.json"
-            ],
-            "tslintConfig": "./tslint.spec.json"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
@@ -131,17 +132,6 @@
           "options": {
             "protractorConfig": "./protractor.conf.js",
             "devServerTarget": "lux-components:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }

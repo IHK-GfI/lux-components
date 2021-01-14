@@ -64,10 +64,10 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   detailViewContainerRef: ViewContainerRef;
   @ViewChild('masterContainer', { read: ElementRef, static: true }) masterContainer: ElementRef;
 
-  @HostBinding('class.lux-overflow-y-auto') overflowY: boolean = true;
+  @HostBinding('class.lux-overflow-y-auto') overflowY = true;
 
   private _luxMasterList = new BehaviorSubject<Array<any>>([]);
-  private _luxOpen: boolean = true;
+  private _luxOpen = true;
   private _luxSelectedDetail: any;
 
   private masterListLength;
@@ -83,19 +83,19 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   selectedPosition: number;
 
   // Flag welches bestimmt ob die Empty-Anzeigen der Masterliste anhand der Detail-Ansicht ausgerichtet werden
-  alignEmptyIndicators: boolean = true;
+  alignEmptyIndicators = true;
 
-  @Input() luxEmptyIconMaster: string = 'fas fa-info-circle';
-  @Input() luxEmptyLabelMaster: string = 'Keine Einträge vorhanden';
-  @Input() luxEmptyIconDetail: string = 'fas fa-info-circle';
-  @Input() luxEmptyLabelDetail: string = 'Kein Element ausgewählt';
+  @Input() luxEmptyIconMaster = 'fas fa-info-circle';
+  @Input() luxEmptyLabelMaster = 'Keine Einträge vorhanden';
+  @Input() luxEmptyIconDetail = 'fas fa-info-circle';
+  @Input() luxEmptyLabelDetail = 'Kein Element ausgewählt';
   @Input() luxEmptyIconMasterSize = '5x';
   @Input() luxEmptyIconDetailSize = '5x';
-  @Input() luxMasterSpinnerDelay: number = 1000;
+  @Input() luxMasterSpinnerDelay = 1000;
   @Input() luxTagIdMaster: string;
   @Input() luxTagIdDetail: string;
-  @Input() luxTitleLineBreak: boolean = false;
-  @Input() luxMasterIsLoading: boolean = false;
+  @Input() luxTitleLineBreak = false;
+  @Input() luxMasterIsLoading = false;
   @Input() luxCompareWith = (o1, o2) => o1 === o2;
 
   get luxOpen(): boolean {
@@ -182,6 +182,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   /**
    * Wenn in der LuxList ein neuer Selected-Wert gepusht wird, diesen abfangen und
    * ein neues Detail auswählen.
+   *
    * @param $event
    */
   onSelectedChange($event: number) {
@@ -198,6 +199,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
 
   /**
    * Bestimmt ob die Masterliste auf- oder eingeklappt ist.
+   *
    * @param open
    */
   toggleList(open: boolean) {
@@ -214,6 +216,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
 
   /**
    * Prueft ob die Detailansicht gerade fuer den User sichtbar ist.
+   *
    * @returns boolean
    */
   isDetailInvisible(): boolean {
@@ -239,6 +242,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   /**
    * Kapselung von der übergebenen luxCompareWith-Funktion.
    * Fängt undefinierte Objekte ab und returned stattdessen false.
+   *
    * @param o1
    * @param o2
    */
@@ -348,6 +352,8 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   /**
    * Wird aufgerufen nachdem ein neues Detail-Template gerendert wurde und aktualisiert
    * luxSelectedDetail dementsprechend.
+   *
+   * @param detail
    */
   private setNewDetail(detail: any) {
     if (!this.compareObjects(this.luxSelectedDetail, detail)) {

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { LuxActionComponentBaseClass } from '../lux-action-model/lux-action-component-base.class';
 
@@ -7,19 +7,15 @@ import { LuxActionComponentBaseClass } from '../lux-action-model/lux-action-comp
   templateUrl: './lux-link.component.html',
   styleUrls: ['./lux-link.component.scss']
 })
-export class LuxLinkComponent extends LuxActionComponentBaseClass implements OnInit, OnDestroy {
+export class LuxLinkComponent extends LuxActionComponentBaseClass {
   public readonly iconSize: string = '2x';
 
   @Input() luxHref: string;
-  @Input() luxBlank: boolean = false;
+  @Input() luxBlank = false;
 
   constructor(private router: Router, public cdr: ChangeDetectorRef) {
     super();
   }
-
-  ngOnInit() {}
-
-  ngOnDestroy() {}
 
   redirectToHref($event: any) {
     this.luxClicked.emit($event);

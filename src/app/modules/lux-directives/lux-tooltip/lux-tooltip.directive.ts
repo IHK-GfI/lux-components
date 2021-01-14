@@ -28,11 +28,11 @@ import {
   exportAs: 'luxTooltip'
 })
 export class LuxTooltipDirective extends MatTooltip implements OnChanges {
-  @Input() luxTooltip: string = '???';
-  @Input() luxTooltipHideDelay: number = 0;
-  @Input() luxTooltipShowDelay: number = 0;
+  @Input() luxTooltip = '???';
+  @Input() luxTooltipHideDelay = 0;
+  @Input() luxTooltipShowDelay = 0;
   @Input() luxTooltipPosition: TooltipPosition = 'above';
-  @Input() luxTooltipDisabled: boolean = false;
+  @Input() luxTooltipDisabled = false;
 
   constructor(
     private luxOverlay: Overlay,

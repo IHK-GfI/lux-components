@@ -1,14 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'detail-example',
   templateUrl: './detail-example.component.html'
 })
-export class DetailExampleComponent implements OnInit {
+export class DetailExampleComponent {
   @Input() selectedDetail: any;
   @Input() masterDetailConfig: any;
 
   constructor() {}
-
-  ngOnInit() {}
 }

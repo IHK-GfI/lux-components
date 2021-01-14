@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class ExampleRootComponent implements OnInit, AfterViewInit, OnDestroy {
   private routerSubscription: Subscription;
-  private blockScrolling: boolean = false;
+  private blockScrolling = false;
 
   @ViewChild('exampleListElement') exampleListElement: ElementRef;
 
@@ -46,6 +46,7 @@ export class ExampleRootComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /**
    * Führt die Click-Funktion der Bsp-Component aus.
+   *
    * @param component
    */
   onComponentClick(component: any) {

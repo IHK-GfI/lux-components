@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { Validators } from '@angular/forms';
 
@@ -7,7 +7,7 @@ import { Validators } from '@angular/forms';
   templateUrl: './card-example.component.html',
   styleUrls: ['./card-example.component.scss']
 })
-export class CardExampleComponent implements OnInit {
+export class CardExampleComponent {
   // region Helper-Properties für das Beispiel
 
   showActions = true;
@@ -23,15 +23,13 @@ export class CardExampleComponent implements OnInit {
   titleLineBreak = false;
   title = `Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
   subTitle = 'Sed eiusmod tempor incidunt ut labore et dolore magna aliqua.';
-  expanded: boolean = false;
+  expanded = false;
   heading = 2;
   headingValidator = Validators.pattern('[1-6]');
 
   // endregion
 
   constructor(private snackbar: LuxSnackbarService) {}
-
-  ngOnInit() {}
 
   onCardClicked() {
     console.log('Card clicked');

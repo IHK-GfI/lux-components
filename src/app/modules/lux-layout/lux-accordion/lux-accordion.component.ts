@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 import { Subject } from 'rxjs';
 
@@ -6,14 +6,14 @@ import { Subject } from 'rxjs';
   selector: 'lux-accordion',
   templateUrl: './lux-accordion.component.html'
 })
-export class LuxAccordionComponent implements OnInit, OnDestroy {
+export class LuxAccordionComponent implements OnDestroy {
   changed$ = new Subject();
 
   @Input() luxMode: 'default' | 'flat' = 'default';
-  @Input() luxMulti: boolean = false;
+  @Input() luxMulti = false;
 
-  _luxDisabled: boolean = false;
-  _luxHideToggle: boolean = false;
+  _luxDisabled = false;
+  _luxHideToggle = false;
   _luxExpandedHeaderHeight: string;
   _luxCollapsedHeaderHeight: string;
 
@@ -64,8 +64,6 @@ export class LuxAccordionComponent implements OnInit, OnDestroy {
   @ViewChild(MatAccordion, { static: true }) matAccordion: MatAccordion;
 
   constructor() {}
-
-  ngOnInit() {}
 
   ngOnDestroy() {
     this.changed$.complete();

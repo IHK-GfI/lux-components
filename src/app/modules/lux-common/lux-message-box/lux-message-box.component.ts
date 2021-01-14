@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, Output, ViewChild } from '@angular/core';
 import { visibilityTrigger } from './lux-message-box-model/lux-message-box.animations';
 import { ILuxMessageChangeEvent, ILuxMessageCloseEvent } from './lux-message-box-model/lux-message-events.interface';
 import { ILuxMessage } from './lux-message-box-model/lux-message.interface';
@@ -13,14 +13,14 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   animations: [visibilityTrigger],
   providers: [{ provide: MatPaginatorIntl, useClass: LuxPaginatorIntl }]
 })
-export class LuxMessageBoxComponent implements OnInit {
+export class LuxMessageBoxComponent {
   private _luxMessages: ILuxMessage[] = [];
-  private _luxMaximumDisplayed: number = 1;
-  private _luxIndex: number = 0;
+  private _luxMaximumDisplayed = 1;
+  private _luxIndex = 0;
 
   displayedMessages: ILuxMessage[] = [];
 
-  @HostBinding('class.mat-elevation-z4') boxShadow: boolean = true;
+  @HostBinding('class.mat-elevation-z4') boxShadow = true;
 
   @ViewChild('messagebox') messageBoxElRef: ElementRef;
 
@@ -95,12 +95,11 @@ export class LuxMessageBoxComponent implements OnInit {
 
   constructor(private liveAnnouncer: LiveAnnouncer) {}
 
-  ngOnInit() {}
-
   /**
    * Wird aufgerufen, wenn der Close-Button für eine MessageBox aufgerufen wurde.
    *
    * Gibt eine Event-Payload mit der betroffenen Nachricht mit Index weiter.
+   *
    * @param $event
    */
   messageClosed($event: ILuxMessage) {
@@ -116,6 +115,7 @@ export class LuxMessageBoxComponent implements OnInit {
   /**
    * Aktualisiert die angezeigten Nachrichten und den Paginator,
    * gibt außerdem das Change-Event mit den angezeigten/vorherigen Nachrichten.
+   *
    * @param $event
    */
   pageChanged($event: PageEvent) {
@@ -140,6 +140,7 @@ export class LuxMessageBoxComponent implements OnInit {
 
   /**
    * Aktualisiert die aktuell angezeigten Nachrichten anhand des Index.
+   *
    * @param pageIndex
    * @param pageSize
    */

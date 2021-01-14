@@ -1,11 +1,11 @@
 import {
   ChangeDetectorRef,
-  ContentChild, Directive,
+  ContentChild,
+  Directive,
   DoCheck,
   EventEmitter,
   HostBinding,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
   Output,
@@ -13,36 +13,37 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { AbstractControl, ControlContainer, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { LuxUtil } from '../../lux-util/lux-util';
-import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
-import { LuxFormLabelComponent } from '../lux-form-control/lux-form-control-subcomponents/lux-form-label.component';
-import { LuxFormHintComponent } from '../lux-form-control/lux-form-control-subcomponents/lux-form-hint.component';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxUtil } from '../../lux-util/lux-util';
+import { LuxFormHintComponent } from '../lux-form-control/lux-form-control-subcomponents/lux-form-hint.component';
+import { LuxFormLabelComponent } from '../lux-form-control/lux-form-control-subcomponents/lux-form-label.component';
 
-let luxFormControlUID: number = 0;
+let luxFormControlUID = 0;
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck, OnDestroy {
+export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy {
   protected static readonly DEFAULT_CTRL_NAME: string = 'control';
 
   protected _formValueChangeSubscr: Subscription;
   protected _formStatusChangeSubscr: Subscription;
   protected _configSubscription: Subscription;
 
-  private hasHadRequiredValidator: boolean = false;
+  private hasHadRequiredValidator = false;
 
   protected latestErrors: any = null;
-  protected displayBindingDebugHint: boolean = false;
   protected _initialValue: any;
   protected _luxDisabled: boolean;
   protected _luxReadonly: boolean;
   protected _luxRequired: boolean;
+  protected _luxControlValidators: ValidatorFn | ValidatorFn[];
 
   errorMessage: string = undefined;
 
   controlContainer: ControlContainer;
+  inForm: boolean;
   formGroup: FormGroup;
   formControl: AbstractControl;
 
@@ -62,9 +63,17 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
   @Input() luxLabel: string;
 
   @Input() luxControlBinding: string;
-  @Input() luxControlValidators: ValidatorFn | ValidatorFn[];
   @Input() luxErrorMessage: string;
-  @Input() luxErrorCallback: Function = (value, errors) => undefined;
+  @Input() luxErrorCallback: (value, errors) => any = (value, errors) => undefined;
+
+  get luxControlValidators(): ValidatorFn | ValidatorFn[] {
+    return this._luxControlValidators;
+  }
+
+  @Input() set luxControlValidators(validators: ValidatorFn | ValidatorFn[]) {
+    this._luxControlValidators = validators;
+    this.updateValidators(validators);
+  }
 
   get luxDisabled(): boolean {
     return this._luxDisabled;
@@ -96,7 +105,7 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
   }
 
   @Input() set luxRequired(required: boolean) {
-    if (this.isInForm()) {
+    if (this.inForm) {
       this.logger.error(
         `Achtung: Bei Komponenten innerhalb von ReactiveForms den Required-Validator anstelle der ` +
           `Property "luxRequired" nutzen.\n` +
@@ -116,8 +125,6 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
     protected configService: LuxComponentsConfigService
   ) {
     this.controlContainer = controlContainer;
-    // Wir fragen hier direkt ab, ob die Binding-Warnung ausgegeben werden sollen
-    this.displayBindingDebugHint = this.configService.currentConfig.displayBindingDebugHint;
   }
 
   ngOnInit() {
@@ -126,16 +133,6 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
     this.initFormValueSubscription();
     this.initFormStateSubscription();
     this.updateValidators(this.luxControlValidators);
-
-    this.triggerOutputPatternCheck();
-  }
-
-  ngOnChanges(simpleChanges: SimpleChanges) {
-    if (simpleChanges.luxControlValidators && this.formControl) {
-      this.updateValidators(this.luxControlValidators);
-    }
-
-    this.triggerInputPatternCheck(simpleChanges);
   }
 
   ngDoCheck() {
@@ -143,18 +140,6 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
     if (this.latestErrors !== this.formControl.errors && this.formControl.touched) {
       this.latestErrors = this.formControl.errors;
       this.errorMessage = this.fetchErrorMessage();
-    }
-
-    // Prüfen, ob für das Reactive-Form-Control ein required-Validator ergänzt worden ist
-    if (this.isInForm()) {
-      const hasRequiredValidator = this.hasRequiredValidator(this.formControl);
-      if (this.hasHadRequiredValidator !== hasRequiredValidator) {
-        this._luxRequired = hasRequiredValidator;
-        this.formControl.updateValueAndValidity();
-        this.cdr.detectChanges();
-      }
-
-      this.hasHadRequiredValidator = hasRequiredValidator;
     }
   }
 
@@ -170,10 +155,6 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
     if (this._configSubscription) {
       this._configSubscription.unsubscribe();
     }
-  }
-
-  isInForm(): boolean {
-    return this.controlContainer != null && !LuxUtil.isEmpty(this.luxControlBinding);
   }
 
   /**
@@ -224,6 +205,9 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
   /**
    * Method-Stub der von ableitenden Klassen genutzt werden kann, um
    * weitergreifende Fehlermeldungen anzugeben.
+   *
+   * @param value
+   * @param errors
    */
   protected errorMessageModifier(value, errors) {}
 
@@ -236,6 +220,8 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
 
   /**
    * Standard-Setter Funktion für den aktuellen Wert in dieser FormComponent.
+   *
+   * @param value
    */
   protected setValue(value: any) {
     // Wenn noch kein FormControl vorhanden, den init-Wert merken und Fn beenden
@@ -255,18 +241,25 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
   /**
    * Wird nach der Aktualisierung des Wertes aufgerufen.
    * Hier kann z.B. valueChange.emit() ausgeführt werden.
+   *
    * @param formValue
    */
   protected notifyFormValueChanged(formValue: any) {}
 
   /**
    * Wird nach der Aktualisierung des Status aufgerufen.
+   *
    * @param formStatus
    */
-  protected notifyFormStatusChanged(formStatus: any) {}
+  protected notifyFormStatusChanged(formStatus: any) {
+    if (this.inForm && (formStatus === 'VALID' || formStatus === 'INVALID')) {
+      this.updateValidatorsInForm();
+    }
+  }
 
   /**
    * Prueft ob das uebergebene Control einen required-Validator besitzt.
+   *
    * @param abstractControl
    */
   protected hasRequiredValidator(abstractControl: AbstractControl) {
@@ -284,9 +277,12 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
    * handelt.
    */
   protected initFormControl() {
-    if (this.isInForm()) {
-      this.formGroup = <FormGroup>this.controlContainer.control;
+    this.inForm = !!this.controlContainer && !!this.luxControlBinding;
+
+    if (this.inForm) {
+      this.formGroup = this.controlContainer.control as FormGroup;
       this.formControl = this.formGroup.controls[this.luxControlBinding];
+      this.updateValidatorsInForm();
     } else {
       this.formGroup = new FormGroup({
         control: new FormControl()
@@ -349,6 +345,7 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
    * Für den Fall das luxRequired auf false gesetzt worden ist, wird der Validator entfernt.
    *
    * Hinweis: LuxFormCheckableBase überschreibt diese Funktion, um statt required requiredTrue zu setzen.
+   *
    * @param validators
    */
   protected checkValidatorsContainRequired(validators: ValidatorFn | ValidatorFn[]) {
@@ -375,79 +372,33 @@ export abstract class LuxFormComponentBase implements OnInit, OnChanges, DoCheck
   /**
    * Versucht die Validatoren für diese Komponente zu setzen.
    * Ist nur erfolgreich, wenn es sich hierbei nicht um eine ReactiveForm-Komponente handelt.
+   *
    * @param validators
    */
   protected updateValidators(validators: ValidatorFn | ValidatorFn[]) {
     if ((!Array.isArray(validators) && validators) || (Array.isArray(validators) && validators.length > 0)) {
-      if (!this.isInForm()) {
+      if (!this.inForm) {
         setTimeout(() => {
-          this.luxControlValidators = this.checkValidatorsContainRequired(validators);
+          this._luxControlValidators = this.checkValidatorsContainRequired(validators);
           this.formControl.setValidators(this.luxControlValidators);
           this.formControl.updateValueAndValidity();
         });
       } else {
-        this.logger.error(
-          `Die Validatoren einer ReactiveForm-Komponente dürfen nicht über ` + `das Template gesetzt werden.`
+        this.logger.warn(
+          `
+Die Validatoren des Formularelements (luxControlBinding=${this.luxControlBinding}) können ausschließlich über das Formular gesetzt werden,
+aber nicht über das Property 'luxControlValidators'. Dieser Aufruf wurde ignoriert!`
         );
       }
     }
   }
 
-  /**
-   * Gibt an, ob diese Component Output-Property-Binding nutzt obwohl diese Component eigentlich ein Reactive FormControl ist.
-   * @param observers
-   */
-  protected checkOutputPatternViolation(observers: any[] | null) {
-    if (this.displayBindingDebugHint && this.isInForm() && observers && observers.length > 0) {
-      this.logPatternViolationWarning();
+  private updateValidatorsInForm() {
+    const hasRequiredValidator = this.hasRequiredValidator(this.formControl);
+    if (this.hasHadRequiredValidator !== hasRequiredValidator) {
+      this._luxRequired = hasRequiredValidator;
     }
-  }
 
-  /**
-   * Gibt an, ob diese Component Input-Property-Binding nutzt obwohl diese Component eigentlich ein Reactive FormControl ist.
-   * Wird von den ngOnChanges Methoden der Child-Klassen aufgerufen.
-   * @param simpleChange
-   */
-  protected checkInputPatternViolation(simpleChange: SimpleChange) {
-    if (this.displayBindingDebugHint && this.isInForm() && simpleChange && simpleChange.firstChange) {
-      this.logPatternViolationWarning();
-    }
-  }
-
-  /**
-   * Die Child-Klassen implementieren diese Funktion um zu prüfen, ob gegen das Output-Binding für ReactiveForms verstoßen wird.
-   */
-  protected abstract triggerOutputPatternCheck();
-
-  /**
-   * Die Child-Klassen implementieren diese Funktion um zu prüfen, ob gegen das Input-Binding für ReactiveForms verstoßen wird.
-   */
-  protected abstract triggerInputPatternCheck(simpleChanges: SimpleChanges);
-
-  /**
-   * Gibt über den LuxConsoleService eine Warnung aus, dass hier gegen das ReactiveForm-Pattern mit Property-Binding
-   * verstoßen worden ist.
-   */
-  private logPatternViolationWarning() {
-    this.logger.warn(
-      `Achtung: Die Component "${this.luxControlBinding}" ist Teil einer ReactiveForm, nutzt aber trotzdem Property-Binding.\n\n` +
-        `[Mit ReactiveForms]\n` +
-        `Für Components innerhalb von ReactiveForms können Wertaktualisierungen wie folgt abgefragt werden:\n\n` +
-        `// Nicht vergessen unsubscribe in ngOnDestroy für die Subscription aufzurufen\n` +
-        `this.subscription = this.myForm.get('myFormControl').valueChanges.subscribe((value: any) => console.log(value));\n\n` +
-        `Das Setzen von Werten erfolgt zum Beispiel so:\n\n` +
-        `this.myForm.get('myFormControl').setValue('myValue');\n\n` +
-        `[Ohne ReactiveForms]\n` +
-        `Für Components außerhalb von ReactiveForms können Wertaktualisierungen wie folgt abgefragt werden:\n\n` +
-        `<lux-xyz-form-component (luxValueChange)="onValueChange($event)"><lux-xyz-form-component>\n\n` +
-        `Das Setzen von Werten erfolgt zum Beispiel so:\n\n` +
-        `<lux-xyz-form-component [luxValue]="value"><lux-xyz-form-component>\n\n` +
-        `Alternativ kann über Two-Way-Binding immer der aktuelle Wert in einer Property gehalten werden:\n\n` +
-        `<lux-xyz-form-component [(luxValue)]="value"><lux-xyz-form-component>`
-    );
-
-    // Wir deaktivieren weitere Log-Ausgaben für diese Component, um doppelte Meldung zu vermeiden.
-    // z.B. wenn Two-Way-Binding genutzt wird.
-    this.displayBindingDebugHint = false;
+    this.hasHadRequiredValidator = hasRequiredValidator;
   }
 }

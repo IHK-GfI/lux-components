@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { ILuxFileListActionConfig } from '../lux-file-model/lux-file-list-action-config.interface';
 
@@ -45,7 +46,7 @@ describe('LuxFileListComponent', () => {
       fileComponent = fixture.debugElement.query(By.directive(LuxFileListComponent)).componentInstance;
 
       // den LiveAnnouncer abklemmen
-      fileComponent['liveAnnouncer'] = <any>{ announce: (...args) => {} };
+      fileComponent['liveAnnouncer'] = { announce: (...args) => {} } as any;
 
       // Wir mocken hier den FileReader weg, da er nicht mit fakeAsync kompatibel ist
       spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve('base64-dummy'));
@@ -149,7 +150,7 @@ describe('LuxFileListComponent', () => {
       fileComponent = fixture.debugElement.query(By.directive(LuxFileListComponent)).componentInstance;
 
       // den LiveAnnouncer abklemmen
-      fileComponent['liveAnnouncer'] = <any>{ announce: (...args) => {} };
+      fileComponent['liveAnnouncer'] = { announce: (...args) => {} } as any;
 
       // Wir mocken hier den FileReader weg, da er nicht mit fakeAsync kompatibel ist
       spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve('base64-dummy'));
@@ -553,8 +554,8 @@ describe('LuxFileListComponent', () => {
 
         // Nachbedingungen prüfen
         expect(selectedChange).toHaveBeenCalledTimes(1);
-        expect((<any>testComponent.selected).name).toEqual('mockfile1.txt');
-        expect((<any>testComponent.selected).content).toEqual('base64-dummy');
+        expect((testComponent.selected as any).name).toEqual('mockfile1.txt');
+        expect((testComponent.selected as any).content).toEqual('base64-dummy');
 
         // Änderungen durchführen
         fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')]);

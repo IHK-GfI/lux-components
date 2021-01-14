@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,10 +6,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './baseline.component.html',
   styleUrls: ['./baseline.component.scss']
 })
-export class BaselineComponent implements OnInit {
-  @HostBinding('class.show-frames') showFrames: boolean = false;
-  showAsColumn: boolean = false;
-  disabled: boolean = false;
+export class BaselineComponent {
+  @HostBinding('class.show-frames') showFrames = false;
+  showAsColumn = false;
+  disabled = false;
   form: FormGroup = undefined;
 
   constructor() {
@@ -27,10 +27,8 @@ export class BaselineComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
   toggleErrors($event: boolean) {
-    Object.keys(this.form.controls).forEach(key => {
+    Object.keys(this.form.controls).forEach((key) => {
       if ($event) {
         this.form.get(key).markAsTouched();
       } else {

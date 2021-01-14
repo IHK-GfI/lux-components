@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
 
@@ -6,10 +6,10 @@ import { exampleErrorCallback } from '../../example-base/example-base-util/examp
   selector: 'toggle-example',
   templateUrl: './toggle-example.component.html'
 })
-export class ToggleExampleComponent implements OnInit {
+export class ToggleExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  useErrorMessage: boolean = true;
+  useErrorMessage = true;
   form: FormGroup;
 
   // endregion
@@ -17,14 +17,14 @@ export class ToggleExampleComponent implements OnInit {
   // region Properties der Component
 
   value;
-  controlBinding: string = 'toggleExample';
-  label: string = 'Label';
-  hint: string = 'Hint';
-  hintShowOnlyOnFocus: boolean = false;
+  controlBinding = 'toggleExample';
+  label = 'Label';
+  hint = 'Hint';
+  hintShowOnlyOnFocus = false;
   disabled = false;
   readonly: boolean;
   required: boolean;
-  errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
+  errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
 
   // endregion
@@ -34,8 +34,6 @@ export class ToggleExampleComponent implements OnInit {
       toggleExample: []
     });
   }
-
-  ngOnInit() {}
 
   changeRequired($event: boolean) {
     this.required = $event;

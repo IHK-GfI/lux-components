@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICountry } from '../model/country.interface';
 import { IGender } from '../model/gender.interface';
@@ -11,7 +11,7 @@ import { FormBase } from '../model/form-base.class';
   selector: 'app-form-single-col',
   templateUrl: './form-single-col.component.html'
 })
-export class FormSingleColComponent extends FormBase implements OnInit {
+export class FormSingleColComponent extends FormBase {
   roles: IRole[] = [];
   countries: ICountry[] = [];
   genders: IGender[] = [];
@@ -47,10 +47,8 @@ export class FormSingleColComponent extends FormBase implements OnInit {
     this.salutations = this.dataProvider.salutations;
   }
 
-  ngOnInit() {}
-
   addRole(name: string) {
-    this.roles.push({ name: name });
+    this.roles.push({ name });
   }
 
   removeRole(i: number) {

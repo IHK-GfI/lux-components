@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-export const day = 'Tagen',
-  week = 'Wochen',
-  month = 'Monaten',
-  year = 'Jahren';
-export const today = 'Heute',
-  yesterday = 'Gestern',
-  tomorrow = 'Morgen';
-export const prefixFuture = 'in',
-  prefixPast = 'vor';
+export const day = 'Tagen';
+  export const week = 'Wochen';
+  export const month = 'Monaten';
+  export const year = 'Jahren';
+export const today = 'Heute';
+  export const yesterday = 'Gestern';
+  export const tomorrow = 'Morgen';
+export const prefixFuture = 'in';
+  export const prefixPast = 'vor';
 
 export const MS_PER_DAY = 1000 * 60 * 60 * 24;
 

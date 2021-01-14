@@ -16,9 +16,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./lux-lookup-combobox.component.scss']
 })
 export class LuxLookupComboboxComponent extends LuxLookupComponent implements AfterViewInit, OnDestroy {
-  @Input() luxMultiple: boolean = false;
-  @Input() luxEntryBlockSize: number = 25;
-  @Input() luxWithEmptyEntry: boolean = true;
+  @Input() luxMultiple = false;
+  @Input() luxEntryBlockSize = 25;
+  @Input() luxWithEmptyEntry = true;
 
   @ViewChild(MatSelect) matSelect: MatSelect;
 
@@ -54,6 +54,7 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
 
   /**
    * Vergleicht die Optionen anhand der Key-Werte
+   *
    * @param value1
    * @param value2
    * @returns boolean
@@ -76,6 +77,7 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
 
   /**
    * Setzt den aktuellen Value-Wert auf den ausgewählten Wert.
+   *
    * @param $event
    */
   selected($event: MatSelectChange) {
@@ -84,6 +86,8 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
 
   /**
    * Fuegt beim Oeffnen des Selects einen Scrolllistener hinzu.
+   *
+   * @param panelElement
    */
   private registerPanelScrollEvent(panelElement) {
     panelElement.addEventListener('scroll', event => this.loadOnScroll(event));
@@ -91,6 +95,7 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
 
   /**
    * Stoesst das Nachladen von Elementen an, wenn ein bestimmter Scrollwert erreicht wurde.
+   *
    * @param event - ScrollEvent
    */
   private loadOnScroll(event) {

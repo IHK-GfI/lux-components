@@ -25,6 +25,7 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
 
   /**
    * Constructor
+   *
    * @param elementRef Ziel-Element dieser Direktive
    */
   constructor(private elementRef: ElementRef) {}
@@ -55,6 +56,7 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
   /**
    * Prüft ob ein Scroll-Event auf dem Zielelement stattgefunden hat.
    * Wenn ja, wird das Subject scroll$ angestoßen.
+   *
    * @param event
    */
   onScroll(event: any) {
@@ -86,6 +88,7 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
   /**
    * Prueft ob der User gerade nach unten scrollt.
    * Vergleicht dabei die scrollTop Position des Users mit der des Elements.
+   *
    * @param curPos
    */
   private isUserScrollingDown(curPos: LuxScrollPosition) {
@@ -94,6 +97,7 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
 
   /**
    * Prueft ob der Scrollbereich ueberschritten wurde.
+   *
    * @param position
    * @returns boolean
    */

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { LuxComponentsConfigService } from '../lux-components-config/lux-components-config.service';

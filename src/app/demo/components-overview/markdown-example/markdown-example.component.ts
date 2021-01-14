@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { LuxMarkdownComponent } from '../../../modules/lux-markdown/lux-markdown/lux-markdown.component';
 import { LuxSanitizeConfig } from '../../../modules/lux-html/lux-sanitize/lux-sanitize-config';
 
@@ -6,7 +6,7 @@ import { LuxSanitizeConfig } from '../../../modules/lux-html/lux-sanitize/lux-sa
   selector: 'lux-markdown-example',
   templateUrl: './markdown-example.component.html'
 })
-export class MarkdownExampleComponent implements OnInit {
+export class MarkdownExampleComponent {
   @ViewChild(LuxMarkdownComponent) markdownComponent: LuxMarkdownComponent;
 
   flex = 'flex';
@@ -97,8 +97,6 @@ Target-Attribut. Das Target-Attribut ist im Standard deaktiviert, kann über den
   }
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   updateTags() {
     const newConfig: LuxSanitizeConfig = {};

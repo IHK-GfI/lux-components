@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -430,9 +431,9 @@ class MockCardComponent {
   subTitle: string;
   disabled: boolean;
 
-  testShowIcon: boolean = false;
-  testShowAction: boolean = false;
-  testShowInfo: boolean = false;
+  testShowIcon = false;
+  testShowAction = false;
+  testShowInfo = false;
 
   cardClicked() {}
 }

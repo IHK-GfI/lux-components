@@ -20,10 +20,10 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
 
   @Input() luxLookupKnr: number;
   @Input() luxLookupId: string;
-  @Input() luxLookupUrl: string = '/lookup/';
+  @Input() luxLookupUrl = '/lookup/';
   @Input() luxTableNo: string;
   @Input() luxTableKey: string;
-  @Input() luxBezeichnung: string = 'kurz';
+  @Input() luxBezeichnung = 'kurz';
 
   constructor(
     lookupService: LuxLookupService,

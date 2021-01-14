@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, flushMicrotasks, inject, TestBed } from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
@@ -596,8 +597,8 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect((<any>overlayHelper.selectAllFromOverlay('.lux-menu-item')[0]).disabled).toEqual(true);
-      expect((<any>overlayHelper.selectAllFromOverlay('.lux-menu-item')[1]).disabled).toEqual(true);
+      expect((overlayHelper.selectAllFromOverlay('.lux-menu-item')[0] as any).disabled).toEqual(true);
+      expect((overlayHelper.selectAllFromOverlay('.lux-menu-item')[1] as any).disabled).toEqual(true);
 
       flush();
     }));
@@ -794,7 +795,7 @@ class MockMasterDetailHelperService {
   masterHasValue: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   hasValueObservable: Observable<boolean> = this.masterHasValue.asObservable();
 
-  isMobileView: boolean = false;
+  isMobileView = false;
 
   openMaster() {
     this.masterIsOpen.next(true);

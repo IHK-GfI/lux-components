@@ -21,14 +21,14 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   styleUrls: ['./lux-radio.component.scss']
 })
 export class LuxRadioComponent extends LuxFormSelectableBase implements OnDestroy {
-  forceVertical: boolean = false;
+  forceVertical = false;
 
   // Potentiell eingebettetes Template für Darstellung der Labels
   @ContentChild(TemplateRef) tempRef: TemplateRef<any>;
 
-  @HostBinding('class.lux-pb-3') pb3: boolean = true;
-  @Input() luxGroupName: string = '';
-  @Input() luxOrientationVertical: boolean = true;
+  @HostBinding('class.lux-pb-3') pb3 = true;
+  @Input() luxGroupName = '';
+  @Input() luxOrientationVertical = true;
 
   private mediaSubscription$: Subscription;
 

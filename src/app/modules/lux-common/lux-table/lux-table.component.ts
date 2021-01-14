@@ -1,4 +1,5 @@
-// tslint:disable:member-ordering
+/* eslint-disable @typescript-eslint/member-ordering */
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   AfterViewInit,
   Component,
@@ -15,19 +16,18 @@ import {
 } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
+import { of, Subject, Subscription } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { LuxInputComponent } from '../../lux-form/lux-input/lux-input.component';
+import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
+import { LuxPaginatorIntl } from '../../lux-util/lux-paginator-intl';
+import { LuxUtil } from '../../lux-util/lux-util';
 import { ICustomCSSConfig } from './lux-table-custom-css-config.interface';
 import { LuxTableDataSource } from './lux-table-data-source';
 import { ILuxTableHttpDaoStructure } from './lux-table-http/lux-table-http-dao-structure.interface';
 import { ILuxTableHttpDao } from './lux-table-http/lux-table-http-dao.interface';
-import { of, Subject, Subscription } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
-import { LuxUtil } from '../../lux-util/lux-util';
-import { LuxPaginatorIntl } from '../../lux-util/lux-paginator-intl';
-import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxTableColumnComponent } from './lux-table-subcomponents/lux-table-column.component';
-import { LuxConsoleService } from '../../lux-util/lux-console.service';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { LuxInputComponent } from '../../lux-form/lux-input/lux-input.component';
 
 @Component({
   selector: 'lux-table',
@@ -36,15 +36,15 @@ import { LuxInputComponent } from '../../lux-form/lux-input/lux-input.component'
   providers: [{ provide: MatPaginatorIntl, useClass: LuxPaginatorIntl }]
 })
 export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDestroy {
-  static AUTO_PAGINATION_START: number = 100; // 100 Elemente bis automatisch die Pagination aktiviert wird
+  static AUTO_PAGINATION_START = 100; // 100 Elemente bis automatisch die Pagination aktiviert wird
 
   private _luxClasses: ICustomCSSConfig | ICustomCSSConfig[] = [];
-  private _luxShowPagination: boolean = false;
+  private _luxShowPagination = false;
   private _dataColumnDefs: string[] = [];
   private _luxMultiSelect: boolean;
-  private _luxShowFilter: boolean = false;
+  private _luxShowFilter = false;
   private _dataSource: LuxTableDataSource<any> = new LuxTableDataSource<any>([]);
-  private _luxPickValue = o => o;
+  private _luxPickValue = (o) => o;
   private _luxCompareWith = (o1, o2) => o1 === o2;
 
   private previousWidth: number;
@@ -63,7 +63,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   filtered$: Subject<string> = new Subject<string>();
   currentCustomClasses: { entry: any; classes: string }[] = [];
   isLoadingResults: boolean;
-  isIE: boolean = false;
+  isIE = false;
   allSelected: boolean;
   mediaQuery: string;
   movedTableColumns: LuxTableColumnComponent[] = [];
@@ -71,14 +71,14 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   tableHeightCSSCalc: string;
 
   @Input() luxColWidthsPercent: number[] = [];
-  @Input() luxFilterText: string = 'Filter';
-  @Input() luxNoDataText: string = 'Keine Daten gefunden.';
-  @Input() luxPageSize: number = 10;
+  @Input() luxFilterText = 'Filter';
+  @Input() luxNoDataText = 'Keine Daten gefunden.';
+  @Input() luxPageSize = 10;
   @Input() luxPageSizeOptions = [5, 10, 25, 50];
   @Input() luxHttpDAO: ILuxTableHttpDao;
-  @Input() luxMinWidthPx: number = -1;
-  @Input() luxAutoPaginate: boolean = true;
-  @Input() luxHideBorders: boolean = false;
+  @Input() luxMinWidthPx = -1;
+  @Input() luxAutoPaginate = true;
+  @Input() luxHideBorders = false;
 
   @Output() luxSelectedChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
@@ -179,12 +179,13 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   /**
    * Die Auswahl der Selektierten Elemente ist eigentlich ein Set,
    * nimmt aber Arrays von Außen entgegen (zur Vereinfachung).
+   *
    * @param selected
    */
   @Input() set luxSelected(selected: Set<any>) {
     this.luxSelected.clear();
     if (selected) {
-      selected.forEach(entry => {
+      selected.forEach((entry) => {
         this.luxSelected.add(entry);
       });
     }
@@ -200,7 +201,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   // Funktion, um den zu vergleichenden Wert aus den einzelnen Objekten zu ziehen.
   // Standardmäßig einfach das Objekt zurückgeben.
   @Input() set luxPickValue(pickFn) {
-    this._luxPickValue = pickFn ? pickFn : o => o;
+    this._luxPickValue = pickFn ? pickFn : (o) => o;
   }
 
   get luxCompareWith() {
@@ -215,6 +216,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   /**
    * Eigene Implementierung der Filterung für diese Tabelle.
    * Iteriert über die Values des einzelnen Objektes und prüft dann ob der Filter-Wert irgendwo vorkommt.
+   *
    * @param data
    * @param filter
    */
@@ -223,12 +225,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       if (data.hasOwnProperty(property)) {
         const dataEntry = data[property];
         if (LuxUtil.isDate(dataEntry)) {
-          if (
-            dataEntry
-              .toLocaleString()
-              .toLowerCase()
-              .indexOf(filter) > -1
-          ) {
+          if (dataEntry.toLocaleString().toLowerCase().indexOf(filter) > -1) {
             return true;
           }
         } else {
@@ -333,16 +330,18 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   /**
    * Zieht sich die aktuellen CSS-Klassen aus den zugewiesenen
    * CSS-Klassen.
+   *
    * @param row
    * @returns string
    */
   getCustomClassesForIndex(row: any): string {
-    const customClasses = this.currentCustomClasses.find(value => value.entry === row);
+    const customClasses = this.currentCustomClasses.find((value) => value.entry === row);
     return customClasses ? customClasses.classes : '';
   }
 
   /**
    * TrackBy-Funktion um die Tabelle etwas schneller zu machen.
+   *
    * @param index
    * @param item
    */
@@ -353,6 +352,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   /**
    * Wird beim Klick auf eine Row aufgerufen und handelt das Sichern und Entfernen von
    * selektierten Einträgen.
+   *
    * @param entry
    */
   changeSelectedEntry(entry: any) {
@@ -425,6 +425,8 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   /**
    * Aktualisiert die DataSource und evtl. Subscriptions sowie die CustomCSS-Classes
    * nach einer Änderung.
+   *
+   * @param data
    */
   private updateDataSourceAttributes(data: any[]) {
     if (!this.luxHttpDAO && this.luxAutoPaginate && data && data.length > LuxTableComponent.AUTO_PAGINATION_START) {
@@ -452,18 +454,19 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       this.currentCustomClasses = [];
       this.dataSource.data.forEach((entry: any, i: number) => {
         let classes = '';
-        (<ICustomCSSConfig[]>this.luxClasses).forEach((cssClass: ICustomCSSConfig) => {
+        (this.luxClasses as ICustomCSSConfig[]).forEach((cssClass: ICustomCSSConfig) => {
           if (cssClass.check(entry)) {
             classes += cssClass.class + ' ';
           }
         });
-        this.currentCustomClasses.push({ entry: entry, classes: classes });
+        this.currentCustomClasses.push({ entry, classes });
       });
     }
   }
 
   /**
    * Gibt das Aria-Label für die Sortierung der Spalten-Überschrift zurück.
+   *
    * @param tableColumnDef
    */
   getAriaSortingLabel(tableColumnDef: string) {
@@ -480,6 +483,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
 
   /**
    * Gibt über den liveAnnouncer eine Nachricht aus, dass sich die Sortierung einer Spalte geändert hat.
+   *
    * @param $event
    */
   announceSortChange($event: Sort) {
@@ -542,15 +546,14 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
           this.movedTableColumns.push(tableColumn);
         }
 
-        this._dataColumnDefs = this.dataColumnDefs.filter(
-          (dataColumn: string) => dataColumn !== tableColumn.luxColumnDef
-        );
+        this._dataColumnDefs = this.dataColumnDefs.filter((dataColumn: string) => dataColumn !== tableColumn.luxColumnDef);
       }
     });
   }
 
   /**
    * Prüft ob die aktuelle MediaQuery mit der übergebenen MediaQuery/den übergebenen MediaQueries übereinstimmt.
+   *
    * @param responsiveAt
    */
   private doesResponsiveAtApply(responsiveAt: string | string[]) {
@@ -591,7 +594,9 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
    * Triggert über das DAO die Abfrage nach neuen Daten.
    * Sendet dabei das Request-Conf Objekt, welches Informationen bzgl.
    * page, pageSize, filter, sort, order mitgibt.
+   *
    * @param filteredBy?
+   * @param filteredBy
    */
   private loadHttpDAOData(filteredBy?: string) {
     this.isLoadingResults = true;
@@ -617,7 +622,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
             this.luxData = [];
           }
         }),
-        catchError(error => {
+        catchError((error) => {
           this.isLoadingResults = false;
           return of(error);
         })
@@ -746,9 +751,9 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       // Die selected-Einträge durchgehen und schauen ob diese im data-Block enthalten sind
       const foundEntries = [];
       this.luxSelected.forEach((entry: any) => {
-        const newEntry = this.dataSource.data.find((dataEntry: any) => {
-          return this.luxCompareWith(this.luxPickValue(entry), this.luxPickValue(dataEntry));
-        });
+        const newEntry = this.dataSource.data.find((dataEntry: any) =>
+          this.luxCompareWith(this.luxPickValue(entry), this.luxPickValue(dataEntry))
+        );
 
         // Merkt sich die Entry wenn sie noch nicht in der Selected-Liste ist (wenn es sich um eine HTTP-Tabelle handelt)
         if (newEntry && (!this.luxHttpDAO || (this.luxHttpDAO && !this.luxSelected.has(newEntry)))) {

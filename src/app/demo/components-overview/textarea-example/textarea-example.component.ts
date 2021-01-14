@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {
   exampleErrorCallback,
@@ -10,11 +10,11 @@ import {
   selector: 'app-textarea-example',
   templateUrl: './textarea-example.component.html'
 })
-export class TextareaExampleComponent implements OnInit {
+export class TextareaExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  useErrorMessage: boolean = true;
-  showOutputEvents: boolean = false;
+  useErrorMessage = true;
+  showOutputEvents = false;
 
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
@@ -30,19 +30,19 @@ export class TextareaExampleComponent implements OnInit {
   // region Properties der Component
 
   value: any;
-  controlBinding: string = 'textareaExample';
+  controlBinding = 'textareaExample';
   disabled = false;
   readonly: boolean;
   required: boolean;
-  label: string = 'Label';
-  hint: string = 'Hint';
-  hintShowOnlyOnFocus: boolean = false;
-  placeholder: string = 'Placeholder';
+  label = 'Label';
+  hint = 'Hint';
+  hintShowOnlyOnFocus = false;
+  placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
-  errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
-  autocomplete: string = 'off';
-  max: number = -1;
-  min: number = 1;
+  errorMessage = 'Das Feld enthält keinen gültigen Wert';
+  autocomplete = 'off';
+  max = -1;
+  min = 1;
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
   maxLength: number;
@@ -54,8 +54,6 @@ export class TextareaExampleComponent implements OnInit {
       textareaExample: ['']
     });
   }
-
-  ngOnInit() {}
 
   changeRequired($event: boolean) {
     this.required = $event;

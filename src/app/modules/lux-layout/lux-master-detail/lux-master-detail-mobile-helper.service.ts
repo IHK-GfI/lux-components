@@ -68,6 +68,7 @@ export class LuxMasterDetailMobileHelperService implements OnDestroy {
 
   /**
    * Gibt zurueck ob eine Media-Query fuer XS oder SM aktuell aktiv ist.
+   *
    * @returns boolean
    */
   public isMobile(): boolean {

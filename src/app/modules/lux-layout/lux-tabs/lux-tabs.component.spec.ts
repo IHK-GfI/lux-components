@@ -1,16 +1,16 @@
+/* eslint-disable max-classes-per-file */
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LuxIconComponent } from '../../lux-icon/lux-icon/lux-icon.component';
 import { LuxLabelComponent } from '../../lux-common/lux-label/lux-label.component';
 
 import { LuxTabsComponent } from './lux-tabs.component';
-import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxTabComponent } from './lux-tabs-subcomponents/lux-tab.component';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 
 describe('LuxTabsComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [],
@@ -377,14 +377,14 @@ describe('LuxTabsComponent', () => {
 
     it('Sollte die Tabanzahl auch in Mobile anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
-      expect((<any>document.getElementsByClassName('mat-badge-content')[0]).offsetHeight).toBeGreaterThan(0);
+      expect((document.getElementsByClassName('mat-badge-content')[0] as any).offsetHeight).toBeGreaterThan(0);
 
       // Änderungen durchführen
       viewport.set('mobile');
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect((<any>document.getElementsByClassName('mat-badge-content')[0]).offsetHeight).toBeGreaterThan(0);
+      expect((document.getElementsByClassName('mat-badge-content')[0] as any).offsetHeight).toBeGreaterThan(0);
 
       viewport.set('desktop');
       flush();
@@ -406,7 +406,7 @@ describe('LuxTabsComponent', () => {
     it('Attribut "tabCounter" nicht gesetzt.', fakeAsync(() => {
       // Nachbedingungen testen
       const divEl = document.getElementsByClassName('mat-badge-content')[0];
-      expect((<any>divEl).offsetWidth).toBe(0, 'Nachbedingung 1');
+      expect((divEl as any).offsetWidth).toBe(0, 'Nachbedingung 1');
     }));
   });
 });
@@ -420,20 +420,16 @@ describe('LuxTabsComponent', () => {
       (luxActiveTabChanged)="tabChanged($event)"
     >
       <lux-tab luxIconName="fa-user" luxTitle="Tabname 1">
-        <ng-template>
-          Tab-Content 0
-        </ng-template>
+        <ng-template> Tab-Content 0 </ng-template>
       </lux-tab>
       <lux-tab luxIconName="fa-user" luxTitle="Tabname 2">
-        <ng-template>
-          Tab-Content 1
-        </ng-template>
+        <ng-template> Tab-Content 1 </ng-template>
       </lux-tab>
     </lux-tabs>
   `
 })
 class LuxActiveTabChangedTabsComponent {
-  animated: boolean = false;
+  animated = false;
   currentTabIndex: number;
   currentTabLabel: string;
 
@@ -470,18 +466,14 @@ class LuxActiveTabChangedTabsComponent {
     '        </lux-tab>' +
     '        </lux-tabs>'
 })
-class LuxMockTabsComponent implements OnInit, AfterViewInit {
-  animated: boolean = false;
+class LuxMockTabsComponent {
+  animated = false;
   currentTabIndex: number;
 
   @ViewChild(LuxTabsComponent) luxTabs: LuxTabsComponent;
   @ViewChildren(LuxTabComponent) luxTabList: QueryList<LuxTabComponent>;
 
   constructor() {}
-
-  ngOnInit() {}
-
-  ngAfterViewInit() {}
 
   tabChanged($event: MatTabChangeEvent) {
     this.currentTabIndex = $event.index;

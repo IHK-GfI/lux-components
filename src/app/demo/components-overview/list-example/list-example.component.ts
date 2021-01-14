@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.enum';
 
@@ -7,10 +7,10 @@ import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.en
   templateUrl: './list-example.component.html',
   styleUrls: ['./list-example.component.scss']
 })
-export class ListExampleComponent implements OnInit {
+export class ListExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  showOutputEvents: boolean = false;
+  showOutputEvents = false;
   log = logResult;
   items: any[] = [];
   colors = Object.keys(LuxBackgroundColorsEnum);
@@ -19,10 +19,10 @@ export class ListExampleComponent implements OnInit {
 
   // region Properties der Component
 
-  emptyLabel: string = 'Keine Daten!';
-  emptyIconName: string = 'fas fa-exclamation';
-  emptyIconSize: string = '5x';
-  selectedPosition: number = 0;
+  emptyLabel = 'Keine Daten!';
+  emptyIconName = 'fas fa-exclamation';
+  emptyIconSize = '5x';
+  selectedPosition = 0;
 
   // endregion
 
@@ -30,8 +30,6 @@ export class ListExampleComponent implements OnInit {
     this.clear();
     this.fill(10);
   }
-
-  ngOnInit() {}
 
   clear() {
     this.items = [];

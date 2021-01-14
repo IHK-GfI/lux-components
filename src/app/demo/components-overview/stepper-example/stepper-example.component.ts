@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
 import { LuxAppFooterButtonService } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
@@ -13,13 +13,13 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
   templateUrl: './stepper-example.component.html',
   styleUrls: ['./stepper-example.component.scss']
 })
-export class StepperExampleComponent implements OnInit, OnDestroy {
+export class StepperExampleComponent implements OnDestroy {
   @ViewChild(LuxStepperComponent, { static: true }) stepperComponent: LuxStepperComponent;
 
   // region Helper-Properties für das Beispiel
 
-  showOutputEvents: boolean = false;
-  useCustomButtonConfig: boolean = false;
+  showOutputEvents = false;
+  useCustomButtonConfig = false;
   log = logResult;
 
   steps: any[] = [
@@ -71,14 +71,14 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
     color: 'primary'
   };
 
-  disabled: boolean = false;
-  showNavigationButtons: boolean = true;
-  linear: boolean = true;
-  useCustomIcons: boolean = false;
-  currentStepNumber: number = 0;
-  editedIconName: string = 'fas fa-pencil-alt';
-  horizontalAnimation: boolean = false;
-  verticalStepper: boolean = false;
+  disabled = false;
+  showNavigationButtons = true;
+  linear = true;
+  useCustomIcons = false;
+  currentStepNumber = 0;
+  editedIconName = 'fas fa-pencil-alt';
+  horizontalAnimation = false;
+  verticalStepper = false;
 
   // endregion
 
@@ -88,8 +88,6 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
     private snackbar: LuxSnackbarService
   ) {}
 
-  ngOnInit() {}
-
   ngOnDestroy() {
     // sicherheitshalber beim Verlassen der Component unsere neuen Footer-Buttons entfernen.
     this.clearButtonInfos();
@@ -98,6 +96,7 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
   /**
    * Loggt das luxFinishButtonClicked-Event und gibt eine Snackbar-Mitteilung aus.
    * Anschließend wird der aktuelle Step wieder auf 0 gesetzt und die Forms resettet.
+   *
    * @param $event
    */
   finishClicked($event) {
@@ -114,6 +113,7 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
 
   /**
    * Loggt das luxCurrentStepNumberChange-Event.
+   *
    * @param $event
    */
   stepNumberChanged($event) {
@@ -122,6 +122,7 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
 
   /**
    * Loggt das luxStepChanged-Event und aktualisiert die CurrentStepNumber sowie die Footer-Button Zustände.
+   *
    * @param $event
    */
   stepChanged($event) {
@@ -156,6 +157,7 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
 
   /**
    * Aktualisiert die Footer-Buttons passend zum aktuellen Step (wenn Footer-Buttons überhaupt dargestellt werden sollen).
+   *
    * @param $event
    */
   updateNavigationButtons($event: boolean) {

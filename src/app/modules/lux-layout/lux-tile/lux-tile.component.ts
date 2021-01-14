@@ -14,7 +14,7 @@ export class LuxTileComponent {
   @Input() luxTagId: string = undefined;
   @Input() luxShowNotification;
   @Input() luxCounter: number;
-  @Input() luxCounterCap: number = 10;
+  @Input() luxCounterCap = 10;
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter<any>();
 

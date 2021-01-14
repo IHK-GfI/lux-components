@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { LuxAriaRequiredDirective } from './lux-aria-required.directive';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';

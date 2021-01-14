@@ -59,7 +59,7 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
       } else if (this.hyphenRegExp_1.test(value)) {
         return this.getUTCNulled_YYYYMMdd(value, '-');
       }
-      return <any>value;
+      return value as any;
     }
     return null;
   }
@@ -72,11 +72,8 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
       startDay = super.getFirstDayOfWeek();
 
       console.warn(
-        `Für die Locale '${
-          this.locale
-        }' fehlt der Aufruf 'registerLocaleData(...)' aus dem Package '@angular/common' in der Datei 'app.modules.ts'. Die Woche startet mit dem Defaultwert '${
-          this.getDayOfWeekNames('long')[startDay]
-        }'.'`
+        `Für die Locale '${this.locale}' fehlt der Aufruf 'registerLocaleData(...)' aus dem Package '@angular/common'
+           in der Datei 'app.modules.ts'. Die Woche startet mit dem Defaultwert '${this.getDayOfWeekNames('long')[startDay]}'.'`
       );
     }
     return startDay;
@@ -84,6 +81,7 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
 
   /**
    * UTC Date mit 0-Werten für Time aus einem ddMMYYYY-String erhalten.
+   *
    * @param dateString
    * @param separator
    */
@@ -96,6 +94,7 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
 
   /**
    * UTC Date mit 0-Werten für Time aus einem YYYYMMdd-String erhalten.
+   *
    * @param dateString
    * @param separator
    */
@@ -108,6 +107,7 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
 
   /**
    * UTC Date mit 0-Werten für Time aus einem MMddYYYY-String erhalten.
+   *
    * @param dateString
    * @param separator
    */

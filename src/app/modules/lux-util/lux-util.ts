@@ -25,6 +25,7 @@ export class LuxUtil {
 
   /**
    * Prueft ob ein String leer ist.
+   *
    * @param str
    * @returns boolean
    */
@@ -65,6 +66,7 @@ export class LuxUtil {
   /**
    * Gibt eine von verschiedenen vordefinierten Fehlernachrichten passend zu den
    * vorhandenen Fehlern der uebergebenen FormControl zurueck.
+   *
    * @param formControl
    * @returns string
    */
@@ -104,6 +106,7 @@ export class LuxUtil {
 
   /**
    * Prueft ob der uebergebene Wert ein JS-Datum ist.
+   *
    * @param value
    * @returns boolean
    */
@@ -115,6 +118,7 @@ export class LuxUtil {
    * Zeigt die Validierungsfehler der einzelnen FormControls innerhalb der FormGroup an.
    * Wenn innerhalb der übergebenen FormGroup weitere Formgroups enthalten sind, werden
    * diese ebenfalls validiert.
+   *
    * @param formGroup
    */
   public static showValidationErrors(formGroup: FormGroup) {
@@ -144,6 +148,7 @@ export class LuxUtil {
 
   /**
    * Prueft ob die Applikation im IE geoeffnet ist.
+   *
    * @returns boolean
    */
   public static isIE(): boolean {
@@ -153,6 +158,7 @@ export class LuxUtil {
 
   /**
    * Prueft ob die Applikation im Edge geoeffnet ist.
+   *
    * @returns boolean
    */
   public static isEdge(): boolean {
@@ -161,6 +167,7 @@ export class LuxUtil {
 
   /**
    * Prueft ob die Applikation im IE oder Edge geoffnet ist.
+   *
    * @returns boolean
    */
   public static isIEorEdge(): boolean {
@@ -374,6 +381,7 @@ export class LuxUtil {
   /**
    * Entfernt nicht-ASCII-Chars aus dem String (Beim IE wichtig, dieser fügt gerne versteckte Steuerzeichen
    * in Input-Feldern an die Strings).
+   *
    * @param dateString
    */
   public static stringWithoutASCIIChars(dateString: string): string {

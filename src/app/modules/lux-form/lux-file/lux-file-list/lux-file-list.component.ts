@@ -65,8 +65,8 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
   @ViewChild('fileuploadSingle', { read: ElementRef, static: true }) fileuploadSingleInput: ElementRef;
   @ViewChild(LuxCardComponent, { read: ElementRef, static: true }) fileCard: ElementRef;
 
-  @Input() luxShowPreview: boolean = true;
-  @Input() luxMultiple: boolean = true;
+  @Input() luxShowPreview = true;
+  @Input() luxMultiple = true;
   @Input() luxHeading = 2;
 
   get luxUploadActionConfig(): ILuxFileListActionConfig {
@@ -132,6 +132,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
 
   /**
    * Entfernt eine Datei aus den selektierten Dateien.
+   *
    * @param index
    */
   removeFile(index: number) {
@@ -163,6 +164,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
 
   /**
    * Fügt weitere Dateien zu den bereits vorhandenen hinzu bzw. ersetzt diese.
+   *
    * @param files
    */
   selectFiles(files: FileList | File[]) {
@@ -241,13 +243,13 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
    */
   private setImgSrcs() {
     this.fileEntries.forEach((item: ElementRef, index: number) => {
-      const imgElement: HTMLImageElement = (<HTMLElement>item.nativeElement).querySelector('img');
+      const imgElement: HTMLImageElement = (item.nativeElement as HTMLElement).querySelector('img');
       if (imgElement && this.luxSelectedFiles) {
         const targetFileContent = Array.isArray(this.luxSelectedFiles)
           ? this.luxSelectedFiles[index].content
           : this.luxSelectedFiles.content;
         if (targetFileContent instanceof Blob) {
-          this.readFile(<File>targetFileContent).then((content: string) => {
+          this.readFile(targetFileContent as File).then((content: string) => {
             imgElement.src = content;
           });
         } else {

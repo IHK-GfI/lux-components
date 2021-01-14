@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Component, NgModule, Injectable } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -44,7 +45,7 @@ describe('LuxSnackbarComponent', () => {
     const x = rightNavTrigger.getBoundingClientRect().left;
     const y = rightNavTrigger.getBoundingClientRect().top;
 
-    const toggleElement = findToggleElement(<any>document.elementFromPoint(x, y));
+    const toggleElement = findToggleElement(document.elementFromPoint(x, y) as any);
 
     toggleElement.click();
     LuxTestHelper.wait(fixture);
@@ -64,7 +65,7 @@ describe('LuxSnackbarComponent', () => {
   }));
 });
 
-function findToggleElement(toggleElement) {
+const findToggleElement = (toggleElement) => {
   // Wenn das Element nicht die richtige CSS-Klasse hat, prüfe den Parent und
   // die Children (browserabhängig welches gecatched wird).
   if (toggleElement.className.indexOf('lux-menu-trigger') === -1) {
@@ -82,7 +83,7 @@ function findToggleElement(toggleElement) {
     }
   }
   return toggleElement;
-}
+};
 
 @Component({
   template: `

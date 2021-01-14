@@ -11,6 +11,7 @@ export class MockLuxLookupService extends LuxLookupService {
 
   /**
    * Filtert das Mock Ergebnis anhand evtl. übergebener Key-Werte.
+   *
    * @param array
    * @param parameters
    */

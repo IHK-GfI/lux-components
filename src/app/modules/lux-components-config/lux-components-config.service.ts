@@ -21,7 +21,6 @@ export class LuxComponentsConfigService {
       notAppliedTo: ['lux-link', 'lux-side-nav-item', 'lux-menu-item']
     },
     cardExpansionAnimationActive: true,
-    displayBindingDebugHint: true,
     rippleConfiguration: {
       exitDuration: 500,
       enterDuration: 500
@@ -50,11 +49,6 @@ export class LuxComponentsConfigService {
   constructor(@Inject(LuxConfigTokenService) @Optional() config: LuxComponentsConfigParameters) {
     // Wenn keine Konfiguration geladen werden konnte, Standard-Konfig benutzen und eine Info ausgeben.
     if (!config) {
-      console.info(
-        'Es wurde keine individuelle Konfiguration für die LuxComponents definiert.\n',
-        'Benutze Standard-Konfiguration:',
-        LuxComponentsConfigService.DEFAULT_CONFIG
-      );
       this.config$.next(LuxComponentsConfigService.DEFAULT_CONFIG);
     } else {
       this.config$.next(this.mergeDefaultData(config));
@@ -64,6 +58,7 @@ export class LuxComponentsConfigService {
   /**
    * Gibt zurück, ob die Labels als Uppercase gekennzeichnet sind und ob
    * die übergebenen Selektoren in den Ausnahmen geführt sind.
+   *
    * @param selector
    */
   isLabelUppercaseForSelector(selector: string): boolean {
@@ -77,6 +72,7 @@ export class LuxComponentsConfigService {
 
   /**
    * Ersetzt die aktuelle Konfiguration mit der übergebenen (wenn gültiger Wert).
+   *
    * @param config
    */
   updateConfiguration(config: LuxComponentsConfigParameters) {
@@ -91,6 +87,7 @@ export class LuxComponentsConfigService {
    * Kombiniert die übergebene Konfiguration mit der Standard-Konfig.
    *
    * Übernimmt die Werte aus der Standard-Konfig, die nicht im übergebenen gesetzt wurden.
+   *
    * @param config
    */
   private mergeDefaultData(config: LuxComponentsConfigParameters): LuxComponentsConfigParameters {

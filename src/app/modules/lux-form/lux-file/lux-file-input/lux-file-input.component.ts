@@ -46,6 +46,7 @@ export class LuxFileInputComponent extends LuxFormFileBase {
    * Wird bei der Auswahl von Dateien (Dialog oder DnD) aufgerufen.
    * Aktualisiert die aktuell selektierten Dateien, stößt einen Upload an, handelt Fehlermeldungen und
    * emittet die entspechenden Events.
+   *
    * @param files
    */
   selectFiles(files: File[]) {
