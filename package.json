@@ -71,7 +71,6 @@
     "material-design-icons-iconfont": "^5.0.1",
     "ng-packagr": "^11.0.0",
     "ng2-pdf-viewer": "^6.3.2",
-    "node-sass": "^4.14.1",
     "pdfjs-dist": "^2.5.207",
     "prettier": "^2.2.1",
     "protractor": "~7.0.0",

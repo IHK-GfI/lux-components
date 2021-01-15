@@ -20,9 +20,12 @@
     - Initial angelegt.
 */
 
-@import '~@angular/material/theming';
 @import 'luxcommon';
 @import 'luxfocus';
 @import 'luxstyles';
 
+@import '~@angular/material/theming';
+$lux-primary: mat-palette($lux-palette_darkblue);
+$lux-accent: mat-palette($lux-palette_accentgreen);
+$lux-warn: mat-palette($lux-palette_darkred);
 $lux-theme: mat-light-theme($lux-primary, $lux-accent, $lux-warn);

@@ -1,7 +1,6 @@
 /*
   Dieses Partial-SCSS dient der Verwaltung der Farb-Paletten für die LUX-Components.
 */
-
 $lux-palette_darkblue: (
   50 : #e7ebf0,
   100 : #c6d1dc,
@@ -100,10 +99,6 @@ $lux-palette_darkred: (
     A700 : #ffffff,
   )
 );
-
-$lux-primary: mat-palette($lux-palette_darkblue);
-$lux-accent: mat-palette($lux-palette_accentgreen);
-$lux-warn: mat-palette($lux-palette_darkred);
 
 $lux-warn-color: map-get($lux-palette_darkred, 500);
 $lux-primary-color: map-get($lux-palette_darkblue, 500);
