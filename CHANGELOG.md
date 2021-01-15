@@ -1,9 +1,13 @@
+# Version 11.0.0
+## New
+- **lux-badge-notification**: Optik verbessert. [Issue 43](https://github.com/IHK-GfI/lux-components/issues/43)
+- **lux-button**: Doppelklick unterbinden [Issue 52](https://github.com/IHK-GfI/lux-components/issues/52)
+
 # Version 10.6.0
 ## New
 - **allgemein**: Dependabot-Konfiguration hinzufügen [Issue 53](https://github.com/IHK-GfI/lux-components/issues/53)
 - **lux‐file‐input**: Anpassbares Verhalten bei Validierung im lux‐file‐input gewünscht [Issue 50](https://github.com/IHK-GfI/lux-components/issues/50)
 - **lux-card**: Überschriften-Tags (h1,h2,...) sollen individuell vergeben werden können [Issue 49](https://github.com/IHK-GfI/lux-components/issues/49)
-- **lux-button**: Doppelklick unterbinden [Issue 52](https://github.com/IHK-GfI/lux-components/issues/52)
 
 ## Bug Fixes
 - **allgemein**: Sicherheitsupdate - Dependabot CVE-2020-26870 [Issue 54](https://github.com/IHK-GfI/lux-components/issues/54)

@@ -1,5 +1,9 @@
 @import '../../../../theming/luxcommon';
 
+.lux-card-content-container ::ng-deep mat-tab-group.lux-tab-group .lux-tabs-notification-icon {
+  border: 2px solid $app-data-bg;
+}
+
 .lux-highlight {
   color: $dark-primary-text;
 }

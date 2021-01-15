@@ -13,6 +13,7 @@ export class BadgeNotificationExampleComponent {
   size = 'medium';
   overlap = true;
   cap;
+  noBorder = false;
 
   constructor() {}
 }

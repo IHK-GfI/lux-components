@@ -28,6 +28,7 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
   @Input() luxBadgeDisabled = false;
   @Input() luxBadgeHidden = false;
   @Input() luxBadgeOverlap = true;
+  @Input() luxBadgeNoBorder = false;
   @Input() luxBadgeCap: number;
 
   constructor(
@@ -49,6 +50,11 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
     this.disabled = this.luxBadgeDisabled;
     this.hidden = !!this.luxBadgeHidden;
     this.overlap = this.luxBadgeOverlap;
+    if (this.luxBadgeNoBorder) {
+      this.luxElementRef.nativeElement.classList.add('lux-badge-no-border');
+    } else {
+      this.luxElementRef.nativeElement.classList.remove('lux-badge-no-border');
+    }
   }
 
   updateContent(value: any) {
