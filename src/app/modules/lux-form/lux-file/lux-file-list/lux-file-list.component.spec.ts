@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { ILuxFileListActionConfig } from '../lux-file-model/lux-file-list-action-config.interface';
 
 import { LuxFileListComponent } from './lux-file-list.component';
@@ -46,7 +46,7 @@ describe('LuxFileListComponent', () => {
       fileComponent = fixture.debugElement.query(By.directive(LuxFileListComponent)).componentInstance;
 
       // den LiveAnnouncer abklemmen
-      fileComponent['liveAnnouncer'] = { announce: (...args) => {} } as any;
+      fileComponent['liveAnnouncer'] = <any>{ announce: (...args) => {} };
 
       // Wir mocken hier den FileReader weg, da er nicht mit fakeAsync kompatibel ist
       spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve('base64-dummy'));
@@ -150,7 +150,7 @@ describe('LuxFileListComponent', () => {
       fileComponent = fixture.debugElement.query(By.directive(LuxFileListComponent)).componentInstance;
 
       // den LiveAnnouncer abklemmen
-      fileComponent['liveAnnouncer'] = { announce: (...args) => {} } as any;
+      fileComponent['liveAnnouncer'] = <any>{ announce: (...args) => {} };
 
       // Wir mocken hier den FileReader weg, da er nicht mit fakeAsync kompatibel ist
       spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve('base64-dummy'));
@@ -324,6 +324,8 @@ describe('LuxFileListComponent', () => {
       // Nachbedingungen prüfen
       expect(fileComponent.luxSelectedFiles).toEqual(undefined);
       expect(fixture.debugElement.queryAll(By.css('.lux-file-list-entry-label')).length).toBe(0);
+
+      discardPeriodicTasks();
     }));
 
     it('Sollte das Background-Icon + Hint darstellen, wenn keine Dateien geladen sind', fakeAsync(() => {
@@ -488,6 +490,8 @@ describe('LuxFileListComponent', () => {
       );
       expect(fileComponent.luxSelectedFiles['name']).toEqual('mockfile.txt');
       expect(fileComponent.luxSelectedFiles['content']).toEqual('callback base64-dummy');
+
+      discardPeriodicTasks();
     }));
 
     it('Sollte statt des Base64-Strings den Dateityp Blob nutzen', fakeAsync(() => {
@@ -554,8 +558,8 @@ describe('LuxFileListComponent', () => {
 
         // Nachbedingungen prüfen
         expect(selectedChange).toHaveBeenCalledTimes(1);
-        expect((testComponent.selected as any).name).toEqual('mockfile1.txt');
-        expect((testComponent.selected as any).content).toEqual('base64-dummy');
+        expect((<any>testComponent.selected).name).toEqual('mockfile1.txt');
+        expect((<any>testComponent.selected).content).toEqual('base64-dummy');
 
         // Änderungen durchführen
         fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')]);
@@ -885,6 +889,8 @@ describe('LuxFileListComponent', () => {
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(2);
           expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles);
+
+          discardPeriodicTasks();
         }));
       });
 
@@ -988,6 +994,8 @@ describe('LuxFileListComponent', () => {
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(2);
           expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles[1]);
+
+          discardPeriodicTasks();
         }));
       });
 
@@ -1113,6 +1121,8 @@ describe('LuxFileListComponent', () => {
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(3);
           expect(fixture.debugElement.queryAll(By.css('.lux-file-list-entry')).length).toBe(0);
+
+          discardPeriodicTasks();
         }));
       });
 
@@ -1212,6 +1222,8 @@ describe('LuxFileListComponent', () => {
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(2);
           expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles[1]);
+
+          discardPeriodicTasks();
         }));
       });
     });

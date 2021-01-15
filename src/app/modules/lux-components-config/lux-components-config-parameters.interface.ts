@@ -55,6 +55,13 @@ export interface LuxComponentsConfigParameters {
   };
 
   /**
+   * Bestimmt die globalen Einstellungen für die Buttons.
+   */
+  buttonConfiguration?: {
+    throttleTimeMs?: number;
+  };
+
+  /**
    * Bestimmt die globalen Einstellungen für das Layout.
    */
   layout?: {

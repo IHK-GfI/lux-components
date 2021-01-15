@@ -84,7 +84,6 @@
           </h6>
         </ng-container>
 
-
         <div fxFlex="none" fxLayoutAlign="end">
           <ng-content *ngIf="!showExpandedToggle" select="lux-card-info"></ng-content>
           <lux-button
@@ -92,6 +91,7 @@
             luxColor="primary"
             [luxIconName]="luxExpanded ? 'fa-angle-up' : 'fa-angle-down'"
             (luxClicked)="changeContentExpansion($event)"
+            [luxThrottleTime]="250"
             luxTagId="expandedButton"
             class="lux-expanded-button"
           ></lux-button>

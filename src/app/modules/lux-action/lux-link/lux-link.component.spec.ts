@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed } from '@angular/core/testing';
 import { LuxLinkComponent } from './lux-link.component';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
 describe('LuxLinkComponent', () => {
 
@@ -115,6 +116,8 @@ describe('LuxLinkComponent', () => {
     // Nachbedingungen prüfen
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(['/mock-route']);
+
+    discardPeriodicTasks();
   }));
 
   it('Sollte den (externen) href aufrufen', fakeAsync(() => {
@@ -128,7 +131,7 @@ describe('LuxLinkComponent', () => {
 
     const link = fixture.debugElement.query(By.css('button'));
     link.nativeElement.click();
-    LuxTestHelper.wait(fixture);
+    LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
     // Nachbedingungen prüfen
     expect(spy).toHaveBeenCalledTimes(1);
@@ -144,6 +147,8 @@ describe('LuxLinkComponent', () => {
     // Nachbedingungen prüfen
     expect(spy).toHaveBeenCalledTimes(2);
     expect(spy).toHaveBeenCalledWith('http://mock-route', '_self');
+
+    discardPeriodicTasks();
   }));
 
   it('Sollte den (externen) href in einem neuen Tab aufrufen', fakeAsync(() => {
@@ -163,6 +168,8 @@ describe('LuxLinkComponent', () => {
     // Nachbedingungen prüfen
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith('http://mock-route', '_blank');
+
+    discardPeriodicTasks();
   }));
 
   it('Sollte die Farbe anpassen', fakeAsync(() => {
