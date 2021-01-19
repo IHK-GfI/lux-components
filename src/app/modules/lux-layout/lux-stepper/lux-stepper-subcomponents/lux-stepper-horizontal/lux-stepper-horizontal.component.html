@@ -9,7 +9,8 @@
     'lux-no-animation': !luxStepperConfig.luxHorizontalStepAnimationActive
   }"
   (selectionChange)="luxStepChanged.emit($event)"
-  (click)="luxCheckValidation.emit()"
+  (click)="onStepClicked($event)"
+  (keydown.enter)="onStepClicked($event)"
   #stepper
 >
   <!-- Alle aktuell bekannten Steps zeichnen -->
