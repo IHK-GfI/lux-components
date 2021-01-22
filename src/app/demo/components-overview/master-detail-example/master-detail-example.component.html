@@ -18,14 +18,21 @@
   fxFill
 >
   <lux-master-header-content>
-    <lux-select
-      luxLabel="Fälligkeit"
-      [luxOptions]="options"
-      [luxSelected]="options[0]"
-      luxOptionLabelProp="label"
-      (luxSelectedChange)="changeFilter($event)"
-    >
-    </lux-select>
+    <lux-accordion>
+      <lux-panel>
+        <lux-panel-header-title>Filter</lux-panel-header-title>
+        <lux-panel-content>
+          <lux-select
+            luxLabel="Fälligkeit"
+            [luxOptions]="options"
+            [luxSelected]="options[0]"
+            luxOptionLabelProp="label"
+            (luxSelectedChange)="changeFilter($event)"
+          >
+          </lux-select>
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
   </lux-master-header-content>
 
   <lux-master-simple luxTitleProp="title" luxSubTitleProp="subtitle">
