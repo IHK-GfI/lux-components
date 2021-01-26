@@ -67,7 +67,7 @@
     "karma-jasmine-html-reporter": "1.5.4",
     "karma-safari-launcher": "1.0.0",
     "karma-viewport": "1.0.7",
-    "marked": "1.1.0",
+    "marked": "1.2.7",
     "material-design-icons-iconfont": "5.0.1",
     "ng-packagr": "10.1.0",
     "ng2-pdf-viewer": "6.2.0",
@@ -99,6 +99,6 @@
     "ng2-pdf-viewer": "6.2.0",
     "pdfjs-dist": "2.2.228",
     "dompurify": "2.0.17",
-    "marked": "1.1.0"
+    "marked": "1.2.7"
   }
 }
