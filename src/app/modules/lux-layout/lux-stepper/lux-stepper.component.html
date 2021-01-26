@@ -8,7 +8,7 @@
     (luxFinButtonClicked)="luxFinishButtonClicked.emit($event)"
     (luxPrevButtonClicked)="stepperService.previousStep(this)"
     (luxNextButtonClicked)="stepperService.nextStep(this)"
-    (luxCheckValidation)="checkValidation()"
+    (luxStepClicked)="onStepClicked($event)"
     ngClass.sm="lux-stepper-mobile"
     ngClass.xs="lux-stepper-mobile"
     *ngSwitchCase="true"
@@ -23,7 +23,7 @@
     (luxFinButtonClicked)="luxFinishButtonClicked.emit($event)"
     (luxPrevButtonClicked)="stepperService.previousStep(this)"
     (luxNextButtonClicked)="stepperService.nextStep(this)"
-    (luxCheckValidation)="checkValidation()"
+    (luxStepClicked)="onStepClicked($event)"
     ngClass.sm="lux-stepper-mobile"
     ngClass.xs="lux-stepper-mobile"
     *ngSwitchDefault

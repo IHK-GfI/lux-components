@@ -4,6 +4,7 @@
   [luxTitle]="(luxLabel ? luxLabel : '') + (luxRequired ? ' *' : '')"
   [luxAriaInvalid]="formControl?.invalid"
   tabindex="0"
+  [luxHeading]="luxHeading"
 >
   <lux-card-info *ngIf="luxMultiple || !luxSelectedFiles">
     <lux-button

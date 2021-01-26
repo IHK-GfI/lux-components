@@ -1,3 +1,14 @@
+# Version 10.6.0
+## New
+- **allgemein**: Dependabot-Konfiguration hinzufügen [Issue 53](https://github.com/IHK-GfI/lux-components/issues/53)
+- **lux‐file‐input**: Anpassbares Verhalten bei Validierung im lux‐file‐input gewünscht [Issue 50](https://github.com/IHK-GfI/lux-components/issues/50)
+- **lux-card**: Überschriften-Tags (h1,h2,...) sollen individuell vergeben werden können [Issue 49](https://github.com/IHK-GfI/lux-components/issues/49)
+- **lux-stepper**: Neue Output-Events "luxCheckValidation" und "luxStepClicked" einführen [Issue 57](https://github.com/IHK-GfI/lux-components/issues/57)
+
+## Bug Fixes
+- **allgemein**: Sicherheitsupdate - Dependabot CVE-2020-26870 [Issue 54](https://github.com/IHK-GfI/lux-components/issues/54)
+- **lux-master-detail**: Master-Detail-Header wächst nicht korrekt mit [Issue 59](https://github.com/IHK-GfI/lux-components/issues/59)
+
 # Version 10.5.0
 ## New
 - **lux-filter-form**: Unterstützung für Lookup-Komponenten. [Issue 46](https://github.com/IHK-GfI/lux-components/issues/46)
