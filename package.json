@@ -51,7 +51,7 @@
     "@types/jasminewd2": "2.0.8",
     "@types/node": "14.6.4",
     "codelyzer": "6.0.0",
-    "core-js": "3.6.5",
+    "core-js": "3.8.3",
     "dompurify": "2.0.17",
     "hammerjs": "2.0.8",
     "html-webpack-plugin": "4.4.1",
