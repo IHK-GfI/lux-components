@@ -107,9 +107,9 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
   @Input() set luxRequired(required: boolean) {
     if (this.inForm) {
       this.logger.error(
-        `Achtung: Bei Komponenten innerhalb von ReactiveForms den Required-Validator anstelle der ` +
-          `Property "luxRequired" nutzen.\n` +
-          `Betroffene Komponente: ${this.luxControlBinding ? this.luxControlBinding : 'Kein Binding gefunden'}`
+        `Attention: Use the Required-Validator instead of the ` +
+        `Property "luxRequired" for components within ReactiveForms..\n` +
+        `Affected component: ${this.luxControlBinding ? this.luxControlBinding : 'No binding found'}`
       );
     } else {
       this._luxRequired = required;

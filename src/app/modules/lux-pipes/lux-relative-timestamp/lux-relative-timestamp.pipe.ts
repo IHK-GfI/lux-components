@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-export const day = 'Tagen';
-  export const week = 'Wochen';
-  export const month = 'Monaten';
-  export const year = 'Jahren';
-export const today = 'Heute';
-  export const yesterday = 'Gestern';
-  export const tomorrow = 'Morgen';
-export const prefixFuture = 'in';
-  export const prefixPast = 'vor';
+export const day = $localize`:@@luxc.relative-timestamp.days:Tagen`;
+export const week = $localize`:@@luxc.relative-timestamp.weeks:Wochen`;
+export const month = $localize`:@@luxc.relative-timestamp.months:Monaten`;
+export const year = $localize`:@@luxc.relative-timestamp.years:Jahren`;
+export const today = $localize`:@@luxc.relative-timestamp.today:Heute`;
+export const yesterday = $localize`:@@luxc.relative-timestamp.yesterday:Gestern`;
+export const tomorrow = $localize`:@@luxc.relative-timestamp.tomorrow:Morgen`;
+export const prefixFuture = $localize`:@@luxc.relative-timestamp.in:in`;
+export const prefixPast = $localize`:@@luxc.relative-timestamp.ago:vor`;
 
 export const MS_PER_DAY = 1000 * 60 * 60 * 24;
 
@@ -44,13 +44,18 @@ export class LuxRelativeTimestampPipe implements PipeTransform {
       const tempDelta = delta < 0 ? delta * -1 : delta;
 
       if (tempDelta >= timeDelta.days) {
-        if (!prefix) {
-          prefix = delta < 0 ? prefixPast : prefixFuture;
-        }
-
         let timeUnits = timeDelta.name === day ? tempDelta : Math.floor(tempDelta / timeDelta.dayUnit);
         timeUnits *= timeUnits < 0 ? -1 : 1;
-        timeName = `${prefix} ${timeUnits} ${timeDelta.name}`;
+
+        if (!prefix) {
+          if (delta < 0) {
+            timeName = $localize`:@@luxc.relative-timestamp.past:${prefixPast} ${timeUnits} ${timeDelta.name}`;
+          } else {
+            timeName = $localize`:@@luxc.relative-timestamp.future:${prefixFuture} ${timeUnits} ${timeDelta.name}`;
+          }
+        } else {
+          timeName = `${prefix} ${timeUnits} ${timeDelta.name}`;
+        }
         break;
       }
     }

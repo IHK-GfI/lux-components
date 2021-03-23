@@ -34,25 +34,25 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     disabled: false,
     hidden: false,
     iconName: 'fas fa-cloud-upload-alt',
-    label: 'Hochladen'
+    label: $localize`:@@luxc.form-file-base.upload.action.lbl:Hochladen`
   };
   protected _luxDeleteActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
     iconName: 'fas fa-trash',
-    label: 'Löschen'
+    label: $localize`:@@luxc.form-file-base.delete.action.lbl:Löschen`
   };
   protected _luxViewActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: true,
     iconName: 'fas fa-eye',
-    label: 'Ansehen'
+    label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
   };
   protected _luxDownloadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: true,
     iconName: 'fas fa-download',
-    label: 'Download'
+    label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
   };
 
   progress = -1;
@@ -151,9 +151,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   }
 
   get progressMode(): string {
-    return (this.progress === 0 && !this.luxUploadReportProgress) || this.forceProgressIndeterminate
-      ? 'indeterminate'
-      : 'determinate';
+    return (this.progress === 0 && !this.luxUploadReportProgress) || this.forceProgressIndeterminate ? 'indeterminate' : 'determinate';
   }
 
   get isProgressVisible(): boolean {
@@ -343,7 +341,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
             resolve();
           }
         },
-        error => {
+        (error) => {
           // Hier geben wir den speziellen Fehler noch mal in die console
           console.error(error);
           // Für den Fall das der Upload fehlschlägt, melden wir einen Fehler am Component
@@ -357,7 +355,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
         this.forceProgressIndeterminate = false;
         return Promise.resolve();
       },
-      error => {
+      (error) => {
         this.progress = -1;
         this.forceProgressIndeterminate = false;
         return Promise.reject({
@@ -445,11 +443,13 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
           .then((content: any) => {
             newFiles.push({ name: file.name, content, type: file.type });
           })
-          .catch(error => Promise.reject({
+          .catch((error) =>
+            Promise.reject({
               cause: LuxFileErrorCause.ReadingFileError,
               exception: error,
               file
-            }));
+            })
+          );
       }
     }
 
@@ -467,8 +467,8 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     return new Promise((resolve, reject) => {
       const reader = new window['FileReader']();
 
-      reader.onload = fileData => resolve(fileData.target.result);
-      reader.onerror = error => reject(error);
+      reader.onload = (fileData) => resolve(fileData.target.result);
+      reader.onerror = (error) => reject(error);
       reader.readAsDataURL(file);
     });
   }
@@ -589,8 +589,9 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    */
   protected getMaxSizeErrorMessage(file: File): string {
     return (
-      `Die Datei "${file.name}" überschreitet mit ${+this.getFileSizeInMB(file).toFixed(2)}MB ` +
-      `die erlaubte Dateigröße von ${+this.luxMaxSizeMB.toFixed(2)}MB`
+      $localize`:@@luxc.form-file-base.error_message.max_file_size:Die Datei "${file.name}" überschreitet mit ${+this.getFileSizeInMB(
+        file
+      ).toFixed(2)}MB ` + `die erlaubte Dateigröße von ${+this.luxMaxSizeMB.toFixed(2)}MB`
     );
   }
 
@@ -600,7 +601,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    * @param file
    */
   protected getReadingFileErrorMessage(file: File): string {
-    return `Beim Lesen der Datei "${file.name}" ist ein Fehler aufgetreten`;
+    return $localize`:@@luxc.form-file-base.error_message.read_error:Beim Lesen der Datei "${file.name}" ist ein Fehler aufgetreten`;
   }
 
   /**
@@ -610,9 +611,11 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    */
   protected getUploadFileErrorMessage(files: File[]): string {
     if (!files) {
-      return 'Das Hochladen ist fehlgeschlagen';
+      return $localize`:@@luxc.form-file-base.error_message.upload.no_files:Das Hochladen ist fehlgeschlagen`;
     }
-    return `Das Hochladen der ${files.length > 1 ? 'ausgewählten Dateien' : 'ausgewählten Datei'} ist fehlgeschlagen`;
+    return $localize`:@@luxc.form-file-base.error_message.upload.with_files:Das Hochladen der ${
+      files.length > 1 ? 'ausgewählten Dateien' : 'ausgewählten Datei'
+    } ist fehlgeschlagen`;
   }
 
   /**
@@ -621,7 +624,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    * @param file
    */
   protected getFileNotAcceptedMessage(file: File): string {
-    return `Die Datei "${file.name}" hat einen nicht akzeptierten Dateityp`;
+    return $localize`:@@luxc.form-file-base.error_message.not_accepted:Die Datei "${file.name}" hat einen nicht akzeptierten Dateityp`;
   }
 
   /**
@@ -630,7 +633,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    * @param file
    */
   protected getMultipleForbiddenMessage(): string {
-    return `Es darf nur eine Datei ausgewählt werden`;
+    return $localize`:@@luxc.form-file-base.error_message.only_one_file:Es darf nur eine Datei ausgewählt werden`;
   }
 
   /**
@@ -639,17 +642,20 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    * @param multiple
    */
   protected announceFileProcess(multiple: boolean) {
-    this.liveAnnouncer.announce(
-      `Bitte warten. Die ${multiple ? 'Dateien werden' : 'Datei wird'} verarbeitet.`,
-      'assertive'
-    );
+    if (multiple) {
+      this.liveAnnouncer.announce(
+        $localize`:@@luxc.form-file-base.upload.files.announce:Bitte warten. Die Datei wird verarbeitet.`, 'assertive');
+    } else {
+      this.liveAnnouncer.announce(
+        $localize`:@@luxc.form-file-base.upload.file.announce:Bitte warten. Die Dateien werden verarbeitet.`, 'assertive');
+    }
   }
 
   /**
    * Meldet dem ScreenReader, dass alle Dateien entfernt werden sollen.
    */
   protected announceAllFilesRemove() {
-    this.liveAnnouncer.announce(`Alle Dateien werden entfernt.`, 'assertive');
+    this.liveAnnouncer.announce($localize`:@@luxc.form-file-base.delete.all_files.announce:Alle Dateien werden entfernt.`, 'assertive');
   }
 
   /**
@@ -658,7 +664,10 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    * @param fileName
    */
   protected announceFileRemove(fileName: string) {
-    this.liveAnnouncer.announce(`Die Datei ${fileName} wird entfernt.`, 'assertive');
+    this.liveAnnouncer.announce(
+      $localize`:@@luxc.form-file-base.delete.one_file.announce:Die Datei ${fileName} wird entfernt.`,
+      'assertive'
+    );
   }
 
   /**

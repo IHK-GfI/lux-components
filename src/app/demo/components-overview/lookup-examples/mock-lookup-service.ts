@@ -1,8 +1,10 @@
+import { Injectable } from '@angular/core';
 import { mockResult } from './mock-result';
 import { LuxLookupService } from '../../../modules/lux-lookup/lux-lookup-service/lux-lookup.service';
 import { of } from 'rxjs';
 import { LuxLookupParameters } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
 
+@Injectable()
 export class MockLuxLookupService extends LuxLookupService {
 
   getLookupTable(tableNo, parameters) {

@@ -44,7 +44,7 @@ export abstract class LuxFormCheckableBaseClass extends LuxFormComponentBase {
 
   errorMessageModifier(value, errors) {
     if (errors.required) {
-      return 'Das ist ein Pflichtfeld';
+      return $localize `:@@luxc.form-checkable-base.error_message.required:Das ist ein Pflichtfeld`;
     }
     return undefined;
   }

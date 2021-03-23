@@ -58,7 +58,7 @@ export class LuxLookupHandlerService {
     if (lookupEl) {
       lookupEl.next();
     } else {
-      console.error('Die Lookup-Komponente ' + lookupId + ' konnte nicht gefunden werden.');
+      console.error(`The lookup component ${lookupId} could not be found.`);
     }
   }
 }

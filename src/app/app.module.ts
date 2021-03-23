@@ -31,10 +31,8 @@ import { ExampleBaseModule } from './demo/example-base/example-base.module';
 import { LuxCommonModule } from './modules/lux-common/lux-common.module';
 import { LuxErrorModule } from './modules/lux-error/lux-error.module';
 import 'hammerjs';
-import { LOCALE_ID } from '@angular/core';
 import { PlaceholderComponent } from './demo/abstract/placeholder/placeholder.component';
 import { RedirectComponent } from './demo/abstract/redirect/redirect.component';
-import '@angular/common/locales/global/de';
 
 const myConfiguration: LuxComponentsConfigParameters = {
   generateLuxTagIds: environment.generateLuxTagIds,
@@ -71,7 +69,6 @@ const myConfiguration: LuxComponentsConfigParameters = {
   ],
   entryComponents: [LuxSnackbarComponent, LuxFilePreviewComponent],
   providers: [
-    { provide: LOCALE_ID, useValue: 'de-DE' },
     LuxAppFooterButtonService,
     LuxAppFooterLinkService,
     LuxSnackbarService,

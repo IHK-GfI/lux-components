@@ -71,9 +71,9 @@ export class LuxMessageBoxComponent {
         } else {
           let messageText = '';
           if (messages.length === 1) {
-            messageText += `Es gibt eine Meldung`;
+            messageText += $localize `:@@luxc.message.announce.1_message:Es gibt eine Meldung.`;
           } else {
-            messageText += `Es gibt ${messages.length} Meldungen`;
+            messageText += $localize `:@@luxc.message.announce.x_messages:Es gibt ${messages.length}:messageCount: Meldungen.`;
           }
           messages.forEach((message) => messageText += message.text + '\n');
           this.liveAnnouncer.announce(messageText);
@@ -85,7 +85,7 @@ export class LuxMessageBoxComponent {
         this.luxMessageBoxClosed.emit();
       }
       this._luxMessages = [];
-      this.liveAnnouncer.announce(`Es gibt keine Meldungen`);
+      this.liveAnnouncer.announce($localize `:@@luxc.message.announce.0_messages:Es gibt keine Meldungen.`);
     }
   }
 

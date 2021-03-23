@@ -38,6 +38,14 @@ export class LuxMasterHeaderComponent implements OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  getAriaLabelForOpenCloseButton(iconName: string) {
+    if (this.iconName === 'keyboard_arrow_left') {
+      return $localize `:@@luxc.master-detail.header.close.btn:Masterliste zuklappen`;
+    } else {
+      return $localize `:@@luxc.master-detail.header.open.btn:Masterliste aufklappen`;
+    }
+  }
+
   clicked(that: LuxButtonComponent) {
     if (this.open) {
       this.masterDetailMobileHelperService.closeMaster();

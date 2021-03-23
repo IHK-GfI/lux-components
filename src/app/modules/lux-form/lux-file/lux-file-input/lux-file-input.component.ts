@@ -76,7 +76,7 @@ export class LuxFileInputComponent extends LuxFormFileBase {
 
   protected errorMessageModifier(value: any, errors: any): string | undefined {
     if (errors.required) {
-      return 'Es muss eine Datei ausgewählt werden';
+      return $localize `:@@luxc.file-input.error_message.required:Es muss eine Datei ausgewählt werden`;
     }
     return super.errorMessageModifier(value, errors);
   }

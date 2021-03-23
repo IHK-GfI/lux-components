@@ -14,7 +14,7 @@ export class LuxFilePreviewNotSupportedViewerComponent extends LuxFilePreviewBas
   counter = 5;
   timer: any;
 
-  downloadLabelDefault = 'Download... ';
+  downloadLabelDefault = $localize `:@@luxc.file-preview.notsupportedviewer.download.lbl:Download... `;
   downloadLabel = this.downloadLabelDefault + this.counter;
 
   constructor(

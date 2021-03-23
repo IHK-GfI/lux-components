@@ -73,32 +73,32 @@ export class LuxUtil {
   public static getErrorMessage(formControl: FormControl): string {
     if (formControl) {
       if (formControl.hasError('required')) {
-        return '* Pflichtfeld';
+        return $localize `:@@luxc.util.error_message.required:* Pflichtfeld`;
       }
 
       if (formControl.hasError('minlength')) {
-        return 'Die Mindestlänge ist ' + formControl.getError('minlength').requiredLength;
+        return $localize `:@@luxc.util.error_message.minlength:Die Mindestlänge ist ${formControl.getError('minlength').requiredLength}`;
       }
 
       if (formControl.hasError('maxlength')) {
-        return 'Die Maximallänge ist ' + formControl.getError('maxlength').requiredLength;
+        return $localize `:@@luxc.util.error_message.maxlength:Die Maximallänge ist ${formControl.getError('maxlength').requiredLength}`;
       }
 
       if (formControl.hasError('email')) {
-        return 'Dies ist keine gültige E-Mailadresse';
+        return $localize `:@@luxc.util.error_message.email:Dies ist keine gültige E-Mailadresse`;
       }
 
       if (formControl.hasError('min')) {
-        return 'Der Minimalwert ist ' + formControl.getError('min').min;
+        return $localize `:@@luxc.util.error_message.min:Der Minimalwert ist ${formControl.getError('min').min}`;
       }
 
       if (formControl.hasError('max')) {
-        return 'Der Maximalwert ist ' + formControl.getError('max').max;
+        return $localize `:@@luxc.util.error_message.max:Der Maximalwert ist ${formControl.getError('max').max}`;
       }
 
       if (formControl.hasError('pattern')) {
         const pattern = formControl.getError('pattern').requiredPattern;
-        return 'Entspricht nicht dem Muster "' + pattern.substring(1, pattern.length - 1) + '"';
+        return $localize `:@@luxc.util.error_message.pattern:Entspricht nicht dem Muster "${pattern.substring(1, pattern.length - 1)}"`;
       }
     }
     return '';

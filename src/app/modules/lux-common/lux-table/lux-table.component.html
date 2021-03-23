@@ -45,8 +45,6 @@
           <ng-container matColumnDef="multiSelect" *ngIf="luxMultiSelect">
             <th
               class="lux-multiselect-th"
-              [luxAriaLabel]="'Spalte multiSelect ' + getAriaSortingLabel('multiSelect')"
-              luxAriaLabelSelector="button"
               mat-header-cell
               *matHeaderCellDef
               mat-sort-header
@@ -63,7 +61,8 @@
                 class="lux-multiselect-toggle"
                 luxTabIndex="-1"
                 [luxApplyToChildren]="['input']"
-                [luxAriaLabel]="'Reihe ' + i"
+                luxAriaLabel="Reihe {{ i }}"
+                i18n-luxAriaLabel="@@luxc.table.multiselect.chk.arialabel"
                 luxAriaLabelSelector="input"
                 [luxChecked]="luxSelected.has(element)"
               >
@@ -86,6 +85,7 @@
                   luxTagId="lux-table-multiselect-header"
                   class="lux-multiselect-toggle-all"
                   luxAriaLabel="Alle Einträge"
+                  i18n-luxAriaLabel="@@luxc.table.multiselect.all.chk.arialabel"
                   luxAriaLabelSelector="input"
                   luxTabIndex="-1"
                   [luxApplyToChildren]="['input']"
@@ -109,10 +109,6 @@
               [stickyEnd]="i === tableColumns.length - 1 && tableColumn.luxSticky"
             >
               <th
-                [luxAriaLabel]="
-                  'Spalte ' + tableColumn.luxColumnDef + ' ' + getAriaSortingLabel(tableColumn.luxColumnDef)
-                "
-                luxAriaLabelSelector="button"
                 mat-header-cell
                 *matHeaderCellDef
                 mat-sort-header

@@ -80,7 +80,7 @@ export class LuxComponentsConfigService {
    */
   updateConfiguration(config: LuxComponentsConfigParameters) {
     if (!config) {
-      console.warn('Die übergebene Konfiguration ist undefined/null und wird nicht übernommen.');
+      console.warn('The new configuration is undefined or null and was ignored.');
     } else {
       this.config$.next(this.mergeDefaultData(config));
     }

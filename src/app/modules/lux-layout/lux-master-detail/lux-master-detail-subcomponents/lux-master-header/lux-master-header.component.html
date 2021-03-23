@@ -11,7 +11,7 @@
     fxFlex="none"
     fxFlexAlign="start"
     #toggleButton
-    luxAriaLabel="{{ iconName === 'keyboard_arrow_left' ? 'Masterliste zuklappen' : 'Masterliste aufklappen' }}"
+    luxAriaLabel="{{ getAriaLabelForOpenCloseButton(iconName) }}"
     luxAriaLabelSelector="button"
     [luxAriaExpanded]="iconName === 'keyboard_arrow_left'"
     luxAriaExpandedSelector="button"

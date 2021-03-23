@@ -133,9 +133,9 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
    */
   private logSelectedNotFound(selected: any) {
     this.logger.error(
-      `\n### Das Objekt ${JSON.stringify(selected)} ist nicht Teil der möglichen Optionen.\n` +
-        `\n### Komponente: "${this}"\n` +
-        `Prüfen Sie evtl. die luxCompareWith-Funktion, um Properties anstelle ganzer Objekte zu vergleichen.`
+      `\n### The selected option ${JSON.stringify(selected)} is not part in the option list.\n` +
+        `\n### Component: "${this}"\n` +
+        `Please check the luxCompareWith-function. This function is used to compare the options.`
     );
   }
 

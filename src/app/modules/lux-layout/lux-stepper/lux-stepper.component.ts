@@ -31,13 +31,13 @@ import { Subscription } from 'rxjs';
 })
 export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   private readonly _DEFAULT_PREV_BTN_CONF: ILuxStepperButtonConfig = {
-    label: 'Zurück'
+    label: $localize `:@@luxc.stepper.back.btn:Zurück`
   };
   private readonly _DEFAULT_NEXT_BTN_CONF: ILuxStepperButtonConfig = {
-    label: 'Weiter'
+    label: $localize `:@@luxc.stepper.next.btn:Weiter`
   };
   private readonly _DEFAULT_FIN_BTN_CONF: ILuxStepperButtonConfig = {
-    label: 'Abschließen',
+    label: $localize `:@@luxc.stepper.finish.btn:Abschließen`,
     color: 'primary'
   };
 

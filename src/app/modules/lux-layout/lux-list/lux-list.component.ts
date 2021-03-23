@@ -36,7 +36,7 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
 
   @Input() luxEmptyIconName = 'fas fa-info-circle';
   @Input() luxEmptyIconSize = '5x';
-  @Input() luxEmptyLabel = 'Keine Einträge vorhanden';
+  @Input() luxEmptyLabel =  $localize `:@@luxc.list.empty_label:Keine Einträge vorhanden`;
 
   @HostBinding('attr.role') role = 'listbox';
   @HostBinding('attr.tabindex') tabindex = '0';

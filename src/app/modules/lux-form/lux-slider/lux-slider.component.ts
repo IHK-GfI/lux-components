@@ -103,7 +103,7 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
     this._luxRequired = value;
 
     if (value === true) {
-      this.logger.error('Der LuxSlider kann nicht als Required-Feld deklariert werden.');
+      this.logger.error('The LuxSlider cannot be marked as required.');
     }
   }
 

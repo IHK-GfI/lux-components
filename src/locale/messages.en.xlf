@@ -1,0 +1,943 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="de" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="luxc.message.btn.close.arialabel" datatype="html">
+        <source>Meldung schließen</source>
+        <target>Close message</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-message-box/lux-message-box-subcomponents/lux-message.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.message.container.arialabel" datatype="html">
+        <source>Meldungen</source>
+        <target>Messages</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-message-box/lux-message-box.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-message-box/lux-message-box.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.message.announce.1_message" datatype="html">
+        <source>Es gibt eine Meldung.</source>
+        <target>There is one message.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-message-box/lux-message-box.component.ts</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.message.announce.x_messages" datatype="html">
+        <source>Es gibt <x id="messageCount" equiv-text="messages.length"/> Meldungen.</source>
+        <target>There are <x id="messageCount" equiv-text="messages.length"/> messages.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-message-box/lux-message-box.component.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.message.announce.0_messages" datatype="html">
+        <source>Es gibt keine Meldungen.</source>
+        <target>There are no Messages.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-message-box/lux-message-box.component.ts</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.table.multiselect.chk.arialabel" datatype="html">
+        <source>Reihe <x id="INTERPOLATION" equiv-text="{{ i }}"/></source>
+        <target>Row <x id="INTERPOLATION" equiv-text="{{ i }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.table.multiselect.all.chk.arialabel" datatype="html">
+        <source>Alle Einträge</source>
+        <target>All entries</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.table.sort.descending" datatype="html">
+        <source>absteigend</source>
+        <target>descending</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
+          <context context-type="linenumber">484</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.table.sort.ascending" datatype="html">
+        <source>aufsteigend</source>
+        <target>ascending</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
+          <context context-type="linenumber">487</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.table.sort.no_longer" datatype="html">
+        <source>nicht mehr</source>
+        <target>no longer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
+          <context context-type="linenumber">490</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.table.sort.announce" datatype="html">
+        <source>Spalte <x id="column" equiv-text="columnDef"/> sortiert nun <x id="direction" equiv-text="directionDescription"/></source>
+        <target>Column <x id="column" equiv-text="columnDef"/> now sorts <x id="direction" equiv-text="directionDescription"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
+          <context context-type="linenumber">494</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.errorpage.error_number" datatype="html">
+        <source> Fehlernummer: <x id="INTERPOLATION" equiv-text="{{ error.errorId }"/> </source>
+        <target> Error number: <x id="INTERPOLATION" equiv-text="{{ error.errorId }"/> </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-error/lux-error-page/lux-error-page.component.html</context>
+          <context context-type="linenumber">22,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.errorpage.error_title" datatype="html">
+        <source>Fehlermeldung</source>
+        <target>Error message</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-error/lux-error-page/lux-error-page.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.download.arialabel" datatype="html">
+        <source>Datei herunterladen</source>
+        <target>Download file</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-base/lux-file-preview-base.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.close.arialabel" datatype="html">
+        <source>Dateivorschau schließen</source>
+        <target>Close file preview</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-base/lux-file-preview-base.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.imgviewer.zoomin.arialabel" datatype="html">
+        <source>Hinein zoomen</source>
+        <target>Zoom in</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-imgviewer/lux-file-preview-imgviewer.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-imgviewer/lux-file-preview-imgviewer.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.imgviewer.zoomout.arialabel" datatype="html">
+        <source>Heraus zoomen</source>
+        <target>Zoom out</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-imgviewer/lux-file-preview-imgviewer.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-imgviewer/lux-file-preview-imgviewer.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.notsupportedviewer.download.arialabel" datatype="html">
+        <source>Datei herunterladen</source>
+        <target>Download file</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-notsupportedviewer/lux-file-preview-notsupportedviewer.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.notsupportedviewer.close.arialabel" datatype="html">
+        <source>Dateivorschau schließen</source>
+        <target>Close file preview</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-notsupportedviewer/lux-file-preview-notsupportedviewer.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.notsupportedviewer.message" datatype="html">
+        <source>Diese Datei kann nicht angezeigt werden.</source>
+        <target>This file cannot be shown.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-notsupportedviewer/lux-file-preview-notsupportedviewer.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.notsupportedviewer.download.lbl" datatype="html">
+        <source>Download... </source>
+        <target>Download...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-notsupportedviewer/lux-file-preview-notsupportedviewer.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.pdfviewer.zoom.arialabel" datatype="html">
+        <source>Zoom</source>
+        <target>Zoom</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-pdfviewer/lux-file-preview-pdfviewer.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.pdfviewer.zoomin.arialabel" datatype="html">
+        <source>Hinein zoomen</source>
+        <target>Zoom in</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-pdfviewer/lux-file-preview-pdfviewer.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-pdfviewer/lux-file-preview-pdfviewer.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.pdfviewer.zoomout.arialabel" datatype="html">
+        <source>Heraus zoomen</source>
+        <target>Zoom out</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-pdfviewer/lux-file-preview-pdfviewer.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-pdfviewer/lux-file-preview-pdfviewer.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.filter-load-dialog.title" datatype="html">
+        <source>Filter</source>
+		<target>Filter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-dialog/lux-filter-load-dialog/lux-filter-load-dialog.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.filter-load-dialog.load.lbl" datatype="html">
+        <source>Laden</source>
+        <target>Load</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-dialog/lux-filter-load-dialog/lux-filter-load-dialog.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.filter-load-dialog.delete.lbl" datatype="html">
+        <source>Löschen</source>
+        <target>Delete</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-dialog/lux-filter-load-dialog/lux-filter-load-dialog.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.filter-load-dialog.close.lbl" datatype="html">
+        <source>Schließen</source>
+        <target>Close</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-dialog/lux-filter-load-dialog/lux-filter-load-dialog.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.filter-save-dialog.title" datatype="html">
+        <source>Filter speichern</source>
+		<target>Save filter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-dialog/lux-filter-save-dialog/lux-filter-save-dialog.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.filter-save-dialog.name.lbl" datatype="html">
+        <source>Name</source>
+        <target>Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-dialog/lux-filter-save-dialog/lux-filter-save-dialog.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.filter-save-dialog.save.lbl" datatype="html">
+        <source>Speichern</source>
+        <target>Save</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-dialog/lux-filter-save-dialog/lux-filter-save-dialog.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-preview.filter-save-dialog.cancel.lbl" datatype="html">
+        <source>Abbrechen</source>
+        <target>Cancel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-dialog/lux-filter-save-dialog/lux-filter-save-dialog.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.filter.title" datatype="html">
+        <source>Filter</source>
+        <target>Filter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-form/lux-filter-form.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.filter.filter.btn" datatype="html">
+        <source>Filtern</source>
+        <target>Filter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-form/lux-filter-form.component.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.filter.reset.btn" datatype="html">
+        <source>Zurücksetzen</source>
+        <target>Reset</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-form/lux-filter-form.component.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.filter.save.btn" datatype="html">
+        <source>Speichen</source>
+        <target>Save</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-form/lux-filter-form.component.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.filter.load.btn" datatype="html">
+        <source>Laden</source>
+        <target>Load</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-form/lux-filter-form.component.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.filter.defaultFilterMessage" datatype="html">
+        <source>Es wird nach den Standardeinstellungen gefiltert.</source>
+        <target>Default filter settings are used.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-form/lux-filter-form.component.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.autocomplete.error_message.not_an_option" datatype="html">
+        <source>Der eingegebene Wert ist nicht Teil der Auswahl.</source>
+        <target>The entered value is not an vaild option.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-autocomplete/lux-autocomplete.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.chips.new.lbl" datatype="html">
+        <source>Neu</source>
+		    <target>New</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-chips/lux-chips.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.datepicker.error_message.min" datatype="html">
+        <source>Das Datum unterschreitet den Minimalwert</source>
+        <target>Below the minimum value</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-datepicker/lux-datepicker.component.ts</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.datepicker.error_message.max" datatype="html">
+        <source>Das Datum überschreitet den Maximalwert</source>
+        <target>Above the maximum value</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-datepicker/lux-datepicker.component.ts</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.datepicker.error_message.invalid" datatype="html">
+        <source>Das Datum ist ungültig</source>
+        <target>Invalid date</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-datepicker/lux-datepicker.component.ts</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.datepicker.error_message.empty" datatype="html">
+        <source>Das Datum darf nicht leer sein</source>
+        <target>The date should not be empty</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-datepicker/lux-datepicker.component.ts</context>
+          <context context-type="linenumber">141</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-input.error_message.required" datatype="html">
+        <source>Es muss eine Datei ausgewählt werden</source>
+        <target>A file should be selected</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-input/lux-file-input.component.ts</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-list.upload.lbl" datatype="html">
+        <source>Hochladen</source>
+        <target>Upload</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-list/lux-file-list.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-list.upload_title.lbl" datatype="html">
+        <source>Neue Dateien hochladen</source>
+        <target>Upload new files</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-list/lux-file-list.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-list.delete.lbl" datatype="html">
+        <source>Löschen</source>
+        <target>Delete</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-list/lux-file-list.component.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-list.delete_title.lbl" datatype="html">
+        <source>Alle Dateien entfernen</source>
+        <target>Delete all files</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-list/lux-file-list.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.file-list.error_message.required" datatype="html">
+        <source>Es muss eine Datei ausgewählt werden</source>
+        <target>A file should be selected</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-list/lux-file-list.component.ts</context>
+          <context context-type="linenumber">341</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-checkable-base.error_message.required" datatype="html">
+        <source>Das ist ein Pflichtfeld</source>
+        <target>Required</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-checkable-base.class.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.upload.action.lbl" datatype="html">
+        <source>Hochladen</source>
+        <target>Upload</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.delete.action.lbl" datatype="html">
+        <source>Löschen</source>
+        <target>Delete</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.view.action.lbl" datatype="html">
+        <source>Ansehen</source>
+        <target>Show</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.download.action.lbl" datatype="html">
+        <source>Download</source>
+        <target>Download</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.error_message.max_file_size" datatype="html">
+        <source>Die Datei &quot;<x id="PH" equiv-text="file.name"/>&quot; überschreitet mit <x id="PH_1" equiv-text="+this.getFileSizeInMB(
+        file
+      ).toFixed(2)"/>MB </source>
+      <target>The file &quot;<x id="PH" equiv-text="file.name"/>&quot; exceeds the <x id="PH_1" equiv-text="+this.getFileSizeInMB(
+              file
+            ).toFixed(2)"/>MB </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">592,594</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.error_message.read_error" datatype="html">
+        <source>Beim Lesen der Datei &quot;<x id="PH" equiv-text="file.name"/>&quot; ist ein Fehler aufgetreten</source>
+        <target>Could not read the file &quot;<x id="PH" equiv-text="file.name"/>&quot;</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">604</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.error_message.upload.no_files" datatype="html">
+        <source>Das Hochladen ist fehlgeschlagen</source>
+        <target>The upload failed</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">614</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.error_message.upload.with_files" datatype="html">
+        <source>Das Hochladen der <x id="PH" equiv-text="files.length &gt; 1 ? &apos;ausgewählten Dateien&apos; : &apos;ausgewählten Datei&apos;"/> ist fehlgeschlagen</source>
+        <target>Could not upload the file <x id="PH" equiv-text="files.length &gt; 1 ? &apos;ausgewählten Dateien&apos; : &apos;ausgewählten Datei&apos;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">616,618</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.error_message.not_accepted" datatype="html">
+        <source>Die Datei &quot;<x id="PH" equiv-text="file.name"/>&quot; hat einen nicht akzeptierten Dateityp</source>
+        <target>The file &quot;<x id="PH" equiv-text="file.name"/>&quot; has a not supported file type</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">627</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.error_message.only_one_file" datatype="html">
+        <source>Es darf nur eine Datei ausgewählt werden</source>
+        <target>Only one file should be selected</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">636</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.upload.files.announce" datatype="html">
+        <source>Bitte warten. Die Datei wird verarbeitet.</source>
+        <target>Please wait. The file is processed.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">647</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.upload.file.announce" datatype="html">
+        <source>Bitte warten. Die Dateien werden verarbeitet.</source>
+        <target>Please wait. The files are processed.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">650</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.delete.all_files.announce" datatype="html">
+        <source>Alle Dateien werden entfernt.</source>
+        <target>All files are removed</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">655</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.form-file-base.delete.one_file.announce" datatype="html">
+        <source>Die Datei <x id="PH" equiv-text="fileName"/> wird entfernt.</source>
+        <target>The file <x id="PH" equiv-text="fileName"/> is removed.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-form-model/lux-form-file-base.class.ts</context>
+          <context context-type="linenumber">665</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.app_content.ariarolemain" datatype="html">
+        <source>Inhaltsbereich</source>
+        <target>Main content</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-content/lux-app-content.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.app-footer.version" datatype="html">
+        <source> Version <x id="INTERPOLATION" equiv-text="{{ luxVersion }"/> </source>
+        <target> Version <x id="INTERPOLATION" equiv-text="{{ luxVersion }"/> </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-footer/lux-app-footer.component.html</context>
+          <context context-type="linenumber">8,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.app-footer.ariarolefooter" datatype="html">
+        <source>Fußzeilenbereich / Buttonbereich</source>
+        <target>Footer area / Button area</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-footer/lux-app-footer.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.side-nav.ariarolenavigation" datatype="html">
+        <source>Anwendungsmenü / Navigation</source>
+        <target>Application menu / Navigation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.app-header.user.menu.trigger" datatype="html">
+        <source>Benutzermenü <x id="INTERPOLATION" equiv-text="{{ luxUserName }}"/></source>
+        <target>User menu <x id="INTERPOLATION" equiv-text="{{ luxUserName }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.app-header.aria.appmenu.btn" datatype="html">
+        <source>Anwendungsmenü / Navigation</source>
+        <target>Application menu / Navigation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.app-header.aria.usermenu.btn" datatype="html">
+        <source>Benutzermenü / Navigation</source>
+        <target>User menu / Navigation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.app-header.aria.title_icon.lbl" datatype="html">
+        <source>Titelicon</source>
+        <target>Title icon</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.app-header.aria.title.image.lbl" datatype="html">
+        <source>Titelbild</source>
+        <target>Title image</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.app-header.aria.title.link.lbl" datatype="html">
+        <source></source>
+        <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.app-header.aria.role_header.lbl" datatype="html">
+        <source>Kopfbereich / Menübereich</source>
+        <target>Header area / Menu area</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.list.empty_label" datatype="html">
+        <source>Keine Einträge vorhanden</source>
+        <target>No entries available</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-list/lux-list.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.master-detail.master.empty_label" datatype="html">
+        <source>Keine Einträge vorhanden</source>
+        <target></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail/lux-master-detail.component.ts</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.master-detail.header.close.btn" datatype="html">
+        <source>Masterliste zuklappen</source>
+        <target>Close list</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail/lux-master-detail-subcomponents/lux-master-header/lux-master-header.component.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.master-detail.header.open.btn" datatype="html">
+        <source>Masterliste aufklappen</source>
+        <target>Open list</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail/lux-master-detail-subcomponents/lux-master-header/lux-master-header.component.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.master-detail.detail.empty_label" datatype="html">
+        <source>Kein Element ausgewählt</source>
+        <target>No element selected</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail/lux-master-detail.component.ts</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.stepper.back.btn" datatype="html">
+        <source>Zurück</source>
+        <target>Back</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-stepper/lux-stepper.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.stepper.next.btn" datatype="html">
+        <source>Weiter</source>
+        <target>Next</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-stepper/lux-stepper.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.stepper.finish.btn" datatype="html">
+        <source>Abschließen</source>
+        <target>Finish</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-stepper/lux-stepper.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.lookup-autocomplete.error_message.not_available" datatype="html">
+        <source>Der eingegebene Eintrag ist nicht Teil der Schlüsseltabelle.</source>
+        <target>The entered Value is not part of the key table.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-lookup/lux-lookup-autocomplete/lux-lookup-autocomplete.component.ts</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.lookup.error_message.invalid" datatype="html">
+        <source>Der ausgewählte Wert ist ungültig.</source>
+        <target>The selected value is invalid.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-lookup/lux-lookup-model/lux-lookup-component.ts</context>
+          <context context-type="linenumber">180</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.lookup.error_message.unknown_property" datatype="html">
+        <source>Fehler beim Auslesen (Property unbekannt)</source>
+        <target>Read error (Property unknown)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-lookup/lux-lookup-model/lux-lookup-component.ts</context>
+          <context context-type="linenumber">192</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.relative-timestamp.days" datatype="html">
+        <source>Tagen</source>
+        <target>days</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-pipes/lux-relative-timestamp/lux-relative-timestamp.pipe.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.relative-timestamp.weeks" datatype="html">
+        <source>Wochen</source>
+        <target>weeks</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-pipes/lux-relative-timestamp/lux-relative-timestamp.pipe.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.relative-timestamp.months" datatype="html">
+        <source>Monaten</source>
+        <target>months</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-pipes/lux-relative-timestamp/lux-relative-timestamp.pipe.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.relative-timestamp.years" datatype="html">
+        <source>Jahren</source>
+        <target>years</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-pipes/lux-relative-timestamp/lux-relative-timestamp.pipe.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.relative-timestamp.today" datatype="html">
+        <source>Heute</source>
+        <target>today</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-pipes/lux-relative-timestamp/lux-relative-timestamp.pipe.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.relative-timestamp.yesterday" datatype="html">
+        <source>Gestern</source>
+        <target>yesterday</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-pipes/lux-relative-timestamp/lux-relative-timestamp.pipe.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.relative-timestamp.tomorrow" datatype="html">
+        <source>Morgen</source>
+        <target>tomorrow</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-pipes/lux-relative-timestamp/lux-relative-timestamp.pipe.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.relative-timestamp.in" datatype="html">
+        <source>in</source>
+        <target>in</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-pipes/lux-relative-timestamp/lux-relative-timestamp.pipe.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.relative-timestamp.ago" datatype="html">
+        <source>vor</source>
+        <target>ago</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-pipes/lux-relative-timestamp/lux-relative-timestamp.pipe.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.relative-timestamp.past" datatype="html">
+        <source><x id="PH" equiv-text="prefix"/> <x id="PH_1" equiv-text="timeUnits"/> <x id="PH_2" equiv-text="timeDelta.name"/></source>
+        <target><x id="PH_1" equiv-text="timeUnits"/> <x id="PH_2" equiv-text="timeDelta.name"/> <x id="PH" equiv-text="prefix"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-pipes/lux-relative-timestamp/lux-relative-timestamp.pipe.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.relative-timestamp.future" datatype="html">
+        <source><x id="PH" equiv-text="prefix"/> <x id="PH_1" equiv-text="timeUnits"/> <x id="PH_2" equiv-text="timeDelta.name"/></source>
+        <target><x id="PH" equiv-text="prefix"/> <x id="PH_1" equiv-text="timeUnits"/> <x id="PH_2" equiv-text="timeDelta.name"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-pipes/lux-relative-timestamp/lux-relative-timestamp.pipe.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.dialog-preset.ok" datatype="html">
+        <source>Bestätigen</source>
+        <target>Ok</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-popups/lux-dialog/lux-dialog-model/lux-dialog-preset-config.interface.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.dialog-preset.cancel" datatype="html">
+        <source>Ablehnen</source>
+        <target>Cancel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-popups/lux-dialog/lux-dialog-model/lux-dialog-preset-config.interface.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.paginator.elements_on_page" datatype="html">
+        <source>Elemente pro Seite</source>
+        <target>Items per page</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-paginator-intl.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.paginator.next_page" datatype="html">
+        <source>Nächste Seite</source>
+        <target>Next page</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-paginator-intl.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.paginator.previous_page" datatype="html">
+        <source>Vorherige Seite</source>
+        <target>Previous Page</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-paginator-intl.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.paginator.last_page" datatype="html">
+        <source>Letzte Seite</source>
+        <target>Last Page</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-paginator-intl.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.paginator.first_page" datatype="html">
+        <source>Erste Seite</source>
+        <target>First</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-paginator-intl.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.paginator.0_until_length" datatype="html">
+        <source>0 von <x id="PH" equiv-text="length"/></source>
+        <target>0 of <x id="PH" equiv-text="length"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-paginator-intl.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.paginator.page_part" datatype="html">
+        <source><x id="PH" equiv-text="startIndex + 1"/> - <x id="PH_1" equiv-text="endIndex"/> von <x id="PH_2" equiv-text="length"/></source>
+        <target><x id="PH" equiv-text="startIndex + 1"/> - <x id="PH_1" equiv-text="endIndex"/> of <x id="PH_2" equiv-text="length"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-paginator-intl.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.util.error_message.required" datatype="html">
+        <source>* Pflichtfeld</source>
+        <target>* required</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-util.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.util.error_message.minlength" datatype="html">
+        <source>Die Mindestlänge ist <x id="PH" equiv-text="formControl.getError(&apos;minlength&apos;).requiredLength"/></source>
+        <target>The minimum length is <x id="PH" equiv-text="formControl.getError(&apos;minlength&apos;).requiredLength"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-util.ts</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.util.error_message.maxlength" datatype="html">
+        <source>Die Maximallänge ist <x id="PH" equiv-text="formControl.getError(&apos;maxlength&apos;).requiredLength"/></source>
+        <target>The maximum length is <x id="PH" equiv-text="formControl.getError(&apos;maxlength&apos;).requiredLength"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-util.ts</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.util.error_message.email" datatype="html">
+        <source>Dies ist keine gültige E-Mailadresse</source>
+        <target>Invalid e-mail address</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-util.ts</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.util.error_message.min" datatype="html">
+        <source>Der Minimalwert ist <x id="PH" equiv-text="formControl.getError(&apos;min&apos;).min"/></source>
+        <target>The minimum value is <x id="PH" equiv-text="formControl.getError(&apos;min&apos;).min"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-util.ts</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.util.error_message.max" datatype="html">
+        <source>Der Maximalwert ist <x id="PH" equiv-text="formControl.getError(&apos;max&apos;).max"/></source>
+        <target>The maximum value is <x id="PH" equiv-text="formControl.getError(&apos;max&apos;).max"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-util.ts</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.util.error_message.pattern" datatype="html">
+        <source>Entspricht nicht dem Muster &quot;<x id="PH" equiv-text="pattern.substring(1, pattern.length - 1)"/>&quot;</source>
+        <target>Invalid pattern &quot;<x id="PH" equiv-text="pattern.substring(1, pattern.length - 1)"/>&quot;</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-util/lux-util.ts</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

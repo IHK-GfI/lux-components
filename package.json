@@ -13,9 +13,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start-ie": "ng serve --configuration es5 --port 4201",
+    "start_en": "ng serve --configuration en --port 4201",
+    "start-ie": "ng serve --configuration es5 --port 4210",
+    "start-ie_en": "ng serve --configuration es5en --port 4211",
     "build": "ng build --source-map",
-    "build-aot": "ng build --aot",
+    "build-aot": "ng build --aot --localize",
     "test": "ng test",
     "test_no_sm": "ng test --no-sourceMap",
     "test_single_run": "ng test --watch=false --browsers=ChromeHeadless",
@@ -26,7 +28,8 @@
     "doc": "compodoc -p src/tsconfig.app.json -n 'LUX-Components'",
     "docStart": "compodoc src -s --port 8888",
     "security": "npm audit --registry=https://registry.npmjs.org --audit-level high",
-    "smoketest": "npm run test_single_run && npm run build-aot && npm run lint --bailOnLintError true"
+    "smoketest": "npm run test_single_run && npm run build-aot && npm run lint --bailOnLintError true",
+    "xi18n": "ng xi18n --output-path src/locale --ivy"
   },
   "private": false,
   "devDependencies": {
@@ -41,6 +44,7 @@
     "@angular/flex-layout": "^11.0.0-beta.33",
     "@angular/forms": "^11.0.7",
     "@angular/language-service": "^11.0.7",
+    "@angular/localize": "^11.0.7",
     "@angular/material": "^11.0.3",
     "@angular/platform-browser": "^11.0.7",
     "@angular/platform-browser-dynamic": "^11.0.7",

@@ -465,23 +465,6 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   }
 
   /**
-   * Gibt das Aria-Label für die Sortierung der Spalten-Überschrift zurück.
-   *
-   * @param tableColumnDef
-   */
-  getAriaSortingLabel(tableColumnDef: string) {
-    if (this.sort.active === tableColumnDef) {
-      if (this.sort.direction === 'asc') {
-        return 'aufsteigend sortiert';
-      }
-      if (this.sort.direction === 'desc') {
-        return 'absteigend sortiert';
-      }
-    }
-    return 'nicht sortiert';
-  }
-
-  /**
    * Gibt über den liveAnnouncer eine Nachricht aus, dass sich die Sortierung einer Spalte geändert hat.
    *
    * @param $event
@@ -498,16 +481,20 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       let directionDescription;
       switch ($event.direction) {
         case 'desc':
-          directionDescription = 'absteigend';
+          directionDescription = $localize`:@@luxc.table.sort.descending:absteigend`;
           break;
         case 'asc':
-          directionDescription = 'aufsteigend';
+          directionDescription = $localize`:@@luxc.table.sort.ascending:aufsteigend`;
           break;
         case '':
-          directionDescription = 'nicht mehr';
+          directionDescription = $localize`:@@luxc.table.sort.no_longer:nicht mehr`;
           break;
       }
-      this.liveAnnouncer.announce(`Spalte ${columnDef} sortiert nun ${directionDescription}`, 'assertive');
+
+      this.liveAnnouncer.announce(
+        $localize`:@@luxc.table.sort.announce:Spalte ${columnDef}:column: sortiert nun ${directionDescription}:direction:`,
+        'assertive'
+      );
     }
   }
 

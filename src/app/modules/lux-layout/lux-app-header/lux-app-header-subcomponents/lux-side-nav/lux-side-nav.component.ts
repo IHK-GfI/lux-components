@@ -14,7 +14,7 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
   @Input() luxDashboardLink: string;
   @Input() luxDashboardLinkTitle = 'LUX Dashboard';
   @Input() luxOpenLinkBlank: boolean;
-  @Input() luxAriaRoleNavigationLabel = 'Anwendungsmenü / Navigation';
+  @Input() luxAriaRoleNavigationLabel = $localize `:@@luxc.side-nav.ariarolenavigation:Anwendungsmenü / Navigation`;
 
   @ContentChildren(LuxSideNavItemComponent, { descendants: true }) sideNavItems: QueryList<LuxSideNavItemComponent>;
   @ContentChildren(LuxSideNavItemComponent, { descendants: false }) directSideNavItems: QueryList<LuxSideNavItemComponent>;

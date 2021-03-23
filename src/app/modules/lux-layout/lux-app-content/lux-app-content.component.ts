@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./lux-app-content.component.scss']
 })
 export class LuxAppContentComponent {
-  @Input() luxAriaRoleMainLabel = 'Inhaltsbereich';
+  @Input() luxAriaRoleMainLabel = $localize `:@@luxc.app_content.ariarolemain:Inhaltsbereich`;
 
   constructor() {}
 }

@@ -38,22 +38,19 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (!this.luxLookupId) {
       console.error(
-        'Das Lookup-Label mit der Tabellen-Nr. ${this.luxTableNo} besitzt keine LookupId.' +
-          'Bitte tragen Sie diese nach.'
+        `The lookup label with the table number ${this.luxTableNo} has no LookupId.`
       );
     }
 
     if (!this.luxTableNo) {
       console.error(
-        'Das Lookup-Label mit der LookupId ${this.luxLookupId} besitzt keine Tabellen-Nummer. ' +
-          'Bitte tragen Sie diese nach.'
+        `The lookup label with the LookupId ${this.luxLookupId} has no table number`
       );
     }
 
     if (!this.luxTableKey) {
       console.error(
-        'Das Lookup-Label mit der Tabellen-Nr. ${this.luxTableNo} besitzt keinen Tabellen-Key.' +
-          'Bitte tragen Sie diese nach.'
+        `The lookup label with the table number ${this.luxTableNo} has no table key`
       );
     }
 

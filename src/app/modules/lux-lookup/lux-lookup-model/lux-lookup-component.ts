@@ -76,7 +76,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
 
     if (!this.luxLookupId) {
       console.error(
-        `Die Lookup-Komponente mit der Tabellen-Nr. ${this.luxTableNo} besitzt keine LookupId. Bitte tragen Sie diese nach.`
+        `The lookup component with the table number ${this.luxTableNo} has no LookupId.`
       );
     }
 
@@ -177,7 +177,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
    */
   errorMessageModifier(value, errors) {
     if (errors['ungueltig']) {
-      return 'Der ausgewählte Wert ist ungültig.';
+      return $localize `:@@luxc.lookup.error_message.invalid:Der ausgewählte Wert ist ungültig.`;
     }
     return undefined;
   }
@@ -189,7 +189,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
     if (entry[this.luxRenderProp as string]) {
       return entry[this.luxRenderProp as string];
     }
-    return 'Fehler beim Auslesen (Property unbekannt)';
+    return $localize `:@@luxc.lookup.error_message.unknown_property:Fehler beim Auslesen (Property unbekannt)`;
   }
 
   /**

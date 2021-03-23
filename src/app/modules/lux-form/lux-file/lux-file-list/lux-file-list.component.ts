@@ -38,8 +38,8 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     hiddenHeader: false,
     iconName: 'fas fa-cloud-upload-alt',
     iconNameHeader: 'fas fa-cloud-upload-alt',
-    label: 'Hochladen',
-    labelHeader: 'Neue Dateien hochladen'
+    label: $localize `:@@luxc.file-list.upload.lbl:Hochladen`,
+    labelHeader: $localize `:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
   };
   protected _luxDeleteActionConfig: ILuxFileListActionConfig = {
     disabled: false,
@@ -48,8 +48,8 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     hiddenHeader: false,
     iconName: 'fas fa-trash',
     iconNameHeader: 'fas fa-trash',
-    label: 'Löschen',
-    labelHeader: 'Alle Dateien entfernen'
+    label: $localize `:@@luxc.file-list.delete.lbl:Löschen`,
+    labelHeader: $localize `:@@luxc.file-list.delete_title.lbl:Alle Dateien entfernen`,
   };
 
   fileIcons: string[] = [];
@@ -338,7 +338,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
 
   protected errorMessageModifier(value: any, errors: any): string | undefined {
     if (errors.required) {
-      return 'Es muss mindestens eine Datei ausgewählt werden';
+      return $localize `:@@luxc.file-list.error_message.required:Es muss eine Datei ausgewählt werden`;
     }
     return super.errorMessageModifier(value, errors);
   }

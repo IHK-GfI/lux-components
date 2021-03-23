@@ -30,12 +30,12 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   @Input() luxIconName: string;
   @Input() luxImageSrc: string;
   @Input() luxImageHeight = '55px';
-  @Input() luxAriaAppMenuButtonLabel = 'Anwendungsmenü / Navigation';
-  @Input() luxAriaUserMenuButtonLabel = 'Benutzermenü / Navigation';
-  @Input() luxAriaTitleIconLabel = 'Titelicon';
-  @Input() luxAriaTitleImageLabel = 'Titelbild';
-  @Input() luxAriaTitleLinkLabel;
-  @Input() luxAriaRoleHeaderLabel = 'Kopfbereich / Menübereich';
+  @Input() luxAriaAppMenuButtonLabel = $localize `:@@luxc.app-header.aria.appmenu.btn:Anwendungsmenü / Navigation`;
+  @Input() luxAriaUserMenuButtonLabel = $localize `:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
+  @Input() luxAriaTitleIconLabel = $localize `:@@luxc.app-header.aria.title_icon.lbl:Titelicon`;
+  @Input() luxAriaTitleImageLabel = $localize `:@@luxc.app-header.aria.title.image.lbl:Titelbild`;
+  @Input() luxAriaTitleLinkLabel = $localize `:@@luxc.app-header.aria.title.link.lbl:`;
+  @Input() luxAriaRoleHeaderLabel = $localize `:@@luxc.app-header.aria.role_header.lbl:Kopfbereich / Menübereich`;
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 
@@ -93,7 +93,7 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     if (!this.luxAppTitleShort || this.luxAppTitleShort.length === 0) {
-      this.logger.warn('Achtung, der Applikations-Header hat keinen Titel für die mobile Ansicht!');
+      this.logger.warn('No title is set for the mobile view.');
     }
   }
 

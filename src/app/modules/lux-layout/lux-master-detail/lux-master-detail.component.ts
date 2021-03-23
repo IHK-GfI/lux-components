@@ -86,9 +86,9 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   alignEmptyIndicators = true;
 
   @Input() luxEmptyIconMaster = 'fas fa-info-circle';
-  @Input() luxEmptyLabelMaster = 'Keine Einträge vorhanden';
+  @Input() luxEmptyLabelMaster = $localize `:@@luxc.master-detail.master.empty_label:Keine Einträge vorhanden`;
   @Input() luxEmptyIconDetail = 'fas fa-info-circle';
-  @Input() luxEmptyLabelDetail = 'Kein Element ausgewählt';
+  @Input() luxEmptyLabelDetail = $localize `:@@luxc.master-detail.detail.empty_label:Kein Element ausgewählt`;
   @Input() luxEmptyIconMasterSize = '5x';
   @Input() luxEmptyIconDetailSize = '5x';
   @Input() luxMasterSpinnerDelay = 1000;

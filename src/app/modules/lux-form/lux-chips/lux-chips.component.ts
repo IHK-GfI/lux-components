@@ -29,7 +29,7 @@ export class LuxChipsComponent implements OnDestroy {
 
   private _luxDisabled = false;
   private _luxAutocompleteOptions: string[] = [];
-  private _luxLabel = 'Neu';
+  private _luxLabel = $localize `:@@luxc.chips.new.lbl:Neu`;
 
   filteredOptions: string[] = [];
   inputValue$: Subject<string> = new Subject<string>();

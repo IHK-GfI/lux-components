@@ -70,11 +70,6 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
       startDay = getLocaleFirstDayOfWeek(this.locale);
     } catch (e) {
       startDay = super.getFirstDayOfWeek();
-
-      console.warn(
-        `Für die Locale '${this.locale}' fehlt der Aufruf 'registerLocaleData(...)' aus dem Package '@angular/common'
-           in der Datei 'app.modules.ts'. Die Woche startet mit dem Defaultwert '${this.getDayOfWeekNames('long')[startDay]}'.'`
-      );
     }
     return startDay;
   }

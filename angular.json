@@ -7,6 +7,12 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": "de",
+        "locales": {
+          "en": "src/locale/messages.en.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -16,6 +22,8 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
+            "localize": ["de"],
+            "i18nMissingTranslation": "error",
             "assets": [
               "src/assets",
               "src/favicon.ico",
@@ -57,7 +65,26 @@
                 }
               ]
             },
+            "en": {
+              "localize": ["en"],
+              "aot": true,
+              "outputPath": "dist/en",
+              "i18nMissingTranslation": "error"
+            },
             "es5": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "tsConfig": "src/tsconfig.app.ie.json"
+            },
+            "es5en": {
+              "localize": ["en"],
+              "aot": true,
+              "outputPath": "dist/en",
+              "i18nMissingTranslation": "error",
               "budgets": [
                 {
                   "type": "anyComponentStyle",
@@ -77,15 +104,21 @@
             "production": {
               "browserTarget": "lux-components:build:production"
             },
+            "en": {
+              "browserTarget": "lux-components:build:en"
+            },
             "es5": {
               "browserTarget": "lux-components:build:es5"
+            },
+            "es5en": {
+              "browserTarget": "lux-components:build:es5en"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lux-components:build"
+            "browserTarget": "lux-components:build:en"
           }
         },
         "test": {

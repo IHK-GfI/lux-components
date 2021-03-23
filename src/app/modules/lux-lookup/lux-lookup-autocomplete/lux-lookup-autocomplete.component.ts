@@ -69,14 +69,9 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
    * @returns LuxLookupTableEntry[]
    */
   filter(filterTerm: any): LuxLookupTableEntry[] {
-    return this.entries.filter(option => {
+    return this.entries.filter((option) => {
       const compareValue = this.displayFn(option);
-      return (
-        compareValue
-          .trim()
-          .toLowerCase()
-          .indexOf(filterTerm.trim().toLowerCase()) > -1
-      );
+      return compareValue.trim().toLowerCase().indexOf(filterTerm.trim().toLowerCase()) > -1;
     });
   }
 
@@ -92,9 +87,7 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
     } else if (this.isRenderPropAFunction()) {
       return (this.luxRenderProp as (currentOption) => string)(option);
     } else if (option) {
-      return option[this.luxRenderProp as string]
-        ? option[this.luxRenderProp as string]
-        : 'Fehler beim Auslesen (Property unbekannt)';
+      return option[this.luxRenderProp as string] ? option[this.luxRenderProp as string] : 'Fehler beim Auslesen (Property unbekannt)';
     } else {
       return '';
     }
@@ -139,7 +132,8 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
     }
 
     if (errors['noResult']) {
-      return 'Der eingegebene Eintrag ist nicht Teil der Schlüsseltabelle.';
+      // eslint-disable-next-line max-len
+      return $localize`:@@luxc.lookup-autocomplete.error_message.not_available:Der eingegebene Eintrag ist nicht Teil der Schlüsseltabelle.`;
     }
     return undefined;
   }

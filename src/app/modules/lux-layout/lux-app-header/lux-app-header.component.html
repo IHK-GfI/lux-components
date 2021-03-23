@@ -119,7 +119,8 @@
           fxLayout="row"
           fxLayoutAlign="end center"
           class="lux-right-nav-trigger"
-          [luxAriaLabel]="'Benutzermenü ' + luxUserName"
+          luxAriaLabel="Benutzermenü {{ luxUserName }}"
+          i18n-luxAriaLabel="@@luxc.app-header.user.menu.trigger"
           aria-haspopup="true"
           #customTrigger
         >

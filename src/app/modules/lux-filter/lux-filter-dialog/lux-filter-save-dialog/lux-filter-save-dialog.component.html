@@ -1,9 +1,10 @@
 <lux-dialog-structure>
-  <lux-dialog-title>Filter speichern</lux-dialog-title>
+  <lux-dialog-title i18n="@@luxc.file-preview.filter-save-dialog.title">Filter speichern</lux-dialog-title>
   <lux-dialog-content>
     <div fxLayout="column" fxLayoutGap="8px">
       <lux-input
         luxLabel="Name"
+        i18n-luxLabel="@@luxc.file-preview.filter-save-dialog.name.lbl"
         luxAutocomplete="off"
         (keydown.enter)="luxDialogRef.closeDialog(filtername.luxValue)"
         #filtername
@@ -13,6 +14,7 @@
   <lux-dialog-actions fxLayout="row" fxLayoutGap="12px grid">
     <lux-button
       luxLabel="Speichern"
+      i18n-luxLabel="@@luxc.file-preview.filter-save-dialog.save.lbl"
       luxColor="primary"
       [luxDisabled]="!filtername.luxValue"
       [luxRaised]="true"
@@ -20,6 +22,7 @@
     ></lux-button>
     <lux-button
       luxLabel="Abbrechen"
+      i18n-luxLabel="@@luxc.file-preview.filter-save-dialog.cancel.lbl"
       luxColor="default"
       [luxRaised]="true"
       (luxClicked)="luxDialogRef.closeDialog(false)"
