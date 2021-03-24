@@ -273,7 +273,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
     this.selected$.next(newValue);
     this.luxValueChange.emit(newValue);
 
-    if (newValue && newValue[this.luxOptionLabelProp]) {
+    if (this.matInput && this.matInput.nativeElement && newValue && newValue[this.luxOptionLabelProp]) {
       this.matInput.nativeElement.value = newValue[this.luxOptionLabelProp];
     }
   }
