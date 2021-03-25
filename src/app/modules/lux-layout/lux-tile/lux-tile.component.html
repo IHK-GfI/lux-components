@@ -34,7 +34,7 @@
     'lux-tile-notification-icon',
     getNotificationIconColorClass(),
     luxCounter !== null && luxCounter !== undefined ? 'lux-badge-notification-visible' : '',
-    queryService.isSM() || queryService.isXS() ? 'lux-tile-notification-mobile' : ''
+    mobileView ? 'lux-tile-notification-mobile' : ''
   ]"
   *ngIf="luxShowNotification !== undefined && luxShowNotification !== null"
 ></div>

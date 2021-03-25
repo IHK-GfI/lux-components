@@ -8,10 +8,12 @@ export class LuxMasterDetailMobileHelperService implements OnDestroy {
   private _masterCollapsed$: BehaviorSubject<boolean> = new BehaviorSubject(true);
   private _hasValue$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private subscription: Subscription;
+  mobileView: boolean;
 
   constructor(private mediaObserver: LuxMediaQueryObserverService) {
     this.subscription = this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(() => {
       setTimeout(() => {
+        this.mobileView = this.mediaObserver.isXS() || this.mediaObserver.isSM();
         this.handleMasterCollapseState();
       });
     });
@@ -72,7 +74,7 @@ export class LuxMasterDetailMobileHelperService implements OnDestroy {
    * @returns boolean
    */
   public isMobile(): boolean {
-    return this.mediaObserver.isXS() || this.mediaObserver.isSM();
+    return this.mobileView;
   }
 
   /**

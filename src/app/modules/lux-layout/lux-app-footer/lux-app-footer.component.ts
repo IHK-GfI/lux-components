@@ -1,4 +1,5 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxAppFooterButtonInfo } from './lux-app-footer-button-info';
 import { LuxAppFooterButtonService } from './lux-app-footer-button.service';
@@ -11,11 +12,14 @@ import { LuxMenuComponent } from '../../lux-action/lux-menu/lux-menu.component';
   templateUrl: './lux-app-footer.component.html',
   styleUrls: ['./lux-app-footer.component.scss']
 })
-export class LuxAppFooterComponent {
+export class LuxAppFooterComponent implements OnInit, OnDestroy {
   @ViewChild('buttonMenu', { static: true }) buttonMenu: LuxMenuComponent;
 
   @Input() luxVersion: string;
   @Input() luxAriaRoleFooterLabel = $localize `:@@luxc.app-footer.ariarolefooter:Fußzeilenbereich / Buttonbereich`;
+
+  desktopView: boolean;
+  subscription: Subscription;
 
   constructor(
     public buttonService: LuxAppFooterButtonService,
@@ -23,10 +27,14 @@ export class LuxAppFooterComponent {
     private mediaObserver: LuxMediaQueryObserverService
   ) {}
 
-  isMediumOrLargerDevice() {
-    return (
-      this.mediaObserver.isSM() || this.mediaObserver.isMD() || this.mediaObserver.isLG() || this.mediaObserver.isXL()
-    );
+  ngOnInit() {
+    this.subscription = this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(query => {
+      this.desktopView = this.mediaObserver.isSM() || this.mediaObserver.isMD() || this.mediaObserver.isLG() || this.mediaObserver.isXL();
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   getButtons(): LuxAppFooterButtonInfo[] {

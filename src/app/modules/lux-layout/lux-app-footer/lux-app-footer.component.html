@@ -13,7 +13,7 @@
     <ng-container *ngFor="let linkItem of getLinks()">
       <lux-link
         [luxLabel]="linkItem.label"
-        *ngIf="linkItem.alwaysVisible || isMediumOrLargerDevice()"
+        *ngIf="linkItem.alwaysVisible || desktopView"
         [luxHref]="linkItem.path"
         [luxBlank]="linkItem.blank"
       >

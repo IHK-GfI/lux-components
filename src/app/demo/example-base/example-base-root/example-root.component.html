@@ -14,7 +14,7 @@
     luxAriaRole="navigation"
     luxAriaLabel="Komponentenbeispiele"
     #exampleListElement
-    *ngIf="!mediaQueryService.isXS() && !mediaQueryService.isSM()"
+    *ngIf="desktopView"
   >
     <ng-container *ngFor="let moduleName of navigationService.currentModuleNames">
       <lux-panel luxCollapsedHeaderHeight="35px" luxExpandedHeaderHeight="35px" [luxExpanded]="true">
