@@ -1,3 +1,7 @@
+# Version 10.7.0
+## New
+- **lux-autocomplete**: Optionpanelbreite kann über "luxPanelWidth" angepasst werden [Issue 77](https://github.com/IHK-GfI/lux-components/issues/77)
+
 # Version 10.6.0
 ## New
 - **allgemein**: Dependabot-Konfiguration hinzufügen [Issue 53](https://github.com/IHK-GfI/lux-components/issues/53)
