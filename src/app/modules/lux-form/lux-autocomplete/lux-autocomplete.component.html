@@ -22,6 +22,7 @@
     <mat-autocomplete
       #auto="matAutocomplete"
       [class]="'lux-autocomplete-panel'"
+      [panelWidth]="luxPanelWidth"
       [displayWith]="displayFn.bind(this)"
       (optionSelected)="selected($event)"
     >

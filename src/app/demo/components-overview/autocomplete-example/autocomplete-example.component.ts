@@ -66,6 +66,7 @@ export class AutocompleteExampleComponent implements OnInit {
   usePickValueFn: boolean = false;
   pickValueFn = examplePickValueFn;
   useFilterFn: boolean = false;
+  luxPanelWidth = null;
 
   // endregion
 
