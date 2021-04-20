@@ -44,6 +44,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   private _luxMultiSelect: boolean;
   private _luxShowFilter: boolean = false;
   private _dataSource: LuxTableDataSource<any> = new LuxTableDataSource<any>([]);
+  private _luxHttpDAO: ILuxTableHttpDao;
   private _luxPickValue = o => o;
   private _luxCompareWith = (o1, o2) => o1 === o2;
 
@@ -69,13 +70,13 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   movedTableColumns: LuxTableColumnComponent[] = [];
   tableMinWidth: string;
   tableHeightCSSCalc: string;
+  init = true;
 
   @Input() luxColWidthsPercent: number[] = [];
   @Input() luxFilterText: string = 'Filter';
   @Input() luxNoDataText: string = 'Keine Daten gefunden.';
   @Input() luxPageSize: number = 10;
   @Input() luxPageSizeOptions = [5, 10, 25, 50];
-  @Input() luxHttpDAO: ILuxTableHttpDao;
   @Input() luxMinWidthPx: number = -1;
   @Input() luxAutoPaginate: boolean = true;
   @Input() luxHideBorders: boolean = false;
@@ -91,6 +92,20 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   @ContentChildren(LuxTableColumnComponent) tableColumns: QueryList<LuxTableColumnComponent>;
 
   // region Setter/Getters
+
+  get luxHttpDAO(): ILuxTableHttpDao {
+    return this._luxHttpDAO;
+  }
+
+  @Input() set luxHttpDAO(httpDAO: ILuxTableHttpDao) {
+    this._luxHttpDAO = httpDAO;
+    if (!this.init) {
+      this.paginator.pageIndex = 0;
+      this.httpRequestConf.page = 0;
+      this.loadHttpDAOData();
+    }
+  }
+
   get luxClasses(): ICustomCSSConfig | ICustomCSSConfig[] {
     return this._luxClasses;
   }
@@ -268,6 +283,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
         this.handleSort();
         this.insertCustomCSSClasses();
       }
+      this.init = false;
     });
   }
 
@@ -593,7 +609,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
    * page, pageSize, filter, sort, order mitgibt.
    * @param filteredBy?
    */
-  private loadHttpDAOData(filteredBy?: string) {
+  loadHttpDAOData(filteredBy?: string) {
     this.isLoadingResults = true;
     this.luxHttpDAO
       .loadData(this.httpRequestConf)
