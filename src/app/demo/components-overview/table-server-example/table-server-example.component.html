@@ -103,7 +103,19 @@
       [luxDisplayMenuLeft]="false"
     >
       <lux-menu-item
+        luxLabel="Neuladen"
+        luxIconName="fas fa-sync"
+        [luxAlwaysVisible]="true"
+        luxColor="default"
+        [luxRaised]="true"
+        luxTagId="menu-reload"
+        (luxClicked)="reload()"
+      >
+      </lux-menu-item>
+      <lux-menu-item
         luxLabel="Ersten 5 auswählen"
+        luxIconName="far fa-check-square"
+        [luxAlwaysVisible]="false"
         luxColor="default"
         [luxRaised]="true"
         [luxDisabled]="!multiSelect"

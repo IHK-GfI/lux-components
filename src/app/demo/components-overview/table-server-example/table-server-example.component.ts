@@ -9,11 +9,29 @@ import { TableExampleBaseClass } from '../table-example/table-example-base.class
 })
 export class TableServerExampleComponent extends TableExampleBaseClass implements OnInit {
   httpDAO = null;
+  reloadCount = 0;
 
   constructor(private logger: LuxConsoleService) {
     super();
+  }
+
+  ngOnInit() {
     this.httpDAO = new TestHttpDao(this.logger);
   }
 
-  ngOnInit() {}
+  reload() {
+    this.reloadCount++;
+
+    // Das Datenarray kürzen
+    const newHttpDAO = new TestHttpDao(this.logger);
+    newHttpDAO.dataSourceFix = newHttpDAO.dataSourceFix.slice(0, newHttpDAO.dataSourceFix.length - 2);
+
+    // Die Namen ändern
+    for (let i = 0; i < newHttpDAO.dataSourceFix.length; i++) {
+      newHttpDAO.dataSourceFix[i].name += '_' + this.reloadCount;
+    }
+
+    // Das neue ILuxTableHttpDao setzen
+    this.httpDAO = newHttpDAO;
+  }
 }
