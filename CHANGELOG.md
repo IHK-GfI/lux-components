@@ -1,3 +1,7 @@
+# Version 10.8.0
+## New
+- **lux-table**: Reload bei einer Table mit serverseitigen Paging möglich [Issue 79](https://github.com/IHK-GfI/lux-components/issues/79)
+
 # Version 10.7.0
 ## New
 - **allgemein**: Sicherheitsupdates eingespielt.
