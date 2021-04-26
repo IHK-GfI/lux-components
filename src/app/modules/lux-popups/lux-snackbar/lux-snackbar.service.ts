@@ -42,7 +42,7 @@ export class LuxSnackbarService {
    * @param data Ein Datenobjekt, das an die Komponente weitergereicht wird. Mit dem Code folgenden Code, können die
    * Daten verwendet werden. constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any).
    */
-  public openComponent(component: ComponentType<any>, duration: number = 0, data?: any) {
+  public openComponent(component: ComponentType<any>, duration = 0, data?: any) {
     this.snackBar.openFromComponent(component, {
       duration,
       data,

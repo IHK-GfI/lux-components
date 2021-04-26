@@ -320,7 +320,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
       formData.append(fileObject.name, fileObject.content);
     });
 
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
       const options = {};
       if (this.luxUploadReportProgress) {
         options['reportProgress'] = true;

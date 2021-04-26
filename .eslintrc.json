@@ -26,7 +26,7 @@
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/member-delimiter-style": "error",
         "@typescript-eslint/no-inferrable-types": "error",
-        "@typescript-eslint/member-ordering": "error",
+        "@typescript-eslint/member-ordering": "off",
         "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "", "style": "kebab-case" }],
         "@angular-eslint/directive-selector": ["error", { "type": "attribute", "prefix": "", "style": "camelCase" }],
         "@angular-eslint/no-attribute-decorator": "error",
@@ -35,7 +35,6 @@
         "@angular-eslint/no-output-rename": "error",
         "@angular-eslint/no-pipe-impure": "error",
         "@angular-eslint/use-component-view-encapsulation": "error",
-        "@angular-eslint/use-pipe-decorator": "error",
         "@angular-eslint/no-empty-lifecycle-method": "error",
 
         // Deaktivierte Regeln

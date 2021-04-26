@@ -29,7 +29,7 @@ export const timeDeltasRelative = [
   name: 'luxRelativeTimestamp'
 })
 export class LuxRelativeTimestampPipe implements PipeTransform {
-  transform(timestamp: number, defaultText: string = '', prefix?: string): string {
+  transform(timestamp: number, defaultText = '', prefix?: string): string {
     if (!timestamp) {
       return defaultText;
     }

@@ -220,7 +220,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
    * @param data
    * @param filter
    */
-  private customFilterPredicate = (data: any, filter: string = '') => {
+  private customFilterPredicate = (data: any, filter = '') => {
     for (const property in data) {
       if (data.hasOwnProperty(property)) {
         const dataEntry = data[property];

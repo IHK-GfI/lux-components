@@ -23,12 +23,12 @@ describe('LuxTooltipDirective', () => {
   let tooltipSpan: HTMLElement;
   let tooltip: LuxTooltipDirective;
 
-  const showTooltip = (wait: number = 500) => {
+  const showTooltip = (wait = 500) => {
     tooltip.show(mockComp.showDelay);
     LuxTestHelper.wait(fixture, wait);
   };
 
-  const hideTooltip = (wait: number = 500) => {
+  const hideTooltip = (wait = 500) => {
     tooltip.hide(mockComp.hideDelay);
     LuxTestHelper.wait(fixture, wait);
     flushMicrotasks();
