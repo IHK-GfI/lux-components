@@ -1,4 +1,4 @@
-@import '../../../../theming/luxcommon';
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
 
 :host {
   display: flex;
@@ -11,7 +11,7 @@
 
   .example-base-components-list {
     overflow-y: auto;
-    border-right: 1px solid $dark-dividers;
+    border-right: 1px solid;
     padding: 16px 8px;
     height: 100% !important;
 
@@ -19,10 +19,6 @@
       padding: 0 0 16px 0;
 
       ::ng-deep {
-        mat-panel-title {
-          color: map-get($lux-palette_darkblue, 500);
-        }
-
         mat-expansion-panel {
           box-shadow: unset;
         }
@@ -50,7 +46,6 @@
     .example-component-list-item {
       cursor: pointer;
       font-size: 16px;
-      color: map-get($lux-palette_darkblue, 500);
       padding: 2px 0 2px 32px;
       margin: $outline-width;
     }
@@ -86,18 +81,5 @@
         }
       }
     }
-  }
-}
-
-::ng-deep {
-  .example-highlight-config-option {
-    display: flex;
-    margin: 0 0 16px 0;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    padding: 4px;
-    word-break: break-word;
-    border: 1px solid $dark-dividers;
   }
 }

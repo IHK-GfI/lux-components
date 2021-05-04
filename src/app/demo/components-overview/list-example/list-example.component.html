@@ -44,14 +44,14 @@
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxValue)]="emptyLabel"
       luxName="list_luxEmptyLabel"
       luxLabel="luxEmptyLabel"
       luxHint="Diese Property stellt das Label ein, welches bei einer leeren Liste angezeigt werden soll."
     >
     </lux-input>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-input
         [(luxValue)]="emptyIconName"
         luxName="list_luxEmptyIconName"
@@ -68,7 +68,7 @@
       </lux-select>
     </div>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxValue)]="selectedPosition"
       luxName="list_luxSelectedPosition"
       luxLabel="luxSelectedPosition"
@@ -84,7 +84,7 @@
           {{ item.title }}
         </lux-panel-header-title>
         <lux-panel-content>
-          <div class="example-highlight-config-option" fxLayout="column">
+          <div class="lux-highlight-section" fxLayout="column">
             <lux-input
               [(luxValue)]="item.title"
               luxName="list_luxTitle"
@@ -100,7 +100,7 @@
             >
             </lux-input>
           </div>
-          <lux-input luxName="list_luxIconName" class="example-highlight-config-option" [(luxValue)]="item.iconName" luxLabel="luxIconName">
+          <lux-input luxName="list_luxIconName" class="lux-highlight-section" [(luxValue)]="item.iconName" luxLabel="luxIconName">
             <lux-form-hint>
               Der Name des Icons für dieses Item.<br />
               Das Icon wird über Content-Projection eingebunden, die restlichen Properties hierfür entfallen der
@@ -108,13 +108,13 @@
             </lux-form-hint>
           </lux-input>
           <lux-toggle
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxTitleLineBreak"
             luxHint="Dieser Flag bestimmt ob die Titel-Zeilen umgebrochen oder mit '...' abgekürzt werden."
             [(luxChecked)]="item.lineBreak"
           >
           </lux-toggle>
-          <lux-toggle class="example-highlight-config-option" luxLabel="luxSelected" [(luxChecked)]="item.selected">
+          <lux-toggle class="lux-highlight-section" luxLabel="luxSelected" [(luxChecked)]="item.selected">
             <lux-form-hint>
               Mithilfe dieses Flags kann das Item hervorgehoben dargestellt werden.<br />
               In diesem Beispiel sorgt ein Klick auf ein Item dafür, dass dieses dann als selektiert gekennzeichnet

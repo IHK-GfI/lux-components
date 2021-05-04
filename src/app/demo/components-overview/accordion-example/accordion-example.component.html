@@ -56,24 +56,24 @@
       [(luxChecked)]="showOutputEvents"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
-    <lux-toggle luxLabel="luxMulti" class="example-highlight-config-option" [(luxChecked)]="multiMode">
+    <lux-toggle luxLabel="luxMulti" class="lux-highlight-section" [(luxChecked)]="multiMode">
       <lux-form-hint>
         Diese Property bestimmt, ob mehrere Panels gleichzeitig aufklappbar sind oder nicht.
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle luxLabel="luxDisabled" class="example-highlight-config-option" [(luxChecked)]="disabled">
+    <lux-toggle luxLabel="luxDisabled" class="lux-highlight-section" [(luxChecked)]="disabled">
       <lux-form-hint>
         Diese Property deaktiviert die Component.
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle luxLabel="luxHideToggle" class="example-highlight-config-option" [(luxChecked)]="hideToggle">
+    <lux-toggle luxLabel="luxHideToggle" class="lux-highlight-section" [(luxChecked)]="hideToggle">
       <lux-form-hint>
         Diese Property ermöglicht es, die Toggle-Icons für alle Panels auszublenden.
       </lux-form-hint>
     </lux-toggle>
     <lux-radio
       luxLabel="luxMode"
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [luxOptions]="displayModes"
       [(luxSelected)]="displayMode"
       [luxOrientationVertical]="false"
@@ -84,7 +84,7 @@
         luxMode: 'default' => Leichter Abstand zwischen den Panels
       </lux-form-hint>
     </lux-radio>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-input luxName="accordion_luxExpandedHeaderHeight" luxLabel="luxExpandedHeaderHeight" [(luxValue)]="expandedHeaderHeight" class="title-input">
         <lux-form-hint>
           Diese Property bestimmt die Höhe aller Panel-Header im ausgeklappten Zustand.
@@ -101,17 +101,17 @@
     <div fxLayout="row wrap" fxLayoutAlign="space-between start">
       <div fxLayout="column" fxFlex="1 1 auto">
         <h3>Panel #1</h3>
-        <lux-toggle luxLabel="luxDisabled" class="example-highlight-config-option" [(luxChecked)]="disabled1Panel">
+        <lux-toggle luxLabel="luxDisabled" class="lux-highlight-section" [(luxChecked)]="disabled1Panel">
           <lux-form-hint>
             Diese Property deaktiviert das Panel.
           </lux-form-hint>
         </lux-toggle>
-        <lux-toggle luxLabel="luxHideToggle" class="example-highlight-config-option" [(luxChecked)]="hideToggle1Panel">
+        <lux-toggle luxLabel="luxHideToggle" class="lux-highlight-section" [(luxChecked)]="hideToggle1Panel">
           <lux-form-hint>
             Diese Property ermöglicht es, das Toggle-Icons für das Panel auszublenden.
           </lux-form-hint>
         </lux-toggle>
-        <div class="example-highlight-config-option" fxLayout="column">
+        <div class="lux-highlight-section" fxLayout="column">
           <lux-input luxLabel="luxExpandedHeaderHeight" [(luxValue)]="expandedHeaderHeight1Panel" class="title-input">
             <lux-form-hint>
               Diese Property bestimmt die Höhe des Panel-Headers im ausgeklappten Zustand.
@@ -126,17 +126,17 @@
       </div>
       <div fxLayout="column" fxFlex="1 1 auto">
         <h3>Panel #2</h3>
-        <lux-toggle luxLabel="luxDisabled" class="example-highlight-config-option" [(luxChecked)]="disabled2Panel">
+        <lux-toggle luxLabel="luxDisabled" class="lux-highlight-section" [(luxChecked)]="disabled2Panel">
           <lux-form-hint>
             Diese Property deaktiviert das Panel.
           </lux-form-hint>
         </lux-toggle>
-        <lux-toggle luxLabel="luxHideToggle" class="example-highlight-config-option" [(luxChecked)]="hideToggle2Panel">
+        <lux-toggle luxLabel="luxHideToggle" class="lux-highlight-section" [(luxChecked)]="hideToggle2Panel">
           <lux-form-hint>
             Diese Property ermöglicht es, das Toggle-Icons für das Panel auszublenden.
           </lux-form-hint>
         </lux-toggle>
-        <div class="example-highlight-config-option" fxLayout="column">
+        <div class="lux-highlight-section" fxLayout="column">
           <lux-input luxLabel="luxExpandedHeaderHeight" [(luxValue)]="expandedHeaderHeight2Panel">
             <lux-form-hint>
               Diese Property bestimmt die Höhe des Panel-Headers im ausgeklappten Zustand.

@@ -14,13 +14,11 @@ mat-select {
   &[aria-disabled="true"] ::ng-deep .mat-select-arrow {
     border-width: 7px;
     margin: 0;
-    color: $dark-disabled-text;
   }
 
   &[aria-disabled="false"] ::ng-deep .mat-select-arrow {
     border-width: 7px;
     margin: 0;
-    color: map-get($lux-palette_darkblue, 500);
   }
 }
 

@@ -1,4 +1,4 @@
-@import '../../../../../theming/luxcommon';
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
 
 @mixin minified-button {
   lux-button {
@@ -37,8 +37,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      border: $outline-width $outline-style $outline-color-dark;
-      background: $dark-focused;
+      //border: $outline-width $outline-style $outline-color-dark;
+      //background: $dark-focused;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
       border-radius: 4px;

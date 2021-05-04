@@ -33,7 +33,7 @@
         <lux-input-suffix *ngIf="showSuffix"> .00 EUR </lux-input-suffix>
       </lux-input>
       <div
-        class="example-highlight-config-option"
+        class="lux-highlight-section"
         fxLayout="row"
         fxLayoutGap="5px"
         *ngIf="value !== null && value !== undefined"
@@ -68,7 +68,7 @@
         </lux-input-prefix>
         <lux-input-suffix *ngIf="showSuffix"> .00 EUR </lux-input-suffix>
       </lux-input>
-      <div fxLayout="column" class="example-highlight-config-option">
+      <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <span fxFlex="35px">Wert:</span>
           <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
@@ -98,13 +98,13 @@
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
     >
     </lux-input>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxLabel="luxHint"
         luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
@@ -118,20 +118,20 @@
       ></lux-toggle>
     </div>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
       [(luxValue)]="placeholder"
     >
     </lux-input>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
     >
     </lux-toggle>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
@@ -147,14 +147,14 @@
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
     </div>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxRequired"
       (luxCheckedChange)="changeRequired($event)"
     >
@@ -167,7 +167,7 @@
         >
       </lux-form-hint>
     </lux-toggle>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-select
         luxLabel="luxType"
         luxHint="Über diese Property kann der erwartete Eingabewert für das Feld definiert werden."
@@ -193,14 +193,14 @@
       </lux-toggle>
     </div>
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxAutocomplete"
       luxHint="Dieser Flag schaltet die Einblendung früherer Eingabungen für dieses Feld durch den Browser ein."
       [luxOptions]="autocompleteOptions"
       [(luxSelected)]="autocomplete"
     >
     </lux-select>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-toggle
         [(luxChecked)]="showPrefix"
         luxLabel="Präfix einblenden"
@@ -216,7 +216,7 @@
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-toggle
         luxLabel="luxErrorMessage verwenden"
         luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
@@ -234,7 +234,7 @@
       <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
     </div>
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [luxOptions]="validatorOptions"
       luxOptionLabelProp="label"
       [luxMultiple]="true"

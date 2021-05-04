@@ -1,5 +1,3 @@
-@import '../../../../theming/luxcommon';
-
 mat-error {
   font-size: 75%;
   margin-top: 0.54166667em;
@@ -43,7 +41,6 @@ mat-error {
     ::ng-deep {
       .mat-slider-thumb-label {
         display: flex !important;
-        background-color: $dark-disabled-text;
       }
     }
 

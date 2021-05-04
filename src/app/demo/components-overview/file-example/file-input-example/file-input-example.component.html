@@ -88,7 +88,7 @@
           <lux-button luxLabel="Ja" (luxClicked)="onKeepFileWithForm(true)"></lux-button>
           <lux-button luxLabel="Nein" (luxClicked)="onKeepFileWithForm(false)"></lux-button>
         </div>
-        <div fxLayout="column" class="example-highlight-config-option">
+        <div fxLayout="column" class="lux-highlight-section">
           <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
             <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
               <span fxFlex="35px">Valid:</span>
@@ -118,14 +118,14 @@
     </lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
       [(luxValue)]="placeholder"
     >
     </lux-input>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxClearOnError"
       luxHint="Gibt an, ob das Control bei einem Validierungsfehler geleert wird."
       [(luxChecked)]="clearOnError"

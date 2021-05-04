@@ -1,8 +1,4 @@
-@import '../../../../theming/luxcommon';
-
-mat-tab-group ::ng-deep mat-tab-header {
-  border-color: $dark-dividers;
-}
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
 
 mat-tab-group.lux-tabs-no-divider ::ng-deep mat-tab-header {
   border-bottom: none;
@@ -12,7 +8,6 @@ mat-tab-group ::ng-deep div[role="tab"] {
   margin: $outline-width;
 
   &:not(.mat-tab-disabled) {
-    color: map-get($lux-palette_darkblue, 500);
     opacity: 1;
   }
 }
@@ -25,10 +20,6 @@ mat-tab-group ::ng-deep div[role="tab"] {
 
 .lux-notification-read {
   visibility: hidden;
-}
-
-.lux-notification-new {
-  background-color: map-get($componentBgColors, "green");
 }
 
 .lux-counter-offset {
@@ -102,7 +93,6 @@ mat-tab-group ::ng-deep div[role="tab"] {
 
 .lux-tabs-notification-icon {
   position: absolute;
-  border: 2px solid $app-content-bg;
   height: 16px;
   width: 16px;
   border-radius: 9px;

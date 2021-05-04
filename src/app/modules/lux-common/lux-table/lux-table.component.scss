@@ -1,11 +1,7 @@
-@import '../../../../theming/luxcommon';
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
 
 lux-progress ::ng-deep mat-progress-bar {
   margin-bottom: 8px;
-}
-
-.lux-row-selected {
-  background-color: $lux-selected-bg-color;
 }
 
 :host {

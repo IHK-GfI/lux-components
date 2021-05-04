@@ -33,7 +33,7 @@
         #test1
       >
       </lux-datepicker>
-      <div class="example-highlight-config-option" fxLayout="row" fxLayoutGap="5px">
+      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px">
         <span fxFlex="0 0 auto">Datum (ISO):</span>
         <span fxFlex="auto">{{ value | json }}</span>
       </div>
@@ -66,7 +66,7 @@
         #test2
       >
       </lux-datepicker>
-      <div fxLayout="column" class="example-highlight-config-option">
+      <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <span fxFlex="0 0 auto">Datum (ISO):</span>
           <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
@@ -96,14 +96,14 @@
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="datepicker_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
     >
     </lux-input>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxName="datepicker_luxHint"
         luxLabel="luxHint"
@@ -119,7 +119,7 @@
       ></lux-toggle>
     </div>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="datepicker_luxPlaceholder"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
@@ -127,13 +127,13 @@
     >
     </lux-input>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
     >
     </lux-toggle>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
@@ -149,14 +149,14 @@
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
     </div>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxRequired"
       (luxCheckedChange)="changeRequired($event)"
     >
@@ -172,28 +172,28 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxShowToggle"
       luxHint="Dieser Flag schaltet den Toggle-Button für die Datumsauswahl ein."
       [(luxChecked)]="showToggle"
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxOpened"
       luxHint="Über diesen Flag kann die Datumsauswahl eingeblendet werden."
       [(luxChecked)]="opened"
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxTouchUi"
       luxHint="Diese Property schaltet eine vergrößerte und auf Touchscreens ausgelegete Ansicht der Datumsauswahl ein."
       [(luxChecked)]="touchUi"
     >
     </lux-toggle>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="datepicker_luxLocale"
       luxLabel="luxLocale"
       luxPlaceholder="de-DE"
@@ -205,14 +205,14 @@
       </lux-form-hint>
     </lux-input>
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxStartView"
       luxHint="Die Property legt fest, welche Ansicht die Datumsauswahl initial besitzt."
       [(luxSelected)]="startView"
       [luxOptions]="['month', 'year']"
     >
     </lux-select>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-input luxName="datepicker_luxStartDate" luxLabel="luxStartDate" luxPlaceholder="10.02.2015" [(luxValue)]="startDate">
         <lux-form-hint>
           Diese Property definiert das in der Datumsauswahl pre-selektierte Datum.<br />
@@ -241,7 +241,7 @@
         <pre class="lux-label" *ngIf="useCustomFilter"><b>customFilter</b> = {{ customFilterString }}</pre>
       </div>
     </div>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-toggle
         luxLabel="luxErrorMessage verwenden"
         luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
@@ -260,7 +260,7 @@
       <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
     </div>
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [luxOptions]="validatorOptions"
       luxOptionLabelProp="label"
       [luxMultiple]="true"

@@ -58,20 +58,20 @@
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxLinear"
       luxHint="Über dieses Flag wird bestimmt ob die einzelnen Steps erst abgeschlossen werden müssen, bevor weiter gesprungen werden kann."
       [(luxChecked)]="linear"
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxDisabled"
       luxHint="Diese Property ermöglicht es, den ganzen Stepper zu deaktivieren."
       [(luxChecked)]="disabled"
     >
     </lux-toggle>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle
         luxLabel="luxUseCustomIcons"
         luxHint="Wenn aktiv, werden nicht mehr die Standard-Icons von Material für die Steps benutzt."
@@ -87,14 +87,14 @@
       </lux-input>
     </div>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxCurrentStepNumber"
       luxHint="Diese Property definiert den aktuell sichtbaren Step."
       luxType="number"
       [(luxValue)]="currentStepNumber"
     >
     </lux-input>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle
         luxLabel="luxVerticalStepper"
         luxHint="Über dieses Flag wird gesteuert ob der Stepper vertikal oder horizontal ausgerichtet wird."
@@ -113,7 +113,7 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <!-- Mögliche Input-Properties für die einzelnen Steps -->
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <h3 class="lux-mr-3 lux-ml-3">LuxStepComponents</h3>
       <lux-accordion class="lux-mr-3 lux-ml-3 lux-mb-3" luxMode="flat" [luxMulti]="false">
         <lux-panel *ngFor="let step of steps; let i = index">
@@ -157,7 +157,7 @@
       </lux-accordion>
     </div>
     <!-- Mögliche Konfigurationen für die Navigation-Buttons -->
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle
         luxLabel="luxShowNavigationButtons"
         [(luxChecked)]="showNavigationButtons"

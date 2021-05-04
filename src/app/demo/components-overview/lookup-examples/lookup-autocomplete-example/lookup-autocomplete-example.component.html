@@ -35,7 +35,7 @@
         luxTagId="lkpexample1"
       >
       </lux-lookup-autocomplete>
-      <div class="example-highlight-config-option" fxLayout="row" fxLayoutGap="5px" *ngIf="value">
+      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="value">
         <span fxFlex="0 0 auto">Wert:</span>
         <span fxFlex="auto">{{ value | json }}</span>
       </div>
@@ -69,7 +69,7 @@
         luxTagId="lkpexample2"
       >
       </lux-lookup-autocomplete>
-      <div fxLayout="column" class="example-highlight-config-option">
+      <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <span fxFlex="35px">Wert:</span>
           <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
@@ -96,14 +96,14 @@
     </lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="lookup_autocomplete_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
     >
     </lux-input>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxName="lookup_autocomplete_luxHint"
         luxLabel="luxHint"
@@ -119,7 +119,7 @@
       ></lux-toggle>
     </div>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="lookup_autocomplete_luxPlaceholder"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
@@ -127,13 +127,13 @@
     >
     </lux-input>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
     >
     </lux-toggle>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
@@ -149,14 +149,14 @@
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
     </div>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxRequired"
       (luxCheckedChange)="changeRequired($event)"
     >
@@ -172,7 +172,7 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="lookup_autocomplete_luxDebounceTime"
       luxLabel="luxDebounceTime"
       luxHint="Diese Property setzt die zeitliche Verzögerung, bevor die Daten nach einem neuen Suchbegriff gefiltert werden."
@@ -180,7 +180,7 @@
     >
     </lux-input>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="lookup_autocomplete_luxMaximumDisplay"
       luxLabel="luxMaximumDisplayed"
       luxHint="Hier kann eingestellt werden, wie viele Suchergebnisse im ausgeklappten Menu dargestellt werden."
@@ -188,7 +188,7 @@
       [(luxValue)]="maximumDisplayed"
     >
     </lux-input>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle
         luxLabel="Render-Funktion nutzen"
         luxHint="Wenn 'true' wird für 'luxRenderProp' anstelle einer Render-Property (z.B. 'label') eine Callback-Funktion übergeben."
@@ -205,7 +205,7 @@
       >
       </lux-input>
     </div>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle
         luxLabel="luxCustomStyles übergeben"
         luxHint="Wenn 'true', wird der Component ein Objekt mit Styles für valide Elemente übergeben."
@@ -226,7 +226,7 @@
     </div>
 
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxBehandlungUngueltige"
       luxOptionLabelProp="label"
       [luxOptions]="options"
@@ -239,7 +239,7 @@
       </lux-form-hint>
     </lux-select>
 
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-toggle
         luxLabel="luxErrorMessage verwenden"
         luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
@@ -258,7 +258,7 @@
       </lux-input>
     </div>
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [luxOptions]="validatorOptions"
       luxOptionLabelProp="label"
       [luxMultiple]="true"

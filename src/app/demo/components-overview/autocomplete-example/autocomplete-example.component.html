@@ -34,7 +34,7 @@
         luxTagId="autocomplete-non-reactive"
       >
       </lux-autocomplete>
-      <div class="example-highlight-config-option" fxLayout="row" fxLayoutGap="5px" *ngIf="value">
+      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="value">
         <span fxFlex="0 0 auto">Auswahl:</span>
         <span fxFlex="auto">{{ value | json }}</span>
       </div>
@@ -68,7 +68,7 @@
       >
       </lux-autocomplete>
       <div
-        class="example-highlight-config-option"
+        class="lux-highlight-section"
         fxLayout="row"
         fxLayoutGap="5px"
         *ngIf="form.get(controlBinding).value"
@@ -77,7 +77,7 @@
         <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
       </div>
     </div>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <div fxLayout="row" fxLayoutGap="5px">
         <span fxFlex="0 0 auto">Optionen:</span>
         <span fxFlex="auto" fxLayout="column" fxLayoutGap="5px">
@@ -110,14 +110,14 @@
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="autocomplete_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
     >
     </lux-input>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxName="autocomplete_luxHint"
         luxLabel="luxHint"
@@ -133,7 +133,7 @@
       ></lux-toggle>
     </div>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="autocomplete_luxPlaceholder"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
@@ -141,7 +141,7 @@
     >
     </lux-input>
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [luxSelected]="renderProperties[0]"
       (luxSelectedChange)="onRenderProperty($event)"
       [luxOptions]="renderProperties"
@@ -151,13 +151,13 @@
     >
     </lux-select>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
     >
     </lux-toggle>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
@@ -173,14 +173,14 @@
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
     </div>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxRequired"
       (luxCheckedChange)="changeRequired($event)"
     >
@@ -193,19 +193,19 @@
         >
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle class="example-highlight-config-option" [(luxChecked)]="strict" luxLabel="luxStrict">
+    <lux-toggle class="lux-highlight-section" [(luxChecked)]="strict" luxLabel="luxStrict">
       <lux-form-hint>
         Dieses Flag aktiviert den strikten Modus dieser Component´.<br />
         Das bedeutet, dass nur Eingaben die einer Option entsprechen als valide gelten.
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle class="example-highlight-config-option" [(luxChecked)]="usePickValueFn" luxLabel="luxPickValue" [luxDisabled]="!strict">
+    <lux-toggle class="lux-highlight-section" [(luxChecked)]="usePickValueFn" luxLabel="luxPickValue" [luxDisabled]="!strict">
       <lux-form-hint>
         Dieses Flag aktiviert die PickValue-Funktion. Erfordert luxStrict = true. <br />
         Das bedeutet, es wird der von der PickValue-Funktion zurückgelieferte Wert selektiert und nicht die Option als ganzes.
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle class="example-highlight-config-option" [(luxChecked)]="useFilterFn" luxLabel="luxFilterFn">
+    <lux-toggle class="lux-highlight-section" [(luxChecked)]="useFilterFn" luxLabel="luxFilterFn">
       <lux-form-hint>
         Dieses Flag aktiviert die Filterfunktion. <br />
         Diese Beispielfilterfunktion trennt die Eingabe anhand von Leerzeichen und prüft, ob alle Teile enthalten sind.
@@ -214,7 +214,7 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="selectAllOnClick"
       luxLabel="luxSelectAllOnClick"
       luxHint="Mit diesem Flag kann aktiviert werden, dass beim Klick auf das Feld der
@@ -222,7 +222,7 @@
     >
     </lux-toggle>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="autocomplete_luxDelay"
       luxLabel="luxDelay"
       luxHint="Über diese Property kann die zeitliche Verzögerung für die Filterung eingestellt werden."
@@ -230,7 +230,7 @@
       luxType="number"
     >
     </lux-input>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxName="autocomplete_luxErrorMessageNotAnOption"
         luxLabel="luxErrorMessageNotAnOption"
@@ -261,7 +261,7 @@
       <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
     </div>
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [luxOptions]="validatorOptions"
       luxOptionLabelProp="label"
       [luxMultiple]="true"

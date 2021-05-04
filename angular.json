@@ -31,11 +31,15 @@
                 "glob": "**/*",
                 "input": "./node_modules/pdfjs-dist/cmaps/",
                 "output": "./assets/cmaps"
+              },
+              {
+                "glob": "*.css",
+                "input": "./node_modules/@ihk-gfi/lux-components-theme/prebuilt-themes",
+                "output": "./assets/themes"
               }
             ],
             "styles": [
-              "src/styles.scss",
-              "src/theming/luxtheme.scss"
+              "src/styles.scss"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
@@ -130,8 +134,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/styles.scss",
-              "src/theming/luxtheme.scss"
+              "src/styles.scss"
             ],
             "assets": [
               "src/assets",

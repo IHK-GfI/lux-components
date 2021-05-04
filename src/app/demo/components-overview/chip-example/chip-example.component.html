@@ -56,7 +56,7 @@
         </lux-chip-group>
       </lux-chips>
     </div>
-    <div class="example-highlight-config-option" fxLayout="row" fxLayoutGap="5px" *ngIf="autocomplete && inputAllowed">
+    <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="autocomplete && inputAllowed">
       <span fxFlex="0 0 auto">Autocomplete-Optionen:</span>
       <span fxFlex="auto" fxLayout="column" fxLayoutGap="5px">
         <span *ngFor="let option of autocompleteOptions">
@@ -73,7 +73,7 @@
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
 
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-toggle luxLabel="luxInputAllowed" [(luxChecked)]="inputAllowed">
         <lux-form-hint>
           Aktiviert das Eingabefeld für die Chips, darüber lassen sich dann neue Chips hinzufügen.<br />
@@ -102,7 +102,7 @@
     </div>
 
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxOrientation"
       [(luxSelected)]="chipOrientation"
       luxHint="Über diese Property kann eine horizontale oder vertikale Darstellung gewählt werden."
@@ -110,14 +110,14 @@
     >
     </lux-select>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="multiple"
       luxLabel="luxMultiple"
       luxHint="Erlaubt es, mehrere Chips zu selektieren (mithilfe der Leertaste)."
@@ -132,7 +132,7 @@
           <lux-panel-header-title> Chip #{{ i + 1 }} </lux-panel-header-title>
           <lux-panel-content *ngIf="openedPanel === i">
             <lux-input
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxLabel="luxLabel"
               luxHint="Bestimmt das Label des einzelnen Chips"
               [luxValue]="chip.label"
@@ -140,7 +140,7 @@
             >
             </lux-input>
             <lux-select
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxLabel="luxColor"
               luxHint="Bestimmt die Farbe der Chips für eine LuxChipGroup."
               [(luxSelected)]="chip.color"
@@ -148,21 +148,21 @@
             >
             </lux-select>
             <lux-toggle
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxLabel="luxDisabled"
               luxHint="Mit dieser Property können die Chips einer Group deaktiviert werden."
               [(luxChecked)]="chip.disabled"
             >
             </lux-toggle>
             <lux-toggle
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxLabel="luxRemovable"
               luxHint="Diese Property markiert die Chips in einer Group als entfernbar."
               [(luxChecked)]="chip.removable"
             >
             </lux-toggle>
             <lux-toggle
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxLabel="luxSelected"
               luxHint="Diese Property selektiert die Chip."
               [(luxChecked)]="chip.selected"
@@ -175,7 +175,7 @@
     <div fxLayout="column">
       <h3>Chip-Group</h3>
       <lux-select
-        class="example-highlight-config-option"
+        class="lux-highlight-section"
         luxLabel="luxColor"
         luxHint="Bestimmt die Farbe der Chips für eine LuxChipGroup."
         [(luxSelected)]="groupColor"
@@ -183,21 +183,21 @@
       >
       </lux-select>
       <lux-toggle
-        class="example-highlight-config-option"
+        class="lux-highlight-section"
         luxLabel="luxDisabled"
         luxHint="Mit dieser Property können die Chips einer Group deaktiviert werden."
         [(luxChecked)]="groupDisabled"
       >
       </lux-toggle>
       <lux-toggle
-        class="example-highlight-config-option"
+        class="lux-highlight-section"
         luxLabel="luxRemovable"
         luxHint="Diese Property markiert die Chips in einer Group als entfernbar."
         [(luxChecked)]="groupRemovable"
       >
       </lux-toggle>
       <lux-toggle
-        class="example-highlight-config-option"
+        class="lux-highlight-section"
         luxLabel="luxSelected"
         luxHint="Diese Property selektiert die Chips in dieser Group."
         [(luxChecked)]="groupSelected"

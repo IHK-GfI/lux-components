@@ -1,32 +1,52 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { LuxAppFooterLinkInfo } from './modules/lux-layout/lux-app-footer/lux-app-footer-link-info';
 import { LuxAppFooterLinkService } from './modules/lux-layout/lux-app-footer/lux-app-footer-link.service';
 import { LuxAppFooterButtonService } from './modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxSnackbarService } from './modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { ComponentsOverviewNavigationService } from './demo/components-overview/components-overview-navigation.service';
+import { LuxThemeServiceService } from './modules/lux-theme/lux-theme-service.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   window = window;
+  dynamicCSSUrl: SafeResourceUrl;
+
+  themeSubscription: Subscription;
 
   constructor(
     public router: Router,
     private linkService: LuxAppFooterLinkService,
     private buttonService: LuxAppFooterButtonService,
     private snackbarService: LuxSnackbarService,
-    public navigationService: ComponentsOverviewNavigationService
-  ) {}
+    public navigationService: ComponentsOverviewNavigationService,
+    private sanitizer: DomSanitizer,
+    private themeService: LuxThemeServiceService
+  ) {
+    this.themeService.getThemeAsObservable().subscribe((theme) => {
+      this.dynamicCSSUrl = theme.styleUrl;
+    });
+  }
 
   ngOnInit() {
     this.linkService.pushLinkInfos(
       new LuxAppFooterLinkInfo('Datenschutz', 'datenschutz', true),
       new LuxAppFooterLinkInfo('Impressum', 'impressum')
     );
+  }
+
+  ngOnDestroy() {
+    this.themeSubscription.unsubscribe();
+  }
+
+  onChangeTheme(themeName: string) {
+    this.themeService.selectTheme(themeName);
   }
 
   goToHome() {
