@@ -1,3 +1,7 @@
+# Version 10.8.1
+## Bug Fixes
+- **lux-filter**: LUX-Filter soll keine doppelten Namen mehr akzeptieren [Issue 83](https://github.com/IHK-GfI/lux-components/issues/83)
+
 # Version 10.8.0
 ## New
 - **lux-table**: Reload bei einer Table mit serverseitigen Paging möglich [Issue 79](https://github.com/IHK-GfI/lux-components/issues/79)
