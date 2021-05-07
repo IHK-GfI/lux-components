@@ -145,7 +145,7 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   }
 
   openSaveDialog() {
-    const dialogRef = this.dialogService.openComponent(LuxFilterSaveDialogComponent, this.dialogConfig);
+    const dialogRef = this.dialogService.openComponent(LuxFilterSaveDialogComponent, this.dialogConfig, this);
 
     this.subscriptions.push(
       dialogRef.dialogClosed.subscribe((result: any) => {
