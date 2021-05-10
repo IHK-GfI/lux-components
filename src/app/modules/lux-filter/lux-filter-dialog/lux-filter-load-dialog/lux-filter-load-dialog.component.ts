@@ -19,7 +19,7 @@ export class LuxFilterLoadDialogComponent implements OnInit {
     this.filterArr = this.component.luxStoredFilters;
   }
 
-  onDelete(index) {
+  onDelete(index: number) {
     const deletedFilter = this.filterArr.splice(index, 1)[0];
     this.component.onDelete(deletedFilter);
   }
