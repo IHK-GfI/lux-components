@@ -31,7 +31,7 @@ import { LuxComponentsConfigModule } from '../lux-components-config/lux-componen
     LuxComponentsConfigModule
   ],
   declarations: [LuxLookupComboboxComponent, LuxLookupAutocompleteComponent, LuxLookupLabelComponent],
-  providers: [HttpClient, LuxLookupService],
+  providers: [HttpClient],
   exports: [LuxLookupComboboxComponent, LuxLookupAutocompleteComponent, LuxLookupLabelComponent]
 })
 export class LuxLookupModule {}

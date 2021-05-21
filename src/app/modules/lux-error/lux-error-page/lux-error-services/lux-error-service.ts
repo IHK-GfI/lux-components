@@ -6,7 +6,9 @@ import { ILuxError } from '../lux-error-interfaces/lux-error.interface';
 import { LuxErrorPageComponent } from '../lux-error-page.component';
 import { LuxErrorStoreService } from './lux-error-store.service';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxErrorService {
   constructor(private router: Router, private errorStore: LuxErrorStoreService) {
     this.errorStore.init();

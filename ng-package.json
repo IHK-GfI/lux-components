@@ -9,6 +9,7 @@
     }
   },
   "assets": [
-    "./src/locale/**"
+    "./src/locale/**",
+    "./build/plugin/**"
   ]
 }

@@ -1,5 +1,6 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Subscription } from 'rxjs';
+import { LuxAppService } from "../../lux-util/lux-app.service";
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxAppFooterButtonInfo } from './lux-app-footer-button-info';
 import { LuxAppFooterButtonService } from './lux-app-footer-button.service';
@@ -24,8 +25,12 @@ export class LuxAppFooterComponent implements OnInit, OnDestroy {
   constructor(
     public buttonService: LuxAppFooterButtonService,
     private linkService: LuxAppFooterLinkService,
-    private mediaObserver: LuxMediaQueryObserverService
-  ) {}
+    private mediaObserver: LuxMediaQueryObserverService,
+    private elementRef: ElementRef,
+    private appService: LuxAppService
+  ) {
+    this.appService.appFooterEl = elementRef.nativeElement;
+  }
 
   ngOnInit() {
     this.subscription = this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(query => {

@@ -16,7 +16,6 @@ import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';
 import { LuxIconComponent } from '../lux-icon/lux-icon/lux-icon.component';
 import { LuxPipesModule } from '../lux-pipes/lux-pipes.module';
-import { LuxMediaQueryObserverService } from '../lux-util/lux-media-query-observer.service';
 import { LuxAccordionComponent } from './lux-accordion/lux-accordion.component';
 import { LuxAppFooterComponent } from './lux-app-footer/lux-app-footer.component';
 import { LuxAppHeaderRightNavComponent } from './lux-app-header/lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
@@ -190,7 +189,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     LuxLayoutCardRowComponent,
     LuxLayoutFormRowComponent
   ],
-  providers: [LuxMediaQueryObserverService],
+  providers: [],
   entryComponents: [LuxIconComponent, LuxDetailWrapperComponent]
 })
 export class LuxLayoutModule {}

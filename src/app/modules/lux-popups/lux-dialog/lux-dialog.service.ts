@@ -10,7 +10,9 @@ import {
 } from './lux-dialog-model/lux-dialog-preset-config.interface';
 import { LuxDialogPresetComponent } from './lux-dialog-preset/lux-dialog-preset.component';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxDialogService {
   private static readonly ALREADY_OPENED_ERROR: string = 'Aktuell ist bereits ein Dialog geöffnet';
 

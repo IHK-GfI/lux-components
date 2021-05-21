@@ -2,14 +2,15 @@
 import {
   Component,
   ContentChild,
-  ElementRef, EventEmitter,
+  ElementRef, EventEmitter, HostBinding,
   Input,
   OnChanges, OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
   ViewChild
-} from '@angular/core';
+} from "@angular/core";
+import { LuxAppService } from "../../lux-util/lux-app.service";
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMasterDetailMobileHelperService } from '../lux-master-detail/lux-master-detail-mobile-helper.service';
 import { LuxSideNavComponent } from './lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component';
@@ -54,7 +55,9 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   @ContentChild(LuxAppHeaderRightNavComponent) rightNav: LuxAppHeaderRightNavComponent;
   @ContentChild(LuxSideNavComponent) sideNav: LuxSideNavComponent;
 
-  constructor(public mobileHelperService: LuxMasterDetailMobileHelperService, private logger: LuxConsoleService) {
+  constructor(public mobileHelperService: LuxMasterDetailMobileHelperService, private logger: LuxConsoleService, private elementRef: ElementRef, private appService: LuxAppService) {
+    this.appService.appHeaderEl = elementRef.nativeElement;
+
     // Wenn die Master-Ansicht der MD-Komponente aendert, muss ein anderer Navigations-Button angezeigt werden
     this.subscriptions.push(this.mobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
       setTimeout(() => {

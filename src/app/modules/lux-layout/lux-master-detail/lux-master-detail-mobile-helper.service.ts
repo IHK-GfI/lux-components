@@ -2,7 +2,9 @@ import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxMasterDetailMobileHelperService implements OnDestroy {
   private _mdRegistered$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private _masterCollapsed$: BehaviorSubject<boolean> = new BehaviorSubject(true);

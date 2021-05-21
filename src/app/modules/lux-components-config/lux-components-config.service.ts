@@ -17,8 +17,8 @@ export class LuxComponentsConfigService {
     generateLuxTagIds: false,
     lookupServiceUrl: '/lookup/',
     labelConfiguration: {
-      allUppercase: true,
-      notAppliedTo: ['lux-link', 'lux-side-nav-item', 'lux-menu-item']
+      allUppercase: false,
+      notAppliedTo: []
     },
     cardExpansionAnimationActive: true,
     rippleConfiguration: {

@@ -120,7 +120,6 @@ class MockStorageService {
   imports: [MatSnackBarModule, LuxPopupsModule, LuxLayoutModule, LuxActionModule, NoopAnimationsModule],
   exports: [],
   providers: [
-    LuxSnackbarService,
     { provide: LuxMasterDetailMobileHelperService, useClass: MockMobileHelperService },
     { provide: LuxStorageService, useClass: MockStorageService }
   ],

@@ -6,7 +6,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
  * Wenn man beim Speichern (Methode -> setItem) angibt, dass es sich um sensible Daten handelt,
  * können diese einfach über die Methode 'clearSensitiveItems' gelöscht werden.
  */
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxStorageService implements OnDestroy {
   private readonly postfixSensitive = '.sensitive';
 

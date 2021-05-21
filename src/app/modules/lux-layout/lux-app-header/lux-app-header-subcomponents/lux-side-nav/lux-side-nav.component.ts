@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ContentChildren, ElementRef, HostListener, Input, OnDestroy, QueryList, ViewChild } from '@angular/core';
+import { LuxAppService } from '../../../../lux-util/lux-app.service';
 import { LuxSideNavItemComponent } from './lux-side-nav-subcomponents/lux-side-nav-item.component';
 import { Subscription } from 'rxjs';
 import { sideNavAnimation, sideNavOverlayAnimation } from './lux-side-nav-model/lux-side-nav-animations';
@@ -14,7 +15,7 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
   @Input() luxDashboardLink: string;
   @Input() luxDashboardLinkTitle = 'LUX Dashboard';
   @Input() luxOpenLinkBlank: boolean;
-  @Input() luxAriaRoleNavigationLabel = $localize `:@@luxc.side-nav.ariarolenavigation:Anwendungsmenü / Navigation`;
+  @Input() luxAriaRoleNavigationLabel = $localize`:@@luxc.side-nav.ariarolenavigation:Anwendungsmenü / Navigation`;
 
   @ContentChildren(LuxSideNavItemComponent, { descendants: true }) sideNavItems: QueryList<LuxSideNavItemComponent>;
   @ContentChildren(LuxSideNavItemComponent, { descendants: false }) directSideNavItems: QueryList<LuxSideNavItemComponent>;
@@ -23,6 +24,10 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
   @ViewChild('sideNavHeader', { read: ElementRef, static: true }) sideNavHeaderEl: ElementRef;
   @ViewChild('sideNavFooter', { read: ElementRef, static: true }) sideNavFooterEl: ElementRef;
 
+  top: string;
+  left: string;
+  bottom: string;
+  right: string;
   focusElement: any;
   sideNavExpanded = false;
   height: number;
@@ -42,9 +47,10 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
 
   @HostListener('window:resize') windowResize() {
     this.calculateWidthHeight();
+    this.calculateAppMenuPosition();
   }
 
-  constructor() {}
+  constructor(private appService: LuxAppService) {}
 
   ngAfterViewInit() {
     this.subscription = this.sideNavItems.changes.subscribe(() => this.updateItemClickListeners());
@@ -58,6 +64,8 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
   }
 
   toggle() {
+    this.calculateAppMenuPosition();
+
     this.sideNavExpanded = !this.sideNavExpanded;
 
     if (this.sideNavExpanded) {
@@ -73,6 +81,21 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
           this.focusElement.focus();
         }
       });
+    }
+  }
+
+  private calculateAppMenuPosition() {
+    this.top = this.appService.getAppTop() + 'px';
+    this.left = this.appService.getAppLeft() + 'px';
+    this.bottom = this.appService.getAppBottom() + 'px';
+    this.right = this.appService.getAppRight() + 'px';
+  }
+
+  findParent(parent: HTMLElement) {
+    if (parent && parent.classList.contains('lux-app-container')) {
+      return parent.parentElement;
+    } else {
+      return this.findParent(parent.parentElement);
     }
   }
 

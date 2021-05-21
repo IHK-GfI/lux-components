@@ -7,7 +7,7 @@ import { LuxTheme } from './lux-theme';
 @Injectable({
   providedIn: 'root'
 })
-export class LuxThemeServiceService {
+export class LuxThemeService {
   private readonly storageKeyThemeName = 'lux.app.theme.name';
   private readonly themes: LuxTheme[];
   private theme$: BehaviorSubject<LuxTheme>;

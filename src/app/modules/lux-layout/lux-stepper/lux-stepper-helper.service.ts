@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { LuxStepperComponent } from './lux-stepper.component';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxStepperHelperService {
   private switchStep: Map<LuxStepperComponent, BehaviorSubject<boolean>> = new Map();
 

@@ -21,7 +21,6 @@ import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';
 import { LuxLayoutModule } from '../lux-layout/lux-layout.module';
 import { LuxPipesModule } from '../lux-pipes/lux-pipes.module';
-import { LuxMediaQueryObserverService } from '../lux-util/lux-media-query-observer.service';
 import { LuxAutocompleteComponent } from './lux-autocomplete/lux-autocomplete.component';
 import { LuxCheckboxComponent } from './lux-checkbox/lux-checkbox.component';
 import { LuxChipGroupComponent } from './lux-chips/lux-chips-subcomponents/lux-chip-group.component';
@@ -123,6 +122,6 @@ import { LuxSelectOptionHeightDirective } from './lux-select/lux-select-option-h
     LuxFileCaptureDirective,
     LuxMaxLengthDirective
   ],
-  providers: [LuxMediaQueryObserverService]
+  providers: []
 })
 export class LuxFormModule {}

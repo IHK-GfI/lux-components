@@ -504,20 +504,20 @@ class LuxTabWithoutNumberComponent {}
     >
       <lux-tab luxTitle="Tab A">
         <ng-template>
-          <lux-label luxId="AAA" #aaa>AAA</lux-label>
+          <lux-label luxId="AAA" #taba>AAA</lux-label>
         </ng-template>
       </lux-tab>
       <lux-tab luxTitle="Tab B">
         <ng-template>
-          <lux-label luxId="BBB" #bbb>BBB</lux-label>
+          <lux-label luxId="BBB" #tabb>BBB</lux-label>
         </ng-template>
       </lux-tab>
     </lux-tabs>
   `
 })
 class LuxTabLazyLoadingComponent {
-  @ViewChild('aaa') labelAaa: LuxLabelComponent;
-  @ViewChild('bbb') labelBbb: LuxLabelComponent;
+  @ViewChild('taba') labelAaa: LuxLabelComponent;
+  @ViewChild('tabb') labelBbb: LuxLabelComponent;
 
   currentTabIndex = 0;
   animationActive = false;

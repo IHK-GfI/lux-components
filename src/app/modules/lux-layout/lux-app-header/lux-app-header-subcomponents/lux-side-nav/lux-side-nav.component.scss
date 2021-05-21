@@ -1,12 +1,9 @@
 $offset-size: 40px;
 $offset: 8px;
-$sideNavZIndex: 10000;
+$sideNavZIndex: 11000;
 
 .lux-side-nav {
   position: fixed;
-  top: 65px;
-  left: -200%;
-  bottom: 0;
 
   .lux-side-nav-header {
     padding: $offset;
@@ -80,10 +77,6 @@ $sideNavZIndex: 10000;
 
 .lux-side-nav-overlay {
   position: fixed;
-  top: 65px;
-  left: 0;
-  bottom: 0;
-  right: 0;
   opacity: 0;
 }
 

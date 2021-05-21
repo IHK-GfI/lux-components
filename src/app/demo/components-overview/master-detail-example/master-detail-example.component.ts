@@ -9,7 +9,10 @@ import { delay, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-master-detail-example',
-  templateUrl: './master-detail-example.component.html'
+  templateUrl: './master-detail-example.component.html',
+  providers: [
+    MasterDetailExampleDataService,
+  ]
 })
 export class MasterDetailExampleComponent implements OnInit, OnDestroy {
   options = [

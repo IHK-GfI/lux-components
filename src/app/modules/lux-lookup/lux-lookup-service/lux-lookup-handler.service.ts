@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxLookupHandlerService {
   private lookupElements: Map<string, Subject<any>> = new Map();
 

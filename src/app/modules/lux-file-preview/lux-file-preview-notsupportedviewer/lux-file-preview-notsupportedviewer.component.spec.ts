@@ -4,7 +4,6 @@ import { PortalModule } from '@angular/cdk/portal';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LUX_FILE_PREVIEW_DATA } from '../lux-file-preview-config';
 import { LuxFilePreviewRef } from '../lux-file-preview-ref';
 import { LuxFilePreviewComponent } from '../lux-file-preview.component';
@@ -31,7 +30,6 @@ describe('LuxFilePreviewNotSupportedViewerComponent', () => {
       imports: [OverlayModule, PortalModule],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        LuxMediaQueryObserverService,
         LuxFilePreviewService,
         { provide: LuxFilePreviewRef, useClass: MockLuxFilePreviewRef },
         { provide: LUX_FILE_PREVIEW_DATA, useValue: previewData }

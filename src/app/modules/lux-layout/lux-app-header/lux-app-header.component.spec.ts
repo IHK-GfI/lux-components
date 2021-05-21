@@ -178,10 +178,7 @@ describe('LuxAppHeaderComponent', () => {
     it('Sollte das lux-side-nav ausklappen', fakeAsync(() => {
       // Vorbedingungen prüfen
       const sideNavEl = fixture.debugElement.query(By.css('.lux-side-nav')).nativeElement;
-      // Die 20 Pixel stammen aus der Methode "LuxSideNavComponent.calculateWidthHeight".
-      // Es handelt sich um ein Sicherheitsaufchlag.
-      // SideNav-Position - SideNav-Breite + Sicherheitsaufschlag darf nicht mehr als 2 Pixel abweichen.
-      expect(+sideNavEl.style.left.replace('px', '') + sideNavEl.offsetWidth + 20).toBeLessThan(2);
+      expect(sideNavEl.style.opacity).toEqual('0');
       expect(fixture.debugElement.query(By.css('.lux-side-nav-overlay'))).toBeNull();
 
       // Änderungen durchführen
@@ -189,7 +186,7 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(sideNavEl.style.left).toEqual('0px');
+      expect(sideNavEl.style.opacity).toEqual('1');
       expect(fixture.debugElement.query(By.css('.lux-side-nav-overlay')).nativeElement.style.display).toEqual('');
 
       discardPeriodicTasks();
@@ -331,7 +328,7 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       const sideNavEl = fixture.debugElement.query(By.css('.lux-side-nav')).nativeElement;
-      expect(sideNavEl.style.left).toEqual('0px');
+      expect(sideNavEl.style.opacity).toEqual('1');
       expect(fixture.debugElement.query(By.css('.lux-side-nav-overlay')).nativeElement.style.display).toEqual('');
 
       // Änderungen durchführen
@@ -339,7 +336,7 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       // Nachbedingungen prüfen
-      expect(sideNavEl.style.left).toEqual('0px');
+      expect(sideNavEl.style.opacity).toEqual('1');
       expect(fixture.debugElement.query(By.css('.lux-side-nav-overlay')).nativeElement.style.display).toEqual('');
 
       // Änderungen durchführen
@@ -349,10 +346,7 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      // Die 20 Pixel stammen aus der Methode "LuxSideNavComponent.calculateWidthHeight".
-      // Es handelt sich um ein Sicherheitsaufchlag.
-      // SideNav-Position - SideNav-Breite + Sicherheitsaufschlag darf nicht mehr als 2 Pixel abweichen.
-      expect(+sideNavEl.style.left.replace('px', '') + sideNavEl.offsetWidth + 20).toBeLessThan(2);
+      expect(sideNavEl.style.opacity).toEqual('0');
       expect(fixture.debugElement.query(By.css('.lux-side-nav-overlay'))).toBeNull();
 
       discardPeriodicTasks();

@@ -64,7 +64,6 @@ import { TimestampExampleComponent } from './timestamp-example/timestamp-example
 import { MasterDetailExampleComponent } from './master-detail-example/master-detail-example.component';
 import { TabsExampleComponent } from './tabs-example/tabs-example.component';
 import { StepperExampleComponent } from './stepper-example/stepper-example.component';
-import { MasterDetailExampleDataService } from './master-detail-example/master-detail-example-data.service';
 import { DetailExampleComponent } from './master-detail-example/detail-example/detail-example.component';
 import { TextExampleComponent } from './master-detail-example/text-example/text-example.component';
 import { TabsExampleContentComponent } from './tabs-example/tabs-example-content/tabs-example-content.component';
@@ -184,11 +183,7 @@ import { MockLuxLookupService } from './lookup-examples/mock-lookup-service';
     FilterExampleComponent
   ],
   providers: [
-    HttpClient,
-    LuxLookupHandlerService,
-    MasterDetailExampleDataService,
-    LuxDialogService,
-    { provide: LuxLookupService, useClass: MockLuxLookupService }
+    HttpClient
   ],
   entryComponents: [DialogComponentExampleComponent]
 })

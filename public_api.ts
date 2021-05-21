@@ -311,6 +311,7 @@ export * from './src/app/modules/lux-util/lux-media-query-observer.service';
 export * from './src/app/modules/lux-util/testing/lux-test-helper';
 export * from './src/app/modules/lux-util/testing/lux-test-overlay-helper';
 export * from './src/app/modules/lux-util/lux-paginator-intl';
+export * from './src/app/modules/lux-util/lux-app.service';
 
 /**
  * LUX-Html
@@ -334,6 +335,6 @@ export * from './src/app/modules/lux-markdown/lux-markdown/lux-markdown.componen
  * LUX-Theme
  */
 // Services
-export * from './src/app/modules/lux-theme/lux-theme-service.service';
+export * from './src/app/modules/lux-theme/lux-theme.service';
 // Classes
 export * from './src/app/modules/lux-theme/lux-theme';

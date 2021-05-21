@@ -68,18 +68,3 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
  * Need to import at least one locale-data with intl.
  */
 // import 'intl/locale-data/jsonp/en';
-
-/**
- * Der folgende Code ist für die Karmatests im IE11 nötig,
- * sonst schlagen einige Testfälle fehlt.
- */
-if (!Element.prototype.matches) {
-  Element.prototype.matches =
-    function(s) {
-      const matches = (this.document || this.ownerDocument).querySelectorAll(s);
-      let i         = matches.length;
-      while (--i >= 0 && matches.item(i) !== this) {
-      }
-      return i > -1;
-    };
-}

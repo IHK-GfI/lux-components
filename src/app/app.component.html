@@ -9,6 +9,7 @@
     luxAriaTitleIconLabel="Titelicon  / Zur Hauptseie"
     luxAriaTitleImageLabel="Titelbild  / Zur Hauptseie"
     luxAriaTitleLinkLabel="LUX Components / Zur Hauptseie"
+    *ngIf="this.luxAppHeader !== 'none'"
     (luxClicked)="router.navigate(['/']);"
   >
     <lux-side-nav luxDashboardLink="https://github.com/IHK-GfI/lux-components/wiki" [luxOpenLinkBlank]="true">
@@ -128,7 +129,7 @@
       >
       </lux-app-header-action-nav-item>
     </lux-app-header-action-nav>
-    <lux-app-header-right-nav>
+    <lux-app-header-right-nav *ngIf="luxMode === 'stand-alone'">
       <lux-menu-item luxLabel="Abmelden" luxIconName="fa-power-off" luxTagId="abmelden-menu-item"></lux-menu-item>
       <lux-menu-item luxLabel="Theme (blue)" luxIconName="fa-paint-brush" luxTagId="theme-blue-menu-item" (luxClicked)="onChangeTheme('blue')"></lux-menu-item>
       <lux-menu-item luxLabel="Theme (orange)" luxIconName="fa-paint-brush" luxTagId="theme-orange-menu-item" (luxClicked)="onChangeTheme('orange')"></lux-menu-item>
@@ -136,5 +137,5 @@
     </lux-app-header-right-nav>
   </lux-app-header>
   <lux-app-content luxAriaRoleMainLabel=""></lux-app-content>
-  <lux-app-footer luxVersion="10.5.0"></lux-app-footer>
+  <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="10.5.0"></lux-app-footer>
 </div>
