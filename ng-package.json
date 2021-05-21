@@ -10,6 +10,6 @@
   },
   "assets": [
     "./src/locale/**",
-    "./build/plugin/**"
+    "./ie11-lazy-modules-plugin.js"
   ]
 }

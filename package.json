@@ -17,7 +17,7 @@
     "start-ie": "ng serve --configuration es5 --port 4210 --single-bundle",
     "start-ie_en": "ng serve --configuration es5en --port 4211 --single-bundle",
     "build": "ng build --source-map",
-    "build-aot": "ng build --prod --localize --single-bundle --plugin ~build/plugin/ie11-lazy-modules-plugin.js",
+    "build-aot": "ng build --prod --localize --single-bundle --plugin ~ie11-lazy-modules-plugin.js",
     "test": "ng test",
     "test_no_sm": "ng test --no-sourceMap",
     "test_single_run": "ng test --watch=false --browsers=ChromeHeadless",
