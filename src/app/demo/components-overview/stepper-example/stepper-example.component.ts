@@ -133,6 +133,14 @@ export class StepperExampleComponent implements OnDestroy {
     this.updateFooterButtonStates();
   }
 
+  stepClicked($event) {
+    this.log(this.showOutputEvents, `luxStepClicked`, $event);
+  }
+
+  checkValidation($event) {
+    this.log(this.showOutputEvents, `luxCheckValidation`, $event);
+  }
+
   /**
    * Aktualisiert den "disabled"-Zustand der aktuellen Footer-Buttons passend zum aktuellen Step.
    */

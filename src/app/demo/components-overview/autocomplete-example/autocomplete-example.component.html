@@ -26,6 +26,7 @@
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxControlValidators]="controlValidators"
+        [luxPanelWidth]="luxPanelWidth"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
@@ -59,6 +60,7 @@
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxControlBinding]="controlBinding"
+        [luxPanelWidth]="luxPanelWidth"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
@@ -230,7 +232,15 @@
       luxType="number"
     >
     </lux-input>
-    <div fxLayout="column" class="lux-highlight-section">
+    <lux-input
+      class="example-highlight-config-option"
+      luxName="autocomplete_luxPanelWidth"
+      luxLabel="luxPanelWidth"
+      luxHint="Über diese Property kann die Optionpanelbreite angepasst werden"
+      [(luxValue)]="luxPanelWidth"
+    >
+    </lux-input>
+      <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxName="autocomplete_luxErrorMessageNotAnOption"
         luxLabel="luxErrorMessageNotAnOption"

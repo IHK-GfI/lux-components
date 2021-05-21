@@ -8,7 +8,8 @@
     'lux-linear-stepper': luxStepperConfig.luxLinear
   }"
   (selectionChange)="luxStepChanged.emit($event)"
-  (click)="luxCheckValidation.emit()"
+  (click)="onStepClicked($event)"
+  (keydown.enter)="onStepClicked($event)"
   #stepper
 >
   <ng-container *ngFor="let luxStep of luxStepperConfig.luxSteps; let i = index">

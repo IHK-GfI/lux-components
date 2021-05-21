@@ -66,6 +66,7 @@ export class AutocompleteExampleComponent {
   usePickValueFn = false;
   pickValueFn = examplePickValueFn;
   useFilterFn = false;
+  luxPanelWidth = null;
 
   // endregion
 

@@ -1,7 +1,7 @@
 <lux-dialog-structure>
   <lux-dialog-title i18n="@@luxc.file-preview.filter-load-dialog.title">Filter</lux-dialog-title>
   <lux-dialog-content fxLayout="column" class="filter-content">
-    <lux-card *ngFor="let filter of filterArr; let index">
+    <lux-card *ngFor="let filter of filterArr; let i = index">
       <lux-card-content>
         {{ filter.name }}
       </lux-card-content>
@@ -18,7 +18,7 @@
           i18n-luxLabel="@@luxc.file-preview.filter-load-dialog.delete.lbl"
           [luxRaised]="false"
           luxColor="warn"
-          (luxClicked)="onDelete(index)"
+          (luxClicked)="onDelete(i)"
         ></lux-button>
       </lux-card-actions>
     </lux-card>

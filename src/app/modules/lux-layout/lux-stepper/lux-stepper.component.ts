@@ -8,7 +8,8 @@ import {
   ContentChildren,
   ElementRef,
   EventEmitter,
-  Input, OnDestroy,
+  Input,
+  OnDestroy,
   Output,
   QueryList,
   ViewContainerRef
@@ -46,6 +47,8 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   @Output() luxFinishButtonClicked: EventEmitter<any> = new EventEmitter();
   @Output() luxStepChanged: EventEmitter<StepperSelectionEvent> = new EventEmitter<StepperSelectionEvent>();
   @Output() luxCurrentStepNumberChange: EventEmitter<number> = new EventEmitter<number>();
+  @Output() luxCheckValidation: EventEmitter<number> = new EventEmitter<number>();
+  @Output() luxStepClicked: EventEmitter<number> = new EventEmitter<number>();
 
   matStepper: MatHorizontalStepper | MatVerticalStepper;
   matStepLabels: ViewContainerRef[];
@@ -131,7 +134,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   /**
@@ -180,6 +183,14 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
     if (stepControl) {
       LuxUtil.showValidationErrors(stepControl);
     }
+  }
+
+  onStepClicked(event: number) {
+    this.luxStepClicked.emit(event);
+
+    this.checkValidation();
+    // Das Event könnte interessant sein, wenn die Property "luxCompleted" verwendet wird und kein Formular.
+    this.luxCheckValidation.emit(event);
   }
 
   /**

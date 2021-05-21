@@ -19,7 +19,9 @@
       [luxVerticalStepper]="verticalStepper"
       (luxFinishButtonClicked)="finishClicked($event)"
       (luxCurrentStepNumberChange)="stepNumberChanged($event)"
+      (luxCheckValidation)="checkValidation($event)"
       (luxStepChanged)="stepChanged($event)"
+      (luxStepClicked)="stepClicked($event)"
     >
       <!-- Mehrere Steps mit ihren Input-/Output-Properties -->
       <lux-step

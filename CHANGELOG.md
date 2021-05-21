@@ -3,14 +3,30 @@
 - **lux-badge-notification**: Optik verbessert. [Issue 43](https://github.com/IHK-GfI/lux-components/issues/43)
 - **lux-button**: Doppelklick unterbinden [Issue 52](https://github.com/IHK-GfI/lux-components/issues/52)
 
+# Version 10.8.1
+## Bug Fixes
+- **lux-filter**: LUX-Filter soll keine doppelten Namen mehr akzeptieren [Issue 83](https://github.com/IHK-GfI/lux-components/issues/83)
+- **lux-filter**: LUX-Filterdialog löscht den falschen Filter [Issue 81](https://github.com/IHK-GfI/lux-components/issues/81)
+
+# Version 10.8.0
+## New
+- **lux-table**: Reload bei einer Table mit serverseitigen Paging möglich [Issue 79](https://github.com/IHK-GfI/lux-components/issues/79)
+
+# Version 10.7.0
+## New
+- **allgemein**: Sicherheitsupdates eingespielt.
+- **lux-autocomplete**: Optionpanelbreite kann über "luxPanelWidth" angepasst werden [Issue 77](https://github.com/IHK-GfI/lux-components/issues/77)
+
 # Version 10.6.0
 ## New
 - **allgemein**: Dependabot-Konfiguration hinzufügen [Issue 53](https://github.com/IHK-GfI/lux-components/issues/53)
 - **lux‐file‐input**: Anpassbares Verhalten bei Validierung im lux‐file‐input gewünscht [Issue 50](https://github.com/IHK-GfI/lux-components/issues/50)
 - **lux-card**: Überschriften-Tags (h1,h2,...) sollen individuell vergeben werden können [Issue 49](https://github.com/IHK-GfI/lux-components/issues/49)
+- **lux-stepper**: Neue Output-Events "luxCheckValidation" und "luxStepClicked" einführen [Issue 57](https://github.com/IHK-GfI/lux-components/issues/57)
 
 ## Bug Fixes
 - **allgemein**: Sicherheitsupdate - Dependabot CVE-2020-26870 [Issue 54](https://github.com/IHK-GfI/lux-components/issues/54)
+- **lux-master-detail**: Master-Detail-Header wächst nicht korrekt mit [Issue 59](https://github.com/IHK-GfI/lux-components/issues/59)
 
 # Version 10.5.0
 ## New
