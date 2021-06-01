@@ -343,16 +343,13 @@ describe('LuxRadioComponent', () => {
     }));
 
     it('Sollte Werte anhand der Compare-Funktion vergleichen', fakeAsync(() => {
-      const errorSpy = spyOn(console, 'error');
-
       // Vorbedingungen prüfen
       testComponent.compareFn = (o1, o2) => {
         return o1.value === o2.value;
       };
       fixture.detectChanges();
 
-      expect(errorSpy).toHaveBeenCalledTimes(0); // Vorbedingung 1
-      expect(radioComponent.luxSelected).toBeFalsy('Vorbedingung 2');
+      expect(radioComponent.luxSelected).toBeFalsy('Vorbedingung 1');
 
       // Änderungen durchführen
       const copy = JSON.parse(JSON.stringify(testComponent.options[2]));
@@ -360,17 +357,8 @@ describe('LuxRadioComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(errorSpy).toHaveBeenCalledTimes(0); // Nachbedingung 1
-      expect(radioComponent.luxSelected).toBe(copy, 'Nachbedingung 2');
+      expect(radioComponent.luxSelected).toBe(copy, 'Nachbedingung 1');
 
-      // Änderungen durchführen
-      const copy2 = JSON.parse(JSON.stringify(testComponent.options[0]));
-      testComponent.selected = copy2;
-      testComponent.selected.value = 'Z';
-      LuxTestHelper.wait(fixture);
-
-      // Nachbedingungen prüfen
-      expect(errorSpy).toHaveBeenCalledTimes(1); // Nachbedingung 3
       flush();
     }));
   });

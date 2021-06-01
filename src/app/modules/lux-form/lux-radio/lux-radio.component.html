@@ -21,7 +21,7 @@
     [id]="uid"
   >
     <mat-radio-button
-      [value]="luxPickValue ? luxPickValue(option) : option"
+      [value]="luxPickValue ? _luxOptionsPickValue[i] : option"
       [disableRipple]="true"
       fxFlex="0 0 auto"
       [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
@@ -30,7 +30,7 @@
       luxAriaRequiredSelector=".mat-radio-input"
       [luxAriaInvalid]="formControl.invalid"
       luxAriaInvalidSelector=".mat-radio-input"
-      *ngFor="let option of luxOptions"
+      *ngFor="let option of luxOptions; let i = index"
     >
       <ng-container
         *ngTemplateOutlet="

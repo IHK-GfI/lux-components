@@ -1,3 +1,7 @@
+# Version 10.8.2
+## Bug Fixes
+- **lux-select**: "luxPickValue"-Funktion wird zu häufig aufgerufen [Issue 86](https://github.com/IHK-GfI/lux-components/issues/86)
+
 # Version 10.8.1
 ## Bug Fixes
 - **lux-filter**: LUX-Filter soll keine doppelten Namen mehr akzeptieren [Issue 83](https://github.com/IHK-GfI/lux-components/issues/83)

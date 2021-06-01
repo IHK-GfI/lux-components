@@ -10,13 +10,13 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
  */
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
-  private _luxOptions: any[] = [];
+  _luxOptions: any[] = [];
+  _luxOptionsPickValue: any[] = [];
+  _luxPickValue: (selected) => {};
 
   @Output() luxSelectedChange: EventEmitter<any> = new EventEmitter();
-
   @Input() luxOptionLabelProp: string = '';
   @Input() luxTagId: string;
-  @Input() luxPickValue: (selected) => {};
   @Input() luxCompareWith = (o1, o2) => o1 === o2;
 
   get luxSelected(): any {
@@ -27,12 +27,30 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
     this.setValue(selected);
   }
 
+  get luxPickValue(): (selected) => {} {
+    return this._luxPickValue;
+  }
+
+  @Input() set luxPickValue(pickValueFn: (selected) => {}) {
+    this._luxPickValue = pickValueFn;
+    this._luxOptionsPickValue = [];
+
+    if (this._luxPickValue && this.luxOptions) {
+      this._luxOptions.forEach(option => this._luxOptionsPickValue.push(this.luxPickValue(option)));
+    }
+  }
+
   get luxOptions(): any[] {
     return this._luxOptions;
   }
 
   @Input() set luxOptions(options: any[]) {
     this._luxOptions = options;
+    this._luxOptionsPickValue = [];
+
+    if (this._luxOptions && this.luxPickValue) {
+      this._luxOptions.forEach(option => this._luxOptionsPickValue.push(this.luxPickValue(option)));
+    }
   }
 
   protected constructor(
@@ -73,68 +91,9 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
         if (this.luxSelected !== selected) {
           this.luxSelected = selected;
         }
-        this.checkSelectedInOptions(selected);
         this.luxSelectedChange.emit(selected);
       }
     }
-  }
-
-  /**
-   * Prüft ob der übergebene Wert in den luxOptions ist.
-   * Kann auch ein Array als "selected" enthalten.
-   * Wenn der Wert nicht gefunden werden konnte wird eine Fehlermeldung in der console ausgegeben.
-   * @param selected
-   */
-  private checkSelectedInOptions(selected: any) {
-    const selectedAsArray = Array.isArray(selected) ? selected : [selected];
-    if (selected && this.luxOptions && !this.allSelectedInOptions(selectedAsArray)) {
-      // Selected nicht in Options = einen Fehler in die Console loggen
-      this.logSelectedNotFound(selected);
-    }
-  }
-
-  /**
-   * Prüft ob die übergebenen Select-Objekte in den luxOptions enthalten sind.
-   * @param selectedAsArray
-   */
-  private allSelectedInOptions(selectedAsArray: any[]): boolean {
-    // Prüfen ob ein Unterarray von Elementen existiert.
-    const optionsHasSubarray =
-      this.luxOptions.length === 0
-        ? false
-        : // Dieses kann direkt in den Options stehen oder als value-Property
-          Array.isArray(this.luxOptions[0]) ||
-          (!!this.luxPickValue && Array.isArray(this.luxPickValue(this.luxOptions[0])));
-
-    const targetLength = optionsHasSubarray ? 1 : selectedAsArray.length;
-    const length = this.luxOptions.filter((optionEntry: any) => {
-      if (optionsHasSubarray) {
-        return this.luxPickValue
-          ? this.luxPickValue(optionEntry) === selectedAsArray
-          : this.compareObjects(optionEntry, selectedAsArray);
-      } else {
-        return selectedAsArray.find((selectedEntry: any | any[]) => {
-          return this.luxPickValue
-            ? this.luxPickValue(optionEntry) === selectedEntry
-            : this.compareObjects(optionEntry, selectedEntry);
-        });
-      }
-    }).length;
-
-    return length === targetLength;
-  }
-
-  /**
-   * Loggt die Fehlermeldung in die Console, wenn das neue Value-Objekt nicht in den Options gefunden
-   * werden konnte.
-   * @param selected
-   */
-  private logSelectedNotFound(selected: any) {
-    this.logger.error(
-      `\n### Das Objekt ${JSON.stringify(selected)} ist nicht Teil der möglichen Optionen.\n` +
-        `\n### Komponente: "${this}"\n` +
-        `Prüfen Sie evtl. die luxCompareWith-Funktion, um Properties anstelle ganzer Objekte zu vergleichen.`
-    );
   }
 
   /**

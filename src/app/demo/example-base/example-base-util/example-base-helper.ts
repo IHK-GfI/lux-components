@@ -54,6 +54,7 @@ export const exampleErrorCallback = (value, errors) => {
  * @param option
  */
 export const examplePickValueFn = (option: any) => {
+  console.log(`examplePickValueFn`);
   return option.value;
 };
 
