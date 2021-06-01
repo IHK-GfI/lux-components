@@ -47,3 +47,4 @@ documentation/
 debug.log
 build/
 lux-components.iml
+*.iml
