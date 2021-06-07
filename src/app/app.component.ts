@@ -1,7 +1,6 @@
-import { Component, ElementRef, Input, OnDestroy, OnInit } from "@angular/core";
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Component, ElementRef, Input, OnInit } from "@angular/core";
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { ComponentsOverviewNavigationService } from './demo/components-overview/components-overview-navigation.service';
 import { LuxAppFooterButtonService } from './modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxAppFooterLinkInfo } from './modules/lux-layout/lux-app-footer/lux-app-footer-link-info';
@@ -15,16 +14,13 @@ import { LuxAppService } from './modules/lux-util/lux-app.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
 
   @Input() luxAppHeader: 'normal' | 'minimal' | 'none' = 'normal';
   @Input() luxAppFooter: 'normal' | 'minimal' | 'none' = 'normal';
   @Input() luxMode: 'stand-alone' | 'portal' = 'stand-alone';
 
   window = window;
-  dynamicCSSUrl: SafeResourceUrl;
-
-  themeSubscription: Subscription;
 
   constructor(
     public router: Router,
@@ -37,10 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private elementRef: ElementRef,
     private appService: LuxAppService
   ) {
-    this.themeService.getThemeAsObservable().subscribe((theme) => {
-      this.dynamicCSSUrl = theme.styleUrl;
-    });
-
+    themeService.loadTheme();
     router.initialNavigation();
 
     this.appService.appEl = elementRef.nativeElement;
@@ -53,12 +46,8 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
-    this.themeSubscription.unsubscribe();
-  }
-
   onChangeTheme(themeName: string) {
-    this.themeService.selectTheme(themeName);
+    this.themeService.setTheme(themeName);
   }
 
   goToHome() {
