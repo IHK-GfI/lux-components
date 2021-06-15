@@ -18,7 +18,7 @@
         // Zusätzliche Regeln (siehe Abschnitt "extends")
         "id-blacklist": "error",
         "id-match": "error",
-        "no-shadow": "error",
+        "no-shadow": "off",
         "max-classes-per-file": ["error", 1],
         "brace-style": ["error", "1tbs"],
         "jsdoc/newline-after-description": "error",
