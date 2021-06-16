@@ -23,15 +23,19 @@ exports.default = {
     console.info(`Replace "${newVersion}" through "${oldVersion}" in the "${oldVersion}" build...`);
     let hasError = false;
     result.forEach((entry) => {
-      if (entry.hasChanged === true && entry.numMatches === 1 && entry.numReplacements === 1) {
-        console.info(`"${entry.file}"... Success!`);
-      } else {
-        hasError = true;
-        console.error(`"${entry.file}"... Error!`);
+      if (entry.hasChanged === true) {
+        if (entry.numMatches === 1 && entry.numReplacements === 1) {
+          console.info(`"${entry.file}"... ok!`);
+        } else {
+          hasError = true;
+          console.error(`"${entry.file}"... Error!`);
+        }
       }
     });
 
-    if (hasError) {
+    if (!hasError) {
+      console.info(`Success!`);
+    } else {
       console.error('Maybe the lazy modules does not work in older browsers!');
     }
     console.info('*********************************************************************************************');
