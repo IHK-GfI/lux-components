@@ -19,6 +19,7 @@ import { LuxPipesModule } from '../lux-pipes/lux-pipes.module';
 import { LuxAccordionComponent } from './lux-accordion/lux-accordion.component';
 import { LuxAppFooterComponent } from './lux-app-footer/lux-app-footer.component';
 import { LuxAppHeaderRightNavComponent } from './lux-app-header/lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
+import { LuxLangSelectComponent } from './lux-app-header/lux-app-header-subcomponents/lux-lang-select/lux-lang-select.component';
 import { LuxAppHeaderComponent } from './lux-app-header/lux-app-header.component';
 import { LuxCardActionsComponent } from './lux-card/lux-card-subcomponents/lux-card-actions.component';
 import { LuxCardContentExpandedComponent } from './lux-card/lux-card-subcomponents/lux-card-content-expanded.component';
@@ -137,7 +138,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     LuxLayoutRowItemDirective,
     LuxLayoutComponent,
     LuxLayoutCardRowComponent,
-    LuxLayoutFormRowComponent
+    LuxLayoutFormRowComponent,
+    LuxLangSelectComponent
   ],
   exports: [
     LuxAppHeaderComponent,
@@ -187,7 +189,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     LuxLayoutRowItemDirective,
     LuxLayoutComponent,
     LuxLayoutCardRowComponent,
-    LuxLayoutFormRowComponent
+    LuxLayoutFormRowComponent,
+    LuxLangSelectComponent
   ],
   providers: [],
   entryComponents: [LuxIconComponent, LuxDetailWrapperComponent]

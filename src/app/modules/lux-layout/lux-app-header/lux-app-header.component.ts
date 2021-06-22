@@ -25,6 +25,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./lux-app-header.component.scss']
 })
 export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() luxLocaleSupported = ['de'];
+  @Input() luxLocaleBaseHref  = '';
   @Input() luxUserName: string;
   @Input() luxAppTitle: string;
   @Input() luxAppTitleShort: string;

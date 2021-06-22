@@ -236,6 +236,7 @@ export * from './src/app/modules/lux-layout/lux-master-detail/lux-master-detail-
 export * from './src/app/modules/lux-layout/lux-layout/lux-layout.component';
 export * from './src/app/modules/lux-layout/lux-layout/lux-layout-card-row/lux-layout-card-row.component';
 export * from './src/app/modules/lux-layout/lux-layout/lux-layout-form-row/lux-layout-form-row.component';
+export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-lang-select/lux-lang-select.component';
 // Directives
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-item.directive';
 // Services
@@ -253,6 +254,7 @@ export { expansionAnim } from './src/app/modules/lux-layout/lux-card/lux-card-mo
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-item-config';
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-gap-config';
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-margin-config';
+export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-lang-select/lux-locale';
 
 /**
  * LUX-Lookup

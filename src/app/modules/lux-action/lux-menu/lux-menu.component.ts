@@ -30,7 +30,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   static readonly FONT_PX = 14;
   static readonly ICON_PX = 22;
 
-  // Alle verfgb. MenuItems als Array
+  // Alle verfügbaren MenuItems als Array
   private _menuItems: LuxMenuItemComponent[] = [];
 
   // Das Canvas wird genutzt um die Breite potentieller MenuItem-Texte zu berechnen
@@ -49,10 +49,12 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
 
   @Output() luxMenuClosed: EventEmitter<void> = new EventEmitter<void>();
 
+  @Input() luxMenuLabel = '';
   @Input() luxMenuIconName = 'menu';
   @Input() luxClassName: string;
   @Input() luxTagId: string;
   @Input() luxToggleDisabled = false;
+  @Input() luxAriaMenuTriggerLabel = $localize `:@@luxc.menu.trigger.btn:Menü`;
 
   _luxDisplayExtended = false;
 
@@ -121,7 +123,9 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.menuItemChangeSubscription.unsubscribe();
+    if (this.menuItemChangeSubscription) {
+      this.menuItemChangeSubscription.unsubscribe();
+    }
 
     this.menuItemSubscriptions.forEach(menuItemSubscription => {
       menuItemSubscription.unsubscribe();

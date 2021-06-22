@@ -5,7 +5,8 @@
     "umdModuleIds": {
       "ng2-pdf-viewer": "ng2PdfViewer",
       "dompurify": "DOMPurify",
-      "marked/lib/marked": "marked"
+      "marked/lib/marked": "marked",
+      "ngx-cookie-service": "ngxCookieService"
     }
   },
   "assets": [

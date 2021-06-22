@@ -8,7 +8,10 @@
       "sourceRoot": "src",
       "projectType": "application",
       "i18n": {
-        "sourceLocale": "de",
+        "sourceLocale": {
+          "code": "de",
+          "baseHref": "/"
+        },
         "locales": {
           "en": "src/locale/messages.en.xlf"
         }
@@ -52,7 +55,8 @@
               }
             ],
             "allowedCommonJsDependencies": [
-              "hammerjs"
+              "hammerjs",
+              "ng2-pdf-viewer"
             ]
           },
           "configurations": {
