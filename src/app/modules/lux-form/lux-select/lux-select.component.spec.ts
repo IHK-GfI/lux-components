@@ -126,31 +126,19 @@ describe('LuxSelectComponent', () => {
       // Vorbedingungen prüfen
       const luxSelect = fixture.debugElement.query(By.directive(LuxSelectComponent)).componentInstance;
       const mockData = [...testComponent.allHobbies];
-      const notFoundSpy = spyOn(luxSelect, 'logSelectedNotFound').and.callThrough();
-      const checkSelectedSpy = spyOn(luxSelect, 'checkSelectedInOptions').and.callThrough();
 
       testComponent.allHobbies = [];
       testComponent.formGroup.get('hobbies').setValue([mockData[0]]);
       LuxTestHelper.wait(fixture);
 
-      expect(notFoundSpy).toHaveBeenCalledTimes(0); // Vorbedingung 1
-      expect(checkSelectedSpy).toHaveBeenCalledTimes(0); // Vorbedingung 2
+      expect(luxSelect.luxSelected).toEqual([mockData[0]]);
 
       // Änderungen durchführen
       testComponent.allHobbies = mockData;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(notFoundSpy).toHaveBeenCalledTimes(0); // Nachbedingung 1
-      expect(checkSelectedSpy).toHaveBeenCalledTimes(0); // Nachbedingung 2
-
-      // Änderungen durchführen
-      testComponent.formGroup.get('hobbies').setValue([{ test: true }]);
-      LuxTestHelper.wait(fixture);
-
-      // Nachbedingungen prüfen
-      expect(notFoundSpy).toHaveBeenCalledTimes(1); // Nachbedingung 3
-      expect(checkSelectedSpy).toHaveBeenCalledTimes(1); // Nachbedingung 4
+      expect(luxSelect.luxSelected).toEqual([mockData[0]]);
     }));
 
     it('Sollte required sein', fakeAsync(() => {
@@ -758,7 +746,6 @@ describe('LuxSelectComponent', () => {
 
     it('Sollte falsche Werte auslassen und einen Fehler loggen', fakeAsync(() => {
       // Vorbedingungen prüfen
-      const spy = spyOn(console, 'error');
       expect(testComponent.selectedOption).toEqual([]);
 
       // Änderungen durchführen
@@ -768,7 +755,6 @@ describe('LuxSelectComponent', () => {
       // Nachbedingungen prüfen
       const selectText = fixture.debugElement.query(By.css('.mat-select-value-text > span'));
       expect(selectText.nativeElement.textContent).toEqual(testComponent.options[1].label);
-      expect(spy).toHaveBeenCalledTimes(1);
       discardPeriodicTasks();
     }));
   });

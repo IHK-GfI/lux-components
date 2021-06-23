@@ -56,7 +56,10 @@ export const exampleErrorCallback = (value, errors) => {
  *
  * @param option
  */
-export const examplePickValueFn = (option: any) => option.value;
+export const examplePickValueFn = (option: any) => {
+  console.log(`examplePickValueFn`);
+  return option.value;
+};
 
 /**
  * Beispielhafte compareWith-Funktion die von einigen Beispielen genutzt wird.
