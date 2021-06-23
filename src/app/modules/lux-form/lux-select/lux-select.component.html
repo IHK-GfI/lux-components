@@ -17,7 +17,7 @@
     (focusin)="luxFocusIn.emit($event)"
     (focusout)="luxFocusOut.emit($event)"
   >
-    <mat-option *ngFor="let item of luxOptions" [value]="luxPickValue ? luxPickValue(item) : item" class="option-height">
+    <mat-option *ngFor="let item of luxOptions; let i = index" [value]="luxPickValue ? _luxOptionsPickValue[i] : item" class="option-height">
       <ng-container
         *ngTemplateOutlet="
           tempRef && !luxOptionLabelProp ? tempRef : noTemplateRefTemplate;
