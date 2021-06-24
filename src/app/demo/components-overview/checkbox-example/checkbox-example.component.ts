@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
 
@@ -6,10 +6,10 @@ import { exampleErrorCallback } from '../../example-base/example-base-util/examp
   selector: 'lux-checkbox-example',
   templateUrl: './checkbox-example.component.html'
 })
-export class CheckboxExampleComponent implements OnInit {
+export class CheckboxExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  useErrorMessage: boolean = true;
+  useErrorMessage = true;
   form: FormGroup;
 
   // endregion
@@ -17,14 +17,14 @@ export class CheckboxExampleComponent implements OnInit {
   // region Properties der Component
 
   value;
-  controlBinding: string = 'checkboxExample';
-  label: string = 'Label';
-  hint: string = 'Hint';
-  hintShowOnlyOnFocus: boolean = false;
+  controlBinding = 'checkboxExample';
+  label = 'Label';
+  hint = 'Hint';
+  hintShowOnlyOnFocus = false;
   disabled = false;
   readonly: boolean;
   required: boolean;
-  errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
+  errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
 
   // endregion
@@ -34,8 +34,6 @@ export class CheckboxExampleComponent implements OnInit {
       checkboxExample: []
     });
   }
-
-  ngOnInit() {}
 
   changeRequired($event: boolean) {
     this.required = $event;

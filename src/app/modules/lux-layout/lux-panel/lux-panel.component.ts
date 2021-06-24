@@ -1,14 +1,14 @@
 import {
   Component,
   EventEmitter,
-  forwardRef,
+  forwardRef, Host,
   HostBinding,
   Inject,
   Input,
   OnDestroy,
   OnInit,
   Optional,
-  Output,
+  Output, SkipSelf,
   ViewChild
 } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
@@ -22,7 +22,7 @@ import { Subscription } from 'rxjs';
 })
 export class LuxPanelComponent implements OnInit, OnDestroy {
   @Input() luxDisabled: boolean;
-  @Input() luxExpanded: boolean = false;
+  @Input() luxExpanded = false;
   @Input() luxHideToggle: boolean;
 
   @Input() luxCollapsedHeaderHeight: string;
@@ -34,12 +34,12 @@ export class LuxPanelComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatExpansionPanel, { static: true }) matExpansionPanel: MatExpansionPanel;
 
-  @HostBinding('class.lux-pr-1') pr1: boolean = true;
-  @HostBinding('class.lux-pl-1') pl1: boolean = true;
+  @HostBinding('class.lux-pr-1') pr1 = true;
+  @HostBinding('class.lux-pl-1') pl1 = true;
 
   subscription: Subscription;
 
-  constructor(@Optional() @Inject(forwardRef(() => LuxAccordionComponent)) private parent: LuxAccordionComponent) {}
+  constructor(@Optional() @Host() @SkipSelf() private parent: LuxAccordionComponent) {}
 
   ngOnInit() {
     if (this.parent) {

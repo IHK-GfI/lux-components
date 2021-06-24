@@ -17,11 +17,11 @@ export class LuxProgressComponent implements OnInit {
   private _luxType: PROGRESS_TYPES;
   private _luxColor: LuxProgressColor;
 
-  isIE: boolean = false;
-  animDurationCSS: string = '';
-  typeCSS: string = '';
+  isIE = false;
+  animDurationCSS = '';
+  typeCSS = '';
 
-  @Input() luxValue: number = 0;
+  @Input() luxValue = 0;
   // Nur für ProgressBar
   @Input() luxSize: 'small' | 'medium' | 'large' = 'medium';
   @Input() luxTagId: string;

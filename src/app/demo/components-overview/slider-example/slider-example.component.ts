@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { SLIDER_COLORS } from '../../../modules/lux-form/lux-slider/lux-slider.component';
 import {
@@ -12,12 +12,12 @@ import {
   templateUrl: './slider-example.component.html',
   styles: ['']
 })
-export class SliderExampleComponent implements OnInit, AfterViewInit {
+export class SliderExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  useErrorMessage: boolean = true;
+  useErrorMessage = true;
   useDisplayFn = false;
-  showOutputEvents: boolean = false;
+  showOutputEvents = false;
 
   colorOptions = [
     { label: 'Primary', value: 'primary' },
@@ -33,33 +33,33 @@ export class SliderExampleComponent implements OnInit, AfterViewInit {
 
   percent: number;
   percentReactive: number;
-  tickIntervalNumber: number = 0;
-  tickIntervalAuto: boolean = true;
+  tickIntervalNumber = 0;
+  tickIntervalAuto = true;
 
   // endregion
 
   // region Properties der Component
 
-  value: number = 0;
+  value = 0;
   displayWithFnString: string = this.displayFn + '';
 
   color: SLIDER_COLORS = 'primary';
-  vertical: boolean = false;
-  invert: boolean = false;
-  showThumbLabel: boolean = true;
-  alwaysVisible: boolean = true;
+  vertical = false;
+  invert = false;
+  showThumbLabel = true;
+  alwaysVisible = true;
   tickInterval: any = 'auto';
-  step: number = 1;
-  controlBinding: string = 'sliderExample';
+  step = 1;
+  controlBinding = 'sliderExample';
   disabled = false;
   readonly: boolean;
   required: boolean;
-  label: string = 'Label';
-  hint: string = 'Hint';
-  hintShowOnlyOnFocus: boolean = false;
-  errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
-  max: number = 100;
-  min: number = 0;
+  label = 'Label';
+  hint = 'Hint';
+  hintShowOnlyOnFocus = false;
+  errorMessage = 'Das Feld enthält keinen gültigen Wert';
+  max = 100;
+  min = 0;
   controlValidators: ValidatorFn[] = [];
   errorCallback = exampleErrorCallback;
   errorCallbackString: string = this.errorCallback + '';
@@ -71,10 +71,6 @@ export class SliderExampleComponent implements OnInit, AfterViewInit {
       sliderExample: new FormControl()
     });
   }
-
-  ngOnInit() {}
-
-  ngAfterViewInit() {}
 
   tickIntervalChanged(checked) {
     this.tickIntervalAuto = checked;

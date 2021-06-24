@@ -1,13 +1,3 @@
-@import '../../../../theming/luxcommon';
-
-.lux-highlight {
-  color: $dark-primary-text;
-}
-
-mat-card-subtitle {
-  color: $dark-secondary-text;
-}
-
 .lux-icon {
   width: 24px;
   height: 24px;
@@ -64,10 +54,6 @@ h1, h2, h3, h4, h5, h6 {
   .lux-card-content-expanded {
     width: 100%;
     display: block;
-  }
-
-  .lux-card-content-expanded {
-    background: white;
   }
 
   .lux-card-content-expanded {

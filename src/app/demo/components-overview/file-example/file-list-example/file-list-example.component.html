@@ -64,7 +64,7 @@
           #filelistexamplewithform
         >
         </lux-file-list>
-        <div fxLayout="column" class="example-highlight-config-option">
+        <div fxLayout="column" class="lux-highlight-section">
           <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
             <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
               <span fxFlex="35px">Valid:</span>
@@ -94,21 +94,21 @@
     </lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="showPreview"
       luxLabel="luxShowPreview"
       luxHint="Diese Eigenschaft definiert, ob einzelne Bilder in einer Vorschau angezeigt werden sollen."
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="multiple"
       luxLabel="luxMultiple"
       luxHint="Dieser Flag legt fest ob nur eine oder mehrere Dateien selektiert werden können."
     >
     </lux-toggle>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxHeading"
       luxHint="Gültige Werte sind 1-6"
       [(luxValue)]="heading"

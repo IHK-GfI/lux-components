@@ -56,7 +56,7 @@
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxActiveTab"
       luxHint="Diese Property ermöglicht es, das aktuell aktive Tab zu setzen."
       luxType="number"
@@ -64,7 +64,7 @@
     >
     </lux-input>
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxIconSize"
       luxHint="Die Property setzt die (relative) Icon-Größe für alle Tabs."
       [(luxSelected)]="iconSize"
@@ -72,21 +72,21 @@
     >
     </lux-select>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxTabAnimationActive"
       luxHint="Dieser Flag aktiviert die horizontale Animation des Tab-Contents."
       [(luxChecked)]="animationActive"
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxDisplayDivider"
       luxHint="Dieser Flag schaltet die Trennlinie zwischen Tab-Header und Tab-Content ein."
       [(luxChecked)]="displayDivider"
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxLazyLoading"
       luxHint="Wenn dieser Flag den Wert 'true' besitzt, werden die Inhalte der einzelnen Tabs erst zum Aktivierungszeitpunkt erzeugt."
       [(luxChecked)]="lazyLoading"
@@ -94,7 +94,7 @@
     </lux-toggle>
     <lux-input
       luxName="button_background_Color"
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxValue)]="backgroundColor"
       luxLabel="Hintergrundfarbe"
     >
@@ -107,28 +107,28 @@
         <lux-panel-header-title> Tab #{{ i + 1 }} </lux-panel-header-title>
         <lux-panel-content fxLayout="column">
           <lux-input
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxTitle"
             luxHint="Diese Property ermöglicht es, den Titel des Tabs festzulegen."
             [(luxValue)]="tab.title"
           >
           </lux-input>
           <lux-input
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxIconName"
             luxHint="Diese Property legt das Icon für den Tab fest."
             [(luxValue)]="tab.iconName"
           >
           </lux-input>
           <lux-toggle
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxDisabled"
             luxHint="Dieses Flag ermöglicht es, den Tab zu deaktivieren."
             [(luxChecked)]="tab.disabled"
           >
           </lux-toggle>
           <lux-toggle
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxShowNotification"
             [(luxChecked)]="tab.showNotification"
           >
@@ -138,7 +138,7 @@
               ausgegrauter Kreis.
             </lux-form-hint>
           </lux-toggle>
-          <div class="example-highlight-config-option" fxLayout="column">
+          <div class="lux-highlight-section" fxLayout="column">
             <lux-toggle
               luxLabel="luxCounter aktiv"
               (luxCheckedChange)="$event ? (tab.counter = 0) : (tab.counter = undefined)"

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {
   exampleErrorCallback,
@@ -10,12 +10,12 @@ import {
   selector: 'app-datepicker-example',
   templateUrl: './datepicker-example.component.html'
 })
-export class DatepickerExampleComponent implements OnInit {
+export class DatepickerExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  useCustomFilter: boolean = false;
-  useErrorMessage: boolean = true;
-  showOutputEvents: boolean = false;
+  useCustomFilter = false;
+  useErrorMessage = true;
+  showOutputEvents = false;
   form: FormGroup;
   log = logResult;
 
@@ -29,24 +29,24 @@ export class DatepickerExampleComponent implements OnInit {
   // region Properties der Component
 
   value: any = null;
-  controlBinding: string = 'datepickerExample';
+  controlBinding = 'datepickerExample';
   disabled = false;
   readonly: boolean;
   required: boolean;
-  label: string = 'Label';
-  hint: string = 'Hint';
-  hintShowOnlyOnFocus: boolean = false;
-  placeholder: string = 'Placeholder';
+  label = 'Label';
+  hint = 'Hint';
+  hintShowOnlyOnFocus = false;
+  placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
-  errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
-  showToggle: boolean = true;
-  opened: boolean = false;
+  errorMessage = 'Das Feld enthält keinen gültigen Wert';
+  showToggle = true;
+  opened = false;
   startDate: string;
-  locale: string = 'de-DE';
+  locale = 'de-DE';
   minDate: string;
   maxDate: string;
-  startView: string = 'month';
-  touchUi: boolean = false;
+  startView = 'month';
+  touchUi = false;
 
   // endregion
 
@@ -59,8 +59,6 @@ export class DatepickerExampleComponent implements OnInit {
       datepickerExample: []
     });
   }
-
-  ngOnInit() {}
 
   changeRequired($event: boolean) {
     this.required = $event;

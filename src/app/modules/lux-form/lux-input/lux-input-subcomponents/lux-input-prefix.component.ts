@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'lux-input-prefix',
-  template: `
-    <ng-content></ng-content>
-  `,
+  template: ` <ng-content></ng-content> `,
   styles: []
 })
-export class LuxInputPrefixComponent implements OnInit {
+export class LuxInputPrefixComponent {
   constructor() {}
-
-  ngOnInit() {}
 }

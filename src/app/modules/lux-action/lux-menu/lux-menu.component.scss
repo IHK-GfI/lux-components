@@ -1,4 +1,4 @@
-@import '../../../../theming/luxcommon';
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
 
 /* Host-Component anpassen */
 :host {
@@ -58,7 +58,6 @@
     padding-right: 8px !important;
     margin-left: $outline-width !important;
     margin-right: $outline-width !important;
-    color: map-get($lux-palette_darkblue, 500);
 
     .mat-button-wrapper {
       display: inherit;

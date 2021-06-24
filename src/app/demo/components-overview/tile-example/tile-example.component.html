@@ -26,13 +26,13 @@
     </lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxLabel"
       luxHint="Die Property bestimmt das Label, welches in dem unteren Kasten des Tiles dargestellt wird."
       [(luxValue)]="label"
     >
     </lux-input>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle luxLabel="luxIcon anzeigen" [(luxChecked)]="showIcon">
         <lux-form-hint>
           Ein LuxIconComponent in dem Tile anzeigen.<br />
@@ -43,7 +43,7 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxShowNotification"
       [(luxChecked)]="showNotification"
     >
@@ -53,7 +53,7 @@
         ausgegrauter Kreis.
       </lux-form-hint>
     </lux-toggle>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-input luxLabel="luxCounter" [(luxValue)]="counter" luxType="number">
         <lux-form-hint>
           Die Property definiert den aktuellen Zähler für die Tile.<br />

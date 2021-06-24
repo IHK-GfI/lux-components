@@ -1,5 +1,3 @@
-@import '../../../../theming/luxcommon';
-
 .lux-align-baseline {
   padding-bottom: 8px !important;
 
@@ -10,24 +8,8 @@
   }
 }
 
-.lux-button {
-  height: 45px;
-  margin-left: $outline-width;
-  margin-right: $outline-width;
-}
-
 .lux-button-label {
   line-height: 1;
-}
-
-button.mat-button.mat-button-disabled, button.mat-raised-button.mat-button-disabled, button.mat-fab.mat-button-disabled {
-  color: $dark-disabled-text;
-}
-
-.lux-icon-button {
-  height: 45px;
-  padding-top: 4px;
-  padding-bottom: 2px;
 }
 
 .lux-button-rounded {

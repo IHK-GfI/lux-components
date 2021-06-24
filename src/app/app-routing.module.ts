@@ -15,15 +15,15 @@ const routes: Routes = [
   {
     path: 'components-overview',
     loadChildren: () =>
-      import('app/demo/components-overview/components-overview.module').then(m => m.ComponentsOverviewModule)
+      import('./demo/components-overview/components-overview.module').then(m => m.ComponentsOverviewModule)
   },
-  { path: 'form', loadChildren: () => import('app/demo/form/form-example.module').then(m => m.FormExampleModule) },
+  { path: 'form', loadChildren: () => import('./demo/form/form-example.module').then(m => m.FormExampleModule) },
   { path: 'configuration', component: ConfigurationComponent },
   { path: 'baseline', component: BaselineComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

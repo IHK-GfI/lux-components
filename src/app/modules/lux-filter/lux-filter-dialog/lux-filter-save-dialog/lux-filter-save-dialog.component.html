@@ -1,9 +1,10 @@
 <lux-dialog-structure>
-  <lux-dialog-title>Filter speichern</lux-dialog-title>
+  <lux-dialog-title i18n="@@luxc.file-preview.filter-save-dialog.title">Filter speichern</lux-dialog-title>
   <lux-dialog-content>
     <div fxLayout="column" fxLayoutGap="8px" class="lux-filter-save-dialog-form-container">
       <lux-input
         luxLabel="Name"
+        i18n-luxLabel="@@luxc.file-preview.filter-save-dialog.name.lbl"
         [(luxValue)]="filterName"
         [luxRequired]="true"
         [luxControlValidators]="validateForbiddenName()"
@@ -16,6 +17,7 @@
   <lux-dialog-actions fxLayout="row" fxLayoutGap="12px grid">
     <lux-button
       luxLabel="Speichern"
+      i18n-luxLabel="@@luxc.file-preview.filter-save-dialog.save.lbl"
       luxColor="primary"
       [luxDisabled]="!filterName"
       [luxRaised]="true"
@@ -23,6 +25,7 @@
     ></lux-button>
     <lux-button
       luxLabel="Abbrechen"
+      i18n-luxLabel="@@luxc.file-preview.filter-save-dialog.cancel.lbl"
       luxColor="default"
       [luxRaised]="true"
       (luxClicked)="luxDialogRef.closeDialog(false)"

@@ -10,8 +10,8 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   styleUrls: ['./lux-textarea.component.scss']
 })
 export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnInit {
-  @Input() luxMaxRows: number = -1;
-  @Input() luxMinRows: number = 0;
+  @Input() luxMaxRows = -1;
+  @Input() luxMinRows = 0;
   @Input() luxMaxLength: number;
 
   constructor(

@@ -17,20 +17,22 @@ export class LuxComponentsConfigService {
     generateLuxTagIds: false,
     lookupServiceUrl: '/lookup/',
     labelConfiguration: {
-      allUppercase: true,
-      notAppliedTo: ['lux-link', 'lux-side-nav-item', 'lux-menu-item']
+      allUppercase: false,
+      notAppliedTo: []
     },
     cardExpansionAnimationActive: true,
-    displayBindingDebugHint: true,
     rippleConfiguration: {
       exitDuration: 500,
       enterDuration: 500
+    },
+    buttonConfiguration: {
+      throttleTimeMs: 600
     }
   };
 
   // Subject mit dem aktuellen Konfig-Wert, welcher ausgelesen werden kann
   private config$: BehaviorSubject<LuxComponentsConfigParameters> = new BehaviorSubject<LuxComponentsConfigParameters>(
-    null
+    LuxComponentsConfigService.DEFAULT_CONFIG
   );
 
   /**
@@ -50,11 +52,6 @@ export class LuxComponentsConfigService {
   constructor(@Inject(LuxConfigTokenService) @Optional() config: LuxComponentsConfigParameters) {
     // Wenn keine Konfiguration geladen werden konnte, Standard-Konfig benutzen und eine Info ausgeben.
     if (!config) {
-      console.info(
-        'Es wurde keine individuelle Konfiguration für die LuxComponents definiert.\n',
-        'Benutze Standard-Konfiguration:',
-        LuxComponentsConfigService.DEFAULT_CONFIG
-      );
       this.config$.next(LuxComponentsConfigService.DEFAULT_CONFIG);
     } else {
       this.config$.next(this.mergeDefaultData(config));
@@ -64,20 +61,26 @@ export class LuxComponentsConfigService {
   /**
    * Gibt zurück, ob die Labels als Uppercase gekennzeichnet sind und ob
    * die übergebenen Selektoren in den Ausnahmen geführt sind.
+   *
    * @param selector
    */
   isLabelUppercaseForSelector(selector: string): boolean {
     const config = this.config$.value;
-    return config.labelConfiguration.allUppercase && config.labelConfiguration.notAppliedTo.indexOf(selector) === -1;
+    return (
+      !!config.labelConfiguration &&
+      config.labelConfiguration.allUppercase &&
+      config.labelConfiguration.notAppliedTo.indexOf(selector) === -1
+    );
   }
 
   /**
    * Ersetzt die aktuelle Konfiguration mit der übergebenen (wenn gültiger Wert).
+   *
    * @param config
    */
   updateConfiguration(config: LuxComponentsConfigParameters) {
     if (!config) {
-      console.warn('Die übergebene Konfiguration ist undefined/null und wird nicht übernommen.');
+      console.warn('The new configuration is undefined or null and was ignored.');
     } else {
       this.config$.next(this.mergeDefaultData(config));
     }
@@ -87,18 +90,10 @@ export class LuxComponentsConfigService {
    * Kombiniert die übergebene Konfiguration mit der Standard-Konfig.
    *
    * Übernimmt die Werte aus der Standard-Konfig, die nicht im übergebenen gesetzt wurden.
+   *
    * @param config
    */
   private mergeDefaultData(config: LuxComponentsConfigParameters): LuxComponentsConfigParameters {
-    const mergedConfig = {};
-    Object.keys(config).forEach((key: string) => {
-      mergedConfig[key] = config[key];
-    });
-    Object.keys(LuxComponentsConfigService.DEFAULT_CONFIG).forEach((key: string) => {
-      if (mergedConfig[key] === undefined || mergedConfig[key] === null) {
-        mergedConfig[key] = LuxComponentsConfigService.DEFAULT_CONFIG[key];
-      }
-    });
-    return mergedConfig as LuxComponentsConfigParameters;
+    return { ...LuxComponentsConfigService.DEFAULT_CONFIG, ...config };
   }
 }

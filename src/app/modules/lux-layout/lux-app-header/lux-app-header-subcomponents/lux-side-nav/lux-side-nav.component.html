@@ -5,6 +5,7 @@
     (@expandHide.done)="updateSideNavAfterAnimationIsFinished()"
     [luxAriaRole]="luxAriaRoleNavigationLabel ? 'navigation' : undefined"
     [luxAriaLabel]="luxAriaRoleNavigationLabel"
+    [ngStyle]="{'top': top, 'left': left, 'bottom': bottom}"
     #sideNav
   >
     <div class="lux-side-nav-header" #sideNavHeader>
@@ -39,6 +40,7 @@
   </div>
   <div
     class="lux-side-nav-overlay lux-side-nav-overlay-z-index"
+    [ngStyle]="{'top': top, 'left': left, 'bottom': bottom, 'right': right}"
     *ngIf="sideNavExpanded"
     [@expandHideOverlay]="sideNavExpanded ? 'expanded' : 'void'"
     (click)="close()"

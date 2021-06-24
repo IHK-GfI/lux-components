@@ -186,9 +186,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     this.currentModuleNames.forEach((moduleName: string) => {
       this.sortedComponentEntries.set(
         moduleName,
-        this.components.filter((component: any) => {
-          return component.moduleName === moduleName;
-        })
+        this.components.filter((component: any) => component.moduleName === moduleName)
       );
     });
   }

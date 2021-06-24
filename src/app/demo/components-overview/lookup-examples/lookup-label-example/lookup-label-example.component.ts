@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LuxLookupHandlerService } from '../../../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 
 @Component({
@@ -6,15 +6,13 @@ import { LuxLookupHandlerService } from '../../../../modules/lux-lookup/lux-look
   templateUrl: './lookup-label-example.component.html',
   styleUrls: ['./lookup-label-example.component.scss']
 })
-export class LookupLabelExampleComponent implements OnInit {
-  knr: number = 101;
-  tableKey: number = 4;
-  tableNo: number = 1002;
-  bezeichnung: string = 'kurz';
+export class LookupLabelExampleComponent {
+  knr = 101;
+  tableKey = 4;
+  tableNo = 1002;
+  bezeichnung = 'kurz';
 
   constructor(private lookupHandler: LuxLookupHandlerService) {}
-
-  ngOnInit() {}
 
   start() {
     this.lookupHandler.reloadData('label-example');

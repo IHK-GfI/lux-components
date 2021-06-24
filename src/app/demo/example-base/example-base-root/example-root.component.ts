@@ -11,14 +11,17 @@ import { Subscription } from 'rxjs';
 })
 export class ExampleRootComponent implements OnInit, AfterViewInit, OnDestroy {
   private routerSubscription: Subscription;
-  private blockScrolling: boolean = false;
+  private blockScrolling = false;
+  private subscription: Subscription;
+
+  desktopView: boolean;
 
   @ViewChild('exampleListElement') exampleListElement: ElementRef;
 
   constructor(
     private router: Router,
     public navigationService: ComponentsOverviewNavigationService,
-    public mediaQueryService: LuxMediaQueryObserverService
+    private mediaQueryService: LuxMediaQueryObserverService
   ) {}
 
   ngOnInit() {
@@ -31,6 +34,10 @@ export class ExampleRootComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
     });
+
+    this.subscription = this.mediaQueryService.getMediaQueryChangedAsObservable().subscribe(query => {
+      this.desktopView = !this.mediaQueryService.isXS() && !this.mediaQueryService.isSM();
+    });
   }
 
   ngAfterViewInit() {
@@ -42,10 +49,13 @@ export class ExampleRootComponent implements OnInit, AfterViewInit, OnDestroy {
       this.routerSubscription.unsubscribe();
       this.routerSubscription = null;
     }
+
+    this.subscription.unsubscribe();
   }
 
   /**
    * Führt die Click-Funktion der Bsp-Component aus.
+   *
    * @param component
    */
   onComponentClick(component: any) {

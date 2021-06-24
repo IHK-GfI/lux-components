@@ -38,8 +38,8 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     hiddenHeader: false,
     iconName: 'fas fa-cloud-upload-alt',
     iconNameHeader: 'fas fa-cloud-upload-alt',
-    label: 'Hochladen',
-    labelHeader: 'Neue Dateien hochladen'
+    label: $localize `:@@luxc.file-list.upload.lbl:Hochladen`,
+    labelHeader: $localize `:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
   };
   protected _luxDeleteActionConfig: ILuxFileListActionConfig = {
     disabled: false,
@@ -48,8 +48,8 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     hiddenHeader: false,
     iconName: 'fas fa-trash',
     iconNameHeader: 'fas fa-trash',
-    label: 'Löschen',
-    labelHeader: 'Alle Dateien entfernen'
+    label: $localize `:@@luxc.file-list.delete.lbl:Löschen`,
+    labelHeader: $localize `:@@luxc.file-list.delete_title.lbl:Alle Dateien entfernen`,
   };
 
   fileIcons: string[] = [];
@@ -65,8 +65,8 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
   @ViewChild('fileuploadSingle', { read: ElementRef, static: true }) fileuploadSingleInput: ElementRef;
   @ViewChild(LuxCardComponent, { read: ElementRef, static: true }) fileCard: ElementRef;
 
-  @Input() luxShowPreview: boolean = true;
-  @Input() luxMultiple: boolean = true;
+  @Input() luxShowPreview = true;
+  @Input() luxMultiple = true;
   @Input() luxHeading = 2;
 
   get luxUploadActionConfig(): ILuxFileListActionConfig {
@@ -132,6 +132,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
 
   /**
    * Entfernt eine Datei aus den selektierten Dateien.
+   *
    * @param index
    */
   removeFile(index: number) {
@@ -163,6 +164,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
 
   /**
    * Fügt weitere Dateien zu den bereits vorhandenen hinzu bzw. ersetzt diese.
+   *
    * @param files
    */
   selectFiles(files: FileList | File[]) {
@@ -241,13 +243,13 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
    */
   private setImgSrcs() {
     this.fileEntries.forEach((item: ElementRef, index: number) => {
-      const imgElement: HTMLImageElement = (<HTMLElement>item.nativeElement).querySelector('img');
+      const imgElement: HTMLImageElement = (item.nativeElement as HTMLElement).querySelector('img');
       if (imgElement && this.luxSelectedFiles) {
         const targetFileContent = Array.isArray(this.luxSelectedFiles)
           ? this.luxSelectedFiles[index].content
           : this.luxSelectedFiles.content;
         if (targetFileContent instanceof Blob) {
-          this.readFile(<File>targetFileContent).then((content: string) => {
+          this.readFile(targetFileContent as File).then((content: string) => {
             imgElement.src = content;
           });
         } else {
@@ -336,7 +338,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
 
   protected errorMessageModifier(value: any, errors: any): string | undefined {
     if (errors.required) {
-      return 'Es muss mindestens eine Datei ausgewählt werden';
+      return $localize `:@@luxc.file-list.error_message.required:Es muss eine Datei ausgewählt werden`;
     }
     return super.errorMessageModifier(value, errors);
   }

@@ -15,16 +15,16 @@ export class LuxIconComponent {
 
   private _luxIconSize: string;
   private _luxIconName: string;
-  private _luxPadding: string = '4px';
-  private _backgroundCSSClass: string = '';
-  private _fontCSSClass: string = '';
+  private _luxPadding = '4px';
+  private _backgroundCSSClass = '';
+  private _fontCSSClass = '';
 
-  currentIconSize: number = 1;
+  currentIconSize = 1;
   isIconFA: boolean;
 
-  @HostBinding('style.margin') styleMargin: string = '0';
+  @HostBinding('style.margin') styleMargin = '0';
 
-  @Input() luxRounded: boolean = false;
+  @Input() luxRounded = false;
 
   get luxMargin(): string {
     return this.styleMargin;
@@ -95,7 +95,8 @@ export class LuxIconComponent {
    * der entweder als Font-Awesome Icon oder als Material-Icon
    * interpretiert werden kann.
    *
-   * @param iconName, z.B. fas fa-cogs
+   * @param iconName z.B. fas fa-cogs
+   * @param iconName
    * @returns string
    */
   private modifiyIconName(iconName: string): string {

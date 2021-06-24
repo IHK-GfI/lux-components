@@ -1,5 +1,14 @@
+/* eslint-disable max-classes-per-file */
 import { Component } from '@angular/core';
-import { ComponentFixture, fakeAsync, flush, flushMicrotasks, inject, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  discardPeriodicTasks,
+  fakeAsync,
+  flush,
+  flushMicrotasks,
+  inject,
+  TestBed
+} from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxMasterDetailMobileHelperService } from '../lux-master-detail/lux-master-detail-mobile-helper.service';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -7,6 +16,7 @@ import { By } from '@angular/platform-browser';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
 import { Router } from '@angular/router';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
 describe('LuxAppHeaderComponent', () => {
   beforeEach(async () => {
@@ -168,10 +178,7 @@ describe('LuxAppHeaderComponent', () => {
     it('Sollte das lux-side-nav ausklappen', fakeAsync(() => {
       // Vorbedingungen prüfen
       const sideNavEl = fixture.debugElement.query(By.css('.lux-side-nav')).nativeElement;
-      // Die 20 Pixel stammen aus der Methode "LuxSideNavComponent.calculateWidthHeight".
-      // Es handelt sich um ein Sicherheitsaufchlag.
-      // SideNav-Position - SideNav-Breite + Sicherheitsaufschlag darf nicht mehr als 2 Pixel abweichen.
-      expect(+sideNavEl.style.left.replace('px', '') + sideNavEl.offsetWidth + 20).toBeLessThan(2);
+      expect(sideNavEl.style.opacity).toEqual('0');
       expect(fixture.debugElement.query(By.css('.lux-side-nav-overlay'))).toBeNull();
 
       // Änderungen durchführen
@@ -179,8 +186,10 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(sideNavEl.style.left).toEqual('0px');
+      expect(sideNavEl.style.opacity).toEqual('1');
       expect(fixture.debugElement.query(By.css('.lux-side-nav-overlay')).nativeElement.style.display).toEqual('');
+
+      discardPeriodicTasks();
     }));
 
     it('Sollte den lux-side-nav-header und lux-side-nav-footer darstellen', fakeAsync(() => {
@@ -307,6 +316,8 @@ describe('LuxAppHeaderComponent', () => {
       // Nachbedingungen prüfen
       expect(spy).toHaveBeenCalledTimes(2);
       expect(spy).toHaveBeenCalledWith(testComponent.sideNavItems[1]);
+
+      discardPeriodicTasks();
     }));
 
     it('Sollte das lux-side-nav beim Klick auf ein lux-side-nav-item schließen', fakeAsync(() => {
@@ -314,18 +325,18 @@ describe('LuxAppHeaderComponent', () => {
       testComponent.createSideNavItems(1);
       LuxTestHelper.wait(fixture);
       fixture.debugElement.query(By.css('.lux-side-nav-trigger button')).nativeElement.click();
-      LuxTestHelper.wait(fixture);
+      LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       const sideNavEl = fixture.debugElement.query(By.css('.lux-side-nav')).nativeElement;
-      expect(sideNavEl.style.left).toEqual('0px');
+      expect(sideNavEl.style.opacity).toEqual('1');
       expect(fixture.debugElement.query(By.css('.lux-side-nav-overlay')).nativeElement.style.display).toEqual('');
 
       // Änderungen durchführen
       fixture.debugElement.query(By.css('.lux-side-nav-item button')).nativeElement.click();
-      LuxTestHelper.wait(fixture);
+      LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       // Nachbedingungen prüfen
-      expect(sideNavEl.style.left).toEqual('0px');
+      expect(sideNavEl.style.opacity).toEqual('1');
       expect(fixture.debugElement.query(By.css('.lux-side-nav-overlay')).nativeElement.style.display).toEqual('');
 
       // Änderungen durchführen
@@ -335,11 +346,10 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      // Die 20 Pixel stammen aus der Methode "LuxSideNavComponent.calculateWidthHeight".
-      // Es handelt sich um ein Sicherheitsaufchlag.
-      // SideNav-Position - SideNav-Breite + Sicherheitsaufschlag darf nicht mehr als 2 Pixel abweichen.
-      expect(+sideNavEl.style.left.replace('px', '') + sideNavEl.offsetWidth + 20).toBeLessThan(2);
+      expect(sideNavEl.style.opacity).toEqual('0');
       expect(fixture.debugElement.query(By.css('.lux-side-nav-overlay'))).toBeNull();
+
+      discardPeriodicTasks();
     }));
 
     it('Sollte bei einem lux-master-detail in Mobilansicht zuerst den Master-Toggle anzeigen', fakeAsync(() => {
@@ -407,6 +417,8 @@ describe('LuxAppHeaderComponent', () => {
       // Nachbedingungen prüfen
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenCalledWith('https:///www.ihk-gfi.de', '_self');
+
+      discardPeriodicTasks();
     }));
 
     it('Sollte den Dashboard-Link in einem neuen Tab öffnen', fakeAsync(() => {
@@ -425,7 +437,7 @@ describe('LuxAppHeaderComponent', () => {
       ).toEqual('Dashboard');
 
       fixture.debugElement.query(By.css('.lux-side-nav-content lux-link button')).nativeElement.click();
-      LuxTestHelper.wait(fixture);
+      LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenCalledWith('https:///www.ihk-gfi.de', '_self');
@@ -440,6 +452,8 @@ describe('LuxAppHeaderComponent', () => {
 
       expect(spy).toHaveBeenCalledTimes(2);
       expect(spy).toHaveBeenCalledWith('https:///www.ihk-gfi.de', '_blank');
+
+      discardPeriodicTasks();
     }));
 
     it('Sollte den Dashboard-Link innerhalb der Applikation routen', fakeAsync(() => {
@@ -462,6 +476,8 @@ describe('LuxAppHeaderComponent', () => {
 
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenCalledWith(['/mock-route']);
+
+      discardPeriodicTasks();
     }));
   });
 
@@ -596,8 +612,8 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect((<any>overlayHelper.selectAllFromOverlay('.lux-menu-item')[0]).disabled).toEqual(true);
-      expect((<any>overlayHelper.selectAllFromOverlay('.lux-menu-item')[1]).disabled).toEqual(true);
+      expect((overlayHelper.selectAllFromOverlay('.lux-menu-item')[0] as any).disabled).toEqual(true);
+      expect((overlayHelper.selectAllFromOverlay('.lux-menu-item')[1] as any).disabled).toEqual(true);
 
       flush();
     }));
@@ -794,7 +810,7 @@ class MockMasterDetailHelperService {
   masterHasValue: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   hasValueObservable: Observable<boolean> = this.masterHasValue.asObservable();
 
-  isMobileView: boolean = false;
+  isMobileView = false;
 
   openMaster() {
     this.masterIsOpen.next(true);

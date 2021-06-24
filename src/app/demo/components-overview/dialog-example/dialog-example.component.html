@@ -9,7 +9,7 @@
     <lux-divider [luxInset]="true"></lux-divider>
     <h3>Allgemeine Properties</h3>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="dialog_width"
       luxLabel="width"
       luxHint="Diese Property legt die Breite des Dialogs fest."
@@ -17,7 +17,7 @@
     >
     </lux-input>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="dialog_height"
       luxLabel="height"
       luxHint="Diese Property legt die Höhe des Dialogs fest."
@@ -25,7 +25,7 @@
     >
     </lux-input>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="dialog_panelClass"
       luxLabel="panelClass"
       [luxValue]="dialogConfig.panelClass"
@@ -40,7 +40,7 @@
       </lux-form-hint>
     </lux-input>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="disableClose"
       luxHint="Wenn aktiv, kann der Dialog nur über die Actions geschlossen werden."
       [(luxChecked)]="dialogConfig.disableClose"
@@ -50,14 +50,14 @@
   <example-base-advanced-options>
     <h3>Properties für Preset-Dialoge</h3>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="dialog_title"
       luxLabel="title"
       luxHint="Diese Property enthält den Titel des Dialogs."
       [(luxValue)]="dialogConfig.title"
     >
     </lux-input>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle
         luxLabel="Content-Template nutzen"
         luxHint="Wenn aktiv, wird dem Dialog ein 'TemplateRef' für den Inhalt übergeben."
@@ -80,7 +80,7 @@
         <lux-panel-header-title>
           confirmAction - Optionen
         </lux-panel-header-title>
-        <lux-panel-content class="example-highlight-config-option" fxLayout="column">
+        <lux-panel-content class="lux-highlight-section" fxLayout="column">
           <ng-container *ngTemplateOutlet="dialogActionTemplate; context: { $implicit: dialogConfig.confirmAction }">
           </ng-container>
         </lux-panel-content>
@@ -89,14 +89,14 @@
         <lux-panel-header-title>
           declineAction - Optionen
         </lux-panel-header-title>
-        <lux-panel-content class="example-highlight-config-option" fxLayout="column">
+        <lux-panel-content class="lux-highlight-section" fxLayout="column">
           <ng-container *ngTemplateOutlet="dialogActionTemplate; context: { $implicit: dialogConfig.declineAction }">
           </ng-container>
         </lux-panel-content>
       </lux-panel>
     </lux-accordion>
     <h3>Beispiel für "data" für eigene Dialoge</h3>
-    <lux-input luxName="dialog_data" class="example-highlight-config-option" luxLabel="data" [(luxValue)]="exampleData">
+    <lux-input luxName="dialog_data" class="lux-highlight-section" luxLabel="data" [(luxValue)]="exampleData">
       <lux-form-hint>
         Dieses Objekt wird einem eigenen Dialog während 'openComponent' mitgegeben und enthält Daten, die für die
         Dialog-Componente wichtig sein könnten.

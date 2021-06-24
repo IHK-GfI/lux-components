@@ -9,9 +9,9 @@ import { LuxInputComponent } from '../../../modules/lux-form/lux-input/lux-input
   styleUrls: ['./storage-example.component.scss']
 })
 export class StorageExampleComponent implements OnInit, OnDestroy, DoCheck {
-  key: string = 'Storage_Example_Key';
-  value: string = '';
-  sensitive: boolean = false;
+  key = 'Storage_Example_Key';
+  value = '';
+  sensitive = false;
 
   value$: Observable<string>;
   valueSubscription: Subscription;

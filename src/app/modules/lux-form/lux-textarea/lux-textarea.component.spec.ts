@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Component, OnInit } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
@@ -7,7 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
 describe('LuxTextareaComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([LuxConsoleService], [LuxMockFormTextareaComponent, LuxMockTextareaComponent]);
   });
@@ -215,9 +215,7 @@ describe('LuxTextareaComponent', () => {
 
       // Nachbedingungen testen
       expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
-      expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
-        'Alle meine Entchen'
-      );
+      expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual('Alle meine Entchen');
       expect(textarea.formControl.errors.required).toBeDefined();
     }));
 
@@ -238,9 +236,7 @@ describe('LuxTextareaComponent', () => {
 
       // Nachbedingungen testen
       expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
-      expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
-        'Alle meine Entchen'
-      );
+      expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual('Alle meine Entchen');
       expect(textarea.formControl.errors.required).toBeDefined();
       expect(spy).toHaveBeenCalledTimes(1);
     }));
@@ -343,7 +339,7 @@ describe('LuxTextareaComponent', () => {
     '[luxMaxRows]="maxRows" [luxMinRows]="minRows" [luxDisabled]="disabled" [luxHint]="hint" ' +
     '[luxErrorMessage]="errorMessage" [luxErrorCallback]="errorCb" (luxValueChange)="valueChanged()"></lux-textarea>'
 })
-class LuxMockTextareaComponent implements OnInit {
+class LuxMockTextareaComponent {
   value: string;
   label: string;
   placeholder: string;
@@ -362,8 +358,6 @@ class LuxMockTextareaComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
-
   valueChanged() {}
 }
 
@@ -374,7 +368,7 @@ class LuxMockTextareaComponent implements OnInit {
     '[luxReadonly]="readonly" [luxRequired]="required" [luxMaxRows]="maxRows" ' +
     '[luxMinRows]="minRows" luxControlBinding="control"></lux-textarea></form>'
 })
-class LuxMockFormTextareaComponent implements OnInit {
+class LuxMockFormTextareaComponent {
   value: string;
   label: string;
   placeholder: string;
@@ -391,6 +385,4 @@ class LuxMockFormTextareaComponent implements OnInit {
       control: []
     });
   }
-
-  ngOnInit() {}
 }

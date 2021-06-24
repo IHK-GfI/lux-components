@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { LuxBackgroundColorsEnum, LuxBadgeColor } from '../../lux-util/lux-colors.enum';
 import { LuxUtil } from '../../lux-util/lux-util';
 
@@ -7,24 +7,24 @@ import { LuxUtil } from '../../lux-util/lux-util';
   templateUrl: './lux-badge.component.html',
   styleUrls: ['./lux-badge.component.scss']
 })
-export class LuxBadgeComponent implements OnInit {
+export class LuxBadgeComponent {
   readonly ICON_SIZE: string = '1x';
   readonly DEFAULT_BADGE_COLOR = LuxBackgroundColorsEnum.gray;
 
-  @Input() luxUppercase: boolean = true;
-  @Input() luxIconName: string = '';
+  @Input() luxUppercase = true;
+  @Input() luxIconName = '';
 
   constructor() {
     this.luxColor = this.DEFAULT_BADGE_COLOR;
   }
 
-  private _backgroundCSSClass: string = '';
+  private _backgroundCSSClass = '';
 
   get backgroundCSSClass() {
     return this._backgroundCSSClass;
   }
 
-  private _fontCSSClass: string = '';
+  private _fontCSSClass = '';
 
   public get fontCSSClass() {
     return this._fontCSSClass;
@@ -40,6 +40,4 @@ export class LuxBadgeComponent implements OnInit {
       this.luxColor = this.DEFAULT_BADGE_COLOR;
     }
   }
-
-  ngOnInit() {}
 }

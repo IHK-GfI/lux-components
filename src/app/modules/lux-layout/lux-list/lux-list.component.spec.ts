@@ -78,7 +78,7 @@ describe('LuxListComponent', () => {
     LuxTestHelper.wait(fixture);
 
     const listItems = fixture.debugElement.queryAll(By.directive(LuxListItemComponent));
-    (<LuxListItemComponent>listItems[0].componentInstance).luxSelected = true;
+    (listItems[0].componentInstance as LuxListItemComponent).luxSelected = true;
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -90,9 +90,9 @@ describe('LuxListComponent', () => {
     ).toEqual('Title 0');
 
     // Änderungen durchführen
-    (<LuxListItemComponent>listItems[0].componentInstance).luxSelected = false;
+    (listItems[0].componentInstance as LuxListItemComponent).luxSelected = false;
     LuxTestHelper.wait(fixture);
-    (<LuxListItemComponent>listItems[1].componentInstance).luxSelected = true;
+    (listItems[1].componentInstance as LuxListItemComponent).luxSelected = true;
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -125,7 +125,7 @@ describe('LuxListComponent', () => {
     expect(focusedSpy).toHaveBeenCalledTimes(1);
     expect(focusedSpy).toHaveBeenCalledWith(0);
     expect(focusedItemSpy).toHaveBeenCalledTimes(1);
-    expect(focusedItemSpy).toHaveBeenCalledWith(<LuxListItemComponent>listItems[0].componentInstance);
+    expect(focusedItemSpy).toHaveBeenCalledWith(listItems[0].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(1);
     expect(
       fixture.debugElement
@@ -143,7 +143,7 @@ describe('LuxListComponent', () => {
     expect(focusedSpy).toHaveBeenCalledTimes(2);
     expect(focusedSpy).toHaveBeenCalledWith(1);
     expect(focusedItemSpy).toHaveBeenCalledTimes(2);
-    expect(focusedItemSpy).toHaveBeenCalledWith(<LuxListItemComponent>listItems[1].componentInstance);
+    expect(focusedItemSpy).toHaveBeenCalledWith(listItems[1].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(1);
     expect(
       fixture.debugElement
@@ -177,7 +177,7 @@ describe('LuxListComponent', () => {
     expect(focusedSpy).toHaveBeenCalledTimes(1);
     expect(focusedSpy).toHaveBeenCalledWith(0);
     expect(focusedItemSpy).toHaveBeenCalledTimes(1);
-    expect(focusedItemSpy).toHaveBeenCalledWith(<LuxListItemComponent>listItems[0].componentInstance);
+    expect(focusedItemSpy).toHaveBeenCalledWith(listItems[0].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(0);
 
     // Änderungen durchführen
@@ -189,7 +189,7 @@ describe('LuxListComponent', () => {
     expect(focusedSpy).toHaveBeenCalledTimes(2);
     expect(focusedSpy).toHaveBeenCalledWith(1);
     expect(focusedItemSpy).toHaveBeenCalledTimes(2);
-    expect(focusedItemSpy).toHaveBeenCalledWith(<LuxListItemComponent>listItems[1].componentInstance);
+    expect(focusedItemSpy).toHaveBeenCalledWith(listItems[1].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(0);
 
     // Änderungen durchführen
@@ -201,7 +201,7 @@ describe('LuxListComponent', () => {
     expect(focusedSpy).toHaveBeenCalledTimes(3);
     expect(focusedSpy).toHaveBeenCalledWith(0);
     expect(focusedItemSpy).toHaveBeenCalledTimes(3);
-    expect(focusedItemSpy).toHaveBeenCalledWith(<LuxListItemComponent>listItems[0].componentInstance);
+    expect(focusedItemSpy).toHaveBeenCalledWith(listItems[0].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(0);
   }));
 
@@ -233,7 +233,7 @@ describe('LuxListComponent', () => {
     expect(focusedSpy).toHaveBeenCalledTimes(1);
     expect(focusedSpy).toHaveBeenCalledWith(0);
     expect(focusedItemSpy).toHaveBeenCalledTimes(1);
-    expect(focusedItemSpy).toHaveBeenCalledWith(<LuxListItemComponent>listItems[0].componentInstance);
+    expect(focusedItemSpy).toHaveBeenCalledWith(listItems[0].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(1);
     expect(
       fixture.debugElement
@@ -253,7 +253,7 @@ describe('LuxListComponent', () => {
     expect(focusedSpy).toHaveBeenCalledTimes(2);
     expect(focusedSpy).toHaveBeenCalledWith(1);
     expect(focusedItemSpy).toHaveBeenCalledTimes(2);
-    expect(focusedItemSpy).toHaveBeenCalledWith(<LuxListItemComponent>listItems[1].componentInstance);
+    expect(focusedItemSpy).toHaveBeenCalledWith(listItems[1].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(1);
     expect(
       fixture.debugElement

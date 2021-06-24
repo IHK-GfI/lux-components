@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+/* eslint-disable no-console */
+import { Injectable, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { LuxComponentsConfigService } from '../lux-components-config/lux-components-config.service';
 import { LuxComponentsConfigParameters } from '../lux-components-config/lux-components-config-parameters.interface';
@@ -8,12 +10,14 @@ export const noop = (): any => undefined;
 @Injectable({
   providedIn: 'root'
 })
-export class LuxConsoleService {
+export class LuxConsoleService implements OnDestroy {
   static config: LuxComponentsConfigParameters = {};
+
+  configSubscription: Subscription;
 
   constructor(componentsConfigService: LuxComponentsConfigService) {
     // Aus der Konfiguration die Info erhalten, ob Logs angezeigt werden sollen
-    componentsConfigService.config.subscribe((newConfig: LuxComponentsConfigParameters) => {
+    this.configSubscription = componentsConfigService.config.subscribe((newConfig: LuxComponentsConfigParameters) => {
       LuxConsoleService.config = newConfig;
     });
   }
@@ -141,5 +145,9 @@ export class LuxConsoleService {
 
   private static checkTime(timeUnit: number) {
     return timeUnit < 10 ? '0' + timeUnit : timeUnit;
+  }
+
+  ngOnDestroy(): void {
+    this.configSubscription.unsubscribe();
   }
 }

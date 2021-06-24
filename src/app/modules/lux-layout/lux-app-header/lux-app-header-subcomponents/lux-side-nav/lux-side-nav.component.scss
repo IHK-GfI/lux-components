@@ -1,23 +1,13 @@
-@import '../../../../../../theming/luxcommon';
-
 $offset-size: 40px;
 $offset: 8px;
-$sideNavZIndex: 10000;
-$colorActive: #335c85;
-$colorDisabled: gray;
+$sideNavZIndex: 11000;
 
 .lux-side-nav {
   position: fixed;
-  top: 65px;
-  left: -200%;
-  bottom: 0;
-  background: white;
-  box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.5);
 
   .lux-side-nav-header {
     padding: $offset;
     position: relative;
-    border-bottom: 1px solid $dark-dividers;
   }
 
   .lux-side-nav-content {
@@ -66,27 +56,6 @@ $colorDisabled: gray;
           box-sizing: border-box;
           margin: 0;
           text-align: center;
-
-          color: $colorActive;
-          &.lux-side-nav-disabled {
-            color: $colorDisabled;
-          }
-        }
-
-        .lux-side-nav-label {
-          color: $colorActive;
-
-          &.lux-side-nav-disabled {
-            color: $colorDisabled;
-          }
-        }
-
-        .lux-side-nav-item-expansion-icon {
-          color: $colorActive;
-
-          &.lux-side-nav-disabled {
-            color: $colorDisabled;
-          }
         }
       }
 
@@ -103,18 +72,12 @@ $colorDisabled: gray;
   .lux-side-nav-footer {
     padding: $offset;
     position: relative;
-    border-top: 1px solid $dark-dividers;
   }
 }
 
 .lux-side-nav-overlay {
   position: fixed;
-  top: 65px;
-  left: 0;
-  bottom: 0;
-  right: 0;
   opacity: 0;
-  background: $dark-focused;
 }
 
 .lux-side-nav-z-index {

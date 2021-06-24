@@ -79,6 +79,20 @@
   <div fxFlex="auto" fxLayoutAlign="end center" class="lux-header-action">
     <ng-container [ngTemplateOutlet]="actionNav.templateRef" *ngIf="actionNav"></ng-container>
   </div>
+  <!-- Lang-Menu (rechtsbündig) -->
+  <div
+    fxLayout="row"
+    fxFlex="0 0 auto"
+    fxLayoutAlign="end center"
+    class="lux-lang-select-menu lux-header-action"
+    *ngIf="luxLocaleSupported && luxLocaleSupported?.length > 1"
+  >
+    <lux-lang-select
+      [luxLocaleSupported]="luxLocaleSupported"
+      [luxLocaleBaseHref]="luxLocaleBaseHref"
+      fxFlex="0 0 auto"
+    ></lux-lang-select>
+  </div>
   <!-- User-Menu (rechtsbündig) -->
   <div
     fxLayout="row"
@@ -119,7 +133,8 @@
           fxLayout="row"
           fxLayoutAlign="end center"
           class="lux-right-nav-trigger"
-          [luxAriaLabel]="'Benutzermenü ' + luxUserName"
+          luxAriaLabel="Benutzermenü {{ luxUserName }}"
+          i18n-luxAriaLabel="@@luxc.app-header.user.menu.trigger"
           aria-haspopup="true"
           #customTrigger
         >

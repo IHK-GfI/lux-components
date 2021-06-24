@@ -17,28 +17,28 @@ import {
 
 @Directive()
 export abstract class FileExampleComponent implements OnInit {
-  showOutputEvents: boolean = true;
+  showOutputEvents = true;
   realBackends: any[] = [];
-  mockBackend: boolean = false;
+  mockBackend = false;
   log = logResult;
   form: FormGroup;
 
   fileComponents: LuxFormFileBase[] = [];
 
-  dndActive: boolean = true;
+  dndActive = true;
   selected: ILuxFileObject = null;
   contentAsBlob = false;
   reportProgress = false;
-  hint: string = 'Datei hierher ziehen oder über den Button auswählen';
-  hintShowOnlyOnFocus: boolean = false;
-  label: string = 'Anhänge';
-  uploadUrl: string = '';
-  controlBinding: string = 'uploadExample';
+  hint = 'Datei hierher ziehen oder über den Button auswählen';
+  hintShowOnlyOnFocus = false;
+  label = 'Anhänge';
+  uploadUrl = '';
+  controlBinding = 'uploadExample';
   disabled = false;
   readonly: boolean;
   required: boolean;
-  maxSize: number = 5;
-  capture: string = '';
+  maxSize = 5;
+  capture = '';
   accept: string;
 
   uploadActionConfig: ILuxFileListActionConfig = {
@@ -72,7 +72,7 @@ export abstract class FileExampleComponent implements OnInit {
       this.filePreviewService.open({
         previewData: {
           fileComponent: this.fileComponents[0],
-          fileObject: fileObject
+          fileObject
         }
       });
     }
@@ -87,7 +87,7 @@ export abstract class FileExampleComponent implements OnInit {
       this.filePreviewService.open({
         previewData: {
           fileComponent: this.fileComponents[1],
-          fileObject: fileObject
+          fileObject
         }
       });
     }
@@ -117,7 +117,7 @@ export abstract class FileExampleComponent implements OnInit {
       .get('assets/png/example.png', { responseType: 'blob' })
       .pipe(take(1),
         map((response: Blob) => {
-          const file = <any>response;
+          const file = response as any;
           file.name = 'example.png';
           file.lastModifiedDate = new Date();
           this.selected = { name: 'example.png', content: file, type: file.type };
@@ -153,11 +153,9 @@ export abstract class FileExampleComponent implements OnInit {
       this.realBackends = [];
       this.fileComponents.forEach((input: LuxFileListComponent) => {
         this.realBackends.push(input['http']);
-        input['http'] = <any>{
-          post: (...args) => {
-            return of('ok').pipe(delay(2000));
-          }
-        };
+        input['http'] = {
+          post: (...args) => of('ok').pipe(delay(2000))
+        } as any;
       });
     } else {
       this.fileComponents.forEach((input: LuxFileListComponent, index: number) => {

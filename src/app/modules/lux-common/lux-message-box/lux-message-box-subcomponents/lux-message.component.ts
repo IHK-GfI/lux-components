@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ILuxMessage } from '../lux-message-box-model/lux-message.interface';
 import { LuxUtil } from '../../../lux-util/lux-util';
 
@@ -6,11 +6,11 @@ import { LuxUtil } from '../../../lux-util/lux-util';
   selector: 'lux-message',
   templateUrl: './lux-message.component.html'
 })
-export class LuxMessageComponent implements OnInit {
+export class LuxMessageComponent {
   private _luxMessage: ILuxMessage;
 
-  backgroundCSSClass: string = 'lux-bg-color-blue';
-  fontCSSClass: string = 'lux-font-color-white';
+  backgroundCSSClass = 'lux-bg-color-blue';
+  fontCSSClass = 'lux-font-color-white';
 
   @Output() luxMessageClosed: EventEmitter<ILuxMessage> = new EventEmitter<ILuxMessage>();
 
@@ -26,8 +26,6 @@ export class LuxMessageComponent implements OnInit {
   }
 
   constructor() {}
-
-  ngOnInit() {}
 
   /**
    * Setzt die Messages auf ein leeres Array um so die MessageBox auszublenden.

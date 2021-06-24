@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LuxStepComponent } from '../lux-step.component';
 import { ILuxStepperConfiguration } from '../../lux-stepper-model/lux-stepper-configuration.interface';
 
@@ -7,7 +7,7 @@ import { ILuxStepperConfiguration } from '../../lux-stepper-model/lux-stepper-co
   templateUrl: './lux-stepper-nav-buttons.component.html',
   styleUrls: ['./lux-stepper-nav-buttons.component.scss']
 })
-export class LuxStepperNavButtonsComponent implements OnInit {
+export class LuxStepperNavButtonsComponent {
   @Output() luxPrevClick: EventEmitter<void> = new EventEmitter();
   @Output() luxNextClick: EventEmitter<void> = new EventEmitter();
   @Output() luxFinClick: EventEmitter<void> = new EventEmitter();
@@ -17,6 +17,4 @@ export class LuxStepperNavButtonsComponent implements OnInit {
   @Input() luxStepperConfig: ILuxStepperConfiguration;
 
   constructor() {}
-
-  ngOnInit() {}
 }

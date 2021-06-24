@@ -42,12 +42,6 @@ export interface LuxComponentsConfigParameters {
   cardExpansionAnimationActive?: boolean;
 
   /**
-   * Flag, welcher festlegt ob bei der Nutzung von Input-/Output-Bindings in ReactiveForm-Components Warnung in der
-   * Console ausgegeben werden sollen.
-   */
-  displayBindingDebugHint?: boolean;
-
-  /**
    * Bestimmt die globalen Einstellungen für die Animationen der LuxRipples.
    */
   rippleConfiguration?: {
@@ -58,6 +52,13 @@ export interface LuxComponentsConfigParameters {
     radius?: number;
     disabled?: boolean;
     unbounded?: boolean;
+  };
+
+  /**
+   * Bestimmt die globalen Einstellungen für die Buttons.
+   */
+  buttonConfiguration?: {
+    throttleTimeMs?: number;
   };
 
   /**

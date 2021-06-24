@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
  * Mock-Service fuer den Mobile-Helper, der das Ein- und Ausklappen der Master/Detail-Ansicht steuert
  */
 export class LuxMockMasterDetailMobileHelperService {
-  mockMobile: boolean = false;
+  mockMobile = false;
   private _masterCollapsed: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor() {}

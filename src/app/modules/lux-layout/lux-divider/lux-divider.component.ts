@@ -6,9 +6,9 @@ import { Component, HostBinding, Input, OnInit } from '@angular/core';
   styleUrls: ['./lux-divider.component.scss']
 })
 export class LuxDividerComponent implements OnInit {
-  private _luxVertical: boolean = false;
+  private _luxVertical = false;
 
-  @Input() luxInset: boolean = false;
+  @Input() luxInset = false;
 
   @HostBinding('class') classes = '';
 

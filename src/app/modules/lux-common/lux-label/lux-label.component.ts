@@ -11,7 +11,7 @@ export class LuxLabelComponent implements OnInit {
 
   ngOnInit() {
     if (!this.luxId) {
-      console.error('lux-label -> Das Attribut "luxId" muss gesetzt werden.');
+      console.error('lux-label -> The property "luxId" is missing.');
     }
   }
 }

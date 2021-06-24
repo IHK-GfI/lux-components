@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -118,9 +119,9 @@ describe('LuxBadgeComponent', () => {
   `
 })
 class LuxBadgeComponent {
-  label: string = 'Test 4711';
-  uppercase: boolean = true;
-  iconName: string = 'fa-gear';
+  label = 'Test 4711';
+  uppercase = true;
+  iconName = 'fa-gear';
 }
 
 @Component({
@@ -133,5 +134,5 @@ class LuxBadgeComponent {
   `
 })
 class LuxBadgeIconNameComponent {
-  iconName: string = 'fa-gear';
+  iconName = 'fa-gear';
 }

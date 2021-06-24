@@ -47,6 +47,7 @@ export class LuxHttpErrorComponent implements OnInit, OnDestroy, AfterViewInit {
   /**
    * Updated das aktuelle Errors-Array mit dem übergebenen Wert.
    * Liest dabei die Message aus dem Fehler und erzeugt LuxMessage-Objekte für die LuxMessageBoxComponent.
+   *
    * @param errors
    */
   private updateErrors(errors: any[]) {
@@ -70,6 +71,7 @@ export class LuxHttpErrorComponent implements OnInit, OnDestroy, AfterViewInit {
    * Zuerst wird geschaut, ob der Fehler selbst nur ein String ist ==> Wenn ja, diesen zurückgeben.
    * Dann wird geprüft, ob der Fehler eine "message"-Property besitzt ==> Wenn ja, diese zurückgeben
    * Als letzter Ausweg wird das "error"-Objekt selbst über die toString-Methode zurückgegeben.
+   *
    * @param error
    */
   private readErrorMessage(error: any): string {

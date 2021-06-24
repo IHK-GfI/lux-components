@@ -18,7 +18,7 @@ export class LuxListItemComponent implements FocusableOption {
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 
-  @Input() luxTitleLineBreak: boolean = true;
+  @Input() luxTitleLineBreak = true;
 
   get luxTitle(): string {
     return this._luxTitle;

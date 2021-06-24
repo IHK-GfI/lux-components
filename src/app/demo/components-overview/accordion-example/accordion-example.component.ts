@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -6,10 +6,10 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
   templateUrl: './accordion-example.component.html',
   styleUrls: ['./accordion-example.component.scss']
 })
-export class AccordionExampleComponent implements OnInit {
+export class AccordionExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  showOutputEvents: boolean = false;
+  showOutputEvents = false;
   log = logResult;
   displayModes = ['flat', 'default'];
 
@@ -35,6 +35,4 @@ export class AccordionExampleComponent implements OnInit {
   // endregion
 
   constructor() {}
-
-  ngOnInit() {}
 }

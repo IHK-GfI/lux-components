@@ -26,7 +26,7 @@ export class LuxSelectComponent extends LuxFormSelectableBase {
   @ViewChildren(MatOption) matOptions: QueryList<MatOption>;
 
   @Input() luxPlaceholder: string;
-  @Input() luxMultiple: boolean = false;
+  @Input() luxMultiple = false;
   @Input() luxTagId: string;
 
   displayedViewValue: string;

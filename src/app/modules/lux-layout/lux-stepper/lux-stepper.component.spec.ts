@@ -1,4 +1,4 @@
-import { waitForAsync, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, fakeAsync, flush, TestBed, discardPeriodicTasks } from '@angular/core/testing';
 
 import { LuxStepperComponent } from './lux-stepper.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
@@ -7,6 +7,7 @@ import { ILuxStepperButtonConfig } from './lux-stepper-model/lux-stepper-button-
 import { By } from '@angular/platform-browser';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxStepperHelperService } from './lux-stepper-helper.service';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
 describe('LuxStepperComponent', () => {
 
@@ -290,7 +291,7 @@ describe('LuxStepperComponent', () => {
     // Änderungen durchführen
     const stepHeaders = fixture.debugElement.queryAll(By.css('mat-step-header'));
     stepHeaders[1].nativeElement.click();
-    LuxTestHelper.wait(fixture);
+    LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
     const navButtons = fixture.debugElement.queryAll(By.css('lux-stepper-nav-buttons .lux-button-label'));
     navButtons[2].nativeElement.click();
@@ -300,6 +301,7 @@ describe('LuxStepperComponent', () => {
     expect(spy).toHaveBeenCalledTimes(1);
 
     flush();
+    discardPeriodicTasks();
   }));
 });
 

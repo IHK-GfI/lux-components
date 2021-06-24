@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, HostBinding, Input } from '@angular/core';
 import { LuxFormComponentBase } from '../lux-form-model/lux-form-component-base.class';
 
-export const luxFormControlSelektor: string = 'lux-form-control';
+export const luxFormControlSelektor = 'lux-form-control';
 
 /**
  * @author dron
@@ -16,8 +16,8 @@ export const luxFormControlSelektor: string = 'lux-form-control';
 export class LuxFormControlComponent {
   focused: boolean;
 
-  @HostBinding('class.lux-form-control-scalable-height') _luxScalableHeight: boolean = false;
-  @HostBinding('class.lux-form-control-borderless') _luxHideBottomBorder: boolean = false;
+  @HostBinding('class.lux-form-control-scalable-height') _luxScalableHeight = false;
+  @HostBinding('class.lux-form-control-borderless') _luxHideBottomBorder = false;
 
   /**
    * Die zugrunde liegende FormComponent
@@ -25,10 +25,11 @@ export class LuxFormControlComponent {
   @Input() luxFormComponent: LuxFormComponentBase;
   @Input() luxFormComponentElementRef: ElementRef;
 
-  @Input() luxIgnoreDefaultLabel: boolean = false;
+  @Input() luxIgnoreDefaultLabel = false;
 
   /**
    * Dient dazu, eine Component beliebig Hoch werden zu lassen (z.B. Textarea oder Radio).
+   *
    * @param scalable
    */
   @Input() set luxScalableHeight(scalable: boolean) {
@@ -41,6 +42,7 @@ export class LuxFormControlComponent {
 
   /**
    * Bestimmt ob die untere Border ausgeblendet werden soll oder nicht (z.B. bei Checkbox).
+   *
    * @param hide
    */
   @Input() set luxHideBottomBorder(hide: boolean) {

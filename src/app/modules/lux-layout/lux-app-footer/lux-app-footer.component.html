@@ -5,7 +5,7 @@
   [luxAriaRole]="luxAriaRoleFooterLabel ? 'contentinfo' : undefined"
   [luxAriaLabel]="luxAriaRoleFooterLabel"
 >
-  <div *ngIf="luxVersion" fxFlex="none" fxLayoutAlign="left center" fxShow="false" fxShow.gt-lg="true" class="version">
+  <div *ngIf="luxVersion" fxFlex="none" fxLayoutAlign="left center" fxShow="false" fxShow.gt-lg="true" class="version" i18n="@@luxc.app-footer.version">
     Version {{ luxVersion }}
   </div>
 
@@ -13,7 +13,7 @@
     <ng-container *ngFor="let linkItem of getLinks()">
       <lux-link
         [luxLabel]="linkItem.label"
-        *ngIf="linkItem.alwaysVisible || isMediumOrLargerDevice()"
+        *ngIf="linkItem.alwaysVisible || desktopView"
         [luxHref]="linkItem.path"
         [luxBlank]="linkItem.blank"
       >

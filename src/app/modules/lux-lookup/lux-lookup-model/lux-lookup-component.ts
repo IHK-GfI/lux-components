@@ -1,14 +1,12 @@
-// tslint:disable:max-line-length
+/* eslint-disable max-len */
 
 import {
   ChangeDetectorRef, Directive,
   EventEmitter,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
-  Output,
-  SimpleChanges
+  Output
 } from '@angular/core';
 import { LuxBehandlungsOptionenUngueltige, LuxLookupParameters } from './lux-lookup-parameters';
 import { LuxLookupTableEntry } from './lux-lookup-table-entry';
@@ -23,7 +21,7 @@ import { Subscription } from 'rxjs';
 import { LuxComponentsConfigParameters } from '../../lux-components-config/lux-components-config-parameters.interface';
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxLookupComponent extends LuxFormComponentBase implements OnInit, OnChanges, OnDestroy {
+export abstract class LuxLookupComponent extends LuxFormComponentBase implements OnInit, OnDestroy {
   LuxBehandlungsOptionenUngueltige = LuxBehandlungsOptionenUngueltige;
 
   lookupService: LuxLookupService;
@@ -78,7 +76,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
 
     if (!this.luxLookupId) {
       console.error(
-        `Die Lookup-Komponente mit der Tabellen-Nr. ${this.luxTableNo} besitzt keine LookupId. Bitte tragen Sie diese nach.`
+        `The lookup component with the table number ${this.luxTableNo} has no LookupId.`
       );
     }
 
@@ -113,7 +111,9 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
 
   /**
    * Gibt zurück ob sich das entsprechende Element in der Liste ungültiger Elemente befindet.
+   *
    * @param LuxLookupTableEntry entry
+   * @param entry
    * @returns boolean
    */
   isUngueltig(entry: LuxLookupTableEntry | LuxLookupTableEntry[]) {
@@ -137,6 +137,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
 
   /**
    * Gibt zurück ob ungültige Einträge angezeigt werden sollen.
+   *
    * @returns boolean
    */
   showUngueltige() {
@@ -148,6 +149,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
 
   /**
    * Gibt zurück ob ungültige Einträge deaktiviert werden sollen.
+   *
    * @returns boolean
    */
   disableUngueltige() {
@@ -156,7 +158,9 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
 
   /**
    * Gibt die mitgegebenen Styles abhaengig ob das Element invalid ist zurueck.
+   *
    * @param boolean invalid
+   * @param invalid
    * @returns LuxLookupOptionStyle
    */
   getStyles(invalid: boolean) {
@@ -167,13 +171,13 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
   }
 
   /**
-   * @override errorMessageModifier - Modifikation der Fehlermeldung
+   * @override
    * @param value
    * @param errors
    */
   errorMessageModifier(value, errors) {
     if (errors['ungueltig']) {
-      return 'Der ausgewählte Wert ist ungültig.';
+      return $localize `:@@luxc.lookup.error_message.invalid:Der ausgewählte Wert ist ungültig.`;
     }
     return undefined;
   }
@@ -183,9 +187,9 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
       return this.luxRenderProp(entry);
     }
     if (entry[this.luxRenderProp as string]) {
-      return entry[<string>this.luxRenderProp];
+      return entry[this.luxRenderProp as string];
     }
-    return 'Fehler beim Auslesen (Property unbekannt)';
+    return $localize `:@@luxc.lookup.error_message.unknown_property:Fehler beim Auslesen (Property unbekannt)`;
   }
 
   /**
@@ -206,6 +210,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
 
   /**
    * Setzt die aktuellen Werte auf die mitgegebenen Entries.
+   *
    * @param entries
    */
   protected setLookupData(entries: LuxLookupTableEntry[]) {
@@ -222,14 +227,6 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
   // region Overridden methods
   notifyFormValueChanged(formValue: any) {
     this.luxValueChange.emit(formValue);
-  }
-
-  protected triggerOutputPatternCheck() {
-    this.checkOutputPatternViolation(this.luxValueChange.observers);
-  }
-
-  protected triggerInputPatternCheck(simpleChanges: SimpleChanges) {
-    this.checkInputPatternViolation(simpleChanges.luxValue);
   }
 
   // endregion

@@ -65,7 +65,7 @@ export class LuxStepperParent implements OnDestroy, AfterViewInit {
     this.subscription.unsubscribe();
   }
 
-  private getStepIndex(element: HTMLElement, count: number = 0): number {
+  private getStepIndex(element: HTMLElement, count = 0): number {
     if (element) {
       if ('mat-step-header' === element.nodeName.toLowerCase()) {
         // Das Attribut "aria-posinset" fängt mit dem Index 1 an,

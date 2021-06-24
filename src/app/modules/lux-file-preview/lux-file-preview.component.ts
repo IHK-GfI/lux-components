@@ -2,7 +2,9 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { LUX_FILE_PREVIEW_DATA } from './lux-file-preview-config';
 import { LuxFilePreviewData } from './lux-file-preview-data';
 import { LuxFilePreviewImgViewerComponent } from './lux-file-preview-imgviewer/lux-file-preview-imgviewer.component';
-import { LuxFilePreviewNotSupportedViewerComponent } from './lux-file-preview-notsupportedviewer/lux-file-preview-notsupportedviewer.component';
+import {
+  LuxFilePreviewNotSupportedViewerComponent
+} from './lux-file-preview-notsupportedviewer/lux-file-preview-notsupportedviewer.component';
 import { LuxFilePreviewPdfViewerComponent } from './lux-file-preview-pdfviewer/lux-file-preview-pdfviewer.component';
 
 @Component({

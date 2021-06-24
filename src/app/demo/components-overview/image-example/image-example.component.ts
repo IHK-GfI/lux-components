@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-image-example',
   templateUrl: './image-example.component.html',
   styleUrls: ['./image-example.component.scss']
 })
-export class ImageExampleComponent implements OnInit {
+export class ImageExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  showImageFrame: boolean = false;
+  showImageFrame = false;
 
   imgSrcs: string[] = [
     'assets/png/example.png',
@@ -24,14 +24,12 @@ export class ImageExampleComponent implements OnInit {
 
   // region Properties der Component
 
-  imgSrc: string = 'assets/svg/box.svg';
-  imgWidth: string = '100%';
-  imgHeight: string = 'auto';
-  imgRawSrc: boolean = false;
+  imgSrc = 'assets/svg/box.svg';
+  imgWidth = '100%';
+  imgHeight = 'auto';
+  imgRawSrc = false;
 
   // endregion
 
   constructor() {}
-
-  ngOnInit() {}
 }

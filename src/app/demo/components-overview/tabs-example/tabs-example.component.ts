@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs-example.component.html'
 })
-export class TabsExampleComponent implements OnInit {
-  showOutputEvents: boolean = false;
+export class TabsExampleComponent {
+  showOutputEvents = false;
   log = logResult;
 
-  activeTab: number = 0;
-  animationActive: boolean = true;
-  iconSize: string = '2x';
-  displayDivider: boolean = true;
-  lazyLoading: boolean = false;
+  activeTab = 0;
+  animationActive = true;
+  iconSize = '2x';
+  displayDivider = true;
+  lazyLoading = false;
   backgroundColor = '#ffffff';
 
   tabs: any[] = [
@@ -21,16 +21,16 @@ export class TabsExampleComponent implements OnInit {
       title: 'Title #1',
       disabled: false,
       iconName: 'fas fa-bookmark',
-      showNotification: false,
+      showNotification: true,
       counterCap: 10,
-      counter: undefined
+      counter: 10
     },
     {
       title: 'Title #2',
       disabled: false,
       iconName: 'fas fa-user',
-      showNotification: false,
-      counterCap: 10,
+      showNotification: true,
+      counterCap: undefined,
       counter: undefined
     },
     {
@@ -38,14 +38,12 @@ export class TabsExampleComponent implements OnInit {
       disabled: false,
       iconName: 'fas fa-check',
       showNotification: false,
-      counterCap: 10,
-      counter: undefined
+      counterCap: 99,
+      counter: 99
     }
   ];
 
   constructor() {}
-
-  ngOnInit() {}
 
   activeTabChanged($event) {
     this.log(this.showOutputEvents, 'luxActiveTabChanged', $event);

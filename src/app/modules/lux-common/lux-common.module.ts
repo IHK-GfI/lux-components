@@ -18,7 +18,6 @@ import { LuxMessageBoxComponent } from './lux-message-box/lux-message-box.compon
 import { LuxMessageComponent } from './lux-message-box/lux-message-box-subcomponents/lux-message.component';
 import { LuxTableColumnHeaderComponent } from './lux-table/lux-table-subcomponents/lux-table-column-header.component';
 import { LuxTableColumnContentComponent } from './lux-table/lux-table-subcomponents/lux-table-column-content.component';
-import { LuxMediaQueryObserverService } from '../lux-util/lux-media-query-observer.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LuxActionModule } from '../lux-action/lux-action.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';
@@ -52,7 +51,6 @@ import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
     LuxMessageBoxComponent,
     LuxMessageComponent
   ],
-  providers: [LuxMediaQueryObserverService],
   exports: [
     LuxSpinnerComponent,
     LuxLabelComponent,

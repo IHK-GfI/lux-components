@@ -14,7 +14,7 @@ export class LuxActionComponentBaseClass {
   @Input() luxTagId: string;
   @Input() luxDisabled: boolean;
   @Input() luxRounded: boolean;
-  @Input() luxIconAlignWithLabel: boolean = false;
+  @Input() luxIconAlignWithLabel = false;
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 }

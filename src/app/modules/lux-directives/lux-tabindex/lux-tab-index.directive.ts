@@ -17,9 +17,9 @@ export class LuxTabIndexDirective implements AfterViewInit, OnChanges, OnDestroy
   private changesSubscription: Subscription;
   private changes$: ReplaySubject<SimpleChanges> = new ReplaySubject<SimpleChanges>(1);
 
-  @Input() luxTabIndex: string = '0';
-  @Input() luxApplyToParent: boolean = false;
-  @Input() luxApplyToChildren: boolean = true;
+  @Input() luxTabIndex = '0';
+  @Input() luxApplyToParent = false;
+  @Input() luxApplyToChildren = true;
   @Input() luxPotentialChildren: string[] = ['input', 'textarea', 'a', 'button', 'mat-select'];
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
@@ -43,6 +43,7 @@ export class LuxTabIndexDirective implements AfterViewInit, OnChanges, OnDestroy
   /**
    * Eigener Listener für Änderungen, der erst nach dem AfterViewInit-Lifecycle greift.
    * Sicherheitshalber, um evtl. noch unaufgelösten Elementen zu entgehen.
+   *
    * @param simpleChanges
    */
   private onChanges(simpleChanges: SimpleChanges) {
@@ -68,8 +69,7 @@ export class LuxTabIndexDirective implements AfterViewInit, OnChanges, OnDestroy
 
   private setTabIndexByQuery(elementQuery: string) {
     const elements = this.elementRef.nativeElement.querySelectorAll(elementQuery);
-    for (let i = 0; i < elements.length; i++) {
-      const element = elements[i];
+    for (const element of elements) {
       this.setTabIndexForElement(element);
     }
   }

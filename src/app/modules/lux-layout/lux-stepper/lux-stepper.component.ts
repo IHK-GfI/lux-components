@@ -32,13 +32,13 @@ import { Subscription } from 'rxjs';
 })
 export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   private readonly _DEFAULT_PREV_BTN_CONF: ILuxStepperButtonConfig = {
-    label: 'Zurück'
+    label: $localize `:@@luxc.stepper.back.btn:Zurück`
   };
   private readonly _DEFAULT_NEXT_BTN_CONF: ILuxStepperButtonConfig = {
-    label: 'Weiter'
+    label: $localize `:@@luxc.stepper.next.btn:Weiter`
   };
   private readonly _DEFAULT_FIN_BTN_CONF: ILuxStepperButtonConfig = {
-    label: 'Abschließen',
+    label: $localize `:@@luxc.stepper.finish.btn:Abschließen`,
     color: 'primary'
   };
 
@@ -139,6 +139,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**
    * Wird beim Wechsel des aktuellen Steps (Klick auf Tab oder .next()/.previous() Aufruf) aufgerufen.
+   *
    * @param $event
    */
   onStepChanged($event: StepperSelectionEvent) {
@@ -194,6 +195,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**
    * Generiert die Icons fuer einen einzelnen Step
+   *
    * @param stepLabel
    * @param luxStep
    * @param factory

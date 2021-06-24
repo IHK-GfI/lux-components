@@ -46,6 +46,7 @@ export class LuxFileInputComponent extends LuxFormFileBase {
    * Wird bei der Auswahl von Dateien (Dialog oder DnD) aufgerufen.
    * Aktualisiert die aktuell selektierten Dateien, stößt einen Upload an, handelt Fehlermeldungen und
    * emittet die entspechenden Events.
+   *
    * @param files
    */
   selectFiles(files: File[]) {
@@ -75,7 +76,7 @@ export class LuxFileInputComponent extends LuxFormFileBase {
 
   protected errorMessageModifier(value: any, errors: any): string | undefined {
     if (errors.required) {
-      return 'Es muss eine Datei ausgewählt werden';
+      return $localize `:@@luxc.file-input.error_message.required:Es muss eine Datei ausgewählt werden`;
     }
     return super.errorMessageModifier(value, errors);
   }

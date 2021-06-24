@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
 
 import { LuxDatepickerComponent } from './lux-datepicker.component';
@@ -419,7 +420,7 @@ describe('LuxDatepickerComponent', () => {
 
       // Änderungen durchführen
       testComponent.customFilter = (d: Date): boolean => {
-        const day = d.getDay();
+        const day = d ? d.getDay() : 0;
         // Prevent Saturday and Sunday from being selected.
         return day !== 0 && day !== 6;
       };
@@ -623,7 +624,7 @@ describe('LuxDatepickerComponent', () => {
 
       // Änderungen durchführen
       // Date
-      testComponent.value = <any>new Date(2001, 5, 10, 10, 15, 0);
+      testComponent.value = new Date(2001, 5, 10, 10, 15, 0) as any;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -757,27 +758,27 @@ class LuxNoFormAttributeTestComponent {
   maxDate: Date | string;
   startDate: Date | string;
   customFilter;
-  showToggle: boolean = true;
+  showToggle = true;
   errorMessage: string;
   validators: ValidatorFn | ValidatorFn[];
-  opened: boolean = false;
+  opened = false;
   errorCb: (value, errors) => string = (value, errors) => undefined;
 
   valueChanged() {}
 }
 
-export function Validator2019NotAllowed(control: AbstractControl) {
+export const Validator2019NotAllowed = (control: AbstractControl) => {
   console.log(
     'Validator called',
     control.value,
-    'value' in control && typeof control.value === 'string' && (<string>control.value).indexOf('2019') !== -1
+    'value' in control && typeof control.value === 'string' && (control.value as string).indexOf('2019') !== -1
   );
-  if ('value' in control && typeof control.value === 'string' && (<string>control.value).indexOf('2019') !== -1) {
+  if ('value' in control && typeof control.value === 'string' && (control.value as string).indexOf('2019') !== -1) {
     return { NotAllowed2019: true };
   }
 
   return null;
-}
+};
 
 export const exampleErrorCallback = (value, errors) => {
   if (errors.required) {

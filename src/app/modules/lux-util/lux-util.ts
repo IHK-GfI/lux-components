@@ -25,6 +25,7 @@ export class LuxUtil {
 
   /**
    * Prueft ob ein String leer ist.
+   *
    * @param str
    * @returns boolean
    */
@@ -65,38 +66,39 @@ export class LuxUtil {
   /**
    * Gibt eine von verschiedenen vordefinierten Fehlernachrichten passend zu den
    * vorhandenen Fehlern der uebergebenen FormControl zurueck.
+   *
    * @param formControl
    * @returns string
    */
   public static getErrorMessage(formControl: FormControl): string {
     if (formControl) {
       if (formControl.hasError('required')) {
-        return '* Pflichtfeld';
+        return $localize `:@@luxc.util.error_message.required:* Pflichtfeld`;
       }
 
       if (formControl.hasError('minlength')) {
-        return 'Die Mindestlänge ist ' + formControl.getError('minlength').requiredLength;
+        return $localize `:@@luxc.util.error_message.minlength:Die Mindestlänge ist ${formControl.getError('minlength').requiredLength}`;
       }
 
       if (formControl.hasError('maxlength')) {
-        return 'Die Maximallänge ist ' + formControl.getError('maxlength').requiredLength;
+        return $localize `:@@luxc.util.error_message.maxlength:Die Maximallänge ist ${formControl.getError('maxlength').requiredLength}`;
       }
 
       if (formControl.hasError('email')) {
-        return 'Dies ist keine gültige E-Mailadresse';
+        return $localize `:@@luxc.util.error_message.email:Dies ist keine gültige E-Mailadresse`;
       }
 
       if (formControl.hasError('min')) {
-        return 'Der Minimalwert ist ' + formControl.getError('min').min;
+        return $localize `:@@luxc.util.error_message.min:Der Minimalwert ist ${formControl.getError('min').min}`;
       }
 
       if (formControl.hasError('max')) {
-        return 'Der Maximalwert ist ' + formControl.getError('max').max;
+        return $localize `:@@luxc.util.error_message.max:Der Maximalwert ist ${formControl.getError('max').max}`;
       }
 
       if (formControl.hasError('pattern')) {
         const pattern = formControl.getError('pattern').requiredPattern;
-        return 'Entspricht nicht dem Muster "' + pattern.substring(1, pattern.length - 1) + '"';
+        return $localize `:@@luxc.util.error_message.pattern:Entspricht nicht dem Muster "${pattern.substring(1, pattern.length - 1)}"`;
       }
     }
     return '';
@@ -104,6 +106,7 @@ export class LuxUtil {
 
   /**
    * Prueft ob der uebergebene Wert ein JS-Datum ist.
+   *
    * @param value
    * @returns boolean
    */
@@ -115,6 +118,7 @@ export class LuxUtil {
    * Zeigt die Validierungsfehler der einzelnen FormControls innerhalb der FormGroup an.
    * Wenn innerhalb der übergebenen FormGroup weitere Formgroups enthalten sind, werden
    * diese ebenfalls validiert.
+   *
    * @param formGroup
    */
   public static showValidationErrors(formGroup: FormGroup) {
@@ -144,6 +148,7 @@ export class LuxUtil {
 
   /**
    * Prueft ob die Applikation im IE geoeffnet ist.
+   *
    * @returns boolean
    */
   public static isIE(): boolean {
@@ -153,6 +158,7 @@ export class LuxUtil {
 
   /**
    * Prueft ob die Applikation im Edge geoeffnet ist.
+   *
    * @returns boolean
    */
   public static isEdge(): boolean {
@@ -161,6 +167,7 @@ export class LuxUtil {
 
   /**
    * Prueft ob die Applikation im IE oder Edge geoffnet ist.
+   *
    * @returns boolean
    */
   public static isIEorEdge(): boolean {
@@ -374,6 +381,7 @@ export class LuxUtil {
   /**
    * Entfernt nicht-ASCII-Chars aus dem String (Beim IE wichtig, dieser fügt gerne versteckte Steuerzeichen
    * in Input-Feldern an die Strings).
+   *
    * @param dateString
    */
   public static stringWithoutASCIIChars(dateString: string): string {

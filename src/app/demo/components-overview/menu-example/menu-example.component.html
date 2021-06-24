@@ -42,13 +42,13 @@
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxMenuIconName"
       luxHint="Diese Property ermöglicht es, das Icon für das Menu zu ändern."
       [(luxValue)]="iconName"
     >
     </lux-input>
-    <lux-input class="example-highlight-config-option" luxLabel="luxClassName" [(luxValue)]="className">
+    <lux-input class="lux-highlight-section" luxLabel="luxClassName" [(luxValue)]="className">
       <lux-form-hint>
         Über diese Property lassen sich CSS-Klassen für das ausgeklappte Menu setzen.
         <br />
@@ -57,14 +57,14 @@
       </lux-form-hint>
     </lux-input>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxDisplayMenuLeft"
       luxHint="Die Property ermöglicht es, den Trigger-Button für das Menu links von den
                   ausgeklappt angezeigten Menueinträgen darzustellen."
       [(luxChecked)]="displayMenuLeft"
     >
     </lux-toggle>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-toggle
         luxLabel="luxDisplayExtended"
         luxHint="Diese Property bestimmt, ob Menu-Einträge bei ausreichend Platz außerhalb des
@@ -93,55 +93,55 @@
         </lux-panel-header-description>
         <lux-panel-content>
           <lux-input
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxLabel"
             luxHint="Diese Property ermöglicht es, das Label eines Menu-Eintrags zu ändern."
             [(luxValue)]="item.label"
           >
           </lux-input>
           <lux-input
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxButtonTooltip"
             luxHint="Diese Property ermöglicht es, das Label eines Menu-Eintrags zu ändern."
             [(luxValue)]="item.tooltip"
           >
           </lux-input>
           <lux-input
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxIconName"
             luxHint="Über diese Property kann ein Icon für den Menu-Eintrag eingerichtet werden."
             [(luxValue)]="item.iconName"
           >
           </lux-input>
           <lux-select
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxColor"
             luxHint="Die Property ermöglicht die Einstellung der Farbe für diesen Eintrag."
             [(luxSelected)]="item.color"
             [luxOptions]="['primary', 'warn', 'accent']"
           ></lux-select>
           <lux-toggle
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxRaised"
             luxHint="Dieses Flag schaltet die hervorgehobene Darstellung des Menu-Eintrags ein."
             [(luxChecked)]="item.raised"
           >
           </lux-toggle>
           <lux-toggle
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxDisabled"
             luxHint="Über dieses Flag wird der Eintrag deaktiviert."
             [(luxChecked)]="item.disabled"
           >
           </lux-toggle>
           <lux-toggle
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxHidden"
             luxHint="Über dieses Flag wird der Eintrag ausgeblendet."
             [(luxChecked)]="item.hidden"
           >
           </lux-toggle>
-          <lux-toggle class="example-highlight-config-option" luxLabel="luxRounded" [(luxChecked)]="item.round">
+          <lux-toggle class="lux-highlight-section" luxLabel="luxRounded" [(luxChecked)]="item.round">
             <lux-form-hint>
               Über dieses Flag kann der Eintrag als Kreis dargestellt werden.
               <br />
@@ -149,7 +149,7 @@
             </lux-form-hint>
           </lux-toggle>
           <lux-toggle
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxAlwaysVisible"
             [(luxChecked)]="item.alwaysVisible"
             [luxDisabled]="!displayExtended"
@@ -161,7 +161,7 @@
             </lux-form-hint>
           </lux-toggle>
           <lux-toggle
-            class="example-highlight-config-option"
+            class="lux-highlight-section"
             luxLabel="luxHideLabelIfExtended"
             [(luxChecked)]="item.hideLabelIfExtended"
           >

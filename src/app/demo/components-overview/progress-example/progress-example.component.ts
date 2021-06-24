@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LuxProgressColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
@@ -6,8 +6,7 @@ import { LuxProgressColors } from '../../../modules/lux-util/lux-colors.enum';
   templateUrl: './progress-example.component.html',
   styles: ['']
 })
-export class ProgressBarExampleComponent implements OnInit {
-
+export class ProgressBarExampleComponent {
   sizes = ['small', 'medium', 'large'];
   colors = LuxProgressColors;
   backgroundColor = '';
@@ -17,10 +16,7 @@ export class ProgressBarExampleComponent implements OnInit {
   mode = 'determinate';
   value = 70;
 
-
   constructor() {}
-
-  ngOnInit() {}
 
   addBarProgress() {
     this.value = this.value + 10 > 100 ? 100 : this.value + 10;

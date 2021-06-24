@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { LuxErrorService } from '../../../modules/lux-error/lux-error-page/lux-error-services/lux-error-service';
 import { LuxConsoleService } from '../../../modules/lux-util/lux-console.service';
 import { ILuxErrorPageConfig } from '../../../modules/lux-error/lux-error-page/lux-error-interfaces/lux-error-page-config.interface';
@@ -12,26 +12,20 @@ import { Subscription } from 'rxjs';
   templateUrl: './errorpage-example.component.html',
   styleUrls: ['./errorpage-example.component.scss']
 })
-export class ErrorpageExampleComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ErrorpageExampleComponent implements AfterViewInit, OnDestroy {
   errorConfig: ILuxError = { errorId: '1234', errorMessage: 'Es ist ein Fehler aufgetreten.' };
   errorPageConfig: ILuxErrorPageConfig;
-  updateButtonDisabled: boolean = true;
+  updateButtonDisabled = true;
   configForm: FormGroup;
   subscription: Subscription;
 
-  constructor(
-    private errorService: LuxErrorService,
-    private errorStore: LuxErrorStoreService,
-    private logger: LuxConsoleService
-  ) {
+  constructor(private errorService: LuxErrorService, private errorStore: LuxErrorStoreService, private logger: LuxConsoleService) {
     this.errorPageConfig = this.errorStore.config;
     this.configForm = new FormGroup({});
     Object.keys(this.errorPageConfig).forEach((key: string) => {
       this.configForm.setControl(key, new FormControl(this.errorPageConfig[key]));
     });
   }
-
-  ngOnInit() {}
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

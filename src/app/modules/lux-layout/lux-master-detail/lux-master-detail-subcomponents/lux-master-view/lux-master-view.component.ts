@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'lux-master-view',
@@ -7,10 +7,8 @@ import { Component, HostBinding, OnInit } from '@angular/core';
     '<ng-content></ng-content>' +
     '<ng-content select="[lux-master-footer]"></ng-content>'
 })
-export class LuxMasterViewComponent implements OnInit {
-  @HostBinding('class.lux-overflow-y-auto') overflowY: boolean = true;
+export class LuxMasterViewComponent {
+  @HostBinding('class.lux-overflow-y-auto') overflowY = true;
 
   constructor() {}
-
-  ngOnInit() {}
 }

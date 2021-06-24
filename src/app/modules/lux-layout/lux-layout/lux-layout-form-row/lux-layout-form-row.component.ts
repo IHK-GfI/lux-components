@@ -71,8 +71,10 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
   layoutOrientation;
   margin: string;
   subscription: Subscription;
+  query: string;
+  greaterWrapAt: boolean;
 
-  constructor(private config: LuxComponentsConfigService, public queryObserver: LuxMediaQueryObserverService) {}
+  constructor(private config: LuxComponentsConfigService, private queryObserver: LuxMediaQueryObserverService) {}
 
   ngOnInit(): void {
     // Initialisiere das Umbrechverhalten, wenn kein individueller Wert mitgegeben wurde.
@@ -116,6 +118,8 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
     this.update();
 
     this.subscription = this.queryObserver.getMediaQueryChangedAsObservable().subscribe((query: string) => {
+      this.query = query;
+      this.greaterWrapAt = this.queryObserver.isGreater(this.luxWrapAt);
       this.update();
     });
   }
@@ -153,7 +157,7 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
   }
 
   updateLayoutOrientation() {
-    if (this.queryObserver.isGreater(this.luxWrapAt)) {
+    if (this.greaterWrapAt) {
       this.layoutOrientation = 'row';
     } else {
       this.layoutOrientation = 'column';
@@ -170,7 +174,7 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
   }
 
   updateGaps() {
-    if (this.queryObserver.isGreater(this.luxWrapAt)) {
+    if (this.greaterWrapAt) {
       this.rowGap = this.luxGap.row;
       this.rowItemGap = this.luxGap.rowItem;
     } else {
@@ -180,13 +184,13 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
   }
 
   updateMargins() {
-    if (this.queryObserver.isXS()) {
+    if (this.query === 'xs') {
       this.margin = this.luxMargin['xs'];
-    } else if (this.queryObserver.isSM()) {
+    } else if (this.query === 'sm') {
       this.margin = this.luxMargin['sm'];
-    } else if (this.queryObserver.isMD()) {
+    } else if (this.query === 'md') {
       this.margin = this.luxMargin['md'];
-    } else if (this.queryObserver.isLG()) {
+    } else if (this.query === 'lg') {
       this.margin = this.luxMargin['lg'];
     } else {
       this.margin = this.luxMargin['xl'];
@@ -197,7 +201,7 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
     const width = this.calculateRowItemWidth(rowItem);
     const gap = this.calculateRowItemGap(rowItem);
 
-    return this.queryObserver.isGreater(this.luxWrapAt) ? `calc(${width}% - ${gap}px)` : '1 1 auto';
+    return this.greaterWrapAt ? `calc(${width}% - ${gap}px)` : '1 1 auto';
   }
 
   private calculateRowItemWidth(rowItem: LuxLayoutRowItemDirective) {

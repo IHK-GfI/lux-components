@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LuxSanitizeConfig } from '../../../modules/lux-html/lux-sanitize/lux-sanitize-config';
 
 @Component({
   selector: 'lux-html-example',
   templateUrl: './html-example.component.html'
 })
-export class HtmlExampleComponent implements OnInit {
+export class HtmlExampleComponent {
   htmlData = `<h1>Lorem ipsum</h1>
 <p>
   <b>Lorem ipsum</b> dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
@@ -81,8 +81,6 @@ export class HtmlExampleComponent implements OnInit {
   }
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   updateTags() {
     const newConfig: LuxSanitizeConfig = {};

@@ -1,13 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'text-example',
   templateUrl: './text-example.component.html'
 })
-export class TextExampleComponent implements OnInit {
-  @Input() title: String = 'Lorum ipsum';
+export class TextExampleComponent {
+  @Input() title = 'Lorum ipsum';
 
   constructor() {}
-
-  ngOnInit() {}
 }

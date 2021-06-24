@@ -12,7 +12,7 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
 export class MessageBoxExampleComponent implements OnInit {
   // region Helper-Properties für das Beispiel
 
-  showOutputEvents: boolean = false;
+  showOutputEvents = false;
   log = logResult;
 
   // endregion
@@ -24,8 +24,8 @@ export class MessageBoxExampleComponent implements OnInit {
   positions = ['unterhalb', 'oberhalb'];
   selectedPosition = 'oberhalb';
   newMessage: ILuxMessage = { text: '', iconName: '', color: LuxBackgroundColorsEnum.blue };
-  messageIndex: number = 1;
-  maximumDisplayed: number = 10;
+  messageIndex = 1;
+  maximumDisplayed = 10;
 
   // endregion
 

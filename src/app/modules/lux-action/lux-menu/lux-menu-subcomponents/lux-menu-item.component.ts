@@ -15,14 +15,14 @@ export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
   @Output() luxHideLabelIfExtendedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() luxAlwaysVisibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  _luxAlwaysVisible: boolean = true;
-  _luxHideLabelIfExtended: boolean = false;
-  _luxHidden: boolean = false;
+  _luxAlwaysVisible = true;
+  _luxHideLabelIfExtended = false;
+  _luxHidden = false;
 
   // Wird vom LuxMenuComponent mit dem berechneten Breitenwert belegt
-  width: number = 0;
+  width = 0;
   // Wird vom LuxMenuComponent mit dem passenden Zustand belegt
-  extended: boolean = false;
+  extended = false;
 
   get luxAlwaysVisible() {
     return this._luxAlwaysVisible;

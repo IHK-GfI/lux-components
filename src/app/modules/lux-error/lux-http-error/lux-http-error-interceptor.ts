@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { Observable, ReplaySubject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxHttpErrorInterceptor implements HttpInterceptor {
   static dataStream: ReplaySubject<any> = new ReplaySubject(1);
 

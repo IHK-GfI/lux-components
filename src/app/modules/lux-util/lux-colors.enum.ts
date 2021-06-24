@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+// no-shadow meldet fälschlicherweise einen Fehler
 /**
  * Enum fuer die moeglichen Background-Farben
  */
@@ -20,6 +22,7 @@ export enum LuxFontColorsEnum {
   white = 'white',
   black = 'black'
 }
+/* eslint-enable no-shadow */
 
 export const LuxBadgeColors = [
   LuxBackgroundColorsEnum.red,

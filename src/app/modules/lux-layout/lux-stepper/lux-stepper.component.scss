@@ -1,4 +1,4 @@
-@import './../../../../theming/luxcommon';
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
 
 :host {
   position: relative;
@@ -44,37 +44,6 @@
         position: relative;
         font-weight: normal;
       }
-
-      lux-step-header {
-        color: $dark-secondary-text !important;
-      }
-
-      .mat-step-icon {
-        background: $dark-secondary-text;
-        color: white;
-      }
-
-      &.lux-step-header-touched {
-        &[aria-selected='true'],
-        .mat-step-icon-state-edit + .mat-step-label {
-          lux-step-header {
-            color: $dark-primary-text !important;
-          }
-          .lux-stepper-edited-icon,
-          .lux-stepper-normal-icon {
-            i,
-            mat-icon {
-              background-color: map-get($lux-palette_darkblue, 500);
-            }
-          }
-        }
-
-        &[aria-selected='true'] .mat-step-icon-state-number,
-        .mat-step-icon-state-edit {
-          background: map-get($lux-palette_darkblue, 500);
-          color: white;
-        }
-      }
     }
 
     // Greift nur für unsere eigenen Step-Icons
@@ -112,12 +81,6 @@
           }
 
           lux-icon {
-            > i,
-            > mat-icon {
-              background-color: $dark-disabled-text;
-              color: map-get(map-get($lux-palette-darkblue, contrast), 500);
-            }
-
             > i:before {
               padding-top: 2px;
               display: block;

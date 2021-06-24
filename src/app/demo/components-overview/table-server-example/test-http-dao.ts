@@ -23,7 +23,7 @@ export class TestHttpDao implements ILuxTableHttpDao {
     { name: 'Sulfur', symbol: 'S', date: new Date(2018, 9, 24) }
   ];
 
-  filter: string = '';
+  filter = '';
 
   constructor(private logger: LuxConsoleService) {}
 

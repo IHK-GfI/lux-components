@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {
   exampleErrorCallback,
@@ -10,13 +10,13 @@ import {
   selector: 'app-input-example',
   templateUrl: './input-example.component.html'
 })
-export class InputExampleComponent implements OnInit {
+export class InputExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  showSuffix: boolean = false;
-  showPrefix: boolean = false;
-  useErrorMessage: boolean = true;
-  showOutputEvents: boolean = false;
+  showSuffix = false;
+  showPrefix = false;
+  useErrorMessage = true;
+  showOutputEvents = false;
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' },
@@ -32,18 +32,18 @@ export class InputExampleComponent implements OnInit {
   // region Properties der Component
 
   value: any;
-  controlBinding: string = 'inputExample';
+  controlBinding = 'inputExample';
   disabled = false;
   readonly: boolean;
   required: boolean;
   numberLeft: boolean;
-  label: string = 'Label';
-  hint: string = 'Hint';
-  hintShowOnlyOnFocus: boolean = false;
-  placeholder: string = 'Placeholder';
+  label = 'Label';
+  hint = 'Hint';
+  hintShowOnlyOnFocus = false;
+  placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
-  errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
-  autocomplete: string = 'off';
+  errorMessage = 'Das Feld enthält keinen gültigen Wert';
+  autocomplete = 'off';
   inputType = 'text';
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
@@ -56,8 +56,6 @@ export class InputExampleComponent implements OnInit {
       inputExample: []
     });
   }
-
-  ngOnInit() {}
 
   changeRequired($event: boolean) {
     this.required = $event;

@@ -14,7 +14,7 @@
     ></lux-markdown>
   </example-base-content>
   <example-base-simple-options>
-    <div class="example-highlight-config-option" fxLayout="column" style="min-height: 700px">
+    <div class="lux-highlight-section" fxLayout="column" style="min-height: 700px">
       <lux-textarea luxLabel="Markdown-Daten" [(luxValue)]="markdownData" luxName="markdown_data">
         <lux-form-hint>
           Hier kann man beliebige Markdown-Daten einfügen und ausprobieren.
@@ -23,7 +23,7 @@
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-input luxLabel="luxFlex" luxName="markdown_luxFlex" [(luxValue)]="flex">
            <lux-form-hint>
           Werte aus dem Flexlayout
@@ -41,7 +41,7 @@
       </lux-input>
     </div>
 
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle luxLabel="Folgendes verbieten" [(luxChecked)]="forbiddenTagsToggle"></lux-toggle>
       <lux-input
         luxLabel="Verbotene Tags"

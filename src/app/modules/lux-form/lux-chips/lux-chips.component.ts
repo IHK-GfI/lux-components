@@ -27,18 +27,18 @@ export class LuxChipsComponent implements OnDestroy {
   private readonly inputValueSubscription: Subscription = new Subscription();
   private readonly newChipSubscription: Subscription = new Subscription();
 
-  private _luxDisabled: boolean = false;
+  private _luxDisabled = false;
   private _luxAutocompleteOptions: string[] = [];
-  private _luxLabel: string = 'Neu';
+  private _luxLabel = $localize `:@@luxc.chips.new.lbl:Neu`;
 
   filteredOptions: string[] = [];
   inputValue$: Subject<string> = new Subject<string>();
   newChip$: Subject<any> = new Subject<any>();
 
   @Input() luxOrientation: 'horizontal' | 'vertical' = 'horizontal';
-  @Input() luxInputAllowed: boolean = false;
+  @Input() luxInputAllowed = false;
   @Input() luxNewChipGroup: LuxChipGroupComponent;
-  @Input() luxMultiple: boolean = true;
+  @Input() luxMultiple = true;
 
   @Output() luxChipAdded = new EventEmitter<string>();
 
@@ -84,11 +84,11 @@ export class LuxChipsComponent implements OnDestroy {
   }
 
   get chipComponents(): LuxChipComponent[] {
-    return <any>this.luxChipComponents;
+    return this.luxChipComponents as any;
   }
 
   get chipGroupComponents(): LuxChipGroupComponent[] {
-    return <any>this.luxChipGroupComponents;
+    return this.luxChipGroupComponents as any;
   }
 
   constructor(@Optional() private controlContainer: ControlContainer) {
@@ -132,6 +132,7 @@ export class LuxChipsComponent implements OnDestroy {
    * Fuegt einen Chip hinzu.
    * Fuegt ihn entweder der explizit mitgeteilten newChipList hinzu oder einfach
    * der letzten mitgegebenen Liste.
+   *
    * @param value
    */
   add(value: string) {
@@ -150,6 +151,7 @@ export class LuxChipsComponent implements OnDestroy {
   /**
    * Wird bei Eingabe von Werten in das Input-Feld aufgerufen und schreibt einen neuen Wert
    * in das inputValue-Subject.
+   *
    * @param value
    */
   inputChanged(value: string) {
@@ -158,6 +160,7 @@ export class LuxChipsComponent implements OnDestroy {
 
   /**
    * Wird beim Selektieren einer Option im Autocomplete ausgeführt.
+   *
    * @param input
    * @param value
    */
@@ -169,6 +172,7 @@ export class LuxChipsComponent implements OnDestroy {
   /**
    * Wird beim Input-Event des Eingabefelds ausgeführt, fragt aber vorher ab, ob das Autocomplete offen ist.
    * Wenn ja, wird kein neuer Chip erzeugt, da das Autocomplete dies übernimmt.
+   *
    * @param input
    */
   inputAdd(input) {

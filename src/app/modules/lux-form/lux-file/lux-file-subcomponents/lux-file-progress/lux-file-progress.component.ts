@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Diese Component ist nur eine leichte Ergänzung zu LuxProgress und wird nicht vom Modul exportiert.
@@ -11,11 +11,9 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './lux-file-progress.component.html',
   styleUrls: ['./lux-file-progress.component.scss']
 })
-export class LuxFileProgressComponent implements OnInit {
-  @Input() luxProgress: number = 0;
+export class LuxFileProgressComponent {
+  @Input() luxProgress = 0;
   @Input() luxMode: 'determinate' | 'indeterminate' = 'indeterminate';
 
   constructor() {}
-
-  ngOnInit() {}
 }

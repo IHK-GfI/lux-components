@@ -30,7 +30,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   static readonly FONT_PX = 14;
   static readonly ICON_PX = 22;
 
-  // Alle verfgb. MenuItems als Array
+  // Alle verfügbaren MenuItems als Array
   private _menuItems: LuxMenuItemComponent[] = [];
 
   // Das Canvas wird genutzt um die Breite potentieller MenuItem-Texte zu berechnen
@@ -39,7 +39,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   private menuItemSubscriptions: Subscription[] = [];
   private menuItemChangeSubscription: Subscription;
 
-  hideToggle: boolean = false;
+  hideToggle = false;
 
   @ViewChild('defaultTrigger', { read: ElementRef }) defaultTriggerElRef: ElementRef;
   @ViewChild('menuTrigger', { read: ElementRef }) menuTriggerElRef: ElementRef;
@@ -49,12 +49,14 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
 
   @Output() luxMenuClosed: EventEmitter<void> = new EventEmitter<void>();
 
-  @Input() luxMenuIconName: string = 'menu';
+  @Input() luxMenuLabel = '';
+  @Input() luxMenuIconName = 'menu';
   @Input() luxClassName: string;
   @Input() luxTagId: string;
-  @Input() luxToggleDisabled: boolean = false;
+  @Input() luxToggleDisabled = false;
+  @Input() luxAriaMenuTriggerLabel = $localize `:@@luxc.menu.trigger.btn:Menü`;
 
-  _luxDisplayExtended: boolean = false;
+  _luxDisplayExtended = false;
 
   get luxDisplayExtended() {
     return this._luxDisplayExtended;
@@ -68,8 +70,8 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
     }
   }
 
-  @Input() luxDisplayMenuLeft: boolean = true;
-  @Input() luxMaximumExtended: number = 5;
+  @Input() luxDisplayMenuLeft = true;
+  @Input() luxMaximumExtended = 5;
 
   @HostListener('window:resize') windowResize() {
     this.updateExtendedMenuItems();
@@ -121,7 +123,9 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.menuItemChangeSubscription.unsubscribe();
+    if (this.menuItemChangeSubscription) {
+      this.menuItemChangeSubscription.unsubscribe();
+    }
 
     this.menuItemSubscriptions.forEach(menuItemSubscription => {
       menuItemSubscription.unsubscribe();
@@ -145,7 +149,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   onMenuClosed() {
     this.luxMenuClosed.emit();
     if (this.defaultTriggerElRef) {
-      (<any>this.defaultTriggerElRef.nativeElement.children.item(0)).focus();
+      (this.defaultTriggerElRef.nativeElement.children.item(0)as any).focus();
     }
   }
 
@@ -165,7 +169,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
     const menuTriggerWidth = this.menuTriggerElRef.nativeElement.offsetWidth;
 
     let availableWidth: number = this.menuExtendedContainer.nativeElement.offsetWidth;
-    let count: number = 0;
+    let count = 0;
 
     availableWidth -= menuTriggerWidth;
 
@@ -221,6 +225,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
    * Gibt die berechnete Breite des MenuItems zurück.
    * Diese setzt sich aus dem Padding (links und rechts, je 16px), dem Icon (wenn vorhanden, 15px) und der berechneten
    * Textbreite zusammen.
+   *
    * @param menuItem
    */
   private getMenuItemWidth(menuItem: LuxMenuItemComponent): number {
@@ -238,6 +243,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
 
   /**
    * Berechnet mithilfe eines Canvas-Objekts die Breite eines einzelnen Textes
+   *
    * @param text
    */
   private getTextWidth(text): number {
@@ -257,9 +263,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   hasVisibleMenuItems(): boolean {
     let hasVisibleMenuItems = false;
 
-    for (let i = 0; i < this.menuItems.length; i++) {
-      const element = this.menuItems[i];
-
+    for (const element of this.menuItems) {
       if (!element.luxHidden && !element.extended) {
         hasVisibleMenuItems = true;
         break;

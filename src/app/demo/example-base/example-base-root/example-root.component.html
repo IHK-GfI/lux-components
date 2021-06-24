@@ -8,23 +8,23 @@
   fxFlexFill
 >
   <div
-    class="example-base-components-list"
+    class="example-base-components-list lux-color-dark-divider"
     fxLayout="column"
     fxFlex="auto"
     luxAriaRole="navigation"
     luxAriaLabel="Komponentenbeispiele"
     #exampleListElement
-    *ngIf="!mediaQueryService.isXS() && !mediaQueryService.isSM()"
+    *ngIf="desktopView"
   >
     <ng-container *ngFor="let moduleName of navigationService.currentModuleNames">
       <lux-panel luxCollapsedHeaderHeight="35px" luxExpandedHeaderHeight="35px" [luxExpanded]="true">
-        <lux-panel-header-title> lux-{{ moduleName }} </lux-panel-header-title>
+        <lux-panel-header-title><span class="lux-color-primary-500">lux-{{ moduleName }}</span></lux-panel-header-title>
         <lux-panel-content>
           <ng-container
             *ngFor="let component of navigationService.sortedComponentEntries.get(moduleName) | luxAlphabeticallySorted"
           >
             <div
-              class="example-component-list-item"
+              class="example-component-list-item lux-color-primary-500"
               tabindex="0"
               role="button"
               [ngClass]="{

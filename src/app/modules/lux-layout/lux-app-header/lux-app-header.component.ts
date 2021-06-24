@@ -1,15 +1,16 @@
-// tslint:disable:max-line-length
+/* eslint-disable max-len */
 import {
   Component,
   ContentChild,
-  ElementRef, EventEmitter,
+  ElementRef, EventEmitter, HostBinding,
   Input,
   OnChanges, OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
   ViewChild
-} from '@angular/core';
+} from "@angular/core";
+import { LuxAppService } from "../../lux-util/lux-app.service";
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMasterDetailMobileHelperService } from '../lux-master-detail/lux-master-detail-mobile-helper.service';
 import { LuxSideNavComponent } from './lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component';
@@ -24,18 +25,20 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./lux-app-header.component.scss']
 })
 export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() luxLocaleSupported = ['de'];
+  @Input() luxLocaleBaseHref  = '';
   @Input() luxUserName: string;
   @Input() luxAppTitle: string;
   @Input() luxAppTitleShort: string;
   @Input() luxIconName: string;
   @Input() luxImageSrc: string;
   @Input() luxImageHeight = '55px';
-  @Input() luxAriaAppMenuButtonLabel = 'Anwendungsmenü / Navigation';
-  @Input() luxAriaUserMenuButtonLabel = 'Benutzermenü / Navigation';
-  @Input() luxAriaTitleIconLabel = 'Titelicon';
-  @Input() luxAriaTitleImageLabel = 'Titelbild';
-  @Input() luxAriaTitleLinkLabel;
-  @Input() luxAriaRoleHeaderLabel = 'Kopfbereich / Menübereich';
+  @Input() luxAriaAppMenuButtonLabel = $localize `:@@luxc.app-header.aria.appmenu.btn:Anwendungsmenü / Navigation`;
+  @Input() luxAriaUserMenuButtonLabel = $localize `:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
+  @Input() luxAriaTitleIconLabel = $localize `:@@luxc.app-header.aria.title_icon.lbl:Titelicon`;
+  @Input() luxAriaTitleImageLabel = $localize `:@@luxc.app-header.aria.title.image.lbl:Titelbild`;
+  @Input() luxAriaTitleLinkLabel = $localize `:@@luxc.app-header.aria.title.link.lbl:`;
+  @Input() luxAriaRoleHeaderLabel = $localize `:@@luxc.app-header.aria.role_header.lbl:Kopfbereich / Menübereich`;
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 
@@ -54,7 +57,9 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   @ContentChild(LuxAppHeaderRightNavComponent) rightNav: LuxAppHeaderRightNavComponent;
   @ContentChild(LuxSideNavComponent) sideNav: LuxSideNavComponent;
 
-  constructor(public mobileHelperService: LuxMasterDetailMobileHelperService, private logger: LuxConsoleService) {
+  constructor(public mobileHelperService: LuxMasterDetailMobileHelperService, private logger: LuxConsoleService, private elementRef: ElementRef, private appService: LuxAppService) {
+    this.appService.appHeaderEl = elementRef.nativeElement;
+
     // Wenn die Master-Ansicht der MD-Komponente aendert, muss ein anderer Navigations-Button angezeigt werden
     this.subscriptions.push(this.mobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
       setTimeout(() => {
@@ -93,7 +98,7 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     if (!this.luxAppTitleShort || this.luxAppTitleShort.length === 0) {
-      this.logger.warn('Achtung, der Applikations-Header hat keinen Titel für die mobile Ansicht!');
+      this.logger.warn('No title is set for the mobile view.');
     }
   }
 

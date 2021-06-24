@@ -1,4 +1,4 @@
-@import '../../../../theming/luxcommon';
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
 
 ::ng-deep .lux-autocomplete-panel {
   padding: $outline-width;
@@ -40,29 +40,8 @@ mat-chip-list {
   }
 
   mat-chip {
-    // Löschicon (luxSelected=true)
-    &.mat-chip-selected .mat-chip-remove {
-      color: white;
-      opacity: 1 !important;
-    }
-
-    // Löschicon (luxSelected=false)
-    &:not(.mat-chip-selected) .mat-chip-remove {
-      color: $dark-primary-text;
-      opacity: 1 !important;
-    }
-
     &.mat-chip-disabled {
-      background-color: $dark-disabled-text !important;
-      color: white !important;
       pointer-events: none;
-
-      lux-icon ::ng-deep {
-        i,
-        mat-icon {
-          color: white;
-        }
-      }
     }
   }
 

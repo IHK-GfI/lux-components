@@ -31,12 +31,14 @@
         </ng-container>
       </div>
       <lux-input luxLabel="Lookup URL" [(luxValue)]="modifiedConfig.lookupServiceUrl"></lux-input>
-      <lux-divider [luxInset]="true"></lux-divider>
       <lux-checkbox
         luxLabel="Lux-Card Animationen aktiv"
         [(luxChecked)]="modifiedConfig.cardExpansionAnimationActive"
       ></lux-checkbox>
-      <lux-divider [luxInset]="true"></lux-divider>
+      <lux-input
+        luxLabel="throttleTimeMs der Buttons (Verhinderung von ungewollten Doppelklicks)"
+        [(luxValue)]="modifiedConfig.buttonConfiguration.throttleTimeMs"
+      ></lux-input>
       <lux-input
         luxLabel="enterDuration der Lux-Ripples"
         [(luxValue)]="modifiedConfig.rippleConfiguration.enterDuration"
@@ -59,11 +61,6 @@
         luxLabel="unbounded-State der Lux-Ripples"
         [(luxChecked)]="modifiedConfig.rippleConfiguration.unbounded"
       ></lux-toggle>
-      <lux-divider [luxInset]="true"></lux-divider>
-      <lux-checkbox
-        luxLabel="Binding-Violations loggen"
-        [(luxChecked)]="modifiedConfig.displayBindingDebugHint"
-      ></lux-checkbox>
     </lux-card-content>
     <lux-card-actions>
       <lux-button

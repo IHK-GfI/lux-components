@@ -18,6 +18,8 @@
       <!-- Direkte Chip-Components -->
       <ng-container *ngFor="let chip of chipComponents; let i = index">
         <mat-chip
+          class="lux-chip"
+          [ngClass]="{'lux-chip-selected': chip.luxSelected, 'lux-chip-disabled': chip.luxDisabled}"
           [removable]="chip.luxRemovable"
           [disabled]="chip.luxDisabled"
           [selectable]="!chip.luxDisabled"
@@ -29,11 +31,13 @@
         >
           <ng-template *ngTemplateOutlet="chip.templateRef"></ng-template>
           <lux-icon
+            class="lux-chip-icon"
+            [ngClass]="{'lux-chip-icon-selected': chip.luxSelected, 'lux-chip-icon-disabled': chip.luxDisabled}"
             matChipRemove
             luxIconName="cancel"
             luxMargin="0 0 0 6px"
             luxPadding="2px"
-            class="lux-cursor"
+            class="lux-chip-icon lux-cursor"
             (click)="chip.remove(i)"
             *ngIf="chip.luxRemovable"
           ></lux-icon>
@@ -44,6 +48,8 @@
       <ng-container *ngFor="let chipGroup of chipGroupComponents">
         <ng-container *ngFor="let label of chipGroup.luxLabels; let i = index">
           <mat-chip
+            class="lux-chip"
+            [ngClass]="{'lux-chip-selected': chipGroup.luxSelected, 'lux-chip-disabled': chipGroup.luxDisabled}"
             [removable]="chipGroup.luxRemovable"
             [disabled]="chipGroup.luxDisabled"
             [selectable]="!chipGroup.luxDisabled"
@@ -57,11 +63,13 @@
               *ngTemplateOutlet="chipGroup.tempRef ? chipGroup.tempRef : noTemplateRef; context: { $implicit: label }"
             ></ng-container>
             <lux-icon
+              class="lux-chip-icon"
+              [ngClass]="{'lux-chip-icon-selected': chipGroup.luxSelected, 'lux-chip-icon-disabled': chipGroup.luxDisabled}"
               matChipRemove
               luxIconName="cancel"
               luxMargin="0 0 0 6px"
               luxPadding="2px"
-              class="lux-cursor"
+              class="lux-chip-icon lux-cursor"
               (click)="chipGroup.remove(i)"
               *ngIf="chipGroup.luxRemovable"
             ></lux-icon>

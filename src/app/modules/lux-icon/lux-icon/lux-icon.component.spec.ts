@@ -99,6 +99,6 @@ describe('LuxIconComponent', () => {
   `
 })
 class LuxIconComponent {
-  iconName: string = 'fa-gear';
-  iconSize: string = '2x';
+  iconName = 'fa-gear';
+  iconSize = '2x';
 }

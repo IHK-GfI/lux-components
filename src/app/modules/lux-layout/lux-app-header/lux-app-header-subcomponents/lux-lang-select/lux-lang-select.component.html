@@ -1,0 +1,18 @@
+<div fxFlex="none" fxLayout="row" fxLayoutAlign="center center" class="lux-lang-select">
+  <lux-menu
+    class="lux-lang-select-menu"
+    luxAriaMenuTriggerLabel="Sprachmenü"
+    i18n-luxAriaMenuTriggerLabel="@@luxc.lang-select.aria.langmenu.btn"
+    [luxMenuLabel]="selectedLocale?.labelSelected"
+    luxMenuIconName=""
+    [luxDisplayExtended]="false"
+  >
+    <lux-menu-item
+      class="lux-lang-select-menu-item"
+      *ngFor="let item of localeOptions"
+      [luxLabel]="item.label"
+      luxIconName="far fa-flag"
+      (luxClicked)="onLocaleChanged(item)"
+    ></lux-menu-item>
+  </lux-menu>
+</div>

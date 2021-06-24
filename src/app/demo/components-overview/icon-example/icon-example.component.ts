@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LuxIconColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-icon-example',
   templateUrl: './icon-example.component.html'
 })
-export class IconExampleComponent implements OnInit {
+export class IconExampleComponent {
   // region Helper-Properties für das Beispiel
 
   colors: string[] = LuxIconColors;
@@ -15,16 +15,15 @@ export class IconExampleComponent implements OnInit {
 
   // region Properties der Component
 
-  iconName: string = 'thumb_up';
-  iconSize: string = '2x';
-  rounded: boolean = false;
-  margin: string = '0';
-  padding: string = '4px';
+  iconName = 'thumb_up';
+  iconSize = '2x';
+  rounded = false;
+  margin = '0';
+  padding = '4px';
   backgroundColor = '';
 
   // endregion
 
   constructor() {}
 
-  ngOnInit() {}
 }

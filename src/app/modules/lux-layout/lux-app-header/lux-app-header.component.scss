@@ -1,5 +1,3 @@
-@import '../../../../theming/luxcommon';
-
 :host {
   flex: 0 0 auto;
   max-height: 65px;
@@ -11,7 +9,6 @@
 
 .lux-app-header {
   box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.5);
-  background-color: $app-header-bg;
   z-index: 10000;
 
   overflow: hidden;
@@ -37,19 +34,9 @@
 
   // Einheitliche Schrift und Icon-Größe sowie Farbe sicherstellen
   & {
-    > div:not(.lux-header-action) {
-      ::ng-deep span {
-        color: map-get(map-get($lux-palette-darkblue, contrast), 500);
-      }
-    }
-
     ::ng-deep {
       span {
         font-size: 16px;
-      }
-
-      button:not(.mat-primary):not(.mat-warn):not(.mat-accent):not(.lux-button-rounded) {
-        color: map-get(map-get($lux-palette-darkblue, contrast), 500);
       }
 
       i,
@@ -74,8 +61,6 @@
         width: 25px;
         border: 1px solid;
         border-radius: 50%;
-        color: map-get($lux-palette_darkblue, 500);
-        background: map-get(map-get($lux-palette-darkblue, contrast), 500);
         padding: 0 4px;
       }
     }
@@ -134,7 +119,7 @@
     }
 
     .lux-side-nav-trigger-active {
-      background: $dark-focused;
+      //background: $dark-focused;
     }
 
     .lux-right-nav-trigger {
@@ -156,8 +141,6 @@
     lux-button,
     .lux-menu-item,
     .lux-action-nav-menu lux-button {
-      color: map-get($lux-palette_darkblue, 500);
-
       .mat-button-wrapper {
         font-weight: normal !important;
         font-size: 16px;
@@ -171,11 +154,6 @@
       }
     }
   }
-
-  .lux-side-nav-header,
-  .lux-side-nav-footer {
-    color: map-get($lux-palette_darkblue, A400);
-  }
 }
 
 // Zusätzliche CSS-Klassen
@@ -185,10 +163,6 @@
 
 .lux-display-none {
   display: none !important;
-}
-
-.lux-show-border {
-  border-left: 1px solid $light-dividers;
 }
 
 .lux-header-menu-mobile {

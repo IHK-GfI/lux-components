@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'app-chip-example',
   templateUrl: './chip-example.component.html'
 })
-export class ChipExampleComponent implements OnInit {
+export class ChipExampleComponent {
   // region Helper-Properties für das Beispiel
 
   showOutputEvents = false;
@@ -43,8 +43,6 @@ export class ChipExampleComponent implements OnInit {
   // endregion
 
   constructor() {}
-
-  ngOnInit() {}
 
   chipAdded($event: string) {
     this.chips.push({

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 
 @Component({
@@ -6,7 +7,7 @@ import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-obs
   templateUrl: './lux-tile.component.html',
   styleUrls: ['./lux-tile.component.scss']
 })
-export class LuxTileComponent {
+export class LuxTileComponent implements OnInit, OnDestroy {
   private static _notificationNewClass = 'lux-notification-new';
   private static _notificationReadClass = 'lux-notification-read';
 
@@ -14,11 +15,24 @@ export class LuxTileComponent {
   @Input() luxTagId: string = undefined;
   @Input() luxShowNotification;
   @Input() luxCounter: number;
-  @Input() luxCounterCap: number = 10;
+  @Input() luxCounterCap = 10;
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(public queryService: LuxMediaQueryObserverService) {}
+  mobileView: boolean;
+  subscription: Subscription;
+
+  constructor(private queryService: LuxMediaQueryObserverService) {}
+
+  ngOnInit() {
+    this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe(query => {
+      this.mobileView = query === 'xs' ||  query === 'sm';
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   clicked() {
     this.luxClicked.emit();

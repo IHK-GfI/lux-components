@@ -1,14 +1,4 @@
-import {
-  Directive,
-  DoCheck,
-  ElementRef,
-  Input,
-  NgZone,
-  OnChanges,
-  Optional,
-  Renderer2,
-  SimpleChanges
-} from '@angular/core';
+import { Directive, ElementRef, Input, NgZone, OnChanges, Optional, Renderer2, SimpleChanges } from '@angular/core';
 import { MatBadge } from '@angular/material/badge';
 import { AriaDescriber } from '@angular/cdk/a11y';
 import { LuxUtil } from '../../lux-util/lux-util';
@@ -30,14 +20,15 @@ import { LuxUtil } from '../../lux-util/lux-util';
     '[class.lux-badge-color-default]': 'color !== "primary" && color !== "warn" && color !== "accent"'
   }
 })
-export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges, DoCheck {
+export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges {
   @Input() luxBadgeNotification: string;
   @Input() luxBadgeColor: 'primary' | 'warn' | 'accent' | string = 'default';
   @Input() luxBadgeSize: 'small' | 'medium' | 'large' = 'medium';
   @Input() luxBadgePosition: 'above after' | 'above before' | 'below before' | 'below after' = 'above after';
-  @Input() luxBadgeDisabled: boolean = false;
-  @Input() luxBadgeHidden: boolean = false;
-  @Input() luxBadgeOverlap: boolean = true;
+  @Input() luxBadgeDisabled = false;
+  @Input() luxBadgeHidden = false;
+  @Input() luxBadgeOverlap = true;
+  @Input() luxBadgeNoBorder = false;
   @Input() luxBadgeCap: number;
 
   constructor(
@@ -53,24 +44,34 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
 
   ngOnChanges(changes: SimpleChanges) {
     this.updateContent(this.luxBadgeNotification);
-    this.color = <any>this.luxBadgeColor;
+    this.color = this.luxBadgeColor as any;
     this.size = this.luxBadgeSize;
     this.position = this.luxBadgePosition;
     this.disabled = this.luxBadgeDisabled;
     this.hidden = !!this.luxBadgeHidden;
     this.overlap = this.luxBadgeOverlap;
-  }
-
-  ngDoCheck() {
-    this.checkMaxNumber();
+    if (this.luxBadgeNoBorder) {
+      this.luxElementRef.nativeElement.classList.add('lux-badge-no-border');
+    } else {
+      this.luxElementRef.nativeElement.classList.remove('lux-badge-no-border');
+    }
   }
 
   updateContent(value: any) {
     let newContent = value;
 
     if (typeof newContent === 'number') {
-      // Wenn der Wert eine Zahl ist, muss dieser für die Weiterverarbeitung in einen String umgewandelt werden.
-      newContent = '' + newContent;
+      if (this.luxBadgeCap && newContent > this.luxBadgeCap) {
+        newContent = this.luxBadgeCap + '+';
+      } else {
+        newContent = newContent + '';
+      }
+    } else if (typeof newContent === 'string' && LuxUtil.isNumber(newContent)) {
+      if (this.luxBadgeCap && +newContent > this.luxBadgeCap) {
+        newContent = this.luxBadgeCap + '+';
+      } else {
+        newContent = newContent + '';
+      }
     } else if (!newContent) {
       // Die Werte "undefined" und "null" zum Leerstring umwandeln,
       // damit diese nicht angezeigt werden.
@@ -83,17 +84,5 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
 
   isHidden(): boolean {
     return this.hidden || !this.content;
-  }
-
-  /**
-   * Prüft ob der Inhalt eine Zahl, eine Maximalzahl gegeben und diese überschritten worden ist.
-   * Wenn ja, wird der Inhalt mit einem "+" abgekürzt.
-   */
-  private checkMaxNumber() {
-    if (this.luxBadgeNotification && this.luxBadgeCap && LuxUtil.isNumber(this.luxBadgeNotification)) {
-      if (+this.luxBadgeNotification > this.luxBadgeCap) {
-        this.updateContent(this.luxBadgeCap + '+');
-      }
-    }
   }
 }

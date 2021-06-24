@@ -18,9 +18,9 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
   @ViewChild('filelistexamplewithform', { read: LuxFileListComponent, static: true })
   fileBaseWithComponent: LuxFileListComponent;
 
-  backgroundIconName: string = 'fas fa-cloud-upload-alt';
-  showPreview: boolean = true;
-  multiple: boolean = true;
+  backgroundIconName = 'fas fa-cloud-upload-alt';
+  showPreview = true;
+  multiple = true;
   heading = 4;
   headingValidator = Validators.pattern('[1-6]');
 

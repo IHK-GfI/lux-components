@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'lux-card-info',
   template: '<ng-content></ng-content>'
 })
-export class LuxCardInfoComponent implements OnInit {
+export class LuxCardInfoComponent {
   constructor() {}
-
-  ngOnInit() {}
 }

@@ -21,8 +21,8 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
   entriesCount: number;
   latestSearchValue: string;
 
-  @Input() luxDebounceTime: number = 250;
-  @Input() luxMaximumDisplayed: number = 50;
+  @Input() luxDebounceTime = 250;
+  @Input() luxMaximumDisplayed = 50;
 
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
   @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
@@ -64,23 +64,20 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
 
   /**
    * Vergleicht den eingegebenen Wert mit den Display-Werten der Einträge.
+   *
    * @param filterTerm
    * @returns LuxLookupTableEntry[]
    */
   filter(filterTerm: any): LuxLookupTableEntry[] {
-    return this.entries.filter(option => {
+    return this.entries.filter((option) => {
       const compareValue = this.displayFn(option);
-      return (
-        compareValue
-          .trim()
-          .toLowerCase()
-          .indexOf(filterTerm.trim().toLowerCase()) > -1
-      );
+      return compareValue.trim().toLowerCase().indexOf(filterTerm.trim().toLowerCase()) > -1;
     });
   }
 
   /**
    * Bestimmt wie eingegebene Optionen dargestellt werden.
+   *
    * @param option
    * @returns string
    */
@@ -88,16 +85,17 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
     if (typeof option === 'string') {
       return option;
     } else if (this.isRenderPropAFunction()) {
-      return (<Function>this.luxRenderProp)(option);
+      return (this.luxRenderProp as (currentOption) => string)(option);
     } else if (option) {
-      return option[<string>this.luxRenderProp]
-        ? option[<string>this.luxRenderProp]
-        : 'Fehler beim Auslesen (Property unbekannt)';
+      return option[this.luxRenderProp as string] ? option[this.luxRenderProp as string] : 'Fehler beim Auslesen (Property unbekannt)';
+    } else {
+      return '';
     }
   }
 
   /**
    * Wird beim Klick auf das Input Feld aufgerufen.
+   *
    * @param clickEvent
    */
   onClick(clickEvent: any) {
@@ -111,17 +109,19 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
 
   /**
    * Setzt den aktuellen Value-Wert auf den ausgewählten Wert.
+   *
    * @param MatAutocompleteSelectedEvent $event
+   * @param $event
    */
   selected($event: MatAutocompleteSelectedEvent) {
     this.luxValue = $event.option.value;
-    if (this.isInForm()) {
+    if (this.inForm) {
       this.formControl.setValue(this.luxValue);
     }
   }
 
   /**
-   * @override errorMessageModifier - Modifikation der Fehlermeldung
+   * @override
    * @param value
    * @param errors
    */
@@ -132,7 +132,8 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
     }
 
     if (errors['noResult']) {
-      return 'Der eingegebene Eintrag ist nicht Teil der Schlüsseltabelle.';
+      // eslint-disable-next-line max-len
+      return $localize`:@@luxc.lookup-autocomplete.error_message.not_available:Der eingegebene Eintrag ist nicht Teil der Schlüsseltabelle.`;
     }
     return undefined;
   }

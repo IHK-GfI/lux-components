@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxRadioComponent } from '../../../modules/lux-form/lux-radio/lux-radio.component';
 import {
@@ -8,21 +8,20 @@ import {
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
-import { LuxFormSelectableBase } from '../../../modules/lux-form/lux-form-model/lux-form-selectable-base.class';
 
 @Component({
   selector: 'app-radio-button-example',
   templateUrl: './radio-button-example.component.html'
 })
-export class RadioButtonExampleComponent implements OnInit {
+export class RadioButtonExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  useErrorMessage: boolean = true;
-  useTemplatesForLabels: boolean = false;
-  useCompareWithFn: boolean = false;
+  useErrorMessage = true;
+  useTemplatesForLabels = false;
+  useCompareWithFn = false;
   useValueFn: boolean;
   useSimpleArray: boolean;
-  showOutputEvents: boolean = false;
+  showOutputEvents = false;
 
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
@@ -45,16 +44,16 @@ export class RadioButtonExampleComponent implements OnInit {
 
   // region Properties der Component
 
-  controlBinding: string = 'radioExample';
+  controlBinding = 'radioExample';
   disabled = false;
   readonly: boolean;
   required: boolean;
   isVertical: boolean;
-  label: string = 'Label';
-  hint: string = 'Hint';
-  hintShowOnlyOnFocus: boolean = false;
+  label = 'Label';
+  hint = 'Hint';
+  hintShowOnlyOnFocus = false;
   controlValidators: ValidatorFn[] = [];
-  errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
+  errorMessage = 'Das Feld enthält keinen gültigen Wert';
 
   value;
 
@@ -80,8 +79,6 @@ export class RadioButtonExampleComponent implements OnInit {
     this.compareWithFnString = '' + this.compareWithFn;
     this.errorCallbackString = '' + this.errorCallback;
   }
-
-  ngOnInit() {}
 
   showErrors(...radioComponents: LuxRadioComponent[]) {
     this.value = null;
