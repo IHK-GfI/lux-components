@@ -1,5 +1,6 @@
 # Version 11.0.0
 ## New
+- **allgemein**: Update auf Angular 11
 - **lux-badge-notification**: Optik verbessert. [Issue 43](https://github.com/IHK-GfI/lux-components/issues/43)
 - **lux-button**: Doppelklick unterbinden [Issue 52](https://github.com/IHK-GfI/lux-components/issues/52)
 
