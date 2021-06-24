@@ -38,13 +38,13 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   _luxFilterValues = {};
   _luxFilterExpanded = false;
 
-  @Input() luxTitle = 'Filter';
+  @Input() luxTitle = $localize `:@@luxc.filter.title:Filter`;
   @Input() luxButtonRaised = false;
-  @Input() luxButtonFilterLabel = 'Filtern';
-  @Input() luxButtonResetLabel = 'Zurücksetzen';
-  @Input() luxButtonSaveLabel = 'Speichen...';
-  @Input() luxButtonLoadLabel = 'Laden...';
-  @Input() luxDefaultFilterMessage = 'Es wird nach den Standardeinstellungen gefiltert.';
+  @Input() luxButtonFilterLabel = $localize `:@@luxc.filter.filter.btn:Filtern`;
+  @Input() luxButtonResetLabel = $localize `:@@luxc.filter.reset.btn:Zurücksetzen`;
+  @Input() luxButtonSaveLabel = $localize `:@@luxc.filter.save.btn:Speichen`;
+  @Input() luxButtonLoadLabel = $localize `:@@luxc.filter.load.btn:Laden`;
+  @Input() luxDefaultFilterMessage = $localize `:@@luxc.filter.defaultFilterMessage:Es wird nach den Standardeinstellungen gefiltert.`;
   @Input() luxShowChips = true;
   @Input() luxStoredFilters: LuxFilter[] = [];
 
@@ -64,7 +64,7 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
     return this._luxFilterValues;
   }
 
-  set luxFilterValues(filter: object) {
+  set luxFilterValues(filter: any) {
     this._luxFilterValues = JSON.parse(JSON.stringify(filter));
 
     if (this.formElementes) {

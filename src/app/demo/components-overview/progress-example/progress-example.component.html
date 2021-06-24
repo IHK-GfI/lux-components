@@ -52,13 +52,13 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-select class="example-highlight-config-option" [luxOptions]="sizes" [(luxSelected)]="size" luxLabel="luxSize">
+    <lux-select class="lux-highlight-section" [luxOptions]="sizes" [(luxSelected)]="size" luxLabel="luxSize">
       <lux-form-hint>
         Diese Property legt die Größe der Component fest.<br />
         Dabei sind die Eingaben 'small', 'medium' und 'large' erlaubt.
       </lux-form-hint>
     </lux-select>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-select
         [luxOptions]="modes"
         [(luxSelected)]="mode"
@@ -82,7 +82,7 @@
     </div>
     <lux-input
       luxName="button_background_Color"
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxValue)]="backgroundColor"
       luxLabel="Hintergrundfarbe"
     >

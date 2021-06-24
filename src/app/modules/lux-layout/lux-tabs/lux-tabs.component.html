@@ -2,10 +2,11 @@
   [dynamicHeight]="false"
   [selectedIndex]="luxActiveTab"
   (selectedTabChange)="tabChange$.next($event)"
+  class="lux-tab-group"
   [ngClass]="{
     'lux-tabs-no-divider': !luxDisplayDivider,
     'lux-tabs-no-anim': !luxTabAnimationActive,
-    'lux-tabs-mobile': queryService.isXS() || queryService.isSM()
+    'lux-tabs-mobile': smallDevice
   }"
   #matTabs
   luxTagIdHandler
@@ -80,48 +81,83 @@
 <ng-template #tabLabelTemplate let-luxTab>
   <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdHeader" class="lux-mt-3 lux-mb-3">
     <div fxFlex="auto" fxLayout.gt-sm="column" fxLayout.xs="row">
-      <lux-icon
-        fxFlex="0 0 auto"
-        [luxIconName]="luxTab.luxIconName"
-        [luxIconSize]="luxIconSize"
-        *ngIf="luxTab.luxIconName"
-      ></lux-icon>
-
-      <div
-        fxLayout.gt-sm="row"
-        ngClass.gt-md="lux-label-lower"
-        [luxBadgeNotification]="luxTab.luxCounter"
-        [luxBadgeCap]="luxTab.luxCounterCap"
-        [luxBadgeOverlap]="false"
-      >
+      <div fxLayout="row" fxLayoutAlign="center center" fxFlex="0 0 auto">
+        <lux-icon
+          class="lux-tab-icon"
+          fxFlex="none"
+          [luxIconName]="luxTab.luxIconName"
+          [luxIconSize]="luxIconSize"
+          [luxBadgeNotification]="smallDevice || (!smallDevice && !luxTab.luxTitle) ? luxTab.luxCounter : ''"
+          [luxBadgeNoBorder]="true"
+          luxBadgeColor="primary"
+          [luxBadgeDisabled]="luxTab.luxDisabled"
+          [luxBadgeCap]="luxTab.luxCounterCap"
+          [luxBadgeOverlap]="false"
+          *ngIf="luxTab.luxIconName"
+        ></lux-icon>
+        <span
+          fxFlex="none"
+          [ngClass]="[
+            'lux-tabs-notification-icon',
+            'lux-tabs-notification-icon-position-after-icon',
+            getNotificationIconColorClassForTab(luxTab),
+            luxTab.luxCounter !== null && luxTab.luxCounter !== undefined ? 'lux-counter-visible' : ''
+          ]"
+          *ngIf="smallDevice || (!smallDevice && !luxTab.luxTitle)"
+        ></span>
+      </div>
+      <div fxLayout="row" ngClass.gt-md="lux-label-lower">
         <div
           class="lux-tab-title"
           [ngClass]="{ 'lux-uppercase': labelUppercase }"
           fxShow.sm="false"
           fxShow.xs="false"
           fxShow="true"
+          [luxBadgeNotification]="!smallDevice && luxTab.luxTitle ? luxTab.luxCounter : ''"
+          [luxBadgeNoBorder]="true"
+          luxBadgeColor="primary"
+          [luxBadgeDisabled]="luxTab.luxDisabled"
+          [luxBadgeCap]="luxTab.luxCounterCap"
+          [luxBadgeOverlap]="false"
           *ngIf="luxTab.luxIconName"
         >
           {{ luxTab.luxTitle }}
+          <span
+            fxFlex="none"
+            [ngClass]="[
+              'lux-tabs-notification-icon',
+              'lux-tabs-notification-icon-position-after-label',
+              getNotificationIconColorClassForTab(luxTab),
+              luxTab.luxCounter !== null && luxTab.luxCounter !== undefined ? 'lux-counter-visible' : ''
+            ]"
+            *ngIf="luxTab.luxShowNotification && !smallDevice && luxTab.luxTitle"
+          ></span>
         </div>
+
         <div
           class="lux-tab-title"
           [ngClass]="{ 'lux-uppercase': labelUppercase }"
           fxShow="true"
+          [luxBadgeNotification]="!luxTab.luxIconName ? luxTab.luxCounter : ''"
+          [luxBadgeNoBorder]="true"
+          luxBadgeColor="primary"
+          [luxBadgeDisabled]="luxTab.luxDisabled"
+          [luxBadgeCap]="luxTab.luxCounterCap"
+          [luxBadgeOverlap]="false"
           *ngIf="!luxTab.luxIconName"
         >
           {{ luxTab.luxTitle }}
+          <span
+            fxFlex="none"
+            [ngClass]="[
+              'lux-tabs-notification-icon',
+              'lux-tabs-notification-icon-position-after-label',
+              getNotificationIconColorClassForTab(luxTab),
+              luxTab.luxCounter !== null && luxTab.luxCounter !== undefined ? 'lux-counter-visible' : ''
+            ]"
+            *ngIf="luxTab.luxShowNotification && !smallDevice && luxTab.luxTitle"
+          ></span>
         </div>
-
-        <div
-          fxFlex="auto"
-          [ngClass]="[
-            'lux-tabs-notification-icon',
-            getNotificationIconColorClassForTab(luxTab),
-            luxTab.luxCounter !== null && luxTab.luxCounter !== undefined ? 'lux-badge-notification-visible' : ''
-          ]"
-          *ngIf="luxTab.luxShowNotification"
-        ></div>
       </div>
     </div>
   </div>

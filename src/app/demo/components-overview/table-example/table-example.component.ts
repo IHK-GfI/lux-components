@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TableExampleBaseClass } from './table-example-base.class';
 
 @Component({
@@ -6,14 +6,12 @@ import { TableExampleBaseClass } from './table-example-base.class';
   templateUrl: './table-example.component.html',
   styleUrls: ['./table-example.component.scss']
 })
-export class TableExampleComponent extends TableExampleBaseClass implements OnInit {
+export class TableExampleComponent extends TableExampleBaseClass {
   dataSource: any[] = [];
 
   constructor() {
     super();
   }
-
-  ngOnInit() {}
 
   onSelectedChange($event) {
     console.log($event);

@@ -1,19 +1,33 @@
 import { ComponentType } from '@angular/cdk/portal';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { MatSnackBar, MatSnackBarDismiss } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { MatSnackBarRef } from '@angular/material/snack-bar/snack-bar-ref';
+import { Observable, Subscription } from 'rxjs';
+import { skip } from 'rxjs/operators';
+import { LuxAppService } from '../../lux-util/lux-app.service';
 import { LuxSnackbarComponent } from './lux-snackbar-component/lux-snackbar.component';
 import { LuxSnackbarConfig } from './lux-snackbar-config';
 
 /**
  * Über den LuxSnackbarService können einfach Snackbarinfos angezeigt werden.
  */
-@Injectable()
-export class LuxSnackbarService {
+@Injectable({
+  providedIn: 'root'
+})
+export class LuxSnackbarService implements OnDestroy {
   private static readonly VERTICAL_POSITION = 'top';
   private static readonly HORIZONTAL_POSITION = 'end';
 
-  constructor(private snackBar: MatSnackBar) {}
+  private afterOpenedSubscription: Subscription;
+  private resizeSubscription: Subscription;
+
+  constructor(private snackBar: MatSnackBar, private appService: LuxAppService) {
+    this.resizeSubscription = appService.resize$
+      .asObservable()
+      .subscribe(() => {
+        this.updateSnackbarPosition(false);
+      });
+  }
 
   /**
    * Diese Methode öffnet eine Snackbar mit einem Text.
@@ -25,11 +39,16 @@ export class LuxSnackbarService {
    * muss nicht angegeben werden.
    */
   public openText(message: string, duration: number, actionName?: string): void {
-    this.snackBar.open(message, actionName, {
-      duration: duration,
+    const snackbarRef = this.snackBar.open(message, actionName, {
+      duration,
       verticalPosition: LuxSnackbarService.VERTICAL_POSITION,
       horizontalPosition: LuxSnackbarService.HORIZONTAL_POSITION,
       panelClass: 'lux-snackbar'
+    });
+
+    this.afterOpenedSubscription = snackbarRef.afterOpened().subscribe(() => {
+      this.updateSnackbarPosition(true);
+      this.afterOpenedSubscription.unsubscribe();
     });
   }
 
@@ -42,28 +61,40 @@ export class LuxSnackbarService {
    * @param data Ein Datenobjekt, das an die Komponente weitergereicht wird. Mit dem Code folgenden Code, können die
    * Daten verwendet werden. constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any).
    */
-  public openComponent(component: ComponentType<any>, duration: number = 0, data?: any) {
-    this.snackBar.openFromComponent(component, {
-      duration: duration,
-      data: data,
+  public openComponent(component: ComponentType<any>, duration = 0, data?: any) {
+    const snackbarRef = this.snackBar.openFromComponent(component, {
+      duration,
+      data,
       verticalPosition: LuxSnackbarService.VERTICAL_POSITION,
       horizontalPosition: LuxSnackbarService.HORIZONTAL_POSITION,
       panelClass: 'lux-snackbar'
+    });
+
+    this.afterOpenedSubscription = snackbarRef.afterOpened().subscribe(() => {
+      this.updateSnackbarPosition(true);
+      this.afterOpenedSubscription.unsubscribe();
     });
   }
 
   /**
    * Oeffnet eine Snackbar anhand der uebergebenen Konfiguration.
    * Ermoeglicht eine genaue Konfiguration der Snackbar.
+   *
+   * @param duration
    * @param config
    */
   public open(duration: number, config?: LuxSnackbarConfig) {
-    this.snackBar.openFromComponent(LuxSnackbarComponent, {
-      duration: duration,
+    const snackbarRef = this.snackBar.openFromComponent(LuxSnackbarComponent, {
+      duration,
       data: config,
       verticalPosition: LuxSnackbarService.VERTICAL_POSITION,
       horizontalPosition: LuxSnackbarService.HORIZONTAL_POSITION,
       panelClass: 'lux-snackbar'
+    });
+
+    this.afterOpenedSubscription = snackbarRef.afterOpened().subscribe(() => {
+      this.updateSnackbarPosition(true);
+      this.afterOpenedSubscription.unsubscribe();
     });
   }
 
@@ -92,5 +123,28 @@ export class LuxSnackbarService {
    */
   public dismiss() {
     this.snackBar.dismiss();
+  }
+
+  ngOnDestroy() {
+    if (this.afterOpenedSubscription) {
+      this.afterOpenedSubscription.unsubscribe();
+    }
+
+    this.resizeSubscription.unsubscribe();
+  }
+
+  private updateSnackbarPosition(logError: boolean) {
+    const snackbarContainerArr = document.getElementsByClassName('mat-snack-bar-container');
+
+    if (snackbarContainerArr.length > 0) {
+      const snackbarEl = snackbarContainerArr[0] as HTMLElement;
+      snackbarEl.style.top = this.appService.getAppTop() + this.appService.getHeaderHeight() + 3 /* Abstand zum Header */ + 'px';
+      snackbarEl.style.right = this.appService.getAppRight() + 3 /* Abstand zum Rand */ + 'px';
+      snackbarEl.style.visibility = 'visible';
+    } else {
+      if (logError) {
+        console.error('Snackbar (mat-snack-bar-container) could not be found! The snackbar is not shown.');
+      }
+    }
   }
 }

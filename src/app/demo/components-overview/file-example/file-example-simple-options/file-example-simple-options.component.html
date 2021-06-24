@@ -1,11 +1,11 @@
 <lux-input
-  class="example-highlight-config-option"
+  class="lux-highlight-section"
   luxLabel="luxLabel"
   luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
   [(luxValue)]="fileExample.label"
 >
 </lux-input>
-<div fxLayout="column" class="example-highlight-config-option">
+<div fxLayout="column" class="lux-highlight-section">
   <lux-input
     luxLabel="luxHint"
     luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
@@ -19,13 +19,13 @@
   ></lux-toggle>
 </div>
 <lux-toggle
-  class="example-highlight-config-option"
+  class="lux-highlight-section"
   [(luxChecked)]="fileExample.disabled"
   luxLabel="luxDisabled"
   luxHint="Erlaubt es, die Component zu deaktivieren."
 >
 </lux-toggle>
-<div class="example-highlight-config-option" fxLayout="column">
+<div class="lux-highlight-section" fxLayout="column">
   <div fxLayout="row wrap">
     <lux-button
       luxLabel="Enable"
@@ -41,14 +41,14 @@
   <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
 </div>
 <lux-toggle
-  class="example-highlight-config-option"
+  class="lux-highlight-section"
   [(luxChecked)]="fileExample.readonly"
   luxLabel="luxReadonly"
   luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
 >
 </lux-toggle>
 <lux-toggle
-  class="example-highlight-config-option"
+  class="lux-highlight-section"
   luxLabel="luxRequired"
   (luxCheckedChange)="fileExample.changeRequired($event)"
 >
@@ -62,35 +62,35 @@
   </lux-form-hint>
 </lux-toggle>
 <lux-toggle
-  class="example-highlight-config-option"
+  class="lux-highlight-section"
   [(luxChecked)]="fileExample.dndActive"
   luxLabel="luxDnDActive"
   luxHint="Diese Eigenschaft legt fest ob Dateien via Drag-And-Drop in das Input gegeben werden können."
 >
 </lux-toggle>
 <lux-toggle
-  class="example-highlight-config-option"
+  class="lux-highlight-section"
   [(luxChecked)]="fileExample.contentAsBlob"
   luxLabel="luxContentAsBlob"
   luxHint="Diese Eigenschaft bestimmt ob die Dateien als Blob gespeichert werden sollen oder als Base64-String."
 >
 </lux-toggle>
 <lux-toggle
-  class="example-highlight-config-option"
+  class="lux-highlight-section"
   [(luxChecked)]="fileExample.reportProgress"
   luxLabel="luxUploadReportProgress"
   luxHint="Diese Eigenschaft legt fest ob beim Upload Progressbar mit festen Fortschrittswerten oder nicht angezeigt werden soll."
 >
 </lux-toggle>
 <lux-input
-  class="example-highlight-config-option"
+  class="lux-highlight-section"
   luxLabel="luxUploadUrl"
   luxHint="Diese Property bestimmt die URL, zu der die selektierten Dateien hochgeladen werden sollen."
   [(luxValue)]="fileExample.uploadUrl"
 >
 </lux-input>
 <lux-input
-  class="example-highlight-config-option"
+  class="lux-highlight-section"
   luxLabel="luxMaxSizeMB"
   luxHint="Die Property bestimmt die maximale erlaubte Dateigröße in MB."
   [(luxValue)]="fileExample.maxSize"
@@ -99,7 +99,7 @@
   <lux-input-suffix>MB</lux-input-suffix>
 </lux-input>
 <lux-select
-  class="example-highlight-config-option"
+  class="lux-highlight-section"
   luxLabel="luxCapture"
   luxHint="Diese Property stellt ein ob für Mobilgeräte die Front- oder Rück-Kamera und Mikrophone verwendet werden sollen."
   [luxOptions]="['', 'user', 'environment']"
@@ -107,7 +107,7 @@
 >
 </lux-select>
 <lux-input
-  class="example-highlight-config-option"
+  class="lux-highlight-section"
   luxLabel="luxAccept"
   luxHint="Über diese Eigenschaft lässt sich einstellen, welche Dateiarten erlaubt sind (z.B. image/*,.pdf)."
   [(luxValue)]="fileExample.accept"

@@ -4,8 +4,8 @@ import { LuxHttpErrorInterceptor } from '../../../modules/lux-error/lux-http-err
 type Errors = Error[];
 
 interface Error {
-  name: String;
-  message: String;
+  name: string;
+  message: string;
 }
 
 @Component({
@@ -55,8 +55,6 @@ export class HttpErrorExampleComponent {
   }
 
   private mapErrors(args: Array<[string, string]>): Errors {
-    return args.map(([k, v]) => {
-      return { name: k, message: v };
-    });
+    return args.map(([k, v]) => ({ name: k, message: v }));
   }
 }

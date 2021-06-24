@@ -1,5 +1,3 @@
-@import '../../../../theming/luxcommon';
-
 :host {
   ::ng-deep {
     .mat-radio-label {
@@ -28,42 +26,4 @@
 
 .lux-horizontal mat-radio-button:first-child {
   margin-left: 0;
-}
-
-.mat-radio-checked {
-  & ::ng-deep label div.mat-radio-container {
-    div.mat-radio-inner-circle {
-      background-color: map-get($lux-palette_darkblue, 500);
-    }
-
-    div.mat-radio-outer-circle {
-      border-color: map-get($lux-palette_darkblue, 500);
-    }
-  }
-
-  &.mat-radio-disabled ::ng-deep label div.mat-radio-container {
-    div.mat-radio-inner-circle {
-      background-color: $dark-disabled-text;
-    }
-
-    div.mat-radio-outer-circle {
-      border-color: $dark-disabled-text;
-    }
-  }
-}
-
-.mat-radio-disabled ::ng-deep label.mat-radio-label {
-  & .mat-radio-label-content {
-    color: $dark-disabled-text;
-  }
-
-  & .mat-radio-container {
-    div.mat-radio-inner-circle {
-      background-color: $dark-disabled-text;
-    }
-
-    div.mat-radio-outer-circle {
-      border-color: $dark-disabled-text;
-    }
-  }
 }

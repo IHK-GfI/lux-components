@@ -1,13 +1,8 @@
-@import '../../../../../theming/luxcommon';
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
 
 .lux-dialog {
   // Das Element kann fokussiert werden, das muss aber nicht zwingend mit der Outline gezeigt werden
   outline-width: 0;
-
-  // Farbe des Dialog-Titels auf unsere Primärfarbe setzen
-  .lux-dialog-title {
-    color: map-get($lux-palette_darkblue, 500);
-  }
 
   // der Mat-Dialog-Content hat negativen Margin und einen passenden Padding (wieso auch immer)
   // wir schalten das ab, damit das Fokus-Highlighting passend zum Header aussieht

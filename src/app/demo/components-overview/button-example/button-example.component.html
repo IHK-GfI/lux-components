@@ -163,7 +163,7 @@
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxValue)]="label"
       luxName="button_luxLabel"
       luxLabel="luxLabel"
@@ -171,7 +171,7 @@
     ></lux-input>
     <lux-input
       luxName="button_luxIconName"
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxValue)]="iconName"
       luxLabel="luxIconName"
     >
@@ -182,14 +182,14 @@
       </lux-form-hint>
     </lux-input>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Diese Property deaktiviert den Button."
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="align"
       luxLabel="luxIconAlignWithLabel"
       luxHint="Mithilfe dieser Property werden Icon und Schrift auf einer Baseline ausgerichtet."
@@ -197,7 +197,7 @@
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="Label Uppercase"
       [(luxChecked)]="config.labelConfiguration.allUppercase"
       (luxCheckedChange)="updateConfiguration()"
@@ -209,7 +209,7 @@
     </lux-toggle>
     <lux-input
       luxName="button_background_Color"
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxValue)]="backgroundColor"
       luxLabel="Hintergrundfarbe"
     >

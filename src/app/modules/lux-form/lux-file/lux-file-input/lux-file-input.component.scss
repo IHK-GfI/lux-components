@@ -21,10 +21,6 @@ lux-form-control {
       .lux-menu-extended {
         lux-button {
           height: 15px;
-
-          & button[disabled] {
-            color: $dark-disabled-text;
-          }
         }
       }
     }

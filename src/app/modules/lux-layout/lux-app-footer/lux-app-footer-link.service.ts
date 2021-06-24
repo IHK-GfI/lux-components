@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { LuxAppFooterLinkInfo } from './lux-app-footer-link-info';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxAppFooterLinkService {
   private _linkInfos: LuxAppFooterLinkInfo[] = [];
 

@@ -1,5 +1,3 @@
-@import '../../../../theming/luxcommon';
-
 :host {
   position: relative;
   height: 100%;
@@ -12,6 +10,5 @@
 .lux-list-empty-icon,
 .lux-list-empty-icon-text {
   opacity: 0.6;
-  color: $dark-primary-text;
   padding: 0 8px;
 }

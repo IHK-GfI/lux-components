@@ -52,6 +52,7 @@ export class LuxDialogRef {
 
   /**
    * (Re-)Initialisiert diese Dialog-Referenz neu.
+   *
    * @param matDialogRef
    * @param data
    */
@@ -65,6 +66,7 @@ export class LuxDialogRef {
 
   /**
    * Schließt den Dialog und gibt nach Beenden die entsprechenden Events aus.
+   *
    * @param result
    */
   closeDialog(result?: any) {

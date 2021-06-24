@@ -1,10 +1,7 @@
-@import '../../../../theming/luxcommon';
-
 :host {
   position: relative;
-  flex: 1 1 auto;
+  flex: 1 1 100%;
   overflow-y: auto;
-  background-color: $app-content-bg;
 
   .lux-app-content-container {
     position: absolute;

@@ -1,5 +1,6 @@
+/* eslint-disable max-classes-per-file */
 import { Component } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
@@ -151,6 +152,8 @@ class Checker {
     expect(buttonEl.nativeElement.disabled).toBeFalsy('Nachbedingung 2');
     expect(buttonEl.nativeElement.innerHTML).toContain('Lorum ipsum 4711');
     expect(onClickSpy).toHaveBeenCalled();
+
+    discardPeriodicTasks();
   }
 
   static checkLuxDisabled(fixture: ComponentFixture<LuxButtonComponent>) {

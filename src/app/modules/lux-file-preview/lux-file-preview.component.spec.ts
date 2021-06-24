@@ -4,7 +4,6 @@ import { PortalModule } from '@angular/cdk/portal';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { waitForAsync, ComponentFixture, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-import { LuxMediaQueryObserverService } from '../lux-util/lux-media-query-observer.service';
 import { LuxTestHelper } from '../lux-util/testing/lux-test-helper';
 import { LUX_FILE_PREVIEW_DATA } from './lux-file-preview-config';
 
@@ -22,7 +21,6 @@ describe('LuxFilePreviewComponent', () => {
       imports: [OverlayModule, PortalModule],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        LuxMediaQueryObserverService,
         LuxFilePreviewService,
         { provide: LUX_FILE_PREVIEW_DATA, useValue: previewData }
       ]

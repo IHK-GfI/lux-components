@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Directionality } from '@angular/cdk/bidi';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
@@ -56,13 +57,13 @@ describe('LuxSelectComponent', () => {
   let platform: Platform;
   const scrolledSubject = new Subject();
 
-  function configureMatSelectTestingModule() {
+  const configureMatSelectTestingModule = () => {
     inject([OverlayContainer, Platform], (oc: OverlayContainer, p: Platform) => {
       overlayContainer = oc;
       overlayContainerElement = oc.getContainerElement();
       platform = p;
     })();
-  }
+  };
 
   afterEach(() => {
     overlayContainer.ngOnDestroy();
@@ -232,12 +233,12 @@ describe('LuxSelectComponent', () => {
 
     it('Array als Value', fakeAsync(() => {
       // Vorbedingung prüfen
-      testComponent.options = <any>[
+      testComponent.options = [
         { label: '0', value: ['0', '1', '2'] },
         { label: '1', value: ['3', '4', '5'] },
         { label: '2', value: ['6', '7', '8'] },
         { label: '3', value: ['9', '10', '11'] }
-      ];
+      ] as any;
       testComponent.selectedOption = undefined;
       LuxTestHelper.wait(fixture);
       expect(testComponent.select.luxSelected).toBeUndefined('Vorbedingung 1');
@@ -453,12 +454,12 @@ describe('LuxSelectComponent', () => {
 
     it('Array als Value', fakeAsync(() => {
       // Vorbedingung prüfen
-      testComponent.options = <any>[
+      testComponent.options = [
         ['0', '1', '2'],
         ['3', '4', '5'],
         ['6', '7', '8'],
         ['9', '10', '11']
-      ];
+      ] as any;
       testComponent.selectedOption = undefined;
       LuxTestHelper.wait(fixture);
       expect(testComponent.select.luxSelected).toBeUndefined('Vorbedingung 1');
@@ -581,12 +582,12 @@ describe('LuxSelectComponent', () => {
 
     it('Array als Value', fakeAsync(() => {
       // Vorbedingung prüfen
-      testComponent.options = <any>[
+      testComponent.options = [
         { label: '0', value: ['0', '1', '2'] },
         { label: '1', value: ['3', '4', '5'] },
         { label: '2', value: ['6', '7', '8'] },
         { label: '3', value: ['9', '10', '11'] }
-      ];
+      ] as any;
       testComponent.selectedOption = undefined;
       LuxTestHelper.wait(fixture);
       expect(testComponent.select.luxSelected).toBeUndefined('Vorbedingung 1');
@@ -663,7 +664,7 @@ describe('LuxSelectComponent', () => {
       flush();
 
       const options = overlayContainerElement.querySelectorAll('mat-option');
-      (<HTMLElement>options[0]).click();
+      (options[0] as HTMLElement).click();
       fixture.detectChanges();
       flush();
 
@@ -671,7 +672,7 @@ describe('LuxSelectComponent', () => {
       fixture.detectChanges();
       flush();
 
-      (<HTMLElement>options[1]).click();
+      (options[1] as HTMLElement).click();
       fixture.detectChanges();
       flush();
 
@@ -731,7 +732,7 @@ describe('LuxSelectComponent', () => {
       expect(testComponent.selectedOption).toEqual([]);
 
       // Änderungen durchführen
-      testComponent.options = <any>['A', 'B', 'C', 'D'];
+      testComponent.options = ['A', 'B', 'C', 'D'] as any;
       LuxTestHelper.wait(fixture);
       testComponent.selectedOption = [testComponent.options[0], testComponent.options[1]];
       LuxTestHelper.wait(fixture);

@@ -1,14 +1,7 @@
-@import '../../../../theming/luxcommon';
-
 @mixin crop {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-@mixin placeholderStyle {
-  color: $dark-disabled-text;
-  opacity: 1;
 }
 
 @mixin bottomBorder {
@@ -61,7 +54,6 @@ $fontSizeSmall: 12px;
     min-height: $defaultHeightNotScalable;
     &:after {
       @include bottomBorder;
-      border-bottom: 1px solid $borderColor;
     }
   }
 
@@ -78,24 +70,6 @@ $fontSizeSmall: 12px;
   }
 
   ::ng-deep {
-    // Die Placeholder-Einträge müssen separat aufgeführt werden, die meisten Engines greifen diese sonst nicht auf.
-    ::-webkit-input-placeholder {
-      @include placeholderStyle;
-    }
-
-    ::-moz-placeholder {
-      @include placeholderStyle;
-    }
-
-    // Der IE benötigt nur ein :-Symbol
-    :-ms-input-placeholder {
-      @include placeholderStyle;
-    }
-
-    ::placeholder {
-      @include placeholderStyle;
-    }
-
     // Umstylen des Standard-Aussehens von Inputs/Textareas
     input,
     textarea {
@@ -224,37 +198,7 @@ $fontSizeSmall: 12px;
     .lux-label,
     mat-hint,
     mat-error {
-      color: $dark-secondary-text;
       font-size: $fontSizeSmall !important;
-    }
-  }
-}
-
-// Greift nur, wenn das FormControl gerade einen Fehler anzeigt
-.lux-form-control-error {
-  .lux-form-control-label {
-    > * {
-      color: $lux-warn-color !important;
-    }
-  }
-
-  .lux-form-control-container {
-    border-color: $lux-warn-color !important;
-  }
-
-  .lux-form-control-misc {
-    > * {
-      color: $lux-warn-color !important;
-    }
-  }
-}
-
-.lux-form-control-disabled {
-  .lux-form-control-container {
-    color: $dark-disabled-text !important;
-    &:after {
-      @include bottomBorder;
-      border-bottom: 1px dashed $dark-disabled-text;
     }
   }
 }

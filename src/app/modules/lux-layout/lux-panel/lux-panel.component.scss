@@ -1,4 +1,4 @@
-@import '../../../../theming/luxcommon';
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
 
 :host {
   display: block;
@@ -12,11 +12,11 @@
   ::ng-deep .mat-expansion-panel-header:not([aria-disabled='true']) {
 
     .mat-expansion-panel-header-title {
-      color: $dark-primary-text;
+      //color: $dark-primary-text;
     }
 
     .mat-expansion-panel-header-description {
-      color: $dark-secondary-text;
+      //color: $dark-secondary-text;
     }
   }
 

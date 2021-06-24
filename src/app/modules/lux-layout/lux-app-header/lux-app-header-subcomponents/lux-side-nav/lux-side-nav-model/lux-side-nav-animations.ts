@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
-const ANIMATION_DURATION = '300ms';
+const ANIMATION_DURATION = '200ms';
 
 /**
  * Animation für das Herein-Sliden der Seitennavigation von Links in den Contentbereich hinein und wieder zurück.
@@ -9,14 +9,14 @@ export const sideNavAnimation = trigger('expandHide', [
   state(
     'void',
     style({
-      left: '-{{ width }}'
+      opacity: '0'
     }),
     { params: { width: '100%' } }
   ),
   state(
     'expanded',
     style({
-      left: '0'
+      opacity: '1'
     }),
     { params: { width: '100%' } }
   ),

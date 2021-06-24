@@ -5,7 +5,7 @@
 >
   <example-base-simple-options>
     <!-- Optionen für LuxAppFooterButtons -->
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <div
         class="lux-mr-3 lux-ml-3"
         fxLayout="row"
@@ -43,7 +43,7 @@
           <lux-panel-header-title> Button "{{ buttonInfo.label }}" </lux-panel-header-title>
           <lux-panel-content>
             <lux-input
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxName="app-footer_cmd"
               luxLabel="cmd"
               luxHint="Diese Property ist eine ID, anhand derer der einzelne Button identifiziert werden kann."
@@ -51,7 +51,7 @@
             >
             </lux-input>
             <lux-input
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxName="app-footer_label"
               luxLabel="label"
               luxHint="Mit dieser Property wird das Label des Footer-Buttons festgelegt."
@@ -59,7 +59,7 @@
             >
             </lux-input>
             <lux-input
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxName="app-footer_tooltip"
               luxLabel="Tooltip"
               luxHint="Mit dieser Property wird der Tooltip des Footer-Buttons festgelegt."
@@ -67,7 +67,7 @@
             >
             </lux-input>
             <lux-input
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxName="app-footer_iconName"
               luxLabel="iconName"
               luxHint="Diese Property ermöglicht es, ein Icon für den Footer-Button einzurichten."
@@ -75,7 +75,7 @@
             >
             </lux-input>
             <lux-select
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxLabel="color"
               [(luxSelected)]="buttonInfo.color"
               luxHint="Mithilfe der Property wird die Farbpalette des Buttons definiert."
@@ -83,27 +83,27 @@
             >
             </lux-select>
             <lux-toggle
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxLabel="raised"
               luxHint="Dieser Flag hebt den Button hervor."
               [(luxChecked)]="buttonInfo.raised"
             >
             </lux-toggle>
             <lux-toggle
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxLabel="disabled"
               luxHint="Mit diesem Flag kann der Button deaktiviert werden."
               [(luxChecked)]="buttonInfo.disabled"
             >
             </lux-toggle>
             <lux-toggle
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxLabel="hidden"
               luxHint="Mit diesem Flag kann der Button ausgeblendet werden."
               [(luxChecked)]="buttonInfo.hidden"
             >
             </lux-toggle>
-            <div class="example-highlight-config-option" fxLayout="column">
+            <div class="lux-highlight-section" fxLayout="column">
               <lux-toggle luxLabel="alwaysVisible" [(luxChecked)]="buttonInfo.alwaysVisible">
                 <lux-form-hint>
                   Dieses Flag stellt sicher, das dieser Button immer außerhalb des Menus dargestellt wird, solange der
@@ -117,7 +117,7 @@
       </lux-accordion>
     </div>
     <!-- Optionen für LuxAppFooterLinks -->
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <div
         class="lux-mr-3 lux-ml-3"
         fxLayout="row"
@@ -155,7 +155,7 @@
           <lux-panel-header-title> Link "{{ linkInfo.label }}" </lux-panel-header-title>
           <lux-panel-content>
             <lux-input
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxName="app-footer_label"
               luxLabel="label"
               luxHint="Mit dieser Property wird das Label des Link-Buttons festgelegt."
@@ -163,7 +163,7 @@
             >
             </lux-input>
             <lux-input
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxName="app-footer_path"
               luxLabel="path"
               luxHint="Mit dieser Property wird der Pfad des Links bestimmt."
@@ -171,7 +171,7 @@
             >
             </lux-input>
             <lux-toggle
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxLabel="alwaysVisible"
               [(luxChecked)]="linkInfo.alwaysVisible"
             >
@@ -181,7 +181,7 @@
               </lux-form-hint>
             </lux-toggle>
             <lux-toggle
-              class="example-highlight-config-option"
+              class="lux-highlight-section"
               luxLabel="blank"
               luxHint="Dieser Flag aktiviert das Öffnen des Links in einem neuen Tab (wenn externer Link)."
               [(luxChecked)]="linkInfo.blank"

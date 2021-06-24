@@ -51,7 +51,7 @@ export class LuxFilePreviewPdfViewerComponent extends LuxFilePreviewBase impleme
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      const firstButton = (<HTMLElement>this.elementRef.nativeElement).querySelector('button');
+      const firstButton = (this.elementRef.nativeElement as HTMLElement).querySelector('button');
       if (firstButton) {
         firstButton.focus();
       }

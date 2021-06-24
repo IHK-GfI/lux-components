@@ -66,7 +66,7 @@
 <ng-template #menuTriggerTemplate>
   <div
     [matMenuTriggerFor]="menu"
-    class="lux-menu-trigger"
+    class="lux-menu-trigger lux-color-primary-500"
     fxFlex="0 0 auto"
     [ngClass]="{ 'lux-display-none': hideToggle }"
     fxFlexAlign="center"
@@ -78,8 +78,9 @@
     <lux-button
       class="lux-menu-trigger-default"
       luxTagId="lux-menu-default-trigger"
+      [luxLabel]="luxMenuLabel"
       [luxIconName]="luxMenuIconName"
-      luxAriaLabel="Menu"
+      [luxAriaLabel]="luxAriaMenuTriggerLabel"
       luxAriaLabelSelector="button"
       luxTabIndex="0"
       [luxApplyToChildren]="['button']"

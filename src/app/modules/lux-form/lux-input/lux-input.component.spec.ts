@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -699,9 +700,9 @@ describe('LuxInputComponent', () => {
 
         LuxTestHelper.wait(fixture);
 
-        expect(<any>testComponent.amount0).toEqual(null);
-        expect(<any>testComponent.amount1).toEqual(null);
-        expect(<any>testComponent.amount2).toEqual(30);
+        expect(testComponent.amount0 as any).toEqual(null);
+        expect(testComponent.amount1 as any).toEqual(null);
+        expect(testComponent.amount2 as any).toEqual(30);
       }));
     });
   });
@@ -1050,7 +1051,7 @@ class LuxInputWithPrefixComponent {
   `
 })
 class LuxInputAttributesComponent {
-  type: string = 'text';
+  type = 'text';
   label: string;
   hint: string;
   placeholder: string;

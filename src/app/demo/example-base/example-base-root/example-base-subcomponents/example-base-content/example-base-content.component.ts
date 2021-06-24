@@ -5,7 +5,7 @@ import { Component, HostBinding, Input, OnChanges, SimpleChanges } from '@angula
   template: '<ng-content></ng-content>'
 })
 export class ExampleBaseContentComponent implements OnChanges {
-  @Input() exampleCentered: boolean = false;
+  @Input() exampleCentered = false;
 
   @HostBinding('class.example-content-centered') centered = false;
 

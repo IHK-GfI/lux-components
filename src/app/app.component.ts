@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from "@angular/core";
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ComponentsOverviewNavigationService } from './demo/components-overview/components-overview-navigation.service';
+import { LuxAppFooterButtonService } from './modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxAppFooterLinkInfo } from './modules/lux-layout/lux-app-footer/lux-app-footer-link-info';
 import { LuxAppFooterLinkService } from './modules/lux-layout/lux-app-footer/lux-app-footer-link.service';
-import { LuxAppFooterButtonService } from './modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxSnackbarService } from './modules/lux-popups/lux-snackbar/lux-snackbar.service';
-import { ComponentsOverviewNavigationService } from './demo/components-overview/components-overview-navigation.service';
+import { LuxThemeService } from './modules/lux-theme/lux-theme.service';
+import { LuxAppService } from './modules/lux-util/lux-app.service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +15,11 @@ import { ComponentsOverviewNavigationService } from './demo/components-overview/
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  @Input() luxAppHeader: 'normal' | 'minimal' | 'none' = 'normal';
+  @Input() luxAppFooter: 'normal' | 'minimal' | 'none' = 'normal';
+  @Input() luxMode: 'stand-alone' | 'portal' = 'stand-alone';
+
   window = window;
 
   constructor(
@@ -19,14 +27,27 @@ export class AppComponent implements OnInit {
     private linkService: LuxAppFooterLinkService,
     private buttonService: LuxAppFooterButtonService,
     private snackbarService: LuxSnackbarService,
-    public navigationService: ComponentsOverviewNavigationService
-  ) {}
+    public navigationService: ComponentsOverviewNavigationService,
+    private sanitizer: DomSanitizer,
+    private themeService: LuxThemeService,
+    private elementRef: ElementRef,
+    private appService: LuxAppService
+  ) {
+    themeService.loadTheme();
+    router.initialNavigation();
+
+    this.appService.appEl = elementRef.nativeElement;
+  }
 
   ngOnInit() {
     this.linkService.pushLinkInfos(
       new LuxAppFooterLinkInfo('Datenschutz', 'datenschutz', true),
       new LuxAppFooterLinkInfo('Impressum', 'impressum')
     );
+  }
+
+  onChangeTheme(themeName: string) {
+    this.themeService.setTheme(themeName);
   }
 
   goToHome() {
@@ -63,7 +84,7 @@ export class AppComponent implements OnInit {
 
   actionClicked(text: string) {
     this.snackbarService.open(2000, {
-      text: text
+      text
     });
   }
 

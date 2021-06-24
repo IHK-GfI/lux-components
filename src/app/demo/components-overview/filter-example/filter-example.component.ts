@@ -128,9 +128,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
     this.mediaQuerySubscription.unsubscribe();
   }
 
-  compareValueFn = (o1: any, o2: any) => {
-    return o1.value === o2.value;
-  };
+  compareValueFn = (o1: any, o2: any) => o1.value === o2.value;
 
   renderToggleFn(filterItem: LuxFilterItem, value: any) {
     return value ? 'aktiviert' : 'deaktiviert';

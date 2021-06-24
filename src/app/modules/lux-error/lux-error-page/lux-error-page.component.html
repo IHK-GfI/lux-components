@@ -19,11 +19,11 @@
     >
     </lux-button>
     <ng-container *ngIf="error">
-      <p class="lux-semi-transparent lux-black-semi-transparent" fxFlex="0 0 auto" *ngIf="error.errorId">
+      <p i18n="@@luxc.errorpage.error_number" class="lux-semi-transparent lux-black-semi-transparent" fxFlex="0 0 auto" *ngIf="error.errorId">
         Fehlernummer: {{ error.errorId }}
       </p>
       <lux-panel *ngIf="error.errorMessage">
-        <lux-panel-header-title>Fehlermeldung</lux-panel-header-title>
+        <lux-panel-header-title i18n="@@luxc.errorpage.error_title">Fehlermeldung</lux-panel-header-title>
         <lux-panel-content>
           {{ error.errorMessage }}
         </lux-panel-content>

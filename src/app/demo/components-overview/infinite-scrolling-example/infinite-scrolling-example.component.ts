@@ -7,14 +7,14 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
   styleUrls: ['./infinite-scrolling-example.component.scss']
 })
 export class InfiniteScrollingExampleComponent {
-  showOutputEvents: boolean = false;
+  showOutputEvents = false;
   listItems: string[] = [];
   log = logResult;
-  created: boolean = false;
+  created = false;
 
-  immediateCallback: boolean = true;
-  isLoading: boolean = false;
-  scrollPercent: number = 85;
+  immediateCallback = true;
+  isLoading = false;
+  scrollPercent = 85;
 
   constructor() {
     this.createListItems();

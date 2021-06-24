@@ -35,13 +35,14 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
 
   tabChange$: ReplaySubject<MatTabChangeEvent> = new ReplaySubject<MatTabChangeEvent>(1);
   labelUppercase: boolean;
+  smallDevice: boolean;
 
-  @Input() luxTabAnimationActive: boolean = true;
-  @Input() luxActiveTab: number = 0;
-  @Input() luxIconSize: string = '2x';
-  @Input() luxDisplayDivider: boolean = true;
+  @Input() luxTabAnimationActive = true;
+  @Input() luxActiveTab = 0;
+  @Input() luxIconSize = '2x';
+  @Input() luxDisplayDivider = true;
   @Input() luxTagId: string;
-  @Input() luxLazyLoading: boolean = false;
+  @Input() luxLazyLoading = false;
 
   @Output() readonly luxActiveTabChanged: EventEmitter<any> = new EventEmitter<any>();
 
@@ -50,21 +51,31 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
 
   constructor(
     public componentsConfigService: LuxComponentsConfigService,
-    public queryService: LuxMediaQueryObserverService
+    private queryService: LuxMediaQueryObserverService
   ) {}
 
   ngOnInit() {
-    this.subscriptions.push(this.tabChange$
-      .asObservable()
-      .pipe(debounceTime(LuxTabsComponent._DEBOUNCE_TIME))
-      .subscribe((tabChange: MatTabChangeEvent) => {
-        this.luxActiveTab = tabChange.index;
-        this.luxActiveTabChanged.emit(tabChange);
-      }));
+    this.subscriptions.push(
+      this.tabChange$
+        .asObservable()
+        .pipe(debounceTime(LuxTabsComponent._DEBOUNCE_TIME))
+        .subscribe((tabChange: MatTabChangeEvent) => {
+          this.luxActiveTab = tabChange.index;
+          this.luxActiveTabChanged.emit(tabChange);
+        })
+    );
 
-    this.subscriptions.push(this.componentsConfigService.config.subscribe(() => {
-      this.labelUppercase = this.componentsConfigService.isLabelUppercaseForSelector('lux-tab');
-    }));
+    this.subscriptions.push(
+      this.componentsConfigService.config.subscribe(() => {
+        this.labelUppercase = this.componentsConfigService.isLabelUppercaseForSelector('lux-tab');
+      })
+    );
+
+    this.subscriptions.push(
+      this.queryService.getMediaQueryChangedAsObservable().subscribe((query) => {
+        this.smallDevice = query === 'xs' || query === 'sm';
+      })
+    );
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
@@ -81,7 +92,7 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   getNotificationIconColorClassForTab(luxTab: LuxTabComponent): string {

@@ -20,7 +20,7 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
   @ViewChild('fileinputexamplewithform', { read: LuxFileInputComponent, static: true })
   fileBaseWithComponent: LuxFileInputComponent;
 
-  placeholder: string = 'Placeholder';
+  placeholder = 'Placeholder';
   clearOnError = true;
 
   constructor(

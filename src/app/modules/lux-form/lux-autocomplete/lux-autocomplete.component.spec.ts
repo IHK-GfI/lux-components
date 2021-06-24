@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -219,7 +220,7 @@ describe('LuxAutocompleteComponent', () => {
         tick(fixture.componentInstance.autocomplete.luxLookupDelay);
       }));
 
-      it('Neue Option auswählen', fakeAsync(done => {
+      it('Neue Option auswählen', fakeAsync((done) => {
         // Vorbedingungen testen
         expect(component.selected).toBeUndefined('Vorbedingung 1');
         const spy = spyOn(component, 'setSelected').and.callThrough();
@@ -257,7 +258,7 @@ describe('LuxAutocompleteComponent', () => {
         discardPeriodicTasks();
       }));
 
-      it('Gleiche Option auswählen', fakeAsync(done => {
+      it('Gleiche Option auswählen', fakeAsync((done) => {
         // Vorbedingungen testen
         expect(component.selected).toBeUndefined('Vorbedingung 1');
         const spy = spyOn(component, 'setSelected').and.callThrough();
@@ -289,7 +290,7 @@ describe('LuxAutocompleteComponent', () => {
         discardPeriodicTasks();
       }));
 
-      it('Option deselektieren', fakeAsync(done => {
+      it('Option deselektieren', fakeAsync((done) => {
         // Vorbedingungen testen
         expect(component.selected).toBeUndefined('Vorbedingung 1');
         const spy = spyOn(component, 'setSelected').and.callThrough();
@@ -341,7 +342,7 @@ describe('LuxAutocompleteComponent', () => {
 
     /** Workaround mit (done) => { fixture.whenStable() bis done() um intervalTimer von RxJs funktionieren zu lassen } **/
 
-    it('sollte sich oeffnen lassen', done => {
+    it('sollte sich oeffnen lassen', (done) => {
       fixture.whenStable().then(() => {
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'a');
 
@@ -356,7 +357,7 @@ describe('LuxAutocompleteComponent', () => {
       });
     });
 
-    it('sollte keine Ergebnisse haben wenn ein invalider Wert eingetippt wird', done => {
+    it('sollte keine Ergebnisse haben wenn ein invalider Wert eingetippt wird', (done) => {
       LuxTestHelper.typeInElementAsynch('xxx', fixture, component.autocomplete.matInput.nativeElement, () => {
         const options = overlayHelper.selectAllFromOverlay('mat-option') as NodeListOf<HTMLElement>;
         expect(options.length).toBe(0);
@@ -364,21 +365,16 @@ describe('LuxAutocompleteComponent', () => {
       });
     });
 
-    it('sollte die richtige Anzahl an Ergebnissen haben wenn ein valider Wert eingetippt wird', done => {
-      LuxTestHelper.typeInElementAsynch(
-        'Meine Aufgaben',
-        fixture,
-        component.autocomplete.matInput.nativeElement,
-        () => {
-          const options = overlayHelper.selectAllFromOverlay('mat-option') as NodeListOf<HTMLElement>;
-          expect(options.length).toBe(1);
-          options[0].click();
-          done();
-        }
-      );
+    it('sollte die richtige Anzahl an Ergebnissen haben wenn ein valider Wert eingetippt wird', (done) => {
+      LuxTestHelper.typeInElementAsynch('Meine Aufgaben', fixture, component.autocomplete.matInput.nativeElement, () => {
+        const options = overlayHelper.selectAllFromOverlay('mat-option') as NodeListOf<HTMLElement>;
+        expect(options.length).toBe(1);
+        options[0].click();
+        done();
+      });
     });
 
-    it('sollte keine Fehler anzeigen wenn das Input fokussiert ist und kein Wert eingegeben ist', done => {
+    it('sollte keine Fehler anzeigen wenn das Input fokussiert ist und kein Wert eingegeben ist', (done) => {
       fixture.whenStable().then(() => {
         LuxTestHelper.dispatchFakeEvent(component.autocomplete.matInput.nativeElement, 'focus', true);
         fixture.detectChanges();
@@ -406,7 +402,7 @@ describe('LuxAutocompleteComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('Wert über Textfeld setzen', fakeAsync(done => {
+    it('Wert über Textfeld setzen', fakeAsync((done) => {
       expect(component.selected).toBeUndefined('Vorbedingung 1');
       expect(component.twoWaySelected).toBeUndefined('Vorbedingung 2');
 
@@ -427,7 +423,6 @@ describe('LuxAutocompleteComponent', () => {
       expect(component.autocomplete.matInput.nativeElement.value).toEqual(component.options[1].label);
       discardPeriodicTasks();
     }));
-
   });
 });
 
@@ -459,13 +454,12 @@ class LuxAutoCompleteInFormAttributeComponent {
 
 @Component({
   template: `
-    <lux-autocomplete luxLabel="Autocomplete" [luxOptions]="options" [(luxValue)]="selected" [luxStrict]="strict">
-    </lux-autocomplete>
+    <lux-autocomplete luxLabel="Autocomplete" [luxOptions]="options" [(luxValue)]="selected" [luxStrict]="strict"> </lux-autocomplete>
   `
 })
 class LuxValueAttributeComponent {
   selected: any;
-  strict: boolean = true;
+  strict = true;
 
   options = [
     { label: 'Meine Aufgaben', value: 'A' },
@@ -479,8 +473,7 @@ class LuxValueAttributeComponent {
 
 @Component({
   template: `
-    <lux-autocomplete luxLabel="Autocomplete" [luxOptions]="options" (luxOptionSelected)="setSelected($event)">
-    </lux-autocomplete>
+    <lux-autocomplete luxLabel="Autocomplete" [luxOptions]="options" (luxOptionSelected)="setSelected($event)"> </lux-autocomplete>
   `
 })
 class LuxOptionSelectedComponent {
@@ -502,17 +495,11 @@ class LuxOptionSelectedComponent {
 
 @Component({
   template: `
-    <lux-autocomplete
-      luxLabel="Autocomplete"
-      [luxOptions]="options"
-      luxOptionLabelProp="label"
-      luxLabel="Mock"
-      [luxLookupDelay]="0"
-    >
+    <lux-autocomplete luxLabel="Autocomplete" [luxOptions]="options" luxOptionLabelProp="label" luxLabel="Mock" [luxLookupDelay]="0">
     </lux-autocomplete>
   `
 })
-class MockAutocompleteComponent implements OnInit {
+class MockAutocompleteComponent {
   options = [
     { label: 'Meine Aufgaben', value: 'A' },
     { label: 'Gruppenaufgaben', value: 'B' },
@@ -523,8 +510,6 @@ class MockAutocompleteComponent implements OnInit {
   @ViewChild(LuxAutocompleteComponent) autocomplete: LuxAutocompleteComponent;
 
   constructor() {}
-
-  ngOnInit() {}
 }
 
 @Component({

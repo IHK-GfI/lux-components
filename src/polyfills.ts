@@ -1,3 +1,8 @@
+/***************************************************************************************************
+ * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
+ */
+import '@angular/localize/init';
+
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
@@ -63,18 +68,3 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
  * Need to import at least one locale-data with intl.
  */
 // import 'intl/locale-data/jsonp/en';
-
-/**
- * Der folgende Code ist für die Karmatests im IE11 nötig,
- * sonst schlagen einige Testfälle fehlt.
- */
-if (!Element.prototype.matches) {
-  Element.prototype.matches =
-    function (s) {
-      const matches = (this.document || this.ownerDocument).querySelectorAll(s);
-      let i         = matches.length;
-      while (--i >= 0 && matches.item(i) !== this) {
-      }
-      return i > -1;
-    };
-}

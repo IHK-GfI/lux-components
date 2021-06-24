@@ -3,6 +3,7 @@ import { Directionality } from '@angular/cdk/bidi';
 import { Overlay } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
+import { DOCUMENT } from '@angular/common';
 import {
   Directive,
   ElementRef,
@@ -28,11 +29,11 @@ import {
   exportAs: 'luxTooltip'
 })
 export class LuxTooltipDirective extends MatTooltip implements OnChanges {
-  @Input() luxTooltip: string = '???';
-  @Input() luxTooltipHideDelay: number = 0;
-  @Input() luxTooltipShowDelay: number = 0;
+  @Input() luxTooltip = '???';
+  @Input() luxTooltipHideDelay = 0;
+  @Input() luxTooltipShowDelay = 0;
   @Input() luxTooltipPosition: TooltipPosition = 'above';
-  @Input() luxTooltipDisabled: boolean = false;
+  @Input() luxTooltipDisabled = false;
 
   constructor(
     private luxOverlay: Overlay,
@@ -45,9 +46,8 @@ export class LuxTooltipDirective extends MatTooltip implements OnChanges {
     private luxFocusMonitor: FocusMonitor,
     @Inject(MAT_TOOLTIP_SCROLL_STRATEGY) private luxScrollStrategy,
     @Optional() private luxDir: Directionality,
-    @Optional()
-    @Inject(MAT_TOOLTIP_DEFAULT_OPTIONS)
-    private luxDefaultOptions: MatTooltipDefaultOptions
+    @Optional() @Inject(MAT_TOOLTIP_DEFAULT_OPTIONS) private luxDefaultOptions: MatTooltipDefaultOptions,
+    @Optional() @Inject(DOCUMENT) private document: any
   ) {
     super(
       luxOverlay,
@@ -60,7 +60,8 @@ export class LuxTooltipDirective extends MatTooltip implements OnChanges {
       luxFocusMonitor,
       luxScrollStrategy,
       luxDir,
-      luxDefaultOptions
+      luxDefaultOptions,
+      document
     );
   }
 

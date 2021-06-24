@@ -23,11 +23,11 @@ export class LuxFilePreviewBase implements OnInit, OnDestroy {
 
   downloadIconName = 'fas fa-download';
   downloadTagId = 'file-preview-download-btn';
-  downloadAriaLabel = 'Datei herunterladen';
+  downloadAriaLabel = $localize `:@@luxc.file-preview.download.arialabel:Datei herunterladen`;
 
   closeIconName = 'fas fa-window-close';
   closeTagId = 'file-preview-close-btn';
-  closeAriaLabel = 'Dateivorschau schließen';
+  closeAriaLabel = $localize `:@@luxc.file-preview.close.arialabel:Dateivorschau schließen`;
 
   @HostListener('document:keydown', ['$event'])
   handleKeydown(event: KeyboardEvent) {

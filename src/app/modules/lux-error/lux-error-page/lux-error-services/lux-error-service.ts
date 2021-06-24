@@ -6,7 +6,9 @@ import { ILuxError } from '../lux-error-interfaces/lux-error.interface';
 import { LuxErrorPageComponent } from '../lux-error-page.component';
 import { LuxErrorStoreService } from './lux-error-store.service';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxErrorService {
   constructor(private router: Router, private errorStore: LuxErrorStoreService) {
     this.errorStore.init();
@@ -17,6 +19,7 @@ export class LuxErrorService {
    * Ueberschreibt die aktuelle Konfiguration fuer die Fehlerseite.
    * Uebernimmt so viele Werte wie moeglich aus der uebergebenen Konfiguration,
    * sonst werden die Default-Werte genutzt.
+   *
    * @param luxErrorPageConfig
    */
   setConfig(luxErrorPageConfig: ILuxErrorPageConfig) {
@@ -30,6 +33,7 @@ export class LuxErrorService {
   /**
    * Navigiert zur Fehlerkomponente und versucht einen Fehler
    * (wenn mitgegeben) zu sichern.
+   *
    * @param error
    * @returns Observable<any>
    */

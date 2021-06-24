@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class ButtonExampleComponent implements OnInit, OnDestroy {
   // region Helper-Properties für das Beispiel
 
-  showOutputEvents: boolean = false;
+  showOutputEvents = false;
   config: LuxComponentsConfigParameters;
   log = logResult;
 
@@ -26,10 +26,10 @@ export class ButtonExampleComponent implements OnInit, OnDestroy {
 
   // region Properties der Component
 
-  label: string = 'Button';
-  iconName: string = 'fas fa-save';
-  align: boolean = false;
-  disabled: boolean = false;
+  label = 'Button';
+  iconName = 'fas fa-save';
+  align = false;
+  disabled = false;
   backgroundColor = '';
 
   subscription: Subscription;

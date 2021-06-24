@@ -1,4 +1,3 @@
-// tslint:disable:max-line-length
 /**
  * Diese API beschreibt die öffentliche Schnittstelle der LUX-Components.
  *
@@ -8,20 +7,15 @@
  * Warum muss man zusätzlich die Components der Module angeben, wenn man bereits die Module angegeben hat?
  * Die Components werden z.B. benötigt, wenn man "@ViewChild" nutzen möchte.
  * Z.B. @ViewChild('xxxName') xxxComponent: LuxXxxComponent;
- *
- *
- * ! Die Modulnamen wurden mit dem folgenden Bannergenerator erzeugt:
- *  - Webseite: patorjk.com/software/taag
- *  - Font: Standard
  */
 
 /**
- *  _    _   ___  __       _    ____ _____ ___ ___  _   _
- * | |  | | | \ \/ /      / \  / ___|_   _|_ _/ _ \| \ | |
- * | |  | | | |\  /_____ / _ \| |     | |  | | | | |  \| |
- * | |__| |_| |/  \_____/ ___ \ |___  | |  | | |_| | |\  |
- * |_____\___//_/\_\   /_/   \_\____| |_| |___\___/|_| \_|
- *
+ * Lade `$localize` in den globalen Scope
+ */
+import '@angular/localize/init';
+
+/**
+ * LUX-Action
  */
 export * from './src/app/modules/lux-action/lux-action.module';
 // Components
@@ -34,12 +28,7 @@ export { LuxMenuItemComponent } from './src/app/modules/lux-action/lux-menu/lux-
 export * from './src/app/modules/lux-action/lux-action-model/lux-action-component-base.class';
 
 /**
- *  _    _   ___  __     ____ ___ ____  _____ ____ _____ _____     _______ ____
- * | |  | | | \ \/ /    |  _ \_ _|  _ \| ____/ ___|_   _|_ _\ \   / / ____/ ___|
- * | |  | | | |\  /_____| | | | || |_) |  _|| |     | |  | | \ \ / /|  _| \___ \
- * | |__| |_| |/  \_____| |_| | ||  _ <| |__| |___  | |  | |  \ V / | |___ ___) |
- * |_____\___//_/\_\    |____/___|_| \_\_____\____| |_| |___|  \_/  |_____|____/
- *
+ * LUX-Directives
  */
 export * from './src/app/modules/lux-directives/lux-directives.module';
 // Directives
@@ -65,12 +54,7 @@ export * from './src/app/modules/lux-directives/lux-infinite-scroll/lux-scroll-p
 export * from './src/app/modules/lux-directives/lux-aria/lux-aria-base';
 
 /**
- *  _    _   ___  __      ____ ___  __  __ __  __  ___  _   _
- * | |  | | | \ \/ /     / ___/ _ \|  \/  |  \/  |/ _ \| \ | |
- * | |  | | | |\  /_____| |  | | | | |\/| | |\/| | | | |  \| |
- * | |__| |_| |/  \_____| |__| |_| | |  | | |  | | |_| | |\  |
- * |_____\___//_/\_\     \____\___/|_|  |_|_|  |_|\___/|_| \_|
- *
+ * LUX-Common
  */
 export * from './src/app/modules/lux-common/lux-common.module';
 // Component
@@ -95,12 +79,7 @@ export { ILuxMessageChangeEvent, ILuxMessageCloseEvent } from './src/app/modules
 export { ILuxMessage } from './src/app/modules/lux-common/lux-message-box/lux-message-box-model/lux-message.interface';
 
 /**
- *  _    _   ___  __      ____ ___  _   _ _____ ___ ____
- * | |  | | | \ \/ /     / ___/ _ \| \ | |  ___|_ _/ ___|
- * | |  | | | |\  /_____| |  | | | |  \| | |_   | | |  _
- * | |__| |_| |/  \_____| |__| |_| | |\  |  _|  | | |_| |
- * |_____\___//_/\_\     \____\___/|_| \_|_|   |___\____|
- *
+ * LUX-Config
  */
 export * from './src/app/modules/lux-components-config/lux-components-config.module';
 // Services
@@ -109,12 +88,7 @@ export * from './src/app/modules/lux-components-config/lux-components-config.ser
 export * from './src/app/modules/lux-components-config/lux-components-config-parameters.interface';
 
 /**
- *  _    _   ___  __     _____ ____  ____   ___  ____
- * | |  | | | \ \/ /    | ____|  _ \|  _ \ / _ \|  _ \
- * | |  | | | |\  /_____|  _| | |_) | |_) | | | | |_) |
- * | |__| |_| |/  \_____| |___|  _ <|  _ <| |_| |  _ <
- * |_____\___//_/\_\    |_____|_| \_\_| \_\\___/|_| \_\
- *
+ * LUX-Error
  */
 export * from './src/app/modules/lux-error/lux-error.module';
 // Components
@@ -129,12 +103,7 @@ export * from './src/app/modules/lux-error/lux-error-page/lux-error-interfaces/l
 export * from './src/app/modules/lux-error/lux-error-page/lux-error-interfaces/lux-error.interface';
 
 /**
- *  _    _   ___  __     _____ ___  ____  __  __
- * | |  | | | \ \/ /    |  ___/ _ \|  _ \|  \/  |
- * | |  | | | |\  /_____| |_ | | | | |_) | |\/| |
- * | |__| |_| |/  \_____|  _|| |_| |  _ <| |  | |
- * |_____\___//_/\_\    |_|   \___/|_| \_\_|  |_|
- *
+ * LUX-Form
  */
 export * from './src/app/modules/lux-form/lux-form.module';
 // Components
@@ -176,11 +145,7 @@ export * from './src/app/modules/lux-form/lux-form-control/lux-form-directives/l
 export * from './src/app/modules/lux-form/lux-select/lux-select-option-height.directive';
 
 /**
- *   _    _   ___  __     _____ ___ _     _____      ____  ____  _______     _____ _______        __
- *  | |  | | | \ \/ /    |  ___|_ _| |   | ____|    |  _ \|  _ \| ____\ \   / /_ _| ____\ \      / /
- *  | |  | | | |\  /_____| |_   | || |   |  _| _____| |_) | |_) |  _|  \ \ / / | ||  _|  \ \ /\ / /
- *  | |__| |_| |/  \_____|  _|  | || |___| |__|_____|  __/|  _ <| |___  \ V /  | || |___  \ V  V /
- *  |_____\___//_/\_\    |_|   |___|_____|_____|    |_|   |_| \_\_____|  \_/  |___|_____|  \_/\_/
+ * LUX-File-Preview
  */
 export * from './src/app/modules/lux-file-preview/lux-file-preview.module';
 // Components
@@ -198,12 +163,7 @@ export * from './src/app/modules/lux-file-preview/lux-file-preview-data';
 export * from './src/app/modules/lux-file-preview/lux-file-preview-ref';
 
 /**
- *  _    _   ___  __     _____ ___ _   _____ _____ ____
- * | |  | | | \ \/ /    |  ___|_ _| | |_   _| ____|  _ \
- * | |  | | | |\  /_____| |_   | || |   | | |  _| | |_) |
- * | |__| |_| |/  \_____|  _|  | || |___| | | |___|  _ <
- * |_____\___//_/\_\    |_|   |___|_____|_| |_____|_| \_\
- *
+ * LUX-Filter
  */
 export * from './src/app/modules/lux-filter/lux-filter.module';
 // Components
@@ -217,24 +177,14 @@ export * from './src/app/modules/lux-filter/lux-filter-base/lux-filter';
 export * from './src/app/modules/lux-filter/lux-filter-base/lux-filter-item';
 
 /**
- *  _    _   ___  __    ___ ____ ___  _   _
- * | |  | | | \ \/ /   |_ _/ ___/ _ \| \ | |
- * | |  | | | |\  /_____| | |  | | | |  \| |
- * | |__| |_| |/  \_____| | |__| |_| | |\  |
- * |_____\___//_/\_\   |___\____\___/|_| \_|
- *
+ * LUX-Icon
  */
 export * from './src/app/modules/lux-icon/lux-icon.module';
 export * from './src/app/modules/lux-icon/lux-icon/lux-icon.component';
 export * from './src/app/modules/lux-icon/lux-image/lux-image.component';
 
 /**
- *  _    _   ___  __     _        _ __   _____  _   _ _____
- * | |  | | | \ \/ /    | |      / \\ \ / / _ \| | | |_   _|
- * | |  | | | |\  /_____| |     / _ \\ V / | | | | | | | |
- * | |__| |_| |/  \_____| |___ / ___ \| || |_| | |_| | | |
- * |_____\___//_/\_\    |_____/_/   \_\_| \___/ \___/  |_|
- *
+ * LUX-Layout
  */
 export * from './src/app/modules/lux-layout/lux-layout.module';
 // Components
@@ -286,6 +236,7 @@ export * from './src/app/modules/lux-layout/lux-master-detail/lux-master-detail-
 export * from './src/app/modules/lux-layout/lux-layout/lux-layout.component';
 export * from './src/app/modules/lux-layout/lux-layout/lux-layout-card-row/lux-layout-card-row.component';
 export * from './src/app/modules/lux-layout/lux-layout/lux-layout-form-row/lux-layout-form-row.component';
+export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-lang-select/lux-lang-select.component';
 // Directives
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-item.directive';
 // Services
@@ -303,14 +254,10 @@ export { expansionAnim } from './src/app/modules/lux-layout/lux-card/lux-card-mo
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-item-config';
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-gap-config';
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-margin-config';
+export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-lang-select/lux-locale';
 
 /**
- *  _    _   ___  __     _     ___   ___  _  ___   _ ____
- * | |  | | | \ \/ /    | |   / _ \ / _ \| |/ / | | |  _ \
- * | |  | | | |\  /_____| |  | | | | | | | ' /| | | | |_) |
- * | |__| |_| |/  \_____| |__| |_| | |_| | . \| |_| |  __/
- * |_____\___//_/\_\    |_____\___/ \___/|_|\_\\___/|_|
- *
+ * LUX-Lookup
  */
 export * from './src/app/modules/lux-lookup/lux-lookup.module';
 export * from './src/app/modules/lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
@@ -325,12 +272,7 @@ export * from './src/app/modules/lux-lookup/lux-lookup-service/lux-lookup.servic
 export * from './src/app/modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 
 /**
- *  _    _   ___  __     ____ ___ ____  _____ ____
- * | |  | | | \ \/ /    |  _ \_ _|  _ \| ____/ ___|
- * | |  | | | |\  /_____| |_) | || |_) |  _| \___ \
- * | |__| |_| |/  \_____|  __/| ||  __/| |___ ___) |
- * |_____\___//_/\_\    |_|  |___|_|   |_____|____/
- *
+ * LUX-Pipes
  */
 export * from './src/app/modules/lux-pipes/lux-pipes.module';
 // Pipes
@@ -340,12 +282,7 @@ export * from './src/app/modules/lux-pipes/lux-render-property/lux-render-proper
 export * from './src/app/modules/lux-pipes/lux-alphabetically-sorted/lux-alphabetically-sorted.pipe';
 
 /**
- *  _    _   ___  __     ____   ___  ____  _   _ ____  ____
- * | |  | | | \ \/ /    |  _ \ / _ \|  _ \| | | |  _ \/ ___|
- * | |  | | | |\  /_____| |_) | | | | |_) | | | | |_) \___ \
- * | |__| |_| |/  \_____|  __/| |_| |  __/| |_| |  __/ ___) |
- * |_____\___//_/\_\    |_|    \___/|_|    \___/|_|   |____/
- *
+ * LUX-Popups
  */
 export * from './src/app/modules/lux-popups/lux-popups.module';
 // Components
@@ -366,12 +303,7 @@ export * from './src/app/modules/lux-popups/lux-dialog/lux-dialog-model/lux-dial
 export * from './src/app/modules/lux-popups/lux-dialog/lux-dialog-model/lux-dialog-preset-config.interface';
 
 /**
- *  _    _   ___  __     _   _ _____ ___ _
- * | |  | | | \ \/ /    | | | |_   _|_ _| |
- * | |  | | | |\  /_____| | | | | |  | || |
- * | |__| |_| |/  \_____| |_| | | |  | || |___
- * |_____\___//_/\_\     \___/  |_| |___|_____|
- *
+ * LUX-Util
  */
 export * from './src/app/modules/lux-util/lux-util';
 export * from './src/app/modules/lux-util/lux-colors.enum';
@@ -381,14 +313,10 @@ export * from './src/app/modules/lux-util/lux-media-query-observer.service';
 export * from './src/app/modules/lux-util/testing/lux-test-helper';
 export * from './src/app/modules/lux-util/testing/lux-test-overlay-helper';
 export * from './src/app/modules/lux-util/lux-paginator-intl';
+export * from './src/app/modules/lux-util/lux-app.service';
 
 /**
- *  _    _   ___  __     _   _ _____ __  __ _
- * | |  | | | \ \/ /    | | | |_   _|  \/  | |
- * | |  | | | |\  /_____| |_| | | | | |\/| | |
- * | |__| |_| |/  \_____|  _  | | | | |  | | |___
- * |_____\___//_/\_\    |_| |_| |_| |_|  |_|_____|
- *
+ * LUX-Html
  */
 export * from './src/app/modules/lux-html/lux-html.module';
 // Components
@@ -399,13 +327,16 @@ export * from './src/app/modules/lux-html/lux-sanitize/lux-sanitize.pipe';
 export * from './src/app/modules/lux-html/lux-sanitize/lux-sanitize-config';
 
 /**
- *  _    _   ___  __     __  __    _    ____  _  ______   _____        ___   _
- * | |  | | | \ \/ /    |  \/  |  / \  |  _ \| |/ /  _ \ / _ \ \      / / \ | |
- * | |  | | | |\  /_____| |\/| | / _ \ | |_) | ' /| | | | | | \ \ /\ / /|  \| |
- * | |__| |_| |/  \_____| |  | |/ ___ \|  _ <| . \| |_| | |_| |\ V  V / | |\  |
- * |_____\___//_/\_\    |_|  |_/_/   \_\_| \_\_|\_\____/ \___/  \_/\_/  |_| \_|
- *
+ * LUX-Markdown
  */
 export * from './src/app/modules/lux-markdown/lux-markdown.module';
 // Components
 export * from './src/app/modules/lux-markdown/lux-markdown/lux-markdown.component';
+
+/**
+ * LUX-Theme
+ */
+// Services
+export * from './src/app/modules/lux-theme/lux-theme.service';
+// Classes
+export * from './src/app/modules/lux-theme/lux-theme';

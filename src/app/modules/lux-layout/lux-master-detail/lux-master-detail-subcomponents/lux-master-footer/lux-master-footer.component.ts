@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'lux-master-footer',
   template: '<ng-content></ng-content>',
   styleUrls: ['./lux-master-footer.component.scss']
 })
-export class LuxMasterFooterComponent implements OnInit {
+export class LuxMasterFooterComponent {
   constructor() {}
-
-  ngOnInit() {}
 }

@@ -8,7 +8,6 @@ import {
   Input,
   Optional,
   Output,
-  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import { ControlContainer, ValidatorFn, Validators } from '@angular/forms';
@@ -26,53 +25,53 @@ import { take, takeUntil } from 'rxjs/operators';
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormFileBase extends LuxFormComponentBase {
-  defaultReadFileDelay: number = 1000;
+  defaultReadFileDelay = 1000;
 
-  private _luxAccept: string = '';
+  private _luxAccept = '';
   private _luxSelectedFiles: ILuxFileObject[];
 
   protected _luxUploadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
     iconName: 'fas fa-cloud-upload-alt',
-    label: 'Hochladen'
+    label: $localize`:@@luxc.form-file-base.upload.action.lbl:Hochladen`
   };
   protected _luxDeleteActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
     iconName: 'fas fa-trash',
-    label: 'Löschen'
+    label: $localize`:@@luxc.form-file-base.delete.action.lbl:Löschen`
   };
   protected _luxViewActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: true,
     iconName: 'fas fa-eye',
-    label: 'Ansehen'
+    label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
   };
   protected _luxDownloadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: true,
     iconName: 'fas fa-download',
-    label: 'Download'
+    label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
   };
 
-  progress: number = -1;
-  forceProgressIndeterminate: boolean = false;
+  progress = -1;
+  forceProgressIndeterminate = false;
 
   @ViewChild('downloadLink', { read: ElementRef, static: true }) downloadLink: ElementRef;
   @ViewChild('fileupload', { read: ElementRef, static: true }) fileuploadInput: ElementRef;
 
   @Output() luxSelectedFilesChange: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() luxUploadReportProgress: boolean = false;
-  @Input() luxContentsAsBlob: boolean = false;
+  @Input() luxUploadReportProgress = false;
+  @Input() luxContentsAsBlob = false;
   @Input() luxTagId: string;
-  @Input() luxMaxSizeMB: number = 10;
-  @Input() luxCapture: string = '';
-  @Input() luxUploadUrl: string = '';
-  @Input() luxDnDActive: boolean = true;
+  @Input() luxMaxSizeMB = 10;
+  @Input() luxCapture = '';
+  @Input() luxUploadUrl = '';
+  @Input() luxDnDActive = true;
 
-  @HostBinding('class.lux-file-highlight') isDragActive: boolean = false;
+  @HostBinding('class.lux-file-highlight') isDragActive = false;
 
   @HostListener('dragover', ['$event']) onDragOver($event) {
     if (this.isDnDAllowed()) {
@@ -152,9 +151,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   }
 
   get progressMode(): string {
-    return (this.progress === 0 && !this.luxUploadReportProgress) || this.forceProgressIndeterminate
-      ? 'indeterminate'
-      : 'determinate';
+    return (this.progress === 0 && !this.luxUploadReportProgress) || this.forceProgressIndeterminate ? 'indeterminate' : 'determinate';
   }
 
   get isProgressVisible(): boolean {
@@ -174,6 +171,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   /**
    * Wird beim Fokussieren des Elements aufgerufen und markiert das FormControl als "touched".
+   *
    * @param $event
    */
   onFocusIn($event) {
@@ -183,6 +181,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   /**
    * Entfernt die aktuell selektierten Dateien und entfernt etwaige (spezifische) Fehler aus dem FormControl.
+   *
    * @param $event
    */
   clearFiles($event?) {
@@ -201,12 +200,13 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   /**
    * Löst den Download der übergebenen Datei aus.
+   *
    * @param file
    */
   downloadFile(file: ILuxFileObject | ILuxFileObject[]) {
     this.formControl.markAsTouched();
     file = Array.isArray(file) ? file[0] : file;
-    const downloadLink = <HTMLAnchorElement>this.downloadLink.nativeElement;
+    const downloadLink = this.downloadLink.nativeElement as HTMLAnchorElement;
     downloadLink.download = file.name;
 
     if (file.content instanceof Blob) {
@@ -242,6 +242,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   /**
    * Löst den base64Callback der übergebenen Datei aus.
    * Schreibt dann anschließend den Base64-String in die Datei.
+   *
    * @param file
    */
   viewFile(file: ILuxFileObject) {
@@ -254,13 +255,13 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     const callbackResult = file.contentCallback();
     // Wenn der Callback ein Observable ist, dieses auflösen und dem File-Base64 zuweisen
     if (isObservable(callbackResult)) {
-      (<Observable<string>>callbackResult).pipe(take(1)).subscribe((content: any) => {
+      (callbackResult as Observable<string>).pipe(take(1)).subscribe((content: any) => {
         file.content = content;
         this.triggerViewFileClick(file);
       });
     } else {
       // Wenn der Callback ein normaler String oder Promise ist, diesen auflösen und den File-Base64 aktualisieren
-      Promise.resolve(<any>callbackResult).then((content: any) => {
+      Promise.resolve(callbackResult as any).then((content: any) => {
         file.content = content;
         this.triggerViewFileClick(file);
       });
@@ -270,6 +271,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   /**
    * Wandelt File-Objekt zu LuxFileObjects um und versucht diese Hochzuladen.
    * Gibt ein Promise mit den neuen FileObjects zurück bzw. einen Fehler aus den internen Promises.
+   *
    * @param files
    */
   async updateSelectedFiles(files: FileList | File[]) {
@@ -290,6 +292,8 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   /**
    * Stößt das Hochladen der Dateien zu einer bestimmten URL an.
+   *
+   * @param files
    */
   async uploadFiles(files: ILuxFileObject[] | ILuxFileObject) {
     if (!this.luxUploadUrl) {
@@ -316,7 +320,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
       formData.append(fileObject.name, fileObject.content);
     });
 
-    await new Promise((resolve, reject) => {
+    await new Promise<void>((resolve, reject) => {
       const options = {};
       if (this.luxUploadReportProgress) {
         options['reportProgress'] = true;
@@ -337,7 +341,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
             resolve();
           }
         },
-        error => {
+        (error) => {
           // Hier geben wir den speziellen Fehler noch mal in die console
           console.error(error);
           // Für den Fall das der Upload fehlschlägt, melden wir einen Fehler am Component
@@ -351,7 +355,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
         this.forceProgressIndeterminate = false;
         return Promise.resolve();
       },
-      error => {
+      (error) => {
         this.progress = -1;
         this.forceProgressIndeterminate = false;
         return Promise.reject({
@@ -366,6 +370,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   /**
    * Liest die übergebenen Dateien aus und erzeugt daraus ein Promise, welches abgefragt werden kann.
    * Fängt potentielle Fehler ab und gibt diese als abgelehnte Promises zurück.
+   *
    * @param files
    */
   async mapFilesToFileObjects(files: FileList | File[]) {
@@ -382,7 +387,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
         return Promise.reject({
           cause: LuxFileErrorCause.MaxSizeError,
           exception: this.getMaxSizeErrorMessage(file),
-          file: file
+          file
         });
       }
 
@@ -424,27 +429,27 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
         return Promise.reject({
           cause: LuxFileErrorCause.FileNotAccepted,
           exception: this.getFileNotAcceptedMessage(file),
-          file: file
+          file
         });
       }
 
       if (this.luxContentsAsBlob) {
         // Wenn direkt die Blobs genutzt werden sollen, einfach die Datei als content merken
-        newFiles.push({ name: file.name, content: <Blob>file, type: file.type });
+        newFiles.push({ name: file.name, content: file as Blob, type: file.type });
       } else {
         // Das Auslesen der Datei anstoßen, wenn erfolgreich, wird die Datei zu selectedFiles hinzugefügt.
         // Bei einem Fehler wird das Promise rejected und gibt einen Fehler zurück.
         await this.readFile(file)
           .then((content: any) => {
-            newFiles.push({ name: file.name, content: content, type: file.type });
+            newFiles.push({ name: file.name, content, type: file.type });
           })
-          .catch(error => {
-            return Promise.reject({
+          .catch((error) =>
+            Promise.reject({
               cause: LuxFileErrorCause.ReadingFileError,
               exception: error,
-              file: file
-            });
-          });
+              file
+            })
+          );
       }
     }
 
@@ -455,20 +460,22 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   /**
    * Liest (asynchron) den Base64-String aus der übergebenen Datei heraus bzw. gibt den Fehler zurück, wenn einer
    * aufgetreten ist.
+   *
    * @param file
    */
   readFile(file: File) {
     return new Promise((resolve, reject) => {
       const reader = new window['FileReader']();
 
-      reader.onload = fileData => resolve(fileData.target.result);
-      reader.onerror = error => reject(error);
+      reader.onload = (fileData) => resolve(fileData.target.result);
+      reader.onerror = (error) => reject(error);
       reader.readAsDataURL(file);
     });
   }
 
   /**
    * Wird beim Drag-Over über dem LuxFormControl aufgerufen.
+   *
    * @param $event
    */
   handleDragOver($event) {
@@ -485,6 +492,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   /**
    * Wird beim Drag-Leave über dem LuxFormControl aufgerufen.
+   *
    * @param $event
    */
   handleDragLeave($event) {
@@ -499,6 +507,8 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   /**
    * Wird beim Drop eines/mehrerer gezogener Elemente über dem LuxFormControl aufgerufen und löst
    * die Auswähl-Methoden für die entsprechenden Dateien aus.
+   *
+   * @param $event
    */
   handleDrop($event) {
     this.forceProgressIndeterminate = true;
@@ -520,6 +530,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   /**
    * Prüft ob der Base64-String für die Datei gesetzt ist und ob ein onClick-Aufruf für die View-Action vorhanden ist.
    * Wenn ja, wird dieser ausgeführt.
+   *
    * @param file
    */
   protected triggerViewFileClick(file: ILuxFileObject) {
@@ -549,6 +560,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   /**
    * Aktualisiert das Fehlerobjekt am FormControl, damit eine entsprechende Fehlermeldung angezeigt werden kann.
    * Leert die Anzeige und gibt Events mit leerem Array aus.
+   *
    * @param error
    */
   protected setFormControlErrors(error: ILuxFileError) {
@@ -563,6 +575,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   /**
    * Berechnet die Größe der übergebenen Datei in MB.
+   *
    * @param file
    */
   protected getFileSizeInMB(file: File) {
@@ -571,74 +584,90 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   /**
    * Gibt die Message für Überschreitung der maximalen Dateigröße zurück.
+   *
    * @param file
    */
   protected getMaxSizeErrorMessage(file: File): string {
     return (
-      `Die Datei "${file.name}" überschreitet mit ${+this.getFileSizeInMB(file).toFixed(2)}MB ` +
-      `die erlaubte Dateigröße von ${+this.luxMaxSizeMB.toFixed(2)}MB`
+      $localize`:@@luxc.form-file-base.error_message.max_file_size:Die Datei "${file.name}" überschreitet mit ${+this.getFileSizeInMB(
+        file
+      ).toFixed(2)}MB ` + `die erlaubte Dateigröße von ${+this.luxMaxSizeMB.toFixed(2)}MB`
     );
   }
 
   /**
    * Gibt die Message für Fehler beim Auslesen einer Datei zurück.
+   *
    * @param file
    */
   protected getReadingFileErrorMessage(file: File): string {
-    return `Beim Lesen der Datei "${file.name}" ist ein Fehler aufgetreten`;
+    return $localize`:@@luxc.form-file-base.error_message.read_error:Beim Lesen der Datei "${file.name}" ist ein Fehler aufgetreten`;
   }
 
   /**
    * Gibt die Message für Fehler beim Upload einer Datei zurück.
+   *
    * @param files
    */
   protected getUploadFileErrorMessage(files: File[]): string {
     if (!files) {
-      return 'Das Hochladen ist fehlgeschlagen';
+      return $localize`:@@luxc.form-file-base.error_message.upload.no_files:Das Hochladen ist fehlgeschlagen`;
     }
-    return `Das Hochladen der ${files.length > 1 ? 'ausgewählten Dateien' : 'ausgewählten Datei'} ist fehlgeschlagen`;
+    return $localize`:@@luxc.form-file-base.error_message.upload.with_files:Das Hochladen der ${
+      files.length > 1 ? 'ausgewählten Dateien' : 'ausgewählten Datei'
+    } ist fehlgeschlagen`;
   }
 
   /**
    * Gibt die Message für falsche Dateitypen zurück.
+   *
    * @param file
    */
   protected getFileNotAcceptedMessage(file: File): string {
-    return `Die Datei "${file.name}" hat einen nicht akzeptierten Dateityp`;
+    return $localize`:@@luxc.form-file-base.error_message.not_accepted:Die Datei "${file.name}" hat einen nicht akzeptierten Dateityp`;
   }
 
   /**
    * Gibt die Message für falsche Dateitypen zurück.
+   *
    * @param file
    */
   protected getMultipleForbiddenMessage(): string {
-    return `Es darf nur eine Datei ausgewählt werden`;
+    return $localize`:@@luxc.form-file-base.error_message.only_one_file:Es darf nur eine Datei ausgewählt werden`;
   }
 
   /**
    * Meldet dem ScreenReader, dass gerade eine/mehrere Dateien bearbeitet werden (Ladeanzeige).
+   *
    * @param multiple
    */
   protected announceFileProcess(multiple: boolean) {
-    this.liveAnnouncer.announce(
-      `Bitte warten. Die ${multiple ? 'Dateien werden' : 'Datei wird'} verarbeitet.`,
-      'assertive'
-    );
+    if (multiple) {
+      this.liveAnnouncer.announce(
+        $localize`:@@luxc.form-file-base.upload.files.announce:Bitte warten. Die Datei wird verarbeitet.`, 'assertive');
+    } else {
+      this.liveAnnouncer.announce(
+        $localize`:@@luxc.form-file-base.upload.file.announce:Bitte warten. Die Dateien werden verarbeitet.`, 'assertive');
+    }
   }
 
   /**
    * Meldet dem ScreenReader, dass alle Dateien entfernt werden sollen.
    */
   protected announceAllFilesRemove() {
-    this.liveAnnouncer.announce(`Alle Dateien werden entfernt.`, 'assertive');
+    this.liveAnnouncer.announce($localize`:@@luxc.form-file-base.delete.all_files.announce:Alle Dateien werden entfernt.`, 'assertive');
   }
 
   /**
    * Meldet dem ScreenReader, dass eine bestimmte Datei entfernt werden soll.
+   *
    * @param fileName
    */
   protected announceFileRemove(fileName: string) {
-    this.liveAnnouncer.announce(`Die Datei ${fileName} wird entfernt.`, 'assertive');
+    this.liveAnnouncer.announce(
+      $localize`:@@luxc.form-file-base.delete.one_file.announce:Die Datei ${fileName} wird entfernt.`,
+      'assertive'
+    );
   }
 
   /**
@@ -691,14 +720,6 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     if (this._initialValue !== null && this._initialValue !== undefined) {
       this.setValue(this._initialValue);
     }
-  }
-
-  protected triggerOutputPatternCheck() {
-    this.checkOutputPatternViolation(this.luxSelectedFilesChange.observers);
-  }
-
-  protected triggerInputPatternCheck(simpleChanges: SimpleChanges) {
-    this.checkInputPatternViolation(simpleChanges.luxSelectedFiles);
   }
 
   // endregion

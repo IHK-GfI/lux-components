@@ -1,7 +1,8 @@
 import { Component, ElementRef, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { LuxActionComponentBaseClass } from '../lux-action-model/lux-action-component-base.class';
+import { throttleTime } from 'rxjs/operators';
 
 @Component({
   selector: 'lux-button',
@@ -13,7 +14,11 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
 
   private configSubscription: Subscription;
 
+  private clickSubject = new Subject();
+  private clickSubscription: Subscription;
+
   @Input() luxType: 'button' | 'reset' | 'submit' = 'button';
+  @Input() luxThrottleTime;
 
   @HostBinding('class.lux-uppercase') labelUppercase: boolean;
 
@@ -22,21 +27,31 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
   }
 
   ngOnInit() {
-    this.configSubscription = this.componentsConfigService.config.subscribe(() => {
+    this.configSubscription = this.componentsConfigService.config.subscribe((config) => {
       // Hintergrund: LuxLink, LuxSideNavItem und LuxMenuItem benutzen alle unter der Haube
       // den LuxButton. Wenn diese nun als Ausnahmen für Uppercase in der Config eingetragen werden,
       // darf eine Uppercase-Einstellung für den LuxButton diese nicht überschreiben.
       // Deshalb prüft der LuxButton hier, ob er Teil einer dieser Komponenten ist.
       this.detectParent();
+
+      if (!this.luxThrottleTime) {
+        this.luxThrottleTime = config.buttonConfiguration.throttleTimeMs;
+      }
     });
+
+    this.clickSubscription = this.clickSubject
+      .pipe(throttleTime(this.luxThrottleTime))
+      .subscribe((e) => this.luxClicked.emit(e));
   }
 
   ngOnDestroy() {
     this.configSubscription.unsubscribe();
+    this.clickSubscription.unsubscribe();
+    this.clickSubject.complete();
   }
 
   clicked(event: any) {
-    this.luxClicked.emit(event);
+    this.clickSubject.next(event);
   }
 
   private detectParent() {

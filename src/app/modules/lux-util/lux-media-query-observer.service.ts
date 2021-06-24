@@ -3,7 +3,9 @@ import { LuxConsoleService } from './lux-console.service';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxMediaQueryObserverService implements OnDestroy {
   protected _mediaQueryChanged: BehaviorSubject<string> = new BehaviorSubject<string>('');
   protected _subscriptions: Subscription[] = [];

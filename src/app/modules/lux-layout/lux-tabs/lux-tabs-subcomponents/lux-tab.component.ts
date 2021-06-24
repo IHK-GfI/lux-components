@@ -1,22 +1,20 @@
-import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'lux-tab',
   template: ''
 })
-export class LuxTabComponent implements OnInit {
+export class LuxTabComponent {
   @Input() luxTitle: string;
   @Input() luxIconName: string;
   @Input() luxCounter: number;
-  @Input() luxCounterCap: number = 10;
+  @Input() luxCounterCap = 10;
   @Input() luxShowNotification;
-  @Input() luxDisabled: boolean = false;
+  @Input() luxDisabled = false;
   @Input() luxTagIdHeader: string;
   @Input() luxTagIdContent: string;
 
   @ContentChild(TemplateRef) contentTemplate: TemplateRef<any>;
 
   constructor() {}
-
-  ngOnInit() {}
 }

@@ -33,7 +33,7 @@
         luxTagId="slidernoform"
       >
       </lux-slider>
-      <div class="example-highlight-config-option" fxLayout="column" fxLayoutGap="5px">
+      <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="5px">
         <div fxLayout="row" fxLayoutGap="5px">
           <span fxFlex="75px">Wert:</span>
           <span fxFlex="auto">{{ value }}</span>
@@ -71,7 +71,7 @@
         luxTagId="sliderwithform"
       >
       </lux-slider>
-      <div fxLayout="column" class="example-highlight-config-option">
+      <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px">
           <span fxFlex="75px">Wert:</span>
           <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
@@ -105,14 +105,14 @@
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="slider_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
     >
     </lux-input>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxName="slider_luxHint"
         luxLabel="luxHint"
@@ -128,13 +128,13 @@
       ></lux-toggle>
     </div>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
     >
     </lux-toggle>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
@@ -150,28 +150,28 @@
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
     </div>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="vertical"
       luxLabel="luxVertical"
       luxHint="Diese Property schaltet die vertikale Darstellung des Sliders ein."
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="invert"
       luxLabel="luxInvert"
       luxHint="Über diesen Flag kann die Ausrichtung des Sliders gespiegelt werden."
     >
     </lux-toggle>
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [luxOptions]="colorOptions"
       luxOptionLabelProp="label"
       luxLabel="luxColor"
@@ -180,7 +180,7 @@
       (luxSelectedChange)="colorChanged($event)"
     >
     </lux-select>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-input
         [(luxValue)]="min"
         luxType="number"
@@ -227,7 +227,7 @@
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle
         [(luxChecked)]="showThumbLabel"
         luxLabel="luxShowThumbLabel"
@@ -249,7 +249,7 @@
       </lux-toggle>
       <pre class="lux-label" *ngIf="useDisplayFn">{{ displayWithFnString }}</pre>
     </div>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-toggle
         luxLabel="luxErrorMessage verwenden"
         luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
@@ -268,7 +268,7 @@
       <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
     </div>
     <lux-select
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [luxOptions]="validatorOptions"
       luxOptionLabelProp="label"
       [luxMultiple]="true"

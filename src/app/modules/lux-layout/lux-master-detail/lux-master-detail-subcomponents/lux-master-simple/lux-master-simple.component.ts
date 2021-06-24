@@ -1,10 +1,10 @@
-import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'lux-master-simple',
   template: ''
 })
-export class LuxMasterSimpleComponent implements OnInit {
+export class LuxMasterSimpleComponent {
   @Input() luxTitleProp: string;
   @Input() luxSubTitleProp: string;
 
@@ -12,6 +12,4 @@ export class LuxMasterSimpleComponent implements OnInit {
   @ContentChild('luxSimpleIcon') iconTempRef: TemplateRef<any>;
 
   constructor() {}
-
-  ngOnInit() {}
 }

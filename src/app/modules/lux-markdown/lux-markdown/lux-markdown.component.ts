@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import marked from 'marked/lib/marked';
 import { LuxHtmlComponent } from '../../lux-html/lux-html/lux-html.component';
 import { LuxSanitizeConfig } from '../../lux-html/lux-sanitize/lux-sanitize-config';
@@ -8,7 +8,7 @@ import { LuxSanitizeConfig } from '../../lux-html/lux-sanitize/lux-sanitize-conf
   templateUrl: './lux-markdown.component.html',
   styleUrls: ['./lux-markdown.component.scss']
 })
-export class LuxMarkdownComponent implements OnInit {
+export class LuxMarkdownComponent {
   @Input() luxSanitizeConfig: LuxSanitizeConfig;
   @Input() luxFlex = 'flex';
   @Input() luxStyle = '';
@@ -29,6 +29,4 @@ export class LuxMarkdownComponent implements OnInit {
   @ViewChild('content', { read: ElementRef }) contentRef: ElementRef;
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

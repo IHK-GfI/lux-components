@@ -1,3 +1,8 @@
+# Version 11.0.0
+## New
+- **lux-badge-notification**: Optik verbessert. [Issue 43](https://github.com/IHK-GfI/lux-components/issues/43)
+- **lux-button**: Doppelklick unterbinden [Issue 52](https://github.com/IHK-GfI/lux-components/issues/52)
+
 # Version 10.8.2
 ## Bug Fixes
 - **lux-select**: "luxPickValue"-Funktion wird zu häufig aufgerufen [Issue 86](https://github.com/IHK-GfI/lux-components/issues/86)
@@ -15,7 +20,6 @@
 ## New
 - **allgemein**: Sicherheitsupdates eingespielt.
 - **lux-autocomplete**: Optionpanelbreite kann über "luxPanelWidth" angepasst werden [Issue 77](https://github.com/IHK-GfI/lux-components/issues/77)
-
 
 # Version 10.6.0
 ## New

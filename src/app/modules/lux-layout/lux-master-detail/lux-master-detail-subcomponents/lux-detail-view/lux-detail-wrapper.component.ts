@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'lux-detail-wrapper',
   template: '<ng-container *ngTemplateOutlet="luxDetailTemplate; context: luxDetailContext"></ng-container>'
 })
-export class LuxDetailWrapperComponent implements OnInit, AfterViewInit {
+export class LuxDetailWrapperComponent implements AfterViewInit {
   private _luxDetailTemplate: TemplateRef<any>;
 
   @Output() luxDetailRendered: EventEmitter<void> = new EventEmitter();
@@ -20,8 +20,6 @@ export class LuxDetailWrapperComponent implements OnInit, AfterViewInit {
   }
 
   constructor() {}
-
-  ngOnInit() {}
 
   ngAfterViewInit() {
     this.luxDetailRendered.emit();

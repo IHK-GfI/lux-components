@@ -1,8 +1,4 @@
-@import '../../../../theming/luxcommon';
-
-mat-tab-group ::ng-deep mat-tab-header {
-  border-color: $dark-dividers;
-}
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
 
 mat-tab-group.lux-tabs-no-divider ::ng-deep mat-tab-header {
   border-bottom: none;
@@ -12,43 +8,18 @@ mat-tab-group ::ng-deep div[role="tab"] {
   margin: $outline-width;
 
   &:not(.mat-tab-disabled) {
-    color: map-get($lux-palette_darkblue, 500);
     opacity: 1;
   }
 }
 
-.lux-tabs-notification-icon {
-  margin-top: -4px;
-  border: 1px solid black;
-  height: 12px;
-  width: 12px;
-  border-radius: 9px;
-}
-
-.lux-tabs-notification-icon {
-  position: absolute;
-
-  right: -12px;
-  top: 4px;
-
-  &.lux-badge-notification-visible {
-    top: -8px;
-    right: -27px;
-    z-index: 1;
-  }
-}
-
 .lux-tab-title {
-  margin-left: 4px;
   margin-top: 3px;
+  margin-bottom: 5px;
+  white-space: nowrap;
 }
 
 .lux-notification-read {
   visibility: hidden;
-}
-
-.lux-notification-new {
-  background-color: map-get($lux-palette_accentgreen, 500);
 }
 
 .lux-counter-offset {
@@ -77,24 +48,98 @@ mat-tab-group ::ng-deep div[role="tab"] {
 :host ::ng-deep {
   .mat-tab-label {
     min-height: 60px;
+    padding-left: 40px;
+    padding-right: 40px;
     height: auto;
     position: relative;
+
+    @media ($mat-small) {
+      padding-left: 40px;
+      padding-right: 40px;
+
+      min-width: 125px;
+      width: 125px;
+    }
+
+    @media ($mat-xsmall) {
+      padding-left: 30px;
+      padding-right: 30px;
+
+      min-width: 90px;
+      width: 90px;
+    }
 
     mat-chip {
       background: white !important;
     }
   }
+}
+
+// luxCounter (z.B. 10) neben dem Tablabel auf normalen bis großen Auflösungen
+.lux-tab-group ::ng-deep .lux-tab-title.lux-badge-notification {
+  &.mat-badge.lux-badge-no-border .mat-badge-content {
+    top: -5px;
+    right: -30px;
+  }
+}
+
+// luxCounter (z.B. 10) neben dem Icon auf kleineren Auflösungen
+.lux-tab-group ::ng-deep lux-icon.lux-badge-notification {
+  &.mat-badge.lux-badge-no-border .mat-badge-content {
+    top: 5px;
+    right: -24px;
+  }
+}
+
+.lux-tabs-notification-icon {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  border-radius: 9px;
+
+  &.lux-counter-visible {
+    z-index: 1;
+  }
+}
+
+// Notificationicon neben dem Tablabel auf normalen bis großen Auflösungen
+.lux-tabs-notification-icon-position-after-label {
+  top: 0px;
+  right: -18px;
+
+  &.lux-counter-visible {
+    top: -10px;
+    right: -39px;
+  }
+}
+
+// Notificationicon neben dem Icon auf kleineren Auflösungen
+.lux-tabs-notification-icon-position-after-icon {
+  top: 10px;
+  right: 30px;
 
   @media ($mat-small) {
-    :host ::ng-deep .mat-tab-label {
-      min-width: 108px;
-    }
+    top: 10px;
+    right: 30px;
   }
 
   @media ($mat-xsmall) {
-    :host ::ng-deep .mat-tab-label {
-      min-width: 70px;
-      width: 70px;
+    top: 10px;
+    right: 15px;
+  }
+
+  &.lux-counter-visible {
+    top: 10px;
+    right: 0px;
+
+    @media ($mat-small) {
+      top: 10px;
+      right: 17px;
+    }
+
+    @media ($mat-xsmall) {
+      top: 10px;
+      right: 0px;
     }
   }
 }

@@ -51,6 +51,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
   /**
    * Statische Methode um ein Info-Objekt zu generieren.
    * Nimmt ein Objekt vom Typ ILuxAppFooterButtonInfo entgegen.
+   *
    * @param data
    * @returns eine Button Info
    */

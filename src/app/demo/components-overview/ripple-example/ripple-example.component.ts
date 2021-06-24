@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ripple-example',
   templateUrl: './ripple-example.component.html'
 })
-export class RippleExampleComponent implements OnInit {
+export class RippleExampleComponent {
   color;
   unbounded = false;
   centered = false;
@@ -15,6 +15,4 @@ export class RippleExampleComponent implements OnInit {
   exitDuration;
 
   constructor() {}
-
-  ngOnInit() {}
 }

@@ -1,5 +1,5 @@
 import { LuxFormComponentBase } from './lux-form-component-base.class';
-import {ChangeDetectorRef, Directive, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, Directive, EventEmitter, Input, Output} from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -14,10 +14,10 @@ export abstract class LuxFormInputBaseClass extends LuxFormComponentBase {
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
   @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() luxPlaceholder: string = '';
+  @Input() luxPlaceholder = '';
   @Input() luxTagId: string;
   @Input() luxName: string;
-  @Input() luxAutocomplete: string = 'on';
+  @Input() luxAutocomplete = 'on';
 
   get luxValue(): string {
     return this.getValue();
@@ -41,14 +41,6 @@ export abstract class LuxFormInputBaseClass extends LuxFormComponentBase {
   notifyFormValueChanged(formValue: any) {
     // Aktualisierungen an dem FormControl-Value sollen auch via EventEmitter bekannt gemacht werden
     this.luxValueChange.emit(formValue);
-  }
-
-  protected triggerOutputPatternCheck() {
-    this.checkOutputPatternViolation(this.luxValueChange.observers);
-  }
-
-  protected triggerInputPatternCheck(simpleChanges: SimpleChanges) {
-    this.checkInputPatternViolation(simpleChanges.luxValue);
   }
 
   // endregion

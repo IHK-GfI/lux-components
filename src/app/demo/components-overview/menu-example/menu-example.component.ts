@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'app-menu-example',
   templateUrl: './menu-example.component.html'
 })
-export class MenuExampleComponent implements OnInit {
+export class MenuExampleComponent {
   // region Helper-Properties für das Beispiel
 
-  showOutputEvents: boolean = false;
+  showOutputEvents = false;
   log = logResult;
 
   menuItems: ExampleMenuItem[] = [
@@ -54,17 +54,15 @@ export class MenuExampleComponent implements OnInit {
 
   // region Properties der Component
 
-  displayExtended: boolean = true;
-  displayMenuLeft: boolean = true;
-  maximumExtended: number = 5;
-  iconName: string = 'fas fa-bars';
-  className: string = '';
+  displayExtended = true;
+  displayMenuLeft = true;
+  maximumExtended = 5;
+  iconName = 'fas fa-bars';
+  className = '';
 
   // endregion
 
   constructor() {}
-
-  ngOnInit() {}
 }
 
 interface ExampleMenuItem {

@@ -8,11 +8,11 @@ export class MockNgZone extends NgZone {
     super({ enableLongStackTrace: false });
   }
 
-  run(fn: Function): any {
+  run<T>(fn: (...args: any[]) => T, applyThis?: any, applyArgs?: any[]): T {
     return fn();
   }
 
-  runOutsideAngular(fn: Function): any {
+  runOutsideAngular<T>(fn: (...args: any[]) => T): T {
     return fn();
   }
 

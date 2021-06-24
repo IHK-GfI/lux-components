@@ -32,8 +32,8 @@ export abstract class LookupExampleComponent implements OnInit {
     { value: Validators.email, label: 'Validators.email' }
   ];
 
-  useErrorMessage: boolean = true;
-  showOutputEvents: boolean = false;
+  useErrorMessage = true;
+  showOutputEvents = false;
   useRenderFn: boolean;
   log = logResult;
   form: FormGroup;
@@ -44,7 +44,7 @@ export abstract class LookupExampleComponent implements OnInit {
 
   // region Properties der Component
 
-  renderProp: string = 'kurzText';
+  renderProp = 'kurzText';
   parameters: LuxLookupParameters = null;
   selected: any;
   customStyle;
@@ -54,14 +54,14 @@ export abstract class LookupExampleComponent implements OnInit {
   controlBinding = 'lookup';
   readonly: boolean;
   required: boolean;
-  tableNo: number = 1002;
+  tableNo = 1002;
 
-  label: string = 'Label';
-  hint: string = 'Hint';
-  hintShowOnlyOnFocus: boolean = false;
-  placeholder: string = 'Placeholder';
+  label = 'Label';
+  hint = 'Hint';
+  hintShowOnlyOnFocus = false;
+  placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
-  errorMessage: string = 'Das Feld enthält keinen gültigen Wert';
+  errorMessage = 'Das Feld enthält keinen gültigen Wert';
   value;
 
   errorCallback = exampleErrorCallback;

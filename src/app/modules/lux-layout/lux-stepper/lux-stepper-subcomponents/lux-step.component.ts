@@ -20,10 +20,10 @@ export class LuxStepComponent {
   @ViewChild('header', { static: true }) headerTemplate: TemplateRef<any>;
   @ViewChild('content', { static: true }) contentTemplate: TemplateRef<any>;
 
-  @Input() luxIconSize: string = '1x';
-  @Input() luxOptional: boolean = false;
-  @Input() luxEditable: boolean = true;
-  @Input() luxCompleted: boolean = true;
+  @Input() luxIconSize = '1x';
+  @Input() luxOptional = false;
+  @Input() luxEditable = true;
+  @Input() luxCompleted = true;
   @Input() luxStepControl: FormGroup;
 
   get luxIconName(): string {

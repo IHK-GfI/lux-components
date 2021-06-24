@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Component, OnInit } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,7 +12,6 @@ import { LuxRadioComponent } from './lux-radio.component';
 import { Observable, of } from 'rxjs';
 
 describe('LuxRadioComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService, { provide: LuxMediaQueryObserverService, useClass: MockMediaObserver }],
@@ -25,7 +25,7 @@ describe('LuxRadioComponent', () => {
     );
   });
 
-  describe('Attribut "luxErrorMessage"', function() {
+  describe('Attribut "luxErrorMessage"', () => {
     let fixture: ComponentFixture<MockLuxErrorMessageComponent>;
     let testComponent: MockLuxErrorMessageComponent;
     let radioComponent: LuxRadioComponent;
@@ -67,7 +67,7 @@ describe('LuxRadioComponent', () => {
     }));
   });
 
-  describe('Ohne das Attribut "luxErrorMessage"', function() {
+  describe('Ohne das Attribut "luxErrorMessage"', () => {
     let fixture: ComponentFixture<MockWithoutLuxErrorMessageComponent>;
     let testComponent: MockWithoutLuxErrorMessageComponent;
     let radioComponent: LuxRadioComponent;
@@ -106,7 +106,7 @@ describe('LuxRadioComponent', () => {
     }));
   });
 
-  describe('Außerhalb eines Formulars', function() {
+  describe('Außerhalb eines Formulars', () => {
     let fixture: ComponentFixture<MockRadioComponent>;
     let testComponent: MockRadioComponent;
     let radioComponent: LuxRadioComponent;
@@ -126,7 +126,7 @@ describe('LuxRadioComponent', () => {
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben', 'Vorbedingung 3');
 
       // Änderungen durchführen
-      testComponent.options = <any>['Option 1', ' Option 2', ' Option 3'];
+      testComponent.options = ['Option 1', ' Option 2', ' Option 3'] as any;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -167,7 +167,7 @@ describe('LuxRadioComponent', () => {
     }));
 
     it('Werte selektieren (String-Array)', fakeAsync(() => {
-      testComponent.options = <any>['Option 1', ' Option 2', ' Option 3'];
+      testComponent.options = ['Option 1', ' Option 2', ' Option 3'] as any;
       LuxTestHelper.wait(fixture);
       // Vorbedingungen prüfen
       const radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
@@ -198,7 +198,7 @@ describe('LuxRadioComponent', () => {
 
     it('Sollte null, undefined und "" fehlerfrei als leeren String darstellen und die Werte emitten', fakeAsync(() => {
       // Vorbedingung prüfen
-      testComponent.options = <any>[null, undefined, '', 'A'];
+      testComponent.options = [null, undefined, '', 'A'] as any;
       LuxTestHelper.wait(fixture);
 
       const optionLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
@@ -241,9 +241,7 @@ describe('LuxRadioComponent', () => {
 
     it('Werte selektieren (mit PickValue Funktion)', fakeAsync(() => {
       // Vorbedingungen prüfen
-      testComponent.pickValueFn = o1 => {
-        return o1 ? o1.value : o1;
-      };
+      testComponent.pickValueFn = (o1) => (o1 ? o1.value : o1);
       fixture.detectChanges();
 
       const radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
@@ -344,9 +342,7 @@ describe('LuxRadioComponent', () => {
 
     it('Sollte Werte anhand der Compare-Funktion vergleichen', fakeAsync(() => {
       // Vorbedingungen prüfen
-      testComponent.compareFn = (o1, o2) => {
-        return o1.value === o2.value;
-      };
+      testComponent.compareFn = (o1, o2) => o1.value === o2.value;
       fixture.detectChanges();
 
       expect(radioComponent.luxSelected).toBeFalsy('Vorbedingung 1');
@@ -363,7 +359,7 @@ describe('LuxRadioComponent', () => {
     }));
   });
 
-  describe('Mit Template für Darstellung', function() {
+  describe('Mit Template für Darstellung', () => {
     let fixture: ComponentFixture<MockRadioWithTemplateComponent>;
     let testComponent: MockRadioWithTemplateComponent;
     let radioComponent: LuxRadioComponent;
@@ -383,7 +379,7 @@ describe('LuxRadioComponent', () => {
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben', 'Vorbedingung 3');
 
       // Änderungen durchführen
-      testComponent.options = <any>['Option 1', ' Option 2', ' Option 3'];
+      testComponent.options = ['Option 1', ' Option 2', ' Option 3'] as any;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -394,7 +390,7 @@ describe('LuxRadioComponent', () => {
     }));
   });
 
-  describe('Innerhalb eines Formulars', function() {
+  describe('Innerhalb eines Formulars', () => {
     let fixture: ComponentFixture<MockRadioFormComponent>;
     let testComponent: MockRadioFormComponent;
     let radioComponent: LuxRadioComponent;
@@ -441,10 +437,7 @@ describe('LuxRadioComponent', () => {
 
       // Nachbedingungen prüfen
       errorMessage = fixture.debugElement.query(By.css('.mat-error'));
-      expect(errorMessage.nativeElement.innerText.trim()).toEqual(
-        '* Pflichtfeld',
-        'Nachbedingung 1'
-      );
+      expect(errorMessage.nativeElement.innerText.trim()).toEqual('* Pflichtfeld', 'Nachbedingung 1');
     }));
   });
 });
@@ -465,7 +458,7 @@ describe('LuxRadioComponent', () => {
     ></lux-radio>
   `
 })
-class MockRadioComponent implements OnInit {
+class MockRadioComponent {
   label;
   options = [
     { label: 'Meine Aufgaben', value: 'A' },
@@ -483,8 +476,6 @@ class MockRadioComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
-
   radioSelected($event) {
     this.selected = $event;
   }
@@ -499,7 +490,7 @@ class MockRadioComponent implements OnInit {
     </lux-radio>
   `
 })
-class MockRadioWithTemplateComponent implements OnInit {
+class MockRadioWithTemplateComponent {
   options = [
     { label: 'Meine Aufgaben', value: 'A' },
     { label: 'Gruppenaufgaben', value: 'B' },
@@ -508,8 +499,6 @@ class MockRadioWithTemplateComponent implements OnInit {
   ];
 
   constructor() {}
-
-  ngOnInit() {}
 }
 
 @Component({
@@ -525,7 +514,7 @@ class MockRadioWithTemplateComponent implements OnInit {
     </form>
   `
 })
-class MockRadioFormComponent implements OnInit {
+class MockRadioFormComponent {
   options = [
     { label: 'Meine Aufgaben', value: 'A' },
     { label: 'Gruppenaufgaben', value: 'B' },
@@ -544,8 +533,6 @@ class MockRadioFormComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
   radioSelected($event) {
     this.selected = $event;
     console.log(this.selected);
@@ -553,7 +540,7 @@ class MockRadioFormComponent implements OnInit {
 }
 
 class MockMediaObserver {
-  static XS: boolean = false;
+  static XS = false;
 
   getMediaQueryChangedAsObservable(): Observable<any> {
     return of('gt');
@@ -568,16 +555,11 @@ class MockMediaObserver {
   selector: 'mock-lux-error',
   template: `
     <form [formGroup]="form">
-      <lux-radio
-        [luxOptions]="options"
-        luxOptionLabelProp="label"
-        [luxSelected]="selected"
-        luxControlBinding="radio"
-      ></lux-radio>
+      <lux-radio [luxOptions]="options" luxOptionLabelProp="label" [luxSelected]="selected" luxControlBinding="radio"></lux-radio>
     </form>
   `
 })
-class MockWithoutLuxErrorMessageComponent implements OnInit {
+class MockWithoutLuxErrorMessageComponent {
   options = [
     { label: 'Meine Aufgaben', value: 'A' },
     { label: 'Gruppenaufgaben', value: 'B' },
@@ -594,8 +576,6 @@ class MockWithoutLuxErrorMessageComponent implements OnInit {
       radio: ['', Validators.required]
     });
   }
-
-  ngOnInit() {}
 }
 
 @Component({
@@ -612,7 +592,7 @@ class MockWithoutLuxErrorMessageComponent implements OnInit {
     </form>
   `
 })
-class MockLuxErrorMessageComponent implements OnInit {
+class MockLuxErrorMessageComponent {
   options = [
     { label: 'Meine Aufgaben', value: 'A' },
     { label: 'Gruppenaufgaben', value: 'B' },
@@ -631,6 +611,4 @@ class MockLuxErrorMessageComponent implements OnInit {
       radio: ['', Validators.required]
     });
   }
-
-  ngOnInit() {}
 }

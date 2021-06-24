@@ -17,12 +17,12 @@ export class LuxRippleDirective extends MatRipple implements OnInit, OnDestroy {
   private configSubscription: Subscription;
 
   _luxRippleColor: string;
-  _luxRippleUnbounded: boolean = false;
-  _luxRippleCentered: boolean = false;
-  _luxRippleDisabled: boolean = false;
-  _luxRippleRadius: number = 0;
-  _luxRippleEnterDuration: number = 0;
-  _luxRippleExitDuration: number = 0;
+  _luxRippleUnbounded = false;
+  _luxRippleCentered = false;
+  _luxRippleDisabled = false;
+  _luxRippleRadius = 0;
+  _luxRippleEnterDuration = 0;
+  _luxRippleExitDuration = 0;
 
   get luxRippleColor() {
     return this._luxRippleColor;

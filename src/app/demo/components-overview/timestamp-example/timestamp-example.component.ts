@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-timestamp-example',
   templateUrl: './timestamp-example.component.html'
 })
-export class TimestampExampleComponent implements OnInit {
+export class TimestampExampleComponent {
   readonly initialNow = Date.now();
   now: number = this.initialNow;
   nowISO: string = new Date(this.now).toISOString();
 
-  defaultText: string = '';
+  defaultText = '';
   prefix: string = undefined;
 
   constructor() {}
-
-  ngOnInit() {}
 
   updateNow($event: string) {
     this.now = new Date($event).getTime();

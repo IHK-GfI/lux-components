@@ -30,7 +30,7 @@
         <ng-template let-item>via Template {{ item | json }}</ng-template>
       </lux-radio>
 
-      <div class="example-highlight-config-option" fxLayout="row" fxLayoutGap="5px">
+      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px">
         <span fxFlex="0 0 auto">Wert:</span>
         <span fxFlex="auto">{{ value | json }}</span>
       </div>
@@ -58,7 +58,7 @@
       >
         <ng-template let-item>via Template {{ item | json }}</ng-template>
       </lux-radio>
-      <div fxLayout="column" class="example-highlight-config-option">
+      <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <span fxFlex="35px">Wert:</span>
           <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
@@ -85,14 +85,14 @@
     </lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxName="radio_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
     >
     </lux-input>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxName="radio_luxHint"
         luxLabel="luxHint"
@@ -108,13 +108,13 @@
       ></lux-toggle>
     </div>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
     >
     </lux-toggle>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
@@ -130,14 +130,14 @@
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
     </div>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
     >
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxRequired"
       (luxCheckedChange)="changeRequired($event)"
     >
@@ -151,7 +151,7 @@
       </lux-form-hint>
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="isVertical"
       luxLabel="luxOrientationVertical"
       luxHint="Über dieses Flag kann gesteuert werden, ob die Radio-Buttons horizontal oder vertikal dargestellt werden."
@@ -160,7 +160,7 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="useSimpleArray"
       luxLabel="String-Array nutzen"
       (luxCheckedChange)="changeUseSimpleArray($event)"
@@ -170,7 +170,7 @@
       </lux-form-hint>
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="useValueFn"
       luxLabel="pickValue-Funktion nutzen"
       (luxCheckedChange)="changeUseValueFn($event)"
@@ -183,7 +183,7 @@
       </lux-form-hint>
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="useCompareWithFn"
       luxLabel="compareWith-Funktion nutzen"
       (luxCheckedChange)="changeCompareWithFn($event)"
@@ -197,7 +197,7 @@
       </lux-form-hint>
     </lux-toggle>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       [(luxChecked)]="useTemplatesForLabels"
       luxLabel="Labels via Templates"
     >
@@ -205,7 +205,7 @@
         Die Labels können über in die Component eingereichte Template-Tags erstellt werden.
       </lux-form-hint>
     </lux-toggle>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-input luxName="radio_luxGroupName" luxLabel="luxGroupName - normales Beispiel" [(luxValue)]="groupNameNormal" fxFlex="auto">
         <lux-form-hint>
           Diese Property definiert die Radio-Group, zu der die einzelnen Radio-Buttons gehören sollen.<br />
@@ -219,7 +219,7 @@
         </lux-form-hint>
       </lux-input>
     </div>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-toggle
         luxLabel="luxErrorMessage verwenden"
         luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."

@@ -1,15 +1,15 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'lux-image',
   templateUrl: './lux-image.component.html',
   styleUrls: ['./lux-image.component.scss']
 })
-export class LuxImageComponent implements OnInit, OnChanges {
-  @Input() luxImageSrc: string = '';
-  @Input() luxImageWidth: string = 'auto';
-  @Input() luxImageHeight: string = 'auto';
-  @Input() luxRawSrc: boolean = false;
+export class LuxImageComponent implements OnChanges {
+  @Input() luxImageSrc = '';
+  @Input() luxImageWidth = 'auto';
+  @Input() luxImageHeight = 'auto';
+  @Input() luxRawSrc = false;
 
   constructor() {}
 
@@ -24,8 +24,6 @@ export class LuxImageComponent implements OnInit, OnChanges {
       }
     }
   }
-
-  ngOnInit() {}
 
   private updateImageSrc() {
     if (this.luxImageSrc) {

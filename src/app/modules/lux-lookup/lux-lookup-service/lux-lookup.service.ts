@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
 import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxLookupService {
   constructor(private http: HttpClient) {}
 

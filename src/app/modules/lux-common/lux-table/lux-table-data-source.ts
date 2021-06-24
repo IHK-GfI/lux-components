@@ -12,6 +12,8 @@ export class LuxTableDataSource<T> extends MatTableDataSource<T> {
    * Diese Methode liefert eine sortierte Kopie des Datenarrays zurück.
    * Die Sortierung berücksichtig ist nicht Case-Sensitive und berücksichtig
    * Sonderzeichen (z.B. öäüßé,...)
+   *
+   * @param data
    */
   _orderData(data: T[]): T[] {
     const _this = this;
@@ -69,6 +71,8 @@ export class LuxTableDataSource<T> extends MatTableDataSource<T> {
   /**
    * Override update paginator method
    * to ensure total unfiltered element count is consistent with the http result
+   *
+   * @param filteredDataLength
    */
   public _updatePaginator(filteredDataLength: number): void {
     if (this.filter === '') {

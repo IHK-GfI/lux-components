@@ -47,7 +47,7 @@
     </lux-card>
   </example-base-content>
   <example-base-simple-options>
-    <div fxLayout="column" class="example-highlight-config-option">
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxLabel="luxTitle"
         luxHint="Diese Property enthält den Textinhalt für den Titel der Card."
@@ -71,7 +71,7 @@
     </lux-input>
 
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxDisabled"
       [(luxChecked)]="disabled"
       [luxDisabled]="showActions"
@@ -81,7 +81,7 @@
         Diese Property greift nicht, wenn Card-Actions dargestellt werden.
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle class="example-highlight-config-option" luxLabel="luxTitleLineBreak" [(luxChecked)]="titleLineBreak">
+    <lux-toggle class="lux-highlight-section" luxLabel="luxTitleLineBreak" [(luxChecked)]="titleLineBreak">
       <lux-form-hint>
         Dieser Flag aktiviert den Zeilenumbruch bei zu langen Titeln. <br />
         Wenn 'false', wird der Titel mit '...' abgekürzt.
@@ -90,7 +90,7 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxIcon anzeigen"
       luxHint="Das linksbündige Icon für die Card darstellen."
       [(luxChecked)]="showIcon"
@@ -98,13 +98,13 @@
     </lux-toggle>
 
     <lux-toggle
-      class="example-highlight-config-option"
+      class="lux-highlight-section"
       luxLabel="luxCardActions anzeigen"
       luxHint="Die Card-Action für das Beispiel darstellen."
       [(luxChecked)]="showActions"
     >
     </lux-toggle>
-    <div class="example-highlight-config-option" fxLayout="column">
+    <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle luxLabel="luxCardInfo anzeigen" [luxChecked]="showInfo" (luxCheckedChange)="changeInfo($event)">
         <lux-form-hint>
           Die Component für die Darstellung von Zusatzinfos rechts vom Titel anzeigen.<br />

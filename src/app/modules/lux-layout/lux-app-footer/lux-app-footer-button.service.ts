@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { LuxAppFooterButtonInfo } from './lux-app-footer-button-info';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class LuxAppFooterButtonService {
   private _buttonInfos: LuxAppFooterButtonInfo[] = [];
 

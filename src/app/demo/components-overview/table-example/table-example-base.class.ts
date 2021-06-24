@@ -24,15 +24,11 @@ export abstract class TableExampleBaseClass {
   tableCSS: ICustomCSSConfig[] = [
     {
       class: 'demo-year-2017',
-      check(element): boolean {
-        return element.date.getFullYear() === 2017;
-      }
+      check: element => element.date.getFullYear() === 2017
     },
     {
       class: 'demo-year-2018',
-      check(element): boolean {
-        return element.date.getFullYear() === 2018;
-      }
+      check: (element) => element.date.getFullYear() === 2018
     }
   ];
   filter = false;

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnDestroy, Output } from '@angular/core';
 import { LuxMasterDetailMobileHelperService } from '../../lux-master-detail-mobile-helper.service';
 import { LuxButtonComponent } from '../../../../lux-action/lux-button/lux-button.component';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './lux-master-header.component.html',
   styleUrls: ['./lux-master-header.component.scss']
 })
-export class LuxMasterHeaderComponent implements OnInit, OnDestroy {
+export class LuxMasterHeaderComponent implements OnDestroy {
   iconName: string;
   open: boolean;
   subscription: Subscription;
@@ -16,7 +16,7 @@ export class LuxMasterHeaderComponent implements OnInit, OnDestroy {
   @Input() luxToggleHidden: boolean;
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 
-  @HostBinding('class.lux-no-toggle') isMobile = this.luxToggleHidden;
+  @HostBinding('class.lux-no-toggle') isMobile;
 
   constructor(private masterDetailMobileHelperService: LuxMasterDetailMobileHelperService) {
     this.subscription = this.masterDetailMobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
@@ -34,10 +34,16 @@ export class LuxMasterHeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {}
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  getAriaLabelForOpenCloseButton(iconName: string) {
+    if (this.iconName === 'keyboard_arrow_left') {
+      return $localize `:@@luxc.master-detail.header.close.btn:Masterliste zuklappen`;
+    } else {
+      return $localize `:@@luxc.master-detail.header.open.btn:Masterliste aufklappen`;
+    }
   }
 
   clicked(that: LuxButtonComponent) {

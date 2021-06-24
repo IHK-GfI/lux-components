@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'lux-app-header-action-nav-item',
   templateUrl: './lux-app-header-action-nav-item.component.html',
   styleUrls: ['./lux-app-header-action-nav-item.component.scss']
 })
-export class LuxAppHeaderActionNavItemComponent implements OnInit {
+export class LuxAppHeaderActionNavItemComponent {
   @Input() luxLabel: string;
   @Input() luxIconName: string;
   @Input() luxColor: string;
@@ -15,6 +15,4 @@ export class LuxAppHeaderActionNavItemComponent implements OnInit {
   @Output() luxClicked: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
-
-  ngOnInit() {}
 }

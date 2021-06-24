@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed } from '@angular/core/testing';
 
 import { LuxLookupAutocompleteComponent } from './lux-lookup-autocomplete.component';

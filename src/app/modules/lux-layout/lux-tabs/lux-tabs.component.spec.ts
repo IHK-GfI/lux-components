@@ -1,10 +1,11 @@
-import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+/* eslint-disable max-classes-per-file */
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LuxIconComponent } from '../../lux-icon/lux-icon/lux-icon.component';
 import { LuxLabelComponent } from '../../lux-common/lux-label/lux-label.component';
 
 import { LuxTabsComponent } from './lux-tabs.component';
-import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxTabComponent } from './lux-tabs-subcomponents/lux-tab.component';
 import { MatTabChangeEvent } from '@angular/material/tabs';
@@ -339,8 +340,7 @@ describe('LuxTabsComponent', () => {
       expect(fixture.componentInstance.tabCounterCap).toEqual(10);
 
       // Nachbedingungen testen
-      const divEl = document.getElementsByClassName('mat-badge-content')[0];
-      expect(divEl.innerHTML).toEqual('0');
+      expect(getBadgeElement(fixture).innerHTML).toEqual('0');
     }));
 
     it('Anzahl 10', fakeAsync(() => {
@@ -355,8 +355,7 @@ describe('LuxTabsComponent', () => {
       flush();
 
       // Nachbedingungen testen
-      const divEl = document.getElementsByClassName('mat-badge-content')[0];
-      expect(divEl.innerHTML).toEqual('10');
+      expect(getBadgeElement(fixture).innerHTML).toEqual('10');
     }));
 
     it('Anzahl 10+', fakeAsync(() => {
@@ -371,24 +370,7 @@ describe('LuxTabsComponent', () => {
       flush();
 
       // Nachbedingungen testen
-      const divEl = document.getElementsByClassName('mat-badge-content')[0];
-      expect(divEl.innerHTML).toEqual('10+');
-    }));
-
-    it('Sollte die Tabanzahl auch in Mobile anzeigen', fakeAsync(() => {
-      // Vorbedingungen testen
-      expect((<any>document.getElementsByClassName('mat-badge-content')[0]).offsetHeight).toBeGreaterThan(0);
-
-      // Änderungen durchführen
-      viewport.set('mobile');
-      LuxTestHelper.wait(fixture);
-
-      // Nachbedingungen testen
-      expect((<any>document.getElementsByClassName('mat-badge-content')[0]).offsetHeight).toBeGreaterThan(0);
-
-      viewport.set('desktop');
-      flush();
-      discardPeriodicTasks();
+      expect(getBadgeElement(fixture).innerHTML).toEqual('10+');
     }));
   });
 
@@ -405,8 +387,7 @@ describe('LuxTabsComponent', () => {
 
     it('Attribut "tabCounter" nicht gesetzt.', fakeAsync(() => {
       // Nachbedingungen testen
-      const divEl = document.getElementsByClassName('mat-badge-content')[0];
-      expect((<any>divEl).offsetWidth).toBe(0, 'Nachbedingung 1');
+      expect(getBadgeElement(fixture).offsetWidth).toBe(0, 'Nachbedingung 1');
     }));
   });
 });
@@ -433,7 +414,7 @@ describe('LuxTabsComponent', () => {
   `
 })
 class LuxActiveTabChangedTabsComponent {
-  animated: boolean = false;
+  animated = false;
   currentTabIndex: number;
   currentTabLabel: string;
 
@@ -470,18 +451,14 @@ class LuxActiveTabChangedTabsComponent {
     '        </lux-tab>' +
     '        </lux-tabs>'
 })
-class LuxMockTabsComponent implements OnInit, AfterViewInit {
-  animated: boolean = false;
+class LuxMockTabsComponent {
+  animated = false;
   currentTabIndex: number;
 
   @ViewChild(LuxTabsComponent) luxTabs: LuxTabsComponent;
   @ViewChildren(LuxTabComponent) luxTabList: QueryList<LuxTabComponent>;
 
   constructor() {}
-
-  ngOnInit() {}
-
-  ngAfterViewInit() {}
 
   tabChanged($event: MatTabChangeEvent) {
     this.currentTabIndex = $event.index;
@@ -527,20 +504,20 @@ class LuxTabWithoutNumberComponent {}
     >
       <lux-tab luxTitle="Tab A">
         <ng-template>
-          <lux-label luxId="AAA" #aaa>AAA</lux-label>
+          <lux-label luxId="AAA" #taba>AAA</lux-label>
         </ng-template>
       </lux-tab>
       <lux-tab luxTitle="Tab B">
         <ng-template>
-          <lux-label luxId="BBB" #bbb>BBB</lux-label>
+          <lux-label luxId="BBB" #tabb>BBB</lux-label>
         </ng-template>
       </lux-tab>
     </lux-tabs>
   `
 })
 class LuxTabLazyLoadingComponent {
-  @ViewChild('aaa') labelAaa: LuxLabelComponent;
-  @ViewChild('bbb') labelBbb: LuxLabelComponent;
+  @ViewChild('taba') labelAaa: LuxLabelComponent;
+  @ViewChild('tabb') labelBbb: LuxLabelComponent;
 
   currentTabIndex = 0;
   animationActive = false;
@@ -566,4 +543,18 @@ class LuxTabLazyLoadingComponent {
 class LuxTabLuxDisabledComponent {
   animationActive = false;
   disabled = false;
+}
+
+/**
+ * @param fixture
+ */
+export function getBadgeElement(fixture: ComponentFixture<any>): any {
+  let badgeSelector: string;
+  if (document.body.clientWidth > 959) {
+    badgeSelector = '.lux-tab-title .mat-badge-content';
+  } else {
+    badgeSelector = '.lux-tab-icon .mat-badge-content';
+  }
+
+  return fixture.debugElement.query(By.css(badgeSelector)).nativeElement;
 }

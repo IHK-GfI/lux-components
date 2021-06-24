@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 export class LinkExampleComponent implements OnInit, OnDestroy {
   // region Helper-Properties für das Beispiel
 
-  showOutputEvents: boolean = false;
+  showOutputEvents = false;
   colors: any[] = [
     { value: '', label: 'default' },
     { value: 'primary', label: 'primary' },
@@ -25,15 +25,15 @@ export class LinkExampleComponent implements OnInit, OnDestroy {
 
   // region Properties der Component
 
-  label: string = 'Beispiel-Link';
-  color: string = 'primary';
-  iconName: string = '';
-  raised: boolean = true;
-  round: boolean = false;
-  align: boolean = false;
-  disabled: boolean = false;
-  blank: boolean = true;
-  href: string = 'https://www.ihk-gfi.de/';
+  label = 'Beispiel-Link';
+  color = 'primary';
+  iconName = '';
+  raised = true;
+  round = false;
+  align = false;
+  disabled = false;
+  blank = true;
+  href = 'https://www.ihk-gfi.de/';
 
   // endregion
 

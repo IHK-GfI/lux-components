@@ -7,26 +7,57 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
+      "i18n": {
+        "sourceLocale": {
+          "code": "de",
+          "baseHref": "/"
+        },
+        "locales": {
+          "en": "src/locale/messages.en.xlf"
+        }
+      },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
+            "localize": ["de"],
+            "i18nMissingTranslation": "error",
             "assets": [
               "src/assets",
               "src/favicon.ico",
-              { "glob": "**/*", "input": "./node_modules/pdfjs-dist/cmaps/", "output": "./assets/cmaps" }
+              {
+                "glob": "**/*",
+                "input": "./node_modules/pdfjs-dist/cmaps/",
+                "output": "./assets/cmaps"
+              },
+              {
+                "glob": "*.css",
+                "input": "./node_modules/@ihk-gfi/lux-components-theme/prebuilt-themes",
+                "output": "./assets/themes"
+              }
             ],
             "styles": [
-              "src/styles.scss",
-              "src/theming/luxtheme.scss"
+              "src/styles.scss"
             ],
-            "scripts": [],
-            "allowedCommonJsDependencies": ["hammerjs"]
+            "scripts": [
+              {
+                "bundleName": "polyfill-webcomp-es5",
+                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
+              },
+              {
+                "bundleName": "polyfill-webcomp",
+                "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+              }
+            ],
+            "allowedCommonJsDependencies": [
+              "hammerjs",
+              "ng2-pdf-viewer"
+            ]
           },
           "configurations": {
             "production": {
@@ -39,7 +70,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -52,7 +82,26 @@
                 }
               ]
             },
+            "en": {
+              "localize": ["en"],
+              "aot": true,
+              "outputPath": "dist/en",
+              "i18nMissingTranslation": "error"
+            },
             "es5": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "tsConfig": "src/tsconfig.app.ie.json"
+            },
+            "es5en": {
+              "localize": ["en"],
+              "aot": true,
+              "outputPath": "dist/en",
+              "i18nMissingTranslation": "error",
               "budgets": [
                 {
                   "type": "anyComponentStyle",
@@ -64,7 +113,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
             "browserTarget": "lux-components:build"
           },
@@ -72,19 +121,25 @@
             "production": {
               "browserTarget": "lux-components:build:production"
             },
+            "en": {
+              "browserTarget": "lux-components:build:en"
+            },
             "es5": {
               "browserTarget": "lux-components:build:es5"
+            },
+            "es5en": {
+              "browserTarget": "lux-components:build:es5en"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lux-components:build"
+            "browserTarget": "lux-components:build:en"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "ngx-build-plus:karma",
           "options": {
             "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
@@ -92,32 +147,26 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/styles.scss",
-              "src/theming/luxtheme.scss"
+              "src/styles.scss"
             ],
             "assets": [
               "src/assets",
               "src/favicon.ico",
-              { "glob": "**/*", "input": "./node_modules/pdfjs-dist/cmaps/", "output": "./assets/cmaps" }
+              {
+                "glob": "**/*",
+                "input": "./node_modules/pdfjs-dist/cmaps/",
+                "output": "./assets/cmaps"
+              }
             ]
           }
         },
-        "app-lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json"
-            ],
-            "tslintConfig": "./tslint.json"
-          }
-        },
-        "spec-lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.spec.json"
-            ],
-            "tslintConfig": "./tslint.spec.json"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
@@ -132,17 +181,6 @@
           "options": {
             "protractorConfig": "./protractor.conf.js",
             "devServerTarget": "lux-components:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LuxBackgroundColorsEnum, LuxProgressColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-spinner-example',
   templateUrl: './spinner-example.component.html'
 })
-export class SpinnerExampleComponent implements OnInit {
+export class SpinnerExampleComponent {
 
   sizes = ['small', 'medium', 'large'];
   colors = LuxProgressColors;
@@ -17,8 +17,6 @@ export class SpinnerExampleComponent implements OnInit {
   value = 70;
 
   constructor() {}
-
-  ngOnInit() {}
 
   addSpinnerProgress() {
     this.value = this.value + 10 > 100 ? 100 : this.value + 10;

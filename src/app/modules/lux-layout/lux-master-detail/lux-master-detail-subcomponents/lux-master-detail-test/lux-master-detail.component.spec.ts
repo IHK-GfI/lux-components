@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+/* eslint-disable max-classes-per-file */
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LuxMediaQueryObserverService } from '../../../../lux-util/lux-media-query-observer.service';
@@ -13,13 +14,9 @@ describe('LuxMasterDetailComponent', () => {
 
   const defaultWaitTime = 1000;
 
-  const getMasterList = () => {
-    return fixture.debugElement.query(By.css('lux-list'));
-  };
+  const getMasterList = () => fixture.debugElement.query(By.css('lux-list'));
 
-  const getMasterCards = () => {
-    return fixture.debugElement.queryAll(By.css('lux-list-item > lux-card > mat-card'));
-  };
+  const getMasterCards = () => fixture.debugElement.queryAll(By.css('lux-list-item > lux-card > mat-card'));
 
   const createMockDataArray = (dataAmount: number) => {
     const result = [];
@@ -58,7 +55,7 @@ describe('LuxMasterDetailComponent', () => {
     fixture = TestBed.createComponent(LuxMockMasterDetailComponent);
     component = fixture.componentInstance;
     masterDetail = fixture.debugElement.query(By.directive(LuxMasterDetailComponent)).componentInstance;
-    masterDetail['liveAnnouncer'] = <any>{ announce: (...args) => {} };
+    masterDetail['liveAnnouncer'] = { announce: (...args) => {} } as any;
   });
 
   it('sollte erstellt werden', () => {
@@ -197,10 +194,7 @@ describe('LuxMasterDetailComponent', () => {
     LuxTestHelper.wait(fixture, defaultWaitTime);
 
     // Then
-    expect(component.detail).toEqual(
-      component.mockItems[1],
-      'Das 2te Element der Masterliste sollte wieder selektiert sein.'
-    );
+    expect(component.detail).toEqual(component.mockItems[1], 'Das 2te Element der Masterliste sollte wieder selektiert sein.');
 
     discardPeriodicTasks();
   }));
@@ -449,17 +443,13 @@ class LuxMockDetailComponent implements OnInit {
     '</lux-master-detail>' +
     '</div>'
 })
-class LuxMockMasterDetailComponent implements OnInit, AfterViewInit {
+class LuxMockMasterDetailComponent {
   mockItems: any[];
   detail: any;
   @ViewChild('detailMock') detailMock: LuxMockDetailComponent;
   @ViewChild(LuxMasterDetailComponent) masterDetail: LuxMasterDetailComponent;
 
   constructor() {}
-
-  ngOnInit() {}
-
-  ngAfterViewInit() {}
 
   loadDetail(eventData: any) {
     this.detail = eventData;

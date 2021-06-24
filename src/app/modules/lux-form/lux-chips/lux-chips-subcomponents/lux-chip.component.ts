@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface';
 
@@ -10,8 +10,8 @@ import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface
     </ng-template>
   `
 })
-export class LuxChipComponent implements OnInit {
-  private removeClicked: boolean = false;
+export class LuxChipComponent {
+  private removeClicked = false;
 
   private _luxColor: ThemePalette = 'primary';
 
@@ -21,9 +21,9 @@ export class LuxChipComponent implements OnInit {
   @Output() luxChipClicked = new EventEmitter<number>();
   @Output() luxChipSelected = new EventEmitter<ILuxChipSelected>();
 
-  @Input() luxDisabled: boolean = false;
-  @Input() luxRemovable: boolean = true;
-  @Input() luxSelected: boolean = true;
+  @Input() luxDisabled = false;
+  @Input() luxRemovable = true;
+  @Input() luxSelected = true;
 
   get luxColor(): ThemePalette {
     return this._luxColor;
@@ -37,8 +37,6 @@ export class LuxChipComponent implements OnInit {
   }
 
   constructor() {}
-
-  ngOnInit() {}
 
   remove(index: number) {
     this.luxChipRemoved.emit(index);
