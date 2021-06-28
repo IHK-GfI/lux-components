@@ -5,6 +5,7 @@
 >
   <example-base-content>
     <lux-menu
+      [luxMenuLabel]="menuLabel"
       [luxMenuIconName]="iconName"
       [luxDisplayExtended]="displayExtended"
       [luxClassName]="className"
@@ -41,13 +42,20 @@
       [(luxChecked)]="showOutputEvents"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
-    <lux-input
-      class="lux-highlight-section"
-      luxLabel="luxMenuIconName"
-      luxHint="Diese Property ermöglicht es, das Icon für das Menu zu ändern."
-      [(luxValue)]="iconName"
-    >
-    </lux-input>
+    <div class="lux-highlight-section" fxLayout="column">
+      <lux-input
+        luxLabel="luxMenuLabel"
+        luxHint="Diese Property ermöglicht es, das Label für das Menu zu ändern."
+        [(luxValue)]="menuLabel"
+      >
+      </lux-input>
+      <lux-input
+        luxLabel="luxMenuIconName"
+        luxHint="Diese Property ermöglicht es, das Icon für das Menu zu ändern."
+        [(luxValue)]="iconName"
+      >
+      </lux-input>
+    </div>
     <lux-input class="lux-highlight-section" luxLabel="luxClassName" [(luxValue)]="className">
       <lux-form-hint>
         Über diese Property lassen sich CSS-Klassen für das ausgeklappte Menu setzen.
