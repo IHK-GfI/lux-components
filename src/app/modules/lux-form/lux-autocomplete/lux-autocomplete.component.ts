@@ -16,7 +16,7 @@ import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/m
 import { MatOptionSelectionChange } from '@angular/material/core';
 import { LuxFormComponentBase } from '../lux-form-model/lux-form-component-base.class';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
-import { Observable, ReplaySubject, Subscription } from 'rxjs';
+import { ReplaySubject, Subscription } from 'rxjs';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
@@ -28,11 +28,12 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 export class LuxAutocompleteComponent extends LuxFormComponentBase implements OnInit, OnDestroy, AfterViewInit {
   private selected$: ReplaySubject<any> = new ReplaySubject<any>(1);
   private subscriptions: Subscription[] = [];
+  private valueChangeSubscription: Subscription;
 
-  filteredOptions: Observable<any>;
+  filteredOptions: any[] = [];
+  _luxOptions: any[] = [];
 
   @Input() luxPlaceholder = '';
-  @Input() luxOptions: any[] = [];
   @Input() luxOptionLabelProp = 'label';
   @Input() luxLookupDelay = 500;
   @Input()
@@ -62,6 +63,20 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
       this.setValue(value instanceof Object ? this.luxPickValue(value) : value);
     } else {
       this.setValue(value);
+    }
+  }
+
+  get luxOptions(): any[] {
+    return this._luxOptions;
+  }
+
+  @Input()
+  set luxOptions(options: any[]) {
+    this._luxOptions = options ? options : [];
+
+    if (this.formControl) {
+      this.updateFilterOptions();
+      this.registerNewValueChangesListener();
     }
   }
 
@@ -112,6 +127,10 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
     super.ngOnDestroy();
 
     this.subscriptions.forEach((sub) => sub.unsubscribe());
+
+    if (this.valueChangeSubscription) {
+      this.valueChangeSubscription.unsubscribe();
+    }
   }
 
   ngAfterViewInit() {
@@ -135,15 +154,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
       })
     );
 
-    this.filteredOptions = this.formControl.valueChanges.pipe(
-      startWith(''),
-      debounceTime(this.luxLookupDelay),
-      map((value) => this.getOptionLabel(value)),
-      map(() => {
-        const filterLabel = this.matInput.nativeElement.value;
-        return filterLabel ? this.filter(filterLabel) : this.luxOptions;
-      })
-    );
+    this.registerNewValueChangesListener();
   }
 
   /**
@@ -288,5 +299,35 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   private getPickValueOption(value) {
     const pickValue = value instanceof Object ? this.luxPickValue(value) : value;
     return this.luxOptions.find((currentOption) => pickValue === this.luxPickValue(currentOption));
+  }
+
+  private updateFilterOptions() {
+    this.filteredOptions =  this.filterOptions();
+  }
+
+  private registerNewValueChangesListener() {
+    // Die alte Subscription entfernen.
+    if (this.valueChangeSubscription) {
+      this.valueChangeSubscription.unsubscribe();
+    }
+
+    // Eine neue Subscription hinzufügen.
+    this.valueChangeSubscription =
+      this.formControl.valueChanges
+        .pipe(
+          startWith(""),
+          debounceTime(this.luxLookupDelay),
+          map(() => {
+            return this.filterOptions();
+          })
+        )
+        .subscribe((result) => {
+          this.filteredOptions = result;
+        });
+  }
+
+  private filterOptions() {
+    const filterLabel = this.matInput.nativeElement.value;
+    return filterLabel ? this.filter(filterLabel) : this.luxOptions;
   }
 }

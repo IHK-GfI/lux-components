@@ -1,3 +1,7 @@
+# Version 11.0.1
+## Bug Fixes
+- **lux-autocomplete**: Beim Nachladen von Optionen werden nicht die aktuellsten Auswahloptionen dargestellt. [Issue 89](https://github.com/IHK-GfI/lux-components/issues/89)
+
 # Version 11.0.0
 ## New
 - **allgemein**: Update auf Angular 11
