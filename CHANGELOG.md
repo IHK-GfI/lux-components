@@ -1,3 +1,7 @@
+# Version 11.0.1
+## Bug Fixes
+- **lux-autocomplete**: Event "luxValueChange" wird doppelt getriggert. [Issue 90](https://github.com/IHK-GfI/lux-components/issues/90)
+
 # Version 11.0.0
 ## New
 - **allgemein**: Update auf Angular 11
