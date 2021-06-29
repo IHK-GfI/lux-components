@@ -111,7 +111,7 @@
               <th
                 mat-header-cell
                 *matHeaderCellDef
-                mat-sort-header
+                mat-sort-header [disabled]="!tableColumn.luxSortable"
                 [ngClass]="
                   'lux-table-column-header-' +
                   i +
