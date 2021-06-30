@@ -19,11 +19,19 @@ export class AutocompleteExampleComponent {
   useErrorMessage = true;
   showOutputEvents = false;
 
+  toggleOptions = true;
   options = [
     { label: 'Meine Aufgaben', short: 'MA', value: 'A' },
     { label: 'Gruppenaufgaben', short: 'GA', value: 'B' },
     { label: 'Zurückgestellte Aufgaben', short: 'ZA', value: 'C' },
     { label: 'Vertretungsaufgaben', short: 'VA', value: 'D' }
+  ];
+
+  options2 = [
+    { label: 'Meine Aufgaben 2', short: 'MA2', value: 'A2' },
+    { label: 'Gruppenaufgaben 2', short: 'GA2', value: 'B2' },
+    { label: 'Zurückgestellte Aufgaben 2', short: 'ZA2', value: 'C2' },
+    { label: 'Vertretungsaufgaben 2', short: 'VA2', value: 'D2' }
   ];
 
   renderProperties: RenderPropertyItem[] = [

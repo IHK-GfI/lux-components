@@ -1,5 +1,6 @@
 # Version 11.0.1
 ## Bug Fixes
+- **lux-autocomplete**: Beim Nachladen von Optionen werden nicht die aktuellsten Auswahloptionen dargestellt. [Issue 89](https://github.com/IHK-GfI/lux-components/issues/89)
 - **lux-table**: Tooltipps werden nur angezeigt, wenn der Header sortierbar ist. [Issue 88](https://github.com/IHK-GfI/lux-components/issues/88)
 
 # Version 11.0.0
