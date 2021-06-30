@@ -31,7 +31,7 @@
           [luxResponsiveBehaviour]="nameConfig.responsiveBehaviour?.value"
         >
           <lux-table-column-header>
-            <ng-template>Name</ng-template>
+            <ng-template><span [luxTooltip]="'Tooltipp Spalte \'Name\''">Name</span></ng-template>
           </lux-table-column-header>
           <lux-table-column-content>
             <ng-template let-element
@@ -52,7 +52,7 @@
           [luxResponsiveBehaviour]="symbolConfig.responsiveBehaviour?.value"
         >
           <lux-table-column-header>
-            <ng-template>Symbol</ng-template>
+            <ng-template><span [luxTooltip]="'Tooltipp Spalte \'Symbol\''">Symbol</span></ng-template>
           </lux-table-column-header>
           <lux-table-column-content>
             <ng-template let-element
