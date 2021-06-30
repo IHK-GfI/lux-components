@@ -447,6 +447,8 @@ describe('LuxAutocompleteComponent', () => {
     it('Wert über Textfeld setzen', fakeAsync((done) => {
       expect(component.selected).toBeUndefined('Vorbedingung 1');
       expect(component.twoWaySelected).toBeUndefined('Vorbedingung 2');
+      const onSelectedSpy = spyOn(fixture.componentInstance, 'setSelected').and.callThrough();
+      expect(onSelectedSpy).toHaveBeenCalledTimes(0);
 
       // Ein Element auswählen
       // Änderungen durchführen
@@ -459,6 +461,7 @@ describe('LuxAutocompleteComponent', () => {
       LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
       // Nachbedingungen testen
+      expect(onSelectedSpy).toHaveBeenCalledTimes(1);
       expect(component.autocomplete.luxValue).toEqual(component.options[1].value);
       expect(component.selected).toEqual(component.options[1].value);
       expect(component.twoWaySelected).toEqual(component.options[1].value);
