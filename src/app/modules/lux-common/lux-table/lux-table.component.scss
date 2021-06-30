@@ -89,10 +89,6 @@ lux-progress ::ng-deep mat-progress-bar {
         border-top: 1px solid rgba(0, 0, 0, 0.12);
       }
     }
-
-    .lux-table-header-blocked {
-      pointer-events: none;
-    }
   }
 
   &.lux-hide-borders {
