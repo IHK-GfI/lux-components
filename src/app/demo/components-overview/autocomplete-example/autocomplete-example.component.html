@@ -13,7 +13,7 @@
         [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxOptionLabelProp]="renderProperty"
         [luxErrorMessageNotAnOption]="errorMessageNotAnOption"
-        [luxOptions]="options"
+        [luxOptions]="toggleOptions ? options : options2"
         [luxPickValue]="usePickValueFn && strict ? pickValueFn : undefined"
         [luxFilterFn]="useFilterFn ? onFilter : undefined"
         [(luxValue)]="value"
@@ -50,7 +50,7 @@
         [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxOptionLabelProp]="renderProperty"
         [luxErrorMessageNotAnOption]="errorMessageNotAnOption"
-        [luxOptions]="options"
+        [luxOptions]="toggleOptions ? options : options2"
         [luxPickValue]="usePickValueFn && strict ? pickValueFn : undefined"
         [luxFilterFn]="useFilterFn ? onFilter : undefined"
         [luxSelectAllOnClick]="selectAllOnClick"
@@ -85,7 +85,7 @@
       <div fxLayout="row" fxLayoutGap="5px">
         <span fxFlex="0 0 auto">Optionen:</span>
         <span fxFlex="auto" fxLayout="column" fxLayoutGap="5px">
-          <span *ngFor="let option of options">
+          <span *ngFor="let option of toggleOptions ? options : options2">
             {{ option | json }}
           </span>
         </span>
@@ -213,6 +213,11 @@
       <lux-form-hint>
         Dieses Flag aktiviert die Filterfunktion. <br />
         Diese Beispielfilterfunktion trennt die Eingabe anhand von Leerzeichen und prüft, ob alle Teile enthalten sind.
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle class="lux-highlight-section" [(luxChecked)]="toggleOptions" luxLabel="Optionen austauschen">
+      <lux-form-hint>
+        Dieses Toggle tauscht die Optionen aus.
       </lux-form-hint>
     </lux-toggle>
   </example-base-simple-options>

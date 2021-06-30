@@ -26,7 +26,7 @@
       [displayWith]="displayFn.bind(this)"
       (optionSelected)="selected($event)"
     >
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      <mat-option *ngFor="let option of filteredOptions" [value]="option">
         <ng-container *ngTemplateOutlet="optionTemplate; context: { $implicit: option }"></ng-container>
       </mat-option>
     </mat-autocomplete>
