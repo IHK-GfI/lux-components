@@ -1,18 +1,9 @@
-import {
-  AfterContentInit,
-  Component,
-  ContentChildren,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  QueryList
-} from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LuxSelectComponent } from '../../lux-form/lux-select/lux-select.component';
 import { LuxDialogService } from '../../lux-popups/lux-dialog/lux-dialog.service';
+import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxFilterSaveDialogComponent } from '../lux-filter-dialog/lux-filter-save-dialog/lux-filter-save-dialog.component';
 import { ILuxDialogConfig } from '../../lux-popups/lux-dialog/lux-dialog-model/lux-dialog-config.interface';
 import { LuxFilter } from '../lux-filter-base/lux-filter';
@@ -217,8 +208,7 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
     const removedFilterItem: LuxFilterItem = this.filterItems.splice(indexRemoved, 1)[0];
 
     if (
-      (removedFilterItem.component instanceof LuxSelectComponent ||
-        removedFilterItem.component instanceof LuxLookupComboboxComponent) &&
+      (removedFilterItem.component instanceof LuxSelectComponent || removedFilterItem.component instanceof LuxLookupComboboxComponent) &&
       removedFilterItem.component.luxMultiple
     ) {
       // Fall: Multiselect
@@ -238,13 +228,17 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   }
 
   onFilter() {
-    // Filter zuklappen.
-    this.luxFilterExpanded = false;
+    if (this.filterForm.valid) {
+      // Filter zuklappen.
+      this.luxFilterExpanded = false;
 
-    // Filterchips aktualisieren.
-    this.updateFilterChips();
+      // Filterchips aktualisieren.
+      this.updateFilterChips();
 
-    // Die Interessenten darüber informieren, dass gefiltert werden soll.
-    this.luxOnFilter.emit(JSON.parse(JSON.stringify(this.filterForm.value)));
+      // Die Interessenten darüber informieren, dass gefiltert werden soll.
+      this.luxOnFilter.emit(JSON.parse(JSON.stringify(this.filterForm.value)));
+    } else {
+      LuxUtil.showValidationErrors(this.filterForm);
+    }
   }
 }
