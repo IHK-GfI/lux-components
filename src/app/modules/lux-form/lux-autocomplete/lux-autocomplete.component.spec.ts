@@ -94,6 +94,48 @@ describe('LuxAutocompleteComponent', () => {
         expect(component.autocomplete.matInput.nativeElement.value).toEqual('Meine Aufgaben');
         discardPeriodicTasks();
       }));
+
+      it('Sollte die Optionen austauschen', fakeAsync(() => {
+        // Vorbedingungen testen
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual('');
+        expect(component.formGroup.get('aufgaben').value).toEqual('');
+        expect(component.options[1].label).toEqual('Gruppenaufgaben');
+
+        // Änderungen durchführen
+        LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'A');
+        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+
+        // Nachbedingungen testen
+        let options = overlayHelper.selectAllFromOverlay('mat-option');
+        expect(options.length).toEqual(4);
+        expect(options[1].innerText).toEqual('Gruppenaufgaben');
+
+        // Änderungen durchführen
+        const testOptions = [
+          { label: 'Meine Aufgaben 2', value: 'A' },
+          { label: 'Gruppenaufgaben 2', value: 'B' },
+          { label: 'Zurückgestellte Aufgaben 2', value: 'C' }
+        ];
+        component.options = testOptions;
+        LuxTestHelper.wait(fixture);
+
+        // Nachbedingungen testen
+        LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Au');
+        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+        options = overlayHelper.selectAllFromOverlay('mat-option');
+        expect(options.length).toEqual(3);
+        expect(options[1].innerText).toEqual('Gruppenaufgaben 2');
+
+        // Änderungen durchführen
+        options[1].click();
+        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+
+        // Nachbedingungen testen
+        expect(component.autocomplete.luxValue).toEqual(testOptions[1]);
+        expect(component.formGroup.get('aufgaben').value).toEqual(testOptions[1]);
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual('Gruppenaufgaben 2');
+        discardPeriodicTasks();
+      }));
     });
   });
 
@@ -405,6 +447,8 @@ describe('LuxAutocompleteComponent', () => {
     it('Wert über Textfeld setzen', fakeAsync((done) => {
       expect(component.selected).toBeUndefined('Vorbedingung 1');
       expect(component.twoWaySelected).toBeUndefined('Vorbedingung 2');
+      const onSelectedSpy = spyOn(fixture.componentInstance, 'setSelected').and.callThrough();
+      expect(onSelectedSpy).toHaveBeenCalledTimes(0);
 
       // Ein Element auswählen
       // Änderungen durchführen
@@ -417,6 +461,7 @@ describe('LuxAutocompleteComponent', () => {
       LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
       // Nachbedingungen testen
+      expect(onSelectedSpy).toHaveBeenCalledTimes(1);
       expect(component.autocomplete.luxValue).toEqual(component.options[1].value);
       expect(component.selected).toEqual(component.options[1].value);
       expect(component.twoWaySelected).toEqual(component.options[1].value);

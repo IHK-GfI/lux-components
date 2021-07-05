@@ -1,3 +1,13 @@
+# Version 11.0.1
+## New
+- **allgemein**: Abhängigkeiten aktualisiert.
+
+## Bug Fixes
+- **lux-autocomplete**: Event "luxValueChange" wird doppelt getriggert. [Issue 90](https://github.com/IHK-GfI/lux-components/issues/90)
+- **lux-autocomplete**: Beim Nachladen von Optionen werden nicht die aktuellsten Auswahloptionen dargestellt. [Issue 89](https://github.com/IHK-GfI/lux-components/issues/89)
+- **lux-table**: Tooltipps werden nur angezeigt, wenn der Header sortierbar ist. [Issue 88](https://github.com/IHK-GfI/lux-components/issues/88)
+- **lux-filter-form**: Die Filtermethode wird trotz Validierungsfehler aufgerufen. [Issue 94](https://github.com/IHK-GfI/lux-components/issues/94)
+
 # Version 11.0.0
 ## New
 - **allgemein**: Update auf Angular 11

@@ -58,6 +58,7 @@ export class MenuExampleComponent {
   displayMenuLeft = true;
   maximumExtended = 5;
   iconName = 'fas fa-bars';
+  menuLabel = '';
   className = '';
 
   // endregion
