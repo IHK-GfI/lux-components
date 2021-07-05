@@ -1,4 +1,7 @@
 # Version 11.0.1
+## New
+- **allgemein**: Abhängigkeiten aktualisiert.
+
 ## Bug Fixes
 - **lux-autocomplete**: Event "luxValueChange" wird doppelt getriggert. [Issue 90](https://github.com/IHK-GfI/lux-components/issues/90)
 - **lux-autocomplete**: Beim Nachladen von Optionen werden nicht die aktuellsten Auswahloptionen dargestellt. [Issue 89](https://github.com/IHK-GfI/lux-components/issues/89)

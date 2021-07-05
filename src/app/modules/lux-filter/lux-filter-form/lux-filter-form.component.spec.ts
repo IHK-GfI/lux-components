@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Subscription } from 'rxjs';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
@@ -160,7 +160,7 @@ describe('LuxFilterFormComponent', () => {
     </lux-filter-form>
   `
 })
-class TestFilterFormComponent {
+class TestFilterFormComponent implements OnInit, OnDestroy {
   @ViewChild(LuxFilterFormComponent) filterComponent: LuxFilterFormComponent;
 
   autoCompleteOptions: any[] = [
