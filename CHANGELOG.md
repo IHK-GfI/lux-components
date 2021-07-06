@@ -1,3 +1,7 @@
+# Version 11.1.0
+## New
+- **allgemein**: LUX-Componentstheme 11.2.0 hinzugefügt. 
+
 # Version 11.0.1
 ## New
 - **allgemein**: Abhängigkeiten aktualisiert.
