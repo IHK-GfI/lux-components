@@ -2,6 +2,9 @@
 ## New
 - **allgemein**: LUX-Theme [11.2.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.2.0) hinzugefügt. [Commit 2443d52](https://github.com/IHK-GfI/lux-components/commit/2443d52d5ac12e08cd78274bb550733c476a1426) 
 
+## Bug Fixes
+- **lux-autocomplete**: Im Strict-Modus ist bei falscher Eingabe das Formular kurzzeitig valide. [Issue 98](https://github.com/IHK-GfI/lux-components/issues/98)
+
 # Version 11.0.1
 ## New
 - **allgemein**: Abhängigkeiten aktualisiert.
