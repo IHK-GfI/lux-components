@@ -117,12 +117,11 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       this.menuItems = this.luxMenuItemComponents.toArray();
       this.calculateMenuItemWidths();
     });
-
-    this.menuItems = this.luxMenuItemComponents.toArray();
-    this.calculateMenuItemWidths();
   }
 
   ngAfterViewChecked() {
+    this.menuItems = this.luxMenuItemComponents.toArray();
+    this.calculateMenuItemWidths();
     this.updateExtendedMenuItems();
   }
 
