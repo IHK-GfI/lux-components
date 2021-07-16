@@ -23,10 +23,10 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
   placeholder = 'Placeholder';
   clearOnError = true;
 
-  namePrefixAccept = '(ERR) ';
+  namePrefixAccept = '(OK) ';
   nameSuffixAccept = ` (${new Date().toLocaleDateString()})`;
 
-  namePrefixDecline = '(OK)  ';
+  namePrefixDecline = '(ERR) ';
   nameSuffixDecline = ` (${new Date().toLocaleDateString()})`;
 
   customActionConfigs: ILuxFileActionConfig[]      = this.createCustomConfigs();
