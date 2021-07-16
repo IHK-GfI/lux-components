@@ -1,6 +1,8 @@
 # Version 11.1.0
 ## New
 - **allgemein**: LUX-Theme [11.2.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.2.0) hinzugefügt. [Commit 2443d52](https://github.com/IHK-GfI/lux-components/commit/2443d52d5ac12e08cd78274bb550733c476a1426) 
+- **lux-file-input**: Erweiterung um individuelle Buttons. [Issue 85](https://github.com/IHK-GfI/lux-components/issues/85)
+- **lux-file-list**: Erweiterung um individuelle Buttons. [Issue 85](https://github.com/IHK-GfI/lux-components/issues/85)
 
 # Version 11.0.1
 ## New

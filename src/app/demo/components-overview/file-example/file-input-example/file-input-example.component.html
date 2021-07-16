@@ -16,10 +16,12 @@
         [(luxDisabled)]="disabled"
         [luxUploadUrl]="uploadUrl"
         [luxMaxSizeMB]="maxSize"
+        [luxCustomActionConfigs]="customActionConfigs"
         [luxUploadActionConfig]="uploadActionConfig"
         [luxViewActionConfig]="viewActionConfig"
         [luxDeleteActionConfig]="deleteActionConfig"
         [luxDownloadActionConfig]="downloadActionConfig"
+        [luxMaximumExtended]="maximumExtended"
         [luxDnDActive]="dndActive"
         [luxCapture]="capture"
         [luxAccept]="accept"
@@ -38,9 +40,7 @@
       <div
         fxLayout="row"
         fxLayoutGap="12px"
-        *ngIf="
-          !clearOnError && !fileinputexamplewithoutform.formGroup.valid && fileinputexamplewithoutform.luxSelectedFiles
-        "
+        *ngIf="!clearOnError && !fileinputexamplewithoutform.formGroup.valid && fileinputexamplewithoutform.luxSelectedFiles"
       >
         <p>Datei "{{ fileinputexamplewithoutform.luxSelectedFiles.name }}" behalten?</p>
         <lux-button luxLabel="Ja" (luxClicked)="onKeepFileWithoutForm(true)"></lux-button>
@@ -59,10 +59,12 @@
           [(luxDisabled)]="disabled"
           [luxUploadUrl]="uploadUrl"
           [luxMaxSizeMB]="maxSize"
+          [luxCustomActionConfigs]="customActionsConfigsForm"
           [luxUploadActionConfig]="uploadActionConfig"
           [luxViewActionConfig]="viewActionConfigForm"
           [luxDeleteActionConfig]="deleteActionConfig"
           [luxDownloadActionConfig]="downloadActionConfig"
+          [luxMaximumExtended]="maximumExtended"
           [luxDnDActive]="dndActive"
           [luxCapture]="capture"
           [luxAccept]="accept"
@@ -80,9 +82,7 @@
         <div
           fxLayout="row"
           fxLayoutGap="12px"
-          *ngIf="
-            !clearOnError && !fileinputexamplewithform.formGroup.valid && fileinputexamplewithform.luxSelectedFiles
-          "
+          *ngIf="!clearOnError && !fileinputexamplewithform.formGroup.valid && fileinputexamplewithform.luxSelectedFiles"
         >
           <p>Datei "{{ fileinputexamplewithform.luxSelectedFiles.name }}" behalten?</p>
           <lux-button luxLabel="Ja" (luxClicked)="onKeepFileWithForm(true)"></lux-button>
@@ -108,8 +108,7 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
-    </lux-toggle>
+    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents"> </lux-toggle>
     <lux-toggle luxLabel="Backend mocken" [luxChecked]="mockBackend" (luxCheckedChange)="changeMockBackend($event)">
       <lux-form-hint>
         Mockt den Http-Client um das Uploaden der Dateien zu simulieren.<br />
@@ -134,9 +133,16 @@
     <app-file-example-simple-options [fileExample]="this"></app-file-example-simple-options>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <app-file-example-advanced-options
-      [fileExample]="this"
-      [showHeaderConfigProperties]="false"
-    ></app-file-example-advanced-options>
+    <app-file-example-advanced-options [fileExample]="this" [showHeaderConfigProperties]="false"></app-file-example-advanced-options>
+    <div class="lux-highlight-section lux-mt-4" fxLayout="column">
+      <div class="lux-highlight-section-label">Custom Action "Akzeptieren"</div>
+      <lux-input luxLabel="Präfix" luxName="filelist_prefix_accept" [(luxValue)]="namePrefixAccept"></lux-input>
+      <lux-input luxLabel="Suffix" luxName="filelist_suffix_accept" [(luxValue)]="nameSuffixAccept"></lux-input>
+    </div>
+    <div class="lux-highlight-section lux-mt-4" fxLayout="column">
+      <div class="lux-highlight-section-label">Custom Action "Ablehnen"</div>
+      <lux-input luxLabel="Präfix" luxName="filelist_prefix_decline" [(luxValue)]="namePrefixDecline"></lux-input>
+      <lux-input luxLabel="Suffix" luxName="filelist_suffix_decline" [(luxValue)]="nameSuffixDecline"></lux-input>
+    </div>
   </example-base-advanced-options>
 </example-base-structure>

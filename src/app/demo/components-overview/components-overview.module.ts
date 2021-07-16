@@ -41,7 +41,6 @@ import { TableServerExampleComponent } from './table-server-example/table-server
 import { TextareaExampleComponent } from './textarea-example/textarea-example.component';
 import { TooltipExampleComponent } from './tooltip-example/tooltip-example.component';
 import { LookupComboboxExampleComponent } from './lookup-examples/lookup-combobox-example/lookup-combobox-example.component';
-import { LuxLookupHandlerService } from '../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 import { LookupAutocompleteExampleComponent } from './lookup-examples/lookup-autocomplete-example/lookup-autocomplete-example.component';
 import { SelectExampleComponent } from './select-example/select-example.component';
 import { InputExampleComponent } from './input-example/input-example.component';
@@ -76,7 +75,6 @@ import { FileExampleSimpleOptionsComponent } from './file-example/file-example-s
 import { FileExampleAdvancedOptionsComponent } from './file-example/file-example-advanced-options/file-example-advanced-options.component';
 import { DialogExampleComponent } from './dialog-example/dialog-example.component';
 import { DialogComponentExampleComponent } from './dialog-example/dialog-component-example/dialog-component-example.component';
-import { LuxDialogService } from '../../modules/lux-popups/lux-dialog/lux-dialog.service';
 import { BadgeNotificationExampleComponent } from './badge-notification-example/badge-notification-example.component';
 import { RippleExampleComponent } from './ripple-example/ripple-example.component';
 import { HtmlExampleComponent } from './html-example/html-example.component';
@@ -87,8 +85,6 @@ import { FormRowExampleComponent } from './form-row-example/form-row-example.com
 import { CardRowExampleComponent } from './card-row-example/card-row-example.component';
 import { FilterExampleComponent } from './filter-example/filter-example.component';
 import { LuxFilterModule } from '../../modules/lux-filter/lux-filter.module';
-import { LuxLookupService } from '../../modules/lux-lookup/lux-lookup-service/lux-lookup.service';
-import { MockLuxLookupService } from './lookup-examples/mock-lookup-service';
 
 @NgModule({
   imports: [

@@ -1,4 +1,5 @@
 import {
+  AfterContentInit,
   AfterViewChecked,
   ChangeDetectorRef,
   Component,
@@ -12,10 +13,10 @@ import {
   Output,
   QueryList,
   ViewChild
-} from '@angular/core';
-import { Subscription } from 'rxjs';
-import { LuxMenuItemComponent } from './lux-menu-subcomponents/lux-menu-item.component';
-import { LuxMenuTriggerComponent } from './lux-menu-subcomponents/lux-menu-trigger.component';
+} from "@angular/core";
+import { Subscription } from "rxjs";
+import { LuxMenuItemComponent } from "./lux-menu-subcomponents/lux-menu-item.component";
+import { LuxMenuTriggerComponent } from "./lux-menu-subcomponents/lux-menu-trigger.component";
 
 // @dynamic Erklärung steht in der Datei "lux-decorators.ts".
 @Component({
@@ -23,7 +24,7 @@ import { LuxMenuTriggerComponent } from './lux-menu-subcomponents/lux-menu-trigg
   templateUrl: './lux-menu.component.html',
   styleUrls: ['./lux-menu.component.scss']
 })
-export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
+export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnDestroy {
   // Diese Werte müssen angepasst werden, sollte das Styling dieser Component entsprechend geändert worden sein
   static readonly PADDING_PX = 16;
   static readonly MARGIN_PX = 8;
@@ -54,9 +55,10 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   @Input() luxClassName: string;
   @Input() luxTagId: string;
   @Input() luxToggleDisabled = false;
-  @Input() luxAriaMenuTriggerLabel = $localize `:@@luxc.menu.trigger.btn:Menü`;
+  @Input() luxAriaMenuTriggerLabel = $localize`:@@luxc.menu.trigger.btn:Menü`;
 
   _luxDisplayExtended = false;
+  visibleMenuItems: LuxMenuItemComponent[] = [];
 
   get luxDisplayExtended() {
     return this._luxDisplayExtended;
@@ -83,8 +85,9 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
 
   set menuItems(menuItems: LuxMenuItemComponent[]) {
     this._menuItems = menuItems ? menuItems : [];
+    this._menuItems.sort((a, b) => (a.luxPrio ? a.luxPrio : 0) - (b.luxPrio ? b.luxPrio : 0));
 
-    this.menuItems.forEach(item => {
+    this.menuItems.forEach((item) => {
       this.menuItemSubscriptions.push(
         item.luxHiddenChange.subscribe(() => {
           this.updateExtendedMenuItems();
@@ -109,16 +112,17 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
     this.canvas = document.createElement('canvas');
   }
 
-  ngAfterViewChecked() {
-    if (!this.menuItemChangeSubscription) {
-      this.menuItemChangeSubscription = this.luxMenuItemComponents.changes.subscribe(() => {
-        this.menuItems = this.luxMenuItemComponents.toArray();
-        this.calculateMenuItemWidths();
-      });
-    }
+  ngAfterContentInit() {
+    this.menuItemChangeSubscription = this.luxMenuItemComponents.changes.subscribe(() => {
+      this.menuItems = this.luxMenuItemComponents.toArray();
+      this.calculateMenuItemWidths();
+    });
 
     this.menuItems = this.luxMenuItemComponents.toArray();
     this.calculateMenuItemWidths();
+  }
+
+  ngAfterViewChecked() {
     this.updateExtendedMenuItems();
   }
 
@@ -127,7 +131,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
       this.menuItemChangeSubscription.unsubscribe();
     }
 
-    this.menuItemSubscriptions.forEach(menuItemSubscription => {
+    this.menuItemSubscriptions.forEach((menuItemSubscription) => {
       menuItemSubscription.unsubscribe();
     });
   }
@@ -149,7 +153,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
   onMenuClosed() {
     this.luxMenuClosed.emit();
     if (this.defaultTriggerElRef) {
-      (this.defaultTriggerElRef.nativeElement.children.item(0)as any).focus();
+      (this.defaultTriggerElRef.nativeElement.children.item(0) as any).focus();
     }
   }
 
@@ -175,7 +179,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
 
     // mit condition sind hier die Zustände luxVisible = true || false gemeint
     for (const condition of [true, false]) {
-      for (let i = this.menuItems.length - 1; i >= 0; i--) {
+      for (let i = 0; i < this.menuItems.length; i++) {
         const menuItem = this.menuItems[i];
 
         if (menuItem.luxHidden) {
@@ -185,7 +189,7 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
         if (menuItem.luxAlwaysVisible === condition) {
           // Wenn es das letzte Menüitem ist, wird geprüft, ob es anstelle des
           // Menüitemtriggers dargestellt werden kann.
-          if (i === 0 && availableWidth + menuTriggerWidth >= menuItem.width) {
+          if (i === this.menuItems.length - 1 && availableWidth + menuTriggerWidth >= menuItem.width) {
             availableWidth += menuTriggerWidth;
           }
 
@@ -202,11 +206,12 @@ export class LuxMenuComponent implements AfterViewChecked, OnDestroy {
     }
 
     // die Anzahl der extended dargestellten Items der Gesamtzahl entspricht blenden wir den Toggle aus
-    const extendedMenuItemCount = this.menuItems.filter(
-      (item: LuxMenuItemComponent) => item.extended && !item.luxHidden
-    ).length;
-    const visibleMenuItemCount = this.menuItems.filter((item: LuxMenuItemComponent) => !item.luxHidden).length;
-    this.hideToggle = extendedMenuItemCount === visibleMenuItemCount;
+    this.visibleMenuItems = this.menuItems.filter((item: LuxMenuItemComponent) => !item.luxHidden);
+    if (!this.luxDisplayMenuLeft) {
+      this.visibleMenuItems.reverse();
+    }
+    const extendedMenuItems = this.visibleMenuItems.filter((item: LuxMenuItemComponent) => item.extended);
+    this.hideToggle = extendedMenuItems.length === this.visibleMenuItems.length;
     this.cdr.detectChanges();
   }
 

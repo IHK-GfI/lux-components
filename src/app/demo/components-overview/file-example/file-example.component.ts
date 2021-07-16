@@ -10,10 +10,7 @@ import { ILuxFileObject } from '../../../modules/lux-form/lux-file/lux-file-mode
 import { LuxFilePreviewService } from '../../../modules/lux-file-preview/lux-file-preview.service';
 import { LuxFormFileBase } from '../../../modules/lux-form/lux-form-model/lux-form-file-base.class';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
-import {
-  logResult,
-  setRequiredValidatorForFormControl
-} from '../../example-base/example-base-util/example-base-helper';
+import { logResult, setRequiredValidatorForFormControl } from '../../example-base/example-base-util/example-base-helper';
 
 @Directive()
 export abstract class FileExampleComponent implements OnInit {
@@ -40,6 +37,7 @@ export abstract class FileExampleComponent implements OnInit {
   maxSize = 5;
   capture = '';
   accept: string;
+  maximumExtended = 6;
 
   uploadActionConfig: ILuxFileListActionConfig = {
     disabled: false,
@@ -50,7 +48,7 @@ export abstract class FileExampleComponent implements OnInit {
     iconNameHeader: 'fas fa-cloud-upload-alt',
     label: 'Hochladen',
     labelHeader: 'Neue Dateien hochladen',
-    onClick: $event => this.log(this.showOutputEvents, 'uploadActionConfig onClick', $event)
+    onClick: ($event) => this.log(this.showOutputEvents, 'uploadActionConfig onClick', $event)
   };
   deleteActionConfig: ILuxFileListActionConfig = {
     disabled: false,
@@ -61,7 +59,7 @@ export abstract class FileExampleComponent implements OnInit {
     iconNameHeader: 'fas fa-trash',
     label: 'Löschen',
     labelHeader: 'Alle Dateien entfernen',
-    onClick: $event => this.log(this.showOutputEvents, 'deleteActionConfig onClick', $event)
+    onClick: ($event) => this.log(this.showOutputEvents, 'deleteActionConfig onClick', $event)
   };
   viewActionConfig: ILuxFileActionConfig = {
     disabled: false,
@@ -98,7 +96,7 @@ export abstract class FileExampleComponent implements OnInit {
     hidden: false,
     iconName: 'fas fa-download',
     label: 'Download',
-    onClick: $event => this.log(this.showOutputEvents, 'downloadActionConfig onClick', $event)
+    onClick: ($event) => this.log(this.showOutputEvents, 'downloadActionConfig onClick', $event)
   };
 
   protected constructor(
@@ -115,7 +113,8 @@ export abstract class FileExampleComponent implements OnInit {
   ngOnInit() {
     this.http
       .get('assets/png/example.png', { responseType: 'blob' })
-      .pipe(take(1),
+      .pipe(
+        take(1),
         map((response: Blob) => {
           const file = response as any;
           file.name = 'example.png';

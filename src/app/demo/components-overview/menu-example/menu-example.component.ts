@@ -22,7 +22,8 @@ export class MenuExampleComponent {
       tooltip: '',
       alwaysVisible: false,
       round: false,
-      hideLabelIfExtended: false
+      hideLabelIfExtended: false,
+      prio: 1
     },
     {
       iconName: 'fas fa-address-card',
@@ -34,7 +35,8 @@ export class MenuExampleComponent {
       tooltip: '',
       alwaysVisible: false,
       round: false,
-      hideLabelIfExtended: false
+      hideLabelIfExtended: false,
+      prio: 2
     },
     {
       iconName: 'fas fa-id-card',
@@ -46,7 +48,8 @@ export class MenuExampleComponent {
       tooltip: '',
       alwaysVisible: false,
       round: false,
-      hideLabelIfExtended: false
+      hideLabelIfExtended: false,
+      prio: 3
     }
   ];
 
@@ -64,6 +67,7 @@ export class MenuExampleComponent {
   // endregion
 
   constructor() {}
+
 }
 
 interface ExampleMenuItem {
@@ -75,6 +79,7 @@ interface ExampleMenuItem {
   label: string;
   tooltip: string;
   alwaysVisible: boolean;
-  round: false;
-  hideLabelIfExtended: false;
+  round: boolean;
+  hideLabelIfExtended: boolean;
+  prio: number;
 }

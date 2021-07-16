@@ -29,6 +29,7 @@
           [luxRounded]="item.round"
           [luxHideLabelIfExtended]="item.hideLabelIfExtended"
           [luxHidden]="item.hidden"
+          [luxPrio]="item.prio"
           *ngIf="item"
         >
         </lux-menu-item>
@@ -105,6 +106,13 @@
             luxLabel="luxLabel"
             luxHint="Diese Property ermöglicht es, das Label eines Menu-Eintrags zu ändern."
             [(luxValue)]="item.label"
+          >
+          </lux-input>
+          <lux-input
+            class="lux-highlight-section"
+            luxLabel="luxPrio"
+            luxHint="Diese Property ermöglicht es, die Anzeigereihenfolge zu beeinflussen."
+            [(luxValue)]="item.prio"
           >
           </lux-input>
           <lux-input
