@@ -1,6 +1,6 @@
 # Version 11.1.0
 ## New
-- **allgemein**: LUX-Theme [11.2.1](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.2.1) hinzugefügt. 
+- **allgemein**: LUX-Theme [11.2.1](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.2.1) hinzugefügt. [Commit 6fcc3c3](https://github.com/IHK-GfI/lux-components/commit/6fcc3c348d75f279142dbfe3c05fc821be5d8bd5)
 
 # Version 11.0.1
 ## New
