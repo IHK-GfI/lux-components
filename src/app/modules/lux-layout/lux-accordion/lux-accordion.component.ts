@@ -1,6 +1,8 @@
 import { Component, Input, OnDestroy, ViewChild } from '@angular/core';
-import { MatAccordion } from '@angular/material/expansion';
+import { MatAccordion, MatAccordionDisplayMode } from "@angular/material/expansion";
 import { Subject } from 'rxjs';
+
+export declare type LuxModeType = MatAccordionDisplayMode;
 
 @Component({
   selector: 'lux-accordion',
@@ -9,7 +11,7 @@ import { Subject } from 'rxjs';
 export class LuxAccordionComponent implements OnDestroy {
   changed$ = new Subject();
 
-  @Input() luxMode: 'default' | 'flat' = 'default';
+  @Input() luxMode: LuxModeType = 'default';
   @Input() luxMulti = false;
 
   _luxDisabled = false;

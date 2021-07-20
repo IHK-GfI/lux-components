@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { LuxBackgroundColorsEnum, LuxFontColorsEnum } from './lux-colors.enum';
+import { LuxBackgroundColorsEnum, LuxBgAllColor, LuxFontColorsEnum } from "./lux-colors.enum";
 import {
   BACKSPACE,
   DELETE,
@@ -189,7 +189,7 @@ export class LuxUtil {
     }
   }
 
-  public static getColorsByBgColorsEnum(color: LuxBackgroundColorsEnum): { backgroundCSSClass; fontCSSClass } {
+  public static getColorsByBgColorsEnum(color: LuxBgAllColor): { backgroundCSSClass; fontCSSClass } {
     const result = { backgroundCSSClass: 'lux-bg-color-blue', fontCSSClass: 'lux-font-color-white' };
 
     if (LuxBackgroundColorsEnum[color]) {

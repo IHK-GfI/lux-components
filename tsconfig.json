@@ -23,12 +23,11 @@
     "module": "es2020",
     "baseUrl": "./"
   },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "preserveWhiteSpace": false,
+    "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": false,
+    "strictTemplates": true,
     "enableIvy": true
   }
 }

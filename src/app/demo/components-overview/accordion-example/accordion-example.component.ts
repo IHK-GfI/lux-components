@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LuxModeType } from "../../../modules/lux-layout/lux-accordion/lux-accordion.component";
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -30,7 +31,7 @@ export class AccordionExampleComponent {
   collapsedHeaderHeight1Panel = '64px';
   expandedHeaderHeight2Panel = '64px';
   collapsedHeaderHeight2Panel = '64px';
-  displayMode = 'default';
+  displayMode: LuxModeType = 'default';
 
   // endregion
 
