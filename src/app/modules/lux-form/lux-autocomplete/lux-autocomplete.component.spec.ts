@@ -2,6 +2,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { By } from "@angular/platform-browser";
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
 
@@ -16,6 +17,7 @@ describe('LuxAutocompleteComponent', () => {
         LuxAutoCompleteInFormAttributeComponent,
         LuxValueAttributeComponent,
         LuxOptionSelectedComponent,
+        LuxAutoCompleteNotAnOptionComponent,
         MockAutocompleteComponent,
         MockPickValueComponent
       ]
@@ -136,6 +138,47 @@ describe('LuxAutocompleteComponent', () => {
         expect(component.autocomplete.matInput.nativeElement.value).toEqual('Gruppenaufgaben 2');
         discardPeriodicTasks();
       }));
+    });
+
+    describe('Should not click the save button while invalid', () => {
+      let fixture: ComponentFixture<LuxAutoCompleteNotAnOptionComponent>;
+      let component: LuxAutoCompleteNotAnOptionComponent;
+      let overlayHelper: LuxOverlayHelper;
+
+      beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(LuxAutoCompleteNotAnOptionComponent);
+        fixture.detectChanges();
+        overlayHelper = new LuxOverlayHelper();
+        component = fixture.componentInstance;
+        tick(fixture.componentInstance.autocomplete.luxLookupDelay);
+      }));
+
+      it('Wert über das Textfeld setzen', fakeAsync((done) => {
+        // Init
+        const onSaveSpy = spyOn(fixture.componentInstance, 'onSave');
+
+        // Vorbedingungen testen
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual('');
+        expect(component.formGroup.get('aufgaben').value).toEqual('');
+
+        // Änderungen durchführen
+        const newTextValue = 'DieseOptionHierGibtEsNicht';
+        LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, newTextValue);
+        LuxTestHelper.dispatchFakeEvent(component.autocomplete.matInput.nativeElement, 'focusout', true);
+        LuxTestHelper.wait(fixture);
+
+        const buttonEl = fixture.debugElement.query(By.css('button'));
+        buttonEl.nativeElement.click();
+        LuxTestHelper.wait(fixture);
+
+        // Nachbedingungen testen
+        expect(buttonEl.nativeElement.disabled).toBeTrue();
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual(newTextValue);
+        expect(onSaveSpy).toHaveBeenCalledTimes(0);
+        expect(component.formGroup.valid).toBeFalse();
+        discardPeriodicTasks();
+      }));
+
     });
   });
 
@@ -590,4 +633,34 @@ class MockPickValueComponent {
   valueFn(option: any) {
     return option ? option.value : null;
   }
+}
+
+@Component({
+  template: `
+    <form [formGroup]="formGroup">
+      <lux-autocomplete luxLabel="Autocomplete" [luxOptions]="options" luxControlBinding="aufgaben"> </lux-autocomplete>
+    </form>
+
+    <lux-button luxLabel="Speichern" [luxDisabled]="!formGroup.valid"></lux-button>
+  `
+})
+class LuxAutoCompleteNotAnOptionComponent {
+  options = [
+    { label: 'Meine Aufgaben', value: 'A' },
+    { label: 'Gruppenaufgaben', value: 'B' },
+    { label: 'Zurückgestellte Aufgaben', value: 'C' },
+    { label: 'Vertretungsaufgaben', value: 'D' }
+  ];
+
+  @ViewChild(LuxAutocompleteComponent) autocomplete: LuxAutocompleteComponent;
+
+  formGroup: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.formGroup = this.fb.group({
+      aufgaben: ['']
+    });
+  }
+
+  onSave() {}
 }
