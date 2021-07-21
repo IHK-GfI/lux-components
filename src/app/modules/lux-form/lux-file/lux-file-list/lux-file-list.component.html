@@ -13,11 +13,7 @@
       luxTagId="lux-file-clear"
       luxColor="primary"
       [luxDisabled]="
-        !luxSelectedFiles ||
-        luxSelectedFiles.length === 0 ||
-        luxDeleteActionConfig.disabledHeader ||
-        luxDisabled ||
-        luxReadonly
+        !luxSelectedFiles || luxSelectedFiles.length === 0 || luxDeleteActionConfig.disabledHeader || luxDisabled || luxReadonly
       "
       (luxClicked)="clearFiles($event)"
       fxFlex="0 0 auto"
@@ -78,17 +74,13 @@
         <ng-container *ngIf="isArray(luxSelectedFiles)">
           <lux-divider></lux-divider>
           <ng-container *ngFor="let selectedFile of luxSelectedFiles; let i = index">
-            <ng-container *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: selectedFile, index: i }">
-            </ng-container>
+            <ng-container *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: selectedFile, index: i }"> </ng-container>
           </ng-container>
         </ng-container>
         <!-- Nur eine Datei ausgewählt -->
         <ng-container *ngIf="!isArray(luxSelectedFiles)">
           <lux-divider></lux-divider>
-          <ng-container
-            *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: luxSelectedFiles, index: 0 }"
-          >
-          </ng-container>
+          <ng-container *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: luxSelectedFiles, index: 0 }"> </ng-container>
         </ng-container>
       </div>
     </div>
@@ -129,8 +121,23 @@
         </ng-container>
       </ng-container>
       <!-- Der Name der Datei -->
-      <span class="lux-file-list-entry-label lux-mr-3" fxFlex="0 1 auto" fxFlexOffset="8px" [ngClass]="{'lux-file-list-entry-label-disabled': luxDisabled}">
-        {{ selectedFile.name }}
+      <span
+        class="lux-file-list-entry-label lux-mr-3"
+        fxFlex="0 1 auto"
+        fxFlexOffset="8px"
+        style="font-size: 16px"
+        [ngClass]="{ 'lux-file-list-entry-label-disabled': luxDisabled }"
+      >
+        <span
+          *ngIf="selectedFile.namePrefix"
+          [ngStyle]="{ color: !luxDisabled ? selectedFile.namePrefixColor : '', fontSize: '0.8em', fontStyle: 'italic' }"
+          >{{ selectedFile.namePrefix }}</span
+        >{{ selectedFile.name
+        }}<span
+          *ngIf="selectedFile.nameSuffix"
+          [ngStyle]="{ color: !luxDisabled ? selectedFile.nameSuffixColor : '', fontSize: '0.8em', fontStyle: 'italic' }"
+          >{{ selectedFile.nameSuffix }}</span
+        >
       </span>
     </div>
     <div fxLayout="row" fxLayoutAlign="start center" [fxFlex]="'1 0 ' + iconActionBarWidth + 'px'">
@@ -141,6 +148,7 @@
         (luxMenuClosed)="fileEntry.focus()"
         [luxToggleDisabled]="luxDisabled || luxReadonly"
         [luxDisplayExtended]="true"
+        [luxMaximumExtended]="luxMaximumExtended"
       >
         <lux-menu-item
           luxTagId="lux-file-list-entry-view"
@@ -148,7 +156,8 @@
           [luxDisabled]="luxViewActionConfig.disabled || luxDisabled || luxReadonly"
           [luxLabel]="luxViewActionConfig.label"
           [luxHideLabelIfExtended]="true"
-          [luxAlwaysVisible]="alwaysVisibleView"
+          [luxAlwaysVisible]="true"
+          [luxPrio]="luxViewActionConfig.prio ? luxViewActionConfig.prio : 10"
           luxColor="primary"
           (luxClicked)="viewFile(selectedFile)"
           [luxHidden]="!!luxViewActionConfig.hidden"
@@ -160,7 +169,8 @@
           [luxDisabled]="luxDownloadActionConfig.disabled || luxDisabled || luxReadonly"
           [luxLabel]="luxDownloadActionConfig.label"
           [luxHideLabelIfExtended]="true"
-          [luxAlwaysVisible]="alwaysVisibleDownload"
+          [luxAlwaysVisible]="true"
+          [luxPrio]="luxDownloadActionConfig.prio ? luxDownloadActionConfig.prio : 20"
           luxColor="primary"
           (luxClicked)="downloadFile(selectedFile)"
           [luxHidden]="!!luxDownloadActionConfig.hidden"
@@ -172,7 +182,8 @@
           [luxDisabled]="luxDeleteActionConfig.disabled || luxDisabled || luxReadonly"
           [luxLabel]="luxDeleteActionConfig.label"
           [luxHideLabelIfExtended]="true"
-          [luxAlwaysVisible]="alwaysVisibleDelete"
+          [luxAlwaysVisible]="true"
+          [luxPrio]="luxDeleteActionConfig.prio ? luxDeleteActionConfig.prio : 30"
           luxColor="primary"
           (luxClicked)="removeFile(index)"
           [luxHidden]="!!luxDeleteActionConfig.hidden"
@@ -184,10 +195,25 @@
           [luxDisabled]="luxUploadActionConfig.disabled || luxDisabled || luxReadonly"
           [luxLabel]="luxUploadActionConfig.label"
           [luxHideLabelIfExtended]="true"
-          [luxAlwaysVisible]="alwaysVisibleUpload"
+          [luxAlwaysVisible]="true"
+          [luxPrio]="luxUploadActionConfig.prio ? luxUploadActionConfig.prio : 40"
           luxColor="primary"
           (luxClicked)="fileuploadSingle.click()"
           [luxHidden]="!!luxUploadActionConfig.hidden"
+        >
+        </lux-menu-item>
+        <lux-menu-item
+          *ngFor="let customConfig of luxCustomActionConfigs; let i = index"
+          luxTagId="lux-file-list-entry-custom{{ i }}"
+          [luxIconName]="customConfig.iconName"
+          [luxDisabled]="customConfig.disabled || luxDisabled || luxReadonly"
+          [luxLabel]="customConfig.label"
+          [luxHideLabelIfExtended]="true"
+          [luxAlwaysVisible]="true"
+          [luxPrio]="customConfig.prio ? customConfig.prio : 50 + i"
+          luxColor="primary"
+          (luxClicked)="customConfig.onClick(selectedFile)"
+          [luxHidden]="!!customConfig.hidden"
         >
         </lux-menu-item>
       </lux-menu>

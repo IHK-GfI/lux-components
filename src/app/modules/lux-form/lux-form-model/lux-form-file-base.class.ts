@@ -21,7 +21,7 @@ import { isObservable, Observable, throwError } from 'rxjs';
 import { ILuxFileObject } from '../lux-file/lux-file-model/lux-file-object.interface';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { take, takeUntil } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormFileBase extends LuxFormComponentBase {
@@ -55,6 +55,8 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
   };
 
+  protected _luxCustomActionConfigs: ILuxFileActionConfig[] = [];
+
   progress = -1;
   forceProgressIndeterminate = false;
 
@@ -70,6 +72,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   @Input() luxCapture = '';
   @Input() luxUploadUrl = '';
   @Input() luxDnDActive = true;
+  @Input() luxMaximumExtended = 6;
 
   @HostBinding('class.lux-file-highlight') isDragActive = false;
 
@@ -128,6 +131,16 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   @Input() set luxDownloadActionConfig(config: ILuxFileActionConfig) {
     if (config) {
       this._luxDownloadActionConfig = config;
+    }
+  }
+
+  get luxCustomActionConfigs(): ILuxFileActionConfig[] {
+    return this._luxCustomActionConfigs;
+  }
+
+  @Input() set luxCustomActionConfigs(config: ILuxFileActionConfig[]) {
+    if (config) {
+      this._luxCustomActionConfigs = config;
     }
   }
 

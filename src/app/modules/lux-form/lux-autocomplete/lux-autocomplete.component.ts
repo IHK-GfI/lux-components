@@ -136,21 +136,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   ngAfterViewInit() {
     this.subscriptions.push(
       this.matAutoComplete.panelClosingActions.pipe(debounceTime(this.luxLookupDelay)).subscribe((value: MatOptionSelectionChange) => {
-        if (this.luxStrict) {
-          const filterResult = this.filter(this.matInput.nativeElement.value);
-
-          if (filterResult.length === 1) {
-            let selected;
-            if (this.isPickValueMode()) {
-              selected = this.luxPickValue(filterResult[0]);
-            } else {
-              selected = filterResult[0];
-            }
-            this.formControl.setValue(selected);
-          }
-
-          this.handleErrors();
-        }
+        this.updateFormControlValue();
       })
     );
 
@@ -243,6 +229,12 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
     }
   }
 
+  onFocusOut(event: any) {
+    this.updateFormControlValue();
+
+    this.luxFocusOut.emit(event);
+  }
+
   private handleErrors() {
     const errors = this.formControl ? this.formControl.errors : null;
     if (
@@ -328,5 +320,23 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   private filterOptions() {
     const filterLabel = this.matInput.nativeElement.value;
     return filterLabel ? this.filter(filterLabel) : this.luxOptions;
+  }
+
+  private updateFormControlValue() {
+    if (this.luxStrict) {
+      const filterResult = this.filter(this.matInput.nativeElement.value);
+
+      if (filterResult.length === 1) {
+        let selected;
+        if (this.isPickValueMode()) {
+          selected = this.luxPickValue(filterResult[ 0 ]);
+        } else {
+          selected = filterResult[ 0 ];
+        }
+        this.formControl.setValue(selected);
+      }
+
+      this.handleErrors();
+    }
   }
 }

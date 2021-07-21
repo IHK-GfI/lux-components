@@ -12,7 +12,11 @@
       [required]="luxRequired"
       [readonly]="true"
       [id]="uid"
-      [value]="luxSelectedFiles?.name"
+      [value]="
+        (luxSelectedFiles?.namePrefix ? luxSelectedFiles.namePrefix : '') +
+        (luxSelectedFiles?.name ? luxSelectedFiles.name : '') +
+        (luxSelectedFiles?.nameSuffix ? luxSelectedFiles.nameSuffix : '')
+      "
       (blur)="luxBlur.emit($event)"
       (focus)="luxFocus.emit($event)"
       (focusin)="onFocusIn($event)"
@@ -25,6 +29,7 @@
       <lux-menu
         luxMenuIconName="fas fa-ellipsis-v"
         luxTagId="{{ 'lux-file-input-actions' }}"
+        [luxMaximumExtended]="luxMaximumExtended"
         [luxToggleDisabled]="luxDisabled || luxReadonly"
         [luxDisplayExtended]="true"
       >
@@ -34,7 +39,8 @@
           [luxDisabled]="luxViewActionConfig.disabled || luxDisabled || !luxSelectedFiles || luxReadonly"
           [luxLabel]="luxViewActionConfig.label"
           [luxHideLabelIfExtended]="true"
-          [luxAlwaysVisible]="false"
+          [luxAlwaysVisible]="true"
+          [luxPrio]="luxViewActionConfig.prio ? luxViewActionConfig.prio : 10"
           luxColor="primary"
           (luxClicked)="viewFile(luxSelectedFiles)"
           [luxHidden]="!!luxViewActionConfig.hidden"
@@ -46,7 +52,8 @@
           [luxDisabled]="luxDownloadActionConfig.disabled || luxDisabled || !luxSelectedFiles || luxReadonly"
           [luxLabel]="luxDownloadActionConfig.label"
           [luxHideLabelIfExtended]="true"
-          [luxAlwaysVisible]="false"
+          [luxAlwaysVisible]="true"
+          [luxPrio]="luxDownloadActionConfig.prio ? luxDownloadActionConfig.prio : 20"
           luxColor="primary"
           (luxClicked)="downloadFile(luxSelectedFiles)"
           [luxHidden]="!!luxDownloadActionConfig.hidden"
@@ -58,7 +65,8 @@
           [luxDisabled]="!luxSelectedFiles || luxDisabled || luxDeleteActionConfig.disabled || luxReadonly"
           [luxLabel]="luxDeleteActionConfig.label"
           [luxHideLabelIfExtended]="true"
-          [luxAlwaysVisible]="false"
+          [luxAlwaysVisible]="true"
+          [luxPrio]="luxDeleteActionConfig.prio ? luxDeleteActionConfig.prio : 30"
           luxColor="primary"
           (luxClicked)="clearFiles($event)"
           [luxHidden]="!!luxDeleteActionConfig.hidden"
@@ -70,10 +78,25 @@
           [luxDisabled]="luxUploadActionConfig.disabled || luxDisabled || luxReadonly"
           [luxLabel]="luxUploadActionConfig.label"
           [luxHideLabelIfExtended]="true"
-          [luxAlwaysVisible]="false"
+          [luxAlwaysVisible]="true"
+          [luxPrio]="luxUploadActionConfig.prio ? luxUploadActionConfig.prio : 40"
           luxColor="primary"
           (luxClicked)="fileupload.click()"
           [luxHidden]="!!luxUploadActionConfig.hidden"
+        >
+        </lux-menu-item>
+        <lux-menu-item
+          *ngFor="let customConfig of luxCustomActionConfigs; let i = index"
+          luxTagId="lux-file-list-entry-custom{{ i }}"
+          [luxIconName]="customConfig.iconName"
+          [luxDisabled]="customConfig.disabled || luxDisabled || luxReadonly"
+          [luxLabel]="customConfig.label"
+          [luxHideLabelIfExtended]="true"
+          [luxPrio]="customConfig.prio ? customConfig.prio : 50 + i"
+          [luxAlwaysVisible]="true"
+          luxColor="primary"
+          (luxClicked)="customConfig.onClick(luxSelectedFiles)"
+          [luxHidden]="!!customConfig.hidden"
         >
         </lux-menu-item>
       </lux-menu>
