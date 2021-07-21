@@ -5,6 +5,9 @@
 ## Bug Fixes
 - **lux-autocomplete**: Im Strict-Modus ist bei falscher Eingabe das Formular kurzzeitig valide. [Issue 98](https://github.com/IHK-GfI/lux-components/issues/98)
 
+## Bug Fixes
+- **allgemein**: Dependabot Alert: Abhängigkeit "marked" aktualisieren. [Issue 96](https://github.com/IHK-GfI/lux-components/issues/96)
+
 # Version 11.0.1
 ## New
 - **allgemein**: Abhängigkeiten aktualisiert.
