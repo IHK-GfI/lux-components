@@ -1,8 +1,12 @@
 # Version 11.1.0
 ## New
-- **allgemein**: LUX-Theme [11.2.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.2.0) hinzugefügt. [Commit 2443d52](https://github.com/IHK-GfI/lux-components/commit/2443d52d5ac12e08cd78274bb550733c476a1426) 
+- **allgemein**: LUX-Theme [11.3.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.2.0) hinzugefügt. [Commit fbf0ddd](https://github.com/IHK-GfI/lux-components/commit/fbf0ddd3c4fac2439d7063d1413d33da4de0633e) 
 - **lux-file-input**: Erweiterung um individuelle Buttons. [Issue 85](https://github.com/IHK-GfI/lux-components/issues/85)
 - **lux-file-list**: Erweiterung um individuelle Buttons. [Issue 85](https://github.com/IHK-GfI/lux-components/issues/85)
+
+## Bug Fixes
+- **lux-autocomplete**: Im Strict-Modus ist bei falscher Eingabe das Formular kurzzeitig valide. [Issue 98](https://github.com/IHK-GfI/lux-components/issues/98)
+- **allgemein**: Dependabot Alert: Abhängigkeit "marked" aktualisieren. [Issue 96](https://github.com/IHK-GfI/lux-components/issues/96)
 
 # Version 11.0.1
 ## New

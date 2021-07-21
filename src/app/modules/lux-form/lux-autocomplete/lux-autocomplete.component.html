@@ -14,7 +14,7 @@
       (blur)="luxBlur.emit($event)"
       (focus)="luxFocus.emit($event)"
       (focusin)="luxFocusIn.emit($event)"
-      (focusout)="luxFocusOut.emit($event)"
+      (focusout)="onFocusOut($event)"
       [id]="uid"
       [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
       #autoCompleteInput
