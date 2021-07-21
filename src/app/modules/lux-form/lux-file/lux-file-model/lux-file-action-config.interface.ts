@@ -4,4 +4,5 @@ export interface ILuxFileActionConfig {
   iconName: string;
   label: string;
   onClick?: ($event?: any) => any | void;
+  prio?: number;
 }

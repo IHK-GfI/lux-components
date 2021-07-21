@@ -17,9 +17,11 @@
         [luxMultiple]="multiple"
         [luxMaxSizeMB]="maxSize"
         [luxUploadActionConfig]="uploadActionConfig"
+        [luxCustomActionConfigs]="customActionConfigs"
         [luxViewActionConfig]="viewActionConfig"
         [luxDeleteActionConfig]="deleteActionConfig"
         [luxDownloadActionConfig]="downloadActionConfig"
+        [luxMaximumExtended]="maximumExtended"
         [luxCapture]="capture"
         [luxAccept]="accept"
         [luxHint]="hint"
@@ -47,10 +49,12 @@
           [luxUploadUrl]="uploadUrl"
           [luxMultiple]="multiple"
           [luxMaxSizeMB]="maxSize"
+          [luxCustomActionConfigs]="customActionConfigs"
           [luxUploadActionConfig]="uploadActionConfig"
           [luxViewActionConfig]="viewActionConfigForm"
           [luxDeleteActionConfig]="deleteActionConfig"
           [luxDownloadActionConfig]="downloadActionConfig"
+          [luxMaximumExtended]="maximumExtended"
           [luxCapture]="capture"
           [luxAccept]="accept"
           [luxHint]="hint"
@@ -84,8 +88,7 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
-    </lux-toggle>
+    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents"> </lux-toggle>
     <lux-toggle luxLabel="Backend mocken" [luxChecked]="mockBackend" (luxCheckedChange)="changeMockBackend($event)">
       <lux-form-hint>
         Mockt den Http-Client um das Uploaden der Dateien zu simulieren.<br />
@@ -117,9 +120,20 @@
     <app-file-example-simple-options [fileExample]="this"></app-file-example-simple-options>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <app-file-example-advanced-options
-      [fileExample]="this"
-      [showHeaderConfigProperties]="true"
-    ></app-file-example-advanced-options>
+    <app-file-example-advanced-options [fileExample]="this" [showHeaderConfigProperties]="true"></app-file-example-advanced-options>
+    <div class="lux-highlight-section lux-mt-4" fxLayout="column">
+      <div class="lux-highlight-section-label">Dialogaktion "Akzeptieren"</div>
+      <lux-input luxLabel="Präfix" luxName="filelist_prefix_accept" [(luxValue)]="namePrefixAccept"></lux-input>
+      <lux-input luxLabel="Präfixfarbe" luxName="filelist_prefix_color_accept" [(luxValue)]="namePrefixColorAccept"></lux-input>
+      <lux-input luxLabel="Suffix" luxName="filelist_suffix_accept" [(luxValue)]="nameSuffixAccept"></lux-input>
+      <lux-input luxLabel="Suffixfarbe" luxName="filelist_suffix_color_accept" [(luxValue)]="nameSuffixColorAccept"></lux-input>
+    </div>
+    <div class="lux-highlight-section lux-mt-4" fxLayout="column">
+      <div class="lux-highlight-section-label">Dialogaktion "Ablehnen"</div>
+      <lux-input luxLabel="Präfix" luxName="filelist_prefix_decline" [(luxValue)]="namePrefixDecline"></lux-input>
+      <lux-input luxLabel="Präfixfarbe" luxName="filelist_prefix_color_decline" [(luxValue)]="namePrefixColorDecline"></lux-input>
+      <lux-input luxLabel="Suffix" luxName="filelist_suffix_decline" [(luxValue)]="nameSuffixDecline"></lux-input>
+      <lux-input luxLabel="Suffixfarbe" luxName="filelist_suffix_color_decline" [(luxValue)]="nameSuffixColorDecline"></lux-input>
+    </div>
   </example-base-advanced-options>
 </example-base-structure>
