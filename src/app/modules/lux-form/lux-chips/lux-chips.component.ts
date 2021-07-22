@@ -18,6 +18,8 @@ import { LuxChipComponent } from './lux-chips-subcomponents/lux-chip.component';
 import { Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, map, startWith } from 'rxjs/operators';
 
+export declare type LuxChipsOrientation = 'horizontal' | 'vertical';
+
 @Component({
   selector: 'lux-chips',
   templateUrl: './lux-chips.component.html',
@@ -35,7 +37,7 @@ export class LuxChipsComponent implements OnDestroy {
   inputValue$: Subject<string> = new Subject<string>();
   newChip$: Subject<any> = new Subject<any>();
 
-  @Input() luxOrientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Input() luxOrientation: LuxChipsOrientation = 'horizontal';
   @Input() luxInputAllowed = false;
   @Input() luxNewChipGroup: LuxChipGroupComponent;
   @Input() luxMultiple = true;

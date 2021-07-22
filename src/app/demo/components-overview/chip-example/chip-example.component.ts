@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LuxChipsOrientation } from "../../../modules/lux-form/lux-chips/lux-chips.component";
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -29,7 +30,7 @@ export class ChipExampleComponent {
   disabled = false;
   inputAllowed = true;
   inputLabel = 'Neu';
-  chipOrientation = 'horizontal';
+  chipOrientation: LuxChipsOrientation = 'horizontal';
   autocomplete = true;
   autocompleteOptions = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3'];
   multiple = true;
