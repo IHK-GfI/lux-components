@@ -10,7 +10,7 @@ import { LuxAppFooterButtonService } from './lux-app-footer-button.service';
 import { LuxAppFooterLinkInfo } from './lux-app-footer-link-info';
 import { LuxAppFooterLinkService } from './lux-app-footer-link.service';
 
-describe('LuxAppHeaderComponent', () => {
+describe('LuxAppFooterComponent', () => {
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockAppFooterButtonOrderComponent, MockAppFooterLinkOrderComponent]);
   });
