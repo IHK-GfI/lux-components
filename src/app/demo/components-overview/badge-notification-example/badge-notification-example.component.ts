@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LuxBadgePosition, LuxBadgeSize } from "../../../modules/lux-directives/lux-badge-notification/lux-badge-notification.directive";
 
 @Component({
   selector: 'app-badge-notification-example',
@@ -9,8 +10,8 @@ export class BadgeNotificationExampleComponent {
   color = 'default';
   disabled = false;
   hidden = false;
-  position = 'above after';
-  size = 'medium';
+  position: LuxBadgePosition = 'above after';
+  size: LuxBadgeSize = 'medium';
   overlap = true;
   cap;
   noBorder = false;
