@@ -1,7 +1,7 @@
 <div style="overflow: auto; height: 100%;">
   <lux-layout>
     <lux-layout-card-row [luxTitle]="row1_title" [luxWrapAt]="row1_wrapAt" [luxMargin]="margin" [luxGap]="gap">
-      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{}">
         <lux-card-content>
           <p>Die aktuelle Auflösung ist "{{ query }}".</p>
           <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
@@ -14,7 +14,7 @@
             </lux-layout-form-row>
             <lux-layout-form-row luxTitle="Margins" luxWrapAt="xs">
               <lux-input
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
                 luxName="margin_all"
                 luxLabel="luxMargin"
                 [(luxValue)]="marginAll"
@@ -22,7 +22,7 @@
                 (luxValueChange)="updateMargin()"
               ></lux-input>
               <lux-input
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
                 luxName="margin"
                 luxLabel="luxMargin (xs)"
                 [(luxValue)]="marginXs"
@@ -30,7 +30,7 @@
                 (luxValueChange)="updateMargin()"
               ></lux-input>
               <lux-input
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
                 luxName="margin_sm"
                 luxLabel="luxMargin (sm)"
                 [(luxValue)]="marginSm"
@@ -40,7 +40,7 @@
             </lux-layout-form-row>
             <lux-layout-form-row luxWrapAt="xs">
               <lux-input
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
                 luxName="margin_md"
                 luxLabel="luxMargin (md)"
                 [(luxValue)]="marginMd"
@@ -48,7 +48,7 @@
                 (luxValueChange)="updateMargin()"
               ></lux-input>
               <lux-input
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
                 luxName="luxMargin_lg"
                 luxLabel="luxMargin (lg)"
                 [(luxValue)]="marginLg"
@@ -56,7 +56,7 @@
                 (luxValueChange)="updateMargin()"
               ></lux-input>
               <lux-input
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
                 luxName="luxMargin_xl"
                 luxLabel="luxMargin (xl)"
                 [(luxValue)]="marginXl"
@@ -70,20 +70,20 @@
                 luxLabel="luxMarginLeft"
                 (luxCheckedChange)="updateMargin()"
                 [(luxChecked)]="marginLeft"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-toggle>
               <lux-toggle
                 luxName="luxMarginRight"
                 luxLabel="luxMarginRight"
                 (luxCheckedChange)="updateMargin()"
                 [(luxChecked)]="marginRight"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-toggle>
               <div *luxLayoutRowItem="{ empty: true }"></div>
             </lux-layout-form-row>
             <lux-layout-form-row luxTitle="Gaps" luxWrapAt="xs">
               <lux-input
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
                 luxName="gap_all"
                 luxLabel="luxGap"
                 [(luxValue)]="gapAll"
@@ -91,7 +91,7 @@
                 (luxValueChange)="updateGap()"
               ></lux-input>
               <lux-input
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
                 luxName="gap"
                 luxLabel="luxGap (row)"
                 [(luxValue)]="gapRow"
@@ -99,7 +99,7 @@
                 (luxValueChange)="updateGap()"
               ></lux-input>
               <lux-input
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
                 luxName="gap_sm"
                 luxLabel="luxGap (rowItem)"
                 [(luxValue)]="gapRowItem"
@@ -109,7 +109,7 @@
             </lux-layout-form-row>
             <lux-layout-form-row luxWrapAt="xs">
               <lux-input
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
                 luxName="gap_md"
                 luxLabel="luxGap (column)"
                 [(luxValue)]="gapColumn"
@@ -124,7 +124,7 @@
       </lux-card>
     </lux-layout-card-row>
     <lux-layout-card-row [luxTitle]="row2_title" [luxWrapAt]="row2_wrapAt" [luxMargin]="margin" [luxGap]="gap">
-      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{}">
         <lux-card-content>
           <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
         </lux-card-content>
@@ -138,7 +138,7 @@
           ></lux-input>
         </lux-card-content-expanded>
       </lux-card>
-      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem="{}">
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -155,7 +155,7 @@
     </lux-layout-card-row>
 
     <lux-layout-card-row [luxTitle]="row3_title" [luxWrapAt]="row3_wrapAt" [luxMargin]="margin" [luxGap]="gap">
-      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{}">
         <lux-card-content>
           <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
         </lux-card-content>
@@ -169,7 +169,7 @@
           ></lux-input>
         </lux-card-content-expanded>
       </lux-card>
-      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem="{}">
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -179,7 +179,7 @@
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </lux-card-content-expanded>
       </lux-card>
-      <lux-card luxTitle="Item 3" luxSubTitle="Item 3" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 3" luxSubTitle="Item 3" *luxLayoutRowItem="{}">
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -201,7 +201,7 @@
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </lux-card-content-expanded>
       </lux-card>
-      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem="{}">
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -213,7 +213,7 @@
       </lux-card>
     </lux-layout-card-row>
     <lux-layout-card-row [luxTitle]="row5_title" [luxWrapAt]="row5_wrapAt" [luxMargin]="margin" [luxGap]="gap"
-      ><lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem>
+      ><lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{}">
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -223,7 +223,7 @@
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </lux-card-content-expanded>
       </lux-card>
-      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem="{}">
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -236,7 +236,7 @@
       <div *luxLayoutRowItem="{ empty: true }"></div>
     </lux-layout-card-row>
     <lux-layout-card-row [luxTitle]="row6_title" [luxWrapAt]="row6_wrapAt" [luxMargin]="margin" [luxGap]="gap"
-      ><lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem>
+      ><lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{}">
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
@@ -247,7 +247,7 @@
         </lux-card-content-expanded>
       </lux-card>
       <div *luxLayoutRowItem="{ empty: true }"></div>
-      <lux-card luxTitle="Item 3" luxSubTitle="Item 3" *luxLayoutRowItem>
+      <lux-card luxTitle="Item 3" luxSubTitle="Item 3" *luxLayoutRowItem="{}">
         <lux-card-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.

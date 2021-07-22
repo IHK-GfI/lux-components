@@ -1,18 +1,18 @@
 <div style="overflow: auto; height: 100%;">
   <lux-layout>
     <lux-layout-card-row>
-      <lux-card luxTitle="Formular (1 Spalte)" *luxLayoutRowItem>
+      <lux-card luxTitle="Formular (1 Spalte)" *luxLayoutRowItem="{}">
         <lux-card-content>
           <lux-layout>
             <lux-layout-form-row>
-              <lux-input luxLabel="Lorem ipsum 1.1" luxName="Lorem_ipsum_1.1" *luxLayoutRowItem></lux-input>
+              <lux-input luxLabel="Lorem ipsum 1.1" luxName="Lorem_ipsum_1.1" *luxLayoutRowItem="{}"></lux-input>
             </lux-layout-form-row>
             <lux-layout-form-row>
               <lux-select
                 luxLabel="Lorem ipsum 1.2"
                 luxName="Lorem_ipsum_2.1"
                 [luxOptions]="options"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-select>
             </lux-layout-form-row>
           </lux-layout>
@@ -20,7 +20,7 @@
       </lux-card>
     </lux-layout-card-row>
     <lux-layout-card-row>
-      <lux-card luxTitle="Formular (2 Spalten)" *luxLayoutRowItem>
+      <lux-card luxTitle="Formular (2 Spalten)" *luxLayoutRowItem="{}">
         <lux-card-content>
           <lux-layout>
             <lux-layout-form-row>
@@ -31,24 +31,24 @@
               ></lux-input>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-input luxLabel="Lorem ipsum 2.2" luxName="Lorem_ipsum_2.2" *luxLayoutRowItem></lux-input>
+              <lux-input luxLabel="Lorem ipsum 2.2" luxName="Lorem_ipsum_2.2" *luxLayoutRowItem="{}"></lux-input>
               <lux-select
                 luxLabel="Lorem ipsum 2.3"
                 luxName="Lorem_ipsum_2.3"
                 [luxOptions]="options"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-select>
             </lux-layout-form-row>
             <lux-layout-form-row luxTitle="Lorem Ipsum">
-              <lux-toggle luxLabel="Lorem ipsum 2.4" luxName="Lorem_ipsum_2.4" *luxLayoutRowItem></lux-toggle>
-              <lux-toggle luxLabel="Lorem ipsum 2.5" luxName="Lorem_ipsum_2.5" *luxLayoutRowItem></lux-toggle>
+              <lux-toggle luxLabel="Lorem ipsum 2.4" luxName="Lorem_ipsum_2.4" *luxLayoutRowItem="{}"></lux-toggle>
+              <lux-toggle luxLabel="Lorem ipsum 2.5" luxName="Lorem_ipsum_2.5" *luxLayoutRowItem="{}"></lux-toggle>
             </lux-layout-form-row>
           </lux-layout>
         </lux-card-content>
       </lux-card>
     </lux-layout-card-row>
     <lux-layout-card-row>
-      <lux-card luxTitle="Formular (3 Spalten)" *luxLayoutRowItem>
+      <lux-card luxTitle="Formular (3 Spalten)" *luxLayoutRowItem="{}">
         <lux-card-content>
           <lux-layout>
             <lux-layout-form-row luxTitle="Lorem ipsum 1">
@@ -60,28 +60,28 @@
               <div *luxLayoutRowItem="{ empty: true }"></div>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-input luxLabel="Lorem ipsum 3.2" luxName="Lorem_ipsum_3.2" *luxLayoutRowItem></lux-input>
-              <lux-input luxLabel="Lorem ipsum 3.3" luxName="Lorem_ipsum_3.3" *luxLayoutRowItem></lux-input>
-              <lux-input luxLabel="Lorem ipsum 3.4" luxName="Lorem_ipsum_3.4" *luxLayoutRowItem></lux-input>
+              <lux-input luxLabel="Lorem ipsum 3.2" luxName="Lorem_ipsum_3.2" *luxLayoutRowItem="{}"></lux-input>
+              <lux-input luxLabel="Lorem ipsum 3.3" luxName="Lorem_ipsum_3.3" *luxLayoutRowItem="{}"></lux-input>
+              <lux-input luxLabel="Lorem ipsum 3.4" luxName="Lorem_ipsum_3.4" *luxLayoutRowItem="{}"></lux-input>
             </lux-layout-form-row>
             <lux-layout-form-row luxTitle="Lorem ipsum 2">
               <lux-radio
                 luxLabel="Lorem ipsum 3.5"
                 luxName="Lorem_ipsum_3.5"
                 [luxOptions]="options"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-radio>
               <lux-radio
                 luxLabel="Lorem ipsum 3.6"
                 luxName="Lorem_ipsum_3.6"
                 [luxOptions]="options"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-radio>
               <lux-radio
                 luxLabel="Lorem ipsum 3.7"
                 luxName="Lorem_ipsum_3.7"
                 [luxOptions]="options"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-radio>
             </lux-layout-form-row>
           </lux-layout>

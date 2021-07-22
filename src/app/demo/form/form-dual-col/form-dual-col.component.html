@@ -1,6 +1,6 @@
 <lux-layout>
   <lux-layout-card-row luxTitle="2 Karten pro Zeile">
-    <lux-card luxTitle="Kunde" *luxLayoutRowItem>
+    <lux-card luxTitle="Kunde" *luxLayoutRowItem="{}">
       <lux-card-content>
         <form [formGroup]="myGroup">
           <lux-layout formGroupName="customerDetails">
@@ -94,7 +94,7 @@
         </form>
       </lux-card-content>
     </lux-card>
-    <lux-card luxTitle="Bestellung" *luxLayoutRowItem>
+    <lux-card luxTitle="Bestellung" *luxLayoutRowItem="{}">
       <lux-card-content>
         <form [formGroup]="myGroup">
           <lux-layout formGroupName="orderDetails">
@@ -114,7 +114,7 @@
               ></lux-input>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-datepicker luxLabel="Gültig ab" luxControlBinding="validDate" *luxLayoutRowItem></lux-datepicker>
+              <lux-datepicker luxLabel="Gültig ab" luxControlBinding="validDate" *luxLayoutRowItem="{}"></lux-datepicker>
               <lux-input
                 luxLabel="Uhrzeit"
                 luxType="time"
@@ -129,11 +129,11 @@
     </lux-card>
   </lux-layout-card-row>
   <lux-layout-card-row>
-    <lux-card luxTitle="Formulardaten" *luxLayoutRowItem>
+    <lux-card luxTitle="Formulardaten" *luxLayoutRowItem="{}">
       <lux-card-content>
         <lux-layout>
           <lux-layout-form-row>
-            <div *luxLayoutRowItem>
+            <div *luxLayoutRowItem="{}">
               <pre>{{ myGroup.value | json }}</pre>
             </div>
           </lux-layout-form-row>

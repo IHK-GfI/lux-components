@@ -1,6 +1,6 @@
 <lux-layout>
   <lux-layout-card-row>
-    <lux-card luxTitle="Benutzer" luxTagId="forms" *luxLayoutRowItem>
+    <lux-card luxTitle="Benutzer" luxTagId="forms" *luxLayoutRowItem="{}">
       <lux-card-content>
         <form [formGroup]="myGroup">
           <div formGroupName="user">
@@ -10,17 +10,17 @@
                   luxName="first-name"
                   luxLabel="Vorname"
                   luxControlBinding="firstname"
-                  *luxLayoutRowItem
+                  *luxLayoutRowItem="{}"
                 ></lux-input>
                 <lux-input
                   luxName="given-name"
                   luxLabel="Nachname"
                   luxControlBinding="lastname"
-                  *luxLayoutRowItem
+                  *luxLayoutRowItem="{}"
                 ></lux-input>
               </lux-layout-form-row>
               <lux-layout-form-row>
-                <lux-input luxName="email" luxLabel="E-Mail" luxControlBinding="email" *luxLayoutRowItem>
+                <lux-input luxName="email" luxLabel="E-Mail" luxControlBinding="email" *luxLayoutRowItem="{}">
                   <lux-input-suffix>
                     <lux-icon luxIconName="fa-at"></lux-icon>
                   </lux-input-suffix>
@@ -30,7 +30,7 @@
                   luxLabel="Passwort"
                   luxControlBinding="password"
                   luxType="password"
-                  *luxLayoutRowItem
+                  *luxLayoutRowItem="{}"
                 >
                   <lux-input-suffix>
                     <lux-icon luxIconName="fa-lock"></lux-icon>
@@ -48,14 +48,14 @@
                 [luxOptions]="hobbies"
                 luxOptionLabelProp="label"
                 [luxMultiple]="true"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-select>
               <lux-input
                 luxName="form-common_Spende"
                 luxLabel="Spende"
                 luxControlBinding="donation"
                 luxType="number"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               >
                 <lux-input-prefix>
                   <lux-icon luxIconName="fa-money"></lux-icon>
@@ -67,8 +67,8 @@
             </lux-layout-form-row>
 
             <lux-layout-form-row>
-              <lux-toggle luxLabel="Newsletter" luxControlBinding="newsletter" *luxLayoutRowItem></lux-toggle>
-              <lux-checkbox luxControlBinding="hungry" luxLabel="Hungrig" *luxLayoutRowItem></lux-checkbox>
+              <lux-toggle luxLabel="Newsletter" luxControlBinding="newsletter" *luxLayoutRowItem="{}"></lux-toggle>
+              <lux-checkbox luxControlBinding="hungry" luxLabel="Hungrig" *luxLayoutRowItem="{}"></lux-checkbox>
             </lux-layout-form-row>
 
             <lux-layout-form-row>
@@ -76,7 +76,7 @@
                 luxName="form-common_Beschreibung"
                 luxLabel="Beschreibung"
                 luxControlBinding="description"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-input>
             </lux-layout-form-row>
 
@@ -86,7 +86,7 @@
                 luxInputLabel="Neuen Chip erstellen..."
                 luxOrientation="horizontal"
                 [luxNewChipGroup]="chipGroup2"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               >
                 <lux-chip [luxRemovable]="false" luxColor="warn">
                   Chip ohne Group
@@ -124,7 +124,7 @@
               luxControlBinding="radio"
               [luxOrientationVertical]="false"
               luxLabel="Hobbies"
-              *luxLayoutRowItem
+              *luxLayoutRowItem="{}"
             >
               <ng-template let-option>
                 {{ option['label'] }}
@@ -138,7 +138,7 @@
               luxLocale="de-DE"
               luxControlBinding="datepicker"
               luxLabel="Datepicker"
-              *luxLayoutRowItem
+              *luxLayoutRowItem="{}"
             >
             </lux-datepicker>
 
@@ -148,7 +148,7 @@
               [luxLookupDelay]="100"
               [luxSelectAllOnClick]="false"
               luxControlBinding="autocomplete"
-              *luxLayoutRowItem
+              *luxLayoutRowItem="{}"
             >
             </lux-autocomplete>
           </lux-layout-form-row>
@@ -157,11 +157,11 @@
     </lux-card>
   </lux-layout-card-row>
   <lux-layout-card-row luxTitle="Formulardaten">
-    <lux-card *luxLayoutRowItem>
+    <lux-card *luxLayoutRowItem="{}">
       <lux-card-content>
         <lux-layout>
           <lux-layout-form-row>
-            <div *luxLayoutRowItem>
+            <div *luxLayoutRowItem="{}">
               <pre>{{ myGroup.value | json }}</pre>
             </div>
           </lux-layout-form-row>

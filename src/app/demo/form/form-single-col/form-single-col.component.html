@@ -1,6 +1,6 @@
 <lux-layout>
   <lux-layout-card-row luxTitle="1 Karte pro Zeile">
-    <lux-card luxTitle="Einstellungen" luxTagId="form1row" *luxLayoutRowItem>
+    <lux-card luxTitle="Einstellungen" luxTagId="form1row" *luxLayoutRowItem="{}">
       <lux-card-content>
         <form [formGroup]="myGroup">
           <div formGroupName="userInformation">
@@ -10,7 +10,7 @@
                   luxName="username"
                   luxLabel="Username"
                   luxControlBinding="username"
-                  *luxLayoutRowItem
+                  *luxLayoutRowItem="{}"
                 ></lux-input>
               </lux-layout-form-row>
               <lux-layout-form-row>
@@ -19,7 +19,7 @@
                   luxLabel="Passwort"
                   luxType="password"
                   luxControlBinding="password"
-                  *luxLayoutRowItem
+                  *luxLayoutRowItem="{}"
                 >
                   <lux-input-suffix>
                     <lux-icon luxIconName="fa-lock"></lux-icon>
@@ -34,12 +34,12 @@
                   [luxSelectAllOnClick]="true"
                   [luxStrict]="false"
                   luxControlBinding="salutation"
-                  *luxLayoutRowItem
+                  *luxLayoutRowItem="{}"
                 >
                 </lux-autocomplete>
               </lux-layout-form-row>
               <lux-layout-form-row>
-                <lux-input luxName="email" luxLabel="E-Mail" luxControlBinding="email" *luxLayoutRowItem>
+                <lux-input luxName="email" luxLabel="E-Mail" luxControlBinding="email" *luxLayoutRowItem="{}">
                   <lux-input-suffix>
                     <lux-icon luxIconName="fa-at"></lux-icon>
                   </lux-input-suffix>
@@ -51,7 +51,7 @@
                   luxLabel="Deaktiviertes Element"
                   luxControlBinding="deactivated"
                   [luxDisabled]="true"
-                  *luxLayoutRowItem
+                  *luxLayoutRowItem="{}"
                 >
                 </lux-input>
               </lux-layout-form-row>
@@ -61,7 +61,7 @@
                   [luxOptions]="genders"
                   luxControlBinding="gender"
                   luxLabel="Geschlecht"
-                  *luxLayoutRowItem
+                  *luxLayoutRowItem="{}"
                 >
                   <ng-template let-option>
                     {{ option.name }}
@@ -75,7 +75,7 @@
                   luxControlBinding="age"
                   luxType="number"
                   [luxNumberAlignLeft]="true"
-                  *luxLayoutRowItem
+                  *luxLayoutRowItem="{}"
                 >
                 </lux-input>
               </lux-layout-form-row>
@@ -88,7 +88,7 @@
                   luxHint="Wählen Sie ein Land aus"
                   [luxSelectAllOnClick]="false"
                   luxControlBinding="country"
-                  *luxLayoutRowItem
+                  *luxLayoutRowItem="{}"
                 >
                 </lux-autocomplete>
               </lux-layout-form-row>
@@ -121,10 +121,10 @@
               </lux-chips>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-toggle luxLabel="EULA zugestimmt" luxControlBinding="eula" *luxLayoutRowItem></lux-toggle>
+              <lux-toggle luxLabel="EULA zugestimmt" luxControlBinding="eula" *luxLayoutRowItem="{}"></lux-toggle>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-datepicker luxControlBinding="date" luxLabel="Läuft ab am" *luxLayoutRowItem></lux-datepicker>
+              <lux-datepicker luxControlBinding="date" luxLabel="Läuft ab am" *luxLayoutRowItem="{}"></lux-datepicker>
             </lux-layout-form-row>
           </lux-layout>
         </form>
@@ -132,11 +132,11 @@
     </lux-card>
   </lux-layout-card-row>
   <lux-layout-card-row>
-    <lux-card luxTitle="Formulardaten" *luxLayoutRowItem>
+    <lux-card luxTitle="Formulardaten" *luxLayoutRowItem="{}">
       <lux-card-content>
         <lux-layout>
           <lux-layout-form-row>
-            <div *luxLayoutRowItem>
+            <div *luxLayoutRowItem="{}">
               <pre>{{ myGroup.value | json }}</pre>
             </div>
           </lux-layout-form-row>
