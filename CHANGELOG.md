@@ -1,3 +1,7 @@
+# Version 11.1.1
+## Bug Fixes
+- **lux-app-footer**: Buttons werden in der falschen Reihenfolge angezeigt. [Issue 101](https://github.com/IHK-GfI/lux-components/issues/101)
+
 # Version 11.1.0
 ## New
 - **allgemein**: LUX-Theme [11.3.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.2.0) hinzugefügt. [Commit fbf0ddd](https://github.com/IHK-GfI/lux-components/commit/fbf0ddd3c4fac2439d7063d1413d33da4de0633e)

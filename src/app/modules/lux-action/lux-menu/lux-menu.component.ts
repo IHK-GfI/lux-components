@@ -206,9 +206,6 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
 
     // die Anzahl der extended dargestellten Items der Gesamtzahl entspricht blenden wir den Toggle aus
     this.visibleMenuItems = this.menuItems.filter((item: LuxMenuItemComponent) => !item.luxHidden);
-    if (!this.luxDisplayMenuLeft) {
-      this.visibleMenuItems.reverse();
-    }
     const extendedMenuItems = this.visibleMenuItems.filter((item: LuxMenuItemComponent) => item.extended);
     this.hideToggle = extendedMenuItems.length === this.visibleMenuItems.length;
     this.cdr.detectChanges();
