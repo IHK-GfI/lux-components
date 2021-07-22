@@ -583,20 +583,14 @@ describe('LuxFileInputComponent', () => {
       describe('[uploadActionConfig]', () => {
         it('Sollte den Upload-Button verstecken', fakeAsync(() => {
           // Vorbedingungen prüfen
-          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-upload]'))).not.toBe(
-            null
-          );
+          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-upload]'))).not.toBe(null);
 
           // Änderungen durchführen
           testComponent.uploadActionConfig.hidden = true;
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(
-            fixture.debugElement
-              .query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-upload]'))
-              .nativeElement.classList.toString()
-          ).toContain('lux-display-none');
+          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-upload]'))).toBe(null);
         }));
 
         it('Sollte den Upload-Button deaktivieren', fakeAsync(() => {
@@ -640,20 +634,14 @@ describe('LuxFileInputComponent', () => {
       describe('[downloadActionConfig]', () => {
         it('Sollte den Download-Button verstecken', fakeAsync(() => {
           // Vorbedingungen prüfen
-          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download]'))).not.toBe(
-            null
-          );
+          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download]'))).not.toBe(null);
 
           // Änderungen durchführen
           testComponent.downloadActionConfig.hidden = true;
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(
-            fixture.debugElement
-              .query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download]'))
-              .nativeElement.classList.toString()
-          ).toContain('lux-display-none');
+          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download]'))).toBe(null);
         }));
 
         it('Sollte den Download-Button deaktivieren', fakeAsync(() => {
@@ -715,20 +703,14 @@ describe('LuxFileInputComponent', () => {
       describe('[deleteActionConfig]', () => {
         it('Sollte den Delete-Button verstecken', fakeAsync(() => {
           // Vorbedingungen prüfen
-          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove]'))).not.toBe(
-            null
-          );
+          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove]'))).not.toBe(null);
 
           // Änderungen durchführen
           testComponent.deleteActionConfig.hidden = true;
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(
-            fixture.debugElement
-              .query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove]'))
-              .nativeElement.classList.toString()
-          ).toContain('lux-display-none');
+          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove]'))).toBe(null);
         }));
 
         it('Sollte den Delete-Button deaktivieren', fakeAsync(() => {
@@ -793,11 +775,7 @@ describe('LuxFileInputComponent', () => {
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(
-            fixture.debugElement
-              .query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view]'))
-              .nativeElement.classList.toString()
-          ).toContain('lux-display-none');
+          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view]'))).toBe(null);
         }));
 
         it('Sollte den View-Button deaktivieren', fakeAsync(() => {

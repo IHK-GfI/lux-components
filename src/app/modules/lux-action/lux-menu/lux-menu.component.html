@@ -4,7 +4,7 @@
     <ng-container *ngIf="!luxDisplayMenuLeft">
       <ng-container [ngTemplateOutlet]="menuTriggerTemplate"></ng-container>
     </ng-container>
-    <ng-container *ngFor="let menuItem of menuItems">
+    <ng-container *ngFor="let menuItem of visibleMenuItems">
       <lux-button
         class="lux-menu-item"
         [luxLabel]="menuItem.luxHideLabelIfExtended ? '' : menuItem.luxLabel"
