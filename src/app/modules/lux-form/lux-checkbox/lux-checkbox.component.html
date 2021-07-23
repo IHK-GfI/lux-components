@@ -18,7 +18,7 @@
     luxAriaDescribedbySelector=".mat-checkbox-input"
     [luxAriaRequired]="luxRequired"
     luxAriaRequiredSelector=".mat-checkbox-input"
-    [luxAriaInvalid]="formControl.invalid"
+    [luxAriaInvalid]="'' + formControl.invalid"
     luxAriaInvalidSelector=".mat-checkbox-input"
     (focusin)="luxFocusIn.emit($event)"
     (focusout)="luxFocusOut.emit($event)"

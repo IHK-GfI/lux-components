@@ -2,7 +2,7 @@
   class="lux-file-list"
   [ngClass]="{ 'lux-file-list-disabled': luxDisabled }"
   [luxTitle]="(luxLabel ? luxLabel : '') + (luxRequired ? ' *' : '')"
-  [luxAriaInvalid]="formControl?.invalid"
+  [luxAriaInvalid]="formControl ? '' + formControl.invalid : ''"
   tabindex="0"
   [luxHeading]="luxHeading"
 >
@@ -231,7 +231,7 @@
   [multiple]="luxMultiple"
   [accept]="luxAccept"
   [luxFileCapture]="luxCapture"
-  (change)="selectFiles($event.target.files)"
+  (change)="onSelectFiles($event.target)"
   #fileupload
 />
 <!-- File-Upload Single Input -->
@@ -241,7 +241,7 @@
   [multiple]="false"
   [accept]="luxAccept"
   [luxFileCapture]="luxCapture"
-  (change)="selectFiles($event.target.files)"
+  (change)="onSelectFiles($event.target)"
   #fileuploadSingle
 />
 

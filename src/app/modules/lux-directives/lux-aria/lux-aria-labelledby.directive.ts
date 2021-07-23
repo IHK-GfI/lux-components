@@ -4,7 +4,7 @@ import { LuxAriaBase } from './lux-aria-base';
 @Directive({
   selector: '[luxAriaLabelledby]'
 })
-export class LuxAriaLabelledbyDirective extends LuxAriaBase {
+export class LuxAriaLabelledbyDirective extends LuxAriaBase<string> {
   _luxAriaLabelledby: string;
 
   @Input() luxAriaLabelledbySelector: string;

@@ -8,8 +8,8 @@ import { LuxLookupHandlerService } from '../../../../modules/lux-lookup/lux-look
 })
 export class LookupLabelExampleComponent {
   knr = 101;
-  tableKey = 4;
-  tableNo = 1002;
+  tableKey = '4';
+  tableNo = '1002';
   bezeichnung = 'kurz';
 
   constructor(private lookupHandler: LuxLookupHandlerService) {}

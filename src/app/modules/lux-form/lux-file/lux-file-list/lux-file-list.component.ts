@@ -154,6 +154,11 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     }
   }
 
+  onSelectFiles(target: EventTarget) {
+    const fileList = (target as HTMLInputElement).files;
+    this.selectFiles(fileList ? Array.from(fileList) : []);
+  }
+
   /**
    * Fügt weitere Dateien zu den bereits vorhandenen hinzu bzw. ersetzt diese.
    *

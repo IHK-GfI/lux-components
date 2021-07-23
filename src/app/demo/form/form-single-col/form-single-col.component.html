@@ -104,7 +104,7 @@
                 luxOptionValueProp="name"
                 [luxMultiple]="true"
                 luxControlBinding="roles"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-select>
             </lux-layout-form-row>
             <lux-layout-form-row>
@@ -113,7 +113,7 @@
                 luxInputLabel="Neue Rolle..."
                 luxOrientation="horizontal"
                 (luxChipAdded)="addRole($event)"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               >
                 <lux-chip (luxChipRemoved)="removeRole(i)" *ngFor="let role of roles; let i = index">
                   {{ role.name }}

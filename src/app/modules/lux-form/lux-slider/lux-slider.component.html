@@ -28,7 +28,7 @@
     }"
     [id]="uid"
     [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
-    [luxAriaInvalid]="formControl.invalid"
+    [luxAriaInvalid]="'' + formControl.invalid"
     [luxAriaRequired]="luxRequired"
     [luxAriaLabel]="luxLabel"
     tabIndex="{{ luxReadonly ? -1 : 0 }}"

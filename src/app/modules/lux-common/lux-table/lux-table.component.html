@@ -60,7 +60,7 @@
                 luxTagId="lux-table-multiselect-content-{{ i }}"
                 class="lux-multiselect-toggle"
                 luxTabIndex="-1"
-                [luxApplyToChildren]="['input']"
+                [luxApplyToChildren]="true"
                 luxAriaLabel="Reihe {{ i }}"
                 i18n-luxAriaLabel="@@luxc.table.multiselect.chk.arialabel"
                 luxAriaLabelSelector="input"
@@ -88,7 +88,7 @@
                   i18n-luxAriaLabel="@@luxc.table.multiselect.all.chk.arialabel"
                   luxAriaLabelSelector="input"
                   luxTabIndex="-1"
-                  [luxApplyToChildren]="['input']"
+                  [luxApplyToChildren]="true"
                   [luxChecked]="allSelected"
                 >
                 </lux-checkbox>

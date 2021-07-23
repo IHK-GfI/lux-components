@@ -17,7 +17,7 @@
                 luxName="postal-code"
                 luxLabel="PLZ"
                 luxType="number"
-                luxNumberAlignLeft="true"
+                [luxNumberAlignLeft]="true"
                 luxControlBinding="zip"
                 *luxLayoutRowItem="{ colSpan: 1 }"
               ></lux-input>
@@ -59,9 +59,9 @@
                   luxName="form-dual-Nr"
                   luxLabel="Nr"
                   luxType="number"
-                  luxNumberAlignLeft="true"
+                  [luxNumberAlignLeft]="true"
                   luxControlBinding="nr"
-                  *luxLayoutRowItem
+                  *luxLayoutRowItem="{}"
                 ></lux-input>
                 <lux-button
                   luxIconName="fas fa-trash"
@@ -103,14 +103,14 @@
                 luxName="form-dual-Bestellnr"
                 luxLabel="Bestellnr."
                 luxControlBinding="orderNo"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-input>
               <lux-input
                 luxName="form-dual-Bestellwert"
                 luxLabel="Bestellwert"
                 luxType="text"
                 luxControlBinding="value"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-input>
             </lux-layout-form-row>
             <lux-layout-form-row>
@@ -120,7 +120,7 @@
                 luxType="time"
                 luxControlBinding="validTime"
                 luxAutocomplete="off"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-input>
             </lux-layout-form-row>
           </lux-layout>

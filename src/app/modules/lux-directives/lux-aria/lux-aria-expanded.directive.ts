@@ -4,8 +4,8 @@ import { LuxAriaBase } from './lux-aria-base';
 @Directive({
   selector: '[luxAriaExpanded]'
 })
-export class LuxAriaExpandedDirective extends LuxAriaBase {
-  _luxAriaExpanded: string;
+export class LuxAriaExpandedDirective extends LuxAriaBase<boolean> {
+  _luxAriaExpanded: boolean;
 
   @Input() luxAriaExpandedSelector: string;
 
@@ -14,7 +14,7 @@ export class LuxAriaExpandedDirective extends LuxAriaBase {
     return this._luxAriaExpanded;
   }
 
-  set luxAriaExpanded(expanded: string) {
+  set luxAriaExpanded(expanded: boolean) {
     this._luxAriaExpanded = expanded;
 
     this.renderAria();
@@ -35,7 +35,7 @@ export class LuxAriaExpandedDirective extends LuxAriaBase {
     return this.luxAriaExpandedSelector;
   }
 
-  getValue(): string {
+  getValue(): boolean {
     return this._luxAriaExpanded;
   }
 }

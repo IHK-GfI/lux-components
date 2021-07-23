@@ -12,7 +12,7 @@ import {
   SimpleChange,
   SimpleChanges
 } from '@angular/core';
-import { AbstractControl, ControlContainer, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, ControlContainer, Form, FormControl, FormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -45,7 +45,7 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
   controlContainer: ControlContainer;
   inForm: boolean;
   formGroup: FormGroup;
-  formControl: AbstractControl;
+  formControl: FormControl;
 
   uid: string = 'lux-form-control-' + luxFormControlUID++;
 
@@ -281,13 +281,13 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
 
     if (this.inForm) {
       this.formGroup = this.controlContainer.control as FormGroup;
-      this.formControl = this.formGroup.controls[this.luxControlBinding];
+      this.formControl = this.formGroup.controls[this.luxControlBinding] as FormControl;
       this.updateValidatorsInForm();
     } else {
       this.formGroup = new FormGroup({
         control: new FormControl()
       });
-      this.formControl = this.formGroup.get(LuxFormComponentBase.DEFAULT_CTRL_NAME);
+      this.formControl = this.formGroup.get(LuxFormComponentBase.DEFAULT_CTRL_NAME) as FormControl;
       this.formControl.setValue(this._initialValue);
     }
   }

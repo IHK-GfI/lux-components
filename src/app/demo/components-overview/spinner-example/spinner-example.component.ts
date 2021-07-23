@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { LuxBackgroundColorsEnum, LuxProgressColors } from '../../../modules/lux-util/lux-colors.enum';
+import { LuxProgressModeType, LuxProgressSizeType } from "../../../modules/lux-common/lux-progress/lux-progress.component";
+import { LuxProgressColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-spinner-example',
@@ -10,10 +11,10 @@ export class SpinnerExampleComponent {
   sizes = ['small', 'medium', 'large'];
   colors = LuxProgressColors;
   backgroundColor = '';
-  modes = ['determinate', 'indeterminate'];
+  modes: LuxProgressModeType[] = ['determinate', 'indeterminate'];
 
-  size = 'medium';
-  mode = 'determinate';
+  size: LuxProgressSizeType = 'medium';
+  mode: LuxProgressModeType = 'determinate';
   value = 70;
 
   constructor() {}

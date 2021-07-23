@@ -54,7 +54,7 @@ export abstract class LookupExampleComponent implements OnInit {
   controlBinding = 'lookup';
   readonly: boolean;
   required: boolean;
-  tableNo = 1002;
+  tableNo = '1002';
 
   label = 'Label';
   hint = 'Hint';

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { LuxActionColorType } from "../../../../../lux-action/lux-action-model/lux-action-component-base.class";
 
 @Component({
   selector: 'lux-app-header-action-nav-item',
@@ -8,7 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class LuxAppHeaderActionNavItemComponent {
   @Input() luxLabel: string;
   @Input() luxIconName: string;
-  @Input() luxColor: string;
+  @Input() luxColor: LuxActionColorType;
   @Input() luxDisabled: boolean;
   @Input() luxTagId: string;
 

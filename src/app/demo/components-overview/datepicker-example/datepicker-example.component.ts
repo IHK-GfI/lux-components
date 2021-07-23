@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { LuxDatepickerStartViewType } from "../../../modules/lux-form/lux-datepicker/lux-datepicker.component";
 import {
   exampleErrorCallback,
   logResult,
@@ -45,7 +46,7 @@ export class DatepickerExampleComponent {
   locale = 'de-DE';
   minDate: string;
   maxDate: string;
-  startView = 'month';
+  startView: LuxDatepickerStartViewType = 'month';
   touchUi = false;
 
   // endregion

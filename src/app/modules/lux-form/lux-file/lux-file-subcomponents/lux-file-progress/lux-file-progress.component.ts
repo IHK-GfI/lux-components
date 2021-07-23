@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { LuxProgressModeType } from "../../../../lux-common/lux-progress/lux-progress.component";
 
 /**
  * Diese Component ist nur eine leichte Ergänzung zu LuxProgress und wird nicht vom Modul exportiert.
@@ -13,7 +14,7 @@ import { Component, Input } from '@angular/core';
 })
 export class LuxFileProgressComponent {
   @Input() luxProgress = 0;
-  @Input() luxMode: 'determinate' | 'indeterminate' = 'indeterminate';
+  @Input() luxMode: LuxProgressModeType = 'indeterminate';
 
   constructor() {}
 }

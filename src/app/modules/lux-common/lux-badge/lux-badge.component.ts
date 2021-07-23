@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { LuxBackgroundColorsEnum, LuxBadgeColor, LuxBgAllColor } from "../../lux-util/lux-colors.enum";
+import { LuxBadgeColor, LuxBadgeColors } from "../../lux-util/lux-colors.enum";
 import { LuxUtil } from '../../lux-util/lux-util';
 
 @Component({
@@ -36,7 +36,7 @@ export class LuxBadgeComponent {
     this._backgroundCSSClass = result.backgroundCSSClass;
     this._fontCSSClass = result.fontCSSClass;
 
-    if (!LuxBackgroundColorsEnum[color]) {
+    if (!LuxBadgeColors.find((entry) => entry === color)) {
       this.luxColor = this.DEFAULT_BADGE_COLOR;
     }
   }

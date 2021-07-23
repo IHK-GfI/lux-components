@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { LuxActionColorType } from "../../../modules/lux-action/lux-action-model/lux-action-component-base.class";
 import { LuxComponentsConfigParameters } from '../../../modules/lux-components-config/lux-components-config-parameters.interface';
 import { LuxComponentsConfigService } from '../../../modules/lux-components-config/lux-components-config.service';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
@@ -26,7 +27,7 @@ export class LinkExampleComponent implements OnInit, OnDestroy {
   // region Properties der Component
 
   label = 'Beispiel-Link';
-  color = 'primary';
+  color: LuxActionColorType = 'primary';
   iconName = '';
   raised = true;
   round = false;

@@ -10,7 +10,7 @@ export class TabsExampleComponent {
   log = logResult;
 
   activeTab = 0;
-  animationActive = true;
+  animationActive = false;
   iconSize = '2x';
   displayDivider = true;
   lazyLoading = false;

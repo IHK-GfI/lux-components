@@ -1,7 +1,9 @@
+import { LuxActionColorType } from "../../lux-action/lux-action-model/lux-action-component-base.class";
+
 export interface ILuxAppFooterButtonInfo {
   label: string;
   cmd: string;
-  color?: string;
+  color?: LuxActionColorType;
   disabled?: boolean;
   hidden?: boolean;
   raised?: boolean;
@@ -13,7 +15,7 @@ export interface ILuxAppFooterButtonInfo {
 
 export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
   label: string;
-  color: string;
+  color: LuxActionColorType;
   disabled: boolean;
   cmd: string;
   hidden: boolean;
@@ -26,7 +28,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
   constructor(
     label: string,
     cmd: string,
-    color?: string,
+    color?: LuxActionColorType,
     disabled?: boolean,
     hidden?: boolean,
     raised?: boolean,

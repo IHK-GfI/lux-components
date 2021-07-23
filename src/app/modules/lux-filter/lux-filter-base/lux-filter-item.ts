@@ -1,3 +1,4 @@
+import { ThemePalette } from "@angular/material/core";
 import { LuxFormComponentBase } from '../../lux-form/lux-form-model/lux-form-component-base.class';
 
 export class LuxFilterItem {
@@ -6,7 +7,7 @@ export class LuxFilterItem {
   component: LuxFormComponentBase;
   value: any;
   defaultValues: any[];
-  color: string;
+  color: ThemePalette;
   disabled: boolean;
   hidden: boolean;
   renderFn: (filter: LuxFilterItem, value: any) => string;

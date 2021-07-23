@@ -4,7 +4,7 @@ import { LuxAriaBase } from './lux-aria-base';
 @Directive({
   selector: '[luxAriaRole]'
 })
-export class LuxAriaRoleDirective extends LuxAriaBase {
+export class LuxAriaRoleDirective extends LuxAriaBase<string> {
   _luxAriaRole: string;
 
   @Input() luxAriaRoleSelector: string;

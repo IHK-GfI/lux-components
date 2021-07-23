@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TableExampleComponent } from '../table-example.component';
+import { TableExampleBaseClass } from "../table-example-base.class";
 import { ResponsiveBehaviour } from '../responsive-behaviour';
 
 @Component({
@@ -9,7 +9,7 @@ import { ResponsiveBehaviour } from '../responsive-behaviour';
 export class TableExampleAdvancedOptionsComponent {
   BEHAVIOURS = ResponsiveBehaviour.BEHAVIOURS;
 
-  @Input() tableExample: TableExampleComponent;
+  @Input() tableExample: TableExampleBaseClass;
 
   constructor() {}
 

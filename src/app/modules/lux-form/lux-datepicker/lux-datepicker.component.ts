@@ -34,6 +34,8 @@ export const APP_DATE_FORMATS = {
   }
 };
 
+export declare type LuxDatepickerStartViewType = 'month' | 'year';
+
 @Component({
   selector: 'lux-datepicker',
   templateUrl: './lux-datepicker.component.html',
@@ -52,7 +54,7 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
   max: Date;
   start: Date;
 
-  @Input() luxStartView: 'month' | 'year' = 'month';
+  @Input() luxStartView: LuxDatepickerStartViewType = 'month';
   @Input() luxTouchUi = false;
   @Input() luxOpened = false;
   @Input() luxStartDate: string = null;

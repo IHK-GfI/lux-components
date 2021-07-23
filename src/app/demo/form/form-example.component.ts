@@ -27,7 +27,7 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
     label: 'Fehler anzeigen',
     iconName: 'fas fa-exclamation',
     raised: true,
-    color: 'default',
+    color: '',
     alwaysVisible: false,
     onClick: this.highlightErrors.bind(this)
   });

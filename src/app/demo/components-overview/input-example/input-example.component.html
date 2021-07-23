@@ -180,7 +180,7 @@
         luxHint="Über diese Property kann die maximale Länge angegeben werden. Vorsicht funktioniert nicht für den Type 'number'"
         luxType="number"
         [luxDisabled]="inputType === 'number'"
-        luxNumberAlignLeft="true"
+        [luxNumberAlignLeft]="true"
         [(luxValue)]="maxLength"
       >
       </lux-input>

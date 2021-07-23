@@ -42,6 +42,11 @@ export class LuxFileInputComponent extends LuxFormFileBase {
     super(controlContainer, cdr, logger, config, http, liveAnnouncer);
   }
 
+  onSelectFiles(target: EventTarget) {
+    const fileList = (target as HTMLInputElement).files;
+    this.selectFiles(fileList ? Array.from(fileList) : []);
+  }
+
   /**
    * Wird bei der Auswahl von Dateien (Dialog oder DnD) aufgerufen.
    * Aktualisiert die aktuell selektierten Dateien, stößt einen Upload an, handelt Fehlermeldungen und

@@ -12,9 +12,9 @@ export abstract class TableExampleBaseClass {
   ];
   mediaQueryOptions = ['xs', 'sm', 'md', 'lg', 'xl'];
   columnWidthOptions = [
-    { label: '[5%, 20%, 30%, 35%, 10%]', value: ['5', '20', '30', '35', '10'] },
-    { label: '[20%, 20%, 20%, 20%, 20%]', value: ['20', '20', '20', '20', '20'] },
-    { label: '[10%, 20%, 50%, 10%, 10%]', value: ['10', '20', '50', '10', '10'] }
+    { label: '[5%, 20%, 30%, 35%, 10%]', value: [5, 20, 30, 35, 10] },
+    { label: '[20%, 20%, 20%, 20%, 20%]', value: [20, 20, 20, 20, 20] },
+    { label: '[10%, 20%, 50%, 10%, 10%]', value: [10, 20, 50, 10, 10] }
   ];
 
   // endregion
@@ -24,7 +24,7 @@ export abstract class TableExampleBaseClass {
   tableCSS: ICustomCSSConfig[] = [
     {
       class: 'demo-year-2017',
-      check: element => element.date.getFullYear() === 2017
+      check: (element) => element.date.getFullYear() === 2017
     },
     {
       class: 'demo-year-2018',
@@ -38,7 +38,7 @@ export abstract class TableExampleBaseClass {
   pageSize = 5;
   pageSizeOption = this.pageSizeOptions[1].value;
   autoPagination = true;
-  cssClass = '';
+  cssClass: ICustomCSSConfig[] = [];
   columnWidthOption = this.columnWidthOptions[1].value;
   multiSelect = false;
   calculateProportions = false;
@@ -46,7 +46,7 @@ export abstract class TableExampleBaseClass {
   tableHeightPx = 500;
   hideBorders = false;
   responsiveBehaviour = ResponsiveBehaviour.BEHAVIOURS;
-  selected: any[];
+  selected: Set<any>;
 
   nameConfig: ColumnConfig = new ColumnConfig({ label: 'Name', sticky: false });
   symbolConfig: ColumnConfig = new ColumnConfig({ label: 'Symbol' });
@@ -73,12 +73,13 @@ export abstract class TableExampleBaseClass {
   }
 
   preselect() {
-    this.selected = [
-      { name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24) },
-      { name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22) },
-      { name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21) },
-      { name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18) },
-      { name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24) }
-    ];
+    const newSelected = new Set();
+    newSelected.add({ name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24) });
+    newSelected.add({ name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22) });
+    newSelected.add({ name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21) });
+    newSelected.add({ name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18) });
+    newSelected.add({ name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24) });
+
+    this.selected = newSelected;
   }
 }

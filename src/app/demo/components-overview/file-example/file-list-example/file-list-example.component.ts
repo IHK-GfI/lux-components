@@ -50,7 +50,7 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
       declineAction: {
         label: 'Ablehnen',
         raised: true,
-        color: 'default'
+        color: ''
       }
     });
 

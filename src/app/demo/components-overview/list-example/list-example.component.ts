@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { LuxBadgeColors } from "../../../modules/lux-util/lux-colors.enum";
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
-import { LuxBackgroundColorsEnum } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-list-example',
@@ -13,7 +13,7 @@ export class ListExampleComponent {
   showOutputEvents = false;
   log = logResult;
   items: any[] = [];
-  colors = Object.keys(LuxBackgroundColorsEnum);
+  colors = LuxBadgeColors;
 
   // endregion
 

@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LuxUtil } from '../../lux-util/lux-util';
-import { LuxBackgroundColorsEnum, LuxProgressColor } from '../../lux-util/lux-colors.enum';
+import { LuxProgressColor, LuxProgressColors } from "../../lux-util/lux-colors.enum";
 
-export declare type PROGRESS_MODES = 'determinate' | 'indeterminate';
-export declare type PROGRESS_TYPES = 'Progressbar' | 'Spinner';
+export declare type LuxProgressModeType = 'determinate' | 'indeterminate';
+export declare type LuxProgressType = 'Progressbar' | 'Spinner';
+export declare type LuxProgressSizeType = 'small' | 'medium' | 'large';
 
 @Component({
   selector: 'lux-progress',
@@ -11,10 +12,10 @@ export declare type PROGRESS_TYPES = 'Progressbar' | 'Spinner';
   styleUrls: ['./lux-progress.component.scss']
 })
 export class LuxProgressComponent implements OnInit {
-  readonly DEFAULT_PROGRESS_COLOR = LuxBackgroundColorsEnum.blue;
+  readonly DEFAULT_PROGRESS_COLOR: LuxProgressColor = 'blue';
 
-  private _luxMode: PROGRESS_MODES;
-  private _luxType: PROGRESS_TYPES;
+  private _luxMode: LuxProgressModeType;
+  private _luxType: LuxProgressType;
   private _luxColor: LuxProgressColor;
 
   isIE = false;
@@ -23,19 +24,19 @@ export class LuxProgressComponent implements OnInit {
 
   @Input() luxValue = 0;
   // Nur für ProgressBar
-  @Input() luxSize: 'small' | 'medium' | 'large' = 'medium';
+  @Input() luxSize: LuxProgressSizeType = 'medium';
   @Input() luxTagId: string;
 
   @Input()
   set luxColor(value: LuxProgressColor) {
-    this._luxColor = LuxBackgroundColorsEnum[value] ? LuxBackgroundColorsEnum[value] : this.DEFAULT_PROGRESS_COLOR;
+    this._luxColor = LuxProgressColors.find((entry) => entry === value) ?? this.DEFAULT_PROGRESS_COLOR;
   }
 
   get luxColor() {
     return this._luxColor;
   }
 
-  @Input() set luxMode(mode: PROGRESS_MODES) {
+  @Input() set luxMode(mode: LuxProgressModeType) {
     this._luxMode = mode;
   }
 
@@ -46,7 +47,7 @@ export class LuxProgressComponent implements OnInit {
     return this._luxMode;
   }
 
-  @Input() set luxType(type: PROGRESS_TYPES) {
+  @Input() set luxType(type: LuxProgressType) {
     this._luxType = type;
     if (this._luxType === 'Progressbar') {
       this.typeCSS = 'lux-progress-bar';

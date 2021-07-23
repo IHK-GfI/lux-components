@@ -4,18 +4,18 @@ import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
   selector: '[luxMaxLengthAttr]'
 })
 export class LuxMaxLengthDirective {
-  _luxMaxLengthAttr: string;
+  _luxMaxLengthAttr: number;
 
   @Input()
   get luxMaxLengthAttr() {
     return this._luxMaxLengthAttr;
   }
 
-  set luxMaxLengthAttr(maxLength: string) {
+  set luxMaxLengthAttr(maxLength: number) {
     this._luxMaxLengthAttr = maxLength;
 
     if (this._luxMaxLengthAttr) {
-      this.renderer.setAttribute(this.elementRef.nativeElement, 'maxlength', this._luxMaxLengthAttr);
+      this.renderer.setAttribute(this.elementRef.nativeElement, 'maxlength', '' + this._luxMaxLengthAttr);
     } else {
       this.renderer.removeAttribute(this.elementRef.nativeElement, 'maxlength');
     }

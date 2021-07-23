@@ -11,6 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlContainer, ValidatorFn, Validators } from '@angular/forms';
+import { LuxProgressModeType } from "../../lux-common/lux-progress/lux-progress.component";
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxFormComponentBase } from './lux-form-component-base.class';
@@ -163,7 +164,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     this._luxAccept = Array.isArray(accepts) ? accepts.join(',') : accepts;
   }
 
-  get progressMode(): string {
+  get progressMode(): LuxProgressModeType {
     return (this.progress === 0 && !this.luxUploadReportProgress) || this.forceProgressIndeterminate ? 'indeterminate' : 'determinate';
   }
 

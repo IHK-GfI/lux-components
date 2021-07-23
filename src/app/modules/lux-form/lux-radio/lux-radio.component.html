@@ -28,7 +28,7 @@
       luxAriaDescribedbySelector=".mat-radio-input"
       [luxAriaRequired]="luxRequired"
       luxAriaRequiredSelector=".mat-radio-input"
-      [luxAriaInvalid]="formControl.invalid"
+      [luxAriaInvalid]="'' + formControl.invalid"
       luxAriaInvalidSelector=".mat-radio-input"
       *ngFor="let option of luxOptions; let i = index"
     >

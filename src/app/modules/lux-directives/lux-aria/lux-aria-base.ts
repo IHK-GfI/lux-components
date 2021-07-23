@@ -1,7 +1,7 @@
 import { AfterViewInit, ElementRef, Renderer2, Directive } from '@angular/core';
 
 @Directive()
-export abstract class LuxAriaBase implements AfterViewInit {
+export abstract class LuxAriaBase<T> implements AfterViewInit {
   protected init = false;
 
   protected constructor(
@@ -32,7 +32,7 @@ export abstract class LuxAriaBase implements AfterViewInit {
         if (value === null || value === undefined) {
           this.renderer.removeAttribute(el, this.ariaTagName);
         } else {
-          this.renderer.setAttribute(el, this.ariaTagName, value);
+          this.renderer.setAttribute(el, this.ariaTagName, '' + value);
         }
       }
     }
@@ -40,5 +40,5 @@ export abstract class LuxAriaBase implements AfterViewInit {
 
   abstract getSelector(): string;
 
-  abstract getValue(): string;
+  abstract getValue(): T;
 }
