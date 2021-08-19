@@ -45,7 +45,6 @@ export abstract class TableExampleBaseClass {
   minWidthPx = undefined;
   tableHeightPx = 500;
   hideBorders = false;
-  responsiveBehaviour = ResponsiveBehaviour.BEHAVIOURS;
   selected: Set<any>;
 
   nameConfig: ColumnConfig = new ColumnConfig({ label: 'Name', sticky: false });

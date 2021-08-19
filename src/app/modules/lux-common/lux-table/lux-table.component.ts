@@ -81,7 +81,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   @Input() luxAutoPaginate = true;
   @Input() luxHideBorders = false;
 
-  @Output() luxSelectedChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Output() luxSelectedChange: EventEmitter<Set<any>> = new EventEmitter<Set<any>>();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -198,9 +198,24 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
    * @param selected
    */
   @Input() set luxSelected(selected: Set<any>) {
+    if (!selected && !this.luxSelected) {
+      // Nothing to do
+    } else if (selected && !this.luxSelected) {
+      this.luxSelectedIntern(selected);
+    } else if (!selected && this.luxSelected) {
+      this.luxSelectedIntern(selected);
+    } else if (selected && this.luxSelected) {
+      if (this.luxSelected.size !== selected.size || !Array.from(selected).every(value => this.luxSelected.has(value))) {
+        this.luxSelectedIntern(selected);
+      }
+    }
+  }
+
+  private luxSelectedIntern(selected: Set<any>) {
+    const newSelected = selected ? Array.from(selected) : [];
     this.luxSelected.clear();
-    if (selected) {
-      selected.forEach((entry) => {
+    if (newSelected) {
+      newSelected.forEach((entry) => {
         this.luxSelected.add(entry);
       });
     }
@@ -389,9 +404,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       }
     }
 
-    this.luxSelectedChange.next(Array.from(this.luxSelected));
-    this.dataSource.selectedEntries = this.luxSelected;
-    this.allSelected = this.checkFilteredAllSelected();
+    this.updateSelectedIntern();
   }
 
   /**
@@ -406,10 +419,14 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       } else {
         this.dataSource.filteredData.forEach((dataEntry: any) => this.luxSelected.add(dataEntry));
       }
-      this.luxSelectedChange.next(Array.from(this.luxSelected));
-      this.dataSource.selectedEntries = this.luxSelected;
-      this.allSelected = this.checkFilteredAllSelected();
+      this.updateSelectedIntern();
     }
+  }
+
+  private updateSelectedIntern() {
+    this.luxSelectedChange.next(this.luxSelected);
+    this.dataSource.selectedEntries = this.luxSelected;
+    this.allSelected = this.checkFilteredAllSelected();
   }
 
   /**
@@ -771,8 +788,6 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       foundEntries.forEach((entry: boolean) => this.luxSelected.add(entry));
     }
 
-    this.dataSource.selectedEntries = this.luxSelected;
-    this.luxSelectedChange.next(Array.from(this.luxSelected));
-    this.allSelected = this.checkFilteredAllSelected();
+    this.updateSelectedIntern();
   }
 }
