@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -13,6 +14,9 @@ import {
 import { ControlContainer } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatChip } from '@angular/material/chips';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxFormComponentBase } from "../lux-form-model/lux-form-component-base.class";
 import { LuxChipGroupComponent } from './lux-chips-subcomponents/lux-chip-group.component';
 import { LuxChipComponent } from './lux-chips-subcomponents/lux-chip.component';
 import { Subject, Subscription } from 'rxjs';
@@ -25,13 +29,11 @@ export declare type LuxChipsOrientation = 'horizontal' | 'vertical';
   templateUrl: './lux-chips.component.html',
   styleUrls: ['./lux-chips.component.scss']
 })
-export class LuxChipsComponent implements OnDestroy {
+export class LuxChipsComponent extends LuxFormComponentBase implements OnDestroy {
   private readonly inputValueSubscription: Subscription = new Subscription();
   private readonly newChipSubscription: Subscription = new Subscription();
 
-  private _luxDisabled = false;
   private _luxAutocompleteOptions: string[] = [];
-  private _luxLabel = $localize `:@@luxc.chips.new.lbl:Neu`;
 
   filteredOptions: string[] = [];
   inputValue$: Subject<string> = new Subject<string>();
@@ -58,8 +60,8 @@ export class LuxChipsComponent implements OnDestroy {
   @Input() set luxDisabled(disabled: boolean) {
     this._luxDisabled = disabled;
     setTimeout(() => {
-      this.luxChipGroupComponents.forEach(chipGroup => (chipGroup.luxDisabled = disabled));
-      this.luxChipComponents.forEach(chip => (chip.luxDisabled = disabled));
+      this.luxChipGroupComponents.forEach((chipGroup) => (chipGroup.luxDisabled = disabled));
+      this.luxChipComponents.forEach((chip) => (chip.luxDisabled = disabled));
     });
   }
 
@@ -73,16 +75,11 @@ export class LuxChipsComponent implements OnDestroy {
   }
 
   get luxInputLabel(): string {
-    return this._luxLabel;
+    return this.luxLabel;
   }
 
   @Input() set luxInputLabel(label: string) {
-    this._luxLabel = label;
-  }
-
-  // Für lux-form-control, diese ruft luxLabel auf
-  get luxLabel(): string {
-    return this._luxLabel;
+    this.luxLabel = label;
   }
 
   get chipComponents(): LuxChipComponent[] {
@@ -93,7 +90,14 @@ export class LuxChipsComponent implements OnDestroy {
     return this.luxChipGroupComponents as any;
   }
 
-  constructor(@Optional() private controlContainer: ControlContainer) {
+  constructor(
+    @Optional() controlContainer: ControlContainer,
+    cdr: ChangeDetectorRef,
+    logger: LuxConsoleService,
+    config: LuxComponentsConfigService
+  ) {
+    super(controlContainer, cdr, logger, config);
+
     this.newChipSubscription = this.newChip$.subscribe((value: string) => {
       this.add(value);
       this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];
@@ -109,11 +113,7 @@ export class LuxChipsComponent implements OnDestroy {
             this.filteredOptions = [...this.luxAutocompleteOptions];
           } else {
             this.filteredOptions = this.luxAutocompleteOptions.filter(
-              (compareValue: string) =>
-                compareValue
-                  .trim()
-                  .toLowerCase()
-                  .indexOf(value.trim().toLowerCase()) > -1
+              (compareValue: string) => compareValue.trim().toLowerCase().indexOf(value.trim().toLowerCase()) > -1
             );
           }
         })

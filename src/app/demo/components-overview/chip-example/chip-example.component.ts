@@ -15,7 +15,7 @@ export class ChipExampleComponent {
 
   colors = ['Keine Farbe', 'warn', 'accent', 'primary'];
 
-  chips: {label: string, color: ThemePalette, removable: boolean, disabled: boolean, selected: boolean}[] = [
+  chips: {label: string; color: ThemePalette; removable: boolean; disabled: boolean; selected: boolean}[] = [
     { label: 'Chip #1', color: undefined, removable: true, disabled: false, selected: true },
     { label: 'Chip #2', color: 'primary', removable: true, disabled: false, selected: true },
     { label: 'Chip #3', color: 'warn', removable: true, disabled: false, selected: true },
