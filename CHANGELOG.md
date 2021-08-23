@@ -1,3 +1,7 @@
+# Version 11.2.0
+## New
+- **allgemein**: Abhängigkeiten aktualisiert.
+
 # Version 11.1.1
 ## Bug Fixes
 - **lux-app-footer**: Buttons werden in der falschen Reihenfolge angezeigt. [Issue 101](https://github.com/IHK-GfI/lux-components/issues/101)
