@@ -48,7 +48,7 @@
         fxFlexFill
         fxLayout="column"
         fxLayoutAlign="center center"
-        *ngIf="!luxSelectedFiles || luxSelectedFiles.length === 0"
+        *ngIf="!luxSelectedFiles || luxSelectedFiles.length === 0; else showFileList"
       >
         <lux-divider></lux-divider>
         <lux-icon
@@ -68,20 +68,6 @@
             <ng-container *ngTemplateOutlet="formHintComponent.templateRef"></ng-container>
           </ng-template>
         </mat-hint>
-      </div>
-      <div class="lux-file-list-entries" fxFlexFill *ngIf="luxSelectedFiles">
-        <!-- Mehrere Dateien ausgewählt -->
-        <ng-container *ngIf="isArray(luxSelectedFiles)">
-          <lux-divider></lux-divider>
-          <ng-container *ngFor="let selectedFile of luxSelectedFiles; let i = index">
-            <ng-container *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: selectedFile, index: i }"> </ng-container>
-          </ng-container>
-        </ng-container>
-        <!-- Nur eine Datei ausgewählt -->
-        <ng-container *ngIf="!isArray(luxSelectedFiles)">
-          <lux-divider></lux-divider>
-          <ng-container *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: luxSelectedFiles, index: 0 }"> </ng-container>
-        </ng-container>
       </div>
     </div>
   </lux-card-content>
@@ -222,6 +208,23 @@
   <ng-container *ngIf="luxSelectedFiles.length">
     <lux-divider *ngIf="index !== this.luxSelectedFiles.length - 1"></lux-divider>
   </ng-container>
+</ng-template>
+
+<ng-template #showFileList>
+  <div class="lux-file-list-entries" fxFlexFill *ngIf="luxSelectedFiles">
+    <!-- Mehrere Dateien ausgewählt -->
+    <ng-container *ngIf="isArray(luxSelectedFiles)">
+      <lux-divider></lux-divider>
+      <ng-container *ngFor="let selectedFile of luxSelectedFiles; let i = index">
+        <ng-container *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: selectedFile, index: i }"> </ng-container>
+      </ng-container>
+    </ng-container>
+    <!-- Nur eine Datei ausgewählt -->
+    <ng-container *ngIf="!isArray(luxSelectedFiles)">
+      <lux-divider></lux-divider>
+      <ng-container *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: luxSelectedFiles, index: 0 }"> </ng-container>
+    </ng-container>
+  </div>
 </ng-template>
 
 <!-- File-Upload Input -->
