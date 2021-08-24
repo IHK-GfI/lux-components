@@ -40,7 +40,7 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   @Input() luxButtonLoadLabel = $localize `:@@luxc.filter.load.btn:Laden`;
   @Input() luxButtonLoadColor = 'default';
   @Input() luxButtonDialogSave = 'primary';
-  @Input() luxButtonDialogLoad = 'accent';
+  @Input() luxButtonDialogLoad = 'primary';
   @Input() luxButtonDialogDelete = 'warn';
   @Input() luxButtonDialogCancel = 'default';
   @Input() luxButtonDialogClose = 'default';
