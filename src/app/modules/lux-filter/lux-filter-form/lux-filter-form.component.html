@@ -17,7 +17,7 @@
           [luxLabel]="luxButtonFilterLabel"
           [luxAlwaysVisible]="true"
           luxIconName="fas fa-filter"
-          luxColor="primary"
+          [luxColor]="luxButtonFilterColor"
           [luxRaised]="luxButtonRaised"
           (luxClicked)="onFilter()"
         ></lux-menu-item>
@@ -25,18 +25,21 @@
           [luxLabel]="luxButtonResetLabel"
           [luxAlwaysVisible]="false"
           luxIconName="fas fa-redo"
+          [luxColor]="luxButtonResetColor"
           (luxClicked)="onReset()"
         ></lux-menu-item>
         <lux-menu-item
           [luxLabel]="luxButtonSaveLabel"
           [luxAlwaysVisible]="false"
           luxIconName="fas fa-upload"
+          [luxColor]="luxButtonSaveColor"
           (luxClicked)="openSaveDialog()"
           *ngIf="hasSaveAction"
         ></lux-menu-item>
         <lux-menu-item
           [luxLabel]="luxButtonLoadLabel"
           [luxAlwaysVisible]="false"
+          [luxColor]="luxButtonLoadColor"
           luxIconName="fas fa-download"
           (luxClicked)="openLoadDialog()"
           *ngIf="hasLoadAction"
