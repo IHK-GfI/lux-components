@@ -112,6 +112,15 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   toggleSelectDisabled = false;
   toggleSelectHidden = false;
 
+  buttonColorOptions = ['default', 'primary', 'accent', 'warn'];
+  buttonRaised = false;
+  buttonFilterColor = 'primary';
+  buttonDialogSave = 'primary';
+  buttonDialogLoad = 'primary';
+  buttonDialogDelete = 'warn';
+  buttonDialogCancel = 'default';
+  buttonDialogClose = 'default';
+
   constructor(private mediaQuery: LuxMediaQueryObserverService) {}
 
   ngOnInit(): void {
