@@ -65,6 +65,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   @Output() luxSelectedFilesChange: EventEmitter<any> = new EventEmitter<any>();
 
+  @Input() luxSelectedFilesAlwaysUseArray = false;
   @Input() luxUploadReportProgress = false;
   @Input() luxContentsAsBlob = false;
   @Input() luxTagId: string;
@@ -201,7 +202,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();
 
-    this.luxSelectedFiles = undefined;
+    this.luxSelectedFiles = this.luxSelectedFilesAlwaysUseArray ? [] : undefined;
     this.notifyFormValueChanged();
     this.clearFormControlErrors();
     if (this.luxDeleteActionConfig.onClick) {
@@ -293,7 +294,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
       await this.mapFilesToFileObjects(files).then((fileObjects: ILuxFileObject[]) => (newFiles = fileObjects));
       await this.uploadFiles(newFiles);
       if (this.luxUploadActionConfig.onClick) {
-        this.luxUploadActionConfig.onClick(newFiles && newFiles.length === 1 ? newFiles[0] : newFiles);
+        this.luxUploadActionConfig.onClick(newFiles && newFiles.length === 1 && !this.luxSelectedFilesAlwaysUseArray ? newFiles[0] : newFiles);
       }
       this.formControl.markAsTouched();
       this.formControl.markAsDirty();
