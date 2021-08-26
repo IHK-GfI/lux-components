@@ -82,6 +82,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
     this.subscriptions.push(this.luxSteps.changes.subscribe(() => {
       this.stepperConfiguration.luxSteps = this.luxSteps.toArray();
       this.cdr.detectChanges();
+      this.updateIcons();
     }));
     // Initial die aktuellen luxSteps in die Konfiguration schreiben
     this.stepperConfiguration.luxSteps = this.luxSteps.toArray();
@@ -123,8 +124,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
     this.luxSteps.toArray().forEach((luxStep: LuxStepComponent) => {
       this.subscriptions.push(luxStep.getIconChangeObsv().subscribe((iconChange: boolean) => {
         if (this.stepperConfiguration.luxUseCustomIcons && iconChange) {
-          this.clearCustomIcons();
-          this.generateCustomIcons();
+          this.updateIcons();
         }
       }));
     });

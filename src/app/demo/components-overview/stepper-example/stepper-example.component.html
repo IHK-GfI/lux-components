@@ -24,23 +24,25 @@
       (luxStepClicked)="stepClicked($event)"
     >
       <!-- Mehrere Steps mit ihren Input-/Output-Properties -->
-      <lux-step
-        [luxIconName]="step.iconName"
-        [luxOptional]="step.optional"
-        [luxEditable]="step.editable"
-        [luxCompleted]="step.completed"
-        [luxStepControl]="step.useStepControl ? step.stepControl : undefined"
-        *ngFor="let step of steps; let i = index"
-      >
-        <lux-step-header> Step #{{ i }} </lux-step-header>
-        <lux-step-content>
-          <h3>Bitte tragen Sie alle Werte ein</h3>
-          <form [formGroup]="step.stepControl">
-            <lux-input luxLabel="Username" luxType="text" luxControlBinding="control1"></lux-input>
-            <lux-input luxLabel="Password" luxType="password" luxControlBinding="control2"></lux-input>
-          </form>
-        </lux-step-content>
-      </lux-step>
+      <ng-container *ngFor="let step of steps; let i = index">
+        <lux-step
+          [luxIconName]="step.iconName"
+          [luxOptional]="step.optional"
+          [luxEditable]="step.editable"
+          [luxCompleted]="step.completed"
+          [luxStepControl]="step.useStepControl ? step.stepControl : undefined"
+          *ngIf="!step.hide"
+        >
+          <lux-step-header> Step #{{ i }} </lux-step-header>
+          <lux-step-content>
+            <h3>Bitte tragen Sie alle Werte ein</h3>
+            <form [formGroup]="step.stepControl">
+              <lux-input luxLabel="Username" luxType="text" luxControlBinding="control1"></lux-input>
+              <lux-input luxLabel="Password" luxType="password" luxControlBinding="control2"></lux-input>
+            </form>
+          </lux-step-content>
+        </lux-step>
+      </ng-container>
       <!-- Abschluss-Step des Steppers -->
       <lux-step luxIconName="fas fa-check">
         <lux-step-header>
@@ -128,6 +130,12 @@
                   Dieses wird angezeigt, wenn der Stepper für 'luxUseCustomIcons' den Wert 'true' besitzt.
                 </lux-form-hint>
               </lux-input>
+              <lux-toggle
+                luxLabel="hide"
+                luxHint="Blendet den Step über *ngIf ein oder aus."
+                [(luxChecked)]="step.hide"
+              >
+              </lux-toggle>
               <lux-toggle
                 luxLabel="luxEditable"
                 luxHint="Der Flag legt fest ob der Step nach der Bearbeitung noch ansteuerbar ist oder nicht."
