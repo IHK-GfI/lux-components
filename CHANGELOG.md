@@ -7,11 +7,11 @@
 
 ## Bug Fixes
 - **lux-chips**: lux-chip mit Autocomplete führt beim Löschen des letzten Chips zum Fehler. [Issue 103](https://github.com/IHK-GfI/lux-components/issues/103)
+- **lux-stepper**: *ngIf lässt Icon verschwinden. [Issue 110](https://github.com/IHK-GfI/lux-components/issues/110)
 
 # Version 11.1.1
 ## Bug Fixes
 - **lux-app-footer**: Buttons werden in der falschen Reihenfolge angezeigt. [Issue 101](https://github.com/IHK-GfI/lux-components/issues/101)
-- **lux-stepper**: *ngIf lässt Icon verschwinden. [Issue 110](https://github.com/IHK-GfI/lux-components/issues/110)
 
 # Version 11.1.0
 ## New
