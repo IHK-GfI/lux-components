@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -9,7 +10,7 @@ import {
   QueryList,
   ViewChild,
   ViewChildren
-} from '@angular/core';
+} from "@angular/core";
 import { ControlContainer } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatChip } from '@angular/material/chips';
@@ -91,7 +92,7 @@ export class LuxChipsComponent implements OnDestroy {
     return this.luxChipGroupComponents as any;
   }
 
-  constructor(@Optional() private controlContainer: ControlContainer) {
+  constructor(private cdr: ChangeDetectorRef) {
     this.newChipSubscription = this.newChip$.subscribe((value: string) => {
       this.add(value);
       this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];
@@ -191,5 +192,11 @@ export class LuxChipsComponent implements OnDestroy {
         input.value = '';
       }
     }
+  }
+
+  onAutoCompleteOpened() {
+    // Um einen ExpressionChangedAfterItHasBeenCheckedError im Attribute "attr.aria-expanded"
+    // zu umgehen, wird hier manuell die Change Detection ausgeführt.
+    this.cdr.detectChanges();
   }
 }
