@@ -10,14 +10,14 @@
           luxLabel="Laden"
           i18n-luxLabel="@@luxc.file-preview.filter-load-dialog.load.lbl"
           [luxRaised]="true"
-          luxColor="primary"
+          [luxColor]="luxDialogRef.data.luxButtonDialogLoad"
           (luxClicked)="luxDialogRef.closeDialog(filter.name)"
         ></lux-button>
         <lux-button
           luxLabel="Löschen"
           i18n-luxLabel="@@luxc.file-preview.filter-load-dialog.delete.lbl"
           [luxRaised]="false"
-          luxColor="warn"
+          [luxColor]="luxDialogRef.data.luxButtonDialogDelete"
           (luxClicked)="onDelete(i)"
         ></lux-button>
       </lux-card-actions>
@@ -29,7 +29,7 @@
     <lux-button
       luxLabel="Schließen"
       i18n-luxLabel="@@luxc.file-preview.filter-load-dialog.close.lbl"
-      luxColor="default"
+      [luxColor]="luxDialogRef.data.luxButtonDialogClose"
       [luxRaised]="true"
       (luxClicked)="luxDialogRef.closeDialog(false)"
     ></lux-button>

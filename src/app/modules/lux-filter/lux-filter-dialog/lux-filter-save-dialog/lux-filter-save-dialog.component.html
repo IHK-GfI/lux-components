@@ -18,7 +18,7 @@
     <lux-button
       luxLabel="Speichern"
       i18n-luxLabel="@@luxc.file-preview.filter-save-dialog.save.lbl"
-      luxColor="primary"
+      [luxColor]="luxDialogRef.data.luxButtonDialogSave"
       [luxDisabled]="!filterName"
       [luxRaised]="true"
       (luxClicked)="onSave()"
@@ -26,7 +26,7 @@
     <lux-button
       luxLabel="Abbrechen"
       i18n-luxLabel="@@luxc.file-preview.filter-save-dialog.cancel.lbl"
-      luxColor="default"
+      [luxColor]="luxDialogRef.data.luxButtonDialogCancel"
       [luxRaised]="true"
       (luxClicked)="luxDialogRef.closeDialog(false)"
     ></lux-button>

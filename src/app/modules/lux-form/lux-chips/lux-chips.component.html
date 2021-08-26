@@ -92,6 +92,7 @@
         <mat-autocomplete
           [class]="'lux-autocomplete-panel'"
           (optionSelected)="autoCompleteAdd(input, $event.option.value)"
+          (opened)="onAutoCompleteOpened()"
           #auto="matAutocomplete"
         >
           <mat-option *ngFor="let option of filteredOptions" [value]="option">

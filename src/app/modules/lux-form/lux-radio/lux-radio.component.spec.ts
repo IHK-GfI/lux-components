@@ -422,6 +422,26 @@ describe('LuxRadioComponent', () => {
       expect(testComponent.form.get('radio').value).toEqual(testComponent.options[0], 'Nachbedingung 4');
     }));
 
+    it('Sollte eine Option deaktivieren können', fakeAsync(() => {
+      // Vorbedingungen prüfen
+      const radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
+      expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Meine Aufgaben', 'Vorbedingung 1');
+      expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Gruppenaufgaben', 'Vorbedingung 2');
+      expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben', 'Vorbedingung 3');
+      expect(testComponent.form.get('radio').value).toBeNull('Vorbedingung 4');
+
+      // Änderungen durchführen
+      testComponent.options[1].disabled = true;
+      LuxTestHelper.wait(fixture);
+
+      const radioButtons = fixture.debugElement.queryAll(By.css('mat-radio-button input'));
+      radioButtons[1].nativeElement.click();
+      LuxTestHelper.wait(fixture);
+
+      // Nachbedingungen prüfen
+      expect(testComponent.form.get('radio').value).toBeNull('Nachbedingung 1');
+    }));
+
     it('Required', fakeAsync(() => {
       // Vorbedingungen prüfen
       let errorMessage = fixture.debugElement.query(By.css('mat-error'));
@@ -460,7 +480,7 @@ describe('LuxRadioComponent', () => {
 })
 class MockRadioComponent {
   label;
-  options = [
+  options: { label: string; value: string; disabled?: boolean }[]= [
     { label: 'Meine Aufgaben', value: 'A' },
     { label: 'Gruppenaufgaben', value: 'B' },
     { label: 'Zurückgestellte Aufgaben', value: 'C' },
@@ -515,7 +535,7 @@ class MockRadioWithTemplateComponent {
   `
 })
 class MockRadioFormComponent {
-  options = [
+  options: { label: string; value: string; disabled?: boolean }[] = [
     { label: 'Meine Aufgaben', value: 'A' },
     { label: 'Gruppenaufgaben', value: 'B' },
     { label: 'Zurückgestellte Aufgaben', value: 'C' },

@@ -1,3 +1,14 @@
+# Version 11.2.0
+## New
+- **allgemein**: Abhängigkeiten aktualisiert. [Commit c39b83b](https://github.com/IHK-GfI/lux-components/commit/c39b83be341cd73f6bc604392eaa9689f7ac282b)
+- **lux-file-list**: Rückgabeobjekt bei Einzelupload ist kein Array. [Issue 104](https://github.com/IHK-GfI/lux-components/issues/104)
+- **lux-radio**: Einzelne Optionen im lux-radio deaktivieren. [Issue 105](https://github.com/IHK-GfI/lux-components/issues/105)
+- **lux-filter-form**: Buttonfarben sollten angepasst werden können. [Issue 107](https://github.com/IHK-GfI/lux-components/issues/107)
+
+## Bug Fixes
+- **lux-chips**: lux-chip mit Autocomplete führt beim Löschen des letzten Chips zum Fehler. [Issue 103](https://github.com/IHK-GfI/lux-components/issues/103)
+- **lux-stepper**: *ngIf lässt Icon verschwinden. [Issue 110](https://github.com/IHK-GfI/lux-components/issues/110)
+
 # Version 11.1.1
 ## Bug Fixes
 - **lux-app-footer**: Buttons werden in der falschen Reihenfolge angezeigt. [Issue 101](https://github.com/IHK-GfI/lux-components/issues/101)
