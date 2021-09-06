@@ -35,7 +35,7 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   @Input() luxButtonFilterColor = 'primary';
   @Input() luxButtonResetLabel = $localize `:@@luxc.filter.reset.btn:Zurücksetzen`;
   @Input() luxButtonResetColor = 'default';
-  @Input() luxButtonSaveLabel = $localize `:@@luxc.filter.save.btn:Speichen`;
+  @Input() luxButtonSaveLabel = $localize `:@@luxc.filter.save.btn:Speichern`;
   @Input() luxButtonSaveColor = 'default';
   @Input() luxButtonLoadLabel = $localize `:@@luxc.filter.load.btn:Laden`;
   @Input() luxButtonLoadColor = 'default';

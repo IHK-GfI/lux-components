@@ -1,3 +1,7 @@
+# Version 11.3.0
+## New
+- **allgemein**: Rechtschreibfehler behoben. 
+
 # Version 11.2.0
 ## New
 - **allgemein**: Abhängigkeiten aktualisiert. [Commit c39b83b](https://github.com/IHK-GfI/lux-components/commit/c39b83be341cd73f6bc604392eaa9689f7ac282b)
