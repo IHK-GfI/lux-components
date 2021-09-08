@@ -176,6 +176,28 @@ describe('LuxDatepickerComponent', () => {
       expect(datepickerComponent.luxValue).toEqual(utcNullifiedDate.toISOString(), `Nachbedingung 2`);
     }));
 
+    it('Sollte das Datum 01122020 in 01.12.2020 umwandeln ', fakeAsync(() => {
+      fixture.detectChanges();
+      // Vorbedingungen testen
+      expect(testComponent.formControl.value).toBeFalsy(`Vorbedingung 1`);
+      expect(datepickerComponent.luxValue).toBeFalsy(`Vorbedingung 2`);
+
+      // Änderungen durchführen
+      testComponent.formControl.setValue('01122020');
+      LuxTestHelper.wait(fixture);
+
+      // Nachbedingungen testen
+      const utcNullifiedDate = new Date(0);
+      utcNullifiedDate.setUTCFullYear(2020, 11, 1);
+      utcNullifiedDate.setUTCHours(0);
+      const datepickerEl = fixture.debugElement.query(By.css('input'));
+      expect(LuxUtil.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual(
+        '01.12.2020',
+        'Nachbedingung 1'
+      );
+      expect(datepickerComponent.luxValue).toEqual(utcNullifiedDate.toISOString(), `Nachbedingung 2`);
+    }));
+
     it('Sollte den korrekten, UTC-genullten Wert ausgeben', fakeAsync(() => {
       const utcNullifedDate = new Date(0);
       utcNullifedDate.setUTCFullYear(2000, 0, 1);
