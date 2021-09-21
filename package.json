@@ -13,9 +13,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start_en": "ng serve --configuration en --port 4210 --single-bundle",
-    "start-ie": "ng serve --configuration es5 --port 4210 --single-bundle",
-    "start-ie_en": "ng serve --configuration es5en --port 4211 --single-bundle",
+    "start_en": "ng serve --configuration en --port 4210",
+    "start-ie": "ng serve --configuration es5 --port 4210 ",
+    "start-ie_en": "ng serve --configuration es5en --port 4211",
     "build": "ng build --source-map",
     "build-aot": "ng build --prod --localize --single-bundle --plugin ~ie11-lazy-modules-plugin.js && npm run move-de-files",
     "test": "ng test",

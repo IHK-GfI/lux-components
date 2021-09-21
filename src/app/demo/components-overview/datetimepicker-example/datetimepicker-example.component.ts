@@ -1,6 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { LuxDateTimePickerComponent } from '../../../modules/lux-form/lux-datetimepicker/lux-datetimepicker.component';
 import {
   exampleErrorCallback,
   logResult,
@@ -8,10 +8,12 @@ import {
 } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
-  selector: 'app-datepicker-example',
-  templateUrl: './datepicker-example.component.html'
+  selector: 'app-datetimeicker-example',
+  templateUrl: './datetimepicker-example.component.html'
 })
-export class DatepickerExampleComponent {
+export class DateTimepickerExampleComponent {
+  @ViewChild('test2') dateTimeInFormComponent: LuxDateTimePickerComponent;
+
   // region Helper-Properties für das Beispiel
 
   useCustomFilter = false;
@@ -29,7 +31,7 @@ export class DatepickerExampleComponent {
 
   // region Properties der Component
 
-  value = new Date(2020, 5, 28, 14, 15); // '2021-09-07T23:00:00.000Z';
+  value = null;
   controlBinding = 'datepickerExample';
   disabled = false;
   readonly: boolean;
@@ -42,12 +44,10 @@ export class DatepickerExampleComponent {
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   showToggle = true;
   opened = false;
-  startDate: string;
-  locale = null;
-  minDate: string;
-  maxDate: string;
+  startDate: string = null;
+  minDate = '01.01.2000, 00:00';
+  maxDate = '31.12.2100, 23:59';
   startView = 'month';
-  touchUi = false;
 
   // endregion
 
@@ -55,30 +55,20 @@ export class DatepickerExampleComponent {
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
 
-  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale, private fb: FormBuilder) {
-    this.locale = matDateLocale === 'en' ? 'en-US' : matDateLocale;
-    switch (matDateLocale) {
-      case 'de':
-        this.locale = 'de-De';
-        break;
-      case 'en':
-        this.locale = 'en-US';
-        break;
-      case 'fr':
-        this.locale = 'fr-FR';
-        break;
-      default:
-        this.locale = matDateLocale;
-    }
-
+  constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      datepickerExample: [new Date(2020, 5, 28, 14, 15)] //['2021-09-07T23:00:00.000Z']
+      datepickerExample: ['']
     });
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    if (required) {
+      this.form.get(this.controlBinding).setValidators([Validators.required, this.dateTimeInFormComponent.dateTimeValidator]);
+    } else {
+      this.form.get(this.controlBinding).setValidators(this.dateTimeInFormComponent.dateTimeValidator);
+    }
+    this.form.get(this.controlBinding).updateValueAndValidity();
   }
 
   pickValidatorValueFn(selected: any) {

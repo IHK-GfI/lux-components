@@ -18,6 +18,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('card'), icon: 'fas fa-square', label: 'Card', moduleName: 'layout' },
     { onclick: () => this.goTo('chips'), icon: 'fas fa-ship', label: 'Chips', moduleName: 'form' },
     { onclick: () => this.goTo('datepicker'), icon: 'fas fa-calendar-day', label: 'Datepicker', moduleName: 'form' },
+    { onclick: () => this.goTo('datetimepicker'), icon: 'fas fa-calendar-day', label: 'Datetimepicker', moduleName: 'form' },
     { onclick: () => this.goTo('divider'), icon: 'fas fa-divide', label: 'Divider', moduleName: 'layout' },
     {
       onclick: () => this.goTo('error-page'),

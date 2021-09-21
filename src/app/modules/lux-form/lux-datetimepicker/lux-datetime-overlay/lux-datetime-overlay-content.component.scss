@@ -1,0 +1,18 @@
+::ng-deep .lux-datetimepicker-overlay {
+  & lux-card {
+    & mat-card {
+      padding: 0 4px 0 0;
+      min-width: 300px;
+      min-height: 480px;
+
+      mat-card-content {
+        padding: 0 0 10px 0;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.lux-datetime-overlay-calendar {
+  min-height: 350px;
+}

@@ -24,6 +24,7 @@ import { ChipExampleComponent } from './chip-example/chip-example.component';
 import { ComponentsOverviewComponent } from './components-overview.component';
 import { ComponentsOverviewRoutingModule } from './components-overview-routing.module';
 import { DatepickerExampleComponent } from './datepicker-example/datepicker-example.component';
+import { DateTimepickerExampleComponent } from './datetimepicker-example/datetimepicker-example.component';
 import { DividerExampleComponent } from './divider-example/divider-example.component';
 import { ErrorpageExampleComponent } from './errorpage-example/errorpage-example.component';
 import { HttpErrorExampleComponent } from './http-error-example/http-error-example.component';
@@ -130,6 +131,7 @@ import { LuxFilterModule } from '../../modules/lux-filter/lux-filter.module';
     LinkExampleComponent,
     AccordionExampleComponent,
     DatepickerExampleComponent,
+    DateTimepickerExampleComponent,
     AutocompleteExampleComponent,
     IconExampleComponent,
     DividerExampleComponent,
@@ -178,9 +180,7 @@ import { LuxFilterModule } from '../../modules/lux-filter/lux-filter.module';
     CardRowExampleComponent,
     FilterExampleComponent
   ],
-  providers: [
-    HttpClient
-  ],
+  providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]
 })
 export class ComponentsOverviewModule {}
