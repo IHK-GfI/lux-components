@@ -1,3 +1,4 @@
+import { Platform } from '@angular/cdk/platform';
 import { NativeDateAdapter } from '@angular/material/core';
 import { Injectable } from '@angular/core';
 import { LuxUtil } from '../../lux-util/lux-util';
@@ -17,6 +18,9 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
 
   // yyyy-MM-dd
   private readonly hyphenRegExp_1 = new RegExp(/\d{4}-\d{1,2}-\d{1,2}/);
+
+  // ddMMyyyy
+  private readonly noSeparatorRegExp = new RegExp(/\d{1,2}\d{1,2}\d{4}/);
 
   format(date: Date | string, displayFormat: DateTimeFormatOptions): string {
     if (date) {
@@ -49,6 +53,7 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
       if (LuxUtil.ISO_8601_FULL.test(value)) {
         return new Date(value);
       }
+
       // Hat der String das Format dd.MM.YYYY ?
       if (this.dotRegExp.test(value)) {
         return this.getUTCNulled_ddMMYYYY(value, '.');
@@ -58,6 +63,8 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
         return this.getUTCNulled_ddMMYYYY(value, '-');
       } else if (this.hyphenRegExp_1.test(value)) {
         return this.getUTCNulled_YYYYMMdd(value, '-');
+      } else if (this.noSeparatorRegExp.test(value)) {
+        return this.getUTCNulled_ddMMYYYYNoSeparator(value);
       }
       return value as any;
     }
@@ -84,6 +91,17 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
     const splitDate = dateString.split(separator);
     const tempDate = new Date(0);
     tempDate.setUTCFullYear(+splitDate[2], this.calculateMonth(+splitDate[1]), +splitDate[0]);
+    return tempDate;
+  }
+
+  /**
+   * UTC Date mit 0-Werten für Time aus einem ddMMYYYY-String erhalten.
+   *
+   * @param dateString
+   */
+  private getUTCNulled_ddMMYYYYNoSeparator(dateString: string) {
+    const tempDate = new Date(0);
+    tempDate.setUTCFullYear(+dateString.substring(4, 8), this.calculateMonth(+dateString.substring(2, 4)), +dateString.substring(0, 2));
     return tempDate;
   }
 

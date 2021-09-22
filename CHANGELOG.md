@@ -1,6 +1,10 @@
 # Version 11.3.0
 ## New
 - **lux-datetimepicker**: Neuer Datepicker inklusive Uhrzeit. [Issue 106](https://github.com/IHK-GfI/lux-components/issues/106)
+- **lux-datepicker**: Datepicker soll Datum auch ohne Sonderzeichen erkennen können. [Issue 115](https://github.com/IHK-GfI/lux-components/issues/115)
+
+## Bug Fixes
+- **allgemein**: Rechtschreibfehler behoben. [Commit d6ca307](https://github.com/IHK-GfI/lux-components/commit/d6ca307cea2b3e4bba4df5fdb8202ce4b142f0c0)
 
 # Version 11.2.0
 ## New
@@ -11,11 +15,11 @@
 
 ## Bug Fixes
 - **lux-chips**: lux-chip mit Autocomplete führt beim Löschen des letzten Chips zum Fehler. [Issue 103](https://github.com/IHK-GfI/lux-components/issues/103)
+- **lux-stepper**: *ngIf lässt Icon verschwinden. [Issue 110](https://github.com/IHK-GfI/lux-components/issues/110)
 
 # Version 11.1.1
 ## Bug Fixes
 - **lux-app-footer**: Buttons werden in der falschen Reihenfolge angezeigt. [Issue 101](https://github.com/IHK-GfI/lux-components/issues/101)
-- **lux-stepper**: *ngIf lässt Icon verschwinden. [Issue 110](https://github.com/IHK-GfI/lux-components/issues/110)
 
 # Version 11.1.0
 ## New
