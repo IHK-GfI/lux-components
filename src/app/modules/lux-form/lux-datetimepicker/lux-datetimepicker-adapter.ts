@@ -14,6 +14,8 @@ export class LuxDateTimePickerAdapter extends NativeDateAdapter {
   private readonly hyphenRegExp = new RegExp(/\d{1,2}-\d{1,2}-\d{4},\W*\d{1,2}\:\d{1,2}/);
   // yyyy-MM-dd
   private readonly hyphenRegExp_1 = new RegExp(/\d{4}-\d{1,2}-\d{1,2},\W*\d{1,2}\:\d{1,2}/);
+  // ddMMyyyy
+  private readonly noSeparatorRegExp = new RegExp(/\d{1,2}\d{1,2}\d{4},\W*\d{1,2}\:\d{1,2}/);
 
   constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale: string, private platform: Platform) {
     super(matDateLocale, platform);
@@ -92,6 +94,8 @@ export class LuxDateTimePickerAdapter extends NativeDateAdapter {
           result = this.getUTCNulled_ddMMYYYY(dateValue, timeValue, '-');
         } else if (this.hyphenRegExp_1.test(dateAsString)) {
           result = this.getUTCNulled_YYYYMMdd(dateValue, timeValue, '-');
+        } else if (this.noSeparatorRegExp.test(dateAsString)) {
+          return this.getUTCNulled_ddMMYYYYNoSeparator(dateValue, timeValue);
         }
       }
     }
@@ -161,6 +165,21 @@ export class LuxDateTimePickerAdapter extends NativeDateAdapter {
     date.setUTCHours(+splitTime[0], +splitTime[1], 0, 0);
 
     return date;
+  }
+
+  /**
+   * UTC Date mit 0-Werten für Time aus einem ddMMYYYY-String erhalten.
+   *
+   * @param dateString
+   * @param timeString
+   */
+  private getUTCNulled_ddMMYYYYNoSeparator(dateString: string, timeString: string) {
+    const splitTime = timeString.split(':');
+
+    const tempDate = new Date(0);
+    tempDate.setUTCFullYear(+dateString.substring(4, 8), this.calculateMonth(+dateString.substring(2, 4)), +dateString.substring(0, 2));
+    tempDate.setUTCHours(+splitTime[0], +splitTime[1], 0, 0);
+    return tempDate;
   }
 
   isValid(date: any) {
