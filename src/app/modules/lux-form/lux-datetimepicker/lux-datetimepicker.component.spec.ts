@@ -14,6 +14,8 @@ import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxDateTimePickerComponent } from './lux-datetimepicker.component';
 
 describe('LuxDatepickerComponent', () => {
+  const usedLocale = 'de-DE';
+
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService],
@@ -29,8 +31,8 @@ describe('LuxDatepickerComponent', () => {
     beforeEach(fakeAsync(() => {
       TestBed.configureTestingModule({
         providers: [
-          { provide: LOCALE_ID, useValue: 'de-DE' },
-          { provide: MAT_DATE_LOCALE, useValue: 'de-DE' }
+          { provide: LOCALE_ID, useValue: usedLocale },
+          { provide: MAT_DATE_LOCALE, useValue: usedLocale }
         ]
       });
       fixture = TestBed.createComponent(LuxFormCustomValidatorComponent);
@@ -96,8 +98,8 @@ describe('LuxDatepickerComponent', () => {
     beforeEach(fakeAsync(() => {
       TestBed.configureTestingModule({
         providers: [
-          { provide: LOCALE_ID, useValue: 'de-DE' },
-          { provide: MAT_DATE_LOCALE, useValue: 'de-DE' }
+          { provide: LOCALE_ID, useValue: usedLocale },
+          { provide: MAT_DATE_LOCALE, useValue: usedLocale }
         ]
       });
       fixture = TestBed.createComponent(LuxFormTestComponent);
@@ -237,6 +239,12 @@ describe('LuxDatepickerComponent', () => {
     let overlayHelper: LuxOverlayHelper;
 
     beforeEach(fakeAsync(() => {
+      TestBed.configureTestingModule({
+        providers: [
+          { provide: LOCALE_ID, useValue: usedLocale },
+          { provide: MAT_DATE_LOCALE, useValue: usedLocale }
+        ]
+      });
       fixture = TestBed.createComponent(LuxNoFormAttributeTestComponent);
       testComponent = fixture.componentInstance;
       datepickerComponent = fixture.debugElement.query(By.directive(LuxDateTimePickerComponent)).componentInstance;
@@ -288,8 +296,8 @@ describe('LuxDatepickerComponent', () => {
       expect(matErrorEl).toBeFalsy(`Vorbedingung 1`);
 
       // Änderungen durchführen
-      testComponent.minDate = '10/20/2015, 00:00';
-      testComponent.maxDate = '10/25/2015, 23:59';
+      testComponent.minDate = '20.10.2015, 00:00';
+      testComponent.maxDate = '25.10.2015, 23:59';
       testComponent.value = new Date(2015, 9, 23).toISOString();
       LuxTestHelper.wait(fixture);
 
@@ -299,7 +307,7 @@ describe('LuxDatepickerComponent', () => {
       expect(matErrorEl).toBeFalsy(`Nachbedingung 1`);
 
       // Änderungen durchführen
-      testComponent.value = new Date(2015, 9, 19).toISOString();
+      testComponent.value = '2015-10-19T23:59:00.000Z';
       LuxTestHelper.wait(fixture);
       datepickerComponent.formControl.markAsTouched();
       datepickerComponent.formControl.updateValueAndValidity();
@@ -311,7 +319,7 @@ describe('LuxDatepickerComponent', () => {
       expect(matErrorEl.nativeElement.innerText.trim()).toEqual('Das Datum unterschreitet den Minimalwert', `Nachbedingung 2`);
 
       // // Änderungen durchführen
-      testComponent.value = new Date(2015, 9, 27).toISOString();
+      testComponent.value = '2015-10-26T00:00:00.000Z';
       LuxTestHelper.wait(fixture);
       datepickerComponent.formControl.markAsTouched();
       datepickerComponent.formControl.updateValueAndValidity();
