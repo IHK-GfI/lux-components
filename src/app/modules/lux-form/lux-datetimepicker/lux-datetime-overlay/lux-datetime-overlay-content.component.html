@@ -7,8 +7,8 @@
         [startView]="dateTimePicker.luxStartView"
         [(selected)]="selected"
         [startAt]="dateTimePicker.luxStartDate ? dateTimePicker.luxStartDate : selected"
-        [minDate]="dateTimePicker.luxMinDate"
-        [maxDate]="dateTimePicker.luxMaxDate"
+        [minDate]="minCalendarDate"
+        [maxDate]="maxCalendarDate"
       ></mat-calendar>
       <lux-divider [luxInset]="true"></lux-divider>
       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">

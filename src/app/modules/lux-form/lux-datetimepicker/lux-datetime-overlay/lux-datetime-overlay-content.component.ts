@@ -14,6 +14,8 @@ export class LuxDatetimeOverlayContentComponent implements OnInit, AfterViewInit
 
   dateTimePicker: LuxDatetimeOverlayComponent;
   selected: any;
+  minCalendarDate;
+  maxCalendarDate;
   _initial: Date = null;
   _hours = '00';
   _minutes = '00';
@@ -76,6 +78,16 @@ export class LuxDatetimeOverlayContentComponent implements OnInit, AfterViewInit
     } else {
       this.hours = this._initial.getUTCHours() < 10 ? '0' + this._initial.getUTCHours() : '' + this._initial.getUTCHours();
       this.minutes = this._initial.getUTCMinutes() < 10 ? '0' + this._initial.getUTCMinutes() : '' + this._initial.getUTCMinutes();
+    }
+
+    if (this.dateTimePicker.luxMinDate) {
+      this.minCalendarDate = new Date(0);
+      this.minCalendarDate.setUTCFullYear(this.dateTimePicker.luxMinDate.getUTCFullYear(), this.dateTimePicker.luxMinDate.getUTCMonth(), this.dateTimePicker.luxMinDate.getUTCDate());
+    }
+
+    if (this.dateTimePicker.luxMaxDate) {
+      this.maxCalendarDate = new Date(0);
+      this.maxCalendarDate.setUTCFullYear(this.dateTimePicker.luxMaxDate.getUTCFullYear(), this.dateTimePicker.luxMaxDate.getUTCMonth(), this.dateTimePicker.luxMaxDate.getUTCDate());
     }
   }
 
