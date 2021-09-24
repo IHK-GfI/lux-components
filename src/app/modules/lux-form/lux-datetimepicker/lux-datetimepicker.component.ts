@@ -17,6 +17,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxUtil } from '../../lux-util/lux-util';
+import { LuxDatepickerAdapter } from '../lux-datepicker/lux-datepicker-adapter';
 import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
 import { LuxDatetimeOverlayComponent } from './lux-datetime-overlay/lux-datetime-overlay.component';
 import { LuxDateTimePickerAdapter } from './lux-datetimepicker-adapter';
@@ -51,11 +52,11 @@ export class LuxDateTimePickerComponent extends LuxFormInputBaseClass implements
   @Input() luxStartView: 'month' | 'year' | 'multi-year' = 'month';
   @Input() luxOpened = false;
   @Input() luxStartDate: string = null;
+  @Input() luxStartTime: number[] = null;
   @Input() luxShowToggle = true;
   @Input() luxCustomFilter: LuxDateFilterFn = null;
   @Input() luxMaxDate: string = null;
   @Input() luxMinDate: string = null;
-  @Input() luxDefaultTime: number[] = [0, 0];
 
   dateTimeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     let result = null;
@@ -122,7 +123,13 @@ export class LuxDateTimePickerComponent extends LuxFormInputBaseClass implements
     }
 
     if (simpleChanges.luxStartDate && typeof simpleChanges.luxStartDate.currentValue === 'string') {
-      this.start = this.parseDateTime(simpleChanges.luxStartDate.currentValue);
+      const startDateArr = simpleChanges.luxStartDate.currentValue.trim().split('.');
+      if (startDateArr.length === 3) {
+        this.start = new Date(0);
+        this.start.setUTCFullYear(+startDateArr[2], +startDateArr[1] - 1, +startDateArr[0]);
+      } else {
+        this.start = null;
+      }
     }
   }
 

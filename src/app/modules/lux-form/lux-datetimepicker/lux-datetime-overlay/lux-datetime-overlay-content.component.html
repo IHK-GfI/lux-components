@@ -6,7 +6,7 @@
         [dateFilter]="dateTimePicker.luxCustomFilter"
         [startView]="dateTimePicker.luxStartView"
         [(selected)]="selected"
-        [startAt]="dateTimePicker.luxStartDate ? dateTimePicker.luxStartDate : selected"
+        [startAt]="startDate"
         [minDate]="minCalendarDate"
         [maxDate]="maxCalendarDate"
       ></mat-calendar>
@@ -14,6 +14,7 @@
       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
         <lux-input
           luxLabel=""
+          class="lux-datetime-no-label"
           luxAutocomplete="off"
           [(luxValue)]="hours"
           (luxFocusIn)="selectHours()"
@@ -28,6 +29,7 @@
         <div fxFlex="none" style="padding-top: 15px">:</div>
         <lux-input
           luxLabel=""
+          class="lux-datetime-no-label"
           luxAutocomplete="off"
           [(luxValue)]="minutes"
           (luxFocusIn)="selectMinutes()"
@@ -39,6 +41,12 @@
           luxTagId="lux-datetimepicker-minutes-input"
           #minutesinput
         ></lux-input>
+      </div>
+      <div fxFlexAlign="center" class="lux-datetime-error-message-container lux-pt-2">
+        <mat-error *ngIf="!selected && touched" i18n="@@luxc.datetimepicker.invalid.date">Bitte wählen Sie ein Datum aus</mat-error>
+        <mat-error *ngIf="(!this.hours || !this.minutes) && selected && touched" i18n="@@luxc.datetimepicker.invalid.time"
+        >Bitte geben Sie eine Zeit ein</mat-error
+        >
       </div>
     </lux-card-content>
     <lux-card-actions>

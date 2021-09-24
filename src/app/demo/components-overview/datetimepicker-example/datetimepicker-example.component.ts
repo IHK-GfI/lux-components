@@ -44,10 +44,31 @@ export class DateTimepickerExampleComponent {
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   showToggle = true;
   opened = false;
-  startDate: string = null;
   minDate = '01.01.2000, 00:00';
   maxDate = '31.12.2100, 23:59';
   startView = 'month';
+  startDate: string = null;
+  startTime: number[] = null;
+  _startTimeAsString: string = null;
+
+  get startTimeAsString(): string {
+    return this._startTimeAsString;
+  }
+
+  set startTimeAsString(startTime) {
+    this._startTimeAsString = startTime;
+
+    if (startTime && startTime.indexOf(':') >= 0) {
+      const timeArr = startTime.trim().split(':');
+      if (timeArr.length === 2) {
+        this.startTime = [+timeArr[0], +timeArr[1]];
+      } else {
+        this.startTime = null;
+      }
+    } else {
+      this.startTime = null;
+    }
+  }
 
   // endregion
 

@@ -31,9 +31,9 @@ export class LuxDatetimeOverlayComponent {
   @Input() luxStartView: 'month' | 'year' | 'multi-year' = 'month';
   @Input() luxCustomFilter: LuxDateFilterFn = undefined;
   @Input() luxStartDate: Date = null;
+  @Input() luxStartTime: number[] = null;
   @Input() luxMinDate: Date = null;
   @Input() luxMaxDate: Date = null;
-  @Input() luxDefaultTime = [0, 0];
 
   @Output() luxSelected: EventEmitter<Date> = new EventEmitter<Date>();
   @Output() openedStream: EventEmitter<void> = new EventEmitter<void>();
@@ -51,7 +51,7 @@ export class LuxDatetimeOverlayComponent {
 
   @Input()
   set selectedDate(date) {
-    this._selectedDate = date ?? this.getToday();
+    this._selectedDate = date;
   }
 
   dateTimePortal: ComponentPortal<LuxDatetimeOverlayContentComponent>;
@@ -201,13 +201,5 @@ export class LuxDatetimeOverlayComponent {
           overlayY: 'bottom'
         }
       ]);
-  }
-
-  private getToday(): string {
-    const today = new Date();
-    today.setHours(this.luxDefaultTime[0], this.luxDefaultTime[1]);
-    today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
-
-    return today.toISOString();
   }
 }

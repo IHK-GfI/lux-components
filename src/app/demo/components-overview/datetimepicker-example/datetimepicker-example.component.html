@@ -10,6 +10,7 @@
         [luxShowToggle]="showToggle"
         [luxOpened]="opened"
         [luxStartDate]="startDate"
+        [luxStartTime]="startTime"
         [luxCustomFilter]="useCustomFilter ? customFilter : undefined"
         [luxMinDate]="minDate"
         [luxMaxDate]="maxDate"
@@ -42,6 +43,7 @@
         [luxShowToggle]="showToggle"
         [luxOpened]="opened"
         [luxStartDate]="startDate"
+        [luxStartTime]="startTime"
         [luxCustomFilter]="useCustomFilter ? customFilter : undefined"
         [luxMinDate]="minDate"
         [luxMaxDate]="maxDate"
@@ -179,10 +181,9 @@
     </lux-select>
     <div class="lux-highlight-section" fxLayout="column">
       <lux-input luxName="datepicker_luxStartDate" luxLabel="luxStartDate" [(luxValue)]="startDate">
-        <lux-form-hint>
-          Diese Property definiert das in der Datumsauswahl pre-selektierte Datum.<br />
-          Dazu das Datum einfach als String (z.B. 01.02.2021, 12:45) eingeben.
-        </lux-form-hint>
+        <lux-form-hint>Das Startdatum (z.B. 01.12.2021) im Popup, wenn kein Wert gesetzt ist.</lux-form-hint>
+      </lux-input>
+      <lux-input luxLabel="luxStartTime" luxHint="Die Startzeit (z.B. 12:15) im Popup, wenn kein Wert gesetzt ist." [(luxValue)]="startTimeAsString">
       </lux-input>
       <lux-input luxName="datepicker_luxMinDate" luxLabel="luxMinDate" [(luxValue)]="minDate">
         <lux-form-hint>

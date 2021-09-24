@@ -13,12 +13,13 @@ export class LuxDatetimeOverlayContentComponent implements OnInit, AfterViewInit
   @ViewChild('minutesinput') minutesInputComponent: LuxInputComponent;
 
   dateTimePicker: LuxDatetimeOverlayComponent;
-  selected: any;
-  minCalendarDate;
-  maxCalendarDate;
-  _initial: Date = null;
+  selected: Date;
+  startDate: Date;
+  minCalendarDate: Date;
+  maxCalendarDate: Date;
   _hours = '00';
   _minutes = '00';
+  touched = false;
 
   get hours() {
     return this._hours;
@@ -56,45 +57,53 @@ export class LuxDatetimeOverlayContentComponent implements OnInit, AfterViewInit
     this._minutes = newMinutes;
   }
 
-  get initialDate() {
-    return this.selected;
-  }
-
-  set initialDate(value) {
-    this._initial = new Date(value);
-
-    this.selected = new Date(value);
-    this.selected.setUTCHours(0, 0, 0, 0);
-
-    if (this.dateTimePicker.luxStartDate) {
-      this.hours =
-        this.dateTimePicker.luxStartDate.getUTCHours() < 10
-          ? '0' + this.dateTimePicker.luxStartDate.getUTCHours()
-          : '' + this.dateTimePicker.luxStartDate.getUTCHours();
-      this.minutes =
-        this.dateTimePicker.luxStartDate.getUTCMinutes() < 10
-          ? '0' + this.dateTimePicker.luxStartDate.getUTCMinutes()
-          : '' + this.dateTimePicker.luxStartDate.getUTCMinutes();
+  initDate(value: string) {
+    if (value) {
+      this.selected = new Date(value);
+      this.hours = this.selected.getUTCHours() < 10 ? '0' + this.selected.getUTCHours() : '' + this.selected.getUTCHours();
+      this.minutes = this.selected.getUTCMinutes() < 10 ? '0' + this.selected.getUTCMinutes() : '' + this.selected.getUTCMinutes();
+      this.selected.setUTCHours(0, 0, 0, 0);
+      this.startDate = new Date(this.selected.getTime());
     } else {
-      this.hours = this._initial.getUTCHours() < 10 ? '0' + this._initial.getUTCHours() : '' + this._initial.getUTCHours();
-      this.minutes = this._initial.getUTCMinutes() < 10 ? '0' + this._initial.getUTCMinutes() : '' + this._initial.getUTCMinutes();
+      if (this.dateTimePicker.luxStartDate) {
+        this.startDate = this.dateTimePicker.luxStartDate;
+        this.selected = this.startDate;
+      }
+
+      if (Array.isArray(this.dateTimePicker.luxStartTime) && this.dateTimePicker.luxStartTime.length === 2) {
+        this.hours =
+          this.dateTimePicker.luxStartTime[0] < 10 ? '0' + this.dateTimePicker.luxStartTime[0] : '' + this.dateTimePicker.luxStartTime[0];
+        this.minutes =
+          this.dateTimePicker.luxStartTime[1] < 10 ? '0' + this.dateTimePicker.luxStartTime[1] : '' + this.dateTimePicker.luxStartTime[1];
+      } else {
+        this.hours = '';
+        this.minutes = '';
+      }
     }
 
     if (this.dateTimePicker.luxMinDate) {
       this.minCalendarDate = new Date(0);
-      this.minCalendarDate.setUTCFullYear(this.dateTimePicker.luxMinDate.getUTCFullYear(), this.dateTimePicker.luxMinDate.getUTCMonth(), this.dateTimePicker.luxMinDate.getUTCDate());
+      this.minCalendarDate.setUTCFullYear(
+        this.dateTimePicker.luxMinDate.getUTCFullYear(),
+        this.dateTimePicker.luxMinDate.getUTCMonth(),
+        this.dateTimePicker.luxMinDate.getUTCDate()
+      );
     }
 
     if (this.dateTimePicker.luxMaxDate) {
       this.maxCalendarDate = new Date(0);
-      this.maxCalendarDate.setUTCFullYear(this.dateTimePicker.luxMaxDate.getUTCFullYear(), this.dateTimePicker.luxMaxDate.getUTCMonth(), this.dateTimePicker.luxMaxDate.getUTCDate());
+      this.maxCalendarDate.setUTCFullYear(
+        this.dateTimePicker.luxMaxDate.getUTCFullYear(),
+        this.dateTimePicker.luxMaxDate.getUTCMonth(),
+        this.dateTimePicker.luxMaxDate.getUTCDate()
+      );
     }
   }
 
   constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
-    this.initialDate = this.dateTimePicker.selectedDate;
+    this.initDate(this.dateTimePicker.selectedDate);
   }
 
   ngAfterViewInit() {
@@ -159,11 +168,15 @@ export class LuxDatetimeOverlayContentComponent implements OnInit, AfterViewInit
   }
 
   onOk() {
-    const resultDate = new Date(0);
-    resultDate.setUTCFullYear(this.selected.getFullYear(), this.selected.getMonth(), this.selected.getDate());
-    resultDate.setUTCHours(+this.hours, +this.minutes);
+    this.touched = true;
 
-    this.dateTimePicker.onOk(resultDate);
+    if (this.selected && this.hours && this.minutes) {
+      const resultDate = new Date(0);
+      resultDate.setUTCFullYear(this.selected.getFullYear(), this.selected.getMonth(), this.selected.getDate());
+      resultDate.setUTCHours(+this.hours, +this.minutes);
+
+      this.dateTimePicker.onOk(resultDate);
+    }
   }
 
   selectHours() {

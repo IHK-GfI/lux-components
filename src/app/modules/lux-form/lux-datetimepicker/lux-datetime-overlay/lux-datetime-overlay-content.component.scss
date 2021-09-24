@@ -16,3 +16,13 @@
 .lux-datetime-overlay-calendar {
   min-height: 350px;
 }
+
+.lux-datetime-error-message-container {
+  min-height: 18px;
+}
+
+.lux-datetime-no-label ::ng-deep div.lux-form-control-label {
+  min-height: 0 !important;
+  height: 0 !important;
+  padding-top: 0 !important;
+}
