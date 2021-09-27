@@ -10,6 +10,7 @@ import { CardExampleComponent } from './card-example/card-example.component';
 import { ChipExampleComponent } from './chip-example/chip-example.component';
 import { ComponentsOverviewComponent } from './components-overview.component';
 import { DatepickerExampleComponent } from './datepicker-example/datepicker-example.component';
+import { DateTimepickerExampleComponent } from './datetimepicker-example/datetimepicker-example.component';
 import { DividerExampleComponent } from './divider-example/divider-example.component';
 import { ErrorpageExampleComponent } from './errorpage-example/errorpage-example.component';
 import { HttpErrorExampleComponent } from './http-error-example/http-error-example.component';
@@ -69,6 +70,7 @@ const routes: Routes = [
       { path: 'card', component: CardExampleComponent },
       { path: 'chips', component: ChipExampleComponent },
       { path: 'datepicker', component: DatepickerExampleComponent },
+      { path: 'datetimepicker', component: DateTimepickerExampleComponent },
       { path: 'divider', component: DividerExampleComponent },
       { path: 'error-page', component: ErrorpageExampleComponent },
       { path: 'http-error', component: HttpErrorExampleComponent },
