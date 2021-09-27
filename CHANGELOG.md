@@ -1,8 +1,11 @@
 # Version 11.3.0
 ## New
-- **allgemein**: Rechtschreibfehler behoben. [Commit d6ca307](https://github.com/IHK-GfI/lux-components/commit/d6ca307cea2b3e4bba4df5fdb8202ce4b142f0c0)
+- **lux-datetimepicker**: Neuer Datepicker inklusive Uhrzeit. [Issue 106](https://github.com/IHK-GfI/lux-components/issues/106)
 - **lux-datepicker**: Datepicker soll Datum auch ohne Sonderzeichen erkennen können. [Issue 115](https://github.com/IHK-GfI/lux-components/issues/115)
 - **lux-link**: Link soll wie ein üblicher Weblink agieren. [Issue 117](https://github.com/IHK-GfI/lux-components/issues/117)
+
+## Bug Fixes
+- **allgemein**: Rechtschreibfehler behoben. [Commit d6ca307](https://github.com/IHK-GfI/lux-components/commit/d6ca307cea2b3e4bba4df5fdb8202ce4b142f0c0)
 
 # Version 11.2.0
 ## New

@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -27,6 +28,7 @@ import { LuxChipGroupComponent } from './lux-chips/lux-chips-subcomponents/lux-c
 import { LuxChipComponent } from './lux-chips/lux-chips-subcomponents/lux-chip.component';
 import { LuxChipsComponent } from './lux-chips/lux-chips.component';
 import { LuxDatepickerComponent } from './lux-datepicker/lux-datepicker.component';
+import { LuxDateTimePickerComponent } from './lux-datetimepicker/lux-datetimepicker.component';
 import { LuxFileInputComponent } from './lux-file/lux-file-input/lux-file-input.component';
 import { LuxFileListComponent } from './lux-file/lux-file-list/lux-file-list.component';
 import { LuxFileProgressComponent } from './lux-file/lux-file-subcomponents/lux-file-progress/lux-file-progress.component';
@@ -45,6 +47,8 @@ import { LuxFileCaptureDirective } from './lux-file/lux-file-model/lux-file-capt
 import { LuxMaxLengthDirective } from './lux-form-control/lux-form-directives/lux-maxlength/lux-max-length.directive';
 import { LuxNameDirectiveDirective } from './lux-form-control/lux-form-directives/lux-name/lux-name-directive.directive';
 import { LuxSelectOptionHeightDirective } from './lux-select/lux-select-option-height.directive';
+import { LuxDatetimeOverlayComponent } from './lux-datetimepicker/lux-datetime-overlay/lux-datetime-overlay.component';
+import { LuxDatetimeOverlayContentComponent } from './lux-datetimepicker/lux-datetime-overlay/lux-datetime-overlay-content.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +64,7 @@ import { LuxSelectOptionHeightDirective } from './lux-select/lux-select-option-h
     LuxChipGroupComponent,
     LuxRadioComponent,
     LuxDatepickerComponent,
+    LuxDateTimePickerComponent,
     LuxAutocompleteComponent,
     LuxSliderComponent,
     LuxTextareaComponent,
@@ -71,7 +76,9 @@ import { LuxSelectOptionHeightDirective } from './lux-select/lux-select-option-h
     LuxFileProgressComponent,
     LuxFileCaptureDirective,
     LuxMaxLengthDirective,
-    LuxNameDirectiveDirective
+    LuxNameDirectiveDirective,
+    LuxDatetimeOverlayComponent,
+    LuxDatetimeOverlayContentComponent
   ],
   imports: [
     CommonModule,
@@ -96,7 +103,8 @@ import { LuxSelectOptionHeightDirective } from './lux-select/lux-select-option-h
     LuxActionModule,
     LuxLayoutModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    OverlayModule
   ],
   exports: [
     LuxToggleComponent,
@@ -111,6 +119,7 @@ import { LuxSelectOptionHeightDirective } from './lux-select/lux-select-option-h
     LuxChipGroupComponent,
     LuxRadioComponent,
     LuxDatepickerComponent,
+    LuxDateTimePickerComponent,
     LuxAutocompleteComponent,
     LuxSliderComponent,
     LuxTextareaComponent,
