@@ -1,6 +1,6 @@
 # Version 11.3.0
 ## New
-- **allgemein**: LUX-Theme [11.5.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.5.0) hinzugefügt.
+- **allgemein**: LUX-Theme [11.5.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.5.0) hinzugefügt. [Commit 98f5863](https://github.com/IHK-GfI/lux-components/commit/98f5863032bf030bf7c20f85d49b6d027fcfc1d3)
 - **lux-datetimepicker**: Neuer Datepicker inklusive Uhrzeit. [Issue 106](https://github.com/IHK-GfI/lux-components/issues/106)
 - **lux-datepicker**: Datepicker soll Datum auch ohne Sonderzeichen erkennen können. [Issue 115](https://github.com/IHK-GfI/lux-components/issues/115)
 - **lux-link**: Link soll wie ein üblicher Weblink agieren. [Issue 117](https://github.com/IHK-GfI/lux-components/issues/117)
