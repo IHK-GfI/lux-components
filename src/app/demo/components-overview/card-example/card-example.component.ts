@@ -14,6 +14,7 @@ export class CardExampleComponent {
   showIcon = true;
   showInfo = true;
   useExpandableContent = true;
+  btn2Raised = true;
 
   // endregion
 
