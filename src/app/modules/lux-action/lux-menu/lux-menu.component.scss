@@ -35,11 +35,6 @@
   > lux-button {
     margin-right: 8px;
 
-    ::ng-deep button {
-      padding-left: 8px !important;
-      padding-right: 8px !important;
-    }
-
     ::ng-deep lux-icon {
       i,
       mat-icon {

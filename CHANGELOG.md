@@ -1,11 +1,13 @@
 # Version 11.3.0
 ## New
+- **allgemein**: LUX-Theme [11.5.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.5.0) hinzugefügt.
 - **lux-datetimepicker**: Neuer Datepicker inklusive Uhrzeit. [Issue 106](https://github.com/IHK-GfI/lux-components/issues/106)
 - **lux-datepicker**: Datepicker soll Datum auch ohne Sonderzeichen erkennen können. [Issue 115](https://github.com/IHK-GfI/lux-components/issues/115)
 - **lux-link**: Link soll wie ein üblicher Weblink agieren. [Issue 117](https://github.com/IHK-GfI/lux-components/issues/117)
 
 ## Bug Fixes
 - **allgemein**: Rechtschreibfehler behoben. [Commit d6ca307](https://github.com/IHK-GfI/lux-components/commit/d6ca307cea2b3e4bba4df5fdb8202ce4b142f0c0)
+- **lux-button**: Unterschiedliche Buttongrößen in lux-card-actions. [Issue 114](https://github.com/IHK-GfI/lux-components/issues/114)
 
 # Version 11.2.0
 ## New
@@ -24,7 +26,7 @@
 
 # Version 11.1.0
 ## New
-- **allgemein**: LUX-Theme [11.3.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.2.0) hinzugefügt. [Commit fbf0ddd](https://github.com/IHK-GfI/lux-components/commit/fbf0ddd3c4fac2439d7063d1413d33da4de0633e)
+- **allgemein**: LUX-Theme [11.3.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.3.0) hinzugefügt. [Commit fbf0ddd](https://github.com/IHK-GfI/lux-components/commit/fbf0ddd3c4fac2439d7063d1413d33da4de0633e)
 - **allgemein**: Dependabot Alert: Abhängigkeit "marked" aktualisieren. [Issue 96](https://github.com/IHK-GfI/lux-components/issues/96)
 - **lux-file-input**: Erweiterung um individuelle Buttons. [Issue 85](https://github.com/IHK-GfI/lux-components/issues/85)
 - **lux-file-list**: Erweiterung um individuelle Buttons. [Issue 85](https://github.com/IHK-GfI/lux-components/issues/85)
