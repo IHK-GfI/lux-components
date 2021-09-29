@@ -17,14 +17,28 @@ export class LuxLinkComponent extends LuxActionComponentBaseClass {
     super();
   }
 
+  auxClicked($event) {
+    if ($event.which === 2) {
+      this.redirectToHref($event);
+    }
+  }
+
   redirectToHref($event: any) {
     this.luxClicked.emit($event);
+
     if (this.luxHref) {
       this.luxHref = this.luxHref.trim();
       if (!this.luxHref.startsWith('http')) {
-        this.router.navigate([this.luxHref]).then(() => {});
+        if (this.luxBlank || $event.ctrlKey || $event.metaKey || $event.which === 2) {
+          let newRelativeUrl = this.router.createUrlTree([this.luxHref]);
+          let baseUrl = window.location.href.replace(this.router.url, '');
+
+          window.open(baseUrl + newRelativeUrl, '_blank');
+        } else {
+          this.router.navigate([this.luxHref]).then(() => {});
+        }
       } else {
-        window.open(this.luxHref, this.luxBlank ? '_blank' : '_self');
+        window.open(this.luxHref, this.luxBlank || $event.ctrlKey || $event.metaKey || $event.which === 2 ? '_blank' : '_self');
       }
     }
   }
