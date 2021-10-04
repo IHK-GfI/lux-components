@@ -690,6 +690,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
           }
           if (this.luxHttpDAO) {
             this.httpRequestConf.filter = filterValue;
+            this.httpRequestConf.page = this.paginator.pageIndex;
             this.loadHttpDAOData(filterValue);
           }
         });

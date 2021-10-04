@@ -36,7 +36,7 @@ export abstract class TableExampleBaseClass {
   noDataText = 'Keine Daten vorhanden';
   pagination = true;
   pageSize = 5;
-  pageSizeOption = this.pageSizeOptions[1].value;
+  pageSizeOption = this.pageSizeOptions[0].value;
   autoPagination = true;
   cssClass = '';
   columnWidthOption = this.columnWidthOptions[1].value;
@@ -45,7 +45,6 @@ export abstract class TableExampleBaseClass {
   minWidthPx = undefined;
   tableHeightPx = 500;
   hideBorders = false;
-  responsiveBehaviour = ResponsiveBehaviour.BEHAVIOURS;
   selected: any[];
 
   nameConfig: ColumnConfig = new ColumnConfig({ label: 'Name', sticky: false });
