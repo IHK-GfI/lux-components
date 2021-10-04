@@ -1,4 +1,8 @@
 # Version 11.3.0
+## Bug Fixes
+- **lux-chips**: Generierte Label-Id und Verknüpfung zum Input-Feld. [Issue 120](https://github.com/IHK-GfI/lux-components/issues/120)
+
+# Version 11.3.0
 ## New
 - **allgemein**: LUX-Theme [11.5.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.5.0) hinzugefügt. [Commit 98f5863](https://github.com/IHK-GfI/lux-components/commit/98f5863032bf030bf7c20f85d49b6d027fcfc1d3)
 - **lux-datetimepicker**: Neuer Datepicker inklusive Uhrzeit. [Issue 106](https://github.com/IHK-GfI/lux-components/issues/106)

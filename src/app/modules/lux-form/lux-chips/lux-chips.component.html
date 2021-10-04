@@ -79,9 +79,11 @@
 
       <ng-container *ngIf="luxInputAllowed">
         <input
+          [id]="uid"
           [matChipInputFor]="chips"
           [matChipInputAddOnBlur]="true"
           [matAutocomplete]="auto"
+          [attr.aria-labelledby]="uid + '-label'"
           [disabled]="luxDisabled"
           (matChipInputTokenEnd)="inputAdd(input)"
           (keyup)="inputChanged(input.value)"
