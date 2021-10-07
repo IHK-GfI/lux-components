@@ -1,3 +1,7 @@
+# Version 11.3.1
+## Bug Fixes
+- **lux-table**: Filtereingaben setzen beim serverseitigen Blättern die Seite nicht zurück. [Issue 122](https://github.com/IHK-GfI/lux-components/issues/122)
+
 # Version 11.3.0
 ## Bug Fixes
 - **lux-chips**: Generierte Label-Id und Verknüpfung zum Input-Feld. [Issue 120](https://github.com/IHK-GfI/lux-components/issues/120)
