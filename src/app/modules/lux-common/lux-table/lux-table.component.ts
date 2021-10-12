@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ContentChildren,
   DoCheck,
@@ -80,6 +80,9 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   @Input() luxMinWidthPx = -1;
   @Input() luxAutoPaginate = true;
   @Input() luxHideBorders = false;
+  @Input() luxMultiSelectOnlyCheckboxClick = false;
+  @Input() luxPagerDisabled = false;
+  @Input() luxPagerTooltip = '';
 
   @Output() luxSelectedChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
@@ -174,7 +177,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   @Input() set luxMultiSelect(multiSelect: boolean) {
     this._luxMultiSelect = multiSelect;
     if (this.luxMultiSelect) {
-      this.luxSelected.clear();
+      this.clearSelected();
       this._dataColumnDefs.unshift('multiSelect');
     } else {
       this._dataColumnDefs = this._dataColumnDefs.filter((col: string) => col !== 'multiSelect');
@@ -198,10 +201,10 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
    * @param selected
    */
   @Input() set luxSelected(selected: Set<any>) {
-    this.luxSelected.clear();
+    this.clearSelected();
     if (selected) {
       selected.forEach((entry) => {
-        this.luxSelected.add(entry);
+        this.addSelected(entry);
       });
     }
     if (this.luxData && this.luxData.length > 0) {
@@ -258,7 +261,8 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   constructor(
     private queryObserver: LuxMediaQueryObserverService,
     private luxConsole: LuxConsoleService,
-    private liveAnnouncer: LiveAnnouncer
+    private liveAnnouncer: LiveAnnouncer,
+    private cdr: ChangeDetectorRef
   ) {
     // Datasource um eigene Filter-Funktionalitaet ergaenzen
     this.dataSource.filterPredicate = this.customFilterPredicate;
@@ -365,33 +369,45 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
     return index;
   }
 
+  checkboxChanged(value: boolean, entry: any) {
+    if (value && !this.luxSelected.has(entry)) {
+      this.addSelected(entry);
+    } else if (!value && this.luxSelected.has(entry))  {
+      this.deleteSelected(entry);
+    }
+    this.cdr.detectChanges();
+  }
+
   /**
    * Wird beim Klick auf eine Row aufgerufen und handelt das Sichern und Entfernen von
    * selektierten Einträgen.
    *
    * @param entry
+   * @param checkboxEvent
    */
-  changeSelectedEntry(entry: any) {
-    if (this.luxMultiSelect) {
-      if (this.luxSelected.has(entry)) {
-        this.luxSelected.delete(entry);
+  changeSelectedEntry(entry: any, checkboxEvent = false) {
+    if ((!this.luxMultiSelectOnlyCheckboxClick && !checkboxEvent) || (this.luxMultiSelectOnlyCheckboxClick && checkboxEvent)) {
+      if (this.luxMultiSelect) {
+        if (this.luxSelected.has(entry)) {
+          this.deleteSelected(entry);
+        } else {
+          this.addSelected(entry);
+        }
       } else {
-        this.luxSelected.add(entry);
+        if (this.luxSelected.has(entry)) {
+          // Wenn der selektierte Eintrag erneut angeklickt wird,
+          // wird die Selektion entfernt.
+          this.clearSelected();
+        } else {
+          this.clearSelected();
+          this.addSelected(entry);
+        }
       }
-    } else {
-      if (this.luxSelected.has(entry)) {
-        // Wenn der selektierte Eintrag erneut angeklickt wird,
-        // wird die Selektion entfernt.
-        this.luxSelected.clear();
-      } else {
-        this.luxSelected.clear();
-        this.luxSelected.add(entry);
-      }
-    }
 
-    this.luxSelectedChange.next(Array.from(this.luxSelected));
-    this.dataSource.selectedEntries = this.luxSelected;
-    this.allSelected = this.checkFilteredAllSelected();
+      this.luxSelectedChange.next(Array.from(this.luxSelected));
+      this.dataSource.selectedEntries = this.luxSelected;
+      this.allSelected                = this.checkFilteredAllSelected();
+    }
   }
 
   /**
@@ -402,9 +418,9 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   changeSelectedEntries() {
     if (this.luxMultiSelect && !this.luxHttpDAO) {
       if (this.checkFilteredAllSelected()) {
-        this.dataSource.filteredData.forEach((dataEntry: any) => this.luxSelected.delete(dataEntry));
+        this.dataSource.filteredData.forEach((dataEntry: any) => this.deleteSelected(dataEntry));
       } else {
-        this.dataSource.filteredData.forEach((dataEntry: any) => this.luxSelected.add(dataEntry));
+        this.dataSource.filteredData.forEach((dataEntry: any) => this.addSelected(dataEntry));
       }
       this.luxSelectedChange.next(Array.from(this.luxSelected));
       this.dataSource.selectedEntries = this.luxSelected;
@@ -762,18 +778,30 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
         // Merkt sich die Entry wenn sie noch nicht in der Selected-Liste ist (wenn es sich um eine HTTP-Tabelle handelt)
         if (newEntry && (!this.luxHttpDAO || (this.luxHttpDAO && !this.luxSelected.has(newEntry)))) {
           foundEntries.push(newEntry);
-          this.luxSelected.delete(entry);
+          this.deleteSelected(entry);
         }
       });
       // Nur bei nicht-HTTP-Tabellen die Selektion einmal leeren
       if (!this.luxHttpDAO) {
-        this.luxSelected.clear();
+        this.clearSelected();
       }
-      foundEntries.forEach((entry: boolean) => this.luxSelected.add(entry));
+      foundEntries.forEach((entry: boolean) => this.addSelected(entry));
     }
 
     this.dataSource.selectedEntries = this.luxSelected;
     this.luxSelectedChange.next(Array.from(this.luxSelected));
     this.allSelected = this.checkFilteredAllSelected();
+  }
+
+  addSelected(entry: any) {
+    this.luxSelected.add(entry);
+  }
+
+  deleteSelected(entry: any) {
+    this.luxSelected.delete(entry);
+  }
+
+  clearSelected() {
+    this.luxSelected.clear();
   }
 }
