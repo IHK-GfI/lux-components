@@ -55,20 +55,20 @@
                 >
               </div>
             </th>
-            <td class="lux-multiselect-td" mat-cell *matCellDef="let element; let i = index">
+            <td class="lux-multiselect-td" mat-cell *matCellDef="let element; let i = index"
+                [tabindex]="luxMultiSelectOnlyCheckboxClick ? 0 : -1"
+                (click)="changeSelectedEntry(element, true)"
+                (keydown.space)="changeSelectedEntry(element, true)"
+                (keydown.enter)="changeSelectedEntry(element, true)">
               <lux-checkbox
                 luxTagId="lux-table-multiselect-content-{{ i }}"
                 class="lux-multiselect-toggle"
-                [luxTabIndex]="luxMultiSelectOnlyCheckboxClick ? '0' : '-1'"
+                [luxTabIndex]="'-1'"
                 [luxApplyToChildren]="['input']"
                 luxAriaLabel="Reihe {{ i }}"
                 i18n-luxAriaLabel="@@luxc.table.multiselect.chk.arialabel"
                 luxAriaLabelSelector="input"
                 [luxChecked]="luxSelected.has(element)"
-                (luxCheckedChange)="checkboxChanged($event, element)"
-                (click)="changeSelectedEntry(element, true)"
-                (keydown.space)="changeSelectedEntry(element, true)"
-                (keydown.enter)="changeSelectedEntry(element, true)"
               >
               </lux-checkbox>
             </td>

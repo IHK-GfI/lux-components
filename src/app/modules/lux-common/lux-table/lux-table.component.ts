@@ -369,15 +369,6 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
     return index;
   }
 
-  checkboxChanged(value: boolean, entry: any) {
-    if (value && !this.luxSelected.has(entry)) {
-      this.addSelected(entry);
-    } else if (!value && this.luxSelected.has(entry))  {
-      this.deleteSelected(entry);
-    }
-    this.cdr.detectChanges();
-  }
-
   /**
    * Wird beim Klick auf eine Row aufgerufen und handelt das Sichern und Entfernen von
    * selektierten Einträgen.
