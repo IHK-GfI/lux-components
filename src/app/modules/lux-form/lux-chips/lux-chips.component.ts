@@ -5,19 +5,19 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
-  Optional,
   Output,
   QueryList,
   ViewChild,
   ViewChildren
-} from "@angular/core";
-import { ControlContainer } from '@angular/forms';
+} from '@angular/core';
 import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatChip } from '@angular/material/chips';
 import { LuxChipGroupComponent } from './lux-chips-subcomponents/lux-chip-group.component';
 import { LuxChipComponent } from './lux-chips-subcomponents/lux-chip.component';
 import { Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, map, startWith } from 'rxjs/operators';
+
+let luxChipControlUID = 0;
 
 @Component({
   selector: 'lux-chips',
@@ -30,7 +30,9 @@ export class LuxChipsComponent implements OnDestroy {
 
   private _luxDisabled = false;
   private _luxAutocompleteOptions: string[] = [];
-  private _luxLabel = $localize `:@@luxc.chips.new.lbl:Neu`;
+  private _luxLabel = $localize`:@@luxc.chips.new.lbl:Neu`;
+
+  uid: string = 'lux-chip-control-' + luxChipControlUID++;
 
   filteredOptions: string[] = [];
   inputValue$: Subject<string> = new Subject<string>();
@@ -57,8 +59,8 @@ export class LuxChipsComponent implements OnDestroy {
   @Input() set luxDisabled(disabled: boolean) {
     this._luxDisabled = disabled;
     setTimeout(() => {
-      this.luxChipGroupComponents.forEach(chipGroup => (chipGroup.luxDisabled = disabled));
-      this.luxChipComponents.forEach(chip => (chip.luxDisabled = disabled));
+      this.luxChipGroupComponents.forEach((chipGroup) => (chipGroup.luxDisabled = disabled));
+      this.luxChipComponents.forEach((chip) => (chip.luxDisabled = disabled));
     });
   }
 
@@ -108,11 +110,7 @@ export class LuxChipsComponent implements OnDestroy {
             this.filteredOptions = [...this.luxAutocompleteOptions];
           } else {
             this.filteredOptions = this.luxAutocompleteOptions.filter(
-              (compareValue: string) =>
-                compareValue
-                  .trim()
-                  .toLowerCase()
-                  .indexOf(value.trim().toLowerCase()) > -1
+              (compareValue: string) => compareValue.trim().toLowerCase().indexOf(value.trim().toLowerCase()) > -1
             );
           }
         })

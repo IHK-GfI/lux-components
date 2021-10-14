@@ -28,6 +28,8 @@ export class TestHttpDao implements ILuxTableHttpDao {
   constructor(private logger: LuxConsoleService) {}
 
   loadData(conf: { page: number; pageSize: number; filter?: string; sort?: string; order?: string }): Observable<any> {
+    this.logger.log('gemockter http-Request (config):', conf);
+
     // Beispiel; bis zum return wuerde das alles hier serverseitig stattfinden
     let tempDataSourceFix = this.dataSourceFix.slice(0, this.dataSourceFix.length);
     conf.pageSize = conf.pageSize ? conf.pageSize : tempDataSourceFix.length;
@@ -43,9 +45,9 @@ export class TestHttpDao implements ILuxTableHttpDao {
     if (tempDataSourceFix.length > 0 && tempDataSourceFix[0][conf.sort]) {
       tempDataSourceFix = tempDataSourceFix.sort((a, b) => {
         if (conf.order === 'asc') {
-          return a[conf.sort] - b[conf.sort];
+          return a[conf.sort] > b[conf.sort] ? -1 : 1;
         } else if (conf.order === 'desc') {
-          return b[conf.sort] - a[conf.sort];
+          return b[conf.sort] > a[conf.sort] ? -1 : 1;
         }
         return 0;
       });
@@ -58,7 +60,7 @@ export class TestHttpDao implements ILuxTableHttpDao {
     const start = currentPage * (conf.pageSize * 1);
     const end = start + conf.pageSize * 1;
     const result = tempDataSourceFix.slice(start, end);
-    this.logger.log('gemockter http-Request...', result);
+    this.logger.log('gemockter http-Request (result):', result);
     this.filter = conf.filter;
     return of({ items: result, totalCount: tempDataSourceFix.length }).pipe(delay(1000));
   }

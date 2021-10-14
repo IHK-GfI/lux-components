@@ -1,3 +1,13 @@
+# Version 11.4.0
+## New
+- **lux-table**: Neue Property "luxMultiSelectOnlyCheckboxClick" für Tabellen mit aktiver Selektion. [Issue 126](https://github.com/IHK-GfI/lux-components/issues/126)
+- **lux-table**: Neue Property "luxPagerDisabled" eingeführt. [Issue 126](https://github.com/IHK-GfI/lux-components/issues/126)
+- **lux-table**: Neue Property "luxPagerTooltip" eingeführt. [Issue 126](https://github.com/IHK-GfI/lux-components/issues/126)
+
+## Bug Fixes
+- **lux-table**: Filtereingaben setzen beim serverseitigen Blättern die Seite nicht zurück. [Issue 122](https://github.com/IHK-GfI/lux-components/issues/122)
+- **lux-chips**: Generierte Label-Id und Verknüpfung zum Input-Feld. [Issue 120](https://github.com/IHK-GfI/lux-components/issues/120)
+
 # Version 11.3.0
 ## New
 - **allgemein**: LUX-Theme [11.5.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.5.0) hinzugefügt. [Commit 98f5863](https://github.com/IHK-GfI/lux-components/commit/98f5863032bf030bf7c20f85d49b6d027fcfc1d3)

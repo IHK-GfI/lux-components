@@ -4,7 +4,7 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90table"
 >
   <example-base-content>
-    <div [ngStyle]="{ height: calculateProportions ? tableHeightPx + 'px' : 'unset' }">
+    <div [ngStyle]="{ height: calculateProportions ? tableHeightPx + 'px' : 'unset' }" class="lux-table-example">
       <lux-table
         [luxMinWidthPx]="minWidthPx"
         [luxData]="dataSource"
@@ -16,12 +16,15 @@
         [luxClasses]="cssClass"
         [luxPageSizeOptions]="pageSizeOption"
         [luxMultiSelect]="multiSelect"
+        [luxMultiSelectOnlyCheckboxClick]="multiSelectOnlyCheckboxClick"
         [luxNoDataText]="noDataText"
         [(luxSelected)]="selected"
         [luxCompareWith]="compareFn"
         (luxSelectedChange)="onSelectedChange($event)"
         [luxHideBorders]="hideBorders"
         [luxAutoPaginate]="autoPagination"
+        [luxPagerDisabled]="pagerDisabled"
+        [luxPagerTooltip]="pagerTooltip"
       >
         <lux-table-column
           luxColumnDef="name"
@@ -34,14 +37,19 @@
             <ng-template><span [luxTooltip]="'Tooltipp Spalte \'Name\''">Name</span></ng-template>
           </lux-table-column-header>
           <lux-table-column-content>
-            <ng-template let-element
-              ><span>{{ element.name }}</span></ng-template
-            >
+            <ng-template let-element>
+              <span *ngIf="!element.editable">{{ element.name }}</span>
+              <lux-input
+                *ngIf="element.editable"
+                luxAriaLabel="Name"
+                luxTagId="table.row.control.name"
+                class="lux-table-no-label"
+                [(luxValue)]="element.name"
+              ></lux-input>
+            </ng-template>
           </lux-table-column-content>
           <lux-table-column-footer>
-            <ng-template>
-              Name Footer
-            </ng-template>
+            <ng-template> Name Footer </ng-template>
           </lux-table-column-footer>
         </lux-table-column>
         <lux-table-column
@@ -52,20 +60,31 @@
           [luxResponsiveBehaviour]="symbolConfig.responsiveBehaviour?.value"
         >
           <lux-table-column-header>
-            <ng-template><span [luxTooltip]="'Tooltipp Spalte \'Symbol\''">Symbol</span></ng-template>
+            <ng-template>
+              <span [luxTooltip]="'Tooltipp Spalte \'Symbol\''">Symbol</span>
+            </ng-template>
           </lux-table-column-header>
           <lux-table-column-content>
-            <ng-template let-element
-              ><span>{{ element.symbol | lowercase }}</span></ng-template
-            >
+            <ng-template let-element>
+              <span *ngIf="!element.editable">{{ element.symbol | lowercase }}</span>
+              <div fxLayout="row wrap">
+                <lux-input
+                  *ngIf="element.editable"
+                  luxAriaLabel="Symbol"
+                  luxTagId="table.row.control.symbol"
+                  fxFlex="1 1 30%"
+                  class="lux-table-no-label"
+                  [(luxValue)]="element.symbol"
+                ></lux-input>
+              </div>
+            </ng-template>
           </lux-table-column-content>
           <lux-table-column-footer>
-            <ng-template>
-              Symbol Footer
-            </ng-template>
+            <ng-template> Symbol Footer </ng-template>
           </lux-table-column-footer>
         </lux-table-column>
         <lux-table-column
+          *ngIf="!multiSelect || !multiSelectOnlyCheckboxClick"
           luxColumnDef="date"
           [luxSortable]="dateConfig.sortable"
           [luxSticky]="dateConfig.sticky"
@@ -81,9 +100,46 @@
             >
           </lux-table-column-content>
           <lux-table-column-footer>
-            <ng-template>
-              Datum Footer
+            <ng-template> Datum Footer </ng-template>
+          </lux-table-column-footer>
+        </lux-table-column>
+        <lux-table-column *ngIf="multiSelect && multiSelectOnlyCheckboxClick" luxColumnDef="Aktion" [luxSortable]="false">
+          <lux-table-column-header>
+            <ng-template>Aktion</ng-template>
+          </lux-table-column-header>
+          <lux-table-column-content>
+            <ng-template let-element>
+              <lux-button
+                *ngIf="!element.editable"
+                luxAriaLabel="Editieren"
+                luxTagId="table.row.action.edit"
+                class="lux-table-example"
+                luxColor="primary"
+                luxIconName="fas fa-edit"
+                (luxClicked)="onEdit(element)"
+              ></lux-button>
+              <lux-button
+                *ngIf="element.editable"
+                luxAriaLabel="Speichern"
+                luxTagId="table.row.action.save"
+                class="lux-table-example"
+                luxColor="primary"
+                luxIconName="fas fa-save"
+                (luxClicked)="onSave(element)"
+              ></lux-button>
+              <lux-button
+                *ngIf="element.editable"
+                luxAriaLabel="Abbrechen"
+                luxTagId="table.row.action.cancel"
+                class="lux-table-example"
+                luxColor="primary"
+                luxIconName="fas fa-undo"
+                (luxClicked)="onCancel(element)"
+              ></lux-button>
             </ng-template>
+          </lux-table-column-content>
+          <lux-table-column-footer>
+            <ng-template> Aktion Footer </ng-template>
           </lux-table-column-footer>
         </lux-table-column>
       </lux-table>

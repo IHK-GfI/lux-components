@@ -1,6 +1,5 @@
 import { ICustomCSSConfig } from '../../../modules/lux-common/lux-table/lux-table-custom-css-config.interface';
 import { ColumnConfig } from './column-config';
-import { ResponsiveBehaviour } from './responsive-behaviour';
 
 export abstract class TableExampleBaseClass {
   // region Helper-Properties für das Beispiel
@@ -36,16 +35,19 @@ export abstract class TableExampleBaseClass {
   noDataText = 'Keine Daten vorhanden';
   pagination = true;
   pageSize = 5;
-  pageSizeOption = this.pageSizeOptions[1].value;
+  pageSizeOption = this.pageSizeOptions[0].value;
   autoPagination = true;
+  pagerDisabled = false;
+  pagerTooltip = '';
   cssClass = '';
   columnWidthOption = this.columnWidthOptions[1].value;
-  multiSelect = false;
+  multiSelect = true;
+  multiSelectOnlyCheckboxClick = true;
+
   calculateProportions = false;
   minWidthPx = undefined;
   tableHeightPx = 500;
   hideBorders = false;
-  responsiveBehaviour = ResponsiveBehaviour.BEHAVIOURS;
   selected: any[];
 
   nameConfig: ColumnConfig = new ColumnConfig({ label: 'Name', sticky: false });
