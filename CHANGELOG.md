@@ -1,3 +1,7 @@
+# Version 11.4.1
+## Bug Fixes
+- **lux-form-components**: Die Funktion "luxErrorCallback" wird aufgerufen, obwohl die Eingabe korrigiert wurde. [Issue 129](https://github.com/IHK-GfI/lux-components/issues/129)
+
 # Version 11.4.0
 ## New
 - **lux-table**: Neue Property "luxMultiSelectOnlyCheckboxClick" für Tabellen mit aktiver Selektion. [Issue 126](https://github.com/IHK-GfI/lux-components/issues/126)
