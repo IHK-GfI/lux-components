@@ -36,7 +36,8 @@
     <ng-content></ng-content>
   </div>
   <!-- Container für das Hint und den Error -->
-  <div class="lux-form-control-misc" *ngIf="shouldDisplayMisc()">
+  <div class="lux-form-control-misc" *ngIf="shouldDisplayMisc()" fxLayout="row" fxLayoutAlign="space-between start">
+    
     <ng-container [ngSwitch]="shouldDisplayError()">
       <mat-error [id]="luxFormComponent.uid + '-error'" *ngSwitchCase="true">
         {{ luxFormComponent.errorMessage }}
@@ -56,5 +57,6 @@
         </mat-hint>
       </ng-container>
     </ng-container>
+    <div class="lux-form-control-character-counter"><ng-container *ngIf="focused">{{ luxCounterLabel }}</ng-container> </div>
   </div>
 </div>

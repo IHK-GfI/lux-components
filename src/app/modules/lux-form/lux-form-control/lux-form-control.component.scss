@@ -67,6 +67,17 @@ $fontSizeSmall: 12px;
     > * {
       padding-top: 2px;
     }
+
+    .lux-form-control-character-counter{
+      
+      color: rgba(black, 0.65);
+      margin: 0 0 0 4px;
+      font-size: $fontSizeSmall;
+      text-align: end;
+      min-width: 60px;
+      white-space: nowrap;
+
+    }
   }
 
   ::ng-deep {
@@ -84,7 +95,7 @@ $fontSizeSmall: 12px;
       max-width: 100%;
       vertical-align: bottom;
       text-align: inherit;
-      font-size: $fontSize;
+      font-size: $fontSizeSmall;
 
       &:required {
         -webkit-box-shadow: unset;

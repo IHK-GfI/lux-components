@@ -10,6 +10,16 @@
     .mat-vertical-stepper-content {
       padding: 8px;
     }
+    
+    lux-step-header {
+      div {
+        color: #335c85;
+      }
+    }
+
+    .mat-stepper-horizontal, .mat-stepper-vertical {
+      background-color: transparent;
+    }
 
     .mat-horizontal-stepper-header-container {
       padding: 8px 8px 0 8px;
@@ -19,6 +29,7 @@
       margin: 8px 8px 0 8px;
     }
 
+   
     mat-step-header {
       margin: $outline-width;
 

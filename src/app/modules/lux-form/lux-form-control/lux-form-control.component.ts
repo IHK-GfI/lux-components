@@ -24,8 +24,10 @@ export class LuxFormControlComponent {
    */
   @Input() luxFormComponent: LuxFormComponentBase;
   @Input() luxFormComponentElementRef: ElementRef;
-
+  
   @Input() luxIgnoreDefaultLabel = false;
+
+  @Input() luxCounterLabel = ''; 
 
   /**
    * Dient dazu, eine Component beliebig Hoch werden zu lassen (z.B. Textarea oder Radio).
@@ -53,6 +55,8 @@ export class LuxFormControlComponent {
     return this._luxHideBottomBorder;
   }
 
+
+
   constructor(private cdr: ChangeDetectorRef) {}
 
   /**
@@ -63,7 +67,8 @@ export class LuxFormControlComponent {
   }
 
   shouldDisplayMisc() {
-    return this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError();
+    this.compareMisc();
+    return this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError() || this.luxCounterLabel;
   }
 
   shouldDisplayLabelByProperty() {
@@ -72,6 +77,23 @@ export class LuxFormControlComponent {
 
   shouldDisplayHintByProperty() {
     return this.luxFormComponent.formHintComponent && !this.luxFormComponent.luxHint;
+  }
+
+  compareMisc(){
+    if (this.luxCounterLabel && (this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError()) ) {
+      console.log('ALL')
+      
+    } 
+    if (this.luxCounterLabel && !(this.luxFormComponent.formHintComponent && this.luxFormComponent.luxHint && this.shouldDisplayError())) {
+      console.log('COUNTER')
+   
+    } 
+    if (!this.luxCounterLabel && (this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError())){
+      console.log('HINT')
+    
+    } else {
+      console.log('NIX')
+    }
   }
 
   /**

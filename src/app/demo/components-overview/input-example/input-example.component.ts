@@ -47,7 +47,8 @@ export class InputExampleComponent {
   inputType = 'text';
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
-  maxLength: number;
+  maxLength: number = 500;
+  charCounter: boolean;
 
   // endregion
 
