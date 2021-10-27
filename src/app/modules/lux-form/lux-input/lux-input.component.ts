@@ -70,9 +70,14 @@ export class LuxInputComponent extends LuxFormInputBaseClass {
     }
   }
   
-  updateCounterLabel(){
+  notifyFormValueChanged(formValue: any) {
+    this.updateCounterLabel();
+    super.notifyFormValueChanged(formValue);
+  }
+  
+  private updateCounterLabel(){
     if (this.luxMaxLength > 0 && this.luxType === 'text'){
-      if (this.formControl.value) {
+      if (typeof this.formControl.value === 'string') {
         this.counterLabel = this.formControl.value.length + '/' + this.luxMaxLength;
       } else {
         this.counterLabel = '0/' + this.luxMaxLength;
@@ -80,13 +85,6 @@ export class LuxInputComponent extends LuxFormInputBaseClass {
     } else {
       this.counterLabel = '';
     }  
-  }
-
-  notifyFormValueChanged(formValue: any) {
-    if (typeof formValue === 'string') {
-      this.updateCounterLabel();
-    }
-    super.notifyFormValueChanged(formValue);
   }
 
 }
