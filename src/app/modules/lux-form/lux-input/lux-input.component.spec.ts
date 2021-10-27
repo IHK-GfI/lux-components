@@ -4,7 +4,7 @@ import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
-
+//import { dispatchEvent } from '@angular/cdk/testing/testbed/fake-events' 
 import { LuxInputComponent } from './lux-input.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
@@ -17,7 +17,8 @@ describe('LuxInputComponent', () => {
         LuxInputOutsideFormComponent,
         LuxInputWithPrefixComponent,
         LuxInputAttributesComponent,
-        LuxInputWerteInsideFormComponent
+        LuxInputWerteInsideFormComponent,
+        LuxInputCounterLabelComponent
       ]
     );
   });
@@ -741,6 +742,48 @@ describe('LuxInputComponent', () => {
     }));
   });
 
+  describe('LuxCounterLabel', () => {
+    let fixture: ComponentFixture<LuxInputCounterLabelComponent>;
+    let testComponent: LuxInputCounterLabelComponent;
+
+    beforeEach(fakeAsync(() => {
+      fixture = TestBed.createComponent(LuxInputCounterLabelComponent);
+      testComponent = fixture.componentInstance;
+      fixture.detectChanges();
+    }));
+
+    fit('Sollte luxCounterlabel anzeigen', fakeAsync(() => {
+      //Vorbedingung
+      testComponent.maxLength = 50;
+      fixture.detectChanges();
+
+      const inputEl = fixture.debugElement.query(By.css('input'));
+      LuxTestHelper.typeInElement(inputEl.nativeElement, 'Lorem ipsum', false);
+
+      LuxTestHelper.wait(fixture);  
+   
+      // LuxTestHelper.dispatchEvent(inputEl.nativeElement, new Event('focus'));
+      // LuxTestHelper.dispatchEvent(inputEl.nativeElement, new Event('input'));
+      // LuxTestHelper.wait(fixture, 500);
+     
+      LuxTestHelper.dispatchEvent(inputEl.nativeElement, new Event('focus'));
+      LuxTestHelper.dispatchEvent(inputEl.nativeElement, new Event('input'));
+      LuxTestHelper.wait(fixture, 500);
+
+      // dispatchEvent(inputEl.nativeElement, new Event('focus'));
+      // dispatchEvent(inputEl.nativeElement, new Event('input'));
+      // fixture.detectChanges();
+      
+      
+      fixture.detectChanges();
+      let counterEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      expect(counterEl).toBeDefined();
+      expect(counterEl.nativeElement.innerHTML.trim()).toContain('11/50');
+
+
+    }));
+  });
+
   describe('Input-Attribute', () => {
     let fixture: ComponentFixture<LuxInputAttributesComponent>;
     let testComponent: LuxInputAttributesComponent;
@@ -1062,4 +1105,25 @@ class LuxInputAttributesComponent {
   value: string;
 
   valueChanged() {}
+}
+
+@Component({
+  template: `
+    <lux-input
+      [luxType]="type"
+      luxLabel="Label"
+      [luxHint]="hint"
+      [luxDisabled]="disabled"
+      [luxRequired]="required"
+      [luxMaxLength]="maxLength"
+    >
+    </lux-input>
+  `
+})
+class LuxInputCounterLabelComponent {
+  type = 'text';
+  hint: string;
+  disabled: boolean;
+  required: boolean;
+  maxLength: number;
 }

@@ -63,18 +63,18 @@ $fontSizeSmall: 12px;
     margin-bottom: 2px;
     margin-top: 4px;
     min-height: 17px;
-    word-wrap: anywhere;
+    word-wrap: break-word;
     > * {
       padding-top: 2px;
     }
   }
 
   .lux-form-control-character-counter {
-    color: rgba(black, 0.65);
+    color: var(--lux-theme-dark-secondary-text);
     font-size: $fontSizeSmall;
     text-align: end;
     margin: 4px 0 2px 4px;
-    width: 60px;
+    min-width: 60px;
     min-height: 17px;
     padding-top: 2px;
 
