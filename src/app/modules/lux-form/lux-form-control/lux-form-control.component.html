@@ -51,7 +51,7 @@
             [id]="luxFormComponent.uid + '-hint'"
           >
             <ng-container *ngIf="luxFormComponent.luxHint; else formHintTemplate">
-              {{ luxFormComponent.luxHint }} 
+              {{ luxFormComponent.luxHint }}
             </ng-container>
             <ng-template #formHintTemplate>
               <ng-container *ngTemplateOutlet="luxFormComponent.formHintComponent.templateRef"></ng-container>
