@@ -13,15 +13,14 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 })
 export class LuxInputComponent extends LuxFormInputBaseClass {
   private readonly symbolRegExp = /[,.]/;
-  _luxMaxLength = 0;
- 
+  
   @Input() luxType = 'text';
   @Input() luxNumberAlignLeft = false;
   
+  _luxMaxLength = 0;
   @Input() set luxMaxLength(maxLength: number){
     this._luxMaxLength = maxLength;
-    
-    if (this.formControl) {//erst nach ngOnInit() vorhanden
+    if (this.formControl) { //erst nach ngOnInit() vorhanden
       this.updateCounterLabel();
     }
   };
@@ -34,8 +33,8 @@ export class LuxInputComponent extends LuxFormInputBaseClass {
   @ContentChild(LuxInputSuffixComponent) inputSuffix: LuxInputSuffixComponent;
   @ViewChild('input', { read: ElementRef }) inputElement: ElementRef;
 
-  charactersEntered: number = 0;
-  counterLabel: string = '';
+  charactersEnterer = 0;
+  counterLabel = '';
 
   constructor(
     @Optional() controlContainer: ControlContainer,
@@ -72,11 +71,11 @@ export class LuxInputComponent extends LuxFormInputBaseClass {
   }
   
   updateCounterLabel(){
-    if (this.luxMaxLength > 0){
-      if( this.formControl.value ) {
+    if (this.luxMaxLength > 0 && this.luxType === 'text'){
+      if (this.formControl.value) {
         this.counterLabel = this.formControl.value.length + '/' + this.luxMaxLength;
       } else {
-        this.counterLabel =  '0/' + this.luxMaxLength;
+        this.counterLabel = '0/' + this.luxMaxLength;
       }    
     } else {
       this.counterLabel = '';
@@ -84,9 +83,8 @@ export class LuxInputComponent extends LuxFormInputBaseClass {
   }
 
   notifyFormValueChanged(formValue: any) {
-    // Methode aus der Basisklasse wird überschrieben um das counterLabel zu setzen
-    if (typeof formValue === 'string' && this.luxMaxLength > 0){
-      this.counterLabel = formValue.length + '/' + this.luxMaxLength;
+    if (typeof formValue === 'string') {
+      this.updateCounterLabel();
     }
     super.notifyFormValueChanged(formValue);
   }

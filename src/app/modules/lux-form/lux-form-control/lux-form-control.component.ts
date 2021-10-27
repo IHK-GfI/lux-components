@@ -67,8 +67,7 @@ export class LuxFormControlComponent {
   }
 
   shouldDisplayMisc() {
-    this.compareMisc();
-    return this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError() || this.luxCounterLabel;
+    return this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError();
   }
 
   shouldDisplayLabelByProperty() {
@@ -79,22 +78,7 @@ export class LuxFormControlComponent {
     return this.luxFormComponent.formHintComponent && !this.luxFormComponent.luxHint;
   }
 
-  compareMisc(){
-    if (this.luxCounterLabel && (this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError()) ) {
-      console.log('ALL')
-      
-    } 
-    if (this.luxCounterLabel && !(this.luxFormComponent.formHintComponent && this.luxFormComponent.luxHint && this.shouldDisplayError())) {
-      console.log('COUNTER')
-   
-    } 
-    if (!this.luxCounterLabel && (this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError())){
-      console.log('HINT')
-    
-    } else {
-      console.log('NIX')
-    }
-  }
+
 
   /**
    * Aktiviert den Fokus dieser Component.

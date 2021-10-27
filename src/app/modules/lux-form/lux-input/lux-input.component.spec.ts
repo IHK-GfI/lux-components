@@ -910,21 +910,6 @@ describe('LuxInputComponent', () => {
       // Nachbedingungen prüfen
       expect(spy).toHaveBeenCalledTimes(2);
     }));
-
-      //CharacterCounter prüfen
-    it('Sollte Character-Counter anzeigen', fakeAsync(() => {
-      // Vorbedingungen prüfen
-      const input = fixture.debugElement.query(By.css('input'));
-      expect(input.attributes.luxCharacterCounter).toBe('false');
-
-      // // Änderungen durchführen
-      // testComponent.characterCounter = true;
-      // testComponent.luxMaxLength = 5;
-      // LuxTestHelper.wait(fixture);
-
-      // // Nachbedingungen prüfen
-      // expect(input.attributes.luxCharacterCounter).toEqual('true');
-    }));
   });
 });
 
@@ -1061,8 +1046,6 @@ class LuxInputWithPrefixComponent {
       [luxNumberAlignLeft]="numberLeft"
       (luxValueChange)="valueChanged()"
       [luxValue]="value"
-      [luxMaxLengthAttr]="luxMaxLength"
-      [luxCharacterCounter]="characterCounter"
     >
     </lux-input>
   `
@@ -1077,8 +1060,6 @@ class LuxInputAttributesComponent {
   required: boolean;
   numberLeft: boolean;
   value: string;
-  luxMaxLength: number;
-  characterCounter = false;
 
   valueChanged() {}
 }

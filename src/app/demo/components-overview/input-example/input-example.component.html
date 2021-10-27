@@ -90,35 +90,6 @@
           </div>
         </div>
       </div>
-
-      <h3>Beispiel ohne Reactive-Form mit Counter</h3>
-      <lux-input
-        [(luxDisabled)]="disabled"
-        [luxRequired]="required"
-        [luxReadonly]="readonly"
-        [(luxValue)]="value"
-        [luxAutocomplete]="autocomplete"
-        [luxPlaceholder]="placeholder"
-        [luxLabel]="label"
-        
-        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
-        [luxMaxLength]="maxLength"
-        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
-        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
-        [luxControlValidators]="controlValidators"
-        [luxType]="inputType"
-        [luxNumberAlignLeft]="numberLeft"
-        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
-        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
-        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
-        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
-      >
-        <lux-input-prefix *ngIf="showPrefix">
-          <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp;
-        </lux-input-prefix>
-        <lux-input-suffix *ngIf="showSuffix"> .00 EUR </lux-input-suffix>
-        <lux-form-hint>Was gibts</lux-form-hint>
-      </lux-input>
     </div>
   </example-base-content>
   <example-base-simple-options>
@@ -215,13 +186,6 @@
         [(luxValue)]="maxLength"
       >
       </lux-input>
-      <lux-toggle
-        luxLabel="luxCharacterCounter"
-        luxHint="Mithilfe dieses Flags kann der CharCounter angezeigt werden. Dafür ist das Attribut luxMaxLength erforderlich."
-        [(luxChecked)]="charCounter"
-        *ngIf="maxLength"
-      >
-      </lux-toggle>
       <lux-toggle
         luxLabel="luxNumberAlignLeft"
         luxHint="Mithilfe dieses Flags kann eingestellt werden, ob Zahlen links- oder rechtsbündig dargestellt werden."
