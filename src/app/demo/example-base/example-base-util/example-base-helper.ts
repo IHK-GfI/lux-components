@@ -44,6 +44,7 @@ export const logResult = (shouldLog: boolean, msg: string, event?: any) => {
  * @param errors
  */
 export const exampleErrorCallback = (value, errors) => {
+  console.log('exampleErrorCallback (value =', value, ', errors =', errors + ')');
   if (errors.required) {
     return 'Achtung, dies ist ein Pflichtfeld.';
   }
