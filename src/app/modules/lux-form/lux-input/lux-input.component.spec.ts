@@ -793,12 +793,6 @@ describe('LuxInputComponent', () => {
       // Prüfen
       let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
       expect(labelEl.nativeElement.innerHTML.trim()).toContain('0/50');
-      // Fokus deaktivieren
-      formControlComponent.focused = false;
-      fixture.detectChanges();
-      // Prüfen
-      labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
-      expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('0/50');
     }));
 
     fit('bei disabled sollte kein Wert gezeigt werden', fakeAsync(() => {
@@ -1162,7 +1156,6 @@ class LuxInputAttributesComponent {
       luxLabel="Label"
       [luxHint]="hint"
       [luxDisabled]="disabled"
-      [luxRequired]="required"
       [luxMaxLength]="maxLength"
     >
     </lux-input>
@@ -1172,6 +1165,5 @@ class LuxInputCounterLabelComponent {
   type = 'text';
   hint: string;
   disabled: boolean;
-  required: boolean;
   maxLength: number;
 }
