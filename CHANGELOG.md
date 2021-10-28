@@ -1,3 +1,7 @@
+# Version 11.4.1
+## Bug Fixes
+- **lux-file-list**: Zeigt "..." an, obwohl ausreichend Platz vorhanden ist. [Issue 128](https://github.com/IHK-GfI/lux-components/issues/128)
+
 # Version 11.4.0
 ## New
 - **lux-table**: Neue Property "luxMultiSelectOnlyCheckboxClick" für Tabellen mit aktiver Selektion. [Issue 126](https://github.com/IHK-GfI/lux-components/issues/126)
