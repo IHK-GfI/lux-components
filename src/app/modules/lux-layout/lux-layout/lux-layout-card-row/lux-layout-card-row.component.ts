@@ -41,7 +41,6 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
   @Input()
   luxWrapAt;
 
-
   @Input()
   get luxMargin(): LuxLayoutRowMarginConfig {
     return this._luxMargin;
@@ -117,7 +116,7 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
     if (!this.rowItems || this.rowItems.length === 0) {
       this.printWarningEmptyRowItems();
     }
-    
+
     this.update();
 
     this.subscription = this.queryObserver.getMediaQueryChangedAsObservable().subscribe((query: string) => {
@@ -126,7 +125,6 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
       this.greaterWrapAt = this.queryObserver.isGreater(this.luxWrapAt);
       this.update();
     });
-    
   }
 
   private printWarningEmptyRowItems() {
@@ -212,7 +210,7 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
   calculateWidth(rowItem: LuxLayoutRowItemDirective) {
     const width = this.calculateRowItemWidth(rowItem);
     const gap = this.calculateRowItemGap(rowItem);
-   
+
     return this.greaterWrapAt ? `calc(${width}% - ${gap}px)` : '1 1 auto';
   }
 
@@ -227,5 +225,5 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
     } else {
       return gapAsNumber;
     }
-  } 
+  }
 }
