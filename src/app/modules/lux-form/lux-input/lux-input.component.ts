@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ContentChild, ElementRef, Input, Optional, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnInit, Optional, ViewChild } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxInputPrefixComponent } from './lux-input-subcomponents/lux-input-prefix.component';
 import { LuxInputSuffixComponent } from './lux-input-subcomponents/lux-input-suffix.component';
@@ -11,7 +11,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-input.component.html',
   styleUrls: ['./lux-input.component.scss']
 })
-export class LuxInputComponent extends LuxFormInputBaseClass {
+export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
   private readonly symbolRegExp = /[,.]/;
   
   @Input() luxType = 'text';

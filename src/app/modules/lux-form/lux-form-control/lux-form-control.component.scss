@@ -98,7 +98,7 @@ $fontSizeSmall: 12px;
       max-width: 100%;
       vertical-align: bottom;
       text-align: inherit;
-      font-size: $fontSizeSmall;
+      font-size: $fontSize;
 
       &:required {
         -webkit-box-shadow: unset;
