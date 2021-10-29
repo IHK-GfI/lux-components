@@ -183,7 +183,6 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
 
   updateRowItemWidthInPercent() {
     this.rowItemWidthInPercent = Math.floor(100 / this.rowItemCount);
-    console.log('ItemWith in prozent', this.rowItemWidthInPercent, this.rowItemCount)
   }
 
   updateGaps() {
