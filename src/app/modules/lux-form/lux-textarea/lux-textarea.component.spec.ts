@@ -342,7 +342,7 @@ describe('LuxTextareaComponent', () => {
       fixture.detectChanges();
     }));
 
-    fit('sollte Counterlabel bei focused=true anzeigen', fakeAsync(() => {
+    it('sollte Counterlabel bei focused=true anzeigen', fakeAsync(() => {
       // Vorbedingung
       testComponent.maxLength = 50;
 +     fixture.detectChanges();
@@ -366,7 +366,7 @@ describe('LuxTextareaComponent', () => {
       expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
     }));
 
-    fit('sollte Counterlabel bei leerem Value anzeigen', fakeAsync(() => {
+    it('sollte Counterlabel bei leerem Value anzeigen', fakeAsync(() => {
       // Vorbedingung
       testComponent.maxLength = 50;
 +     fixture.detectChanges();
@@ -384,7 +384,7 @@ describe('LuxTextareaComponent', () => {
       expect(labelEl.nativeElement.innerHTML.trim()).toContain('0/50');
     }));
 
-    fit('bei disabled sollte kein Wert gezeigt werden', fakeAsync(() => {
+    it('bei disabled sollte kein Wert gezeigt werden', fakeAsync(() => {
       // Vorbedingung
       testComponent.maxLength = 50;
 +     fixture.detectChanges();

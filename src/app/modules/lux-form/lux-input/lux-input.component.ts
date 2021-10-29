@@ -33,7 +33,6 @@ export class LuxInputComponent extends LuxFormInputBaseClass {
   @ContentChild(LuxInputSuffixComponent) inputSuffix: LuxInputSuffixComponent;
   @ViewChild('input', { read: ElementRef }) inputElement: ElementRef;
 
-  private charactersEnterer = 0;
   counterLabel = '';
 
   constructor(
@@ -86,5 +85,4 @@ export class LuxInputComponent extends LuxFormInputBaseClass {
       this.counterLabel = '';
     }  
   }
-
 }

@@ -24,9 +24,7 @@ export class LuxFormControlComponent {
    */
   @Input() luxFormComponent: LuxFormComponentBase;
   @Input() luxFormComponentElementRef: ElementRef;
-  
   @Input() luxIgnoreDefaultLabel = false;
-
   @Input() luxCounterLabel = ''; 
 
   /**
@@ -55,8 +53,6 @@ export class LuxFormControlComponent {
     return this._luxHideBottomBorder;
   }
 
-
-
   constructor(private cdr: ChangeDetectorRef) {}
 
   /**
@@ -77,8 +73,6 @@ export class LuxFormControlComponent {
   shouldDisplayHintByProperty() {
     return this.luxFormComponent.formHintComponent && !this.luxFormComponent.luxHint;
   }
-
-
 
   /**
    * Aktiviert den Fokus dieser Component.

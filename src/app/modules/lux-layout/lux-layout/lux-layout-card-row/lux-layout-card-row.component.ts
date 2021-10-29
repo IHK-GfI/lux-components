@@ -5,7 +5,6 @@ import { LuxMediaQueryObserverService } from '../../../lux-util/lux-media-query-
 import { LuxLayoutRowMarginConfig } from '../base/lux-layout-row-margin-config';
 import { LuxLayoutRowGapConfig } from '../base/lux-layout-row-gap-config';
 import { LuxComponentsConfigService } from '../../../lux-components-config/lux-components-config.service';
-import { style } from '@angular/animations';
 
 @Component({
   selector: 'lux-layout-card-row',
@@ -42,8 +41,6 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
   @Input()
   luxWrapAt;
 
-  @Input()
-  luxColumnCount: number;
 
   @Input()
   get luxMargin(): LuxLayoutRowMarginConfig {
@@ -78,7 +75,6 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
   query: string;
   greaterSm: boolean;
   greaterWrapAt: boolean;
-  rowWidth: number;
 
   constructor(private config: LuxComponentsConfigService, private queryObserver: LuxMediaQueryObserverService) {}
 
@@ -115,11 +111,6 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
       }
       this._luxMargin = new LuxLayoutRowMarginConfig(marginConfig);
     }
-
-    if(!this.luxColumnCount) {
-      console.log('Keine Spalten angegeben')
-    }
-
   }
 
   ngAfterContentInit(): void {
@@ -149,8 +140,6 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
       `);
   }
 
-  
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
@@ -158,12 +147,6 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
   update() {
     // Anzahl der Elemente in der Zeile bestimmen.
     this.updateRowItemCount();
-
-    if ( this.luxColumnCount && this.luxColumnCount >= this.rowItemCount ){
-      this.rowItemCount = this.luxColumnCount;
-    } else if ( this.luxColumnCount && this.luxColumnCount < this.rowItemCount) {
-      console.log('To many RowItems!!!')
-    }
 
     // Berechnen wie viel Prozent jedes Element an Platz benötigt.
     this.updateRowItemWidthInPercent();
@@ -230,13 +213,8 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
   calculateWidth(rowItem: LuxLayoutRowItemDirective) {
     const width = this.calculateRowItemWidth(rowItem);
     const gap = this.calculateRowItemGap(rowItem);
-    if (this.luxColumnCount){
-      this.calculateRowItemGapInPercent(rowItem);
-      return this.greaterWrapAt ? '33%' : '1 1 auto';
-    } else {
-      return this.greaterWrapAt ? `calc(${width}% - ${gap}px)` : '1 1 auto';
-    }
-    
+   
+    return this.greaterWrapAt ? `calc(${width}% - ${gap}px)` : '1 1 auto';
   }
 
   private calculateRowItemWidth(rowItem: LuxLayoutRowItemDirective) {
@@ -250,11 +228,5 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
     } else {
       return gapAsNumber;
     }
-  }
-
-  private calculateRowItemGapInPercent(rowItem: LuxLayoutRowItemDirective){
-    const gapAsNumber = this.calculateRowItemGap(rowItem);
-    
-    console.log('gapInPercent',gapAsNumber)
-  }  
+  } 
 }

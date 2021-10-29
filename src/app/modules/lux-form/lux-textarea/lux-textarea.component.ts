@@ -24,7 +24,6 @@ export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnIni
     return this._luxMaxLength;
   };
   
-  private charactersEnterer = 0;
   counterLabel = '';
 
   constructor(

@@ -10,7 +10,7 @@
   <div fxFlex="flex" [fxLayout]="layoutOrientation" [fxLayoutGap]="rowItemGap">
     <ng-container *ngFor="let rowItem of rowItems">
       <div
-        [fxFlex]="(rowItem.luxLayoutRowItem.flex && greaterWrapAt) ? rowItem.luxLayoutRowItem.flex : calculateWidth(rowItem)"
+        [fxFlex]="rowItem.luxLayoutRowItem.flex ? rowItem.luxLayoutRowItem.flex : calculateWidth(rowItem)"
         class="row-item-container"
         *ngIf="!rowItem.luxLayoutRowItem.empty || (rowItem.luxLayoutRowItem.empty && greaterWrapAt)"
       >
