@@ -186,9 +186,13 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
         }
 
         if (menuItem.luxAlwaysVisible === condition) {
-          // Wenn es das letzte Menüitem ist, wird geprüft, ob es anstelle des
+          // Wenn es das letzte sichtbare Menüitem ist, wird geprüft, ob es anstelle des
           // Menüitemtriggers dargestellt werden kann.
-          if (i === this.menuItems.length - 1 && availableWidth + menuTriggerWidth >= menuItem.width) {
+          if (
+            this.visibleMenuItems &&
+            menuItem === this.visibleMenuItems[this.visibleMenuItems.length - 1] &&
+            availableWidth + menuTriggerWidth >= menuItem.width
+          ) {
             availableWidth += menuTriggerWidth;
           }
 

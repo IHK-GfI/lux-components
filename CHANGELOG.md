@@ -1,5 +1,6 @@
 # Version 11.4.1
 ## Bug Fixes
+- **lux-file-list**: Zeigt "..." an, obwohl ausreichend Platz vorhanden ist. [Issue 128](https://github.com/IHK-GfI/lux-components/issues/128)
 - **lux-form-components**: Die Funktion "luxErrorCallback" wird aufgerufen, obwohl die Eingabe korrigiert wurde. [Issue 129](https://github.com/IHK-GfI/lux-components/issues/129)
 
 # Version 11.4.0
