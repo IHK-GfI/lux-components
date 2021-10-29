@@ -1,3 +1,8 @@
+# Version 11.5.0
+## New
+- **lux-input**: Neue Anzeige eines Character-Counters, bei gesetzter luxMaxLength. [Issue 134](https://github.com/IHK-GfI/lux-components/issues/134)
+- **lux-textarea**: Neue Anzeige eines Character-Counters, bei gesetzter luxMaxLength. [Issue 134](https://github.com/IHK-GfI/lux-components/issues/134)
+ 
 # Version 11.4.0
 ## New
 - **lux-table**: Neue Property "luxMultiSelectOnlyCheckboxClick" für Tabellen mit aktiver Selektion. [Issue 126](https://github.com/IHK-GfI/lux-components/issues/126)
