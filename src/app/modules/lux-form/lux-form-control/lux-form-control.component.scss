@@ -63,12 +63,24 @@ $fontSizeSmall: 12px;
     margin-bottom: 2px;
     margin-top: 4px;
     min-height: 17px;
-
+    word-wrap: break-word;
     > * {
       padding-top: 2px;
     }
-  }
 
+    .lux-form-control-character-counter {
+    color: var(--lux-theme-dark-secondary-text) !important;
+    font-size: $fontSizeSmall;
+    text-align: end;
+    min-width: 40px;
+    margin-left: 2px;
+
+      &:only-child {
+        width: 100%;
+      }
+    }
+  }
+  
   ::ng-deep {
     // Umstylen des Standard-Aussehens von Inputs/Textareas
     input,

@@ -24,8 +24,8 @@ export class LuxFormControlComponent {
    */
   @Input() luxFormComponent: LuxFormComponentBase;
   @Input() luxFormComponentElementRef: ElementRef;
-
   @Input() luxIgnoreDefaultLabel = false;
+  @Input() luxCounterLabel = ''; 
 
   /**
    * Dient dazu, eine Component beliebig Hoch werden zu lassen (z.B. Textarea oder Radio).
@@ -63,7 +63,7 @@ export class LuxFormControlComponent {
   }
 
   shouldDisplayMisc() {
-    return this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError();
+    return this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError() || this.luxCounterLabel;
   }
 
   shouldDisplayLabelByProperty() {

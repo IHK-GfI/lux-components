@@ -6,10 +6,11 @@ import { LuxTextareaComponent } from './lux-textarea.component';
 import { By } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxFormControlComponent } from '../lux-form-control/lux-form-control.component';
 
 describe('LuxTextareaComponent', () => {
   beforeEach(async () => {
-    LuxTestHelper.configureTestModule([LuxConsoleService], [LuxMockFormTextareaComponent, LuxMockTextareaComponent]);
+    LuxTestHelper.configureTestModule([LuxConsoleService], [LuxMockFormTextareaComponent, LuxMockTextareaComponent, LuxTextareaCounterLabelComponent]);
   });
 
   let textarea: LuxTextareaComponent;
@@ -329,6 +330,89 @@ describe('LuxTextareaComponent', () => {
       expect(spy).toHaveBeenCalledTimes(2);
     }));
   });
+
+  describe('LuxCounterLabel', () => {
+    let fixture: ComponentFixture<LuxTextareaCounterLabelComponent>;
+    let testComponent: LuxTextareaCounterLabelComponent;
+    
+    beforeEach(fakeAsync(() => {
+      fixture = TestBed.createComponent(LuxTextareaCounterLabelComponent);
+      testComponent = fixture.componentInstance;
+      textarea = fixture.debugElement.query(By.directive(LuxTextareaComponent)).componentInstance;
+      fixture.detectChanges();
+    }));
+
+    it('sollte Counterlabel bei focused=true anzeigen', fakeAsync(() => {
+      // Vorbedingung
+      testComponent.maxLength = 50;
++     fixture.detectChanges();
+      const textareaEl = fixture.debugElement.query(By.css('textarea'));
+  
+      // Fokus aktivieren
+      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      formControlComponent.focused = true;
+      // // Wert ändern
+      LuxTestHelper.typeInElement( textareaEl.nativeElement, 'Lorem ipsum');
+      LuxTestHelper.wait(fixture);
+      // // Prüfen
+      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
+      // Fokus deaktivieren
+      formControlComponent.focused = false;
+      fixture.detectChanges();
+      // Prüfen
+      labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
+    }));
+
+    it('sollte Counterlabel bei leerem Value anzeigen', fakeAsync(() => {
+      // Vorbedingung
+      testComponent.maxLength = 50;
++     fixture.detectChanges();
+      const textareaEl = fixture.debugElement.query(By.css('textarea'));
+  
+      // Fokus aktivieren
+      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      formControlComponent.focused = true;
+      // // Wert ändern
+      LuxTestHelper.typeInElement( textareaEl.nativeElement, '');
+      LuxTestHelper.wait(fixture);
+      // // Prüfen
+      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      expect(labelEl.nativeElement.innerHTML.trim()).toContain('0/50');
+    }));
+
+    it('bei disabled sollte kein Wert gezeigt werden', fakeAsync(() => {
+      // Vorbedingung
+      testComponent.maxLength = 50;
++     fixture.detectChanges();
+      const textareaEl = fixture.debugElement.query(By.css('textarea'));
+  
+      // Fokus aktivieren
+      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      formControlComponent.focused = true;
+      
+      // Wert ändern
+      LuxTestHelper.typeInElement( textareaEl.nativeElement, 'Lorem ipsum');
+      LuxTestHelper.wait(fixture);
+      
+      // Prüfen
+      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
+      
+      // Fokus deaktivieren
+      testComponent.disabled = true;
+      formControlComponent.focused = false;
+      fixture.detectChanges();
+      // Prüfen
+      labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      expect(textareaEl.nativeElement.disabled).toBe(true);
+      expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
+    }));
+  });
 });
 
 @Component({
@@ -385,4 +469,22 @@ class LuxMockFormTextareaComponent {
       control: []
     });
   }
+}
+
+@Component({
+  selector: 'lux-textarea-counter-label',
+  template: `
+    <lux-textarea
+      luxLabel="Label"
+      [luxHint]="hint"
+      [luxDisabled]="disabled"
+      [luxMaxLength]="maxLength"
+    >
+    </lux-textarea>
+  `
+})
+class LuxTextareaCounterLabelComponent {
+  hint: string;
+  disabled: boolean;
+  maxLength: number;
 }
