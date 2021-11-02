@@ -36,31 +36,29 @@
     <ng-content></ng-content>
   </div>
   
-  <!-- Container fürw Hint/Error und Character-Counter-->
-  <div class="lux-form-control-misc-container" fxLayout="row" fxLayoutAlign="space-between start">
-    <!-- Container für das Hint und den Error -->
-    <div class="lux-form-control-misc" *ngIf="shouldDisplayMisc()">
-      <ng-container [ngSwitch]="shouldDisplayError()">
-        <mat-error [id]="luxFormComponent.uid + '-error'" *ngSwitchCase="true">
-          {{ luxFormComponent.errorMessage }}
-        </mat-error>
-        <ng-container *ngSwitchDefault>
-          <!-- Hier wird entweder das luxHint oder das übergebene Tag heraus gerendert -->
-          <mat-hint
-            *ngIf="(luxFormComponent.formHintComponent || luxFormComponent.luxHint) && (!luxFormComponent.luxHintShowOnlyOnFocus || (luxFormComponent.luxHintShowOnlyOnFocus && focused))"
-            [id]="luxFormComponent.uid + '-hint'"
-          >
-            <ng-container *ngIf="luxFormComponent.luxHint; else formHintTemplate">
-              {{ luxFormComponent.luxHint }}
-            </ng-container>
-            <ng-template #formHintTemplate>
-              <ng-container *ngTemplateOutlet="luxFormComponent.formHintComponent.templateRef"></ng-container>
-            </ng-template>
-          </mat-hint>
-        </ng-container>
+  <!-- Container für das Hint und den Error und den Counter -->
+  <div class="lux-form-control-misc" *ngIf="shouldDisplayMisc()" fxLayout="row" fxLayoutAlign="space-between start">
+    <ng-container [ngSwitch]="shouldDisplayError()">
+      <mat-error [id]="luxFormComponent.uid + '-error'" *ngSwitchCase="true">
+        {{ luxFormComponent.errorMessage }}
+      </mat-error>
+      <ng-container *ngSwitchDefault>
+        <!-- Hier wird entweder das luxHint oder das übergebene Tag heraus gerendert -->
+        <mat-hint
+          *ngIf="(luxFormComponent.formHintComponent || luxFormComponent.luxHint) && (!luxFormComponent.luxHintShowOnlyOnFocus || (luxFormComponent.luxHintShowOnlyOnFocus && focused))"
+          [id]="luxFormComponent.uid + '-hint'"
+        >
+          <ng-container *ngIf="luxFormComponent.luxHint; else formHintTemplate">
+            {{ luxFormComponent.luxHint }}
+          </ng-container>
+          <ng-template #formHintTemplate>
+            <ng-container *ngTemplateOutlet="luxFormComponent.formHintComponent.templateRef"></ng-container>
+          </ng-template>
+        </mat-hint>
       </ng-container>
-    </div>
+    </ng-container>
     <!-- Container für Character-Counter -->
     <div class="lux-form-control-character-counter"><ng-container *ngIf="focused">{{ luxCounterLabel }}</ng-container></div>
   </div>
+   
 </div>
