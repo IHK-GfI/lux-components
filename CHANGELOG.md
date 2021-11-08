@@ -2,7 +2,10 @@
 ## New
 - **lux-input**: Neue Anzeige eines Character-Counters, bei gesetzter luxMaxLength. [Issue 134](https://github.com/IHK-GfI/lux-components/issues/134)
 - **lux-textarea**: Neue Anzeige eines Character-Counters, bei gesetzter luxMaxLength. [Issue 134](https://github.com/IHK-GfI/lux-components/issues/134)
- 
+
+## Bug Fixes
+- **lux-table**: Selektion zurücksetzen bei neuen Daten. [Issue 136](https://github.com/IHK-GfI/lux-components/issues/136)
+
 # Version 11.4.1
 ## Bug Fixes
 - **lux-file-list**: Zeigt "..." an, obwohl ausreichend Platz vorhanden ist. [Issue 128](https://github.com/IHK-GfI/lux-components/issues/128)
