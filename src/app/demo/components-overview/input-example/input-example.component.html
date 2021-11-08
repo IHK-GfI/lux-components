@@ -22,6 +22,7 @@
         [luxControlValidators]="controlValidators"
         [luxType]="inputType"
         [luxNumberAlignLeft]="numberLeft"
+        [luxHideCounterLabel]="hideCounterLabel"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -58,11 +59,13 @@
         [luxControlBinding]="controlBinding"
         [luxType]="inputType"
         [luxNumberAlignLeft]="numberLeft"
+        [luxHideCounterLabel]="hideCounterLabel"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
       >
+
         <lux-input-prefix *ngIf="showPrefix">
           <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp;
         </lux-input-prefix>
@@ -189,6 +192,13 @@
         luxHint="Mithilfe dieses Flags kann eingestellt werden, ob Zahlen links- oder rechtsbündig dargestellt werden."
         [(luxChecked)]="numberLeft"
         *ngIf="inputType === 'number'"
+      >
+      </lux-toggle>
+      <lux-toggle
+        luxLabel="luxHideCounterLabel"
+        luxHint="Mithilfe dieses Flags kann eingestellt werden, ob das Counterlabel ausgeblendet werden soll."
+        [(luxChecked)]="hideCounterLabel"
+        *ngIf="inputType === 'text' && maxLength"
       >
       </lux-toggle>
     </div>

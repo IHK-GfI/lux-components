@@ -46,6 +46,7 @@ export class TextareaExampleComponent {
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
   maxLength: number;
+  hideCounterLabel = false;
 
   // endregion
 

@@ -35,6 +35,7 @@
       [touchUi]="luxTouchUi"
       [disabled]="luxDisabled || luxReadonly"
       [panelClass]="'lux-datepicker-panel'"
+      [calendarHeaderComponent]="getHeaderByTheme()"
       #datepicker
     >
     </mat-datepicker>
