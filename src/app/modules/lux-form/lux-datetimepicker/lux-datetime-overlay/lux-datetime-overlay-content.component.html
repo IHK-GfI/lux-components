@@ -9,6 +9,7 @@
         [startAt]="startDate"
         [minDate]="minCalendarDate"
         [maxDate]="maxCalendarDate"
+        [headerComponent]="getHeaderByTheme()"
       ></mat-calendar>
       <lux-divider [luxInset]="true"></lux-divider>
       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
