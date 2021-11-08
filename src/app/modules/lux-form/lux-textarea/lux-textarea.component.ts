@@ -25,6 +25,7 @@ export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnIni
   };
   
   counterLabel = '';
+  @Input() luxHideCounterLabel = false;
 
   constructor(
     @Optional() controlContainer: ControlContainer,

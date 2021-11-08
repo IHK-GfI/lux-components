@@ -58,7 +58,7 @@
       </ng-container>
     </ng-container>
     <!-- Container für Character-Counter -->
-    <div class="lux-form-control-character-counter"><ng-container *ngIf="focused">{{ luxCounterLabel }}</ng-container></div>
+    <div class="lux-form-control-character-counter" *ngIf="!luxHideCounterLabel"><ng-container *ngIf="focused">{{ luxCounterLabel }}</ng-container></div>
   </div>
    
 </div>

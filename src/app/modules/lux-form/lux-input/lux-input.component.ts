@@ -34,6 +34,7 @@ export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
   @ViewChild('input', { read: ElementRef }) inputElement: ElementRef;
 
   counterLabel = '';
+  @Input() luxHideCounterLabel = false;
 
   constructor(
     @Optional() controlContainer: ControlContainer,

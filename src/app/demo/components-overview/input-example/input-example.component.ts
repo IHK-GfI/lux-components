@@ -48,6 +48,7 @@ export class InputExampleComponent {
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
   maxLength: number;
+  hideCounterLabel = false;
 
   // endregion
 
