@@ -1,4 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { LuxThemeService } from '../../../lux-theme/lux-theme.service';
+import { LuxDatepickerCustomHeaderComponent } from '../../lux-datepicker/lux-datepicker-custom-header/lux-datepicker-custom-header.component';
 import { LuxInputComponent } from '../../lux-input/lux-input.component';
 import { LuxDatetimeOverlayComponent } from './lux-datetime-overlay.component';
 
@@ -100,7 +102,7 @@ export class LuxDatetimeOverlayContentComponent implements OnInit, AfterViewInit
     }
   }
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, private themeService: LuxThemeService) {}
 
   ngOnInit(): void {
     this.initDate(this.dateTimePicker.selectedDate);
@@ -189,5 +191,10 @@ export class LuxDatetimeOverlayContentComponent implements OnInit, AfterViewInit
     setTimeout(() => {
       this.minutesInputComponent.inputElement.nativeElement.select();
     });
+  }
+  
+  getHeaderByTheme(){
+    const customHeader = LuxDatepickerCustomHeaderComponent;
+    return this.themeService.getTheme().name === 'green' ? customHeader : null;
   }
 }

@@ -9,6 +9,7 @@
         [startAt]="startDate"
         [minDate]="minCalendarDate"
         [maxDate]="maxCalendarDate"
+        [headerComponent]="getHeaderByTheme()"
       ></mat-calendar>
       <lux-divider [luxInset]="true"></lux-divider>
       <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="12px">
@@ -22,6 +23,7 @@
           (keydown.arrowUp)="incrementHour()"
           (keydown.arrowDown)="decrementHour()"
           [luxMaxLength]="2"
+          [luxHideCounterLabel]="true"
           fxFlex="30px"
           luxTagId="lux-datetimepicker-hours-input"
           #hoursinput
@@ -37,6 +39,7 @@
           (keydown.arrowUp)="incrementMinutes()"
           (keydown.arrowDown)="decrementMinutes()"
           [luxMaxLength]="2"
+          [luxHideCounterLabel]="true"
           fxFlex="30px"
           luxTagId="lux-datetimepicker-minutes-input"
           #minutesinput
