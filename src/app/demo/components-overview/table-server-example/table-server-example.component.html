@@ -19,6 +19,7 @@
         [luxNoDataText]="noDataText"
         [luxHttpDAO]="httpDAO"
         [luxSelected]="selected"
+        (luxSelectedChange)="onSelectedChange($event)"
         [luxCompareWith]="compareFn"
         [luxHideBorders]="hideBorders"
         [luxAutoPaginate]="autoPagination"
