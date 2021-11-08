@@ -154,4 +154,9 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
     // Ohne diesen Check würden auch 5- oder 6-stellige Jahreszahlen akzeptiert.
     return date.getFullYear() && date.getFullYear().toString().length === 4;
   }
+
+  // Damit werden zwei Buchstaben für den Wochentag angezeigt (Mo, Di, Mi, ...)
+  getDayOfWeekNames(){
+    return super.getDayOfWeekNames('short');
+  }
 }

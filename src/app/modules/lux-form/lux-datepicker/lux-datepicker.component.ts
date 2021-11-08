@@ -14,6 +14,7 @@ import {
 import { ControlContainer } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { LuxThemeService } from '../../lux-theme/lux-theme.service';
 import { Subscription } from 'rxjs';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -21,6 +22,7 @@ import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-obs
 import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
 import { LuxDatepickerAdapter } from './lux-datepicker-adapter';
+import { LuxDatepickerCustomHeaderComponent } from './lux-datepicker-custom-header/lux-datepicker-custom-header.component';
 
 export const APP_DATE_FORMATS = {
   parse: {
@@ -47,7 +49,6 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
   private originalTouchUi;
   private mediaSubscription: Subscription;
   private previousISO: string;
-
   min: Date;
   max: Date;
   start: Date;
@@ -80,7 +81,8 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
     private elementRef: ElementRef,
     cdr: ChangeDetectorRef,
     logger: LuxConsoleService,
-    config: LuxComponentsConfigService
+    config: LuxComponentsConfigService,
+    private themeService: LuxThemeService
   ) {
     super(controlContainer, cdr, logger, config);
     // den Standard-Wert für Autocomplete für Datepicker ausschalten
@@ -260,6 +262,11 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
       this.setISOValue(tempDate.toISOString());
     }
   }
-
   // endregion
+
+  // für dem Customheader für das "Green"-Theme
+  getHeaderByTheme(){
+    const customHeader = LuxDatepickerCustomHeaderComponent;
+    return this.themeService.getTheme().name === 'green' ? customHeader : null;
+  }
 }
