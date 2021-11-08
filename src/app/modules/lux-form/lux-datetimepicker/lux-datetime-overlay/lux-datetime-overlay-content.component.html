@@ -23,6 +23,7 @@
           (keydown.arrowUp)="incrementHour()"
           (keydown.arrowDown)="decrementHour()"
           [luxMaxLength]="2"
+          [luxHideCounterLabel]="true"
           luxTagId="lux-datetimepicker-hours-input"
           #hoursinput
         ></lux-input>
@@ -37,6 +38,7 @@
           (keydown.arrowUp)="incrementMinutes()"
           (keydown.arrowDown)="decrementMinutes()"
           [luxMaxLength]="2"
+          [luxHideCounterLabel]="true"
           luxTagId="lux-datetimepicker-minutes-input"
           #minutesinput
         ></lux-input>
