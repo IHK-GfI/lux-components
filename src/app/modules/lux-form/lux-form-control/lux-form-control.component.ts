@@ -64,7 +64,7 @@ export class LuxFormControlComponent {
   }
 
   shouldDisplayMisc() {
-    return this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError() || this.luxCounterLabel || !this.luxHideCounterLabel;
+    return this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError() || !this.luxHideCounterLabel;
   }
 
   shouldDisplayLabelByProperty() {
