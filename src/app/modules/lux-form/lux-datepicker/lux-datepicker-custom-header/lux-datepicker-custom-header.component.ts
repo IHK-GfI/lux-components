@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestro
 import { DateAdapter, MatDateFormats, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatCalendar } from '@angular/material/datepicker';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'lux-datepicker-custom-header',
@@ -14,9 +14,9 @@ export class LuxDatepickerCustomHeaderComponent<D> implements OnDestroy {
   private _destroyed = new Subject<void>();
 
   constructor (
-      private _calendar: MatCalendar<D>, 
+      private _calendar: MatCalendar<D>,
       private _dateAdapter: DateAdapter<D>,
-      @Inject(MAT_DATE_FORMATS) private _dateFormats: MatDateFormats, 
+      @Inject(MAT_DATE_FORMATS) private _dateFormats: MatDateFormats,
       cdr: ChangeDetectorRef
   ) {
         _calendar.stateChanges
@@ -32,7 +32,7 @@ export class LuxDatepickerCustomHeaderComponent<D> implements OnDestroy {
   get periodLabel() {
     return this._dateAdapter
       .format(this._calendar.activeDate, this._dateFormats.display.monthYearLabel);
-        
+
   }
   previousClicked(mode: 'month' | 'year') {
     this._calendar.activeDate = mode === 'month' ?
