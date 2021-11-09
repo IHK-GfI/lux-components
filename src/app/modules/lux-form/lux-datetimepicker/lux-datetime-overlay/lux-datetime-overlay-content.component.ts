@@ -192,7 +192,8 @@ export class LuxDatetimeOverlayContentComponent implements OnInit, AfterViewInit
       this.minutesInputComponent.inputElement.nativeElement.select();
     });
   }
-  
+
+  // für dem Customheader für das "Green"-Theme
   getHeaderByTheme(){
     const customHeader = LuxDatepickerCustomHeaderComponent;
     return this.themeService.getTheme().name === 'green' ? customHeader : null;
