@@ -1,13 +1,11 @@
 # Version 11.5.0
 ## New
+- **allgemein**: LUX-Theme [11.7.1](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.7.0) integriert. [Issue 138](https://github.com/IHK-GfI/lux-components/issues/138)
 - **lux-input**: Neue Anzeige eines Character-Counters, bei gesetzter luxMaxLength. [Issue 134](https://github.com/IHK-GfI/lux-components/issues/134)
 - **lux-textarea**: Neue Anzeige eines Character-Counters, bei gesetzter luxMaxLength. [Issue 134](https://github.com/IHK-GfI/lux-components/issues/134)
 
 ## Bug Fixes
 - **lux-table**: Selektion zurücksetzen bei neuen Daten. [Issue 136](https://github.com/IHK-GfI/lux-components/issues/136)
-
-# Version 11.4.1
-## Bug Fixes
 - **lux-file-list**: Zeigt "..." an, obwohl ausreichend Platz vorhanden ist. [Issue 128](https://github.com/IHK-GfI/lux-components/issues/128)
 - **lux-form-components**: Die Funktion "luxErrorCallback" wird aufgerufen, obwohl die Eingabe korrigiert wurde. [Issue 129](https://github.com/IHK-GfI/lux-components/issues/129)
 

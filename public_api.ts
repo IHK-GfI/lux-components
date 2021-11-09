@@ -113,6 +113,7 @@ export * from './src/app/modules/lux-form/lux-chips/lux-chips.component';
 export * from './src/app/modules/lux-form/lux-chips/lux-chips-subcomponents/lux-chip.component';
 export * from './src/app/modules/lux-form/lux-chips/lux-chips-subcomponents/lux-chip-group.component';
 export * from './src/app/modules/lux-form/lux-datepicker/lux-datepicker.component';
+export * from './src/app/modules/lux-form/lux-datepicker/lux-datepicker-custom-header/lux-datepicker-custom-header.component';
 export * from './src/app/modules/lux-form/lux-datetimepicker/lux-datetimepicker.component';
 export * from './src/app/modules/lux-form/lux-datetimepicker/lux-datetime-overlay/lux-datetime-overlay.component';
 export * from './src/app/modules/lux-form/lux-datetimepicker/lux-datetime-overlay/lux-datetime-overlay-content.component';
