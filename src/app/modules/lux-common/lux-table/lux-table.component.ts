@@ -71,6 +71,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   tableMinWidth: string;
   tableHeightCSSCalc: string;
   init = true;
+  lastSelectedEventData = JSON.stringify([]);
 
   @Input() luxColWidthsPercent: number[] = [];
   @Input() luxFilterText = 'Filter';
@@ -105,6 +106,8 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
     if (!this.init) {
       this.paginator.pageIndex = 0;
       this.httpRequestConf.page = 0;
+      this.clearSelected();
+      this.emitSelectedEvent();
       this.loadHttpDAOData();
     }
   }
@@ -395,7 +398,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
         }
       }
 
-      this.luxSelectedChange.next(Array.from(this.luxSelected));
+      this.emitSelectedEvent();
       this.dataSource.selectedEntries = this.luxSelected;
       this.allSelected                = this.checkFilteredAllSelected();
     }
@@ -413,7 +416,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       } else {
         this.dataSource.filteredData.forEach((dataEntry: any) => this.addSelected(dataEntry));
       }
-      this.luxSelectedChange.next(Array.from(this.luxSelected));
+      this.emitSelectedEvent();
       this.dataSource.selectedEntries = this.luxSelected;
       this.allSelected = this.checkFilteredAllSelected();
     }
@@ -780,8 +783,19 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
     }
 
     this.dataSource.selectedEntries = this.luxSelected;
-    this.luxSelectedChange.next(Array.from(this.luxSelected));
+    this.emitSelectedEvent();
     this.allSelected = this.checkFilteredAllSelected();
+  }
+
+  private emitSelectedEvent() {
+    const newData = Array.from(this.luxSelected);
+    const newDataString = JSON.stringify(newData);
+
+    if (this.lastSelectedEventData !== newDataString) {
+      this.lastSelectedEventData = newDataString;
+
+      this.luxSelectedChange.next(newData);
+    }
   }
 
   addSelected(entry: any) {

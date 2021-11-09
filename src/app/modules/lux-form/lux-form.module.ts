@@ -49,6 +49,7 @@ import { LuxNameDirectiveDirective } from './lux-form-control/lux-form-directive
 import { LuxSelectOptionHeightDirective } from './lux-select/lux-select-option-height.directive';
 import { LuxDatetimeOverlayComponent } from './lux-datetimepicker/lux-datetime-overlay/lux-datetime-overlay.component';
 import { LuxDatetimeOverlayContentComponent } from './lux-datetimepicker/lux-datetime-overlay/lux-datetime-overlay-content.component';
+import { LuxDatepickerCustomHeaderComponent } from './lux-datepicker/lux-datepicker-custom-header/lux-datepicker-custom-header.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { LuxDatetimeOverlayContentComponent } from './lux-datetimepicker/lux-dat
     LuxMaxLengthDirective,
     LuxNameDirectiveDirective,
     LuxDatetimeOverlayComponent,
-    LuxDatetimeOverlayContentComponent
+    LuxDatetimeOverlayContentComponent,
+    LuxDatepickerCustomHeaderComponent
   ],
   imports: [
     CommonModule,

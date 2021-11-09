@@ -8,7 +8,6 @@ import { TableExampleBaseClass } from './table-example-base.class';
 })
 export class TableExampleComponent extends TableExampleBaseClass {
   dataSource: any[] = [];
-  oldSelection = JSON.stringify([]);
 
   constructor() {
     super();
@@ -19,10 +18,7 @@ export class TableExampleComponent extends TableExampleBaseClass {
   }
 
   onSelectedChange($event) {
-    if (JSON.stringify($event) !== this.oldSelection) {
-      console.log($event);
-      this.oldSelection = JSON.stringify($event);
-    }
+    console.log($event);
   }
 
   clearData() {

@@ -21,6 +21,10 @@
   min-height: 18px;
 }
 
+lux-input.lux-datetime-no-label ::ng-deep .lux-form-control div.lux-form-control-container {
+  width: 30px;
+}
+
 .lux-datetime-no-label ::ng-deep div.lux-form-control-label {
   min-height: 0 !important;
   height: 0 !important;

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ContentChild, ElementRef, Input, Optional, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnInit, Optional, ViewChild } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxInputPrefixComponent } from './lux-input-subcomponents/lux-input-prefix.component';
 import { LuxInputSuffixComponent } from './lux-input-subcomponents/lux-input-suffix.component';
@@ -11,15 +11,30 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-input.component.html',
   styleUrls: ['./lux-input.component.scss']
 })
-export class LuxInputComponent extends LuxFormInputBaseClass {
+export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
   private readonly symbolRegExp = /[,.]/;
-
+  
   @Input() luxType = 'text';
   @Input() luxNumberAlignLeft = false;
-  @Input() luxMaxLength: number;
+  
+  _luxMaxLength = 0;
+  @Input() set luxMaxLength(maxLength: number){
+    this._luxMaxLength = maxLength;
+    if (this.formControl) { //erst nach ngOnInit() vorhanden
+      this.updateCounterLabel();
+    }
+  };
+
+  get luxMaxLength(){
+    return this._luxMaxLength;
+  };
+
   @ContentChild(LuxInputPrefixComponent) inputPrefix: LuxInputPrefixComponent;
   @ContentChild(LuxInputSuffixComponent) inputSuffix: LuxInputSuffixComponent;
   @ViewChild('input', { read: ElementRef }) inputElement: ElementRef;
+
+  counterLabel = '';
+  @Input() luxHideCounterLabel = false;
 
   constructor(
     @Optional() controlContainer: ControlContainer,
@@ -28,6 +43,11 @@ export class LuxInputComponent extends LuxFormInputBaseClass {
     config: LuxComponentsConfigService
   ) {
     super(controlContainer, cdr, logger, config);
+  }
+
+  ngOnInit(){
+    super.ngOnInit();
+    this.updateCounterLabel();
   }
 
   /**
@@ -48,5 +68,22 @@ export class LuxInputComponent extends LuxFormInputBaseClass {
         $event.preventDefault();
       }
     }
+  }
+  
+  notifyFormValueChanged(formValue: any) {
+    this.updateCounterLabel();
+    super.notifyFormValueChanged(formValue);
+  }
+  
+  private updateCounterLabel(){
+    if (this.luxMaxLength > 0 && this.luxType === 'text'){
+      if (typeof this.formControl.value === 'string') {
+        this.counterLabel = this.formControl.value.length + '/' + this.luxMaxLength;
+      } else {
+        this.counterLabel = '0/' + this.luxMaxLength;
+      }    
+    } else {
+      this.counterLabel = '';
+    }  
   }
 }

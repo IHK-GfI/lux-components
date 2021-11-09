@@ -731,6 +731,26 @@ describe('LuxTableComponent', () => {
       expect(contentRows.length).toBe(1, 'Nachbedingung 1');
       expect(luxTableComponent.dataSource.data.length).toEqual(1, 'Nachbedingung 2');
     }));
+
+    it('Selektion muss nach dem Setzen eines neuen DAO geleert sein.', fakeAsync(() => {
+      LuxTestHelper.wait(fixture);
+      expect(component.selected.length).toBe(0, 'Vorbedingung 1');
+
+      // Änderungen durchführen
+      LuxTestHelper.wait(fixture);
+
+      const firstTd = fixture.debugElement.query(By.css('td.lux-multiselect-td')).nativeElement;
+      (firstTd as HTMLElement).click();
+      LuxTestHelper.wait(fixture);
+
+      // Nachbedingungen testen
+      expect(component.selected.length).toBe(1, 'Nachbedingung 1');
+
+      component.httpDao = new TestHttpDao();
+      LuxTestHelper.wait(fixture);
+
+      expect(component.selected.length).toEqual(0);
+    }));
   });
 
   describe('Multiselect', () => {
@@ -1149,7 +1169,7 @@ class TableComponent {
 
 @Component({
   template: `
-    <lux-table [luxHttpDAO]="httpDao" [luxShowPagination]="true" [luxShowFilter]="true" [luxPageSize]="5">
+    <lux-table [luxHttpDAO]="httpDao" [luxShowPagination]="true" [luxShowFilter]="true" [luxPageSize]="5" [(luxSelected)]="selected" [luxMultiSelect]="true">
       <lux-table-column luxColumnDef="c1" [luxSortable]="true">
         <lux-table-column-header>
           <ng-template> C1 </ng-template>
@@ -1181,6 +1201,7 @@ class TableComponent {
 })
 class HttpDaoTableComponent {
   httpDao: TestHttpDao = new TestHttpDao();
+  selected = [];
 
   constructor() {}
 }

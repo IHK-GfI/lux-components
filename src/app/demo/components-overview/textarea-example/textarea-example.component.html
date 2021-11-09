@@ -23,6 +23,7 @@
         [luxControlValidators]="controlValidators"
         [luxMinRows]="min"
         [luxMaxRows]="max"
+        [luxHideCounterLabel]="hideCounterLabel"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -51,6 +52,7 @@
         [luxControlBinding]="controlBinding"
         [luxMinRows]="min"
         [luxMaxRows]="max"
+        [luxHideCounterLabel]="hideCounterLabel"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -113,15 +115,23 @@
       [(luxValue)]="placeholder"
     >
     </lux-input>
-    <lux-input
-      class="lux-highlight-section"
-      luxLabel="luxMaxLength"
-      luxHint="Über diese Property kann die maximale Länge angegeben werden."
-      luxType="number"
-      luxNumberAlignLeft="true"
-      [(luxValue)]="maxLength"
-    >
-    </lux-input>
+    <div  fxLayout="column" class="lux-highlight-section">
+      <lux-input
+        luxLabel="luxMaxLength"
+        luxHint="Über diese Property kann die maximale Länge angegeben werden."
+        luxType="number"
+        luxNumberAlignLeft="true"
+        [(luxValue)]="maxLength"
+      >
+      </lux-input>
+      <lux-toggle
+        luxLabel="luxHideCounterLabel"
+        luxHint="Mithilfe dieses Flags kann eingestellt werden, ob das Counterlabel ausgeblendet werden soll."
+        [(luxChecked)]="hideCounterLabel"
+        *ngIf="maxLength"
+      >
+      </lux-toggle>
+    </div>
     <lux-toggle
       class="lux-highlight-section"
       [(luxChecked)]="disabled"
