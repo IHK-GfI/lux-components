@@ -29,8 +29,8 @@ export class RadioButtonExampleComponent {
     { value: Validators.email, label: 'Validators.email' }
   ];
 
-  options: { label: string; value: number }[] = [
-    { label: 'Option #1', value: 1 },
+  options: { label: string; value: number; disabled?: boolean }[] = [
+    { label: 'Option #1', value: 1, disabled: true },
     { label: 'Option #2', value: 2 },
     { label: 'Option #3', value: 3 }
   ];
@@ -46,6 +46,7 @@ export class RadioButtonExampleComponent {
 
   controlBinding = 'radioExample';
   disabled = false;
+  disabledFirst = true;
   readonly: boolean;
   required: boolean;
   isVertical: boolean;
@@ -104,6 +105,9 @@ export class RadioButtonExampleComponent {
     this.reset();
     this.useValueFn = $event === true ? false : this.useValueFn;
     this.useCompareWithFn = $event === true ? false : this.useCompareWithFn;
+    if ($event === true) {
+      this.disabledFirst = false;
+    }
   }
 
   changeUseValueFn($event: boolean) {
@@ -123,9 +127,14 @@ export class RadioButtonExampleComponent {
   reset(...radioComponents: LuxRadioComponent[]) {
     this.value = undefined;
     this.form.get(this.controlBinding).setValue(undefined);
+    this.disabledFirst = false;
 
     radioComponents.forEach((comp: LuxRadioComponent) => {
       comp.formControl.markAsUntouched();
     });
+  }
+
+  onToggleDisabledFirst() {
+    this.options[0].disabled = this.disabledFirst;
   }
 }

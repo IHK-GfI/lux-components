@@ -4,8 +4,7 @@ import {
   ContentChildren,
   EventEmitter,
   Input,
-  OnDestroy,
-  Optional,
+  OnDestroy, Optional,
   Output,
   QueryList,
   ViewChild,
@@ -23,6 +22,7 @@ import { Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, map, startWith } from 'rxjs/operators';
 
 export declare type LuxChipsOrientation = 'horizontal' | 'vertical';
+let luxChipControlUID = 0;
 
 @Component({
   selector: 'lux-chips',
@@ -34,6 +34,9 @@ export class LuxChipsComponent extends LuxFormComponentBase implements OnDestroy
   private readonly newChipSubscription: Subscription = new Subscription();
 
   private _luxAutocompleteOptions: string[] = [];
+  private _luxLabel = $localize`:@@luxc.chips.new.lbl:Neu`;
+
+  uid: string = 'lux-chip-control-' + luxChipControlUID++;
 
   filteredOptions: string[] = [];
   inputValue$: Subject<string> = new Subject<string>();
@@ -193,5 +196,11 @@ export class LuxChipsComponent extends LuxFormComponentBase implements OnDestroy
         input.value = '';
       }
     }
+  }
+
+  onAutoCompleteOpened() {
+    // Um einen ExpressionChangedAfterItHasBeenCheckedError im Attribute "attr.aria-expanded"
+    // zu umgehen, wird hier manuell die Change Detection ausgeführt.
+    this.cdr.detectChanges();
   }
 }

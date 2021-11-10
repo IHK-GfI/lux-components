@@ -11,6 +11,10 @@ export class TableExampleComponent extends TableExampleBaseClass {
 
   constructor() {
     super();
+
+    setTimeout(() => {
+      this.loadData(false);
+    });
   }
 
   onSelectedChange($event) {
@@ -68,6 +72,48 @@ export class TableExampleComponent extends TableExampleBaseClass {
         }
       }
       this.dataSource = largeData;
+    }
+  }
+
+  onEdit(element: any) {
+    // Aktuelle Daten im Memento speichern, falls das Bearbeiten abgebrochen wird.
+    element.memento = JSON.parse(JSON.stringify(element));
+
+    // Das Element in den Editiermodus versetzen.
+    element.editable = true;
+
+    // Das Blättern deaktivieren und eine Begründung als Tooltip anzeigen.
+    this.pagerDisabled = true;
+    this.pagerTooltip = 'Es gibt noch ungespeicherte Änderungen!';
+  }
+
+  onSave(element: any) {
+    // Die aktuellen Werte wurden bereits beim Editieren in das Element geschrieben.
+    // Hier muss nur noch der alte Zustand gelöscht werden. Dieser wird nur beim
+    // Abbrechen (siehe onCancel) benötigt.
+    delete element.editable;
+    delete element.memento;
+
+    this.clearEditState();
+  }
+
+  onCancel(element: any) {
+    // Den Orginalzustand (siehe onEdit) wiederherstellen.
+    Object.assign(element, element.memento);
+    delete element.editable;
+    delete element.memento;
+
+    this.clearEditState();
+  }
+
+  private isMinOneElementEditable() {
+    return this.dataSource.find((element) => element.editable);
+  }
+
+  private clearEditState() {
+    if (!this.isMinOneElementEditable()) {
+      this.pagerDisabled = false;
+      this.pagerTooltip = '';
     }
   }
 }

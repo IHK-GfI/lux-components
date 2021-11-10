@@ -33,6 +33,7 @@
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
         (luxSelectedFilesChange)="onSelectedChange($event)"
+        [luxSelectedFilesAlwaysUseArray]="alwaysUseArray"
         #filelistexamplewithoutform
       >
       </lux-file-list>
@@ -59,6 +60,7 @@
           [luxAccept]="accept"
           [luxHint]="hint"
           [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
+          [luxSelectedFilesAlwaysUseArray]="alwaysUseArray"
           [luxDnDActive]="dndActive"
           [luxControlBinding]="controlBinding"
           [luxContentsAsBlob]="contentAsBlob"
@@ -107,7 +109,14 @@
       class="lux-highlight-section"
       [(luxChecked)]="multiple"
       luxLabel="luxMultiple"
-      luxHint="Dieser Flag legt fest ob nur eine oder mehrere Dateien selektiert werden können."
+      luxHint="Dieses Flag legt fest, ob nur eine oder mehrere Dateien selektiert werden können."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="alwaysUseArray"
+      luxLabel="luxSelectedFilesAlwaysUseArray"
+      luxHint="Dieses Flag legt fest, ob auch bei einer einzigen ausgewählten Datei ein Array verwendet wird."
     >
     </lux-toggle>
     <lux-input

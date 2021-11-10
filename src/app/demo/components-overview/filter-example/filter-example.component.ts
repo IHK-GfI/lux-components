@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { LuxActionColorType } from '../../../modules/lux-action/lux-action-model/lux-action-component-base.class';
 import { LuxFilter } from '../../../modules/lux-filter/lux-filter-base/lux-filter';
 import { LuxFilterItem } from '../../../modules/lux-filter/lux-filter-base/lux-filter-item';
 import { LuxFilterFormComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form.component';
@@ -111,6 +112,15 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   selectLookupHidden = false;
   toggleSelectDisabled = false;
   toggleSelectHidden = false;
+
+  buttonColorOptions = ['default', 'primary', 'accent', 'warn'];
+  buttonRaised = false;
+  buttonFilterColor: LuxActionColorType = 'primary';
+  buttonDialogSave = 'primary';
+  buttonDialogLoad = 'primary';
+  buttonDialogDelete = 'warn';
+  buttonDialogCancel = 'default';
+  buttonDialogClose = 'default';
 
   constructor(private mediaQuery: LuxMediaQueryObserverService) {}
 

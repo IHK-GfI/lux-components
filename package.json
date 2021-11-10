@@ -1,6 +1,6 @@
 {
   "name": "@ihk-gfi/lux-components",
-  "version": "11.1.1",
+  "version": "11.5.0",
   "license": "IHK-GfI Open-Source-Lizenz",
   "repository": {
     "type": "git",
@@ -13,9 +13,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start_en": "ng serve --configuration en --port 4210 --single-bundle",
-    "start-ie": "ng serve --configuration es5 --port 4210 --single-bundle",
-    "start-ie_en": "ng serve --configuration es5en --port 4211 --single-bundle",
+    "start_en": "ng serve --configuration en --port 4210",
+    "start-ie": "ng serve --configuration es5 --port 4210 ",
+    "start-ie_en": "ng serve --configuration es5en --port 4211",
     "build": "ng build --source-map",
     "build-aot": "ng build --prod --localize --single-bundle --plugin ~ie11-lazy-modules-plugin.js && npm run move-de-files",
     "test": "ng test",
@@ -59,7 +59,7 @@
     "@chiragrupani/karma-chromium-edge-launcher": "2.1.0",
     "@compodoc/compodoc": "1.1.14",
     "@fortawesome/fontawesome-free": "5.15.3",
-    "@ihk-gfi/lux-components-theme": "11.3.0",
+    "@ihk-gfi/lux-components-theme": "11.7.1",
     "@types/jasmine": "3.6.9",
     "@types/jasminewd2": "2.0.8",
     "@types/node": "14.14.20",

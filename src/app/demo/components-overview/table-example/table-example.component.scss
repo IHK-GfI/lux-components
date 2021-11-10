@@ -9,3 +9,32 @@
 .aktion-button ::ng-deep button {
   width: 250px;
 }
+
+.lux-table-no-label ::ng-deep div.lux-form-control-label {
+  min-height: 0 !important;
+  height: 0 !important;
+  padding-top: 0 !important;
+}
+
+lux-button.lux-table-example {
+  width: 45px;
+  ::ng-deep {
+    button {
+      width: 45px;
+      min-width: 45px;
+      padding: 0;
+      margin: 0;
+    }
+
+    lux-icon {
+      i,
+      mat-icon {
+        font-size: 1.5em;
+      }
+    }
+
+    .mat-button-wrapper {
+      padding: 0;
+    }
+  }
+}

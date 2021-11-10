@@ -79,9 +79,11 @@
 
       <ng-container *ngIf="luxInputAllowed">
         <input
+          [id]="uid"
           [matChipInputFor]="chips"
           [matChipInputAddOnBlur]="true"
           [matAutocomplete]="auto"
+          [attr.aria-labelledby]="uid + '-label'"
           [disabled]="luxDisabled"
           (matChipInputTokenEnd)="inputAdd(input)"
           (keyup)="inputChanged(input.value)"
@@ -92,6 +94,7 @@
         <mat-autocomplete
           [class]="'lux-autocomplete-panel'"
           (optionSelected)="autoCompleteAdd(input, $event.option.value)"
+          (opened)="onAutoCompleteOpened()"
           #auto="matAutocomplete"
         >
           <mat-option *ngFor="let option of filteredOptions" [value]="option">

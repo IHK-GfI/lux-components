@@ -19,6 +19,10 @@ export class TableServerExampleComponent extends TableExampleBaseClass implement
     this.httpDAO = new TestHttpDao(this.logger);
   }
 
+  onSelectedChange($event) {
+    console.log($event);
+  }
+
   reload() {
     this.reloadCount++;
 

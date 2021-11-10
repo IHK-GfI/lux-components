@@ -1,10 +1,53 @@
+# Version 11.5.0
+## New
+- **allgemein**: LUX-Theme [11.7.1](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.7.0) integriert. [Issue 138](https://github.com/IHK-GfI/lux-components/issues/138)
+- **lux-input**: Neue Anzeige eines Character-Counters, bei gesetzter luxMaxLength. [Issue 134](https://github.com/IHK-GfI/lux-components/issues/134)
+- **lux-textarea**: Neue Anzeige eines Character-Counters, bei gesetzter luxMaxLength. [Issue 134](https://github.com/IHK-GfI/lux-components/issues/134)
+
+## Bug Fixes
+- **lux-table**: Selektion zurücksetzen bei neuen Daten. [Issue 136](https://github.com/IHK-GfI/lux-components/issues/136)
+- **lux-file-list**: Zeigt "..." an, obwohl ausreichend Platz vorhanden ist. [Issue 128](https://github.com/IHK-GfI/lux-components/issues/128)
+- **lux-form-components**: Die Funktion "luxErrorCallback" wird aufgerufen, obwohl die Eingabe korrigiert wurde. [Issue 129](https://github.com/IHK-GfI/lux-components/issues/129)
+
+# Version 11.4.0
+## New
+- **lux-table**: Neue Property "luxMultiSelectOnlyCheckboxClick" für Tabellen mit aktiver Selektion. [Issue 126](https://github.com/IHK-GfI/lux-components/issues/126)
+- **lux-table**: Neue Property "luxPagerDisabled" eingeführt. [Issue 126](https://github.com/IHK-GfI/lux-components/issues/126)
+- **lux-table**: Neue Property "luxPagerTooltip" eingeführt. [Issue 126](https://github.com/IHK-GfI/lux-components/issues/126)
+
+## Bug Fixes
+- **lux-table**: Filtereingaben setzen beim serverseitigen Blättern die Seite nicht zurück. [Issue 122](https://github.com/IHK-GfI/lux-components/issues/122)
+- **lux-chips**: Generierte Label-Id und Verknüpfung zum Input-Feld. [Issue 120](https://github.com/IHK-GfI/lux-components/issues/120)
+
+# Version 11.3.0
+## New
+- **allgemein**: LUX-Theme [11.5.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.5.0) hinzugefügt. [Commit 98f5863](https://github.com/IHK-GfI/lux-components/commit/98f5863032bf030bf7c20f85d49b6d027fcfc1d3)
+- **lux-datetimepicker**: Neuer Datepicker inklusive Uhrzeit. [Issue 106](https://github.com/IHK-GfI/lux-components/issues/106)
+- **lux-datepicker**: Datepicker soll Datum auch ohne Sonderzeichen erkennen können. [Issue 115](https://github.com/IHK-GfI/lux-components/issues/115)
+- **lux-link**: Link soll wie ein üblicher Weblink agieren. [Issue 117](https://github.com/IHK-GfI/lux-components/issues/117)
+
+## Bug Fixes
+- **allgemein**: Rechtschreibfehler behoben. [Commit d6ca307](https://github.com/IHK-GfI/lux-components/commit/d6ca307cea2b3e4bba4df5fdb8202ce4b142f0c0)
+- **lux-button**: Unterschiedliche Buttongrößen in lux-card-actions. [Issue 114](https://github.com/IHK-GfI/lux-components/issues/114)
+
+# Version 11.2.0
+## New
+- **allgemein**: Abhängigkeiten aktualisiert. [Commit c39b83b](https://github.com/IHK-GfI/lux-components/commit/c39b83be341cd73f6bc604392eaa9689f7ac282b)
+- **lux-file-list**: Rückgabeobjekt bei Einzelupload ist kein Array. [Issue 104](https://github.com/IHK-GfI/lux-components/issues/104)
+- **lux-radio**: Einzelne Optionen im lux-radio deaktivieren. [Issue 105](https://github.com/IHK-GfI/lux-components/issues/105)
+- **lux-filter-form**: Buttonfarben sollten angepasst werden können. [Issue 107](https://github.com/IHK-GfI/lux-components/issues/107)
+
+## Bug Fixes
+- **lux-chips**: lux-chip mit Autocomplete führt beim Löschen des letzten Chips zum Fehler. [Issue 103](https://github.com/IHK-GfI/lux-components/issues/103)
+- **lux-stepper**: *ngIf lässt Icon verschwinden. [Issue 110](https://github.com/IHK-GfI/lux-components/issues/110)
+
 # Version 11.1.1
 ## Bug Fixes
 - **lux-app-footer**: Buttons werden in der falschen Reihenfolge angezeigt. [Issue 101](https://github.com/IHK-GfI/lux-components/issues/101)
 
 # Version 11.1.0
 ## New
-- **allgemein**: LUX-Theme [11.3.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.2.0) hinzugefügt. [Commit fbf0ddd](https://github.com/IHK-GfI/lux-components/commit/fbf0ddd3c4fac2439d7063d1413d33da4de0633e)
+- **allgemein**: LUX-Theme [11.3.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.3.0) hinzugefügt. [Commit fbf0ddd](https://github.com/IHK-GfI/lux-components/commit/fbf0ddd3c4fac2439d7063d1413d33da4de0633e)
 - **allgemein**: Dependabot Alert: Abhängigkeit "marked" aktualisieren. [Issue 96](https://github.com/IHK-GfI/lux-components/issues/96)
 - **lux-file-input**: Erweiterung um individuelle Buttons. [Issue 85](https://github.com/IHK-GfI/lux-components/issues/85)
 - **lux-file-list**: Erweiterung um individuelle Buttons. [Issue 85](https://github.com/IHK-GfI/lux-components/issues/85)

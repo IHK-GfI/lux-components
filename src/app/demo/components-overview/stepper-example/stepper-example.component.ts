@@ -33,7 +33,8 @@ export class StepperExampleComponent implements OnDestroy {
       stepControl: new FormGroup({
         control1: new FormControl('', Validators.required),
         control2: new FormControl('', Validators.compose([Validators.minLength(5), Validators.required]))
-      })
+      }),
+      hide: false
     },
     {
       iconName: 'fas fa-user',
@@ -45,7 +46,8 @@ export class StepperExampleComponent implements OnDestroy {
       stepControl: new FormGroup({
         control1: new FormControl('', Validators.required),
         control2: new FormControl('', Validators.compose([Validators.minLength(5), Validators.required]))
-      })
+      }),
+      hide: false
     }
   ];
 

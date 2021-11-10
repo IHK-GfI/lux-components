@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { Subject, Subscription } from 'rxjs';
 import { LuxActionComponentBaseClass } from '../lux-action-model/lux-action-component-base.class';
@@ -17,8 +17,12 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
   private clickSubject = new Subject();
   private clickSubscription: Subscription;
 
+  private auxClickSubject = new Subject();
+  private auxClickSubscription: Subscription;
+
   @Input() luxType: 'button' | 'reset' | 'submit' = 'button';
   @Input() luxThrottleTime;
+  @Output() luxAuxClicked: EventEmitter<any> = new EventEmitter();
 
   @HostBinding('class.lux-uppercase') labelUppercase: boolean;
 
@@ -42,16 +46,28 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
     this.clickSubscription = this.clickSubject
       .pipe(throttleTime(this.luxThrottleTime))
       .subscribe((e) => this.luxClicked.emit(e));
+
+    this.auxClickSubscription = this.auxClickSubject
+      .pipe(throttleTime(this.luxThrottleTime))
+      .subscribe((e) => this.luxAuxClicked.emit(e));
   }
 
   ngOnDestroy() {
     this.configSubscription.unsubscribe();
+
     this.clickSubscription.unsubscribe();
     this.clickSubject.complete();
+
+    this.auxClickSubscription.unsubscribe();
+    this.auxClickSubject.complete();
   }
 
   clicked(event: any) {
     this.clickSubject.next(event);
+  }
+
+  auxClicked(event: any) {
+    this.auxClickSubject.next(event);
   }
 
   private detectParent() {

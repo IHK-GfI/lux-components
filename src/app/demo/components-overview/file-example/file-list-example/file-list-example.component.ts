@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { distinctUntilChanged, skip } from 'rxjs/operators';
 import { LuxFilePreviewService } from '../../../../modules/lux-file-preview/lux-file-preview.service';
 import { LuxFileListComponent } from '../../../../modules/lux-form/lux-file/lux-file-list/lux-file-list.component';
 import { ILuxFileActionConfig } from '../../../../modules/lux-form/lux-file/lux-file-model/lux-file-action-config.interface';
@@ -112,6 +113,15 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
 
   ngAfterViewInit() {
     this.fileComponents = this.fileLists.toArray();
+
+    this.subscriptions.push(
+      this.form
+        .get(this.controlBinding)
+        .valueChanges.pipe(skip(1), distinctUntilChanged())
+        .subscribe((value) => {
+          console.log('formValueChanged', value);
+        })
+    );
   }
 
   ngOnDestroy() {

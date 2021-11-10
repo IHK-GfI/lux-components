@@ -16,6 +16,13 @@
         (luxOnDelete)="onDelete($event)"
         [luxShowChips]="showFilterChips"
         [luxStoredFilters]="storedFilters"
+        [luxButtonRaised]="buttonRaised"
+        [luxButtonFilterColor]="buttonFilterColor"
+        [luxButtonDialogSave]="buttonDialogSave"
+        [luxButtonDialogLoad]="buttonDialogLoad"
+        [luxButtonDialogDelete]="buttonDialogDelete"
+        [luxButtonDialogCancel]="buttonDialogCancel"
+        [luxButtonDialogClose]="buttonDialogClose"
         class="lux-ml-1 lux-mr-1 lux-mb-3"
       >
         <div
@@ -146,6 +153,18 @@
   </example-base-content>
   <example-base-simple-options>
     <div class="lux-highlight-section filter-config-item" fxLayout="column">
+      <h3 class="lux-highlight-section-label">Button</h3>
+      <lux-toggle luxLabel="luxButtonFilterRaised" [(luxChecked)]="buttonRaised"></lux-toggle>
+      <lux-select luxLabel="luxButtonFilterColor" [(luxSelected)]="buttonFilterColor" [luxOptions]="buttonColorOptions"></lux-select>
+      <lux-select luxLabel="luxButtonDialogSave" [(luxSelected)]="buttonDialogSave" [luxOptions]="buttonColorOptions"></lux-select>
+      <lux-select luxLabel="luxButtonDialogCancel" [(luxSelected)]="buttonDialogCancel" [luxOptions]="buttonColorOptions"></lux-select>
+      <lux-select luxLabel="luxButtonDialogLoad" [(luxSelected)]="buttonDialogLoad" [luxOptions]="buttonColorOptions"></lux-select>
+      <lux-select luxLabel="luxButtonDialogDelete" [(luxSelected)]="buttonDialogDelete" [luxOptions]="buttonColorOptions"></lux-select>
+      <lux-select luxLabel="luxButtonDialogClose" [(luxSelected)]="buttonDialogClose" [luxOptions]="buttonColorOptions"></lux-select>
+    </div>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div class="lux-highlight-section filter-config-item" fxLayout="column">
       <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Input</div>
       <lux-layout-form-row luxWrapAt="md">
         <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="inputDisabled" *luxLayoutRowItem="{}"></lux-toggle>
@@ -205,5 +224,5 @@
         <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="toggleSelectHidden" *luxLayoutRowItem="{}"></lux-toggle>
       </lux-layout-form-row>
     </div>
-  </example-base-simple-options>
+  </example-base-advanced-options>
 </example-base-structure>

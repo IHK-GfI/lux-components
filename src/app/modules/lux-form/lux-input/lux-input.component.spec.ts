@@ -4,8 +4,8 @@ import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
-
 import { LuxInputComponent } from './lux-input.component';
+import { LuxFormControlComponent } from '../lux-form-control/lux-form-control.component'
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
 describe('LuxInputComponent', () => {
@@ -17,7 +17,8 @@ describe('LuxInputComponent', () => {
         LuxInputOutsideFormComponent,
         LuxInputWithPrefixComponent,
         LuxInputAttributesComponent,
-        LuxInputWerteInsideFormComponent
+        LuxInputWerteInsideFormComponent,
+        LuxInputCounterLabelComponent
       ]
     );
   });
@@ -741,6 +742,89 @@ describe('LuxInputComponent', () => {
     }));
   });
 
+  describe('LuxCounterLabel', () => {
+    let fixture: ComponentFixture<LuxInputCounterLabelComponent>;
+    let testComponent: LuxInputCounterLabelComponent;
+    
+    beforeEach(fakeAsync(() => {
+      fixture = TestBed.createComponent(LuxInputCounterLabelComponent);
+      testComponent = fixture.componentInstance;
+      fixture.detectChanges();
+    }));
+
+    it('sollte Counterlabel bei focused=true anzeigen', fakeAsync(() => {
+      // Vorbedingung
+      testComponent.maxLength = 50;
++     fixture.detectChanges();
+
+      // Fokus aktivieren
+      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      formControlComponent.focused = true;
+      // Wert ändern
+      const inputEL = fixture.debugElement.query(By.css('input'));
+      LuxTestHelper.typeInElement( inputEL.nativeElement, 'Lorem ipsum');
+      LuxTestHelper.wait(fixture);
+      // Prüfen
+      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
+      // Fokus deaktivieren
+      formControlComponent.focused = false;
+      fixture.detectChanges();
+      // Prüfen
+      labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
+    }));
+
+    it('sollte Counterlabel auch bei leerem Value anzeigen', fakeAsync(() => {
+      // Vorbedingung
+      testComponent.maxLength = 50;
++     fixture.detectChanges();
+
+      // Fokus aktivieren
+      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      formControlComponent.focused = true;
+      // Wert ändern
+      const inputEL = fixture.debugElement.query(By.css('input'));
+      LuxTestHelper.typeInElement( inputEL.nativeElement, '');
+      LuxTestHelper.wait(fixture);
+      // Prüfen
+      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      expect(labelEl.nativeElement.innerHTML.trim()).toContain('0/50');
+    }));
+
+    it('bei disabled sollte kein Wert gezeigt werden', fakeAsync(() => {
+      // Vorbedingungen
+      const inputEl = fixture.debugElement.query(By.css('input'));
+      testComponent.maxLength = 50;
++     fixture.detectChanges();
+
+      // Fokus aktivieren
+      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      formControlComponent.focused = true;
+
+      // Input-Value setzen      
+      LuxTestHelper.typeInElement(inputEl.nativeElement, 'Lorem ipsum');
+      LuxTestHelper.wait(fixture);
+
+      // Vorbedingung Prüfen
+      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
+
+      // TestComponent disablen und Focus zurücksetzen
+      formControlComponent.focused = false;
+      testComponent.disabled = true;
+      fixture.detectChanges();
+
+      // Nachbedingungen prüfen
+      labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      expect(inputEl.nativeElement.disabled).toBe(true);
+      expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
+    }));
+  });
+
   describe('Input-Attribute', () => {
     let fixture: ComponentFixture<LuxInputAttributesComponent>;
     let testComponent: LuxInputAttributesComponent;
@@ -1062,4 +1146,23 @@ class LuxInputAttributesComponent {
   value: string;
 
   valueChanged() {}
+}
+
+@Component({
+  template: `
+    <lux-input
+      [luxType]="type"
+      luxLabel="Label"
+      [luxHint]="hint"
+      [luxDisabled]="disabled"
+      [luxMaxLength]="maxLength"
+    >
+    </lux-input>
+  `
+})
+class LuxInputCounterLabelComponent {
+  type = 'text';
+  hint: string;
+  disabled: boolean;
+  maxLength: number;
 }

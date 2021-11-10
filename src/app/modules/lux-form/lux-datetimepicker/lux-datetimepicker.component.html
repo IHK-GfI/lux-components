@@ -1,0 +1,41 @@
+<lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" #datepickerFormControl *ngIf="formGroup">
+  <div class="lux-input-row" fxLayout="row">
+    <input
+      fxFlex="auto"
+      matInput
+      luxTagIdHandler
+      [luxTagId]="luxTagId"
+      [placeholder]="luxPlaceholder"
+      [required]="luxRequired"
+      [readonly]="luxReadonly"
+      [formControl]="formControl"
+      [autocomplete]="luxAutocomplete"
+      (blur)="luxBlur.emit($event)"
+      (focus)="luxFocus.emit($event)"
+      (focusin)="luxFocusIn.emit($event)"
+      (focusout)="onFocusOut($event)"
+      [id]="uid"
+      [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+      #dateTimePickerInput
+    />
+    <mat-datepicker-toggle
+      [disabled]="luxDisabled || luxReadonly"
+      [for]="datepicker"
+      *ngIf="luxShowToggle"
+      fxFlex="auto"
+      matSuffix
+    ></mat-datepicker-toggle>
+    <lux-datetime-overlay
+      [luxPickerInput]="dateTimePickerInput"
+      [luxStartView]="luxStartView"
+      [luxCustomFilter]="luxCustomFilter"
+      [luxStartDate]="start"
+      [luxStartTime]="luxStartTime"
+      [luxMinDate]="min"
+      [luxMaxDate]="max"
+      (luxSelected)="onOk($event)"
+      [selectedDate]="formControl.value"
+      #datepicker
+    ></lux-datetime-overlay>
+  </div>
+</lux-form-control>

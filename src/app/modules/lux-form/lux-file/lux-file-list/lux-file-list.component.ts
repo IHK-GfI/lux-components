@@ -144,7 +144,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     // Wir entfernen hier nur eine Datei, deshalb ist das neue Auslesen der Base64-Strings nicht nötig
     this.uploadFiles(newFiles).then(
       () => {
-        this.luxSelectedFiles = newFiles && newFiles.length === 1 ? newFiles[0] : newFiles;
+        this.luxSelectedFiles = newFiles && newFiles.length === 1 && !this.luxSelectedFilesAlwaysUseArray ? newFiles[0] : newFiles;
         this.notifyFormValueChanged();
       },
       (error) => this.setFormControlErrors(error)
@@ -223,7 +223,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
           // die übrigen neuen Dateien anfügen
           tempSelectedFiles.push(...newFiles);
 
-          this.luxSelectedFiles = tempSelectedFiles && tempSelectedFiles.length === 1 ? tempSelectedFiles[0] : tempSelectedFiles;
+          this.luxSelectedFiles = tempSelectedFiles && tempSelectedFiles.length === 1 && !this.luxSelectedFilesAlwaysUseArray ? tempSelectedFiles[0] : tempSelectedFiles;
           this.notifyFormValueChanged();
         },
         (error) => this.setFormControlErrors(error)

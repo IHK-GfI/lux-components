@@ -107,13 +107,21 @@
         [(luxChecked)]="hintShowOnlyOnFocus"
       ></lux-toggle>
     </div>
-    <lux-toggle
-      class="lux-highlight-section"
-      [(luxChecked)]="disabled"
-      luxLabel="luxDisabled"
-      luxHint="Erlaubt es, die Component zu deaktivieren."
-    >
-    </lux-toggle>
+    <div class="lux-highlight-section">
+      <lux-toggle
+        [(luxChecked)]="disabled"
+        luxLabel="luxDisabled"
+        luxHint="Erlaubt es, die Component zu deaktivieren."
+      >
+      </lux-toggle>
+      <lux-toggle
+        [(luxChecked)]="disabledFirst"
+        (luxCheckedChange)="onToggleDisabledFirst()"
+        luxLabel="1. Option deaktivieren"
+        [luxDisabled]="useSimpleArray"
+      >
+      </lux-toggle>
+    </div>
     <div class="lux-highlight-section" fxLayout="column">
       <div fxLayout="row wrap">
         <lux-button

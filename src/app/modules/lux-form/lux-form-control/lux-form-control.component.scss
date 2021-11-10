@@ -50,8 +50,8 @@ $fontSizeSmall: 12px;
   .lux-form-control-container {
     position: relative;
     box-sizing: border-box;
-    padding: 6px 0 0 0;
-    min-height: $defaultHeightNotScalable;
+    min-height: $defaultHeightNotScalable; // IE11
+    min-height: var(--lux-theme-form-control-default-height-not-scalable);
     &:after {
       @include bottomBorder;
     }
@@ -63,9 +63,22 @@ $fontSizeSmall: 12px;
     margin-bottom: 2px;
     margin-top: 4px;
     min-height: 17px;
-
+    word-wrap: break-word;
     > * {
       padding-top: 2px;
+    }
+
+    .lux-form-control-character-counter {
+    color: var(--lux-theme-dark-secondary-text) !important;
+      font-size: $fontSizeSmall; // IE11
+    font-size: var(--lux-theme-form-control-font-size-small);
+    text-align: end;
+    min-width: 40px;
+    margin-left: 2px;
+
+      &:only-child {
+        width: 100%;
+      }
     }
   }
 
@@ -84,7 +97,8 @@ $fontSizeSmall: 12px;
       max-width: 100%;
       vertical-align: bottom;
       text-align: inherit;
-      font-size: $fontSize;
+      font-size: $fontSize; // IE11
+      font-size: var(--lux-theme-form-control-font-size);
 
       &:required {
         -webkit-box-shadow: unset;
@@ -94,7 +108,7 @@ $fontSizeSmall: 12px;
     }
 
     textarea {
-      // Hier wird explizit nicht die min-height auf die $controlHeight gesetzt,
+      // Hier wird explizit nicht die min-height auf die --lux-theme-form-control-height gesetzt,
       // da sonst die Höhe in Bezug auf minRows und maxRows falsch berechnet wird.
       // Damit der Abstand zwischen dem Text under unteren Border korrekt ist,
       // wird hier der Abstand angepasst.
@@ -103,8 +117,10 @@ $fontSizeSmall: 12px;
     }
 
     .lux-input-row {
-      height: $controlHeight;
-      font-size: $fontSize;
+      height: $controlHeight; // IE11
+      height: var(--lux-theme-form-control-height);
+      font-size: $fontSize; // IE11
+      font-size: var(--lux-theme-form-control-font-size);
 
       > * {
         height: 17px;
@@ -128,17 +144,23 @@ $fontSizeSmall: 12px;
 
     // Toggle von Datepickern anpassen, um analog zu anderen Inputs auszusehen
     mat-datepicker-toggle {
-      height: $controlHeightSmall;
+      height: $controlHeightSmall; // IE11
+      height: var(--lux-theme-form-control-height-small);
 
       button {
-        height: $controlHeightSmall;
-        width: $controlHeightSmall;
+        height: $controlHeightSmall; // IE11
+        height: var(--lux-theme-form-control-height-small);
+        width: $controlHeightSmall; // IE11
+        width: var(--lux-theme-form-control-height-small);
         .mat-button-wrapper {
           display: flex;
-          height: $controlHeightSmall;
+          height: $controlHeightSmall; // IE11
+          height: var(--lux-theme-form-control-height-small);
           svg {
-            height: $controlHeightSmall;
-            width: $controlHeightSmall;
+            height: $controlHeightSmall; // IE11
+            height: var(--lux-theme-form-control-height-small);
+            width: $controlHeightSmall; // IE11
+            width: var(--lux-theme-form-control-height-small);
           }
         }
       }
@@ -149,8 +171,10 @@ $fontSizeSmall: 12px;
       height: auto;
 
       .mat-slide-toggle-label {
-        line-height: $controlHeightSmall;
-        font-size: $fontSize;
+        line-height: $controlHeightSmall; // IE11
+        line-height: var(--lux-theme-form-control-height-small);
+        font-size: $fontSize; // IE11
+        font-size: var(--lux-theme-form-control-font-size);
       }
 
       .mat-slide-toggle-content {
@@ -161,15 +185,18 @@ $fontSizeSmall: 12px;
     // Höhe des Checkbox-Labels an andere Höhen angleichen
     mat-checkbox {
       .mat-checkbox-label {
-        line-height: $controlHeightSmall;
-        font-size: $fontSize;
+        line-height: $controlHeightSmall; // IE11
+        line-height: var(--lux-theme-form-control-height-small);
+        font-size: $fontSize; // IE11
+        font-size: var(--lux-theme-form-control-font-size);
       }
     }
 
     // Höhe der Radio-Buttons etwas anheben
     mat-radio-button {
       height: 21px;
-      font-size: $fontSize;
+      font-size: $fontSize; // IE11
+      font-size: var(--lux-theme-form-control-font-size);
 
       .mat-radio-label {
         vertical-align: unset;
@@ -180,17 +207,21 @@ $fontSizeSmall: 12px;
     // Anpassen des horizontalen Sliders
     mat-slider {
       &.mat-slider-horizontal {
-        height: $defaultHeightNotScalable;
+        height: $defaultHeightNotScalable; // IE11
+        height: var(--lux-theme-form-control-default-height-not-scalable);
       }
     }
 
     // Feinjustierungen für Mat-Select
     mat-select {
-      height: $controlHeight;
+      height: $controlHeight; // IE11
+      height: var(--lux-theme-form-control-height);
       .mat-select-trigger {
-        line-height: $controlHeightSmall;
+        line-height: $controlHeightSmall; // IE11
+        line-height: var(--lux-theme-form-control-height-small);
         .mat-select-value {
-          font-size: $fontSize;
+          font-size: $fontSize; // IE11
+          font-size: var(--lux-theme-form-control-font-size);
         }
       }
     }
@@ -198,7 +229,8 @@ $fontSizeSmall: 12px;
     .lux-label,
     mat-hint,
     mat-error {
-      font-size: $fontSizeSmall !important;
+      font-size: $fontSizeSmall !important; // IE11
+      font-size: var(--lux-theme-form-control-font-size-small) !important;
     }
   }
 }
@@ -207,7 +239,8 @@ $fontSizeSmall: 12px;
 :host {
   &:not(.lux-form-control-scalable-height) {
     .lux-form-control-container {
-      max-height: $defaultHeightNotScalable;
+      max-height: $defaultHeightNotScalable; // IE11
+      max-height: var(--lux-theme-form-control-default-height-not-scalable);
     }
   }
 

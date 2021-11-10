@@ -168,23 +168,26 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
     }
     const { value, errors } = this.formControl;
 
-    // Gibt der Callback bereits einen User-definierten Fehler wieder? => diesen zurückgeben
-    let errorMsg = this.luxErrorMessage
-      ? this.luxErrorMessage
-      : this.luxErrorCallback
-      ? this.luxErrorCallback(value, errors || {})
-      : undefined;
-    if (errors && errorMsg) {
-      return errorMsg;
-    }
+    let errorMsg = undefined;
+    if (errors) {
+      // Gibt der Callback bereits einen User-definierten Fehler wieder? => diesen zurückgeben
+      errorMsg = this.luxErrorMessage
+        ? this.luxErrorMessage
+        : this.luxErrorCallback
+          ? this.luxErrorCallback(value, errors || {})
+          : undefined;
+      if (errors && errorMsg) {
+        return errorMsg;
+      }
 
-    // Evtl. falls vorhanden Fehlerbehandlung der ableitenden Komponente aufrufen
-    errorMsg = this.errorMessageModifier(value, errors || {});
-    if (errorMsg) {
-      return errorMsg;
+      // Evtl. falls vorhanden Fehlerbehandlung der ableitenden Komponente aufrufen
+      errorMsg = this.errorMessageModifier(value, errors || {});
+      if (errorMsg) {
+        return errorMsg;
+      }
+      // Last-but-not-least => versuchen einen Standardfehler auszulesen
+      errorMsg = LuxUtil.getErrorMessage(this.formControl as FormControl);
     }
-    // Last-but-not-least => versuchen einen Standardfehler auszulesen
-    errorMsg = LuxUtil.getErrorMessage(this.formControl as FormControl);
 
     return errorMsg;
   }

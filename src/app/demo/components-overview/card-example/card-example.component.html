@@ -42,7 +42,8 @@
         </p>
       </lux-card-content-expanded>
       <lux-card-actions *ngIf="showActions">
-        <lux-button luxLabel="Action-Button" [luxRaised]="true" luxColor="warn"></lux-button>
+        <lux-button luxLabel="Button 1" [luxRaised]="true" luxIconName="fas fa-user" luxColor="primary"></lux-button>
+        <lux-button luxLabel="Button 2" [luxRaised]="btn2Raised" luxColor=""></lux-button>
       </lux-card-actions>
     </lux-card>
   </example-base-content>
@@ -57,7 +58,7 @@
 
       <lux-input
         luxLabel="luxHeading"
-        luxHint="Gültige Werte sind 1-6"
+        luxHint="Gültige Werte sind 1-6 (verändert nur die Überschriftenstruktur, aber nicht die Darstellung (Barrierefreiheit)."
         [(luxValue)]="heading"
         [luxControlValidators]="headingValidator"
       ></lux-input>
@@ -87,6 +88,11 @@
         Wenn 'false', wird der Titel mit '...' abgekürzt.
       </lux-form-hint>
     </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="luxRaised (Button 2)"
+      [(luxChecked)]="btn2Raised"
+    ></lux-toggle>
   </example-base-simple-options>
   <example-base-advanced-options>
     <lux-toggle

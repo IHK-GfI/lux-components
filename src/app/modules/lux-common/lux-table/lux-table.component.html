@@ -55,7 +55,11 @@
                 >
               </div>
             </th>
-            <td class="lux-multiselect-td" mat-cell *matCellDef="let element; let i = index">
+            <td class="lux-multiselect-td" mat-cell *matCellDef="let element; let i = index"
+                [tabindex]="luxMultiSelectOnlyCheckboxClick ? 0 : -1"
+                (click)="changeSelectedEntry(element, true)"
+                (keydown.space)="changeSelectedEntry(element, true)"
+                (keydown.enter)="changeSelectedEntry(element, true)">
               <lux-checkbox
                 luxTagId="lux-table-multiselect-content-{{ i }}"
                 class="lux-multiselect-toggle"
@@ -171,7 +175,7 @@
             mat-row
             *matRowDef="let rowData; columns: dataColumnDefs; let i = index"
             class="lux-row {{ getCustomClassesForIndex(rowData) }}"
-            tabindex="0"
+            [tabindex]="luxMultiSelectOnlyCheckboxClick ? '-1' : '0'"
             [ngClass]="{ 'lux-multiselect-field': luxMultiSelect, 'lux-row-selected': luxSelected.has(rowData) }"
             (click)="changeSelectedEntry(rowData)"
             (keydown.space)="changeSelectedEntry(rowData)"
@@ -197,6 +201,8 @@
   </div>
   <mat-paginator
     #paginator
+    [disabled]="luxPagerDisabled"
+    [luxTooltip]="luxPagerTooltip"
     [length]="dataSource.totalElements"
     [pageSize]="luxPageSize"
     [pageSizeOptions]="luxPageSizeOptions"

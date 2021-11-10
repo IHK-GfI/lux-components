@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxDatepickerStartViewType } from "../../../modules/lux-form/lux-datepicker/lux-datepicker.component";
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   exampleErrorCallback,
   logResult,
@@ -29,7 +30,7 @@ export class DatepickerExampleComponent {
 
   // region Properties der Component
 
-  value: any = null;
+  value = '2020-05-28T14:15:00.000Z';
   controlBinding = 'datepickerExample';
   disabled = false;
   readonly: boolean;
@@ -43,7 +44,7 @@ export class DatepickerExampleComponent {
   showToggle = true;
   opened = false;
   startDate: string;
-  locale = 'de-DE';
+  locale = null;
   minDate: string;
   maxDate: string;
   startView: LuxDatepickerStartViewType = 'month';
@@ -55,9 +56,24 @@ export class DatepickerExampleComponent {
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale, private fb: FormBuilder) {
+    this.locale = matDateLocale === 'en' ? 'en-US' : matDateLocale;
+    switch (matDateLocale) {
+      case 'de':
+        this.locale = 'de-De';
+        break;
+      case 'en':
+        this.locale = 'en-US';
+        break;
+      case 'fr':
+        this.locale = 'fr-FR';
+        break;
+      default:
+        this.locale = matDateLocale;
+    }
+
     this.form = this.fb.group({
-      datepickerExample: []
+      datepickerExample: [new Date(2020, 5, 28, 14, 15)] //['2021-09-07T23:00:00.000Z']
     });
   }
 

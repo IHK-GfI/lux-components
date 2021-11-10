@@ -1,0 +1,57 @@
+<div class="lux-datetime-overlay-content">
+  <lux-card luxTagId="lux-datetimepicker-overlay-card-content">
+    <lux-card-content fxLayout="column">
+      <mat-calendar
+        class="lux-datetime-overlay-calendar"
+        [dateFilter]="dateTimePicker.luxCustomFilter"
+        [startView]="dateTimePicker.luxStartView"
+        [(selected)]="selected"
+        [startAt]="startDate"
+        [minDate]="minCalendarDate"
+        [maxDate]="maxCalendarDate"
+        [headerComponent]="getHeaderByTheme()"
+      ></mat-calendar>
+      <lux-divider [luxInset]="true"></lux-divider>
+      <div fxLayout="row" fxLayoutAlign="center start">
+        <lux-input
+          luxLabel=""
+          class="lux-datetime-no-label"
+          luxAutocomplete="off"
+          [(luxValue)]="hours"
+          (luxFocusIn)="selectHours()"
+          (luxFocusOut)="fillHours()"
+          (keydown.arrowUp)="incrementHour()"
+          (keydown.arrowDown)="decrementHour()"
+          [luxMaxLength]="2"
+          [luxHideCounterLabel]="true"
+          luxTagId="lux-datetimepicker-hours-input"
+          #hoursinput
+        ></lux-input>
+        <div fxFlex="15px" style="padding-top: 15px">:</div>
+        <lux-input
+          luxLabel=""
+          class="lux-datetime-no-label"
+          luxAutocomplete="off"
+          [(luxValue)]="minutes"
+          (luxFocusIn)="selectMinutes()"
+          (luxFocusOut)="fillMinutes()"
+          (keydown.arrowUp)="incrementMinutes()"
+          (keydown.arrowDown)="decrementMinutes()"
+          [luxMaxLength]="2"
+          [luxHideCounterLabel]="true"
+          luxTagId="lux-datetimepicker-minutes-input"
+          #minutesinput
+        ></lux-input>
+      </div>
+      <div fxFlexAlign="center" class="lux-datetime-error-message-container lux-pt-2">
+        <mat-error *ngIf="!selected && touched" i18n="@@luxc.datetimepicker.invalid.date">Bitte wählen Sie ein Datum aus</mat-error>
+        <mat-error *ngIf="(!this.hours || !this.minutes) && selected && touched" i18n="@@luxc.datetimepicker.invalid.time"
+        >Bitte geben Sie eine Zeit ein</mat-error
+        >
+      </div>
+    </lux-card-content>
+    <lux-card-actions>
+      <lux-button luxLabel="Ok" luxColor="primary" [luxRaised]="true" (luxClicked)="onOk()"></lux-button>
+    </lux-card-actions>
+  </lux-card>
+</div>

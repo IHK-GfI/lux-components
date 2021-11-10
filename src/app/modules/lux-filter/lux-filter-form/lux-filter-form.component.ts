@@ -1,6 +1,7 @@
 import { AfterContentInit, Component, ContentChildren, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { LuxActionColorType } from '../../lux-action/lux-action-model/lux-action-component-base.class';
 import { LuxSelectComponent } from '../../lux-form/lux-select/lux-select.component';
 import { LuxDialogService } from '../../lux-popups/lux-dialog/lux-dialog.service';
 import { LuxUtil } from '../../lux-util/lux-util';
@@ -32,9 +33,18 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   @Input() luxTitle = $localize `:@@luxc.filter.title:Filter`;
   @Input() luxButtonRaised = false;
   @Input() luxButtonFilterLabel = $localize `:@@luxc.filter.filter.btn:Filtern`;
+  @Input() luxButtonFilterColor: LuxActionColorType = 'primary';
   @Input() luxButtonResetLabel = $localize `:@@luxc.filter.reset.btn:Zurücksetzen`;
-  @Input() luxButtonSaveLabel = $localize `:@@luxc.filter.save.btn:Speichen`;
+  @Input() luxButtonResetColor: LuxActionColorType = '';
+  @Input() luxButtonSaveLabel = $localize `:@@luxc.filter.save.btn:Speichern`;
+  @Input() luxButtonSaveColor: LuxActionColorType = '';
   @Input() luxButtonLoadLabel = $localize `:@@luxc.filter.load.btn:Laden`;
+  @Input() luxButtonLoadColor: LuxActionColorType = '';
+  @Input() luxButtonDialogSave = 'primary';
+  @Input() luxButtonDialogLoad = 'primary';
+  @Input() luxButtonDialogDelete = 'warn';
+  @Input() luxButtonDialogCancel = 'default';
+  @Input() luxButtonDialogClose = 'default';
   @Input() luxDefaultFilterMessage = $localize `:@@luxc.filter.defaultFilterMessage:Es wird nach den Standardeinstellungen gefiltert.`;
   @Input() luxShowChips = true;
   @Input() luxStoredFilters: LuxFilter[] = [];
