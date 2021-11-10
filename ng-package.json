@@ -10,7 +10,6 @@
     }
   },
   "assets": [
-    "./src/locale/**",
-    "./ie11-lazy-modules-plugin.js"
+    "./src/locale/**"
   ]
 }

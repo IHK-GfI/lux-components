@@ -50,7 +50,7 @@
           [luxAriaLabel]="luxAriaTitleImageLabel"
           [luxImageSrc]="luxImageSrc"
           [luxImageHeight]="luxImageHeight"
-          [luxImageWidth]="isIE && luxImageSrc && luxImageSrc.endsWith('.svg') ? '100%' : 'auto'"
+          [luxImageWidth]="'auto'"
           [ngClass]="{ 'lux-cursor': hasOnClickedListener, focused: hasOnClickedListener }"
           (click)="onClicked($event)"
           (keydown.enter)="onClicked($event)"

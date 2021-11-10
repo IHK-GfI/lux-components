@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { LuxUtil } from '../../lux-util/lux-util';
+import { Component, Input } from '@angular/core';
 import { LuxProgressColor, LuxProgressColors } from "../../lux-util/lux-colors.enum";
 
 export declare type LuxProgressModeType = 'determinate' | 'indeterminate';
@@ -11,14 +10,13 @@ export declare type LuxProgressSizeType = 'small' | 'medium' | 'large';
   templateUrl: './lux-progress.component.html',
   styleUrls: ['./lux-progress.component.scss']
 })
-export class LuxProgressComponent implements OnInit {
+export class LuxProgressComponent {
   readonly DEFAULT_PROGRESS_COLOR: LuxProgressColor = 'blue';
 
   private _luxMode: LuxProgressModeType;
   private _luxType: LuxProgressType;
   private _luxColor: LuxProgressColor;
 
-  isIE = false;
   animDurationCSS = '';
   typeCSS = '';
 
@@ -65,9 +63,5 @@ export class LuxProgressComponent implements OnInit {
   constructor() {
     this.luxMode = 'indeterminate';
     this.luxType = 'Progressbar';
-  }
-
-  ngOnInit() {
-    this.isIE = LuxUtil.isIE();
   }
 }

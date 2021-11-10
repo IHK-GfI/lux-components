@@ -147,34 +147,6 @@ export class LuxUtil {
   }
 
   /**
-   * Prueft ob die Applikation im IE geoeffnet ist.
-   *
-   * @returns boolean
-   */
-  public static isIE(): boolean {
-    const msie = window.document['documentMode'];
-    return msie && msie <= 11;
-  }
-
-  /**
-   * Prueft ob die Applikation im Edge geoeffnet ist.
-   *
-   * @returns boolean
-   */
-  public static isEdge(): boolean {
-    return window.navigator.userAgent.indexOf('Edge') > -1;
-  }
-
-  /**
-   * Prueft ob die Applikation im IE oder Edge geoffnet ist.
-   *
-   * @returns boolean
-   */
-  public static isIEorEdge(): boolean {
-    return LuxUtil.isIE() || LuxUtil.isEdge();
-  }
-
-  /**
    * Diese Methode verhindert, dass ein Event weiterverarbeitet wird.
    *
    * @param event Ein beliebiges Event.

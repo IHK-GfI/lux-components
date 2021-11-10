@@ -29,19 +29,6 @@ lux-card ::ng-deep mat-card-content .lux-card-content {
   }
 }
 
-// der IE zeigt sonst in kleineren Auflösungen horziontale Scrollbalken an
-.ie {
-  .example-base-container,
-  .example-base-options {
-    ::ng-deep > .mat-card > .lux-card-content-container {
-      > mat-card-content {
-        overflow-x: hidden;
-        overflow-y: auto;
-      }
-    }
-  }
-}
-
 .example-base-options {
   max-height: 100%;
 

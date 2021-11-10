@@ -46,10 +46,6 @@
             ],
             "scripts": [
               {
-                "bundleName": "polyfill-webcomp-es5",
-                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
-              },
-              {
                 "bundleName": "polyfill-webcomp",
                 "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
               }
@@ -88,28 +84,6 @@
               "outputPath": "dist/en",
               "i18nMissingTranslation": "error"
             },
-            "es5": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "tsConfig": "src/tsconfig.app.ie.json"
-            },
-            "es5en": {
-              "localize": ["en"],
-              "aot": true,
-              "outputPath": "dist/en",
-              "i18nMissingTranslation": "error",
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "tsConfig": "src/tsconfig.app.ie.json"
-            }
           }
         },
         "serve": {
@@ -123,12 +97,6 @@
             },
             "en": {
               "browserTarget": "lux-components:build:en"
-            },
-            "es5": {
-              "browserTarget": "lux-components:build:es5"
-            },
-            "es5en": {
-              "browserTarget": "lux-components:build:es5en"
             }
           }
         },

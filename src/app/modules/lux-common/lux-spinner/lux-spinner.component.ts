@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { LuxUtil } from '../../lux-util/lux-util';
 
 @Component({
   selector: 'lux-spinner',
@@ -16,7 +15,4 @@ export class LuxSpinnerComponent {
     return this.luxIndeterminate ? 'indeterminate' : 'determinate';
   }
 
-  isIE(): boolean {
-    return LuxUtil.isIE();
-  }
 }

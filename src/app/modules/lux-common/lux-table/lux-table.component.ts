@@ -64,7 +64,6 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   filtered$: Subject<string> = new Subject<string>();
   currentCustomClasses: { entry: any; classes: string }[] = [];
   isLoadingResults: boolean;
-  isIE = false;
   allSelected: boolean;
   mediaQuery: string;
   movedTableColumns: LuxTableColumnComponent[] = [];
@@ -284,8 +283,6 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   ) {
     // Datasource um eigene Filter-Funktionalitaet ergaenzen
     this.dataSource.filterPredicate = this.customFilterPredicate;
-
-    this.isIE = LuxUtil.isIEorEdge();
 
     this.mediaQuerySubscription = this.queryObserver.getMediaQueryChangedAsObservable().subscribe((query: string) => {
       this.mediaQuery = query;
