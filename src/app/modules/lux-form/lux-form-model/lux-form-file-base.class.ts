@@ -66,7 +66,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   @Output() luxSelectedFilesChange: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() luxSelectedFilesAlwaysUseArray = false;
+  @Input() luxSelectedFilesAlwaysUseArray = true;
   @Input() luxUploadReportProgress = false;
   @Input() luxContentsAsBlob = false;
   @Input() luxTagId: string;
