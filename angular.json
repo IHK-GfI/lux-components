@@ -36,7 +36,7 @@
                 "output": "./assets/cmaps"
               },
               {
-                "glob": "*.css",
+                "glob": "*(*min.css|*min.css.map)",
                 "input": "./node_modules/@ihk-gfi/lux-components-theme/prebuilt-themes",
                 "output": "./assets/themes"
               }

@@ -21,6 +21,10 @@ export class TabsExampleComponent {
       title: 'Title #1',
       disabled: false,
       iconName: 'fas fa-bookmark',
+      imageSrc: 'assets/png/image-36x36.png',
+      imageAlign: 'center',
+      imageHeight: '36px',
+      imageWidth: '36px',
       showNotification: true,
       counterCap: 10,
       counter: 10
@@ -29,6 +33,10 @@ export class TabsExampleComponent {
       title: 'Title #2',
       disabled: false,
       iconName: 'fas fa-user',
+      imageSrc: 'assets/png/image-36x36.png',
+      imageHeight: '36px',
+      imageWidth: '36px',
+      imageAlign: 'center',
       showNotification: true,
       counterCap: undefined,
       counter: undefined
@@ -37,6 +45,10 @@ export class TabsExampleComponent {
       title: 'Title #3',
       disabled: false,
       iconName: 'fas fa-check',
+      imageSrc: 'assets/png/image-36x36.png',
+      imageHeight: '36px',
+      imageWidth: '36px',
+      imageAlign: 'center',
       showNotification: false,
       counterCap: 99,
       counter: 99

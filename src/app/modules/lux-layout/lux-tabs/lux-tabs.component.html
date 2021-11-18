@@ -82,6 +82,29 @@
   <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdHeader" class="lux-mt-3 lux-mb-3">
     <div fxFlex="auto" fxLayout.gt-sm="column" fxLayout.xs="row">
       <div fxLayout="row" fxLayoutAlign="center center" fxFlex="0 0 auto">
+        <div fxFlex="1 1 100%" class="lux-tab-header-image-container" fxLayout="row" *ngIf="luxTab.luxImageSrc && !luxTab.luxIconName">
+          <div
+            fxFlex="1 1 auto"
+            class="lux-tab-header-image-left"
+            *ngIf="luxTab.luxImageAlign === 'right' || luxTab.luxImageAlign === 'center'"
+          ></div>
+          <lux-image class="lux-tab-header-image" fxFlex="none"
+                     [luxBadgeNotification]="smallDevice || (!smallDevice && !luxTab.luxTitle) ? luxTab.luxCounter : ''"
+                     [luxBadgeNoBorder]="true"
+                     luxBadgeColor="primary"
+                     [luxBadgeDisabled]="luxTab.luxDisabled"
+                     [luxBadgeCap]="luxTab.luxCounterCap"
+                     [luxBadgeOverlap]="false"
+                     [luxImageSrc]="luxTab.luxImageSrc"
+                     [luxImageWidth]="luxTab.luxImageWidth"
+                     [luxImageHeight]="luxTab.luxImageHeight">
+          </lux-image>
+          <div
+            fxFlex="1 1 auto"
+            class="lux-tab-header-image-right"
+            *ngIf="luxTab.luxImageAlign === 'left' || luxTab.luxImageAlign === 'center'"
+          ></div>
+        </div>
         <lux-icon
           class="lux-tab-icon"
           fxFlex="none"
@@ -119,7 +142,7 @@
           [luxBadgeDisabled]="luxTab.luxDisabled"
           [luxBadgeCap]="luxTab.luxCounterCap"
           [luxBadgeOverlap]="false"
-          *ngIf="luxTab.luxIconName"
+          *ngIf="luxTab.luxIconName || luxTab.luxImageSrc"
         >
           {{ luxTab.luxTitle }}
           <span
@@ -144,7 +167,7 @@
           [luxBadgeDisabled]="luxTab.luxDisabled"
           [luxBadgeCap]="luxTab.luxCounterCap"
           [luxBadgeOverlap]="false"
-          *ngIf="!luxTab.luxIconName"
+          *ngIf="!luxTab.luxIconName && !luxTab.luxImageSrc"
         >
           {{ luxTab.luxTitle }}
           <span

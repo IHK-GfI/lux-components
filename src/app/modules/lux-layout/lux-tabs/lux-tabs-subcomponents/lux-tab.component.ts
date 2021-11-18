@@ -13,6 +13,10 @@ export class LuxTabComponent {
   @Input() luxDisabled = false;
   @Input() luxTagIdHeader: string;
   @Input() luxTagIdContent: string;
+  @Input() luxImageSrc: string;
+  @Input() luxImageAlign : 'left' | 'center' | 'right' = 'center';
+  @Input() luxImageWidth = '36px';
+  @Input() luxImageHeight = '36px';
 
   @ContentChild(TemplateRef) contentTemplate: TemplateRef<any>;
 

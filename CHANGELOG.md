@@ -1,3 +1,9 @@
+# Version 11.6.0
+## New
+- **lux-tabs**: Das Verwenden von Custom-Icons ermöglichen. [Issue 139](https://github.com/IHK-GfI/lux-components/issues/139)
+- **lux-chips**: Nach Selektion eines Chips erscheint keine Autocomplete Liste beim erneuten Mouse-Klick. [Issue 142](https://github.com/IHK-GfI/lux-components/issues/142)
+- **lux-radio**: Label der vertikalen Radiobuttons brechen nicht um. [Issue 145](https://github.com/IHK-GfI/lux-components/issues/145)
+
 # Version 11.5.0
 ## New
 - **allgemein**: LUX-Theme [11.7.1](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.7.0) integriert. [Issue 138](https://github.com/IHK-GfI/lux-components/issues/138)

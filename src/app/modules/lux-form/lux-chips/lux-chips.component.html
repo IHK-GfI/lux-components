@@ -87,6 +87,7 @@
           [disabled]="luxDisabled"
           (matChipInputTokenEnd)="inputAdd(input)"
           (keyup)="inputChanged(input.value)"
+          (click)="onAutocompleteClick()"
           type="text"
           fxFlex="1 1 auto"
           #input

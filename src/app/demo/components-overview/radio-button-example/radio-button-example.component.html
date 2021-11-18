@@ -93,6 +93,11 @@
     >
     </lux-input>
     <div fxLayout="column" class="lux-highlight-section">
+      <lux-input luxName="Option 1" luxLabel="Option 1" [(luxValue)]="options[0].label" (luxValueChange)="onRefresh()" [luxDisabled]="useSimpleArray"></lux-input>
+      <lux-input luxName="Option 2" luxLabel="Option 2" [(luxValue)]="options[1].label" (luxValueChange)="onRefresh()" [luxDisabled]="useSimpleArray"></lux-input>
+      <lux-input luxName="Option 3" luxLabel="Option 3" [(luxValue)]="options[2].label" (luxValueChange)="onRefresh()" [luxDisabled]="useSimpleArray"></lux-input>
+    </div>
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxName="radio_luxHint"
         luxLabel="luxHint"

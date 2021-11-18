@@ -164,6 +164,25 @@ export class LuxChipsComponent extends LuxFormComponentBase implements OnDestroy
   }
 
   /**
+   * Diese Methode öffnet bei jedem Klick das Optionspanel des
+   * Autocomplete-Feldes.
+   *
+   * Details:
+   * Im Standard wird das Optionspanel eines Autocomplete-Feldes nur einmal
+   * geöffnet. Ein Autocomplete-Feld prüft bei jedem Klick, ob es selbst den
+   * Fokus hat und ob sein Optionspanel bereits zuvor geöffnet wurde. Wenn beide
+   * Bedingungen zutreffen, bleibt das Optionspanel beim erneuten Klicken
+   * standardmäßig geschlossen. Hier bei den Chips soll das Verhalten des
+   * Autocomplete-Feldes geändert werden. Jeder Klick soll immer das
+   * Optionspanel öffnen, unabhängig von irgendwelchen Bedingungen. Dadurch
+   * können die Benutzer auch mit der Maus mehrere Chips hintereinander
+   * auswählen.
+   */
+  onAutocompleteClick() {
+    this.matAutocompleteTrigger.openPanel();
+  }
+
+  /**
    * Wird beim Selektieren einer Option im Autocomplete ausgeführt.
    *
    * @param input
