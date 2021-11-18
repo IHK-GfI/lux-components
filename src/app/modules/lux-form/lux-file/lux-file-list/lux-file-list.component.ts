@@ -144,7 +144,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     // Wir entfernen hier nur eine Datei, deshalb ist das neue Auslesen der Base64-Strings nicht nötig
     this.uploadFiles(newFiles).then(
       () => {
-        this.luxSelectedFiles = newFiles && newFiles.length === 1 && !this.luxSelectedFilesAlwaysUseArray ? newFiles[0] : newFiles;
+        this.luxSelectedFiles = newFiles && newFiles.length === 1 && !this.useArray() ? newFiles[0] : newFiles;
         this.notifyFormValueChanged();
       },
       (error) => this.setFormControlErrors(error)
@@ -196,9 +196,9 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
       // Ausnahme ist, wenn die Dateien nur ersetzt werden sollen
       if (
         !this.luxMultiple &&
-        ((!this.luxSelectedFiles && files.length > 1) ||
+        (((!this.luxSelectedFiles || this.luxSelectedFiles.length === 0) && files.length > 1) ||
           (this.luxSelectedFiles && this.luxSelectedFiles.length > 1) ||
-          (this.luxSelectedFiles && replaceableFilesMap.size !== files.length))
+          (this.luxSelectedFiles && this.luxSelectedFiles.length > 0 && replaceableFilesMap.size !== files.length))
       ) {
         this.setFormControlErrors({
           cause: LuxFileErrorCause.MultipleForbidden,
@@ -223,7 +223,10 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
           // die übrigen neuen Dateien anfügen
           tempSelectedFiles.push(...newFiles);
 
-          this.luxSelectedFiles = tempSelectedFiles && tempSelectedFiles.length === 1 && !this.luxSelectedFilesAlwaysUseArray ? tempSelectedFiles[0] : tempSelectedFiles;
+          this.luxSelectedFiles =
+            tempSelectedFiles && tempSelectedFiles.length === 1 && !this.useArray()
+              ? tempSelectedFiles[0]
+              : tempSelectedFiles;
           this.notifyFormValueChanged();
         },
         (error) => this.setFormControlErrors(error)
@@ -342,8 +345,6 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     }
   }
 
-  // region Overridden methods
-
   protected errorMessageModifier(value: any, errors: any): string | undefined {
     if (errors.required) {
       return $localize`:@@luxc.file-list.error_message.required:Es muss eine Datei ausgewählt werden`;
@@ -364,5 +365,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     this.fileuploadSingleInput.nativeElement.value = null;
   }
 
-  // endregion
+  useArray(): boolean {
+    return true;
+  }
 }

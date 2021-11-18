@@ -77,8 +77,6 @@ export class LuxFileInputComponent extends LuxFormFileBase {
     }, this.defaultReadFileDelay);
   }
 
-  // region Overridden methods
-
   protected errorMessageModifier(value: any, errors: any): string | undefined {
     if (errors.required) {
       return $localize `:@@luxc.file-input.error_message.required:Es muss eine Datei ausgewählt werden`;
@@ -94,5 +92,8 @@ export class LuxFileInputComponent extends LuxFormFileBase {
     super.setFormControlErrors(error);
   }
 
-  // endregion
+  useArray(): boolean {
+    return false;
+  }
+
 }

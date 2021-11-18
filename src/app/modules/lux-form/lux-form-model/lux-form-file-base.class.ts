@@ -66,7 +66,6 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   @Output() luxSelectedFilesChange: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() luxSelectedFilesAlwaysUseArray = true;
   @Input() luxUploadReportProgress = false;
   @Input() luxContentsAsBlob = false;
   @Input() luxTagId: string;
@@ -203,7 +202,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();
 
-    this.luxSelectedFiles = this.luxSelectedFilesAlwaysUseArray ? [] : undefined;
+    this.luxSelectedFiles = this.useArray() ? [] : undefined;
     this.notifyFormValueChanged();
     this.clearFormControlErrors();
     if (this.luxDeleteActionConfig.onClick) {
@@ -295,7 +294,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
       await this.mapFilesToFileObjects(files).then((fileObjects: ILuxFileObject[]) => (newFiles = fileObjects));
       await this.uploadFiles(newFiles);
       if (this.luxUploadActionConfig.onClick) {
-        this.luxUploadActionConfig.onClick(newFiles && newFiles.length === 1 && !this.luxSelectedFilesAlwaysUseArray ? newFiles[0] : newFiles);
+        this.luxUploadActionConfig.onClick(newFiles && newFiles.length === 1 && !this.useArray() ? newFiles[0] : newFiles);
       }
       this.formControl.markAsTouched();
       this.formControl.markAsDirty();
@@ -541,6 +540,8 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    * Die erbenden Klassen implementieren diese Funktion aus.
    */
   abstract selectFiles(files: FileList | File[]);
+
+  abstract useArray(): boolean;
 
   /**
    * Prüft ob der Base64-String für die Datei gesetzt ist und ob ein onClick-Aufruf für die View-Action vorhanden ist.
