@@ -1,12 +1,19 @@
 {
   "root": true,
-  "ignorePatterns": ["typings.d.ts"],
+  "ignorePatterns": [
+    "typings.d.ts"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
       "excludedFiles": [],
       "parserOptions": {
-        "project": ["tsconfig.json", "e2e/tsconfig.e2e.json"],
+        "project": [
+          "tsconfig.json",
+          "e2e/tsconfig.e2e.json"
+        ],
         "createDefaultProgram": true
       },
       "extends": [
@@ -15,20 +22,39 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        // Zusätzliche Regeln (siehe Abschnitt "extends")
         "id-blacklist": "error",
         "id-match": "error",
         "no-shadow": "off",
-        "max-classes-per-file": ["error", 1],
-        "brace-style": ["error", "1tbs"],
+        "max-classes-per-file": [
+          "error",
+          1
+        ],
+        "brace-style": [
+          "error",
+          "1tbs"
+        ],
         "jsdoc/newline-after-description": "error",
         "@typescript-eslint/no-shadow": "error",
         "@typescript-eslint/consistent-type-definitions": "error",
         "@typescript-eslint/member-delimiter-style": "error",
         "@typescript-eslint/no-inferrable-types": "error",
         "@typescript-eslint/member-ordering": "off",
-        "@angular-eslint/component-selector": ["error", { "type": "element", "prefix": "", "style": "kebab-case" }],
-        "@angular-eslint/directive-selector": ["error", { "type": "attribute", "prefix": "", "style": "camelCase" }],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "",
+            "style": "camelCase"
+          }
+        ],
         "@angular-eslint/no-attribute-decorator": "error",
         "@angular-eslint/no-forward-ref": "error",
         "@angular-eslint/no-input-rename": "error",
@@ -36,8 +62,6 @@
         "@angular-eslint/no-pipe-impure": "error",
         "@angular-eslint/use-component-view-encapsulation": "error",
         "@angular-eslint/no-empty-lifecycle-method": "error",
-
-        // Deaktivierte Regeln
         "jsdoc/require-param-type": "off",
         "jsdoc/require-returns-type": "off",
         "jsdoc/require-returns": "off",
@@ -45,14 +69,23 @@
         "jsdoc/require-param-description": "off",
         "@typescript-eslint/naming-convention": "off",
         "@typescript-eslint/dot-notation": "off",
-        "@typescript-eslint/explicit-member-accessibility": ["off", { "accessibility": "explicit" }],
+        "@typescript-eslint/explicit-member-accessibility": [
+          "off",
+          {
+            "accessibility": "explicit"
+          }
+        ],
         "@angular-eslint/directive-class-suffix": "off",
         "@angular-eslint/no-host-metadata-property": "off"
       }
     },
     {
-      "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended"]
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ]
     }
   ]
 }

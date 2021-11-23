@@ -7,6 +7,9 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 /**
  * Basis-Klasse für FormComponents, die einen ähnlichen Grundaufbau für die Auswahl von
  * Optionen aus einem Array anbieten (Radio-Buttons und Selects z.B.).
+ *
+ * @param o1
+ * @param o2
  */
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormSelectableBase extends LuxFormComponentBase {

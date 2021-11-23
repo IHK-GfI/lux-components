@@ -169,7 +169,6 @@ describe('LuxMasterDetailComponent', () => {
   it('sollte moeglich sein die Selektion anzupassen', fakeAsync(() => {
     // Given
     component.mockItems = createMockDataArray(10);
-    LuxTestHelper.wait(fixture, defaultWaitTime);
     component.detail = component.mockItems[0];
     LuxTestHelper.wait(fixture, defaultWaitTime);
 
@@ -223,7 +222,6 @@ describe('LuxMasterDetailComponent', () => {
   it('Sollte bei Änderungen an der Master-Liste korrekt zum selektierten Detail springen', fakeAsync(() => {
     // Vorbedingungen prüfen
     component.mockItems = createMockDataArray(10);
-    LuxTestHelper.wait(fixture, defaultWaitTime);
     component.detail = component.mockItems[2];
     LuxTestHelper.wait(fixture, defaultWaitTime);
 
@@ -382,8 +380,8 @@ describe('LuxMasterDetailComponent', () => {
 
       // Then
       expect(masterCards.length).toBe(50, 'Es sollten 50 Elemente in der Masterliste sein.');
-      expect((masterCards[15].nativeElement as HTMLElement).parentElement.className).toContain(
-        'selected',
+      expect((masterCards[15].nativeElement as HTMLElement).parentElement.classList).toContain(
+        'lux-list-item-selected',
         'Der 15te Eintrag der Masterliste sollte selektiert sein.'
       );
 
@@ -408,8 +406,7 @@ describe('LuxMasterDetailComponent', () => {
 
 @Component({
   selector: 'lux-mock-detail',
-  template: '<h2>Mock-Detail</h2><ng-content></ng-content>',
-  styles: ['']
+  template: '<h2>Mock-Detail</h2><ng-content></ng-content>'
 })
 class LuxMockDetailComponent implements OnInit {
   @Output() init: EventEmitter<any> = new EventEmitter<any>();

@@ -9,8 +9,7 @@ import {
 
 @Component({
   selector: 'app-slider-example',
-  templateUrl: './slider-example.component.html',
-  styles: ['']
+  templateUrl: './slider-example.component.html'
 })
 export class SliderExampleComponent {
   // region Helper-Properties für das Beispiel

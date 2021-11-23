@@ -123,6 +123,10 @@ export class LuxDateTimePickerComponent
   getConnectedOverlayOrigin(): ElementRef<any> {
     return this.dateTimePickerInputEl;
   }
+
+  getOverlayLabelId() {
+    return null;
+  }
   stateChanges: Observable<void>;
   // Code des Interfaces "MatDatepickerControl" - Ende
 

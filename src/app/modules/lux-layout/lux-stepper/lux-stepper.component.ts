@@ -1,3 +1,4 @@
+import { CdkStepHeader } from '@angular/cdk/stepper/step-header';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -52,7 +53,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   matStepper: MatHorizontalStepper | MatVerticalStepper;
   matStepLabels: ViewContainerRef[];
-  matStepHeaders: MatStepHeader[];
+  matStepHeaders: CdkStepHeader[];
 
   stepperConfiguration: ILuxStepperConfiguration = {
     luxCurrentStepNumber: 0,

@@ -53,7 +53,7 @@ mat-tab-group ::ng-deep div[role="tab"] {
     height: auto;
     position: relative;
 
-    @media ($mat-small) {
+    @media (max-width: 959px) {
       padding-left: 40px;
       padding-right: 40px;
 
@@ -61,7 +61,7 @@ mat-tab-group ::ng-deep div[role="tab"] {
       width: 125px;
     }
 
-    @media ($mat-xsmall) {
+    @media (max-width: 599px) {
       padding-left: 30px;
       padding-right: 30px;
 
@@ -117,12 +117,12 @@ mat-tab-group ::ng-deep div[role="tab"] {
   top: 10px;
   right: 30px;
 
-  @media ($mat-small) {
+  @media (max-width: 959px) {
     top: 10px;
     right: 30px;
   }
 
-  @media ($mat-xsmall) {
+  @media (max-width: 599px) {
     top: 10px;
     right: 15px;
   }
@@ -131,12 +131,12 @@ mat-tab-group ::ng-deep div[role="tab"] {
     top: 10px;
     right: 0px;
 
-    @media ($mat-small) {
+    @media (max-width: 959px) {
       top: 10px;
       right: 17px;
     }
 
-    @media ($mat-xsmall) {
+    @media (max-width: 599px) {
       top: 10px;
       right: 0px;
     }

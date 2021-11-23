@@ -33,7 +33,7 @@ Die Demo kann auch lokal ausgeführt werden:
 
 ## Eine App auf Basis der LUX-Components erstellen
 
-Stellen Sie zunächst sicher, dass Sie die Node-Version 12.x.x oder höher installiert haben. 
+Stellen Sie zunächst sicher, dass Sie die Node-Version 14.x.x oder höher installiert haben. 
 Installieren Sie anschließend die folgenden zwei NPM-Pakte global:
 
 Die aktuellste Version unterstützt die @angular/cli@11. Deswegen wird @angular/cli nicht über 
@@ -48,7 +48,7 @@ npm install -g @angular-devkit/schematics-cli
 Zuerst erzeugt man über die Angular CLI eine neue App.
 
 ```
-npx @angular/cli@11 new my-new-app
+npx @angular/cli@12 new my-new-app
 ? Do you want to enforce stricter type checking and stricter bundle budgets in the workspace?
   This setting helps improve maintainability and catch bugs ahead of time.
   For more information, see https://angular.io/strict No

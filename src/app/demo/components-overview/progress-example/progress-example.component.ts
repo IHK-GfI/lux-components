@@ -4,8 +4,7 @@ import { LuxProgressColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-progress-example',
-  templateUrl: './progress-example.component.html',
-  styles: ['']
+  templateUrl: './progress-example.component.html'
 })
 export class ProgressBarExampleComponent {
   sizes = ['small', 'medium', 'large'];
