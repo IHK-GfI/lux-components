@@ -1,3 +1,7 @@
+# Version 11.7.0
+## New
+- **lux-filter-form**: Filtern mit Shift + Eingabetaste starten. [Issue 147](https://github.com/IHK-GfI/lux-components/issues/147)
+
 # Version 11.6.0
 ## New
 - **lux-tabs**: Das Verwenden von Custom-Icons ermöglichen. [Issue 139](https://github.com/IHK-GfI/lux-components/issues/139)
