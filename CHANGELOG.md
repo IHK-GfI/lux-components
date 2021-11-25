@@ -1,6 +1,7 @@
 # Version 11.7.0
 ## New
 - **lux-filter-form**: LUX-Datetimepicker im LUX-Filterform ergänzen. [Issue 149](https://github.com/IHK-GfI/lux-components/issues/149)
+- **lux-filter-form**: Filtern mit Shift + Eingabetaste starten. [Issue 147](https://github.com/IHK-GfI/lux-components/issues/147)
 
 # Version 11.6.0
 ## New

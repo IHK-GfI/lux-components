@@ -24,15 +24,15 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
   @Input() luxFilterDisabled = false;
 
   constructor(
-    @Optional() private input: LuxInputComponent,
-    @Optional() private autoComplete: LuxAutocompleteComponent,
-    @Optional() private autoCompleteLookup: LuxLookupAutocompleteComponent,
-    @Optional() private datepicker: LuxDatepickerComponent,
-    @Optional() private datetimepicker: LuxDateTimePickerComponent,
-    @Optional() private toggle: LuxToggleComponent,
-    @Optional() private checkbox: LuxCheckboxComponent,
-    @Optional() private select: LuxSelectComponent,
-    @Optional() private selectLookup: LuxLookupComboboxComponent,
+    @Optional() public input: LuxInputComponent,
+    @Optional() public autoComplete: LuxAutocompleteComponent,
+    @Optional() public autoCompleteLookup: LuxLookupAutocompleteComponent,
+    @Optional() public datepicker: LuxDatepickerComponent,
+    @Optional() public datetimepicker: LuxDateTimePickerComponent,
+    @Optional() public toggle: LuxToggleComponent,
+    @Optional() public checkbox: LuxCheckboxComponent,
+    @Optional() public select: LuxSelectComponent,
+    @Optional() public selectLookup: LuxLookupComboboxComponent,
     private elRef: ElementRef,
     private renderer: Renderer2
   ) {}
