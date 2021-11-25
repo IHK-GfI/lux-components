@@ -99,6 +99,17 @@
             [luxFilterHidden]="datepickerHidden"
             luxFilterItem
           ></lux-datepicker>
+          <lux-datetimepicker
+            fxFlex="1 1 calc(50% - 12px)"
+            fxFlex.xs="1 1 auto"
+            fxFlex.md="1 1 auto"
+            luxLabel="Datetimepicker"
+            luxName="filter_datetimepicker"
+            luxControlBinding="datetimepicker"
+            [luxFilterDisabled]="datetimepickerDisabled"
+            [luxFilterHidden]="datetimepickerHidden"
+            luxFilterItem
+          ></lux-datetimepicker>
           <lux-select
             fxFlex="1 1 calc(50% - 12px)"
             fxFlex.xs="1 1 auto"
@@ -201,6 +212,13 @@
       <lux-layout-form-row luxWrapAt="md">
         <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="datepickerDisabled" *luxLayoutRowItem></lux-toggle>
         <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="datepickerHidden" *luxLayoutRowItem></lux-toggle>
+      </lux-layout-form-row>
+    </div>
+    <div class="lux-highlight-section filter-config-item" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Datetimepicker</div>
+      <lux-layout-form-row luxWrapAt="md">
+        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="datetimepickerDisabled" *luxLayoutRowItem></lux-toggle>
+        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="datetimepickerHidden" *luxLayoutRowItem></lux-toggle>
       </lux-layout-form-row>
     </div>
     <div class="lux-highlight-section filter-config-item" fxLayout="column">
