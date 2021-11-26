@@ -84,10 +84,9 @@ mat-tab-group ::ng-deep div[role="tab"] {
 }
 
 // luxCounter (z.B. 10) neben dem Icon auf kleineren Auflösungen
-.lux-tab-group ::ng-deep lux-icon.lux-badge-notification {
+.lux-tab-group ::ng-deep lux-icon.lux-badge-notification, .lux-tab-group ::ng-deep lux-image.lux-badge-notification {
   &.mat-badge.lux-badge-no-border .mat-badge-content {
     top: 5px;
-    right: -24px;
   }
 }
 

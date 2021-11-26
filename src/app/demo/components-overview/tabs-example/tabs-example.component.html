@@ -17,6 +17,10 @@
           [luxTitle]="tab.title"
           [luxDisabled]="tab.disabled"
           [luxIconName]="tab.iconName"
+          [luxImageSrc]="tab.imageSrc"
+          [luxImageAlign]="tab.imageAlign"
+          [luxImageHeight]="tab.imageHeight"
+          [luxImageWidth]="tab.imageWidth"
           [luxShowNotification]="tab.showNotification"
           [luxCounterCap]="tab.counterCap"
           [luxCounter]="tab.counter"
@@ -113,13 +117,39 @@
             [(luxValue)]="tab.title"
           >
           </lux-input>
-          <lux-input
-            class="lux-highlight-section"
-            luxLabel="luxIconName"
-            luxHint="Diese Property legt das Icon für den Tab fest."
-            [(luxValue)]="tab.iconName"
-          >
-          </lux-input>
+          <div fxLayout="column" class="lux-highlight-section">
+            <lux-input
+              luxLabel="luxIconName"
+              luxHint="Diese Property legt das Icon für den Tab fest."
+              [(luxValue)]="tab.iconName"
+            >
+            </lux-input>
+            <lux-input
+              luxLabel="luxImageSrc"
+              [luxDisabled]="!!tab.iconName"
+              luxHint="Diese Property greift nur, wenn es kein luxIconName gibt."
+              [(luxValue)]="tab.imageSrc"
+            >
+            </lux-input>
+            <lux-input
+              luxLabel="luxImageAlign"
+              luxHint="Werte: left, center oder right"
+              [(luxValue)]="tab.imageAlign"
+            >
+            </lux-input>
+            <div fxLayout="row">
+              <lux-input
+                luxLabel="luxImageWidth"
+                [(luxValue)]="tab.imageWidth"
+              >
+              </lux-input>
+              <lux-input
+                luxLabel="luxImageHeight"
+                [(luxValue)]="tab.imageHeight"
+              >
+              </lux-input>
+            </div>
+          </div>
           <lux-toggle
             class="lux-highlight-section"
             luxLabel="luxDisabled"

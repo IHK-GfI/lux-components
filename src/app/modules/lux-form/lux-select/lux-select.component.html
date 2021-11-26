@@ -16,6 +16,7 @@
     [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
     (focusin)="luxFocusIn.emit($event)"
     (focusout)="luxFocusOut.emit($event)"
+    #select
   >
     <mat-option *ngFor="let item of luxOptions; let i = index" [value]="luxPickValue ? _luxOptionsPickValue[i] : item" class="option-height">
       <ng-container

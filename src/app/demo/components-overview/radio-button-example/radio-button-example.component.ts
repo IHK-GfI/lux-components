@@ -137,4 +137,8 @@ export class RadioButtonExampleComponent {
   onToggleDisabledFirst() {
     this.options[0].disabled = this.disabledFirst;
   }
+
+  onRefresh() {
+   this.options = JSON.parse(JSON.stringify(this.options));
+  }
 }

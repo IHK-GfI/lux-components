@@ -136,6 +136,8 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
       return $localize `:@@luxc.datepicker.error_message.min:Das Datum unterschreitet den Minimalwert`;
     } else if (errors.matDatepickerMax) {
       return $localize `:@@luxc.datepicker.error_message.max:Das Datum überschreitet den Maximalwert`;;
+    } else if (errors.matDatepickerParse) {
+      return $localize `:@@luxc.datepicker.error_message.invalid:Das Datum ist ungültig`;
     } else if (errors.required) {
       if (this.datepickerInput && this.datepickerInput.nativeElement.value) {
         return $localize `:@@luxc.datepicker.error_message.invalid:Das Datum ist ungültig`;

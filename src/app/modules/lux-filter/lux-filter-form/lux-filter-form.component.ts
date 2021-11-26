@@ -1,4 +1,15 @@
-import { AfterContentInit, Component, ContentChildren, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  QueryList
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LuxSelectComponent } from '../../lux-form/lux-select/lux-select.component';
@@ -233,6 +244,39 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
     }
 
     // Filtern...
+    this.onFilter();
+  }
+
+  @HostListener('document:keydown.shift.enter')
+  onShiftEnter() {
+    // Alle eventuell noch offenen Popups/Panels der Formularelemente schließen.
+    //
+    // Beispielszenario:
+    // Man navigiert im Filterformular über die Tabulator-Taste in ein
+    // Autocomplete-Feld. Automatisch würde sich das Panel mit den vorhandenen
+    // Optionen öffnen. Als nächstes könnte man beim geöffneten Optionspanel
+    // über die Tastenkombination "Shift + Enter" das Filtern auslösen. Das
+    // Filterpanel würde sich nach dem Filtern schließen, aber das Optionspanel
+    // des Autocomplete-Feld-Feldes würde stehen bleiben. Dasselbe Problem
+    // besteht natürlich auch beim Datepicker, Select und den
+    // Lookup-Komponenten. Aus diesem Grund werden hier zuerst alle geöffneten
+    // Popups/Panels geschlossen. Im Anschluss wird wie gewohnt gefiltert.
+    this.formElementes.forEach((formComponent) => {
+      if (formComponent.datepicker) {
+        formComponent.datepicker.matDatepicker.close();
+      } else if (formComponent.datetimepicker) {
+        formComponent.datetimepicker.dateTimeOverlayComponent.close();
+      } else if (formComponent.select) {
+        formComponent.select.matSelect.close();
+      } else if (formComponent.autoComplete) {
+        formComponent.autoComplete.matAutoComplete.closePanel();
+      } else if (formComponent.autoCompleteLookup) {
+        formComponent.autoCompleteLookup.matAutocompleteTrigger.closePanel();
+      } else if (formComponent.selectLookup) {
+        formComponent.selectLookup.matSelect.close();
+      }
+    });
+
     this.onFilter();
   }
 

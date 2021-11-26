@@ -2,12 +2,6 @@
   ::ng-deep {
     .mat-radio-label {
       width: 100%;
-
-      .mat-radio-label-content {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
     }
 
     .mat-radio-button .mat-radio-ripple {
@@ -26,4 +20,36 @@
 
 .lux-horizontal mat-radio-button:first-child {
   margin-left: 0;
+}
+
+mat-radio-group {
+  &.lux-vertical {
+    ::ng-deep {
+      .mat-radio-label {
+        .mat-radio-label-content {
+          white-space: normal;
+        }
+      }
+
+      mat-radio-button {
+        height: unset;
+
+        .mat-radio-label {
+          align-items: start;
+        }
+      }
+    }
+  }
+
+  &:not(.lux-vertical) {
+    ::ng-deep {
+      .mat-radio-label {
+        .mat-radio-label-content {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
 }

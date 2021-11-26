@@ -194,7 +194,8 @@ $fontSizeSmall: 12px;
 
     // Höhe der Radio-Buttons etwas anheben
     mat-radio-button {
-      height: 21px;
+      height: $defaultHeightNotScalable; // IE11
+      height: var(--lux-theme-form-control-default-height-not-scalable);
       font-size: $fontSize; // IE11
       font-size: var(--lux-theme-form-control-font-size);
 

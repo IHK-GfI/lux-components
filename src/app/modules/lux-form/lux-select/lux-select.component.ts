@@ -6,9 +6,11 @@ import {
   Optional,
   QueryList,
   TemplateRef,
+  ViewChild,
   ViewChildren
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
+import { MatSelect } from '@angular/material/select';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxFormSelectableBase } from '../lux-form-model/lux-form-selectable-base.class';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -24,6 +26,7 @@ export class LuxSelectComponent extends LuxFormSelectableBase {
   // Potentiell eingebettetes Template für Darstellung der Labels
   @ContentChild(TemplateRef) tempRef: TemplateRef<any>;
   @ViewChildren(MatOption) matOptions: QueryList<MatOption>;
+  @ViewChild('select', { read: MatSelect }) matSelect: MatSelect;
 
   @Input() luxPlaceholder: string;
   @Input() luxMultiple = false;
