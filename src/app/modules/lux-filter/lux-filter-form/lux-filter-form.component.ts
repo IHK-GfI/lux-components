@@ -263,7 +263,9 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
     // Popups/Panels geschlossen. Im Anschluss wird wie gewohnt gefiltert.
     this.formElementes.forEach((formComponent) => {
       if (formComponent.datepicker) {
-        formComponent.datepicker.luxOpened = false;
+        formComponent.datepicker.matDatepicker.close();
+      } else if (formComponent.datetimepicker) {
+        formComponent.datetimepicker.dateTimeOverlayComponent.close();
       } else if (formComponent.select) {
         formComponent.select.matSelect.close();
       } else if (formComponent.autoComplete) {
