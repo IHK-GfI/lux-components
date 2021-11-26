@@ -104,6 +104,8 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   autoCompleteLookupHidden = false;
   datepickerDisabled = false;
   datepickerHidden = false;
+  datetimepickerDisabled = false;
+  datetimepickerHidden = false;
   singleSelectDisabled = false;
   singleSelectHidden = false;
   multiSelectDisabled = false;

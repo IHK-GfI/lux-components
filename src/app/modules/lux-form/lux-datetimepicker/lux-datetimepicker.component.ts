@@ -189,6 +189,8 @@ export class LuxDateTimePickerComponent
       return $localize`:@@luxc.datetimepicker.error_message.min:Das Datum unterschreitet den Minimalwert`;
     } else if (errors.matDatepickerMax) {
       return $localize`:@@luxc.datetimepicker.error_message.max:Das Datum überschreitet den Maximalwert`;
+    } else if (errors.matDatepickerParse) {
+      return $localize`:@@luxc.datetimepicker.error_message.invalid:Das Datum ist ungültig`;
     } else if (errors.required) {
       if (this.dateTimePickerInputEl && this.dateTimeInputValue) {
         return $localize`:@@luxc.datetimepicker.error_message.invalid:Die Datum-/Uhrzeitkombination ist ungültig`;

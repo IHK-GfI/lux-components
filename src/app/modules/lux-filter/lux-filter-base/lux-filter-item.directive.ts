@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnChanges, OnInit, Optional, Renderer2, SimpleChanges } from '@angular/core';
+import { LuxDateTimePickerComponent } from '../../lux-form/lux-datetimepicker/lux-datetimepicker.component';
 import { LuxFilterItem } from './lux-filter-item';
-import { DatePipe } from '@angular/common';
 import { LuxInputComponent } from '../../lux-form/lux-input/lux-input.component';
 import { LuxDatepickerComponent } from '../../lux-form/lux-datepicker/lux-datepicker.component';
 import { LuxToggleComponent } from '../../lux-form/lux-toggle/lux-toggle.component';
@@ -24,15 +24,15 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
   @Input() luxFilterDisabled = false;
 
   constructor(
-    @Optional() private input: LuxInputComponent,
-    @Optional() private autoComplete: LuxAutocompleteComponent,
-    @Optional() private autoCompleteLookup: LuxLookupAutocompleteComponent,
-    @Optional() private datepicker: LuxDatepickerComponent,
-    @Optional() private toggle: LuxToggleComponent,
-    @Optional() private checkbox: LuxCheckboxComponent,
-    @Optional() private select: LuxSelectComponent,
-    @Optional() private selectLookup: LuxLookupComboboxComponent,
-
+    @Optional() public input: LuxInputComponent,
+    @Optional() public autoComplete: LuxAutocompleteComponent,
+    @Optional() public autoCompleteLookup: LuxLookupAutocompleteComponent,
+    @Optional() public datepicker: LuxDatepickerComponent,
+    @Optional() public datetimepicker: LuxDateTimePickerComponent,
+    @Optional() public toggle: LuxToggleComponent,
+    @Optional() public checkbox: LuxCheckboxComponent,
+    @Optional() public select: LuxSelectComponent,
+    @Optional() public selectLookup: LuxLookupComboboxComponent,
     private elRef: ElementRef,
     private renderer: Renderer2
   ) {}
@@ -43,6 +43,8 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
       formComponent = this.input;
     } else if (this.datepicker) {
       formComponent = this.datepicker;
+    } else if (this.datetimepicker) {
+      formComponent = this.datetimepicker;
     } else if (this.toggle) {
       formComponent = this.toggle;
     } else if (this.checkbox) {
@@ -77,6 +79,8 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
         this.filterItem.renderFn = this.renderToggleFn;
       } else if (this.filterItem.component instanceof LuxDatepickerComponent) {
         this.filterItem.renderFn = this.renderDateFn;
+      } else if (this.filterItem.component instanceof LuxDateTimePickerComponent) {
+        this.filterItem.renderFn = this.renderDateTimeFn;
       } else if (
         this.filterItem.component instanceof LuxSelectComponent ||
         this.filterItem.component instanceof LuxAutocompleteComponent ||
@@ -135,7 +139,11 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
   }
 
   renderDateFn(filterItem: LuxFilterItem, value: any) {
-    return new DatePipe((filterItem.component as LuxDatepickerComponent).luxLocale).transform(value);
+    return (filterItem.component as LuxDatepickerComponent).datepickerInput.nativeElement.value;
+  }
+
+  renderDateTimeFn(filterItem: LuxFilterItem, value: any) {
+    return (filterItem.component as LuxDateTimePickerComponent).dateTimePickerInputEl.nativeElement.value;
   }
 
   renderToggleFn(filterItem: LuxFilterItem, value: any) {
