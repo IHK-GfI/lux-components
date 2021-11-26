@@ -346,7 +346,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datetimepicker.error_message.invalid" datatype="html">
-        <source>Das Datum ist ungültig</source>
+        <source>Die Datum-/Uhrzeitkombination ist ungültig</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datetimepicker/lux-datetimepicker.component.ts</context>
           <context context-type="linenumber">194</context>
