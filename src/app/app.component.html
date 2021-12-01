@@ -72,7 +72,7 @@
               [luxLabel]="component.label"
               [luxTagId]="component.label + '-side-nav-item'"
               luxIconName="fas fa-circle"
-              [luxSelected]="window.location.href.endsWith(component.label.toLowerCase())"
+              [luxSelected]="window.location.href.endsWith('/' + component.label.toLowerCase())"
               (luxClicked)="component.onclick()"
             >
             </lux-side-nav-item>
