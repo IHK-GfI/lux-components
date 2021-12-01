@@ -69,6 +69,15 @@ export class LuxTagIdDirective implements OnInit, AfterViewInit, OnDestroy {
             this.renderer.setAttribute(luxComponent, LuxTagIdDirective.luxTagIdAttrName, newTagId);
 
             usedLabel = true;
+          } else if (luxComponent.nodeName && luxComponent.nodeName.toLowerCase() === 'lux-button') {
+            const labelEl = luxComponent.querySelector('.lux-button-label');
+            if (labelEl && labelEl.textContent && labelEl.textContent.trim()) {
+              newTagId = this.mergeTagIds(newTagId, labelEl.textContent.trim());
+              newTagId = newTagId.toLowerCase();
+              this.renderer.setAttribute(luxComponent, LuxTagIdDirective.luxTagIdAttrName, newTagId);
+
+              usedLabel = true;
+            }
           }
 
           if (!usedLabel) {
