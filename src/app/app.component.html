@@ -25,43 +25,11 @@
       >
       </lux-side-nav-item>
       <lux-side-nav-item
-        luxLabel="Master-Detail"
-        luxIconName="fas fa-th-list"
-        (luxClicked)="goToMasterDetail()"
-        luxTagId="md-side-nav-item"
-        [luxSelected]="window.location.href.endsWith('master-detail')"
-      >
-      </lux-side-nav-item>
-      <lux-side-nav-item
-        luxLabel="Stepper"
-        luxIconName="fas fa-chevron-circle-right"
-        (luxClicked)="goToStepper()"
-        luxTagId="stepper-side-nav-item"
-        [luxSelected]="window.location.href.endsWith('stepper')"
-      >
-      </lux-side-nav-item>
-      <lux-side-nav-item
-        luxLabel="Tabs"
-        luxIconName="fas fa-columns"
-        (luxClicked)="goToTabs()"
-        luxTagId="tabs-side-nav-item"
-        [luxSelected]="window.location.href.endsWith('tabs')"
-      >
-      </lux-side-nav-item>
-      <lux-side-nav-item
-        luxLabel="Form"
+        luxLabel="Formulare"
         luxIconName="fas fa-file-alt"
         (luxClicked)="goToForm()"
         luxTagId="form-side-nav-item"
         [luxSelected]="window.location.href.endsWith('form')"
-      >
-      </lux-side-nav-item>
-      <lux-side-nav-item
-        luxLabel="Konfiguration"
-        luxIconName="fas fa-wrench"
-        (luxClicked)="goToConfig()"
-        luxTagId="config-side-nav-item"
-        [luxSelected]="window.location.href.endsWith('configuration')"
       >
       </lux-side-nav-item>
       <lux-side-nav-item
@@ -70,6 +38,14 @@
         (luxClicked)="goToBaseline()"
         luxTagId="baseline-side-nav-item"
         [luxSelected]="window.location.href.endsWith('baseline')"
+      >
+      </lux-side-nav-item>
+      <lux-side-nav-item
+        luxLabel="Konfiguration"
+        luxIconName="fas fa-sliders-h"
+        (luxClicked)="goToConfig()"
+        luxTagId="config-side-nav-item"
+        [luxSelected]="window.location.href.endsWith('configuration')"
       >
       </lux-side-nav-item>
       <lux-side-nav-item
