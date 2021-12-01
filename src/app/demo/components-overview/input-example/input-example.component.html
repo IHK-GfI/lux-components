@@ -27,6 +27,7 @@
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+        luxTagId="input-non-reactive"
       >
         <lux-input-prefix *ngIf="showPrefix">
           <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp;
@@ -64,6 +65,7 @@
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+        luxTagId="input-reactive"
       >
 
         <lux-input-prefix *ngIf="showPrefix">
