@@ -1,30 +1,25 @@
 <div luxAriaRole="main">
-  <lux-card class="baseline-options">
+  <lux-card luxTitle="Optionen" class="baseline-options">
     <lux-card-content fxLayout="column">
-      <i>Optionen</i>
       <div fxLayout="row wrap" fxLayoutGap="10px">
-        <lux-toggle (luxCheckedChange)="toggleErrors($event)" fxFlex="0 0 200px">
-          <lux-form-label>Fehler anzeigen</lux-form-label>
+        <lux-toggle luxLabel="Fehler anzeigen" (luxCheckedChange)="toggleErrors($event)" fxFlex="0 0 200px">
         </lux-toggle>
         <div fxLayout="column" fxFlex="0 0 200px">
-          <lux-toggle (luxCheckedChange)="showFrames = $event">
-            <lux-form-label>Frames anzeigen</lux-form-label>
+          <lux-toggle luxLabel="Frames anzeigen" (luxCheckedChange)="showFrames = $event">
           </lux-toggle>
           <i class="lux-label">Gelb -> FormComponent</i>
           <i class="lux-label">Grün -> Label</i>
           <i class="lux-label">Blau -> Content</i>
           <i class="lux-label">Rot -> Misc</i>
         </div>
-        <lux-toggle (luxCheckedChange)="showAsColumn = $event" fxFlex="0 0 200px">
-          <lux-form-label>Als Column darstellen</lux-form-label>
+        <lux-toggle luxLabel="Als Column darstellen" (luxCheckedChange)="showAsColumn = $event" fxFlex="0 0 200px">
         </lux-toggle>
-        <lux-toggle (luxCheckedChange)="disabled = $event" fxFlex="0 0 200px">
-          <lux-form-label>Deaktivieren</lux-form-label>
+        <lux-toggle luxLabel="Deaktivieren" (luxCheckedChange)="disabled = $event" fxFlex="0 0 200px">
         </lux-toggle>
       </div>
     </lux-card-content>
   </lux-card>
-  <lux-card class="baseline-row">
+  <lux-card luxTitle="Formularkomponenten" class="baseline-row">
     <lux-card-content [fxLayout]="showAsColumn ? 'column' : 'row wrap'" fxLayoutGap="5px" [formGroup]="form">
       <lux-input luxPlaceholder="Input" luxControlBinding="input" luxAutocomplete="off" [luxDisabled]="disabled">
         <lux-form-label>Input</lux-form-label>
