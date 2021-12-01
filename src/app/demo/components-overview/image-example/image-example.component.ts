@@ -25,7 +25,7 @@ export class ImageExampleComponent {
   // region Properties der Component
 
   imgSrc = 'assets/svg/box.svg';
-  imgWidth = '100%';
+  imgWidth = '50%';
   imgHeight = 'auto';
   imgRawSrc = false;
 
