@@ -21,6 +21,6 @@ export class MockLuxLookupService extends LuxLookupService {
     if (!parameters.keys || parameters.keys.length === 0) {
       return array;
     }
-    return array.filter(entry => parameters.keys.indexOf(+entry.key) > -1);
+    return array.filter(entry => parameters.keys.indexOf(entry.key) > -1);
   }
 }
