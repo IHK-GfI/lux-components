@@ -10,18 +10,25 @@ import { LuxAppFooterLinkInfo } from '../../../modules/lux-layout/lux-app-footer
   templateUrl: './app-footer-example.component.html'
 })
 export class AppFooterExampleComponent implements OnDestroy {
+
+  mementoLinkInfos;
+  mementoButtonInfos;
+
   constructor(
     public buttonService: LuxAppFooterButtonService,
     public linkService: LuxAppFooterLinkService,
     private snackbar: LuxSnackbarService
-  ) {}
+  ) {
+    this.mementoButtonInfos = [...this.buttonService.buttonInfos];
+    this.mementoLinkInfos = [...this.linkService.linkInfos];
+  }
 
   /**
    * Beim Verlassen der Component sicherheitshalber die Footer-Links und Footer-Buttons leeren.
    */
   ngOnDestroy() {
-    this.buttonService.clearButtonInfos();
-    this.linkService.clearLinkInfos();
+    this.buttonService.buttonInfos = this.mementoButtonInfos;
+    this.linkService.linkInfos = this.mementoLinkInfos;
   }
 
   addFooterButton() {
