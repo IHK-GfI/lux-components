@@ -29,7 +29,7 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
   namePrefixDecline = '(ERR) ';
   nameSuffixDecline = ` (${new Date().toLocaleDateString()})`;
 
-  customActionConfigs: ILuxFileActionConfig[]      = this.createCustomConfigs();
+  customActionConfigs: ILuxFileActionConfig[] = this.createCustomConfigs();
   customActionsConfigsForm: ILuxFileActionConfig[] = this.createCustomConfigs();
 
   constructor(fb: FormBuilder, http: HttpClient, snackbar: LuxSnackbarService, filePreviewService: LuxFilePreviewService) {
@@ -68,6 +68,14 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
     this.fileComponents = this.fileInputs.toArray();
   }
 
+  onDelete(event: any){
+    this.customActionConfigs.forEach(config => config.disabled = true);
+  }
+
+  onUpload(event: any) {
+    this.customActionConfigs.forEach(config => config.disabled = false);
+  }
+
   private createCustomConfigs(): ILuxFileActionConfig[] {
     const customConfigAccept = {
       disabled: false,
@@ -76,10 +84,12 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
       label: 'Akzeptieren',
       prio: 1,
       onClick: (fileObject: ILuxFileObject) => {
-        customConfigAccept.disabled = true;
-        customConfigDecline.disabled = false;
-        fileObject.namePrefix = this.namePrefixAccept;
-        fileObject.nameSuffix = this.nameSuffixAccept;
+        if (fileObject) {
+          customConfigAccept.disabled = true;
+          customConfigDecline.disabled = false;
+          fileObject.namePrefix = this.namePrefixAccept;
+          fileObject.nameSuffix = this.nameSuffixAccept;
+        }
       }
     };
 
@@ -90,10 +100,12 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
       label: 'Ablehnen',
       prio: 2,
       onClick: (fileObject: ILuxFileObject) => {
-        customConfigAccept.disabled = false;
-        customConfigDecline.disabled = true;
-        fileObject.namePrefix = this.namePrefixDecline;
-        fileObject.nameSuffix = this.nameSuffixDecline;
+        if (fileObject) {
+          customConfigAccept.disabled = false;
+          customConfigDecline.disabled = true;
+          fileObject.namePrefix = this.namePrefixDecline;
+          fileObject.nameSuffix = this.nameSuffixDecline;
+        }
       }
     };
 

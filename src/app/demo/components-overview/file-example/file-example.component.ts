@@ -49,7 +49,10 @@ export abstract class FileExampleComponent implements OnInit {
     iconNameHeader: 'fas fa-cloud-upload-alt',
     label: 'Hochladen',
     labelHeader: 'Neue Dateien hochladen',
-    onClick: ($event) => this.log(this.showOutputEvents, 'uploadActionConfig onClick', $event)
+    onClick: ($event) => {
+      this.log(this.showOutputEvents, 'uploadActionConfig onClick', $event);
+      this.onUpload($event);
+    }
   };
   deleteActionConfig: ILuxFileListActionConfig = {
     disabled: false,
@@ -60,7 +63,10 @@ export abstract class FileExampleComponent implements OnInit {
     iconNameHeader: 'fas fa-trash',
     label: 'Löschen',
     labelHeader: 'Alle Dateien entfernen',
-    onClick: ($event) => this.log(this.showOutputEvents, 'deleteActionConfig onClick', $event)
+    onClick: ($event) => {
+      this.log(this.showOutputEvents, 'deleteActionConfig onClick', $event);
+      this.onDelete($event);
+    }
   };
   viewActionConfig: ILuxFileActionConfig = {
     disabled: false,
@@ -139,6 +145,10 @@ export abstract class FileExampleComponent implements OnInit {
   abstract getFileComponentWithoutForm(): LuxFormFileBase;
 
   abstract getFileComponentWithForm(): LuxFormFileBase;
+
+  onDelete(event: any) {}
+
+  onUpload(event: any) {}
 
   emptyCallback() {}
 
