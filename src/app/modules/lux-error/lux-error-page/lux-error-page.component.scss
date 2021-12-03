@@ -45,12 +45,6 @@ lux-card.lux-error-page-desktop {
 
 lux-card:not(.lux-error-page-desktop) {
   ::ng-deep {
-    mat-card {
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      box-shadow: none;
-    }
-
     lux-card-content > * {
       max-width: 100%;
     }

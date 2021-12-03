@@ -96,12 +96,6 @@ $fontSizeSmall: 12px;
       vertical-align: bottom;
       text-align: inherit;
       font-size: var(--lux-theme-form-control-font-size);
-
-      &:required {
-        -webkit-box-shadow: unset;
-        -moz-box-shadow: unset;
-        box-shadow: unset;
-      }
     }
 
     textarea {
