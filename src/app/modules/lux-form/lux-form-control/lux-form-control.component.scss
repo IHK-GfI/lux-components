@@ -37,7 +37,6 @@ $fontSizeSmall: 12px;
   display: flex;
   position: relative;
   box-sizing: border-box;
-  padding: 4px;
 
   .lux-form-control-label {
     padding-top: 2px;
@@ -68,11 +67,11 @@ $fontSizeSmall: 12px;
     }
 
     .lux-form-control-character-counter {
-    color: var(--lux-theme-dark-secondary-text) !important;
-    font-size: var(--lux-theme-form-control-font-size-small);
-    text-align: end;
-    min-width: 40px;
-    margin-left: 2px;
+      color: var(--lux-theme-dark-secondary-text) !important;
+      font-size: var(--lux-theme-form-control-font-size-small);
+      text-align: end;
+      min-width: 40px;
+      margin-left: 2px;
 
       &:only-child {
         width: 100%;

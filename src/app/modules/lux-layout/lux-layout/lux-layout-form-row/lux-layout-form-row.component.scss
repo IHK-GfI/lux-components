@@ -41,33 +41,16 @@
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 100%;
-    min-height: 90px;
-    margin-bottom: 20px;
 
     & mat-chip {
       margin-left: 0;
       margin-right: 8px;
     }
-
-    & .mat-chip-list-wrapper {
-      margin: 0;
-    }
-  }
-
-  & lux-form-control div.lux-form-control {
-    padding: 0 !important;
   }
 
   & lux-file-list {
     display: flex;
     flex: 1 1 auto;
     min-width: 0;
-    margin: 0;
-
-    lux-card {
-      mat-card {
-        margin: 0 !important;
-      }
-    }
   }
 }
