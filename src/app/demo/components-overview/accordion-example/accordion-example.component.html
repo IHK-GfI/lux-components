@@ -47,6 +47,42 @@
           clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
         </lux-panel-content>
       </lux-panel>
+      <lux-panel
+      [luxHideToggle]="hideToggle2Panel"
+      [luxDisabled]="disabled3Panel"
+      [luxExpandedHeaderHeight]="expandedHeaderHeight3Panel"
+      [luxCollapsedHeaderHeight]="collapsedHeaderHeight3Panel"
+      (luxOpened)="log(showOutputEvents, 'luxOpened', $event)"
+      (luxClosed)="log(showOutputEvents, 'luxClosed', $event)"
+      (luxExpandedChange)="log(showOutputEvents, 'luxExpandedChange', $event)"
+    >
+      <lux-panel-header-title>Panel #3</lux-panel-header-title>
+      <lux-panel-header-description>Beschreibung Panel #3</lux-panel-header-description>
+      <lux-panel-content>
+        <p>Mit diesem Panel wird die Ausrichtung der Form-Controls im Accordion überprüft.</p>
+        <lux-input luxLabel="Lux-Input" luxPlaceholder="Platzhalter" [luxHint]="testHint" [luxValue]="testValue" luxAutocomplete="off"></lux-input>
+        <lux-autocomplete luxLabel="Lux-Autocomplete" luxPlaceholder="Platzhalter" [luxHint]="testHint" [luxValue]="testValue" luxOptionLabelProp="label" [luxOptions]="options"></lux-autocomplete>
+        <lux-datepicker luxLabel="Lux-Datepicker" luxLocale="de-DE" luxPlaceholder="Platzhalter" [luxValue]="testDate" [luxHint]="testHint" ></lux-datepicker>
+        <lux-datetimepicker luxLabel="Lux-Datetimepicker" luxLocale="de-DE" luxPlaceholder="Platzhalter" [luxValue]="testDate2" [luxHint]="testHint"></lux-datetimepicker>
+        <lux-select luxLabel="Lux-Select" luxPlaceholder="Platzhalter" [luxHint]="testHint" [luxSelected]="testOption" luxOptionLabelProp="label" [luxOptions]="options"></lux-select>
+        <lux-file-input luxLabel="Lux-File-Input" luxPlaceholder="Platzhalter" [luxHint]="testHint" ></lux-file-input>
+        <lux-textarea luxLabel="Lux-Textarea" luxPlaceholder="Platzhalter" [luxHint]="testHint" [luxValue]="testValue" [luxMinRows]="3"></lux-textarea>
+        <lux-toggle luxLabel="Option" [luxChecked]="false" luxHint="Hinweis"></lux-toggle>
+        <lux-checkbox luxLabel="Option" [luxChecked]="false" luxHint="Hinweis"></lux-checkbox>
+        <lux-radio luxGroupName="radio1" [luxOptions]="options" [luxOrientationVertical]="true" [luxSelected]="options[0]" luxLabel="Lux-Radio" luxHint="Hinweis">
+          <ng-template let-option>
+            {{ option.label }}
+          </ng-template>
+        </lux-radio>
+        <lux-chips [luxInputAllowed]="true" luxInputLabel="Lux-Chips im Input-Element" luxHint="Hinweis" [luxNewChipGroup]="group">
+          <lux-chip-group [luxLabels]="chipItems" luxColor="accent" [luxRemovable]="true"
+                          (luxChipAdded)="chipAdded($event)" (luxChipRemoved)="chipRemoved($event)"
+                          (luxChipClicked)="chipItemClicked($event)" #group>
+          </lux-chip-group>
+        </lux-chips>
+        <lux-file-list luxLabel="Lux-File-List" luxHint="Hinweis"></lux-file-list>
+      </lux-panel-content>
+    </lux-panel>
     </lux-accordion>
   </example-base-content>
   <example-base-simple-options>
