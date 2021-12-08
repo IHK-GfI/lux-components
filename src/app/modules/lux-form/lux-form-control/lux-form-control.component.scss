@@ -137,12 +137,17 @@ $fontSizeSmall: 12px;
       button {
         height: var(--lux-theme-form-control-height-small);
         width: var(--lux-theme-form-control-height-small);
+        
         .mat-button-wrapper {
           display: flex;
           height: var(--lux-theme-form-control-height-small);
           svg {
             height: var(--lux-theme-form-control-height-small);
             width: var(--lux-theme-form-control-height-small);
+          }
+          &:hover {
+            background-color: var(--lux-theme-hover-color);
+            border-radius: 4px;
           }
         }
       }
@@ -230,5 +235,13 @@ $fontSizeSmall: 12px;
 ::ng-deep {
   .lux-form-control-readonly, .lux-form-control-disabled {
     pointer-events: none;
+    mat-select {
+      &[aria-disabled="true"] ::ng-deep .mat-select-arrow {
+        color: var(--lux-theme-dark-disabled-text);
+      }
+      &[aria-disabled="false"] ::ng-deep .mat-select-arrow {
+        color:var(--lux-theme-dark-disabled-text);
+      }
+    }
   }
 }
