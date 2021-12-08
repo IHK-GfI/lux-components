@@ -19,8 +19,21 @@ lux-form-control {
       }
 
       .lux-menu-extended {
+        justify-content: end;
+        overflow: unset;
+        
         lux-button {
           height: 15px;
+          
+          button {
+            width: unset;
+            min-width: 24px;
+            margin-bottom: $outline-width;
+            
+            &:last-of-type {
+              margin-right: 0px;
+            }
+          }
         }
       }
     }
