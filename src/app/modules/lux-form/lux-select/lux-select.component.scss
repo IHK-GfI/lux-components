@@ -13,13 +13,12 @@
 mat-select {
   &[aria-disabled="true"] ::ng-deep .mat-select-arrow {
     border-width: 7px;
-    margin: 0;
+    margin: 0 2px 0 0;
   }
-
   &[aria-disabled="false"] ::ng-deep .mat-select-arrow {
     border-width: 7px;
-    margin: 0;
-  }
+    margin: 0 2px 0 0;
+  } 
 }
 
 
