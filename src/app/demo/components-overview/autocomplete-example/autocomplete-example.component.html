@@ -35,6 +35,10 @@
         (luxOptionSelected)="log(showOutputEvents, 'luxOptionSelected', $event)"
         luxTagId="autocomplete-non-reactive"
       >
+        <lux-input-prefix *ngIf="showPrefix">
+          <lux-icon [luxIconName]="'fas fa-tasks'"></lux-icon>&nbsp;
+        </lux-input-prefix>
+        <lux-input-suffix *ngIf="showSuffix">ABC</lux-input-suffix>
       </lux-autocomplete>
       <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="value">
         <span fxFlex="0 0 auto">Auswahl:</span>
@@ -220,6 +224,20 @@
         Dieses Toggle tauscht die Optionen aus.
       </lux-form-hint>
     </lux-toggle>
+    <div fxLayout="column" class="lux-highlight-section">
+      <lux-toggle
+        [(luxChecked)]="showPrefix"
+        luxLabel="Präfix einblenden"
+        luxHint="Blendet einen 'lux-input-prefix' ein."
+      >
+      </lux-toggle>
+      <lux-toggle
+        [(luxChecked)]="showSuffix"
+        luxLabel="Suffix einblenden"
+        luxHint="Blendet einen 'lux-input-suffix' ein."
+      >
+      </lux-toggle>
+    </div>
   </example-base-simple-options>
   <example-base-advanced-options>
     <lux-toggle

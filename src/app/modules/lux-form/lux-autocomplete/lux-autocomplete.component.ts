@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectorRef,
-  Component,
+  Component, ContentChild,
   ElementRef,
   EventEmitter,
   Input,
@@ -19,6 +19,8 @@ import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operato
 import { ReplaySubject, Subscription } from 'rxjs';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { LuxInputPrefixComponent } from '../lux-input/lux-input-subcomponents/lux-input-prefix.component';
+import { LuxInputSuffixComponent } from '../lux-input/lux-input-subcomponents/lux-input-suffix.component';
 
 @Component({
   selector: 'lux-autocomplete',
@@ -49,6 +51,9 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   @Output() luxOptionSelected: EventEmitter<any> = new EventEmitter();
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
   @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
+
+  @ContentChild(LuxInputPrefixComponent) inputPrefix: LuxInputPrefixComponent;
+  @ContentChild(LuxInputSuffixComponent) inputSuffix: LuxInputSuffixComponent;
 
   @ViewChild('autoCompleteInput', { read: MatAutocompleteTrigger })
   matAutoComplete: MatAutocompleteTrigger;
