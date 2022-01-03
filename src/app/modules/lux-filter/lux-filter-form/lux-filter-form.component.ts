@@ -140,13 +140,11 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   }
 
   ngAfterContentInit(): void {
-    this.formElementes.forEach((item) => {
-      this.filterForm.addControl(item.filterItem.binding, item.filterItem.component.formControl);
-    });
+    this.updateContentFilterItems();
 
-    this.filterForm.patchValue(this.luxFilterValues);
-
-    this.updateFilterChips();
+    this.subscriptions.push(this.formElementes.changes.subscribe((test) => {
+      this.updateContentFilterItems();
+    }));
   }
 
   ngOnDestroy(): void {
@@ -293,5 +291,15 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
     } else {
       LuxUtil.showValidationErrors(this.filterForm);
     }
+  }
+
+  private updateContentFilterItems() {
+    this.formElementes.forEach((item) => {
+      this.filterForm.addControl(item.filterItem.binding, item.filterItem.component.formControl);
+    });
+
+    this.filterForm.patchValue(this.luxFilterValues);
+
+    this.updateFilterChips();
   }
 }
