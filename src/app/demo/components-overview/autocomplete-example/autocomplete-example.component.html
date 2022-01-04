@@ -74,6 +74,10 @@
         (luxOptionSelected)="log(showOutputEvents, 'luxOptionSelected', $event)"
         luxTagId="autocomplete-reactive"
       >
+        <lux-input-prefix *ngIf="showPrefix">
+          <lux-icon [luxIconName]="'fas fa-tasks'"></lux-icon>&nbsp;
+        </lux-input-prefix>
+        <lux-input-suffix *ngIf="showSuffix">ABC</lux-input-suffix>
       </lux-autocomplete>
       <div
         class="lux-highlight-section"
