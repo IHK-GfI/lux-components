@@ -2,6 +2,9 @@
 ## New
 - **lux-autocomplete**: Prefix und Suffix hinzugefügt. [Issue 152](https://github.com/IHK-GfI/lux-components/issues/152)
 
+## Bug Fixes
+- **lux-filter-form**: Lux-Layout lässt sich nicht in Lux-Filter verwenden. [Issue 153](https://github.com/IHK-GfI/lux-components/issues/153)
+
 # Version 11.6.0
 ## New
 - **allgemein**: LUX-Theme [11.8.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.8.0) integriert.
