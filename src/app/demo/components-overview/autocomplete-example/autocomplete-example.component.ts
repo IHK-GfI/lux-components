@@ -18,6 +18,8 @@ export class AutocompleteExampleComponent {
 
   useErrorMessage = true;
   showOutputEvents = false;
+  showPrefix = false;
+  showSuffix = false;
 
   toggleOptions = true;
   options = [

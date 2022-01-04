@@ -25,18 +25,8 @@
         [luxButtonDialogClose]="buttonDialogClose"
         class="lux-ml-1 lux-mr-1 lux-mb-3"
       >
-        <div
-          fxLayout="row wrap"
-          fxLayoutGap="12px grid"
-          fxLayout.xs="column"
-          fxLayoutGap.xs="0px"
-          fxLayout.md="column"
-          fxLayoutGap.md="0px"
-        >
+        <lux-layout-form-row luxWrapAt="md">
           <lux-lookup-autocomplete
-            fxFlex="1 1 calc(50% - 12px)"
-            fxFlex.xs="1 1 auto"
-            fxFlex.md="1 1 auto"
             luxLabel="Lookup Autocomplete"
             luxLookupId="filter_lookup_autocomplete"
             luxControlBinding="autocompleteLookup"
@@ -46,11 +36,9 @@
             [luxFilterDisabled]="autoCompleteLookupDisabled"
             [luxFilterHidden]="autoCompleteLookupHidden"
             luxFilterItem
+            *luxLayoutRowItem="{}"
           ></lux-lookup-autocomplete>
           <lux-lookup-combobox
-            fxFlex="1 1 calc(50% - 12px)"
-            fxFlex.xs="1 1 auto"
-            fxFlex.md="1 1 auto"
             luxLabel="Lookup Combobox"
             luxLookupId="filter_lookup_combobox"
             luxControlBinding="comboboxLookup"
@@ -61,12 +49,11 @@
             [luxFilterDisabled]="selectLookupDisabled"
             [luxFilterHidden]="selectLookupHidden"
             luxFilterItem
-            luxFilterItem
+            *luxLayoutRowItem="{}"
           ></lux-lookup-combobox>
+          </lux-layout-form-row>
+          <lux-layout-form-row luxWrapAt="md">
           <lux-input
-            fxFlex="1 1 calc(50% - 12px)"
-            fxFlex.xs="1 1 auto"
-            fxFlex.md="1 1 auto"
             luxLabel="Input"
             luxName="filter_input"
             luxAutocomplete="off"
@@ -75,11 +62,9 @@
             [luxFilterDisabled]="inputDisabled"
             [luxFilterHidden]="inputHidden"
             luxFilterItem
+            *luxLayoutRowItem="{}"
           ></lux-input>
           <lux-autocomplete
-            fxFlex="1 1 calc(50% - 12px)"
-            fxFlex.xs="1 1 auto"
-            fxFlex.md="1 1 auto"
             luxLabel="Autocomplete"
             luxName="filter_autocomplete"
             [luxOptions]="autoCompleteOptions"
@@ -87,33 +72,31 @@
             [luxFilterDisabled]="autoCompleteDisabled"
             [luxFilterHidden]="autoCompleteHidden"
             luxFilterItem
+            *luxLayoutRowItem="{}"
           ></lux-autocomplete>
+          </lux-layout-form-row>
+        <lux-layout-form-row luxWrapAt="md">
           <lux-datepicker
-            fxFlex="1 1 calc(50% - 12px)"
-            fxFlex.xs="1 1 auto"
-            fxFlex.md="1 1 auto"
             luxLabel="Datepicker"
             luxName="filter_datepicker"
             luxControlBinding="datepicker"
             [luxFilterDisabled]="datepickerDisabled"
             [luxFilterHidden]="datepickerHidden"
             luxFilterItem
+            *luxLayoutRowItem="{}"
           ></lux-datepicker>
           <lux-datetimepicker
-            fxFlex="1 1 calc(50% - 12px)"
-            fxFlex.xs="1 1 auto"
-            fxFlex.md="1 1 auto"
             luxLabel="Datetimepicker"
             luxName="filter_datetimepicker"
             luxControlBinding="datetimepicker"
             [luxFilterDisabled]="datetimepickerDisabled"
             [luxFilterHidden]="datetimepickerHidden"
             luxFilterItem
+            *luxLayoutRowItem="{}"
           ></lux-datetimepicker>
+        </lux-layout-form-row>
+        <lux-layout-form-row luxWrapAt="md">
           <lux-select
-            fxFlex="1 1 calc(50% - 12px)"
-            fxFlex.xs="1 1 auto"
-            fxFlex.md="1 1 auto"
             luxLabel="Single-Select"
             luxControlBinding="singleSelect"
             luxOptionLabelProp="label"
@@ -124,11 +107,9 @@
             [luxFilterHidden]="singleSelectHidden"
             luxFilterColor="accent"
             luxFilterItem
+            *luxLayoutRowItem="{}"
           ></lux-select>
           <lux-select
-            fxFlex="1 1 calc(50% - 12px)"
-            fxFlex.xs="1 1 auto"
-            fxFlex.md="1 1 auto"
             luxLabel="Multi-Select"
             luxControlBinding="multiSelect"
             luxOptionLabelProp="label"
@@ -139,11 +120,11 @@
             [luxFilterHidden]="multiSelectHidden"
             luxFilterColor="accent"
             luxFilterItem
+            *luxLayoutRowItem="{}"
           ></lux-select>
+        </lux-layout-form-row>
+        <lux-layout-form-row luxWrapAt="md">
           <lux-toggle
-            fxFlex="1 1 calc(50% - 12px)"
-            fxFlex.xs="1 1 auto"
-            fxFlex.md="1 1 auto"
             luxLabel="Toggle"
             luxName="filter_toggle"
             luxControlBinding="toggle"
@@ -152,8 +133,9 @@
             [luxFilterHidden]="toggleSelectHidden"
             luxFilterColor="warn"
             luxFilterItem
+            *luxLayoutRowItem="{}"
           ></lux-toggle>
-        </div>
+        </lux-layout-form-row>
       </lux-filter-form>
       <lux-card fxFlex="1 1 auto" luxTitle="Filter">
         <lux-card-content>
