@@ -294,12 +294,17 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   }
 
   private updateContentFilterItems() {
-    this.formElementes.forEach((item) => {
-      this.filterForm.addControl(item.filterItem.binding, item.filterItem.component.formControl);
+    // An dieser Codestelle ist setTimeout nötig, wenn die Inhalte über eine LUX-Layout-Form-Row gesetzt werden.
+    // D.h. initial gibt es keine Filteritem, aber dann werden die Filteritems über eine Subscription (siehe ngAfterContentInit)
+    // hinzugefügt.
+    setTimeout(() => {
+      this.formElementes.forEach((item) => {
+        this.filterForm.addControl(item.filterItem.binding, item.filterItem.component.formControl);
+      });
+
+      this.filterForm.patchValue(this.luxFilterValues);
+
+      this.updateFilterChips();
     });
-
-    this.filterForm.patchValue(this.luxFilterValues);
-
-    this.updateFilterChips();
   }
 }
