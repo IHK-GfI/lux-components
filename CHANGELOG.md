@@ -1,5 +1,6 @@
 # Version 11.7.0
 ## New
+- **allgemein**: Sicherheitsupdates eingespielt.
 - **lux-autocomplete**: Prefix und Suffix hinzugefügt. [Issue 152](https://github.com/IHK-GfI/lux-components/issues/152)
 
 ## Bug Fixes
