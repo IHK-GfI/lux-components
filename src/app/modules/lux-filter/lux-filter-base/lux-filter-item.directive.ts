@@ -102,10 +102,10 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
     // um es in der Filterkomponente leichter behandeln zu können. An die CSS-Klasse 'lux-display-none'
     // kommt man dynamisch nicht so einfach heran.
     if (hidden) {
-      this.renderer.addClass(this.elRef.nativeElement, 'lux-display-none');
+      this.renderer.addClass(this.elRef.nativeElement, 'lux-display-none-important');
       this.filterItem.component.formControl.disable();
     } else {
-      this.renderer.removeClass(this.elRef.nativeElement, 'lux-display-none');
+      this.renderer.removeClass(this.elRef.nativeElement, 'lux-display-none-important');
       this.filterItem.component.formControl.enable();
     }
   }
