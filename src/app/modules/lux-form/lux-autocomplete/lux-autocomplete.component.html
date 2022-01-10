@@ -6,6 +6,9 @@
   [luxNoTopLabel]="luxNoTopLabel"
 >
   <div class="lux-input-row">
+    <span class="lux-input-prefix-container" fxFlex="auto" matPrefix *ngIf="inputPrefix">
+      <ng-content select="lux-input-prefix"></ng-content>
+    </span>
     <input
       type="text"
       matInput
@@ -26,6 +29,9 @@
       [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
       #autoCompleteInput
     />
+    <span class="lux-input-suffix-container" fxFlex="auto" matSuffix *ngIf="inputSuffix">
+      <ng-content select="lux-input-suffix"></ng-content>
+    </span>
     <mat-autocomplete
       #auto="matAutocomplete"
       [class]="'lux-autocomplete-panel'"

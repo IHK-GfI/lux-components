@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Subscription } from 'rxjs';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxFilter } from '../lux-filter-base/lux-filter';
@@ -17,11 +17,12 @@ describe('LuxFilterFormComponent', () => {
     LuxTestHelper.configureTestModule([], [TestFilterFormComponent], [LuxFilterModule]);
   });
 
-  beforeEach(() => {
+  beforeEach(fakeAsync(() => {
     fixture = TestBed.createComponent(TestFilterFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+    tick(500);
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
