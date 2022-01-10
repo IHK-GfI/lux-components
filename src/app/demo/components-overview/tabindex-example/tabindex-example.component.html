@@ -6,43 +6,46 @@
   <example-base-content fxLayout="row wrap">
     <lux-card class="lux-card-grow" ngClass.gt-sm="lux-min-height">
       <lux-card-content>
-        <lux-input luxLabel="Tabindex 1 (LuxInput)" luxTabIndex="1"></lux-input>
-        <lux-autocomplete luxLabel="Tabindex 3 (LuxAutocomplete)" luxTabIndex="3"></lux-autocomplete>
-        <lux-chips
-          [luxInputAllowed]="true"
-          luxInputLabel="Tabindex 5 (LuxChips)"
-          luxTabIndex="5"
-          [luxNewChipGroup]="chipGroup"
-        >
-          <lux-chip-group [luxRemovable]="true" luxColor="primary" [luxLabels]="chipItems" #chipGroup>
-            <ng-template let-chipItem>
-              {{ chipItem | uppercase }}
-            </ng-template>
-          </lux-chip-group>
-        </lux-chips>
-        <lux-textarea luxName="tabindex_Tabindex7" luxLabel="Tabindex 7 (LuxTextarea)" luxTabIndex="7"></lux-textarea>
-        <lux-radio
-          luxLabel="Tabindex 9 (LuxRadio)"
-          [luxOptions]="options"
-          luxOptionLabelProp="label"
-          [luxSelected]="options[0]"
-          luxTabIndex="9"
-        ></lux-radio>
-        <lux-link luxLabel="Tabindex 11 (LuxLink)" luxTabIndex="11"></lux-link>
+        <lux-layout>
+          <lux-input luxLabel="Tabindex 1 (LuxInput)" luxTabIndex="1"></lux-input>
+          <lux-autocomplete luxLabel="Tabindex 3 (LuxAutocomplete)" luxTabIndex="3"></lux-autocomplete>
+          <lux-chips
+            [luxInputAllowed]="true"
+            luxInputLabel="Tabindex 5 (LuxChips)"
+            luxTabIndex="5"
+            [luxNewChipGroup]="chipGroup"
+          >
+            <lux-chip-group [luxRemovable]="true" luxColor="primary" [luxLabels]="chipItems" #chipGroup>
+              <ng-template let-chipItem>
+                {{ chipItem | uppercase }}
+              </ng-template>
+            </lux-chip-group>
+          </lux-chips>
+          <lux-textarea luxName="tabindex_Tabindex7" luxLabel="Tabindex 7 (LuxTextarea)" luxTabIndex="7"></lux-textarea>
+          <lux-radio
+            luxLabel="Tabindex 9 (LuxRadio)"
+            [luxOptions]="options"
+            luxOptionLabelProp="label"
+            [luxSelected]="options[0]"
+            luxTabIndex="9"
+          ></lux-radio>
+          <lux-link luxLabel="Tabindex 11 (LuxLink)" luxTabIndex="11"></lux-link>
+        </lux-layout>
       </lux-card-content>
     </lux-card>
     <lux-card class="lux-card-grow" ngClass.gt-sm="lux-min-height">
       <lux-card-content>
-        <lux-datepicker luxLabel="Tabindex 2 (LuxDatepicker)" luxTabIndex="2"></lux-datepicker>
-        <lux-checkbox luxLabel="Tabindex 4 (LuxCheckbox)" luxTabIndex="4"></lux-checkbox>
-        <lux-select
-          luxLabel="Tabindex 6 (LuxSelect)"
-          luxTabIndex="6"
-          [luxOptions]="options"
-          luxOptionLabelProp="label"
-        ></lux-select>
-        <lux-toggle luxLabel="Tabindex 8 (LuxToggle)" luxTabIndex="8"></lux-toggle>
-        <lux-button luxLabel="Tabindex 10 (LuxButton)" luxTabIndex="10"></lux-button>
+        <lux-layout>
+          <lux-datepicker luxLabel="Tabindex 2 (LuxDatepicker)" luxTabIndex="2"></lux-datepicker>
+          <lux-checkbox luxLabel="Tabindex 4 (LuxCheckbox)" luxTabIndex="4"></lux-checkbox>
+          <lux-select
+            luxLabel="Tabindex 6 (LuxSelect)"
+            luxTabIndex="6"
+            [luxOptions]="options"
+            luxOptionLabelProp="label"
+          ></lux-select>
+          <lux-toggle luxLabel="Tabindex 8 (LuxToggle)" luxTabIndex="8"></lux-toggle>
+        </lux-layout>
       </lux-card-content>
     </lux-card>
   </example-base-content>

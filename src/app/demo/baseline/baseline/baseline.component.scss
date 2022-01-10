@@ -1,0 +1,51 @@
+.baseline-row {
+  lux-card-content > * {
+    min-width: 125px !important;
+    display: flex;
+  }
+
+  ::ng-deep {
+    .lux-chips {
+      width: 125px !important;
+    }
+  }
+}
+
+.test-row > * {
+  min-width: 125px !important;
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.message-box {
+  border-left: 8px solid var(--lux-theme-primary-color);
+  border-radius: 4px;
+  background-color: var(--lux-theme-primary-50);
+  padding: 12px 24px;
+  margin: 32px 0;
+  max-width: fit-content;
+}
+
+:host {
+  &.show-frames {
+    .baseline-row lux-card-content, lux-card-content-expanded > * :not(.message-box) {
+      background: yellow !important;
+    }
+
+    ::ng-deep {
+      .baseline-row lux-card-content, lux-card-content-expanded {
+        .lux-form-control-label {
+          background: green !important;
+        }
+
+        .lux-form-control-container, .lux-form-control-borderless .lux-form-control-container {
+          background: blue !important;
+        }
+
+        .lux-form-control-misc {
+          background: red !important;
+        }
+      }
+    }
+  }
+}

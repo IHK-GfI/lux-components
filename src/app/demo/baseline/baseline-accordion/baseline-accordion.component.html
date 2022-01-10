@@ -1,0 +1,133 @@
+<div class="container">
+  <lux-accordion>
+    <lux-panel>
+      <lux-panel-header-title>Alle Form-Controls</lux-panel-header-title>
+      <lux-panel-header-description>Zur Überprüfung der Ausrichtung in einem Accordion-Panel</lux-panel-header-description>
+      <lux-panel-content>
+        <div class="panel-frame">
+            <h6>Zur Veranschaulichung können Rahmen um die Komponenten eingeblendet werden.</h6>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="32px">
+              <lux-toggle luxLabel="Frames um die Formcontrols anzeigen" (luxCheckedChange)="showFramesFormControls = $event"></lux-toggle>
+              <lux-toggle luxLabel="Frame für das Panel anzeigen" (luxCheckedChange)="showFramesPanel = $event"></lux-toggle>
+            </div>
+            <p class="message-box">
+              Mit diesem Panel wird die Ausrichtung der Form-Controls im Accordion überprüft.
+              Dieses Beispiel dient für Testzwecke bei der Weiterentwicklung der Lux-Components.<br/>
+              Wir empfehlen ausdrücklich die Verwendung der Lux-Layout-Form-Row für die Ausrichtung der Formcontrols.
+            </p>
+            <div fxLayout="column" fxLayoutGap="12px" class="overview">
+              <lux-input luxLabel="Lux-Input" luxPlaceholder="Platzhalter" [luxHint]="testHint" [luxValue]="testValue" luxAutocomplete="off"></lux-input>
+              <lux-autocomplete luxLabel="Lux-Autocomplete" luxPlaceholder="Platzhalter" [luxHint]="testHint" [luxValue]="testValue" luxOptionLabelProp="label" [luxOptions]="options"></lux-autocomplete>
+              <lux-datepicker luxLabel="Lux-Datepicker" luxLocale="de-DE" luxPlaceholder="Platzhalter" [luxValue]="testDate" [luxHint]="testHint" ></lux-datepicker>
+              <lux-datetimepicker luxLabel="Lux-Datetimepicker" luxLocale="de-DE" luxPlaceholder="Platzhalter" [luxValue]="testDate2" [luxHint]="testHint"></lux-datetimepicker>
+              <lux-select luxLabel="Lux-Select" luxPlaceholder="Platzhalter" [luxHint]="testHint" [luxSelected]="testOption" luxOptionLabelProp="label" [luxOptions]="options"></lux-select>
+              <lux-file-input luxLabel="Lux-File-Input" luxPlaceholder="Platzhalter" [luxHint]="testHint" ></lux-file-input>
+              <lux-textarea luxLabel="Lux-Textarea" luxPlaceholder="Platzhalter" [luxHint]="testHint" [luxValue]="testValue" [luxMinRows]="3" [luxMaxRows]="4"></lux-textarea>
+              <lux-toggle luxLabel="Option" [luxChecked]="false" luxHint="Hinweis"></lux-toggle>
+              <lux-checkbox luxLabel="Option" [luxChecked]="false" luxHint="Hinweis"></lux-checkbox>
+              <lux-radio luxGroupName="radio1" [luxOptions]="options" [luxOrientationVertical]="true" [luxSelected]="options[0]" luxLabel="Lux-Radio" luxHint="Hinweis">
+                <ng-template let-option>
+                  {{ option.label }}
+                </ng-template>
+              </lux-radio>
+              <lux-chips [luxInputAllowed]="true" luxInputLabel="Lux-Chips im Input-Element" luxHint="Hinweis" [luxNewChipGroup]="group">
+                <lux-chip-group [luxLabels]="chipItems" luxColor="accent" [luxRemovable]="true"
+                                (luxChipAdded)="chipAdded($event)" (luxChipRemoved)="chipRemoved($event)"
+                                (luxChipClicked)="chipItemClicked($event)" #group>
+                </lux-chip-group>
+              </lux-chips>
+              <lux-file-list luxLabel="Lux-File-List" luxHint="Hinweis"></lux-file-list>
+          </div>
+        </div>
+      </lux-panel-content>
+    </lux-panel>
+    <lux-panel>
+      <lux-panel-header-title>Formularbeispiel</lux-panel-header-title>
+      <lux-panel-header-description>Mit Lux-Layout-Form-Row ausgerichtet</lux-panel-header-description>
+      <lux-panel-content>
+        <p class="message-box">
+          In dem unteren Beispiel ist das Formular mit der luxLayoutRow gestaltet worden. Die gestrichelten Linien zeigen die einzelnen Rows an.
+          Der Abstand der Rows zu einander ist dabei individuell gesetzt, bei den Row-Items wurde er gleich gewählt.
+        </p>
+        <div class="lux-highlight-section">
+        <lux-layout [formGroup]="addressForm" fxFill="100">
+          <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
+            <lux-select luxLabel="Anrede" luxHint="Bitte wählen Sie die Anrede aus." luxControlBinding="title" [luxOptions]="prefixOptions" *luxLayoutRowItem="{ colSpan: 1 }"></lux-select>
+            <div *luxLayoutRowItem="{ empty: true, colSpan: 7 }"></div>
+          </lux-layout-form-row>
+          <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
+            <lux-input luxLabel="Vorname" luxHint="Bitte geben Sie Ihren Vornamen an." luxControlBinding="firstname" *luxLayoutRowItem="{ colSpan: 4}"></lux-input>
+            <lux-input luxLabel="Nachname" luxHint="Bitte geben Sie Ihren Nachnamen an." luxControlBinding="lastname" *luxLayoutRowItem="{ colSpan: 4 }"></lux-input>
+          </lux-layout-form-row>
+          <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
+            <lux-input luxLabel="Straße" luxHint="Bitte geben Sie Ihre Anschrift an." luxControlBinding="streetAddress" *luxLayoutRowItem="{ colSpan: 7 }"></lux-input>
+            <lux-input luxLabel="Nr." luxControlBinding="streetNumber" luxType="number" [luxNumberAlignLeft]="true" *luxLayoutRowItem="{ colSpan: 1 }"></lux-input>
+          </lux-layout-form-row>
+          <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
+            <lux-input luxLabel="Adress-Zusatz (optional)" [luxMaxLength]="100" luxControlBinding="addressInfo" *luxLayoutRowItem="{}"></lux-input>
+          </lux-layout-form-row>
+          <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
+            <lux-input luxLabel="PLZ" luxHint="Bitte geben Sie Ihre PLZ an." luxControlBinding="postalCode" luxType="number" [luxNumberAlignLeft]="true" [luxHideCounterLabel]="true" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input>
+            <lux-input luxLabel="Ort" luxHint="Bitte geben Sie Ihren Wohnohrt an." luxControlBinding="city" *luxLayoutRowItem="{ colSpan: 6 }"></lux-input>
+          </lux-layout-form-row>
+          <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
+            <lux-autocomplete luxLabel="Land" luxHint="Bitte geben Sie Ihr Land an." [luxOptions]="countries" luxControlBinding="country" *luxLayoutRowItem="{ colSpan: 8 }"></lux-autocomplete>
+            <div *luxLayoutRowItem="{ empty: true, colSpan: 2 }"></div>
+          </lux-layout-form-row>
+        </lux-layout>
+      </div>
+      </lux-panel-content>
+    </lux-panel>
+    <lux-panel>
+      <lux-panel-header-title>Lux-Check-Box</lux-panel-header-title>
+      <lux-panel-header-description>Die neuen Höhen-Varianten</lux-panel-header-description>
+      <lux-panel-content>
+        <p class="message-box">
+          In diesem Panel werden die neuen Varianten der Check-Boxen vorgestellt. 
+          Zur Visualisierung der unterschiedlichen Höhen, wurde eine andere Hintergrundfarbe für die Komponenten gewählt.<br/>
+          Diese Form der Gestaltung ist ausschließlich für Testzwecke und nicht für die weitere Verwendung gedacht. 
+        </p>
+          <div [formGroup]="form" fxLayout="column" fxLayoutGap="4px" class="test-box">
+            <lux-checkbox [luxNoLabels]="true" luxLabel="luxNoLabels."></lux-checkbox>
+            <lux-checkbox [luxNoLabels]="true" luxLabel="luxNoLabels. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi distinctio libero, ratione animi dolore esse porro mollitia nulla magnam et, modi doloribus. Distinctio repellat quaerat eveniet iste, error molestiae adipisci culpa et, officia maiores, repudiandae tempora quae veniam fuga odit. At officia reiciendis libero magni architecto, odio dolorum laborum commodi."></lux-checkbox>
+            <lux-checkbox [luxNoLabels]="true" luxControlBinding="checkbox1" luxLabel="luxNoLabels: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi distinctio libero, ratione animi dolore esse porro mollitia nulla magnam et, modi doloribus. Distinctio repellat quaerat eveniet iste, error molestiae adipisci culpa et, officia maiores, repudiandae tempora quae veniam fuga odit. At officia reiciendis libero magni architecto, odio dolorum laborum commodi."></lux-checkbox>
+            <div class="warn-box" fxLayout="column">
+              <h5>Achtung!</h5>
+              <p>
+                Die neuen Varianten blenden die jeweiligen Labels komplett aus, selbst wenn die Validierung einen Fehler meldet! <br/>
+                Ist eine Errormessage notwendig, muss daher die Variante <strong>"luxNoTopLabel"</strong> gewählt werden.
+              </p>
+            </div>
+            <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox2" luxLabel="luxNoTopLabel: Lorem ipsum."></lux-checkbox>
+            <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox3" luxLabel="luxNoTopLabel: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi distinctio libero, ratione animi dolore esse porro mollitia nulla magnam et, modi doloribus. Distinctio repellat quaerat eveniet iste, error molestiae adipisci culpa et, officia maiores, repudiandae tempora quae veniam fuga odit. At officia reiciendis libero magni architecto, odio dolorum laborum commodi."></lux-checkbox>
+          </div>
+          
+      </lux-panel-content>
+    </lux-panel>
+    <lux-panel>
+      <lux-panel-header-title>Lux-Input</lux-panel-header-title>
+      <lux-panel-header-description>Die neuen Höhen-Varianten</lux-panel-header-description>
+      <lux-panel-content>
+        <p class="message-box">
+          In diesem Panel werden die neuen Varianten der Input-Elemente vorgestellt. 
+          Zur Visualisierung der unterschiedlichen Höhen, wurde eine andere Hintergrundfarbe für die Komponenten gewählt.<br/>
+          Diese Form der Gestaltung ist ausschließlich für Testzwecke und nicht für die weitere Verwendung gedacht! 
+        </p>
+          <div fxLayout="column" class="test-box">
+            <h4>Lux-Input ohne Label- und Error/Hint-Container</h4>
+            <lux-input [luxNoLabels]="true" luxLabel="Lux-Input NoLabels" luxPlaceholder="luxNoLabels" [luxHint]="testHint" luxAutocomplete="off"></lux-input>
+            <lux-divider></lux-divider>
+            <h4>Lux-Input ohne Error/Hint-Container</h4>
+            <lux-input [luxNoBottomLabel]="true" luxLabel="Das ist das Top-Label" luxPlaceholder="luxNoBottomLabel" [luxHint]="testHint" luxAutocomplete="off"></lux-input>
+            <lux-divider></lux-divider>
+            <h4>Lux-Input ohne Label-Container</h4>
+            <lux-input [luxNoTopLabel]="true" luxLabel="Lux-Input NoTopLabel" luxPlaceholder="luxNoTopLabel" luxHint="Das ist das Bottom-Label für die Hint- oder Error-Message." luxAutocomplete="off"></lux-input>
+            <lux-divider></lux-divider>
+            <h4>Lux-Input - default</h4>
+            <lux-input luxLabel="Das ist das Top-Label" luxPlaceholder="Default" luxHint="Das ist das Bottom-Label für die Hint- oder Error-Message." luxAutocomplete="off"></lux-input>
+            <lux-divider></lux-divider>
+          </div>
+      </lux-panel-content>
+    </lux-panel>
+  </lux-accordion>
+</div>
