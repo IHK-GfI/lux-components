@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './baseline-card.component.html',
   styleUrls: ['./baseline-card.component.scss']
 })
-export class BaselineCardComponent implements OnInit {
+export class BaselineCardComponent {
 
   // Properties für die Form-Controls
   testHint = 'Hinweistext';
@@ -64,9 +64,6 @@ export class BaselineCardComponent implements OnInit {
       password: new FormControl('', Validators.required)
     });
    }
-
-  ngOnInit(): void {
-  }
 
   chipRemoved($event: any) {
     console.log($event);

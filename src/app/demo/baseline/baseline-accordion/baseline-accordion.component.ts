@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './baseline-accordion.component.html',
   styleUrls: ['./baseline-accordion.component.scss']
 })
-export class BaselineAccordionComponent implements OnInit {
+export class BaselineAccordionComponent {
   @HostBinding('class.show-frames') showFramesFormControls = false;
   @HostBinding('class.show-frames-panel') showFramesPanel = false;
 
@@ -59,9 +59,6 @@ export class BaselineAccordionComponent implements OnInit {
       city: new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),
     })
-  }
-
-  ngOnInit(): void {
   }
 
   chipRemoved($event: any) {
