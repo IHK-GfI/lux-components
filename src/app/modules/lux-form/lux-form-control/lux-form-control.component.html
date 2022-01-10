@@ -2,7 +2,6 @@
   class="lux-form-control"
   [ngClass]="{
     'lux-form-control-error': shouldDisplayError(),
-    'lux-form-control-scalable-height': luxScalableHeight,
     'lux-form-control-disabled': luxFormComponent.luxDisabled,
     'lux-form-control-readonly': luxFormComponent.luxReadonly,
     'lux-focused': focused
@@ -58,7 +57,7 @@
       </ng-container>
     </ng-container>
     <!-- Container für Character-Counter -->
-    <div class="lux-form-control-character-counter" *ngIf="!luxHideCounterLabel"><ng-container *ngIf="focused">{{ luxCounterLabel }}</ng-container></div>
+    <div class="lux-form-control-character-counter" *ngIf="(!luxHideCounterLabel && luxCounterLabel)"><ng-container *ngIf="focused">{{ luxCounterLabel }}</ng-container></div>
   </div>
    
 </div>

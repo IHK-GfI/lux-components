@@ -1,4 +1,13 @@
-<lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" *ngIf="formGroup" [luxCounterLabel]="counterLabel" [luxHideCounterLabel]="luxHideCounterLabel">
+<lux-form-control 
+  [luxFormComponent]="this" 
+  [formGroup]="formGroup" 
+  *ngIf="formGroup" 
+  [luxNoLabels]="luxNoLabels" 
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  [luxCounterLabel]="counterLabel" 
+  [luxHideCounterLabel]="luxHideCounterLabel"
+>
   <div class="lux-input-row" fxLayout="row">
     <span class="lux-input-prefix-container" fxFlex="auto" matPrefix *ngIf="inputPrefix">
       <ng-content select="lux-input-prefix"></ng-content>

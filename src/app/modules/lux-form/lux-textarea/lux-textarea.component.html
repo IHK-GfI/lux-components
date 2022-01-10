@@ -1,4 +1,14 @@
-<lux-form-control [luxFormComponent]="this" [luxScalableHeight]="true" [formGroup]="formGroup" *ngIf="formGroup" [luxCounterLabel]="counterLabel" [luxHideCounterLabel]="luxHideCounterLabel">
+<lux-form-control 
+  [luxFormComponent]="this" 
+  [luxScalableHeight]="true"
+  [luxCounterLabel]="counterLabel" 
+  [luxHideCounterLabel]="luxHideCounterLabel"
+  [luxNoLabels]="luxNoLabels" 
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel" 
+  [formGroup]="formGroup" 
+  *ngIf="formGroup" 
+>
   <textarea
     matInput
     luxTagIdHandler

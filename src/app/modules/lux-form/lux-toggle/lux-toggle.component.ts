@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, Optional } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, Optional } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxFormCheckableBaseClass } from '../lux-form-model/lux-form-checkable-base.class';
@@ -10,6 +10,11 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   styleUrls: ['./lux-toggle.component.scss']
 })
 export class LuxToggleComponent extends LuxFormCheckableBaseClass implements OnInit {
+  
+  @Input() luxNoLabels = false;
+  @Input() luxNoTopLabel = false;
+  @Input() luxNoBottomLabel = false;
+  
   constructor(
     @Optional() controlContainer: ControlContainer,
     cdr: ChangeDetectorRef,

@@ -41,6 +41,9 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
   @Input() luxTickInterval: SLIDER_TICK_INTERVAL = 0;
   @Input() luxTagId: string = undefined;
   @Input() luxDisplayWith: (value: number | null) => string | number;
+  @Input() luxNoLabels = false;
+  @Input() luxNoTopLabel = false;
+  @Input() luxNoBottomLabel = false;
 
   get luxValue(): number {
     return this.getValue();

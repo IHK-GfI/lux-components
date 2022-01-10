@@ -1,8 +1,11 @@
 <lux-form-control
   [luxFormComponent]="this"
   [luxHideBottomBorder]="true"
-  [formGroup]="formGroup"
   [luxScalableHeight]="luxVertical"
+  [luxNoLabels]="luxNoLabels" 
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  [formGroup]="formGroup"
   *ngIf="formGroup"
 >
   <mat-slider

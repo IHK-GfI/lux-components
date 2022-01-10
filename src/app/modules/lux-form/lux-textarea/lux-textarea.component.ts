@@ -12,21 +12,23 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnInit {
   @Input() luxMaxRows = -1;
   @Input() luxMinRows = 0;
-  _luxMaxLength = 0;
+  @Input() luxNoLabels = false;
+  @Input() luxNoTopLabel = false;
+  @Input() luxNoBottomLabel = false;
+  @Input() luxHideCounterLabel = false; 
   @Input() set luxMaxLength(maxLength: number){
     this._luxMaxLength = maxLength;
     if (this.formControl) { //erst nach ngOnInit() vorhanden
       this.updateCounterLabel();
     }
   };
-
   get luxMaxLength(){
     return this._luxMaxLength;
   };
-  
-  counterLabel = '';
-  @Input() luxHideCounterLabel = false;
 
+  counterLabel = '';
+  _luxMaxLength = 0;
+  
   constructor(
     @Optional() controlContainer: ControlContainer,
     cdr: ChangeDetectorRef,

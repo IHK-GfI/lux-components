@@ -62,6 +62,9 @@ export class LuxDateTimePickerComponent
   @Input() luxCustomFilter: LuxDateFilterFn = null;
   @Input() luxMaxDate: string = null;
   @Input() luxMinDate: string = null;
+  @Input() luxNoLabels = false;
+  @Input() luxNoTopLabel = false;
+  @Input() luxNoBottomLabel = false;
 
   dateTimeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     let result = null;

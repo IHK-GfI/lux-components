@@ -16,13 +16,6 @@
   height: 2px;
 }
 
-$borderColor: rgba(0, 0, 0, 0.42);
-$defaultHeightNotScalable: 30px;
-$controlHeight: 24px;
-$controlHeightSmall: 18px;
-$fontSize: 15px;
-$fontSizeSmall: 12px;
-
 :host {
   max-width: 100%;
   width: 100%;
@@ -39,7 +32,7 @@ $fontSizeSmall: 12px;
   box-sizing: border-box;
 
   .lux-form-control-label {
-    padding-top: 2px;
+    padding: var(--lux-theme-form-control-label-padding);
     min-height: 15px;
     > * {
       @include crop;
@@ -58,8 +51,7 @@ $fontSizeSmall: 12px;
   .lux-form-control-misc {
     box-sizing: border-box;
     position: relative;
-    margin-bottom: 2px;
-    margin-top: 4px;
+    margin: var(--lux-theme-form-control-misc-margin);
     min-height: 17px;
     word-wrap: break-word;
     > * {
@@ -208,6 +200,7 @@ $fontSizeSmall: 12px;
     mat-hint,
     mat-error {
       font-size: var(--lux-theme-form-control-font-size-small) !important;
+      line-height: 15px !important;
     }
   }
 }
@@ -228,6 +221,32 @@ $fontSizeSmall: 12px;
     .lux-form-control-container:after {
       @include bottomBorder;
       border-bottom: none !important;
+    }
+  }
+
+  &.lux-form-control-no-top-label { // für Toggle/Checkbox/Radio
+    .lux-form-control {
+      min-height: calc(var(--lux-theme-form-control-default-height-not-scalable) + 23px);
+    }
+    .lux-form-control-label {
+      display: none;
+    }
+  }
+  &.lux-form-control-no-bottom-label { // kein Misc
+    .lux-form-control {
+      min-height:  calc(var(--lux-theme-form-control-default-height-not-scalable) + 17px);;
+    }
+    .lux-form-control-misc {
+      display: none !important;
+    }
+  }
+
+  &.lux-form-control-no-labels { // kein Label und kein Misc
+    .lux-form-control {
+      min-height: var(--lux-theme-form-control-default-height-not-scalable);
+    }
+    .lux-form-control-label, .lux-form-control-misc {
+      display: none !important;
     }
   }
 }
