@@ -69,6 +69,7 @@
                 i18n-luxAriaLabel="@@luxc.table.multiselect.chk.arialabel"
                 luxAriaLabelSelector="input"
                 [luxChecked]="luxSelected.has(element)"
+                [luxNoLabels]="true"
               >
               </lux-checkbox>
             </td>
@@ -94,6 +95,7 @@
                   luxTabIndex="-1"
                   [luxApplyToChildren]="true"
                   [luxChecked]="allSelected"
+                  [luxNoLabels]="true"
                 >
                 </lux-checkbox>
               </div>
