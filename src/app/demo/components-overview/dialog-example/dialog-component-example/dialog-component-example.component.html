@@ -6,7 +6,7 @@
     </div>
   </lux-dialog-title>
   <lux-dialog-content>
-    <div fxLayout="column" fxLayoutGap="8px">
+    <div fxLayout="column" fxLayoutGap="16px">
       <span>Ihre Daten werden im Anschluss an diesen Dialog gespeichert.</span>
       <span>{{ luxDialogRef.data }}</span>
       <b>Zusatzinformationen</b>
@@ -15,6 +15,7 @@
         luxLabel="AGB gelesen"
         luxHint="Ich habe die AGB und Datenschutzvereinbarungen gelesen und akzeptiere diese."
         [luxRequired]="true"
+        [luxNoTopLabel]="true"
         #agbAcceptedToggle
       >
       </lux-toggle>

@@ -87,6 +87,7 @@
               luxLabel="raised"
               luxHint="Dieser Flag hebt den Button hervor."
               [(luxChecked)]="buttonInfo.raised"
+              [luxNoTopLabel]="true"
             >
             </lux-toggle>
             <lux-toggle
@@ -94,6 +95,7 @@
               luxLabel="disabled"
               luxHint="Mit diesem Flag kann der Button deaktiviert werden."
               [(luxChecked)]="buttonInfo.disabled"
+              [luxNoTopLabel]="true"
             >
             </lux-toggle>
             <lux-toggle
@@ -101,10 +103,11 @@
               luxLabel="hidden"
               luxHint="Mit diesem Flag kann der Button ausgeblendet werden."
               [(luxChecked)]="buttonInfo.hidden"
+              [luxNoTopLabel]="true"
             >
             </lux-toggle>
             <div class="lux-highlight-section" fxLayout="column">
-              <lux-toggle luxLabel="alwaysVisible" [(luxChecked)]="buttonInfo.alwaysVisible">
+              <lux-toggle luxLabel="alwaysVisible" [(luxChecked)]="buttonInfo.alwaysVisible" [luxNoTopLabel]="true">
                 <lux-form-hint>
                   Dieses Flag stellt sicher, das dieser Button immer außerhalb des Menus dargestellt wird, solange der
                   Platz noch ausreicht.<br />Andere Buttons, die dieses Flag nicht gesetzt haben, werden dann zuerst
@@ -174,6 +177,7 @@
               class="lux-highlight-section"
               luxLabel="alwaysVisible"
               [(luxChecked)]="linkInfo.alwaysVisible"
+              [luxNoTopLabel]="true"
             >
               <lux-form-hint>
                 Dieses Flag stellt sicher, das dieser Link immer außerhalb des Menus dargestellt wird, solange der Platz
@@ -186,6 +190,7 @@
               luxHint="Dieser Flag aktiviert das Öffnen des Links in einem neuen Tab (wenn externer Link)."
               [(luxChecked)]="linkInfo.blank"
               *ngIf="linkInfo.path.startsWith('http')"
+              [luxNoTopLabel]="true"
             >
             </lux-toggle>
           </lux-panel-content>

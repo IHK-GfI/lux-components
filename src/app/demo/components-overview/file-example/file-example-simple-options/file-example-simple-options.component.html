@@ -5,7 +5,7 @@
   [(luxValue)]="fileExample.label"
 >
 </lux-input>
-<div fxLayout="column" class="lux-highlight-section">
+<div class="lux-highlight-section column">
   <lux-input
     luxLabel="luxHint"
     luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
@@ -16,6 +16,7 @@
     luxLabel="luxHintShowOnlyOnFocus"
     luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
     [(luxChecked)]="fileExample.hintShowOnlyOnFocus"
+    [luxNoTopLabel]="true"
   ></lux-toggle>
 </div>
 <lux-toggle
@@ -23,19 +24,22 @@
   [(luxChecked)]="fileExample.disabled"
   luxLabel="luxDisabled"
   luxHint="Erlaubt es, die Component zu deaktivieren."
+  [luxNoTopLabel]="true"
 >
 </lux-toggle>
-<div class="lux-highlight-section" fxLayout="column">
+<div class="lux-highlight-section column">
   <div fxLayout="row wrap">
     <lux-button
       luxLabel="Enable"
       (luxClicked)="fileExample.form.get(fileExample.controlBinding).enable()"
       [luxDisabled]="!fileExample.form.get(fileExample.controlBinding).disabled"
+      luxColor="primary"
     ></lux-button>
     <lux-button
       luxLabel="Disable"
       (luxClicked)="fileExample.form.get(fileExample.controlBinding).disable()"
       [luxDisabled]="fileExample.form.get(fileExample.controlBinding).disabled"
+      luxColor="primary"
     ></lux-button>
   </div>
   <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
@@ -45,12 +49,14 @@
   [(luxChecked)]="fileExample.readonly"
   luxLabel="luxReadonly"
   luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+  [luxNoTopLabel]="true"
 >
 </lux-toggle>
 <lux-toggle
   class="lux-highlight-section"
   luxLabel="luxRequired"
   (luxCheckedChange)="fileExample.changeRequired($event)"
+  [luxNoTopLabel]="true"
 >
   <lux-form-hint>
     Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
@@ -66,6 +72,7 @@
   [(luxChecked)]="fileExample.dndActive"
   luxLabel="luxDnDActive"
   luxHint="Diese Eigenschaft legt fest ob Dateien via Drag-And-Drop in das Input gegeben werden können."
+  [luxNoTopLabel]="true"
 >
 </lux-toggle>
 <lux-toggle
@@ -73,6 +80,7 @@
   [(luxChecked)]="fileExample.contentAsBlob"
   luxLabel="luxContentAsBlob"
   luxHint="Diese Eigenschaft bestimmt ob die Dateien als Blob gespeichert werden sollen oder als Base64-String."
+  [luxNoTopLabel]="true"
 >
 </lux-toggle>
 <lux-toggle
@@ -80,6 +88,7 @@
   [(luxChecked)]="fileExample.reportProgress"
   luxLabel="luxUploadReportProgress"
   luxHint="Diese Eigenschaft legt fest ob beim Upload Progressbar mit festen Fortschrittswerten oder nicht angezeigt werden soll."
+  [luxNoTopLabel]="true"
 >
 </lux-toggle>
 <lux-input

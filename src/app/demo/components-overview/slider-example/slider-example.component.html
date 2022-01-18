@@ -99,9 +99,11 @@
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
+      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
@@ -112,7 +114,7 @@
       [(luxValue)]="label"
     >
     </lux-input>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-input
         luxName="slider_luxHint"
         luxLabel="luxHint"
@@ -125,6 +127,7 @@
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
+        [luxNoTopLabel]="true"
       ></lux-toggle>
     </div>
     <lux-toggle
@@ -132,28 +135,32 @@
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
+          luxColor="primary"
           (luxClicked)="form.get(controlBinding).enable()"
           [luxDisabled]="!form.get(controlBinding).disabled"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
+          luxColor="primary"
           (luxClicked)="form.get(controlBinding).disable()"
           [luxDisabled]="form.get(controlBinding).disabled"
         ></lux-button>
       </div>
-      <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
+      <div class="lux-hint lux-mt-3">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
     </div>
     <lux-toggle
       class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -161,6 +168,7 @@
       [(luxChecked)]="vertical"
       luxLabel="luxVertical"
       luxHint="Diese Property schaltet die vertikale Darstellung des Sliders ein."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -168,6 +176,7 @@
       [(luxChecked)]="invert"
       luxLabel="luxInvert"
       luxHint="Über diesen Flag kann die Ausrichtung des Sliders gespiegelt werden."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-select
@@ -180,10 +189,11 @@
       (luxSelectedChange)="colorChanged($event)"
     >
     </lux-select>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-input
         [(luxValue)]="min"
         luxType="number"
+        [luxNumberAlignLeft]="true"
         luxName="slider_luxMin"
         luxLabel="luxMin"
         luxHint="Diese Property bestimmt den minimal möglichen Wert in dem Slider."
@@ -191,6 +201,7 @@
       <lux-input
         [(luxValue)]="max"
         luxType="number"
+        [luxNumberAlignLeft]="true"
         luxName="slider_luxMax"
         luxLabel="luxMax"
         luxHint="Diese Property bestimmt den maximal möglichen Wert des Sliders."
@@ -198,6 +209,7 @@
       </lux-input>
       <lux-input
         luxType="number"
+        [luxNumberAlignLeft]="true"
         [(luxValue)]="step"
         luxName="slider_luxStep"
         luxLabel="luxStep"
@@ -208,6 +220,7 @@
         [luxChecked]="tickIntervalAuto"
         (luxCheckedChange)="tickIntervalChanged($event)"
         luxLabel="luxTickInterval - 'auto'"
+        [luxNoTopLabel]="true"
       >
         <lux-form-hint>
           luxTickInterval kann den Wert 'auto' erhalten, um automatisch die Anzahl an Abstandanzeigen darzustellen.<br />
@@ -216,6 +229,7 @@
       </lux-toggle>
       <lux-input
         luxType="number"
+        [luxNumberAlignLeft]="true"
         [luxValue]="tickIntervalNumber"
         luxName="slider_luxTickInterval"
         luxLabel="luxTickInterval - 'number'"
@@ -227,17 +241,19 @@
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-toggle
         [(luxChecked)]="showThumbLabel"
         luxLabel="luxShowThumbLabel"
         luxHint="Dieser Flag schaltet die 'ThumbLabel'-Anzeige des aktuellen Wertes ein."
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <lux-toggle
         [(luxChecked)]="alwaysVisible"
         luxLabel="luxShowThumbLabelAlways"
         luxHint="Diese Property schaltet den 'ThumbLabel' unabhängig vom Fokus immer ein."
+        [luxNoTopLabel]="true"
         *ngIf="showThumbLabel"
       >
       </lux-toggle>
@@ -245,6 +261,7 @@
         luxLabel="luxDisplayWith"
         luxHint="Eigene displayWith-Funktion für die Anzeige im 'ThumbLabel' benutzen."
         [(luxChecked)]="useDisplayFn"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <pre class="lux-label" *ngIf="useDisplayFn">{{ displayWithFnString }}</pre>
@@ -254,6 +271,7 @@
         luxLabel="luxErrorMessage verwenden"
         luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
         [(luxChecked)]="useErrorMessage"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <lux-input
@@ -262,6 +280,7 @@
         luxHint="Über diese Property lässt sich eine feste Fehlermeldung
                  (unabhängig vom speziellen Validierungsfehler) einstellen."
         [(luxValue)]="errorMessage"
+        [luxNoTopLabel]="true"
         *ngIf="useErrorMessage"
       >
       </lux-input>

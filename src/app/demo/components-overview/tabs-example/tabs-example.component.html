@@ -29,22 +29,26 @@
           *ngFor="let tab of tabs; let i = index"
         >
           <ng-template>
-            <div fxLayout="column">
+            <div class="lux-highlight-section column">
               <lux-input
                 luxLabel="Beispiel Eingabefeld #{{ 1 + i * 3 }}"
                 luxTagId="BE_{{ 1 + i * 3 }}"
                 luxAutocomplete="off"
+                [luxNoBottomLabel]="true"
               ></lux-input>
               <lux-input
                 luxLabel="Beispiel Eingabefeld #{{ 2 + i * 3 }}"
                 luxTagId="BE_{{ 1 + i * 3 }}"
                 luxAutocomplete="off"
+                [luxNoBottomLabel]="true"
               ></lux-input>
               <lux-textarea
                 luxLabel="Beispiel Eingabefeld #{{ 3 + i * 3 }}"
                 luxTagId="BE_{{ 1 + i * 3 }}"
                 luxAutocomplete="off"
+                [luxNoBottomLabel]="true"
               ></lux-textarea>
+              <br>
               <app-tabs-content (created)="tabContentCreated(tab)"></app-tabs-content>
             </div>
           </ng-template>
@@ -54,9 +58,11 @@
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
+      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
@@ -64,6 +70,7 @@
       luxLabel="luxActiveTab"
       luxHint="Diese Property ermöglicht es, das aktuell aktive Tab zu setzen."
       luxType="number"
+      [luxNumberAlignLeft]="true"
       [(luxValue)]="activeTab"
     >
     </lux-input>
@@ -80,6 +87,7 @@
       luxLabel="luxTabAnimationActive"
       luxHint="Dieser Flag aktiviert die horizontale Animation des Tab-Contents."
       [(luxChecked)]="animationActive"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -87,6 +95,7 @@
       luxLabel="luxDisplayDivider"
       luxHint="Dieser Flag schaltet die Trennlinie zwischen Tab-Header und Tab-Content ein."
       [(luxChecked)]="displayDivider"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -94,6 +103,7 @@
       luxLabel="luxLazyLoading"
       luxHint="Wenn dieser Flag den Wert 'true' besitzt, werden die Inhalte der einzelnen Tabs erst zum Aktivierungszeitpunkt erzeugt."
       [(luxChecked)]="lazyLoading"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-input
@@ -109,7 +119,7 @@
     <lux-accordion [luxMulti]="false" luxMode="flat">
       <lux-panel *ngFor="let tab of tabs; let i = index">
         <lux-panel-header-title> Tab #{{ i + 1 }} </lux-panel-header-title>
-        <lux-panel-content fxLayout="column">
+        <lux-panel-content fxLayout="column" fxLayoutGap="0">
           <lux-input
             class="lux-highlight-section"
             luxLabel="luxTitle"
@@ -117,7 +127,7 @@
             [(luxValue)]="tab.title"
           >
           </lux-input>
-          <div fxLayout="column" class="lux-highlight-section">
+          <div class="lux-highlight-section column">
             <lux-input
               luxLabel="luxIconName"
               luxHint="Diese Property legt das Icon für den Tab fest."
@@ -137,30 +147,34 @@
               [(luxValue)]="tab.imageAlign"
             >
             </lux-input>
-            <div fxLayout="row">
+            <lux-layout-form-row [luxGap]="{ rowItem: '32px'}">
               <lux-input
                 luxLabel="luxImageWidth"
                 [(luxValue)]="tab.imageWidth"
+                *luxLayoutRowItem="{}"
               >
               </lux-input>
               <lux-input
                 luxLabel="luxImageHeight"
                 [(luxValue)]="tab.imageHeight"
+                *luxLayoutRowItem="{}"
               >
               </lux-input>
-            </div>
+            </lux-layout-form-row>
           </div>
           <lux-toggle
             class="lux-highlight-section"
             luxLabel="luxDisabled"
             luxHint="Dieses Flag ermöglicht es, den Tab zu deaktivieren."
             [(luxChecked)]="tab.disabled"
+            [luxNoTopLabel]="true"
           >
           </lux-toggle>
           <lux-toggle
             class="lux-highlight-section"
             luxLabel="luxShowNotification"
             [(luxChecked)]="tab.showNotification"
+            [luxNoTopLabel]="true"
           >
             <lux-form-hint>
               Diese Property aktiviert eine Notifizierungsansicht an dem Tab.<br />
@@ -168,10 +182,11 @@
               ausgegrauter Kreis.
             </lux-form-hint>
           </lux-toggle>
-          <div class="lux-highlight-section" fxLayout="column">
+          <div class="lux-highlight-section column">
             <lux-toggle
               luxLabel="luxCounter aktiv"
               (luxCheckedChange)="$event ? (tab.counter = 0) : (tab.counter = undefined)"
+              [luxNoTopLabel]="true"
             >
               <lux-form-hint>
                 Wenn der luxCounter einen Zahlenwert besitzt, wird dieser auch an dem Tab angezeigt.<br />
@@ -182,6 +197,7 @@
               luxLabel="luxCounter"
               [(luxValue)]="tab.counter"
               luxType="number"
+              [luxNumberAlignLeft]="true"
               [luxDisabled]="tab.counter === undefined"
             >
               <lux-form-hint>
@@ -193,6 +209,7 @@
               luxLabel="luxCounterCap"
               luxHint="Diese Property bestimmt die Obergrenze für luxCounter."
               luxType="number"
+              [luxNumberAlignLeft]="true"
               [(luxValue)]="tab.counterCap"
             >
             </lux-input>

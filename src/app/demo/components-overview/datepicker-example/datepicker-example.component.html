@@ -90,9 +90,11 @@
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
+      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
@@ -103,7 +105,7 @@
       [(luxValue)]="label"
     >
     </lux-input>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-input
         luxName="datepicker_luxHint"
         luxLabel="luxHint"
@@ -116,6 +118,7 @@
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
+        [luxNoTopLabel]="true"
       ></lux-toggle>
     </div>
     <lux-input
@@ -131,19 +134,22 @@
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
           (luxClicked)="form.get(controlBinding).enable()"
           [luxDisabled]="!form.get(controlBinding).disabled"
+          luxColor="primary"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
           (luxClicked)="form.get(controlBinding).disable()"
           [luxDisabled]="form.get(controlBinding).disabled"
+          luxColor="primary"
         ></lux-button>
       </div>
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
@@ -153,12 +159,14 @@
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
       luxLabel="luxRequired"
       (luxCheckedChange)="changeRequired($event)"
+      [luxNoTopLabel]="true"
     >
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
@@ -176,6 +184,7 @@
       luxLabel="luxShowToggle"
       luxHint="Dieser Flag schaltet den Toggle-Button für die Datumsauswahl ein."
       [(luxChecked)]="showToggle"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -183,6 +192,7 @@
       luxLabel="luxOpened"
       luxHint="Über diesen Flag kann die Datumsauswahl eingeblendet werden."
       [(luxChecked)]="opened"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -190,6 +200,7 @@
       luxLabel="luxTouchUi"
       luxHint="Diese Property schaltet eine vergrößerte und auf Touchscreens ausgelegete Ansicht der Datumsauswahl ein."
       [(luxChecked)]="touchUi"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-input
@@ -212,7 +223,7 @@
       [luxOptions]="['month', 'year']"
     >
     </lux-select>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-input luxName="datepicker_luxStartDate" luxLabel="luxStartDate" luxPlaceholder="10.02.2015" [(luxValue)]="startDate">
         <lux-form-hint>
           Diese Property definiert das in der Datumsauswahl pre-selektierte Datum.<br />
@@ -236,16 +247,18 @@
           luxLabel="luxCustomFilter benutzen"
           luxHint="Wenn 'true' wird eine eigene Filter-Funktion an den Datepicker übergeben."
           [(luxChecked)]="useCustomFilter"
+          [luxNoTopLabel]="true"
         >
         </lux-toggle>
         <pre class="lux-label" *ngIf="useCustomFilter"><b>customFilter</b> = {{ customFilterString }}</pre>
       </div>
     </div>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-toggle
         luxLabel="luxErrorMessage verwenden"
         luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
         [(luxChecked)]="useErrorMessage"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <lux-input

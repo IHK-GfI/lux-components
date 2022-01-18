@@ -4,7 +4,7 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/luxRelativeTimestamp"
 >
   <example-base-content [exampleCentered]="true">
-    <div fxLayout="column">
+    <div fxLayout="column" class="lux-highlight-section" fxLayoutGap="4px">
       <div fxLayout="row" fxLayoutGap="4px">
         <span fxFlex="0 0 175px">
           mit luxRelativeTimestamp:
@@ -28,36 +28,35 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <div class="lux-highlight-section" fxLayout="row" fxLayoutAlign="start center">
+    <div class="lux-highlight-section" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px" >
       <lux-datepicker
         luxLabel="timestamp"
         [(luxValue)]="nowISO"
         (luxValueChange)="updateNow($event)"
-        fxFlex="0 1 calc(100% - 106px)"
+        fxFlex="0 1 calc(80%-16px)"
       >
         <lux-form-hint>
           Hier kann ein Datum für das Beispiel eingetragen werden.<br />
           Das Beispiel nimmt dann den Timestamp aus dem Date-Objekt.
         </lux-form-hint>
       </lux-datepicker>
-      <lux-button
-        luxIconName="fas fa-times"
-        luxColor="warn"
-        luxTagId="timestamp.btn.clear"
-        [luxRounded]="true"
-        (luxClicked)="clearNow()"
-        fxFlex="0 0 45px"
-        fxFlexOffset="8px"
-      ></lux-button>
-      <lux-button
-        luxIconName="fas fa-undo"
-        luxColor="primary"
-        luxTagId="timestamp.btn.undo"
-        [luxRounded]="true"
-        (luxClicked)="resetNow()"
-        fxFlex="0 0 45px"
-        fxFlexOffset="8px"
-      ></lux-button>
+      <div fxLayout="row" fxLayoutAlign="end center" fxFlex="1 1 20%" fxLayoutGap="8px">
+        <lux-button
+          luxIconName="fas fa-times"
+          luxColor="warn"
+          luxTagId="timestamp.btn.clear"
+          [luxRounded]="true"
+          (luxClicked)="clearNow()"
+        ></lux-button>
+        <lux-button
+          luxIconName="fas fa-undo"
+          luxColor="primary"
+          luxTagId="timestamp.btn.undo"
+          [luxRounded]="true"
+          (luxClicked)="resetNow()"
+        ></lux-button>
+      </div>
+     
     </div>
     <lux-input
       class="lux-highlight-section"

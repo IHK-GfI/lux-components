@@ -27,15 +27,18 @@
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
+      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-toggle
       class="lux-highlight-section"
       luxLabel="luxImmediateCallback"
       [(luxChecked)]="immediateCallback"
+      [luxNoTopLabel]="true"
     >
       <lux-form-hint>
         Bestimmt ob bei Initiierung ein luxScrolled-Event abgegeben wird.<br />
@@ -47,11 +50,13 @@
       luxLabel="luxIsLoading"
       luxHint="Teilt der Component mit, ob gerade Daten geladen werden. Wenn true, werden keine luxScrolled-Events emittet."
       [(luxChecked)]="isLoading"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-input
       class="lux-highlight-section"
       luxType="number"
+      [luxNumberAlignLeft]="true"
       luxName="infinite-scrolling_luxScrollPercent"
       luxLabel="luxScrollPercent"
       luxHint="Bestimmt die Prozentzahl in der Scrollbar, ab der das luxScrolled-Event emitted wird."
@@ -60,27 +65,21 @@
     </lux-input>
   </example-base-simple-options>
   <example-base-options-actions>
-    <lux-menu
-      fxFlex="0 0 250px"
-      luxMenuIconName="fas fa-ellipsis-v"
-      [luxDisplayExtended]="true"
-      [luxDisplayMenuLeft]="false"
-      [luxMaximumExtended]="4"
-    >
-      <lux-menu-item
+    <div class="lux-simple-form row">
+      <lux-button
         luxLabel="Neu generieren"
         [luxRaised]="true"
         (luxClicked)="recreateList()"
         luxTagId="menu-item-regenerate"
       >
-      </lux-menu-item>
-      <lux-menu-item
+      </lux-button>
+      <lux-button
         luxLabel="Reset"
         [luxRaised]="true"
         (luxClicked)="reset()"
         luxTagId="menu-item-reset"
       >
-      </lux-menu-item>
-    </lux-menu>
+      </lux-button>
+    </div>
   </example-base-options-actions>
 </example-base-structure>

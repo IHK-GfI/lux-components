@@ -23,7 +23,7 @@
         >
         </lux-progress>
       </div>
-      <div fxLayout="column" fxLayoutGap="12px" class="lux-hover-bg lux-highlight-section">
+      <div fxLayout="column" fxLayoutGap="16px" class="lux-hover-bg lux-highlight-section">
         <h3 class="lux-highlight-section-label">Hover</h3>
         <lux-progress
           *ngFor="let color of colors; let i = index"
@@ -36,7 +36,7 @@
         >
         </lux-progress>
       </div>
-      <div fxLayout="column" fxLayoutGap="12px" class="lux-selected-bg lux-highlight-section">
+      <div fxLayout="column" fxLayoutGap="16px" class="lux-selected-bg lux-highlight-section">
         <h3 class="lux-highlight-section-label">Focus</h3>
         <lux-progress
           *ngFor="let color of colors; let i = index"
@@ -58,7 +58,7 @@
         Dabei sind die Eingaben 'small', 'medium' und 'large' erlaubt.
       </lux-form-hint>
     </lux-select>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-select
         [luxOptions]="modes"
         [(luxSelected)]="mode"
@@ -72,11 +72,12 @@
           luxHint="Diese Property setzt den Wert in dem ProgressBar, vorausgesetzt es ist im Modus 'determinate'"
           luxType="number"
           [(luxValue)]="value"
+          [luxNumberAlignLeft]="true"
         >
         </lux-input>
-        <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
-          <lux-button luxLabel="+10" (luxClicked)="addBarProgress()" [luxRaised]="true"></lux-button>
-          <lux-button luxLabel="-10" (luxClicked)="subtractBarProgress()" [luxRaised]="true"></lux-button>
+        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px" class="lux-mt-4">
+          <lux-button luxLabel="+10" (luxClicked)="addBarProgress()" luxColor="primary" [luxRaised]="true"></lux-button>
+          <lux-button luxLabel="-10" (luxClicked)="subtractBarProgress()" luxColor="primary" [luxRaised]="true"></lux-button>
         </div>
       </ng-container>
     </div>

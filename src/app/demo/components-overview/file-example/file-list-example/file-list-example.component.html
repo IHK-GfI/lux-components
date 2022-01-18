@@ -88,19 +88,22 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents"> </lux-toggle>
-    <lux-toggle luxLabel="Backend mocken" [luxChecked]="mockBackend" (luxCheckedChange)="changeMockBackend($event)">
-      <lux-form-hint>
-        Mockt den Http-Client um das Uploaden der Dateien zu simulieren.<br />
-        Dafür muss aber auch "luxUploadUrl" gesetzt sein (beliebiger Wert).
-      </lux-form-hint>
-    </lux-toggle>
+    <div class="lux-highlight-section column">
+      <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true"> </lux-toggle>
+      <lux-toggle luxLabel="Backend mocken" [luxChecked]="mockBackend" (luxCheckedChange)="changeMockBackend($event)" [luxNoTopLabel]="true">
+        <lux-form-hint>
+          Mockt den Http-Client um das Uploaden der Dateien zu simulieren.<br />
+          Dafür muss aber auch "luxUploadUrl" gesetzt sein (beliebiger Wert).
+        </lux-form-hint>
+      </lux-toggle>
+    </div>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-toggle
       class="lux-highlight-section"
       [(luxChecked)]="showPreview"
       luxLabel="luxShowPreview"
       luxHint="Diese Eigenschaft definiert, ob einzelne Bilder in einer Vorschau angezeigt werden sollen."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -108,6 +111,7 @@
       [(luxChecked)]="multiple"
       luxLabel="luxMultiple"
       luxHint="Dieses Flag legt fest, ob nur eine oder mehrere Dateien selektiert werden können."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-input
@@ -121,19 +125,19 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <app-file-example-advanced-options [fileExample]="this" [showHeaderConfigProperties]="true"></app-file-example-advanced-options>
-    <div class="lux-highlight-section lux-mt-4" fxLayout="column">
+    <div class="lux-highlight-section column">
       <div class="lux-highlight-section-label">Dialogaktion "Akzeptieren"</div>
-      <lux-input luxLabel="Präfix" luxName="filelist_prefix_accept" [(luxValue)]="namePrefixAccept"></lux-input>
-      <lux-input luxLabel="Präfixfarbe" luxName="filelist_prefix_color_accept" [(luxValue)]="namePrefixColorAccept"></lux-input>
-      <lux-input luxLabel="Suffix" luxName="filelist_suffix_accept" [(luxValue)]="nameSuffixAccept"></lux-input>
-      <lux-input luxLabel="Suffixfarbe" luxName="filelist_suffix_color_accept" [(luxValue)]="nameSuffixColorAccept"></lux-input>
+      <lux-input luxLabel="Präfix" luxName="filelist_prefix_accept" [(luxValue)]="namePrefixAccept" [luxNoBottomLabel]="true"></lux-input>
+      <lux-input luxLabel="Präfixfarbe" luxName="filelist_prefix_color_accept" [(luxValue)]="namePrefixColorAccept" [luxNoBottomLabel]="true"></lux-input>
+      <lux-input luxLabel="Suffix" luxName="filelist_suffix_accept" [(luxValue)]="nameSuffixAccept" [luxNoBottomLabel]="true"></lux-input>
+      <lux-input luxLabel="Suffixfarbe" luxName="filelist_suffix_color_accept" [(luxValue)]="nameSuffixColorAccept" [luxNoBottomLabel]="true"></lux-input>
     </div>
-    <div class="lux-highlight-section lux-mt-4" fxLayout="column">
+    <div class="lux-highlight-section column">
       <div class="lux-highlight-section-label">Dialogaktion "Ablehnen"</div>
-      <lux-input luxLabel="Präfix" luxName="filelist_prefix_decline" [(luxValue)]="namePrefixDecline"></lux-input>
-      <lux-input luxLabel="Präfixfarbe" luxName="filelist_prefix_color_decline" [(luxValue)]="namePrefixColorDecline"></lux-input>
-      <lux-input luxLabel="Suffix" luxName="filelist_suffix_decline" [(luxValue)]="nameSuffixDecline"></lux-input>
-      <lux-input luxLabel="Suffixfarbe" luxName="filelist_suffix_color_decline" [(luxValue)]="nameSuffixColorDecline"></lux-input>
+      <lux-input luxLabel="Präfix" luxName="filelist_prefix_decline" [(luxValue)]="namePrefixDecline" [luxNoBottomLabel]="true"></lux-input>
+      <lux-input luxLabel="Präfixfarbe" luxName="filelist_prefix_color_decline" [(luxValue)]="namePrefixColorDecline" [luxNoBottomLabel]="true"></lux-input>
+      <lux-input luxLabel="Suffix" luxName="filelist_suffix_decline" [(luxValue)]="nameSuffixDecline" [luxNoBottomLabel]="true"></lux-input>
+      <lux-input luxLabel="Suffixfarbe" luxName="filelist_suffix_color_decline" [(luxValue)]="nameSuffixColorDecline" [luxNoBottomLabel]="true"></lux-input>
     </div>
   </example-base-advanced-options>
 </example-base-structure>

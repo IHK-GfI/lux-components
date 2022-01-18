@@ -83,9 +83,11 @@
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
+      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
@@ -95,7 +97,7 @@
       [(luxValue)]="label"
     >
     </lux-input>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-input
         luxLabel="luxHint"
         luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
@@ -106,6 +108,7 @@
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
+        [luxNoTopLabel]="true"
       ></lux-toggle>
     </div>
     <lux-input
@@ -115,7 +118,7 @@
       [(luxValue)]="placeholder"
     >
     </lux-input>
-    <div  fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-input
         luxLabel="luxMaxLength"
         luxHint="Über diese Property kann die maximale Länge angegeben werden."
@@ -129,6 +132,7 @@
         luxHint="Mithilfe dieses Flags kann eingestellt werden, ob das Counterlabel ausgeblendet werden soll."
         [(luxChecked)]="hideCounterLabel"
         *ngIf="maxLength"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
     </div>
@@ -137,34 +141,39 @@
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
           (luxClicked)="form.get(controlBinding).enable()"
           [luxDisabled]="!form.get(controlBinding).disabled"
+          luxColor="primary"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
           (luxClicked)="form.get(controlBinding).disable()"
           [luxDisabled]="form.get(controlBinding).disabled"
+          luxColor="primary"
         ></lux-button>
       </div>
-      <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
+      <div class="lux-hint lux-mt-3">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
     </div>
     <lux-toggle
       class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
       luxLabel="luxRequired"
       (luxCheckedChange)="changeRequired($event)"
+      [luxNoTopLabel]="true"
     >
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
@@ -187,6 +196,7 @@
       class="lux-highlight-section"
       [(luxValue)]="min"
       luxType="number"
+      [luxNumberAlignLeft]="true"
       luxLabel="luxMinRows"
       luxHint="Diese Property definiert die minimale Anzahl an Reihen für die Textarea."
     ></lux-input>
@@ -194,16 +204,18 @@
       class="lux-highlight-section"
       [(luxValue)]="max"
       luxType="number"
+      [luxNumberAlignLeft]="true"
       luxLabel="luxMaxRows"
       luxHint="Diese Property definiert die maximale Anzahl an Reihen für die Textarea."
     ></lux-input>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-toggle
         luxLabel="luxErrorMessage verwenden"
         luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
         [(luxChecked)]="useErrorMessage"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <lux-input

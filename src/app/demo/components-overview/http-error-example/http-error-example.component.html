@@ -12,7 +12,7 @@
         luxLabel="Fehler ausblenden"
         [luxRaised]="true"
         [luxDisabled]="(getErrorsObservable() | async) === null"
-        luxColor="accent"
+        luxColor=""
         (luxClicked)="clearErrors()"
       >
       </lux-button>

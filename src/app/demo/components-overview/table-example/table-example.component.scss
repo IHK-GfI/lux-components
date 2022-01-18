@@ -10,12 +10,6 @@
   width: 250px;
 }
 
-.lux-table-no-label ::ng-deep div.lux-form-control-label {
-  min-height: 0 !important;
-  height: 0 !important;
-  padding-top: 0 !important;
-}
-
 lux-button.lux-table-example {
   width: 45px;
   ::ng-deep {

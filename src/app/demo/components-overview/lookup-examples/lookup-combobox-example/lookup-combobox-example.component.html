@@ -123,7 +123,7 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
+    <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
     </lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
@@ -134,7 +134,7 @@
       [(luxValue)]="label"
     >
     </lux-input>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-input
         luxName="lookup-combobox_luxHint"
         luxLabel="luxHint"
@@ -147,6 +147,7 @@
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
+        [luxNoTopLabel]="true"
       ></lux-toggle>
     </div>
     <lux-input
@@ -162,17 +163,20 @@
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <div class="lux-highlight-section" fxLayout="column">
-      <div fxLayout="row wrap">
+    <div class="lux-highlight-section column">
+      <div fxLayout="row wrap" fxLayoutGap="8px">
         <lux-button
           luxLabel="Enable"
+          luxColor="primary"
           (luxClicked)="form.get(controlBinding).enable()"
           [luxDisabled]="!form.get(controlBinding).disabled"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
+          luxColor="primary"
           (luxClicked)="form.get(controlBinding).disable()"
           [luxDisabled]="form.get(controlBinding).disabled"
         ></lux-button>
@@ -184,12 +188,14 @@
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
       luxLabel="luxRequired"
       (luxCheckedChange)="changeRequired($event)"
+      [luxNoTopLabel]="true"
     >
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
@@ -215,11 +221,12 @@
         Wenn mehr Datensätze vorhanden sind und der User in der Liste scrollt, wird der nächste Block gerendert.
       </lux-form-hint>
     </lux-input>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-toggle
         luxLabel="Render-Funktion nutzen"
         luxHint="Wenn 'true' wird für 'luxRenderProp' anstelle einer Render-Property (z.B. 'label') eine Callback-Funktion übergeben."
         [(luxChecked)]="useRenderFn"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <pre class="lux-label" *ngIf="useRenderFn"><b>renderFn</b> = {{ renderFnString }}</pre>
@@ -232,19 +239,21 @@
       >
       </lux-input>
     </div>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-toggle
         luxLabel="Leereintrag erlauben"
         luxHint="Wenn 'true' wird 'luxWithEmptyEntry' auf 'true' gesetzt."
         [(luxChecked)]="bLuxWithEmptyEntry"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
     </div>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-toggle
         luxLabel="luxCustomStyles übergeben"
         luxHint="Wenn 'true', wird der Component ein Objekt mit Styles für valide Elemente übergeben."
         (luxCheckedChange)="changeCustomStyle($event)"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <pre class="lux-label" *ngIf="customStyle"><b>customStyles</b> = {{ customStyle | json }}</pre>
@@ -252,6 +261,7 @@
         luxLabel="luxCustomInvalidStyles übergeben"
         luxHint="Wenn 'true', wird der Component ein Objekt mit Styles für invalide Elemente übergeben."
         (luxCheckedChange)="changeCustomInvalidStyle($event)"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <pre
@@ -274,11 +284,12 @@
       </lux-form-hint>
     </lux-select>
 
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-toggle
         luxLabel="luxErrorMessage verwenden"
         luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
         [(luxChecked)]="useErrorMessage"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <pre class="lux-label" *ngIf="!useErrorMessage"><b>luxErrorCallback</b> = {{ errorCallbackString }}</pre>

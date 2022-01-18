@@ -38,12 +38,14 @@
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
+    class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-input
         luxLabel="luxMenuLabel"
         luxHint="Diese Property ermöglicht es, das Label für das Menu zu ändern."
@@ -71,14 +73,16 @@
       luxHint="Die Property ermöglicht es, den Trigger-Button für das Menu links von den
                   ausgeklappt angezeigten Menueinträgen darzustellen."
       [(luxChecked)]="displayMenuLeft"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-toggle
         luxLabel="luxDisplayExtended"
         luxHint="Diese Property bestimmt, ob Menu-Einträge bei ausreichend Platz außerhalb des
                   Menus dargestellt werden können."
         [(luxChecked)]="displayExtended"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <lux-input
@@ -86,6 +90,7 @@
         luxHint="Die Property stellt ein wie viele Menu-Einträge maximal außerhalb des Menus dargestellt werden dürfen."
         [(luxValue)]="maximumExtended"
         luxType="number"
+        [luxNumberAlignLeft]="true"
         [luxDisabled]="!displayExtended"
       >
       </lux-input>
@@ -141,6 +146,7 @@
             luxLabel="luxRaised"
             luxHint="Dieses Flag schaltet die hervorgehobene Darstellung des Menu-Eintrags ein."
             [(luxChecked)]="item.raised"
+            [luxNoTopLabel]="true"
           >
           </lux-toggle>
           <lux-toggle
@@ -148,6 +154,7 @@
             luxLabel="luxDisabled"
             luxHint="Über dieses Flag wird der Eintrag deaktiviert."
             [(luxChecked)]="item.disabled"
+            [luxNoTopLabel]="true"
           >
           </lux-toggle>
           <lux-toggle
@@ -155,9 +162,10 @@
             luxLabel="luxHidden"
             luxHint="Über dieses Flag wird der Eintrag ausgeblendet."
             [(luxChecked)]="item.hidden"
+            [luxNoTopLabel]="true"
           >
           </lux-toggle>
-          <lux-toggle class="lux-highlight-section" luxLabel="luxRounded" [(luxChecked)]="item.round">
+          <lux-toggle class="lux-highlight-section" luxLabel="luxRounded" [(luxChecked)]="item.round" [luxNoTopLabel]="true">
             <lux-form-hint>
               Über dieses Flag kann der Eintrag als Kreis dargestellt werden.
               <br />
@@ -169,6 +177,7 @@
             luxLabel="luxAlwaysVisible"
             [(luxChecked)]="item.alwaysVisible"
             [luxDisabled]="!displayExtended"
+            [luxNoTopLabel]="true"
           >
             <lux-form-hint>
               Dieses Flag stellt sicher, das dieser Eintrag immer außerhalb des Menus dargestellt wird, solange der
@@ -180,6 +189,7 @@
             class="lux-highlight-section"
             luxLabel="luxHideLabelIfExtended"
             [(luxChecked)]="item.hideLabelIfExtended"
+            [luxNoTopLabel]="true"
           >
             <lux-form-hint>
               Dieses Flag stellt ein ob das Label des MenuItems in der ausgeklappten Ansicht dargestellt werden soll
