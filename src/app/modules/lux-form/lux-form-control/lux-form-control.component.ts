@@ -95,7 +95,7 @@ export class LuxFormControlComponent {
   get luxHideBottomBorder(): boolean {
     return this._luxHideBottomBorder;
   }
-
+  
   constructor(private cdr: ChangeDetectorRef) {}
 
   /**
@@ -106,13 +106,7 @@ export class LuxFormControlComponent {
   }
 
   shouldDisplayMisc() {
-    return (
-      this.luxFormComponent.formHintComponent || 
-      this.luxFormComponent.luxHint || 
-      this.shouldDisplayError() || 
-      (!this.luxHideCounterLabel && this.luxCounterLabel) || 
-      this.luxNoTopLabel
-    );
+    return (!this.luxNoBottomLabel && !this.luxNoLabels)
   }
 
   shouldDisplayLabelByProperty() {

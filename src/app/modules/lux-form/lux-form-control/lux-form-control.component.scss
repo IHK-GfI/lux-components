@@ -200,7 +200,7 @@
     mat-hint,
     mat-error {
       font-size: var(--lux-theme-form-control-font-size-small) !important;
-      line-height: 15px !important;
+      line-height: 15px;
     }
   }
 }
@@ -228,25 +228,16 @@
     .lux-form-control {
       min-height: calc(var(--lux-theme-form-control-default-height-not-scalable) + 23px);
     }
-    .lux-form-control-label {
-      display: none;
-    }
   }
   &.lux-form-control-no-bottom-label { // kein Misc
     .lux-form-control {
       min-height:  calc(var(--lux-theme-form-control-default-height-not-scalable) + 17px);;
-    }
-    .lux-form-control-misc {
-      display: none !important;
     }
   }
 
   &.lux-form-control-no-labels { // kein Label und kein Misc
     .lux-form-control {
       min-height: var(--lux-theme-form-control-default-height-not-scalable);
-    }
-    .lux-form-control-label, .lux-form-control-misc {
-      display: none !important;
     }
   }
 }
