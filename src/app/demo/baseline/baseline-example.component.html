@@ -1,4 +1,11 @@
-<lux-tabs luxTagId="form-tabs" [luxTabAnimationActive]="false" [luxDisplayDivider]="true" [luxActiveTab]="0" luxAriaRole="main">
+<lux-tabs 
+  luxTagId="baseline-tabs" 
+  [luxTabAnimationActive]="false" 
+  [luxDisplayDivider]="true" 
+  [luxActiveTab]="0" 
+  luxAriaRole="main" 
+  [luxLazyLoading]="true"
+>
   <lux-tab luxIconName="fas fa-align-left" luxTitle="Baseline">
     <ng-template>
       <lux-baseline></lux-baseline>

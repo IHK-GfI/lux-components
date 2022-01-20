@@ -30,22 +30,19 @@
         </div>
       </div>
       <div [formGroup]="form" fxLayout="column" >
-        <div fxLayout="row" fxLayout.gt-sm="12px">
-          <div fxLayout="column" fxFlex.gt-sm="50" fxFlex.lt-sm="100" fxLayoutGap.gt-sm="4px">
+        <div fxLayout="row" fxLayoutGap.gt-sm="16px">
+          <div fxLayout="column" fxFlex.gt-sm="30" fxFlex.lt-sm="100" fxLayoutGap.gt-sm="16px">
             <lux-input luxLabel="Lux-Input" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="input" luxAutocomplete="off" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-input>
             <lux-input luxType="number" luxLabel="Lux-Input mit Pre-/Suffix" luxPlaceholder="0" [luxHint]="testHint" luxControlBinding="input" luxAutocomplete="off" [luxDisabled]="disabledForm" [luxReadonly]="readonly">
-              <lux-input-prefix> <lux-icon [luxIconName]="'fas fa-euro-sign'"></lux-icon>&nbsp; </lux-input-prefix>
-              <lux-input-suffix> .00 EUR </lux-input-suffix>
+              <lux-input-prefix> EUR </lux-input-prefix>
+              <lux-input-suffix> .00 <lux-icon luxIconName="fas fa-euro-sign"></lux-icon></lux-input-suffix>
             </lux-input>
             <lux-autocomplete luxLabel="Lux-Autocomplete" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="autocomplete" luxOptionLabelProp="label" [luxOptions]="options" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-autocomplete>
-            <lux-input luxType="password" luxLabel="Lux-Input - password" [luxHint]="testHint" luxControlBinding="password" luxAutocomplete="off" [luxDisabled]="disabledForm" [luxReadonly]="readonly">
-              <lux-input-suffix> <lux-icon luxIconName="fas fa-eye-slash"></lux-icon> </lux-input-suffix>
-            </lux-input>
             <lux-datepicker luxLabel="Lux-Datepicker" luxLocale="de-DE" luxPlaceholder="Platzhalter" luxControlBinding="datepicker" [luxHint]="testHint" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-datepicker>
             <lux-datetimepicker luxLabel="Lux-Datetimepicker" luxLocale="de-DE" luxPlaceholder="Platzhalter" luxControlBinding="datetimepicker" [luxHint]="testHint" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-datetimepicker>
             <lux-select luxLabel="Lux-Select" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="select"[luxSelected]="testOption" luxOptionLabelProp="label" [luxOptions]="options" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-select>
             <lux-file-input luxLabel="Lux-File-Input" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="file" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-file-input>
-            <lux-textarea luxLabel="Lux-Textarea" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="textarea" [luxMinRows]="3" [luxMaxRows]="-1" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-textarea>
+            <lux-textarea luxLabel="Lux-Textarea" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="textarea" [luxMinRows]="1" [luxMaxRows]="-1" [luxDisabled]="disabledForm" [luxReadonly]="readonly" [luxMaxLength]="100"></lux-textarea>
             <lux-toggle luxLabel="Option" [luxChecked]="false" luxHint="Hinweis" luxControlBinding="toggle" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-toggle>
             <lux-checkbox luxLabel="Option" [luxChecked]="false" luxHint="Hinweis" luxControlBinding="checkbox" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-checkbox>
             <lux-radio luxGroupName="radio1" [luxOptions]="options" [luxOrientationVertical]="true" [luxSelected]="options[0]" luxLabel="Lux-Radio - vertikal" luxHint="Hinweis" [luxDisabled]="disabledForm" [luxReadonly]="readonly" luxControlBinding="radio">
@@ -60,7 +57,7 @@
             </lux-radio>
           </div>
         </div>
-        <div fxLayout="column">
+        <div fxLayout="column" fxLayoutGap.gt-sm="16px">
           <lux-slider luxLabel="Lux-Slider" luxControlBinding="slider" luxHint="testHint" [luxDisabled]="disabled" [luxReadonly]="readonly"></lux-slider>
           <lux-chips [luxInputAllowed]="true" luxInputLabel="Lux-Chips im Input-Element" luxHint="Hinweis" [luxNewChipGroup]="group">
             <lux-chip-group [luxLabels]="chipItems" luxColor="accent" [luxRemovable]="true"

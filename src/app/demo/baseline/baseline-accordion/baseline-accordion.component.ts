@@ -58,6 +58,7 @@ export class BaselineAccordionComponent {
       postalCode: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(5)]) ),
       city: new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),
+      comment: new FormControl(''),
     })
   }
 

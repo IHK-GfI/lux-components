@@ -1,20 +1,7 @@
-.baseline-row {
-  lux-card-content > * {
-    min-width: 125px !important;
-    display: flex;
-  }
-
-  ::ng-deep {
-    .lux-chips {
-      width: 125px !important;
-    }
-  }
-}
-
-.test-row > * {
-  min-width: 125px !important;
+.baseline-row > * {
+  box-sizing: border-box;
   display: flex;
-  margin-bottom: 32px;
+  min-width: 125px !important;
 }
 
 .message-box {
@@ -26,22 +13,25 @@
   max-width: fit-content;
 }
 
+lux-card-content-expanded h4 {
+  margin-top: 0;
+  margin-bottom: 2em;
+}
+
 :host {
   &.show-frames {
-    .baseline-row lux-card-content, lux-card-content-expanded > * :not(.message-box) {
-      background: yellow !important;
-    }
-
     ::ng-deep {
-      .baseline-row lux-card-content, lux-card-content-expanded {
+      .baseline lux-card-content, .baseline lux-card-content-expanded {
+        
+        .lux-form-control {
+          background: yellow !important;
+        }
         .lux-form-control-label {
           background: green !important;
         }
-
         .lux-form-control-container, .lux-form-control-borderless .lux-form-control-container {
           background: blue !important;
         }
-
         .lux-form-control-misc {
           background: red !important;
         }

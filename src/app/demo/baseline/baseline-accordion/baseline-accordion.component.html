@@ -22,7 +22,7 @@
               <lux-datetimepicker luxLabel="Lux-Datetimepicker" luxLocale="de-DE" luxPlaceholder="Platzhalter" [luxValue]="testDate2" [luxHint]="testHint"></lux-datetimepicker>
               <lux-select luxLabel="Lux-Select" luxPlaceholder="Platzhalter" [luxHint]="testHint" [luxSelected]="testOption" luxOptionLabelProp="label" [luxOptions]="options"></lux-select>
               <lux-file-input luxLabel="Lux-File-Input" luxPlaceholder="Platzhalter" [luxHint]="testHint" ></lux-file-input>
-              <lux-textarea luxLabel="Lux-Textarea" luxPlaceholder="Platzhalter" [luxHint]="testHint" [luxValue]="testValue" [luxMinRows]="3" [luxMaxRows]="4"></lux-textarea>
+              <lux-textarea luxLabel="Lux-Textarea" luxPlaceholder="Platzhalter" [luxHint]="testHint" [luxValue]="testValue" [luxMinRows]="1" [luxMaxRows]="-1"></lux-textarea>
               <lux-toggle luxLabel="Option" [luxChecked]="false" luxHint="Hinweis"></lux-toggle>
               <lux-checkbox luxLabel="Option" [luxChecked]="false" luxHint="Hinweis"></lux-checkbox>
               <lux-radio luxGroupName="radio1" [luxOptions]="options" [luxOrientationVertical]="true" [luxSelected]="options[0]" luxLabel="Lux-Radio" luxHint="Hinweis">
@@ -49,33 +49,45 @@
           In dem unteren Beispiel ist das Formular mit der luxLayoutRow gestaltet worden. Die gestrichelten Linien zeigen die einzelnen Rows an.
           Der Abstand der Rows zu einander ist dabei individuell gesetzt, bei den Row-Items wurde er gleich gewählt.
         </p>
-        <div class="lux-highlight-section">
         <lux-layout [formGroup]="addressForm" fxFill="100">
           <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
             <lux-select luxLabel="Anrede" luxHint="Bitte wählen Sie die Anrede aus." luxControlBinding="title" [luxOptions]="prefixOptions" *luxLayoutRowItem="{ colSpan: 1 }"></lux-select>
             <div *luxLayoutRowItem="{ empty: true, colSpan: 7 }"></div>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
-            <lux-input luxLabel="Vorname" luxHint="Bitte geben Sie Ihren Vornamen an." luxControlBinding="firstname" *luxLayoutRowItem="{ colSpan: 4}"></lux-input>
-            <lux-input luxLabel="Nachname" luxHint="Bitte geben Sie Ihren Nachnamen an." luxControlBinding="lastname" *luxLayoutRowItem="{ colSpan: 4 }"></lux-input>
+            <lux-input luxLabel="Vorname" luxHint="Bitte geben Sie Ihren Vornamen an." luxPlaceholder="Lorema" luxControlBinding="firstname" *luxLayoutRowItem="{ colSpan: 4}"></lux-input>
+            <lux-input luxLabel="Nachname" luxHint="Bitte geben Sie Ihren Nachnamen an." luxPlaceholder="Ipsum" luxControlBinding="lastname" *luxLayoutRowItem="{ colSpan: 4 }"></lux-input>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
-            <lux-input luxLabel="Straße" luxHint="Bitte geben Sie Ihre Anschrift an." luxControlBinding="streetAddress" *luxLayoutRowItem="{ colSpan: 7 }"></lux-input>
-            <lux-input luxLabel="Nr." luxControlBinding="streetNumber" luxType="number" [luxNumberAlignLeft]="true" *luxLayoutRowItem="{ colSpan: 1 }"></lux-input>
+            <lux-input luxLabel="Straße" luxHint="Bitte geben Sie Ihre Anschrift an." luxPlaceholder="Hörder Hafenstr." luxControlBinding="streetAddress" *luxLayoutRowItem="{ colSpan: 7 }"></lux-input>
+            <lux-input luxLabel="Nr." luxControlBinding="streetNumber" luxType="number" luxPlaceholder="5" [luxNumberAlignLeft]="true" *luxLayoutRowItem="{ colSpan: 1 }"></lux-input>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
             <lux-input luxLabel="Adress-Zusatz (optional)" [luxMaxLength]="100" luxControlBinding="addressInfo" *luxLayoutRowItem="{}"></lux-input>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
-            <lux-input luxLabel="PLZ" luxHint="Bitte geben Sie Ihre PLZ an." luxControlBinding="postalCode" luxType="number" [luxNumberAlignLeft]="true" [luxHideCounterLabel]="true" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input>
-            <lux-input luxLabel="Ort" luxHint="Bitte geben Sie Ihren Wohnohrt an." luxControlBinding="city" *luxLayoutRowItem="{ colSpan: 6 }"></lux-input>
+            <lux-input luxLabel="PLZ" luxHint="Bitte geben Sie Ihre PLZ an." luxPlaceholder="44263" luxControlBinding="postalCode" luxType="number" [luxNumberAlignLeft]="true" [luxHideCounterLabel]="true" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input>
+            <lux-input luxLabel="Ort" luxHint="Bitte geben Sie Ihren Wohnohrt an." luxPlaceholder="Dortmund" luxControlBinding="city" *luxLayoutRowItem="{ colSpan: 6 }"></lux-input>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
             <lux-autocomplete luxLabel="Land" luxHint="Bitte geben Sie Ihr Land an." [luxOptions]="countries" luxControlBinding="country" *luxLayoutRowItem="{ colSpan: 8 }"></lux-autocomplete>
             <div *luxLayoutRowItem="{ empty: true, colSpan: 2 }"></div>
           </lux-layout-form-row>
+          <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px'}" luxWrapAt="sm">
+            <lux-textarea
+              luxName="Accordion_Kommentar"
+              luxLabel="Kommentar"
+              luxControlBinding="comment"
+              luxHint="Hier ist Platz für deine Meinung."
+              luxPlaceholder="Lorem ipsum ..."
+              [luxMaxLength]="100"
+              [luxMinRows]="1"
+              [luxMaxRows]="-1"
+              *luxLayoutRowItem="{}"
+              luxAutocomplete="false"
+            ></lux-textarea>
+          </lux-layout-form-row>
         </lux-layout>
-      </div>
       </lux-panel-content>
     </lux-panel>
     <lux-panel>
