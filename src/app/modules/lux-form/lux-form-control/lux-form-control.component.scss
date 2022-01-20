@@ -61,6 +61,7 @@
     .lux-form-control-character-counter {
       color: var(--lux-theme-dark-secondary-text) !important;
       font-size: var(--lux-theme-form-control-font-size-small);
+      line-height: var(--lux-theme-form-control-font-size-small);
       text-align: end;
       min-width: 40px;
       margin-left: 2px;
@@ -200,7 +201,7 @@
     mat-hint,
     mat-error {
       font-size: var(--lux-theme-form-control-font-size-small) !important;
-      line-height: 15px;
+      line-height: var(--lux-theme-form-control-font-size-small);
     }
   }
 }
