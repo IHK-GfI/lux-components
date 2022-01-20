@@ -76,7 +76,7 @@
           </lux-layout>
         </lux-card-content>
       </lux-card>
-      <lux-card luxTitle="Feedbaack" *luxLayoutRowItem="{}">
+      <lux-card luxTitle="Feedback" *luxLayoutRowItem="{}">
         <lux-card-content>
           <lux-layout formGroupName="feedback">
             <lux-layout-form-row luxWrapAt="none">
@@ -90,6 +90,18 @@
             </lux-layout-form-row>
             <lux-layout-form-row>
               <lux-checkbox luxLabel="Anonymisieren" luxControlBinding="anonymous" *luxLayoutRowItem="{}"></lux-checkbox>
+            </lux-layout-form-row>
+            <lux-layout-form-row luxWrapAt="none">
+              <lux-textarea
+                luxName="form-three_Kommentar"
+                luxLabel="Kommentar"
+                luxHint="Hier ist Platz für Ihre Nachricht."
+                luxControlBinding="comment"
+                [luxMaxLength]="100"
+                [luxMinRows]="1"
+                [luxMaxRows]="-1"
+                *luxLayoutRowItem="{}"
+              ></lux-textarea>
             </lux-layout-form-row>
           </lux-layout>
         </lux-card-content>

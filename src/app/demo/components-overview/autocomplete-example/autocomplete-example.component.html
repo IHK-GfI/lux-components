@@ -180,11 +180,13 @@
           luxLabel="Enable"
           (luxClicked)="form.get(controlBinding).enable()"
           [luxDisabled]="!form.get(controlBinding).disabled"
+          luxColor="primary"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
           (luxClicked)="form.get(controlBinding).disable()"
           [luxDisabled]="form.get(controlBinding).disabled"
+          luxColor="primary"
         ></lux-button>
       </div>
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
