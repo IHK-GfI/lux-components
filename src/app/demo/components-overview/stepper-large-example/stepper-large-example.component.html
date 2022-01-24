@@ -1,0 +1,99 @@
+<div class="example-lux-stepper-large" [ngStyle]="{ maxWidth: maxWidth }">
+  <lux-stepper-large
+    [(luxCurrentStepNumber)]="currentStepIndex"
+    [luxPrevButtonConfig]="dataService.prevButtonConfig"
+    [luxNextButtonConfig]="dataService.nextButtonConfig"
+    [luxFinButtonConfig]="dataService.finButtonConfig"
+    (luxStepChanged)="onStepChanged($event)"
+    (luxStepperFinished)="onFinish()"
+  >
+    <lux-stepper-large-step luxTitle="Allgemein" [luxCompleted]="allowed">
+      <h2 class="example-lux-stepper-large-h2">Lorem Ipsum</h2>
+      <p>
+        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis
+        at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
+        facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+        aliquam erat volutpat.
+      </p>
+      <h3>Füllschritte 1 bis 5</h3>
+      <p style="margin-bottom: 0">
+        Die Füllschritte 1 bis 5 gibt es nur, damit ein großer Stepper mit zweistelliger Schrittanzahl manuell getestet werden kann. Um den
+        Stepper zu Testzwecken schneller durchklicken zu können, kann das folgende Toggle aktiviert werden. Wenn das Toggle aktiv ist,
+        reicht es bei den Füllschritten 1 bis 5 aus, auf den Weiter-Button zu klicken. Wenn das Toggle deaktiviert ist, muss zusätzlich noch
+        das Toggle im Füllschritt aktiviert werden.
+      </p>
+      <lux-toggle luxLabel="Füllschritte 1...5 auf erledigt setzen." [(luxChecked)]="completed"></lux-toggle>
+
+      <h3>Einwilligung</h3>
+      <p>
+        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis
+        autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at
+        vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
+        facilisi.
+      </p>
+      <lux-layout-form-row>
+        <lux-select
+          [luxOptions]="options"
+          [(luxSelected)]="maxWidth"
+          luxLabel="Stepperbreite (max)"
+          luxName="stepper-large.example.stepperwidth"
+          [luxRequired]="true"
+          *luxLayoutRowItem="{}"
+        ></lux-select>
+        <div fxshow="true" fxShow.lt-md="false" *luxLayoutRowItem="{ empty: true }"></div>
+      </lux-layout-form-row>
+
+      <lux-toggle luxLabel="Ich habe verstanden und möchte fortfahren" [(luxChecked)]="allowed" [luxRequired]="true"></lux-toggle>
+    </lux-stepper-large-step>
+
+    <app-stepper-large-example-step-prev-button></app-stepper-large-example-step-prev-button>
+    <app-stepper-large-example-step-next-button></app-stepper-large-example-step-next-button>
+    <app-stepper-large-example-step-fin-button></app-stepper-large-example-step-fin-button>
+
+    <app-stepper-large-example-step-veto></app-stepper-large-example-step-veto>
+
+    <lux-stepper-large-extern-step-example [luxCompleted]="completed" luxTitle="Füllschritt 1 - Lorem ipsum dolor">
+    </lux-stepper-large-extern-step-example>
+    <lux-stepper-large-extern-step-example
+      [luxCompleted]="completed"
+      luxTitle="Füllschritt 2 - Duis autem vel eum iriure dolor in hendrerit"
+    ></lux-stepper-large-extern-step-example>
+    <lux-stepper-large-extern-step-example [luxCompleted]="completed" luxTitle="Füllschritt 3 - Ut wisi enim ad">
+    </lux-stepper-large-extern-step-example>
+    <lux-stepper-large-extern-step-example [luxCompleted]="completed" luxTitle="Füllschritt 4 - Nam liber tempor">
+    </lux-stepper-large-extern-step-example>
+    <lux-stepper-large-extern-step-example [luxCompleted]="completed" luxTitle="Füllschritt 5 - Duis autem vel ">
+    </lux-stepper-large-extern-step-example>
+
+    <lux-stepper-large-step luxTitle="Zusammenfassung" [luxCompleted]="true">
+      <h2 class="example-lux-stepper-large-h2">Zusammenfassung</h2>
+
+      <h3>Konfiguration: Zurück-Button</h3>
+      <p>
+        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis
+        at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
+        facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+        aliquam erat volutpat.
+      </p>
+      <pre>{{ dataService.prevButtonConfig | json }}</pre>
+
+      <h3>Konfiguration: Weiter-Button</h3>
+      <p>
+        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis
+        autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at
+        vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
+        facilisi.
+      </p>
+      <pre>{{ dataService.nextButtonConfig | json }}</pre>
+
+      <h3>Konfiguration: Abschließen-Button</h3>
+      <p>
+        Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem
+        ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+        volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+        consequat.
+      </p>
+      <pre>{{ dataService.finButtonConfig | json }}</pre>
+    </lux-stepper-large-step>
+  </lux-stepper-large>
+</div>

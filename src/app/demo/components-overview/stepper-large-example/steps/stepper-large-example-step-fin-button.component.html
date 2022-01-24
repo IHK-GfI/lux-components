@@ -1,0 +1,44 @@
+<ng-template #content>
+  <h2 class="example-lux-stepper-large-h2">{{ luxTitle }}</h2>
+  <p>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+    sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+    ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+    dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+    sea takimata sanctus est Lorem ipsum dolor sit amet.
+  </p>
+
+  <div [formGroup]="form">
+    <lux-layout-form-row>
+      <lux-input luxLabel="Bezeichnung" luxName="stepper-large.example.label" luxControlBinding="label" *luxLayoutRowItem="{}"></lux-input>
+      <lux-input
+        luxLabel="Farbe"
+        luxName="stepper-large.example.color"
+        luxControlBinding="color"
+        luxHint="(primary, accent, warn)"
+        *luxLayoutRowItem="{}"
+      ></lux-input>
+    </lux-layout-form-row>
+    <lux-layout-form-row>
+      <lux-input
+        luxLabel="Iconname"
+        luxName="stepper-large.example.iconname"
+        luxControlBinding="iconName"
+        *luxLayoutRowItem="{}"
+      ></lux-input>
+      <lux-toggle
+        luxLabel="Icon rechts anzeigen"
+        luxName="stepper-large.example.iconShowRight"
+        luxControlBinding="iconShowRight"
+        *luxLayoutRowItem="{}"
+      ></lux-toggle>
+    </lux-layout-form-row>
+  </div>
+
+  <p>
+    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at
+    vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+    volutpat.
+  </p>
+</ng-template>

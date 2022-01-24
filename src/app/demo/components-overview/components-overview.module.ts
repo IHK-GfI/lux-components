@@ -36,6 +36,7 @@ import { RadioButtonExampleComponent } from './radio-button-example/radio-button
 import { SliderExampleComponent } from './slider-example/slider-example.component';
 import { SnackbarExampleComponent } from './snackbar-example/snackbar-example.component';
 import { SpinnerExampleComponent } from './spinner-example/spinner-example.component';
+import { StepperLargeExternStepExampleComponent } from './stepper-large-example/steps/stepper-large-extern-step-example.component';
 import { StorageExampleComponent } from './storage-example/storage-example.component';
 import { TableExampleComponent } from './table-example/table-example.component';
 import { TableServerExampleComponent } from './table-server-example/table-server-example.component';
@@ -86,6 +87,11 @@ import { FormRowExampleComponent } from './form-row-example/form-row-example.com
 import { CardRowExampleComponent } from './card-row-example/card-row-example.component';
 import { FilterExampleComponent } from './filter-example/filter-example.component';
 import { LuxFilterModule } from '../../modules/lux-filter/lux-filter.module';
+import { StepperLargeExampleComponent } from './stepper-large-example/stepper-large-example.component';
+import { StepperLargeExampleStepPrevButtonComponent } from './stepper-large-example/steps/stepper-large-example-step-prev-button.component';
+import { StepperLargeExampleStepNextButtonComponent } from './stepper-large-example/steps/stepper-large-example-step-next-button.component';
+import { StepperLargeExampleStepFinButtonComponent } from './stepper-large-example/steps/stepper-large-example-step-fin-button.component';
+import { StepperLargeExampleStepVetoComponent } from './stepper-large-example/steps/stepper-large-example-step-veto.component';
 
 @NgModule({
   imports: [
@@ -178,7 +184,13 @@ import { LuxFilterModule } from '../../modules/lux-filter/lux-filter.module';
     MarkdownExampleComponent,
     FormRowExampleComponent,
     CardRowExampleComponent,
-    FilterExampleComponent
+    FilterExampleComponent,
+    StepperLargeExampleComponent,
+    StepperLargeExternStepExampleComponent,
+    StepperLargeExampleStepPrevButtonComponent,
+    StepperLargeExampleStepNextButtonComponent,
+    StepperLargeExampleStepFinButtonComponent,
+    StepperLargeExampleStepVetoComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]
