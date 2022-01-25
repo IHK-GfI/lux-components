@@ -78,13 +78,13 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    // Änderungen an den luxSteps sollten auch dem Konfigurationsobjekt bekannt gemacht werden
+    // Änderungen an den steps sollten auch dem Konfigurationsobjekt bekannt gemacht werden
     this.subscriptions.push(this.luxSteps.changes.subscribe(() => {
       this.stepperConfiguration.luxSteps = this.luxSteps.toArray();
       this.cdr.detectChanges();
       this.updateIcons();
     }));
-    // Initial die aktuellen luxSteps in die Konfiguration schreiben
+    // Initial die aktuellen steps in die Konfiguration schreiben
     this.stepperConfiguration.luxSteps = this.luxSteps.toArray();
     this.cdr.detectChanges();
 

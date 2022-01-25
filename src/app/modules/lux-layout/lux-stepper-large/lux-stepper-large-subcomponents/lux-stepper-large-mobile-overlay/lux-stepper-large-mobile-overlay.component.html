@@ -1,0 +1,53 @@
+<ng-container *ngIf="stepperComponent && stepperComponent.steps && stepperComponent.steps.length > 0">
+  <div class="lux-stepper-large-mobile-nav-container">
+    <div class="lux-stepper-large-mobile-nav-close-button-container">
+      <lux-button
+        class="lux-stepper-large-mobile-nav-close-button"
+        luxIconName="close"
+        (luxClicked)="overlayRef.close()"
+      ></lux-button>
+    </div>
+
+    <div class="lux-stepper-large-mobile-nav-header">
+      <div>Schritt {{ stepperComponent.luxCurrentStepNumber + 1 }} von {{ stepperComponent.steps.length }}</div>
+    </div>
+
+    <div class="lux-stepper-large-nav-item-container lux-stepper-large-mobile-nav-item-container">
+      <ng-container *ngFor="let step of stepperComponent.steps; let i = index">
+        <div
+          class="lux-stepper-large-nav-item lux-stepper-large-mobile-nav-item"
+          [id]="'luxstepperlargenavitem' + (i + 1)"
+          [ngClass]="{
+            'lux-touched': step.luxTouched,
+            'lux-active': i === stepperComponent.luxCurrentStepNumber,
+            'lux-disabled': i !== stepperComponent.luxCurrentStepNumber && (!step.luxTouched || !step.luxCompleted),
+            'lux-completed': i !== stepperComponent.luxCurrentStepNumber && step.luxCompleted && step.luxTouched
+          }"
+        >
+          <div class="lux-stepper-large-nav-item-number-container lux-stepper-large-mobile-nav-item-number-container">
+            <div class="lux-stepper-large-nav-item-number lux-stepper-large-mobile-nav-item-number">{{ i + 1 < 10 ? '0' : '' }}{{ i + 1 }}</div>
+          </div>
+          <div class="lux-stepper-large-nav-item-label-container lux-stepper-large-mobile-nav-item-label-container">
+            <a
+              class="lux-stepper-large-nav-item-label-link lux-stepper-large-mobile-nav-item-label-link"
+              tabindex="0"
+              [attr.aria-label]="'Schritt' + (i + 1) + ' ' + step.luxTitle"
+              (click)="onNavLink(i)"
+              (keydown.enter)="onNavLink(i)"
+              *ngIf="step.luxTouched"
+              #links
+              >{{ step.luxTitle }}</a
+            >
+            <div class="lux-stepper-large-nav-item-label lux-stepper-large-mobile-nav-item-label" *ngIf="!step.luxTouched">{{ step.luxTitle }}</div>
+            <lux-icon
+              class="lux-stepper-large-nav-item-complete lux-stepper-large-mobile-nav-item-complete"
+              luxPadding="0 0 0 12px"
+              luxIconName="fas fa-check"
+              *ngIf="step.luxTouched && step.luxCompleted"
+            ></lux-icon>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

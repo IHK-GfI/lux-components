@@ -28,6 +28,7 @@ export class LinkExampleComponent implements OnInit, OnDestroy {
   label = 'Beispiel-Link';
   color = 'primary';
   iconName = '';
+  iconShowRight = false;
   raised = true;
   round = false;
   align = false;

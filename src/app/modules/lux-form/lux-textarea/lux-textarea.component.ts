@@ -23,7 +23,7 @@ export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnIni
   get luxMaxLength(){
     return this._luxMaxLength;
   };
-  
+
   counterLabel = '';
   @Input() luxHideCounterLabel = false;
 
@@ -45,16 +45,16 @@ export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnIni
     this.updateCounterLabel();
     super.notifyFormValueChanged(formValue);
   }
-  
+
   private updateCounterLabel(){
     if (this.luxMaxLength > 0){
       if (typeof this.formControl.value === 'string') {
         this.counterLabel = this.formControl.value.length + '/' + this.luxMaxLength;
       } else {
         this.counterLabel = '0/' + this.luxMaxLength;
-      }    
+      }
     } else {
       this.counterLabel = '';
-    }  
+    }
   }
 }

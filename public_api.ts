@@ -242,6 +242,9 @@ export * from './src/app/modules/lux-layout/lux-layout/lux-layout.component';
 export * from './src/app/modules/lux-layout/lux-layout/lux-layout-card-row/lux-layout-card-row.component';
 export * from './src/app/modules/lux-layout/lux-layout/lux-layout-form-row/lux-layout-form-row.component';
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-lang-select/lux-lang-select.component';
+export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large.component';
+export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-step/lux-stepper-large-step.component';
+export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay.component';
 // Directives
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-item.directive';
 // Services
@@ -249,6 +252,7 @@ export * from './src/app/modules/lux-layout/lux-app-footer/lux-app-footer-button
 export * from './src/app/modules/lux-layout/lux-app-footer/lux-app-footer-link.service';
 export * from './src/app/modules/lux-layout/lux-master-detail/lux-master-detail-mobile-helper.service';
 export * from './src/app/modules/lux-layout/lux-stepper/lux-stepper-helper.service';
+export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay.service';
 // Classes
 export * from './src/app/modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
 export * from './src/app/modules/lux-layout/lux-app-footer/lux-app-footer-link-info';
@@ -260,6 +264,13 @@ export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-item-
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-gap-config';
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-margin-config';
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-lang-select/lux-locale';
+export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-click-event';
+export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-button-info';
+export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-selection-event';
+export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-step.interface';
+export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay-config';
+export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay-data';
+export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay-ref';
 
 /**
  * LUX-Lookup

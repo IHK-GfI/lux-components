@@ -68,6 +68,9 @@ import { LuxLayoutRowItemDirective } from './lux-layout/base/lux-layout-row-item
 import { LuxLayoutCardRowComponent } from './lux-layout/lux-layout-card-row/lux-layout-card-row.component';
 import { LuxLayoutFormRowComponent } from './lux-layout/lux-layout-form-row/lux-layout-form-row.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { LuxStepperLargeComponent } from './lux-stepper-large/lux-stepper-large.component';
+import { LuxStepperLargeStepComponent } from './lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-step/lux-stepper-large-step.component';
+import { LuxStepperLargeMobileOverlayComponent } from './lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay.component';
 
 @NgModule({
   imports: [
@@ -139,7 +142,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
     LuxLayoutComponent,
     LuxLayoutCardRowComponent,
     LuxLayoutFormRowComponent,
-    LuxLangSelectComponent
+    LuxLangSelectComponent,
+    LuxStepperLargeComponent,
+    LuxStepperLargeStepComponent,
+    LuxStepperLargeMobileOverlayComponent
   ],
   exports: [
     LuxAppHeaderComponent,
@@ -184,15 +190,19 @@ import { MatGridListModule } from '@angular/material/grid-list';
     LuxStepperHorizontalComponent,
     LuxStepperNavButtonsComponent,
     LuxStepperVerticalComponent,
+    LuxStepperLargeComponent,
     LuxAppHeaderActionNavComponent,
     LuxAppHeaderActionNavItemComponent,
     LuxLayoutRowItemDirective,
     LuxLayoutComponent,
     LuxLayoutCardRowComponent,
     LuxLayoutFormRowComponent,
-    LuxLangSelectComponent
+    LuxLangSelectComponent,
+    LuxStepperLargeComponent,
+    LuxStepperLargeStepComponent,
+    LuxStepperLargeMobileOverlayComponent
   ],
   providers: [],
-  entryComponents: [LuxIconComponent, LuxDetailWrapperComponent]
+  entryComponents: [LuxIconComponent, LuxDetailWrapperComponent, LuxStepperLargeMobileOverlayComponent]
 })
 export class LuxLayoutModule {}
