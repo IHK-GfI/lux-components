@@ -11,6 +11,7 @@ export class LuxActionComponentBaseClass {
   @Input() luxColor: 'primary' | 'accent' | 'warn' | '' = '';
   @Input() luxRaised: boolean;
   @Input() luxIconName: string;
+  @Input() luxIconShowRight = false;
   @Input() luxTagId: string;
   @Input() luxDisabled: boolean;
   @Input() luxRounded: boolean;

@@ -1,0 +1,13 @@
+<ng-template #content>
+  <h2 class="example-lux-stepper-large-h2">{{ luxTitle }}</h2>
+  <p>
+    Dieser Tab soll zeigen, dass hinter jedem Weiter-Button eine Veto-Funktion hinterlegt werden kann, die aufgerufen wird, bevor zum
+    nächsten Schritt navigiert wird. Wenn <strong>keine</strong> Veto-Funktion angegeben wird, hängt das Navigieren vom
+    <i>luxCompleted</i>-Property ab. Das <i>luxCompleted</i>-Property ist bei diesem speziellen Veto-Schritt aktiv. D.h. der Weiter-Button
+    kann gedrückt werden, aber das folgende Toggle aktiviert eine Veto-Funktion die es nicht erlaubt, zum nächsten Schritt zu wechseln. So
+    kann man über diesen Veto-Schritt testen, ob der gesamte Veto-Mechanismus funktioniert. Normalerweise würde die Veto-Funktion
+    übergreifende Validierungen durchführen oder Anfragen an ein Backend (z.B. Berechtigung, BPM,..) stellen. Hier wird dies über das
+    folgende Toggle simuliert.
+  </p>
+  <lux-toggle luxLabel="Veto einlegen" [(luxChecked)]="useVetoFn" (luxCheckedChange)="updateVetoFun($event)"></lux-toggle>
+</ng-template>

@@ -12,10 +12,11 @@
   [ngClass]="{ 'lux-align-baseline': luxIconAlignWithLabel && !!luxIconName, 'lux-icon-button': !!luxIconName }"
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
-  <ng-container *ngTemplateOutlet="luxIconName ? iconTemplate : noIconTemplate"></ng-container>
-  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName }" *ngIf="luxLabel">
+  <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
+  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
     {{ luxLabel }}
   </span>
+  <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
 </button>
 
 <button
@@ -32,10 +33,11 @@
   [ngClass]="{ 'lux-align-baseline': luxIconAlignWithLabel && !!luxIconName, 'lux-icon-button': !!luxIconName }"
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
-  <ng-container *ngTemplateOutlet="luxIconName ? iconTemplate : noIconTemplate"></ng-container>
-  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName }" *ngIf="luxLabel">
+  <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
+  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
     {{ luxLabel }}
   </span>
+  <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
 </button>
 
 <button
@@ -52,11 +54,13 @@
   [ngClass]="{ 'lux-align-baseline': luxIconAlignWithLabel && !!luxIconName, 'lux-icon-button': !!luxIconName }"
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
-  <ng-container *ngTemplateOutlet="luxIconName ? iconTemplate : noIconTemplate"></ng-container>
-  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName }" *ngIf="luxLabel">
+  <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight? iconTemplate : noIconTemplate"></ng-container>
+  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
     {{ luxLabel }}
   </span>
+  <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight? iconTemplate : noIconTemplate"></ng-container>
 </button>
+
 <ng-template #iconTemplate>
   <lux-icon [luxIconName]="luxIconName" [luxIconSize]="iconSize" luxMargin="0" luxPadding="0"></lux-icon>
 </ng-template>

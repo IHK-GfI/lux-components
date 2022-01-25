@@ -76,6 +76,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goToMasterDetail(), icon: 'fas fa-th-list', label: 'Master-Detail', moduleName: 'layout' },
     { onclick: () => this.goToTabs(), icon: 'fas fa-columns', label: 'Tabs', moduleName: 'layout' },
     { onclick: () => this.goToStepper(), icon: 'fas fa-chevron-circle-right', label: 'Stepper', moduleName: 'layout' },
+    { onclick: () => this.goTo('stepper-large'), icon: 'fas fa-chevron-circle-right', label: 'Stepper (groß)', moduleName: 'layout' },
     { onclick: () => this.goTo('timestamp'), icon: 'fas fa-clock', label: 'Timestamp', moduleName: 'pipes' },
     {
       onclick: () => this.goTo('infinite-scrolling'),
