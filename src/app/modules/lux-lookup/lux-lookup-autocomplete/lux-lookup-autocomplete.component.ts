@@ -24,6 +24,10 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
   @Input() luxDebounceTime = 250;
   @Input() luxMaximumDisplayed = 50;
 
+  @Input() luxNoLabels = false;
+  @Input() luxNoTopLabel = false;
+  @Input() luxNoBottomLabel = false;
+
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
   @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
 

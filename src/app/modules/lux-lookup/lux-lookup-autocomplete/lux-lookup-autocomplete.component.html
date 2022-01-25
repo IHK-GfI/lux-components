@@ -1,4 +1,11 @@
-<lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" *ngIf="formGroup">
+<lux-form-control 
+  [luxFormComponent]="this"
+  [luxNoLabels]="luxNoLabels" 
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  [formGroup]="formGroup" 
+  *ngIf="formGroup" 
+>
   <div class="lux-input-row">
     <input
       type="text"
