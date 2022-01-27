@@ -1,3 +1,8 @@
+# Version 11.9.0
+## New
+- **allgemein**: LUX-Theme [11.11.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.11.0) integriert.
+- **allgemein**: Die Font Awesome- und Material-Icons sollen mit der App ausgeliefert werden können. [Issue 159](https://github.com/IHK-GfI/lux-components/issues/159)
+
 # Version 11.8.0
 ## New
 - **allgemein**: Sicherheitsupdates eingespielt.

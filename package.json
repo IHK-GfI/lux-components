@@ -59,7 +59,7 @@
     "@chiragrupani/karma-chromium-edge-launcher": "2.1.0",
     "@compodoc/compodoc": "1.1.18",
     "@fortawesome/fontawesome-free": "5.15.3",
-    "@ihk-gfi/lux-components-theme": "11.10.0",
+    "@ihk-gfi/lux-components-theme": "11.11.0",
     "@types/jasmine": "3.6.9",
     "@types/jasminewd2": "2.0.8",
     "@types/marked": "4.0.1",
