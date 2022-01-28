@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { LuxStepperLargeClickEvent } from '../../lux-stepper-large-model/lux-stepper-large-click-event';
 import { ILuxStepperLargeStep, LuxVetoState } from '../../lux-stepper-large-model/lux-stepper-large-step.interface';
 
@@ -18,8 +18,6 @@ export class LuxStepperLargeStepComponent implements ILuxStepperLargeStep {
   @Input() luxCompleted = false;
   @Input() luxVetoFn: (clickEvent: LuxStepperLargeClickEvent) => Promise<LuxVetoState> = () =>
     Promise.resolve(LuxVetoState.navigationAccepted);
-
-  @Output() luxCompletedChange = new EventEmitter<boolean>();
 
   constructor() {}
 }
