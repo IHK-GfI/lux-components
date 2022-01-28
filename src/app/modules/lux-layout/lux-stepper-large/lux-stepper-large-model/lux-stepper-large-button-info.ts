@@ -21,7 +21,7 @@ export const LUX_STEPPER_LARGE_DEFAULT_FIN_BTN_CONF: LuxStepperLargeButtonInfo =
 
 export class LuxStepperLargeButtonInfo {
   label?: string;
-  color?: 'primary' | 'accent' | 'warn' | undefined | null;
+  color?: 'primary' | 'accent' | 'warn' | '';
   iconName?: string;
   iconShowRight?: boolean;
   alignIconWithLabel?: boolean;
