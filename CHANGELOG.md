@@ -1,3 +1,18 @@
+# Version 11.9.0
+## New
+- **allgemein**: LUX-Theme [11.11.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.11.0) integriert.
+- **allgemein**: Die Font Awesome- und Material-Icons sollen mit der App ausgeliefert werden können. [Issue 159](https://github.com/IHK-GfI/lux-components/issues/159)
+
+## Bug Fixes
+- **lux-stepper-large**: Zurück Button im "neuen Stepper" ohne Funktion. [Issue 157](https://github.com/IHK-GfI/lux-components/issues/157)
+
+# Version 11.8.0
+## New
+- **allgemein**: Sicherheitsupdates eingespielt.
+- **allgemein**: LUX-Theme [11.10.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.10.0) integriert.
+- **lux-button**: Buttons können jetzt das Icon auch rechts vom Label anzeigen. [Issue 156](https://github.com/IHK-GfI/lux-components/issues/156)
+- **lux-stepper-large**: Neuer Stepper für viele Schritte mit Veto-Funktion. [Issue 156](https://github.com/IHK-GfI/lux-components/issues/156)
+
 # Version 11.7.0
 ## New
 - **allgemein**: Sicherheitsupdates eingespielt.

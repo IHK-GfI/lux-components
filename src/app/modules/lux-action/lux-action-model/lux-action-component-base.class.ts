@@ -13,6 +13,7 @@ export class LuxActionComponentBaseClass {
   @Input() luxColor: LuxActionColorType = '';
   @Input() luxRaised: boolean;
   @Input() luxIconName: string;
+  @Input() luxIconShowRight = false;
   @Input() luxTagId: string;
   @Input() luxDisabled: boolean;
   @Input() luxRounded: boolean;

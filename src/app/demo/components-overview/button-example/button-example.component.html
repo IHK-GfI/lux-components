@@ -19,6 +19,7 @@
               [luxLabel]="label"
               [luxColor]="color.value"
               [luxIconName]="iconName"
+              [luxIconShowRight]="iconShowRight"
               [luxRaised]="true"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
@@ -35,6 +36,7 @@
               [luxLabel]="label"
               [luxColor]="color.value"
               [luxIconName]="iconName"
+              [luxIconShowRight]="iconShowRight"
               [luxRaised]="false"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
@@ -51,6 +53,7 @@
               [luxLabel]="iconName ? '' : '??'"
               [luxColor]="color.value"
               [luxIconName]="iconName"
+              [luxIconShowRight]="iconShowRight"
               [luxRounded]="true"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
@@ -71,6 +74,7 @@
               [luxLabel]="label"
               [luxColor]="color.value"
               [luxIconName]="iconName"
+              [luxIconShowRight]="iconShowRight"
               [luxRaised]="true"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
@@ -86,6 +90,7 @@
               [luxLabel]="label"
               [luxColor]="color.value"
               [luxIconName]="iconName"
+              [luxIconShowRight]="iconShowRight"
               [luxRaised]="false"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
@@ -101,6 +106,7 @@
               [luxLabel]="iconName ? '' : '??'"
               [luxColor]="color.value"
               [luxIconName]="iconName"
+              [luxIconShowRight]="iconShowRight"
               [luxRounded]="true"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
@@ -121,6 +127,7 @@
               [luxLabel]="label"
               [luxColor]="color.value"
               [luxIconName]="iconName"
+              [luxIconShowRight]="iconShowRight"
               [luxRaised]="true"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
@@ -136,6 +143,7 @@
               [luxLabel]="label"
               [luxColor]="color.value"
               [luxIconName]="iconName"
+              [luxIconShowRight]="iconShowRight"
               [luxRaised]="false"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
@@ -151,6 +159,7 @@
               [luxLabel]="iconName ? '' : '??'"
               [luxColor]="color.value"
               [luxIconName]="iconName"
+              [luxIconShowRight]="iconShowRight"
               [luxRounded]="true"
               [luxIconAlignWithLabel]="align"
               [luxDisabled]="disabled"
@@ -181,18 +190,20 @@
       luxHint="Bestimmt den Text, der in dem Button angezeigt wird."
       [luxNoTopLabel]="true"
     ></lux-input>
-    <lux-input
-      luxName="button_luxIconName"
-      class="lux-highlight-section"
-      [(luxValue)]="iconName"
-      luxLabel="luxIconName"
-    >
-      <lux-form-hint>
-        Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
-        <i>luxLabel</i> gesetzt ist).<br />
-        Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
-      </lux-form-hint>
-    </lux-input>
+    <div fxLayout="column" class="lux-highlight-section">
+      <lux-input
+        luxName="button_luxIconName"
+        [(luxValue)]="iconName"
+        luxLabel="luxIconName"
+      >
+        <lux-form-hint>
+          Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
+          <i>luxLabel</i> gesetzt ist).<br />
+          Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
+        </lux-form-hint>
+      </lux-input>
+      <lux-toggle luxLabel="luxIconShowRight" luxName="button_luxIconShowRight" [(luxChecked)]="iconShowRight"></lux-toggle>
+    </div>
     <lux-toggle
       class="lux-highlight-section"
       [(luxChecked)]="disabled"
