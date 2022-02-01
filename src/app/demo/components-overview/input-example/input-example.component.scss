@@ -1,0 +1,35 @@
+.message-box {
+  border-left: 8px solid var(--lux-theme-primary-400);
+  border-radius: 4px;
+  background-color: var(--lux-theme-primary-50);
+  padding: 24px 24px;
+  margin: 32px 0;
+  
+  .box-header {
+    h2 { 
+      margin: 0;
+      margin-left: 8px;
+    }
+  }
+  a {
+    color: var(--lux-theme-primary-color);
+    text-decoration-line: none;
+    font-weight: bold;
+  }
+}
+
+.search-row {
+  padding: 16px;
+  margin-top: 32px;
+  border: 1px solid var(--lux-theme-primary-color);
+  border-radius: 4px;
+  background-color: #fff;
+  lux-input {
+    width: 100%;
+  }
+  ::ng-deep {
+    lux-button button{
+      margin: 0;
+    }
+  }
+}
