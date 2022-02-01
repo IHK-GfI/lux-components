@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 export class ComponentsOverviewNavigationService implements OnDestroy {
   private currentUrl: string;
 
-  components: { onclick: any; label: string; icon: string; useImage?: boolean; moduleName?: string }[] = [
+  components: { onclick: any; label: string; icon: string; useImage?: boolean; moduleName?: string; news?: boolean; }[] = [
     { onclick: () => this.goTo('accordion'), icon: 'fas fa-stream', label: 'Accordion', moduleName: 'layout' },
     { onclick: () => this.goTo('autocomplete'), icon: 'fas fa-font', label: 'Autocomplete', moduleName: 'form' },
     { onclick: () => this.goTo('badge'), icon: 'fas fa-ribbon', label: 'Badge', moduleName: 'common' },
@@ -37,7 +37,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('snackbar'), icon: 'fas fa-eye', label: 'Snackbar', moduleName: 'popup' },
     { onclick: () => this.goTo('spinner'), icon: 'fas fa-spinner', label: 'Spinner', moduleName: 'common' },
     { onclick: () => this.goTo('storage'), icon: 'fas fa-hdd', label: 'Storage', moduleName: 'layout' },
-    { onclick: () => this.goTo('table'), icon: 'fas fa-table', label: 'Table', moduleName: 'common' },
+    { onclick: () => this.goTo('table'), icon: 'fas fa-table', label: 'Table', moduleName: 'common', news: true },
     { onclick: () => this.goTo('table-server'), icon: 'fas fa-table', label: 'Table-Server', moduleName: 'common' },
     { onclick: () => this.goTo('textarea'), icon: 'fas fa-text-height', label: 'Textarea', moduleName: 'form' },
     { onclick: () => this.goTo('tooltip'), icon: 'fas fa-mouse-pointer', label: 'Tooltip', moduleName: 'directive' },
@@ -59,7 +59,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
       label: 'Lookup-Label',
       moduleName: 'lookup'
     },
-    { onclick: () => this.goTo('input'), icon: 'fas fa-text-width', label: 'Input', moduleName: 'form' },
+    { onclick: () => this.goTo('input'), icon: 'fas fa-text-width', label: 'Input', moduleName: 'form', news: true },
     {
       onclick: () => this.goTo('tabindex'),
       icon: 'fas fa-sort-numeric-down',
@@ -68,7 +68,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     },
     { onclick: () => this.goTo('tile'), icon: 'fas fa-qrcode', label: 'Tile', moduleName: 'layout' },
     { onclick: () => this.goTo('message-box'), icon: 'fas fa-comments', label: 'Message-Box', moduleName: 'common' },
-    { onclick: () => this.goTo('checkbox'), icon: 'fas fa-check-square', label: 'Checkbox', moduleName: 'form' },
+    { onclick: () => this.goTo('checkbox'), icon: 'fas fa-check-square', label: 'Checkbox', moduleName: 'form', news: true },
     { onclick: () => this.goTo('menu'), icon: 'fas fa-ellipsis-v', label: 'Menu', moduleName: 'action' },
     { onclick: () => this.goTo('app-footer'), icon: 'fas fa-shoe-prints', label: 'App-Footer', moduleName: 'layout' },
     { onclick: () => this.goTo('toggle'), icon: 'fas fa-toggle-on', label: 'Toggle', moduleName: 'form' },
@@ -100,9 +100,9 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     },
     { onclick: () => this.goTo('html'), icon: 'fab fa-html5', label: 'Html', moduleName: 'html' },
     { onclick: () => this.goTo('markdown'), icon: 'fab fa-markdown', label: 'Markdown', moduleName: 'markdown' },
-    { onclick: () => this.goTo('form-row'), icon: 'fas fa-grip-horizontal', label: 'Form-Row', moduleName: 'layout' },
+    { onclick: () => this.goTo('form-row'), icon: 'fas fa-grip-horizontal', label: 'Form-Row', moduleName: 'layout', news: true },
     { onclick: () => this.goTo('card-row'), icon: 'fas fa-grip-horizontal', label: 'Card-Row', moduleName: 'layout' },
-    { onclick: () => this.goTo('filter'), icon: 'fas fa-filter', label: 'Filter', moduleName: 'filter' }
+    { onclick: () => this.goTo('filter'), icon: 'fas fa-filter', label: 'Filter', moduleName: 'filter', news: true }
   ];
 
   sortedComponentEntries: Map<string, any[]> = new Map<string, any[]>();

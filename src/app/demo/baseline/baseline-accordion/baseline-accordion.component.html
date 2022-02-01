@@ -99,46 +99,20 @@
           Zur Visualisierung der unterschiedlichen Höhen, wurde eine andere Hintergrundfarbe für die Komponenten gewählt.<br/>
           Diese Form der Gestaltung ist ausschließlich für Testzwecke und nicht für die weitere Verwendung gedacht. 
         </p>
-          <div [formGroup]="form" fxLayout="column" fxLayoutGap="4px" class="test-box">
-            <lux-checkbox [luxNoLabels]="true" luxLabel="luxNoLabels."></lux-checkbox>
-            <lux-checkbox [luxNoLabels]="true" luxLabel="luxNoLabels. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi distinctio libero, ratione animi dolore esse porro mollitia nulla magnam et, modi doloribus. Distinctio repellat quaerat eveniet iste, error molestiae adipisci culpa et, officia maiores, repudiandae tempora quae veniam fuga odit. At officia reiciendis libero magni architecto, odio dolorum laborum commodi."></lux-checkbox>
-            <lux-checkbox [luxNoLabels]="true" luxControlBinding="checkbox1" luxLabel="luxNoLabels: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi distinctio libero, ratione animi dolore esse porro mollitia nulla magnam et, modi doloribus. Distinctio repellat quaerat eveniet iste, error molestiae adipisci culpa et, officia maiores, repudiandae tempora quae veniam fuga odit. At officia reiciendis libero magni architecto, odio dolorum laborum commodi."></lux-checkbox>
-            <div class="warn-box" fxLayout="column">
-              <h5>Achtung!</h5>
-              <p>
-                Die neuen Varianten blenden die jeweiligen Labels komplett aus, selbst wenn die Validierung einen Fehler meldet! <br/>
-                Ist eine Errormessage notwendig, muss daher die Variante <strong>"luxNoTopLabel"</strong> gewählt werden.
-              </p>
-            </div>
-            <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox2" luxLabel="luxNoTopLabel: Lorem ipsum."></lux-checkbox>
-            <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox3" luxLabel="luxNoTopLabel: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi distinctio libero, ratione animi dolore esse porro mollitia nulla magnam et, modi doloribus. Distinctio repellat quaerat eveniet iste, error molestiae adipisci culpa et, officia maiores, repudiandae tempora quae veniam fuga odit. At officia reiciendis libero magni architecto, odio dolorum laborum commodi."></lux-checkbox>
+        <div [formGroup]="form" fxLayout="column" fxLayoutGap="4px" class="test-box">
+          <lux-checkbox [luxNoLabels]="true" luxLabel="luxNoLabels."></lux-checkbox>
+          <lux-checkbox [luxNoLabels]="true" luxLabel="luxNoLabels. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi distinctio libero, ratione animi dolore esse porro mollitia nulla magnam et, modi doloribus. Distinctio repellat quaerat eveniet iste, error molestiae adipisci culpa et, officia maiores, repudiandae tempora quae veniam fuga odit. At officia reiciendis libero magni architecto, odio dolorum laborum commodi."></lux-checkbox>
+          <lux-checkbox [luxNoLabels]="true" luxControlBinding="checkbox1" luxLabel="luxNoLabels: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi distinctio libero, ratione animi dolore esse porro mollitia nulla magnam et, modi doloribus. Distinctio repellat quaerat eveniet iste, error molestiae adipisci culpa et, officia maiores, repudiandae tempora quae veniam fuga odit. At officia reiciendis libero magni architecto, odio dolorum laborum commodi."></lux-checkbox>
+          <div class="warn-box" fxLayout="column">
+            <h5>Achtung!</h5>
+            <p>
+              Die neuen Varianten blenden die jeweiligen Labels komplett aus, selbst wenn die Validierung einen Fehler meldet! <br/>
+              Ist eine Errormessage notwendig, muss daher die Variante <strong>"luxNoTopLabel"</strong> gewählt werden.
+            </p>
           </div>
-          
-      </lux-panel-content>
-    </lux-panel>
-    <lux-panel>
-      <lux-panel-header-title>Lux-Input</lux-panel-header-title>
-      <lux-panel-header-description>Die neuen Höhen-Varianten</lux-panel-header-description>
-      <lux-panel-content>
-        <p class="message-box">
-          In diesem Panel werden die neuen Varianten der Input-Elemente vorgestellt. 
-          Zur Visualisierung der unterschiedlichen Höhen, wurde eine andere Hintergrundfarbe für die Komponenten gewählt.<br/>
-          Diese Form der Gestaltung ist ausschließlich für Testzwecke und nicht für die weitere Verwendung gedacht! 
-        </p>
-          <div fxLayout="column" class="test-box">
-            <h4>Lux-Input ohne Label- und Error/Hint-Container</h4>
-            <lux-input [luxNoLabels]="true" luxLabel="Lux-Input NoLabels" luxPlaceholder="luxNoLabels" [luxHint]="testHint" luxAutocomplete="off"></lux-input>
-            <lux-divider></lux-divider>
-            <h4>Lux-Input ohne Error/Hint-Container</h4>
-            <lux-input [luxNoBottomLabel]="true" luxLabel="Das ist das Top-Label" luxPlaceholder="luxNoBottomLabel" [luxHint]="testHint" luxAutocomplete="off"></lux-input>
-            <lux-divider></lux-divider>
-            <h4>Lux-Input ohne Label-Container</h4>
-            <lux-input [luxNoTopLabel]="true" luxLabel="Lux-Input NoTopLabel" luxPlaceholder="luxNoTopLabel" luxHint="Das ist das Bottom-Label für die Hint- oder Error-Message." luxAutocomplete="off"></lux-input>
-            <lux-divider></lux-divider>
-            <h4>Lux-Input - default</h4>
-            <lux-input luxLabel="Das ist das Top-Label" luxPlaceholder="Default" luxHint="Das ist das Bottom-Label für die Hint- oder Error-Message." luxAutocomplete="off"></lux-input>
-            <lux-divider></lux-divider>
-          </div>
+          <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox2" luxLabel="luxNoTopLabel: Lorem ipsum."></lux-checkbox>
+          <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox3" luxLabel="luxNoTopLabel: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi distinctio libero, ratione animi dolore esse porro mollitia nulla magnam et, modi doloribus. Distinctio repellat quaerat eveniet iste, error molestiae adipisci culpa et, officia maiores, repudiandae tempora quae veniam fuga odit. At officia reiciendis libero magni architecto, odio dolorum laborum commodi."></lux-checkbox>
+        </div>
       </lux-panel-content>
     </lux-panel>
   </lux-accordion>
