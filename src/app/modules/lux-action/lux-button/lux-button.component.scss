@@ -29,6 +29,7 @@
 
 .lux-icon-button.mat-fab ::ng-deep .mat-button-wrapper {
   padding: 0;
+  line-height: 36px; // damit der Focus-indicator im Firefox richtig berechnet wird
 }
 
 :host {
@@ -37,6 +38,10 @@
       height: 100%;
       display: inline-flex;
       align-items: center;
+    }
+
+    .mat-raised-button, .mat-button { // damit der Focus-indicator im Firefox richtig berechnet wird
+      line-height: 1;
     }
 
     lux-icon {

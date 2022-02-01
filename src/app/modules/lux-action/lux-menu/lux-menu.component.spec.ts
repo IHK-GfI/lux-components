@@ -81,7 +81,7 @@ describe('LuxMenuComponent', () => {
     component.displayExtended = false;
     LuxTestHelper.wait(fixture);
 
-    let defaultTriggerNode = fixture.debugElement.query(By.css('.lux-menu-trigger-default'));
+    let defaultTriggerNode = fixture.debugElement.query(By.css('.lux-menu-trigger'));
     let mockTriggerNode = fixture.debugElement.query(By.css('.mock-trigger'));
 
     expect(defaultTriggerNode).not.toBe(null, 'Vorbedingung 1');
@@ -92,7 +92,7 @@ describe('LuxMenuComponent', () => {
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    defaultTriggerNode = fixture.debugElement.query(By.css('.lux-menu-trigger-default'));
+    defaultTriggerNode = fixture.debugElement.query(By.css('.lux-menu-trigger'));
     mockTriggerNode = fixture.debugElement.query(By.css('.mock-trigger'));
 
     expect(defaultTriggerNode).toBe(null, 'Nachbedingung 1');

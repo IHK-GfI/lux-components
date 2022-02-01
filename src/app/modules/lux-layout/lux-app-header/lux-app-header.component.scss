@@ -73,6 +73,7 @@
       button {
         padding-top: 0;
         padding-bottom: 0;
+        margin: 2px;
         font-weight: normal !important;
 
         &.lux-button-rounded {
@@ -167,6 +168,10 @@
   ::ng-deep .lux-menu-trigger {
     padding: 0 4px;
     margin: 0;
+
+    .mat-button-wrapper{
+      display: inherit;
+    }
 
     button {
       padding: 0 6px;
