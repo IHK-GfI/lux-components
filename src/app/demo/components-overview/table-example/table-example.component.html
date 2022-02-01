@@ -146,6 +146,23 @@
         </lux-table-column>
       </lux-table>
     </div>
+    <div ngClass="message-box" ngClass.lt-md="message-box-small">
+      <div fxLayout="row" fxLayoutAlign="start start" class="box-header">
+        <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+        <div fxLayout="column">
+          <h2>Tipp</h2>
+          <h3>Formcontrols in editierbaren Tabellen anpassen</h3>
+        </div>
+      </div>
+      <p>
+        Die Lux-Form-Controls haben standardmäßig einen Label- und einen Hint/Error-Container. In editierbaren Tabellen werden diese jedoch nicht benötigt. <br>
+        Für diesen Anwendungsfall kann ab Version 12.0.0 das Attribut <strong>luxNoLabels</strong> bei den Form-Controls genutzt werden. Dabei werden die unnötigen Container ausgeblendet 
+        und das Formcontrol in der Zelle zentriert angeszeigt.
+      </p>
+      <div class="code-section">
+        <lux-markdown [luxData]="markdownData"></lux-markdown>
+      </div>
+    </div>
   </example-base-content>
   <example-base-simple-options>
     <table-example-simple-options [tableExample]="this"></table-example-simple-options>

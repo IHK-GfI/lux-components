@@ -95,7 +95,7 @@
             *luxLayoutRowItem="{}"
           ></lux-datetimepicker>
         </lux-layout-form-row>
-        <lux-layout-form-row luxWrapAt="md">
+        <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px'}" luxWrapAt="md">
           <lux-select
             luxLabel="Single-Select"
             luxControlBinding="singleSelect"
@@ -107,6 +107,7 @@
             [luxFilterHidden]="singleSelectHidden"
             luxFilterColor="accent"
             luxFilterItem
+            [luxNoBottomLabel]="true"
             *luxLayoutRowItem="{}"
           ></lux-select>
           <lux-select
@@ -120,6 +121,7 @@
             [luxFilterHidden]="multiSelectHidden"
             luxFilterColor="accent"
             luxFilterItem
+            [luxNoBottomLabel]="true"
             *luxLayoutRowItem="{}"
           ></lux-select>
         </lux-layout-form-row>
@@ -142,7 +144,23 @@
         <h3 class="lux-highlight-section-label">Filter</h3>
         <pre>{{ currentFilter | json }}</pre>
      </div>
-  
+    </div>
+    <div ngClass="message-box" ngClass.lt-md="message-box-small">
+      <div fxLayout="row" fxLayoutAlign="start start" class="box-header">
+        <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+        <div fxLayout="column" class="lux-mt-2">
+          <h2>Tipp</h2>
+          <h3>Formcontrols im Filter anpassen</h3>
+        </div>
+      </div>
+      <p>
+        Die Lux-Form-Controls haben standardmäßig einen Label- und einen Hint/Error-Container. Meistens werden die Fehlermeldungen und Hinweistexte im Filterformular jedoch nicht benötigt. <br>
+        Für diesen Anwendungsfall kann ab Version 12.0.0 das Attribut <strong>luxNoBottomLabels</strong> bei den Form-Controls genutzt werden. 
+        Dabei wird der Hint/Error-Container vom Form-Control entfernt. Mit der Lux-Layout-Form-Row können dann die Zeilenabstände individuell bestimmt werden.
+      </p>
+      <div class="code-section">
+        <lux-markdown [luxData]="markdownData"></lux-markdown>
+      </div>
     </div>
   </example-base-content>
   <example-base-simple-options>

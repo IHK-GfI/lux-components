@@ -124,6 +124,32 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   buttonDialogCancel = 'default';
   buttonDialogClose = 'default';
 
+  markdownData = `
+  Html
+  \`\`\`
+  <lux-filter-form>
+  ...
+    <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '24px', column: '8px' }" luxWrapAt="md">
+      <lux-select
+        ...
+        luxFilterItem
+        [luxNoBottomLabel]="true"
+        *luxLayoutRowItem="{}"
+      ></lux-select>
+      <lux-select
+        ...
+        luxFilterItem
+        [luxNoBottomLabel]="true"
+        *luxLayoutRowItem="{}"
+      ></lux-select>
+    </lux-layout-form-row>
+  ...  
+  </lux-filter-form>
+  \`\`\`
+  `;
+
+
+
   constructor(private mediaQuery: LuxMediaQueryObserverService) {}
 
   ngOnInit(): void {

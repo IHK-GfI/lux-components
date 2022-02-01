@@ -8,7 +8,24 @@ import { TableExampleBaseClass } from './table-example-base.class';
 })
 export class TableExampleComponent extends TableExampleBaseClass {
   dataSource: any[] = [];
-
+  markdownData = `
+  Html
+  \`\`\`
+  ...
+  <lux-table-column-content>
+    ...
+        <lux-input
+          ...
+          *ngIf="element.editable"
+          fxFlex="1 1 30%"
+          [luxNoLabels]="true"
+          ...
+        ></lux-input>
+    ...
+  </lux-table-column-content>
+  \`\`\`
+  `;
+ 
   constructor() {
     super();
 

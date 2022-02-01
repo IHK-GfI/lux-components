@@ -57,6 +57,22 @@
         </div>
       </div>
     </div>
+    <div ngClass="message-box" ngClass.lt-md="message-box-small">
+      <div fxLayout="row" fxLayoutAlign="start center" class="box-header">
+        <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+        <h2>Anwendungsbeispiel für luxNoTopLabel</h2>
+      </div>
+      <div fxLayout="column" [formGroup]="agb" class="content lux-mt-4" >
+        <h3>Bitte bestätigen Sie, dass Sie die folgenden Bedingungen gelesen haben:</h3>
+        <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox1" luxLabel="{{exampleText}}"></lux-checkbox>
+        <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox2" luxLabel="{{exampleText}}"></lux-checkbox>
+        <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox3" luxLabel="{{exampleText}}"></lux-checkbox>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px" >
+        <lux-button [luxRaised]="true" luxColor="" luxLabel="Formular zurücksetzen" (luxClicked)="exampleValidator(false)"></lux-button>
+        <lux-button [luxRaised]="true" luxColor="primary" luxLabel="Weiter" (luxClicked)="exampleValidator(true)"></lux-button>
+      </div>
+    </div>
   </example-base-content>
   <example-base-simple-options>
     <lux-input

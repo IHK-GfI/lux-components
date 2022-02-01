@@ -94,6 +94,17 @@
         </div>
       </div>
     </div>
+
+    <div class="message-box">
+      <div fxLayout="row" fxLayoutAlign="start center" class="box-header">
+        <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+        <h2>Beispiel für luxNoLabels</h2>
+      </div>
+      <div class="search-row" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start center">
+        <lux-input [luxNoLabels]="true" luxLabel="Suche" luxPlaceholder="Gib einen Suchbegriff ein..."></lux-input>
+        <lux-button luxIconName="fa-search" luxColor="primary" [luxRaised]="true"></lux-button>
+      </div>
+    </div>
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle

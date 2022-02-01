@@ -8,7 +8,8 @@ import {
 
 @Component({
   selector: 'app-input-example',
-  templateUrl: './input-example.component.html'
+  templateUrl: './input-example.component.html',
+  styleUrls: ['./input-example.component.scss']
 })
 export class InputExampleComponent {
   // region Helper-Properties für das Beispiel
@@ -26,7 +27,7 @@ export class InputExampleComponent {
   autocompleteOptions = ['on', 'off'];
   form: FormGroup;
   log = logResult;
-
+  
   // endregion
 
   // region Properties der Component
