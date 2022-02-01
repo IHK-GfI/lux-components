@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import marked from 'marked/lib/marked';
+import { marked } from 'marked';
 import { LuxHtmlComponent } from '../../lux-html/lux-html/lux-html.component';
 import { LuxSanitizeConfig } from '../../lux-html/lux-sanitize/lux-sanitize-config';
 

@@ -28,6 +28,7 @@ export class ButtonExampleComponent implements OnInit, OnDestroy {
 
   label = 'Button';
   iconName = 'fas fa-save';
+  iconShowRight = false;
   align = false;
   disabled = false;
   backgroundColor = '';

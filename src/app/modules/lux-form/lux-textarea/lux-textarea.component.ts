@@ -15,7 +15,7 @@ export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnIni
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
-  @Input() luxHideCounterLabel = false; 
+  @Input() luxHideCounterLabel = false;
   @Input() set luxMaxLength(maxLength: number){
     this._luxMaxLength = maxLength;
     if (this.formControl) { //erst nach ngOnInit() vorhanden
@@ -28,7 +28,7 @@ export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnIni
 
   counterLabel = '';
   _luxMaxLength = 0;
-  
+
   constructor(
     @Optional() controlContainer: ControlContainer,
     cdr: ChangeDetectorRef,
@@ -47,16 +47,16 @@ export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnIni
     this.updateCounterLabel();
     super.notifyFormValueChanged(formValue);
   }
-  
+
   private updateCounterLabel(){
     if (this.luxMaxLength > 0){
       if (typeof this.formControl.value === 'string') {
         this.counterLabel = this.formControl.value.length + '/' + this.luxMaxLength;
       } else {
         this.counterLabel = '0/' + this.luxMaxLength;
-      }    
+      }
     } else {
       this.counterLabel = '';
-    }  
+    }
   }
 }

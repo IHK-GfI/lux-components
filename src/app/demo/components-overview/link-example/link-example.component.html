@@ -8,6 +8,7 @@
       [luxLabel]="label"
       [luxColor]="color"
       [luxIconName]="iconName"
+      [luxIconShowRight]="iconShowRight"
       [luxRaised]="raised"
       [luxRounded]="round"
       [luxIconAlignWithLabel]="align"
@@ -50,13 +51,20 @@
       luxLabel="luxLabel"
       luxHint="Bestimmt den Text, der für den Link angezeigt wird."
     ></lux-input>
-    <lux-input class="lux-highlight-section" [(luxValue)]="iconName" luxLabel="luxIconName">
-      <lux-form-hint>
-        Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
-        <i>luxLabel</i> gesetzt ist).<br />
-        Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
-      </lux-form-hint>
-    </lux-input>
+    <div fxLayout="column" class="lux-highlight-section">
+      <lux-input
+        luxName="button_luxIconName"
+        [(luxValue)]="iconName"
+        luxLabel="luxIconName"
+      >
+        <lux-form-hint>
+          Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
+          <i>luxLabel</i> gesetzt ist).<br />
+          Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
+        </lux-form-hint>
+      </lux-input>
+      <lux-toggle luxLabel="luxIconShowRight" luxName="button_luxIconShowRight" [(luxChecked)]="iconShowRight"></lux-toggle>
+    </div>
     <lux-select
       class="lux-highlight-section"
       [(luxSelected)]="color"
