@@ -101,7 +101,6 @@
     [luxIconShowRight]="luxPrevButtonConfig.iconShowRight"
     [luxIconAlignWithLabel]="luxPrevButtonConfig.alignIconWithLabel"
     [luxColor]="luxPrevButtonConfig.color"
-    [luxDisabled]="!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber).luxCompleted"
     (luxClicked)="onPrevStep()"
     [luxRaised]="true"
     *ngIf="!isFirstStep"

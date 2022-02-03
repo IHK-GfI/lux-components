@@ -45,8 +45,7 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
         stepNumber < (this.steps ? this.steps.length : 0) &&
         this.steps &&
         this.steps.get(stepNumber) &&
-        this.steps.get(stepNumber).luxTouched &&
-        this.steps.get(prevStepIndex).luxCompleted
+        this.steps.get(stepNumber).luxTouched
       ) {
         this._luxCurrentStepNumber = stepNumber;
         this.isFirstStep = stepNumber === 0;
