@@ -1,29 +1,47 @@
-
-lux-card.tip  ::ng-deep{
-  mat-card.mat-card{
-    //border-left: 16px solid var(--lux-theme-primary-300);
-    border-left: 8px solid #F56200;;
-    
-    mat-card-subtitle {
-      font-size: 18px;
-    }
-    .mat-card-content {
-      margin-left: 44px;
-      margin-right: 44px;
-    }
+@media only screen and (max-width: 599px) {
+  lux-accordion.tip-panel lux-panel ::ng-deep{
+    margin: 0 4px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .accordion-wrapper {
+    margin: 0 0;
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 1279px) {
+  lux-accordion.tip-panel lux-panel ::ng-deep{
+    margin: 0 4px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .accordion-wrapper {
+    margin: 0 2.5%
+  }
+}
+@media only screen and (min-width: 1280px) {
+  lux-accordion.tip-panel lux-panel ::ng-deep{
+    margin: 0 8px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .accordion-wrapper {
+    margin: 0 10%
   }
 }
 
-.tip-container {
-  margin: 24px 0;
-  width: 100%;
+lux-accordion.tip-panel lux-panel ::ng-deep {
+  mat-expansion-panel-header .mat-content {
+    align-items: center;
+  }
+  .mat-expansion-panel-body{
+    padding: 0 54px 40px 78px;
+  }
 }
 
 .dont {
   border:  1px solid var(--lux-theme-primary-300);
   border-bottom: 0px;
   padding-top: 24px;
-
   .bottom {
     width: 100%;
     content: '';
@@ -36,12 +54,10 @@ lux-card.tip  ::ng-deep{
     margin-bottom: 0px;
   }
 }
-
 .do {
   border:  1px solid var(--lux-theme-primary-300);
   border-bottom: 0px;
   padding-top: 32px;
-
   .bottom {
     width: 100%;
     content: '';
@@ -60,21 +76,10 @@ lux-card.tip  ::ng-deep{
   border-radius: 4px;
   background-color: var(--lux-theme-primary-50);
   overflow: auto;
-  max-width: 30%;
-  lux-markdown ::ng-deep pre {
-    // white-space: pre-wrap;
-    // word-wrap: break-word;
-    overflow: scroll;
-  }
 }
 
 a {
   color: var(--lux-theme-primary-color);
   text-decoration-line: none;
   font-weight: bold;
-}
-
-.colors {
-  border-color: #F56200;
-  background-color: #FFDAC2; 
 }
