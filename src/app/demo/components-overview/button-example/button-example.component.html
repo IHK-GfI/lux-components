@@ -190,7 +190,7 @@
       luxHint="Bestimmt den Text, der in dem Button angezeigt wird."
       [luxNoTopLabel]="true"
     ></lux-input>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-input
         luxName="button_luxIconName"
         [(luxValue)]="iconName"
@@ -202,7 +202,7 @@
           Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
         </lux-form-hint>
       </lux-input>
-      <lux-toggle luxLabel="luxIconShowRight" luxName="button_luxIconShowRight" [(luxChecked)]="iconShowRight"></lux-toggle>
+      <lux-toggle luxLabel="luxIconShowRight" luxName="button_luxIconShowRight" [(luxChecked)]="iconShowRight" [luxNoLabels]="true"></lux-toggle>
     </div>
     <lux-toggle
       class="lux-highlight-section"
