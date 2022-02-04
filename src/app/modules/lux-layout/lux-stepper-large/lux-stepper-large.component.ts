@@ -163,11 +163,23 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
   }
 
   onNavFocusin(index: number) {
-    this.cursorPos = this.luxCurrentStepNumber;
+    if (index === this.luxCurrentStepNumber) {
+      // Dieser Timeout ist nötig, um einen ExpressionChangedAfterItHasBeenCheckedError zu vermeiden.
+      // Details:
+      // Ohne Timeout würde die Cursorposition zweimal (alter Eintrag verliert den Fokus "this.cursorPos = -1" und
+      // neuer Eintrag erhält den Fokus "this.cursorPos = index") innerhalb eines Zyklus geändert werden,
+      // was zu dem ExpressionChangedAfterItHasBeenCheckedError führt.
+      // Dieser Fehler wurde entdeckt, als man in einer Veto-Methode einen Dialog geöffnet hat.
+      setTimeout(() => {
+        this.cursorPos = index;
+      });
+    }
   }
 
   onNavFocusout(index: number) {
-    this.cursorPos = -1;
+    if (index === this.luxCurrentStepNumber) {
+      this.cursorPos = -1;
+    }
   }
 
   onNavLinkEnter(stepIndex: number) {
