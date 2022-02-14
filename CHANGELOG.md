@@ -1,3 +1,11 @@
+# Version 11.10.0
+## New
+- **lux-stepper-large**: Der Stepper ist weniger strikt und ermöglicht immer das Zurücknavigieren. [Issue 161](https://github.com/IHK-GfI/lux-components/issues/161)
+- **lux-stepper-large**: Schritte im Stepper können deaktiviert werden. [Issue 161](https://github.com/IHK-GfI/lux-components/issues/161)
+
+## Bug Fixes
+- **lux-stepper-large**: Verhinderung eines ExpressionChangedAfterItHasBeenCheckedError beim Setzen der Cursorposition (Tastatursteuerung). [Issue 161](https://github.com/IHK-GfI/lux-components/issues/161)
+
 # Version 11.9.0
 ## New
 - **allgemein**: LUX-Theme [11.11.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.11.0) integriert.
