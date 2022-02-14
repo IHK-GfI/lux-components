@@ -48,7 +48,7 @@
       [ngClass]="{
         'lux-touched': step.luxTouched,
         'lux-active': i === luxCurrentStepNumber,
-        'lux-disabled': i !== luxCurrentStepNumber && (!step.luxTouched || !step.luxCompleted),
+        'lux-disabled': step.luxDisabled || (i !== luxCurrentStepNumber && (!step.luxTouched || !step.luxCompleted)),
         'lux-completed': i !== luxCurrentStepNumber && step.luxCompleted && step.luxTouched
       }"
     >
@@ -56,27 +56,7 @@
         <div class="lux-stepper-large-nav-item-number">{{ i + 1 < 10 ? '0' : '' }}{{ i + 1 }}</div>
       </div>
       <div class="lux-stepper-large-nav-item-label-container">
-        <a
-          class="lux-stepper-large-nav-item-label-link"
-          role="tab"
-          [id]="'lux-stepper-large-nav-item-label-link-' + luxCurrentStepNumber"
-          [ngClass]="{'lux-focused': cursorPos === i}"
-          (keydown.arrowUp)="onNavKeyUp()"
-          (keydown.arrowDown)="onNavKeyDown()"
-          [attr.aria-label]="'Schritt' + (i + 1) + ' ' + step.luxTitle"
-          [attr.tabindex]="i === luxCurrentStepNumber ? 0 : -1"
-          [attr.aria-posinset]="(i + 1)"
-          [attr.aria-setsize]="steps.length"
-          [attr.aria-controls]="'lux-stepper-large-content' + luxCurrentStepNumber"
-          [attr.aria-selected]="i === luxCurrentStepNumber"
-          (click)="onNavLink(i)"
-          (keydown.enter)="onNavLinkEnter(i)"
-          (focusin)="onNavFocusin(i)"
-          (focusout)="onNavFocusout(i)"
-          *ngIf="step.luxTouched"
-          >{{ step.luxTitle }}</a
-        >
-        <div class="lux-stepper-large-nav-item-label" *ngIf="!step.luxTouched">{{ step.luxTitle }}</div>
+        <ng-container *ngTemplateOutlet="step.luxTouched && !step.luxDisabled ? link : nolink; context: { step: step, i: i}"></ng-container>
         <lux-icon
           class="lux-stepper-large-nav-item-complete"
           luxPadding="0 0 0 12px"
@@ -101,7 +81,6 @@
     [luxIconShowRight]="luxPrevButtonConfig.iconShowRight"
     [luxIconAlignWithLabel]="luxPrevButtonConfig.alignIconWithLabel"
     [luxColor]="luxPrevButtonConfig.color"
-    [luxDisabled]="!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber).luxCompleted"
     (luxClicked)="onPrevStep()"
     [luxRaised]="true"
     *ngIf="!isFirstStep"
@@ -130,4 +109,30 @@
     (luxClicked)="onFinStep()"
     *ngIf="isLastStep"
   ></lux-button>
+</ng-template>
+
+<ng-template let-step="step" let-i="i" #link>
+  <a
+    class="lux-stepper-large-nav-item-label-link"
+    role="tab"
+    [id]="'lux-stepper-large-nav-item-label-link-' + luxCurrentStepNumber"
+    [ngClass]="{'lux-focused': cursorPos === i}"
+    (keydown.arrowUp)="onNavKeyUp()"
+    (keydown.arrowDown)="onNavKeyDown()"
+    [attr.aria-label]="'Schritt' + (i + 1) + ' ' + step.luxTitle"
+    [attr.tabindex]="i === luxCurrentStepNumber ? 0 : -1"
+    [attr.aria-posinset]="(i + 1)"
+    [attr.aria-setsize]="steps.length"
+    [attr.aria-controls]="'lux-stepper-large-content' + luxCurrentStepNumber"
+    [attr.aria-selected]="i === luxCurrentStepNumber"
+    (click)="onNavLink(i)"
+    (keydown.enter)="onNavLinkEnter(i)"
+    (focusin)="onNavFocusin(i)"
+    (focusout)="onNavFocusout(i)"
+  >{{ step.luxTitle }}</a
+  >
+</ng-template>
+
+<ng-template let-step="step" let-i="i" #nolink>
+  <div class="lux-stepper-large-nav-item-label">{{ step.luxTitle }}</div>
 </ng-template>
