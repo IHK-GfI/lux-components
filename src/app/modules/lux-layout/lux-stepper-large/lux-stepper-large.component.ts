@@ -151,7 +151,7 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
       .then((veto) => {
         if (veto === LuxVetoState.navigationAccepted) {
           // Prüfen, ob es einen Step gibt, der noch nicht abgeschlossen ist.
-          const index = this.steps.toArray().findIndex((step) => !step.luxCompleted);
+          const index = this.steps.toArray().findIndex((step) => !step.luxCompleted && !step.luxDisabled);
           if (index === -1) {
             // Alle Steps signalisieren (luxCompleted = true) das sie valide sind.
             // Der Stepper kann beendet werden.
