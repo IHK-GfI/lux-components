@@ -10,6 +10,7 @@ export interface ILuxStepperLargeStep {
   luxTitle: string;
   luxTouched: boolean;
   luxCompleted: boolean;
+  luxDisabled: boolean;
   luxVetoFn: (clickEvent: LuxStepperLargeClickEvent) => Promise<LuxVetoState>;
   contentTemplate: TemplateRef<any>;
 }

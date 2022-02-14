@@ -46,19 +46,17 @@
       <lux-toggle luxLabel="Ich habe verstanden und möchte fortfahren" [(luxChecked)]="allowed" [luxRequired]="true"></lux-toggle>
     </lux-stepper-large-step>
 
-    <app-stepper-large-example-step-veto></app-stepper-large-example-step-veto>
-
     <app-stepper-large-example-step-prev-button></app-stepper-large-example-step-prev-button>
     <app-stepper-large-example-step-next-button></app-stepper-large-example-step-next-button>
     <app-stepper-large-example-step-fin-button></app-stepper-large-example-step-fin-button>
 
+    <app-stepper-large-example-step-veto></app-stepper-large-example-step-veto>
 
-
-    <lux-stepper-large-extern-step-example [luxCompleted]="completed" luxTitle="Füllschritt 1 - Lorem ipsum dolor">
+    <lux-stepper-large-extern-step-example [luxCompleted]="completed" luxTitle="Füllschritt 1 - Lorem ipsum dolor" [luxDisabled]="true">
     </lux-stepper-large-extern-step-example>
     <lux-stepper-large-extern-step-example
       [luxCompleted]="completed"
-      luxTitle="Füllschritt 2 - Duis autem vel eum iriure dolor in hendrerit"
+      luxTitle="Füllschritt 2 - Duis autem vel eum iriure dolor in hendrerit" [luxDisabled]="true"
     ></lux-stepper-large-extern-step-example>
     <lux-stepper-large-extern-step-example [luxCompleted]="completed" luxTitle="Füllschritt 3 - Ut wisi enim ad">
     </lux-stepper-large-extern-step-example>
