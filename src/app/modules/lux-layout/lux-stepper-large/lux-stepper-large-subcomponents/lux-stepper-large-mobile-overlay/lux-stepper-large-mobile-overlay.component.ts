@@ -31,17 +31,20 @@ export class LuxStepperLargeMobileOverlayComponent implements OnInit, AfterViewI
   }
 
   ngAfterViewInit() {
-    if (
-      this.links &&
-      this.stepperComponent.luxCurrentStepNumber &&
-      this.links.get(this.stepperComponent.luxCurrentStepNumber).nativeElement
-    ) {
-      (this.links.get(this.stepperComponent.luxCurrentStepNumber).nativeElement as HTMLElement).focus();
+    if (this.links && this.links.length > 0) {
+      const activeLink = this.links
+        .toArray()
+        .find(
+          (element) => element.nativeElement && element.nativeElement.classList && !!element.nativeElement.classList.contains('active-link')
+        );
+      if (activeLink && activeLink.nativeElement) {
+        activeLink.nativeElement.focus();
+      }
     }
   }
 
   onNavLink(stepIndex: number) {
-    this.stepperComponent.onNavLink(stepIndex);
     this.overlayRef.close();
+    this.stepperComponent.onNavLink(stepIndex);
   }
 }
