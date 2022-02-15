@@ -5,6 +5,7 @@
 
 ## Bug Fixes
 - **lux-stepper-large**: Verhinderung eines ExpressionChangedAfterItHasBeenCheckedError beim Setzen der Cursorposition (Tastatursteuerung). [Issue 161](https://github.com/IHK-GfI/lux-components/issues/161)
+- **lux-dialog**: Darstellungsfehler in Safari behoben. [Issue 163](https://github.com/IHK-GfI/lux-components/issues/163)
 
 # Version 11.9.0
 ## New
