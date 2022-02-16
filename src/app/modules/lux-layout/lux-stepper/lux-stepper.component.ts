@@ -100,6 +100,10 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
     // zwischengespeichert.
     this.matStepHeaders = this.matStepper._stepHeader.toArray();
 
+    this.subscriptions.push(this.matStepper._stepHeader.changes.subscribe(newStepHeaders => {
+      this.matStepHeaders = newStepHeaders.toArray();
+    }));
+
     // Auf next/previous Aufrufe aus dem Service horchen und entsprechend reagieren
     this.subscriptions.push(this.stepperService
       .getObservable(this)
@@ -110,10 +114,14 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
           if (next === true) {
             this.checkValidation();
             this.matStepper.next();
-            this.matStepHeaders[this.matStepper.selectedIndex].focus();
+            if (this.matStepper.selectedIndex < this.matStepHeaders.length) {
+              this.matStepHeaders[this.matStepper.selectedIndex].focus();
+            }
           } else if (next === false) {
             this.matStepper.previous();
-            this.matStepHeaders[this.matStepper.selectedIndex].focus();
+            if (this.matStepper.selectedIndex < this.matStepHeaders.length) {
+              this.matStepHeaders[this.matStepper.selectedIndex].focus();
+            }
           }
         }
       }));

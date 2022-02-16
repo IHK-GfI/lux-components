@@ -1,3 +1,7 @@
+# Version 11.11.0
+## Bug Fixes
+- **lux-stepper**: Es kann nicht über den Weiter-Button navigiert werden, wenn mehrere Schritte nachträglich hinzugefügt wurden. [Issue 167](https://github.com/IHK-GfI/lux-components/issues/167)
+
 # Version 11.10.0
 ## New
 - **lux-stepper-large**: Der Stepper ist weniger strikt und ermöglicht immer das Zurücknavigieren. [Issue 161](https://github.com/IHK-GfI/lux-components/issues/161)
