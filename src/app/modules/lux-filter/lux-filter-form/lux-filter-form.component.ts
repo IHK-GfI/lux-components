@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -98,7 +99,7 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   hasSaveAction: boolean;
   hasLoadAction: boolean;
 
-  constructor(private formBuilder: FormBuilder, private dialogService: LuxDialogService) {}
+  constructor(private formBuilder: FormBuilder, private dialogService: LuxDialogService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.filterForm = this.formBuilder.group({});
@@ -276,6 +277,7 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
     });
 
     this.onFilter();
+    this.cdr.detectChanges();
   }
 
   onFilter() {
