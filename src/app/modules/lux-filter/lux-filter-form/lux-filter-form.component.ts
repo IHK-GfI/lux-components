@@ -1,5 +1,5 @@
 import {
-  AfterContentInit,
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -29,7 +29,7 @@ import { LuxLookupComboboxComponent } from '../../lux-lookup/lux-lookup-combobox
   templateUrl: './lux-filter-form.component.html',
   styleUrls: ['./lux-filter-form.component.scss']
 })
-export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestroy {
+export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy {
   dialogConfig: ILuxDialogConfig = {
     width: Math.min(600, window.innerWidth - 50) + 'px',
     height: 'auto',
@@ -117,35 +117,33 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
     this.filterItems = [];
 
     this.formElementes.forEach((formItem) => {
-      const value = this.filterForm.get(formItem.filterItem.binding).value;
+      if (formItem.filterItem && formItem.filterItem.binding) {
+        const value = this.filterForm.get(formItem.filterItem.binding).value;
 
-      if (
-        !formItem.filterItem.component.formControl.disabled &&
-        formItem.filterItem.defaultValues.findIndex((defaultValue) => defaultValue === value) === -1
-      ) {
-        if (Array.isArray(value)) {
-          let i = 0;
-          value.forEach((selected) => {
-            const newFilterItem = new LuxFilterItem();
-            Object.assign(newFilterItem, formItem.filterItem);
-            newFilterItem.value = newFilterItem.renderFn(newFilterItem, selected);
-            newFilterItem['index'] = i++;
-            this.filterItems.push(newFilterItem);
-          });
-        } else {
-          formItem.filterItem.value = formItem.filterItem.renderFn(formItem.filterItem, value);
-          this.filterItems.push(formItem.filterItem);
+        if (
+          !formItem.filterItem.component.formControl.disabled &&
+          formItem.filterItem.defaultValues.findIndex((defaultValue) => defaultValue === value) === -1
+        ) {
+          if (Array.isArray(value)) {
+            let i = 0;
+            value.forEach((selected) => {
+              const newFilterItem = new LuxFilterItem();
+              Object.assign(newFilterItem, formItem.filterItem);
+              newFilterItem.value = newFilterItem.renderFn(newFilterItem, selected);
+              newFilterItem['index'] = i++;
+              this.filterItems.push(newFilterItem);
+            });
+          } else {
+            formItem.filterItem.value = formItem.filterItem.renderFn(formItem.filterItem, value);
+            this.filterItems.push(formItem.filterItem);
+          }
         }
       }
     });
   }
 
-  ngAfterContentInit(): void {
+  ngAfterViewInit(): void {
     this.updateContentFilterItems();
-
-    this.subscriptions.push(this.formElementes.changes.subscribe((test) => {
-      this.updateContentFilterItems();
-    }));
   }
 
   ngOnDestroy(): void {
