@@ -1,3 +1,7 @@
+# Version 11.11.0
+## Bug Fixes
+- **lux-lookup-autocomplete**: Komponente wirft beim initialen Laden einen ExpressionChangedAfterItHasBeenCheckedError [Issue 165](https://github.com/IHK-GfI/lux-components/issues/165)
+
 # Version 11.10.0
 ## New
 - **lux-stepper-large**: Der Stepper ist weniger strikt und ermöglicht immer das Zurücknavigieren. [Issue 161](https://github.com/IHK-GfI/lux-components/issues/161)
