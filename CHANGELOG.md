@@ -1,6 +1,7 @@
 # Version 11.11.0
 ## Bug Fixes
 - **lux-stepper**: Es kann nicht über den Weiter-Button navigiert werden, wenn mehrere Schritte nachträglich hinzugefügt wurden. [Issue 167](https://github.com/IHK-GfI/lux-components/issues/167)
+- **lux-lookup-autocomplete**: Komponente wirft beim initialen Laden einen ExpressionChangedAfterItHasBeenCheckedError [Issue 165](https://github.com/IHK-GfI/lux-components/issues/165)
 
 # Version 11.10.0
 ## New
