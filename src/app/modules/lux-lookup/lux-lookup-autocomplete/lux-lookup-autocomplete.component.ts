@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Optional, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Optional, Output, ViewChild } from "@angular/core";
 import { LuxLookupComponent } from '../lux-lookup-model/lux-lookup-component';
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
@@ -16,7 +16,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-lookup-autocomplete.component.html',
   styleUrls: ['./lux-lookup-autocomplete.component.scss']
 })
-export class LuxLookupAutocompleteComponent extends LuxLookupComponent implements OnInit {
+export class LuxLookupAutocompleteComponent extends LuxLookupComponent implements OnInit, AfterViewInit {
   filteredEntries: Observable<LuxLookupTableEntry[]>;
   entriesCount: number;
   latestSearchValue: string;
@@ -41,6 +41,10 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
     super(lookupService, lookupHandler, controlContainer, cdr, logger, componentsConfigService);
 
     this.stateMatcher = new LuxAutocompleteErrorStateMatcher(this, this.entries);
+  }
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
   }
 
   ngOnInit() {
