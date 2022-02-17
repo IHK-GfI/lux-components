@@ -1,6 +1,9 @@
 # Version 11.11.0
 ## Bug Fixes
 - **lux-lookup-autocomplete**: Komponente wirft beim initialen Laden einen ExpressionChangedAfterItHasBeenCheckedError [Issue 165](https://github.com/IHK-GfI/lux-components/issues/165)
+- **lux-filter-form**: Wenn ein Filter initial vorbelegt ist, dann zeigt die Debugconsole einen Fehler an und die Filterchips werden eventuell nicht korrekt aktualisiert. [Issue 169](https://github.com/IHK-GfI/lux-components/issues/169)
+- **lux-filter-form**: Der Laden-Button im Dialog ist im Vergleich zum Lösch-Button zu groß. [Issue 169](https://github.com/IHK-GfI/lux-components/issues/169)
+- **lux-filter-form**: Wenn man im Firefox in einem Autocomplete-Feld das Filtern über die Tastatur (Shift + Enter) auslöst, fliegt ein Fehler in der Debugconsole. [Issue 169](https://github.com/IHK-GfI/lux-components/issues/169)
 
 # Version 11.10.0
 ## New
