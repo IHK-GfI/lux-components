@@ -24,6 +24,7 @@
         [luxMinRows]="min"
         [luxMaxRows]="max"
         [luxHideCounterLabel]="hideCounterLabel"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -53,6 +54,7 @@
         [luxMinRows]="min"
         [luxMaxRows]="max"
         [luxHideCounterLabel]="hideCounterLabel"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -232,5 +234,12 @@
         entsprechende FormControl setzen.
       </lux-form-hint>
     </lux-select>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
+      luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [(luxChecked)]="labelLongFormat"
+    >
+    </lux-toggle>
   </example-base-advanced-options>
 </example-base-structure>

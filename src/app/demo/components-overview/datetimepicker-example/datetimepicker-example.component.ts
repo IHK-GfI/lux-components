@@ -44,6 +44,7 @@ export class DateTimepickerExampleComponent {
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   showToggle = true;
   opened = false;
+  labelLongFormat = false;
   minDate = '01.01.2000, 00:00';
   maxDate = '31.12.2100, 23:59';
   startView = 'month';

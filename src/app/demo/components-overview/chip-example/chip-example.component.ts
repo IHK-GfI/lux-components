@@ -39,7 +39,9 @@ export class ChipExampleComponent {
   groupDisabled = false;
   groupColor = 'Keine Farbe';
   groupLabels = ['Group Chip #1', 'Group Chip #2', 'Group Chip #3'];
-
+  
+  labelLongFormat = false;
+  
   // endregion
 
   constructor() {}

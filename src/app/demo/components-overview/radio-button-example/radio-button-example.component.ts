@@ -68,7 +68,8 @@ export class RadioButtonExampleComponent {
   pickValueFnString: string;
   compareWithFnString: string;
   errorCallbackString: string;
-
+  
+  labelLongFormat = false;
   // endregion
 
   constructor(private _fb: FormBuilder) {
