@@ -1,5 +1,6 @@
 # Version 11.11.0
 ## Bug Fixes
+- **lux-stepper**: Es kann nicht über den Weiter-Button navigiert werden, wenn mehrere Schritte nachträglich hinzugefügt wurden. [Issue 167](https://github.com/IHK-GfI/lux-components/issues/167)
 - **lux-lookup-autocomplete**: Komponente wirft beim initialen Laden einen ExpressionChangedAfterItHasBeenCheckedError [Issue 165](https://github.com/IHK-GfI/lux-components/issues/165)
 - **lux-filter-form**: Wenn ein Filter initial vorbelegt ist, dann zeigt die Debugconsole einen Fehler an und die Filterchips werden eventuell nicht korrekt aktualisiert. [Issue 169](https://github.com/IHK-GfI/lux-components/issues/169)
 - **lux-filter-form**: Der Laden-Button im Dialog ist im Vergleich zum Lösch-Button zu groß. [Issue 169](https://github.com/IHK-GfI/lux-components/issues/169)
