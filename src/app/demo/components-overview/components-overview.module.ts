@@ -92,6 +92,7 @@ import { StepperLargeExampleStepPrevButtonComponent } from './stepper-large-exam
 import { StepperLargeExampleStepNextButtonComponent } from './stepper-large-example/steps/stepper-large-example-step-next-button.component';
 import { StepperLargeExampleStepFinButtonComponent } from './stepper-large-example/steps/stepper-large-example-step-fin-button.component';
 import { StepperLargeExampleStepVetoComponent } from './stepper-large-example/steps/stepper-large-example-step-veto.component';
+import { FileUploadExampleComponent } from './file-example/file-upload-example/file-upload-example.component';
 
 @NgModule({
   imports: [
@@ -190,7 +191,8 @@ import { StepperLargeExampleStepVetoComponent } from './stepper-large-example/st
     StepperLargeExampleStepPrevButtonComponent,
     StepperLargeExampleStepNextButtonComponent,
     StepperLargeExampleStepFinButtonComponent,
-    StepperLargeExampleStepVetoComponent
+    StepperLargeExampleStepVetoComponent,
+    FileUploadExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]

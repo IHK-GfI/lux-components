@@ -388,4 +388,38 @@ export class LuxUtil {
     const exp = new RegExp('[^A-Za-z 0-9 \\.,\\?""!@#\\$%\\^&\\*\\(\\)-_=\\+;:<>\\/\\\\\\|\\}\\{\\[\\]`~]*', 'g');
     return dateString.replace(exp, '');
   }
+
+  /**
+   * Diese Methode liefert für die akzeptierten Dateitypen einen I18N-Nachrichtenteil zurück.
+   *
+   * Beispiel: acceptTypes = .pdf,.txt,.png
+   *   de => PDF, TXT oder PNG
+   *   en => PDF, TXT or PNG
+   *
+   * @param acceptTypes Die akzeptierten Dateitpyen (z.b. .pdf,.txt).
+   */
+  public static getAcceptTypesAsMessagePart(acceptTypes: string): string {
+    let message = '';
+
+    if (acceptTypes) {
+      let newAccept = acceptTypes;
+      newAccept = newAccept.replace(/\./g, '');
+      newAccept = newAccept.replace(/\*/g, '');
+
+      let typesArr = newAccept.split(',');
+      typesArr = typesArr.map((str) => str.trim().toUpperCase());
+
+      for (let i = 0; i < typesArr.length; i++) {
+        message += typesArr[i].toUpperCase();
+
+        if (i === typesArr.length - 2) {
+          message += $localize`:@@luxc.file.upload.file.type.concat: oder `;
+        } else if (typesArr.length > 1 && i < typesArr.length - 2) {
+          message += ', ';
+        }
+      }
+    }
+
+    return message;
+  }
 }

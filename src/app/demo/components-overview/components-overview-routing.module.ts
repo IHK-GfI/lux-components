@@ -13,6 +13,7 @@ import { DatepickerExampleComponent } from './datepicker-example/datepicker-exam
 import { DateTimepickerExampleComponent } from './datetimepicker-example/datetimepicker-example.component';
 import { DividerExampleComponent } from './divider-example/divider-example.component';
 import { ErrorpageExampleComponent } from './errorpage-example/errorpage-example.component';
+import { FileUploadExampleComponent } from "./file-example/file-upload-example/file-upload-example.component";
 import { HttpErrorExampleComponent } from './http-error-example/http-error-example.component';
 import { IconExampleComponent } from './icon-example/icon-example.component';
 import { ImageExampleComponent } from './image-example/image-example.component';
@@ -110,6 +111,7 @@ const routes: Routes = [
       { path: 'dialog', component: DialogExampleComponent },
       { path: 'file-input', component: FileInputExampleComponent },
       { path: 'file-list', component: FileListExampleComponent },
+      { path: 'file-upload', component: FileUploadExampleComponent },
       { path: 'badge-notification', component: BadgeNotificationExampleComponent },
       { path: 'ripple', component: RippleExampleComponent },
       { path: 'html', component: HtmlExampleComponent },
