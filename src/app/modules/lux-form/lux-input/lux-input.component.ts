@@ -16,8 +16,9 @@ export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
   
   @Input() luxType = 'text';
   @Input() luxNumberAlignLeft = false;
+  @Input() luxHideCounterLabel = false;
+  @Input() luxLabelLongFormat = false;
   
-  _luxMaxLength = 0;
   @Input() set luxMaxLength(maxLength: number){
     this._luxMaxLength = maxLength;
     if (this.formControl) { //erst nach ngOnInit() vorhanden
@@ -34,7 +35,7 @@ export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
   @ViewChild('input', { read: ElementRef }) inputElement: ElementRef;
 
   counterLabel = '';
-  @Input() luxHideCounterLabel = false;
+  _luxMaxLength = 0;
 
   constructor(
     @Optional() controlContainer: ControlContainer,

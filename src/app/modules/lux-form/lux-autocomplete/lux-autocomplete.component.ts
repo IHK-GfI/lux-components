@@ -46,7 +46,8 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   @Input() luxPickValue: (selected: any) => any;
   @Input() luxFilterFn: (filterTerm: string, label: string, option: any) => boolean;
   @Input() luxPanelWidth: string | number | null = null;
-
+  @Input() luxLabelLongFormat = false;
+  
   @Output() luxValueChange: EventEmitter<any> = new EventEmitter();
   @Output() luxOptionSelected: EventEmitter<any> = new EventEmitter();
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();

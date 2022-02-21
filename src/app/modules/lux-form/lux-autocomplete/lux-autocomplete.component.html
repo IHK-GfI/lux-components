@@ -1,4 +1,4 @@
-<lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" *ngIf="formGroup">
+<lux-form-control [luxFormComponent]="this"  [luxLabelLongFormat]="luxLabelLongFormat" [formGroup]="formGroup" *ngIf="formGroup">
   <div class="lux-input-row">
     <span class="lux-input-prefix-container" fxFlex="auto" matPrefix *ngIf="inputPrefix">
       <ng-content select="lux-input-prefix"></ng-content>
