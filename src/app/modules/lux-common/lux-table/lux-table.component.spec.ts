@@ -2,7 +2,7 @@
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 
 import { LuxTableComponent } from './lux-table.component';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injectable, OnDestroy, OnInit } from "@angular/core";
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { ILuxTableHttpDao } from './lux-table-http/lux-table-http-dao.interface';
@@ -1274,7 +1274,7 @@ class TestHttpDao implements ILuxTableHttpDao {
   }
 }
 
-// TODO: Add Angular decorator.
+@Injectable()
 class MockMediaObserverService implements OnDestroy {
   mediaQueryChanged: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
