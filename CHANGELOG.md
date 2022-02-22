@@ -1,6 +1,7 @@
 # Version 11.11.0
 ## New
-- **lux-file-upload**: Neue File-Upload-Komponente [Issue xxx](https://github.com/IHK-GfI/lux-components/issues/xxx)
+- **allgemein**: Zeilenumbruch im Label der Formcontrols zulassen. [Issue 173](https://github.com/IHK-GfI/lux-components/issues/173)
+- **lux-file-upload**: Neue File-Upload-Komponente [Issue 172](https://github.com/IHK-GfI/lux-components/issues/172)
 
 ## Bug Fixes
 - **lux-stepper**: Es kann nicht über den Weiter-Button navigiert werden, wenn mehrere Schritte nachträglich hinzugefügt wurden. [Issue 167](https://github.com/IHK-GfI/lux-components/issues/167)
