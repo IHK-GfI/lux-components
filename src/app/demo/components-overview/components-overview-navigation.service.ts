@@ -92,6 +92,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
       moduleName: 'form'
     },
     { onclick: () => this.goTo('file-list'), icon: 'fas fa-cloud-upload-alt', label: 'File-List', moduleName: 'form' },
+    { onclick: () => this.goTo('file-upload'), icon: 'fas fa-cloud-upload-alt', label: 'File-Upload', moduleName: 'form' },
     { onclick: () => this.goTo('ripple'), icon: 'fas fa-water', label: 'Ripple', moduleName: 'directive' },
     {
       onclick: () => this.goTo('badge-notification'),

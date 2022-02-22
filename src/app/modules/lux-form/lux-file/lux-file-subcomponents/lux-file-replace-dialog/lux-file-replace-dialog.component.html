@@ -1,0 +1,59 @@
+<lux-dialog-structure>
+  <lux-dialog-title class="file-upload-dialog-title-container file-replace-dialog-title-container">
+    <div class="file-upload-dialog-close-button-container file-replace-dialog-close-button-container">
+      <lux-button
+        luxAriaLabel="Schließen"
+        i18n-luxAriaLabel="@@luxc.file.upload.dialog.close.btn.arialabel"
+        luxTagId="file-replace-dialog-close-button"
+        luxIconName="close"
+        class="file-upload-dialog-close-button file-replace-dialog-close-button"
+        (luxClicked)="luxDialogRef.closeDialog()"
+      ></lux-button>
+    </div>
+    <div
+      *ngIf="luxDialogRef.data.multiple"
+      class="file-upload-dialog-title file-replace-dialog-title"
+      i18n="@@luxc.file.replace.dialog.title.multiple"
+    >
+      Wollen Sie fortfahren und die Dateien mit gleichen Namen ersetzen?
+    </div>
+    <div
+      *ngIf="!luxDialogRef.data.multiple"
+      class="file-upload-dialog-title file-replace-dialog-title"
+      i18n="@@luxc.file.replace.dialog.title"
+    >
+      Wollen Sie fortfahren und die Datei ersetzen?
+    </div>
+  </lux-dialog-title>
+  <lux-dialog-content class="file-upload-dialog-content-container file-replace-dialog-content-container">
+    <p
+      *ngIf="luxDialogRef.data.multiple"
+      class="file-upload-dialog-content-text file-replace-dialog-content-text"
+      i18n="@@luxc.file.replace.dialog.content.multiple"
+    >
+      Wenn Sie Dateien mit gleichen Namen hochladen, werden diese ersetzt.
+    </p>
+    <p
+      *ngIf="!luxDialogRef.data.multiple"
+      class="file-upload-dialog-content-text file-replace-dialog-content-text"
+      i18n="@@luxc.file.replace.dialog.content"
+    >
+      Wenn Sie eine neue Datei auswählen, wird die vorhandene Datei ersetzt.
+    </p>
+  </lux-dialog-content>
+  <lux-dialog-actions fxLayout="row wrap" fxLayoutGap="20px">
+    <lux-button
+      luxLabel="Abbrechen"
+      i18n-luxLabel="@@luxc.file.replace.dialog.cancel.lbl"
+      [luxRaised]="true"
+      (luxClicked)="luxDialogRef.closeDialog(false)"
+    ></lux-button>
+    <lux-button
+      luxLabel="Ersetzen"
+      i18n-luxLabel="@@luxc.file.replace.dialog.replace.lbl"
+      luxColor="primary"
+      [luxRaised]="true"
+      (luxClicked)="luxDialogRef.closeDialog(true)"
+    ></lux-button>
+  </lux-dialog-actions>
+</lux-dialog-structure>
