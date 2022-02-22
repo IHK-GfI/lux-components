@@ -17,7 +17,6 @@ export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
   @Input() luxType = 'text';
   @Input() luxNumberAlignLeft = false;
   @Input() luxHideCounterLabel = false;
-  @Input() luxLabelLongFormat = false;
   
   @Input() set luxMaxLength(maxLength: number){
     this._luxMaxLength = maxLength;

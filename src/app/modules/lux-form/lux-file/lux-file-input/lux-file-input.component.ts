@@ -30,7 +30,6 @@ export class LuxFileInputComponent extends LuxFormFileBase {
 
   @Input() luxPlaceholder = '';
   @Input() luxClearOnError = true;
-  @Input() luxLabelLongFormat = false;
 
   constructor(
     @Optional() controlContainer: ControlContainer,

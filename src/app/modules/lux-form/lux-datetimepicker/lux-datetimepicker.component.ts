@@ -57,7 +57,6 @@ export class LuxDateTimePickerComponent extends LuxFormInputBaseClass implements
   @Input() luxCustomFilter: LuxDateFilterFn = null;
   @Input() luxMaxDate: string = null;
   @Input() luxMinDate: string = null;
-  @Input() luxLabelLongFormat = false;
 
   dateTimeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     let result = null;

@@ -29,7 +29,6 @@ export class LuxRadioComponent extends LuxFormSelectableBase implements OnDestro
   @HostBinding('class.lux-pb-3') pb3 = true;
   @Input() luxGroupName = '';
   @Input() luxOrientationVertical = true;
-  @Input() luxLabelLongFormat = false;
   
   private mediaSubscription$: Subscription;
 

@@ -13,7 +13,8 @@ export class LookupComboboxExampleComponent extends LookupExampleComponent imple
   multiValue;
   entryBlockSize = 25;
   bLuxWithEmptyEntry = true;
-
+  labelLongFormat = false;
+  
   @ViewChildren(LuxLookupComboboxComponent) lookupComboboxCmp: QueryList<LuxLookupComboboxComponent>;
 
   constructor(lookupHandler: LuxLookupHandlerService, fb: FormBuilder) {

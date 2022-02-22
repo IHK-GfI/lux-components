@@ -22,7 +22,7 @@ export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnIni
     return this._luxMaxLength;
   };
   @Input() luxHideCounterLabel = false;
-  @Input() luxLabelLongFormat = false;
+
   _luxMaxLength = 0;
   counterLabel = '';
   constructor(

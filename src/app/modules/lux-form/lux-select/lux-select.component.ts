@@ -31,7 +31,6 @@ export class LuxSelectComponent extends LuxFormSelectableBase {
   @Input() luxPlaceholder: string;
   @Input() luxMultiple = false;
   @Input() luxTagId: string;
-  @Input() luxLabelLongFormat = false;
 
   displayedViewValue: string;
 

@@ -62,7 +62,6 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
   @Input() luxCustomFilter: any = undefined;
   @Input() luxMaxDate: string = undefined;
   @Input() luxMinDate: string = undefined;
-  @Input() luxLabelLongFormat = false;
   
   @ViewChild(MatDatepicker) matDatepicker: MatDatepicker<any>;
   @ViewChild('datepickerInput', { read: ElementRef }) datepickerInput: ElementRef;
