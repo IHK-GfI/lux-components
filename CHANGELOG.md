@@ -1,5 +1,6 @@
 # Version 11.11.0
 ## New
+- **allgemein**: Zeilenumbruch im Label der Formcontrols zulassen. [Issue 173](https://github.com/IHK-GfI/lux-components/issues/173)
 - **lux-file-upload**: Neue File-Upload-Komponente [Issue 172](https://github.com/IHK-GfI/lux-components/issues/172)
 
 ## Bug Fixes

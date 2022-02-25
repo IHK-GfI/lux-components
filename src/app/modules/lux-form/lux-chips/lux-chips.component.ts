@@ -42,7 +42,8 @@ export class LuxChipsComponent implements OnDestroy {
   @Input() luxInputAllowed = false;
   @Input() luxNewChipGroup: LuxChipGroupComponent;
   @Input() luxMultiple = true;
-
+  @Input() luxLabelLongFormat = false;
+  
   @Output() luxChipAdded = new EventEmitter<string>();
 
   @ContentChildren(LuxChipComponent) luxChipComponents: QueryList<LuxChipComponent>;

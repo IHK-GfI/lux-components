@@ -45,6 +45,13 @@ $fontSizeSmall: 12px;
     > * {
       @include crop;
     }
+    &.lux-label-long-format {
+      > * {
+        white-space: normal;
+        text-overflow: unset;
+        word-wrap: break-word;
+      }
+    }
   }
 
   .lux-form-control-container {
@@ -69,12 +76,12 @@ $fontSizeSmall: 12px;
     }
 
     .lux-form-control-character-counter {
-    color: var(--lux-theme-dark-secondary-text) !important;
-      font-size: $fontSizeSmall; // IE11
-    font-size: var(--lux-theme-form-control-font-size-small);
-    text-align: end;
-    min-width: 40px;
-    margin-left: 2px;
+      color: var(--lux-theme-dark-secondary-text) !important;
+        font-size: $fontSizeSmall; // IE11
+      font-size: var(--lux-theme-form-control-font-size-small);
+      text-align: end;
+      min-width: 40px;
+      margin-left: 2px;
 
       &:only-child {
         width: 100%;

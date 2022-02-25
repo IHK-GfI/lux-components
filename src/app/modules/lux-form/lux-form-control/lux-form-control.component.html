@@ -12,7 +12,7 @@
   (focusout)="focusout()"
 >
   <!-- Container für das Label -->
-  <div class="lux-form-control-label">
+  <div class="lux-form-control-label" [ngClass]=" {'lux-label-long-format': luxLabelLongFormat }">
     <!-- Hier wird entweder das luxLabel oder das übergebene Tag heraus gerendert -->
     <div class="lux-label" *ngIf="!luxIgnoreDefaultLabel">
       <label

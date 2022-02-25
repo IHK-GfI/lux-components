@@ -71,7 +71,8 @@ export class SelectExampleComponent {
 
   form: FormGroup;
   log = logResult;
-
+  
+  labelLongFormat = false;
   // endregion
 
   // region Properties der Component

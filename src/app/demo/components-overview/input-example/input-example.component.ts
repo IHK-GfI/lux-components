@@ -49,7 +49,7 @@ export class InputExampleComponent {
   errorCallbackString = this.errorCallback + '';
   maxLength: number;
   hideCounterLabel = false;
-
+  labelLongFormat = false;
   // endregion
 
   constructor(private fb: FormBuilder) {

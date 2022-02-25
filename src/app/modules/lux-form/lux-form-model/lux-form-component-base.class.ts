@@ -61,7 +61,8 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
   @Input() luxHint: string;
   @Input() luxHintShowOnlyOnFocus: boolean;
   @Input() luxLabel: string;
-
+  @Input() luxLabelLongFormat = false;
+  
   @Input() luxControlBinding: string;
   @Input() luxErrorMessage: string;
   @Input() luxErrorCallback: (value, errors) => any = (value, errors) => undefined;
