@@ -2,6 +2,9 @@
 ## Bug Fixes
 - **lux-filter-form**: Binding-Fehler während der Initialisierung verhindern. [Issue 175](https://github.com/IHK-GfI/lux-components/issues/175)
 
+## New
+- **lux-chips**: Placeholder, Pfeilbutton und breite Vorschlagsliste ergänzt. [Issue 178](https://github.com/IHK-GfI/lux-components/issues/178)
+
 # Version 11.11.0
 ## New
 - **allgemein**: Zeilenumbruch im Label der Formcontrols zulassen. [Issue 173](https://github.com/IHK-GfI/lux-components/issues/173)

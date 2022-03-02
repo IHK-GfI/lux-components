@@ -10,6 +10,7 @@
         [luxDisabled]="disabled"
         [luxInputAllowed]="inputAllowed"
         [luxInputLabel]="inputLabel"
+        [luxPlaceholder]="placeholder"
         [luxOrientation]="chipOrientation"
         [luxMultiple]="multiple"
         [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
@@ -36,6 +37,7 @@
         [luxDisabled]="disabled"
         [luxInputAllowed]="inputAllowed"
         [luxInputLabel]="inputLabel"
+        [luxPlaceholder]="placeholder"
         [luxOrientation]="chipOrientation"
         [luxMultiple]="multiple"
         [luxNewChipGroup]="chipGroup"
@@ -87,6 +89,13 @@
         luxLabel="luxInputLabel"
         [(luxValue)]="inputLabel"
         luxHint="Über diese Property kann das Label für das Eingabefeld dieser Component gesetzt werden."
+      >
+      </lux-input>
+
+      <lux-input
+        luxLabel="luxPlaceholder"
+        luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
+        [(luxValue)]="placeholder"
       >
       </lux-input>
 

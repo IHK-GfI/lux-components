@@ -1,7 +1,9 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
+  ElementRef,
   EventEmitter,
   Input,
   OnDestroy,
@@ -24,7 +26,7 @@ let luxChipControlUID = 0;
   templateUrl: './lux-chips.component.html',
   styleUrls: ['./lux-chips.component.scss']
 })
-export class LuxChipsComponent implements OnDestroy {
+export class LuxChipsComponent implements AfterViewInit, OnDestroy {
   private readonly inputValueSubscription: Subscription = new Subscription();
   private readonly newChipSubscription: Subscription = new Subscription();
 
@@ -37,13 +39,15 @@ export class LuxChipsComponent implements OnDestroy {
   filteredOptions: string[] = [];
   inputValue$: Subject<string> = new Subject<string>();
   newChip$: Subject<any> = new Subject<any>();
+  canClose = false;
 
   @Input() luxOrientation: 'horizontal' | 'vertical' = 'horizontal';
   @Input() luxInputAllowed = false;
   @Input() luxNewChipGroup: LuxChipGroupComponent;
   @Input() luxMultiple = true;
   @Input() luxLabelLongFormat = false;
-  
+  @Input() luxPlaceholder = $localize`:@@luxc.chips.input.placeholder.lbl:eingeben oder auswählen`;
+
   @Output() luxChipAdded = new EventEmitter<string>();
 
   @ContentChildren(LuxChipComponent) luxChipComponents: QueryList<LuxChipComponent>;
@@ -52,6 +56,7 @@ export class LuxChipsComponent implements OnDestroy {
 
   @ViewChild('input', { read: MatAutocompleteTrigger }) matAutocompleteTrigger: MatAutocompleteTrigger;
   @ViewChild('auto', { read: MatAutocomplete }) matAutocomplete: MatAutocomplete;
+  @ViewChild('chipscontainerdiv') chipContainerDivRef: ElementRef;
 
   get luxDisabled(): boolean {
     return this._luxDisabled;
@@ -117,6 +122,13 @@ export class LuxChipsComponent implements OnDestroy {
         })
       )
       .subscribe();
+  }
+
+  ngAfterViewInit() {
+    if (this.matAutocompleteTrigger && this.chipContainerDivRef) {
+      this.matAutocompleteTrigger.connectedTo = { elementRef: this.chipContainerDivRef };
+      this.cdr.detectChanges();
+    }
   }
 
   ngOnDestroy() {
@@ -216,5 +228,31 @@ export class LuxChipsComponent implements OnDestroy {
     // Um einen ExpressionChangedAfterItHasBeenCheckedError im Attribute "attr.aria-expanded"
     // zu umgehen, wird hier manuell die Change Detection ausgeführt.
     this.cdr.detectChanges();
+
+    this.canClose = false;
+    setTimeout(() => {
+      // Workaround: Vorschlagsliste kann erst nach kurzer Verzögerung wieder geschlossen werden.
+      // Dieser Workaround ist nötig, da das Autocomplete-Panel in dem folgenden Fall sofort nach
+      // dem Öffnen wieder geschlossen wird.
+      //
+      // Fall: Keine Chips vorhanden und der Benutzer klickt auf die Pfeil-Action
+      // In diesem Fall wird das Autocomplete-Panel durch die Material-Komponente (focusin) geöffnet
+      // und durch die Pfeil-Action direkt wieder geschlossen. D.h. man kann das Autocomplete-Panel
+      // nicht immer schließen, wenn es bereits geöffnet ist, weil man nicht erkennen kann, ob das
+      // Autocomplete-Panel gerade erst geöffnet wurde (Panel darf nicht geschlossen werden) oder
+      // bereits zu einem früheren Zeitpunkt (Panel darf geschlossen werden). Um das Problem zu
+      // umgehen, wird hier ein Timeout in Verbindung mit dem canClose-Flag verwendet.
+      this.canClose = true;
+    }, 250);
+  }
+
+  onArrowIcon() {
+    if (this.matAutocompleteTrigger.panelOpen) {
+      if (this.matChips.length > 0 || this.canClose) {
+        this.matAutocompleteTrigger.closePanel();
+      }
+    } else {
+      this.matAutocompleteTrigger.openPanel();
+    }
   }
 }

@@ -29,6 +29,7 @@ export class ChipExampleComponent {
   disabled = false;
   inputAllowed = true;
   inputLabel = 'Neu';
+  placeholder = 'eingeben oder auswählen';
   chipOrientation = 'horizontal';
   autocomplete = true;
   autocompleteOptions = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3'];

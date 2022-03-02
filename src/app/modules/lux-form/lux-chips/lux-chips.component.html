@@ -1,4 +1,4 @@
-<div class="lux-chips" fxLayout="column">
+<div class="lux-chips" fxLayout="column" #chipscontainerdiv>
   <lux-form-control
     [luxScalableHeight]="true"
     [luxFormComponent]="this"
@@ -79,22 +79,27 @@
       </ng-container>
 
       <ng-container *ngIf="luxInputAllowed">
-        <input
-          [id]="uid"
-          [matChipInputFor]="chips"
-          [matChipInputAddOnBlur]="true"
-          [matAutocomplete]="auto"
-          [attr.aria-labelledby]="uid + '-label'"
-          [disabled]="luxDisabled"
-          (matChipInputTokenEnd)="inputAdd(input)"
-          (keyup)="inputChanged(input.value)"
-          (click)="onAutocompleteClick()"
-          type="text"
-          fxFlex="1 1 auto"
-          #input
-        />
+        <div class="lux-chips-input-container">
+          <input
+            [id]="uid"
+            [placeholder]="luxPlaceholder"
+            [matChipInputFor]="chips"
+            [matChipInputAddOnBlur]="true"
+            [matAutocomplete]="auto"
+            [attr.aria-labelledby]="uid + '-label'"
+            [disabled]="luxDisabled"
+            (matChipInputTokenEnd)="inputAdd(input)"
+            (keyup)="inputChanged(input.value)"
+            (click)="onAutocompleteClick()"
+            type="text"
+            fxFlex="1 1 auto"
+            #input
+          >
+          <i aria-hidden="true" class="fas fa-caret-down lux-chips-autocomplete-icon"
+             [ngClass]="{'lux-disabled': luxDisabled}" (click)="onArrowIcon()"></i>
+        </div>
         <mat-autocomplete
-          [class]="'lux-autocomplete-panel'"
+          [class]="'lux-chips-autocomplete-panel'"
           (optionSelected)="autoCompleteAdd(input, $event.option.value)"
           (opened)="onAutoCompleteOpened()"
           #auto="matAutocomplete"
