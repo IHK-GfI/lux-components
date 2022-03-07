@@ -5,25 +5,26 @@ import { delay } from 'rxjs/operators';
 
 export class TestHttpDao implements ILuxTableHttpDao {
   dataSourceFix: any[] = [
-    { name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24) },
-    { name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22) },
-    { name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21) },
-    { name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18) },
-    { name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24) },
-    { name: 'Carbon', symbol: 'C', date: new Date(2018, 11, 24) },
-    { name: 'Nitrogen', symbol: 'N', date: new Date(2018, 10, 24) },
-    { name: 'Oxygen', symbol: 'O', date: new Date(2018, 11, 24) },
-    { name: 'Fluorine', symbol: 'F', date: new Date(2018, 11, 24) },
-    { name: 'Neon', symbol: 'Ne', date: new Date(2018, 10, 24) },
-    { name: 'Sodium', symbol: 'Na', date: new Date(2018, 11, 24) },
-    { name: 'Magnesium', symbol: 'Mg', date: new Date(2018, 9, 24) },
-    { name: 'Aluminum', symbol: 'Al', date: new Date(2018, 11, 24) },
-    { name: 'Silicon', symbol: 'Si', date: new Date(2018, 9, 24) },
-    { name: 'Phosphorus', symbol: 'P', date: new Date(2018, 11, 24) },
-    { name: 'Sulfur', symbol: 'S', date: new Date(2018, 9, 24) }
+    { name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24), disabled: false },
+    { name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22), disabled: false },
+    { name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21), disabled: false },
+    { name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18), disabled: false },
+    { name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24), disabled: false },
+    { name: 'Carbon', symbol: 'C', date: new Date(2018, 11, 24), disabled: false },
+    { name: 'Nitrogen', symbol: 'N', date: new Date(2018, 10, 24), disabled: false },
+    { name: 'Oxygen', symbol: 'O', date: new Date(2018, 11, 24), disabled: false },
+    { name: 'Fluorine', symbol: 'F', date: new Date(2018, 11, 24), disabled: false },
+    { name: 'Neon', symbol: 'Ne', date: new Date(2018, 10, 24), disabled: false },
+    { name: 'Sodium', symbol: 'Na', date: new Date(2018, 11, 24), disabled: false },
+    { name: 'Magnesium', symbol: 'Mg', date: new Date(2018, 9, 24), disabled: false },
+    { name: 'Aluminum', symbol: 'Al', date: new Date(2018, 11, 24), disabled: false },
+    { name: 'Silicon', symbol: 'Si', date: new Date(2018, 9, 24), disabled: false },
+    { name: 'Phosphorus', symbol: 'P', date: new Date(2018, 11, 24), disabled: false },
+    { name: 'Sulfur', symbol: 'S', date: new Date(2018, 9, 24), disabled: false }
   ];
 
   filter = '';
+  data = [];
 
   constructor(private logger: LuxConsoleService) {}
 
@@ -61,6 +62,7 @@ export class TestHttpDao implements ILuxTableHttpDao {
     const end = start + conf.pageSize * 1;
     const result = tempDataSourceFix.slice(start, end);
     this.logger.log('gemockter http-Request (result):', result);
+    this.data = result;
     this.filter = conf.filter;
     return of({ items: result, totalCount: tempDataSourceFix.length }).pipe(delay(1000));
   }
