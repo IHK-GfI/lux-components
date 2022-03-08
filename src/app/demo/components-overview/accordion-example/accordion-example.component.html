@@ -15,6 +15,8 @@
     >
       <!-- Mehrere Panels mit ihren Input-/Output-Properties -->
       <lux-panel
+        *ngFor="let panelConfig of panelConfigArr"
+        [luxExpanded]="expanded"
         [luxHideToggle]="hideToggle1Panel"
         [luxDisabled]="disabled1Panel"
         [luxExpandedHeaderHeight]="expandedHeaderHeight1Panel"
@@ -23,14 +25,15 @@
         (luxClosed)="log(showOutputEvents, 'luxClosed', $event)"
         (luxExpandedChange)="log(showOutputEvents, 'luxExpandedChange', $event)"
       >
-        <lux-panel-header-title>Panel #1</lux-panel-header-title>
-        <lux-panel-header-description>Beschreibung Panel #1</lux-panel-header-description>
+        <lux-panel-header-title>{{ panelConfig.title }}</lux-panel-header-title>
+        <lux-panel-header-description>{{ panelConfig.description }}</lux-panel-header-description>
         <lux-panel-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </lux-panel-content>
       </lux-panel>
       <lux-panel
+        [luxExpanded]="expanded"
         [luxHideToggle]="hideToggle2Panel"
         [luxDisabled]="disabled2Panel"
         [luxExpandedHeaderHeight]="expandedHeaderHeight2Panel"
@@ -39,8 +42,8 @@
         (luxClosed)="log(showOutputEvents, 'luxClosed', $event)"
         (luxExpandedChange)="log(showOutputEvents, 'luxExpandedChange', $event)"
       >
-        <lux-panel-header-title>Panel #2</lux-panel-header-title>
-        <lux-panel-header-description>Beschreibung Panel #2</lux-panel-header-description>
+        <lux-panel-header-title>Panel #{{ panelConfigArr?.length + 1 }}</lux-panel-header-title>
+        <lux-panel-header-description>Beschreibung Panel #{{ panelConfigArr?.length + 1 }}</lux-panel-header-description>
         <lux-panel-content>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
@@ -60,6 +63,8 @@
       <lux-form-hint>
         Diese Property bestimmt, ob mehrere Panels gleichzeitig aufklappbar sind oder nicht.
       </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle luxLabel="Alle aufklappen" class="lux-highlight-section" [(luxChecked)]="expanded" [luxDisabled]="!multiMode">
     </lux-toggle>
     <lux-toggle luxLabel="luxDisabled" class="lux-highlight-section" [(luxChecked)]="disabled">
       <lux-form-hint>
@@ -100,7 +105,7 @@
   <example-base-advanced-options>
     <div fxLayout="row wrap" fxLayoutAlign="space-between start">
       <div fxLayout="column" fxFlex="1 1 auto">
-        <h3>Panel #1</h3>
+        <h3>Panel #1-3</h3>
         <lux-toggle luxLabel="luxDisabled" class="lux-highlight-section" [(luxChecked)]="disabled1Panel">
           <lux-form-hint>
             Diese Property deaktiviert das Panel.
@@ -125,7 +130,7 @@
         </div>
       </div>
       <div fxLayout="column" fxFlex="1 1 auto">
-        <h3>Panel #2</h3>
+        <h3>Panel #4</h3>
         <lux-toggle luxLabel="luxDisabled" class="lux-highlight-section" [(luxChecked)]="disabled2Panel">
           <lux-form-hint>
             Diese Property deaktiviert das Panel.
