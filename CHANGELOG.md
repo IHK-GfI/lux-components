@@ -6,6 +6,7 @@
   - Der aktive Schritt im Stepper ist nicht anklickbar.
   - Die Hover-Effekte der Navigation wurden geändert.
 - **lux-accordion**: Mit *ngFor-erzeugte Panels mit luxExpanded="true" werfen keinen Fehler mehr. [Issue 180](https://github.com/IHK-GfI/lux-components/issues/180)
+- **lux-table**: Feature-Request: Das multi-select in lux-tables soll pro Zeile aktiviert/deaktiviert werden können. [Issue 158](https://github.com/IHK-GfI/lux-components/issues/158)
 
 ## Bug Fixes
 - **lux-filter-form**: Binding-Fehler während der Initialisierung verhindern. [Issue 175](https://github.com/IHK-GfI/lux-components/issues/175)
