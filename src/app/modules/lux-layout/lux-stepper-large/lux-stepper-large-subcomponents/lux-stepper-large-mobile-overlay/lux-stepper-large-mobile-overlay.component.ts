@@ -44,7 +44,9 @@ export class LuxStepperLargeMobileOverlayComponent implements OnInit, AfterViewI
   }
 
   onNavLink(stepIndex: number) {
-    this.overlayRef.close();
-    this.stepperComponent.onNavLink(stepIndex);
+    if (this.stepperComponent.luxCurrentStepNumber !== stepIndex) {
+      this.overlayRef.close();
+      this.stepperComponent.onNavLink(stepIndex);
+    }
   }
 }

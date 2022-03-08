@@ -14,6 +14,7 @@ export class StepperLargeExampleComponent {
   @ViewChild(LuxStepperLargeComponent) stepper: LuxStepperLargeComponent;
 
   allowed = false;
+  stepValidationActive = true;
   currentStepIndex = 0;
   options: any[] = ['100%', '800px', '1000px', '1200px'];
   maxWidth = this.options[0];

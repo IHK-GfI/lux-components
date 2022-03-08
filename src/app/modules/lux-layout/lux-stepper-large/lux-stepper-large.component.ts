@@ -22,6 +22,7 @@ import { LuxStepperLargeStepComponent } from './lux-stepper-large-subcomponents/
 export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDestroy {
   @ContentChildren(LuxStepperLargeStepComponent) steps: QueryList<ILuxStepperLargeStep>;
 
+  @Input() luxStepValidationActive = true;
   @Input() luxPrevButtonConfig = LUX_STEPPER_LARGE_DEFAULT_PREV_BTN_CONF;
   @Input() luxNextButtonConfig = LUX_STEPPER_LARGE_DEFAULT_NEXT_BTN_CONF;
   @Input() luxFinButtonConfig = LUX_STEPPER_LARGE_DEFAULT_FIN_BTN_CONF;
@@ -107,7 +108,8 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     const event: LuxStepperLargeClickEvent = {
       stepper: this,
       newIndex: newIndex,
-      newStep: this.steps.get(newIndex)
+      newStep: this.steps.get(newIndex),
+      source: 'prev_button'
     };
     const vetoPromise = this.steps.get(this.luxCurrentStepNumber).luxVetoFn(event);
 
@@ -126,7 +128,8 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     const event: LuxStepperLargeClickEvent = {
       stepper: this,
       newIndex: newIndex,
-      newStep: this.steps.get(newIndex)
+      newStep: this.steps.get(newIndex),
+      source: 'next_button'
     };
     const vetoPromise = this.steps.get(this.luxCurrentStepNumber).luxVetoFn(event);
 
@@ -143,23 +146,28 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     const event: LuxStepperLargeClickEvent = {
       stepper: this,
       newIndex: this.luxCurrentStepNumber,
-      newStep: this.steps.get(this.luxCurrentStepNumber)
+      newStep: this.steps.get(this.luxCurrentStepNumber),
+      source: 'fin_button'
     };
     const vetoPromise = this.steps.get(this.luxCurrentStepNumber).luxVetoFn(event);
 
     vetoPromise
       .then((veto) => {
         if (veto === LuxVetoState.navigationAccepted) {
-          // Prüfen, ob es einen Step gibt, der noch nicht abgeschlossen ist.
-          const index = this.steps.toArray().findIndex((step) => !step.luxCompleted && !step.luxDisabled);
-          if (index === -1) {
-            // Alle Steps signalisieren (luxCompleted = true) das sie valide sind.
-            // Der Stepper kann beendet werden.
-            this.finishStepper();
+          if (this.luxStepValidationActive) {
+            // Prüfen, ob es einen Step gibt, der noch nicht abgeschlossen ist.
+            const index = this.steps.toArray().findIndex((step) => !step.luxCompleted && !step.luxDisabled);
+            if (index === -1) {
+              // Alle Steps signalisieren (luxCompleted = true) das sie valide sind.
+              // Der Stepper kann beendet werden.
+              this.finishStepper();
+            } else {
+              // Mindestens ein Step (luxCompleted = false) ist noch nicht valide.
+              // Springe zum ersten nicht validen Schritt.
+              this.luxCurrentStepNumber = index;
+            }
           } else {
-            // Mindestens ein Step (luxCompleted = false) ist noch nicht valide.
-            // Springe zum ersten nicht validen Schritt.
-            this.luxCurrentStepNumber = index;
+            this.finishStepper();
           }
         }
       })
@@ -193,7 +201,7 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
   }
 
   onNavLink(stepIndex: number) {
-    const event: LuxStepperLargeClickEvent = { stepper: this, newIndex: stepIndex, newStep: this.steps.get(stepIndex) };
+    const event: LuxStepperLargeClickEvent = { stepper: this, newIndex: stepIndex, newStep: this.steps.get(stepIndex), source: 'nav' };
     const vetoPromise = this.steps.get(this.luxCurrentStepNumber).luxVetoFn(event);
 
     vetoPromise
@@ -221,7 +229,7 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     }
 
     if (this.cursorPos > 0) {
-      this.cursorPos = this.cursorPos - 1;
+      this.cursorPos = this.getPrevIndex(this.cursorPos);
       this.liveAnnouncer.announce('Schritt' + (this.cursorPos + 1) + ' ' + this.steps.get(this.cursorPos).luxTitle);
     }
   }
@@ -231,15 +239,8 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
       this.cursorPos = this.luxCurrentStepNumber;
     }
 
-    const lastTouchedStepIndex =
-      this.steps.length -
-      1 -
-      this.steps
-        .toArray()
-        .reverse()
-        .findIndex((step) => step.luxTouched);
-    if (this.cursorPos < lastTouchedStepIndex) {
-      this.cursorPos = this.cursorPos + 1;
+    if (this.cursorPos < this.steps.length) {
+      this.cursorPos = this.getNextIndex(this.cursorPos);
       this.liveAnnouncer.announce('Schritt' + (this.cursorPos + 1) + ' ' + this.steps.get(this.cursorPos).luxTitle);
     }
   }
@@ -250,6 +251,7 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     if (newStepNumber >= 0 && newStepNumber < (this.steps ? this.steps.length : 0) && this.steps && this.steps.get(newStepNumber)) {
       this.steps.get(newStepNumber).luxTouched = true;
       this.luxCurrentStepNumber = newStepNumber;
+      this.liveAnnouncer.announce('Schritt' + (newStepNumber + 1) + ' ' + this.steps.get(newStepNumber).luxTitle + ' aktiv.');
     }
   }
 
