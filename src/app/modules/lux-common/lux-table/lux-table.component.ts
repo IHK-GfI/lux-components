@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
-  AfterViewInit, ChangeDetectorRef,
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   DoCheck,
@@ -45,7 +46,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   private _luxShowFilter = false;
   private _dataSource: LuxTableDataSource<any> = new LuxTableDataSource<any>([]);
   private _luxHttpDAO: ILuxTableHttpDao;
-  private _luxPickValue = o => o;
+  private _luxPickValue = (o) => o;
   private _luxCompareWith = (o1, o2) => o1 === o2;
 
   private previousWidth: number;
@@ -82,6 +83,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   @Input() luxAutoPaginate = true;
   @Input() luxHideBorders = false;
   @Input() luxMultiSelectOnlyCheckboxClick = false;
+  @Input() luxMultiSelectDisabledProperty = undefined;
   @Input() luxPagerDisabled = false;
   @Input() luxPagerTooltip = '';
 
@@ -380,6 +382,10 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
    * @param checkboxEvent
    */
   changeSelectedEntry(entry: any, checkboxEvent = false) {
+    if (this.luxMultiSelectDisabledProperty && entry[this.luxMultiSelectDisabledProperty] === true) {
+      return;
+    }
+
     if ((!this.luxMultiSelectOnlyCheckboxClick && !checkboxEvent) || (this.luxMultiSelectOnlyCheckboxClick && checkboxEvent)) {
       if (this.luxMultiSelect) {
         if (this.luxSelected.has(entry)) {
@@ -400,7 +406,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
 
       this.emitSelectedEvent();
       this.dataSource.selectedEntries = this.luxSelected;
-      this.allSelected                = this.checkFilteredAllSelected();
+      this.allSelected = this.checkFilteredAllSelected();
     }
   }
 
@@ -412,9 +418,17 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   changeSelectedEntries() {
     if (this.luxMultiSelect && !this.luxHttpDAO) {
       if (this.checkFilteredAllSelected()) {
-        this.dataSource.filteredData.forEach((dataEntry: any) => this.deleteSelected(dataEntry));
+        this.dataSource.filteredData.forEach((dataEntry: any) => {
+          if (!this.isEntryDisabled(dataEntry)) {
+            this.deleteSelected(dataEntry);
+          }
+        });
       } else {
-        this.dataSource.filteredData.forEach((dataEntry: any) => this.addSelected(dataEntry));
+        this.dataSource.filteredData.forEach((dataEntry: any) => {
+          if (!this.isEntryDisabled(dataEntry)) {
+            this.addSelected(dataEntry);
+          }
+        });
       }
       this.emitSelectedEvent();
       this.dataSource.selectedEntries = this.luxSelected;
@@ -432,7 +446,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
     } else {
       // Prüfen ob die gefilterten Daten selected sind
       this.dataSource.filteredData.forEach((dataEntry: any) => {
-        if (!this.luxSelected.has(dataEntry)) {
+        if (!this.isEntryDisabled(dataEntry) && !this.luxSelected.has(dataEntry)) {
           result = false;
         }
       });
@@ -796,6 +810,10 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
 
       this.luxSelectedChange.next(newData);
     }
+  }
+
+  private isEntryDisabled(dataEntry: any) {
+    return this.luxMultiSelectDisabledProperty && dataEntry[this.luxMultiSelectDisabledProperty] === true;
   }
 
   addSelected(entry: any) {
