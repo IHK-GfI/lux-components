@@ -319,7 +319,14 @@
         <source>Neu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-chips/lux-chips.component.ts</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.chips.input.placeholder.lbl" datatype="html">
+        <source>eingeben oder auswählen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-chips/lux-chips.component.ts</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datepicker.error_message.min" datatype="html">

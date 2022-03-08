@@ -48,8 +48,8 @@
       [ngClass]="{
         'lux-touched': step.luxTouched,
         'lux-active': i === luxCurrentStepNumber,
-        'lux-disabled': step.luxDisabled || (i !== luxCurrentStepNumber && (!step.luxTouched || !step.luxCompleted)),
-        'lux-completed': i !== luxCurrentStepNumber && step.luxCompleted && step.luxTouched
+        'lux-disabled': step.luxDisabled,
+        'lux-completed': step.luxCompleted
       }"
     >
       <div class="lux-stepper-large-nav-item-number-container">
@@ -93,7 +93,7 @@
     [luxIconAlignWithLabel]="luxNextButtonConfig.alignIconWithLabel"
     [luxColor]="luxNextButtonConfig.color"
     [luxRaised]="true"
-    [luxDisabled]="!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber).luxCompleted"
+    [luxDisabled]="luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber).luxCompleted)"
     (luxClicked)="onNextStep()"
     *ngIf="!isLastStep"
   ></lux-button>
@@ -105,7 +105,7 @@
     [luxIconAlignWithLabel]="luxFinButtonConfig.alignIconWithLabel"
     [luxColor]="luxFinButtonConfig.color"
     [luxRaised]="true"
-    [luxDisabled]="!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber).luxCompleted || isFinished"
+    [luxDisabled]="luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber).luxCompleted || isFinished)"
     (luxClicked)="onFinStep()"
     *ngIf="isLastStep"
   ></lux-button>

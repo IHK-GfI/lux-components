@@ -27,6 +27,7 @@ export class LuxFormControlComponent {
   @Input() luxIgnoreDefaultLabel = false;
   @Input() luxCounterLabel = ''; 
   @Input() luxHideCounterLabel = false;
+  @Input() luxLabelLongFormat = false;
 
   /**
    * Dient dazu, eine Component beliebig Hoch werden zu lassen (z.B. Textarea oder Radio).

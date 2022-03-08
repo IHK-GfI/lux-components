@@ -1,5 +1,19 @@
+# Version 11.12.0
+## New
+- **lux-chips**: Placeholder, Pfeilbutton und breite Vorschlagsliste ergänzt. [Issue 178](https://github.com/IHK-GfI/lux-components/issues/178)
+- **lux-stepper-large**: Verbesserungspaket 1 [Issue 180](https://github.com/IHK-GfI/lux-components/issues/180)
+  - Es wurde die Property "luxStepValidationActive" eingeführt. Über diese neue Property kann die Validierung der Schritte (de-)aktiviert werden. Wenn die Validierung deaktiviert wird, dann ist der Weiter-Button immer aktiv und nur die Veto-Funktionen können das Navigieren zum nächsten Schritt verhindern.
+  - Der aktive Schritt im Stepper ist nicht anklickbar.
+  - Die Hover-Effekte der Navigation wurden geändert.
+- **lux-accordion**: Mit *ngFor-erzeugte Panels mit luxExpanded="true" werfen keinen Fehler mehr. [Issue 180](https://github.com/IHK-GfI/lux-components/issues/180)
+- **lux-table**: Feature-Request: Das multi-select in lux-tables soll pro Zeile aktiviert/deaktiviert werden können. [Issue 158](https://github.com/IHK-GfI/lux-components/issues/158)
+
+## Bug Fixes
+- **lux-filter-form**: Binding-Fehler während der Initialisierung verhindern. [Issue 175](https://github.com/IHK-GfI/lux-components/issues/175)
+
 # Version 11.11.0
 ## New
+- **allgemein**: Zeilenumbruch im Label der Formcontrols zulassen. [Issue 173](https://github.com/IHK-GfI/lux-components/issues/173)
 - **lux-file-upload**: Neue File-Upload-Komponente [Issue 172](https://github.com/IHK-GfI/lux-components/issues/172)
 
 ## Bug Fixes

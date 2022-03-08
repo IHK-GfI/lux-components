@@ -48,7 +48,8 @@ export class DatepickerExampleComponent {
   maxDate: string;
   startView = 'month';
   touchUi = false;
-
+  labelLongFormat = false;
+  
   // endregion
 
   customFilterString = this.customFilter + '';

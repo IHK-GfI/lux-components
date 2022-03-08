@@ -52,12 +52,12 @@
 <div
   class="lux-label"
   ngClass.gt-sm="no-filter-active" ngClass.lt-md="no-filter-active-sm"
-  *ngIf="this.filterItems.length === 0 && !luxFilterExpanded && luxShowChips"
+  *ngIf="this.filterItems.length === 0 && !luxFilterExpanded && luxShowChips && initComplete"
 >
   {{ luxDefaultFilterMessage }}
 </div>
 <lux-chips
-  *ngIf="this.filterItems.length > 0 && !luxFilterExpanded && luxShowChips"
+  *ngIf="this.filterItems.length > 0 && !luxFilterExpanded && luxShowChips && initComplete"
   ngClass.lt-md="filterItem-sm"
   class="filterItem"
 >

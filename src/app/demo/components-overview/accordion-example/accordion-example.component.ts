@@ -23,7 +23,7 @@ export class AccordionExampleComponent {
   hideToggle = false;
   hideToggle1Panel = false;
   hideToggle2Panel = false;
-  multiMode = true;
+  expanded = true;
   expandedHeaderHeight = '64px';
   collapsedHeaderHeight = '64px';
   expandedHeaderHeight1Panel = '64px';
@@ -31,6 +31,24 @@ export class AccordionExampleComponent {
   expandedHeaderHeight2Panel = '64px';
   collapsedHeaderHeight2Panel = '64px';
   displayMode = 'default';
+  panelConfigArr: { title: string; description: string }[] = [
+    { title: 'Panel #1', description: 'Beschreibung Panel #1' },
+    { title: 'Panel #2', description: 'Beschreibung Panel #2' },
+  ];
+
+  _multiMode = true;
+
+  get multiMode() {
+    return this._multiMode;
+  }
+
+  set multiMode(multiMode: boolean) {
+    this._multiMode = multiMode;
+
+    if (multiMode === false) {
+      this.expanded = false;
+    }
+  }
 
   // endregion
 

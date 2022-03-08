@@ -40,8 +40,8 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
     { label: 'Multi 3', value: 3 }
   ];
 
-  initFilter: any = { input: 'Lorem ipsum' };
-  currentFilter: any = this.initFilter;
+  initFilter: any = {};
+  currentFilter: any = {};
 
   expanded = false;
   showFilterChips = true;
@@ -133,6 +133,12 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
         this.showFilterChips = true;
       }
     });
+
+    // Hier wird die setTimeout-Methode verwendet, um einen Backend-Call zu simulieren.
+    setTimeout(() => {
+      this.initFilter    = { input: "Lorem ipsum" };
+      this.currentFilter = this.initFilter;
+    }, 100);
   }
 
   ngOnDestroy(): void {

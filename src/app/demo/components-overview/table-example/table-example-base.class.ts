@@ -43,6 +43,8 @@ export abstract class TableExampleBaseClass {
   columnWidthOption = this.columnWidthOptions[1].value;
   multiSelect = true;
   multiSelectOnlyCheckboxClick = true;
+  multiSelectDisabledPropertyActive = false;
+  multiSelectDisabledProperty = 'disabled';
 
   calculateProportions = false;
   minWidthPx = undefined;
@@ -57,6 +59,8 @@ export abstract class TableExampleBaseClass {
   columnConfigs = [this.nameConfig, this.symbolConfig, this.dateConfig];
 
   // endregion
+
+  abstract getDataArr();
 
   pickFn(o) {
     return o.name;
@@ -76,11 +80,11 @@ export abstract class TableExampleBaseClass {
 
   preselect() {
     this.selected = [
-      { name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24) },
-      { name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22) },
-      { name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21) },
-      { name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18) },
-      { name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24) }
+      { name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24), disabled: false },
+      { name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22), disabled: false },
+      { name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21), disabled: false },
+      { name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18), disabled: false },
+      { name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24), disabled: false }
     ];
   }
 }
