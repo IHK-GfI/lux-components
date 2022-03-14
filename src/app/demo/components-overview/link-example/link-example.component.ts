@@ -4,6 +4,7 @@ import { LuxComponentsConfigParameters } from '../../../modules/lux-components-c
 import { LuxComponentsConfigService } from '../../../modules/lux-components-config/lux-components-config.service';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-link-example',
@@ -28,11 +29,10 @@ export class LinkExampleComponent implements OnInit, OnDestroy {
 
   label = 'Beispiel-Link';
   color: LuxActionColorType = 'primary';
-  iconName = '';
+  iconName = 'language';
   iconShowRight = false;
   raised = true;
   round = false;
-  align = false;
   disabled = false;
   blank = true;
   href = 'https://www.ihk-gfi.de/';
@@ -41,7 +41,7 @@ export class LinkExampleComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private configService: LuxComponentsConfigService) {}
+  constructor(private configService: LuxComponentsConfigService, private router: Router) {}
 
   ngOnInit() {
     this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
@@ -66,5 +66,25 @@ export class LinkExampleComponent implements OnInit, OnDestroy {
 
   click($event) {
     this.log(this.showOutputEvents, 'luxClicked', $event);
+  }
+
+  goTo(target: string) {
+    switch (target) {
+      case 'Components':
+        this.router.navigate(['/components-overview']);
+        break;
+      case 'Form':
+        this.router.navigate(['/form']);
+        break;
+      case 'Configuration':
+        this.router.navigate(['/configuration']);
+        break;
+      case 'Baseline':
+        this.router.navigate(['/baseline']);
+        break;
+      case 'Home':
+        this.router.navigate(['/home']);
+        break;
+    }
   }
 }

@@ -1,0 +1,34 @@
+<mat-card
+  (click)="clicked()"
+  (keydown.enter)="clicked()"
+  (keydown.space)="clicked()"
+  luxTagIdHandler
+  [luxTagId]="luxTagId"
+  tabindex="0"
+  class="lux-cursor lux-tile-authentic"
+  [luxBadgeNotification]="luxCounter ? '' + luxCounter : ''"
+  luxBadgeColor="accent"
+  [luxBadgeCap]="luxCounterCap"
+  [luxBadgeOverlap]="true"
+>
+  <div fxLayout="row" class="lux-tile-header" fxLayoutAlign="space-between start">
+    <div fxLayout="column" class="lux-tile-header-titel lux-mr-3">
+      <mat-card-title class="lux-tile-title">{{ luxLabel }}</mat-card-title>
+      <mat-card-subtitle class="lux-tile-subtitle">{{ luxSubTitle }}</mat-card-subtitle>
+    </div>
+    <div fxLayout="column" class="lux-tile-icon">
+      <ng-content select="lux-icon"></ng-content>
+      <ng-content select="lux-image"></ng-content>
+    </div>
+  </div>
+</mat-card>
+
+<div
+  fxFlex="auto"
+  [ngClass]="[
+    'lux-tile-notification-icon',
+    getNotificationIconColorClass(),
+    luxCounter !== null && luxCounter !== undefined ? 'lux-badge-notification-visible' : '',
+  ]"
+  *ngIf="luxShowNotification !== undefined && luxShowNotification !== null"
+></div>

@@ -25,7 +25,7 @@ export class LuxLayoutCardRowComponent implements OnInit, AfterContentInit, OnDe
   });
 
   public static readonly DEFAULT_GAPS = new LuxLayoutRowGapConfig({
-    row: '10px',
+    row: '32px',
     rowItem: '10px',
     column: '10px'
   });

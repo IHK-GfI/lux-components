@@ -16,7 +16,8 @@ export class LuxThemeService {
   constructor(private sanitizer: DomSanitizer, private storageService: LuxStorageService) {
     this.themes = [
       { name: 'blue', styleUrl: 'assets/themes/luxtheme-blue-min.css' },
-      { name: 'green', styleUrl: 'assets/themes/luxtheme-green-min.css' }
+      { name: 'green', styleUrl: 'assets/themes/luxtheme-green-min.css' },
+      { name: 'authentic', styleUrl: 'assets/themes/luxtheme-authentic-min.css' }
     ];
 
     this.theme$ = new BehaviorSubject<LuxTheme>(this.getInitTheme());

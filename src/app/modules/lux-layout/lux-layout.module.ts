@@ -19,6 +19,7 @@ import { LuxPipesModule } from '../lux-pipes/lux-pipes.module';
 import { LuxAccordionComponent } from './lux-accordion/lux-accordion.component';
 import { LuxAppFooterComponent } from './lux-app-footer/lux-app-footer.component';
 import { LuxAppHeaderRightNavComponent } from './lux-app-header/lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
+import { LuxAppHeaderNextUserMenuComponent } from './lux-app-header-next/lux-app-header-next-subcomponent/lux-app-header-next-user-menu.component';
 import { LuxLangSelectComponent } from './lux-app-header/lux-app-header-subcomponents/lux-lang-select/lux-lang-select.component';
 import { LuxAppHeaderComponent } from './lux-app-header/lux-app-header.component';
 import { LuxCardActionsComponent } from './lux-card/lux-card-subcomponents/lux-card-actions.component';
@@ -71,6 +72,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { LuxStepperLargeComponent } from './lux-stepper-large/lux-stepper-large.component';
 import { LuxStepperLargeStepComponent } from './lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-step/lux-stepper-large-step.component';
 import { LuxStepperLargeMobileOverlayComponent } from './lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay.component';
+import { LuxAppHeaderNextComponent } from './lux-app-header-next/lux-app-header-next.component';
+import { LuxAppHeaderNextNavMenuComponent } from './lux-app-header-next/lux-app-header-next-subcomponent/lux-app-header-next-nav-menu/lux-app-header-next-nav-menu.component';
+import { LuxAppHeaderNextNavMenuItemComponent } from './lux-app-header-next/lux-app-header-next-subcomponent/lux-app-header-next-nav-menu/lux-app-header-next-nav-menu-item/lux-app-header-next-nav-menu-item.component';
+import { LuxTileAuthenticComponent } from './lux-tile-authentic/lux-tile-authentic.component';
 
 @NgModule({
   imports: [
@@ -145,7 +150,12 @@ import { LuxStepperLargeMobileOverlayComponent } from './lux-stepper-large/lux-s
     LuxLangSelectComponent,
     LuxStepperLargeComponent,
     LuxStepperLargeStepComponent,
-    LuxStepperLargeMobileOverlayComponent
+    LuxStepperLargeMobileOverlayComponent,
+    LuxAppHeaderNextComponent,
+    LuxAppHeaderNextUserMenuComponent,
+    LuxAppHeaderNextNavMenuComponent,
+    LuxAppHeaderNextNavMenuItemComponent,
+    LuxTileAuthenticComponent
   ],
   exports: [
     LuxAppHeaderComponent,
@@ -200,7 +210,12 @@ import { LuxStepperLargeMobileOverlayComponent } from './lux-stepper-large/lux-s
     LuxLangSelectComponent,
     LuxStepperLargeComponent,
     LuxStepperLargeStepComponent,
-    LuxStepperLargeMobileOverlayComponent
+    LuxStepperLargeMobileOverlayComponent,
+    LuxAppHeaderNextComponent,
+    LuxAppHeaderNextUserMenuComponent,
+    LuxAppHeaderNextNavMenuComponent,
+    LuxAppHeaderNextNavMenuItemComponent,
+    LuxTileAuthenticComponent
   ],
   providers: [],
   entryComponents: [LuxIconComponent, LuxDetailWrapperComponent, LuxStepperLargeMobileOverlayComponent]

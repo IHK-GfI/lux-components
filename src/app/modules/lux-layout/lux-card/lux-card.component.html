@@ -6,8 +6,9 @@
   fxLayout="row"
   luxTagIdHandler
   [luxTagId]="luxTagId"
-  [ngClass]="{ 'lux-cursor': !showButtons && hasCardAction && !luxDisabled, 'lux-m-2': true, 'lux-p-3': true }"
-  [ngClass.gt-sm]="{ 'lux-cursor': !showButtons && hasCardAction && !luxDisabled, 'lux-m-3': true }"
+  [class]="'lux-card'"
+  [ngClass]="{ 'lux-cursor': !showButtons && hasCardAction && !luxDisabled }"
+  [ngClass.gt-sm]="{ 'lux-cursor': !showButtons && hasCardAction && !luxDisabled  }"
 >
   <div fxFlex="flex" fxLayout="column" class="lux-overflow-y-hidden lux-card-content-container">
     <mat-card-title
@@ -85,16 +86,7 @@
         </ng-container>
 
         <div fxFlex="none" fxLayoutAlign="end">
-          <ng-content *ngIf="!showExpandedToggle" select="lux-card-info"></ng-content>
-          <lux-button
-            *ngIf="showExpandedToggle"
-            luxColor="primary"
-            [luxIconName]="luxExpanded ? 'fa-angle-up' : 'fa-angle-down'"
-            (luxClicked)="changeContentExpansion($event)"
-            [luxThrottleTime]="250"
-            luxTagId="expandedButton"
-            class="lux-expanded-button"
-          ></lux-button>
+          <ng-content *ngIf="infoComponent" select="lux-card-info"></ng-content>
         </div>
       </div>
     </mat-card-title>
@@ -115,12 +107,23 @@
 
     <mat-card-content fxLayout="column" class="lux-pb-4 lux-pt-4">
       <!-- Der normale Card-Content ist immer sichtbar. -->
-      <div class="lux-card-content">
+      <div class="lux-card-content" fxLayout="column" fxLayoutGap="16px">
         <ng-content select="lux-card-content"></ng-content>
+        <lux-button
+          *ngIf="showExpandedToggle"
+          luxColor="primary"
+          [luxIconName]="luxExpanded ? 'fa-angle-up' : 'fa-angle-down'"
+          [luxLabel]="luxExpanded ? 'mehr Informationen' : 'weniger Informationen'"
+          [luxIconShowRight]="true"
+          (luxClicked)="changeContentExpansion($event)"
+          [luxThrottleTime]="250"
+          luxTagId="expandedButton"
+          class="lux-expanded-button"
+        ></lux-button>
       </div>
       <!-- Der expanded Card-Content ist nur sichtbar, wenn der Ausklapp-Button geklickt wurde. -->
       <div
-        class="lux-card-content-expanded"
+        class="lux-card-content-expanded lux-mt-4"
         *ngIf="luxExpanded && contentExpandedComponent"
         [@expansionAnim]="{ value: getAnimState(), params: { duration: getAnimDuration() } }"
         (@expansionAnim.done)="expansionDone()"

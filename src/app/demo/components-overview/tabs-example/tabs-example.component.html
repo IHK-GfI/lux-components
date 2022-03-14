@@ -11,6 +11,7 @@
         [luxIconSize]="iconSize"
         [luxDisplayDivider]="displayDivider"
         [luxLazyLoading]="lazyLoading"
+        [luxShowBorder]="showBorder"
         (luxActiveTabChanged)="activeTabChanged($event)"
       >
         <lux-tab
@@ -114,6 +115,14 @@
     >
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
     </lux-input>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="luxShowBorder"
+      luxHint="Wenn dieser Flag den Wert 'true' besitzt, wird eine Border um den Tab-header und den Tab-Content gesetzt."
+      [(luxChecked)]="showBorder"
+      [luxNoTopLabel]="true"
+    >
+  </lux-toggle>
   </example-base-simple-options>
   <example-base-advanced-options>
     <lux-accordion [luxMulti]="false" luxMode="flat">

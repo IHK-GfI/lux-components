@@ -1,3 +1,4 @@
+<div [ngClass]="{'lux-tabs-show-border': luxShowBorder}">
 <mat-tab-group
   [dynamicHeight]="false"
   [selectedIndex]="luxActiveTab"
@@ -77,7 +78,7 @@
     </section>
   </ng-container>
 </ng-container>
-
+</div>
 <ng-template #tabLabelTemplate let-luxTab>
   <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdHeader" class="lux-mt-3 lux-mb-3">
     <div fxFlex="auto" fxLayout.gt-sm="column" fxLayout.xs="row">

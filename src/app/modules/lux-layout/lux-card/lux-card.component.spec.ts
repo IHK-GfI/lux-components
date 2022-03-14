@@ -206,7 +206,7 @@ describe('LuxCardComponent', () => {
       expect(contentEl.nativeElement.innerHTML).toEqual('Lorum ipsum');
       expect(expandedEl).toBeNull('Vorbedingung 3');
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
-
+      
       // Änderungen durchführen
       toggleEl.nativeElement.click();
       LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);

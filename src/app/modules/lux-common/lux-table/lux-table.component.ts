@@ -83,6 +83,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   @Input() luxMultiSelectOnlyCheckboxClick = false;
   @Input() luxPagerDisabled = false;
   @Input() luxPagerTooltip = '';
+  @Input() luxPagerFirstLastButton = true;
 
   @Output() luxSelectedChange: EventEmitter<Set<any>> = new EventEmitter<Set<any>>();
 

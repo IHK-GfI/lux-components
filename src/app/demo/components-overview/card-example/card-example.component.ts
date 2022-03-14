@@ -15,15 +15,17 @@ export class CardExampleComponent {
   showInfo = true;
   useExpandableContent = true;
   btn2Raised = true;
-
   // endregion
 
   // region Properties der Component
 
   disabled = false;
-  titleLineBreak = false;
+  titleLineBreak = true;
   title = `Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
   subTitle = 'Sed eiusmod tempor incidunt ut labore et dolore magna aliqua.';
+  iconName ="fas fa-cogs"
+  iconShowRight = true;
+  raised = false;
   expanded = false;
   heading = 2;
   headingValidator = Validators.pattern('[1-6]');
@@ -41,26 +43,4 @@ export class CardExampleComponent {
     });
   }
 
-  changeInfo($event: boolean) {
-    if ($event === true) {
-      this.useExpandableContent = false;
-    }
-
-    this.showInfo = $event;
-  }
-
-  changeSwitched($event: boolean) {
-    if ($event === true) {
-      this.showInfo = false;
-      this.useExpandableContent = false;
-    }
-  }
-
-  changeExpandable($event: boolean) {
-    if ($event === true) {
-      this.showInfo = false;
-    }
-
-    this.useExpandableContent = $event;
-  }
 }

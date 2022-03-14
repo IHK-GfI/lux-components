@@ -26,10 +26,10 @@ export class ButtonExampleComponent implements OnInit, OnDestroy {
 
   // region Properties der Component
 
-  label = 'Button';
-  iconName = 'fas fa-save';
+  label = 'BUTTON';
+  //iconName = 'fas fa-save';
+  iconName = 'home';
   iconShowRight = false;
-  align = false;
   disabled = false;
   backgroundColor = '';
 

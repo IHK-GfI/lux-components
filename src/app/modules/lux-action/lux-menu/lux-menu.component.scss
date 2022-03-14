@@ -34,14 +34,6 @@
 
   > lux-button {
     margin-right: 8px;
-
-    ::ng-deep lux-icon {
-      i,
-      mat-icon {
-        width: 15px;
-        font-size: 15px !important;
-      }
-    }
   }
 }
 

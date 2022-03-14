@@ -25,6 +25,7 @@
         [luxAutoPaginate]="autoPagination"
         [luxPagerDisabled]="pagerDisabled"
         [luxPagerTooltip]="pagerTooltip"
+        [luxPagerFirstLastButton]="pagerFirstLastButton"
       >
         <lux-table-column
           luxColumnDef="name"
@@ -146,7 +147,7 @@
         </lux-table-column>
       </lux-table>
     </div>
-    <div ngClass="message-box" ngClass.lt-md="message-box-small">
+    <!-- <div ngClass="message-box" ngClass.lt-md="message-box-small">
       <div fxLayout="row" fxLayoutAlign="start start" class="box-header">
         <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
         <div fxLayout="column">
@@ -162,7 +163,7 @@
       <div class="code-section">
         <lux-markdown [luxData]="markdownData"></lux-markdown>
       </div>
-    </div>
+    </div> -->
   </example-base-content>
   <example-base-simple-options>
     <table-example-simple-options [tableExample]="this"></table-example-simple-options>

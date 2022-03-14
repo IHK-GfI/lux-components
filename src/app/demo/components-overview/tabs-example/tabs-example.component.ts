@@ -15,6 +15,7 @@ export class TabsExampleComponent {
   displayDivider = true;
   lazyLoading = false;
   backgroundColor = '#ffffff';
+  showBorder = false;
 
   tabs: any[] = [
     {

@@ -9,16 +9,18 @@
     ></lux-progress>
   </div>
   <!-- Input-Feld für das Filtern der Datensätze dieser Tabelle -->
-  <lux-input
-    class="lux-table-filter"
-    luxAutocomplete="off"
-    [luxTagId]="luxFilterText"
-    [luxLabel]="luxFilterText"
-    (luxValueChange)="filtered$.next($event)"
-    [ngClass]="{ 'lux-hide': !luxShowFilter }"
-    #filter
-  >
-  </lux-input>
+  <div class="lux-table-filter" fxLayout="row" fxFlexAlign="start center" fxLayoutGap="16px" [ngClass]="{ 'lux-hide': !luxShowFilter }">
+    <lux-icon luxIconName="search" luxIconSize="3x"></lux-icon>
+    <lux-input
+      class="lux-table-filter"
+      luxAutocomplete="off"
+      [luxTagId]="luxFilterText"
+      [luxLabel]="luxFilterText"
+      (luxValueChange)="filtered$.next($event)"
+      #filter
+    >
+    </lux-input>
+  </div>
   <!-- Die eigentliche Struktur der Tabelle -->
   <div
     [ngStyle]="{ height: tableHeightCSSCalc }"
@@ -208,7 +210,7 @@
     [length]="dataSource.totalElements"
     [pageSize]="luxPageSize"
     [pageSizeOptions]="luxPageSizeOptions"
-    [showFirstLastButtons]="true"
+    [showFirstLastButtons]="luxPagerFirstLastButton"
     [ngClass]="{ 'lux-hide': !luxShowPagination }"
     [ngClass.xs]="{ 'lux-paginator-xs': true, 'lux-hide': !luxShowPagination }"
     fxFlex="auto"

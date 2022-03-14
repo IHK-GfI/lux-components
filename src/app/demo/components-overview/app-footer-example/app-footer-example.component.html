@@ -91,6 +91,14 @@
             >
             </lux-toggle>
             <lux-toggle
+            class="lux-highlight-section"
+            luxLabel="flat"
+            luxHint="Dieser Flag hebt den Button hervor."
+            [(luxChecked)]="buttonInfo.flat"
+            [luxNoTopLabel]="true"
+          >
+          </lux-toggle>
+            <lux-toggle
               class="lux-highlight-section"
               luxLabel="disabled"
               luxHint="Mit diesem Flag kann der Button deaktiviert werden."

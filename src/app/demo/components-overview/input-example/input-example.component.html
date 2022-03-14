@@ -4,7 +4,7 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90input"
 >
   <example-base-content>
-    <div fxLayout="column">
+    <div fxLayout="column" fxLayoutGap="32px">
       <h3>Beispiel ohne Reactive-Form</h3>
       <lux-input
         [(luxDisabled)]="disabled"
@@ -43,8 +43,36 @@
         <span fxFlex="0 0 auto">Wert:</span>
         <span fxFlex="auto">{{ value | json }}</span>
       </div>
+<!-- 
+
+      <lux-input
+        [luxAuthentic]="true"
+        [(luxDisabled)]="disabled"
+        [luxRequired]="required"
+        [luxReadonly]="readonly"
+        [(luxValue)]="value"
+        [luxAutocomplete]="autocomplete"
+        [luxPlaceholder]="placeholder"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
+        [luxMaxLength]="maxLength"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxControlValidators]="controlValidators"
+        [luxType]="inputType"
+        [luxNumberAlignLeft]="numberLeft"
+        [luxHideCounterLabel]="hideCounterLabel"
+       
+        luxTagId="input-non-reactive"
+      >
+        <lux-input-prefix>
+          <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp;
+        </lux-input-prefix>
+        <lux-input-suffix > .00 EUR </lux-input-suffix>
+      </lux-input> -->
     </div>
-    <div fxLayout="column" [formGroup]="form">
+    <!-- <div fxLayout="column" [formGroup]="form">
       <h3>Beispiel in Reactive-Form</h3>
       <lux-input
         [(luxDisabled)]="disabled"
@@ -93,9 +121,35 @@
           </div>
         </div>
       </div>
-    </div>
+      <lux-input
+        [luxAuthentic]="true"
+        [(luxDisabled)]="disabled"
+        [luxReadonly]="readonly"
+        [luxAutocomplete]="autocomplete"
+        [luxPlaceholder]="placeholder"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
+        [luxMaxLength]="maxLength"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxControlBinding]="controlBinding"
+        [luxType]="inputType"
+        [luxNumberAlignLeft]="numberLeft"
+        [luxHideCounterLabel]="hideCounterLabel"
+        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+        luxTagId="input-reactive">
+      <lux-input-prefix *ngIf="showPrefix">
+        <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp;
+      </lux-input-prefix>
+      <lux-input-suffix > <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon></lux-input-suffix>
+      </lux-input>
+    </div> -->
 
-    <div class="message-box">
+  <!--  <div class="message-box">
       <div fxLayout="row" fxLayoutAlign="start center" class="box-header">
         <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
         <h2>Beispiel für luxNoLabels</h2>
@@ -104,7 +158,9 @@
         <lux-input [luxNoLabels]="true" luxLabel="Suche" luxPlaceholder="Gib einen Suchbegriff ein..."></lux-input>
         <lux-button luxIconName="fa-search" luxColor="primary" [luxRaised]="true"></lux-button>
       </div>
-    </div>
+    </div> -->
+
+
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle

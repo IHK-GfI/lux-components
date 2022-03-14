@@ -1,0 +1,28 @@
+:host { // für die Notification
+  position: relative;
+  display: flex;
+}
+
+.lux-tile-notification-icon {
+  margin-top: -4px;
+  border: 1px solid black;
+  height: 12px;
+  width: 12px;
+  border-radius: 9px;
+}
+
+.lux-tile-notification-icon {
+  position: absolute;
+  right: 2px;
+  top: 6px;
+
+  &.lux-counter-visible {
+    top: 0;
+    right: -8px;
+    z-index: 1;
+  }
+}
+
+.lux-notification-read {
+  visibility: hidden;
+}

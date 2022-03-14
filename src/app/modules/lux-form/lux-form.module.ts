@@ -106,7 +106,7 @@ import { LuxDatepickerCustomHeaderComponent } from './lux-datepicker/lux-datepic
     LuxLayoutModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    OverlayModule
+    OverlayModule, 
   ],
   exports: [
     LuxToggleComponent,

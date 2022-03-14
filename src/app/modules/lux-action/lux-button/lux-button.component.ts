@@ -10,7 +10,7 @@ import { throttleTime } from 'rxjs/operators';
   styleUrls: ['./lux-button.component.scss']
 })
 export class LuxButtonComponent extends LuxActionComponentBaseClass implements OnInit, OnDestroy {
-  public readonly iconSize: string = '2x';
+  public readonly iconSize: string = '1x';
 
   private configSubscription: Subscription;
 

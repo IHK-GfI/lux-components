@@ -21,6 +21,7 @@ export * from './src/app/modules/lux-action/lux-action.module';
 // Components
 export * from './src/app/modules/lux-action/lux-button/lux-button.component';
 export * from './src/app/modules/lux-action/lux-link/lux-link.component';
+export * from './src/app/modules/lux-action/lux-link-plain/lux-link-plain.component';
 export * from './src/app/modules/lux-action/lux-menu/lux-menu.component';
 export { LuxMenuTriggerComponent } from './src/app/modules/lux-action/lux-menu/lux-menu-subcomponents/lux-menu-trigger.component';
 export { LuxMenuItemComponent } from './src/app/modules/lux-action/lux-menu/lux-menu-subcomponents/lux-menu-item.component';
@@ -207,6 +208,7 @@ export * from './src/app/modules/lux-layout/lux-card/lux-card-subcomponents/lux-
 export * from './src/app/modules/lux-layout/lux-card/lux-card-subcomponents/lux-card-actions.component';
 export * from './src/app/modules/lux-layout/lux-divider/lux-divider.component';
 export * from './src/app/modules/lux-layout/lux-tile/lux-tile.component';
+export * from './src/app/modules/lux-layout/lux-tile-authentic/lux-tile-authentic.component';
 export * from './src/app/modules/lux-layout/lux-list/lux-list.component';
 export * from './src/app/modules/lux-layout/lux-list/lux-list-subcomponents/lux-list-item.component';
 export * from './src/app/modules/lux-layout/lux-list/lux-list-subcomponents/lux-list-item-content.component';

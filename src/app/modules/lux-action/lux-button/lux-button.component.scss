@@ -1,61 +1,49 @@
-.lux-align-baseline:not(.lux-button-rounded) {
-  padding-bottom: 10px !important;
-
-  ::ng-deep {
-    .mat-button-wrapper {
-      align-items: flex-end;
-    }
-  }
-}
-
-.lux-button-label {
-  line-height: 1;
-}
-
 .lux-button-rounded {
   width: 45px;
   ::ng-deep {
     lux-icon {
+
       i,
       mat-icon {
-        font-size: 1.5em;
+        line-height: 1;
+        font-size: 1.5em !important;
+        display: inline-block;
       }
     }
     .mat-button-wrapper {
       padding: 0;
+      display: inline-flex;
+      vertical-align: middle;
+      line-height: 1;
     }
   }
 }
 
-.lux-icon-button.mat-fab ::ng-deep .mat-button-wrapper {
-  padding: 0;
-  line-height: inherit;
-}
+// .lux-icon-button.mat-fab ::ng-deep .mat-button-wrapper {
+//   padding: 0;
+//   line-height: 24px;
+// }
 
-:host {
-  ::ng-deep {
-    .mat-button-wrapper {
-      height: 100%;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    .mat-raised-button, .mat-button { // damit der Focus-indicator im Firefox richtig berechnet wird
-      line-height: inherit;
-    }
-
-    lux-icon {
-      line-height: 1;
-      i,
-      mat-icon {
-        line-height: 1;
+.lux-button {
+  &.mat-raised-button, 
+  &.mat-button, 
+  &.mat-flat-button, 
+  &.mat-stroked-button { 
+    line-height: normal;
+    
+    ::ng-deep {
+      .mat-button-wrapper {
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
       }
-      mat-icon {
-        vertical-align: middle;
-      }
-
-      &i {
-        display: block;
+      lux-icon {
+        i,
+        mat-icon {
+          line-height: 1;
+          font-size: 1.2em !important;
+          vertical-align: middle;
+        }
       }
     }
   }

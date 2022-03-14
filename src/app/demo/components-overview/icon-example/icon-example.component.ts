@@ -15,7 +15,7 @@ export class IconExampleComponent {
 
   // region Properties der Component
 
-  iconName = 'thumb_up';
+  iconName = 'content_paste';
   iconSize = '2x';
   rounded = false;
   margin = '0';

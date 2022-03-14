@@ -12,7 +12,7 @@ export class LuxLinkComponent extends LuxActionComponentBaseClass {
 
   @Input() luxHref: string;
   @Input() luxBlank = false;
-
+  
   constructor(private router: Router, public cdr: ChangeDetectorRef) {
     super();
   }

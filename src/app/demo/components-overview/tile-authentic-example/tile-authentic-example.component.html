@@ -1,0 +1,80 @@
+<example-base-structure
+  exampleTitle="Tile"
+  exampleIconName="fas fa-qrcode"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tile"
+>
+  <example-base-content [exampleCentered]="true">
+      <lux-tile-authentic
+        [luxLabel]="label"
+        [luxSubTitle]="subTitle"
+        [luxCounter]="counter"
+        [luxCounterCap]="counterCap"
+        [luxShowNotification]="showNotification"
+        luxTagId="example-tile"
+        (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
+        class="lux-mt-5"
+      >
+      <lux-icon luxIconName="fas fa-video" *ngIf="showIcon"></lux-icon>
+      <lux-image
+        luxImageSrc="assets/svg/red_power_button.svg"
+        luxImageWidth="50px"
+        luxImageHeight="50px"
+        *ngIf="!showIcon"
+      ></lux-image>
+    </lux-tile-authentic>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
+    </lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="lux-highlight-section"
+      luxLabel="luxLabel"
+      luxHint="Die Property bestimmt das Label, welches in dem unteren Kasten des Tiles dargestellt wird."
+      [(luxValue)]="label"
+    >
+    </lux-input>
+    <lux-input
+    class="lux-highlight-section"
+    luxLabel="luxSubTitle"
+    luxHint="Die Property bestimmt den Untertitel des Tiles."
+    [(luxValue)]="subTitle"
+  >
+  </lux-input>
+    <div class="lux-highlight-section" fxLayout="column">
+      <lux-toggle luxLabel="luxIcon anzeigen" [(luxChecked)]="showIcon" [luxNoTopLabel]="true">
+        <lux-form-hint>
+          Ein LuxIconComponent in dem Tile anzeigen.<br />
+          Wenn 'false' wird stattdessen in dem Beispiel ein LuxImageComponent genutzt.
+        </lux-form-hint>
+      </lux-toggle>
+    </div>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="luxShowNotification"
+      [(luxChecked)]="showNotification"
+      [luxNoTopLabel]="true"
+    >
+      <lux-form-hint>
+        Diese Property aktiviert eine Notifizierungsansicht an der Tile.<br />
+        Wenn 'undefined', wird nichts angezeigt. Bei 'true' wird ein blauer Kreis dargestellt und bei 'false' ein
+        ausgegrauter Kreis.
+      </lux-form-hint>
+    </lux-toggle>
+    <div class="lux-highlight-section column">
+      <lux-input luxLabel="luxCounter" [(luxValue)]="counter" luxType="number" [luxNumberAlignLeft]="true">
+        <lux-form-hint>
+          Die Property definiert den aktuellen Zähler für die Tile.<br />
+          Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
+        </lux-form-hint>
+      </lux-input>
+      <lux-input luxLabel="luxCounterCap" [(luxValue)]="counterCap" luxType="number" [luxNumberAlignLeft]="true">
+        <lux-form-hint>
+          Diese Property bestimmt die Obergrenze für luxCounter.
+        </lux-form-hint>
+      </lux-input>
+    </div>
+  </example-base-advanced-options>
+</example-base-structure>

@@ -103,7 +103,9 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('markdown'), icon: 'fab fa-markdown', label: 'Markdown', moduleName: 'markdown' },
     { onclick: () => this.goTo('form-row'), icon: 'fas fa-grip-horizontal', label: 'Form-Row', moduleName: 'layout', news: true },
     { onclick: () => this.goTo('card-row'), icon: 'fas fa-grip-horizontal', label: 'Card-Row', moduleName: 'layout' },
-    { onclick: () => this.goTo('filter'), icon: 'fas fa-filter', label: 'Filter', moduleName: 'filter', news: true }
+    { onclick: () => this.goTo('filter'), icon: 'fas fa-filter', label: 'Filter', moduleName: 'filter', news: true },
+    { onclick: () => this.goTo('link-plain'), icon: 'fas fa-globe', label: 'Link-Plain', moduleName: 'action', news: true },
+    { onclick: () => this.goTo('tile-authentic'), icon: 'fas fa-dove', label: 'Tile-Authentic', moduleName: 'layout', news: true }
   ];
 
   sortedComponentEntries: Map<string, any[]> = new Map<string, any[]>();

@@ -1,5 +1,5 @@
 <div class="lux-app-container">
-  <lux-app-header
+  <!-- <lux-app-header
     luxAppTitle="LUX Components"
     luxAppTitleShort="Components"
     luxUserName="Max Mustermann"
@@ -88,14 +88,39 @@
     </lux-side-nav>
     <lux-app-header-action-nav>
       <lux-app-header-action-nav-item
-        luxIconName="fas fa-bell"
-        luxColor="accent"
-        luxAriaLabel="Nachrichten anzeigen"
-        luxTagId="action0"
-        (luxClicked)="actionClicked('#0 Action clicked!')"
+      luxLabel="Komponenten"
+      luxColor="primary"
+      luxAriaLabel="Nachrichten anzeigen"
+      luxTagId="action0"
+      (luxClicked)="goToComponents()"
       >
       </lux-app-header-action-nav-item>
       <lux-app-header-action-nav-item
+        luxLabel="Formulare"
+        luxColor="primary"
+        luxAriaLabel="Nachrichten anzeigen"
+        luxTagId="action0"
+        (luxClicked)="goToForm()"
+      >
+      </lux-app-header-action-nav-item>
+      <lux-app-header-action-nav-item
+        luxLabel="Baseline"
+        luxColor="primary"
+        luxAriaLabel="Nachrichten anzeigen"
+        luxTagId="action0"
+        (luxClicked)="goToBaseline()"
+      >
+      </lux-app-header-action-nav-item>
+      <lux-app-header-action-nav-item 
+        luxLabel="Konfiguration"
+        luxColor="primary"
+        luxAriaLabel="Nachrichten anzeigen"
+        luxTagId="action0"
+        (luxClicked)="goToConfig()"
+      >
+      </lux-app-header-action-nav-item>
+
+     <lux-app-header-action-nav-item
         luxIconName="fas fa-trash"
         luxColor="warn"
         luxAriaLabel="Nachrichten löschen"
@@ -103,14 +128,62 @@
         [luxDisabled]="true"
         (luxClicked)="actionClicked('#1 Action clicked!')"
       >
-      </lux-app-header-action-nav-item>
-    </lux-app-header-action-nav>
+      </lux-app-header-action-nav-item> -->
+   <!-- </lux-app-header-action-nav>
     <lux-app-header-right-nav *ngIf="luxMode === 'stand-alone'">
       <lux-menu-item luxLabel="Abmelden" luxIconName="fa-power-off" luxTagId="abmelden-menu-item"></lux-menu-item>
       <lux-menu-item luxLabel="Theme (blue)" luxIconName="fa-paint-brush" luxTagId="theme-blue-menu-item" (luxClicked)="onChangeTheme('blue')"></lux-menu-item>
       <lux-menu-item luxLabel="Theme (green)" luxIconName="fa-paint-brush" luxTagId="theme-green-menu-item" (luxClicked)="onChangeTheme('green')"></lux-menu-item>
     </lux-app-header-right-nav>
-  </lux-app-header>
+  </lux-app-header> -->
+  <lux-app-header-next
+    luxAppTitle="LUX Components"
+    luxAppTitleShort="Components"
+    luxUserName="Max Mustermann"
+    luxAppIconName="dashboard_customize"
+    luxBrandLogoSrc="/assets/png/Brand_logo_platzhalter.png"
+    (luxClicked)="router.navigate(['/']);"
+  >
+    <lux-app-header-next-user-menu *ngIf="luxMode === 'stand-alone'">
+      <lux-menu-item luxLabel="Abmelden" luxIconName="power_settings_new" luxTagId="abmelden-menu-item"></lux-menu-item>
+      <lux-menu-item luxLabel="Theme (blue)" luxIconName="brush" luxTagId="theme-blue-menu-item" (luxClicked)="onChangeTheme('blue')"></lux-menu-item>
+      <lux-menu-item luxLabel="Theme (green)" luxIconName="imagesearch_roller" luxTagId="theme-green-menu-item" (luxClicked)="onChangeTheme('green')"></lux-menu-item>
+      <lux-menu-item luxLabel="Theme (authentic)" luxIconName="format_shapes" luxTagId="theme-authentic-menu-item" (luxClicked)="onChangeTheme('authentic')"></lux-menu-item>
+    </lux-app-header-next-user-menu>
+
+    <lux-app-header-next-nav-menu>
+      <lux-app-header-next-nav-menu-item
+        luxLabel="Komponenten"
+        luxAriaLabel="Komponenten Übersicht"
+        luxTagId="navItem0"
+        (luxClicked)="goToComponents()"
+      >
+      </lux-app-header-next-nav-menu-item>
+      <lux-app-header-next-nav-menu-item
+        luxLabel="Formulare"
+        luxAriaLabel="Beispielformulare"
+        luxTagId="navItem1"
+        (luxClicked)="goToForm()"
+      >
+      </lux-app-header-next-nav-menu-item>
+      <lux-app-header-next-nav-menu-item
+        luxLabel="Baseline"
+        luxAriaLabel="Baseline Beispiele"
+        luxTagId="navItem2"
+        (luxClicked)="goToBaseline()"
+      >
+      </lux-app-header-next-nav-menu-item>
+      <lux-app-header-next-nav-menu-item 
+        luxLabel="Konfiguration"
+        luxAriaLabel="Konfiguration einstellen"
+        luxTagId="navItem3"
+        (luxClicked)="goToConfig()"
+      >
+      </lux-app-header-next-nav-menu-item>
+  
+    </lux-app-header-next-nav-menu>
+
+  </lux-app-header-next>
   <lux-app-content luxAriaRoleMainLabel=""></lux-app-content>
   <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="12.0.0"></lux-app-footer>
 </div>

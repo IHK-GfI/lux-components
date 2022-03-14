@@ -11,14 +11,13 @@
       [luxIconShowRight]="iconShowRight"
       [luxRaised]="raised"
       [luxRounded]="round"
-      [luxIconAlignWithLabel]="align"
       [luxDisabled]="disabled"
       luxTagId="demo-link"
       [luxHref]="href"
       [luxBlank]="blank"
       (luxClicked)="click($event)"
     >
-    </lux-link>
+    </lux-link>  
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
@@ -104,15 +103,6 @@
     </lux-toggle>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <lux-toggle
-      class="lux-highlight-section"
-      [(luxChecked)]="align"
-      luxLabel="luxIconAlignWithLabel"
-      luxHint="Mithilfe dieser Property werden Icon und Schrift auf einer Baseline ausgerichtet."
-      [luxDisabled]="!iconName"
-      [luxNoTopLabel]="true"
-    >
-    </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
       luxLabel="Label Uppercase"

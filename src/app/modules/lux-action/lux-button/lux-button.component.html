@@ -6,10 +6,10 @@
   (auxclick)="auxClicked($event)"
   [disabled]="luxDisabled"
   [type]="luxType"
-  class="lux-button lux-bold lux-align-center"
+  class="lux-button"
   luxTagIdHandler
   [luxTagId]="luxTagId"
-  [ngClass]="{ 'lux-align-baseline': luxIconAlignWithLabel && !!luxIconName, 'lux-icon-button': !!luxIconName }"
+  [ngClass]="{ 'lux-icon-button': !!luxIconName }"
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
   <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
@@ -20,17 +20,58 @@
 </button>
 
 <button
-  *ngIf="!luxRaised && !luxRounded"
+  *ngIf="luxFlat && !luxRounded"
+  mat-flat-button
+  [color]="luxColor"
+  (click)="clicked($event)"
+  (auxclick)="auxClicked($event)"
+  [disabled]="luxDisabled"
+  [type]="luxType"
+  class="lux-button"
+  luxTagIdHandler
+  [luxTagId]="luxTagId"
+  [ngClass]="{ 'lux-icon-button': !!luxIconName }"
+  [attr.aria-label]="luxLabel ? luxLabel : ''"
+>
+  <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
+  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
+    {{ luxLabel }}
+  </span>
+  <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
+</button>
+<button
+  *ngIf="luxOutlined && !luxRounded"
+  mat-stroked-button
+  [color]="luxColor"
+  (click)="clicked($event)"
+  (auxclick)="auxClicked($event)"
+  [disabled]="luxDisabled"
+  [type]="luxType"
+  class="lux-button"
+  luxTagIdHandler
+  [luxTagId]="luxTagId"
+  [ngClass]="{ 'lux-icon-button': !!luxIconName }"
+  [attr.aria-label]="luxLabel ? luxLabel : ''"
+>
+  <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
+  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
+    {{ luxLabel }}
+  </span>
+  <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
+</button>
+
+<button
+  *ngIf="!luxRaised && !luxRounded && !luxFlat && !luxOutlined"
   mat-button
   [color]="luxColor"
   (click)="clicked($event)"
   (auxclick)="auxClicked($event)"
   [disabled]="luxDisabled"
   [type]="luxType"
-  class="lux-button lux-bold lux-align-center"
+  class="lux-button"
   luxTagIdHandler
   [luxTagId]="luxTagId"
-  [ngClass]="{ 'lux-align-baseline': luxIconAlignWithLabel && !!luxIconName, 'lux-icon-button': !!luxIconName }"
+  [ngClass]="{ 'lux-icon-button': !!luxIconName }"
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
   <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
@@ -48,20 +89,16 @@
   (auxclick)="auxClicked($event)"
   [disabled]="luxDisabled"
   [type]="luxType"
-  class="lux-button lux-bold lux-align-center lux-button-rounded"
+  class="lux-button lux-button-rounded"
   luxTagIdHandler
   [luxTagId]="luxTagId"
-  [ngClass]="{ 'lux-align-baseline': luxIconAlignWithLabel && !!luxIconName, 'lux-icon-button': !!luxIconName }"
+  [ngClass]="{ 'lux-icon-button': !!luxIconName }"
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
-  <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight? iconTemplate : noIconTemplate"></ng-container>
-  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
-    {{ luxLabel }}
-  </span>
-  <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight? iconTemplate : noIconTemplate"></ng-container>
+  <ng-container  *ngTemplateOutlet="iconTemplate"></ng-container>
 </button>
 
 <ng-template #iconTemplate>
-  <lux-icon [luxIconName]="luxIconName" [luxIconSize]="iconSize" luxMargin="0" luxPadding="0"></lux-icon>
+  <lux-icon [luxIconName]="luxIconName" luxMargin="0" luxPadding="0"></lux-icon>
 </ng-template>
 <ng-template #noIconTemplate></ng-template>

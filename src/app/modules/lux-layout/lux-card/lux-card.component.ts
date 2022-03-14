@@ -5,6 +5,7 @@ import {
   ContentChild,
   ContentChildren,
   EventEmitter,
+  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -30,15 +31,17 @@ import { LuxCardInfoComponent } from './lux-card-subcomponents/lux-card-info.com
 })
 export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   private configSubscription: Subscription;
-
+  
   @Input() luxTitle: string;
   @Input() luxSubTitle: string;
+  @Input() luxIconName: string;
   @Input() luxDisabled: boolean;
   @Input() luxTagId: string;
   @Input() luxTitleLineBreak = true;
   @Input() luxExpanded = false;
   @Input() luxUseTabIndex = true;
   @Input() luxHeading = 2;
+
   @Output() luxExpandedChange: EventEmitter<boolean> = new EventEmitter();
   @Output() luxAfterExpansion: EventEmitter<void> = new EventEmitter();
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
