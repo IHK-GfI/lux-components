@@ -28,6 +28,7 @@
         [luxControlValidators]="controlValidators"
         [luxPanelWidth]="luxPanelWidth"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxOptionMultiline]="optionMultiline"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
@@ -68,6 +69,7 @@
         [luxControlBinding]="controlBinding"
         [luxPanelWidth]="luxPanelWidth"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxOptionMultiline]="optionMultiline"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
@@ -271,6 +273,13 @@
       [(luxValue)]="luxPanelWidth"
     >
     </lux-input>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="optionMultiline"
+      luxLabel="luxOptionMultiline"
+      luxHint="Mit diesem Flag kann aktiviert werden, dass der Text in einer Option mehrzeilig wird."
+    >
+    </lux-toggle>
       <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxName="autocomplete_luxErrorMessageNotAnOption"

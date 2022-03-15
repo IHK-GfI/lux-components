@@ -20,13 +20,19 @@ export class AutocompleteExampleComponent {
   showOutputEvents = false;
   showPrefix = false;
   showSuffix = false;
-
+  longOpitionLabel='Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
   toggleOptions = true;
+  optionMultiline = false;
+
   options = [
     { label: 'Meine Aufgaben', short: 'MA', value: 'A' },
     { label: 'Gruppenaufgaben', short: 'GA', value: 'B' },
     { label: 'Zurückgestellte Aufgaben', short: 'ZA', value: 'C' },
-    { label: 'Vertretungsaufgaben', short: 'VA', value: 'D' }
+    { label: this.longOpitionLabel, short: 'LI', value: 'D' },
+    { label: 'Vertretungsaufgaben', short: 'VA', value: 'F' },
+    { label: 'Neue Aufgaben', short: 'NA', value: 'G' },
+    { label: 'Extraaufgaben', short: 'EA', value: 'H' },
+    { label: 'Optionale Aufgaben', short: 'ZA', value: 'I' }
   ];
 
   options2 = [
@@ -50,7 +56,7 @@ export class AutocompleteExampleComponent {
 
   form: FormGroup;
   log = logResult;
-  labelLongFormat = false;
+  labelLongFormat = false;  
   // endregion
 
   // region Properties der Component
