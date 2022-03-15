@@ -15,6 +15,10 @@ export class TableServerExampleComponent extends TableExampleBaseClass implement
     super();
   }
 
+  getDataArr() {
+    return this.httpDAO.data;
+  }
+
   ngOnInit() {
     this.httpDAO = new TestHttpDao(this.logger);
   }

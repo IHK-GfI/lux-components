@@ -37,12 +37,52 @@
           <lux-step-content>
             <h3>Bitte tragen Sie alle Werte ein</h3>
             <form [formGroup]="step.stepControl">
-              <lux-input luxLabel="Username" luxType="text" luxControlBinding="control1"></lux-input>
-              <lux-input luxLabel="Password" luxType="password" luxControlBinding="control2"></lux-input>
+              <lux-input luxLabel="Benutzername" luxType="text" luxName="stepper.username.{{ i }}" luxControlBinding="control1"></lux-input>
+              <lux-input luxLabel="Passwort" luxType="password" luxName="stepper.password.{{ i }}" luxControlBinding="control2"></lux-input>
             </form>
           </lux-step-content>
         </lux-step>
       </ng-container>
+
+      <lux-step luxIconName="far fa-address-book" [luxStepControl]="newStepsForm1" *ngIf="newStepsVisible">
+        <lux-step-header> Step #3 </lux-step-header>
+        <lux-step-content [formGroup]="newStepsForm1">
+          <h3>Adresse</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+            takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+            rebum.
+          </p>
+          <lux-layout-form-row>
+            <lux-input luxLabel="Straße" luxName="stepper.street" luxControlBinding="street" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input>
+            <lux-input luxLabel="Hausnummer" luxName="stepper.number" luxControlBinding="number" *luxLayoutRowItem="{}"></lux-input>
+          </lux-layout-form-row>
+          <lux-layout-form-row>
+            <lux-input luxLabel="Stadt" luxName="stepper.city" luxControlBinding="city" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input>
+            <div *luxLayoutRowItem="{ empty: true }"></div>
+          </lux-layout-form-row>
+        </lux-step-content>
+      </lux-step>
+
+      <lux-step luxIconName="fas fa-money-check-alt" [luxStepControl]="newStepsForm2" *ngIf="newStepsVisible">
+        <lux-step-header> Step #4 </lux-step-header>
+        <lux-step-content [formGroup]="newStepsForm2">
+          <h3>Bankverbindung</h3>
+          <p>
+            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla
+            facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te
+            feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+            laoreet dolore magna aliquam erat volutpat.
+          </p>
+          <lux-layout-form-row>
+            <lux-input luxLabel="IBAN" luxName="stepper.iban" luxControlBinding="iban" *luxLayoutRowItem="{}"></lux-input>
+            <lux-input luxLabel="BIC" luxName="stepper.bic" luxControlBinding="bic" *luxLayoutRowItem="{}"></lux-input>
+          </lux-layout-form-row>
+        </lux-step-content>
+      </lux-step>
+
       <!-- Abschluss-Step des Steppers -->
       <lux-step luxIconName="fas fa-check">
         <lux-step-header>
@@ -120,6 +160,18 @@
         [(luxChecked)]="horizontalAnimation"
         [luxNoTopLabel]="true"
       >
+      </lux-toggle>
+      <lux-toggle
+        luxLabel="2 Schritte dynamisch hinzufügen"
+        [luxDisabled]="currentStepNumber === 4"
+        (luxCheckedChange)="onNewStepsChanged($event)"
+      >
+        <lux-form-hint>
+          1) In dieser Demo ist für den Stepper wenig Platz vorhanden, da der Konfigurationsbereich bereits die Hälfte des Platzes
+          verbraucht. In einer echten Anwendung würde der Stepper i.d.R. 100 Prozent des Platzes bekommen und die Labels schöner anzeigen.
+          <br /><br />
+          2) Im Zusammenfassungsschritt können die dynamisch hinzugefügten Schritte nicht mehr ausgeblendet werden.
+        </lux-form-hint>
       </lux-toggle>
     </div>
   </example-base-simple-options>

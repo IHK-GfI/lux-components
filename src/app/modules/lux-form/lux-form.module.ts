@@ -22,6 +22,7 @@ import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';
 import { LuxLayoutModule } from '../lux-layout/lux-layout.module';
 import { LuxPipesModule } from '../lux-pipes/lux-pipes.module';
+import { LuxPopupsModule } from "../lux-popups/lux-popups.module";
 import { LuxAutocompleteComponent } from './lux-autocomplete/lux-autocomplete.component';
 import { LuxCheckboxComponent } from './lux-checkbox/lux-checkbox.component';
 import { LuxChipGroupComponent } from './lux-chips/lux-chips-subcomponents/lux-chip-group.component';
@@ -50,6 +51,9 @@ import { LuxSelectOptionHeightDirective } from './lux-select/lux-select-option-h
 import { LuxDatetimeOverlayComponent } from './lux-datetimepicker/lux-datetime-overlay/lux-datetime-overlay.component';
 import { LuxDatetimeOverlayContentComponent } from './lux-datetimepicker/lux-datetime-overlay/lux-datetime-overlay-content.component';
 import { LuxDatepickerCustomHeaderComponent } from './lux-datepicker/lux-datepicker-custom-header/lux-datepicker-custom-header.component';
+import { LuxFileUploadComponent } from './lux-file/lux-file-upload/lux-file-upload.component';
+import { LuxFileDeleteDialogComponent } from './lux-file/lux-file-subcomponents/lux-file-delete-dialog/lux-file-delete-dialog.component';
+import { LuxFileReplaceDialogComponent } from './lux-file/lux-file-subcomponents/lux-file-replace-dialog/lux-file-replace-dialog.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +84,10 @@ import { LuxDatepickerCustomHeaderComponent } from './lux-datepicker/lux-datepic
     LuxNameDirectiveDirective,
     LuxDatetimeOverlayComponent,
     LuxDatetimeOverlayContentComponent,
-    LuxDatepickerCustomHeaderComponent
+    LuxDatepickerCustomHeaderComponent,
+    LuxFileUploadComponent,
+    LuxFileDeleteDialogComponent,
+    LuxFileReplaceDialogComponent
   ],
   imports: [
     CommonModule,
@@ -104,6 +111,7 @@ import { LuxDatepickerCustomHeaderComponent } from './lux-datepicker/lux-datepic
     LuxComponentsConfigModule,
     LuxActionModule,
     LuxLayoutModule,
+    LuxPopupsModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     OverlayModule
@@ -131,7 +139,8 @@ import { LuxDatepickerCustomHeaderComponent } from './lux-datepicker/lux-datepic
     LuxFileListComponent,
     LuxFileInputComponent,
     LuxFileCaptureDirective,
-    LuxMaxLengthDirective
+    LuxMaxLengthDirective,
+    LuxFileUploadComponent
   ],
   providers: []
 })

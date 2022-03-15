@@ -1,14 +1,17 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
-  forwardRef, Host,
+  forwardRef,
+  Host,
   HostBinding,
   Inject,
   Input,
   OnDestroy,
   OnInit,
   Optional,
-  Output, SkipSelf,
+  Output,
+  SkipSelf,
   ViewChild
 } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
@@ -20,7 +23,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './lux-panel.component.html',
   styleUrls: ['./lux-panel.component.scss']
 })
-export class LuxPanelComponent implements OnInit, OnDestroy {
+export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() luxDisabled: boolean;
   @Input() luxExpanded = false;
   @Input() luxHideToggle: boolean;
@@ -56,13 +59,9 @@ export class LuxPanelComponent implements OnInit, OnDestroy {
         this.luxCollapsedHeaderHeight = this.parent.luxCollapsedHeaderHeight;
       }
 
-      // Diese Zeile wird benötigt, damit der Multi-Mode
-      // (nur ein Abschnitt darf geöffnet sein) des Accordions funktioniert.
-      this.matExpansionPanel.accordion = this.parent.matAccordion;
-
       // Um eine zyklische Abhängigkeit mit dem lux-accordion zu vermeiden,
       // wurde hier ein Event verwendet.
-      this.subscription = this.parent.changed$.subscribe(propertyName => {
+      this.subscription = this.parent.changed$.subscribe((propertyName) => {
         if (propertyName === 'luxHideToggle') {
           this.luxHideToggle = this.parent.luxHideToggle;
         } else if (propertyName === 'luxDisabled') {
@@ -72,6 +71,18 @@ export class LuxPanelComponent implements OnInit, OnDestroy {
         } else if (propertyName === 'luxCollapsedHeaderHeight') {
           this.luxCollapsedHeaderHeight = this.parent.luxCollapsedHeaderHeight;
         }
+      });
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.parent) {
+      // Diese Zeile wird benötigt, damit der Multi-Mode (nur ein Abschnitt darf geöffnet sein)
+      // des Accordions funktioniert. Die Zuweisung des übergeordneten Accordions an dieses Panel
+      // muss einen Zyklus später stattfinden, um einen ExpressionChangedAfterItHasBeenCheckedError
+      // zu vermeiden.
+      setTimeout(() => {
+        this.matExpansionPanel.accordion = this.parent.matAccordion;
       });
     }
   }

@@ -22,6 +22,7 @@
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxCompareWith]="useCompareWithFn ? compareWithFn : defaultCompareWith"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
         (luxSelectedChange)="log(showOutputEvents, 'luxSelectedChange', $event)"
@@ -52,6 +53,7 @@
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxCompareWith]="useCompareWithFn ? compareWithFn : defaultCompareWith"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
         #multiselectComp
@@ -81,6 +83,7 @@
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxCompareWith]="useCompareWithFn ? compareWithFn : defaultCompareWith"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
         (luxSelectedChange)="log(showOutputEvents, 'luxSelectedChange', $event)"
@@ -266,6 +269,13 @@
       </lux-input>
       <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
     </div>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
+      luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [(luxChecked)]="labelLongFormat"
+    >
+    </lux-toggle>
   </example-base-advanced-options>
   <example-base-options-actions>
     <div fxLayout="row wrap" fxLayoutGap="16px">

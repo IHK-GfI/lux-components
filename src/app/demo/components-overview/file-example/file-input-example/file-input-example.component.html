@@ -29,6 +29,7 @@
         [luxUploadReportProgress]="reportProgress"
         [luxSelectedFiles]="selected"
         [luxClearOnError]="clearOnError"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -72,6 +73,7 @@
           [luxUploadReportProgress]="reportProgress"
           [luxControlBinding]="controlBinding"
           [luxClearOnError]="clearOnError"
+          [luxLabelLongFormat]="labelLongFormat"
           (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
           (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
           (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -145,5 +147,12 @@
       <lux-input luxLabel="Präfix" luxName="filelist_prefix_decline" [(luxValue)]="namePrefixDecline" [luxNoBottomLabel]="true"></lux-input>
       <lux-input luxLabel="Suffix" luxName="filelist_suffix_decline" [(luxValue)]="nameSuffixDecline" [luxNoBottomLabel]="true"></lux-input>
     </div>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
+      luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [(luxChecked)]="labelLongFormat"
+    >
+    </lux-toggle>
   </example-base-advanced-options>
 </example-base-structure>

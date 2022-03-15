@@ -31,7 +31,9 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
 
   customActionConfigs: ILuxFileActionConfig[] = this.createCustomConfigs();
   customActionsConfigsForm: ILuxFileActionConfig[] = this.createCustomConfigs();
-
+  
+  labelLongFormat = false;
+  
   constructor(fb: FormBuilder, http: HttpClient, snackbar: LuxSnackbarService, filePreviewService: LuxFilePreviewService) {
     super(fb, http, snackbar, filePreviewService);
   }

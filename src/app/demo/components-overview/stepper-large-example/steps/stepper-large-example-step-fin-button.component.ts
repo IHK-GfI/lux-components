@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { LuxStepperLargeClickEvent } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-click-event';
 import { LuxVetoState } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-step.interface';
 import { LuxStepperLargeStepComponent } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-step/lux-stepper-large-step.component';
+import { LuxUtil } from '../../../../modules/lux-util/lux-util';
 import { StepperLargeExampleDataService } from '../stepper-large-example-data.service';
 
 @Component({
@@ -55,20 +56,26 @@ export class StepperLargeExampleStepFinButtonComponent extends LuxStepperLargeSt
       // - Die Daten aus dem Step in seine Datenstruktur übertragen.
       // - Über die resolve-Methode zurückmelden, ob zum nächsten Schritt navigiert werden darf.
       setTimeout(() => {
-        // Prüfen, ob das Formular valide ist.
-        if (component.form.valid) {
-          // Hier werden die Daten aus dem Formular in den Datenservice übertragen.
-          component.dataService.finButtonConfig = component.form.value;
+        if (!event.newStep.luxTouched) {
+          // Prüfen, ob das Formular valide ist.
+          if (component.form.valid) {
+            // Hier werden die Daten aus dem Formular in den Datenservice übertragen.
+            component.dataService.finButtonConfig = component.form.value;
 
-          // Als letztes wird der Step als valide gekennzeichnet.
-          component.luxCompleted = true;
+            // Als letztes wird der Step als valide gekennzeichnet.
+            component.luxCompleted = true;
+          } else {
+            // Das Formular ist noch nicht valide und deswegen wird der Step
+            // als noch nicht fertig gekennzeichnet.
+            component.luxCompleted = false;
+          }
+
+          resolve(component.luxCompleted ? LuxVetoState.navigationAccepted : LuxVetoState.navigationRejected);
         } else {
-          // Das Formular ist noch nicht valide und deswegen wird der Step
-          // als noch nicht fertig gekennzeichnet.
-          component.luxCompleted = false;
+          // Man darf zu jedem Schritt springen, wenn dieser bereits besucht wurde.
+          LuxUtil.showValidationErrors(component.form);
+          resolve(LuxVetoState.navigationAccepted);
         }
-
-        resolve(component.luxCompleted ? LuxVetoState.navigationAccepted : LuxVetoState.navigationRejected);
       }, 250);
     });
   }

@@ -1,5 +1,6 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
 import { LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
 import { LuxAppFooterButtonService } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { ILuxStepperButtonConfig } from '../../../modules/lux-layout/lux-stepper/lux-stepper-model/lux-stepper-button-config.interface';
@@ -13,10 +14,14 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
   templateUrl: './stepper-example.component.html',
   styleUrls: ['./stepper-example.component.scss']
 })
-export class StepperExampleComponent implements OnDestroy {
+export class StepperExampleComponent implements OnInit, OnDestroy {
   @ViewChild(LuxStepperComponent, { static: true }) stepperComponent: LuxStepperComponent;
 
   // region Helper-Properties für das Beispiel
+
+  newStepsVisible = false;
+  newStepsForm1: FormGroup;
+  newStepsForm2: FormGroup;
 
   showOutputEvents = false;
   useCustomButtonConfig = false;
@@ -87,8 +92,23 @@ export class StepperExampleComponent implements OnDestroy {
   constructor(
     private stepperService: LuxStepperHelperService,
     private buttonService: LuxAppFooterButtonService,
-    private snackbar: LuxSnackbarService
+    private snackbar: LuxSnackbarService,
+    private fb: FormBuilder,
+    private router: Router
   ) {}
+
+  ngOnInit() {
+    this.newStepsForm1 = this.fb.group({
+      street: ['', Validators.required],
+      number: ['', Validators.required],
+      city: ['', Validators.required]
+    });
+
+    this.newStepsForm2 = this.fb.group({
+      iban: ['', Validators.required],
+      bic: ['']
+    });
+  }
 
   ngOnDestroy() {
     // sicherheitshalber beim Verlassen der Component unsere neuen Footer-Buttons entfernen.
@@ -104,13 +124,21 @@ export class StepperExampleComponent implements OnDestroy {
   finishClicked($event) {
     this.log(this.showOutputEvents, 'luxFinishButtonClicked', $event);
 
-    this.snackbar.open(3000, {
-      text: 'Steps abgeschlossen.'
+    const snackbarDuration = 5000;
+
+    this.snackbar.open(snackbarDuration, {
+      iconName: 'fas fa-info',
+      iconSize: '2x',
+      iconColor: 'green',
+      text: 'Stepper erfolgreich abgeschlossen!'
     });
-    this.currentStepNumber = 0;
-    this.steps.forEach((step: any) => {
-      step.stepControl.reset();
-    });
+
+    setTimeout(() => {
+      let currentUrl = this.router.url;
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([currentUrl]);
+    }, snackbarDuration);
   }
 
   /**
@@ -223,5 +251,15 @@ export class StepperExampleComponent implements OnDestroy {
     setTimeout(() => {
       this.useCustomIcons = temp;
     });
+  }
+
+  onNewStepsChanged(visible: boolean) {
+    if (visible) {
+      this.currentStepNumber = 0;
+    } else {
+      this.newStepsForm1.reset();
+      this.newStepsForm2.reset();
+    }
+    this.newStepsVisible = visible;
   }
 }

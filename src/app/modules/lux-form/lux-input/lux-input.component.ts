@@ -13,14 +13,14 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 })
 export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
   private readonly symbolRegExp = /[,.]/;
-  
+
   @Input() luxType = 'text';
   @Input() luxNumberAlignLeft = false;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
-  
-  _luxMaxLength = 0;
+  @Input() luxHideCounterLabel = false;
+
   @Input() set luxMaxLength(maxLength: number){
     this._luxMaxLength = maxLength;
     if (this.formControl) { //erst nach ngOnInit() vorhanden
@@ -37,7 +37,7 @@ export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
   @ViewChild('input', { read: ElementRef }) inputElement: ElementRef;
 
   counterLabel = '';
-  @Input() luxHideCounterLabel = false;
+  _luxMaxLength = 0;
 
   constructor(
     @Optional() controlContainer: ControlContainer,
@@ -72,21 +72,21 @@ export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
       }
     }
   }
-  
+
   notifyFormValueChanged(formValue: any) {
     this.updateCounterLabel();
     super.notifyFormValueChanged(formValue);
   }
-  
+
   private updateCounterLabel(){
     if (this.luxMaxLength > 0 && this.luxType === 'text'){
       if (typeof this.formControl.value === 'string') {
         this.counterLabel = this.formControl.value.length + '/' + this.luxMaxLength;
       } else {
         this.counterLabel = '0/' + this.luxMaxLength;
-      }    
+      }
     } else {
       this.counterLabel = '';
-    }  
+    }
   }
 }

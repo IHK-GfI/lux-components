@@ -63,6 +63,7 @@
               <lux-checkbox
                 luxTagId="lux-table-multiselect-content-{{ i }}"
                 class="lux-multiselect-toggle"
+                [luxDisabled]="element[luxMultiSelectDisabledProperty] === true"
                 luxTabIndex="-1"
                 [luxApplyToChildren]="true"
                 luxAriaLabel="Reihe {{ i }}"

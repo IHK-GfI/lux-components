@@ -1,5 +1,6 @@
 import {
-  AfterContentInit,
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -29,7 +30,7 @@ import { LuxLookupComboboxComponent } from '../../lux-lookup/lux-lookup-combobox
   templateUrl: './lux-filter-form.component.html',
   styleUrls: ['./lux-filter-form.component.scss']
 })
-export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestroy {
+export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy {
   dialogConfig: ILuxDialogConfig = {
     width: Math.min(600, window.innerWidth - 50) + 'px',
     height: 'auto',
@@ -79,7 +80,7 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   set luxFilterValues(filter: any) {
     this._luxFilterValues = JSON.parse(JSON.stringify(filter));
 
-    if (this.formElementes) {
+    if (this.initComplete) {
       this.filterForm.patchValue(this._luxFilterValues);
 
       this.onFilter();
@@ -98,10 +99,14 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   filterItems: LuxFilterItem[] = [];
   hasSaveAction: boolean;
   hasLoadAction: boolean;
+  initComplete = false;
+  initFilterValue = null;
 
-  constructor(private formBuilder: FormBuilder, private dialogService: LuxDialogService) {}
+  constructor(private formBuilder: FormBuilder, private dialogService: LuxDialogService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+    this.initFilterValue = this.luxFilterValues;
+
     this.filterForm = this.formBuilder.group({});
 
     if (this.luxOnSave.observers && this.luxOnSave.observers.length > 0) {
@@ -114,38 +119,38 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
   }
 
   private updateFilterChips() {
-    this.filterItems = [];
+    if (this.initComplete) {
+      this.filterItems = [];
 
-    this.formElementes.forEach((formItem) => {
-      const value = this.filterForm.get(formItem.filterItem.binding).value;
+      this.formElementes.forEach((formItem) => {
+        if (formItem.filterItem && formItem.filterItem.binding && this.filterForm.get(formItem.filterItem.binding)) {
+          const value = this.filterForm.get(formItem.filterItem.binding).value;
 
-      if (
-        !formItem.filterItem.component.formControl.disabled &&
-        formItem.filterItem.defaultValues.findIndex((defaultValue) => defaultValue === value) === -1
-      ) {
-        if (Array.isArray(value)) {
-          let i = 0;
-          value.forEach((selected) => {
-            const newFilterItem = new LuxFilterItem();
-            Object.assign(newFilterItem, formItem.filterItem);
-            newFilterItem.value = newFilterItem.renderFn(newFilterItem, selected);
-            newFilterItem['index'] = i++;
-            this.filterItems.push(newFilterItem);
-          });
-        } else {
-          formItem.filterItem.value = formItem.filterItem.renderFn(formItem.filterItem, value);
-          this.filterItems.push(formItem.filterItem);
+          if (
+            !formItem.filterItem.component.formControl.disabled &&
+            formItem.filterItem.defaultValues.findIndex((defaultValue) => defaultValue === value) === -1
+          ) {
+            if (Array.isArray(value)) {
+              let i = 0;
+              value.forEach((selected) => {
+                const newFilterItem = new LuxFilterItem();
+                Object.assign(newFilterItem, formItem.filterItem);
+                newFilterItem.value = newFilterItem.renderFn(newFilterItem, selected);
+                newFilterItem['index'] = i++;
+                this.filterItems.push(newFilterItem);
+              });
+            } else {
+              formItem.filterItem.value = formItem.filterItem.renderFn(formItem.filterItem, value);
+              this.filterItems.push(formItem.filterItem);
+            }
+          }
         }
-      }
-    });
+      });
+    }
   }
 
-  ngAfterContentInit(): void {
+  ngAfterViewInit(): void {
     this.updateContentFilterItems();
-
-    this.subscriptions.push(this.formElementes.changes.subscribe((test) => {
-      this.updateContentFilterItems();
-    }));
   }
 
   ngOnDestroy(): void {
@@ -277,12 +282,19 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
     });
 
     this.onFilter();
+    this.cdr.detectChanges();
   }
 
   onFilter() {
+    this.onFilterIntern(true);
+  }
+
+  onFilterIntern(changeExpandState: boolean) {
     if (this.filterForm.valid) {
-      // Filter zuklappen.
-      this.luxFilterExpanded = false;
+      if (changeExpandState) {
+        // Filter zuklappen.
+        this.luxFilterExpanded = false;
+      }
 
       // Filterchips aktualisieren.
       this.updateFilterChips();
@@ -296,8 +308,7 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
 
   private updateContentFilterItems() {
     // An dieser Codestelle ist setTimeout nötig, wenn die Inhalte über eine LUX-Layout-Form-Row gesetzt werden.
-    // D.h. initial gibt es keine Filteritem, aber dann werden die Filteritems über eine Subscription (siehe ngAfterContentInit)
-    // hinzugefügt.
+    // D.h. initial gibt es keine Filteritem, aber dann werden die Filteritems über ngAfterContentInit hinzugefügt.
     setTimeout(() => {
       this.formElementes.forEach((item) => {
         this.filterForm.addControl(item.filterItem.binding, item.filterItem.component.formControl);
@@ -305,7 +316,22 @@ export class LuxFilterFormComponent implements OnInit, AfterContentInit, OnDestr
 
       this.filterForm.patchValue(this.luxFilterValues);
 
-      this.updateFilterChips();
+      // Der Filter ist jetzt vollständig. D.h. alle Formularelemente sind bekannt,
+      // die zugehörigen Controls wurden erzeugt und die Werte gesetzt.
+      // Jetzt ist die Initialisierung abgeschlossen und die Filterchips können
+      // aktualisiert werden.
+      this.initComplete = true;
+
+      // Da die Initialisierung der Komponente verzögert stattfindet,
+      // muss noch einmal geprüft werden, ob sich der initiale Filterwert
+      // in der Zwischenzeit geändert hat.
+      // Wenn sich der Filterwert geändert hat, muss das Filtern ausgelöst werden.
+      // Wenn der Filterwert gleichgeblieben ist, müssen nur die Filterchips aktualisiert werden.
+      if (this.luxFilterValues !== this.initFilterValue) {
+        this.onFilterIntern(false);
+      } else {
+        this.updateFilterChips();
+      }
     });
   }
 }

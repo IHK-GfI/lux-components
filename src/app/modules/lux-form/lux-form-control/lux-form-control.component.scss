@@ -37,6 +37,13 @@
     > * {
       @include crop;
     }
+    &.lux-label-long-format {
+      > * {
+        white-space: normal;
+        text-overflow: unset;
+        word-wrap: break-word;
+      }
+    }
   }
 
   .lux-form-control-container {
@@ -130,7 +137,7 @@
       button {
         height: var(--lux-theme-form-control-height-small);
         width: var(--lux-theme-form-control-height-small);
-        
+
         .mat-button-wrapper {
           display: flex;
           height: var(--lux-theme-form-control-height-small);

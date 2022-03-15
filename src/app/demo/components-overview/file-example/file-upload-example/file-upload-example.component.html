@@ -1,0 +1,202 @@
+<example-base-structure
+  exampleTitle="File-Upload"
+  exampleIconName="fas fa-cloud-upload-alt"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90file%E2%80%90upload"
+>
+  <example-base-content fxLayout="column">
+    <div fxFlex="auto" fxLayout="column">
+      <h3>Ohne ReactiveForm</h3>
+      <lux-file-upload
+        [luxLabel]="label"
+        [luxLabelLink]="labelLink"
+        [luxLabelLinkShort]="labelLinkShort"
+        [luxUploadIcon]="uploadIcon"
+        [luxDeleteIcon]="deleteIcon"
+        [luxRequired]="required"
+        [luxReadonly]="readonly"
+        [(luxDisabled)]="disabled"
+        [luxUploadUrl]="uploadUrl"
+        [luxMultiple]="multiple"
+        [luxMaxSizeMB]="maxSize"
+        [luxUploadActionConfig]="uploadActionConfig"
+        [luxViewActionConfig]="viewActionConfig"
+        [luxDeleteActionConfig]="deleteActionConfig"
+        [luxDownloadActionConfig]="downloadActionConfig"
+        [luxMaximumExtended]="maximumExtended"
+        [luxCapture]="capture"
+        [luxAccept]="accept"
+        [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
+        [luxDnDActive]="dndActive"
+        [luxSelectedFiles]="selected"
+        [luxContentsAsBlob]="contentAsBlob"
+        [luxUploadReportProgress]="reportProgress"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxSelectedFilesChange)="onSelectedChange($event)"
+        #fileBaseWithoutComponent
+      >
+      </lux-file-upload>
+    </div>
+    <div fxFlex="auto" fxLayout="column">
+      <h3>Mit ReactiveForm</h3>
+      <div [formGroup]="form">
+        <lux-file-upload
+          [luxLabel]="label"
+          [luxLabelLink]="labelLink"
+          [luxLabelLinkShort]="labelLinkShort"
+          [luxUploadIcon]="uploadIcon"
+          [luxDeleteIcon]="deleteIcon"
+          [luxReadonly]="readonly"
+          [(luxDisabled)]="disabled"
+          [luxUploadUrl]="uploadUrl"
+          [luxMultiple]="multiple"
+          [luxMaxSizeMB]="maxSize"
+          [luxUploadActionConfig]="uploadActionConfig"
+          [luxViewActionConfig]="viewActionConfigForm"
+          [luxDeleteActionConfig]="deleteActionConfig"
+          [luxDownloadActionConfig]="downloadActionConfig"
+          [luxMaximumExtended]="maximumExtended"
+          [luxCapture]="capture"
+          [luxAccept]="accept"
+          [luxHint]="hint"
+          [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
+          [luxDnDActive]="dndActive"
+          [luxControlBinding]="controlBinding"
+          [luxContentsAsBlob]="contentAsBlob"
+          [luxUploadReportProgress]="reportProgress"
+          (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+          (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+          #fileBaseWithComponent
+        >
+        </lux-file-upload>
+        <div fxLayout="column" class="lux-highlight-section">
+          <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+            <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
+              <span fxFlex="35px">Valid:</span>
+              <span fxFlex="30px">{{ form.valid }}</span>
+            </div>
+            <div fxFlex="30" fxLayout="row">
+              <span fxFlex="0 0 auto">Dirty:</span>
+              <span fxFlex="30px">{{ form.dirty }}</span>
+            </div>
+            <div fxFlex="30" fxLayout="row">
+              <span fxFlex="0 0 auto">Touched:</span>
+              <span fxFlex="30px">{{ form.touched }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="12px">
+      <div class="lux-highlight-section-label">Labels</div>
+      <lux-input luxLabel="luxLabel" [(luxValue)]="label"></lux-input>
+      <lux-input luxLabel="luxLabelLink" [(luxValue)]="labelLink"></lux-input>
+      <lux-input
+        luxLabel="luxLabelLinkShort"
+        luxHint="Dieses Label wird nur auf kleinen Auflösungen angezeigt und ersetzt den Wert aus luxLabelLink"
+        [(luxValue)]="labelLinkShort"
+      ></lux-input>
+      <lux-input luxLabel="luxHint" [(luxValue)]="hint"></lux-input>
+    </div>
+
+    <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="12px">
+      <div class="lux-highlight-section-label">Icons</div>
+      <lux-input luxLabel="luxUploadIcon" [(luxValue)]="uploadIcon"></lux-input>
+      <lux-input luxLabel="luxDeleteIcon" [(luxValue)]="deleteIcon"></lux-input>
+    </div>
+
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="multiple"
+      luxLabel="luxMultiple"
+      luxHint="Dieses Flag legt fest, ob nur eine oder mehrere Dateien selektiert werden können."
+    >
+    </lux-toggle>
+
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="disabled"
+      luxLabel="luxDisabled"
+      luxHint="Erlaubt es, die Component zu deaktivieren."
+    >
+    </lux-toggle>
+    <div class="lux-highlight-section" fxLayout="column">
+      <div fxLayout="row wrap">
+        <lux-button
+          luxLabel="Enable"
+          (luxClicked)="form.get(controlBinding).enable()"
+          [luxDisabled]="!form.get(controlBinding).disabled"
+        ></lux-button>
+        <lux-button
+          luxLabel="Disable"
+          (luxClicked)="form.get(controlBinding).disable()"
+          [luxDisabled]="form.get(controlBinding).disabled"
+        ></lux-button>
+      </div>
+      <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
+    </div>
+
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="readonly"
+      luxLabel="luxReadonly"
+      luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="luxRequired"
+      (luxCheckedChange)="changeRequired($event)"
+    >
+      <lux-form-hint>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
+        Reactive-Form sind.<br />
+        <b
+        >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control
+          gesetzt.</b
+        >
+      </lux-form-hint>
+    </lux-toggle>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div class="lux-highlight-section" fxLayout="column">
+      <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents"> </lux-toggle>
+    </div>
+
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="contentAsBlob"
+      luxLabel="luxContentAsBlob"
+      luxHint="Diese Eigenschaft bestimmt ob die Dateien als Blob gespeichert werden sollen oder als Base64-String."
+    >
+    </lux-toggle>
+
+    <lux-input
+      class="lux-highlight-section"
+      luxLabel="luxMaxSizeMB"
+      luxHint="Die Property bestimmt die maximale erlaubte Dateigröße in MB."
+      [(luxValue)]="maxSize"
+      luxType="number"
+    >
+      <lux-input-suffix> MB</lux-input-suffix>
+    </lux-input>
+    <lux-select
+      class="lux-highlight-section"
+      luxLabel="luxCapture"
+      luxHint="Diese Property stellt ein ob für Mobilgeräte die Front- oder Rück-Kamera und Mikrophone verwendet werden sollen."
+      [luxOptions]="['', 'user', 'environment']"
+      [(luxSelected)]="capture"
+    >
+    </lux-select>
+    <lux-input
+      class="lux-highlight-section"
+      luxLabel="luxAccept"
+      luxHint="Über diese Eigenschaft lässt sich einstellen, welche Dateiarten erlaubt sind (z.B. image/*,.pdf)."
+      [(luxValue)]="accept"
+    >
+    </lux-input>
+  </example-base-advanced-options>
+</example-base-structure>
