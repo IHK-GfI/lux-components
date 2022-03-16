@@ -1,0 +1,37 @@
+<lux-dialog-structure>
+  <lux-dialog-title class="file-upload-dialog-title-container file-delete-dialog-title-container">
+    <div class="file-upload-dialog-close-button-container file-delete-dialog-close-button-container">
+      <lux-button
+        luxAriaLabel="Schließen"
+        i18n-luxAriaLabel="@@luxc.file.upload.dialog.close.btn.arialabel"
+        luxTagId="file-delete-dialog-close-button"
+        luxIconName="close"
+        class="file-upload-dialog-close-button file-delete-dialog-close-button"
+        (luxClicked)="luxDialogRef.closeDialog()"
+      ></lux-button>
+    </div>
+    <div class="file-upload-dialog-title file-delete-dialog-title" i18n="@@luxc.file.delete.dialog.title">
+      Wollen Sie die Datei wirklich löschen?
+    </div>
+  </lux-dialog-title>
+  <lux-dialog-content class="file-upload-dialog-content-container file-delete-dialog-content-container">
+    <p class="file-upload-dialog-content-text file-delete-dialog-content-text" i18n="@@luxc.file.delete.dialog.content">
+      Wenn Sie die Datei löschen, wird diese unwiderruflich gelöscht.
+    </p>
+  </lux-dialog-content>
+  <lux-dialog-actions fxLayout="row wrap" fxLayoutGap="20px">
+    <lux-button
+      luxLabel="Abbrechen"
+      i18n-luxLabel="@@luxc.file.delete.dialog.cancel.lbl"
+      [luxRaised]="true"
+      (luxClicked)="luxDialogRef.closeDialog(false)"
+    ></lux-button>
+    <lux-button
+      luxLabel="Löschen"
+      i18n-luxLabel="@@luxc.file.delete.dialog.delete.lbl"
+      luxColor="primary"
+      [luxRaised]="true"
+      (luxClicked)="luxDialogRef.closeDialog(true)"
+    ></lux-button>
+  </lux-dialog-actions>
+</lux-dialog-structure>

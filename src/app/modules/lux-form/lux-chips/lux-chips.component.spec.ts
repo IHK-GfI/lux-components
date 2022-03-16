@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxChipComponent } from './lux-chips-subcomponents/lux-chip.component';
-import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from "@angular/core/testing";
 import { LuxChipsComponent } from './lux-chips.component';
 import { By } from '@angular/platform-browser';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
@@ -24,6 +24,7 @@ describe('LuxChipComponent', () => {
     testComponent = fixture.componentInstance;
     chipsComponent = fixture.debugElement.query(By.directive(LuxChipsComponent)).componentInstance;
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte Chips und ChipGroups darstellen', fakeAsync(() => {
@@ -47,6 +48,7 @@ describe('LuxChipComponent', () => {
     chipElements = fixture.debugElement.queryAll(By.css('mat-chip'));
     expect(chipElements.length).toBe(7);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte alle Chips deaktivieren', fakeAsync(() => {
@@ -69,6 +71,7 @@ describe('LuxChipComponent', () => {
     disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-disabled'));
     expect(disabledChipElements.length).toBe(7);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte alle Grouped-Chips deaktivieren', fakeAsync(() => {
@@ -91,6 +94,7 @@ describe('LuxChipComponent', () => {
     disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-disabled'));
     expect(disabledChipElements.length).toBe(3);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte einzelne Chips deaktivieren', fakeAsync(() => {
@@ -114,6 +118,7 @@ describe('LuxChipComponent', () => {
     disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-disabled'));
     expect(disabledChipElements.length).toBe(2);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte alle Grouped-Chips un-removeable machen', fakeAsync(() => {
@@ -136,6 +141,7 @@ describe('LuxChipComponent', () => {
     disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-remove'));
     expect(disabledChipElements.length).toBe(4);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte einzelne Chips un-removeable machen', fakeAsync(() => {
@@ -159,6 +165,7 @@ describe('LuxChipComponent', () => {
     disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-remove'));
     expect(disabledChipElements.length).toBe(5);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte neue Chips über das Input hinzufügen', fakeAsync(() => {
@@ -179,6 +186,7 @@ describe('LuxChipComponent', () => {
     expect(chipElements.length).toBe(1);
     expect(spy).toHaveBeenCalledTimes(1);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte neue Grouped-Chips über das Input hinzufügen', fakeAsync(() => {
@@ -201,6 +209,7 @@ describe('LuxChipComponent', () => {
     expect(chipElements.length).toBe(1);
     expect(spy).toHaveBeenCalledTimes(1);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte Chips bei Click auf Remove-Icon entfernen', fakeAsync(() => {
@@ -220,6 +229,7 @@ describe('LuxChipComponent', () => {
     chipElements = fixture.debugElement.queryAll(By.css('.mat-chip'));
     expect(chipElements.length).toBe(3);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte Grouped-Chips bei Click auf Remove-Icon entfernen', fakeAsync(() => {
@@ -242,6 +252,7 @@ describe('LuxChipComponent', () => {
     chipElements = fixture.debugElement.queryAll(By.css('.mat-chip'));
     expect(chipElements.length).toBe(2);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte Chips über Autocomplete hinzufügen', fakeAsync(() => {
@@ -269,6 +280,7 @@ describe('LuxChipComponent', () => {
     });
     LuxTestHelper.wait(fixture);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte eine einzelne FilteredOption als neuen Chip ergänzen', fakeAsync(() => {
@@ -300,6 +312,7 @@ describe('LuxChipComponent', () => {
     });
     LuxTestHelper.wait(fixture);
     discardPeriodicTasks();
+    flush();
   }));
 
   it('Sollte die angeklickten Chips als Event ausgeben', fakeAsync(() => {
@@ -323,6 +336,7 @@ describe('LuxChipComponent', () => {
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(0);
     discardPeriodicTasks();
+    flush();
   }));
 });
 

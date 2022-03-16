@@ -1,10 +1,11 @@
-<lux-form-control 
-  [luxFormComponent]="this"
-  [luxNoLabels]="luxNoLabels" 
-  [luxNoBottomLabel]="luxNoBottomLabel"
-  [luxNoTopLabel]="luxNoTopLabel" 
-  [formGroup]="formGroup" 
+<lux-form-control
   *ngIf="formGroup"
+  [luxFormComponent]="this"
+  [luxNoLabels]="luxNoLabels"
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  [formGroup]="formGroup"
+  [luxLabelLongFormat]="luxLabelLongFormat"
 >
   <div class="lux-file-container lux-input-row" fxLayout="row">
     <!-- Das Input ist nur für die visuelle Darstellung der ausgewählten Dateien zuständig -->

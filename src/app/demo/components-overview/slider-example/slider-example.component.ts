@@ -34,7 +34,8 @@ export class SliderExampleComponent {
   percentReactive: number;
   tickIntervalNumber = 0;
   tickIntervalAuto = true;
-
+  labelLongFormat = false;
+  
   // endregion
 
   // region Properties der Component

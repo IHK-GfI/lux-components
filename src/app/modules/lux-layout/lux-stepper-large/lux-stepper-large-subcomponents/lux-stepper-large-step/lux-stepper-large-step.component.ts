@@ -16,6 +16,7 @@ export class LuxStepperLargeStepComponent implements ILuxStepperLargeStep {
   @Input() luxTitle = '';
   @Input() luxTouched = false;
   @Input() luxCompleted = false;
+  @Input() luxDisabled = false;
   @Input() luxVetoFn: (clickEvent: LuxStepperLargeClickEvent) => Promise<LuxVetoState> = () =>
     Promise.resolve(LuxVetoState.navigationAccepted);
 

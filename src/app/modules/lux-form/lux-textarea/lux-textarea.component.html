@@ -1,13 +1,14 @@
-<lux-form-control 
-  [luxFormComponent]="this" 
+<lux-form-control
+  *ngIf="formGroup"
+  [luxFormComponent]="this"
   [luxScalableHeight]="true"
-  [luxCounterLabel]="counterLabel" 
+  [luxCounterLabel]="counterLabel"
   [luxHideCounterLabel]="luxHideCounterLabel"
-  [luxNoLabels]="luxNoLabels" 
+  [luxNoLabels]="luxNoLabels"
   [luxNoBottomLabel]="luxNoBottomLabel"
-  [luxNoTopLabel]="luxNoTopLabel" 
-  [formGroup]="formGroup" 
-  *ngIf="formGroup" 
+  [luxNoTopLabel]="luxNoTopLabel"
+  [formGroup]="formGroup"
+  [luxLabelLongFormat]="luxLabelLongFormat"
 >
   <textarea
     matInput

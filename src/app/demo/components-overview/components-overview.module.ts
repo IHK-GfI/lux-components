@@ -94,6 +94,7 @@ import { StepperLargeExampleStepFinButtonComponent } from './stepper-large-examp
 import { StepperLargeExampleStepVetoComponent } from './stepper-large-example/steps/stepper-large-example-step-veto.component';
 import { LinkPlainExampleComponent } from './link-plain-example/link-plain-example.component';
 import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-authentic-example.component';
+import { FileUploadExampleComponent } from './file-example/file-upload-example/file-upload-example.component';
 
 @NgModule({
   imports: [
@@ -194,7 +195,8 @@ import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-aut
     StepperLargeExampleStepFinButtonComponent,
     StepperLargeExampleStepVetoComponent,
     LinkPlainExampleComponent,
-    TileAuthenticExampleComponent
+    TileAuthenticExampleComponent,
+    FileUploadExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]

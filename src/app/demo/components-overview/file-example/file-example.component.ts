@@ -23,7 +23,7 @@ export abstract class FileExampleComponent implements OnInit {
   fileComponents: LuxFormFileBase[] = [];
 
   dndActive = true;
-  selected: ILuxFileObject = null;
+  selected: ILuxFileObject | ILuxFileObject[] = null;
   contentAsBlob = false;
   reportProgress = false;
   hint = 'Datei hierher ziehen oder über den Button auswählen';
@@ -126,8 +126,9 @@ export abstract class FileExampleComponent implements OnInit {
           const file = response as any;
           file.name = 'example.png';
           file.lastModifiedDate = new Date();
-          this.selected = { name: 'example.png', content: file, type: file.type };
-          this.form.get(this.controlBinding).setValue({ name: 'example.png', content: file, type: file.type });
+          const fileObject = { name: 'example.png', content: file, type: file.type, size: file.size};
+          this.selected = this.alwaysUseArray ? [fileObject] : fileObject;
+          this.form.get(this.controlBinding).setValue(this.alwaysUseArray ? [fileObject] : fileObject);
         })
       )
       .subscribe(() => {});

@@ -1,5 +1,5 @@
 .filter-content ::ng-deep {
-  button, button.lux-button {
+  button, button.lux-button.mat-button, button.lux-button.mat-raised-button {
     height: 25px;
     line-height: 25px;
   }

@@ -44,6 +44,8 @@ export abstract class TableExampleBaseClass {
   columnWidthOption = this.columnWidthOptions[1].value;
   multiSelect = true;
   multiSelectOnlyCheckboxClick = true;
+  multiSelectDisabledPropertyActive = false;
+  multiSelectDisabledProperty = 'disabled';
 
   calculateProportions = false;
   minWidthPx = undefined;
@@ -58,6 +60,8 @@ export abstract class TableExampleBaseClass {
   columnConfigs = [this.nameConfig, this.symbolConfig, this.dateConfig];
 
   // endregion
+
+  abstract getDataArr();
 
   pickFn(o) {
     return o.name;
@@ -77,11 +81,11 @@ export abstract class TableExampleBaseClass {
 
   preselect() {
     const newSelected = new Set();
-    newSelected.add({ name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24) });
-    newSelected.add({ name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22) });
-    newSelected.add({ name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21) });
-    newSelected.add({ name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18) });
-    newSelected.add({ name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24) });
+    newSelected.add({ name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24), disabled: false  });
+    newSelected.add({ name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22), disabled: false  });
+    newSelected.add({ name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21), disabled: false  });
+    newSelected.add({ name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18), disabled: false  });
+    newSelected.add({ name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24), disabled: false  });
 
     this.selected = newSelected;
   }

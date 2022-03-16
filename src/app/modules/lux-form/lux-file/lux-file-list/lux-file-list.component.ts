@@ -194,12 +194,8 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
 
       // Wenn mehrere Dateien selektiert sind und luxMultiple dies unterbindet, Fehler werfen und Fn beenden
       // Ausnahme ist, wenn die Dateien nur ersetzt werden sollen
-      if (
-        !this.luxMultiple &&
-        (((!this.luxSelectedFiles || this.luxSelectedFiles.length === 0) && files.length > 1) ||
-          (this.luxSelectedFiles && this.luxSelectedFiles.length > 1) ||
-          (this.luxSelectedFiles && this.luxSelectedFiles.length > 0 && replaceableFilesMap.size !== files.length))
-      ) {
+      const fileCount = (this.luxSelectedFiles ? this.luxSelectedFiles.length : 0) + (files ? files.length : 0) - replaceableFilesMap.size;
+      if (!this.luxMultiple && fileCount > 1) {
         this.setFormControlErrors({
           cause: LuxFileErrorCause.MultipleForbidden,
           exception: this.getMultipleForbiddenMessage(),

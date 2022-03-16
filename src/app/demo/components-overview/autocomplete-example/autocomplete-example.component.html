@@ -27,6 +27,7 @@
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxControlValidators]="controlValidators"
         [luxPanelWidth]="luxPanelWidth"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
@@ -66,6 +67,7 @@
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxControlBinding]="controlBinding"
         [luxPanelWidth]="luxPanelWidth"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
@@ -329,5 +331,12 @@
         entsprechende FormControl setzen.
       </lux-form-hint>
     </lux-select>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
+      luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [(luxChecked)]="labelLongFormat"
+    >
+    </lux-toggle>
   </example-base-advanced-options>
 </example-base-structure>

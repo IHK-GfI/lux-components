@@ -50,7 +50,7 @@ export class AutocompleteExampleComponent {
 
   form: FormGroup;
   log = logResult;
-
+  labelLongFormat = false;
   // endregion
 
   // region Properties der Component

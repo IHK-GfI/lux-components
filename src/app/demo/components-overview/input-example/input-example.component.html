@@ -23,6 +23,7 @@
         [luxType]="inputType"
         [luxNumberAlignLeft]="numberLeft"
         [luxHideCounterLabel]="hideCounterLabel"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -89,6 +90,7 @@
         [luxType]="inputType"
         [luxNumberAlignLeft]="numberLeft"
         [luxHideCounterLabel]="hideCounterLabel"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -156,7 +158,7 @@
       </div>
       <div class="search-row" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start center">
         <lux-input [luxNoLabels]="true" luxLabel="Suche" luxPlaceholder="Gib einen Suchbegriff ein..."></lux-input>
-        <lux-button luxIconName="fa-search" luxColor="primary" [luxRaised]="true"></lux-button>
+        <lux-button luxIconName="fa-search" luxColor="primary" [luxRaised]="true" luxAriaLabel="Suche" luxTagId="input-search-btn"></lux-button>
       </div>
     </div> -->
 
@@ -341,5 +343,12 @@
         entsprechende FormControl setzen.
       </lux-form-hint>
     </lux-select>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
+      luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [(luxChecked)]="labelLongFormat"
+    >
+    </lux-toggle>
   </example-base-advanced-options>
 </example-base-structure>

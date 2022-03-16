@@ -1,12 +1,13 @@
 <lux-form-control
+  *ngIf="formGroup"
   [luxFormComponent]="this"
   [luxHideBottomBorder]="true"
   [luxScalableHeight]="luxVertical"
-  [luxNoLabels]="luxNoLabels" 
+  [luxNoLabels]="luxNoLabels"
   [luxNoBottomLabel]="luxNoBottomLabel"
   [luxNoTopLabel]="luxNoTopLabel"
   [formGroup]="formGroup"
-  *ngIf="formGroup"
+  [luxLabelLongFormat]="luxLabelLongFormat"
 >
   <mat-slider
     luxTagIdHandler

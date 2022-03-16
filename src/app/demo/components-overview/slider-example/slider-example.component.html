@@ -26,6 +26,7 @@
         [luxDisplayWith]="useDisplayFn ? displayFn : undefined"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
         (luxValuePercent)="percentChanged($event)"
@@ -65,6 +66,7 @@
         [luxDisplayWith]="useDisplayFn ? displayFn : undefined"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
         (luxValuePercent)="percentReactiveChanged($event)"
@@ -302,5 +304,12 @@
         entsprechende FormControl setzen.
       </lux-form-hint>
     </lux-select>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
+      luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [(luxChecked)]="labelLongFormat"
+    >
+    </lux-toggle>
   </example-base-advanced-options>
 </example-base-structure>

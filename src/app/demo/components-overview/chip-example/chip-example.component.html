@@ -10,9 +10,11 @@
         [luxDisabled]="disabled"
         [luxInputAllowed]="inputAllowed"
         [luxInputLabel]="inputLabel"
+        [luxPlaceholder]="placeholder"
         [luxOrientation]="chipOrientation"
         [luxMultiple]="multiple"
         [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
+        [luxLabelLongFormat]="labelLongFormat"
         (luxChipAdded)="chipAdded($event)"
       >
         <lux-chip
@@ -35,11 +37,13 @@
         [luxDisabled]="disabled"
         [luxInputAllowed]="inputAllowed"
         [luxInputLabel]="inputLabel"
+        [luxPlaceholder]="placeholder"
         [luxOrientation]="chipOrientation"
         [luxMultiple]="multiple"
         [luxNewChipGroup]="chipGroup"
         (luxChipAdded)="chipAdded($event)"
         [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
+        [luxLabelLongFormat]="labelLongFormat"
       >
         <lux-chip-group
           [luxRemovable]="groupRemovable"
@@ -75,7 +79,7 @@
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
 
-    <div class="lux-highlight-section column">
+    <div fxLayout="column" fxLayoutGap="12px" class="lux-highlight-section">
       <lux-toggle luxLabel="luxInputAllowed" [(luxChecked)]="inputAllowed" [luxNoTopLabel]="true">
         <lux-form-hint>
           Aktiviert das Eingabefeld für die Chips, darüber lassen sich dann neue Chips hinzufügen.<br />
@@ -87,6 +91,13 @@
         luxLabel="luxInputLabel"
         [(luxValue)]="inputLabel"
         luxHint="Über diese Property kann das Label für das Eingabefeld dieser Component gesetzt werden."
+      >
+      </lux-input>
+
+      <lux-input
+        luxLabel="luxPlaceholder"
+        luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
+        [(luxValue)]="placeholder"
       >
       </lux-input>
 
@@ -215,5 +226,12 @@
       >
       </lux-toggle>
     </div>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
+      luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [(luxChecked)]="labelLongFormat"
+    >
+    </lux-toggle>
   </example-base-advanced-options>
 </example-base-structure>

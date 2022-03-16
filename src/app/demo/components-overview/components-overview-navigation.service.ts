@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 export class ComponentsOverviewNavigationService implements OnDestroy {
   private currentUrl: string;
 
-  components: { onclick: any; label: string; icon: string; useImage?: boolean; moduleName?: string; news?: boolean; }[] = [
+  components: { onclick: any; label: string; icon: string; useImage?: boolean; moduleName?: string; news?: boolean }[] = [
     { onclick: () => this.goTo('accordion'), icon: 'fas fa-stream', label: 'Accordion', moduleName: 'layout' },
     { onclick: () => this.goTo('autocomplete'), icon: 'fas fa-font', label: 'Autocomplete', moduleName: 'form' },
     { onclick: () => this.goTo('badge'), icon: 'fas fa-ribbon', label: 'Badge', moduleName: 'common' },
@@ -92,6 +92,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
       moduleName: 'form'
     },
     { onclick: () => this.goTo('file-list'), icon: 'fas fa-cloud-upload-alt', label: 'File-List', moduleName: 'form' },
+    { onclick: () => this.goTo('file-upload'), icon: 'fas fa-cloud-upload-alt', label: 'File-Upload', moduleName: 'form' },
     { onclick: () => this.goTo('ripple'), icon: 'fas fa-water', label: 'Ripple', moduleName: 'directive' },
     {
       onclick: () => this.goTo('badge-notification'),

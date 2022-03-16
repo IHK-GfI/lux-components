@@ -1,3 +1,37 @@
+# Version 11.12.0
+## New
+- **lux-chips**: Placeholder, Pfeilbutton und breite Vorschlagsliste ergänzt. [Issue 178](https://github.com/IHK-GfI/lux-components/issues/178)
+- **lux-stepper-large**: Verbesserungspaket 1 [Issue 180](https://github.com/IHK-GfI/lux-components/issues/180)
+  - Es wurde die Property "luxStepValidationActive" eingeführt. Über diese neue Property kann die Validierung der Schritte (de-)aktiviert werden. Wenn die Validierung deaktiviert wird, dann ist der Weiter-Button immer aktiv und nur die Veto-Funktionen können das Navigieren zum nächsten Schritt verhindern.
+  - Der aktive Schritt im Stepper ist nicht anklickbar.
+  - Die Hover-Effekte der Navigation wurden geändert.
+- **lux-accordion**: Mit *ngFor-erzeugte Panels mit luxExpanded="true" werfen keinen Fehler mehr. [Issue 180](https://github.com/IHK-GfI/lux-components/issues/180)
+- **lux-table**: Feature-Request: Das multi-select in lux-tables soll pro Zeile aktiviert/deaktiviert werden können. [Issue 158](https://github.com/IHK-GfI/lux-components/issues/158)
+
+## Bug Fixes
+- **lux-filter-form**: Binding-Fehler während der Initialisierung verhindern. [Issue 175](https://github.com/IHK-GfI/lux-components/issues/175)
+
+# Version 11.11.0
+## New
+- **allgemein**: Zeilenumbruch im Label der Formcontrols zulassen. [Issue 173](https://github.com/IHK-GfI/lux-components/issues/173)
+- **lux-file-upload**: Neue File-Upload-Komponente [Issue 172](https://github.com/IHK-GfI/lux-components/issues/172)
+
+## Bug Fixes
+- **lux-stepper**: Es kann nicht über den Weiter-Button navigiert werden, wenn mehrere Schritte nachträglich hinzugefügt wurden. [Issue 167](https://github.com/IHK-GfI/lux-components/issues/167)
+- **lux-lookup-autocomplete**: Komponente wirft beim initialen Laden einen ExpressionChangedAfterItHasBeenCheckedError [Issue 165](https://github.com/IHK-GfI/lux-components/issues/165)
+- **lux-filter-form**: Wenn ein Filter initial vorbelegt ist, dann zeigt die Debugconsole einen Fehler an und die Filterchips werden eventuell nicht korrekt aktualisiert. [Issue 169](https://github.com/IHK-GfI/lux-components/issues/169)
+- **lux-filter-form**: Der Laden-Button im Dialog ist im Vergleich zum Lösch-Button zu groß. [Issue 169](https://github.com/IHK-GfI/lux-components/issues/169)
+- **lux-filter-form**: Wenn man im Firefox in einem Autocomplete-Feld das Filtern über die Tastatur (Shift + Enter) auslöst, fliegt ein Fehler in der Debugconsole. [Issue 169](https://github.com/IHK-GfI/lux-components/issues/169)
+
+# Version 11.10.0
+## New
+- **lux-stepper-large**: Der Stepper ist weniger strikt und ermöglicht immer das Zurücknavigieren. [Issue 161](https://github.com/IHK-GfI/lux-components/issues/161)
+- **lux-stepper-large**: Schritte im Stepper können deaktiviert werden. [Issue 161](https://github.com/IHK-GfI/lux-components/issues/161)
+
+## Bug Fixes
+- **lux-stepper-large**: Verhinderung eines ExpressionChangedAfterItHasBeenCheckedError beim Setzen der Cursorposition (Tastatursteuerung). [Issue 161](https://github.com/IHK-GfI/lux-components/issues/161)
+- **lux-dialog**: Darstellungsfehler in Safari behoben. [Issue 163](https://github.com/IHK-GfI/lux-components/issues/163)
+
 # Version 11.9.0
 ## New
 - **allgemein**: LUX-Theme [11.11.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/11.11.0) integriert.

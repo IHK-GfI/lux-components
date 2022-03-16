@@ -449,13 +449,13 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
       if (this.luxContentsAsBlob) {
         // Wenn direkt die Blobs genutzt werden sollen, einfach die Datei als content merken
-        newFiles.push({ name: file.name, content: file as Blob, type: file.type });
+        newFiles.push({ name: file.name, content: file as Blob, type: file.type, size: file.size });
       } else {
         // Das Auslesen der Datei anstoßen, wenn erfolgreich, wird die Datei zu selectedFiles hinzugefügt.
         // Bei einem Fehler wird das Promise rejected und gibt einen Fehler zurück.
         await this.readFile(file)
           .then((content: any) => {
-            newFiles.push({ name: file.name, content, type: file.type });
+            newFiles.push({ name: file.name, content, type: file.type, size: file.size });
           })
           .catch((error) =>
             Promise.reject({
@@ -510,9 +510,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    * @param $event
    */
   handleDragLeave($event) {
-    if ($event.target.nodeName.toLocaleLowerCase() === 'lux-file-input') {
-      this.isDragActive = false;
-    }
+    this.isDragActive = false;
 
     $event.stopPropagation();
     $event.preventDefault();
@@ -584,8 +582,9 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     // Vorherige definierte Fehler entfernen
     this.clearFormControlErrors();
     // Hier aktualisieren wir das Fehlerobjekt an dem zugrunde liegenden FormControl dieser Component
-    const errors = this.formControl.errors ? this.formControl.errors : {};
+    const errors = {};
     errors[error.cause] = { file: error.file };
+
     this.formControl.setErrors(errors);
   }
 
@@ -604,11 +603,9 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    * @param file
    */
   protected getMaxSizeErrorMessage(file: File): string {
-    return (
-      $localize`:@@luxc.form-file-base.error_message.max_file_size:Die Datei "${file.name}" überschreitet mit ${+this.getFileSizeInMB(
-        file
-      ).toFixed(2)}MB ` + `die erlaubte Dateigröße von ${+this.luxMaxSizeMB.toFixed(2)}MB`
-    );
+    return $localize`:@@luxc.form-file-base.error_message.max_file_size:Die Datei "${file.name}" überschreitet mit ${+this.getFileSizeInMB(
+      file
+    ).toFixed(2)}MB die erlaubte Dateigröße von ${+this.luxMaxSizeMB.toFixed(2)}MB`;
   }
 
   /**
@@ -660,10 +657,14 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   protected announceFileProcess(multiple: boolean) {
     if (multiple) {
       this.liveAnnouncer.announce(
-        $localize`:@@luxc.form-file-base.upload.files.announce:Bitte warten. Die Datei wird verarbeitet.`, 'assertive');
+        $localize`:@@luxc.form-file-base.upload.files.announce:Bitte warten. Die Datei wird verarbeitet.`,
+        'assertive'
+      );
     } else {
       this.liveAnnouncer.announce(
-        $localize`:@@luxc.form-file-base.upload.file.announce:Bitte warten. Die Dateien werden verarbeitet.`, 'assertive');
+        $localize`:@@luxc.form-file-base.upload.file.announce:Bitte warten. Die Dateien werden verarbeitet.`,
+        'assertive'
+      );
     }
   }
 
