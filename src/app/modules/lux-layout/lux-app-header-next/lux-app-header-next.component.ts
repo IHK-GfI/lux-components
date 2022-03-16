@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ContentChild, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxAppHeaderNextNavMenuComponent } from './lux-app-header-next-subcomponent/lux-app-header-next-nav-menu/lux-app-header-next-nav-menu.component';
 import { LuxAppHeaderNextUserMenuComponent } from './lux-app-header-next-subcomponent/lux-app-header-next-user-menu.component'; 
@@ -8,7 +8,7 @@ import { LuxAppHeaderNextUserMenuComponent } from './lux-app-header-next-subcomp
   templateUrl: './lux-app-header-next.component.html',
   styleUrls: ['./lux-app-header-next.component.scss']
 })
-export class LuxAppHeaderNextComponent implements OnInit {
+export class LuxAppHeaderNextComponent implements OnInit, OnChanges {
   @Input() luxUserName: string;
   @Input() luxIconName: string; //für das APP-Icon
   @Input() luxImageSrc: string; //alternative zum APP-Icon
