@@ -1,6 +1,5 @@
-# Version 11.13.0
-## New
 - **lux-autocomplete**, **lux-chips**, **lux-lookup-autocomplete**: Mehrzeilige Mat-Option im Dropdown-Menü eingeführt. [Issue 177](https://github.com/IHK-GfI/lux-components/issues/177)
+- **lux-table**: Spalten-Name bei Spaltenverschiebung mit anzeigen. [Issue 171](https://github.com/IHK-GfI/lux-components/issues/171)
 
 # Version 11.12.0
 ## New
