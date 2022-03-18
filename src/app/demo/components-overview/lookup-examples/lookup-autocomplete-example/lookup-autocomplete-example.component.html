@@ -27,6 +27,7 @@
         [luxDebounceTime]="debounceTime"
         [luxMaximumDisplayed]="maximumDisplayed"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxOptionMultiline]="optionMultiline"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
@@ -62,6 +63,7 @@
         [luxMaximumDisplayed]="maximumDisplayed"
         [luxControlBinding]="controlBinding"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxOptionMultiline]="optionMultiline"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
@@ -206,6 +208,12 @@
         *ngIf="!useRenderFn"
       >
       </lux-input>
+      <lux-toggle
+        luxLabel="luxOptionMultiline"
+        luxHint="Wenn 'true' wird der Option-Text mehrzeilig angezeigt"
+        [(luxChecked)]="optionMultiline"
+      >
+    </lux-toggle>
     </div>
     <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle

@@ -32,7 +32,7 @@
       [displayWith]="displayFn.bind(this)"
       (optionSelected)="selected($event)"
     >
-      <mat-option *ngFor="let option of filteredOptions" [value]="option">
+      <mat-option *ngFor="let option of filteredOptions" [value]="option" [ngClass]="{ 'lux-option-multiline': luxOptionMultiline }">
         <ng-container *ngTemplateOutlet="optionTemplate; context: { $implicit: option }"></ng-container>
       </mat-option>
     </mat-autocomplete>

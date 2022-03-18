@@ -3,10 +3,6 @@
 ::ng-deep .lux-autocomplete-panel {
   padding: $outline-width;
 
-  mat-option:not(:last-of-type) {
-    margin-bottom: $outline-width;
-  }
-
   mat-option {
     &.information-option {
       position: fixed;
@@ -14,6 +10,18 @@
       z-index: 1000;
       line-height: 24px;
       pointer-events: none;
+    }
+    
+    &.lux-option-multiline {
+      padding: 16px;
+      height: unset;
+      
+      .mat-option-text {
+        white-space: pre-line;
+        text-overflow: unset;
+        word-wrap: break-word;
+        line-height: normal;
+      }
     }
   }
 }
