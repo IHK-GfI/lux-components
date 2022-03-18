@@ -1,3 +1,7 @@
+# Version 11.13.0
+## New
+- **lux-table**: Spalten-Name bei Spaltenverschiebung mit anzeigen. [Issue 171](https://github.com/IHK-GfI/lux-components/issues/171)
+
 # Version 11.12.0
 ## New
 - **lux-chips**: Placeholder, Pfeilbutton und breite Vorschlagsliste ergänzt. [Issue 178](https://github.com/IHK-GfI/lux-components/issues/178)
