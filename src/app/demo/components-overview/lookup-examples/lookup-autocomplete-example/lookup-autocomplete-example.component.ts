@@ -17,6 +17,8 @@ export class LookupAutocompleteExampleComponent extends LookupExampleComponent i
   debounceTime = 250;
   maximumDisplayed = 50;
   labelLongFormat = false;
+  optionMultiline = false;
+
   constructor(lookupHandler: LuxLookupHandlerService, snackbar: LuxSnackbarService, fb: FormBuilder) {
     super(lookupHandler, fb);
   }
