@@ -140,9 +140,13 @@
                   width: luxColWidthsPercent && luxColWidthsPercent[i] ? luxColWidthsPercent[i] + '%' : 'unset'
                 }"
               >
+                <div class="lux-header-title lux-label" *ngIf="hasMovedColumnsMap.has(tableColumn.luxColumnDef)">
+                  <ng-container *ngTemplateOutlet="tableColumn.header?.tempRef"></ng-container>
+                </div>
                 <ng-container
                   *ngTemplateOutlet="tableColumn.content?.tempRef; context: { $implicit: element }"
                 ></ng-container>
+                <div class="lux-mb-3" *ngIf="hasMovedColumnsMap.has(tableColumn.luxColumnDef)"></div>
 
                 <!-- Hier werden die aufgrund von Responsive-Verhalten verschobenen Spalten innerhalb dieser Spalte dargestellt -->
                 <ng-container *ngFor="let movedTableColumn of movedTableColumns">
@@ -155,6 +159,7 @@
                         *ngTemplateOutlet="movedTableColumn.content.tempRef; context: { $implicit: element }"
                       ></ng-container>
                     </div>
+                    <div class="lux-mb-3"></div>
                   </ng-container>
                 </ng-container>
               </td>

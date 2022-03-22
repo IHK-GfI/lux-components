@@ -1,3 +1,5 @@
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
+
 .lux-chips-input-container {
   display: flex;
   flex: 1 1 auto;
@@ -45,6 +47,22 @@ mat-chip-list {
   .lux-chips-list-offset {
     mat-chip {
       margin-bottom: 10px;
+    }
+  }
+}
+
+::ng-deep .lux-chips-autocomplete-panel {
+  padding: $outline-width;
+
+  mat-option.lux-option-multiline {
+    padding: 16px;
+    height: unset;
+    
+    .mat-option-text {
+      white-space: pre-line;
+      text-overflow: unset;
+      word-wrap: break-word;
+      line-height: normal;
     }
   }
 }
