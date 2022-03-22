@@ -387,7 +387,7 @@ describe('LuxTabsComponent', () => {
 
     it('Attribut "tabCounter" nicht gesetzt.', fakeAsync(() => {
       // Nachbedingungen testen
-      expect(getBadgeElement(fixture).offsetWidth).toBe(0, 'Nachbedingung 1');
+      expect(getBadgeElement(fixture)).toBeNull( 'Nachbedingung 1');
     }));
   });
 });
@@ -556,5 +556,6 @@ export function getBadgeElement(fixture: ComponentFixture<any>): any {
     badgeSelector = '.lux-tab-icon .mat-badge-content';
   }
 
-  return fixture.debugElement.query(By.css(badgeSelector)).nativeElement;
+  const found = fixture.debugElement.query(By.css(badgeSelector));
+  return found ? found.nativeElement : null;
 }

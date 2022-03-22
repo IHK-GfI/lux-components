@@ -20,7 +20,7 @@ describe('LuxBadgeNotificationDirective', () => {
     // Vorbedingungen prüfen
     const badgeContent = fixture.debugElement.query(By.css('span'));
 
-    expect(badgeContent.nativeElement.children[0].textContent.trim()).toEqual('');
+    expect(badgeContent.nativeElement.children.length).toEqual(0);
 
     // Änderungen durchführen
     mockComp.notification = '1';

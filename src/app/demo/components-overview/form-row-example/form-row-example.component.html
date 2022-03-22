@@ -4,16 +4,16 @@
       <lux-accordion luxMode="flat" [luxMulti]="false" class="tip-panel" >
         <lux-panel [luxHideToggle]="true">
           <lux-panel-header-title>
-            <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>         
+            <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
           </lux-panel-header-title>
           <lux-panel-header-description>
             Abstand zwischen zwei Formrows definieren.
           </lux-panel-header-description>
           <lux-panel-content fxLayout="column" fxLayoutGap="40px" fxLayoutGap.lt-md="24px">
             <p>
-              Mit der Version 12.0.0 wurde bei den Lux-Form-Controls das Margin entfernt. Damit kann und muss der Abstand in einem Formular jetzt individuell festgelegt werden. <br>
+              Mit der Version 13.0.0 wurde bei den Lux-Form-Controls das Margin entfernt. Damit kann und muss der Abstand in einem Formular jetzt individuell festgelegt werden. <br>
               Für die Lux-Layout-Form-Row, lässt sich das über das Attribut luxGap regeln. <br>
-              Wichtig ist es auch den Abstand zwischen zwei Reihen zu definieren, damit die Lesbarkeit der Formulare erhalten bleibt. 
+              Wichtig ist es auch den Abstand zwischen zwei Reihen zu definieren, damit die Lesbarkeit der Formulare erhalten bleibt.
             </p>
             <div class="tip-container lux-mt-4 lux-mb-4"  fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center stretch">
               <div fxLayout="column" fxLayoutAlign="space-between start" fxFlex="40" fxFlex.lt-md="90" class="dont lux-pt-4" >
@@ -35,10 +35,10 @@
                   </lux-layout-form-row>
                   <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '24px', column: '16px'}">
                     <lux-input luxLabel="Lorem ipsum 2" luxName="Lorem_ipsum_1.6" luxHint="Consetetur sadipscing elitr." *luxLayoutRowItem="{}"></lux-input>
-                  </lux-layout-form-row> 
+                  </lux-layout-form-row>
                 </lux-layout>
                 <p class="text">Do</p>
-                <div class="bottom"></div> 
+                <div class="bottom"></div>
               </div>
             </div>
             <div class="code-section" fxLayout="row">
@@ -47,7 +47,7 @@
           </lux-panel-content>
         </lux-panel>
         <lux-panel [luxHideToggle]="true">
-          <lux-panel-header-title> 
+          <lux-panel-header-title>
             <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
           </lux-panel-header-title>
           <lux-panel-header-description>
@@ -58,9 +58,9 @@
               Bisher verfügen die Lux-Components nicht über ein "Grid"-System, wie es aus anderen CSS-Libraries bekannt ist. Es besteht aber die Möglichkeit mit Hilfe,
               der Lux-Layout-Form-Rows Leerzeilen zu definieren (siehe oberes Beispiel). <br>
               Dafür wird die Höhe der leeren Zeile nach folgendem Prinzip berechnet: emptyRowHeight = rowItemHeight + rowGap. <br>
-              Die "rowItemheight" ist abhängig von den Attributen und dem Theme und kann der folgenden Tabelle entnommen werden. 
+              Die "rowItemheight" ist abhängig von den Attributen und dem Theme und kann der folgenden Tabelle entnommen werden.
               Die "rowGap" sollte wie in den anderen Zeilen gewählt werden.
-              In unserem Beispiel ist die emptyRowHeight = 47px + 16px (blue-Theme) bzw. = 61px + 16px (green-Theme). 
+              In unserem Beispiel ist die emptyRowHeight = 47px + 16px (blue-Theme) bzw. = 61px + 16px (green-Theme).
             </p>
             <lux-table [luxData]="dataSource">
               <lux-table-column luxColumnDef="name">

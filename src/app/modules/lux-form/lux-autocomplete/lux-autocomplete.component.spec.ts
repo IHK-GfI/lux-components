@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { By } from "@angular/platform-browser";
@@ -64,10 +64,7 @@ describe('LuxAutocompleteComponent', () => {
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Vertretungsaufgaben');
         LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
-        // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
-        // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
-        LuxTestHelper.dispatchFakeEvent(document, 'click');
-        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // Nachbedingungen testen
         expect(component.autocomplete.luxValue).toEqual(component.options[3]);
@@ -217,10 +214,7 @@ describe('LuxAutocompleteComponent', () => {
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Vertretungsaufgaben');
         LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
-        // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
-        // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
-        LuxTestHelper.dispatchFakeEvent(document, 'click');
-        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // Nachbedingungen testen
         expect(component.selected).toEqual(component.options[3]);
@@ -240,10 +234,7 @@ describe('LuxAutocompleteComponent', () => {
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'zzz');
         LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
-        // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
-        // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
-        LuxTestHelper.dispatchFakeEvent(document, 'click');
-        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // Nachbedingungen testen
         expect(component.strict).toBeFalsy('Nachbedingung 1');
@@ -260,10 +251,7 @@ describe('LuxAutocompleteComponent', () => {
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Ver');
         LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
-        // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
-        // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
-        LuxTestHelper.dispatchFakeEvent(document, 'click');
-        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // Nachbedingungen testen
         expect(component.selected).toEqual(component.options[3]);
@@ -315,10 +303,7 @@ describe('LuxAutocompleteComponent', () => {
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Gruppenaufgaben');
         LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
-        // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
-        // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
-        LuxTestHelper.dispatchFakeEvent(document, 'click');
-        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // Nachbedingungen testen
         expect(component.selected).toEqual(component.options[1]);
@@ -330,10 +315,7 @@ describe('LuxAutocompleteComponent', () => {
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Meine Aufga');
         LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
-        // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
-        // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
-        LuxTestHelper.dispatchFakeEvent(document, 'click');
-        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // Nachbedingungen testen
         expect(component.selected).toEqual(component.options[0]);
@@ -353,20 +335,14 @@ describe('LuxAutocompleteComponent', () => {
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Gruppenaufgaben');
         LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
-        // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
-        // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
-        LuxTestHelper.dispatchFakeEvent(document, 'click');
-        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // 2. Durchlauf
         // Änderungen durchführen
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Gruppenaufgaben');
         LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
-        // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
-        // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
-        LuxTestHelper.dispatchFakeEvent(document, 'click');
-        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // Nachbedingungen testen
         expect(component.selected).toEqual(component.options[1]);
@@ -385,20 +361,14 @@ describe('LuxAutocompleteComponent', () => {
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Gruppenaufgaben');
         LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
-        // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
-        // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
-        LuxTestHelper.dispatchFakeEvent(document, 'click');
-        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // Selektiertes Element entfernen, in dem man den Text löscht.
         // Änderungen durchführen
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, '');
         LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
-        // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
-        // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
-        LuxTestHelper.dispatchFakeEvent(document, 'click');
-        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // Nachbedingungen testen
         expect(component.selected).toBeNull('Nachbedingung 1');
@@ -425,7 +395,7 @@ describe('LuxAutocompleteComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    /** Workaround mit (done) => { fixture.whenStable() bis done() um intervalTimer von RxJs funktionieren zu lassen } **/
+    /** Workaround mit (done) => { fixture.whenStable() bis done() um intervalTimer von RxJs funktionieren zu lassen } */
 
     it('sollte sich oeffnen lassen', (done) => {
       fixture.whenStable().then(() => {
@@ -498,10 +468,7 @@ describe('LuxAutocompleteComponent', () => {
       LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Gruppenaufgaben');
       LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
 
-      // Das LUX-Autocomplete muss den Fokus verlieren, damit die Änderungen wirksam werden.
-      // Der folgende Code ist eine einfache Möglichkeit, damit ein Element den Fokus verliert.
-      LuxTestHelper.dispatchFakeEvent(document, 'click');
-      LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+      removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
       // Nachbedingungen testen
       expect(onSelectedSpy).toHaveBeenCalledTimes(1);
@@ -663,4 +630,19 @@ class LuxAutoCompleteNotAnOptionComponent {
   }
 
   onSave() {}
+}
+
+/**
+ * Das LUX-Autocomplete muss in manchen Situationen den Fokus verlieren,
+ * damit die Änderungen übernommen werden können. Die folgende Methode sorgt dafür,
+ * dass das LUX-Autocomplete den Fokus verliert.
+ *
+ * @param fixture Ein ComponentFixture.
+ * @param inputElement Ein Inputelement.
+ * @param delay Ein Delay.
+ */
+function removeFocus(fixture: ComponentFixture<any>, inputElement: ElementRef, delay: number) {
+
+  LuxTestHelper.dispatchFakeEvent(inputElement.nativeElement, 'focusout');
+  LuxTestHelper.wait(fixture, delay);
 }

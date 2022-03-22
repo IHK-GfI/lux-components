@@ -22,7 +22,7 @@ import { MatDatepickerControl, MatDatepickerPanel } from '@angular/material/date
 import { MatFormField } from '@angular/material/form-field';
 import { merge, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { LuxDateFilterFn, LuxDateTimePickerComponent } from '../lux-datetimepicker.component';
+import { LuxDateFilterFn } from "../lux-datetimepicker-model/lux-datetimepicker-types";
 import { LuxDatetimeOverlayContentComponent } from './lux-datetime-overlay-content.component';
 
 @Component({
@@ -70,7 +70,7 @@ export class LuxDatetimeOverlayComponent implements MatDatepickerPanel<MatDatepi
   lastFocusedElement: HTMLElement | null = null;
   overlayRef: OverlayRef;
   overlayComponentRef: ComponentRef<LuxDatetimeOverlayContentComponent> | null;
-  datepickerInput: LuxDateTimePickerComponent;
+  datepickerInput: any;
 
   constructor(
     private elementRef: ElementRef<HTMLInputElement>,

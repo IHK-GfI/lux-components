@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
   providedIn: "root"
 })
 export class LuxLookupHandlerService {
-  private lookupElements: Map<string, Subject<any>> = new Map();
+  private lookupElements: Map<string, Subject<void>> = new Map();
 
   constructor() {}
 
@@ -16,7 +16,7 @@ export class LuxLookupHandlerService {
    * @param name
    */
   addLookupElement(name: string) {
-    this.lookupElements.set(name, new Subject<boolean>());
+    this.lookupElements.set(name, new Subject<void>());
   }
 
   /**
