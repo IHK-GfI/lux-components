@@ -41,7 +41,7 @@
                 "output": "./assets/icons/fontawesome/webfonts"
               },
               {
-                "glob": "material-design-icons.css",
+                "glob": "material-design-icons(.css|.css.map)",
                 "input": "./node_modules/material-design-icons-iconfont/dist",
                 "output": "./assets/icons/material-icons"
               },
