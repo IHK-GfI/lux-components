@@ -1,3 +1,6 @@
+# Version 11.14.0
+## New
+- **lux-button**: Die Variante luxStroked wurde eingeführt. [Issue 185](https://github.com/IHK-GfI/lux-components/issues/185)
 # Version 11.13.0
 ## New
 - **lux-autocomplete**, **lux-chips**, **lux-lookup-autocomplete**: Mehrzeilige Mat-Option im Dropdown-Menü eingeführt. [Issue 177](https://github.com/IHK-GfI/lux-components/issues/177)

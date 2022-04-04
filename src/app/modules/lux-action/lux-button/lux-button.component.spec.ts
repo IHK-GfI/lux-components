@@ -36,6 +36,14 @@ describe('LuxButtonComponent', () => {
       Checker.checkLuxClicked(fixture);
     }));
 
+    it('Button (stroked) anklicken"', fakeAsync(() => {
+      fixture.componentInstance.stroked = true;
+      fixture.componentInstance.round = false;
+      fixture.detectChanges();
+
+      Checker.checkLuxClicked(fixture);
+    }));
+
     it('Button (round)" anklicken', fakeAsync(() => {
       fixture.componentInstance.raised = false;
       fixture.componentInstance.round = true;
@@ -71,6 +79,14 @@ describe('LuxButtonComponent', () => {
       Checker.checkLuxDisabled(fixture);
     }));
 
+    it('Button (stroked) anklicken"', fakeAsync(() => {
+      fixture.componentInstance.stroked = true;
+      fixture.componentInstance.round = false;
+      fixture.detectChanges();
+
+      Checker.checkLuxDisabled(fixture);
+    }));
+
     it('Button (round) anklicken', fakeAsync(() => {
       fixture.componentInstance.raised = false;
       fixture.componentInstance.round = true;
@@ -100,6 +116,14 @@ describe('LuxButtonComponent', () => {
 
     it('Button (raised)"', fakeAsync(() => {
       fixture.componentInstance.raised = true;
+      fixture.componentInstance.round = false;
+      fixture.detectChanges();
+
+      Checker.checkLuxLabel(fixture);
+    }));
+
+    it('Button (stroked) anklicken"', fakeAsync(() => {
+      fixture.componentInstance.stroked = true;
       fixture.componentInstance.round = false;
       fixture.detectChanges();
 
@@ -185,6 +209,7 @@ class Checker {
       (luxClicked)="onClick($event)"
       [luxRounded]="round"
       [luxRaised]="raised"
+      [luxStroked]="stroked"
     ></lux-button>
   `
 })
@@ -192,6 +217,7 @@ class LuxButtonComponent {
   disabled: boolean;
   round: boolean;
   raised;
+  stroked;
 
   onClick() {}
 }
@@ -204,11 +230,13 @@ class LuxButtonComponent {
       (luxClicked)="onClick($event)"
       [luxRounded]="round"
       [luxRaised]="raised"
+      [luxStroked]="stroked"
     ></lux-button>
   `
 })
 class LuxButtonLabelComponent {
   round: boolean;
   raised;
+  stroked;
   label: string;
 }
