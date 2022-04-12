@@ -1,4 +1,15 @@
-import { AfterViewInit, Component, ContentChildren, ElementRef, HostListener, Input, OnDestroy, QueryList, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  ElementRef, EventEmitter,
+  HostListener,
+  Input,
+  OnDestroy,
+  Output,
+  QueryList,
+  ViewChild
+} from "@angular/core";
 import { LuxAppService } from '../../../../lux-util/lux-app.service';
 import { LuxSideNavItemComponent } from './lux-side-nav-subcomponents/lux-side-nav-item.component';
 import { Subscription } from 'rxjs';
@@ -17,6 +28,8 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
   @Input() luxOpenLinkBlank: boolean;
   @Input() luxAriaRoleNavigationLabel = $localize`:@@luxc.side-nav.ariarolenavigation:Anwendungsmenü / Navigation`;
 
+  @Output() luxSideNavExpandedChange = new EventEmitter<boolean>();
+
   @ContentChildren(LuxSideNavItemComponent, { descendants: true }) sideNavItems: QueryList<LuxSideNavItemComponent>;
   @ContentChildren(LuxSideNavItemComponent, { descendants: false }) directSideNavItems: QueryList<LuxSideNavItemComponent>;
 
@@ -29,10 +42,19 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
   bottom: string;
   right: string;
   focusElement: any;
-  sideNavExpanded = false;
   height: number;
   width: number;
   visibility = 'hidden';
+  _sideNavExpanded = false;
+
+  get sideNavExpanded(): boolean {
+    return this._sideNavExpanded;
+  }
+
+  set sideNavExpanded(expanded: boolean) {
+    this._sideNavExpanded = expanded;
+    this.luxSideNavExpandedChange.next(this._sideNavExpanded);
+  }
 
   private itemClickSubscriptions: Subscription[] = [];
   private subscription: Subscription;

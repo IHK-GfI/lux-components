@@ -10,9 +10,13 @@
     luxAriaTitleLinkLabel="LUX Components / Zur Hauptseie"
     [luxLocaleSupported]="['de', 'en']"
     *ngIf="this.luxAppHeader !== 'none'"
-    (luxClicked)="router.navigate(['/']);"
+    (luxClicked)="router.navigate(['/'])"
   >
-    <lux-side-nav luxDashboardLink="https://github.com/IHK-GfI/lux-components/wiki" [luxOpenLinkBlank]="true">
+    <lux-side-nav
+      luxDashboardLink="https://github.com/IHK-GfI/lux-components/wiki"
+      [luxOpenLinkBlank]="true"
+      (luxSideNavExpandedChange)="onSideNavExpandedChange($event)"
+    >
       <lux-side-nav-header>
         <h3 class="lux-side-nav-header-greeting">Navigation</h3>
       </lux-side-nav-header>
