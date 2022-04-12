@@ -106,6 +106,14 @@
                 }
               ]
             },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "en": {
               "localize": ["en"],
               "aot": true,
@@ -123,10 +131,14 @@
             "production": {
               "browserTarget": "lux-components:build:production"
             },
+            "development": {
+              "browserTarget": "lux-components:build:development"
+            },
             "en": {
               "browserTarget": "lux-components:build:en"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
