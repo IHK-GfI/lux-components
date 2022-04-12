@@ -11,14 +11,14 @@
       <b>Zusatzinformationen</b>
       <lux-textarea luxName="dialog_Anmerkung" luxLabel="Anmerkung" luxPlaceholder="Anmerkungen" luxMinRows="1"> </lux-textarea>
       <div fxLayout="row" fxLayoutAlign="start center" class="toggle-agb-container">
-        <lux-toggle
-          class="toggle-agb"
-          luxLabel="AGB gelesen"
-          [luxRequired]="true"
-          #agbAcceptedToggle
-        >
-        </lux-toggle>
-        <lux-button luxIconName="info" luxColor="primary" (luxClicked)="openInfoDialog()"></lux-button>
+        <lux-toggle class="toggle-agb" luxLabel="AGB gelesen" [luxRequired]="true" #agbAcceptedToggle> </lux-toggle>
+        <lux-button
+          luxIconName="info"
+          luxColor="primary"
+          luxAriaLabel="Erläuterung zu AGB gelesen"
+          luxTagId="dialog.component.agb.info"
+          (luxClicked)="openInfoDialog()"
+        ></lux-button>
       </div>
     </div>
   </lux-dialog-content>
