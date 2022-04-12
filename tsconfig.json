@@ -5,6 +5,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
