@@ -6,6 +6,8 @@
 ## New
 - **lux-autocomplete**, **lux-chips**, **lux-lookup-autocomplete**: Mehrzeilige Mat-Option im Dropdown-Menü eingeführt. [Issue 177](https://github.com/IHK-GfI/lux-components/issues/177)
 - **lux-table**: Spalten-Name bei Spaltenverschiebung mit anzeigen. [Issue 171](https://github.com/IHK-GfI/lux-components/issues/171)
+- **lux-side-nav**: LuxSideNav - toggle-Event rausgeben [Issue 186](https://github.com/IHK-GfI/lux-components/issues/186)
+- **lux-dialog**: Hilfedialoge auch in LUX-Dialogen ermöglichen. [Issue 188](https://github.com/IHK-GfI/lux-components/issues/188)
 
 # Version 11.12.0
 ## New

@@ -8,17 +8,25 @@
   <lux-dialog-content>
     <div fxLayout="column" fxLayoutGap="16px">
       <span>Ihre Daten werden im Anschluss an diesen Dialog gespeichert.</span>
-      <span>{{ luxDialogRef.data }}</span>
       <b>Zusatzinformationen</b>
       <lux-textarea luxName="dialog_Anmerkung" luxLabel="Anmerkung" luxPlaceholder="Anmerkungen" [luxMinRows]="1"> </lux-textarea>
-      <lux-toggle
-        luxLabel="AGB gelesen"
-        luxHint="Ich habe die AGB und Datenschutzvereinbarungen gelesen und akzeptiere diese."
-        [luxRequired]="true"
-        [luxNoTopLabel]="true"
-        #agbAcceptedToggle
-      >
-      </lux-toggle>
+      <div fxLayout="row" fxLayoutAlign="start center" class="toggle-agb-container">
+        <lux-toggle
+          luxLabel="AGB gelesen"
+          luxHint="Ich habe die AGB und Datenschutzvereinbarungen gelesen und akzeptiere diese."
+          [luxRequired]="true"
+          [luxNoTopLabel]="true"
+          #agbAcceptedToggle
+        >
+        </lux-toggle>
+        <lux-button
+          luxIconName="info"
+          luxColor="primary"
+          luxAriaLabel="Erläuterung zu AGB gelesen"
+          luxTagId="dialog.component.agb.info"
+          (luxClicked)="openInfoDialog()"
+        ></lux-button>
+      </div>
     </div>
   </lux-dialog-content>
   <lux-dialog-actions>
