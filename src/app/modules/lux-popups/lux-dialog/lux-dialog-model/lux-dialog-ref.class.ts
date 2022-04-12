@@ -1,17 +1,25 @@
-import { Observable, ReplaySubject } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { take } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { MatDialogRef } from "@angular/material/dialog";
+import { Observable, ReplaySubject } from "rxjs";
+import { take } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LuxDialogRef {
-  private _matDialogRef: MatDialogRef<any>;
-  private _dialogConfirmed: ReplaySubject<void> = new ReplaySubject(1);
-  private _dialogDeclined: ReplaySubject<void> = new ReplaySubject(1);
-  private _dialogClosed: ReplaySubject<any> = new ReplaySubject(1);
-  private _data: any;
+  _matDialogRef: MatDialogRef<any>;
+  _dialogConfirmed: ReplaySubject<void> = new ReplaySubject(1);
+  _dialogDeclined: ReplaySubject<void> = new ReplaySubject(1);
+  _dialogClosed: ReplaySubject<any> = new ReplaySubject(1);
+  _data: any;
+
+  refs: {
+    matDialogRef: MatDialogRef<any>;
+    dialogConfirmed: ReplaySubject<void>;
+    dialogDeclined: ReplaySubject<void>;
+    dialogClosed: ReplaySubject<void>;
+    data: any;
+  }[] = [];
 
   /**
    * Gibt die Component, die in dem Dialog angezeigt wird wieder.
@@ -62,6 +70,38 @@ export class LuxDialogRef {
     this._dialogDeclined = new ReplaySubject(1);
     this._dialogClosed = new ReplaySubject(1);
     this._data = data;
+  }
+
+  /**
+   * Wenn man innerhalb eines Dialogs einen anderen Dialog (z.B. für Hilfetexte)
+   * öffnen möchte, kann man über diese Methode die Referenz inklusive aller
+   * benötigten Informationen des aktuell angezeigten Dialogs zwischenspeichern.
+   * Nach dem der Hilfedialog geschlossen wurde, kann über die restoreDialogRef-
+   * Methode die vorherige Dialogreferenz wiederhergestellt werden.
+   */
+  storeDialogRef() {
+    this.refs.push({
+      matDialogRef: this._matDialogRef,
+      dialogConfirmed: this._dialogConfirmed,
+      dialogDeclined: this._dialogDeclined,
+      dialogClosed: this._dialogClosed,
+      data: this._data
+    });
+  }
+
+  /**
+   * Siehe storeDialogRef-Methode.
+   */
+  restoreDialogRef() {
+    let last = this.refs.pop();
+
+    if (last) {
+      this._matDialogRef    = last.matDialogRef;
+      this._dialogConfirmed = last.dialogConfirmed;
+      this._dialogDeclined  = last.dialogDeclined;
+      this._dialogClosed    = last.dialogClosed;
+      this._data            = last.data;
+    }
   }
 
   /**
