@@ -1,3 +1,7 @@
+# Version 11.14.0
+## New
+- **lux-filter-form**: Die neue Property luxDisableShortcut ermöglicht das Abschalten dieser Funktion für den Filter. [Issue 192](https://github.com/IHK-GfI/lux-components/issues/192)
+
 # Version 11.13.0
 ## New
 - **lux-autocomplete**, **lux-chips**, **lux-lookup-autocomplete**: Mehrzeilige Mat-Option im Dropdown-Menü eingeführt. [Issue 177](https://github.com/IHK-GfI/lux-components/issues/177)
