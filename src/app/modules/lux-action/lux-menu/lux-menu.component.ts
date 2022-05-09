@@ -1,3 +1,4 @@
+import { ConsoleLogger } from "@angular/compiler-cli/ngcc";
 import {
   AfterContentInit,
   AfterViewChecked,
@@ -14,6 +15,7 @@ import {
   QueryList,
   ViewChild
 } from "@angular/core";
+import { LuxThemeService } from '../../lux-theme/lux-theme.service';
 import { Subscription } from "rxjs";
 import { LuxMenuItemComponent } from "./lux-menu-subcomponents/lux-menu-item.component";
 import { LuxMenuTriggerComponent } from "./lux-menu-subcomponents/lux-menu-trigger.component";
@@ -26,10 +28,12 @@ import { LuxMenuTriggerComponent } from "./lux-menu-subcomponents/lux-menu-trigg
 })
 export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnDestroy {
   // Diese Werte müssen angepasst werden, sollte das Styling dieser Component entsprechend geändert worden sein
-  static readonly PADDING_PX = 16;
-  static readonly MARGIN_PX = 8;
-  static readonly FONT_PX = 14;
-  static readonly ICON_PX = 22;
+  private static PADDING_PX: number;
+  private static MARGIN_PX: number;
+  private static ICON_PX: number; // 15px breite plus 8px gap zwischen icon - label
+  private static FONT_SIZE: number;
+  private static FONT_WEIGHT: number;
+  private static FONT_FAMILY: String;
 
   // Alle verfügbaren MenuItems als Array
   private _menuItems: LuxMenuItemComponent[] = [];
@@ -108,8 +112,9 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     this.cdr.detectChanges();
   }
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private cdr: ChangeDetectorRef, private themeService: LuxThemeService) {
     this.canvas = document.createElement('canvas');
+    this.setThemeValues();
   }
 
   ngAfterContentInit() {
@@ -135,6 +140,33 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     });
   }
 
+  /**
+   * Für die Berechnung der Breite eines Menüitems müssen die Werte für die Fonts, Icons und Abstände
+   * entsprechend des aktuellen Themes gesetzt werden.
+   * Wird das Theme geändert müssen auch diese Werte angepasst werden.
+   */
+  private setThemeValues(){
+    let theme = this.themeService.getTheme();
+
+    switch(theme.name) {
+      case 'green': 
+        LuxMenuComponent.PADDING_PX = 16;
+        LuxMenuComponent.MARGIN_PX = 12;
+        LuxMenuComponent.ICON_PX = 23; // 15px Breite plus 8px Gap zwischen icon - label
+        LuxMenuComponent.FONT_SIZE = 22;
+        LuxMenuComponent.FONT_WEIGHT = 400;
+        LuxMenuComponent.FONT_FAMILY = '"Source Sans Pro","Helvetica","Arial","sans-serif"';
+        break;
+
+      default:
+        LuxMenuComponent.PADDING_PX = 16;
+        LuxMenuComponent.MARGIN_PX = 12;
+        LuxMenuComponent.ICON_PX = 23; // 15px Breite plus 8px Gap zwischen Icon - Button-Label
+        LuxMenuComponent.FONT_SIZE = 14;
+        LuxMenuComponent.FONT_WEIGHT = 700;
+        LuxMenuComponent.FONT_FAMILY = 'Roboto, "Helvetica Neue", sans-serif';
+    }
+  }
   /**
    * Wird beim Klick auf ein MenuItem aufgerufen.
    *
@@ -169,7 +201,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       return;
     }
 
-    const menuTriggerWidth = this.menuTriggerElRef.nativeElement.offsetWidth;
+    const menuTriggerWidth = Math.max(this.menuTriggerElRef.nativeElement.offsetWidth, 50);
 
     let availableWidth: number = this.menuExtendedContainer.nativeElement.offsetWidth;
     let count = 0;
@@ -177,39 +209,38 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     availableWidth -= menuTriggerWidth;
 
     // mit condition sind hier die Zustände luxVisible = true || false gemeint
+    this.visibleMenuItems = []; // die sichtbaren Menuitems werden neu einsortiert
     for (const condition of [true, false]) {
       for (let i = 0; i < this.menuItems.length; i++) {
         const menuItem = this.menuItems[i];
-
-        if (menuItem.luxHidden) {
-          continue;
-        }
-
-        if (menuItem.luxAlwaysVisible === condition) {
-          // Wenn es das letzte sichtbare Menüitem ist, wird geprüft, ob es anstelle des
-          // Menüitemtriggers dargestellt werden kann.
-          if (
-            this.visibleMenuItems &&
-            menuItem === this.visibleMenuItems[this.visibleMenuItems.length - 1] &&
-            availableWidth + menuTriggerWidth >= menuItem.width
-          ) {
-            availableWidth += menuTriggerWidth;
-          }
-
-          availableWidth -= menuItem.width;
-
-          if (availableWidth >= 0 && count < this.luxMaximumExtended) {
-            menuItem.extended = true;
-            count++;
-          } else {
-            menuItem.extended = false;
-          }
+        if (menuItem.luxAlwaysVisible === condition && !menuItem.luxHidden) {
+          this.visibleMenuItems.push(menuItem)
         }
       }
     }
+    for (let i = 0; i < this.visibleMenuItems.length; i++) {
+      const menuItem = this.visibleMenuItems[i];
+      // Wenn es das letzte sichtbare Menüitem ist, wird geprüft, ob es anstelle des
+      // Menüitemtriggers dargestellt werden kann.
+      if (
+        menuItem === this.visibleMenuItems[this.visibleMenuItems.length - 1] &&
+        availableWidth + menuTriggerWidth >= menuItem.width
+      ) {
+        availableWidth += menuTriggerWidth;
+      }
+
+      availableWidth -= menuItem.width;
+
+      if (availableWidth >= 0 && count < this.luxMaximumExtended) {
+        menuItem.extended = true;
+        count++;
+      } else {
+        menuItem.extended = false;
+      }  
+    }
 
     // die Anzahl der extended dargestellten Items der Gesamtzahl entspricht blenden wir den Toggle aus
-    this.visibleMenuItems = this.menuItems.filter((item: LuxMenuItemComponent) => !item.luxHidden);
+    //this.visibleMenuItems = this.menuItems.filter((item: LuxMenuItemComponent) => !item.luxHidden);
     const extendedMenuItems = this.visibleMenuItems.filter((item: LuxMenuItemComponent) => item.extended);
     this.hideToggle = extendedMenuItems.length === this.visibleMenuItems.length;
     this.cdr.detectChanges();
@@ -258,11 +289,11 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
 
     const canvas = this.canvas;
     const context = canvas.getContext('2d');
-    context.font = `${LuxMenuComponent.FONT_PX}px sans-serif`;
+    context.font = `${LuxMenuComponent.FONT_WEIGHT} ${LuxMenuComponent.FONT_SIZE}px ${LuxMenuComponent.FONT_FAMILY}`;
     const metrics = context.measureText(text);
-
-    // zusätzlich nutzen wir hier einen Standard-Offset von 20px
-    return metrics.width + 20;
+    // zusätzlich nutzen wir hier einen Standard-Offset von 20px, mit den angepassten Werten für die Themes, aktuell auf 0 gesetzt
+    let offset= 0;
+    return metrics.width + offset;
   }
 
   hasVisibleMenuItems(): boolean {
