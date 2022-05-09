@@ -59,6 +59,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   @Input() luxDefaultFilterMessage = $localize `:@@luxc.filter.defaultFilterMessage:Es wird nach den Standardeinstellungen gefiltert.`;
   @Input() luxShowChips = true;
   @Input() luxStoredFilters: LuxFilter[] = [];
+  @Input() luxDisableShortcut = false;
 
   @Input()
   get luxFilterExpanded() {
@@ -264,24 +265,26 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     // besteht natürlich auch beim Datepicker, Select und den
     // Lookup-Komponenten. Aus diesem Grund werden hier zuerst alle geöffneten
     // Popups/Panels geschlossen. Im Anschluss wird wie gewohnt gefiltert.
-    this.formElementes.forEach((formComponent) => {
-      if (formComponent.datepicker) {
-        formComponent.datepicker.matDatepicker.close();
-      } else if (formComponent.datetimepicker) {
-        formComponent.datetimepicker.dateTimeOverlayComponent.close();
-      } else if (formComponent.select) {
-        formComponent.select.matSelect.close();
-      } else if (formComponent.autoComplete) {
-        formComponent.autoComplete.matAutoComplete.closePanel();
-      } else if (formComponent.autoCompleteLookup) {
-        formComponent.autoCompleteLookup.matAutocompleteTrigger.closePanel();
-      } else if (formComponent.selectLookup) {
-        formComponent.selectLookup.matSelect.close();
-      }
-    });
+    if (!this.luxDisableShortcut) {    
+      this.formElementes.forEach((formComponent) => {
+        if (formComponent.datepicker) {
+          formComponent.datepicker.matDatepicker.close();
+        } else if (formComponent.datetimepicker) {
+          formComponent.datetimepicker.dateTimeOverlayComponent.close();
+        } else if (formComponent.select) {
+          formComponent.select.matSelect.close();
+        } else if (formComponent.autoComplete) {
+          formComponent.autoComplete.matAutoComplete.closePanel();
+        } else if (formComponent.autoCompleteLookup) {
+          formComponent.autoCompleteLookup.matAutocompleteTrigger.closePanel();
+        } else if (formComponent.selectLookup) {
+          formComponent.selectLookup.matSelect.close();
+        }
+      });
 
-    this.onFilter();
-    this.cdr.detectChanges();
+      this.onFilter();
+      this.cdr.detectChanges();
+    }
   }
 
   onFilter() {

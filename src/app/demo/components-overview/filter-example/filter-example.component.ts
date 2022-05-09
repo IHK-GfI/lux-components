@@ -123,6 +123,8 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   buttonDialogCancel = 'default';
   buttonDialogClose = 'default';
 
+  disableShortcut = false;
+
   constructor(private mediaQuery: LuxMediaQueryObserverService) {}
 
   ngOnInit(): void {
