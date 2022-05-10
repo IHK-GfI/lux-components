@@ -203,6 +203,7 @@ export * from './src/app/modules/lux-layout/lux-app-content/lux-app-content.comp
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component';
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav.component';
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item.component';
+export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item-custom.component';
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
 export * from './src/app/modules/lux-layout/lux-card/lux-card.component';
 export * from './src/app/modules/lux-layout/lux-card/lux-card-subcomponents/lux-card-info.component';
