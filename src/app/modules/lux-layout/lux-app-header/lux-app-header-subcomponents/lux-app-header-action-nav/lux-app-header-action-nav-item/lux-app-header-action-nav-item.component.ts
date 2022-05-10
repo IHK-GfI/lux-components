@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, Output } from "@angular/core";
+import { LuxAppHeaderActionNavItemCustomComponent } from "./lux-app-header-action-nav-item-custom.component";
 
 @Component({
   selector: 'lux-app-header-action-nav-item',
@@ -13,6 +14,8 @@ export class LuxAppHeaderActionNavItemComponent {
   @Input() luxTagId: string;
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter<any>();
+
+  @ContentChild(LuxAppHeaderActionNavItemCustomComponent) customComponent: LuxAppHeaderActionNavItemCustomComponent;
 
   constructor() {}
 }

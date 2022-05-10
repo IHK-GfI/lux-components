@@ -52,6 +52,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
 
   @Input() luxMenuLabel = '';
   @Input() luxMenuIconName = 'menu';
+  @Input() luxMenuTriggerIconShowRight = false;
   @Input() luxClassName: string;
   @Input() luxTagId: string;
   @Input() luxToggleDisabled = false;
