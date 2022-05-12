@@ -19,7 +19,7 @@
           luxIconName="fas fa-filter"
           [luxColor]="luxButtonFilterColor"
           [luxRaised]="luxButtonRaised"
-          luxButtonTooltip="(Shift + Enter)"
+          luxButtonTooltip="{{ luxDisableShortcut ? '' : '(Shift + Enter)' }}"
           (luxClicked)="onFilter()"
         ></lux-menu-item>
         <lux-menu-item

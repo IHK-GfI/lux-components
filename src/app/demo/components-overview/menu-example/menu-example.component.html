@@ -7,6 +7,7 @@
     <lux-menu
       [luxMenuLabel]="menuLabel"
       [luxMenuIconName]="iconName"
+      [luxMenuTriggerIconShowRight]="menuTriggerIconShowRight"
       [luxDisplayExtended]="displayExtended"
       [luxClassName]="className"
       [luxDisplayMenuLeft]="displayMenuLeft"
@@ -58,6 +59,12 @@
         [(luxValue)]="iconName"
       >
       </lux-input>
+      <lux-toggle
+        luxLabel="luxMenuTriggerIconShowRight"
+        luxHint="Die Property ermöglicht es, das Triggericon des Menüs rechts vom Label (siehe luxMenuLabel) darzustellen."
+        [(luxChecked)]="menuTriggerIconShowRight"
+      >
+      </lux-toggle>
     </div>
     <lux-input class="lux-highlight-section" luxLabel="luxClassName" [(luxValue)]="className">
       <lux-form-hint>

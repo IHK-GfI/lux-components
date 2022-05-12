@@ -143,12 +143,12 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
         *luxLayoutRowItem="{}"
       ></lux-select>
     </lux-layout-form-row>
-  ...  
+  ...
   </lux-filter-form>
   \`\`\`
   `;
 
-
+  disableShortcut = false;
 
   constructor(private mediaQuery: LuxMediaQueryObserverService) {}
 

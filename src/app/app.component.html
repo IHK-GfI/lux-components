@@ -92,6 +92,7 @@
     </lux-side-nav>
     <lux-app-header-action-nav>
       <lux-app-header-action-nav-item
+        fxShow="true" fxShow.xs="false"
         luxIconName="fas fa-bell"
         luxColor="accent"
         luxAriaLabel="Nachrichten anzeigen"
@@ -100,6 +101,7 @@
       >
       </lux-app-header-action-nav-item>
       <lux-app-header-action-nav-item
+        fxShow="true" fxShow.xs="false"
         luxIconName="fas fa-trash"
         luxColor="warn"
         luxAriaLabel="Nachrichten löschen"
@@ -107,6 +109,15 @@
         [luxDisabled]="true"
         (luxClicked)="actionClicked('#1 Action clicked!')"
       >
+      </lux-app-header-action-nav-item>
+      <lux-app-header-action-nav-item>
+        <lux-app-header-action-nav-item-custom>
+          <lux-menu luxMenuLabel="IHK" luxMenuIconName="fas fa-caret-down" [luxMenuTriggerIconShowRight]="true" [luxDisplayExtended]="false">
+            <lux-menu-item luxLabel="IHK 101" luxIconName="far fa-building" (luxClicked)="actionClicked('IHK 101-Action clicked!')"></lux-menu-item>
+            <lux-menu-item luxLabel="IHK 106" luxIconName="far fa-building" (luxClicked)="actionClicked('IHK 106-Action clicked!')"></lux-menu-item>
+            <lux-menu-item luxLabel="IHK 189" luxIconName="far fa-building" (luxClicked)="actionClicked('IHK 189-Action clicked!')"></lux-menu-item>
+          </lux-menu>
+        </lux-app-header-action-nav-item-custom>
       </lux-app-header-action-nav-item>
     </lux-app-header-action-nav>
     <lux-app-header-right-nav *ngIf="luxMode === 'stand-alone'">
@@ -116,5 +127,5 @@
     </lux-app-header-right-nav>
   </lux-app-header>
   <lux-app-content luxAriaRoleMainLabel=""></lux-app-content>
-  <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="12.0.0"></lux-app-footer>
+  <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="13.0.0"></lux-app-footer>
 </div>

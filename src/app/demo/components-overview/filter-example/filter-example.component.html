@@ -23,6 +23,7 @@
         [luxButtonDialogDelete]="buttonDialogDelete"
         [luxButtonDialogCancel]="buttonDialogCancel"
         [luxButtonDialogClose]="buttonDialogClose"
+        [luxDisableShortcut]="disableShortcut"
         class="lux-ml-1 lux-mr-1 lux-mb-3"
       >
         <lux-layout-form-row luxWrapAt="md">
@@ -173,6 +174,10 @@
       <lux-select luxLabel="luxButtonDialogLoad" [(luxSelected)]="buttonDialogLoad" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
       <lux-select luxLabel="luxButtonDialogDelete" [(luxSelected)]="buttonDialogDelete" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
       <lux-select luxLabel="luxButtonDialogClose" [(luxSelected)]="buttonDialogClose" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
+    </div>
+    <div class="lux-highlight-section filter-config-item" fxLayout="column">
+      <h3 class="lux-highlight-section-label">Tastaturkürzel</h3>
+      <lux-toggle luxLabel="luxDisableShortcut" [(luxChecked)]="disableShortcut" luxHint="Über dieses Property kann das Tastaturkürzel &quot;Shift + Enter&quot; zum Auslösen des Filters abgeschaltet werden."></lux-toggle>
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
