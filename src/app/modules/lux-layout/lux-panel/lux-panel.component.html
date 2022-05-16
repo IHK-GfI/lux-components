@@ -8,7 +8,10 @@
   ngClass.sm="lux-panel-mobile"
   ngClass.xs="lux-panel-mobile"
 >
-  <mat-expansion-panel-header [expandedHeight]="luxExpandedHeaderHeight" [collapsedHeight]="luxCollapsedHeaderHeight">
+  <mat-expansion-panel-header 
+    [expandedHeight]="luxExpandedHeaderHeight" 
+    [collapsedHeight]="luxCollapsedHeaderHeight"
+  >
     <ng-content select="lux-panel-header-title"></ng-content>
     <ng-content select="lux-panel-header-description"></ng-content>
   </mat-expansion-panel-header>

@@ -5,9 +5,6 @@
 }
 
 .lux-panel {
-  .mat-expansion-panel-header {
-    margin: $outline-width !important;
-  }
 
   ::ng-deep .mat-expansion-panel-header:not([aria-disabled='true']) {
 
@@ -27,7 +24,6 @@
 
 .lux-panel-mobile {
   .mat-expansion-panel-header {
-    margin: $outline-width;
     padding: 0 12px !important;
   }
 

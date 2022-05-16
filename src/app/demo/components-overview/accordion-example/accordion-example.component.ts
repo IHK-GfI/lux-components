@@ -33,7 +33,7 @@ export class AccordionExampleComponent {
   collapsedHeaderHeight2Panel = '64px';
   displayMode: LuxModeType = 'default';
   panelConfigArr: { title: string; description: string }[] = [
-    { title: 'Panel #1', description: 'Beschreibung Panel #1' },
+    { title: 'Panel #1 -  Hauptüberschrift im Panel', description: 'Optionale zusätzliche Beschreibung' },
     { title: 'Panel #2', description: 'Beschreibung Panel #2' },
   ];
 
