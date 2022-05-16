@@ -4,7 +4,7 @@
 >
   <example-base-content [exampleCentered]="false">
     <div fxLayout="column" fxLayoutGap="32px">
-    <span>Dies ist ein  
+    <span class="lux-mt-5">Dies ist ein  
       <lux-link-plain
         [luxLabel]="label"
         [luxColor]="color"
@@ -16,108 +16,111 @@
         [luxBlank]="blank"
       ></lux-link-plain>
       im normalen Fließtext.
-  </span>
-  <span style=" color: pink; font-family: 'Times New Roman', Times, serif; font-size: 20px; ">Dies ist ein  
-    <lux-link-plain
-      [luxLabel]="label"
-      [luxColor]="color"
-      [luxIconName]="iconName"
-      [luxDisabled]="disabled"
-      [luxIconShowRight]="iconShowRight"
-      luxTagId="demo-link"
-      [luxHref]="href"
-      [luxBlank]="blank"
-       
-    ></lux-link-plain>
-    im Text mit eigenem Styling.
-  </span>
-  <br>
-  <h2>Dies ist ein 
-    <lux-link-plain
-      [luxLabel]="label"
-      [luxColor]="color"
-      [luxIconName]="iconName"
-      [luxDisabled]="disabled"
-      [luxIconShowRight]="iconShowRight"
-      luxTagId="demo-link"
-      [luxHref]="href"
-      [luxBlank]="blank"
-    ></lux-link-plain>
-    in einer H2!
-  </h2>
+    </span>
+    <!-- <span style=" color: pink; font-family: 'Times New Roman', Times, serif; font-size: 20px; ">Dies ist ein  
+      <lux-link-plain
+        [luxLabel]="label"
+        [luxColor]="color"
+        [luxIconName]="iconName"
+        [luxDisabled]="disabled"
+        [luxIconShowRight]="iconShowRight"
+        luxTagId="demo-link"
+        [luxHref]="href"
+        [luxBlank]="blank"
+        
+      ></lux-link-plain>
+      im Text mit eigenem Styling.
+    </span> -->
+    <br>
+    <h2>Dies ist ein 
+      <lux-link-plain
+        [luxLabel]="label"
+        [luxColor]="color"
+        [luxIconName]="iconName"
+        [luxDisabled]="disabled"
+        [luxIconShowRight]="iconShowRight"
+        luxTagId="demo-link"
+        [luxHref]="href"
+        [luxBlank]="blank"
+      ></lux-link-plain>
+      in einer H2!
+    </h2>
     <div>
-    Und hier ist eine Liste mit mehrern Links
-    <ul>
-      <li>
-        <lux-link-plain
-          luxLabel="Formulare"
-          luxIconName="link"
-          [luxIconShowRight]="true"
-          luxTagId="demo-link"
-          [luxBlank]="false"
-          (luxClicked)="goTo('Form')"
-        ></lux-link-plain>
-      </li>
-      <li>
-        <lux-link-plain
-          luxLabel="Komponenten"
-          luxIconName="link"
-          [luxIconShowRight]="true"
-          luxTagId="demo-link"
-          [luxBlank]="false"
-          (luxClicked)="goTo('Components')"
-        ></lux-link-plain>
-      </li>
-      <li>
-        <lux-link-plain
-          luxLabel="Baseline"
-          luxIconName="link"
-          [luxIconShowRight]="true"
-          luxTagId="demo-link"
-          [luxBlank]="false"
-          (luxClicked)="goTo('Baseline')"
-        ></lux-link-plain>
-      </li>
-      <li>
-        <lux-link-plain
-          luxLabel="Konfiguration"
-          luxIconName="link"
-          [luxIconShowRight]="true"
-          luxTagId="demo-link"
-          [luxBlank]="false"
-          (luxClicked)="goTo('configuration')"
-        ></lux-link-plain>
-      </li>
-    </ul>
-  </div>
-  <div fxLayout="row" class="breadcrump">
-    <lux-link-plain
-      luxLabel="Home"
-      luxIconName="arrow_forward_ios"
-      [luxIconShowRight]="true"
-      luxTagId="breadcrump-item"
-      luxHref="/home"
-      class="lux-mr-3"
-    ></lux-link-plain>
-    <lux-link-plain
-      luxLabel="Components"
-      luxIconName="arrow_forward_ios"
-      [luxIconShowRight]="true"
-      luxTagId="breadcrump-item"
-      luxHref="/components-overview"
-      class="lux-mr-3"
-    ></lux-link-plain>
-    <lux-link-plain
-      luxLabel="Link-Plain"
-      luxTagId="breadcrump-item"
-      [luxDisabled]="false"
-    ></lux-link-plain>
-  </div>
-    
-
-
-  </div>
+      Und hier ist eine Liste mit mehreren Links
+      <ul>
+        <li>
+          <lux-link-plain
+            luxLabel="Formulare"
+            luxIconName="link"
+            [luxIconShowRight]="true"
+            luxTagId="demo-link"
+            [luxBlank]="false"
+            (luxClicked)="goTo('Form')"
+          ></lux-link-plain>
+        </li>
+        <li>
+          <lux-link-plain
+            luxLabel="Komponenten"
+            luxIconName="link"
+            [luxIconShowRight]="true"
+            luxTagId="demo-link"
+            [luxBlank]="false"
+            (luxClicked)="goTo('Components')"
+          ></lux-link-plain>
+        </li>
+        <li>
+          <lux-link-plain
+            luxLabel="Baseline"
+            luxIconName="link"
+            [luxIconShowRight]="true"
+            luxTagId="demo-link"
+            [luxBlank]="false"
+            (luxClicked)="goTo('Baseline')"
+          ></lux-link-plain>
+        </li>
+        <li>
+          <lux-link-plain
+            luxLabel="Konfiguration"
+            luxIconName="link"
+            [luxIconShowRight]="true"
+            luxTagId="demo-link"
+            [luxBlank]="false"
+            (luxClicked)="goTo('configuration')"
+          ></lux-link-plain>
+        </li>
+      </ul>
+    </div>
+    <div fxLayout="row" class="breadcrump" fxLayoutAlign="start end">
   
+      <span>
+      <lux-link-plain
+        luxLabel="Home"
+        luxIconName="arrow_forward_ios"
+        [luxIconShowRight]="true"
+        luxTagId="breadcrump-item"
+        luxHref="/home"
+        class="lux-mr-3 breadcrump-item"
+      ></lux-link-plain>
+    </span>
+  <span>
+      <lux-link-plain
+        luxLabel="Components"
+        luxIconName="arrow_forward_ios"
+        [luxIconShowRight]="true"
+        luxTagId="breadcrump-item"
+        luxHref="/components-overview"
+        class="lux-mr-3 breadcrump-item"
+      ></lux-link-plain></span>
+    <span>
+      <lux-link-plain
+        luxLabel="Link-Plain"
+        luxTagId="breadcrump-item"
+        [luxDisabled]="true"
+        class="lux-mr-3 breadcrump-item"
+      ></lux-link-plain>
+    </span>
+    </div>
+  </div>
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle

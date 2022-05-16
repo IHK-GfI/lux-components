@@ -11,10 +11,10 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
   private currentUrl: string;
 
   components: { onclick: any; label: string; icon: string; useImage?: boolean; moduleName?: string; news?: boolean }[] = [
-    { onclick: () => this.goTo('accordion'), icon: 'fas fa-stream', label: 'Accordion', moduleName: 'layout' },
+    { onclick: () => this.goTo('accordion'), icon: 'fas fa-stream', label: 'Accordion', moduleName: 'layout', news: true },
     { onclick: () => this.goTo('autocomplete'), icon: 'fas fa-font', label: 'Autocomplete', moduleName: 'form' },
     { onclick: () => this.goTo('badge'), icon: 'fas fa-ribbon', label: 'Badge', moduleName: 'common' },
-    { onclick: () => this.goTo('button'), icon: 'fas fa-bullseye', label: 'Button', moduleName: 'action' },
+    { onclick: () => this.goTo('button'), icon: 'fas fa-bullseye', label: 'Button', moduleName: 'action', news: true },
     { onclick: () => this.goTo('card'), icon: 'fas fa-square', label: 'Card', moduleName: 'layout' },
     { onclick: () => this.goTo('chips'), icon: 'fas fa-ship', label: 'Chips', moduleName: 'form' },
     { onclick: () => this.goTo('datepicker'), icon: 'fas fa-calendar-day', label: 'Datepicker', moduleName: 'form' },
@@ -59,7 +59,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
       label: 'Lookup-Label',
       moduleName: 'lookup'
     },
-    { onclick: () => this.goTo('input'), icon: 'fas fa-text-width', label: 'Input', moduleName: 'form', news: true },
+    { onclick: () => this.goTo('input'), icon: 'fas fa-text-width', label: 'Input', moduleName: 'form' },
     {
       onclick: () => this.goTo('tabindex'),
       icon: 'fas fa-sort-numeric-down',
@@ -67,14 +67,14 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
       moduleName: 'directive'
     },
     { onclick: () => this.goTo('tile'), icon: 'fas fa-qrcode', label: 'Tile', moduleName: 'layout' },
-    { onclick: () => this.goTo('message-box'), icon: 'fas fa-comments', label: 'Message-Box', moduleName: 'common' },
-    { onclick: () => this.goTo('checkbox'), icon: 'fas fa-check-square', label: 'Checkbox', moduleName: 'form', news: true },
+    { onclick: () => this.goTo('message-box'), icon: 'fas fa-comments', label: 'Message-Box', moduleName: 'common', news: true },
+    { onclick: () => this.goTo('checkbox'), icon: 'fas fa-check-square', label: 'Checkbox', moduleName: 'form'},
     { onclick: () => this.goTo('menu'), icon: 'fas fa-ellipsis-v', label: 'Menu', moduleName: 'action' },
     { onclick: () => this.goTo('app-footer'), icon: 'fas fa-shoe-prints', label: 'App-Footer', moduleName: 'layout' },
     { onclick: () => this.goTo('toggle'), icon: 'fas fa-toggle-on', label: 'Toggle', moduleName: 'form' },
     { onclick: () => this.goTo('list'), icon: 'fas fa-list-ul', label: 'List', moduleName: 'layout' },
     { onclick: () => this.goToMasterDetail(), icon: 'fas fa-th-list', label: 'Master-Detail', moduleName: 'layout' },
-    { onclick: () => this.goToTabs(), icon: 'fas fa-columns', label: 'Tabs', moduleName: 'layout' },
+    { onclick: () => this.goToTabs(), icon: 'fas fa-columns', label: 'Tabs', moduleName: 'layout', news: true },
     { onclick: () => this.goToStepper(), icon: 'fas fa-chevron-circle-right', label: 'Stepper', moduleName: 'layout' },
     { onclick: () => this.goTo('stepper-large'), icon: 'fas fa-chevron-circle-right', label: 'Stepper-Large', moduleName: 'layout' },
     { onclick: () => this.goTo('timestamp'), icon: 'fas fa-clock', label: 'Timestamp', moduleName: 'pipes' },
@@ -84,7 +84,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
       label: 'Infinite-Scrolling',
       moduleName: 'directive'
     },
-    { onclick: () => this.goTo('dialog'), icon: 'fas fa-question-circle', label: 'Dialog', moduleName: 'popup' },
+    { onclick: () => this.goTo('dialog'), icon: 'fas fa-question-circle', label: 'Dialog', moduleName: 'popup', news: true },
     {
       onclick: () => this.goTo('file-input'),
       icon: 'fas fa-cloud-upload-alt',
@@ -98,15 +98,18 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
       onclick: () => this.goTo('badge-notification'),
       icon: 'fas fa-bell',
       label: 'Badge-Notification',
-      moduleName: 'directive'
+      moduleName: 'directive',
+      news: true
     },
     { onclick: () => this.goTo('html'), icon: 'fab fa-html5', label: 'Html', moduleName: 'html' },
     { onclick: () => this.goTo('markdown'), icon: 'fab fa-markdown', label: 'Markdown', moduleName: 'markdown' },
-    { onclick: () => this.goTo('form-row'), icon: 'fas fa-grip-horizontal', label: 'Form-Row', moduleName: 'layout', news: true },
+    { onclick: () => this.goTo('form-row'), icon: 'fas fa-grip-horizontal', label: 'Form-Row', moduleName: 'layout' },
     { onclick: () => this.goTo('card-row'), icon: 'fas fa-grip-horizontal', label: 'Card-Row', moduleName: 'layout' },
     { onclick: () => this.goTo('filter'), icon: 'fas fa-filter', label: 'Filter', moduleName: 'filter', news: true },
     { onclick: () => this.goTo('link-plain'), icon: 'fas fa-globe', label: 'Link-Plain', moduleName: 'action', news: true },
-    { onclick: () => this.goTo('tile-authentic'), icon: 'fas fa-dove', label: 'Tile-Authentic', moduleName: 'layout', news: true }
+    { onclick: () => this.goTo('tile-authentic'), icon: 'fas fa-dove', label: 'Tile-Authentic', moduleName: 'layout', news: true },
+    { onclick: () => this.goTo('input-authentic'), icon: 'fas fa-water', label: 'Input-Authentic', moduleName: 'form', news: true },
+    { onclick: () => this.goTo('master-detail-light'), icon: 'fas fa-globe', label: 'Master-Detail-Light', moduleName: 'layout', news: true }
   ];
 
   sortedComponentEntries: Map<string, any[]> = new Map<string, any[]>();

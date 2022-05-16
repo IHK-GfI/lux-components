@@ -95,6 +95,11 @@ import { StepperLargeExampleStepVetoComponent } from './stepper-large-example/st
 import { LinkPlainExampleComponent } from './link-plain-example/link-plain-example.component';
 import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-authentic-example.component';
 import { FileUploadExampleComponent } from './file-example/file-upload-example/file-upload-example.component';
+import { InputAuthenticExampleComponent } from './input-authentic-example/input-authentic-example.component';
+import { ButtonStyleguideComponent } from './button-styleguide/button-styleguide.component';
+import { MatListModule } from '@angular/material/list';
+import { OverviewExampleComponent } from './tile-authentic-example/overview-example/overview-example.component';
+import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
 
 @NgModule({
   imports: [
@@ -122,7 +127,8 @@ import { FileUploadExampleComponent } from './file-example/file-upload-example/f
     ExampleBaseModule,
     ExampleBaseModule,
     MatBadgeModule,
-    LuxFilterModule
+    LuxFilterModule,
+    MatListModule
   ],
   declarations: [
     MasterDetailExampleComponent,
@@ -196,7 +202,11 @@ import { FileUploadExampleComponent } from './file-example/file-upload-example/f
     StepperLargeExampleStepVetoComponent,
     LinkPlainExampleComponent,
     TileAuthenticExampleComponent,
-    FileUploadExampleComponent
+    FileUploadExampleComponent,
+    InputAuthenticExampleComponent,
+    ButtonStyleguideComponent,
+    OverviewExampleComponent,
+    MasterDetailLightExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]

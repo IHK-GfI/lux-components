@@ -32,10 +32,9 @@
       <ng-container *ngIf="simpleOptionsComponent && !advancedOptionsComponent">
         <ng-container *ngTemplateOutlet="simpleOptionsTemplate"></ng-container>
       </ng-container>
-      <lux-tabs [luxTabAnimationActive]="false" *ngIf="simpleOptionsComponent && advancedOptionsComponent">
+      <lux-tabs [luxTabAnimationActive]="false" [luxShowBorder]="true" *ngIf="simpleOptionsComponent && advancedOptionsComponent">
         <lux-tab
           luxTitle="Allgemein"
-          luxIconName="fas fa-wrench"
           luxTagIdHeader="bsp-tab-allgemein"
           luxTagIdContent="bsp-tab-allgemein-content"
           *ngIf="simpleOptionsComponent"
@@ -46,7 +45,6 @@
         </lux-tab>
         <lux-tab
           luxTitle="Erweitert"
-          luxIconName="fas fa-tools"
           luxTagIdHeader="bsp-tab-erweitert"
           luxTagIdContent="bsp-tab-erweitert-content"
           *ngIf="advancedOptionsComponent"

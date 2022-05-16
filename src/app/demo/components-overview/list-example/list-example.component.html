@@ -25,13 +25,13 @@
           <lux-icon [luxIconName]="item.iconName" class="{{ 'lux-color-' + (colors[i % colors.length]) }}"></lux-icon>
         </lux-list-item-icon>
         <lux-list-item-content>
-          <p>
+         
             Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore
             magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea
             commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
             pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id
             est laborum.
-          </p>
+         
         </lux-list-item-content>
       </lux-list-item>
     </lux-list>
@@ -133,12 +133,12 @@
       <lux-button
         luxLabel="Leeren"
         luxColor="warn"
-        [luxRaised]="true"
+        [luxStroked]="true"
         [luxDisabled]="items.length === 0"
         (luxClicked)="clear()"
       >
       </lux-button>
-      <lux-button luxLabel="Füllen" luxColor="primary" [luxRaised]="true" (luxClicked)="fill(10)"> </lux-button>
+      <lux-button luxLabel="Füllen" luxColor="primary" [luxFlat]="true" (luxClicked)="fill(10)"> </lux-button>
     </div>
   </example-base-options-actions>
 </example-base-structure>

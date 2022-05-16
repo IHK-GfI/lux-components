@@ -1,13 +1,16 @@
 <div fxLayout="column" id="Home" luxAriaRole="main" class="page-content">
   <h4 class="page-title" style="font-size: 34px;">Die Komponenten von A-Z</h4>
-  <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex="1 1 auto" fxLayoutGap="24px grid">
-    <ng-container *ngFor="let component of navigationService.components | luxAlphabeticallySorted">
+  <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex="0 1 auto" fxLayoutGap="24px grid">
+    <div *ngFor="let component of navigationService.components | luxAlphabeticallySorted">
       <lux-tile-authentic
         [luxLabel]="component.label"
-        [luxSubTitle]="component.moduleName"
+        luxSubTitle="Modul: lux-{{component.moduleName}}"
         (luxClicked)="component.onclick()"
         [luxTagId]="component.label"
         fxFlex="0 0 auto"
+        [luxBadgeNotification]="component.news ? 'neu' : '' "
+        luxBadgeColor="accent"
+        luxBadgeSize="large"
       >
         <lux-icon [luxIconName]="component.icon" luxIconSize="5x" *ngIf="!component.useImage"></lux-icon>
         <lux-image
@@ -17,6 +20,6 @@
           *ngIf="component.useImage"
         ></lux-image>
       </lux-tile-authentic>
-    </ng-container>
+    </div>
   </div>
 </div>

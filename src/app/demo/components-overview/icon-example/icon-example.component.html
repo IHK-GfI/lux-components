@@ -86,6 +86,33 @@
           </lux-icon>
         </div>
       </div>
+      <div fxLayout="column" class="lux-gradient-bg lux-highlight-section">
+        <h3 class="lux-highlight-section-label">Gradient</h3>
+        <div fxLayout="row wrap" fxLayoutGap="12px grid">
+          <lux-icon
+            *ngFor="let color of colors"
+            [luxIconName]="iconName"
+            [luxIconSize]="iconSize"
+            [luxPadding]="padding"
+            [luxMargin]="margin"
+            [luxRounded]="rounded"
+            [luxColor]="color"
+          >
+          </lux-icon>
+        </div>
+        <div fxLayout="row wrap" fxLayoutGap="12px grid">
+          <lux-icon
+            *ngFor="let color of colors; let i = index"
+            [luxIconName]="iconName"
+            [luxIconSize]="iconSize"
+            [luxPadding]="padding"
+            [luxMargin]="margin"
+            [luxRounded]="rounded"
+            class="{{ 'lux-color-' + (colors[i % colors.length]) }}"
+          >
+          </lux-icon>
+        </div>
+      </div>
     </div>
   </example-base-content>
   <example-base-simple-options>
@@ -126,13 +153,6 @@
     >
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen. <br/> Z.B. #f0f0f2 oder </lux-form-hint>
     </lux-input>
-    <div class="lux-highlight-section column">
-      <p class="lux-highlight-section-label">Verfügbare Icons im Netz</p>
-      <div class="lux-simple-form row">
-        <lux-link luxLabel="Font Awesome" luxHref="https://fontawesome.com/v5.15/icons" [luxBlank]="true" [luxRaised]="true" luxIconName="fas fa-link" luxColor=""></lux-link>
-        <lux-link luxLabel="Material Icons" luxHref="https://fonts.google.com/icons" [luxBlank]="true" [luxRaised]="true" luxIconName="link" luxColor=""></lux-link>
-      </div>
-    </div>
   </example-base-simple-options>
   <example-base-advanced-options>
     <div class="lux-highlight-section column">
