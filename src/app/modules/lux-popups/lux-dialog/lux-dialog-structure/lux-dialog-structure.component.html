@@ -1,11 +1,13 @@
 <div class="lux-dialog" fxLayout="column" #dialogBase>
-  <div mat-dialog-title class="lux-dialog-title" fxFlex="0 0 auto">
+  <div mat-dialog-close class="lux-icon-close" fxFlexAlign="end"><lux-icon luxIconSize="2x" luxIconName="close"></lux-icon></div>
+  <lux-icon luxIconName="fa-comment" fxFlexAlign="center" class="dialog-icon"></lux-icon>
+  <div mat-dialog-title class="lux-dialog-title" fxFlex="0 0 auto" fxFlexAlign="center">
     <ng-content select="lux-dialog-title"></ng-content>
   </div>
-  <div mat-dialog-content class="lux-dialog-content" fxFlex="0 0 auto">
+  <div mat-dialog-content fxFlexAlign="center" class="lux-dialog-content" fxFlex="0 0 auto">
     <ng-content select="lux-dialog-content"></ng-content>
   </div>
-  <div mat-dialog-actions class="lux-dialog-actions" fxFlex="auto" fxLayout="row wrap" fxLayoutAlign="end center">
+  <div mat-dialog-actions fxFlexAlign="center" class="lux-dialog-actions" fxFlex="auto" fxLayout="row wrap" fxLayoutAlign="end center">
     <ng-content select="lux-dialog-actions"></ng-content>
   </div>
 </div>

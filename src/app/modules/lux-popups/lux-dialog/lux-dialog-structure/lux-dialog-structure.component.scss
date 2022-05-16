@@ -15,6 +15,24 @@
   .lux-dialog-actions {
     margin: 20px 0 0 0;
   }
+
+  .lux-icon-close {
+    margin: -15px -15px 0 0;
+
+    &:hover {
+      background-color: lightgray;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
+
+  lux-icon.dialog-icon ::ng-deep {
+    mat-icon, i {
+      color: var(--lux-theme-primary-color) !important;
+      font-size: 4em !important;
+    }
+  }
+  
 }
 
 @mixin small-dialog {
