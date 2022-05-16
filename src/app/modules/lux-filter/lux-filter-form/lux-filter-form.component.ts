@@ -2,14 +2,17 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  ContentChild,
   ContentChildren,
+  ElementRef,
   EventEmitter,
   HostListener,
   Input,
   OnDestroy,
   OnInit,
   Output,
-  QueryList
+  QueryList,
+  ViewChild
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -24,6 +27,7 @@ import { LuxFilterLoadDialogComponent } from '../lux-filter-dialog/lux-filter-lo
 import { LuxFilterItemDirective } from '../lux-filter-base/lux-filter-item.directive';
 import { LuxFilterItem } from '../lux-filter-base/lux-filter-item';
 import { LuxLookupComboboxComponent } from '../../lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
+import { LuxFilterFormExtendedOptions } from './lux-filter-form-extended-options/lux-filter-form-extended-options.component';
 
 @Component({
   selector: 'lux-filter-form',
@@ -37,8 +41,10 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     panelClass: []
   };
 
+ // @ViewChild('defaultTrigger', { read: ElementRef }) defaultTriggerElRef: ElementRef;
   @ContentChildren(LuxFilterItemDirective, { descendants: true }) formElementes: QueryList<LuxFilterItemDirective>;
-
+  @ContentChild(LuxFilterFormExtendedOptions) extendedOptions: LuxFilterFormExtendedOptions;
+  
   _luxFilterValues = {};
   _luxFilterExpanded = false;
 
@@ -60,7 +66,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   @Input() luxDefaultFilterMessage = $localize `:@@luxc.filter.defaultFilterMessage:Es wird nach den Standardeinstellungen gefiltert.`;
   @Input() luxShowChips = true;
   @Input() luxStoredFilters: LuxFilter[] = [];
-
+  @Input() luxShowAsCard = false;
   @Input()
   get luxFilterExpanded() {
     return this._luxFilterExpanded;
@@ -223,6 +229,9 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     // Filtern...
     this.onFilter();
 
+    // Chips aktualisieren
+    this.updateFilterChips();
+
     // Die Interessenten darüber informieren, dass ein Filterreset durchgeführt wurde.
     this.luxOnReset.emit();
   }
@@ -265,24 +274,26 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     // besteht natürlich auch beim Datepicker, Select und den
     // Lookup-Komponenten. Aus diesem Grund werden hier zuerst alle geöffneten
     // Popups/Panels geschlossen. Im Anschluss wird wie gewohnt gefiltert.
-    this.formElementes.forEach((formComponent) => {
-      if (formComponent.datepicker) {
-        formComponent.datepicker.matDatepicker.close();
-      } else if (formComponent.datetimepicker) {
-        formComponent.datetimepicker.dateTimeOverlayComponent.close();
-      } else if (formComponent.select) {
-        formComponent.select.matSelect.close();
-      } else if (formComponent.autoComplete) {
-        formComponent.autoComplete.matAutoComplete.closePanel();
-      } else if (formComponent.autoCompleteLookup) {
-        formComponent.autoCompleteLookup.matAutocompleteTrigger.closePanel();
-      } else if (formComponent.selectLookup) {
-        formComponent.selectLookup.matSelect.close();
-      }
-    });
+    if (this.luxFilterExpanded) { //sollte nur bei geöffnetem Filterpanel ausgelöst werden
+      this.formElementes.forEach((formComponent) => {
+        if (formComponent.datepicker) {
+          formComponent.datepicker.matDatepicker.close();
+        } else if (formComponent.datetimepicker) {
+          formComponent.datetimepicker.dateTimeOverlayComponent.close();
+        } else if (formComponent.select) {
+          formComponent.select.matSelect.close();
+        } else if (formComponent.autoComplete) {
+          formComponent.autoComplete.matAutoComplete.closePanel();
+        } else if (formComponent.autoCompleteLookup) {
+          formComponent.autoCompleteLookup.matAutocompleteTrigger.closePanel();
+        } else if (formComponent.selectLookup) {
+          formComponent.selectLookup.matSelect.close();
+        }
+      });
 
-    this.onFilter();
-    this.cdr.detectChanges();
+      this.onFilter();
+      this.cdr.detectChanges();
+    }
   }
 
   onFilter() {

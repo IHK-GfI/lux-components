@@ -20,3 +20,8 @@
   padding: 0 !important;
   border: none;
 }
+
+lux-panel-header-title ::ng-deep .mat-expansion-panel-header-title {
+  align-items: center;
+  margin: 0px;
+}
