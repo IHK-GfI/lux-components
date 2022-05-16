@@ -139,28 +139,92 @@
             *luxLayoutRowItem="{}"
           ></lux-toggle>
         </lux-layout-form-row>
+        <p class="lux-mt-3 lux-mb-5">
+          Dieses Filterformular zeigt zu Testzwecken alle möglichen FormControlls, die aktuell eingesetzt werden können.
+        </p>
       </lux-filter-form>
      <div class="lux-highlight-section column lux-ml-2 lux-mr-2">
         <h3 class="lux-highlight-section-label">Filter</h3>
         <pre>{{ currentFilter | json }}</pre>
      </div>
-    </div>
-    <div ngClass="message-box" ngClass.lt-md="message-box-small">
-      <div fxLayout="row" fxLayoutAlign="start start" class="box-header">
-        <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
-        <div fxLayout="column" class="lux-mt-2">
-          <h2>Tipp</h2>
-          <h3>Formcontrols im Filter anpassen</h3>
-        </div>
+     <h3>Lux-Filter-Form in einer Card</h3>
+     <lux-filter-form
+        fxFlex="1 1 auto"
+        (luxOnFilter)="onFilter($event)"
+        [(luxFilterExpanded)]="expanded"
+        [luxFilterValues]="initFilter"
+        (luxOnSave)="onSave($event)"
+        (luxOnLoad)="onLoad($event)"
+        (luxOnReset)="onReset()"
+        (luxOnDelete)="onDelete($event)"
+        [luxShowChips]="showFilterChips"
+        [luxStoredFilters]="storedFilters"
+        [luxButtonRaised]="buttonRaised"
+        [luxButtonFilterColor]="buttonFilterColor"
+        [luxButtonDialogSave]="buttonDialogSave"
+        [luxButtonDialogLoad]="buttonDialogLoad"
+        [luxButtonDialogDelete]="buttonDialogDelete"
+        [luxButtonDialogCancel]="buttonDialogCancel"
+        [luxButtonDialogClose]="buttonDialogClose"
+        [luxShowAsCard]="true"
+        class="lux-ml-1 lux-mr-1 lux-mb-3"
+      >
+      <div fxLayout="row">
+        <lux-input-authentic
+          luxLabel="Bezeichnung"
+          luxName="filter_input"
+          luxAutocomplete="off"
+          luxControlBinding="input"
+          luxFilterItem
+          fxFlex="100"
+        ></lux-input-authentic>
       </div>
-      <p>
-        Die Lux-Form-Controls haben standardmäßig einen Label- und einen Hint/Error-Container. Meistens werden die Fehlermeldungen und Hinweistexte im Filterformular jedoch nicht benötigt. <br>
-        Für diesen Anwendungsfall kann ab Version 12.0.0 das Attribut <strong>luxNoBottomLabels</strong> bei den Form-Controls genutzt werden. 
-        Dabei wird der Hint/Error-Container vom Form-Control entfernt. Mit der Lux-Layout-Form-Row können dann die Zeilenabstände individuell bestimmt werden.
-      </p>
-      <div class="code-section">
-        <lux-markdown [luxData]="markdownData"></lux-markdown>
-      </div>
+        <lux-filter-form-extended-options *ngIf="showExtendedOptions">
+        <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px'}" luxWrapAt="md">
+          <lux-select
+            luxLabel="Single-Select"
+            luxControlBinding="singleSelect"
+            luxOptionLabelProp="label"
+            [luxMultiple]="false"
+            [luxOptions]="singleSelectOptions"
+            [luxCompareWith]="compareValueFn"
+            [luxFilterDisabled]="singleSelectDisabled"
+            [luxFilterHidden]="singleSelectHidden"
+            luxFilterColor="accent"
+            luxFilterItem
+            [luxNoBottomLabel]="true"
+            *luxLayoutRowItem="{}"
+          ></lux-select>
+          <lux-select
+            luxLabel="Multi-Select"
+            luxControlBinding="multiSelect"
+            luxOptionLabelProp="label"
+            [luxMultiple]="true"
+            [luxOptions]="multiSelectOptions"
+            [luxCompareWith]="compareValueFn"
+            [luxFilterDisabled]="multiSelectDisabled"
+            [luxFilterHidden]="multiSelectHidden"
+            luxFilterColor="accent"
+            luxFilterItem
+            [luxNoBottomLabel]="true"
+            *luxLayoutRowItem="{}"
+          ></lux-select>
+        </lux-layout-form-row>
+        <lux-layout-form-row luxWrapAt="md">
+          <lux-toggle
+            luxLabel="Toggle"
+            luxName="filter_toggle"
+            luxControlBinding="toggle"
+            [luxFilterRenderFn]="renderToggleFn"
+            [luxFilterDisabled]="toggleSelectDisabled"
+            [luxFilterHidden]="toggleSelectHidden"
+            luxFilterColor="warn"
+            luxFilterItem
+            [luxNoTopLabel]="true"
+            *luxLayoutRowItem="{}"
+          ></lux-toggle>
+        </lux-layout-form-row>
+      </lux-filter-form-extended-options></lux-filter-form>
     </div>
   </example-base-content>
   <example-base-simple-options>
@@ -173,6 +237,10 @@
       <lux-select luxLabel="luxButtonDialogLoad" [(luxSelected)]="buttonDialogLoad" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
       <lux-select luxLabel="luxButtonDialogDelete" [(luxSelected)]="buttonDialogDelete" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
       <lux-select luxLabel="luxButtonDialogClose" [(luxSelected)]="buttonDialogClose" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
+    </div>
+    <div class="lux-highlight-section column">
+      <lux-toggle luxLabel="luxShowAsCard" [(luxChecked)]="showAsCard" [luxNoLabels]="true"></lux-toggle>
+      <lux-toggle luxLabel="luxFilterFormExtendedOptions" [(luxChecked)]="showExtendedOptions" [luxNoLabels]="true"></lux-toggle>
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
