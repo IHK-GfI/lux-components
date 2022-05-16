@@ -36,7 +36,7 @@
               (keydown.enter)="onComponentClick(component)"
             >
               {{ component.label }}
-              <lux-badge luxColor="blue" luxIconName="far fa-hand-point-left" [luxUppercase]="false"  *ngIf="component.news">
+              <lux-badge luxColor="green" [luxUppercase]="false"  *ngIf="component.news">
                 <lux-label luxId="Badge_news">Neu</lux-label>
               </lux-badge>
             </div>
