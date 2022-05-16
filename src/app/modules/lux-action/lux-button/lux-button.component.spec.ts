@@ -255,7 +255,7 @@ class Checker {
       [luxRounded]="round"
       [luxRaised]="raised"
       [luxFlat]="flat"
-      [luxOutlined]="outlined"
+      [luxStroked]="outlined"
     ></lux-button>
   `
 })
@@ -278,7 +278,7 @@ class LuxButtonComponent {
       [luxRounded]="round"
       [luxRaised]="raised"
       [luxFlat]="flat"
-      [luxOutlined]="outlined"
+      [luxStroked]="outlined"
     ></lux-button>
   `
 })

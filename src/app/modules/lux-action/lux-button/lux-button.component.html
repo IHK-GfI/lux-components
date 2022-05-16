@@ -40,7 +40,7 @@
   <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
 </button>
 <button
-  *ngIf="luxOutlined && !luxRounded"
+  *ngIf="luxStroked && !luxRounded"
   mat-stroked-button
   [color]="luxColor"
   (click)="clicked($event)"
@@ -61,7 +61,7 @@
 </button>
 
 <button
-  *ngIf="!luxRaised && !luxRounded && !luxFlat && !luxOutlined"
+  *ngIf="!luxRaised && !luxRounded && !luxFlat && !luxStroked"
   mat-button
   [color]="luxColor"
   (click)="clicked($event)"
