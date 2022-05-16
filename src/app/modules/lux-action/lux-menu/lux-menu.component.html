@@ -65,11 +65,13 @@
 <ng-template #menuTriggerTemplate>
   <div
     [matMenuTriggerFor]="menu"
-    class="lux-menu-trigger lux-color-primary-500"
     fxFlex="0 0 auto"
-    [ngClass]="{ 'lux-display-none': hideToggle }"
     fxFlexAlign="center"
+    class="lux-menu-trigger lux-color-primary-500"
+    [ngClass]="{ 'lux-display-none': hideToggle }"
     #menuTrigger
+    (click)="menuTriggerStopPropagation($event)" 
+    (keydown.enter)="menuTriggerStopPropagation($event)"
   >
     <!-- Custom-Trigger, der über Content-Projection geladen werden kann -->
     <ng-content select="lux-menu-trigger"> </ng-content>

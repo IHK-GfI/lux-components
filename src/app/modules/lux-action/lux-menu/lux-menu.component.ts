@@ -14,6 +14,7 @@ import {
   QueryList,
   ViewChild
 } from "@angular/core";
+import { LuxUtil } from "../../lux-util/lux-util";
 import { Subscription } from "rxjs";
 import { LuxMenuItemComponent } from "./lux-menu-subcomponents/lux-menu-item.component";
 import { LuxMenuTriggerComponent } from "./lux-menu-subcomponents/lux-menu-trigger.component";
@@ -48,7 +49,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   @ContentChildren(LuxMenuItemComponent) luxMenuItemComponents: QueryList<LuxMenuItemComponent>;
   @ContentChild(LuxMenuTriggerComponent) luxMenuTriggerComponent: LuxMenuTriggerComponent;
 
-  @Output() luxMenuClosed: EventEmitter<void> = new EventEmitter<void>();
+  @Output() luxMenuClosed: EventEmitter<any> = new EventEmitter();
 
   @Input() luxMenuLabel = '';
   @Input() luxMenuIconName = 'menu';
@@ -156,6 +157,16 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     }
   }
 
+  /**
+   * Der Menü-Trigger in der Filterkomponente wird im Accordion-Panel eingesetzt.
+   * Damit sich das Panel bei der Verwendung des Menüs nicht öffnet und schließt, 
+   * darf das Event nicht weiter gereicht werden.
+   *
+   * @param event 
+   */
+  menuTriggerStopPropagation(event){
+    LuxUtil.stopEventPropagation(event);
+  }
   /**
    * Berechnet anhand der verfügbaren Breite des Containers (CSS-Class: lux-menu-extended) und der maximalen Anzahl an
    * extended MenuItems die Anzahl an möglichen MenuItems, die außerhalb des eigentlichen Menus dargestellt werden können.
