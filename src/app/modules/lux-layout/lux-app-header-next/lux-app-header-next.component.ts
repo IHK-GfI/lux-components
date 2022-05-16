@@ -10,11 +10,21 @@ import { LuxAppHeaderNextUserMenuComponent } from './lux-app-header-next-subcomp
 })
 export class LuxAppHeaderNextComponent implements OnInit, OnChanges {
   @Input() luxUserName: string;
-  @Input() luxIconName: string; //für das APP-Icon
-  @Input() luxImageSrc: string; //alternative zum APP-Icon
+  //@Input() luxIconName: string; //für das APP-Icon
+  //@Input() luxImageSrc: string; //alternative zum APP-Icon
   @Input() luxAppTitle: string;
   @Input() luxAppTitleShort: string;
-  @Input() luxAppIconName: string;
+  @Input() 
+  set luxAppIconName(iconName: string) {
+    if (iconName) {
+      this._luxAppIconName = iconName;
+    }
+  }
+  get luxAppIconName() {
+    return this._luxAppIconName;
+  }
+  _luxAppIconName = 'home';
+
   @Input() luxBrandLogoSrc: string;
   @Input() luxAriaUserMenuButtonLabel = $localize `:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
   

@@ -6,16 +6,17 @@
     fxFlex="100"
   >
     <!-- Brand-Logo -->
-    <div  fxFlex="33" fxLayoutAlign="start center">
+    <div fxFlex="33" fxLayoutAlign="start center">
       <lux-image 
         [luxImageSrc]="luxBrandLogoSrc" 
         luxImageHeight="3em"
         class="brand-logo"
         (click)="onClicked($event)"
+        *ngIf="luxBrandLogoSrc"
       ></lux-image>
     </div>
     <!-- App-Logo -->
-    <div  fxFlex="fill" fxLayoutAlign="center center" class="app-logo">
+    <div fxFlex="fill" fxLayoutAlign="center center" class="app-logo">
       <lux-button
         [luxIconName]="luxAppIconName"
         luxColor="primary"
