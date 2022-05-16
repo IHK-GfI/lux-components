@@ -25,14 +25,6 @@
       cursor: pointer;
     }
   }
-
-  lux-icon.dialog-icon ::ng-deep {
-    mat-icon, i {
-      color: var(--lux-theme-primary-color) !important;
-      font-size: 4em !important;
-    }
-  }
-  
 }
 
 @mixin small-dialog {
