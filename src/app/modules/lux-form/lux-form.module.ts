@@ -54,6 +54,10 @@ import { LuxDatepickerCustomHeaderComponent } from './lux-datepicker/lux-datepic
 import { LuxFileUploadComponent } from './lux-file/lux-file-upload/lux-file-upload.component';
 import { LuxFileDeleteDialogComponent } from './lux-file/lux-file-subcomponents/lux-file-delete-dialog/lux-file-delete-dialog.component';
 import { LuxFileReplaceDialogComponent } from './lux-file/lux-file-subcomponents/lux-file-replace-dialog/lux-file-replace-dialog.component';
+import { LuxInputAuthenticComponent } from './lux-input-authentic/lux-input-authentic.component';
+import { LuxInputAuthenticPrefixComponent } from './lux-input-authentic/lux-input-authentic-subcomponents/lux-input-authentic-prefix.component';
+import { LuxFormControlWrapperComponent } from './lux-form-control-wrapper/lux-form-control-wrapper.component';
+import { LuxInputAuthenticSuffixComponent } from './lux-input-authentic/lux-input-authentic-subcomponents/lux-input-authentic-suffix.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +91,11 @@ import { LuxFileReplaceDialogComponent } from './lux-file/lux-file-subcomponents
     LuxDatepickerCustomHeaderComponent,
     LuxFileUploadComponent,
     LuxFileDeleteDialogComponent,
-    LuxFileReplaceDialogComponent
+    LuxFileReplaceDialogComponent,
+    LuxInputAuthenticComponent,
+    LuxInputAuthenticPrefixComponent,
+    LuxInputAuthenticSuffixComponent,
+    LuxFormControlWrapperComponent
   ],
   imports: [
     CommonModule,
@@ -140,7 +148,8 @@ import { LuxFileReplaceDialogComponent } from './lux-file/lux-file-subcomponents
     LuxFileInputComponent,
     LuxFileCaptureDirective,
     LuxMaxLengthDirective,
-    LuxFileUploadComponent
+    LuxFileUploadComponent,
+    LuxInputAuthenticComponent
   ],
   providers: []
 })
