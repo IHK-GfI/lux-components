@@ -3,18 +3,21 @@
   exampleIconName="fas fa-qrcode"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tile"
 >
-  <example-base-content [exampleCentered]="true">
-      <lux-tile-authentic
-        [luxLabel]="label"
-        [luxSubTitle]="subTitle"
-        [luxCounter]="counter"
-        [luxCounterCap]="counterCap"
-        [luxShowNotification]="showNotification"
-        luxTagId="example-tile"
-        (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
-        class="lux-mt-5"
-      >
-      <lux-icon luxIconName="fas fa-video" *ngIf="showIcon"></lux-icon>
+  <example-base-content [exampleCentered]="true" fxLayout="column" fxLayoutGap="32px">
+    <lux-tile-authentic
+      [luxLabel]="label"
+      [luxSubTitle]="subTitle"
+      [luxBadgeNotification]="badgeContent"
+      [luxBadgeColor]="badgeColor"
+      [luxBadgePosition]="badgePosition"
+      [luxBadgeSize]="badgeSize"
+      [luxBadgeCap]="badgeCap"
+      [luxBadgeDisabled]="badgeDisabled"
+      luxTagId="example-tile"
+      (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
+      class="lux-mt-5"
+    >
+      <lux-icon luxIconName="pets" *ngIf="showIcon"></lux-icon>
       <lux-image
         luxImageSrc="assets/svg/red_power_button.svg"
         luxImageWidth="50px"
@@ -22,6 +25,20 @@
         *ngIf="!showIcon"
       ></lux-image>
     </lux-tile-authentic>
+
+    <h3><lux-link-plain luxLabel="Übersicht" luxHref="/components-overview/example/tile-overview"></lux-link-plain></h3>    
+<!-- 
+    <div fxLayout="row wrap" fxLayoutGap="20px grid" fxFlex="80" style="margin: 15px">
+      <div *ngFor="let tile of [1,2,3,4,5,6,7]">
+        <lux-tile-authentic 
+          luxLabel="Test" 
+          luxBadgeNotification="{{ tile }}" 
+          [luxBadgeColor]="badgeColor"
+          [luxBadgePosition]="badgePosition"
+          [luxBadgeSize]="badgeSize">
+        </lux-tile-authentic>
+      </div>
+    </div> -->
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
@@ -35,12 +52,12 @@
     >
     </lux-input>
     <lux-input
-    class="lux-highlight-section"
-    luxLabel="luxSubTitle"
-    luxHint="Die Property bestimmt den Untertitel des Tiles."
-    [(luxValue)]="subTitle"
-  >
-  </lux-input>
+      class="lux-highlight-section"
+      luxLabel="luxSubTitle"
+      luxHint="Die Property bestimmt den Untertitel des Tiles."
+      [(luxValue)]="subTitle"
+    >
+    </lux-input>
     <div class="lux-highlight-section" fxLayout="column">
       <lux-toggle luxLabel="luxIcon anzeigen" [(luxChecked)]="showIcon" [luxNoTopLabel]="true">
         <lux-form-hint>
@@ -51,30 +68,43 @@
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <lux-toggle
-      class="lux-highlight-section"
-      luxLabel="luxShowNotification"
-      [(luxChecked)]="showNotification"
-      [luxNoTopLabel]="true"
-    >
-      <lux-form-hint>
-        Diese Property aktiviert eine Notifizierungsansicht an der Tile.<br />
-        Wenn 'undefined', wird nichts angezeigt. Bei 'true' wird ein blauer Kreis dargestellt und bei 'false' ein
-        ausgegrauter Kreis.
-      </lux-form-hint>
-    </lux-toggle>
-    <div class="lux-highlight-section column">
-      <lux-input luxLabel="luxCounter" [(luxValue)]="counter" luxType="number" [luxNumberAlignLeft]="true">
+    <div fxLayout="column" fxLayoutGap="32px" class="lux-highlight-section">
+    <lux-input 
+      luxLabel="BadgeContent"
+      [(luxValue)]="badgeContent"
+      luxHint="Ein Leerzeichen im Content erzeugt eine Bubble ohne Textinhalt"
+    ></lux-input>
+    <lux-select 
+      luxLabel="BadgeColor"
+      [(luxSelected)]="badgeColor"
+      luxHint="Diese Property definiert die Farbe der Notification"
+      [luxOptions]="['primary', 'warn', 'accent', 'default']"
+    ></lux-select>
+    <lux-select 
+      luxLabel="BadgePosition"
+      [(luxSelected)]="badgePosition"
+      luxLabel="luxBadgePosition"
+      luxHint="Diese Property definiert die Position der Notification"
+      [luxOptions]="['above after', 'above before', 'below before', 'below after']"
+    ></lux-select>
+    <lux-radio 
+      luxLabel="BadgeSize"
+      luxHint="Diese Property definiert die Größe der Notification"
+      [luxOptions]="['small', 'medium', 'large']"
+      [(luxSelected)]="badgeSize"  
+      [luxOrientationVertical]="false"
+      ></lux-radio>
+      <lux-input luxLabel="BadgeCap" [(luxValue)]="badgeCap" luxType="number" [luxNumberAlignLeft]="true">
         <lux-form-hint>
           Die Property definiert den aktuellen Zähler für die Tile.<br />
           Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
         </lux-form-hint>
       </lux-input>
-      <lux-input luxLabel="luxCounterCap" [(luxValue)]="counterCap" luxType="number" [luxNumberAlignLeft]="true">
-        <lux-form-hint>
-          Diese Property bestimmt die Obergrenze für luxCounter.
-        </lux-form-hint>
-      </lux-input>
+      <lux-toggle
+        luxLabel="Badge auf disabled setzen"
+        [(luxChecked)]="badgeDisabled"
+        [luxNoLabels]="true"
+      ></lux-toggle>
     </div>
   </example-base-advanced-options>
 </example-base-structure>

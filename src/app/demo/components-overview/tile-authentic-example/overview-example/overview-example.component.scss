@@ -1,0 +1,23 @@
+.my-grid-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  > * {
+    box-sizing: border-box;
+  } 
+  > *:not(:last-child) {
+    margin-right: 32px;
+    margin-bottom: 32px;
+  }
+}
+
+
+/* Item sizing */
+.my-grid-list-item{
+  flex: 0 1 calc(25% - 32px);
+}
+
+.page {
+  margin: 20px 40px 0 40px;
+}
