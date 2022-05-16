@@ -49,6 +49,10 @@ h6 {
       }
     }
   }
+  
+  lux-card-actions {
+    width: 100%;
+  }
 
   mat-card-actions.lux-card-actions {
     margin-right: 0;
@@ -70,15 +74,3 @@ h6 {
   overflow-y: hidden;
   margin: 0 10px 0 0;
 }
-
-// .lux-expanded-button {
-//   ::ng-deep button {
-//     min-width: 30px;
-//     height: 30px;
-//     padding: 0;
-
-//     i {
-//       padding: 0;
-//     }
-//   }
-// }

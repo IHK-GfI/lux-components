@@ -41,7 +41,9 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() luxExpanded = false;
   @Input() luxUseTabIndex = true;
   @Input() luxHeading = 2;
-
+  @Input() luxExpandedLabelOpen ='mehr Informationen anzeigen';
+  @Input() luxExpandedLabelClose ='weiniger Informationen anzeigen';
+  
   @Output() luxExpandedChange: EventEmitter<boolean> = new EventEmitter();
   @Output() luxAfterExpansion: EventEmitter<void> = new EventEmitter();
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();

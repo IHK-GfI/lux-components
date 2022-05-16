@@ -29,7 +29,8 @@ export class CardExampleComponent {
   expanded = false;
   heading = 2;
   headingValidator = Validators.pattern('[1-6]');
-
+  closeLabel = 'weniger';
+  openLabel = 'mehr';
   // endregion
 
   constructor(private snackbar: LuxSnackbarService) {
