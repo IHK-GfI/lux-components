@@ -61,7 +61,6 @@ import { FilterExampleComponent } from './filter-example/filter-example.componen
 import { LinkPlainExampleComponent } from './link-plain-example/link-plain-example.component';
 import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-authentic-example.component';
 import { InputAuthenticExampleComponent } from './input-authentic-example/input-authentic-example.component';
-import { ButtonStyleguideComponent } from './button-styleguide/button-styleguide.component';
 import { OverviewExampleComponent } from './tile-authentic-example/overview-example/overview-example.component';
 import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
 
@@ -128,7 +127,6 @@ const routes: Routes = [
       { path: 'link-plain', component: LinkPlainExampleComponent },
       { path: 'tile-authentic', component: TileAuthenticExampleComponent },
       { path: 'input-authentic', component: InputAuthenticExampleComponent },
-      { path: 'button-styleguide', component: ButtonStyleguideComponent },
       { path: 'tile-overview', component: OverviewExampleComponent },
       { path: 'master-detail-light', component: MasterDetailLightExampleComponent },
     ]

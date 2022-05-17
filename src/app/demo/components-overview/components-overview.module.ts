@@ -96,7 +96,6 @@ import { LinkPlainExampleComponent } from './link-plain-example/link-plain-examp
 import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-authentic-example.component';
 import { FileUploadExampleComponent } from './file-example/file-upload-example/file-upload-example.component';
 import { InputAuthenticExampleComponent } from './input-authentic-example/input-authentic-example.component';
-import { ButtonStyleguideComponent } from './button-styleguide/button-styleguide.component';
 import { MatListModule } from '@angular/material/list';
 import { OverviewExampleComponent } from './tile-authentic-example/overview-example/overview-example.component';
 import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
@@ -204,7 +203,6 @@ import { MasterDetailLightExampleComponent } from './master-detail-light-example
     TileAuthenticExampleComponent,
     FileUploadExampleComponent,
     InputAuthenticExampleComponent,
-    ButtonStyleguideComponent,
     OverviewExampleComponent,
     MasterDetailLightExampleComponent
   ],
