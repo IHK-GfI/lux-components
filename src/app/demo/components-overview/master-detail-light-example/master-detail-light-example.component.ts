@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './master-detail-light-example.component.html',
   styleUrls: ['./master-detail-light-example.component.scss']
 })
-export class MasterDetailLightExampleComponent implements OnInit {
+export class MasterDetailLightExampleComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

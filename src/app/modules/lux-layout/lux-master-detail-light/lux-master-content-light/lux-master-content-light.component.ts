@@ -6,11 +6,8 @@ import { Component, OnInit } from '@angular/core';
   template:'<ng-content></ng-content>',
   styleUrls: ['./lux-master-content-light.component.scss']
 })
-export class LuxMasterContentLightComponent implements OnInit {
+export class LuxMasterContentLightComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

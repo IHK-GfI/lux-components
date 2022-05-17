@@ -11,7 +11,7 @@ import { LuxMasterHeaderLightComponent } from './lux-master-header-light/lux-mas
   templateUrl: './lux-master-detail-light.component.html',
   styleUrls: ['./lux-master-detail-light.component.scss']
 })
-export class LuxMasterDetailLightComponent implements OnInit {
+export class LuxMasterDetailLightComponent {
   @ContentChild(LuxMasterHeaderLightComponent) masterHeader: LuxMasterHeaderLightComponent;
   @ContentChild(LuxMasterContentLightComponent) masterContent: LuxMasterContentLightComponent;
   @ContentChild(LuxDetailHeaderLightComponent) detailHeader: LuxDetailHeaderLightComponent;
@@ -40,9 +40,6 @@ showDetail = true;
         this.isMobile = this.mediaObserver.isXS() || this.mediaObserver.isSM();
       });
     });
-  }
-
-  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
