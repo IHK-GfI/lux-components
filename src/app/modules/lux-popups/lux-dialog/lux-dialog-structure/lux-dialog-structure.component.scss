@@ -18,12 +18,9 @@
 
   .lux-icon-close {
     margin: -15px -15px 0 0;
-
-    &:hover {
-      background-color: lightgray;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+    width: 32px;
+    height: 32px;
+    font-size: 1.5em;
   }
 }
 
