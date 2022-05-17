@@ -1,0 +1,43 @@
+<div fxLayout="row" fxLayoutGap="30px" class="master-detail-light-container">
+  <div class="master-light-container" fxLayout="column" fxFlex="30" *ngIf="showMaster" [ngClass]="{'master-light-closed': !luxMasterOpen}">
+    Master-Container
+    <lux-button
+      [luxRounded]="true"
+      (luxClicked)="toggleMaster()"
+      [luxIconName]="iconName"
+      class="master-light-toggle"
+      luxTagId="master-detail.toggle"
+      #toggleButton
+      luxAriaLabel="{{ getAriaLabelForOpenCloseButton(iconName) }}"
+      luxAriaLabelSelector="button"
+      [luxAriaExpanded]="iconName === 'keyboard_arrow_left'"
+      luxAriaExpandedSelector="button"
+      *ngIf="showMaster && !isMobile"
+    ></lux-button>
+    <div class="master-light-header" *ngIf="luxMasterOpen">
+      <ng-content *ngIf="masterHeader" select="lux-master-header-light"></ng-content>
+    </div>
+    <div class="master-light-content" *ngIf="luxMasterOpen">
+      <ng-content *ngIf="masterContent" select="lux-master-content-light"></ng-content>
+    </div>
+  </div>
+  <div class="detail-light-container" fxLayout="column" fxFlex="fill" *ngIf="showDetail">
+    Detail-container
+    <div class="detail-button-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" *ngIf="showDetail && isMobile">
+      <lux-button
+        luxIconName="keyboard_arrow_left"
+        [luxRounded]="true"
+        (luxClicked)="backToMaster()"
+        class="back-to-master-button"
+      ></lux-button>
+      <span class="back-to-master-label">Zurück zur Liste</span>
+    </div>
+    <div class="detail-light-header">
+      <ng-content *ngIf="detailHeader" select="lux-detail-header-light"></ng-content>
+    </div>
+    <div class="detail-light-content">
+      <ng-content *ngIf="detailContent" select="lux-detail-content-light"></ng-content>
+    </div>
+
+  </div>
+</div>
