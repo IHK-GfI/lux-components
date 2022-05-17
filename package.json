@@ -51,7 +51,7 @@
     "@angular/platform-browser-dynamic": "13.3.7",
     "@angular/router": "13.3.7",
     "@fortawesome/fontawesome-free": "5.15.4",
-    "@ihk-gfi/lux-components-theme": "11.13.0",
+    "@ihk-gfi/lux-components-theme": "13.0.0",
     "@types/jasmine": "4.0.3",
     "@typescript-eslint/eslint-plugin": "5.23.0",
     "@typescript-eslint/parser": "5.23.0",
@@ -91,7 +91,6 @@
     "@types/marked": "4.0.3"
   },
   "peerDependencies": {
-    "@angular/core": "^13.0.0",
     "ng2-pdf-viewer": "8.0.1",
     "pdfjs-dist": "2.13.216",
     "dompurify": "2.3.7",
