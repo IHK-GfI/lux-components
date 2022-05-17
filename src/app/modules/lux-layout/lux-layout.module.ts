@@ -76,6 +76,11 @@ import { LuxAppHeaderNextComponent } from './lux-app-header-next/lux-app-header-
 import { LuxAppHeaderNextNavMenuComponent } from './lux-app-header-next/lux-app-header-next-subcomponent/lux-app-header-next-nav-menu/lux-app-header-next-nav-menu.component';
 import { LuxAppHeaderNextNavMenuItemComponent } from './lux-app-header-next/lux-app-header-next-subcomponent/lux-app-header-next-nav-menu/lux-app-header-next-nav-menu-item/lux-app-header-next-nav-menu-item.component';
 import { LuxTileAuthenticComponent } from './lux-tile-authentic/lux-tile-authentic.component';
+import { LuxMasterDetailLightComponent } from './lux-master-detail-light/lux-master-detail-light.component';
+import { LuxMasterHeaderLightComponent } from './lux-master-detail-light/lux-master-header-light/lux-master-header-light.component';
+import { LuxMasterContentLightComponent } from './lux-master-detail-light/lux-master-content-light/lux-master-content-light.component';
+import { LuxDetailContentLightComponent } from './lux-master-detail-light/lux-detail-content-light/lux-detail-content-light.component';
+import { LuxDetailHeaderLightComponent } from './lux-master-detail-light/lux-detail-header-light/lux-detail-header-light.component';
 
 @NgModule({
   imports: [
@@ -155,7 +160,12 @@ import { LuxTileAuthenticComponent } from './lux-tile-authentic/lux-tile-authent
     LuxAppHeaderNextUserMenuComponent,
     LuxAppHeaderNextNavMenuComponent,
     LuxAppHeaderNextNavMenuItemComponent,
-    LuxTileAuthenticComponent
+    LuxTileAuthenticComponent,
+    LuxMasterDetailLightComponent,
+    LuxMasterHeaderLightComponent,
+    LuxMasterContentLightComponent,
+    LuxDetailContentLightComponent,
+    LuxDetailHeaderLightComponent
   ],
   exports: [
     LuxAppHeaderComponent,
@@ -215,7 +225,12 @@ import { LuxTileAuthenticComponent } from './lux-tile-authentic/lux-tile-authent
     LuxAppHeaderNextUserMenuComponent,
     LuxAppHeaderNextNavMenuComponent,
     LuxAppHeaderNextNavMenuItemComponent,
-    LuxTileAuthenticComponent
+    LuxTileAuthenticComponent,
+    LuxMasterDetailLightComponent,
+    LuxMasterHeaderLightComponent,
+    LuxMasterContentLightComponent,
+    LuxDetailContentLightComponent,
+    LuxDetailHeaderLightComponent
   ],
   providers: [],
   entryComponents: [LuxIconComponent, LuxDetailWrapperComponent, LuxStepperLargeMobileOverlayComponent]
