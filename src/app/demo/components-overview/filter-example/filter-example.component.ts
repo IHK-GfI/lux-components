@@ -3,7 +3,7 @@ import { LuxActionColorType } from '../../../modules/lux-action/lux-action-model
 import { LuxFilter } from '../../../modules/lux-filter/lux-filter-base/lux-filter';
 import { LuxFilterItem } from '../../../modules/lux-filter/lux-filter-base/lux-filter-item';
 import { LuxFilterFormComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form.component';
-import { LuxFilterFormExtendedOptions } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form-extended-options/lux-filter-form-extended-options.component';
+import { LuxFilterFormExtendedComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form-extended/lux-filter-form-extended.component';
 import { LuxMediaQueryObserverService } from '../../../modules/lux-util/lux-media-query-observer.service';
 import { Subscription } from 'rxjs';
 import {
@@ -18,7 +18,7 @@ import {
 })
 export class FilterExampleComponent implements OnInit, OnDestroy {
   @ViewChild(LuxFilterFormComponent) filterComponent: LuxFilterFormComponent;
-  @ViewChild(LuxFilterFormExtendedOptions) filterExtendedOptionsComponent: LuxFilterFormExtendedOptions;
+  @ViewChild(LuxFilterFormExtendedComponent) filterExtendedOptionsComponent: LuxFilterFormExtendedComponent;
 
   parameters = new LuxLookupParameters({
     knr: 101,

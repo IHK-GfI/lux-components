@@ -1,4 +1,4 @@
-import { Component, ContentChild, OnInit } from '@angular/core';
+import { Component, ContentChild, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxDetailContentLightComponent } from './lux-detail-content-light/lux-detail-content-light.component';
@@ -11,7 +11,7 @@ import { LuxMasterHeaderLightComponent } from './lux-master-header-light/lux-mas
   templateUrl: './lux-master-detail-light.component.html',
   styleUrls: ['./lux-master-detail-light.component.scss']
 })
-export class LuxMasterDetailLightComponent {
+export class LuxMasterDetailLightComponent implements OnDestroy {
   @ContentChild(LuxMasterHeaderLightComponent) masterHeader: LuxMasterHeaderLightComponent;
   @ContentChild(LuxMasterContentLightComponent) masterContent: LuxMasterContentLightComponent;
   @ContentChild(LuxDetailHeaderLightComponent) detailHeader: LuxDetailHeaderLightComponent;

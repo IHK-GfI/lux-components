@@ -10,7 +10,7 @@ import { LuxPopupsModule } from '../lux-popups/lux-popups.module';
 import { LuxFilterSaveDialogComponent } from './lux-filter-dialog/lux-filter-save-dialog/lux-filter-save-dialog.component';
 import { LuxFilterLoadDialogComponent } from './lux-filter-dialog/lux-filter-load-dialog/lux-filter-load-dialog.component';
 import { LuxFilterItemDirective } from './lux-filter-base/lux-filter-item.directive';
-import { LuxFilterFormExtendedOptions } from './lux-filter-form/lux-filter-form-extended-options/lux-filter-form-extended-options.component';
+import { LuxFilterFormExtendedComponent } from './lux-filter-form/lux-filter-form-extended/lux-filter-form-extended.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { LuxFilterFormExtendedOptions } from './lux-filter-form/lux-filter-form-
     LuxFilterItemDirective,
     LuxFilterSaveDialogComponent,
     LuxFilterLoadDialogComponent,
-    LuxFilterFormExtendedOptions
+    LuxFilterFormExtendedComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +30,7 @@ import { LuxFilterFormExtendedOptions } from './lux-filter-form/lux-filter-form-
     LuxActionModule,
     LuxPopupsModule
   ],
-  exports: [LuxFilterFormComponent, LuxFilterItemDirective, LuxFilterSaveDialogComponent, LuxFilterLoadDialogComponent, LuxFilterFormExtendedOptions],
+  exports: [LuxFilterFormComponent, LuxFilterItemDirective, LuxFilterSaveDialogComponent, LuxFilterLoadDialogComponent, LuxFilterFormExtendedComponent],
   entryComponents: [LuxFilterSaveDialogComponent, LuxFilterLoadDialogComponent],
   providers: []
 })

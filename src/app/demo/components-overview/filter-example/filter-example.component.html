@@ -179,7 +179,7 @@
           fxFlex="100"
         ></lux-input-authentic>
       </div>
-        <lux-filter-form-extended-options *ngIf="showExtendedOptions">
+        <lux-filter-form-extended *ngIf="showExtendedOptions">
         <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px'}" luxWrapAt="md">
           <lux-select
             luxLabel="Single-Select"
@@ -224,7 +224,7 @@
             *luxLayoutRowItem="{}"
           ></lux-toggle>
         </lux-layout-form-row>
-      </lux-filter-form-extended-options></lux-filter-form>
+      </lux-filter-form-extended></lux-filter-form>
     </div>
   </example-base-content>
   <example-base-simple-options>
@@ -240,7 +240,7 @@
     </div>
     <div class="lux-highlight-section column">
       <lux-toggle luxLabel="luxShowAsCard" [(luxChecked)]="showAsCard" [luxNoLabels]="true"></lux-toggle>
-      <lux-toggle luxLabel="luxFilterFormExtendedOptions" [(luxChecked)]="showExtendedOptions" [luxNoLabels]="true"></lux-toggle>
+      <lux-toggle luxLabel="luxFilterFormExtended" [(luxChecked)]="showExtendedOptions" [luxNoLabels]="true"></lux-toggle>
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>

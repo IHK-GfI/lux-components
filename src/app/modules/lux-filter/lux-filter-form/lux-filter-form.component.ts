@@ -27,7 +27,7 @@ import { LuxFilterLoadDialogComponent } from '../lux-filter-dialog/lux-filter-lo
 import { LuxFilterItemDirective } from '../lux-filter-base/lux-filter-item.directive';
 import { LuxFilterItem } from '../lux-filter-base/lux-filter-item';
 import { LuxLookupComboboxComponent } from '../../lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
-import { LuxFilterFormExtendedOptions } from './lux-filter-form-extended-options/lux-filter-form-extended-options.component';
+import { LuxFilterFormExtendedComponent } from './lux-filter-form-extended/lux-filter-form-extended.component';
 
 @Component({
   selector: 'lux-filter-form',
@@ -43,7 +43,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
  // @ViewChild('defaultTrigger', { read: ElementRef }) defaultTriggerElRef: ElementRef;
   @ContentChildren(LuxFilterItemDirective, { descendants: true }) formElementes: QueryList<LuxFilterItemDirective>;
-  @ContentChild(LuxFilterFormExtendedOptions) extendedOptions: LuxFilterFormExtendedOptions;
+  @ContentChild(LuxFilterFormExtendedComponent) extendedOptions: LuxFilterFormExtendedComponent;
   
   _luxFilterValues = {};
   _luxFilterExpanded = false;

@@ -32,7 +32,7 @@
   </lux-card-content>
   <!-- Optional können bei der Darstellung in einer Card erweiterte Optionen als Expanded-Content der Card angezeigt werden -->
   <lux-card-content-expanded *ngIf="extendedOptions" >
-    <ng-content select='lux-filter-form-extended-options'></ng-content>
+    <ng-content select='lux-filter-form-extended'></ng-content>
   </lux-card-content-expanded>
   <lux-card-actions>
     <ng-container *ngTemplateOutlet="filterButtonTemplate"></ng-container>
