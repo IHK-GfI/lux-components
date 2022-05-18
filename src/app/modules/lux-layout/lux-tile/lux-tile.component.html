@@ -8,7 +8,7 @@
   class="lux-cursor lux-highlight"
   ngClass="lux-tile-small-font lux-m-2"
   ngClass.gt-sm="lux-tile-normal-font lux-m-3"
-  [luxBadgeNotification]="luxCounter"
+  [luxBadgeNotification]="luxCounter ? '' + luxCounter : ''"
   luxBadgeColor="accent"
   [luxBadgeCap]="luxCounterCap"
   [luxBadgeOverlap]="true"
@@ -21,7 +21,7 @@
       </div>
       <lux-divider fxFlex="0 0 2px" *ngIf="luxLabel" aria-hidden="true"></lux-divider>
 
-      <h2 fxFlex="0 1 45px" fxLayoutAlign="center center" class="lux-tile-label" [attr.aria-label]="luxLabel">
+      <h2 fxLayoutAlign="center center" class="lux-tile-label" [attr.aria-label]="luxLabel">
         <span>{{ luxLabel }}</span>
       </h2>
     </div>

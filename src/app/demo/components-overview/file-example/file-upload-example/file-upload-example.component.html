@@ -34,7 +34,6 @@
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
         (luxSelectedFilesChange)="onSelectedChange($event)"
-        [luxSelectedFilesAlwaysUseArray]="alwaysUseArray"
         #fileBaseWithoutComponent
       >
       </lux-file-upload>
@@ -62,7 +61,6 @@
           [luxAccept]="accept"
           [luxHint]="hint"
           [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
-          [luxSelectedFilesAlwaysUseArray]="alwaysUseArray"
           [luxDnDActive]="dndActive"
           [luxControlBinding]="controlBinding"
           [luxContentsAsBlob]="contentAsBlob"

@@ -1,5 +1,5 @@
-<div class="lux-highlight-section" fxLayout="column">
-  <lux-toggle luxLabel="luxMultiSelect" [(luxChecked)]="tableExample.multiSelect">
+<div class="lux-highlight-section column">
+  <lux-toggle luxLabel="luxMultiSelect" [(luxChecked)]="tableExample.multiSelect" [luxNoTopLabel]="true">
     <lux-form-hint>Ermöglicht es, diese Tabelle mit Multiselection-Funktionalitäten zu versehen.</lux-form-hint>
   </lux-toggle>
   <lux-toggle
@@ -10,21 +10,16 @@
   >
     <lux-form-hint>Deaktiviert die erste und dritte Checkbox in der Tabelle.</lux-form-hint>
   </lux-toggle>
-  <lux-toggle
-    luxLabel="luxMultiSelectOnlyCheckboxClick"
-    [(luxChecked)]="tableExample.multiSelectOnlyCheckboxClick"
-    [luxDisabled]="!tableExample.multiSelect"
-  >
-    <lux-form-hint
-      >Dieses Flag steuert, ob auch ein Klick auf die Zeile die Checkbox aktiviert oder ausschließlich ein Klick auf die Checkbox
-      selbst.</lux-form-hint
-    >
+  <lux-toggle luxLabel="luxMultiSelectOnlyCheckboxClick"
+              [(luxChecked)]="tableExample.multiSelectOnlyCheckboxClick"
+              [luxNoTopLabel]="true">
+    <lux-form-hint>Dieses Flag steuert, ob auch ein Klick auf die Zeile die Checkbox aktiviert oder ausschließlich ein Klick auf die Checkbox selbst.</lux-form-hint>
   </lux-toggle>
 </div>
 <lux-input luxLabel="luxNoDataText" class="lux-highlight-section" [(luxValue)]="tableExample.noDataText">
   <lux-form-hint>Diese Property enthält den Text der angezeigt wird wenn keine Datensätze gefunden werden konnten. </lux-form-hint>
 </lux-input>
-<lux-toggle luxLabel="luxShowFilter" class="lux-highlight-section" [(luxChecked)]="tableExample.filter">
+<lux-toggle luxLabel="luxShowFilter" class="lux-highlight-section" [(luxChecked)]="tableExample.filter" [luxNoTopLabel]="true">
   <lux-form-hint>Mit diesem Flag lässt sich das Filter-Inputfeld aus-/einblenden.</lux-form-hint>
 </lux-toggle>
 <lux-input
@@ -35,11 +30,11 @@
 >
   <lux-form-hint>Diese Property definiert das Label des Filter-Inputfelds.</lux-form-hint>
 </lux-input>
-<div fxLayout="column" class="lux-highlight-section">
-  <lux-toggle luxLabel="luxShowPagination" [(luxChecked)]="tableExample.pagination">
+<div class="lux-highlight-section column">
+  <lux-toggle luxLabel="luxShowPagination" [(luxChecked)]="tableExample.pagination" [luxNoTopLabel]="true">
     <lux-form-hint>Diese Property aktiviert/deaktiviert die Pagination für die Tabelle.</lux-form-hint>
   </lux-toggle>
-  <lux-input luxLabel="luxPageSize" [(luxValue)]="tableExample.pageSize" luxType="number" [luxDisabled]="!tableExample.pagination">
+  <lux-input luxLabel="luxPageSize" [(luxValue)]="tableExample.pageSize" luxType="number" [luxNumberAlignLeft]="true" [luxDisabled]="!tableExample.pagination">
     <lux-form-hint>Hiermit kann die aktuelle Anzahl an Einträgen für die Pagination eingestellt werden. </lux-form-hint>
   </lux-input>
   <lux-select

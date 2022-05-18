@@ -10,7 +10,12 @@
   padding-left: 42px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: 24px;
   font-weight: 500;
   margin-block-start: 1.2em;
@@ -64,13 +69,6 @@ h1, h2, h3, h4, h5, h6 {
 .lux-card-title-container {
   overflow-y: hidden;
   margin: 0 10px 0 0;
-}
-
-.lux-card-content-container {
-  padding: 4px;
-  > * {
-    margin-bottom: 0;
-  }
 }
 
 .lux-expanded-button {

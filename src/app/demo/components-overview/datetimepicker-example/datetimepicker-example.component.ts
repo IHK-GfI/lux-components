@@ -1,10 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { LuxDateTimePickerComponent } from '../../../modules/lux-form/lux-datetimepicker/lux-datetimepicker.component';
+import { LuxDateTimeStartView } from "../../../modules/lux-form/lux-datetimepicker/lux-datetimepicker-model/lux-datetimepicker-types";
+import {
+  LuxDateTimePickerComponent,
+} from '../../../modules/lux-form/lux-datetimepicker/lux-datetimepicker.component';
 import {
   exampleErrorCallback,
   logResult,
-  setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -47,7 +49,7 @@ export class DateTimepickerExampleComponent {
   labelLongFormat = false;
   minDate = '01.01.2000, 00:00';
   maxDate = '31.12.2100, 23:59';
-  startView = 'month';
+  startView: LuxDateTimeStartView = 'month';
   startDate: string = null;
   startTime: number[] = null;
   _startTimeAsString: string = null;

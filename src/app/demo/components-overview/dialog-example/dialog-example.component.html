@@ -4,7 +4,12 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90dialog"
 >
   <example-base-simple-options>
-    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
+    <lux-toggle 
+      class="lux-highlight-section" 
+      luxLabel="Output-Events loggen" 
+      luxHint="(Console --> F12/CMD+ALT+I)" 
+      [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true">
     </lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <h3>Allgemeine Properties</h3>
@@ -44,6 +49,7 @@
       luxLabel="disableClose"
       luxHint="Wenn aktiv, kann der Dialog nur über die Actions geschlossen werden."
       [(luxChecked)]="dialogConfig.disableClose"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
   </example-base-simple-options>
@@ -57,12 +63,13 @@
       [(luxValue)]="dialogConfig.title"
     >
     </lux-input>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-toggle
         luxLabel="Content-Template nutzen"
         luxHint="Wenn aktiv, wird dem Dialog ein 'TemplateRef' für den Inhalt übergeben."
         [(luxChecked)]="useContentTemplate"
         (luxCheckedChange)="useContentTemplateChange($event)"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <pre class="lux-label" *ngIf="useContentTemplate">{{ contentTemplateString }}</pre>
@@ -80,7 +87,7 @@
         <lux-panel-header-title>
           confirmAction - Optionen
         </lux-panel-header-title>
-        <lux-panel-content class="lux-highlight-section" fxLayout="column">
+        <lux-panel-content class="lux-highlight-section column">
           <ng-container *ngTemplateOutlet="dialogActionTemplate; context: { $implicit: dialogConfig.confirmAction }">
           </ng-container>
         </lux-panel-content>
@@ -89,7 +96,7 @@
         <lux-panel-header-title>
           declineAction - Optionen
         </lux-panel-header-title>
-        <lux-panel-content class="lux-highlight-section" fxLayout="column">
+        <lux-panel-content class="lux-highlight-section column">
           <ng-container *ngTemplateOutlet="dialogActionTemplate; context: { $implicit: dialogConfig.declineAction }">
           </ng-container>
         </lux-panel-content>
@@ -149,18 +156,21 @@
     luxLabel="raised"
     luxHint="Wenn aktiv, wird die Aktion hervorgehoben dargestellt."
     [(luxChecked)]="actionConfig.raised"
+    [luxNoTopLabel]="true"
   >
   </lux-toggle>
   <lux-toggle
     luxLabel="disabled"
     luxHint="Wenn aktiv, wird die Aktion deaktiviert."
     [(luxChecked)]="actionConfig.disabled"
+    [luxNoTopLabel]="true"
   >
   </lux-toggle>
   <lux-toggle
     luxLabel="rounded"
     luxHint="Wenn aktiv, wird die Aktion als Kreis dargestellt. Sollte dann aber kein Label enthalten."
     [(luxChecked)]="actionConfig.rounded"
+    [luxNoTopLabel]="true"
   >
   </lux-toggle>
 </ng-template>

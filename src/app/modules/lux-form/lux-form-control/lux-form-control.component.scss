@@ -16,13 +16,6 @@
   height: 2px;
 }
 
-$borderColor: rgba(0, 0, 0, 0.42);
-$defaultHeightNotScalable: 30px;
-$controlHeight: 24px;
-$controlHeightSmall: 18px;
-$fontSize: 15px;
-$fontSizeSmall: 12px;
-
 :host {
   max-width: 100%;
   width: 100%;
@@ -37,10 +30,9 @@ $fontSizeSmall: 12px;
   display: flex;
   position: relative;
   box-sizing: border-box;
-  padding: 4px;
 
   .lux-form-control-label {
-    padding-top: 2px;
+    padding: var(--lux-theme-form-control-label-padding);
     min-height: 15px;
     > * {
       @include crop;
@@ -57,7 +49,6 @@ $fontSizeSmall: 12px;
   .lux-form-control-container {
     position: relative;
     box-sizing: border-box;
-    min-height: $defaultHeightNotScalable; // IE11
     min-height: var(--lux-theme-form-control-default-height-not-scalable);
     &:after {
       @include bottomBorder;
@@ -67,8 +58,7 @@ $fontSizeSmall: 12px;
   .lux-form-control-misc {
     box-sizing: border-box;
     position: relative;
-    margin-bottom: 2px;
-    margin-top: 4px;
+    margin: var(--lux-theme-form-control-misc-margin);
     min-height: 17px;
     word-wrap: break-word;
     > * {
@@ -77,8 +67,8 @@ $fontSizeSmall: 12px;
 
     .lux-form-control-character-counter {
       color: var(--lux-theme-dark-secondary-text) !important;
-        font-size: $fontSizeSmall; // IE11
       font-size: var(--lux-theme-form-control-font-size-small);
+      line-height: var(--lux-theme-form-control-font-size-small);
       text-align: end;
       min-width: 40px;
       margin-left: 2px;
@@ -104,14 +94,7 @@ $fontSizeSmall: 12px;
       max-width: 100%;
       vertical-align: bottom;
       text-align: inherit;
-      font-size: $fontSize; // IE11
       font-size: var(--lux-theme-form-control-font-size);
-
-      &:required {
-        -webkit-box-shadow: unset;
-        -moz-box-shadow: unset;
-        box-shadow: unset;
-      }
     }
 
     textarea {
@@ -124,9 +107,7 @@ $fontSizeSmall: 12px;
     }
 
     .lux-input-row {
-      height: $controlHeight; // IE11
       height: var(--lux-theme-form-control-height);
-      font-size: $fontSize; // IE11
       font-size: var(--lux-theme-form-control-font-size);
 
       > * {
@@ -151,23 +132,22 @@ $fontSizeSmall: 12px;
 
     // Toggle von Datepickern anpassen, um analog zu anderen Inputs auszusehen
     mat-datepicker-toggle {
-      height: $controlHeightSmall; // IE11
       height: var(--lux-theme-form-control-height-small);
 
       button {
-        height: $controlHeightSmall; // IE11
         height: var(--lux-theme-form-control-height-small);
-        width: $controlHeightSmall; // IE11
         width: var(--lux-theme-form-control-height-small);
+
         .mat-button-wrapper {
           display: flex;
-          height: $controlHeightSmall; // IE11
           height: var(--lux-theme-form-control-height-small);
           svg {
-            height: $controlHeightSmall; // IE11
             height: var(--lux-theme-form-control-height-small);
-            width: $controlHeightSmall; // IE11
             width: var(--lux-theme-form-control-height-small);
+          }
+          &:hover {
+            background-color: var(--lux-theme-hover-color);
+            border-radius: 4px;
           }
         }
       }
@@ -178,9 +158,7 @@ $fontSizeSmall: 12px;
       height: auto;
 
       .mat-slide-toggle-label {
-        line-height: $controlHeightSmall; // IE11
         line-height: var(--lux-theme-form-control-height-small);
-        font-size: $fontSize; // IE11
         font-size: var(--lux-theme-form-control-font-size);
       }
 
@@ -192,18 +170,14 @@ $fontSizeSmall: 12px;
     // Höhe des Checkbox-Labels an andere Höhen angleichen
     mat-checkbox {
       .mat-checkbox-label {
-        line-height: $controlHeightSmall; // IE11
         line-height: var(--lux-theme-form-control-height-small);
-        font-size: $fontSize; // IE11
         font-size: var(--lux-theme-form-control-font-size);
       }
     }
 
     // Höhe der Radio-Buttons etwas anheben
     mat-radio-button {
-      height: $defaultHeightNotScalable; // IE11
       height: var(--lux-theme-form-control-default-height-not-scalable);
-      font-size: $fontSize; // IE11
       font-size: var(--lux-theme-form-control-font-size);
 
       .mat-radio-label {
@@ -215,20 +189,16 @@ $fontSizeSmall: 12px;
     // Anpassen des horizontalen Sliders
     mat-slider {
       &.mat-slider-horizontal {
-        height: $defaultHeightNotScalable; // IE11
         height: var(--lux-theme-form-control-default-height-not-scalable);
       }
     }
 
     // Feinjustierungen für Mat-Select
     mat-select {
-      height: $controlHeight; // IE11
       height: var(--lux-theme-form-control-height);
       .mat-select-trigger {
-        line-height: $controlHeightSmall; // IE11
         line-height: var(--lux-theme-form-control-height-small);
         .mat-select-value {
-          font-size: $fontSize; // IE11
           font-size: var(--lux-theme-form-control-font-size);
         }
       }
@@ -237,8 +207,8 @@ $fontSizeSmall: 12px;
     .lux-label,
     mat-hint,
     mat-error {
-      font-size: $fontSizeSmall !important; // IE11
       font-size: var(--lux-theme-form-control-font-size-small) !important;
+      line-height: var(--lux-theme-form-control-font-size-small);
     }
   }
 }
@@ -247,7 +217,6 @@ $fontSizeSmall: 12px;
 :host {
   &:not(.lux-form-control-scalable-height) {
     .lux-form-control-container {
-      max-height: $defaultHeightNotScalable; // IE11
       max-height: var(--lux-theme-form-control-default-height-not-scalable);
     }
   }
@@ -262,10 +231,35 @@ $fontSizeSmall: 12px;
       border-bottom: none !important;
     }
   }
+
+  &.lux-form-control-no-top-label { // für Toggle/Checkbox/Radio
+    .lux-form-control {
+      min-height: calc(var(--lux-theme-form-control-default-height-not-scalable) + 23px);
+    }
+  }
+  &.lux-form-control-no-bottom-label { // kein Misc
+    .lux-form-control {
+      min-height:  calc(var(--lux-theme-form-control-default-height-not-scalable) + 17px);;
+    }
+  }
+
+  &.lux-form-control-no-labels { // kein Label und kein Misc
+    .lux-form-control {
+      min-height: var(--lux-theme-form-control-default-height-not-scalable);
+    }
+  }
 }
 
 ::ng-deep {
   .lux-form-control-readonly, .lux-form-control-disabled {
     pointer-events: none;
+    mat-select {
+      &[aria-disabled="true"] ::ng-deep .mat-select-arrow {
+        color: var(--lux-theme-dark-disabled-text);
+      }
+      &[aria-disabled="false"] ::ng-deep .mat-select-arrow {
+        color:var(--lux-theme-dark-disabled-text);
+      }
+    }
   }
 }

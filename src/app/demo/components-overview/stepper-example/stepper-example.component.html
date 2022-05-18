@@ -96,9 +96,11 @@
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
+    class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-toggle
@@ -106,6 +108,7 @@
       luxLabel="luxLinear"
       luxHint="Über dieses Flag wird bestimmt ob die einzelnen Steps erst abgeschlossen werden müssen, bevor weiter gesprungen werden kann."
       [(luxChecked)]="linear"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -113,13 +116,15 @@
       luxLabel="luxDisabled"
       luxHint="Diese Property ermöglicht es, den ganzen Stepper zu deaktivieren."
       [(luxChecked)]="disabled"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-toggle
         luxLabel="luxUseCustomIcons"
         luxHint="Wenn aktiv, werden nicht mehr die Standard-Icons von Material für die Steps benutzt."
         [(luxChecked)]="useCustomIcons"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <lux-input
@@ -135,15 +140,17 @@
       luxLabel="luxCurrentStepNumber"
       luxHint="Diese Property definiert den aktuell sichtbaren Step."
       luxType="number"
+      [luxNumberAlignLeft]="true"
       [(luxValue)]="currentStepNumber"
     >
     </lux-input>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-toggle
         luxLabel="luxVerticalStepper"
         luxHint="Über dieses Flag wird gesteuert ob der Stepper vertikal oder horizontal ausgerichtet wird."
         [(luxChecked)]="verticalStepper"
         (luxCheckedChange)="redrawIcons()"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <lux-toggle
@@ -151,6 +158,7 @@
         luxHint="Diese Property bestimmt ob die Animationen für horizontale Stepper aktiviert sind oder nicht."
         [luxDisabled]="verticalStepper"
         [(luxChecked)]="horizontalAnimation"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <lux-toggle
@@ -169,13 +177,13 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <!-- Mögliche Input-Properties für die einzelnen Steps -->
-    <div class="lux-highlight-section" fxLayout="column">
-      <h3 class="lux-mr-3 lux-ml-3">LuxStepComponents</h3>
-      <lux-accordion class="lux-mr-3 lux-ml-3 lux-mb-3" luxMode="flat" [luxMulti]="false">
+    <div fxLayout="column">
+      <h3>LuxStepComponents</h3>
+      <lux-accordion class="lux-mb-3" luxMode="flat" [luxMulti]="false">
         <lux-panel *ngFor="let step of steps; let i = index">
           <lux-panel-header-title> Step #{{ i }} </lux-panel-header-title>
           <lux-panel-content>
-            <div fxLayout="column">
+            <div class="lux-simple-form column">
               <lux-input luxLabel="luxIconName" [(luxValue)]="step.iconName">
                 <lux-form-hint>
                   Diese Property bestimmt das (custom) Icon des Steps.<br />
@@ -186,28 +194,31 @@
                 luxLabel="hide"
                 luxHint="Blendet den Step über *ngIf ein oder aus."
                 [(luxChecked)]="step.hide"
+                [luxNoTopLabel]="true"
               >
               </lux-toggle>
               <lux-toggle
                 luxLabel="luxEditable"
                 luxHint="Der Flag legt fest ob der Step nach der Bearbeitung noch ansteuerbar ist oder nicht."
                 [(luxChecked)]="step.editable"
+                [luxNoTopLabel]="true"
               >
               </lux-toggle>
               <lux-toggle
                 luxLabel="luxStepControl nutzen"
                 luxHint="Wenn aktiv, wird dem Step eine FormGroup mit Validatoren zur Validierungsprüfung übergeben."
                 [(luxChecked)]="step.useStepControl"
+                [luxNoTopLabel]="true"
               >
               </lux-toggle>
-              <lux-toggle luxLabel="luxCompleted" [(luxChecked)]="step.completed" [luxDisabled]="step.useStepControl">
+              <lux-toggle luxLabel="luxCompleted" [(luxChecked)]="step.completed" [luxDisabled]="step.useStepControl" [luxNoTopLabel]="true">
                 <lux-form-hint>
                   Alternative zum StepControl um festzulegen, ob der Step als abgeschlossen gilt oder nicht.<br />
                   Wenn dem Step ein StepControl und ein completed-Wert übergeben werden, wird das StepControl zur
                   Validierung genutzt.
                 </lux-form-hint>
               </lux-toggle>
-              <lux-toggle luxLabel="luxOptional" [(luxChecked)]="step.optional" [luxDisabled]="step.useStepControl">
+              <lux-toggle luxLabel="luxOptional" [(luxChecked)]="step.optional" [luxDisabled]="step.useStepControl" [luxNoTopLabel]="true">
                 <lux-form-hint>
                   Dieser Flag bestimmt ob der Step validiert werden soll oder als optional übersprungen werden kann.<br />
                   Das greift allerdings nur, wenn kein StepControl übergeben worden ist.
@@ -217,13 +228,15 @@
           </lux-panel-content>
         </lux-panel>
       </lux-accordion>
-    </div>
+    
     <!-- Mögliche Konfigurationen für die Navigation-Buttons -->
-    <div class="lux-highlight-section" fxLayout="column">
+    
       <lux-toggle
+        class="lux-highlight-section"
         luxLabel="luxShowNavigationButtons"
         [(luxChecked)]="showNavigationButtons"
         (luxCheckedChange)="updateNavigationButtons($event)"
+        [luxNoTopLabel]="true"
       >
         <lux-form-hint>
           Dieses Flag schaltet die Buttons für das Vor-/Zurück-Springen und den Abschluss ein.<br />
@@ -231,14 +244,16 @@
         </lux-form-hint>
       </lux-toggle>
       <lux-toggle
+        class="lux-highlight-section"
         luxLabel="Custom-Configs nutzen"
         luxHint="Wenn aktiv, werden dem Stepper eigene Konfigurationen für die Navigations-Buttons übergeben."
         [luxDisabled]="!showNavigationButtons"
         [(luxChecked)]="useCustomButtonConfig"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <lux-accordion
-        class="lux-mr-3 lux-ml-3 lux-mb-3"
+        class="lux-mb-3"
         luxMode="flat"
         [luxMulti]="false"
         [luxDisabled]="!useCustomButtonConfig"
@@ -280,7 +295,7 @@
 
 <!-- Template für die Wiederverwendung in der Navigaton-Button Konfiguration -->
 <ng-template let-configurationObject #buttonConfigTemplate>
-  <div fxLayout="column">
+  <div class="lux-simple-form column">
     <lux-input
       luxLabel="label"
       luxHint="Die Property definiert das Label des Navigations-Buttons."
@@ -304,6 +319,7 @@
       luxLabel="alignIconWithLabel"
       luxHint="Dieser Flag ordnet Icon und Label auf einer Basislinie an."
       [(luxChecked)]="configurationObject.alignIconWithLabel"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
   </div>

@@ -6,12 +6,19 @@
     </div>
   </lux-dialog-title>
   <lux-dialog-content>
-    <div fxLayout="column" fxLayoutGap="8px">
+    <div fxLayout="column" fxLayoutGap="16px">
       <span>Ihre Daten werden im Anschluss an diesen Dialog gespeichert.</span>
       <b>Zusatzinformationen</b>
-      <lux-textarea luxName="dialog_Anmerkung" luxLabel="Anmerkung" luxPlaceholder="Anmerkungen" luxMinRows="1"> </lux-textarea>
+      <lux-textarea luxName="dialog_Anmerkung" luxLabel="Anmerkung" luxPlaceholder="Anmerkungen" [luxMinRows]="1"> </lux-textarea>
       <div fxLayout="row" fxLayoutAlign="start center" class="toggle-agb-container">
-        <lux-toggle class="toggle-agb" luxLabel="AGB gelesen" [luxRequired]="true" #agbAcceptedToggle> </lux-toggle>
+        <lux-toggle
+          luxLabel="AGB gelesen"
+          luxHint="Ich habe die AGB und Datenschutzvereinbarungen gelesen und akzeptiere diese."
+          [luxRequired]="true"
+          [luxNoTopLabel]="true"
+          #agbAcceptedToggle
+        >
+        </lux-toggle>
         <lux-button
           luxIconName="info"
           luxColor="primary"

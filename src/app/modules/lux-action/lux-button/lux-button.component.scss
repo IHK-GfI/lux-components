@@ -1,5 +1,5 @@
-.lux-align-baseline {
-  padding-bottom: 8px !important;
+.lux-align-baseline:not(.lux-button-rounded) {
+  padding-bottom: 10px !important;
 
   ::ng-deep {
     .mat-button-wrapper {
@@ -29,6 +29,7 @@
 
 .lux-icon-button.mat-fab ::ng-deep .mat-button-wrapper {
   padding: 0;
+  line-height: inherit;
 }
 
 :host {
@@ -39,11 +40,18 @@
       align-items: center;
     }
 
+    .mat-raised-button, .mat-button { // damit der Focus-indicator im Firefox richtig berechnet wird
+      line-height: inherit;
+    }
+
     lux-icon {
       line-height: 1;
-      &i,
-      &mat-icon {
+      i,
+      mat-icon {
         line-height: 1;
+      }
+      mat-icon {
+        vertical-align: middle;
       }
 
       &i {

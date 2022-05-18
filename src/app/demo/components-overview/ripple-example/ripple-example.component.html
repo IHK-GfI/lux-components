@@ -61,6 +61,7 @@
       luxLabel="luxRippleDisabled"
       luxHint="Dieser Flag deaktiviert das Auslösen der Ripple-Animationen über Maus-Klicks."
       [(luxChecked)]="disabled"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -68,6 +69,7 @@
       luxLabel="luxRippleCentered"
       luxHint="Dieser Flag stellt ein ob die Animation aus dem Zentrum der Zielcomponent läuft oder vom jeweiligen Klick."
       [(luxChecked)]="centered"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -75,6 +77,7 @@
       luxLabel="luxRippleUnbounded"
       luxHint="Dieser Flag stellt ein ob die Animation über die Zielcomponent hinauslaufen kann."
       [(luxChecked)]="unbounded"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
   </example-base-simple-options>

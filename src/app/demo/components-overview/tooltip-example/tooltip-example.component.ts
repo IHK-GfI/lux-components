@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TooltipPosition } from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-tooltip-example',
@@ -11,7 +12,7 @@ export class TooltipExampleComponent {
   disabled = false;
   hideDelay = 0;
   showDelay = 0;
-  position = 'above';
+  position: TooltipPosition = 'above';
 
   constructor() {}
 }

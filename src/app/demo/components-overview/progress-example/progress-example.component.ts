@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
+import { LuxProgressSizeType, LuxProgressModeType } from "../../../modules/lux-common/lux-progress/lux-progress.component";
 import { LuxProgressColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-progress-example',
-  templateUrl: './progress-example.component.html',
-  styles: ['']
+  templateUrl: './progress-example.component.html'
 })
 export class ProgressBarExampleComponent {
   sizes = ['small', 'medium', 'large'];
@@ -12,8 +12,8 @@ export class ProgressBarExampleComponent {
   backgroundColor = '';
   modes = ['determinate', 'indeterminate'];
 
-  size = 'medium';
-  mode = 'determinate';
+  size: LuxProgressSizeType = 'medium';
+  mode: LuxProgressModeType = 'determinate';
   value = 70;
 
   constructor() {}

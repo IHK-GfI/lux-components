@@ -4,7 +4,6 @@ import { LuxComponentsConfigService } from '../../modules/lux-components-config/
 import { LuxComponentsConfigParameters } from '../../modules/lux-components-config/lux-components-config-parameters.interface';
 import { LuxAppFooterButtonInfo } from '../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
 import { LuxAppFooterButtonService } from '../../modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
-import { LuxSnackbarService } from '../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,26 +13,14 @@ import { Subscription } from 'rxjs';
 export class ConfigurationComponent implements OnInit, OnDestroy {
   private configSubscription: Subscription;
 
-  notAppliedToOptions: string[] = [
-    'lux-link',
-    'lux-button',
-    'lux-menu-item',
-    'lux-side-nav-item',
-    'lux-tab',
-    'lux-step'
-  ];
-  modifiedConfig: LuxComponentsConfigParameters;
-  previousConfig: LuxComponentsConfigParameters;
-  init = true;
+  notAppliedToOptions: string[] = ['lux-link', 'lux-button', 'lux-menu-item', 'lux-side-nav-item', 'lux-tab', 'lux-step'];
+  currentConfig: LuxComponentsConfigParameters;
 
   constructor(
     public componentsConfigService: LuxComponentsConfigService,
     private router: Router,
-    private footerService: LuxAppFooterButtonService,
-    public snackbarService: LuxSnackbarService
-  ) {}
-
-  ngOnInit() {
+    private footerService: LuxAppFooterButtonService
+  ) {
     this.footerService.pushButtonInfos(
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Dokumentation',
@@ -58,23 +45,12 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
         }
       })
     );
+  }
 
-    this.configSubscription = this.componentsConfigService.config.subscribe(
-      (newConfig: LuxComponentsConfigParameters) => {
-        this.modifiedConfig = newConfig;
-        this.previousConfig = JSON.parse(JSON.stringify(newConfig));
-
-        if (!this.init) {
-          this.snackbarService.open(2000, {
-            text: 'Konfiguration aktualisiert.',
-            iconName: 'fa-info',
-            iconSize: '2x'
-          });
-        }
-      }
-    );
-
-    this.init = true;
+  ngOnInit() {
+    this.configSubscription = this.componentsConfigService.config.subscribe((newConfig: LuxComponentsConfigParameters) => {
+      this.currentConfig = newConfig;
+    });
   }
 
   ngOnDestroy() {
@@ -83,6 +59,6 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
   }
 
   updateConfig() {
-    this.componentsConfigService.updateConfiguration(this.modifiedConfig);
+    this.componentsConfigService.updateConfiguration(this.currentConfig);
   }
 }

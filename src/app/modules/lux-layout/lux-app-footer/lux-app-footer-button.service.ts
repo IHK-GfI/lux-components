@@ -1,25 +1,31 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LuxAppFooterButtonInfo } from './lux-app-footer-button-info';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
-export class LuxAppFooterButtonService {
-  private _buttonInfos: LuxAppFooterButtonInfo[] = [];
+export class LuxAppFooterButtonService implements OnDestroy {
+  private buttonInfoSubject = new BehaviorSubject<LuxAppFooterButtonInfo[]>([]);
 
   get buttonInfos(): LuxAppFooterButtonInfo[] {
-    return this._buttonInfos;
+    return this.buttonInfoSubject.getValue();
   }
 
   set buttonInfos(buttonInfos: LuxAppFooterButtonInfo[]) {
-    this._buttonInfos = buttonInfos ? buttonInfos : [];
+    this.buttonInfoSubject.next(buttonInfos ? buttonInfos : []);
+  }
+
+  getButtonInfosAsObservable(): Observable<LuxAppFooterButtonInfo[]> {
+    return this.buttonInfoSubject.asObservable();
+  }
+
+  ngOnDestroy() {
+    this.buttonInfoSubject.complete();
   }
 
   pushButtonInfos(...value: LuxAppFooterButtonInfo[]) {
-    if (!this.buttonInfos) {
-      this._buttonInfos = [];
-    }
-    this._buttonInfos.push(...value);
+    this.buttonInfos = [...this.buttonInfos, ...value];
   }
 
   getButtonInfoByCMD(cmd: string) {
@@ -27,15 +33,15 @@ export class LuxAppFooterButtonService {
   }
 
   removeButtonInfoAtIndex(i: number) {
-    this._buttonInfos = this._buttonInfos.filter((info, index) => index !== i);
+    this.buttonInfos = this.buttonInfos.filter((info, index) => index !== i);
   }
 
   removeButtonInfoByCmd(cmd: string) {
-    this._buttonInfos = this._buttonInfos.filter(info => info.cmd !== cmd);
+    this.buttonInfos = this.buttonInfos.filter((info) => info.cmd !== cmd);
   }
 
   clearButtonInfos() {
-    this._buttonInfos = [];
+    this.buttonInfos = [];
   }
 
   sendButtonCommand(buttonCommand: string) {

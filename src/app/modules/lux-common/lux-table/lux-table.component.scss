@@ -124,13 +124,6 @@ lux-progress ::ng-deep mat-progress-bar {
   opacity: 0;
 }
 
-.lux-table-ie {
-  mat-cell,
-  mat-header-cell {
-    height: 1em;
-  }
-}
-
 .lux-hide {
   display: none !important;
 }

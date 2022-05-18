@@ -11,9 +11,9 @@ export abstract class TableExampleBaseClass {
   ];
   mediaQueryOptions = ['xs', 'sm', 'md', 'lg', 'xl'];
   columnWidthOptions = [
-    { label: '[5%, 20%, 30%, 35%, 10%]', value: ['5', '20', '30', '35', '10'] },
-    { label: '[20%, 20%, 20%, 20%, 20%]', value: ['20', '20', '20', '20', '20'] },
-    { label: '[10%, 20%, 50%, 10%, 10%]', value: ['10', '20', '50', '10', '10'] }
+    { label: '[5%, 20%, 30%, 35%, 10%]', value: [5, 20, 30, 35, 10] },
+    { label: '[20%, 20%, 20%, 20%, 20%]', value: [20, 20, 20, 20, 20] },
+    { label: '[10%, 20%, 50%, 10%, 10%]', value: [10, 20, 50, 10, 10] }
   ];
 
   // endregion
@@ -23,7 +23,7 @@ export abstract class TableExampleBaseClass {
   tableCSS: ICustomCSSConfig[] = [
     {
       class: 'demo-year-2017',
-      check: element => element.date.getFullYear() === 2017
+      check: (element) => element.date.getFullYear() === 2017
     },
     {
       class: 'demo-year-2018',
@@ -37,9 +37,9 @@ export abstract class TableExampleBaseClass {
   pageSize = 5;
   pageSizeOption = this.pageSizeOptions[0].value;
   autoPagination = true;
+  cssClass: ICustomCSSConfig[] = [];
   pagerDisabled = false;
   pagerTooltip = '';
-  cssClass = '';
   columnWidthOption = this.columnWidthOptions[1].value;
   multiSelect = true;
   multiSelectOnlyCheckboxClick = true;
@@ -50,7 +50,7 @@ export abstract class TableExampleBaseClass {
   minWidthPx = undefined;
   tableHeightPx = 500;
   hideBorders = false;
-  selected: any[];
+  selected: Set<any>;
 
   nameConfig: ColumnConfig = new ColumnConfig({ label: 'Name', sticky: false });
   symbolConfig: ColumnConfig = new ColumnConfig({ label: 'Symbol' });
@@ -79,12 +79,13 @@ export abstract class TableExampleBaseClass {
   }
 
   preselect() {
-    this.selected = [
-      { name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24), disabled: false },
-      { name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22), disabled: false },
-      { name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21), disabled: false },
-      { name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18), disabled: false },
-      { name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24), disabled: false }
-    ];
+    const newSelected = new Set();
+    newSelected.add({ name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24), disabled: false  });
+    newSelected.add({ name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22), disabled: false  });
+    newSelected.add({ name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21), disabled: false  });
+    newSelected.add({ name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18), disabled: false  });
+    newSelected.add({ name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24), disabled: false  });
+
+    this.selected = newSelected;
   }
 }

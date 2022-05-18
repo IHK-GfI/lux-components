@@ -42,6 +42,7 @@ export class FormThreeColComponent extends FormBase implements OnInit {
       }),
       feedback: this.fb.group({
         rating: ['', Validators.required],
+        comment: [''],
         anonymous: [false]
       })
     });

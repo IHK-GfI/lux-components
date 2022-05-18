@@ -65,7 +65,6 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   filtered$: Subject<string> = new Subject<string>();
   currentCustomClasses: { entry: any; classes: string }[] = [];
   isLoadingResults: boolean;
-  isIE = false;
   allSelected: boolean;
   mediaQuery: string;
   movedTableColumns: LuxTableColumnComponent[] = [];
@@ -88,7 +87,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   @Input() luxPagerDisabled = false;
   @Input() luxPagerTooltip = '';
 
-  @Output() luxSelectedChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Output() luxSelectedChange: EventEmitter<Set<any>> = new EventEmitter<Set<any>>();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -207,9 +206,24 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
    * @param selected
    */
   @Input() set luxSelected(selected: Set<any>) {
-    this.clearSelected();
-    if (selected) {
-      selected.forEach((entry) => {
+    if (!selected && !this.luxSelected) {
+      // Nothing to do
+    } else if (selected && !this.luxSelected) {
+      this.luxSelectedIntern(selected);
+    } else if (!selected && this.luxSelected) {
+      this.luxSelectedIntern(selected);
+    } else if (selected && this.luxSelected) {
+      if (this.luxSelected.size !== selected.size || !Array.from(selected).every(value => this.luxSelected.has(value))) {
+        this.luxSelectedIntern(selected);
+      }
+    }
+  }
+
+  private luxSelectedIntern(selected: Set<any>) {
+    const newSelected = selected ? Array.from(selected) : [];
+    this.luxSelected.clear();
+    if (newSelected) {
+      newSelected.forEach((entry) => {
         this.addSelected(entry);
       });
     }
@@ -272,8 +286,6 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   ) {
     // Datasource um eigene Filter-Funktionalitaet ergaenzen
     this.dataSource.filterPredicate = this.customFilterPredicate;
-
-    this.isIE = LuxUtil.isIEorEdge();
 
     this.mediaQuerySubscription = this.queryObserver.getMediaQueryChangedAsObservable().subscribe((query: string) => {
       this.mediaQuery = query;
@@ -405,9 +417,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
         }
       }
 
-      this.emitSelectedEvent();
-      this.dataSource.selectedEntries = this.luxSelected;
-      this.allSelected = this.checkFilteredAllSelected();
+      this.updateSelectedIntern();
     }
   }
 
@@ -431,10 +441,14 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
           }
         });
       }
-      this.emitSelectedEvent();
-      this.dataSource.selectedEntries = this.luxSelected;
-      this.allSelected = this.checkFilteredAllSelected();
+      this.updateSelectedIntern();
     }
+  }
+
+  private updateSelectedIntern() {
+    this.emitSelectedEvent();
+    this.dataSource.selectedEntries = this.luxSelected;
+    this.allSelected = this.checkFilteredAllSelected();
   }
 
   /**
@@ -798,10 +812,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       }
       foundEntries.forEach((entry: boolean) => this.addSelected(entry));
     }
-
-    this.dataSource.selectedEntries = this.luxSelected;
-    this.emitSelectedEvent();
-    this.allSelected = this.checkFilteredAllSelected();
+    this.updateSelectedIntern();
   }
 
   private emitSelectedEvent() {
@@ -811,7 +822,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
     if (this.lastSelectedEventData !== newDataString) {
       this.lastSelectedEventData = newDataString;
 
-      this.luxSelectedChange.next(newData);
+      this.luxSelectedChange.next(this.luxSelected);
     }
   }
 

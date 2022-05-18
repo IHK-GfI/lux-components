@@ -2,7 +2,7 @@
 import {
   Component,
   ContentChild,
-  ElementRef, EventEmitter, HostBinding,
+  ElementRef, EventEmitter,
   Input,
   OnChanges, OnDestroy,
   OnInit,
@@ -16,7 +16,6 @@ import { LuxMasterDetailMobileHelperService } from '../lux-master-detail/lux-mas
 import { LuxSideNavComponent } from './lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component';
 import { LuxAppHeaderRightNavComponent } from './lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
 import { LuxAppHeaderActionNavComponent } from './lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav.component';
-import { LuxUtil } from '../../lux-util/lux-util';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -47,7 +46,6 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   masterHasValue: boolean;
 
   userNameShort: string;
-  isIE = LuxUtil.isIE();
   hasOnClickedListener: boolean;
   subscriptions: Subscription[] = [];
 

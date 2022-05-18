@@ -30,6 +30,9 @@ export class LuxFileInputComponent extends LuxFormFileBase {
 
   @Input() luxPlaceholder = '';
   @Input() luxClearOnError = true;
+  @Input() luxNoLabels = false;
+  @Input() luxNoTopLabel = false;
+  @Input() luxNoBottomLabel = false;
 
   constructor(
     @Optional() controlContainer: ControlContainer,
@@ -40,6 +43,11 @@ export class LuxFileInputComponent extends LuxFormFileBase {
     config: LuxComponentsConfigService
   ) {
     super(controlContainer, cdr, logger, config, http, liveAnnouncer);
+  }
+
+  onSelectFiles(target: EventTarget) {
+    const fileList = (target as HTMLInputElement).files;
+    this.selectFiles(fileList ? Array.from(fileList) : []);
   }
 
   /**
@@ -72,8 +80,6 @@ export class LuxFileInputComponent extends LuxFormFileBase {
     }, this.defaultReadFileDelay);
   }
 
-  // region Overridden methods
-
   protected errorMessageModifier(value: any, errors: any): string | undefined {
     if (errors.required) {
       return $localize `:@@luxc.file-input.error_message.required:Es muss eine Datei ausgewählt werden`;
@@ -89,5 +95,8 @@ export class LuxFileInputComponent extends LuxFormFileBase {
     super.setFormControlErrors(error);
   }
 
-  // endregion
+  useArray(): boolean {
+    return false;
+  }
+
 }

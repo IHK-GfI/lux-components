@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { ExampleRootComponent } from './example-base-root/example-root.component';
 import { ExampleBaseStructureComponent } from './example-base-root/example-base-subcomponents/example-base-structure/example-base-structure.component';
 import { LuxDirectivesModule } from '../../modules/lux-directives/lux-directives.module';
+import { LuxCommonModule } from '../../modules/lux-common/lux-common.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { LuxDirectivesModule } from '../../modules/lux-directives/lux-directives
     LuxLayoutModule,
     LuxPipesModule,
     LuxIconModule,
-    LuxDirectivesModule
+    LuxDirectivesModule,
+    LuxCommonModule
   ],
   declarations: [
     ExampleRootComponent,

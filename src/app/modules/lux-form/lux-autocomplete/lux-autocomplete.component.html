@@ -1,4 +1,12 @@
-<lux-form-control [luxFormComponent]="this"  [luxLabelLongFormat]="luxLabelLongFormat" [formGroup]="formGroup" *ngIf="formGroup">
+<lux-form-control
+  *ngIf="formGroup"
+  [luxFormComponent]="this"
+  [formGroup]="formGroup"
+  [luxNoLabels]="luxNoLabels"
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  [luxLabelLongFormat]="luxLabelLongFormat"
+>
   <div class="lux-input-row">
     <span class="lux-input-prefix-container" fxFlex="auto" matPrefix *ngIf="inputPrefix">
       <ng-content select="lux-input-prefix"></ng-content>
@@ -12,6 +20,7 @@
       [formControl]="formControl"
       [placeholder]="luxPlaceholder"
       [matAutocomplete]="auto"
+      [readonly]="luxReadonly"
       [required]="luxRequired"
       (click)="onClick($event)"
       (blur)="luxBlur.emit($event)"

@@ -99,7 +99,7 @@
     [multiple]="luxMultiple"
     [accept]="luxAccept"
     [luxFileCapture]="luxCapture ? luxCapture : 'environment'"
-    (change)="selectFiles($event.target.files)"
+    (change)="onSelectFiles($event.target)"
     #fileupload
   />
 </div>

@@ -1,0 +1,98 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+.message-box {
+  border-left: 8px solid var(--lux-theme-primary-color);
+  border-radius: 4px;
+  background-color: var(--lux-theme-primary-50);
+  padding: 12px 24px;
+  margin: 32px 0;
+}
+.warn-box {
+  border-left: 8px solid var(--lux-theme-warn-color);
+  border-radius: 4px;
+  background-color: var(--lux-theme-warn-50);
+  padding: 12px 24px;
+  margin: 32px 0 !important;
+
+  h5 {
+    margin-block-start: 0.5em;
+  }
+}
+.panel-frame {
+  border: 1px dashed #fff;
+}
+
+:host {
+  &.show-frames .overview {
+    ::ng-deep {
+      .lux-form-control {
+        background-color: var(--lux-theme-accent-50) !important;
+      }
+      .lux-form-control-label {
+        border: 1px dashed var(--lux-theme-accent-300);
+        border-bottom: none;
+      }
+      .lux-form-control-container {
+        border: 1px dashed var(--lux-theme-accent-300);
+      }
+      .lux-form-control-misc {
+        border: 1px dashed var(--lux-theme-accent-300);
+      }
+    }
+  }
+  &.show-frames-panel {
+    .panel-frame {
+      border-color: var(--lux-theme-warn-300);
+    }
+  }
+}
+
+lux-layout-form-row {
+  border: 1px dashed var(--lux-theme-accent-100);
+}
+
+.test-box {
+  ::ng-deep {
+    
+    lux-checkbox {
+      .lux-form-control {
+        background-color: var(--lux-theme-accent-50) !important;
+        border: 1px dashed var(--lux-theme-accent-300);
+      }
+      .lux-form-control-no-top-label .lux-form-control-container {
+        border-bottom: 1px dashed var(--lux-theme-accent-300);
+      }
+    }
+
+    lux-input {
+      .lux-form-control {
+        background-color: var(--lux-theme-accent-50) !important;
+      }
+      .lux-form-control-label {
+        border: 1px dashed var(--lux-theme-accent-300);
+        border-bottom: none;
+      }
+      .lux-form-control-container {
+        border: 1px dashed var(--lux-theme-accent-300);
+      }
+      .lux-form-control-misc {
+        border: 1px dashed var(--lux-theme-accent-300);
+      }
+    }
+    
+    lux-divider {
+      margin-top: 2em;
+    }
+
+    h4 {
+      margin-block-start: 0.3em;
+      margin-block-end: 2em;
+    }
+  }
+}
+ 

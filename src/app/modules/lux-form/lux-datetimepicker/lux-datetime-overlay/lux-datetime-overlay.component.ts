@@ -15,19 +15,22 @@ import {
   Output,
   ViewContainerRef
 } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import { MAT_DATEPICKER_SCROLL_STRATEGY } from '@angular/material/datepicker';
+import { MatDateSelectionModel } from '@angular/material/datepicker/date-selection-model';
+import { MatDatepickerControl, MatDatepickerPanel } from '@angular/material/datepicker/datepicker-base';
 import { MatFormField } from '@angular/material/form-field';
 import { merge, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { LuxDateFilterFn, LuxDateTimePickerComponent } from '../lux-datetimepicker.component';
+import { LuxDateFilterFn } from "../lux-datetimepicker-model/lux-datetimepicker-types";
 import { LuxDatetimeOverlayContentComponent } from './lux-datetime-overlay-content.component';
 
 @Component({
   selector: 'lux-datetime-overlay',
   template: ''
 })
-export class LuxDatetimeOverlayComponent {
-  @Input() luxPickerInput: ElementRef;
+export class LuxDatetimeOverlayComponent implements MatDatepickerPanel<MatDatepickerControl<any>, any, any> {
+  @Input() luxPickerInput: HTMLInputElement;
   @Input() luxStartView: 'month' | 'year' | 'multi-year' = 'month';
   @Input() luxCustomFilter: LuxDateFilterFn = undefined;
   @Input() luxStartDate: Date = null;
@@ -45,6 +48,15 @@ export class LuxDatetimeOverlayComponent {
   scrollStrategy: () => ScrollStrategy;
   _selectedDate: string;
 
+  // Code des Interfaces "MatDatepickerPanel<MatDatepickerControl<any>, any, any>" - Start
+  id: string;
+  disabled: boolean;
+  color: ThemePalette;
+  registerInput(input: any): MatDateSelectionModel<any> {
+    return null;
+  }
+  // Code des Interfaces "MatDatepickerPanel<MatDatepickerControl<any>, any, any>" - Ende
+
   get selectedDate() {
     return this._selectedDate;
   }
@@ -58,7 +70,7 @@ export class LuxDatetimeOverlayComponent {
   lastFocusedElement: HTMLElement | null = null;
   overlayRef: OverlayRef;
   overlayComponentRef: ComponentRef<LuxDatetimeOverlayContentComponent> | null;
-  datepickerInput: LuxDateTimePickerComponent;
+  datepickerInput: any;
 
   constructor(
     private elementRef: ElementRef<HTMLInputElement>,

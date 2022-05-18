@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { LuxDatepickerStartViewType } from "../../../modules/lux-form/lux-datepicker/lux-datepicker.component";
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   exampleErrorCallback,
@@ -29,7 +30,7 @@ export class DatepickerExampleComponent {
 
   // region Properties der Component
 
-  value = new Date(2020, 5, 28, 14, 15); // '2021-09-07T23:00:00.000Z';
+  value = '2020-05-28T14:15:00.000Z';
   controlBinding = 'datepickerExample';
   disabled = false;
   readonly: boolean;
@@ -46,7 +47,7 @@ export class DatepickerExampleComponent {
   locale = null;
   minDate: string;
   maxDate: string;
-  startView = 'month';
+  startView: LuxDatepickerStartViewType = 'month';
   touchUi = false;
   labelLongFormat = false;
   

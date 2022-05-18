@@ -240,7 +240,7 @@ export class LuxTestHelper {
     }
   }
 
-  /** Steuerung und triggern von Overlays implementieren **/
+  /** Steuerung und triggern von Overlays implementieren */
 
   /**
    * Inserts data into an input field, that has to update asynchrounos before calling a callback-function

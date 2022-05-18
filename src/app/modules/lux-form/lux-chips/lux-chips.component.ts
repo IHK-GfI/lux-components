@@ -6,19 +6,24 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnDestroy,
+  OnDestroy, Optional,
   Output,
   QueryList,
   ViewChild,
   ViewChildren
 } from '@angular/core';
+import { ControlContainer } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatChip } from '@angular/material/chips';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxFormComponentBase } from "../lux-form-model/lux-form-component-base.class";
 import { LuxChipGroupComponent } from './lux-chips-subcomponents/lux-chip-group.component';
 import { LuxChipComponent } from './lux-chips-subcomponents/lux-chip.component';
 import { Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged, map, startWith } from 'rxjs/operators';
 
+export declare type LuxChipsOrientation = 'horizontal' | 'vertical';
 let luxChipControlUID = 0;
 
 @Component({
@@ -26,13 +31,11 @@ let luxChipControlUID = 0;
   templateUrl: './lux-chips.component.html',
   styleUrls: ['./lux-chips.component.scss']
 })
-export class LuxChipsComponent implements AfterViewInit, OnDestroy {
+export class LuxChipsComponent extends LuxFormComponentBase implements AfterViewInit, OnDestroy {
   private readonly inputValueSubscription: Subscription = new Subscription();
   private readonly newChipSubscription: Subscription = new Subscription();
 
-  private _luxDisabled = false;
   private _luxAutocompleteOptions: string[] = [];
-  private _luxLabel = $localize`:@@luxc.chips.new.lbl:Neu`;
 
   uid: string = 'lux-chip-control-' + luxChipControlUID++;
 
@@ -41,7 +44,7 @@ export class LuxChipsComponent implements AfterViewInit, OnDestroy {
   newChip$: Subject<any> = new Subject<any>();
   canClose = false;
 
-  @Input() luxOrientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Input() luxOrientation: LuxChipsOrientation = 'horizontal';
   @Input() luxInputAllowed = false;
   @Input() luxNewChipGroup: LuxChipGroupComponent;
   @Input() luxMultiple = true;
@@ -81,16 +84,11 @@ export class LuxChipsComponent implements AfterViewInit, OnDestroy {
   }
 
   get luxInputLabel(): string {
-    return this._luxLabel;
+    return this.luxLabel;
   }
 
   @Input() set luxInputLabel(label: string) {
-    this._luxLabel = label;
-  }
-
-  // Für lux-form-control, diese ruft luxLabel auf
-  get luxLabel(): string {
-    return this._luxLabel;
+    this.luxLabel = label;
   }
 
   get chipComponents(): LuxChipComponent[] {
@@ -101,7 +99,14 @@ export class LuxChipsComponent implements AfterViewInit, OnDestroy {
     return this.luxChipGroupComponents as any;
   }
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(
+    @Optional() controlContainer: ControlContainer,
+    cdr: ChangeDetectorRef,
+    logger: LuxConsoleService,
+    config: LuxComponentsConfigService
+  ) {
+    super(controlContainer, cdr, logger, config);
+
     this.newChipSubscription = this.newChip$.subscribe((value: string) => {
       this.add(value);
       this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];

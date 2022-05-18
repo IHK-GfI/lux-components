@@ -1,6 +1,9 @@
 <lux-file-preview-toolbar>
   <lux-select
-    fxFlex="80px"
+    [luxNoTopLabel]="true"
+    [luxNoBottomLabel]="true"
+    class="zoom-select"
+    fxFlex="100px"
     [luxOptions]="options"
     [(luxSelected)]="zoom"
     luxOptionLabelProp="label"
@@ -14,7 +17,7 @@
     (luxClicked)="onPrevPage()"
     [luxDisabled]="page === 1"
     [ngClass]="{ 'lux-button-disabled': page === 1 }"
-    luxRaised="true"
+    [luxRaised]="true"
     luxTagId="file-preview-zoomin-btn"
     luxAriaLabel="Hinein zoomen"
     i18n-luxAriaLabel="@@luxc.file-preview.pdfviewer.zoomin.arialabel"
@@ -26,7 +29,7 @@
     [luxDisabled]="page === numPages"
     [ngClass]="{ 'lux-button-disabled': page === numPages }"
     *ngIf="!showAll"
-    luxRaised="true"
+    [luxRaised]="true"
     luxTagId="file-preview-zoomout-btn"
     luxAriaLabel="Heraus zoomen"
     i18n-luxAriaLabel="@@luxc.file-preview.pdfviewer.zoomout.arialabel"
@@ -36,7 +39,7 @@
     [luxIconName]="downloadIconName"
     (luxClicked)="onDownload()"
     luxColor="accent"
-    luxRaised="true"
+    [luxRaised]="true"
     [luxTagId]="downloadTagId"
     [luxAriaLabel]="downloadAriaLabel"
   ></lux-button>
@@ -44,7 +47,7 @@
     fxFlex="none"
     [luxIconName]="closeIconName"
     (luxClicked)="onClose()"
-    luxRaised="true"
+    [luxRaised]="true"
     [luxTagId]="closeTagId"
     [luxAriaLabel]="closeAriaLabel"
   ></lux-button>

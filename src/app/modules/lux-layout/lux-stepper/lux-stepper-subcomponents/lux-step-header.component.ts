@@ -8,8 +8,7 @@ import { Subscription } from 'rxjs';
     <div [ngClass]="{ 'lux-uppercase': labelUppercase }">
       <ng-content></ng-content>
     </div>
-  `,
-  styles: ['']
+  `
 })
 export class LuxStepHeaderComponent implements OnInit, OnDestroy {
   private configSubscription: Subscription;

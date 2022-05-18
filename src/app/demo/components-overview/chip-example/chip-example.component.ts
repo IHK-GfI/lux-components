@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ThemePalette } from "@angular/material/core";
+import { LuxChipsOrientation } from "../../../modules/lux-form/lux-chips/lux-chips.component";
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -13,8 +15,8 @@ export class ChipExampleComponent {
 
   colors = ['Keine Farbe', 'warn', 'accent', 'primary'];
 
-  chips = [
-    { label: 'Chip #1', color: 'Keine Farbe', removable: true, disabled: false, selected: true },
+  chips: {label: string; color: ThemePalette; removable: boolean; disabled: boolean; selected: boolean}[] = [
+    { label: 'Chip #1', color: undefined, removable: true, disabled: false, selected: true },
     { label: 'Chip #2', color: 'primary', removable: true, disabled: false, selected: true },
     { label: 'Chip #3', color: 'warn', removable: true, disabled: false, selected: true },
     { label: 'Chip #4', color: 'accent', removable: true, disabled: false, selected: true }
@@ -30,7 +32,7 @@ export class ChipExampleComponent {
   inputAllowed = true;
   inputLabel = 'Neu';
   placeholder = 'eingeben oder auswählen';
-  chipOrientation = 'horizontal';
+  chipOrientation: LuxChipsOrientation = 'horizontal';
   autocomplete = true;
   autocompleteOptions = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3',  this.longOpitionLabel];
   multiple = true;
@@ -39,11 +41,11 @@ export class ChipExampleComponent {
   groupSelected = true;
   groupRemovable = true;
   groupDisabled = false;
-  groupColor = 'Keine Farbe';
+  groupColor: ThemePalette = undefined;
   groupLabels = ['Group Chip #1', 'Group Chip #2', 'Group Chip #3'];
-  
+
   labelLongFormat = false;
-  
+
   // endregion
 
   constructor() {}

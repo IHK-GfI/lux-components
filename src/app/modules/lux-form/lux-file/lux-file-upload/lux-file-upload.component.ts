@@ -76,8 +76,6 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
   }
 
   ngOnInit(): void {
-    this.luxSelectedFilesAlwaysUseArray = true;
-
     this.subscriptions.push(
       this.queryService.getMediaQueryChangedAsObservable().subscribe((query) => {
         this.isMobile = query === 'xs' || query === 'sm';
@@ -99,6 +97,10 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
     super.ngOnDestroy();
 
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  useArray(): boolean {
+    return true;
   }
 
   protected notifyFormValueChanged() {
@@ -219,7 +221,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
         tempSelectedFiles.push(...newFiles);
 
         this.luxSelectedFiles =
-          tempSelectedFiles && tempSelectedFiles.length === 1 && !this.luxSelectedFilesAlwaysUseArray
+          tempSelectedFiles && tempSelectedFiles.length === 1 && !this.useArray()
             ? tempSelectedFiles[0]
             : tempSelectedFiles;
         this.notifyFormValueChanged();
@@ -227,6 +229,11 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
       },
       (error) => this.setFormControlErrors(error)
     );
+  }
+
+  onSelectFiles(target: EventTarget) {
+    const fileList = (target as HTMLInputElement).files;
+    this.selectFiles(fileList ? Array.from(fileList) : []);
   }
 
   onUpload() {
@@ -255,7 +262,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
     // Wir entfernen hier nur eine Datei, deshalb ist das neue Auslesen der Base64-Strings nicht nötig
     this.uploadFiles(newFiles).then(
       () => {
-        this.luxSelectedFiles = newFiles && newFiles.length === 1 && !this.luxSelectedFilesAlwaysUseArray ? newFiles[0] : newFiles;
+        this.luxSelectedFiles = newFiles && newFiles.length === 1 && !this.useArray() ? newFiles[0] : newFiles;
         this.notifyFormValueChanged();
       },
       (error) => this.setFormControlErrors(error)

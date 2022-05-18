@@ -89,8 +89,8 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(testComponent.formControl.value.content).toEqual('base64-dummy');
-      expect(fileComponent.formControl.value.content).toEqual('base64-dummy');
+      expect(testComponent.formControl.value[0].content).toEqual('base64-dummy');
+      expect(fileComponent.formControl.value[0].content).toEqual('base64-dummy');
 
       flush();
     }));
@@ -322,7 +322,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles).toEqual(undefined);
+      expect(fileComponent.luxSelectedFiles).toEqual([]);
       expect(fixture.debugElement.queryAll(By.css('.lux-file-list-entry-label')).length).toBe(0);
 
       discardPeriodicTasks();
@@ -366,10 +366,10 @@ describe('LuxFileListComponent', () => {
 
       expect(spyDrag).toHaveBeenCalledTimes(1);
       expect(spyDrop).toHaveBeenCalledTimes(1);
-      expect(testComponent.selected['name']).toEqual('mockfile1.txt');
-      expect(testComponent.selected['content']).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles['name']).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelectedFiles['content']).toEqual('base64-dummy');
+      expect(testComponent.selected[0]['name']).toEqual('mockfile1.txt');
+      expect(testComponent.selected[0]['content']).toEqual('base64-dummy');
+      expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.txt');
+      expect(fileComponent.luxSelectedFiles[0]['content']).toEqual('base64-dummy');
 
       flush();
     }));
@@ -419,10 +419,10 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(testComponent.selected['name']).toEqual('mockfile1.txt');
-      expect(testComponent.selected['content']).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles['name']).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelectedFiles['content']).toEqual('base64-dummy');
+      expect(testComponent.selected[0]['name']).toEqual('mockfile1.txt');
+      expect(testComponent.selected[0]['content']).toEqual('base64-dummy');
+      expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.txt');
+      expect(fileComponent.luxSelectedFiles[0]['content']).toEqual('base64-dummy');
 
       // Änderungen durchführen
       fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/html')]);
@@ -431,10 +431,10 @@ describe('LuxFileListComponent', () => {
 
       // Nachbedingungen prüfen
       expect(spy).toHaveBeenCalledTimes(2);
-      expect(testComponent.selected['name']).toEqual('mockfile1.txt');
-      expect(testComponent.selected['content']).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles['name']).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelectedFiles['content']).toEqual('base64-dummy');
+      expect(testComponent.selected[0]['name']).toEqual('mockfile1.txt');
+      expect(testComponent.selected[0]['content']).toEqual('base64-dummy');
+      expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.txt');
+      expect(fileComponent.luxSelectedFiles[0]['content']).toEqual('base64-dummy');
     }));
 
     it('Sollte Image-Preview für Bilder anzeigen', fakeAsync(() => {
@@ -499,7 +499,7 @@ describe('LuxFileListComponent', () => {
       fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.png', 'image/png')]);
       LuxTestHelper.wait(fixture);
 
-      expect(typeof fileComponent.luxSelectedFiles['content']).toEqual('string');
+      expect(typeof fileComponent.luxSelectedFiles[0]['content']).toEqual('string');
 
       // Änderungen durchführen
       testComponent.contentsAsBlob = true;
@@ -508,7 +508,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles['content'] instanceof Blob).toBe(true);
+      expect(fileComponent.luxSelectedFiles[0]['content'] instanceof Blob).toBe(true);
     }));
 
     it('Sollte eine Datei auswählen, löschen und erneut auswählen können', fakeAsync(() => {
@@ -517,8 +517,8 @@ describe('LuxFileListComponent', () => {
       fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.png', 'image/png')]);
       LuxTestHelper.wait(fixture);
 
-      expect(fileComponent.luxSelectedFiles['name']).toEqual('mockfile1.png');
-      expect(fileComponent.luxSelectedFiles['content']).toEqual('base64-dummy');
+      expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.png');
+      expect(fileComponent.luxSelectedFiles[0]['content']).toEqual('base64-dummy');
       expect(spy).toHaveBeenCalledTimes(1);
 
       // Änderungen durchführen
@@ -528,7 +528,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles).toBe(undefined);
+      expect(fileComponent.luxSelectedFiles).toEqual([]);
       expect(spy).toHaveBeenCalledTimes(2);
 
       // Änderungen durchführen
@@ -536,8 +536,8 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles['name']).toEqual('mockfile1.png');
-      expect(fileComponent.luxSelectedFiles['content']).toEqual('base64-dummy');
+      expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.png');
+      expect(fileComponent.luxSelectedFiles[0]['content']).toEqual('base64-dummy');
       expect(spy).toHaveBeenCalledTimes(3);
 
       flush();
@@ -558,8 +558,8 @@ describe('LuxFileListComponent', () => {
 
         // Nachbedingungen prüfen
         expect(selectedChange).toHaveBeenCalledTimes(1);
-        expect((<any>testComponent.selected).name).toEqual('mockfile1.txt');
-        expect((<any>testComponent.selected).content).toEqual('base64-dummy');
+        expect((<any>testComponent.selected[0]).name).toEqual('mockfile1.txt');
+        expect((<any>testComponent.selected[0]).content).toEqual('base64-dummy');
 
         // Änderungen durchführen
         fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')]);
@@ -627,8 +627,7 @@ describe('LuxFileListComponent', () => {
         expect(fileComponent.formControl.errors).not.toBe(null);
         expect(fileComponent.formControl.errors[LuxFileErrorCause.MaxSizeError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
-        expect(fileComponent.luxSelectedFiles['length']).toBe(undefined);
-        expect(fileComponent.luxSelectedFiles['name']).toEqual('mockfile1.txt');
+        expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.txt');
         expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
         expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
           'Die Datei "mockfile2.txt" überschreitet mit 20MB die erlaubte Dateigröße von 5MB'
@@ -659,8 +658,7 @@ describe('LuxFileListComponent', () => {
         expect(fileComponent.formControl.errors).not.toBe(null);
         expect(fileComponent.formControl.errors[LuxFileErrorCause.UploadFileError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
-        expect(fileComponent.luxSelectedFiles['length']).toBe(undefined);
-        expect(fileComponent.luxSelectedFiles['name']).toEqual('mockfile1.txt');
+        expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.txt');
         expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
         expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
           'Das Hochladen der ausgewählten Datei ist fehlgeschlagen'

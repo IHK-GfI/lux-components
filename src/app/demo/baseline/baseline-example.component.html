@@ -1,0 +1,24 @@
+<lux-tabs 
+  luxTagId="baseline-tabs" 
+  [luxTabAnimationActive]="false" 
+  [luxDisplayDivider]="true" 
+  [luxActiveTab]="0" 
+  luxAriaRole="main" 
+  [luxLazyLoading]="true"
+>
+  <lux-tab luxIconName="fas fa-align-left" luxTitle="Baseline">
+    <ng-template>
+      <lux-baseline></lux-baseline>
+    </ng-template>
+  </lux-tab>
+  <lux-tab luxIconName="fas fa-square" luxTitle="Card">
+    <ng-template>
+      <lux-baseline-card></lux-baseline-card>
+    </ng-template>
+  </lux-tab>
+  <lux-tab luxIconName="fas fa-stream" luxTitle="Accordion">
+    <ng-template>
+      <lux-baseline-accordion></lux-baseline-accordion>
+    </ng-template>
+  </lux-tab>
+</lux-tabs>

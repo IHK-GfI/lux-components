@@ -734,7 +734,7 @@ describe('LuxTableComponent', () => {
 
     it('Selektion muss nach dem Setzen eines neuen DAO geleert sein.', fakeAsync(() => {
       LuxTestHelper.wait(fixture);
-      expect(component.selected.length).toBe(0, 'Vorbedingung 1');
+      expect(component.selected.size).toBe(0, 'Vorbedingung 1');
 
       // Änderungen durchführen
       LuxTestHelper.wait(fixture);
@@ -744,12 +744,12 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(component.selected.length).toBe(1, 'Nachbedingung 1');
+      expect(component.selected.size).toBe(1, 'Nachbedingung 1');
 
       component.httpDao = new TestHttpDao();
       LuxTestHelper.wait(fixture);
 
-      expect(component.selected.length).toEqual(0);
+      expect(component.selected.size).toEqual(0);
     }));
   });
 
@@ -780,7 +780,7 @@ describe('LuxTableComponent', () => {
       let multiselectCheckboxAll = document.getElementsByClassName('lux-multiselect-toggle-all');
       expect(multiselectCheckbox.length).toBe(0, 'Vorbedingung 1');
       expect(multiselectCheckboxAll.length).toBe(0, 'Vorbedingung 2');
-      expect(component.selected.length).toBe(0, 'Vorbedingung 3');
+      expect(component.selected.size).toBe(0, 'Vorbedingung 3');
 
       // Änderungen durchführen
       component.showMultiSelect = true;
@@ -799,7 +799,7 @@ describe('LuxTableComponent', () => {
       multiselectCheckboxAll = document.getElementsByClassName('lux-multiselect-toggle-all');
       expect(multiselectCheckbox.length).toBe(2, 'Nachbedingung 1');
       expect(multiselectCheckboxAll.length).toBe(1, 'Nachbedingung 2');
-      expect(component.selected.length).toBe(2, 'Nachbedingung 3');
+      expect(component.selected.size).toBe(2, 'Nachbedingung 3');
     }));
 
     it('Alle Einträge korrekt selektieren', fakeAsync(() => {
@@ -809,7 +809,7 @@ describe('LuxTableComponent', () => {
         { c1: 2, c2: 'Helium' }
       ];
       LuxTestHelper.wait(fixture);
-      expect(component.selected.length).toBe(0, 'Vorbedingung 1');
+      expect(component.selected.size).toBe(0, 'Vorbedingung 1');
 
       // Änderungen durchführen
       component.showMultiSelect = true;
@@ -821,14 +821,14 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(component.selected.length).toBe(2, 'Nachbedingung 1');
+      expect(component.selected.size).toBe(2, 'Nachbedingung 1');
 
       // Änderungen durchführen
       (multiselectTriggerAll as HTMLElement).click();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(component.selected.length).toBe(0, 'Nachbedingung 2');
+      expect(component.selected.size).toBe(0, 'Nachbedingung 2');
     }));
 
     it('Alle Einträge mit Filter korrekt selektieren', fakeAsync(() => {
@@ -838,7 +838,7 @@ describe('LuxTableComponent', () => {
         { c1: 2, c2: 'Helium' }
       ];
       LuxTestHelper.wait(fixture);
-      expect(component.selected.length).toBe(0, 'Vorbedingung 1');
+      expect(component.selected.size).toBe(0, 'Vorbedingung 1');
 
       // Änderungen durchführen
       component.showMultiSelect = true;
@@ -854,14 +854,14 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(component.selected.length).toBe(1, 'Nachbedingung 1');
+      expect(component.selected.size).toBe(1, 'Nachbedingung 1');
 
       // Änderungen durchführen
       (multiselectTriggerAll as HTMLElement).click();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(component.selected.length).toBe(0, 'Nachbedingung 2');
+      expect(component.selected.size).toBe(0, 'Nachbedingung 2');
     }));
 
     it('Filter für Multiselect-Tabelle deaktivieren', fakeAsync(() => {
@@ -871,7 +871,7 @@ describe('LuxTableComponent', () => {
         { c1: 2, c2: 'Helium' }
       ];
       LuxTestHelper.wait(fixture);
-      expect(component.selected.length).toBe(0, 'Vorbedingung 1');
+      expect(component.selected.size).toBe(0, 'Vorbedingung 1');
       expect(fixture.debugElement.query(By.css('.lux-table-filter.lux-hide'))).not.toBe(null, 'Vorbedingung 2');
 
       // Änderungen durchführen
@@ -1013,7 +1013,7 @@ describe('LuxTableComponent', () => {
         { c1: 2, c2: 'Beta' }
       ];
       LuxTestHelper.wait(fixture);
-      expect(component.selected.length).toBe(0, 'Vorbedingung 1');
+      expect(component.selected.size).toBe(0, 'Vorbedingung 1');
 
       // Änderungen durchführen
       component.showMultiSelect = true;
@@ -1024,7 +1024,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(component.selected.length).toBe(1, 'Nachbedingung 1');
+      expect(component.selected.size).toBe(1, 'Nachbedingung 1');
 
       // Änderungen durchführen body
       const sortHeader = document.querySelector('th.mat-sort-header');
@@ -1201,7 +1201,7 @@ class TableComponent {
 })
 class HttpDaoTableComponent {
   httpDao: TestHttpDao = new TestHttpDao();
-  selected = [];
+  selected = new Set();
 
   constructor() {}
 }
@@ -1249,7 +1249,7 @@ class HttpDaoTableComponent {
 })
 class TableMultiselectComponent {
   dataSource = [];
-  selected = [];
+  selected = new Set();
   preselected = [];
   showPagination = false;
   showFilter = false;

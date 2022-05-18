@@ -22,9 +22,11 @@
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
+    class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input luxName="link_luxHref" class="lux-highlight-section" [(luxValue)]="href" luxLabel="luxHref">
@@ -39,6 +41,7 @@
       [(luxChecked)]="blank"
       luxLabel="luxBlank"
       luxHint="Diese Property bestimmt ob (externe) Links in einem neuen Tab geöffnet werden."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
 
@@ -80,6 +83,7 @@
       [(luxChecked)]="raised"
       luxLabel="luxRaised"
       luxHint="Über diese Property kann der Link hervorgehoben dargestellt werden."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -87,6 +91,7 @@
       [(luxChecked)]="round"
       luxLabel="luxRounded"
       luxHint="Diese Property aktiviert eine runde Darstellung des Links."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -94,6 +99,7 @@
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Diese Property deaktiviert den Link."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
   </example-base-simple-options>
@@ -104,6 +110,7 @@
       luxLabel="luxIconAlignWithLabel"
       luxHint="Mithilfe dieser Property werden Icon und Schrift auf einer Baseline ausgerichtet."
       [luxDisabled]="!iconName"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
@@ -111,6 +118,7 @@
       luxLabel="Label Uppercase"
       [(luxChecked)]="config.labelConfiguration.allUppercase"
       (luxCheckedChange)="updateConfiguration()"
+      [luxNoTopLabel]="true"
     >
       <lux-form-hint>
         Über den <i>LuxComponentsConfigService</i> kann für alle LuxLinks applikationsweit eine Uppercase-Darstellung

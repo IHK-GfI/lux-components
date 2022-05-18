@@ -52,7 +52,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   @ContentChild(LuxDetailViewComponent) detailView;
   @ContentChild(LuxMasterFooterComponent, { read: ElementRef }) masterFooter: ElementRef;
 
-  @ViewChildren(LuxListComponent, { read: ElementRef }) luxMasterQueryList: QueryList<ElementRef>;
+  @ViewChildren(LuxListComponent, { read: ElementRef, emitDistinctChangesOnly: false }) luxMasterQueryList: QueryList<ElementRef>;
   @ViewChildren(LuxListItemComponent) luxMasterListItemQueryList: QueryList<LuxListItemComponent>;
   @ViewChild(LuxMasterHeaderComponent, { read: ElementRef, static: true }) masterHeader: ElementRef;
   @ViewChild(LuxListItemComponent, { read: ElementRef }) luxMasterEntryElementRef: ElementRef;
@@ -382,7 +382,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
         delay(0),
         tap(() => {
           if (!this.luxMasterList || this.luxMasterList.length === 0) {
-            this.luxSelectedDetail = undefined;
+              this.luxSelectedDetail = undefined;
           }
         })
       )

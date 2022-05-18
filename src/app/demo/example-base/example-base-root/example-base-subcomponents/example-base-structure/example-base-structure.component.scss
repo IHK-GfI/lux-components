@@ -23,22 +23,7 @@ lux-card ::ng-deep mat-card-content .lux-card-content {
   min-width: 50%;
 
   ::ng-deep > .mat-card > .lux-card-content-container {
-    > mat-card-content {
-      overflow-y: auto;
-    }
-  }
-}
-
-// der IE zeigt sonst in kleineren Auflösungen horziontale Scrollbalken an
-.ie {
-  .example-base-container,
-  .example-base-options {
-    ::ng-deep > .mat-card > .lux-card-content-container {
-      > mat-card-content {
-        overflow-x: hidden;
-        overflow-y: auto;
-      }
-    }
+    overflow-y: auto;
   }
 }
 

@@ -2,15 +2,8 @@
   "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
   "lib": {
     "entryFile": "public_api.ts",
-    "umdModuleIds": {
-      "ng2-pdf-viewer": "ng2PdfViewer",
-      "dompurify": "DOMPurify",
-      "marked": "marked",
-      "ngx-cookie-service": "ngxCookieService"
-    }
   },
   "assets": [
-    "./src/locale/**",
-    "./ie11-lazy-modules-plugin.js"
+    "./src/locale/**"
   ]
 }

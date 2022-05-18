@@ -13,15 +13,6 @@ export class HomeComponent {
       case 'Components':
         this.router.navigate(['/components-overview']);
         break;
-      case 'MasterDetail':
-        this.router.navigate(['/components-overview/example/master-detail']);
-        break;
-      case 'Stepper':
-        this.router.navigate(['/components-overview/example/stepper']);
-        break;
-      case 'Tabs':
-        this.router.navigate(['/components-overview/example/tabs']);
-        break;
       case 'Form':
         this.router.navigate(['/form']);
         break;

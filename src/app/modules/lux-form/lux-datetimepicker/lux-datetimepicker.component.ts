@@ -13,14 +13,17 @@ import {
   ViewChild
 } from '@angular/core';
 import { AbstractControl, ControlContainer, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, ThemePalette } from '@angular/material/core';
+import { DateFilterFn } from '@angular/material/datepicker';
+import { MatDatepickerControl } from '@angular/material/datepicker/datepicker-base';
+import { Observable } from 'rxjs';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxUtil } from '../../lux-util/lux-util';
-import { LuxDatepickerAdapter } from '../lux-datepicker/lux-datepicker-adapter';
 import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
 import { LuxDatetimeOverlayComponent } from './lux-datetime-overlay/lux-datetime-overlay.component';
 import { LuxDateTimePickerAdapter } from './lux-datetimepicker-adapter';
+import { LuxDateFilterFn, LuxDateTimeStartView } from "./lux-datetimepicker-model/lux-datetimepicker-types";
 
 export const APP_DATE_TIME_FORMATS = {
   parse: {
@@ -34,8 +37,6 @@ export const APP_DATE_TIME_FORMATS = {
   }
 };
 
-export declare type LuxDateFilterFn = (date: Date | null) => boolean;
-
 @Component({
   selector: 'lux-datetimepicker',
   templateUrl: './lux-datetimepicker.component.html',
@@ -45,11 +46,13 @@ export declare type LuxDateFilterFn = (date: Date | null) => boolean;
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_TIME_FORMATS }
   ]
 })
-export class LuxDateTimePickerComponent extends LuxFormInputBaseClass implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class LuxDateTimePickerComponent
+  extends LuxFormInputBaseClass
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy, MatDatepickerControl<any> {
   @ViewChild(LuxDatetimeOverlayComponent) dateTimeOverlayComponent: LuxDatetimeOverlayComponent;
   @ViewChild('dateTimePickerInput', { read: ElementRef }) dateTimePickerInputEl: ElementRef;
 
-  @Input() luxStartView: 'month' | 'year' | 'multi-year' = 'month';
+  @Input() luxStartView: LuxDateTimeStartView = 'month';
   @Input() luxOpened = false;
   @Input() luxStartDate: string = null;
   @Input() luxStartTime: number[] = null;
@@ -57,6 +60,9 @@ export class LuxDateTimePickerComponent extends LuxFormInputBaseClass implements
   @Input() luxCustomFilter: LuxDateFilterFn = null;
   @Input() luxMaxDate: string = null;
   @Input() luxMinDate: string = null;
+  @Input() luxNoLabels = false;
+  @Input() luxNoTopLabel = false;
+  @Input() luxNoBottomLabel = false;
 
   dateTimeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     let result = null;
@@ -105,6 +111,25 @@ export class LuxDateTimePickerComponent extends LuxFormInputBaseClass implements
     super(controlContainer, cdr, logger, config);
     this.luxAutocomplete = 'off';
   }
+
+  // Code des Interfaces "MatDatepickerControl" - Start
+  getStartValue() {
+    return this.luxStartDate;
+  }
+  getThemePalette(): ThemePalette {
+    return undefined;
+  }
+  disabled = false;
+  dateFilter: DateFilterFn<any> = null;
+  getConnectedOverlayOrigin(): ElementRef<any> {
+    return this.dateTimePickerInputEl;
+  }
+
+  getOverlayLabelId() {
+    return null;
+  }
+  stateChanges: Observable<void>;
+  // Code des Interfaces "MatDatepickerControl" - Ende
 
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (simpleChanges.luxOpened) {
@@ -166,10 +191,10 @@ export class LuxDateTimePickerComponent extends LuxFormInputBaseClass implements
     } else if (errors.matDatepickerMax) {
       return $localize`:@@luxc.datetimepicker.error_message.max:Das Datum überschreitet den Maximalwert`;
     } else if (errors.matDatepickerParse) {
-      return $localize`:@@luxc.datetimepicker.error_message.invalid:Das Datum ist ungültig`;
+      return $localize`:@@luxc.datetimepicker.error_message.invalid:Die Datum-/Uhrzeitkombination ist ungültig`;
     } else if (errors.required) {
       if (this.dateTimePickerInputEl && this.dateTimeInputValue) {
-        return $localize`:@@luxc.datetimepicker.error_message.invalid:Das Datum ist ungültig`;
+        return $localize`:@@luxc.datetimepicker.error_message.invalid:Die Datum-/Uhrzeitkombination ist ungültig`;
       } else {
         return $localize`:@@luxc.datetimepicker.error_message.empty:Das Datum darf nicht leer sein`;
       }

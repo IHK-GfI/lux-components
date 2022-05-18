@@ -48,6 +48,10 @@
       font-size: 16px;
       padding: 2px 0 2px 32px;
       margin: $outline-width;
+      lux-badge {
+        font-size: 12px;
+        line-height: 1;
+      }
     }
   }
 

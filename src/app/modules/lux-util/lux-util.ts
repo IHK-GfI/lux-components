@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { LuxBackgroundColorsEnum, LuxFontColorsEnum } from './lux-colors.enum';
+import { LuxBgAllColor, LuxBgAllColors } from "./lux-colors.enum";
 import {
   BACKSPACE,
   DELETE,
@@ -147,34 +147,6 @@ export class LuxUtil {
   }
 
   /**
-   * Prueft ob die Applikation im IE geoeffnet ist.
-   *
-   * @returns boolean
-   */
-  public static isIE(): boolean {
-    const msie = window.document['documentMode'];
-    return msie && msie <= 11;
-  }
-
-  /**
-   * Prueft ob die Applikation im Edge geoeffnet ist.
-   *
-   * @returns boolean
-   */
-  public static isEdge(): boolean {
-    return window.navigator.userAgent.indexOf('Edge') > -1;
-  }
-
-  /**
-   * Prueft ob die Applikation im IE oder Edge geoffnet ist.
-   *
-   * @returns boolean
-   */
-  public static isIEorEdge(): boolean {
-    return LuxUtil.isIE() || LuxUtil.isEdge();
-  }
-
-  /**
    * Diese Methode verhindert, dass ein Event weiterverarbeitet wird.
    *
    * @param event Ein beliebiges Event.
@@ -189,17 +161,18 @@ export class LuxUtil {
     }
   }
 
-  public static getColorsByBgColorsEnum(color: LuxBackgroundColorsEnum): { backgroundCSSClass; fontCSSClass } {
+  public static getColorsByBgColorsEnum(color: LuxBgAllColor): { backgroundCSSClass; fontCSSClass } {
     const result = { backgroundCSSClass: 'lux-bg-color-blue', fontCSSClass: 'lux-font-color-white' };
 
-    if (LuxBackgroundColorsEnum[color]) {
+    const found = LuxBgAllColors.find((entry) => entry === color);
+    if (found) {
       result.backgroundCSSClass = 'lux-bg-color-' + color;
       switch (color) {
-        case LuxBackgroundColorsEnum.white:
-          result.fontCSSClass = 'lux-font-color-' + LuxFontColorsEnum.black;
+        case 'white':
+          result.fontCSSClass = 'lux-font-color-black';
           break;
         default:
-          result.fontCSSClass = 'lux-font-color-' + LuxFontColorsEnum.white;
+          result.fontCSSClass = 'lux-font-color-white';
           break;
       }
     }

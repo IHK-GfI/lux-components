@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { LuxActionColorType } from '../../../modules/lux-action/lux-action-model/lux-action-component-base.class';
 import { LuxFilter } from '../../../modules/lux-filter/lux-filter-base/lux-filter';
 import { LuxFilterItem } from '../../../modules/lux-filter/lux-filter-base/lux-filter-item';
 import { LuxFilterFormComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form.component';
@@ -116,12 +117,36 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   buttonColorOptions = ['default', 'primary', 'accent', 'warn'];
   buttonRaised = false;
-  buttonFilterColor = 'primary';
+  buttonFilterColor: LuxActionColorType = 'primary';
   buttonDialogSave = 'primary';
   buttonDialogLoad = 'primary';
   buttonDialogDelete = 'warn';
   buttonDialogCancel = 'default';
   buttonDialogClose = 'default';
+
+  markdownData = `
+  Html
+  \`\`\`
+  <lux-filter-form>
+  ...
+    <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '24px', column: '8px' }" luxWrapAt="md">
+      <lux-select
+        ...
+        luxFilterItem
+        [luxNoBottomLabel]="true"
+        *luxLayoutRowItem="{}"
+      ></lux-select>
+      <lux-select
+        ...
+        luxFilterItem
+        [luxNoBottomLabel]="true"
+        *luxLayoutRowItem="{}"
+      ></lux-select>
+    </lux-layout-form-row>
+  ...
+  </lux-filter-form>
+  \`\`\`
+  `;
 
   disableShortcut = false;
 

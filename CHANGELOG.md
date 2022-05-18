@@ -1,3 +1,21 @@
+# Version 13.0.0
+## New
+- **allgemein**: Update auf Angular 13
+
+## Breaking changes
+- IE11 wird nicht länger unterstützt.
+- `luxSelected` der LUX-Table ist jetzt immer ein `Set<any>` und kein Array mehr. Strenggenommen war es bereits an einigen Codestellen ein Set und kein Array. Ab dieser Version ist es einheitlich zum Set geworden.
+- LUX-File-List: Die Property `luxSelectedFilesUseAlwaysArray` wurde entfernt.
+- Die Property `luxIconAlignWithLabel` aus den Komponenten `lux-button` und `lux-icon` wurde entfernt.
+- In der `tsconfig.json` in den LUX-Components wurde der Wert von `strictTemplates` auf `true`gesetzt. Aus diesem Grund wurden die folgenden Typen eingeführt:
+  - LuxActionColorType
+  - LuxBadgeColor
+  - LuxBadgeSize
+  - LuxBadgePosition
+  - LuxChipsOrientation
+  - LuxDatepickerStartViewType
+  - LuxProgressModeType
+
 # Version 11.14.0
 ## New
 - **lux-app-header**: Im App-Header können eigene Komponenten (z.B. Menüs) angegeben werden. [Issue 192](https://github.com/IHK-GfI/lux-components/issues/192)

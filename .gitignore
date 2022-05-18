@@ -49,3 +49,4 @@ build/
 lux-components.iml
 *.iml
 .vscode/settings.json
+.angular/

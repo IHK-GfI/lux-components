@@ -120,9 +120,11 @@
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
+      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
@@ -131,9 +133,10 @@
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
+      [luxNoTopLabel]="true"
     >
     </lux-input>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-input
         luxName="autocomplete_luxHint"
         luxLabel="luxHint"
@@ -146,6 +149,7 @@
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
+        [luxNoTopLabel]="true"
       ></lux-toggle>
     </div>
     <lux-input
@@ -171,19 +175,22 @@
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
           (luxClicked)="form.get(controlBinding).enable()"
           [luxDisabled]="!form.get(controlBinding).disabled"
+          luxColor="primary"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
           (luxClicked)="form.get(controlBinding).disable()"
           [luxDisabled]="form.get(controlBinding).disabled"
+          luxColor="primary"
         ></lux-button>
       </div>
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
@@ -193,12 +200,14 @@
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
       luxLabel="luxRequired"
       (luxCheckedChange)="changeRequired($event)"
+      [luxNoTopLabel]="true"
     >
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
@@ -209,40 +218,42 @@
         >
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle class="lux-highlight-section" [(luxChecked)]="strict" luxLabel="luxStrict">
+    <lux-toggle class="lux-highlight-section" [(luxChecked)]="strict" luxLabel="luxStrict" [luxNoTopLabel]="true">
       <lux-form-hint>
         Dieses Flag aktiviert den strikten Modus dieser Component´.<br />
         Das bedeutet, dass nur Eingaben die einer Option entsprechen als valide gelten.
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle class="lux-highlight-section" [(luxChecked)]="usePickValueFn" luxLabel="luxPickValue" [luxDisabled]="!strict">
+    <lux-toggle class="lux-highlight-section" [(luxChecked)]="usePickValueFn" luxLabel="luxPickValue" [luxDisabled]="!strict" [luxNoTopLabel]="true">
       <lux-form-hint>
         Dieses Flag aktiviert die PickValue-Funktion. Erfordert luxStrict = true. <br />
         Das bedeutet, es wird der von der PickValue-Funktion zurückgelieferte Wert selektiert und nicht die Option als ganzes.
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle class="lux-highlight-section" [(luxChecked)]="useFilterFn" luxLabel="luxFilterFn">
+    <lux-toggle class="lux-highlight-section" [(luxChecked)]="useFilterFn" luxLabel="luxFilterFn" [luxNoTopLabel]="true">
       <lux-form-hint>
         Dieses Flag aktiviert die Filterfunktion. <br />
         Diese Beispielfilterfunktion trennt die Eingabe anhand von Leerzeichen und prüft, ob alle Teile enthalten sind.
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle class="lux-highlight-section" [(luxChecked)]="toggleOptions" luxLabel="Optionen austauschen">
+    <lux-toggle class="lux-highlight-section" [(luxChecked)]="toggleOptions" luxLabel="Optionen austauschen" [luxNoTopLabel]="true">
       <lux-form-hint>
         Dieses Toggle tauscht die Optionen aus.
       </lux-form-hint>
     </lux-toggle>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-toggle
         [(luxChecked)]="showPrefix"
         luxLabel="Präfix einblenden"
         luxHint="Blendet einen 'lux-input-prefix' ein."
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <lux-toggle
         [(luxChecked)]="showSuffix"
         luxLabel="Suffix einblenden"
         luxHint="Blendet einen 'lux-input-suffix' ein."
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
     </div>
@@ -254,6 +265,7 @@
       luxLabel="luxSelectAllOnClick"
       luxHint="Mit diesem Flag kann aktiviert werden, dass beim Klick auf das Feld der
                   gesamte Eingabewert direkt selektiert wird."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-input
@@ -263,24 +275,26 @@
       luxHint="Über diese Property kann die zeitliche Verzögerung für die Filterung eingestellt werden."
       [(luxValue)]="delay"
       luxType="number"
+      [luxNumberAlignLeft]="true"
     >
     </lux-input>
     <lux-input
-      class="example-highlight-config-option"
+      class="example-highlight-config-option lux-highlight-section"
       luxName="autocomplete_luxPanelWidth"
       luxLabel="luxPanelWidth"
       luxHint="Über diese Property kann die Optionpanelbreite angepasst werden"
       [(luxValue)]="luxPanelWidth"
     >
     </lux-input>
-    <lux-toggle
-      class="lux-highlight-section"
-      [(luxChecked)]="optionMultiline"
-      luxLabel="luxOptionMultiline"
-      luxHint="Mit diesem Flag kann aktiviert werden, dass der Text in einer Option mehrzeilig wird."
-    >
-    </lux-toggle>
-      <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
+      <lux-toggle
+        class="lux-highlight-section"
+        [(luxChecked)]="optionMultiline"
+        luxLabel="luxOptionMultiline"
+        luxHint="Mit diesem Flag kann aktiviert werden, dass der Text in einer Option mehrzeilig wird."
+      ></lux-toggle>
+    </div>
+    <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxName="autocomplete_luxErrorMessageNotAnOption"
         luxLabel="luxErrorMessageNotAnOption"
@@ -297,6 +311,7 @@
         luxLabel="luxErrorMessage verwenden"
         luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
         [(luxChecked)]="useErrorMessage"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
       <lux-input

@@ -1,32 +1,35 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from "rxjs";
+import { LuxAppFooterButtonInfo } from "./lux-app-footer-button-info";
 import { LuxAppFooterLinkInfo } from './lux-app-footer-link-info';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class LuxAppFooterLinkService {
-  private _linkInfos: LuxAppFooterLinkInfo[] = [];
+  private linkInfoSubject = new BehaviorSubject<LuxAppFooterLinkInfo[]>([]);
 
   get linkInfos(): LuxAppFooterLinkInfo[] {
-    return this._linkInfos;
+    return this.linkInfoSubject.getValue();
   }
 
   set linkInfos(value: LuxAppFooterLinkInfo[]) {
-    this._linkInfos = value ? value : [];
+    this.linkInfoSubject.next(value ? value : []);
+  }
+
+  getLinkInfosAsObservable(): Observable<LuxAppFooterLinkInfo[]> {
+    return this.linkInfoSubject.asObservable();
   }
 
   pushLinkInfos(...value: LuxAppFooterLinkInfo[]) {
-    if (!this._linkInfos) {
-      this._linkInfos = [];
-    }
-    this._linkInfos.push(...value);
+    this.linkInfos = [...this.linkInfos, ...value];
   }
 
   removeLinkInfoAtIndex(i: number) {
-    this._linkInfos = this._linkInfos.filter((info, index) => index !== i);
+    this.linkInfos = this.linkInfos.filter((info, index) => index !== i);
   }
 
   clearLinkInfos() {
-    this._linkInfos = [];
+    this.linkInfos = [];
   }
 }

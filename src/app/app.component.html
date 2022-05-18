@@ -29,43 +29,11 @@
       >
       </lux-side-nav-item>
       <lux-side-nav-item
-        luxLabel="Master-Detail"
-        luxIconName="fas fa-th-list"
-        (luxClicked)="goToMasterDetail()"
-        luxTagId="md-side-nav-item"
-        [luxSelected]="window.location.href.endsWith('master-detail')"
-      >
-      </lux-side-nav-item>
-      <lux-side-nav-item
-        luxLabel="Stepper"
-        luxIconName="fas fa-chevron-circle-right"
-        (luxClicked)="goToStepper()"
-        luxTagId="stepper-side-nav-item"
-        [luxSelected]="window.location.href.endsWith('stepper')"
-      >
-      </lux-side-nav-item>
-      <lux-side-nav-item
-        luxLabel="Tabs"
-        luxIconName="fas fa-columns"
-        (luxClicked)="goToTabs()"
-        luxTagId="tabs-side-nav-item"
-        [luxSelected]="window.location.href.endsWith('tabs')"
-      >
-      </lux-side-nav-item>
-      <lux-side-nav-item
-        luxLabel="Form"
+        luxLabel="Formulare"
         luxIconName="fas fa-file-alt"
         (luxClicked)="goToForm()"
         luxTagId="form-side-nav-item"
         [luxSelected]="window.location.href.endsWith('form')"
-      >
-      </lux-side-nav-item>
-      <lux-side-nav-item
-        luxLabel="Konfiguration"
-        luxIconName="fas fa-wrench"
-        (luxClicked)="goToConfig()"
-        luxTagId="config-side-nav-item"
-        [luxSelected]="window.location.href.endsWith('configuration')"
       >
       </lux-side-nav-item>
       <lux-side-nav-item
@@ -74,6 +42,14 @@
         (luxClicked)="goToBaseline()"
         luxTagId="baseline-side-nav-item"
         [luxSelected]="window.location.href.endsWith('baseline')"
+      >
+      </lux-side-nav-item>
+      <lux-side-nav-item
+        luxLabel="Konfiguration"
+        luxIconName="fas fa-sliders-h"
+        (luxClicked)="goToConfig()"
+        luxTagId="config-side-nav-item"
+        [luxSelected]="window.location.href.endsWith('configuration')"
       >
       </lux-side-nav-item>
       <lux-side-nav-item
@@ -100,7 +76,7 @@
               [luxLabel]="component.label"
               [luxTagId]="component.label + '-side-nav-item'"
               luxIconName="fas fa-circle"
-              [luxSelected]="window.location.href.endsWith(component.label.toLowerCase())"
+              [luxSelected]="window.location.href.endsWith('/' + component.label.toLowerCase())"
               (luxClicked)="component.onclick()"
             >
             </lux-side-nav-item>
@@ -147,10 +123,9 @@
     <lux-app-header-right-nav *ngIf="luxMode === 'stand-alone'">
       <lux-menu-item luxLabel="Abmelden" luxIconName="fa-power-off" luxTagId="abmelden-menu-item"></lux-menu-item>
       <lux-menu-item luxLabel="Theme (blue)" luxIconName="fa-paint-brush" luxTagId="theme-blue-menu-item" (luxClicked)="onChangeTheme('blue')"></lux-menu-item>
-      <lux-menu-item luxLabel="Theme (orange)" luxIconName="fa-paint-brush" luxTagId="theme-orange-menu-item" (luxClicked)="onChangeTheme('orange')"></lux-menu-item>
       <lux-menu-item luxLabel="Theme (green)" luxIconName="fa-paint-brush" luxTagId="theme-green-menu-item" (luxClicked)="onChangeTheme('green')"></lux-menu-item>
     </lux-app-header-right-nav>
   </lux-app-header>
   <lux-app-content luxAriaRoleMainLabel=""></lux-app-content>
-  <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="11.14.0"></lux-app-footer>
+  <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="13.0.0"></lux-app-footer>
 </div>

@@ -31,8 +31,7 @@ import { PlaceholderComponent } from './demo/abstract/placeholder/placeholder.co
 import { RedirectComponent } from './demo/abstract/redirect/redirect.component';
 
 const myConfiguration: LuxComponentsConfigParameters = {
-  generateLuxTagIds: environment.generateLuxTagIds,
-  displayLuxConsoleLogs: true,
+  generateLuxTagIds: environment.generateLuxTagIds
 };
 
 @NgModule({

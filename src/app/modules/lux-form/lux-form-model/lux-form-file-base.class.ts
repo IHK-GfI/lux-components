@@ -11,6 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlContainer, ValidatorFn, Validators } from '@angular/forms';
+import { LuxProgressModeType } from "../../lux-common/lux-progress/lux-progress.component";
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxFormComponentBase } from './lux-form-component-base.class';
@@ -65,7 +66,6 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   @Output() luxSelectedFilesChange: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() luxSelectedFilesAlwaysUseArray = false;
   @Input() luxUploadReportProgress = false;
   @Input() luxContentsAsBlob = false;
   @Input() luxTagId: string;
@@ -164,7 +164,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     this._luxAccept = Array.isArray(accepts) ? accepts.join(',') : accepts;
   }
 
-  get progressMode(): string {
+  get progressMode(): LuxProgressModeType {
     return (this.progress === 0 && !this.luxUploadReportProgress) || this.forceProgressIndeterminate ? 'indeterminate' : 'determinate';
   }
 
@@ -202,7 +202,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();
 
-    this.luxSelectedFiles = this.luxSelectedFilesAlwaysUseArray ? [] : undefined;
+    this.luxSelectedFiles = this.useArray() ? [] : undefined;
     this.notifyFormValueChanged();
     this.clearFormControlErrors();
     if (this.luxDeleteActionConfig.onClick) {
@@ -224,28 +224,13 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     downloadLink.download = file.name;
 
     if (file.content instanceof Blob) {
-      if (window.navigator.msSaveBlob) {
-        // IE
-        window.navigator.msSaveOrOpenBlob(file.content, file.name);
-      } else {
-        const url = window.URL.createObjectURL(file.content);
-        downloadLink.href = url;
-        downloadLink.click();
-        window.URL.revokeObjectURL(url);
-      }
+      const url = window.URL.createObjectURL(file.content);
+      downloadLink.href = url;
+      downloadLink.click();
+      window.URL.revokeObjectURL(url);
     } else {
-      if (window.navigator.msSaveBlob) {
-        // IE
-        try {
-          const arrBuffer = LuxUtil.base64ToArrayBuffer(file.content.split(',')[1]);
-          window.navigator.msSaveOrOpenBlob(new Blob([arrBuffer], { type: file.type }), file.name);
-        } catch (e) {
-          console.log(e);
-        }
-      } else {
-        downloadLink.href = file.content;
-        downloadLink.click();
-      }
+      downloadLink.href = file.content;
+      downloadLink.click();
     }
 
     if (this.luxDownloadActionConfig.onClick) {
@@ -294,9 +279,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
       await this.mapFilesToFileObjects(files).then((fileObjects: ILuxFileObject[]) => (newFiles = fileObjects));
       await this.uploadFiles(newFiles);
       if (this.luxUploadActionConfig.onClick) {
-        this.luxUploadActionConfig.onClick(
-          newFiles && newFiles.length === 1 && !this.luxSelectedFilesAlwaysUseArray ? newFiles[0] : newFiles
-        );
+        this.luxUploadActionConfig.onClick(newFiles && newFiles.length === 1 && !this.useArray() ? newFiles[0] : newFiles);
       }
       this.formControl.markAsTouched();
       this.formControl.markAsDirty();
@@ -540,6 +523,8 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    * Die erbenden Klassen implementieren diese Funktion aus.
    */
   abstract selectFiles(files: FileList | File[]);
+
+  abstract useArray(): boolean;
 
   /**
    * Prüft ob der Base64-String für die Datei gesetzt ist und ob ein onClick-Aufruf für die View-Action vorhanden ist.

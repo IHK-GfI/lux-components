@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
+import { LuxBadgeColor, LuxBadgeColors, LuxSnackbarColor, LuxSnackbarColors } from "../../../lux-util/lux-colors.enum";
 import { LuxSnackbarConfig } from '../lux-snackbar-config';
 import { Observable, Subject } from 'rxjs';
 import { LuxUtil } from '../../../lux-util/lux-util';
-import { LuxBackgroundColorsEnum } from '../../../lux-util/lux-colors.enum';
 
 @Component({
   selector: 'lux-snackbar',
@@ -55,10 +55,8 @@ export class LuxSnackbarComponent implements OnInit {
    *
    * @param colorToCheck
    */
-  private checkColorInEnum(colorToCheck: string): LuxBackgroundColorsEnum {
-    if (LuxBackgroundColorsEnum[colorToCheck]) {
-      return LuxBackgroundColorsEnum[colorToCheck];
-    }
-    return LuxBackgroundColorsEnum.gray;
+  private checkColorInEnum(colorToCheck: string): LuxSnackbarColor {
+    const found = LuxSnackbarColors.find((entry) => entry === colorToCheck);
+    return found ?? 'gray';
   }
 }

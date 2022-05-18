@@ -204,7 +204,7 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
       this.buttonService.pushButtonInfos(
         LuxAppFooterButtonInfo.generateInfo({
           cmd: 'previous',
-          color: 'default',
+          color: '',
           label: 'Vorheriger Step',
           raised: true,
           alwaysVisible: false,

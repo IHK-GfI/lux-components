@@ -23,7 +23,7 @@
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-input luxLabel="luxFlex" luxName="html_luxFlex" [(luxValue)]="flex">
         <lux-form-hint>
           Werte aus dem Flexlayout
@@ -41,8 +41,8 @@
       </lux-input>
     </div>
 
-    <div class="lux-highlight-section" fxLayout="column">
-      <lux-toggle luxLabel="Folgendes verbieten" [(luxChecked)]="forbiddenTagsToggle"></lux-toggle>
+    <div class="lux-highlight-section column">
+      <lux-toggle luxLabel="Folgendes verbieten" [(luxChecked)]="forbiddenTagsToggle" [luxNoLabels]="true"></lux-toggle>
       <lux-input
         luxLabel="Verbotene Tags"
         luxName="htmls_forbiddenTags"
@@ -63,7 +63,7 @@
           Kommaseparierte Liste von Attributen (z.B. href,target)
         </lux-form-hint></lux-input
       >
-      <lux-toggle luxLabel="Nur folgendes erlauben" [(luxChecked)]="allowedTagsToggle"></lux-toggle>
+      <lux-toggle luxLabel="Nur folgendes erlauben" [(luxChecked)]="allowedTagsToggle" [luxNoLabels]="true"></lux-toggle>
       <lux-input
         luxLabel="Erlaubte Tags"
         luxName="htmls_allowedTags"
@@ -84,8 +84,7 @@
           Kommaseparierte Liste von Attributen (z.B. href,target)
         </lux-form-hint></lux-input
       >
-
-      <lux-toggle luxLabel="Zusätzlich erlauben" [(luxChecked)]="addAllowedTagsToggle"></lux-toggle>
+      <lux-toggle luxLabel="Zusätzlich erlauben" [(luxChecked)]="addAllowedTagsToggle" [luxNoLabels]="true"></lux-toggle>
       <lux-input
         luxLabel="Zusätzlich erlaubte Tags"
         luxName="htmls_addAllowedTags"

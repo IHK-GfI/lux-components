@@ -128,7 +128,7 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
     console.warn(`
       Das Layout hat keine Elemente. Bitte die Elemente mit der Directive "*luxLayoutRowItem" kennzeichnen.
       Beispiele:
-       - <lux-... *luxLayoutRowItem>...</lux-...> (normale Elemente)
+       - <lux-... *luxLayoutRowItem="{}">...</lux-...> (normale Elemente)
        - <lux-... *luxLayoutRowItem="{ colSpan: 2 }">...</lux-...> (spaltenübergreifende Elemente)
        - <lux-... *luxLayoutRowItem="{ flex: 'none' }">...</lux-...> (Spalte nur so groß wie der Inhalt z.B Icon-Button)
        - <div *luxLayoutRowItem="{ empty: true }"></div> (leere Elemente)

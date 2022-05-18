@@ -1,87 +1,195 @@
 <div style="overflow: auto; height: 100%;">
   <lux-layout>
-    <lux-layout-card-row>
-      <lux-card luxTitle="Formular (1 Spalte)" *luxLayoutRowItem>
+    <div class="accordion-wrapper">
+      <lux-accordion luxMode="flat" [luxMulti]="false" class="tip-panel" >
+        <lux-panel [luxHideToggle]="true">
+          <lux-panel-header-title>
+            <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+          </lux-panel-header-title>
+          <lux-panel-header-description>
+            Abstand zwischen zwei Formrows definieren.
+          </lux-panel-header-description>
+          <lux-panel-content fxLayout="column" fxLayoutGap="40px" fxLayoutGap.lt-md="24px">
+            <p>
+              Mit der Version 13.0.0 wurde bei den Lux-Form-Controls das Margin entfernt. Damit kann und muss der Abstand in einem Formular jetzt individuell festgelegt werden. <br>
+              Für die Lux-Layout-Form-Row, lässt sich das über das Attribut luxGap regeln. <br>
+              Wichtig ist es auch den Abstand zwischen zwei Reihen zu definieren, damit die Lesbarkeit der Formulare erhalten bleibt.
+            </p>
+            <div class="tip-container lux-mt-4 lux-mb-4"  fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center stretch">
+              <div fxLayout="column" fxLayoutAlign="space-between start" fxFlex="40" fxFlex.lt-md="90" class="dont lux-pt-4" >
+                <lux-layout fxLayoutAlign="center center" fxFlex="100" fxFill>
+                  <lux-layout-form-row>
+                    <lux-input luxLabel="Lorem ipsum 1" luxName="Lorem_ipsum_1.3" luxHint="Consetetur sadipscing elitr." *luxLayoutRowItem="{}"></lux-input>
+                  </lux-layout-form-row>
+                  <lux-layout-form-row>
+                    <lux-input luxLabel="Lorem ipsum 2" luxName="Lorem_ipsum_1.4" luxHint="Consetetur sadipscing elitr." *luxLayoutRowItem="{}"></lux-input>
+                  </lux-layout-form-row>
+                </lux-layout>
+                <p class="text">Dont´t</p>
+                <div class="bottom"></div>
+              </div>
+              <div fxLayout="column" fxLayoutAlign="space-between end" fxFlex="40" fxFlex.lt-md="90" class="do lux-pt-4" >
+                <lux-layout fxLayoutAlign="center center" fxFlex="100" fxFill>
+                  <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '24px', column: '16px'}">
+                    <lux-input luxLabel="Lorem ipsum 1" luxName="Lorem_ipsum_1.5" luxHint="Consetetur sadipscing elitr." *luxLayoutRowItem="{}"></lux-input>
+                  </lux-layout-form-row>
+                  <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '24px', column: '16px'}">
+                    <lux-input luxLabel="Lorem ipsum 2" luxName="Lorem_ipsum_1.6" luxHint="Consetetur sadipscing elitr." *luxLayoutRowItem="{}"></lux-input>
+                  </lux-layout-form-row>
+                </lux-layout>
+                <p class="text">Do</p>
+                <div class="bottom"></div>
+              </div>
+            </div>
+            <div class="code-section" fxLayout="row">
+              <lux-markdown [luxData]="markdownData"></lux-markdown>
+            </div>
+          </lux-panel-content>
+        </lux-panel>
+        <lux-panel [luxHideToggle]="true">
+          <lux-panel-header-title>
+            <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+          </lux-panel-header-title>
+          <lux-panel-header-description>
+            Leerzeilen einfügen
+          </lux-panel-header-description>
+          <lux-panel-content fxLayout="column" fxLayoutGap="40px" fxLayoutGap.lt-md="24px">
+            <p>
+              Bisher verfügen die Lux-Components nicht über ein "Grid"-System, wie es aus anderen CSS-Libraries bekannt ist. Es besteht aber die Möglichkeit mit Hilfe,
+              der Lux-Layout-Form-Rows Leerzeilen zu definieren (siehe oberes Beispiel). <br>
+              Dafür wird die Höhe der leeren Zeile nach folgendem Prinzip berechnet: emptyRowHeight = rowItemHeight + rowGap. <br>
+              Die "rowItemheight" ist abhängig von den Attributen und dem Theme und kann der folgenden Tabelle entnommen werden.
+              Die "rowGap" sollte wie in den anderen Zeilen gewählt werden.
+              In unserem Beispiel ist die emptyRowHeight = 47px + 16px (blue-Theme) bzw. = 61px + 16px (green-Theme).
+            </p>
+            <lux-table [luxData]="dataSource">
+              <lux-table-column luxColumnDef="name">
+                <lux-table-column-header><ng-template>Attribut</ng-template></lux-table-column-header>
+                <lux-table-column-content><ng-template let-element>{{element.name}}</ng-template></lux-table-column-content>
+              </lux-table-column>
+              <lux-table-column luxColumnDef="blueHeight">
+                <lux-table-column-header><ng-template>Höhe (BLUE)</ng-template></lux-table-column-header>
+                <lux-table-column-content><ng-template let-element>{{element.blueHeight}}</ng-template></lux-table-column-content>
+              </lux-table-column>
+              <lux-table-column luxColumnDef="greenHeight">
+                <lux-table-column-header><ng-template>Höhe (GREEN)</ng-template></lux-table-column-header>
+                <lux-table-column-content><ng-template let-element>{{element.greenHeight}}</ng-template></lux-table-column-content>
+              </lux-table-column>
+              <lux-table-column luxColumnDef="example" [luxResponsiveAt]="['xs','sm','md']" luxResponsiveBehaviour="hide">
+                <lux-table-column-header><ng-template>Anwendungsfall</ng-template></lux-table-column-header>
+                <lux-table-column-content><ng-template let-element>{{element.example}}</ng-template></lux-table-column-content>
+              </lux-table-column>
+              <lux-table-column luxColumnDef="link">
+                <lux-table-column-header><ng-template>Beispiele</ng-template></lux-table-column-header>
+                <lux-table-column-content><ng-template let-element>
+                  <a href="{{element.link}}" target="_blank" >{{element.linkName}}</a></ng-template></lux-table-column-content>
+              </lux-table-column>
+            </lux-table>
+            <div class="code-section">
+              <lux-markdown [luxData]="markdownData2"></lux-markdown>
+            </div>
+            <p>Mit <em>column: '0px'</em> wird die Leerzeile in der mobilen Ansicht entfernt!</p>
+          </lux-panel-content>
+        </lux-panel>
+      </lux-accordion>
+    </div>
+<!-- Card-Rows -->
+    <lux-layout-card-row class="lux-mt-4">
+      <lux-card luxTitle="Formular (1 Spalte)" *luxLayoutRowItem="{}">
         <lux-card-content>
           <lux-layout>
-            <lux-layout-form-row>
-              <lux-input luxLabel="Lorem ipsum 1.1" luxName="Lorem_ipsum_1.1" *luxLayoutRowItem></lux-input>
+            <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '18px'}">
+              <lux-input luxLabel="Lorem ipsum 1.1" luxName="Lorem_ipsum_1.1" [luxNoBottomLabel]="true" *luxLayoutRowItem="{}"></lux-input>
             </lux-layout-form-row>
-            <lux-layout-form-row>
+            <lux-layout-form-row [luxGap]="{ row: rowHeight, rowItem: '32px', column: '0px'}">
+              <div *luxLayoutRowItem="{ empty: true }"></div>
+            </lux-layout-form-row>
+            <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px'}">
               <lux-select
                 luxLabel="Lorem ipsum 1.2"
                 luxName="Lorem_ipsum_2.1"
                 [luxOptions]="options"
-                *luxLayoutRowItem
+                [luxNoBottomLabel]="true"
+                *luxLayoutRowItem="{}"
               ></lux-select>
             </lux-layout-form-row>
           </lux-layout>
+          <p>Zwischen den beiden Form-Controls in dieser Card wurde eine leere Zeile eingefügt, um mit den Zeilen in der rechten Card übereinzustimmen. (Code-Beispiel s.u.)</p>
         </lux-card-content>
       </lux-card>
-    </lux-layout-card-row>
-    <lux-layout-card-row>
-      <lux-card luxTitle="Formular (2 Spalten)" *luxLayoutRowItem>
+      <lux-card luxTitle="Formular (2 Spalten)" *luxLayoutRowItem="{ colSpan: 2 }">
         <lux-card-content>
           <lux-layout>
-            <lux-layout-form-row>
+            <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px'}">
               <lux-input
                 luxLabel="Lorem ipsum 2.1"
                 luxName="Lorem_ipsum_2.1"
+                [luxNoBottomLabel]="true"
                 *luxLayoutRowItem="{ colSpan: 2 }"
               ></lux-input>
             </lux-layout-form-row>
-            <lux-layout-form-row>
-              <lux-input luxLabel="Lorem ipsum 2.2" luxName="Lorem_ipsum_2.2" *luxLayoutRowItem></lux-input>
+            <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px'}">
+              <lux-input luxLabel="Lorem ipsum 2.2" luxName="Lorem_ipsum_2.2" [luxNoBottomLabel]="true" *luxLayoutRowItem="{}"></lux-input>
               <lux-select
                 luxLabel="Lorem ipsum 2.3"
                 luxName="Lorem_ipsum_2.3"
+                [luxNoBottomLabel]="true"
                 [luxOptions]="options"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-select>
             </lux-layout-form-row>
-            <lux-layout-form-row luxTitle="Lorem Ipsum">
-              <lux-toggle luxLabel="Lorem ipsum 2.4" luxName="Lorem_ipsum_2.4" *luxLayoutRowItem></lux-toggle>
-              <lux-toggle luxLabel="Lorem ipsum 2.5" luxName="Lorem_ipsum_2.5" *luxLayoutRowItem></lux-toggle>
+            <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px'}">
+              <lux-input
+                luxLabel="Lorem ipsum 2.4"
+                luxName="Lorem_ipsum_2.4"
+                [luxNoBottomLabel]="true"
+                *luxLayoutRowItem="{ colSpan: 2 }"
+              ></lux-input>
+            </lux-layout-form-row>
+            <lux-layout-form-row luxTitle="Lorem Ipsum" [luxGap]="{ row: '16px', rowItem: '32px', column: '8px'}">
+              <lux-toggle luxLabel="Lorem ipsum 2.5" luxName="Lorem_ipsum_2.5" [luxNoBottomLabel]="true" *luxLayoutRowItem="{}"></lux-toggle>
+              <lux-toggle luxLabel="Lorem ipsum 2.6" luxName="Lorem_ipsum_2.6" [luxNoBottomLabel]="true" *luxLayoutRowItem="{}"></lux-toggle>
             </lux-layout-form-row>
           </lux-layout>
         </lux-card-content>
       </lux-card>
     </lux-layout-card-row>
     <lux-layout-card-row>
-      <lux-card luxTitle="Formular (3 Spalten)" *luxLayoutRowItem>
+      <lux-card luxTitle="Formular (3 Spalten)" *luxLayoutRowItem="{}">
         <lux-card-content>
           <lux-layout>
-            <lux-layout-form-row luxTitle="Lorem ipsum 1">
+            <lux-layout-form-row luxTitle="Lorem ipsum 1" [luxGap]="{ row: '16px', rowItem: '32px', column: '8px'}">
               <lux-input
                 luxLabel="Lorem ipsum 3.1"
                 luxName="Lorem_ipsum_3.1"
+                [luxNoBottomLabel]="true"
                 *luxLayoutRowItem="{ colSpan: 2 }"
               ></lux-input>
               <div *luxLayoutRowItem="{ empty: true }"></div>
             </lux-layout-form-row>
-            <lux-layout-form-row>
-              <lux-input luxLabel="Lorem ipsum 3.2" luxName="Lorem_ipsum_3.2" *luxLayoutRowItem></lux-input>
-              <lux-input luxLabel="Lorem ipsum 3.3" luxName="Lorem_ipsum_3.3" *luxLayoutRowItem></lux-input>
-              <lux-input luxLabel="Lorem ipsum 3.4" luxName="Lorem_ipsum_3.4" *luxLayoutRowItem></lux-input>
+            <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px'}">
+              <lux-input luxLabel="Lorem ipsum 3.2" luxName="Lorem_ipsum_3.2" [luxNoBottomLabel]="true" *luxLayoutRowItem="{}"></lux-input>
+              <lux-input luxLabel="Lorem ipsum 3.3" luxName="Lorem_ipsum_3.3" [luxNoBottomLabel]="true" *luxLayoutRowItem="{}"></lux-input>
+              <lux-input luxLabel="Lorem ipsum 3.4" luxName="Lorem_ipsum_3.4" [luxNoBottomLabel]="true" *luxLayoutRowItem="{}"></lux-input>
             </lux-layout-form-row>
-            <lux-layout-form-row luxTitle="Lorem ipsum 2">
+            <lux-layout-form-row luxTitle="Lorem ipsum 2" [luxGap]="{ row: '16px', rowItem: '32px', column: '8px'}">
               <lux-radio
                 luxLabel="Lorem ipsum 3.5"
                 luxName="Lorem_ipsum_3.5"
                 [luxOptions]="options"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-radio>
               <lux-radio
                 luxLabel="Lorem ipsum 3.6"
                 luxName="Lorem_ipsum_3.6"
                 [luxOptions]="options"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-radio>
               <lux-radio
                 luxLabel="Lorem ipsum 3.7"
                 luxName="Lorem_ipsum_3.7"
                 [luxOptions]="options"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-radio>
             </lux-layout-form-row>
           </lux-layout>

@@ -140,7 +140,7 @@ export class LuxConsoleService implements OnDestroy {
   }
 
   private static isDebugMode() {
-    return LuxConsoleService.config ? LuxConsoleService.config.displayLuxConsoleLogs : environment.production;
+    return LuxConsoleService.config ? LuxConsoleService.config.displayLuxConsoleLogs : !environment.production;
   }
 
   private static checkTime(timeUnit: number) {

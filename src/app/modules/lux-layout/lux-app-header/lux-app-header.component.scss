@@ -8,7 +8,6 @@
 }
 
 .lux-app-header {
-  box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.5);
   z-index: 10000;
 
   overflow: hidden;
@@ -74,6 +73,7 @@
       button {
         padding-top: 0;
         padding-bottom: 0;
+        margin: 2px;
         font-weight: normal !important;
 
         &.lux-button-rounded {
@@ -81,7 +81,6 @@
           height: 36px !important;
           justify-content: center;
           display: inline-flex;
-          box-shadow: unset;
         }
 
         .lux-button-label {
@@ -169,6 +168,10 @@
   ::ng-deep .lux-menu-trigger {
     padding: 0 4px;
     margin: 0;
+
+    .mat-button-wrapper{
+      display: inherit;
+    }
 
     button {
       padding: 0 6px;

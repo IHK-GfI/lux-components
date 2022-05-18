@@ -33,7 +33,7 @@
       <table
         mat-table
         [dataSource]="dataSource"
-        [ngClass]="{ 'lux-table-ie': isIE, 'lux-multiselect-table': luxMultiSelect }"
+        [ngClass]="{ 'lux-multiselect-table': luxMultiSelect }"
         [ngStyle]="{ 'min-width': tableMinWidth }"
         [trackBy]="trackFn"
         matSort
@@ -64,12 +64,13 @@
                 luxTagId="lux-table-multiselect-content-{{ i }}"
                 class="lux-multiselect-toggle"
                 [luxDisabled]="element[luxMultiSelectDisabledProperty] === true"
-                [luxTabIndex]="'-1'"
-                [luxApplyToChildren]="['input']"
+                luxTabIndex="-1"
+                [luxApplyToChildren]="true"
                 luxAriaLabel="Reihe {{ i }}"
                 i18n-luxAriaLabel="@@luxc.table.multiselect.chk.arialabel"
                 luxAriaLabelSelector="input"
                 [luxChecked]="luxSelected.has(element)"
+                [luxNoLabels]="true"
               >
               </lux-checkbox>
             </td>
@@ -93,8 +94,9 @@
                   i18n-luxAriaLabel="@@luxc.table.multiselect.all.chk.arialabel"
                   luxAriaLabelSelector="input"
                   luxTabIndex="-1"
-                  [luxApplyToChildren]="['input']"
+                  [luxApplyToChildren]="true"
                   [luxChecked]="allSelected"
+                  [luxNoLabels]="true"
                 >
                 </lux-checkbox>
               </div>

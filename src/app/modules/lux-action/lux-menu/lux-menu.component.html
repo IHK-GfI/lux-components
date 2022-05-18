@@ -20,7 +20,7 @@
         luxAriaLabelSelector="button"
         luxTabIndex="0"
         [luxTooltip]="menuItem.luxButtonTooltip"
-        [luxApplyToChildren]="['button']"
+        [luxApplyToChildren]="true"
         [ngClass]="{ 'lux-display-none': !menuItem.extended || menuItem.luxHidden }"
       >
       </lux-button>
@@ -83,8 +83,8 @@
       [luxAriaLabel]="luxAriaMenuTriggerLabel"
       luxAriaLabelSelector="button"
       luxTabIndex="0"
+      [luxApplyToChildren]="true"
       [luxIconShowRight]="luxMenuTriggerIconShowRight"
-      [luxApplyToChildren]="['button']"
       [luxDisabled]="luxToggleDisabled"
       #defaultTrigger
       *ngIf="!luxMenuTriggerComponent && hasVisibleMenuItems()"

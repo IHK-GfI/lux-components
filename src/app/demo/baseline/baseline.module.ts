@@ -1,15 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LuxIconModule } from '../../modules/lux-icon/lux-icon.module';
 import { LuxLayoutModule } from '../../modules/lux-layout/lux-layout.module';
-import { BaselineComponent } from './baseline.component';
 import { LuxFormModule } from '../../modules/lux-form/lux-form.module';
 import { LuxActionModule } from '../../modules/lux-action/lux-action.module';
 import { LuxDirectivesModule } from '../../modules/lux-directives/lux-directives.module';
+import { BaselineExampleComponent } from './baseline-example.component';
+import { BaselineComponent } from './baseline/baseline.component';
+import { BaselineCardComponent } from './baseline-card/baseline-card.component';
+import { BaselineAccordionComponent } from './baseline-accordion/baseline-accordion.component';
+
+const routes: Routes = [{ path: '', component: BaselineExampleComponent }];
 
 @NgModule({
   imports: [
@@ -24,9 +29,10 @@ import { LuxDirectivesModule } from '../../modules/lux-directives/lux-directives
     ReactiveFormsModule,
     FlexLayoutModule,
     LuxFormModule,
-    LuxActionModule
+    LuxActionModule,
+    RouterModule.forChild(routes)
   ],
-  declarations: [BaselineComponent],
-  exports: [BaselineComponent]
+  declarations: [ BaselineExampleComponent, BaselineComponent, BaselineCardComponent, BaselineAccordionComponent],
+  providers: [HttpClient]
 })
 export class BaselineModule {}

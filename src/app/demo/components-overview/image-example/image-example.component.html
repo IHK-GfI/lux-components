@@ -14,14 +14,16 @@
     </lux-image>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle luxLabel="Frame anzeigen" [(luxChecked)]="showImageFrame">
-      <lux-form-hint>
-        Frame für das HTML-Element des Bildes anzeigen.<br />
-        Kann veranschaulichen, ob das Bild selbst komplett mit dem umgebenden Element skaliert.
-      </lux-form-hint>
-    </lux-toggle>
-    <lux-divider [luxInset]="true"></lux-divider>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
+      <lux-toggle luxLabel="Frame anzeigen" [(luxChecked)]="showImageFrame" [luxNoTopLabel]="true">
+        <lux-form-hint>
+          Frame für das HTML-Element des Bildes anzeigen.<br />
+          Kann veranschaulichen, ob das Bild selbst komplett mit dem umgebenden Element skaliert.
+        </lux-form-hint>
+      </lux-toggle>
+    </div>
+    
+    <div class="lux-highlight-section column">
       <lux-select
         [(luxSelected)]="imgSrc"
         [luxOptions]="imgSrcs"
@@ -29,7 +31,7 @@
         luxHint="Diese Property bestimmt den Pfad zum Bild."
       >
       </lux-select>
-      <lux-toggle luxLabel="luxRawSrc" [(luxChecked)]="imgRawSrc">
+      <lux-toggle luxLabel="luxRawSrc" [(luxChecked)]="imgRawSrc" [luxNoTopLabel]="true">
         <lux-form-hint>
           Mithilfe dieses Flags kann die Bearbeitung/Prüfung des übergebenen <i>luxImgSrc</i> deaktiviert werden.<br />
           Dadurch ist es z.B. möglich, relative Links (siehe letzte Option in dem Select-Feld) darzustellen.<br />
@@ -38,7 +40,7 @@
         </lux-form-hint>
       </lux-toggle>
     </div>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-input
         [(luxValue)]="imgWidth"
         luxLabel="luxImageWidth"

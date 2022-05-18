@@ -1,18 +1,18 @@
 <lux-layout>
   <form [formGroup]="myGroup">
     <lux-layout-card-row luxTitle="3 Karten pro Zeile">
-      <lux-card luxTitle="Kunde" *luxLayoutRowItem>
+      <lux-card luxTitle="Kunde" *luxLayoutRowItem="{}">
         <lux-card-content>
           <lux-layout formGroupName="customer">
             <lux-layout-form-row>
-              <lux-input luxName="first-name" luxLabel="Vorname" luxControlBinding="name" *luxLayoutRowItem></lux-input>
+              <lux-input luxName="first-name" luxLabel="Vorname" luxControlBinding="name" *luxLayoutRowItem="{}"></lux-input>
             </lux-layout-form-row>
             <lux-layout-form-row>
               <lux-input
                 luxName="given-name"
                 luxLabel="Nachname"
                 luxControlBinding="surname"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-input>
             </lux-layout-form-row>
             <lux-layout-form-row>
@@ -21,7 +21,7 @@
                 [luxOptions]="genders"
                 luxControlBinding="gender"
                 luxLabel="Geschlecht"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               >
                 <ng-template let-option>
                   {{ option.name }}
@@ -31,7 +31,7 @@
           </lux-layout>
         </lux-card-content>
       </lux-card>
-      <lux-card luxTitle="Adresse" *luxLayoutRowItem>
+      <lux-card luxTitle="Adresse" *luxLayoutRowItem="{}">
         <lux-card-content>
           <lux-layout formGroupName="address">
             <lux-layout-form-row luxWrapAt="none">
@@ -39,9 +39,9 @@
                 luxName="postal-code"
                 luxLabel="PLZ"
                 luxType="number"
-                luxNumberAlignLeft="true"
+                [luxNumberAlignLeft]="true"
                 luxControlBinding="zip"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-input>
               <lux-input
                 luxName="form-three_Stadt"
@@ -76,7 +76,7 @@
           </lux-layout>
         </lux-card-content>
       </lux-card>
-      <lux-card luxTitle="Feedbaack" *luxLayoutRowItem>
+      <lux-card luxTitle="Feedback" *luxLayoutRowItem="{}">
         <lux-card-content>
           <lux-layout formGroupName="feedback">
             <lux-layout-form-row luxWrapAt="none">
@@ -85,22 +85,34 @@
                 luxLabel="Bewertung"
                 luxControlBinding="rating"
                 luxType="text"
-                *luxLayoutRowItem
+                *luxLayoutRowItem="{}"
               ></lux-input>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-checkbox luxLabel="Anonymisieren" luxControlBinding="anonymous" *luxLayoutRowItem></lux-checkbox>
+              <lux-checkbox luxLabel="Anonymisieren" luxControlBinding="anonymous" *luxLayoutRowItem="{}"></lux-checkbox>
+            </lux-layout-form-row>
+            <lux-layout-form-row luxWrapAt="none">
+              <lux-textarea
+                luxName="form-three_Kommentar"
+                luxLabel="Kommentar"
+                luxHint="Hier ist Platz für Ihre Nachricht."
+                luxControlBinding="comment"
+                [luxMaxLength]="100"
+                [luxMinRows]="1"
+                [luxMaxRows]="-1"
+                *luxLayoutRowItem="{}"
+              ></lux-textarea>
             </lux-layout-form-row>
           </lux-layout>
         </lux-card-content>
       </lux-card>
     </lux-layout-card-row>
     <lux-layout-card-row>
-      <lux-card luxTitle="Formulardaten" *luxLayoutRowItem>
+      <lux-card luxTitle="Formulardaten" *luxLayoutRowItem="{}">
         <lux-card-content>
           <lux-layout>
             <lux-layout-form-row>
-              <div *luxLayoutRowItem>
+              <div *luxLayoutRowItem="{}">
                 <pre>{{ myGroup.value | json }}</pre>
               </div>
             </lux-layout-form-row>

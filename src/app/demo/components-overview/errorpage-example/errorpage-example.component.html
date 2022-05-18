@@ -4,7 +4,7 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90error%E2%80%90page"
 >
   <example-base-simple-options>
-    <div fxLayout="column">
+    <div fxLayout="column" fxLayoutGap="0px">
       <h3>Error Properties</h3>
       <lux-input
         class="lux-highlight-section"
@@ -78,6 +78,7 @@
         luxLabel="skipLocationChange"
         luxHint="Dieses Flag bestimmt, ob die URL durch das Ansteuern der Fehlerseite geändert wird oder nicht."
         luxControlBinding="skipLocationChange"
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
     </div>

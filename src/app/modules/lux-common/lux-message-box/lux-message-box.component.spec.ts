@@ -4,7 +4,6 @@ import { LuxMessageBoxComponent } from './lux-message-box.component';
 import { Component } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { ILuxMessage } from './lux-message-box-model/lux-message.interface';
-import { LuxBackgroundColorsEnum } from '../../lux-util/lux-colors.enum';
 import { By } from '@angular/platform-browser';
 import { ILuxMessageChangeEvent } from './lux-message-box-model/lux-message-events.interface';
 import { LuxMessageComponent } from './lux-message-box-subcomponents/lux-message.component';
@@ -192,8 +191,8 @@ describe('LuxMessageBoxComponent', () => {
 })
 class LuxMockMessageBoxComponent {
   messages: ILuxMessage[] = [
-    { text: 'Msg 0', iconName: 'fa-android', color: LuxBackgroundColorsEnum.green },
-    { text: 'Msg 1', iconName: 'fa-apple', color: LuxBackgroundColorsEnum.blue }
+    { text: 'Msg 0', iconName: 'fa-android', color: 'green' },
+    { text: 'Msg 1', iconName: 'fa-apple', color: 'blue' }
   ];
 
   eventObject: ILuxMessageChangeEvent;

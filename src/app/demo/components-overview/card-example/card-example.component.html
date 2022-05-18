@@ -43,12 +43,12 @@
       </lux-card-content-expanded>
       <lux-card-actions *ngIf="showActions">
         <lux-button luxLabel="Button 1" [luxRaised]="true" luxIconName="fas fa-user" luxColor="primary"></lux-button>
-        <lux-button luxLabel="Button 2" [luxRaised]="btn2Raised" luxColor="default"></lux-button>
+        <lux-button luxLabel="Button 2" [luxRaised]="btn2Raised" luxColor=""></lux-button>
       </lux-card-actions>
     </lux-card>
   </example-base-content>
   <example-base-simple-options>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-input
         luxLabel="luxTitle"
         luxHint="Diese Property enthält den Textinhalt für den Titel der Card."
@@ -65,24 +65,25 @@
     </div>
 
     <lux-input
+      class="lux-highlight-section"
       luxLabel="luxSubTitle"
       luxHint="Diese Property enthält den Textinhalt für den Untertitel der Card."
       [(luxValue)]="subTitle"
     >
     </lux-input>
-
     <lux-toggle
       class="lux-highlight-section"
       luxLabel="luxDisabled"
       [(luxChecked)]="disabled"
       [luxDisabled]="showActions"
+      [luxNoTopLabel]="true"
     >
       <lux-form-hint>
         Über diese Property werden die Klick-Events der Card unterbunden.<br />
         Diese Property greift nicht, wenn Card-Actions dargestellt werden.
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle class="lux-highlight-section" luxLabel="luxTitleLineBreak" [(luxChecked)]="titleLineBreak">
+    <lux-toggle class="lux-highlight-section" luxLabel="luxTitleLineBreak" [(luxChecked)]="titleLineBreak" [luxNoTopLabel]="true">
       <lux-form-hint>
         Dieser Flag aktiviert den Zeilenumbruch bei zu langen Titeln. <br />
         Wenn 'false', wird der Titel mit '...' abgekürzt.
@@ -92,6 +93,7 @@
       class="lux-highlight-section"
       luxLabel="luxRaised (Button 2)"
       [(luxChecked)]="btn2Raised"
+      [luxNoLabels]="true"
     ></lux-toggle>
   </example-base-simple-options>
   <example-base-advanced-options>
@@ -100,6 +102,7 @@
       luxLabel="luxIcon anzeigen"
       luxHint="Das linksbündige Icon für die Card darstellen."
       [(luxChecked)]="showIcon"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
 
@@ -108,10 +111,11 @@
       luxLabel="luxCardActions anzeigen"
       luxHint="Die Card-Action für das Beispiel darstellen."
       [(luxChecked)]="showActions"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <div class="lux-highlight-section" fxLayout="column">
-      <lux-toggle luxLabel="luxCardInfo anzeigen" [luxChecked]="showInfo" (luxCheckedChange)="changeInfo($event)">
+    <div class="lux-highlight-section column">
+      <lux-toggle luxLabel="luxCardInfo anzeigen" [luxChecked]="showInfo" (luxCheckedChange)="changeInfo($event)" [luxNoTopLabel]="true">
         <lux-form-hint>
           Die Component für die Darstellung von Zusatzinfos rechts vom Titel anzeigen.<br />
           Sie wird nur dargestellt, wenn die Card keinen ausklappbaren oder austauschbaren Content besitzt und somit
@@ -122,6 +126,7 @@
         luxLabel="luxCardContentExpanded aktivieren"
         [luxChecked]="useExpandableContent"
         (luxCheckedChange)="changeExpandable($event)"
+        [luxNoTopLabel]="true"
       >
         <lux-form-hint>
           Den ausklappbaren Inhalt für die Card aktivieren.<br />

@@ -4,6 +4,9 @@
   [formGroup]="formGroup"
   [luxIgnoreDefaultLabel]="true"
   [luxScalableHeight]="true"
+  [luxNoLabels]="luxNoLabels" 
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
   (click)="formControl.markAsTouched()"
   *ngIf="formGroup"
 >
@@ -20,7 +23,7 @@
     luxAriaDescribedbySelector=".mat-slide-toggle-input"
     [luxAriaRequired]="luxRequired"
     luxAriaRequiredSelector=".mat-slide-toggle-input"
-    [luxAriaInvalid]="formControl.invalid"
+    [luxAriaInvalid]="'' + formControl.invalid"
     luxAriaInvalidSelector=".mat-slide-toggle-input"
     tabIndex="{{ luxReadonly ? -1 : 0 }}"
   >

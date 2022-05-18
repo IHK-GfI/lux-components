@@ -35,10 +35,6 @@ export class LuxDateTimePickerAdapter extends NativeDateAdapter {
       }
     }
 
-    if (LuxUtil.isIE()) {
-      dateAsString = dateAsString.replace(' ', ', ');
-    }
-
     return dateAsString;
   }
 
@@ -64,26 +60,6 @@ export class LuxDateTimePickerAdapter extends NativeDateAdapter {
 
         let dateValue = dateTimeArr[0];
         let timeValue = dateTimeArr[1];
-
-        if (LuxUtil.isIE()) {
-          // IE-Problem: Das Datum (als String) im IE enthält manchmal unsichtbare Steuerzeichen, die verhindern,
-          // dass das Datum korrekt von den RegEx-Ausdrücken erkannt wird. Aus diesem Grund werden hier diese
-          // unsichtbaren Steuerzeichen entfernt.
-          const ieDateValue = LuxUtil.stringWithoutASCIIChars(dateValue);
-          if (dateValue !== ieDateValue) {
-            dateValue = ieDateValue;
-          }
-
-          const ieTimeValue = LuxUtil.stringWithoutASCIIChars(timeValue);
-          if (timeValue !== ieTimeValue) {
-            timeValue = ieTimeValue;
-          }
-
-          const ieDateAsString = LuxUtil.stringWithoutASCIIChars(dateAsString);
-          if (dateAsString !== ieDateAsString) {
-            dateAsString = ieDateAsString;
-          }
-        }
 
         // Hat der String das Format dd.MM.YYYY ?
         if (this.dotRegExp.test(dateAsString)) {

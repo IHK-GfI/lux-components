@@ -6,7 +6,7 @@ import { LuxBadgeColors } from '../../../modules/lux-util/lux-colors.enum';
   templateUrl: './badge-example.component.html'
 })
 export class BadgeExampleComponent {
-  colors: string[] = LuxBadgeColors;
+  colors = LuxBadgeColors;
   iconName = 'fa-arrow-circle-right';
   text = 'Badge';
   uppercase = false;

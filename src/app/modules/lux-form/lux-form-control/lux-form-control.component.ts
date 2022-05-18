@@ -17,6 +17,9 @@ export class LuxFormControlComponent {
   focused: boolean;
 
   @HostBinding('class.lux-form-control-scalable-height') _luxScalableHeight = false;
+  @HostBinding('class.lux-form-control-no-top-label') _luxNoTopLabel = false;
+  @HostBinding('class.lux-form-control-no-labels') _luxNoLabels = false;
+  @HostBinding('class.lux-form-control-no-bottom-label') _luxNoBottomLabel = false;
   @HostBinding('class.lux-form-control-borderless') _luxHideBottomBorder = false;
 
   /**
@@ -43,6 +46,45 @@ export class LuxFormControlComponent {
   }
 
   /**
+   * Dient dazu, bei einer Component den Label-Container auszublenden.
+   *
+   * @param scalable
+   */
+  @Input() set luxNoTopLabel(noLabel: boolean) {
+    this._luxNoTopLabel = noLabel;
+  }
+
+  get luxNoTopLabel(): boolean {
+    return this._luxNoTopLabel;
+  }
+
+  /**
+   * Dient dazu, bei einer Component den Label-Container und den Misc-Container auszublenden.
+   *
+   * @param scalable
+   */
+  @Input() set luxNoLabels(noLabel: boolean) {
+    this._luxNoLabels = noLabel;
+  }
+
+  get luxNoLabels(): boolean {
+    return this._luxNoLabels;
+  }
+
+  /**
+   * Dient dazu, bei einer Component den Misc-Container auszublenden.
+   *
+   * @param scalable
+   */
+  @Input() set luxNoBottomLabel(noLabel: boolean) {
+    this._luxNoBottomLabel = noLabel;
+  }
+
+  get luxNoBottomLabel(): boolean {
+    return this._luxNoBottomLabel;
+  }
+
+  /**
    * Bestimmt ob die untere Border ausgeblendet werden soll oder nicht (z.B. bei Checkbox).
    *
    * @param hide
@@ -54,7 +96,7 @@ export class LuxFormControlComponent {
   get luxHideBottomBorder(): boolean {
     return this._luxHideBottomBorder;
   }
-
+  
   constructor(private cdr: ChangeDetectorRef) {}
 
   /**
@@ -65,7 +107,7 @@ export class LuxFormControlComponent {
   }
 
   shouldDisplayMisc() {
-    return this.luxFormComponent.formHintComponent || this.luxFormComponent.luxHint || this.shouldDisplayError() || (!this.luxHideCounterLabel && this.luxCounterLabel);
+    return (!this.luxNoBottomLabel && !this.luxNoLabels)
   }
 
   shouldDisplayLabelByProperty() {

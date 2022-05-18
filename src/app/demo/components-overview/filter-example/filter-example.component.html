@@ -96,7 +96,7 @@
             *luxLayoutRowItem="{}"
           ></lux-datetimepicker>
         </lux-layout-form-row>
-        <lux-layout-form-row luxWrapAt="md">
+        <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px'}" luxWrapAt="md">
           <lux-select
             luxLabel="Single-Select"
             luxControlBinding="singleSelect"
@@ -108,6 +108,7 @@
             [luxFilterHidden]="singleSelectHidden"
             luxFilterColor="accent"
             luxFilterItem
+            [luxNoBottomLabel]="true"
             *luxLayoutRowItem="{}"
           ></lux-select>
           <lux-select
@@ -121,6 +122,7 @@
             [luxFilterHidden]="multiSelectHidden"
             luxFilterColor="accent"
             luxFilterItem
+            [luxNoBottomLabel]="true"
             *luxLayoutRowItem="{}"
           ></lux-select>
         </lux-layout-form-row>
@@ -134,27 +136,44 @@
             [luxFilterHidden]="toggleSelectHidden"
             luxFilterColor="warn"
             luxFilterItem
+            [luxNoTopLabel]="true"
             *luxLayoutRowItem="{}"
           ></lux-toggle>
         </lux-layout-form-row>
       </lux-filter-form>
-      <lux-card fxFlex="1 1 auto" luxTitle="Filter">
-        <lux-card-content>
-          <pre>{{ currentFilter | json }}</pre>
-        </lux-card-content>
-      </lux-card>
+     <div class="lux-highlight-section column lux-ml-2 lux-mr-2">
+        <h3 class="lux-highlight-section-label">Filter</h3>
+        <pre>{{ currentFilter | json }}</pre>
+     </div>
+    </div>
+    <div ngClass="message-box" ngClass.lt-md="message-box-small">
+      <div fxLayout="row" fxLayoutAlign="start start" class="box-header">
+        <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+        <div fxLayout="column" class="lux-mt-2">
+          <h2>Tipp</h2>
+          <h3>Formcontrols im Filter anpassen</h3>
+        </div>
+      </div>
+      <p>
+        Die Lux-Form-Controls haben standardmäßig einen Label- und einen Hint/Error-Container. Meistens werden die Fehlermeldungen und Hinweistexte im Filterformular jedoch nicht benötigt. <br>
+        Für diesen Anwendungsfall kann ab Version 13.0.0 das Attribut <strong>luxNoBottomLabels</strong> bei den Form-Controls genutzt werden.
+        Dabei wird der Hint/Error-Container vom Form-Control entfernt. Mit der Lux-Layout-Form-Row können dann die Zeilenabstände individuell bestimmt werden.
+      </p>
+      <div class="code-section">
+        <lux-markdown [luxData]="markdownData"></lux-markdown>
+      </div>
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <div class="lux-highlight-section filter-config-item" fxLayout="column">
+    <div class="lux-highlight-section column">
       <h3 class="lux-highlight-section-label">Button</h3>
-      <lux-toggle luxLabel="luxButtonFilterRaised" [(luxChecked)]="buttonRaised"></lux-toggle>
-      <lux-select luxLabel="luxButtonFilterColor" [(luxSelected)]="buttonFilterColor" [luxOptions]="buttonColorOptions"></lux-select>
-      <lux-select luxLabel="luxButtonDialogSave" [(luxSelected)]="buttonDialogSave" [luxOptions]="buttonColorOptions"></lux-select>
-      <lux-select luxLabel="luxButtonDialogCancel" [(luxSelected)]="buttonDialogCancel" [luxOptions]="buttonColorOptions"></lux-select>
-      <lux-select luxLabel="luxButtonDialogLoad" [(luxSelected)]="buttonDialogLoad" [luxOptions]="buttonColorOptions"></lux-select>
-      <lux-select luxLabel="luxButtonDialogDelete" [(luxSelected)]="buttonDialogDelete" [luxOptions]="buttonColorOptions"></lux-select>
-      <lux-select luxLabel="luxButtonDialogClose" [(luxSelected)]="buttonDialogClose" [luxOptions]="buttonColorOptions"></lux-select>
+      <lux-toggle luxLabel="luxButtonFilterRaised" [(luxChecked)]="buttonRaised" [luxNoLabels]="true"></lux-toggle>
+      <lux-select luxLabel="luxButtonFilterColor" [(luxSelected)]="buttonFilterColor" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
+      <lux-select luxLabel="luxButtonDialogSave" [(luxSelected)]="buttonDialogSave" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
+      <lux-select luxLabel="luxButtonDialogCancel" [(luxSelected)]="buttonDialogCancel" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
+      <lux-select luxLabel="luxButtonDialogLoad" [(luxSelected)]="buttonDialogLoad" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
+      <lux-select luxLabel="luxButtonDialogDelete" [(luxSelected)]="buttonDialogDelete" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
+      <lux-select luxLabel="luxButtonDialogClose" [(luxSelected)]="buttonDialogClose" [luxOptions]="buttonColorOptions" [luxNoBottomLabel]="true"></lux-select>
     </div>
     <div class="lux-highlight-section filter-config-item" fxLayout="column">
       <h3 class="lux-highlight-section-label">Tastaturkürzel</h3>
@@ -162,71 +181,72 @@
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <div class="lux-highlight-section filter-config-item" fxLayout="column">
-      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Input</div>
+    <div class="lux-highlight-section" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pb-3">Input</div>
       <lux-layout-form-row luxWrapAt="md">
-        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="inputDisabled" *luxLayoutRowItem="{}"></lux-toggle>
-        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="inputHidden" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="inputDisabled" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="inputHidden" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
       </lux-layout-form-row>
     </div>
-    <div class="lux-highlight-section filter-config-item" fxLayout="column">
-      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Lookup-Autocomplete</div>
+    <div class="lux-highlight-section" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pb-3">Lookup-Autocomplete</div>
       <lux-layout-form-row luxWrapAt="md">
         <lux-toggle
           luxLabel="luxFilterDisabled"
           [(luxChecked)]="autoCompleteLookupDisabled"
+          [luxNoLabels]="true"
           *luxLayoutRowItem="{}"
         ></lux-toggle>
-        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="autoCompleteLookupHidden" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="autoCompleteLookupHidden" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
       </lux-layout-form-row>
     </div>
-    <div class="lux-highlight-section filter-config-item" fxLayout="column">
-      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Lookup-Combobox</div>
+    <div class="lux-highlight-section" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pb-3">Lookup-Combobox</div>
       <lux-layout-form-row luxWrapAt="md">
-        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="selectLookupDisabled" *luxLayoutRowItem="{}"></lux-toggle>
-        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="selectLookupHidden" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="selectLookupDisabled" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="selectLookupHidden" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
       </lux-layout-form-row>
     </div>
-    <div class="lux-highlight-section filter-config-item" fxLayout="column">
-      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Autocomplete</div>
+    <div class="lux-highlight-section" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pb-3">Autocomplete</div>
       <lux-layout-form-row luxWrapAt="md">
-        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="autoCompleteDisabled" *luxLayoutRowItem="{}"></lux-toggle>
-        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="autoCompleteHidden" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="autoCompleteDisabled" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="autoCompleteHidden" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
       </lux-layout-form-row>
     </div>
-    <div class="lux-highlight-section filter-config-item" fxLayout="column">
-      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Datepicker</div>
+    <div class="lux-highlight-section" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pb-3">Datepicker</div>
       <lux-layout-form-row luxWrapAt="md">
-        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="datepickerDisabled" *luxLayoutRowItem="{}"></lux-toggle>
-        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="datepickerHidden" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="datepickerDisabled" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="datepickerHidden" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
       </lux-layout-form-row>
     </div>
-    <div class="lux-highlight-section filter-config-item" fxLayout="column">
-      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Datetimepicker</div>
+    <div class="lux-highlight-section" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pb-3">Datetimepicker</div>
       <lux-layout-form-row luxWrapAt="md">
-        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="datetimepickerDisabled" *luxLayoutRowItem="{}"></lux-toggle>
-        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="datetimepickerHidden" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="datetimepickerDisabled" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="datetimepickerHidden" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
       </lux-layout-form-row>
     </div>
-    <div class="lux-highlight-section filter-config-item" fxLayout="column">
-      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Single-Select</div>
+    <div class="lux-highlight-section" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pb-3">Single-Select</div>
       <lux-layout-form-row luxWrapAt="md">
-        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="singleSelectDisabled" *luxLayoutRowItem="{}"></lux-toggle>
-        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="singleSelectHidden" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="singleSelectDisabled" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="singleSelectHidden" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
       </lux-layout-form-row>
     </div>
-    <div class="lux-highlight-section filter-config-item" fxLayout="column">
-      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Multi-Select</div>
+    <div class="lux-highlight-section" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pb-3">Multi-Select</div>
       <lux-layout-form-row luxWrapAt="md">
-        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="multiSelectDisabled" *luxLayoutRowItem="{}"></lux-toggle>
-        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="multiSelectHidden" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="multiSelectDisabled" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="multiSelectHidden" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
       </lux-layout-form-row>
     </div>
-    <div class="lux-highlight-section filter-config-item" fxLayout="column">
-      <div fxFlex="1 1 auto" class="lux-pt-3 lux-pl-3">Toggle</div>
+    <div class="lux-highlight-section" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pb-3">Toggle</div>
       <lux-layout-form-row luxWrapAt="md">
-        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="toggleSelectDisabled" *luxLayoutRowItem="{}"></lux-toggle>
-        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="toggleSelectHidden" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterDisabled" [(luxChecked)]="toggleSelectDisabled" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
+        <lux-toggle luxLabel="luxFilterHidden" [(luxChecked)]="toggleSelectHidden" [luxNoLabels]="true" *luxLayoutRowItem="{}"></lux-toggle>
       </lux-layout-form-row>
     </div>
   </example-base-advanced-options>

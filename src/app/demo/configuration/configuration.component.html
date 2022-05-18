@@ -2,73 +2,103 @@
   <lux-card luxTitle="Konfiguration" class="lux-card-grow" ngClass.gt-sm="lux-min-height">
     <lux-icon luxIconName="fa-info"></lux-icon>
     <lux-card-content>
-          <h3>Neue Konfiguration</h3>
-          <pre>{{ modifiedConfig | json }}</pre>
-        <lux-divider></lux-divider>
-          <h3>Aktuelle Konfiguration</h3>
-          <pre>{{ previousConfig | json }}</pre>
+      <pre>{{ currentConfig | json }}</pre>
     </lux-card-content>
   </lux-card>
   <lux-card luxTitle="LUX-Components-Konfiguration" class="lux-card-grow" ngClass.gt-sm="lux-min-height">
     <lux-icon luxIconName="fas fa-wrench"></lux-icon>
-    <lux-card-content fxFill>
-      <lux-checkbox luxLabel="Lux-Tag-Ids generieren" [(luxChecked)]="modifiedConfig.generateLuxTagIds"></lux-checkbox>
-      <lux-divider [luxInset]="true"></lux-divider>
-      <lux-checkbox luxLabel="Lux-Console aktiv" [(luxChecked)]="modifiedConfig.displayLuxConsoleLogs"></lux-checkbox>
-      <lux-divider [luxInset]="true"></lux-divider>
-      <div>
+    <lux-card-content fxLayout="column" fxFill fxLayoutGap="4px">
+      <lux-checkbox
+        class="lux-highlight-section"
+        luxLabel="Lux-Tag-Ids generieren"
+        [(luxChecked)]="currentConfig.generateLuxTagIds"
+        (luxCheckedChange)="updateConfig()"
+        [luxNoLabels]="true"
+      ></lux-checkbox>
+      <lux-checkbox
+        class="lux-highlight-section"
+        luxLabel="Lux-Console aktiv"
+        [(luxChecked)]="currentConfig.displayLuxConsoleLogs"
+        (luxCheckedChange)="updateConfig()"
+        [luxNoLabels]="true"
+      ></lux-checkbox>
+      <div class="lux-highlight-section column">
         <lux-checkbox
           luxLabel="Alle Labels Uppercase"
-          [(luxChecked)]="modifiedConfig.labelConfiguration.allUppercase"
+          [(luxChecked)]="currentConfig.labelConfiguration.allUppercase"
+          (luxCheckedChange)="updateConfig()"
+          [luxNoLabels]="true"
         ></lux-checkbox>
-        <ng-container *ngIf="modifiedConfig.labelConfiguration.allUppercase">
           <lux-select
             luxLabel="Ausnahmen"
             [luxMultiple]="true"
             [luxOptions]="notAppliedToOptions"
-            [(luxSelected)]="modifiedConfig.labelConfiguration.notAppliedTo"
+            [(luxSelected)]="currentConfig.labelConfiguration.notAppliedTo"
+            (luxSelectedChange)="updateConfig()"
+            [luxDisabled]="currentConfig.labelConfiguration.allUppercase ? false : true"
+            [luxNoBottomLabel]="true"
           ></lux-select>
-        </ng-container>
       </div>
-      <lux-input luxLabel="Lookup URL" [(luxValue)]="modifiedConfig.lookupServiceUrl"></lux-input>
+      <lux-input class="lux-highlight-section" luxLabel="Lookup URL" [(luxValue)]="currentConfig.lookupServiceUrl" [luxNoBottomLabel]="true"></lux-input>
       <lux-checkbox
+        class="lux-highlight-section"
         luxLabel="Lux-Card Animationen aktiv"
-        [(luxChecked)]="modifiedConfig.cardExpansionAnimationActive"
+        [(luxChecked)]="currentConfig.cardExpansionAnimationActive"
+        (luxCheckedChange)="updateConfig()"
+        [luxNoLabels]="true"
       ></lux-checkbox>
       <lux-input
+        class="lux-highlight-section"
         luxLabel="throttleTimeMs der Buttons (Verhinderung von ungewollten Doppelklicks)"
-        [(luxValue)]="modifiedConfig.buttonConfiguration.throttleTimeMs"
+        [(luxValue)]="currentConfig.buttonConfiguration.throttleTimeMs"
+        (luxValueChange)="updateConfig()"
+        [luxNoBottomLabel]="true"
       ></lux-input>
-      <lux-input
-        luxLabel="enterDuration der Lux-Ripples"
-        [(luxValue)]="modifiedConfig.rippleConfiguration.enterDuration"
-      ></lux-input>
-      <lux-input
-        luxLabel="exitDuration der Lux-Ripples"
-        [(luxValue)]="modifiedConfig.rippleConfiguration.exitDuration"
-      ></lux-input>
-      <lux-input luxLabel="color der Lux-Ripples" [(luxValue)]="modifiedConfig.rippleConfiguration.color"></lux-input>
-      <lux-input luxLabel="radius der Lux-Ripples" [(luxValue)]="modifiedConfig.rippleConfiguration.radius"></lux-input>
-      <lux-toggle
-        luxLabel="centered-State der Lux-Ripples"
-        [(luxChecked)]="modifiedConfig.rippleConfiguration.centered"
-      ></lux-toggle>
-      <lux-toggle
-        luxLabel="disabled-State der Lux-Ripples"
-        [(luxChecked)]="modifiedConfig.rippleConfiguration.disabled"
-      ></lux-toggle>
-      <lux-toggle
-        luxLabel="unbounded-State der Lux-Ripples"
-        [(luxChecked)]="modifiedConfig.rippleConfiguration.unbounded"
-      ></lux-toggle>
+      <div class="lux-highlight-section column">
+        <lux-input
+          luxLabel="enterDuration der Lux-Ripples"
+          [(luxValue)]="currentConfig.rippleConfiguration.enterDuration"
+          (luxValueChange)="updateConfig()"
+          [luxNoBottomLabel]="true"
+        ></lux-input>
+        <lux-input
+          luxLabel="exitDuration der Lux-Ripples"
+          [(luxValue)]="currentConfig.rippleConfiguration.exitDuration"
+          (luxValueChange)="updateConfig()"
+          [luxNoBottomLabel]="true"
+        ></lux-input>
+        <lux-input
+          luxLabel="color der Lux-Ripples"
+          [(luxValue)]="currentConfig.rippleConfiguration.color"
+          (luxValueChange)="updateConfig()"
+          [luxNoBottomLabel]="true"
+        ></lux-input>
+        <lux-input
+          luxLabel="radius der Lux-Ripples"
+          [(luxValue)]="currentConfig.rippleConfiguration.radius"
+          (luxValueChange)="updateConfig()"
+          [luxNoBottomLabel]="true"
+        ></lux-input>
+        <br>
+        <lux-toggle
+          luxLabel="centered-State der Lux-Ripples"
+          [(luxChecked)]="currentConfig.rippleConfiguration.centered"
+          (luxCheckedChange)="updateConfig()"
+          [luxNoLabels]="true"
+        ></lux-toggle>
+        <lux-toggle
+          luxLabel="disabled-State der Lux-Ripples"
+          [(luxChecked)]="currentConfig.rippleConfiguration.disabled"
+          (luxCheckedChange)="updateConfig()"
+          [luxNoLabels]="true"
+        ></lux-toggle>
+        <lux-toggle
+          luxLabel="unbounded-State der Lux-Ripples"
+          [(luxChecked)]="currentConfig.rippleConfiguration.unbounded"
+          (luxCheckedChange)="updateConfig()"
+          [luxNoLabels]="true"
+        ></lux-toggle>
+      </div>
     </lux-card-content>
-    <lux-card-actions>
-      <lux-button
-        luxColor="primary"
-        [luxRaised]="true"
-        luxLabel="Speichern"
-        (luxClicked)="updateConfig()"
-      ></lux-button>
-    </lux-card-actions>
   </lux-card>
 </div>

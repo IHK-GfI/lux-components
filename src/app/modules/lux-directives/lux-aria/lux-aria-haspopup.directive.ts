@@ -4,8 +4,8 @@ import { LuxAriaBase } from './lux-aria-base';
 @Directive({
   selector: '[luxAriaHasPopup]'
 })
-export class LuxAriaHaspopupDirective extends LuxAriaBase {
-  _luxAriaHasPopup: string;
+export class LuxAriaHaspopupDirective extends LuxAriaBase<boolean> {
+  _luxAriaHasPopup: boolean;
 
   @Input() luxAriaHasPopupSelector: string;
 
@@ -14,7 +14,7 @@ export class LuxAriaHaspopupDirective extends LuxAriaBase {
     return this._luxAriaHasPopup;
   }
 
-  set luxAriaHasPopup(hasPopup: string) {
+  set luxAriaHasPopup(hasPopup: boolean) {
     this._luxAriaHasPopup = hasPopup;
 
     this.renderAria();
@@ -37,7 +37,7 @@ export class LuxAriaHaspopupDirective extends LuxAriaBase {
     return this.luxAriaHasPopupSelector;
   }
 
-  getValue(): string {
+  getValue(): boolean {
     return this._luxAriaHasPopup;
   }
 }

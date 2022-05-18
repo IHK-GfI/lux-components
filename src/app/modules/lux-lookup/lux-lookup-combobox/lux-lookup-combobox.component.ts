@@ -19,6 +19,9 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
   @Input() luxMultiple = false;
   @Input() luxEntryBlockSize = 25;
   @Input() luxWithEmptyEntry = true;
+  @Input() luxNoLabels = false;
+  @Input() luxNoTopLabel = false;
+  @Input() luxNoBottomLabel = false;
 
   @ViewChild(MatSelect) matSelect: MatSelect;
 

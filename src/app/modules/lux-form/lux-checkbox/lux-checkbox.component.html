@@ -4,6 +4,9 @@
   [formGroup]="formGroup"
   [luxIgnoreDefaultLabel]="true"
   [luxScalableHeight]="true"
+  [luxNoLabels]="luxNoLabels" 
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
   (click)="formControl.markAsTouched()"
   *ngIf="formGroup"
 >
@@ -18,7 +21,7 @@
     luxAriaDescribedbySelector=".mat-checkbox-input"
     [luxAriaRequired]="luxRequired"
     luxAriaRequiredSelector=".mat-checkbox-input"
-    [luxAriaInvalid]="formControl.invalid"
+    [luxAriaInvalid]="'' + formControl.invalid"
     luxAriaInvalidSelector=".mat-checkbox-input"
     (focusin)="luxFocusIn.emit($event)"
     (focusout)="luxFocusOut.emit($event)"

@@ -1,4 +1,12 @@
-<lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" [luxLabelLongFormat]="luxLabelLongFormat" *ngIf="formGroup">
+<lux-form-control
+  *ngIf="formGroup"
+  [luxFormComponent]="this"
+  [luxNoLabels]="luxNoLabels"
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  [formGroup]="formGroup"
+  [luxLabelLongFormat]="luxLabelLongFormat"
+>
   <mat-select
     luxSelectOptionHeight
     [placeholder]="luxPlaceholder"

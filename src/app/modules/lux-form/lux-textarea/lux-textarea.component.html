@@ -1,4 +1,15 @@
-<lux-form-control [luxFormComponent]="this" [luxScalableHeight]="true" [formGroup]="formGroup" [luxLabelLongFormat]="luxLabelLongFormat" *ngIf="formGroup" [luxCounterLabel]="counterLabel" [luxHideCounterLabel]="luxHideCounterLabel">
+<lux-form-control
+  *ngIf="formGroup"
+  [luxFormComponent]="this"
+  [luxScalableHeight]="true"
+  [luxCounterLabel]="counterLabel"
+  [luxHideCounterLabel]="luxHideCounterLabel"
+  [luxNoLabels]="luxNoLabels"
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  [formGroup]="formGroup"
+  [luxLabelLongFormat]="luxLabelLongFormat"
+>
   <textarea
     matInput
     luxTagIdHandler
@@ -7,9 +18,9 @@
     [placeholder]="luxPlaceholder"
     [formControl]="formControl"
     [luxMaxLengthAttr]="luxMaxLength"
-    matTextareaAutosize
-    [matAutosizeMinRows]="luxMinRows"
-    [matAutosizeMaxRows]="luxMaxRows"
+    [cdkTextareaAutosize]="true"
+    [cdkAutosizeMinRows]="luxMinRows"
+    [cdkAutosizeMaxRows]="luxMaxRows"
     [required]="luxRequired"
     [readonly]="luxReadonly"
     (blur)="luxBlur.emit($event)"

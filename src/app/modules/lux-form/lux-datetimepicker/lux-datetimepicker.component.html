@@ -1,4 +1,13 @@
-<lux-form-control [luxFormComponent]="this" [formGroup]="formGroup" [luxLabelLongFormat]="luxLabelLongFormat" #datepickerFormControl *ngIf="formGroup">
+<lux-form-control
+  *ngIf="formGroup"
+  [luxFormComponent]="this"
+  [luxNoLabels]="luxNoLabels"
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  [formGroup]="formGroup"
+  [luxLabelLongFormat]="luxLabelLongFormat"
+  #datepickerFormControl
+>
   <div class="lux-input-row" fxLayout="row">
     <input
       fxFlex="auto"

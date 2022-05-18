@@ -2,7 +2,6 @@
   class="lux-form-control"
   [ngClass]="{
     'lux-form-control-error': shouldDisplayError(),
-    'lux-form-control-scalable-height': luxScalableHeight,
     'lux-form-control-disabled': luxFormComponent.luxDisabled,
     'lux-form-control-readonly': luxFormComponent.luxReadonly,
     'lux-focused': focused
@@ -12,7 +11,7 @@
   (focusout)="focusout()"
 >
   <!-- Container für das Label -->
-  <div class="lux-form-control-label" [ngClass]=" {'lux-label-long-format': luxLabelLongFormat }">
+  <div class="lux-form-control-label" *ngIf="!luxNoTopLabel && !luxNoLabels" [ngClass]=" {'lux-label-long-format': luxLabelLongFormat }">
     <!-- Hier wird entweder das luxLabel oder das übergebene Tag heraus gerendert -->
     <div class="lux-label" *ngIf="!luxIgnoreDefaultLabel">
       <label
@@ -35,9 +34,9 @@
   <div class="lux-form-control-container" fxFlex="auto">
     <ng-content></ng-content>
   </div>
-  
+
   <!-- Container für das Hint und den Error und den Counter -->
-  <div class="lux-form-control-misc" *ngIf="shouldDisplayMisc()" fxLayout="row" fxLayoutAlign="space-between start">
+  <div class="lux-form-control-misc" *ngIf="!luxNoBottomLabel && !luxNoLabels" fxLayout="row" fxLayoutAlign="space-between start">
     <ng-container [ngSwitch]="shouldDisplayError()">
       <mat-error [id]="luxFormComponent.uid + '-error'" *ngSwitchCase="true">
         {{ luxFormComponent.errorMessage }}
@@ -58,7 +57,7 @@
       </ng-container>
     </ng-container>
     <!-- Container für Character-Counter -->
-    <div class="lux-form-control-character-counter" *ngIf="!luxHideCounterLabel"><ng-container *ngIf="focused">{{ luxCounterLabel }}</ng-container></div>
+    <div class="lux-form-control-character-counter" *ngIf="(!luxHideCounterLabel && luxCounterLabel)"><ng-container *ngIf="focused">{{ luxCounterLabel }}</ng-container></div>
   </div>
-   
+
 </div>

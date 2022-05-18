@@ -41,7 +41,7 @@
                 "output": "./assets/icons/fontawesome/webfonts"
               },
               {
-                "glob": "material-design-icons.css",
+                "glob": "material-design-icons(.css|.css.map)",
                 "input": "./node_modules/material-design-icons-iconfont/dist",
                 "output": "./assets/icons/material-icons"
               },
@@ -66,17 +66,14 @@
             ],
             "scripts": [
               {
-                "bundleName": "polyfill-webcomp-es5",
-                "input": "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"
-              },
-              {
                 "bundleName": "polyfill-webcomp",
                 "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
               }
             ],
             "allowedCommonJsDependencies": [
               "hammerjs",
-              "ng2-pdf-viewer"
+              "ng2-pdf-viewer",
+              "pdfjs-dist"
             ]
           },
           "configurations": {
@@ -87,7 +84,14 @@
                   "maximumWarning": "6kb"
                 }
               ],
-              "optimization": true,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
@@ -102,33 +106,19 @@
                 }
               ]
             },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
             "en": {
               "localize": ["en"],
               "aot": true,
               "outputPath": "dist/en",
               "i18nMissingTranslation": "error"
-            },
-            "es5": {
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "tsConfig": "src/tsconfig.app.ie.json"
-            },
-            "es5en": {
-              "localize": ["en"],
-              "aot": true,
-              "outputPath": "dist/en",
-              "i18nMissingTranslation": "error",
-              "budgets": [
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ],
-              "tsConfig": "src/tsconfig.app.ie.json"
             }
           }
         },
@@ -141,16 +131,14 @@
             "production": {
               "browserTarget": "lux-components:build:production"
             },
+            "development": {
+              "browserTarget": "lux-components:build:development"
+            },
             "en": {
               "browserTarget": "lux-components:build:en"
-            },
-            "es5": {
-              "browserTarget": "lux-components:build:es5"
-            },
-            "es5en": {
-              "browserTarget": "lux-components:build:es5en"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -187,20 +175,6 @@
               "src/**/*.ts",
               "src/**/*.html"
             ]
-          }
-        }
-      }
-    },
-    "lux-components-e2e": {
-      "root": "e2e",
-      "sourceRoot": "e2e",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "lux-components:serve"
           }
         }
       }

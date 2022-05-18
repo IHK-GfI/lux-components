@@ -1,10 +1,13 @@
 <lux-form-control
+  *ngIf="formGroup"
   [luxFormComponent]="this"
   [luxHideBottomBorder]="true"
-  [formGroup]="formGroup"
   [luxScalableHeight]="luxVertical"
+  [luxNoLabels]="luxNoLabels"
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  [formGroup]="formGroup"
   [luxLabelLongFormat]="luxLabelLongFormat"
-  *ngIf="formGroup"
 >
   <mat-slider
     luxTagIdHandler
@@ -29,7 +32,7 @@
     }"
     [id]="uid"
     [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
-    [luxAriaInvalid]="formControl.invalid"
+    [luxAriaInvalid]="'' + formControl.invalid"
     [luxAriaRequired]="luxRequired"
     [luxAriaLabel]="luxLabel"
     tabIndex="{{ luxReadonly ? -1 : 0 }}"

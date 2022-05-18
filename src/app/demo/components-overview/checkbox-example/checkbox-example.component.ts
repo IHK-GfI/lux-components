@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'lux-checkbox-example',
-  templateUrl: './checkbox-example.component.html'
+  templateUrl: './checkbox-example.component.html',
+  styleUrls: ['./checkbox-example.component.scss']
 })
 export class CheckboxExampleComponent {
   // region Helper-Properties für das Beispiel
 
   useErrorMessage = true;
   form: FormGroup;
-
+  agb: FormGroup;
+  exampleText = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
   // endregion
 
   // region Properties der Component
@@ -33,6 +35,11 @@ export class CheckboxExampleComponent {
     this.form = this.fb.group({
       checkboxExample: []
     });
+    this.agb = this.fb.group({
+      checkbox1: [ '', Validators.requiredTrue ],
+      checkbox2: [ '', Validators.requiredTrue ],
+      checkbox3: [ '', Validators.requiredTrue ]
+    });
   }
 
   changeRequired($event: boolean) {
@@ -46,4 +53,15 @@ export class CheckboxExampleComponent {
   }
 
   emptyCallback() {}
+
+  exampleValidator($event: boolean) {
+    Object.keys(this.agb.controls).forEach((key) => {
+      if ($event) {
+        this.agb.get(key).markAsTouched();
+      } else {
+        this.agb.get(key).markAsUntouched();
+      }
+      this.agb.get(key).updateValueAndValidity();
+    });
+  }
 }

@@ -2,7 +2,7 @@
   <div role="list">
     <lux-message
       *ngFor="let displayedMessage of displayedMessages"
-      class="lux-message-box mat-elevation-z1"
+      class="lux-message-box"
       [luxMessage]="displayedMessage"
       (luxMessageClosed)="messageClosed($event)"
     >

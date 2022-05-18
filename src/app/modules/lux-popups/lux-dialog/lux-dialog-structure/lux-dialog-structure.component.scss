@@ -31,10 +31,10 @@
   }
 }
 
-@media ($mat-xsmall) {
+@media (max-width: 599px) {
   @include small-dialog;
 }
 
-@media ($mat-small) {
+@media (max-width: 959px) {
   @include small-dialog;
 }

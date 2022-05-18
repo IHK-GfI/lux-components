@@ -3,7 +3,6 @@ import { NavigationStart, Router } from '@angular/router';
 import { LuxHttpErrorInterceptor } from './lux-http-error-interceptor';
 import { Subscription } from 'rxjs';
 import { ILuxMessage } from '../../lux-common/lux-message-box/lux-message-box-model/lux-message.interface';
-import { LuxBackgroundColorsEnum } from '../../lux-util/lux-colors.enum';
 
 @Component({
   selector: 'lux-http-error',
@@ -56,7 +55,7 @@ export class LuxHttpErrorComponent implements OnInit, OnDestroy, AfterViewInit {
       errors.forEach((error: any) => {
         errorMessages.push({
           text: this.readErrorMessage(error),
-          color: LuxBackgroundColorsEnum.red,
+          color: 'red',
           iconName: 'fa-bug'
         });
       });

@@ -11,13 +11,13 @@
     angewendet zu werden.
   </lux-form-hint>
 </lux-select>
-<lux-input luxLabel="luxMinWidthPx" class="lux-highlight-section" luxType="number" [(luxValue)]="tableExample.minWidthPx">
+<lux-input luxLabel="luxMinWidthPx" class="lux-highlight-section" luxType="number" [luxNumberAlignLeft]="true" [(luxValue)]="tableExample.minWidthPx">
   <lux-form-hint
     >Bestimmt die Minimalbreite der Tabelle in PX (greift erst ab dem nächsten Resize des Fensters).
   </lux-form-hint>
 </lux-input>
-<div fxLayout="column" class="lux-highlight-section">
-  <lux-toggle luxLabel="Höhe festlegen" [(luxChecked)]="tableExample.calculateProportions">
+<div class="lux-highlight-section column">
+  <lux-toggle luxLabel="Höhe festlegen" [(luxChecked)]="tableExample.calculateProportions" [luxNoTopLabel]="true">
     <lux-form-hint>
       Die Höhe des Parent-Divs dieser Tabelle auf eine bestimmte Höhe festlegen.<br />
       Wenn mehr Einträge vorhanden sind, als durch die Höhe darstellbar, wird die Tabelle automatisch scrollbar.
@@ -32,13 +32,13 @@
     <lux-form-hint>Höhe des Parent-Elements für die LuxTable.</lux-form-hint>
   </lux-input>
 </div>
-<lux-toggle luxLabel="luxAutoPaginate" class="lux-highlight-section" [(luxChecked)]="tableExample.autoPagination">
+<lux-toggle luxLabel="luxAutoPaginate" class="lux-highlight-section" [(luxChecked)]="tableExample.autoPagination" [luxNoTopLabel]="true">
   <lux-form-hint>
     Diese Property aktiviert/deaktiviert die automatische Freischaltung der Pagination ab 100 auf einmal dargestellten
     Einträgen.
   </lux-form-hint>
 </lux-toggle>
-<lux-toggle luxLabel="luxHideBorders" class="lux-highlight-section" [(luxChecked)]="tableExample.hideBorders">
+<lux-toggle luxLabel="luxHideBorders" class="lux-highlight-section" [(luxChecked)]="tableExample.hideBorders" [luxNoTopLabel]="true">
   <lux-form-hint>Mithilfe dieser Property können die Borders der Table ausgeschaltet werden.</lux-form-hint>
 </lux-toggle>
 <lux-select
@@ -53,15 +53,15 @@
     >Enthält ein Array von Strings, welche einen %-Wert für die Breite der jeweiligen Spalte beinhalten.
   </lux-form-hint>
 </lux-select>
-<div class="lux-highlight-section" fxLayout="column">
-  <h3 class="lux-mr-3 lux-ml-3">Optionen der Spalten</h3>
-  <lux-accordion class="lux-mr-3 lux-ml-3 lux-mb-3" luxMode="flat">
+<div class="lux-simple-form column">
+  <h3>Optionen der Spalten</h3>
+  <lux-accordion class="lux-mt-3" luxMode="flat">
     <lux-panel *ngFor="let config of tableExample.columnConfigs">
       <lux-panel-header-title> Spalte "{{ config.label }}" </lux-panel-header-title>
       <lux-panel-content>
-        <lux-toggle luxLabel="Sortierbar" [(luxChecked)]="config.sortable">
+        <lux-toggle luxLabel="Sortierbar" [(luxChecked)]="config.sortable" [luxNoTopLabel]="true">
         </lux-toggle>
-        <lux-toggle [(luxChecked)]="config.sticky" [luxDisabled]="config.sticky === undefined">
+        <lux-toggle [(luxChecked)]="config.sticky" [luxDisabled]="config.sticky === undefined" [luxNoTopLabel]="true">
           <lux-form-label>Sticky</lux-form-label>
         </lux-toggle>
         <lux-select

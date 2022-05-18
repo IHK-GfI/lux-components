@@ -4,7 +4,7 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90checkbox"
 >
   <example-base-content>
-    <div fxLayout="column">
+    <div fxLayout="column" fxLayoutGap="20px">
       <h3>Beispiel ohne Reactive-Form</h3>
       <lux-checkbox
         [(luxChecked)]="value"
@@ -18,12 +18,12 @@
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
       >
       </lux-checkbox>
-      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="value !== undefined">
+      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="value !== undefined" style="margin-top: 16px">
         <span fxFlex="0 0 auto">Wert:</span>
         <span fxFlex="auto">{{ value | json }}</span>
       </div>
     </div>
-    <div fxLayout="column" [formGroup]="form">
+    <div fxLayout="column" [formGroup]="form" fxLayoutGap="20px">
       <h3>Beispiel in Reactive-Form</h3>
       <lux-checkbox
         [luxLabel]="label"
@@ -57,6 +57,22 @@
         </div>
       </div>
     </div>
+    <div ngClass="message-box" ngClass.lt-md="message-box-small">
+      <div fxLayout="row" fxLayoutAlign="start center" class="box-header">
+        <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+        <h2>Anwendungsbeispiel für luxNoTopLabel</h2>
+      </div>
+      <div fxLayout="column" [formGroup]="agb" class="content lux-mt-4" >
+        <h3>Bitte bestätigen Sie, dass Sie die folgenden Bedingungen gelesen haben:</h3>
+        <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox1" luxLabel="{{exampleText}}"></lux-checkbox>
+        <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox2" luxLabel="{{exampleText}}"></lux-checkbox>
+        <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox3" luxLabel="{{exampleText}}"></lux-checkbox>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px" >
+        <lux-button [luxRaised]="true" luxColor="" luxLabel="Formular zurücksetzen" (luxClicked)="exampleValidator(false)"></lux-button>
+        <lux-button [luxRaised]="true" luxColor="primary" luxLabel="Weiter" (luxClicked)="exampleValidator(true)"></lux-button>
+      </div>
+    </div>
   </example-base-content>
   <example-base-simple-options>
     <lux-input
@@ -79,6 +95,7 @@
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
+        [luxNoTopLabel]="true"
       ></lux-toggle>
     </div>
     <lux-toggle
@@ -86,19 +103,22 @@
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
           (luxClicked)="form.get(controlBinding).enable()"
           [luxDisabled]="!form.get(controlBinding).disabled"
+          luxColor="primary"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
           (luxClicked)="form.get(controlBinding).disable()"
           [luxDisabled]="form.get(controlBinding).disabled"
+          luxColor="primary"
         ></lux-button>
       </div>
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
@@ -108,12 +128,14 @@
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
       luxLabel="luxRequired"
       (luxCheckedChange)="changeRequired($event)"
+      [luxNoTopLabel]="true"
     >
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer

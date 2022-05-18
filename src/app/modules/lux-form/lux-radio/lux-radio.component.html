@@ -4,6 +4,9 @@
   [luxScalableHeight]="true"
   [luxLabelLongFormat]="luxLabelLongFormat"
   [formGroup]="formGroup"
+  [luxNoLabels]="luxNoLabels" 
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
   *ngIf="formGroup"
 >
   <mat-radio-group
@@ -30,7 +33,7 @@
       [luxAriaRequired]="luxRequired"
       [disabled]="option?.hasOwnProperty('disabled') && option.disabled === true ? true : false"
       luxAriaRequiredSelector=".mat-radio-input"
-      [luxAriaInvalid]="formControl.invalid"
+      [luxAriaInvalid]="'' + formControl.invalid"
       luxAriaInvalidSelector=".mat-radio-input"
       *ngFor="let option of luxOptions; let i = index"
     >

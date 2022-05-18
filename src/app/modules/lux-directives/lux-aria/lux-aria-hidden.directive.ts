@@ -4,8 +4,8 @@ import { LuxAriaBase } from './lux-aria-base';
 @Directive({
   selector: '[luxAriaHidden]'
 })
-export class LuxAriaHiddenDirective extends LuxAriaBase {
-  _luxAriaHidden: string;
+export class LuxAriaHiddenDirective extends LuxAriaBase<boolean> {
+  _luxAriaHidden: boolean;
 
   @Input() luxAriaHiddenSelector: string;
 
@@ -14,7 +14,7 @@ export class LuxAriaHiddenDirective extends LuxAriaBase {
     return this._luxAriaHidden;
   }
 
-  set luxAriaHidden(hidden: string) {
+  set luxAriaHidden(hidden: boolean) {
     this._luxAriaHidden = hidden;
 
     this.renderAria();
@@ -28,7 +28,7 @@ export class LuxAriaHiddenDirective extends LuxAriaBase {
     return this.luxAriaHiddenSelector;
   }
 
-  getValue(): string {
+  getValue(): boolean {
     return this._luxAriaHidden;
   }
 }

@@ -10,12 +10,6 @@
   width: 250px;
 }
 
-.lux-table-no-label ::ng-deep div.lux-form-control-label {
-  min-height: 0 !important;
-  height: 0 !important;
-  padding-top: 0 !important;
-}
-
 lux-button.lux-table-example {
   width: 45px;
   ::ng-deep {
@@ -36,5 +30,49 @@ lux-button.lux-table-example {
     .mat-button-wrapper {
       padding: 0;
     }
+  }
+}
+
+$icon-shift: 42px;
+
+@mixin messagebox {
+  border-left: 8px solid var(--lux-theme-primary-400);
+  border-radius: 4px;
+  background-color: var(--lux-theme-primary-50);
+  padding: 24px 24px;
+  margin: 32px 0;
+
+  .box-header {
+    i {
+      padding-top: 0px;
+    }
+    h2, h3 { 
+      margin: 0;
+      margin-left: 8px;
+    }
+    h3 {
+      color: var(--lux-theme-dark-secondary-text)
+    }
+  }
+  p {
+    margin-top: 32px;
+    margin-left: $icon-shift;
+  }
+  .code-section {
+    margin-left: $icon-shift;
+    overflow: auto;
+  }
+}
+
+.message-box {
+  @include messagebox();
+}
+
+.message-box-small {
+  @include messagebox();
+  padding: 24px 12px;
+
+  p, .code-section {
+    margin-left: 4px;
   }
 }

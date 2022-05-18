@@ -38,7 +38,7 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <div fxLayout="column" class="lux-highlight-section">
+    <div class="lux-highlight-section column">
       <lux-input
         luxLabel="luxIconName"
         luxHint="Diese Property definiert das Icon, welches in dem Badge angezeigt wird."
@@ -55,6 +55,7 @@
         [(luxChecked)]="uppercase"
         luxLabel="luxUppercase"
         luxHint="Die Property ermöglicht eine Uppercase-Darstellung des Textes in der Badge einzuschalten."
+        [luxNoTopLabel]="true"
       >
       </lux-toggle>
     </div>

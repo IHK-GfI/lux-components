@@ -9,8 +9,8 @@
     Version {{ luxVersion }}
   </div>
 
-  <div *ngIf="getLinks()" fxFlex="none" fxLayoutAlign="left center" fxLayout="row" class="lux-app-footer-links">
-    <ng-container *ngFor="let linkItem of getLinks()">
+  <div *ngIf="linkInfos" fxFlex="none" fxLayoutAlign="left center" fxLayout="row" class="lux-app-footer-links">
+    <ng-container *ngFor="let linkItem of linkInfos">
       <lux-link
         [luxLabel]="linkItem.label"
         *ngIf="linkItem.alwaysVisible || desktopView"
@@ -30,7 +30,7 @@
       luxTagId="app_footer_menu"
       #buttonMenu
     >
-      <ng-container *ngFor="let menuItem of getButtons()">
+      <ng-container *ngFor="let menuItem of buttonInfos">
         <lux-menu-item
           [luxLabel]="menuItem.label"
           [luxIconName]="menuItem.iconName"

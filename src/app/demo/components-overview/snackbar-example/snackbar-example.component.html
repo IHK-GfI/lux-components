@@ -4,11 +4,11 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90snackbar"
 >
   <example-base-simple-options>
-    <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents">
+    <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
     </lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutGap.xs="4px">
-      <div class="lux-highlight-section" fxLayout="column" fxFlex="1 0 250px" fxFlex.xs="auto">
+      <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="16px" fxFlex="1 0 250px" fxFlex.xs="auto">
         <lux-input
           luxLabel="text"
           luxHint="Diese Property definiert den Text der Snackbar."
@@ -23,7 +23,7 @@
         >
         </lux-select>
       </div>
-      <div class="lux-highlight-section" fxLayout="column" fxFlex="1 0 250px" fxFlex.xs="auto">
+      <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="16px" fxFlex="1 0 250px" fxFlex.xs="auto">
         <lux-input
           luxLabel="iconName"
           luxHint="Diese Property definiert das Icon der Snackbar."
@@ -45,7 +45,7 @@
         >
         </lux-select>
       </div>
-      <div class="lux-highlight-section" fxLayout="column" fxFlex="1 0 250px" fxFlex.xs="auto">
+      <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="16px" fxFlex="1 0 250px" fxFlex.xs="auto">
         <lux-input
           luxLabel="action"
           luxHint="Diese Property definiert die Action der Snackbar."
@@ -65,7 +65,7 @@
   <example-base-options-actions>
     <div fxLayout="row wrap">
       <lux-button
-        class="lux-mr-3 lux-mb-3"
+        class="lux-mr-4 lux-mb-3"
         luxLabel="Snackbar einblenden"
         luxColor="primary"
         [luxRaised]="true"
@@ -73,9 +73,9 @@
       >
       </lux-button>
       <lux-button
-        class="lux-mr-3 lux-mb-3"
+        class="lux-mr-4 lux-mb-3"
         luxLabel="Snackbar ausblenden"
-        luxColor="warn"
+        luxColor=""
         [luxRaised]="true"
         (luxClicked)="dismissSnackbar()"
       >

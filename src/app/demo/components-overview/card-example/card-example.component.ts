@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
-import { Validators } from '@angular/forms';
+import {FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-card-example',
@@ -30,7 +30,8 @@ export class CardExampleComponent {
 
   // endregion
 
-  constructor(private snackbar: LuxSnackbarService) {}
+  constructor(private snackbar: LuxSnackbarService) {
+  }
 
   onCardClicked() {
     console.log('Card clicked');

@@ -3,8 +3,7 @@
     <lux-panel-header-title>
       luxUploadActionConfig
     </lux-panel-header-title>
-    <lux-panel-content>
-      <div class="lux-highlight-section" fxLayout="column">
+    <lux-panel-content class="lux-simple-form column">
         <lux-input
           luxLabel="iconName"
           luxHint="Diese Eigenschaft legt das Icon fest, welches für das Hochladen von Dateien genutzt wird."
@@ -35,6 +34,7 @@
           luxLabel="hidden"
           luxHint="Diese Property bestimmt ob etwaige Upload-Buttons angezeigt werden."
           [(luxChecked)]="fileExample.uploadActionConfig.hidden"
+          [luxNoTopLabel]="true"
         >
         </lux-toggle>
         <lux-toggle
@@ -42,22 +42,24 @@
           luxHint="Diese Property bestimmt ob der Upload-Button für den Header angezeigt wird."
           [(luxChecked)]="fileExample.uploadActionConfig.hiddenHeader"
           *ngIf="showHeaderConfigProperties"
+          [luxNoTopLabel]="true"
         >
         </lux-toggle>
         <lux-toggle
           luxLabel="disabled"
           luxHint="Diese Property bestimmt ob Upload-Buttons deaktiviert sind oder nicht."
           [(luxChecked)]="fileExample.uploadActionConfig.disabled"
+          [luxNoTopLabel]="true"
         >
         </lux-toggle>
         <lux-toggle
           luxLabel="disabledHeader"
           luxHint="Diese Property bestimmt ob der Upload-Button für den Header deaktiviert ist oder nicht."
           [(luxChecked)]="fileExample.uploadActionConfig.disabledHeader"
+          [luxNoTopLabel]="true"
           *ngIf="showHeaderConfigProperties"
         >
-        </lux-toggle>
-      </div>
+        </lux-toggle> 
     </lux-panel-content>
   </lux-panel>
   <lux-panel>
@@ -65,7 +67,7 @@
       luxDeleteActionConfig
     </lux-panel-header-title>
     <lux-panel-content>
-      <div class="lux-highlight-section" fxLayout="column">
+      <div class="lux-simple-form column">
         <lux-input
           luxLabel="iconName"
           luxHint="Diese Eigenschaft legt das Icon fest, welches für das Löschen von Dateien genutzt wird."
@@ -96,18 +98,21 @@
           luxLabel="hidden"
           luxHint="Diese Property bestimmt ob etwaige Delete-Buttons angezeigt werden."
           [(luxChecked)]="fileExample.deleteActionConfig.hidden"
+          [luxNoTopLabel]="true"
         >
         </lux-toggle>
         <lux-toggle
           luxLabel="hiddenHeader"
           luxHint="Diese Property bestimmt ob der Delete-Button im Header angezeigt wird."
           [(luxChecked)]="fileExample.deleteActionConfig.hiddenHeader"
+          [luxNoTopLabel]="true"
           *ngIf="showHeaderConfigProperties"
         >
         </lux-toggle>
         <lux-toggle
           luxLabel="disabled"
           luxHint="Diese Property bestimmt ob Delete-Buttons deaktiviert sind oder nicht."
+          [luxNoTopLabel]="true"
           [(luxChecked)]="fileExample.deleteActionConfig.disabled"
         >
         </lux-toggle>
@@ -115,6 +120,7 @@
           luxLabel="disabledHeader"
           luxHint="Diese Property bestimmt ob der Delete-Button im Header deaktiviert wird oder nicht."
           [(luxChecked)]="fileExample.deleteActionConfig.disabledHeader"
+          [luxNoTopLabel]="true"
           *ngIf="showHeaderConfigProperties"
         >
         </lux-toggle>
@@ -126,7 +132,7 @@
       luxViewActionConfig
     </lux-panel-header-title>
     <lux-panel-content>
-      <div class="lux-highlight-section" fxLayout="column">
+      <div class="lux-simple-form column">
         <lux-input
           luxLabel="iconName"
           luxHint="Diese Eigenschaft legt das Icon fest, welches für das Anzeigen von Dateien genutzt wird."
@@ -143,12 +149,14 @@
           luxLabel="hidden"
           luxHint="Diese Property bestimmt ob etwaige View-Buttons angezeigt werden."
           [(luxChecked)]="fileExample.viewActionConfig.hidden"
+          [luxNoTopLabel]="true"
         >
         </lux-toggle>
         <lux-toggle
           luxLabel="disabled"
           luxHint="Diese Property bestimmt ob View-Buttons deaktiviert sind oder nicht."
           [(luxChecked)]="fileExample.viewActionConfig.disabled"
+          [luxNoTopLabel]="true"
         >
         </lux-toggle>
       </div>
@@ -159,7 +167,7 @@
       luxDownloadActionConfig
     </lux-panel-header-title>
     <lux-panel-content>
-      <div class="lux-highlight-section" fxLayout="column">
+      <div class="lux-simple-form column">
         <lux-input
           luxLabel="iconName"
           luxHint="Diese Eigenschaft legt das Icon fest, welches für das Downloaden von Dateien genutzt wird."
@@ -176,12 +184,14 @@
           luxLabel="hidden"
           luxHint="Diese Property bestimmt ob etwaige Download-Buttons angezeigt werden."
           [(luxChecked)]="fileExample.downloadActionConfig.hidden"
+          [luxNoTopLabel]="true"
         >
         </lux-toggle>
         <lux-toggle
           luxLabel="disabled"
           luxHint="Diese Property bestimmt ob Download-Buttons deaktiviert sind oder nicht."
           [(luxChecked)]="fileExample.downloadActionConfig.disabled"
+          [luxNoTopLabel]="true"
         >
         </lux-toggle>
       </div>

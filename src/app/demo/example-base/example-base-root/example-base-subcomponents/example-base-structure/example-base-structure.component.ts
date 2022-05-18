@@ -7,7 +7,6 @@ import { LuxAppFooterButtonService } from '../../../../../modules/lux-layout/lux
 import { LuxComponentsConfigService } from '../../../../../modules/lux-components-config/lux-components-config.service';
 import { LuxComponentsConfigParameters } from '../../../../../modules/lux-components-config/lux-components-config-parameters.interface';
 import { Router } from '@angular/router';
-import { LuxUtil } from '../../../../../modules/lux-util/lux-util';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -28,7 +27,6 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
   @ContentChild(ExampleBaseAdvancedOptionsComponent)
   advancedOptionsComponent: ExampleBaseAdvancedOptionsComponent;
 
-  isIE: boolean = LuxUtil.isIE();
   subscription: Subscription;
 
   constructor(

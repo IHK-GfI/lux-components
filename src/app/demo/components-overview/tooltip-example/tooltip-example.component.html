@@ -10,6 +10,8 @@
       [luxTooltipPosition]="position"
       [luxTooltipHideDelay]="hideDelay"
       [luxTooltipShowDelay]="showDelay"
+      class="lux-highlight-section"
+      style="color: var(--lux-theme-primary-color);"
     >
       Tooltip-Target (mouseover for tooltip)
     </div>
@@ -28,6 +30,7 @@
       luxLabel="luxTooltipDisabled"
       luxHint="Mit diesem Flag lässt sich der Tooltip deaktivieren."
       [(luxChecked)]="disabled"
+      [luxNoTopLabel]="true"
     >
     </lux-toggle>
     <lux-select
@@ -39,9 +42,10 @@
     >
     </lux-select>
 
-    <div class="lux-highlight-section" fxLayout="column">
+    <div class="lux-highlight-section column">
       <lux-input
         luxType="number"
+        [luxNumberAlignLeft]="true"
         luxAutocomplete="off"
         luxLabel="luxTooltipHideDelay"
         luxHint="Mit dieser Property wird die zeitliche Verzögerung (in ms) zum Ausblenden des Tooltips eingerichtet."
@@ -50,6 +54,7 @@
       </lux-input>
       <lux-input
         luxType="number"
+        [luxNumberAlignLeft]="true"
         luxAutocomplete="off"
         luxLabel="luxTooltipShowDelay"
         luxHint="Mit dieser Property wird die zeitliche Verzögerung (in ms) zum Einblenden des Tooltips eingerichtet."

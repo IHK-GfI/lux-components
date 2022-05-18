@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { LuxBackgroundColorsEnum, LuxBadgeColor } from '../../lux-util/lux-colors.enum';
+import { LuxBadgeColor, LuxBadgeColors } from "../../lux-util/lux-colors.enum";
 import { LuxUtil } from '../../lux-util/lux-util';
 
 @Component({
@@ -9,7 +9,7 @@ import { LuxUtil } from '../../lux-util/lux-util';
 })
 export class LuxBadgeComponent {
   readonly ICON_SIZE: string = '1x';
-  readonly DEFAULT_BADGE_COLOR = LuxBackgroundColorsEnum.gray;
+  readonly DEFAULT_BADGE_COLOR = 'gray';
 
   @Input() luxUppercase = true;
   @Input() luxIconName = '';
@@ -36,7 +36,7 @@ export class LuxBadgeComponent {
     this._backgroundCSSClass = result.backgroundCSSClass;
     this._fontCSSClass = result.fontCSSClass;
 
-    if (!LuxBackgroundColorsEnum[color]) {
+    if (!LuxBadgeColors.find((entry) => entry === color)) {
       this.luxColor = this.DEFAULT_BADGE_COLOR;
     }
   }

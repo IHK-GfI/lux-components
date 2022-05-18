@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { LuxConsoleService } from "../lux-util/lux-console.service";
 import { LuxStorageService } from '../lux-util/lux-storage.service';
 import { LuxTheme } from './lux-theme';
 
@@ -15,7 +16,6 @@ export class LuxThemeService {
   constructor(private sanitizer: DomSanitizer, private storageService: LuxStorageService) {
     this.themes = [
       { name: 'blue', styleUrl: 'assets/themes/luxtheme-blue-min.css' },
-      { name: 'orange', styleUrl: 'assets/themes/luxtheme-orange-min.css' },
       { name: 'green', styleUrl: 'assets/themes/luxtheme-green-min.css' }
     ];
 
@@ -43,7 +43,7 @@ export class LuxThemeService {
 
   loadTheme() {
     this.loadStyle(this.getTheme().styleUrl).then(() => {
-      console.debug(`LUX-Theme "${ this.getTheme().name }" selected.`);
+      LuxConsoleService.LOG(`LUX-Theme "${ this.getTheme().name }" selected.`);
     });
   }
 
