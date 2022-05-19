@@ -49,6 +49,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
+  @Input() luxOptionMultiline = false;
 
   @Output() luxValueChange: EventEmitter<any> = new EventEmitter();
   @Output() luxOptionSelected: EventEmitter<any> = new EventEmitter();

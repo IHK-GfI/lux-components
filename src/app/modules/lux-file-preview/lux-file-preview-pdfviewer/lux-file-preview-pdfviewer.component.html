@@ -1,6 +1,9 @@
 <lux-file-preview-toolbar>
   <lux-select
-    fxFlex="80px"
+    [luxNoTopLabel]="true"
+    [luxNoBottomLabel]="true"
+    class="zoom-select"
+    fxFlex="100px"
     [luxOptions]="options"
     [(luxSelected)]="zoom"
     luxOptionLabelProp="label"

@@ -1,3 +1,4 @@
+import { ConsoleLogger } from "@angular/compiler-cli/ngcc";
 import { Component, ElementRef, Input, OnInit } from "@angular/core";
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -8,6 +9,7 @@ import { LuxAppFooterLinkService } from './modules/lux-layout/lux-app-footer/lux
 import { LuxSnackbarService } from './modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { LuxThemeService } from './modules/lux-theme/lux-theme.service';
 import { LuxAppService } from './modules/lux-util/lux-app.service';
+import { LuxConsoleService } from "./modules/lux-util/lux-console.service";
 
 @Component({
   selector: 'app-root',
@@ -44,6 +46,10 @@ export class AppComponent implements OnInit {
       new LuxAppFooterLinkInfo('Datenschutz', 'datenschutz', true),
       new LuxAppFooterLinkInfo('Impressum', 'impressum')
     );
+  }
+
+  onSideNavExpandedChange(expanded: boolean) {
+    LuxConsoleService.LOG(`SideNav ${expanded ? 'opened' : 'closed'}`);
   }
 
   onChangeTheme(themeName: string) {

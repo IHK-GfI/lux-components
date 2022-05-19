@@ -2,7 +2,7 @@ export const mockResult: any[] = [
   {
     key: '1',
     kurzText: 'Frankreich',
-    langText1: 'Frankreich'
+    langText1: 'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?'
   },
   {
     key: '2',

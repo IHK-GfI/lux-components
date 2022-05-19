@@ -89,7 +89,7 @@
   <example-base-advanced-options>
     <div fxLayout="row wrap" fxLayoutAlign="space-between start">
       <div fxLayout="column" fxFlex="1 1 auto" fxLayoutGap="0px">
-        <h3>Panel #1-3</h3>
+        <h3>Panel #1-{{ panelConfigArr.length }}</h3>
         <lux-toggle luxLabel="luxDisabled" class="lux-highlight-section" [(luxChecked)]="disabled1Panel" [luxNoTopLabel]="true">
           <lux-form-hint>
             Diese Property deaktiviert das Panel.
@@ -114,7 +114,7 @@
         </div>
       </div>
       <div fxLayout="column" fxFlex="1 1 auto" fxLayoutGap="0px">
-        <h3>Panel #4</h3>
+        <h3>Panel #{{ panelConfigArr.length + 1 }}</h3>
         <lux-toggle luxLabel="luxDisabled" class="lux-highlight-section" [(luxChecked)]="disabled2Panel" [luxNoTopLabel]="true">
           <lux-form-hint>
             Diese Property deaktiviert das Panel.

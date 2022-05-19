@@ -224,28 +224,13 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     downloadLink.download = file.name;
 
     if (file.content instanceof Blob) {
-      if (window.navigator.msSaveBlob) {
-        // IE
-        window.navigator.msSaveOrOpenBlob(file.content, file.name);
-      } else {
-        const url = window.URL.createObjectURL(file.content);
-        downloadLink.href = url;
-        downloadLink.click();
-        window.URL.revokeObjectURL(url);
-      }
+      const url = window.URL.createObjectURL(file.content);
+      downloadLink.href = url;
+      downloadLink.click();
+      window.URL.revokeObjectURL(url);
     } else {
-      if (window.navigator.msSaveBlob) {
-        // IE
-        try {
-          const arrBuffer = LuxUtil.base64ToArrayBuffer(file.content.split(',')[1]);
-          window.navigator.msSaveOrOpenBlob(new Blob([arrBuffer], { type: file.type }), file.name);
-        } catch (e) {
-          console.log(e);
-        }
-      } else {
-        downloadLink.href = file.content;
-        downloadLink.click();
-      }
+      downloadLink.href = file.content;
+      downloadLink.click();
     }
 
     if (this.luxDownloadActionConfig.onClick) {

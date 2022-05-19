@@ -68,6 +68,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   allSelected: boolean;
   mediaQuery: string;
   movedTableColumns: LuxTableColumnComponent[] = [];
+  hasMovedColumnsMap = new Map<string, boolean>();
   tableMinWidth: string;
   tableHeightCSSCalc: string;
   init = true;
@@ -571,6 +572,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
 
     this.tableColumns.forEach((column: LuxTableColumnComponent) => this._dataColumnDefs.push(column.luxColumnDef));
     this.movedTableColumns = [];
+    this.hasMovedColumnsMap.clear();
     // Zuerst die auszublendenden Spalten durchgehen
     this.tableColumns.forEach((tableColumn: LuxTableColumnComponent) => {
       if (
@@ -586,6 +588,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
         if (this._dataColumnDefs.find((column: string) => column === tableColumn.luxResponsiveBehaviour)) {
           // Wenn ja, die Spalte merken und vorerst ausblenden
           this.movedTableColumns.push(tableColumn);
+          this.hasMovedColumnsMap.set(tableColumn.luxResponsiveBehaviour, true);
         }
 
         this._dataColumnDefs = this.dataColumnDefs.filter((dataColumn: string) => dataColumn !== tableColumn.luxColumnDef);

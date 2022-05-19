@@ -18,6 +18,7 @@ import { LuxIconComponent } from '../lux-icon/lux-icon/lux-icon.component';
 import { LuxPipesModule } from '../lux-pipes/lux-pipes.module';
 import { LuxAccordionComponent } from './lux-accordion/lux-accordion.component';
 import { LuxAppFooterComponent } from './lux-app-footer/lux-app-footer.component';
+import { LuxAppHeaderActionNavItemCustomComponent } from "./lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item-custom.component";
 import { LuxAppHeaderRightNavComponent } from './lux-app-header/lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
 import { LuxAppHeaderNextUserMenuComponent } from './lux-app-header-next/lux-app-header-next-subcomponent/lux-app-header-next-user-menu.component';
 import { LuxLangSelectComponent } from './lux-app-header/lux-app-header-subcomponents/lux-lang-select/lux-lang-select.component';
@@ -148,6 +149,7 @@ import { LuxDetailHeaderLightComponent } from './lux-master-detail-light/lux-det
     LuxStepperVerticalComponent,
     LuxAppHeaderActionNavComponent,
     LuxAppHeaderActionNavItemComponent,
+    LuxAppHeaderActionNavItemCustomComponent,
     LuxLayoutRowItemDirective,
     LuxLayoutComponent,
     LuxLayoutCardRowComponent,
@@ -213,6 +215,7 @@ import { LuxDetailHeaderLightComponent } from './lux-master-detail-light/lux-det
     LuxStepperLargeComponent,
     LuxAppHeaderActionNavComponent,
     LuxAppHeaderActionNavItemComponent,
+    LuxAppHeaderActionNavItemCustomComponent,
     LuxLayoutRowItemDirective,
     LuxLayoutComponent,
     LuxLayoutCardRowComponent,
@@ -230,7 +233,8 @@ import { LuxDetailHeaderLightComponent } from './lux-master-detail-light/lux-det
     LuxMasterHeaderLightComponent,
     LuxMasterContentLightComponent,
     LuxDetailContentLightComponent,
-    LuxDetailHeaderLightComponent
+    LuxDetailHeaderLightComponent,
+    LuxAppHeaderActionNavItemCustomComponent
   ],
   providers: [],
   entryComponents: [LuxIconComponent, LuxDetailWrapperComponent, LuxStepperLargeMobileOverlayComponent]

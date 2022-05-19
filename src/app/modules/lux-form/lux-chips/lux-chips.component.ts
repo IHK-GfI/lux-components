@@ -50,7 +50,8 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterView
   @Input() luxMultiple = true;
   @Input() luxLabelLongFormat = false;
   @Input() luxPlaceholder = $localize`:@@luxc.chips.input.placeholder.lbl:eingeben oder auswählen`;
-
+  @Input() luxOptionMultiline = false;
+  
   @Output() luxChipAdded = new EventEmitter<string>();
 
   @ContentChildren(LuxChipComponent) luxChipComponents: QueryList<LuxChipComponent>;

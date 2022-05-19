@@ -104,7 +104,7 @@
           (opened)="onAutoCompleteOpened()"
           #auto="matAutocomplete"
         >
-          <mat-option *ngFor="let option of filteredOptions" [value]="option">
+          <mat-option *ngFor="let option of filteredOptions" [value]="option" [ngClass]="{ 'lux-option-multiline': luxOptionMultiline }">
             {{ option }}
           </mat-option>
         </mat-autocomplete>

@@ -138,6 +138,7 @@ export * from './src/app/modules/lux-form/lux-form-control/lux-form-control-subc
 // Classes
 export * from './src/app/modules/lux-form/lux-datepicker/lux-datepicker-adapter';
 export * from './src/app/modules/lux-form/lux-datetimepicker/lux-datetimepicker-adapter';
+export * from './src/app/modules/lux-form/lux-datetimepicker/lux-datetimepicker-model/lux-datetimepicker-types';
 export * from './src/app/modules/lux-form/lux-form-model/lux-form-checkable-base.class';
 export * from './src/app/modules/lux-form/lux-form-model/lux-form-input-base.class';
 export * from './src/app/modules/lux-form/lux-form-model/lux-form-selectable-base.class';
@@ -204,6 +205,7 @@ export * from './src/app/modules/lux-layout/lux-app-content/lux-app-content.comp
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component';
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav.component';
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item.component';
+export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item-custom.component';
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
 export * from './src/app/modules/lux-layout/lux-card/lux-card.component';
 export * from './src/app/modules/lux-layout/lux-card/lux-card-subcomponents/lux-card-info.component';

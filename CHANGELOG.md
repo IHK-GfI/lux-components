@@ -1,3 +1,36 @@
+# Version 13.0.0
+## New
+- **allgemein**: Update auf Angular 13
+
+## Breaking changes
+- IE11 wird nicht länger unterstützt.
+- `luxSelected` der LUX-Table ist jetzt immer ein `Set<any>` und kein Array mehr. Strenggenommen war es bereits an einigen Codestellen ein Set und kein Array. Ab dieser Version ist es einheitlich zum Set geworden.
+- LUX-File-List: Die Property `luxSelectedFilesUseAlwaysArray` wurde entfernt.
+- Die Property `luxIconAlignWithLabel` aus den Komponenten `lux-button` und `lux-icon` wurde entfernt.
+- In der `tsconfig.json` in den LUX-Components wurde der Wert von `strictTemplates` auf `true`gesetzt. Aus diesem Grund wurden die folgenden Typen eingeführt:
+  - LuxActionColorType
+  - LuxBadgeColor
+  - LuxBadgeSize
+  - LuxBadgePosition
+  - LuxChipsOrientation
+  - LuxDatepickerStartViewType
+  - LuxProgressModeType
+
+# Version 11.14.0
+## New
+- **lux-app-header**: Im App-Header können eigene Komponenten (z.B. Menüs) angegeben werden. [Issue 192](https://github.com/IHK-GfI/lux-components/issues/192)
+- **lux-app-footer**: Footer-Button "verschwindet" in Simulation iPhone XR. [Issue 196](https://github.com/IHK-GfI/lux-components/issues/196)
+- **lux-menu**: Neue Property 'luxMenuTriggerIconShowRight' eingeführt. [Issue 192](https://github.com/IHK-GfI/lux-components/issues/192)
+- **lux-menu**: Berechnung der sichtbaren Menübuttons korrigiert. [Issue 196](https://github.com/IHK-GfI/lux-components/issues/196)
+- **lux-filter-form**: Die neue Property luxDisableShortcut ermöglicht das Abschalten dieser Funktion für den Filter. [Issue 192](https://github.com/IHK-GfI/lux-components/issues/192)
+
+# Version 11.13.0
+## New
+- **lux-autocomplete**, **lux-chips**, **lux-lookup-autocomplete**: Mehrzeilige Mat-Option im Dropdown-Menü eingeführt. [Issue 177](https://github.com/IHK-GfI/lux-components/issues/177)
+- **lux-table**: Spalten-Name bei Spaltenverschiebung mit anzeigen. [Issue 171](https://github.com/IHK-GfI/lux-components/issues/171)
+- **lux-side-nav**: LuxSideNav - toggle-Event rausgeben [Issue 186](https://github.com/IHK-GfI/lux-components/issues/186)
+- **lux-dialog**: Hilfedialoge auch in LUX-Dialogen ermöglichen. [Issue 188](https://github.com/IHK-GfI/lux-components/issues/188)
+
 # Version 11.12.0
 ## New
 - **lux-chips**: Placeholder, Pfeilbutton und breite Vorschlagsliste ergänzt. [Issue 178](https://github.com/IHK-GfI/lux-components/issues/178)

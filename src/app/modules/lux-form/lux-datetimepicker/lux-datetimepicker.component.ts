@@ -23,6 +23,7 @@ import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
 import { LuxDatetimeOverlayComponent } from './lux-datetime-overlay/lux-datetime-overlay.component';
 import { LuxDateTimePickerAdapter } from './lux-datetimepicker-adapter';
+import { LuxDateFilterFn, LuxDateTimeStartView } from "./lux-datetimepicker-model/lux-datetimepicker-types";
 
 export const APP_DATE_TIME_FORMATS = {
   parse: {
@@ -35,9 +36,6 @@ export const APP_DATE_TIME_FORMATS = {
     monthYearA11yLabel: { year: 'numeric', month: 'long' }
   }
 };
-
-export declare type LuxDateFilterFn = (date: Date | null) => boolean;
-export declare type LuxDateTimeStartView = 'month' | 'year' | 'multi-year';
 
 @Component({
   selector: 'lux-datetimepicker',

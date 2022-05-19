@@ -23,7 +23,7 @@ export class ChipExampleComponent {
   ];
 
   openedPanel: number;
-
+  longOpitionLabel='Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
   // endregion
 
   // region Properties der Component
@@ -34,9 +34,10 @@ export class ChipExampleComponent {
   placeholder = 'eingeben oder auswählen';
   chipOrientation: LuxChipsOrientation = 'horizontal';
   autocomplete = true;
-  autocompleteOptions = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3'];
+  autocompleteOptions = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3',  this.longOpitionLabel];
   multiple = true;
-
+  optionMultiline = false;
+  
   groupSelected = true;
   groupRemovable = true;
   groupDisabled = false;

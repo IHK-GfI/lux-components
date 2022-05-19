@@ -1,3 +1,4 @@
+import { ConsoleLogger } from "@angular/compiler-cli/ngcc";
 import {
   AfterContentInit,
   AfterViewChecked,
@@ -15,6 +16,7 @@ import {
   ViewChild
 } from "@angular/core";
 import { LuxUtil } from "../../lux-util/lux-util";
+import { LuxThemeService } from '../../lux-theme/lux-theme.service';
 import { Subscription } from "rxjs";
 import { LuxMenuItemComponent } from "./lux-menu-subcomponents/lux-menu-item.component";
 import { LuxMenuTriggerComponent } from "./lux-menu-subcomponents/lux-menu-trigger.component";
@@ -27,10 +29,12 @@ import { LuxMenuTriggerComponent } from "./lux-menu-subcomponents/lux-menu-trigg
 })
 export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnDestroy {
   // Diese Werte müssen angepasst werden, sollte das Styling dieser Component entsprechend geändert worden sein
-  static readonly PADDING_PX = 16;
-  static readonly MARGIN_PX = 8;
-  static readonly FONT_PX = 14;
-  static readonly ICON_PX = 22;
+  private readonly PADDING_PX: number;
+  private readonly MARGIN_PX: number;
+  private readonly ICON_PX: number; // 15px breite plus 8px gap zwischen icon - label
+  private readonly FONT_SIZE: number;
+  private readonly FONT_WEIGHT: number;
+  private readonly FONT_FAMILY: String;
 
   // Alle verfügbaren MenuItems als Array
   private _menuItems: LuxMenuItemComponent[] = [];
@@ -53,6 +57,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
 
   @Input() luxMenuLabel = '';
   @Input() luxMenuIconName = 'menu';
+  @Input() luxMenuTriggerIconShowRight = false;
   @Input() luxClassName: string;
   @Input() luxTagId: string;
   @Input() luxToggleDisabled = false;
@@ -109,8 +114,33 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     this.cdr.detectChanges();
   }
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private cdr: ChangeDetectorRef, private themeService: LuxThemeService) {
     this.canvas = document.createElement('canvas');
+
+    // die folgenden Werte sind für die Berechnug der Breite der extended Menüitems    
+    // sie müssen entsprechend des aktuellen Themes gesetzt werden.
+    // Wird das Theme geändert müssen auch diese Werte angepasst werden.
+    // aktuell wird für die Klasse .lux-extende-menu die Breite der Icons auf 15px gesetzt. 
+    // bei Änderungend es Icon-Sets muss dieser Wert evtl. angepasst werden
+
+    switch(this.themeService.getTheme().name) {
+      case 'green': 
+        this.PADDING_PX = 16;
+        this.MARGIN_PX = 12;
+        this.ICON_PX = 23; // 15px Breite plus 8px Gap zwischen Icon - Label
+        this.FONT_SIZE = 22;
+        this.FONT_WEIGHT = 400;
+        this.FONT_FAMILY = '"Korb", "Source Sans Pro","Helvetica","Arial","sans-serif"';
+        break;
+
+      default:
+        this.PADDING_PX = 16;
+        this.MARGIN_PX = 12;
+        this.ICON_PX = 23; // 15px Breite plus 8px Gap zwischen Icon - Button-Label
+        this.FONT_SIZE = 14;
+        this.FONT_WEIGHT = 700;
+        this.FONT_FAMILY = 'Roboto, "Helvetica Neue", sans-serif';
+    }
   }
 
   ngAfterContentInit() {
@@ -180,7 +210,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       return;
     }
 
-    const menuTriggerWidth = this.menuTriggerElRef.nativeElement.offsetWidth;
+    const menuTriggerWidth = Math.max(this.menuTriggerElRef.nativeElement.offsetWidth, 50);
 
     let availableWidth: number = this.menuExtendedContainer.nativeElement.offsetWidth;
     let count = 0;
@@ -188,39 +218,37 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     availableWidth -= menuTriggerWidth;
 
     // mit condition sind hier die Zustände luxVisible = true || false gemeint
+    this.visibleMenuItems = []; // die sichtbaren Menuitems werden neu einsortiert
     for (const condition of [true, false]) {
       for (let i = 0; i < this.menuItems.length; i++) {
         const menuItem = this.menuItems[i];
-
-        if (menuItem.luxHidden) {
-          continue;
-        }
-
-        if (menuItem.luxAlwaysVisible === condition) {
-          // Wenn es das letzte sichtbare Menüitem ist, wird geprüft, ob es anstelle des
-          // Menüitemtriggers dargestellt werden kann.
-          if (
-            this.visibleMenuItems &&
-            menuItem === this.visibleMenuItems[this.visibleMenuItems.length - 1] &&
-            availableWidth + menuTriggerWidth >= menuItem.width
-          ) {
-            availableWidth += menuTriggerWidth;
-          }
-
-          availableWidth -= menuItem.width;
-
-          if (availableWidth >= 0 && count < this.luxMaximumExtended) {
-            menuItem.extended = true;
-            count++;
-          } else {
-            menuItem.extended = false;
-          }
+        if (menuItem.luxAlwaysVisible === condition && !menuItem.luxHidden) {
+          this.visibleMenuItems.push(menuItem)
         }
       }
     }
+    for (let i = 0; i < this.visibleMenuItems.length; i++) {
+      const menuItem = this.visibleMenuItems[i];
+      // Wenn es das letzte sichtbare Menüitem ist, wird geprüft, ob es anstelle des
+      // Menüitemtriggers dargestellt werden kann.
+      if (
+        menuItem === this.visibleMenuItems[this.visibleMenuItems.length - 1] &&
+        availableWidth + menuTriggerWidth >= menuItem.width
+      ) {
+        availableWidth += menuTriggerWidth;
+      }
 
-    // die Anzahl der extended dargestellten Items der Gesamtzahl entspricht blenden wir den Toggle aus
-    this.visibleMenuItems = this.menuItems.filter((item: LuxMenuItemComponent) => !item.luxHidden);
+      availableWidth -= menuItem.width;
+
+      if (availableWidth >= 0 && count < this.luxMaximumExtended) {
+        menuItem.extended = true;
+        count++;
+      } else {
+        menuItem.extended = false;
+      }  
+    }
+
+    // wenn die Anzahl der extended dargestellten Items der Gesamtzahl entspricht blenden wir den Toggle aus
     const extendedMenuItems = this.visibleMenuItems.filter((item: LuxMenuItemComponent) => item.extended);
     this.hideToggle = extendedMenuItems.length === this.visibleMenuItems.length;
     this.cdr.detectChanges();
@@ -250,10 +278,10 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     }
 
     return (
-      LuxMenuComponent.PADDING_PX +
-      (menuItem.luxIconName ? LuxMenuComponent.ICON_PX : 0) +
+      this.PADDING_PX +
+      (menuItem.luxIconName ? this.ICON_PX : 0) +
       (!menuItem.luxHideLabelIfExtended ? this.getTextWidth(menuItem.luxLabel) : 0) +
-      LuxMenuComponent.MARGIN_PX
+      this.MARGIN_PX
     );
   }
 
@@ -269,11 +297,11 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
 
     const canvas = this.canvas;
     const context = canvas.getContext('2d');
-    context.font = `${LuxMenuComponent.FONT_PX}px sans-serif`;
+    context.font = `${this.FONT_WEIGHT} ${this.FONT_SIZE}px ${this.FONT_FAMILY}`;
     const metrics = context.measureText(text);
-
-    // zusätzlich nutzen wir hier einen Standard-Offset von 20px
-    return metrics.width + 20;
+    // zusätzlich nutzen wir hier einen Standard-Offset von 20px, mit den angepassten Werten für die Themes, aktuell auf 0 gesetzt
+    let offset = 0;
+    return metrics.width + offset;
   }
 
   hasVisibleMenuItems(): boolean {

@@ -10,9 +10,13 @@
     luxAriaTitleLinkLabel="LUX Components / Zur Hauptseie"
     [luxLocaleSupported]="['de', 'en']"
     *ngIf="this.luxAppHeader !== 'none'"
-    (luxClicked)="router.navigate(['/']);"
+    (luxClicked)="router.navigate(['/'])"
   >
-    <lux-side-nav luxDashboardLink="https://github.com/IHK-GfI/lux-components/wiki" [luxOpenLinkBlank]="true">
+    <lux-side-nav
+      luxDashboardLink="https://github.com/IHK-GfI/lux-components/wiki"
+      [luxOpenLinkBlank]="true"
+      (luxSideNavExpandedChange)="onSideNavExpandedChange($event)"
+    >
       <lux-side-nav-header>
         <h3 class="lux-side-nav-header-greeting">Navigation</h3>
       </lux-side-nav-header>
@@ -88,39 +92,16 @@
     </lux-side-nav>
     <lux-app-header-action-nav>
       <lux-app-header-action-nav-item
-      luxLabel="Komponenten"
-      luxColor="primary"
-      luxAriaLabel="Nachrichten anzeigen"
-      luxTagId="action0"
-      (luxClicked)="goToComponents()"
-      >
-      </lux-app-header-action-nav-item>
-      <lux-app-header-action-nav-item
-        luxLabel="Formulare"
-        luxColor="primary"
+        fxShow="true" fxShow.xs="false"
+        luxIconName="fas fa-bell"
+        luxColor="accent"
         luxAriaLabel="Nachrichten anzeigen"
         luxTagId="action0"
         (luxClicked)="goToForm()"
       >
       </lux-app-header-action-nav-item>
       <lux-app-header-action-nav-item
-        luxLabel="Baseline"
-        luxColor="primary"
-        luxAriaLabel="Nachrichten anzeigen"
-        luxTagId="action0"
-        (luxClicked)="goToBaseline()"
-      >
-      </lux-app-header-action-nav-item>
-      <lux-app-header-action-nav-item 
-        luxLabel="Konfiguration"
-        luxColor="primary"
-        luxAriaLabel="Nachrichten anzeigen"
-        luxTagId="action0"
-        (luxClicked)="goToConfig()"
-      >
-      </lux-app-header-action-nav-item>
-
-     <lux-app-header-action-nav-item
+        fxShow="true" fxShow.xs="false"
         luxIconName="fas fa-trash"
         luxColor="warn"
         luxAriaLabel="Nachrichten löschen"
@@ -128,8 +109,17 @@
         [luxDisabled]="true"
         (luxClicked)="actionClicked('#1 Action clicked!')"
       >
-      </lux-app-header-action-nav-item> -->
-   <!-- </lux-app-header-action-nav>
+      </lux-app-header-action-nav-item>
+      <lux-app-header-action-nav-item>
+        <lux-app-header-action-nav-item-custom>
+          <lux-menu luxMenuLabel="IHK" luxMenuIconName="fas fa-caret-down" [luxMenuTriggerIconShowRight]="true" [luxDisplayExtended]="false">
+            <lux-menu-item luxLabel="IHK 101" luxIconName="far fa-building" (luxClicked)="actionClicked('IHK 101-Action clicked!')"></lux-menu-item>
+            <lux-menu-item luxLabel="IHK 106" luxIconName="far fa-building" (luxClicked)="actionClicked('IHK 106-Action clicked!')"></lux-menu-item>
+            <lux-menu-item luxLabel="IHK 189" luxIconName="far fa-building" (luxClicked)="actionClicked('IHK 189-Action clicked!')"></lux-menu-item>
+          </lux-menu>
+        </lux-app-header-action-nav-item-custom>
+      </lux-app-header-action-nav-item>
+    </lux-app-header-action-nav>
     <lux-app-header-right-nav *ngIf="luxMode === 'stand-alone'">
       <lux-menu-item luxLabel="Abmelden" luxIconName="fa-power-off" luxTagId="abmelden-menu-item"></lux-menu-item>
       <lux-menu-item luxLabel="Theme (blue)" luxIconName="fa-paint-brush" luxTagId="theme-blue-menu-item" (luxClicked)="onChangeTheme('blue')"></lux-menu-item>
@@ -185,5 +175,5 @@
 
   </lux-app-header-next>
   <lux-app-content luxAriaRoleMainLabel=""></lux-app-content>
-  <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="12.0.0"></lux-app-footer>
+  <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="13.0.0"></lux-app-footer>
 </div>

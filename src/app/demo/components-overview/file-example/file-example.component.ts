@@ -38,7 +38,7 @@ export abstract class FileExampleComponent implements OnInit {
   capture = '';
   accept: string;
   maximumExtended = 6;
-  alwaysUseArray = true;
+  alwaysUseArray = false;
 
   uploadActionConfig: ILuxFileListActionConfig = {
     disabled: false,

@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from "@angular/core/testing";
 import { By } from '@angular/platform-browser';
 import { LuxIconComponent } from '../../lux-icon/lux-icon/lux-icon.component';
 import { LuxLabelComponent } from '../../lux-common/lux-label/lux-label.component';
@@ -61,7 +61,7 @@ describe('LuxTabsComponent', () => {
       });
     });
 
-    it('mit Animation', (done: DoneFn) => {
+    it('mit Animation', fakeAsync(() => {
       // Given
       expect(component.animated).toBe(false);
       expect(component.currentTabLabel).toBeUndefined();
@@ -81,10 +81,11 @@ describe('LuxTabsComponent', () => {
         expect(component.animated).toBe(true);
         expect(component.currentTabIndex).toBe(1);
         expect(component.currentTabLabel).toBe('Tabname 2');
-
-        done();
       });
-    });
+
+      flush();
+      discardPeriodicTasks();
+    }));
   });
 
   describe('Attribute "luxDisabled"', () => {
@@ -387,7 +388,7 @@ describe('LuxTabsComponent', () => {
 
     it('Attribut "tabCounter" nicht gesetzt.', fakeAsync(() => {
       // Nachbedingungen testen
-      expect(getBadgeElement(fixture).offsetWidth).toBe(0, 'Nachbedingung 1');
+      expect(getBadgeElement(fixture)).toBeNull( 'Nachbedingung 1');
     }));
   });
 });
@@ -556,5 +557,6 @@ export function getBadgeElement(fixture: ComponentFixture<any>): any {
     badgeSelector = '.lux-tab-icon .mat-badge-content';
   }
 
-  return fixture.debugElement.query(By.css(badgeSelector)).nativeElement;
+  const found = fixture.debugElement.query(By.css(badgeSelector));
+  return found ? found.nativeElement : null;
 }

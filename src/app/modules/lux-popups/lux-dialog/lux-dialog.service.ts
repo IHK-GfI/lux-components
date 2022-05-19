@@ -33,6 +33,20 @@ export class LuxDialogService {
   }
 
   /**
+   *  Siehe LuxDialogRef.storeDialogRef
+   */
+  storeDialogRef() {
+    this.luxDialogRef.storeDialogRef();
+  }
+
+  /**
+   * Siehe LuxDialogRef.restoreDialogRef
+   */
+  restoreDialogRef() {
+    this.luxDialogRef.restoreDialogRef();
+  }
+
+  /**
    * Öffnet einen Dialog basierend auf der LuxDialogComponent und der LuxDialogConfig.
    *
    * @param config

@@ -8,5 +8,7 @@
   [luxDisabled]="luxDisabled"
   [luxTagId]="luxTagId"
   (luxClicked)="luxClicked.emit($event)"
+  *ngIf="!customComponent"
 >
 </lux-button>
+<ng-content select="lux-app-header-action-nav-item-custom"></ng-content>
