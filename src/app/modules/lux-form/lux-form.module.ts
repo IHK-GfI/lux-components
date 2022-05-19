@@ -149,7 +149,8 @@ import { LuxInputAuthenticSuffixComponent } from './lux-input-authentic/lux-inpu
     LuxFileCaptureDirective,
     LuxMaxLengthDirective,
     LuxFileUploadComponent,
-    LuxInputAuthenticComponent
+    LuxInputAuthenticComponent,
+    LuxFormControlWrapperComponent
   ],
   providers: []
 })
