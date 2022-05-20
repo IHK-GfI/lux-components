@@ -1,36 +1,49 @@
 <div fxLayout="column" fxLayoutAlign="start start" class="page-content" luxAriaRole="main">
   <h4 class="page-title" style="font-size: 34px;">Willkommen</h4>
-  <div fxLayout="row wrap" fxFlex="1 1 auto" fxLayoutAlign="start start" fxLayoutGap="24px grid">
-    <lux-tile-authentic 
-      (luxClicked)="goTo('Components')" 
-      luxLabel="Komponenten"
-      luxSubTitle="Alle Komponenten auf einem Blick"
-      luxIconName="home_repair_service">  
-    >
-      <lux-icon luxIconName="home_repair_service"></lux-icon>
-    </lux-tile-authentic>
-    <lux-tile-authentic 
-      (luxClicked)="goTo('Form')" 
-      luxLabel="Formulare"
-      luxSubTitle="Layoutbeispiele für Formulare"
-      luxIconName="article">
-    >  
-      <lux-icon luxIconName="article"></lux-icon>
-    </lux-tile-authentic>
-    <lux-tile-authentic 
-      (luxClicked)="goTo('Baseline')" 
-      luxLabel="Baseline"
-      luxSubTitle="Vergleich der Form-Controls und ihrer vertikalen Ausrichten"
-      luxIconName="foundation">
-    >
-      <lux-icon luxIconName="foundation"></lux-icon>
-    </lux-tile-authentic>
-    <lux-tile-authentic 
-      (luxClicked)="goTo('Configuration')" 
-      luxLabel="Konfiguration" 
-      luxSubTitle="Einstellungen in der Konfiguration live testen"
-      luxIconName="mediation">
-      <lux-icon luxIconName="mediation"></lux-icon>
-    </lux-tile-authentic>
+  <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px grid">
+    <div class="lux-tile-authentic-wrapper-demo">
+      <lux-tile-authentic 
+        (luxClicked)="goTo('Components')" 
+        luxLabel="Komponenten"
+        luxSubTitle="Alle Komponenten auf einem Blick"
+        luxIconName="home_repair_service"
+        fxFlex="1 1 100"
+      >  
+        <lux-icon luxIconName="home_repair_service"></lux-icon>
+      </lux-tile-authentic>
+    </div>
+    <div class="lux-tile-authentic-wrapper-demo">
+      <lux-tile-authentic 
+        (luxClicked)="goTo('Form')" 
+        luxLabel="Formulare"
+        luxSubTitle="Layoutbeispiele für Formulare"
+        luxIconName="article"
+        fxFlex="1 1 100"
+      >  
+        <lux-icon luxIconName="article"></lux-icon>
+      </lux-tile-authentic>
+    </div>
+    <div class="lux-tile-authentic-wrapper-demo">
+      <lux-tile-authentic 
+        (luxClicked)="goTo('Baseline')" 
+        luxLabel="Baseline"
+        luxSubTitle="Vergleich der Form-Controls und ihrer vertikalen Ausrichten"
+        luxIconName="foundation"
+        fxFlex="1 1 100"
+      >
+        <lux-icon luxIconName="foundation"></lux-icon>
+      </lux-tile-authentic>
+    </div>
+    <div class="lux-tile-authentic-wrapper-demo">
+      <lux-tile-authentic 
+        (luxClicked)="goTo('Configuration')" 
+        luxLabel="Konfiguration" 
+        luxSubTitle="Einstellungen in der Konfiguration live testen"
+        luxIconName="mediation"
+        fxFlex="1 1 100"
+      >
+        <lux-icon luxIconName="mediation"></lux-icon>
+      </lux-tile-authentic>
+    </div>
   </div> 
 </div>

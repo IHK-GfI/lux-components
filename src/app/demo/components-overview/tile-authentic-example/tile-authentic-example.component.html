@@ -1,44 +1,31 @@
 <example-base-structure
-  exampleTitle="Tile"
-  exampleIconName="fas fa-qrcode"
+  exampleTitle="Tile-Authentic"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tile"
 >
   <example-base-content [exampleCentered]="true" fxLayout="column" fxLayoutGap="32px">
-    <lux-tile-authentic
-      [luxLabel]="label"
-      [luxSubTitle]="subTitle"
-      [luxBadgeNotification]="badgeContent"
-      [luxBadgeColor]="badgeColor"
-      [luxBadgePosition]="badgePosition"
-      [luxBadgeSize]="badgeSize"
-      [luxBadgeCap]="badgeCap"
-      [luxBadgeDisabled]="badgeDisabled"
-      luxTagId="example-tile"
-      (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
-      class="lux-mt-5"
-    >
-      <lux-icon luxIconName="pets" *ngIf="showIcon"></lux-icon>
-      <lux-image
-        luxImageSrc="assets/svg/red_power_button.svg"
-        luxImageWidth="50px"
-        luxImageHeight="50px"
-        *ngIf="!showIcon"
-      ></lux-image>
-    </lux-tile-authentic>
-
-    <h3><lux-link-plain luxLabel="Übersicht" luxHref="/components-overview/example/tile-overview"></lux-link-plain></h3>    
-<!-- 
-    <div fxLayout="row wrap" fxLayoutGap="20px grid" fxFlex="80" style="margin: 15px">
-      <div *ngFor="let tile of [1,2,3,4,5,6,7]">
-        <lux-tile-authentic 
-          luxLabel="Test" 
-          luxBadgeNotification="{{ tile }}" 
-          [luxBadgeColor]="badgeColor"
-          [luxBadgePosition]="badgePosition"
-          [luxBadgeSize]="badgeSize">
-        </lux-tile-authentic>
-      </div>
-    </div> -->
+    <div class="lux-tile-authentic-wrapper-demo lux-mt-5">
+      <lux-tile-authentic
+        [luxLabel]="label"
+        [luxSubTitle]="subTitle"
+        [luxBadgeNotification]="badgeContent"
+        [luxBadgeColor]="badgeColor"
+        [luxBadgePosition]="badgePosition"
+        [luxBadgeSize]="badgeSize"
+        [luxBadgeCap]="badgeCap"
+        [luxBadgeDisabled]="badgeDisabled"
+        luxTagId="example-tile"
+        (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
+      >
+        <lux-icon luxIconName="pets" *ngIf="showIcon"></lux-icon>
+        <lux-image
+          luxImageSrc="assets/svg/red_power_button.svg"
+          luxImageWidth="50px"
+          luxImageHeight="50px"
+          *ngIf="!showIcon"
+        ></lux-image>
+      </lux-tile-authentic>
+    </div>
+    <h3><lux-link-plain luxLabel="Übersicht" luxHref="/components-overview/example/tile-overview"></lux-link-plain></h3>
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">

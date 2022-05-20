@@ -1,7 +1,7 @@
 <div class="page">
-  <div fxLayout="column" fxLayoutGap="20px">
-    <div fxLayout="row" fxFlex="0 1 auto" fxLayoutAlign="start start" fxLayoutGap="20px"  *ngFor="let color of ['primary', 'accent', 'warn', 'default']">
-      <div>
+  <div fxLayout="column" fxLayoutGap="24px">
+    <div fxLayout="row wrap"  fxLayoutAlign="start start" fxLayoutGap="24px grid"  *ngFor="let color of ['primary', 'accent', 'warn', 'default']">
+      <div class="lux-tile-authentic-wrapper-demo">
         <lux-tile-authentic
           luxLabel="luxBadgeNotification"
           luxSubTitle="luxBadgeColor: {{ color }}, luxBadgeSize: small, luxBadgePosition: above after"
@@ -9,12 +9,11 @@
           luxBadgeColor="{{color}}"
           luxBadgeSize="small"
           luxTagId="example-tile"
-          [luxBadgeNoBorder]="true"
         >
         <lux-icon luxIconName="pets" ></lux-icon>
       </lux-tile-authentic>
       </div>
-      <div>
+      <div class="lux-tile-authentic-wrapper-demo">
         <lux-tile-authentic
           luxLabel="luxBadgeNotification"
           luxSubTitle="luxBadgeColor: {{ color }}, luxBadgeSize: medium, luxBadgePosition: above after"
@@ -22,12 +21,11 @@
           luxBadgeColor="{{color}}"
           luxBadgeSize="medium"
           luxTagId="example-tile"
-          [luxBadgeNoBorder]="true"
         >
         <lux-icon luxIconName="pets" ></lux-icon>
       </lux-tile-authentic>
     </div>
-    <div>
+    <div class="lux-tile-authentic-wrapper-demo">
       <lux-tile-authentic
         luxLabel="mit luxBadgeNotification"
         luxSubTitle="luxBadgeColor: {{ color }}, luxBadgeSize: large, luxBadgePosition: above after"
@@ -35,15 +33,14 @@
         luxBadgeColor="{{color}}"
         luxBadgeSize="large"
         luxTagId="example-tile"
-        [luxBadgeNoBorder]="true"
       >
         <lux-icon luxIconName="pets" ></lux-icon>
       </lux-tile-authentic>
     </div>
 
     </div>
-    <div fxLayout="row" fxFlex="0 1 auto" fxLayoutAlign="start start" fxLayoutGap="20px">
-    <div>
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px grid">
+      <div class="lux-tile-authentic-wrapper-demo">
       <lux-tile-authentic
         luxLabel="luxBadgeNotification"
         luxSubTitle=" luxBadgeDisabled: true, luxBadgeSize: small, luxBadgePosition: above after"
@@ -51,12 +48,11 @@
         [luxBadgeDisabled]="true"
         luxBadgeSize="small"
         luxTagId="example-tile"
-        [luxBadgeNoBorder]="true"
       >
         <lux-icon luxIconName="pets" ></lux-icon>
       </lux-tile-authentic>
     </div>
-    <div>
+    <div class="lux-tile-authentic-wrapper-demo">
       <lux-tile-authentic
         luxLabel="luxBadgeNotification"
         luxSubTitle=" luxBadgeDisabled: true, luxBadgeSize: medium, luxBadgePosition: above after"
@@ -64,12 +60,11 @@
         [luxBadgeDisabled]="true"
         luxBadgeSize="medium"
         luxTagId="example-tile"
-        [luxBadgeNoBorder]="true"
       >
         <lux-icon luxIconName="pets" ></lux-icon>
       </lux-tile-authentic>
     </div>
-    <div>
+    <div class="lux-tile-authentic-wrapper-demo">
       <lux-tile-authentic
         luxLabel="luxBadgeNotification"
         luxSubTitle=" luxBadgeDisabled: true, luxBadgeSize: large, luxBadgePosition: above after"
@@ -77,7 +72,6 @@
         [luxBadgeDisabled]="true"
         luxBadgeSize="large"
         luxTagId="example-tile"
-        [luxBadgeNoBorder]="true"
       >
         <lux-icon luxIconName="pets" ></lux-icon>
       </lux-tile-authentic>
