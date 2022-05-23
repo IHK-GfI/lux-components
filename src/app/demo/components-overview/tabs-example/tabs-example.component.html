@@ -4,9 +4,9 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tabs"
 >
   <example-base-content>
-    <div [ngStyle]="{ backgroundColor: backgroundColor }" fxLayout="column" fxLayoutGap="50px">
-      
-      <lux-tabs [luxShowBorder]="true" >
+    <div [ngStyle]="{ backgroundColor: backgroundColor }" fxLayout="column" fxLayoutGap="32px">
+      <h3>Standard-Tab mit Border und Animation</h3>
+      <lux-tabs [luxShowBorder]="true">
         <lux-tab luxTitle="Beispiel 1"  luxTagIdHeader="tab-beispiel1-header" luxTagIdContent="tab-beispiel1-content">
           <ng-template>
           <h3>Ein einfaches Tab-Beispiel</h3>
@@ -32,30 +32,30 @@
               magnam ad nihil consequatur aut. Repellendus nulla non fuga iste. Eum debitis reiciendis recusandae iure reprehenderit ad.
             </div>
           </ng-template>
-      </lux-tab> 
-      <lux-tab luxTitle="Beispiel 3" luxTagIdHeader="tab-beispiel3-header" luxTagIdContent="tab-beispiel3-content">
-        <ng-template>    
-          <h3>Ein einfaches Tab-Beispiel</h3>
-          <div>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque iste dolorum neque fugiat modi ipsam eos dicta 
-            fuga aliquam, praesentium provident dignissimos, dolorem aliquid incidunt atque repellendus et? 
-            Minima repudiandae dolores, saepe maxime facilis nisi recusandae nesciunt voluptatibus, quod nemo 
-            rerum eos labore cum itaque fugit? Suscipit ipsum adipisci molestiae quae, tempora quisquam beatae id 
-            repudiandae eos vero architecto et delectus. Quo corporis exercitationem, quia tenetur similique delectus. 
-            Optio ratione debitis non, expedita autem voluptatibus beatae suscipit nemo nisi quis culpa natus consectetur 
-            magnam ad nihil consequatur aut. Repellendus nulla non fuga iste. Eum debitis reiciendis recusandae iure reprehenderit ad.
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque iste dolorum neque fugiat modi ipsam eos dicta 
-            fuga aliquam, praesentium provident dignissimos, dolorem aliquid incidunt atque repellendus et? 
-            Minima repudiandae dolores, saepe maxime facilis nisi recusandae nesciunt voluptatibus, quod nemo 
-            rerum eos labore cum itaque fugit? Suscipit ipsum adipisci molestiae quae, tempora quisquam beatae id 
-            repudiandae eos vero architecto et delectus. Quo corporis exercitationem, quia tenetur similique delectus. 
-            Optio ratione debitis non, expedita autem voluptatibus beatae suscipit nemo nisi quis culpa natus consectetur 
-            magnam ad nihil consequatur aut. Repellendus nulla non fuga iste. Eum debitis reiciendis recusandae iure reprehenderit ad.
-          </div>
-        </ng-template>
-      </lux-tab>
-    </lux-tabs>
-
+        </lux-tab> 
+        <lux-tab luxTitle="Beispiel 3" luxTagIdHeader="tab-beispiel3-header" luxTagIdContent="tab-beispiel3-content">
+          <ng-template>    
+            <h3>Ein einfaches Tab-Beispiel</h3>
+            <div>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque iste dolorum neque fugiat modi ipsam eos dicta 
+              fuga aliquam, praesentium provident dignissimos, dolorem aliquid incidunt atque repellendus et? 
+              Minima repudiandae dolores, saepe maxime facilis nisi recusandae nesciunt voluptatibus, quod nemo 
+              rerum eos labore cum itaque fugit? Suscipit ipsum adipisci molestiae quae, tempora quisquam beatae id 
+              repudiandae eos vero architecto et delectus. Quo corporis exercitationem, quia tenetur similique delectus. 
+              Optio ratione debitis non, expedita autem voluptatibus beatae suscipit nemo nisi quis culpa natus consectetur 
+              magnam ad nihil consequatur aut. Repellendus nulla non fuga iste. Eum debitis reiciendis recusandae iure reprehenderit ad.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque iste dolorum neque fugiat modi ipsam eos dicta 
+              fuga aliquam, praesentium provident dignissimos, dolorem aliquid incidunt atque repellendus et? 
+              Minima repudiandae dolores, saepe maxime facilis nisi recusandae nesciunt voluptatibus, quod nemo 
+              rerum eos labore cum itaque fugit? Suscipit ipsum adipisci molestiae quae, tempora quisquam beatae id 
+              repudiandae eos vero architecto et delectus. Quo corporis exercitationem, quia tenetur similique delectus. 
+              Optio ratione debitis non, expedita autem voluptatibus beatae suscipit nemo nisi quis culpa natus consectetur 
+              magnam ad nihil consequatur aut. Repellendus nulla non fuga iste. Eum debitis reiciendis recusandae iure reprehenderit ad.
+            </div>
+          </ng-template>
+        </lux-tab>
+      </lux-tabs>
+      <h3>Demo-Tab für Testzwecke</h3>
       <lux-tabs
         [luxActiveTab]="activeTab"
         [luxTabAnimationActive]="animationActive"
