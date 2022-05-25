@@ -1,43 +1,103 @@
-<div fxLayout="row" fxLayoutGap="30px" class="master-detail-light-container">
-  <div class="master-light-container" fxLayout="column" fxFlex="30" *ngIf="showMaster" [ngClass]="{'master-light-closed': !luxMasterOpen}">
-    Master-Container
-    <lux-button
-      [luxRounded]="true"
-      (luxClicked)="toggleMaster()"
-      [luxIconName]="iconName"
-      class="master-light-toggle"
-      luxTagId="master-detail.toggle"
-      #toggleButton
-      luxAriaLabel="{{ getAriaLabelForOpenCloseButton(iconName) }}"
-      luxAriaLabelSelector="button"
-      [luxAriaExpanded]="iconName === 'keyboard_arrow_left'"
-      luxAriaExpandedSelector="button"
-      *ngIf="showMaster && !isMobile"
-    ></lux-button>
-    <div class="master-light-header" *ngIf="luxMasterOpen">
-      <ng-content *ngIf="masterHeader" select="lux-master-header-light"></ng-content>
+<!-- Container für die Animation in der Desktop-Variante -->
+<div 
+  *ngIf="!isMobile; else masterDetailMobile"
+  class="animation-container" 
+  [@toggleMaster]="counter" 
+>
+  <div  
+    *ngIf="isExpanded; else masterCollapsedView" 
+    fxLayout="row" 
+    fxLayoutAlign="start start" 
+    fxLayoutGap="30px"
+    fxFlex="100" 
+    class="master-expanded-view" 
+  >
+  <!-- Master-Container Expanded-->
+    <div 
+      fxLayout="column"
+      fxFlex.md="calc(50% - 15px)" 
+      fxFlex.gt-md="30"
+      class="master-light-container"
+    >
+      <ng-container *ngTemplateOutlet="master"></ng-container>
     </div>
-    <div class="master-light-content" *ngIf="luxMasterOpen">
-      <ng-content *ngIf="masterContent" select="lux-master-content-light"></ng-content>
+    <!-- Detail-container -->
+    <div class="detail-light-container" fxLayout="column" fxFlex="fill">
+      <ng-container *ngTemplateOutlet="detail"></ng-container>
     </div>
   </div>
-  <div class="detail-light-container" fxLayout="column" fxFlex="fill" *ngIf="showDetail">
-    Detail-container
-    <div class="detail-button-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" *ngIf="showDetail && isMobile">
-      <lux-button
-        luxIconName="keyboard_arrow_left"
-        [luxRounded]="true"
-        (luxClicked)="backToMaster()"
-        class="back-to-master-button"
-      ></lux-button>
-      <span class="back-to-master-label">Zurück zur Liste</span>
-    </div>
-    <div class="detail-light-header">
-      <ng-content *ngIf="detailHeader" select="lux-detail-header-light"></ng-content>
-    </div>
-    <div class="detail-light-content">
-      <ng-content *ngIf="detailContent" select="lux-detail-content-light"></ng-content>
-    </div>
 
+  <ng-template #masterCollapsedView>
+    <div fxLayout="row" fxLayoutGap="30px" fxFlex="100" fxLayoutAlign="start start" class="master-collapsed-view">
+      <!-- Master-Container -->
+      <div class="master-light-container collapsed" fxLayout="column" fxFlex="0 0 30px">
+        <ng-container *ngTemplateOutlet="master"></ng-container>
+      </div>
+      <!-- detail-Container -->
+      <div class="detail-light-container" fxLayout="column" fxFlex="fill">
+        <ng-container *ngTemplateOutlet="detail"></ng-container>
+      </div>
+    </div>
+  </ng-template>
+</div> <!-- Ende animation-Container -->
+
+
+<!-- Template für den kompletten Detail -->
+<ng-template #detail>
+  Detail-container
+  <!-- zurück zum Detail-Button für die mobile Ansicht-->
+  <div class="detail-button-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" *ngIf="isMobile">
+    <lux-button
+      luxIconName="keyboard_arrow_left"
+      [luxRounded]="true"
+      (luxClicked)="toggleMobileView()"
+      class="back-to-master-button"
+    ></lux-button>
+    <span class="back-to-master-label">Zurück zur Liste</span>
   </div>
-</div>
+  <div class="detail-light-header">
+    <ng-content select="lux-detail-header-light"></ng-content>
+  </div>
+  <div class="detail-light-content">
+    <ng-content select="lux-detail-content-light"></ng-content>
+  </div>
+</ng-template>
+
+<!-- Template für den kompletten Master -->
+<ng-template #master>
+  <lux-button
+    [luxRounded]="true"
+    [luxIconName]="iconName"
+    luxTagId="master-detail.toggle"
+    [luxAriaExpanded]="iconName === 'keyboard_arrow_left'"
+    luxAriaLabel="{{ getAriaLabelForOpenCloseButton(iconName) }}"
+    luxAriaLabelSelector="button"
+    luxAriaExpandedSelector="button"
+    class="master-light-toggle"
+    (luxClicked)="toggleMaster()"
+    #toggleButton
+    *ngIf="!isMobile"
+  ></lux-button>
+
+  <div class="master-light-header" *ngIf="masterHeader && isExpanded">
+    <ng-content select="lux-master-header-light"></ng-content>
+  </div>
+  <div class="master-light-content" *ngIf="masterContent && isExpanded">
+    <ng-content select="lux-master-content-light"></ng-content>
+    <lux-button *ngIf="isMobile" luxLabel="testitem" (luxClicked)="toggleMobileView()"></lux-button>
+  </div>
+</ng-template>
+
+<!-- Container für die Mobile Variante -->
+<ng-template #masterDetailMobile>
+  <div class="master-light-container mobile" fxLayout="column" fxFlex="fill" *ngIf="showMaster">
+    Master-mobile
+    <ng-container  *ngTemplateOutlet="master"></ng-container>
+  </div>
+  
+  <div class="detail-light-container mobile" fxLayout="column" fxFlex="fill" *ngIf="!showMaster">
+    Detail-container-mobile
+    <ng-container *ngTemplateOutlet="detail"></ng-container>
+  </div>
+</ng-template>
+
