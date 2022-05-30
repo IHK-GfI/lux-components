@@ -138,6 +138,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
 
       if (this.luxMultiple) {
         if (replaceableFilesMap.size > 0) {
+          this.dialogService.storeDialogRef();
           const dialogRef = this.dialogService.openComponent(LuxFileReplaceDialogComponent, this.dialogReplaceConfig, {
             multiple: this.luxMultiple
           });
@@ -153,6 +154,10 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
 
           dialogRef.dialogClosed.subscribe(() => {
             this.fileUploadInput.nativeElement.value = '';
+
+            this.subscriptions.push(dialogRef.dialogClosed.subscribe(() => {
+              this.dialogService.restoreDialogRef();
+            }));
           });
         } else {
           this.updateFilesIntern(files, selectedFilesArray, replaceableFilesMap);
@@ -176,6 +181,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
             (error) => this.setFormControlErrors(error)
           );
         } else if (files.length === 1 && this.luxSelectedFiles && this.luxSelectedFiles.length > 0) {
+          this.dialogService.storeDialogRef();
           const dialogRef = this.dialogService.openComponent(LuxFileReplaceDialogComponent, this.dialogReplaceConfig, {
             multiple: this.luxMultiple
           });
@@ -198,6 +204,10 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
 
           dialogRef.dialogClosed.subscribe(() => {
             this.fileUploadInput.nativeElement.value = '';
+
+            this.subscriptions.push(dialogRef.dialogClosed.subscribe(() => {
+              this.dialogService.restoreDialogRef();
+            }));
           });
         }
       }
@@ -273,11 +283,16 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
   }
 
   openDeleteDialog(index: number) {
+    this.dialogService.storeDialogRef();
     const dialogRef = this.dialogService.openComponent(LuxFileDeleteDialogComponent, this.dialogDeleteConfig);
 
-    dialogRef.dialogConfirmed.subscribe(() => {
+    this.subscriptions.push(dialogRef.dialogClosed.subscribe(() => {
+      this.dialogService.restoreDialogRef();
+    }));
+
+    this.subscriptions.push(dialogRef.dialogConfirmed.subscribe(() => {
       this.onRemoveFile(index);
-    });
+    }));
   }
 
   /**
