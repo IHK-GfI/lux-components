@@ -51,12 +51,18 @@
     line-height: 1.5em;
     border: 1px solid rgba(black, 0.12);
     border-radius: 4px;
+    &.lux-no-input-row {
+      border: none;
+      //padding: 0.75em 0em;
+    }
   }
 
   .lux-form-control-misc-authentic {
     box-sizing: border-box;
     margin: 0.25em calc(0.5em + 1px) 0 calc(0.5em + 1px);
-
+    &.lux-no-input-row {
+      //margin-left: calc( 0.5em + 30px); // 29px breite der Checkbox + margin + 1px border
+    }
     @include form-label;
     word-wrap: break-word;
  
@@ -73,7 +79,7 @@
   }
 
   &:hover:not(.lux-form-control-disabled-authentic):not(.lux-focused-authentic):not(.lux-form-control-error-authentic) {
-    .lux-form-control-container-authentic {
+    .lux-form-control-container-authentic:not(.lux-no-input-row) {
       border-color: black;
       box-shadow: 0 0 0 1px black inset;   
     }
@@ -82,7 +88,7 @@
     .lux-form-control-label-authentic > * {
       color: var(--lux-theme-primary-400);
     }
-    .lux-form-control-container-authentic {
+    .lux-form-control-container-authentic:not(.lux-no-input-row) {
       border-color: var(--lux-theme-primary-500);
       box-shadow: 0 0 0 1px var(--lux-theme-primary-500) inset;   
     }
@@ -92,7 +98,7 @@
     .lux-form-control-label-authentic > * {
       color: var(--lux-theme-warn-color);
     }
-    .lux-form-control-container-authentic {
+    .lux-form-control-container-authentic:not(.lux-no-input-row) {
       border-color: var(--lux-theme-warn-color);
       box-shadow: 0 0 0 1px var(--lux-theme-warn-color) inset;   
     }
@@ -210,13 +216,13 @@
 //       }
 //     }
 
-//     // Höhe des Checkbox-Labels an andere Höhen angleichen
-//     mat-checkbox {
-//       .mat-checkbox-label {
-//         line-height: var(--lux-theme-form-control-height-small);
-//         font-size: var(--lux-theme-form-control-font-size);
-//       }
-//     }
+    // Höhe des Checkbox-Labels an andere Höhen angleichen
+    mat-checkbox {
+      .mat-checkbox-label {
+        //line-height: var(--lux-theme-form-control-height-small);
+        font-size: var(--lux-theme-form-control-font-size);
+      }
+    }
 
 //     // Höhe der Radio-Buttons etwas anheben
 //     mat-radio-button {
@@ -256,53 +262,42 @@
 //   }
 // }
 
-// // Zusatzoptionen, basierend auf Klassen der Component
-// :host {
-//   &:not(.lux-form-control-scalable-height) {
-//     .lux-form-control-container {
-//       max-height: var(--lux-theme-form-control-default-height-not-scalable);
-//     }
-//   }
+// Zusatzoptionen, basierend auf Klassen der Component
+:host {
+  &:not(.lux-form-control-scalable-height) {
+    .lux-form-control-container {
+      max-height: var(--lux-theme-form-control-default-height-not-scalable);
+    }
+  }
 
-//   &.lux-form-control-borderless {
-//     .lux-form-control-container {
-//       background: unset !important;
-//     }
+  &.lux-form-control-no-top-label { // für Toggle/Checkbox/Radio
+    .lux-form-control {
+      min-height: calc(var(--lux-theme-form-control-default-height-not-scalable) + 23px);
+    }
+  }
+  &.lux-form-control-no-bottom-label { // kein Misc
+    .lux-form-control {
+      min-height:  calc(var(--lux-theme-form-control-default-height-not-scalable) + 17px);;
+    }
+  }
 
-//     // .lux-form-control-container:after {
-//     //   @include bottomBorder;
-//     //   border-bottom: none !important;
-//     // }
-//   }
-
-//   &.lux-form-control-no-top-label { // für Toggle/Checkbox/Radio
-//     .lux-form-control {
-//       min-height: calc(var(--lux-theme-form-control-default-height-not-scalable) + 23px);
-//     }
-//   }
-//   &.lux-form-control-no-bottom-label { // kein Misc
-//     .lux-form-control {
-//       min-height:  calc(var(--lux-theme-form-control-default-height-not-scalable) + 17px);;
-//     }
-//   }
-
-//   &.lux-form-control-no-labels { // kein Label und kein Misc
-//     .lux-form-control {
-//       min-height: var(--lux-theme-form-control-default-height-not-scalable);
-//     }
-//   }
-// }
-
-// ::ng-deep {
-//   .lux-form-control-readonly, .lux-form-control-disabled {
-//     pointer-events: none;
-//     mat-select {
-//       &[aria-disabled="true"] ::ng-deep .mat-select-arrow {
-//         color: var(--lux-theme-dark-disabled-text);
-//       }
-//       &[aria-disabled="false"] ::ng-deep .mat-select-arrow {
-//         color:var(--lux-theme-dark-disabled-text);
-//       }
-//     }
-//   }
+  &.lux-form-control-no-labels { // kein Label und kein Misc
+    .lux-form-control {
+      min-height: var(--lux-theme-form-control-default-height-not-scalable);
+    }
+  }
 }
+
+::ng-deep {
+  .lux-form-control-readonly, .lux-form-control-disabled {
+    pointer-events: none;
+    mat-select {
+      &[aria-disabled="true"] ::ng-deep .mat-select-arrow {
+        color: var(--lux-theme-dark-disabled-text);
+      }
+      &[aria-disabled="false"] ::ng-deep .mat-select-arrow {
+        color:var(--lux-theme-dark-disabled-text);
+      }
+    }
+  }
+}}

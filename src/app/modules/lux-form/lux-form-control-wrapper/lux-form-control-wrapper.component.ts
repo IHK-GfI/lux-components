@@ -16,7 +16,7 @@ export class LuxFormControlWrapperComponent {
   @HostBinding('class.lux-form-control-no-top-label') _luxNoTopLabel = false;
   @HostBinding('class.lux-form-control-no-labels') _luxNoLabels = false;
   @HostBinding('class.lux-form-control-no-bottom-label') _luxNoBottomLabel = false;
-  @HostBinding('class.lux-form-control-borderless') _luxHideBottomBorder = false;
+  // @HostBinding('class.lux-form-control-borderless') _luxHideBottomBorder = false;
 
   /**
    * Die zugrunde liegende FormComponent
@@ -27,6 +27,7 @@ export class LuxFormControlWrapperComponent {
   @Input() luxCounterLabel = ''; 
   @Input() luxHideCounterLabel = false;
   @Input() luxLabelLongFormat = false;
+  @Input() luxNoInputRow = false;
 
   /**
    * Dient dazu, eine Component beliebig Hoch werden zu lassen (z.B. Textarea oder Radio).
@@ -44,7 +45,7 @@ export class LuxFormControlWrapperComponent {
   /**
    * Dient dazu, bei einer Component den Label-Container auszublenden.
    *
-   * @param scalable
+   * @param noLabel
    */
   @Input() set luxNoTopLabel(noLabel: boolean) {
     this._luxNoTopLabel = noLabel;
@@ -57,7 +58,7 @@ export class LuxFormControlWrapperComponent {
   /**
    * Dient dazu, bei einer Component den Label-Container und den Misc-Container auszublenden.
    *
-   * @param scalable
+   * @param noLabel
    */
   @Input() set luxNoLabels(noLabel: boolean) {
     this._luxNoLabels = noLabel;
@@ -70,7 +71,7 @@ export class LuxFormControlWrapperComponent {
   /**
    * Dient dazu, bei einer Component den Misc-Container auszublenden.
    *
-   * @param scalable
+   * @param noLabel
    */
   @Input() set luxNoBottomLabel(noLabel: boolean) {
     this._luxNoBottomLabel = noLabel;
@@ -85,13 +86,13 @@ export class LuxFormControlWrapperComponent {
    *
    * @param hide
    */
-  @Input() set luxHideBottomBorder(hide: boolean) {
-    this._luxHideBottomBorder = hide;
-  }
+  // @Input() set luxHideBottomBorder(hide: boolean) {
+  //   this._luxHideBottomBorder = hide;
+  // }
 
-  get luxHideBottomBorder(): boolean {
-    return this._luxHideBottomBorder;
-  }
+  // get luxHideBottomBorder(): boolean {
+  //   return this._luxHideBottomBorder;
+  // }
   
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -129,6 +130,6 @@ export class LuxFormControlWrapperComponent {
   focusout() {
     this.focused = false;
     this.cdr.detectChanges();
-    console.log('Wrapper FocusIn: ', this.focused);
+    console.log('Wrapper FocusOut: ', this.focused);
   }
 }

@@ -110,6 +110,7 @@ export * from './src/app/modules/lux-form/lux-form.module';
 // Components
 export * from './src/app/modules/lux-form/lux-autocomplete/lux-autocomplete.component';
 export * from './src/app/modules/lux-form/lux-checkbox/lux-checkbox.component';
+export * from './src/app/modules/lux-form/lux-checkbox-ac/lux-checkbox-ac.component';
 export * from './src/app/modules/lux-form/lux-chips/lux-chips.component';
 export * from './src/app/modules/lux-form/lux-chips/lux-chips-subcomponents/lux-chip.component';
 export * from './src/app/modules/lux-form/lux-chips/lux-chips-subcomponents/lux-chip-group.component';
@@ -125,6 +126,7 @@ export * from './src/app/modules/lux-form/lux-radio/lux-radio.component';
 export * from './src/app/modules/lux-form/lux-select/lux-select.component';
 export * from './src/app/modules/lux-form/lux-slider/lux-slider.component';
 export * from './src/app/modules/lux-form/lux-toggle/lux-toggle.component';
+export * from './src/app/modules/lux-form/lux-toggle-ac/lux-toggle-ac.component';
 export * from './src/app/modules/lux-form/lux-textarea/lux-textarea.component';
 export * from './src/app/modules/lux-form/lux-file/lux-file-input/lux-file-input.component';
 export * from './src/app/modules/lux-form/lux-file/lux-file-list/lux-file-list.component';
@@ -136,9 +138,9 @@ export * from './src/app/modules/lux-form/lux-form-control/lux-form-control.comp
 export * from './src/app/modules/lux-form/lux-form-control/lux-form-control-subcomponents/lux-form-hint.component';
 export * from './src/app/modules/lux-form/lux-form-control/lux-form-control-subcomponents/lux-form-label.component';
 export * from './src/app/modules/lux-form/lux-form-control-wrapper/lux-form-control-wrapper.component'
-export * from './src/app/modules/lux-form/lux-input-authentic/lux-input-authentic-subcomponents/lux-input-authentic-prefix.component'
-export * from './src/app/modules/lux-form/lux-input-authentic/lux-input-authentic-subcomponents/lux-input-authentic-suffix.component'
-export * from './src/app/modules/lux-form/lux-input-authentic/lux-input-authentic.component'
+export * from './src/app/modules/lux-form/lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-prefix.component'
+export * from './src/app/modules/lux-form/lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-suffix.component'
+export * from './src/app/modules/lux-form/lux-input-ac/lux-input-ac.component'
 // Classes
 export * from './src/app/modules/lux-form/lux-datepicker/lux-datepicker-adapter';
 export * from './src/app/modules/lux-form/lux-datetimepicker/lux-datetimepicker-adapter';

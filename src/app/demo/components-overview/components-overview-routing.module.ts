@@ -63,6 +63,8 @@ import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-aut
 import { InputAuthenticExampleComponent } from './input-authentic-example/input-authentic-example.component';
 import { OverviewExampleComponent } from './tile-authentic-example/overview-example/overview-example.component';
 import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
+import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/checkbox-authentic-example.component';
+import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -106,6 +108,7 @@ const routes: Routes = [
       { path: 'checkbox', component: CheckboxExampleComponent },
       { path: 'app-footer', component: AppFooterExampleComponent },
       { path: 'toggle', component: ToggleExampleComponent },
+      { path: 'toggle-authentic', component: ToggleAuthenticExampleComponent },
       { path: 'list', component: ListExampleComponent },
       { path: 'timestamp', component: TimestampExampleComponent },
       { path: 'master-detail', component: MasterDetailExampleComponent },
@@ -127,6 +130,7 @@ const routes: Routes = [
       { path: 'link-plain', component: LinkPlainExampleComponent },
       { path: 'tile-authentic', component: TileAuthenticExampleComponent },
       { path: 'input-authentic', component: InputAuthenticExampleComponent },
+      { path: 'checkbox-authentic', component: CheckboxAuthenticExampleComponent },
       { path: 'tile-overview', component: OverviewExampleComponent },
       { path: 'master-detail-light', component: MasterDetailLightExampleComponent },
     ]

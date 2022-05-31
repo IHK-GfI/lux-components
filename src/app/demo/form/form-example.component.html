@@ -1,4 +1,9 @@
 <lux-tabs luxTagId="form-tabs" [luxTabAnimationActive]="false" [luxDisplayDivider]="true" luxAriaRole="main">
+  <lux-tab luxIconName="fas fa-dove" luxTitle="Authentic">
+    <ng-template>
+      <app-form-authentic></app-form-authentic>
+    </ng-template>
+  </lux-tab>
   <lux-tab luxIconName="fas fa-info" luxTitle="Allgemein">
     <ng-template>
       <app-form-common></app-form-common>

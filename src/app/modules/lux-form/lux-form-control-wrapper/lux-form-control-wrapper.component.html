@@ -31,12 +31,15 @@
     </div>
   </div>
   <!-- Container für das FormControl -->
-  <div class="lux-form-control-container-authentic" fxFlex="auto">
+  <div 
+    class="lux-form-control-container-authentic" 
+    [ngClass]="{ 'lux-no-input-row': luxNoInputRow}"
+    fxFlex="auto">
     <ng-content></ng-content>
   </div>
 
   <!-- Container für das Hint und den Error und den Counter -->
-  <div class="lux-form-control-misc-authentic" *ngIf="!luxNoBottomLabel && !luxNoLabels" fxLayout="row" fxLayoutAlign="space-between start">
+  <div class="lux-form-control-misc-authentic" [ngClass]="{ 'lux-no-input-row': luxNoInputRow}" *ngIf="!luxNoBottomLabel && !luxNoLabels" fxLayout="row" fxLayoutAlign="space-between start">
     <ng-container [ngSwitch]="shouldDisplayError()">
       <mat-error [id]="luxFormComponent.uid + '-error'" *ngSwitchCase="true">
         {{ luxFormComponent.errorMessage }}

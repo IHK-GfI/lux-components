@@ -7,7 +7,7 @@ import {
 } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
-  selector: 'lux-input-authentic-example',
+  selector: 'lux-input-ac-example',
   templateUrl: './input-authentic-example.component.html'
 })
 export class InputAuthenticExampleComponent  {

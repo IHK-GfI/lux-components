@@ -99,6 +99,8 @@ import { InputAuthenticExampleComponent } from './input-authentic-example/input-
 import { MatListModule } from '@angular/material/list';
 import { OverviewExampleComponent } from './tile-authentic-example/overview-example/overview-example.component';
 import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
+import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/checkbox-authentic-example.component';
+import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
 
 @NgModule({
   imports: [
@@ -204,7 +206,9 @@ import { MasterDetailLightExampleComponent } from './master-detail-light-example
     FileUploadExampleComponent,
     InputAuthenticExampleComponent,
     OverviewExampleComponent,
-    MasterDetailLightExampleComponent
+    MasterDetailLightExampleComponent,
+    CheckboxAuthenticExampleComponent,
+    ToggleAuthenticExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]

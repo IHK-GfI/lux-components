@@ -10,7 +10,7 @@ import { LuxAutocompleteComponent } from '../../lux-form/lux-autocomplete/lux-au
 import { LuxCheckboxComponent } from '../../lux-form/lux-checkbox/lux-checkbox.component';
 import { LuxLookupComboboxComponent } from '../../lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
 import { LuxLookupAutocompleteComponent } from '../../lux-lookup/lux-lookup-autocomplete/lux-lookup-autocomplete.component';
-import { LuxInputAuthenticComponent } from '../../lux-form/lux-input-authentic/lux-input-authentic.component';
+import { LuxInputAcComponent } from '../../lux-form/lux-input-ac/lux-input-ac.component';
 
 @Directive({
   selector: '[luxFilterItem]'
@@ -26,7 +26,7 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
 
   constructor(
     @Optional() public input: LuxInputComponent,
-    @Optional() public inputAuthentic: LuxInputAuthenticComponent,
+    @Optional() public inputAuthentic: LuxInputAcComponent,
     @Optional() public autoComplete: LuxAutocompleteComponent,
     @Optional() public autoCompleteLookup: LuxLookupAutocompleteComponent,
     @Optional() public datepicker: LuxDatepickerComponent,

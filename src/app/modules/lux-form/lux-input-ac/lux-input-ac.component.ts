@@ -1,17 +1,17 @@
 import { ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnInit, Optional, ViewChild } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { LuxInputPrefixComponent } from '../lux-input/lux-input-subcomponents/lux-input-prefix.component';
-import { LuxInputSuffixComponent } from '../lux-input/lux-input-subcomponents/lux-input-suffix.component';
+import { LuxInputAcPrefixComponent } from '../lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-prefix.component';
+import { LuxInputAcSuffixComponent } from '../lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-suffix.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
 @Component({
-  selector: 'lux-input-authentic',
-  templateUrl: './lux-input-authentic.component.html',
-  styleUrls: ['./lux-input-authentic.component.scss']
+  selector: 'lux-input-ac',
+  templateUrl: './lux-input-ac.component.html',
+  styleUrls: ['./lux-input-ac.component.scss']
 })
-export class LuxInputAuthenticComponent extends LuxFormInputBaseClass implements OnInit{
+export class LuxInputAcComponent extends LuxFormInputBaseClass implements OnInit{
 
   private readonly symbolRegExp = /[,.]/;
   
@@ -33,8 +33,8 @@ export class LuxInputAuthenticComponent extends LuxFormInputBaseClass implements
     return this._luxMaxLength;
   };
 
-  @ContentChild(LuxInputPrefixComponent) inputPrefix: LuxInputPrefixComponent;
-  @ContentChild(LuxInputSuffixComponent) inputSuffix: LuxInputSuffixComponent;
+  @ContentChild(LuxInputAcPrefixComponent) inputPrefix: LuxInputAcPrefixComponent;
+  @ContentChild(LuxInputAcSuffixComponent) inputSuffix: LuxInputAcSuffixComponent;
   @ViewChild('input', { read: ElementRef }) inputElement: ElementRef;
 
   counterLabel = '';

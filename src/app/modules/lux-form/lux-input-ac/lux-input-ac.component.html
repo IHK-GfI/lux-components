@@ -11,7 +11,7 @@
 >
   <div class="lux-input-row-authentic" fxLayout="row" fxLayoutAlign="start center">
     <span class="lux-input-prefix-container" fxFlex="auto" matPrefix *ngIf="inputPrefix">
-      <ng-content select="lux-input-prefix"></ng-content>
+      <ng-content select="lux-input-ac-prefix"></ng-content>
     </span>
     <input
       fxFlex="auto"
@@ -63,7 +63,7 @@
       *ngIf="luxType === 'number'"
     />
     <span class="lux-input-suffix-container" fxFlex="auto" matSuffix *ngIf="inputSuffix">
-      <ng-content select="lux-input-suffix"></ng-content>
+      <ng-content select="lux-input-ac-suffix"></ng-content>
     </span>
   </div>
 </lux-form-control-wrapper>

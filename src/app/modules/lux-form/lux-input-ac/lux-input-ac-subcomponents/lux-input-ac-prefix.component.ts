@@ -1,11 +1,11 @@
+
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lux-input-authentic-suffix',
+  selector: 'lux-input-ac-prefix',
   template: ` <ng-content></ng-content> `,
   styles: []
 })
-export class LuxInputAuthenticSuffixComponent {
-
-  constructor() { }
+export class LuxInputAcPrefixComponent {
+  constructor() {}
 }
