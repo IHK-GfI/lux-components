@@ -60,6 +60,31 @@ describe('LuxFilterFormComponent', () => {
     expect(component.filterComponent.filterForm.valid).toBeFalse();
     expect(spy).toHaveBeenCalledTimes(0);
   });
+
+  it('Sollte die Filterwerte vollständig ersetzen', () => {
+    // Init
+    const spy = spyOn(component, 'onFilter').and.callThrough();
+
+    // Vorbedingungen prüfen
+    expect(component.filterComponent.luxFilterValues).toEqual({});
+
+    // Änderungen durchführen
+    component.initFilter = { input: 'aaa' };
+    fixture.detectChanges();
+
+    // Nachbedingungen prüfen
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    // Änderungen durchführen
+    // Hier sollen die Filterwerte ersetzt werden.
+    component.initFilter = { autocomplete: component.autoCompleteOptions[0] };
+    fixture.detectChanges();
+
+    // Nachbedingungen prüfen
+    expect(spy).toHaveBeenCalledTimes(1); // Es bleibt bei 1, weil das Pflichtfeld "input" nicht gefüllt ist.
+    expect(component.filterComponent.filterForm.get('autocomplete').value).toEqual(component.autoCompleteOptions[0]);
+    expect(component.filterComponent.filterForm.get('input').value).toBeUndefined();
+  });
 });
 
 @Component({
