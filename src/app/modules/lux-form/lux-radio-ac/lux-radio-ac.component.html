@@ -1,0 +1,62 @@
+<lux-form-control-wrapper
+  [luxFormComponent]="this"
+  [luxNoInputRow]="true"
+  [luxScalableHeight]="true"
+  [luxLabelLongFormat]="luxLabelLongFormat"
+  [formGroup]="formGroup"
+  [luxNoLabels]="luxNoLabels" 
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  *ngIf="formGroup"
+>
+  <mat-radio-group
+    luxTagIdHandler
+    [luxTagId]="luxTagId"
+    [name]="luxGroupName"
+    [formControl]="formControl"
+    fxLayoutGap="10px"
+    [ngClass]="{ 'lux-vertical': isVertical, 'lux-horizontal': !isVertical }"
+    fxLayout="{{ isVertical ? 'column' : 'row wrap' }}"
+    fxLayoutAlign="start stretch"
+    [required]="luxRequired"
+    (focusin)="luxFocusIn.emit($event)"
+    (focusout)="luxFocusOut.emit($event)"
+    [luxAriaLabelledby]="uid + '-label'"
+    [id]="uid"
+  >
+    <mat-radio-button
+      [value]="luxPickValue ? _luxOptionsPickValue[i] : option"
+      [disableRipple]="true"
+      color="primary"
+      fxFlex="0 0 auto"
+      [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+      luxAriaDescribedbySelector=".mat-radio-input"
+      [luxAriaRequired]="luxRequired"
+      [disabled]="option?.hasOwnProperty('disabled') && option.disabled === true ? true : false"
+      luxAriaRequiredSelector=".mat-radio-input"
+      [luxAriaInvalid]="'' + formControl.invalid"
+      luxAriaInvalidSelector=".mat-radio-input"
+      *ngFor="let option of luxOptions; let i = index"
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          tempRef && !luxOptionLabelProp ? tempRef : noTemplateRefTemplate;
+          context: { $implicit: option }
+        "
+      ></ng-container>
+    </mat-radio-button>
+  </mat-radio-group>
+  <ng-content select="lux-form-hint"></ng-content>
+</lux-form-control-wrapper>
+
+<ng-template #noTemplateRefTemplate let-option>
+  <ng-container *ngIf="option && option[luxOptionLabelProp]; else showObjectTemplate">
+    {{ option | luxRenderProperty: luxOptionLabelProp }}
+  </ng-container>
+  <ng-template #showObjectTemplate>
+    <ng-container *ngIf="!!option">
+      {{ option }}
+    </ng-container>
+  </ng-template>
+</ng-template>
+

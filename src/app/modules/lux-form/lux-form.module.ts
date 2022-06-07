@@ -62,6 +62,7 @@ import { LuxCheckboxAcComponent } from './lux-checkbox-ac/lux-checkbox-ac.compon
 import { LuxToggleAcComponent } from './lux-toggle-ac/lux-toggle-ac.component';
 import { LuxAutocompleteAcComponent } from './lux-autocomplete-ac/lux-autocomplete-ac.component';
 import { LuxSelectAcComponent } from './lux-select-ac/lux-select-ac.component';
+import { LuxRadioAcComponent } from './lux-radio-ac/lux-radio-ac.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { LuxSelectAcComponent } from './lux-select-ac/lux-select-ac.component';
     LuxCheckboxAcComponent,
     LuxToggleAcComponent,
     LuxAutocompleteAcComponent,
-    LuxSelectAcComponent
+    LuxSelectAcComponent,
+    LuxRadioAcComponent
   ],
   imports: [
     CommonModule,
@@ -164,7 +166,8 @@ import { LuxSelectAcComponent } from './lux-select-ac/lux-select-ac.component';
     LuxCheckboxAcComponent,
     LuxToggleAcComponent,
     LuxAutocompleteAcComponent,
-    LuxSelectAcComponent
+    LuxSelectAcComponent,
+    LuxRadioAcComponent
   ],
   providers: []
 })

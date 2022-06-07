@@ -218,21 +218,18 @@
     // Höhe des Checkbox-Labels an andere Höhen angleichen
     mat-checkbox {
       .mat-checkbox-label {
-        //line-height: var(--lux-theme-form-control-height-small);
         font-size: var(--lux-theme-form-control-font-size);
       }
     }
 
-//     // Höhe der Radio-Buttons etwas anheben
-//     mat-radio-button {
-//       height: var(--lux-theme-form-control-default-height-not-scalable);
-//       font-size: var(--lux-theme-form-control-font-size);
+    // Höhe der Radio-Buttons etwas anheben
+    mat-radio-button {
 
-//       .mat-radio-label {
-//         vertical-align: unset;
-//         align-items: end;
-//       }
-//     }
+      .mat-radio-label {
+        vertical-align: middle;
+        align-items: center;
+      }
+    }
 
 //     // Anpassen des horizontalen Sliders
 //     mat-slider {

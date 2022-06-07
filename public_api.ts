@@ -124,6 +124,7 @@ export * from './src/app/modules/lux-form/lux-input/lux-input.component';
 export * from './src/app/modules/lux-form/lux-input/lux-input-subcomponents/lux-input-prefix.component';
 export * from './src/app/modules/lux-form/lux-input/lux-input-subcomponents/lux-input-suffix.component';
 export * from './src/app/modules/lux-form/lux-radio/lux-radio.component';
+export * from './src/app/modules/lux-form/lux-radio-ac/lux-radio-ac.component';
 export * from './src/app/modules/lux-form/lux-select/lux-select.component';
 export * from './src/app/modules/lux-form/lux-select-ac/lux-select-ac.component';
 export * from './src/app/modules/lux-form/lux-slider/lux-slider.component';
