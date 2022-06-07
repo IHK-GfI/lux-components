@@ -109,6 +109,7 @@ export * from './src/app/modules/lux-error/lux-error-page/lux-error-interfaces/l
 export * from './src/app/modules/lux-form/lux-form.module';
 // Components
 export * from './src/app/modules/lux-form/lux-autocomplete/lux-autocomplete.component';
+export * from './src/app/modules/lux-form/lux-autocomplete-ac/lux-autocomplete-ac.component';
 export * from './src/app/modules/lux-form/lux-checkbox/lux-checkbox.component';
 export * from './src/app/modules/lux-form/lux-checkbox-ac/lux-checkbox-ac.component';
 export * from './src/app/modules/lux-form/lux-chips/lux-chips.component';
@@ -124,6 +125,7 @@ export * from './src/app/modules/lux-form/lux-input/lux-input-subcomponents/lux-
 export * from './src/app/modules/lux-form/lux-input/lux-input-subcomponents/lux-input-suffix.component';
 export * from './src/app/modules/lux-form/lux-radio/lux-radio.component';
 export * from './src/app/modules/lux-form/lux-select/lux-select.component';
+export * from './src/app/modules/lux-form/lux-select-ac/lux-select-ac.component';
 export * from './src/app/modules/lux-form/lux-slider/lux-slider.component';
 export * from './src/app/modules/lux-form/lux-toggle/lux-toggle.component';
 export * from './src/app/modules/lux-form/lux-toggle-ac/lux-toggle-ac.component';
