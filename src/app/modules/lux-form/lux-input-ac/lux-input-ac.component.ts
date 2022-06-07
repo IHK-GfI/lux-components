@@ -28,7 +28,6 @@ export class LuxInputAcComponent extends LuxFormInputBaseClass implements OnInit
       this.updateCounterLabel();
     }
   };
-
   get luxMaxLength(){
     return this._luxMaxLength;
   };

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
 @Component({
   selector: 'lux-checkbox-authentic-example',
@@ -7,19 +7,21 @@ import { exampleErrorCallback } from '../../example-base/example-base-util/examp
   styleUrls: []
 })
 export class CheckboxAuthenticExampleComponent  {
-
+  // region Helper-Properties für das Beispiel
+  
   useErrorMessage = true;
   form: FormGroup;
   agb: FormGroup;
   exampleText = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+  
   // endregion
 
   // region Properties der Component
 
   value;
   controlBinding = 'checkboxExample';
-  label = 'Label';
-  hint = 'Hint';
+  label = 'Labeltext';
+  hint = 'Optionaler Zusatztext';
   hintShowOnlyOnFocus = false;
   disabled = false;
   readonly: boolean;

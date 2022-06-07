@@ -11,7 +11,6 @@
 }
 
 :host {
-  max-width: 100%;
   width: 100%;
   outline: none !important;
 }
@@ -53,7 +52,7 @@
     border-radius: 4px;
     &.lux-no-input-row {
       border: none;
-      //padding: 0.75em 0em;
+      padding: 0.75em 0em;
     }
   }
 

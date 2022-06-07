@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styles: []
 })
 export class LuxInputAcSuffixComponent {
-
   constructor() { }
 }

@@ -13,6 +13,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
   components: { onclick: any; label: string; icon: string; useImage?: boolean; moduleName?: string; news?: boolean }[] = [
     { onclick: () => this.goTo('accordion'), icon: 'fas fa-stream', label: 'Accordion', moduleName: 'layout', news: true },
     { onclick: () => this.goTo('autocomplete'), icon: 'fas fa-font', label: 'Autocomplete', moduleName: 'form' },
+    { onclick: () => this.goTo('autocomplete-authentic'), icon: 'fas fa-font', label: 'Autocomplete-Authentic', moduleName: 'form', news: true },
     { onclick: () => this.goTo('badge'), icon: 'fas fa-ribbon', label: 'Badge', moduleName: 'common' },
     { onclick: () => this.goTo('button'), icon: 'fas fa-bullseye', label: 'Button', moduleName: 'action', news: true },
     { onclick: () => this.goTo('card'), icon: 'fas fa-square', label: 'Card', moduleName: 'layout' },
@@ -33,6 +34,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('progress'), icon: 'fas fa-battery-half', label: 'Progress', moduleName: 'common' },
     { onclick: () => this.goTo('radio-button'), icon: 'fas fa-circle', label: 'Radio-Button', moduleName: 'form' },
     { onclick: () => this.goTo('select'), icon: 'fab fa-get-pocket', label: 'Select', moduleName: 'form' },
+    { onclick: () => this.goTo('select-authentic'), icon: 'fab fa-get-pocket', label: 'Select-Authentic', moduleName: 'form', news: true },
     { onclick: () => this.goTo('slider'), icon: 'fas fa-sliders-h', label: 'Slider', moduleName: 'form' },
     { onclick: () => this.goTo('snackbar'), icon: 'fas fa-eye', label: 'Snackbar', moduleName: 'popup' },
     { onclick: () => this.goTo('spinner'), icon: 'fas fa-spinner', label: 'Spinner', moduleName: 'common' },

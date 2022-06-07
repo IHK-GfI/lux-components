@@ -13,18 +13,13 @@
     }
 
     .mat-checkbox-inner-container {
+      // die Checkbox soll größer sein, als von Material vorgegeben
       width: 1.25em;
       height: 1.25em;
-      // margin-top: -2px;
+      margin-top: 0px; //bei mehrzeiligen Labels wird die Checkbox oben und nicht zentriert angezeigt
     }
   }
 }
-
-
-
-// .lux-checkbox-wrapper {
-//   padding-bottom: 12px;
-// }
 
 .lux-form-label {
   cursor: pointer;

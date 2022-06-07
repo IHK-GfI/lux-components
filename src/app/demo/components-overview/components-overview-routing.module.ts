@@ -65,6 +65,8 @@ import { OverviewExampleComponent } from './tile-authentic-example/overview-exam
 import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
 import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/checkbox-authentic-example.component';
 import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
+import { AutocompleteAuthenticExampleComponent } from './autocomplete-authentic-example/autocomplete-authentic-example.component';
+import { SelectAuthenticExampleComponent } from './select-authentic-example/select-authentic-example.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -74,6 +76,7 @@ const routes: Routes = [
     children: [
       { path: 'accordion', component: AccordionExampleComponent },
       { path: 'autocomplete', component: AutocompleteExampleComponent },
+      { path: 'autocomplete-authentic', component: AutocompleteAuthenticExampleComponent },
       { path: 'badge', component: BadgeExampleComponent },
       { path: 'button', component: ButtonExampleComponent },
       { path: 'card', component: CardExampleComponent },
@@ -89,6 +92,7 @@ const routes: Routes = [
       { path: 'progress', component: ProgressBarExampleComponent },
       { path: 'radio-button', component: RadioButtonExampleComponent },
       { path: 'select', component: SelectExampleComponent },
+      { path: 'select-authentic', component: SelectAuthenticExampleComponent },
       { path: 'slider', component: SliderExampleComponent },
       { path: 'snackbar', component: SnackbarExampleComponent },
       { path: 'spinner', component: SpinnerExampleComponent },

@@ -60,6 +60,8 @@ import { LuxFormControlWrapperComponent } from './lux-form-control-wrapper/lux-f
 import { LuxInputAcSuffixComponent } from './lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-suffix.component';
 import { LuxCheckboxAcComponent } from './lux-checkbox-ac/lux-checkbox-ac.component';
 import { LuxToggleAcComponent } from './lux-toggle-ac/lux-toggle-ac.component';
+import { LuxAutocompleteAcComponent } from './lux-autocomplete-ac/lux-autocomplete-ac.component';
+import { LuxSelectAcComponent } from './lux-select-ac/lux-select-ac.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +101,9 @@ import { LuxToggleAcComponent } from './lux-toggle-ac/lux-toggle-ac.component';
     LuxInputAcSuffixComponent,
     LuxFormControlWrapperComponent,
     LuxCheckboxAcComponent,
-    LuxToggleAcComponent
+    LuxToggleAcComponent,
+    LuxAutocompleteAcComponent,
+    LuxSelectAcComponent
   ],
   imports: [
     CommonModule,
@@ -158,7 +162,9 @@ import { LuxToggleAcComponent } from './lux-toggle-ac/lux-toggle-ac.component';
     LuxInputAcPrefixComponent,
     LuxInputAcSuffixComponent,
     LuxCheckboxAcComponent,
-    LuxToggleAcComponent
+    LuxToggleAcComponent,
+    LuxAutocompleteAcComponent,
+    LuxSelectAcComponent
   ],
   providers: []
 })

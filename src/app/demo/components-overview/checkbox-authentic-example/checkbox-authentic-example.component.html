@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Checkbox"
-  exampleIconName="fas fa-check-square"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90checkbox"
 >
   <example-base-content fxFlex="column">
@@ -16,6 +15,8 @@
         [luxReadonly]="readonly"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxNoTopLabel]="true"
+        class="lux-mb-4"
       >
       </lux-checkbox-ac>
       <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="value !== undefined" style="margin-top: 16px">
@@ -34,6 +35,7 @@
         [luxControlBinding]="controlBinding"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxNoTopLabel]="true"
       >
       </lux-checkbox-ac>
       <div fxLayout="column" class="lux-highlight-section">
@@ -57,19 +59,17 @@
         </div>
       </div>
     </div>
-    <h3>Baseline-Vergleich mit einem Input-Authentic</h3>
-    <div fxLayout="row" fxLayoutGap="20px">
-      <lux-checkbox-ac fxFlex="50" [(luxChecked)]="value">
-        <lux-form-label>Dieses ist ein lux-form-label</lux-form-label>
-        <lux-form-hint>Dieses ist ein lux-form-hint</lux-form-hint>
-
+    <h3>Checkbox mit langem Labeltext</h3>
+    <lux-checkbox-ac
+        luxLabel="Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                  Explicabo voluptates corporis a provident, impedit illo dolorum ratione dicta quisquam odio? 
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                  Explicabo voluptates corporis a provident, impedit illo dolorum ratione dicta quisquam odio?"
+        [luxNoTopLabel]="true"
+        [luxHintShowOnlyOnFocus]="true"
+        luxHint="Trotz des langen Labels wird auch noch ein Hinweis benötigt."
+      >
       </lux-checkbox-ac>
-      <lux-input-ac fxFlex="50" luxLabel="Testinput" luxHint="Dies ist ein Hinweis" luxPlaceholder="Halllo lieber Mensch"></lux-input-ac>
-    </div>
-    <div fxLayout="column" fxLayoutGap="20px">
-      <lux-checkbox-ac fxFlex="100" luxLabel="Testbox mal schauen ob es umbricht oder wie viel Text benötigt wird" luxHint="Hallo Hinweis" [(luxChecked)]="value"></lux-checkbox-ac>
-      <lux-input-ac fxFlex="100" luxLabel="Testinput" luxHint="Dies ist ein Hinweis" luxPlaceholder="Halllo lieber Mensch"></lux-input-ac>
-    </div>
   </example-base-content>
   <example-base-simple-options>
     <lux-input

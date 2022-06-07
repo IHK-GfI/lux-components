@@ -101,6 +101,8 @@ import { OverviewExampleComponent } from './tile-authentic-example/overview-exam
 import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
 import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/checkbox-authentic-example.component';
 import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
+import { AutocompleteAuthenticExampleComponent } from './autocomplete-authentic-example/autocomplete-authentic-example.component';
+import { SelectAuthenticExampleComponent } from './select-authentic-example/select-authentic-example.component';
 
 @NgModule({
   imports: [
@@ -208,7 +210,9 @@ import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/togg
     OverviewExampleComponent,
     MasterDetailLightExampleComponent,
     CheckboxAuthenticExampleComponent,
-    ToggleAuthenticExampleComponent
+    ToggleAuthenticExampleComponent,
+    AutocompleteAuthenticExampleComponent,
+    SelectAuthenticExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]
