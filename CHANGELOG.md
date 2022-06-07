@@ -1,3 +1,6 @@
+## Bug Fixes
+- **lux-file-upload**: Upload-Komponente kann nicht im LUX-Dialog verwendet werden. [Issue 200](https://github.com/IHK-GfI/lux-components/issues/200)
+
 # Version 13.0.0
 ## New
 - **allgemein**: Update auf Angular 13
