@@ -1,6 +1,7 @@
 ## Bug Fixes
 - **lux-file-upload**: Upload-Komponente kann nicht im LUX-Dialog verwendet werden. [Issue 200](https://github.com/IHK-GfI/lux-components/issues/200)
 - **lux-lookup-label**: In blätterbaren Tabellen ändert sich der Wert nicht. [Issue 205](https://github.com/IHK-GfI/lux-components/issues/205)
+- **lux-filter-form**: Filterwerte werden nicht korrekt ersetzt. [Issue 203](https://github.com/IHK-GfI/lux-components/issues/203)
 
 # Version 13.0.0
 ## New

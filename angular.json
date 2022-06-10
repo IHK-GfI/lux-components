@@ -51,6 +51,11 @@
                 "output": "./assets/icons/material-icons/fonts"
               },
               {
+                "glob": "pdf.worker.min.js",
+                "input": "./node_modules/ng2-pdf-viewer/node_modules/pdfjs-dist/build",
+                "output": "./assets/pdf"
+              },
+              {
                 "glob": "**/*",
                 "input": "./node_modules/pdfjs-dist/cmaps/",
                 "output": "./assets/cmaps"

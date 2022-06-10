@@ -35,6 +35,8 @@ export class AppComponent implements OnInit {
     private elementRef: ElementRef,
     private appService: LuxAppService
   ) {
+    (window as any).pdfWorkerSrc = '/assets/pdf/pdf.worker.min.js';
+
     themeService.loadTheme();
     router.initialNavigation();
 
