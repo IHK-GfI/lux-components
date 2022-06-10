@@ -82,7 +82,9 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     this._luxFilterValues = JSON.parse(JSON.stringify(filter));
 
     if (this.initComplete) {
-      this.filterForm.patchValue(this._luxFilterValues);
+      const newFilter = this.createFilterObject();
+
+      this.filterForm.patchValue(newFilter);
 
       this.onFilter();
     }
@@ -336,5 +338,27 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
         this.updateFilterChips();
       }
     });
+  }
+
+  private createFilterObject() {
+    const newFilter = {};
+
+    if (this.formElementes && this._luxFilterValues) {
+      this.formElementes.forEach((item) => {
+        if (
+          item &&
+          item.filterItem &&
+          item.filterItem.binding &&
+          item.filterItem.defaultValues &&
+          item.filterItem.defaultValues.length > 0
+        ) {
+          newFilter[item.filterItem.binding] = item.filterItem.defaultValues[0];
+        }
+      });
+
+      Object.assign(newFilter, this._luxFilterValues);
+    }
+
+    return newFilter;
   }
 }
