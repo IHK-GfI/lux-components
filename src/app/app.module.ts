@@ -9,12 +9,10 @@ import { MockLuxLookupService } from "./demo/components-overview/lookup-examples
 import { HomeModule } from './demo/home/home.module';
 import { LuxActionModule } from './modules/lux-action/lux-action.module';
 import { LuxDirectivesModule } from './modules/lux-directives/lux-directives.module';
-import { LuxFilePreviewComponent } from './modules/lux-file-preview/lux-file-preview.component';
 import { LuxFilePreviewModule } from './modules/lux-file-preview/lux-file-preview.module';
 import { LuxLayoutModule } from './modules/lux-layout/lux-layout.module';
 import { LuxLookupService } from "./modules/lux-lookup/lux-lookup-service/lux-lookup.service";
 import { LuxPopupsModule } from './modules/lux-popups/lux-popups.module';
-import { LuxSnackbarComponent } from './modules/lux-popups/lux-snackbar/lux-snackbar-component/lux-snackbar.component';
 import { LuxConsoleService } from './modules/lux-util/lux-console.service';
 import { LuxComponentsConfigModule } from './modules/lux-components-config/lux-components-config.module';
 import { LuxComponentsConfigParameters } from './modules/lux-components-config/lux-components-config-parameters.interface';
@@ -57,7 +55,6 @@ const myConfiguration: LuxComponentsConfigParameters = {
     ExampleBaseModule,
     LuxComponentsConfigModule.forRoot(myConfiguration)
   ],
-  entryComponents: [LuxSnackbarComponent, LuxFilePreviewComponent],
   providers: [
     { provide: LuxLookupService, useClass: MockLuxLookupService }
   ],
