@@ -1,0 +1,62 @@
+@import '~@ihk-gfi/lux-components-theme/src/public/global';
+
+.lux-chips-input-container {
+  display: flex;
+  flex: 1 1 auto;
+
+  white-space: nowrap;
+}
+
+mat-chip-list {
+  display: block;
+}
+
+.mat-chip-list-stacked {
+  display: flex;
+
+  ::ng-deep {
+    mat-chip {
+      width: auto !important;
+    }
+
+    .mat-chip-input {
+      flex: unset;
+    }
+
+    //lux-chip-group,
+    .mat-chip-list-wrapper {
+      display: flex;
+      flex-direction: column !important;
+      width: 100%;
+    }
+  }
+}
+
+.lux-chips {
+  input {
+    width: auto;
+  }
+
+  mat-chip {
+    line-height: normal;
+
+    &.mat-chip-disabled {
+      pointer-events: none;
+    }
+  }
+}
+
+::ng-deep .lux-chips-ac-autocomplete-panel {
+
+  mat-option.lux-option-multiline {
+    padding: 16px;
+    height: unset;
+    
+    .mat-option-text {
+      white-space: pre-line;
+      text-overflow: unset;
+      word-wrap: break-word;
+      line-height: normal;
+    }
+  }
+}

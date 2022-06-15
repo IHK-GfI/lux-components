@@ -103,6 +103,13 @@ import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/
 import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
 import { AutocompleteAuthenticExampleComponent } from './autocomplete-authentic-example/autocomplete-authentic-example.component';
 import { SelectAuthenticExampleComponent } from './select-authentic-example/select-authentic-example.component';
+import { RadioAuthenticExampleComponent } from './radio-authentic-example/radio-authentic-example.component';
+import { DatepickerAuthenticExampleComponent } from './datepicker-authentic-example/datepicker-authentic-example.component';
+import { DatetimepickerAuthenticExampleComponent } from './datetimepicker-authentic-example/datetimepicker-authentic-example.component';
+import { TextareaAuthenticExampleComponent } from './textarea-authentic-example/textarea-authentic-example.component';
+import { FileInputAuthenticExampleComponent } from './file-example/file-input-authentic-example/file-input-authentic-example.component';
+import { ChipAuthenticExampleComponent } from './chip-authentic-example/chip-authentic-example.component';
+import { SliderAuthenticExampleComponent } from './slider-authentic-example/slider-authentic-example.component';
 
 @NgModule({
   imports: [
@@ -212,7 +219,14 @@ import { SelectAuthenticExampleComponent } from './select-authentic-example/sele
     CheckboxAuthenticExampleComponent,
     ToggleAuthenticExampleComponent,
     AutocompleteAuthenticExampleComponent,
-    SelectAuthenticExampleComponent
+    SelectAuthenticExampleComponent,
+    RadioAuthenticExampleComponent,
+    DatepickerAuthenticExampleComponent,
+    DatetimepickerAuthenticExampleComponent,
+    TextareaAuthenticExampleComponent,
+    FileInputAuthenticExampleComponent,
+    ChipAuthenticExampleComponent,
+    SliderAuthenticExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]

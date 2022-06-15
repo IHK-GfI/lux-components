@@ -47,7 +47,7 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
         iconName: 'fas fa-external-link-alt',
         cmd: 'documentation-btn',
         color: 'primary',
-        raised: true,
+        flat: true,
         alwaysVisible: false,
         onClick: () => {
           window.open(this.exampleDocumentationHref, '_blank');
@@ -58,7 +58,7 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
         iconName: 'fas fa-caret-left',
         cmd: 'back-btn',
         color: 'primary',
-        raised: true,
+        flat: true,
         alwaysVisible: true,
         onClick: () => {
           this.router.navigate(['components-overview']);

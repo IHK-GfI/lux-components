@@ -7,7 +7,7 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxToggleAcComponent } from './lux-toggle-ac.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
-fdescribe('LuxToggleAcComponent', () => {
+describe('LuxToggleAcComponent', () => {
 
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(

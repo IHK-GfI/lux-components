@@ -10,13 +10,6 @@
   }
 }
 
-// .lux-vertical mat-radio-button:first-child {
-//   margin-top: 0;
-// }
-
-// .lux-horizontal mat-radio-button:first-child {
-//   margin-left: 0;
-// }
 
 mat-radio-group {
   &.lux-vertical {
@@ -26,14 +19,6 @@ mat-radio-group {
           white-space: normal;
         }
       }
-
-      // mat-radio-button {
-      //   height: unset;
-
-      //   .mat-radio-label {
-      //     align-items: start;
-      //   }
-      // }
     }
   }
 

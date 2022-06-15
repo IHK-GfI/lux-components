@@ -5,30 +5,32 @@
   [@toggleMaster]="counter" 
 >
   <div  
-    *ngIf="isExpanded; else masterCollapsedView" 
+    *ngIf="isExpanded; else masterDetailCollapsedView" 
     fxLayout="row" 
     fxLayoutAlign="start start" 
     fxLayoutGap="30px"
     fxFlex="100" 
-    class="master-expanded-view" 
+    class="master-detail-expanded-view" 
   >
-  <!-- Master-Container Expanded-->
+    <!-- Master-Container Expanded-->
     <div 
       fxLayout="column"
       fxFlex.md="calc(50% - 15px)" 
       fxFlex.gt-md="30"
-      class="master-light-container"
+      fxLayoutAlign="space-between stretch"
+      class="master-light-container extended"
     >
       <ng-container *ngTemplateOutlet="master"></ng-container>
     </div>
+
     <!-- Detail-container -->
     <div class="detail-light-container" fxLayout="column" fxFlex="fill">
       <ng-container *ngTemplateOutlet="detail"></ng-container>
     </div>
   </div>
 
-  <ng-template #masterCollapsedView>
-    <div fxLayout="row" fxLayoutGap="30px" fxFlex="100" fxLayoutAlign="start start" class="master-collapsed-view">
+  <ng-template #masterDetailCollapsedView>
+    <div fxLayout="row" fxLayoutGap="30px" fxFlex="100" fxLayoutAlign="start start" class="master-detail-collapsed-view">
       <!-- Master-Container -->
       <div class="master-light-container collapsed" fxLayout="column" fxFlex="0 0 30px">
         <ng-container *ngTemplateOutlet="master"></ng-container>
@@ -44,7 +46,6 @@
 
 <!-- Template für den kompletten Detail -->
 <ng-template #detail>
-  Detail-container
   <!-- zurück zum Detail-Button für die mobile Ansicht-->
   <div class="detail-button-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" *ngIf="isMobile">
     <lux-button
@@ -55,9 +56,11 @@
     ></lux-button>
     <span class="back-to-master-label">Zurück zur Liste</span>
   </div>
+  <!-- Detail-Header Standard oder Custom-header -->
   <div class="detail-light-header">
     <ng-content select="lux-detail-header-light"></ng-content>
   </div>
+  <!-- Detail-Content -->
   <div class="detail-light-content">
     <ng-content select="lux-detail-content-light"></ng-content>
   </div>
@@ -79,12 +82,21 @@
     *ngIf="!isMobile"
   ></lux-button>
 
-  <div class="master-light-header" *ngIf="masterHeader && isExpanded">
-    <ng-content select="lux-master-header-light"></ng-content>
+  <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="start start" >
+    <!-- Master-Header -->
+    <div class="master-light-header" *ngIf="masterHeader && isExpanded">
+      <ng-content select="lux-master-header-light"></ng-content>
+    </div>
+    <!-- Master-Content -->
+    <div class="master-light-content" *ngIf="masterContent && isExpanded">
+      <ng-content select="lux-master-content-light"></ng-content>
+      <!-- bis ein Testitem eingbaut ist, um die Ansicht in der Mobilen View wechseln zu könnnen, muss wieder entfernt werden -->
+      <lux-button *ngIf="isMobile" luxLabel="testitem" (luxClicked)="toggleMobileView()"></lux-button>
+    </div>
   </div>
-  <div class="master-light-content" *ngIf="masterContent && isExpanded">
-    <ng-content select="lux-master-content-light"></ng-content>
-    <lux-button *ngIf="isMobile" luxLabel="testitem" (luxClicked)="toggleMobileView()"></lux-button>
+  <!-- Master-Footer -->
+  <div class="master-light-footer" *ngIf="masterFooter && isExpanded">
+    <ng-content select="lux-master-footer-light"></ng-content>
   </div>
 </ng-template>
 

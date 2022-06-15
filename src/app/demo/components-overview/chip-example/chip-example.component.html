@@ -144,6 +144,7 @@
     <lux-toggle
       class="lux-highlight-section"
       [(luxChecked)]="optionMultiline"
+      [luxNoTopLabel]="true"
       luxLabel="luxOptionMultiline"
       luxHint="Erlaubt es, mehrzeilige Texte in der Auswahlliste des Select-Panels anzuzeigen."
     >
@@ -239,6 +240,7 @@
       class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [luxNoTopLabel]="true"
       [(luxChecked)]="labelLongFormat"
     >
     </lux-toggle>

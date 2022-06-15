@@ -1,6 +1,5 @@
 <example-base-structure
-  exampleTitle="Autocomplete"
-  exampleIconName="fas fa-font"
+  exampleTitle="Autocomplete Authentic"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90autocomplete"
 >
   <example-base-content>
@@ -286,15 +285,14 @@
       [(luxValue)]="luxPanelWidth"
     >
     </lux-input>
-    <div class="lux-highlight-section column">
-      <lux-toggle
-        class="lux-highlight-section"
-        [(luxChecked)]="optionMultiline"
-        luxLabel="luxOptionMultiline"
-        luxHint="Mit diesem Flag kann aktiviert werden, dass der Text in einer Option mehrzeilig wird."
-      ></lux-toggle>
-    </div>
-    <div fxLayout="column" class="lux-highlight-section">
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="optionMultiline"
+      [luxNoTopLabel]="true"
+      luxLabel="luxOptionMultiline"
+      luxHint="Mit diesem Flag kann aktiviert werden, dass der Text in einer Option mehrzeilig wird."
+    ></lux-toggle>
+    <div fxLayout="column" class="lux-highlight-section column">
       <lux-input
         luxName="autocomplete_luxErrorMessageNotAnOption"
         luxLabel="luxErrorMessageNotAnOption"

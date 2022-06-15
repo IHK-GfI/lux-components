@@ -22,7 +22,7 @@ import { LuxSelectAcComponent } from './lux-select-ac.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Subject } from 'rxjs';
 
-fdescribe('LuxSelectAcComponent', () => {
+describe('LuxSelectAcComponent', () => {
 
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(

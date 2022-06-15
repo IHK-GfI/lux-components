@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Button"
-  exampleIconName="fas fa-bullseye"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90button"
 >
   <example-base-content>
@@ -87,6 +86,30 @@
           </lux-button>
         </div>
       </div>
+      <div 
+        fxLayout="column"
+        fxLayoutGap="24px"
+        class="lux-highlight-section"
+      >
+        <h3 class="lux-highlight-section-label lux-mb-4">Button-Hierarchie für Theme Authentic</h3>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <span fxFlex="20">Primary:</span>
+          <lux-button luxColor="primary" [luxFlat]="true" luxLabel="Primary"></lux-button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <span fxFlex="20">Secondary:</span>
+          <lux-button luxColor="primary" [luxStroked]="true" luxLabel="Secondary"></lux-button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <span fxFlex="20">Tertiary:</span>
+          <lux-button luxColor="primary"  luxLabel="Tertiary"></lux-button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <span fxFlex="20">Warnung:</span>
+          <lux-button luxColor="warn" [luxStroked]="true" luxLabel="Achtung"></lux-button>
+        </div>
+      </div>
+
       <div 
         fxLayout="column"
         fxLayoutGap="24px"

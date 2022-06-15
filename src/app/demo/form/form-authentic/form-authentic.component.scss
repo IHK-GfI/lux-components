@@ -5,12 +5,3 @@
   max-width: 1200px;
   box-sizing: border-box;
 }
-
-.test-row {
-  > * {
-    box-sizing: border-box;
-    display: flex;
-    min-width: 200px !important;
-  }
-
-}

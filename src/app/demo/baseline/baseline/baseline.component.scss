@@ -34,17 +34,17 @@ lux-card-content-expanded h4 {
     ::ng-deep {
       .baseline lux-card-content, .baseline lux-card-content-expanded {
         
-        .lux-form-control {
-          background: yellow !important;
+        .lux-form-control-wrapper {
+          background: lightslategray !important;
         }
-        .lux-form-control-label {
-          background: green !important;
+        .lux-form-control-label-authentic {
+          background: lightgreen !important;
         }
-        .lux-form-control-container, .lux-form-control-borderless .lux-form-control-container {
-          background: blue !important;
+        .lux-form-control-container-authentic, .lux-form-control-borderless .lux-form-control-container-authentic {
+          background: skyblue !important;
         }
-        .lux-form-control-misc {
-          background: red !important;
+        .lux-form-control-misc-authentic {
+          background: pink !important;
         }
       }
     }

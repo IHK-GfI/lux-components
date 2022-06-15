@@ -8,6 +8,7 @@ export interface ILuxAppFooterButtonInfo {
   hidden?: boolean;
   raised?: boolean;
   flat?: boolean;
+  stroked?: boolean;
   iconName?: string;
   alwaysVisible?: boolean;
   tooltip?: string;
@@ -22,6 +23,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
   hidden: boolean;
   raised: boolean;
   flat: boolean;
+  stroked: boolean;
   iconName: string;
   alwaysVisible: boolean;
   tooltip: string;
@@ -35,6 +37,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
     hidden?: boolean,
     raised?: boolean,
     flat?: boolean,
+    stroked?: boolean,
     iconName?: string,
     alwaysVisible?: boolean,
     tooltip?: string,
@@ -45,8 +48,9 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
     this.disabled = disabled;
     this.cmd = cmd;
     this.hidden = hidden === true ? true : false;
-    this.raised = raised === undefined || raised === null || raised === true ? true : false;
-    this.flat = flat === undefined || flat === null || flat === true ? true : false;
+    this.raised = raised === true ? true : false;
+    this.flat = flat === true ? true : false;
+    this.stroked = stroked === true ? true : false;
     this.iconName = iconName;
     this.alwaysVisible =
       alwaysVisible === undefined || alwaysVisible === null || alwaysVisible === false ? false : true;
@@ -70,6 +74,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
       data.hidden,
       data.raised,
       data.flat,
+      data.stroked,
       data.iconName,
       data.alwaysVisible,
       data.tooltip,

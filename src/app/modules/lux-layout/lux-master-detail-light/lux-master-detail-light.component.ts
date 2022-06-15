@@ -5,6 +5,7 @@ import { LuxDetailContentLightComponent } from './lux-detail-content-light/lux-d
 import { LuxDetailHeaderLightComponent } from './lux-detail-header-light/lux-detail-header-light.component';
 import { LuxMasterContentLightComponent } from './lux-master-content-light/lux-master-content-light.component';
 import { LuxMasterHeaderLightComponent } from './lux-master-header-light/lux-master-header-light.component';
+import { LuxMasterFooterLightComponent } from './lux-master-footer-light/lux-master-footer-light.component';
 import { animate, style, transition, trigger, query, group } from '@angular/animations';
 
 const left = [
@@ -44,6 +45,7 @@ const right = [
 export class LuxMasterDetailLightComponent implements OnDestroy {
   @ContentChild(LuxMasterHeaderLightComponent) masterHeader: LuxMasterHeaderLightComponent;
   @ContentChild(LuxMasterContentLightComponent) masterContent: LuxMasterContentLightComponent;
+  @ContentChild(LuxMasterFooterLightComponent) masterFooter: LuxMasterFooterLightComponent;
   @ContentChild(LuxDetailHeaderLightComponent) detailHeader: LuxDetailHeaderLightComponent;
   @ContentChild(LuxDetailContentLightComponent) detailContent: LuxDetailContentLightComponent;
   

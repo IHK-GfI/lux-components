@@ -67,6 +67,13 @@ import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/
 import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
 import { AutocompleteAuthenticExampleComponent } from './autocomplete-authentic-example/autocomplete-authentic-example.component';
 import { SelectAuthenticExampleComponent } from './select-authentic-example/select-authentic-example.component';
+import { RadioAuthenticExampleComponent } from './radio-authentic-example/radio-authentic-example.component';
+import { DatepickerAuthenticExampleComponent } from './datepicker-authentic-example/datepicker-authentic-example.component';
+import { DatetimepickerAuthenticExampleComponent } from './datetimepicker-authentic-example/datetimepicker-authentic-example.component';
+import { TextareaAuthenticExampleComponent } from './textarea-authentic-example/textarea-authentic-example.component';
+import { FileInputAuthenticExampleComponent } from './file-example/file-input-authentic-example/file-input-authentic-example.component';
+import { ChipAuthenticExampleComponent } from './chip-authentic-example/chip-authentic-example.component';
+import { SliderAuthenticExampleComponent } from './slider-authentic-example/slider-authentic-example.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -81,8 +88,11 @@ const routes: Routes = [
       { path: 'button', component: ButtonExampleComponent },
       { path: 'card', component: CardExampleComponent },
       { path: 'chips', component: ChipExampleComponent },
+      { path: 'chips-authentic', component: ChipAuthenticExampleComponent },
       { path: 'datepicker', component: DatepickerExampleComponent },
+      { path: 'datepicker-authentic', component: DatepickerAuthenticExampleComponent },
       { path: 'datetimepicker', component: DateTimepickerExampleComponent },
+      { path: 'datetimepicker-authentic', component: DatetimepickerAuthenticExampleComponent },
       { path: 'divider', component: DividerExampleComponent },
       { path: 'error-page', component: ErrorpageExampleComponent },
       { path: 'http-error', component: HttpErrorExampleComponent },
@@ -91,15 +101,18 @@ const routes: Routes = [
       { path: 'link', component: LinkExampleComponent },
       { path: 'progress', component: ProgressBarExampleComponent },
       { path: 'radio-button', component: RadioButtonExampleComponent },
+      { path: 'radio-button-authentic', component: RadioAuthenticExampleComponent },
       { path: 'select', component: SelectExampleComponent },
       { path: 'select-authentic', component: SelectAuthenticExampleComponent },
       { path: 'slider', component: SliderExampleComponent },
+      { path: 'slider-authentic', component: SliderAuthenticExampleComponent },
       { path: 'snackbar', component: SnackbarExampleComponent },
       { path: 'spinner', component: SpinnerExampleComponent },
       { path: 'storage', component: StorageExampleComponent },
       { path: 'table', component: TableExampleComponent },
       { path: 'table-server', component: TableServerExampleComponent },
       { path: 'textarea', component: TextareaExampleComponent },
+      { path: 'textarea-authentic', component: TextareaAuthenticExampleComponent },
       { path: 'tooltip', component: TooltipExampleComponent },
       { path: 'lookup-combobox', component: LookupComboboxExampleComponent },
       { path: 'lookup-autocomplete', component: LookupAutocompleteExampleComponent },
@@ -122,6 +135,7 @@ const routes: Routes = [
       { path: 'infinite-scrolling', component: InfiniteScrollingExampleComponent },
       { path: 'dialog', component: DialogExampleComponent },
       { path: 'file-input', component: FileInputExampleComponent },
+      { path: 'file-input-authentic', component: FileInputAuthenticExampleComponent },
       { path: 'file-list', component: FileListExampleComponent },
       { path: 'file-upload', component: FileUploadExampleComponent },
       { path: 'badge-notification', component: BadgeNotificationExampleComponent },

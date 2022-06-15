@@ -11,7 +11,7 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxRadioAcComponent } from './lux-radio-ac.component';
 import { Observable, of } from 'rxjs';
 
-fdescribe('LuxRadioAcComponent', () => {
+describe('LuxRadioAcComponent', () => {
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService, { provide: LuxMediaQueryObserverService, useClass: MockMediaObserver }],

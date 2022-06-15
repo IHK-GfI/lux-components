@@ -40,6 +40,7 @@ export class BaselineAccordionComponent {
   prefixOptions = [ '', 'Frau', 'Herr']
   form: FormGroup = undefined; 
   addressForm: FormGroup = undefined;
+  addressForm2: FormGroup = undefined;
   
   constructor() { 
     this.form = new FormGroup({
@@ -49,6 +50,18 @@ export class BaselineAccordionComponent {
     });
 
     this.addressForm = new FormGroup ({
+      title: new FormControl('', Validators.required),
+      firstname: new FormControl('', Validators.required),
+      lastname: new FormControl('', Validators.required),
+      streetAddress: new FormControl('', Validators.required),
+      streetNumber: new FormControl('', Validators.required),
+      addressInfo: new FormControl('', Validators.maxLength(100)),
+      postalCode: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(5)]) ),
+      city: new FormControl('', Validators.required),
+      country: new FormControl('', Validators.required),
+      comment: new FormControl(''),
+    })
+    this.addressForm2 = new FormGroup ({
       title: new FormControl('', Validators.required),
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
