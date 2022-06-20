@@ -62,6 +62,20 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
       moduleName: 'lookup'
     },
     {
+      onclick: () => this.goTo('lookup-combobox-authentic'),
+      icon: 'fas fa-binoculars',
+      label: 'Lookup-Combobox-Authentic',
+      moduleName: 'lookup',
+      news: true
+    },
+    {
+      onclick: () => this.goTo('lookup-autocomplete-authentic'),
+      icon: 'fas fa-binoculars',
+      label: 'Lookup-Autocomplete-Authentic',
+      moduleName: 'lookup',
+      news: true
+    },
+    {
       onclick: () => this.goTo('lookup-label'),
       icon: 'fas fa-binoculars',
       label: 'Lookup-Label',

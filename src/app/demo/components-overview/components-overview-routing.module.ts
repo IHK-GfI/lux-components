@@ -32,6 +32,8 @@ import { TextareaExampleComponent } from './textarea-example/textarea-example.co
 import { TooltipExampleComponent } from './tooltip-example/tooltip-example.component';
 import { LookupComboboxExampleComponent } from './lookup-examples/lookup-combobox-example/lookup-combobox-example.component';
 import { LookupAutocompleteExampleComponent } from './lookup-examples/lookup-autocomplete-example/lookup-autocomplete-example.component';
+import { LookupComboboxAcExampleComponent } from './lookup-examples/lookup-combobox-ac-example/lookup-combobox-ac-example.component';
+import { LookupAutocompleteAcExampleComponent } from './lookup-examples/lookup-autocomplete-ac-example/lookup-autocomplete-ac-example.component';
 import { LookupLabelExampleComponent } from './lookup-examples/lookup-label-example/lookup-label-example.component';
 import { SelectExampleComponent } from './select-example/select-example.component';
 import { TabindexExampleComponent } from './tabindex-example/tabindex-example.component';
@@ -115,7 +117,9 @@ const routes: Routes = [
       { path: 'textarea-authentic', component: TextareaAuthenticExampleComponent },
       { path: 'tooltip', component: TooltipExampleComponent },
       { path: 'lookup-combobox', component: LookupComboboxExampleComponent },
+      { path: 'lookup-combobox-authentic', component: LookupComboboxAcExampleComponent },
       { path: 'lookup-autocomplete', component: LookupAutocompleteExampleComponent },
+      { path: 'lookup-autocomplete-authentic', component: LookupAutocompleteAcExampleComponent },
       { path: 'lookup-label', component: LookupLabelExampleComponent },
       { path: 'input', component: InputExampleComponent },
       { path: 'tabindex', component: TabindexExampleComponent },

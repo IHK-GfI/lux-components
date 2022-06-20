@@ -110,6 +110,8 @@ import { TextareaAuthenticExampleComponent } from './textarea-authentic-example/
 import { FileInputAuthenticExampleComponent } from './file-example/file-input-authentic-example/file-input-authentic-example.component';
 import { ChipAuthenticExampleComponent } from './chip-authentic-example/chip-authentic-example.component';
 import { SliderAuthenticExampleComponent } from './slider-authentic-example/slider-authentic-example.component';
+import { LookupAutocompleteAcExampleComponent } from './lookup-examples/lookup-autocomplete-ac-example/lookup-autocomplete-ac-example.component';
+import { LookupComboboxAcExampleComponent } from './lookup-examples/lookup-combobox-ac-example/lookup-combobox-ac-example.component';
 
 @NgModule({
   imports: [
@@ -226,7 +228,9 @@ import { SliderAuthenticExampleComponent } from './slider-authentic-example/slid
     TextareaAuthenticExampleComponent,
     FileInputAuthenticExampleComponent,
     ChipAuthenticExampleComponent,
-    SliderAuthenticExampleComponent
+    SliderAuthenticExampleComponent,
+    LookupAutocompleteAcExampleComponent,
+    LookupComboboxAcExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]

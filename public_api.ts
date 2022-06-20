@@ -311,13 +311,16 @@ export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-
  */
 export * from './src/app/modules/lux-lookup/lux-lookup.module';
 export * from './src/app/modules/lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
+export * from './src/app/modules/lux-lookup/lux-lookup-combobox-ac/lux-lookup-combobox-ac.component';
 export * from './src/app/modules/lux-lookup/lux-lookup-autocomplete/lux-lookup-autocomplete.component';
+export * from './src/app/modules/lux-lookup/lux-lookup-autocomplete-ac/lux-lookup-autocomplete-ac.component';
 export * from './src/app/modules/lux-lookup/lux-lookup-label/lux-lookup-label.component';
 export * from './src/app/modules/lux-lookup/lux-lookup-model/lux-lookup-component';
 export * from './src/app/modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
 export * from './src/app/modules/lux-lookup/lux-lookup-model/lux-lookup-table-entry';
 export * from './src/app/modules/lux-lookup/lux-lookup-model/lux-lookup-error-state-matcher';
 export * from './src/app/modules/lux-lookup/lux-lookup-autocomplete/lux-autocomplete-error-state-matcher';
+export * from './src/app/modules/lux-lookup/lux-lookup-autocomplete-ac/lux-autocomplete-error-state-matcher-ac';
 export * from './src/app/modules/lux-lookup/lux-lookup-service/lux-lookup.service';
 export * from './src/app/modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 

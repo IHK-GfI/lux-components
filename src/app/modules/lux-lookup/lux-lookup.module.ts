@@ -14,6 +14,8 @@ import { LuxFormModule } from '../lux-form/lux-form.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LuxLookupLabelComponent } from './lux-lookup-label/lux-lookup-label.component';
 import { LuxComponentsConfigModule } from '../lux-components-config/lux-components-config.module';
+import { LuxLookupAutocompleteAcComponent } from './lux-lookup-autocomplete-ac/lux-lookup-autocomplete-ac.component';
+import { LuxLookupComboboxAcComponent } from './lux-lookup-combobox-ac/lux-lookup-combobox-ac.component';
 
 @NgModule({
   imports: [
@@ -30,8 +32,8 @@ import { LuxComponentsConfigModule } from '../lux-components-config/lux-componen
     FlexLayoutModule,
     LuxComponentsConfigModule
   ],
-  declarations: [LuxLookupComboboxComponent, LuxLookupAutocompleteComponent, LuxLookupLabelComponent],
+  declarations: [LuxLookupComboboxComponent, LuxLookupAutocompleteComponent, LuxLookupLabelComponent, LuxLookupAutocompleteAcComponent, LuxLookupComboboxAcComponent],
   providers: [HttpClient],
-  exports: [LuxLookupComboboxComponent, LuxLookupAutocompleteComponent, LuxLookupLabelComponent]
+  exports: [LuxLookupComboboxComponent, LuxLookupAutocompleteComponent, LuxLookupLabelComponent, LuxLookupAutocompleteAcComponent, LuxLookupComboboxAcComponent]
 })
 export class LuxLookupModule {}
