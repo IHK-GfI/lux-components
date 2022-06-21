@@ -1,3 +1,8 @@
+## New
+- **lux-chips**: Neue Property `luxStrict` eingeführt. [Issue 209](https://github.com/IHK-GfI/lux-components/issues/209)
+- **lux-chips**: Neue Property `luxControlBinding` eingeführt, damit die Chips auch an ein Formular gebunden werden können. [Issue 209](https://github.com/IHK-GfI/lux-components/issues/209)
+- **lux-chips**: Die ausgewählten Optionen werden nicht länger als Vorschläge im Popupmenü angezeigt. [Issue 209](https://github.com/IHK-GfI/lux-components/issues/209)
+
 ## Bug Fixes
 - **lux-file-upload**: Upload-Komponente kann nicht im LUX-Dialog verwendet werden. [Issue 200](https://github.com/IHK-GfI/lux-components/issues/200)
 - **lux-lookup-label**: In blätterbaren Tabellen ändert sich der Wert nicht. [Issue 205](https://github.com/IHK-GfI/lux-components/issues/205)
