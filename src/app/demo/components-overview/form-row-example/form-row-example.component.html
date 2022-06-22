@@ -190,5 +190,67 @@
         </lux-card-content>
       </lux-card>
     </lux-layout-card-row>
+
+    <lux-layout-card-row>
+      <lux-card luxTitle="Formular (3 Spalten) im Theme-Authentic" *luxLayoutRowItem="{}">
+        <lux-card-content>
+          <lux-layout>
+            <lux-layout-form-row luxTitle="Lorem ipsum 1" [luxGap]="{ row: '16px', rowItem: '32px', column: '8px'}">
+              <lux-input-ac
+                luxLabel="Lorem ipsum 3.1"
+                luxName="Lorem_ipsum_3.1"
+                [luxNoBottomLabel]="true"
+                *luxLayoutRowItem="{ colSpan: 2 }"
+              ></lux-input-ac>
+              <div *luxLayoutRowItem="{ empty: true }"></div>
+            </lux-layout-form-row>
+            <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px'}">
+              <lux-input-ac luxLabel="Lorem ipsum 3.2" luxName="Lorem_ipsum_3.2" [luxNoBottomLabel]="true" *luxLayoutRowItem="{}"></lux-input-ac>
+              <lux-select-ac luxLabel="Lorem ipsum 3.3" luxName="Lorem_ipsum_3.3" [luxNoBottomLabel]="true" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-select-ac>
+              <lux-autocomplete-ac luxLabel="Lorem ipsum 3.4" luxName="Lorem_ipsum_3.4" [luxNoBottomLabel]="true" [luxOptions]="options" [(luxValue)]="selected" *luxLayoutRowItem="{}"></lux-autocomplete-ac>
+            </lux-layout-form-row>
+            <lux-layout-form-row luxTitle="Lorem ipsum 2" [luxGap]="{ row: '16px', rowItem: '32px', column: '8px'}">
+              <lux-radio-ac
+                luxLabel="Lorem ipsum 3.5"
+                luxName="Lorem_ipsum_3.5"
+                [luxOptions]="options"
+                *luxLayoutRowItem="{}"
+              ></lux-radio-ac>
+              <lux-radio-ac
+                luxLabel="Lorem ipsum 3.6"
+                luxName="Lorem_ipsum_3.6"
+                [luxOptions]="options"
+                *luxLayoutRowItem="{}"
+              ></lux-radio-ac>
+              <lux-radio-ac
+                luxLabel="Lorem ipsum 3.7"
+                luxName="Lorem_ipsum_3.7"
+                [luxOptions]="options"
+                *luxLayoutRowItem="{}"
+              ></lux-radio-ac>
+            </lux-layout-form-row>
+            <lux-layout-form-row>
+              <lux-chips-ac 
+                luxInputLabel="lux-Chips-Authentic" 
+                [luxInputAllowed]="true" 
+                [luxAutocompleteOptions]="chipsOptions"
+                (luxChipAdded)="chipAdded($event)"
+                *luxLayoutRowItem="{}">
+                <lux-chip-ac
+                  [luxDisabled]="chip.disabled"
+                  [luxColor]="chip.color"
+                  [luxRemovable]="chip.removable"
+                  [luxSelected]="chip.selected"
+                  (luxChipRemoved)="chipRemoved($event)"
+                  *ngFor="let chip of chips; let i = index"
+                >
+                  {{ chip.label }}
+                </lux-chip-ac>
+              </lux-chips-ac>
+            </lux-layout-form-row>
+          </lux-layout>
+        </lux-card-content>
+      </lux-card>
+    </lux-layout-card-row>
   </lux-layout>
 </div>
