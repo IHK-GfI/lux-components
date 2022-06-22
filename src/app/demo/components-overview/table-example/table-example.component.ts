@@ -39,7 +39,11 @@ export class TableExampleComponent extends TableExampleBaseClass {
   }
 
   onSelectedChange($event) {
-    console.log($event);
+    console.log('als Set:  ', $event);
+  }
+
+  onSelectedAsArrayChange($event) {
+    console.log('als Array:', $event);
   }
 
   clearData() {
