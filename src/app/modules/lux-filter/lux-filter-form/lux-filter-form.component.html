@@ -6,7 +6,12 @@
     luxCollapsedHeaderHeight="40px"
     luxExpandedHeaderHeight="40px"
   >
-    <lux-panel-header-title>{{ luxTitle }} <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container></lux-panel-header-title>
+    <lux-panel-header-title>
+      {{ luxTitle }} 
+      <ng-container *ngIf="luxFilterExpanded">
+        <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container>
+      </ng-container>
+    </lux-panel-header-title>
     <lux-panel-content>
       <ng-container *ngTemplateOutlet="filterFormTemplate"></ng-container>
     </lux-panel-content>
@@ -20,8 +25,8 @@
 <lux-card 
   *ngIf="luxShowAsCard"
   luxTitle="{{luxTitle}}" 
-  luxExpandedLabelOpen="weitere Optionen"
-  luxExpandedLabelClose="weniger Optionen"  
+  [luxExpandedLabelOpen]="luxExpandedLabelOpen"
+  [luxExpandedLabelClose]="luxExpandedLabelClose"  
   class="lux-filter-card"
 >
 <lux-card-info>
@@ -50,14 +55,15 @@
 <ng-template #filterButtonTemplate>
   <lux-button 
     [luxLabel]="luxButtonFilterLabel"
-    luxIconName="fas fa-filter"
     [luxColor]="luxButtonFilterColor"
-    [luxStroked]="true" 
-    luxColor="primary"
-    [luxRaised]="luxButtonRaised"
+    [luxStroked]="!luxButtonFlat" 
+    [luxFlat]="luxButtonFlat"
+    luxIconName="fas fa-filter"
     luxTooltip="(Shift + Enter)"
-    (luxClicked)="onFilter()">
+    (luxClicked)="onFilter()"
+    >
   </lux-button>
+
 </ng-template>
 <!-- die Menü-Leiste mit den Filterfunktionen ist in beiden Darstellungen gleich -->
 <ng-template #filterActionTemplate>

@@ -48,8 +48,6 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   expanded = false;
   showFilterChips = true;
-  showAsCard = false;
-  showExtendedOptions = false;
 
   storedFilters = [
     {
@@ -120,13 +118,16 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   toggleSelectHidden = false;
 
   buttonColorOptions = ['default', 'primary', 'accent', 'warn'];
-  buttonRaised = false;
+  buttonFlat = false;
   buttonFilterColor: LuxActionColorType = 'primary';
   buttonDialogSave = 'primary';
   buttonDialogLoad = 'primary';
   buttonDialogDelete = 'warn';
   buttonDialogCancel = 'default';
   buttonDialogClose = 'default';
+
+  openLabel = "weitere Filter";
+  closeLabel = "weniger Filter";
 
   markdownData = `
   Html
