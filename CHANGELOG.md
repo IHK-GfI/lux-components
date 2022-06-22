@@ -2,6 +2,7 @@
 
 ## New
 - **lux-table**: Zusätzliches Outputevent "luxSelectedAsArrayChange" einführen. [Issue 207](https://github.com/IHK-GfI/lux-components/issues/207)
+- **lux-app-footer**: LuxAppFooterButtonInfo um die Property "prio" erweitern. [Issue 211](https://github.com/IHK-GfI/lux-components/issues/211)
 
 ## Bug Fixes
 - **lux-file-upload**: Upload-Komponente kann nicht im LUX-Dialog verwendet werden. [Issue 200](https://github.com/IHK-GfI/lux-components/issues/200)

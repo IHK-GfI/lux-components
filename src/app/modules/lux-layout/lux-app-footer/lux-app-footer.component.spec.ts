@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { fakeAsync, TestBed } from '@angular/core/testing';
 import { LuxButtonComponent } from '../../lux-action/lux-button/lux-button.component';
@@ -18,13 +20,134 @@ describe('LuxAppFooterComponent', () => {
   describe('App-Footer-Buttons', () => {
     it('Sollte die Buttonreihenfolge beibehalten', fakeAsync(() => {
       const fixture = TestBed.createComponent(MockAppFooterButtonOrderComponent);
+      const testComponent = fixture.componentInstance;
       LuxTestHelper.wait(fixture);
 
-      const footerButtons = fixture.debugElement.queryAll(By.directive(LuxButtonComponent));
+      let footerButtons = fixture.debugElement.queryAll(By.directive(LuxButtonComponent));
       expect(footerButtons.length).toEqual(3);
       expect(footerButtons[0].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Weiter');
       expect(footerButtons[1].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abbrechen');
       expect(footerButtons[2].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abschließen');
+
+      testComponent.nextBtn.alwaysVisible = true;
+      testComponent.cancelBtn.alwaysVisible = true;
+      testComponent.finishBtn.alwaysVisible = true;
+      fixture.detectChanges();
+
+      footerButtons = fixture.debugElement.queryAll(By.directive(LuxButtonComponent));
+      expect(footerButtons.length).toEqual(3);
+      expect(footerButtons[0].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Weiter');
+      expect(footerButtons[1].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abbrechen');
+      expect(footerButtons[2].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abschließen');
+
+      testComponent.nextBtn.alwaysVisible = false;
+      testComponent.cancelBtn.alwaysVisible = false;
+      testComponent.finishBtn.alwaysVisible = false;
+      fixture.detectChanges();
+
+      footerButtons = fixture.debugElement.queryAll(By.directive(LuxButtonComponent));
+      expect(footerButtons.length).toEqual(3);
+      expect(footerButtons[0].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Weiter');
+      expect(footerButtons[1].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abbrechen');
+      expect(footerButtons[2].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abschließen');
+
+      testComponent.nextBtn.prio = 3;
+      testComponent.cancelBtn.prio = 2;
+      testComponent.finishBtn.prio = 1;
+      fixture.detectChanges();
+
+      footerButtons = fixture.debugElement.queryAll(By.directive(LuxButtonComponent));
+      expect(footerButtons.length).toEqual(3);
+      expect(footerButtons[0].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abschließen');
+      expect(footerButtons[1].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abbrechen');
+      expect(footerButtons[2].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Weiter');
+
+      testComponent.nextBtn.prio = 1;
+      testComponent.cancelBtn.prio = 2;
+      testComponent.finishBtn.prio = 3;
+      fixture.detectChanges();
+
+      footerButtons = fixture.debugElement.queryAll(By.directive(LuxButtonComponent));
+      expect(footerButtons.length).toEqual(3);
+      expect(footerButtons[0].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Weiter');
+      expect(footerButtons[1].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abbrechen');
+      expect(footerButtons[2].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abschließen');
+
+      testComponent.nextBtn.prio = 2;
+      testComponent.cancelBtn.prio = 1;
+      testComponent.finishBtn.prio = 3;
+      fixture.detectChanges();
+
+      footerButtons = fixture.debugElement.queryAll(By.directive(LuxButtonComponent));
+      expect(footerButtons.length).toEqual(3);
+      expect(footerButtons[0].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abbrechen');
+      expect(footerButtons[1].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Weiter');
+      expect(footerButtons[2].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abschließen');
+
+      testComponent.nextBtn.alwaysVisible = true;
+      testComponent.cancelBtn.alwaysVisible = false;
+      testComponent.finishBtn.alwaysVisible = true;
+      testComponent.nextBtn.prio = 1;
+      testComponent.cancelBtn.prio = 2;
+      testComponent.finishBtn.prio = 3;
+      fixture.detectChanges();
+
+      footerButtons = fixture.debugElement.queryAll(By.directive(LuxButtonComponent));
+      expect(footerButtons.length).toEqual(3);
+      expect(footerButtons[0].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Weiter');
+      expect(footerButtons[1].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abbrechen');
+      expect(footerButtons[2].nativeElement.attributes['ng-reflect-lux-label'].value).toEqual('Abschließen');
+    }));
+
+    it('Sollte identische LuxAppFooterButtonInfos über den Konstruktor und die generateInfo-Method erzeugen', fakeAsync(() => {
+      const label = 'Weiter';
+      const cmd = 'next';
+      const prio = 5;
+      const color = 'primary';
+      const disabled = false;
+      const hidden = false;
+      const raised = true;
+      const iconName = 'fas fa-user';
+      const alwaysVisible = true;
+      const tooltip = 'Tooltip'
+      const onClick = () => {};
+
+      const infoConstruktor = new LuxAppFooterButtonInfo(label, cmd, prio, color, disabled, hidden, raised, iconName, alwaysVisible, tooltip, onClick);
+      const infoMethod =  LuxAppFooterButtonInfo.generateInfo({ label, cmd, prio, color, disabled, hidden, raised, iconName, alwaysVisible, tooltip, onClick });
+
+      expect(infoConstruktor.label).toEqual(infoMethod.label);
+      expect(infoConstruktor.cmd).toEqual(infoMethod.cmd);
+      expect(infoConstruktor.prio).toEqual(infoMethod.prio);
+      expect(infoConstruktor.color).toEqual(infoMethod.color);
+      expect(infoConstruktor.disabled).toEqual(infoMethod.disabled);
+      expect(infoConstruktor.hidden).toEqual(infoMethod.hidden);
+      expect(infoConstruktor.raised).toEqual(infoMethod.raised);
+      expect(infoConstruktor.iconName).toEqual(infoMethod.iconName);
+      expect(infoConstruktor.alwaysVisible).toEqual(infoMethod.alwaysVisible);
+      expect(infoConstruktor.tooltip).toEqual(infoMethod.tooltip);
+      expect(infoConstruktor.onClick).toEqual(infoMethod.onClick);
+    }));
+
+    it('Sollte eine LuxAppFooterButtonInfo über ein Teilobjekt erzeugen', fakeAsync(() => {
+      const label = 'Weiter';
+      const cmd = 'next';
+      const disabled = false;
+      const iconName = 'fas fa-user';
+      const onClick = () => {};
+
+      const infoMethod =  LuxAppFooterButtonInfo.generateInfo({ label, cmd, disabled, iconName, onClick });
+
+      expect(infoMethod.label).toEqual(label);
+      expect(infoMethod.cmd).toEqual(cmd);
+      expect(infoMethod.prio).toEqual(0);
+      expect(infoMethod.color).toBeUndefined();
+      expect(infoMethod.disabled).toEqual(disabled);
+      expect(infoMethod.hidden).toEqual(false);
+      expect(infoMethod.raised).toEqual(true);
+      expect(infoMethod.iconName).toEqual(iconName);
+      expect(infoMethod.alwaysVisible).toEqual(false);
+      expect(infoMethod.tooltip).toEqual('');
+      expect(infoMethod.onClick).toEqual(onClick);
     }));
   });
 
