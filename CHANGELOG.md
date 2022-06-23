@@ -1,6 +1,7 @@
 # Version 13.1.0
 ## New
 - **lux-table**: Zusätzliches Outputevent "luxSelectedAsArrayChange" einführen. [Issue 207](https://github.com/IHK-GfI/lux-components/issues/207)
+- **lux-app-footer**: LuxAppFooterButtonInfo um die Property "prio" erweitern. [Issue 211](https://github.com/IHK-GfI/lux-components/issues/211)
 - **lux-chips**: Neue Property `luxStrict` eingeführt. [Issue 209](https://github.com/IHK-GfI/lux-components/issues/209)
 - **lux-chips**: Neue Property `luxControlBinding` eingeführt, damit die Chips auch an ein Formular gebunden werden können. [Issue 209](https://github.com/IHK-GfI/lux-components/issues/209)
 - **lux-chips**: Die ausgewählten Optionen werden nicht länger als Vorschläge im Popupmenü angezeigt. [Issue 209](https://github.com/IHK-GfI/lux-components/issues/209)
