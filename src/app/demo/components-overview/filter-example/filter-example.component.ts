@@ -9,6 +9,7 @@ import {
   LuxFieldValues,
   LuxLookupParameters
 } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
+import { LuxUtil } from "../../../modules/lux-util/lux-util";
 
 @Component({
   selector: 'lux-filter-example',
@@ -43,6 +44,11 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   initFilter: any = {};
   currentFilter: any = {};
+  replaceFilterJson = `{
+  "input": "Lorem ipsum",
+  "datepicker": "${LuxUtil.newDateWithoutTime().toISOString()}",
+  "toggle": true
+  }`;
 
   expanded = false;
   showFilterChips = true;
@@ -197,6 +203,10 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   onLoad(filterName: string) {
     this.initFilter = this.loadFilter(filterName);
+  }
+
+  onSetFilter() {
+    this.initFilter = JSON.parse(this.replaceFilterJson);
   }
 
   private saveFilter(filter: LuxFilter) {

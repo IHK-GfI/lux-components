@@ -60,6 +60,16 @@
             </lux-input>
             <lux-input
               class="lux-highlight-section"
+              luxName="app-footer_prio"
+              luxLabel="prio"
+              luxType="number"
+              [luxNumberAlignLeft]="true"
+              luxHint="Mit dieser Property wird die Priorität des Footer-Buttons festgelegt."
+              [(luxValue)]="buttonInfo.prio"
+            >
+            </lux-input>
+            <lux-input
+              class="lux-highlight-section"
               luxName="app-footer_tooltip"
               luxLabel="Tooltip"
               luxHint="Mit dieser Property wird der Tooltip des Footer-Buttons festgelegt."

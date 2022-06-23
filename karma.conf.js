@@ -80,7 +80,7 @@ module.exports = function (config) {
           statements: 75,
           branches: 60,
           functions: 70,
-          lines: 75,
+          lines: 74,
         },
       },
     },
