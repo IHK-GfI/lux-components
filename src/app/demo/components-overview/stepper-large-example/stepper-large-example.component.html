@@ -1,4 +1,4 @@
-<div class="example-lux-stepper-large" [ngStyle]="{ maxWidth: maxWidth }">
+<div class="example-lux-stepper-large" [ngStyle]="{ maxWidth: maxWidth }" [ngClass]="{ 'authentic-example': theme === 'authentic' }">
   <lux-stepper-large
     [luxStepValidationActive]="stepValidationActive"
     [(luxCurrentStepNumber)]="currentStepIndex"
@@ -7,6 +7,7 @@
     [luxFinButtonConfig]="dataService.finButtonConfig"
     (luxStepChanged)="onStepChanged($event)"
     (luxStepperFinished)="onFinish()"
+    [ngClass]="{ 'authentic-example': theme === 'authentic' }"
   >
     <lux-stepper-large-step luxTitle="Allgemein" [luxCompleted]="allowed">
       <h2 class="example-lux-stepper-large-h2">Lorem Ipsum</h2>
