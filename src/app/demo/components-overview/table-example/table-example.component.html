@@ -42,14 +42,14 @@
           <lux-table-column-content>
             <ng-template let-element>
               <span *ngIf="!element.editable">{{ element.name }}</span>
-              <lux-input
+              <lux-input-ac
                 *ngIf="element.editable"
                 luxAriaLabel="Name"
                 luxTagId="table.row.control.name"
                 class="lux-table-no-label"
                 [(luxValue)]="element.name"
                 [luxNoLabels]="true"
-              ></lux-input>
+              ></lux-input-ac>
             </ng-template>
           </lux-table-column-content>
           <lux-table-column-footer>
@@ -72,7 +72,7 @@
             <ng-template let-element>
               <span *ngIf="!element.editable">{{ element.symbol | lowercase }}</span>
               <div fxLayout="row wrap">
-                <lux-input
+                <lux-input-ac
                   *ngIf="element.editable"
                   luxAriaLabel="Symbol"
                   luxTagId="table.row.control.symbol"
@@ -80,7 +80,7 @@
                   class="lux-table-no-label"
                   [(luxValue)]="element.symbol"
                   [luxNoLabels]="true"
-                ></lux-input>
+                ></lux-input-ac>
               </div>
             </ng-template>
           </lux-table-column-content>

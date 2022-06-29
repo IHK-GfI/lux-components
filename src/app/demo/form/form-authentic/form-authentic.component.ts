@@ -19,6 +19,8 @@ export class FormAuthenticComponent extends FormBase implements OnInit {
   chipItems = [];
   chipItems2 = [];
 
+  chipOptions = [ 'Apfel', 'Banane', 'Zitrone'] ;
+
   constructor(private logger: LuxConsoleService, snackbar: LuxSnackbarService) {
     super(snackbar);
 

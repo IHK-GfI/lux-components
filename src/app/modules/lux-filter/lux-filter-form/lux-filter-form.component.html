@@ -59,11 +59,10 @@
     [luxStroked]="!luxButtonFlat" 
     [luxFlat]="luxButtonFlat"
     luxIconName="fas fa-filter"
-    luxTooltip="(Shift + Enter)"
+    luxTooltip="{{ luxDisableShortcut ? '' : '(Shift + Enter)' }}"
     (luxClicked)="onFilter()"
-    >
-  </lux-button>
-
+    luxTagId="filterFormButton"
+  ></lux-button>
 </ng-template>
 <!-- die Menü-Leiste mit den Filterfunktionen ist in beiden Darstellungen gleich -->
 <ng-template #filterActionTemplate>

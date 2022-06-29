@@ -281,7 +281,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     // besteht natürlich auch beim Datepicker, Select und den
     // Lookup-Komponenten. Aus diesem Grund werden hier zuerst alle geöffneten
     // Popups/Panels geschlossen. Im Anschluss wird wie gewohnt gefiltert.
-    if (this.luxFilterExpanded) { //sollte nur bei geöffnetem Filterpanel ausgelöst werden
+    if (!this.luxDisableShortcut) { 
       this.formElementes.forEach((formComponent) => {
         if (formComponent.datepicker) {
           formComponent.datepicker.matDatepicker.close();

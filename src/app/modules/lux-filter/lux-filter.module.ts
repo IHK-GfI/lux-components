@@ -11,6 +11,7 @@ import { LuxFilterSaveDialogComponent } from './lux-filter-dialog/lux-filter-sav
 import { LuxFilterLoadDialogComponent } from './lux-filter-dialog/lux-filter-load-dialog/lux-filter-load-dialog.component';
 import { LuxFilterItemDirective } from './lux-filter-base/lux-filter-item.directive';
 import { LuxFilterFormExtendedComponent } from './lux-filter-form/lux-filter-form-extended/lux-filter-form-extended.component';
+import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LuxFilterFormExtendedComponent } from './lux-filter-form/lux-filter-for
     LuxLayoutModule,
     LuxFormModule,
     LuxActionModule,
-    LuxPopupsModule
+    LuxPopupsModule,
+    LuxDirectivesModule
   ],
   exports: [LuxFilterFormComponent, LuxFilterItemDirective, LuxFilterSaveDialogComponent, LuxFilterLoadDialogComponent, LuxFilterFormExtendedComponent],
   entryComponents: [LuxFilterSaveDialogComponent, LuxFilterLoadDialogComponent],
