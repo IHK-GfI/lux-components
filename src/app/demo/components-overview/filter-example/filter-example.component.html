@@ -300,6 +300,15 @@
       <lux-input-ac luxLabel="Button-Label zum Öffnen" [(luxValue)]="openLabel" [luxNoBottomLabel]="true"></lux-input-ac>
       <lux-input-ac luxLabel="Button-Label zum Schließen" [(luxValue)]="closeLabel" [luxNoBottomLabel]="true"></lux-input-ac>
       </div>
+    <div class="lux-highlight-section filter-config-item column" >
+      <h3 class="lux-highlight-section-label">Tastaturkürzel</h3>
+      <lux-toggle luxLabel="luxDisableShortcut" [(luxChecked)]="disableShortcut" luxHint="Über dieses Property kann das Tastaturkürzel &quot;Shift + Enter&quot; zum Auslösen des Filters abgeschaltet werden." [luxNoTopLabel]="true"></lux-toggle>
+    </div>
+    <div class="lux-highlight-section filter-config-item column" >
+      <h3 class="lux-highlight-section-label">Filterwert</h3>
+      <lux-textarea [luxNoTopLabel]="true" [(luxValue)]="replaceFilterJson" luxHint="JSON-Format"></lux-textarea>
+      <lux-button luxLabel="Filterwert ersetzen" luxColor="primary" (luxClicked)="onSetFilter()"></lux-button>
+    </div>
   </example-base-simple-options>
   <example-base-advanced-options>
     <div class="lux-highlight-section" fxLayout="column">

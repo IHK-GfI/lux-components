@@ -89,6 +89,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   @Input() luxPagerFirstLastButton = true;
 
   @Output() luxSelectedChange: EventEmitter<Set<any>> = new EventEmitter<Set<any>>();
+  @Output() luxSelectedAsArrayChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -824,6 +825,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       this.lastSelectedEventData = newDataString;
 
       this.luxSelectedChange.next(this.luxSelected);
+      this.luxSelectedAsArrayChange.next(newData);
     }
   }
 

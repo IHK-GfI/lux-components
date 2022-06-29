@@ -248,6 +248,19 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       }  
     }
 
+    // Jetzt müssen die sichtbaren Items noch nach der Priorität sortiert werden.
+    //
+    // Erklärung:
+    // Das Array "visibleMenuItems" wurde initial wie folgt aufgebaut:
+    // - zu erst alle Items mit "luxAlwaysVisible=true" und
+    // - danach alle Items mit "luxAlwaysVisible=false".
+    // Dies wurde gemacht, damit der zur Verfügung stehende Raum an die Items
+    // verteilt wird, die nach Möglichkeit immer angezeigt werden sollten.
+    // Bis zu diesem Zeitpunkt wurde bewusst auf die Berücksichtigung der
+    // Priorität verzichtet. Nachdem aber jetzt festgelegt wurde, welche Items
+    // überhaupt dargestellt werden, kann nach der Priorität sortiert werden.
+    this.visibleMenuItems.sort((a, b) => (a.luxPrio ? a.luxPrio : 0) - (b.luxPrio ? b.luxPrio : 0));
+
     // wenn die Anzahl der extended dargestellten Items der Gesamtzahl entspricht blenden wir den Toggle aus
     const extendedMenuItems = this.visibleMenuItems.filter((item: LuxMenuItemComponent) => item.extended);
     this.hideToggle = extendedMenuItems.length === this.visibleMenuItems.length;

@@ -3,6 +3,7 @@ import { LuxActionColorType } from "../../lux-action/lux-action-model/lux-action
 export interface ILuxAppFooterButtonInfo {
   label: string;
   cmd: string;
+  prio: number;
   color?: LuxActionColorType;
   disabled?: boolean;
   hidden?: boolean;
@@ -18,6 +19,7 @@ export interface ILuxAppFooterButtonInfo {
 export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
   label: string;
   color: LuxActionColorType;
+  prio: number;
   disabled: boolean;
   cmd: string;
   hidden: boolean;
@@ -32,6 +34,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
   constructor(
     label: string,
     cmd: string,
+    prio?: number,
     color?: LuxActionColorType,
     disabled?: boolean,
     hidden?: boolean,
@@ -45,6 +48,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
   ) {
     this.label = label;
     this.color = color;
+    this.prio = !prio ? 0 : prio;
     this.disabled = disabled;
     this.cmd = cmd;
     this.hidden = hidden === true ? true : false;
@@ -52,8 +56,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
     this.flat = flat === true ? true : false;
     this.stroked = stroked === true ? true : false;
     this.iconName = iconName;
-    this.alwaysVisible =
-      alwaysVisible === undefined || alwaysVisible === null || alwaysVisible === false ? false : true;
+    this.alwaysVisible = alwaysVisible === undefined || alwaysVisible === null || alwaysVisible === false ? false : true;
     this.tooltip = tooltip ? tooltip : '';
     this.onClick = onClick ? onClick : (that: ILuxAppFooterButtonInfo) => {};
   }
@@ -65,22 +68,11 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
    * @param data
    * @returns eine Button Info
    */
-  static generateInfo(data: ILuxAppFooterButtonInfo): LuxAppFooterButtonInfo {
-    const info: LuxAppFooterButtonInfo = new LuxAppFooterButtonInfo(
-      data.label,
-      data.cmd,
-      data.color,
-      data.disabled,
-      data.hidden,
-      data.raised,
-      data.flat,
-      data.stroked,
-      data.iconName,
-      data.alwaysVisible,
-      data.tooltip,
-      data.onClick
-    );
+  static generateInfo(data: Partial<ILuxAppFooterButtonInfo>): LuxAppFooterButtonInfo {
+    const info = new LuxAppFooterButtonInfo(data.label, data.cmd);
+    Object.assign(info, data);
 
     return info;
   }
+
 }

@@ -115,6 +115,23 @@ export class LuxUtil {
   }
 
   /**
+   * Diese Methode liefert ein neues Date-Objekt auf Basis des übergebenen Date-Objekts zurück.
+   * Das zurückgelieferte Date-Objekt hat denselben Tag, Monat und das Jahr wie das übergebene Date-Objekt,
+   * die Stunden, Minuten und Sekunden sind jedoch 0.
+   *
+   * Sollte der Methode kein Date-Objekt übergeben werden, wird ein neues Date-Objekt erzeugt.
+   *
+   * @param date oder nichts
+   * @returns date
+   */
+  public static newDateWithoutTime(date = new Date()): Date {
+    const result = new Date(0);
+    result.setUTCFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+
+    return result;
+  }
+
+  /**
    * Zeigt die Validierungsfehler der einzelnen FormControls innerhalb der FormGroup an.
    * Wenn innerhalb der übergebenen FormGroup weitere Formgroups enthalten sind, werden
    * diese ebenfalls validiert.

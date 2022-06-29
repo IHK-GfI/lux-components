@@ -18,12 +18,44 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
   entry: LuxLookupTableEntry;
   subscriptions: Subscription[] = [];
 
+  init = false;
+  _luxTableKey: string;
+  _luxTableNo: string;
+
   @Input() luxLookupKnr: number;
   @Input() luxLookupId: string;
   @Input() luxLookupUrl = '/lookup/';
-  @Input() luxTableNo: string;
-  @Input() luxTableKey: string;
   @Input() luxBezeichnung = 'kurz';
+
+  @Input()
+  get luxTableNo(): string {
+    return this._luxTableNo
+  }
+
+  set luxTableNo(tableNo: string) {
+    const changed = tableNo !== this._luxTableNo;
+
+    this._luxTableNo = tableNo;
+
+    if (this.init && changed) {
+      this.fetchLookupData();
+    }
+  }
+
+  @Input()
+  get luxTableKey(): string{
+    return this._luxTableKey;
+  }
+
+  set luxTableKey(key: string) {
+    const changed = key !== this._luxTableKey;
+
+    this._luxTableKey = key;
+
+    if (this.init && changed) {
+      this.fetchLookupData();
+    }
+  }
 
   constructor(
     lookupService: LuxLookupService,
@@ -60,6 +92,8 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.lookupHandler.getLookupElementObsv(this.luxLookupId).subscribe(() => {
       this.fetchLookupData();
     }));
+
+    this.init = true;
   }
 
   ngOnDestroy(): void {

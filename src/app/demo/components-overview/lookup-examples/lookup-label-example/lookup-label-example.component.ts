@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { LuxLookupHandlerService } from '../../../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 
 @Component({
   selector: 'app-lookup-label-example',
@@ -12,9 +11,6 @@ export class LookupLabelExampleComponent {
   tableNo = '1002';
   bezeichnung = 'kurz';
 
-  constructor(private lookupHandler: LuxLookupHandlerService) {}
+  constructor() {}
 
-  start() {
-    this.lookupHandler.reloadData('label-example');
-  }
 }
