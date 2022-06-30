@@ -52,7 +52,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
     this.disabled = disabled;
     this.cmd = cmd;
     this.hidden = hidden === true ? true : false;
-    this.raised = raised === true ? true : false;
+    this.raised = raised === undefined || raised === null || raised === true ? true : false;
     this.flat = flat === true ? true : false;
     this.stroked = stroked === true ? true : false;
     this.iconName = iconName;
