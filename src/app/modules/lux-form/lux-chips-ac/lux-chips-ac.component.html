@@ -54,7 +54,7 @@
             [selectable]="!chipGroup.luxDisabled"
             [selected]="chipGroup.luxSelected"
             [color]="chipGroup.luxColor"
-            (keydown.delete)="chipGroup.remove(i)"
+            (keydown.delete)="onChipGroupRemove(chipGroup, i)"
             (selectionChange)="chipGroup.select($event.selected, i)"
             (click)="chipGroup.click(i)"
           >
@@ -69,7 +69,7 @@
               luxMargin="0 0 0 6px"
               luxPadding="2px"
               class="lux-chip-icon lux-cursor"
-              (click)="chipGroup.remove(i)"
+              (click)="onChipGroupRemove(chipGroup, i)"
               *ngIf="chipGroup.luxRemovable"
             ></lux-icon>
           </mat-chip>
@@ -87,6 +87,7 @@
             [attr.aria-labelledby]="uid + '-label'"
             [disabled]="luxDisabled"
             (matChipInputTokenEnd)="inputAdd(input)"
+            (focusout)="onFocusOut()"
             (keyup)="inputChanged(input.value)"
             (click)="onAutocompleteClick()"
             type="text"

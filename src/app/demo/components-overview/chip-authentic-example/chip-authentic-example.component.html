@@ -4,15 +4,17 @@
 >
   <example-base-content>
     <div fxLayout="column">
-      <h3>Chips (ohne Group)</h3>
+      <h3>Beispiel ohne Reactive-Form</h3>
+      <h4>Chips (ohne Group)</h4>
       <lux-chips-ac
+        [luxStrict]="strict"
         [luxDisabled]="disabled"
         [luxInputAllowed]="inputAllowed"
         [luxInputLabel]="inputLabel"
         [luxPlaceholder]="placeholder"
         [luxOrientation]="chipOrientation"
         [luxMultiple]="multiple"
-        [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
+        [luxAutocompleteOptions]="autocomplete ? autocompleteNoGroupOptions : []"
         [luxLabelLongFormat]="labelLongFormat"
         [luxOptionMultiline]="optionMultiline"
         (luxChipAdded)="chipAdded($event)"
@@ -32,8 +34,11 @@
       </lux-chips-ac>
     </div>
     <div fxLayout="column">
-      <h3>Chips (mit Group)</h3>
+      <h4>Chips (mit Group)</h4>
       <lux-chips-ac
+        [luxRequired]="required"
+        [luxControlValidators]="requiredValidatorFn"
+        [luxStrict]="strict"
         [luxDisabled]="disabled"
         [luxInputAllowed]="inputAllowed"
         [luxInputLabel]="inputLabel"
@@ -60,6 +65,38 @@
         >
         </lux-chip-ac-group>
       </lux-chips-ac>
+
+      <h3>Beispiel in Reactive-Form</h3>
+      <ng-container [formGroup]="form">
+        <lux-chips-ac
+          [luxControlBinding]="controlBinding"
+          [luxStrict]="strict"
+          [luxDisabled]="disabled"
+          [luxInputAllowed]="inputAllowed"
+          [luxInputLabel]="inputLabel"
+          [luxPlaceholder]="placeholder"
+          [luxOrientation]="chipOrientation"
+          [luxMultiple]="multiple"
+          [luxNewChipGroup]="chipGroupForm"
+          [luxOptionMultiline]="optionMultiline"
+          [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
+          [luxLabelLongFormat]="labelLongFormat"
+        >
+          <lux-chip-ac-group
+            [luxRemovable]="groupRemovable"
+            [luxColor]="groupColor"
+            [luxLabels]="groupLabels"
+            [luxDisabled]="groupDisabled"
+            [luxSelected]="groupSelected"
+            (luxChipRemoved)="log(showOutputEvents, '[GROUP] Chip removed', $event)"
+            (luxChipAdded)="log(showOutputEvents, '[GROUP] Chip added', $event)"
+            (luxChipClicked)="log(showOutputEvents, '[GROUP] Chip clicked', $event)"
+            (luxChipSelected)="log(showOutputEvents, '[GROUP] Chip selected', $event)"
+            #chipGroupForm
+          >
+          </lux-chip-ac-group>
+        </lux-chips-ac>
+      </ng-container>
     </div>
     <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="autocomplete && inputAllowed">
       <span fxFlex="0 0 auto">Autocomplete-Optionen:</span>
@@ -114,6 +151,14 @@
           Voraussetzung: luxInputAllowed = true
         </lux-form-hint>
       </lux-toggle>
+      <lux-toggle
+        luxLabel="luxStrict"
+        [luxDisabled]="!inputAllowed"
+        luxHint="Gibt an, ob nur Werte aus den vorhandenen Optionen ausgewählt werden dürfen."
+        [(luxChecked)]="strict"
+        [luxNoTopLabel]="true"
+      >
+      </lux-toggle>
     </div>
 
     <lux-select
@@ -131,6 +176,20 @@
       luxHint="Erlaubt es, die Component zu deaktivieren."
       [luxNoTopLabel]="true"
     >
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="luxRequired"
+      (luxCheckedChange)="changeRequired($event)"
+      [luxNoTopLabel]="true"
+    >
+      <lux-form-hint>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components mit Groups,
+        die nicht in einer Reactive-Form sind. D.h. das luxRequired funktioniert nicht für das erste
+        Beispiel "Chips (ohne Group)".<br />
+        <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
+          Form-Control gesetzt.</b>
+      </lux-form-hint>
     </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"

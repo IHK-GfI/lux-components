@@ -1,4 +1,5 @@
 import {
+  AfterContentInit,
   AfterViewInit,
   ChangeDetectorRef,
   Component,
@@ -31,7 +32,7 @@ let luxChipControlUID = 0;
   templateUrl: './lux-chips-ac.component.html',
   styleUrls: ['./lux-chips-ac.component.scss']
 })
-export class LuxChipsAcComponent extends LuxFormComponentBase implements AfterViewInit, OnDestroy {
+export class LuxChipsAcComponent extends LuxFormComponentBase implements AfterContentInit, AfterViewInit, OnDestroy {
   private readonly inputValueSubscription: Subscription = new Subscription();
   private readonly newChipSubscription: Subscription = new Subscription();
 
@@ -39,19 +40,35 @@ export class LuxChipsAcComponent extends LuxFormComponentBase implements AfterVi
 
   uid: string = 'lux-chip-control-' + luxChipControlUID++;
 
-  filteredOptions: string[] = [];
+  _filteredOptions: string[] = [];
+
+  get filteredOptions() {
+    return this._filteredOptions;
+  }
+
+  set filteredOptions(newOptions: string[]) {
+    if (newOptions && Array.isArray(newOptions)) {
+      const selectedChips = this.luxNewChipGroup && Array.isArray(this.luxNewChipGroup.luxLabels) ? this.luxNewChipGroup.luxLabels : [];
+      this._filteredOptions = newOptions.filter((option) => !selectedChips.includes(option));
+    } else {
+      this._filteredOptions = [];
+    }
+  }
+
   inputValue$: Subject<string> = new Subject<string>();
   newChip$: Subject<any> = new Subject<any>();
   canClose = false;
+  actionRunning = false;
 
   @Input() luxOrientation: LuxChipsAcOrientation = 'horizontal';
   @Input() luxInputAllowed = false;
   @Input() luxNewChipGroup: LuxChipAcGroupComponent;
   @Input() luxMultiple = true;
+  @Input() luxStrict = false;
   @Input() luxLabelLongFormat = false;
   @Input() luxPlaceholder = $localize`:@@luxc.chips.input.placeholder.lbl:eingeben oder auswählen`;
   @Input() luxOptionMultiline = false;
-  
+
   @Output() luxChipAdded = new EventEmitter<string>();
 
   @ContentChildren(LuxChipAcComponent) luxChipAcComponents: QueryList<LuxChipAcComponent>;
@@ -92,11 +109,11 @@ export class LuxChipsAcComponent extends LuxFormComponentBase implements AfterVi
   }
 
   get chipComponents(): LuxChipAcComponent[] {
-    return this.luxChipAcComponents as any;
+    return this.luxChipAcComponents ? this.luxChipAcComponents.toArray() : [];
   }
 
   get chipGroupComponents(): LuxChipAcGroupComponent[] {
-    return this.luxChipAcGroupComponents as any;
+    return this.luxChipAcGroupComponents ? this.luxChipAcGroupComponents.toArray() : [];
   }
 
   constructor(
@@ -130,6 +147,18 @@ export class LuxChipsAcComponent extends LuxFormComponentBase implements AfterVi
       .subscribe();
   }
 
+  ngAfterContentInit() {
+    if (this.inForm) {
+      if (this.formControl.value && Array.isArray(this.formControl.value)) {
+        this.luxNewChipGroup.luxLabels = [...this.formControl.value];
+      } else {
+        this.luxNewChipGroup.luxLabels = null;
+      }
+
+      this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];
+    }
+  }
+
   ngAfterViewInit() {
     if (this.matAutocompleteTrigger && this.chipContainerDivRef) {
       this.matAutocompleteTrigger.connectedTo = { elementRef: this.chipContainerDivRef };
@@ -154,15 +183,67 @@ export class LuxChipsAcComponent extends LuxFormComponentBase implements AfterVi
    * @param value
    */
   add(value: string) {
-    if (value && value.trim().length > 0) {
-      if (this.luxNewChipGroup) {
-        this.luxNewChipGroup.add(value);
-      } else {
-        this.luxChipAdded.emit(value);
-      }
+    try{
+      this.actionRunning = true;
 
-      // Autocomplete-Feld in jedem Fall schließen (Delay über Timeout, damit kein visuelles Flackern entsteht)
-      setTimeout(() => this.matAutocompleteTrigger.closePanel());
+      if (value && value.trim().length > 0) {
+        if (this.luxNewChipGroup) {
+          const found =
+                  this.luxAutocompleteOptions && this.luxAutocompleteOptions.length > 0
+                    ? !!this.luxAutocompleteOptions.find((option) => option === value)
+                    : true;
+          const foundLabel = this.luxNewChipGroup.luxLabels ? !!this.luxNewChipGroup.luxLabels.find((label) => label === value) : false;
+
+          if (!this.luxStrict || (found && !foundLabel)) {
+            this.luxNewChipGroup.add(value);
+
+            if (this.luxNewChipGroup.luxLabels && Array.isArray(this.luxNewChipGroup.luxLabels) && this.luxNewChipGroup.luxLabels.length > 0) {
+              this.formControl.setValue([...this.luxNewChipGroup.luxLabels]);
+            } else {
+              this.formControl.setValue(null);
+            }
+          }
+        } else {
+          this.luxChipAdded.emit(value);
+        }
+
+        // Autocomplete-Feld in jedem Fall schließen (Delay über Timeout, damit kein visuelles Flackern entsteht)
+        setTimeout(() => this.matAutocompleteTrigger.closePanel());
+      }
+    } finally {
+      this.actionRunning = false;
+    }
+  }
+
+  onFocusOut() {
+    if (this.luxNewChipGroup) {
+      setTimeout(() => {
+        // Hier wird der markAsTouched-Aufruf gezielt verzögert,
+        // damit die Darstellung eines required-Chips nicht flackert
+        // (kurzzeitig rot, wegen der Pflichtfeldfehlermeldung,
+        // danach wieder normal, sobald der Wert gesetzt wurde).
+        this.formControl.markAsTouched();
+      }, 100);
+    }
+  }
+
+  onChipGroupRemove(chipGroup: LuxChipAcGroupComponent, index: number) {
+    try {
+      this.actionRunning = true;
+
+      chipGroup.remove(index);
+
+      if (chipGroup === this.luxNewChipGroup) {
+        if (chipGroup.luxLabels && Array.isArray(chipGroup.luxLabels) && chipGroup.luxLabels.length > 0) {
+          this.formControl.setValue([...chipGroup.luxLabels]);
+        } else {
+          this.formControl.setValue(null);
+        }
+
+        this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];
+      }
+    } finally {
+      this.actionRunning = false;
     }
   }
 
@@ -214,8 +295,10 @@ export class LuxChipsAcComponent extends LuxFormComponentBase implements AfterVi
    */
   inputAdd(input) {
     if (!this.matAutocomplete.isOpen) {
-      // falls nur eine Option übrig ist, diese als value nehmen anstelle des input textes
+      // Falls nur eine Option übrig ist, wird diese als Wert anstelle des Inputtextes verwendet.
       if (
+        input.value &&
+        input.value.length > 0 &&
         this.luxAutocompleteOptions &&
         this.luxAutocompleteOptions.length > 1 &&
         this.filteredOptions &&
@@ -259,6 +342,25 @@ export class LuxChipsAcComponent extends LuxFormComponentBase implements AfterVi
       }
     } else {
       this.matAutocompleteTrigger.openPanel();
+    }
+  }
+
+  protected notifyFormValueChanged(formValue: any) {
+    super.notifyFormValueChanged(formValue);
+
+    // An dieser Stelle muss man die ValueChanged-Events ignorieren,
+    // welche durch die add- und onChipGroupRemove-Methode ausgelöst
+    // wurden. In diesen Fällen sind die luxLabels der ChipGroup
+    // bereits aktualisiert worden. Um das doppelte Setzen zu
+    // verhindern, wurde hier das actionRunning-Flag eingeführt.
+    if (!this.actionRunning && this.inForm) {
+      if (formValue && Array.isArray(formValue)) {
+        this.luxNewChipGroup.luxLabels = [...formValue];
+      } else {
+        this.luxNewChipGroup.luxLabels = null;
+      }
+
+      this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];
     }
   }
 }

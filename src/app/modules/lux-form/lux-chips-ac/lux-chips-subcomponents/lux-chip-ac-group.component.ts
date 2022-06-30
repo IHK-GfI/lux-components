@@ -35,6 +35,10 @@ export class LuxChipAcGroupComponent {
   constructor() {}
 
   add(label: string) {
+    if (!this.luxLabels) {
+      this.luxLabels = [];
+    }
+
     this.luxLabels.push(label);
     this.luxChipAdded.emit(label);
   }
