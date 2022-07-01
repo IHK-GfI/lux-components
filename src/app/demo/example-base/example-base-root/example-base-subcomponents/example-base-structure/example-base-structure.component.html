@@ -12,7 +12,6 @@
     fxFlex.gt-sm="1 0 50%"
     *ngIf="contentComponent"
   >
-    <!-- <lux-icon [luxIconName]="exampleIconName"></lux-icon> -->
     <lux-card-content>
       <ng-content select="example-base-content"></ng-content>
     </lux-card-content>
@@ -27,7 +26,6 @@
     fxFlex.gt-sm="1 0 50%"
     *ngIf="simpleOptionsComponent || advancedOptionsComponent"
   >
-    <!-- <lux-icon luxIconName="fas fa-toolbox"></lux-icon> -->
     <lux-card-content>
       <ng-container *ngIf="simpleOptionsComponent && !advancedOptionsComponent">
         <ng-container *ngTemplateOutlet="simpleOptionsTemplate"></ng-container>

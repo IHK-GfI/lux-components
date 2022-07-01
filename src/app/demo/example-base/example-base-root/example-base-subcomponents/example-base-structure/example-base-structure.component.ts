@@ -48,6 +48,7 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
         cmd: 'documentation-btn',
         color: 'primary',
         flat: true,
+        raised: false,
         alwaysVisible: false,
         onClick: () => {
           window.open(this.exampleDocumentationHref, '_blank');
@@ -59,6 +60,7 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
         cmd: 'back-btn',
         color: 'primary',
         flat: true,
+        raised: false,
         alwaysVisible: true,
         onClick: () => {
           this.router.navigate(['components-overview']);
