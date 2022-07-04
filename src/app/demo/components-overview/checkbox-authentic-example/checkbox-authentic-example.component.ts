@@ -4,7 +4,7 @@ import { exampleErrorCallback } from '../../example-base/example-base-util/examp
 @Component({
   selector: 'lux-checkbox-authentic-example',
   templateUrl: './checkbox-authentic-example.component.html',
-  styleUrls: []
+  styleUrls: ['./checkbox-authentic-example.component.scss']
 })
 export class CheckboxAuthenticExampleComponent  {
   // region Helper-Properties für das Beispiel

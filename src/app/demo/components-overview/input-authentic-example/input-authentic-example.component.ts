@@ -53,13 +53,14 @@ export class InputAuthenticExampleComponent  {
   hideCounterLabel = false;
   labelLongFormat = false;
   // endregion
-//Werte für die Bespiel-Card
-exampleCompany='';
-exampleDate='';
-exampleStreet='';
-exampleNumber='';
-examplePLZ='';
-exampleCity='';
+  
+  //Werte für die Bespiel-Card
+  exampleCompany='';
+  exampleDate='';
+  exampleStreet='';
+  exampleNumber='';
+  examplePLZ='';
+  exampleCity='';
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
