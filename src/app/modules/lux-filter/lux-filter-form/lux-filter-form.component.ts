@@ -69,8 +69,25 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   @Input() luxStoredFilters: LuxFilter[] = [];
   @Input() luxDisableShortcut = false;
   @Input() luxShowAsCard = false;
-  @Input() luxExpandedLabelOpen = 'mehr Optionen';
-  @Input() luxExpandedLabelClose = 'weniger Optionen';
+  @Input() set luxExpandedLabelOpen(label: string) {
+    if(label) {
+      this._luxExpandedLabelOpen = label;
+    }
+  }
+  get luxExpandedLabelOpen() {
+    return this._luxExpandedLabelOpen;
+  }
+  _luxExpandedLabelOpen = $localize `:@@luxc.filter.expandedLabel.open:Mehr Optionen`;
+  @Input() set luxExpandedLabelClose(label: string) {
+    if(label){
+      this._luxExpandedLabelClose = label;
+    }
+  } 
+  get luxExpandedLabelClose() {
+    return this._luxExpandedLabelClose;
+  }
+  _luxExpandedLabelClose = $localize `:@@luxc.filter.expandedLabel.close:Weniger Optionen`;
+
 
   @Input()
   get luxFilterExpanded() {

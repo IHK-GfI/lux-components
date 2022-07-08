@@ -6,16 +6,16 @@
     luxCollapsedHeaderHeight="40px"
     luxExpandedHeaderHeight="40px"
   >
-    <lux-panel-header-title>
+    <lux-panel-header-title class="lux-filter-panel-header"> 
       {{ luxTitle }} 
       <ng-container *ngIf="luxFilterExpanded">
         <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container>
       </ng-container>
     </lux-panel-header-title>
-    <lux-panel-content>
+    <lux-panel-content class="lux-filter-panel-content">
       <ng-container *ngTemplateOutlet="filterFormTemplate"></ng-container>
     </lux-panel-content>
-    <lux-panel-action>
+    <lux-panel-action class="lux-filter-panel-action">
       <ng-container *ngTemplateOutlet="filterButtonTemplate"></ng-container>
     </lux-panel-action>
   </lux-panel>
@@ -62,6 +62,7 @@
     luxTooltip="{{ luxDisableShortcut ? '' : '(Shift + Enter)' }}"
     (luxClicked)="onFilter()"
     luxTagId="filterFormButton"
+    class="lux-filter-form-button"
   ></lux-button>
 </ng-template>
 <!-- die Menü-Leiste mit den Filterfunktionen ist in beiden Darstellungen gleich -->

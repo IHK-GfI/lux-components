@@ -41,9 +41,26 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() luxExpanded = false;
   @Input() luxUseTabIndex = true;
   @Input() luxHeading = 2;
-  @Input() luxExpandedLabelOpen ='mehr Informationen anzeigen';
-  @Input() luxExpandedLabelClose ='weiniger Informationen anzeigen';
+  @Input() set luxExpandedLabelOpen(label: string) {
+    if(label) {
+      this._luxExpandedLabelOpen = label;
+    } 
+  }
+  get luxExpandedLabelOpen(){
+    return this._luxExpandedLabelOpen;
+  }
+  @Input() set luxExpandedLabelClose(label: string) {
+    if(label) {
+      this._luxExpandedLabelClose = label;
+    } 
+  }
+  get luxExpandedLabelClose(){
+    return this._luxExpandedLabelClose;
+  }
   
+  _luxExpandedLabelOpen = $localize `:@@luxc.card.expandedLabel.open:Mehr`;
+  _luxExpandedLabelClose = $localize `:@@luxc.card.expandedLabel.close:Weniger`;
+
   @Output() luxExpandedChange: EventEmitter<boolean> = new EventEmitter();
   @Output() luxAfterExpansion: EventEmitter<void> = new EventEmitter();
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();

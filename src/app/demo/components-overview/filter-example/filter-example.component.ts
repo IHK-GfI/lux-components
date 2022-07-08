@@ -132,8 +132,8 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   buttonDialogCancel = 'default';
   buttonDialogClose = 'default';
 
-  openLabel = "weitere Filter";
-  closeLabel = "weniger Filter";
+  openLabel = '';
+  closeLabel = '';
 
   markdownData = `
   Html

@@ -55,6 +55,7 @@
         fxFlex="0 0 30px"
         fxLayout="row"
         fxLayoutAlign="center center"
+        *ngIf="menuItem.luxIconName"
       ></lux-icon>
       <span class="lux-button-label" fxFlex="auto">
         {{ menuItem.luxLabel }}
