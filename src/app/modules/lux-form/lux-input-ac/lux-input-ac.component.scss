@@ -19,16 +19,3 @@ input.lux-number::-ms-clear {
 input[type='number'] {
   -moz-appearance: textfield;
 }
-
-/* Fix für Chrome, dieser zeigt bei autocomplete Inputs ab und zu eine blaue Box an. */
-@-webkit-keyframes autofill {
-  to {
-    color: #666;
-    background: transparent;
-  }
-}
-
-input:-webkit-autofill {
-  -webkit-animation-name: autofill;
-  -webkit-animation-fill-mode: both;
-}
