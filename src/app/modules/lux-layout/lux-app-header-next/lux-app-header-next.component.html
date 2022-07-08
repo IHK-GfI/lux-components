@@ -3,10 +3,11 @@
   <div
     fxLayout="row"
     class="lux-app-header-top-bar"
+    ngClass.lt-md="lux-mobile"
     fxFlex="100"
   >
     <!-- Brand-Logo -->
-    <div fxFlex="33" fxLayoutAlign="start center">
+    <div fxFlex.gt-sm="33" fxFlex.lt-md="50" fxLayoutAlign="start center" fxLayoutAlign.lt-md="space-between center">
       <lux-image 
         [luxImageSrc]="luxBrandLogoSrc" 
         luxImageHeight="3em"
@@ -16,43 +17,37 @@
       ></lux-image>
     </div>
     <!-- App-Logo -->
-    <div fxFlex="fill" fxLayoutAlign="center center" class="app-logo">
+    <div fxFlex="fill" fxLayoutAlign="center center" class="app-logo" *ngIf="!mobileView">
       <lux-button
         [luxIconName]="luxAppIconName"
         luxColor="primary"
         (click)="onClicked($event)"
       ></lux-button>
     </div>
-    <!-- User-Menu (rechtsbündig) -->
+    <!-- User-Menu -->
     <div 
       fxLayout="row" 
       fxFlex="0 0 33%" 
+      fxFlex.lt-md="0 0 50"
       fxLayoutAlign="end center" 
       class="user-menu lux-header-user" 
       [luxAriaLabel]="luxAriaUserMenuButtonLabel" 
       *ngIf="userMenu"> 
 
       <!-- Greeting -->
-      <div *ngIf="luxUserName" fxFlex="0 0 75%" fxLayoutAlign="end center">
-        <span class="lux-nowrap lux-header-username" [fxShow.lt-md]="false">
+      <div *ngIf="luxUserName" fxFlex="0 0 75%" fxLayoutAlign="end center" [fxShow.lt-md]="false">
+        <span class="lux-nowrap lux-header-username">
           {{ greetingLabel }} {{ luxUserName }}
-        </span>
-        <span
-          class="lux-nowrap lux-header-user-short"
-          ngClass.gt-sm="lux-display-none"
-          ngClass.lt-md="lux-display-block"
-        >
-          <span>{{ userNameShort }}</span>
         </span>
       </div>
       <!-- User-Menu -->
       <lux-menu
-        class="lux-header-menu"
-        ngClass.lt-md="lux-header-menu-mobile"
+        class="lux-user-menu"
+        ngClass.lt-md="lux-user-menu-mobile"
         [luxDisplayExtended]="false"
         (luxMenuClosed)="onMenuClosed()"
-        luxClassName="lux-header-right-nav"
-        luxTagId="app_header_menu"
+        luxClassName="lux-header-user-menu"
+        luxTagId="app_header_user_menu"
       >
         <ng-container *ngFor="let menuItem of userMenu.menuItemComponents">
           <lux-menu-item
@@ -74,6 +69,7 @@
             fxLayout="row"
             fxLayoutAlign="end center"
             class="user-menu-trigger"
+            ngClass.lt-md="user-menu-trigger-mobile"
             luxAriaLabel="Benutzermenü {{ luxUserName }}"
             i18n-luxAriaLabel="@@luxc.app-header.user.menu.trigger"
             aria-haspopup="true"
@@ -82,14 +78,13 @@
             <lux-icon
               class="lux-icon-menu-0"
               luxIconName="person_outline"
-              [fxShow.xs]="!luxUserName"
-              [fxShow.sm]="!luxUserName"
             >
             </lux-icon>
             <lux-icon
               class="lux-icon-menu-1"
               luxIconName="keyboard_arrow_down"
               luxPadding="0"
+              [fxShow.lt-md]="false"
             >
             </lux-icon>
           </button>
@@ -104,14 +99,15 @@
     fxLayout="row"
     fxLayoutAlign="space-between center"
     class="lux-app-header-nav-bar"
+    ngClass.lt-md="lux-mobile"
     fxFlex="100"
   >
-  <div class="lux-app-title">{{ luxAppTitle }}</div>
- 
-  <div fxFlex="auto" fxLayoutAlign="end center" class="lux-app-nav-menu">
-    <ng-container [ngTemplateOutlet]="navMenu.templateRef" *ngIf="navMenu"></ng-container>
+    <div class="lux-app-title">{{ luxAppTitle }}</div>
+
+    <div fxFlex="fill"  class="lux-app-nav-menu">
+      <ng-content select="lux-app-header-next-nav-menu" *ngIf="navMenu"></ng-content>
+    </div>
+
   </div>
-
-</div>
-
+  
 </div>

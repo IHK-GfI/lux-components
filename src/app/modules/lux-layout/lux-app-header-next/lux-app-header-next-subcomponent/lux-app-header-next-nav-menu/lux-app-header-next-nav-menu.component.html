@@ -1,11 +1,31 @@
-<ng-template>
-  <div
-    ngClass.sm="lux-app-header-action-nav-mobile"
-    ngClass.xs="lux-app-header-action-nav-mobile"
-    fxLayout="row"
-    fxLayoutAlign="start center"
-    fxLayoutGap="4px"
-  >
-    <ng-content select="lux-app-header-next-nav-menu-item"></ng-content>
-  </div>
-</ng-template>
+<!-- Navigations-Menu -->
+<lux-menu
+  [luxDisplayExtended]="!mobileView"
+  [luxMaximumExtended]="luxNavMenuMaximumExtended"
+  class="lux-header-next-nav-menu"
+  ngClass.lt-md="lux-header-next-nav-menu-mobile"
+  luxClassName="lux-header-next-nav"
+  luxTagId="app_header_nav_menu"
+>
+  <ng-container *ngFor="let navMenuItem of menuItemComponents; let navIndex = index">
+    <lux-menu-item
+      [luxLabel]="navMenuItem.luxLabel"
+      [luxIconName]="navMenuItem.luxIconName"
+      [luxTagId]="navMenuItem.luxLabel"
+      [luxAlwaysVisible]="navMenuItem.luxAlwaysVisible"
+      [luxDisabled]="navMenuItem.luxDisabled"
+      [luxHidden]="navMenuItem.luxHidden"
+      [luxFlat]="false"
+      [luxRaised]="false"
+      [luxStroked]="false"
+      [luxRounded]="false"
+      luxColor="primary"
+      [luxPrio]="navMenuItem.luxPrio"
+      [ngClass]="{'nav-item-selected': navIndex === selectedItem}"
+      class="nav-item-selected"
+      (luxClicked)="navItemClicked($event, navIndex)"
+    >
+    </lux-menu-item>
+  </ng-container>
+ 
+</lux-menu>

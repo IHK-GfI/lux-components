@@ -75,7 +75,6 @@ import { LuxStepperLargeStepComponent } from './lux-stepper-large/lux-stepper-la
 import { LuxStepperLargeMobileOverlayComponent } from './lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay.component';
 import { LuxAppHeaderNextComponent } from './lux-app-header-next/lux-app-header-next.component';
 import { LuxAppHeaderNextNavMenuComponent } from './lux-app-header-next/lux-app-header-next-subcomponent/lux-app-header-next-nav-menu/lux-app-header-next-nav-menu.component';
-import { LuxAppHeaderNextNavMenuItemComponent } from './lux-app-header-next/lux-app-header-next-subcomponent/lux-app-header-next-nav-menu/lux-app-header-next-nav-menu-item/lux-app-header-next-nav-menu-item.component';
 import { LuxTileAuthenticComponent } from './lux-tile-authentic/lux-tile-authentic.component';
 import { LuxMasterDetailLightComponent } from './lux-master-detail-light/lux-master-detail-light.component';
 import { LuxMasterHeaderLightComponent } from './lux-master-detail-light/lux-master-header-light/lux-master-header-light.component';
@@ -163,7 +162,6 @@ import { LuxMasterFooterLightComponent } from './lux-master-detail-light/lux-mas
     LuxAppHeaderNextComponent,
     LuxAppHeaderNextUserMenuComponent,
     LuxAppHeaderNextNavMenuComponent,
-    LuxAppHeaderNextNavMenuItemComponent,
     LuxTileAuthenticComponent,
     LuxMasterDetailLightComponent,
     LuxMasterHeaderLightComponent,
@@ -231,7 +229,6 @@ import { LuxMasterFooterLightComponent } from './lux-master-detail-light/lux-mas
     LuxAppHeaderNextComponent,
     LuxAppHeaderNextUserMenuComponent,
     LuxAppHeaderNextNavMenuComponent,
-    LuxAppHeaderNextNavMenuItemComponent,
     LuxTileAuthenticComponent,
     LuxMasterDetailLightComponent,
     LuxMasterHeaderLightComponent,

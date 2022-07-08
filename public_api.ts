@@ -231,7 +231,6 @@ export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcom
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item.component';
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item-custom.component';
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
-export * from './src/app/modules/lux-layout/lux-app-header-next/lux-app-header-next-subcomponent/lux-app-header-next-nav-menu/lux-app-header-next-nav-menu-item/lux-app-header-next-nav-menu-item.component';
 export * from './src/app/modules/lux-layout/lux-app-header-next/lux-app-header-next-subcomponent/lux-app-header-next-nav-menu/lux-app-header-next-nav-menu.component';
 export * from './src/app/modules/lux-layout/lux-app-header-next/lux-app-header-next-subcomponent/lux-app-header-next-user-menu.component';
 export * from './src/app/modules/lux-layout/lux-app-header-next/lux-app-header-next.component';

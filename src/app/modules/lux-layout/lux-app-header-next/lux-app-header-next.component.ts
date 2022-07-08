@@ -1,5 +1,7 @@
 import { Component, ContentChild, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxAppHeaderNextNavMenuComponent } from './lux-app-header-next-subcomponent/lux-app-header-next-nav-menu/lux-app-header-next-nav-menu.component';
 import { LuxAppHeaderNextUserMenuComponent } from './lux-app-header-next-subcomponent/lux-app-header-next-user-menu.component'; 
 
@@ -27,6 +29,8 @@ export class LuxAppHeaderNextComponent implements OnInit, OnChanges {
 
   @Input() luxBrandLogoSrc: string;
   @Input() luxAriaUserMenuButtonLabel = $localize `:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
+  @Input() luxLocaleSupported = ['de'];
+  @Input() luxLocaleBaseHref  = '';
   
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 
@@ -42,7 +46,11 @@ export class LuxAppHeaderNextComponent implements OnInit, OnChanges {
   greetingLabel = 'Guten Tag, ';
   luxGreeting = [ 'Guten Morgen, ', 'Guten Tag, ', 'Guten Abend, ', 'Gute Nacht, '];
 
-  constructor(private logger: LuxConsoleService) { 
+  mobileView: boolean;
+  subscription: Subscription;
+
+
+  constructor(private logger: LuxConsoleService, private queryService: LuxMediaQueryObserverService) { 
     this.updateGreetingLabel();
   }
 
@@ -50,6 +58,9 @@ export class LuxAppHeaderNextComponent implements OnInit, OnChanges {
     if (this.luxClicked.observers && this.luxClicked.observers.length > 0) {
       this.hasOnClickedListener = true;
     }
+    this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe(query => {
+      this.mobileView = query === 'xs' ||  query === 'sm';
+    });
   }
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (simpleChanges.luxUserName) {
