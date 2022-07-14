@@ -16,9 +16,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { MAT_DATEPICKER_SCROLL_STRATEGY } from '@angular/material/datepicker';
-import { MatDateSelectionModel } from '@angular/material/datepicker/date-selection-model';
-import { MatDatepickerControl, MatDatepickerPanel } from '@angular/material/datepicker/datepicker-base';
+import { MAT_DATEPICKER_SCROLL_STRATEGY, MatDateSelectionModel } from '@angular/material/datepicker';
 import { MatFormField } from '@angular/material/form-field';
 import { merge, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -29,7 +27,7 @@ import { LuxDatetimeOverlayContentComponent } from './lux-datetime-overlay-conte
   selector: 'lux-datetime-overlay',
   template: ''
 })
-export class LuxDatetimeOverlayComponent implements MatDatepickerPanel<MatDatepickerControl<any>, any, any> {
+export class LuxDatetimeOverlayComponent {
   @Input() luxPickerInput: HTMLInputElement;
   @Input() luxStartView: 'month' | 'year' | 'multi-year' = 'month';
   @Input() luxCustomFilter: LuxDateFilterFn = undefined;

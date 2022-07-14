@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -10,7 +10,7 @@ export class ToggleExampleComponent {
   // region Helper-Properties für das Beispiel
 
   useErrorMessage = true;
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   // endregion
 
@@ -29,7 +29,7 @@ export class ToggleExampleComponent {
 
   // endregion
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       toggleExample: []
     });

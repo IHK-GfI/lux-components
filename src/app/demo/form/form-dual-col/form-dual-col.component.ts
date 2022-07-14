@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ICountry } from '../model/country.interface';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { TableExampleDataProviderService } from '../table-example-data-provider.service';
@@ -10,12 +10,12 @@ import { FormBase } from '../model/form-base.class';
   templateUrl: './form-dual-col.component.html'
 })
 export class FormDualColComponent extends FormBase {
-  streetsFormArray: FormArray;
+  streetsFormArray: UntypedFormArray;
   countries: ICountry[] = [];
 
   constructor(
     snackbar: LuxSnackbarService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private dataProvider: TableExampleDataProviderService
   ) {
     super(snackbar);
@@ -35,7 +35,7 @@ export class FormDualColComponent extends FormBase {
         value: ['', Validators.compose([Validators.min(1), Validators.max(1000)])]
       })
     });
-    this.streetsFormArray = (this.myGroup.get('customerDetails') as FormGroup).get('streets') as FormArray;
+    this.streetsFormArray = (this.myGroup.get('customerDetails') as UntypedFormGroup).get('streets') as UntypedFormArray;
 
     this.countries = this.dataProvider.countries;
   }
@@ -55,7 +55,7 @@ export class FormDualColComponent extends FormBase {
     return true;
   }
 
-  createStreetFormGroup(): FormGroup {
+  createStreetFormGroup(): UntypedFormGroup {
     return this.fb.group({
       streetName: ['', Validators.required],
       nr: ['', Validators.min(1)]

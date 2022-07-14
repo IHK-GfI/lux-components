@@ -358,8 +358,7 @@ class MockCustomDialogComponent {
 }
 
 @NgModule({
-  declarations: [MockCustomDialogComponent],
-  entryComponents: [MockCustomDialogComponent],
-  imports: [LuxPopupsModule, LuxActionModule]
+    declarations: [MockCustomDialogComponent],
+    imports: [LuxPopupsModule, LuxActionModule]
 })
 class TestModule {}

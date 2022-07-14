@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'lux-baseline-card',
@@ -45,23 +45,23 @@ export class BaselineCardComponent {
   selectedState: any = this.stateOptions[0];
 
   chipItems: string[] = [ 'Chip 0', 'Chip 1', 'Chip 2'];
-  form: FormGroup = undefined;
+  form: UntypedFormGroup = undefined;
   // endregion
 
   constructor() {
-    this.form = new FormGroup({
-      input: new FormControl('', Validators.required),
-      textarea: new FormControl('', Validators.required),
-      datepicker: new FormControl('', Validators.required),
-      datetimepicker: new FormControl('', Validators.required),
-      autocomplete: new FormControl('', Validators.required),
-      select: new FormControl('', Validators.required),
-      radio: new FormControl('', Validators.required),
-      checkbox: new FormControl('', Validators.requiredTrue),
-      toggle: new FormControl('', Validators.requiredTrue),
-      slider: new FormControl('4', Validators.min(10)),
-      file: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+    this.form = new UntypedFormGroup({
+      input: new UntypedFormControl('', Validators.required),
+      textarea: new UntypedFormControl('', Validators.required),
+      datepicker: new UntypedFormControl('', Validators.required),
+      datetimepicker: new UntypedFormControl('', Validators.required),
+      autocomplete: new UntypedFormControl('', Validators.required),
+      select: new UntypedFormControl('', Validators.required),
+      radio: new UntypedFormControl('', Validators.required),
+      checkbox: new UntypedFormControl('', Validators.requiredTrue),
+      toggle: new UntypedFormControl('', Validators.requiredTrue),
+      slider: new UntypedFormControl('4', Validators.min(10)),
+      file: new UntypedFormControl('', Validators.required),
+      password: new UntypedFormControl('', Validators.required)
     });
    }
 

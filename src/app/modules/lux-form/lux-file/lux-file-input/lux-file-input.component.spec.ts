@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
 import { LuxTestHelper } from '../../../lux-util/testing/lux-test-helper';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
@@ -932,7 +932,7 @@ class FileComponent {
   `
 })
 class FileFormComponent {
-  form: FormGroup;
+  form: UntypedFormGroup;
   formControl: AbstractControl;
 
   label;
@@ -948,7 +948,7 @@ class FileFormComponent {
   uploadUrl;
   clearOnError = true;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       file: []
     });

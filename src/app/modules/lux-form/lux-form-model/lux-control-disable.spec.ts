@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
@@ -466,7 +466,7 @@ describe('LuxControlDisable', () => {
   `
 })
 class LuxControlDisableComponent implements OnInit {
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
   disabledState = false;
 
   options = [
@@ -476,7 +476,7 @@ class LuxControlDisableComponent implements OnInit {
     { label: 'Option #4', short: 'O4', value: '#4' }
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.myForm = this.fb.group({

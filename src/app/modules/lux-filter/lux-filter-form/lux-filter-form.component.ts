@@ -11,7 +11,7 @@ import {
   Output,
   QueryList
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LuxActionColorType } from '../../lux-action/lux-action-model/lux-action-component-base.class';
 import { LuxSelectComponent } from '../../lux-form/lux-select/lux-select.component';
@@ -97,7 +97,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   @Output() luxOnReset: EventEmitter<void> = new EventEmitter<void>();
   @Output() luxFilterExpandedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  filterForm: FormGroup;
+  filterForm: UntypedFormGroup;
   subscriptions: Subscription[] = [];
   filterItems: LuxFilterItem[] = [];
   hasSaveAction: boolean;
@@ -105,7 +105,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   initComplete = false;
   initFilterValue = null;
 
-  constructor(private formBuilder: FormBuilder, private dialogService: LuxDialogService, private cdr: ChangeDetectorRef) {}
+  constructor(private formBuilder: UntypedFormBuilder, private dialogService: LuxDialogService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.initFilterValue = this.luxFilterValues;

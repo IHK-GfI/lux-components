@@ -5,7 +5,7 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Component } from '@angular/core';
 import { ILuxStepperButtonConfig } from './lux-stepper-model/lux-stepper-button-config.interface';
 import { By } from '@angular/platform-browser';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { LuxStepperHelperService } from './lux-stepper-helper.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
@@ -400,12 +400,12 @@ class MockStepperComponent {
   finClicked($event) {}
 
   constructor() {
-    this.form = new FormGroup({
-      step0: new FormGroup({
-        input: new FormControl('', Validators.required)
+    this.form = new UntypedFormGroup({
+      step0: new UntypedFormGroup({
+        input: new UntypedFormControl('', Validators.required)
       }),
-      step1: new FormGroup({
-        input: new FormControl('', Validators.required)
+      step1: new UntypedFormGroup({
+        input: new UntypedFormControl('', Validators.required)
       })
     });
   }

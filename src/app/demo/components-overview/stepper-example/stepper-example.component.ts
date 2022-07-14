@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
 import { LuxAppFooterButtonService } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
@@ -20,8 +20,8 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
   // region Helper-Properties für das Beispiel
 
   newStepsVisible = false;
-  newStepsForm1: FormGroup;
-  newStepsForm2: FormGroup;
+  newStepsForm1: UntypedFormGroup;
+  newStepsForm2: UntypedFormGroup;
 
   showOutputEvents = false;
   useCustomButtonConfig = false;
@@ -35,9 +35,9 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
       editable: true,
       completed: false,
       useStepControl: true,
-      stepControl: new FormGroup({
-        control1: new FormControl('', Validators.required),
-        control2: new FormControl('', Validators.compose([Validators.minLength(5), Validators.required]))
+      stepControl: new UntypedFormGroup({
+        control1: new UntypedFormControl('', Validators.required),
+        control2: new UntypedFormControl('', Validators.compose([Validators.minLength(5), Validators.required]))
       }),
       hide: false
     },
@@ -48,9 +48,9 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
       editable: true,
       completed: false,
       useStepControl: true,
-      stepControl: new FormGroup({
-        control1: new FormControl('', Validators.required),
-        control2: new FormControl('', Validators.compose([Validators.minLength(5), Validators.required]))
+      stepControl: new UntypedFormGroup({
+        control1: new UntypedFormControl('', Validators.required),
+        control2: new UntypedFormControl('', Validators.compose([Validators.minLength(5), Validators.required]))
       }),
       hide: false
     }
@@ -93,7 +93,7 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
     private stepperService: LuxStepperHelperService,
     private buttonService: LuxAppFooterButtonService,
     private snackbar: LuxSnackbarService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router
   ) {}
 

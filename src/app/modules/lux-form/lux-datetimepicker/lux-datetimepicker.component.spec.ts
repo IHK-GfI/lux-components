@@ -6,7 +6,7 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { Component, LOCALE_ID } from '@angular/core';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -716,12 +716,12 @@ export const exampleErrorCallback = (value, errors) => {
   `
 })
 class LuxFormCustomValidatorComponent {
-  form: FormGroup;
+  form: UntypedFormGroup;
   formControl: AbstractControl;
 
   errorCallBack = exampleErrorCallback;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       datepicker: ['', Validators.compose([Validator2019NotAllowed, Validators.required])]
     });
@@ -738,10 +738,10 @@ class LuxFormCustomValidatorComponent {
   `
 })
 class LuxFormTestComponent {
-  form: FormGroup;
+  form: UntypedFormGroup;
   formControl: AbstractControl;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       datepicker: []
     });

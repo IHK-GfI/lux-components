@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { OnInit, Directive } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { of } from 'rxjs';
 import { delay, map, take } from 'rxjs/operators';
 import { LuxFileListComponent } from '../../../modules/lux-form/lux-file/lux-file-list/lux-file-list.component';
@@ -18,7 +18,7 @@ export abstract class FileExampleComponent implements OnInit {
   realBackends: any[] = [];
   mockBackend = false;
   log = logResult;
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   fileComponents: LuxFormFileBase[] = [];
 
@@ -107,7 +107,7 @@ export abstract class FileExampleComponent implements OnInit {
   };
 
   protected constructor(
-    protected fb: FormBuilder,
+    protected fb: UntypedFormBuilder,
     protected http: HttpClient,
     protected snackbar: LuxSnackbarService,
     protected filePreviewService: LuxFilePreviewService

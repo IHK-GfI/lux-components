@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxDatepickerStartViewType } from "../../../modules/lux-form/lux-datepicker/lux-datepicker.component";
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
@@ -18,7 +18,7 @@ export class DatepickerExampleComponent {
   useCustomFilter = false;
   useErrorMessage = true;
   showOutputEvents = false;
-  form: FormGroup;
+  form: UntypedFormGroup;
   log = logResult;
 
   validatorOptions = [
@@ -57,7 +57,7 @@ export class DatepickerExampleComponent {
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
 
-  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale, private fb: FormBuilder) {
+  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale, private fb: UntypedFormBuilder) {
     this.locale = matDateLocale === 'en' ? 'en-US' : matDateLocale;
     switch (matDateLocale) {
       case 'de':

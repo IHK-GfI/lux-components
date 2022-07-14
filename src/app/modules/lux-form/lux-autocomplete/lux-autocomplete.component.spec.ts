@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { By } from "@angular/platform-browser";
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
@@ -498,9 +498,9 @@ class LuxAutoCompleteInFormAttributeComponent {
 
   @ViewChild(LuxAutocompleteComponent) autocomplete: LuxAutocompleteComponent;
 
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.formGroup = this.fb.group({
       aufgaben: ['']
     });
@@ -621,9 +621,9 @@ class LuxAutoCompleteNotAnOptionComponent {
 
   @ViewChild(LuxAutocompleteComponent) autocomplete: LuxAutocompleteComponent;
 
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.formGroup = this.fb.group({
       aufgaben: ['']
     });

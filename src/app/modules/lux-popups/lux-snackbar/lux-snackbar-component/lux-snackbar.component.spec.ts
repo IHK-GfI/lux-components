@@ -117,13 +117,12 @@ class MockStorageService {
 }
 
 @NgModule({
-  imports: [MatSnackBarModule, LuxPopupsModule, LuxLayoutModule, LuxActionModule, NoopAnimationsModule],
-  exports: [],
-  providers: [
-    { provide: LuxMasterDetailMobileHelperService, useClass: MockMobileHelperService },
-    { provide: LuxStorageService, useClass: MockStorageService }
-  ],
-  declarations: [MockSnackbarComponent],
-  entryComponents: [LuxSnackbarComponent]
+    imports: [MatSnackBarModule, LuxPopupsModule, LuxLayoutModule, LuxActionModule, NoopAnimationsModule],
+    exports: [],
+    providers: [
+        { provide: LuxMasterDetailMobileHelperService, useClass: MockMobileHelperService },
+        { provide: LuxStorageService, useClass: MockStorageService }
+    ],
+    declarations: [MockSnackbarComponent]
 })
 class MockSnackbarModule {}

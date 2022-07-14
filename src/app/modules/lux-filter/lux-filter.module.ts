@@ -12,24 +12,23 @@ import { LuxFilterLoadDialogComponent } from './lux-filter-dialog/lux-filter-loa
 import { LuxFilterItemDirective } from './lux-filter-base/lux-filter-item.directive';
 
 @NgModule({
-  declarations: [
-    LuxFilterFormComponent,
-    LuxFilterItemDirective,
-    LuxFilterSaveDialogComponent,
-    LuxFilterLoadDialogComponent
-  ],
-  imports: [
-    CommonModule,
-    FlexLayoutModule,
-    FormsModule,
-    ReactiveFormsModule,
-    LuxLayoutModule,
-    LuxFormModule,
-    LuxActionModule,
-    LuxPopupsModule
-  ],
-  exports: [LuxFilterFormComponent, LuxFilterItemDirective, LuxFilterSaveDialogComponent, LuxFilterLoadDialogComponent],
-  entryComponents: [LuxFilterSaveDialogComponent, LuxFilterLoadDialogComponent],
-  providers: []
+    declarations: [
+        LuxFilterFormComponent,
+        LuxFilterItemDirective,
+        LuxFilterSaveDialogComponent,
+        LuxFilterLoadDialogComponent
+    ],
+    imports: [
+        CommonModule,
+        FlexLayoutModule,
+        FormsModule,
+        ReactiveFormsModule,
+        LuxLayoutModule,
+        LuxFormModule,
+        LuxActionModule,
+        LuxPopupsModule
+    ],
+    exports: [LuxFilterFormComponent, LuxFilterItemDirective, LuxFilterSaveDialogComponent, LuxFilterLoadDialogComponent],
+    providers: []
 })
 export class LuxFilterModule {}

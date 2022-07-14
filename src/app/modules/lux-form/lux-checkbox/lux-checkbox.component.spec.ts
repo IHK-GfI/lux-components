@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
@@ -459,10 +459,10 @@ class LuxRequiredAttributeComponent {
   `
 })
 class LuxCheckboxInFormAttributeComponent {
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
   required;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.formGroup = this.fb.group({
       eula: [true]
     });
@@ -477,9 +477,9 @@ class LuxCheckboxInFormAttributeComponent {
   `
 })
 class LuxCheckboxRequiredInFormAttributeComponent {
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.formGroup = this.fb.group({
       eula: [null, Validators.required]
     });

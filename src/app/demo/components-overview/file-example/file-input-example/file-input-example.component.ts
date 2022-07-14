@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { LuxFileInputComponent } from '../../../../modules/lux-form/lux-file/lux-file-input/lux-file-input.component';
 import { LuxFilePreviewService } from '../../../../modules/lux-file-preview/lux-file-preview.service';
 import { ILuxFileActionConfig } from '../../../../modules/lux-form/lux-file/lux-file-model/lux-file-action-config.interface';
@@ -34,7 +34,7 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
   
   labelLongFormat = false;
   
-  constructor(fb: FormBuilder, http: HttpClient, snackbar: LuxSnackbarService, filePreviewService: LuxFilePreviewService) {
+  constructor(fb: UntypedFormBuilder, http: HttpClient, snackbar: LuxSnackbarService, filePreviewService: LuxFilePreviewService) {
     super(fb, http, snackbar, filePreviewService);
   }
 

@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxInputComponent } from './lux-input.component';
@@ -1024,24 +1024,24 @@ describe('LuxInputComponent', () => {
 class LuxInputWerteInsideFormComponent {
   fieldType = 'number';
 
-  formGroup = new FormGroup({
-    amount01: new FormControl(0),
-    amount02: new FormControl(0),
-    amount03: new FormControl(0),
-    amount04: new FormControl(0),
-    amount05: new FormControl(0),
-    amount06: new FormControl(0),
-    amount07: new FormControl(0),
-    amount08: new FormControl(0),
-    amount09: new FormControl(0),
-    amount10: new FormControl(0),
-    amount11: new FormControl(0),
-    amount12: new FormControl(0),
-    amount13: new FormControl(0),
-    amount14: new FormControl(0),
-    amount15: new FormControl(0),
-    amount16: new FormControl(0),
-    amount17: new FormControl(0)
+  formGroup = new UntypedFormGroup({
+    amount01: new UntypedFormControl(0),
+    amount02: new UntypedFormControl(0),
+    amount03: new UntypedFormControl(0),
+    amount04: new UntypedFormControl(0),
+    amount05: new UntypedFormControl(0),
+    amount06: new UntypedFormControl(0),
+    amount07: new UntypedFormControl(0),
+    amount08: new UntypedFormControl(0),
+    amount09: new UntypedFormControl(0),
+    amount10: new UntypedFormControl(0),
+    amount11: new UntypedFormControl(0),
+    amount12: new UntypedFormControl(0),
+    amount13: new UntypedFormControl(0),
+    amount14: new UntypedFormControl(0),
+    amount15: new UntypedFormControl(0),
+    amount16: new UntypedFormControl(0),
+    amount17: new UntypedFormControl(0)
   });
 }
 
@@ -1061,11 +1061,11 @@ class LuxInputWerteInsideFormComponent {
 class LuxInputInsideFormComponent {
   fieldType = 'number';
 
-  formGroup = new FormGroup({
-    amount0: new FormControl(0),
-    amount1: new FormControl(0),
-    amount2: new FormControl(0),
-    text: new FormControl(null)
+  formGroup = new UntypedFormGroup({
+    amount0: new UntypedFormControl(0),
+    amount1: new UntypedFormControl(0),
+    amount2: new UntypedFormControl(0),
+    text: new UntypedFormControl(null)
   });
 }
 

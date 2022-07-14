@@ -1,3 +1,7 @@
+# Version 14.0.0
+## New
+- **allgemein**: Update auf Angular 14
+
 # Version 13.1.0
 ## New
 - **lux-table**: Zusätzliches Outputevent "luxSelectedAsArrayChange" einführen. [Issue 207](https://github.com/IHK-GfI/lux-components/issues/207)

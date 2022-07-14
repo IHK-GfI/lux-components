@@ -1,5 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'lux-baseline-accordion',
@@ -38,27 +38,27 @@ export class BaselineAccordionComponent {
   // endregion
 
   prefixOptions = [ '', 'Frau', 'Herr']
-  form: FormGroup = undefined; 
-  addressForm: FormGroup = undefined;
+  form: UntypedFormGroup = undefined; 
+  addressForm: UntypedFormGroup = undefined;
   
   constructor() { 
-    this.form = new FormGroup({
-      checkbox1: new FormControl('', Validators.requiredTrue),
-      checkbox2: new FormControl('', Validators.requiredTrue),
-      checkbox3: new FormControl('', Validators.requiredTrue),
+    this.form = new UntypedFormGroup({
+      checkbox1: new UntypedFormControl('', Validators.requiredTrue),
+      checkbox2: new UntypedFormControl('', Validators.requiredTrue),
+      checkbox3: new UntypedFormControl('', Validators.requiredTrue),
     });
 
-    this.addressForm = new FormGroup ({
-      title: new FormControl('', Validators.required),
-      firstname: new FormControl('', Validators.required),
-      lastname: new FormControl('', Validators.required),
-      streetAddress: new FormControl('', Validators.required),
-      streetNumber: new FormControl('', Validators.required),
-      addressInfo: new FormControl('', Validators.maxLength(100)),
-      postalCode: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(5)]) ),
-      city: new FormControl('', Validators.required),
-      country: new FormControl('', Validators.required),
-      comment: new FormControl(''),
+    this.addressForm = new UntypedFormGroup ({
+      title: new UntypedFormControl('', Validators.required),
+      firstname: new UntypedFormControl('', Validators.required),
+      lastname: new UntypedFormControl('', Validators.required),
+      streetAddress: new UntypedFormControl('', Validators.required),
+      streetNumber: new UntypedFormControl('', Validators.required),
+      addressInfo: new UntypedFormControl('', Validators.maxLength(100)),
+      postalCode: new UntypedFormControl('', Validators.compose([Validators.required, Validators.maxLength(5)]) ),
+      city: new UntypedFormControl('', Validators.required),
+      country: new UntypedFormControl('', Validators.required),
+      comment: new UntypedFormControl(''),
     })
   }
 

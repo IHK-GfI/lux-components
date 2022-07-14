@@ -1,4 +1,4 @@
-import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { UntypedFormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { LuxLookupComponent } from '../lux-lookup-model/lux-lookup-component';
 
@@ -9,7 +9,7 @@ export class LuxLookupErrorStateMatcher implements ErrorStateMatcher {
     this.lookupComponent = lookupComponent;
   }
 
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(control: UntypedFormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const lookupValue = this.lookupComponent.luxValue;
     if (lookupValue) {
       // Wenn ein selektierter Wert ungültig ist, Fehler anzeigen

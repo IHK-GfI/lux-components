@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import { Component, OnInit } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatError } from '@angular/material/form-field';
 import { By } from '@angular/platform-browser';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -545,9 +545,9 @@ class MockRadioFormComponent {
   selected: any;
   disabled: boolean;
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       radio: []
     });
@@ -587,11 +587,11 @@ class MockWithoutLuxErrorMessageComponent {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   selected: any;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       radio: ['', Validators.required]
     });
@@ -620,13 +620,13 @@ class MockLuxErrorMessageComponent {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   errorMessage: string;
 
   selected: any;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       radio: ['', Validators.required]
     });

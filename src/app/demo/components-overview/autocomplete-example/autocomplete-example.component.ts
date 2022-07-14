@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { RenderPropertyItem } from './render-property-item';
 import {
   exampleErrorCallback,
@@ -54,7 +54,7 @@ export class AutocompleteExampleComponent {
     { value: Validators.email, label: 'Validators.email' }
   ];
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   log = logResult;
   labelLongFormat = false;  
   // endregion
@@ -86,7 +86,7 @@ export class AutocompleteExampleComponent {
 
   // endregion
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       autocompleteExample: []
     });

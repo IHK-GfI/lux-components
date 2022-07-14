@@ -11,7 +11,7 @@ import {
   ViewChildren,
   ViewContainerRef
 } from '@angular/core';
-import { MatHorizontalStepper, MatVerticalStepper } from '@angular/material/stepper';
+import { MatStepper } from '@angular/material/stepper';
 import { Subscription } from 'rxjs';
 import { ILuxStepperConfiguration } from './lux-stepper-configuration.interface';
 
@@ -29,11 +29,11 @@ export class LuxStepperParent implements OnDestroy, AfterViewInit {
   // Wird beim Wechsel des Steps (über Header oder Button) aufgerufen
   @Output() luxStepChanged: EventEmitter<StepperSelectionEvent> = new EventEmitter<StepperSelectionEvent>();
   // über die aktuellen Elemente informiert zu halten
-  @Output() luxMatStepperLoaded: EventEmitter<MatHorizontalStepper | MatVerticalStepper> = new EventEmitter();
+  @Output() luxMatStepperLoaded: EventEmitter<MatStepper> = new EventEmitter();
   @Output() luxMatStepLabelsLoaded: EventEmitter<ViewContainerRef[]> = new EventEmitter();
   @Output() luxStepClicked: EventEmitter<number> = new EventEmitter<number>();
 
-  @ViewChild('stepper', { static: true }) matStepper: MatHorizontalStepper | MatVerticalStepper;
+  @ViewChild('stepper', { static: true }) matStepper: MatStepper;
   @ViewChildren('matStepLabel', { read: ViewContainerRef }) matStepLabels: QueryList<ViewContainerRef>;
 
   @Input() luxStepperConfig: ILuxStepperConfiguration;

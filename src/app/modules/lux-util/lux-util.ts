@@ -1,4 +1,4 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { LuxBgAllColor, LuxBgAllColors } from "./lux-colors.enum";
 import {
   BACKSPACE,
@@ -70,7 +70,7 @@ export class LuxUtil {
    * @param formControl
    * @returns string
    */
-  public static getErrorMessage(formControl: FormControl): string {
+  public static getErrorMessage(formControl: UntypedFormControl): string {
     if (formControl) {
       if (formControl.hasError('required')) {
         return $localize `:@@luxc.util.error_message.required:* Pflichtfeld`;
@@ -138,10 +138,10 @@ export class LuxUtil {
    *
    * @param formGroup
    */
-  public static showValidationErrors(formGroup: FormGroup) {
+  public static showValidationErrors(formGroup: UntypedFormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
-      if (control instanceof FormGroup) {
+      if (control instanceof UntypedFormGroup) {
         this.showValidationErrors(control);
       } else {
         control.markAsTouched({ onlySelf: true });

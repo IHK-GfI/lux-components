@@ -13,17 +13,16 @@ import { LuxMenuComponent } from './lux-menu/lux-menu.component';
 import { LuxMenuTriggerComponent } from './lux-menu/lux-menu-subcomponents/lux-menu-trigger.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    LuxIconModule,
-    MatButtonModule,
-    MatMenuModule,
-    LuxDirectivesModule,
-    FlexLayoutModule,
-    LuxComponentsConfigModule
-  ],
-  declarations: [LuxButtonComponent, LuxMenuItemComponent, LuxLinkComponent, LuxMenuComponent, LuxMenuTriggerComponent],
-  exports: [LuxButtonComponent, LuxLinkComponent, LuxMenuComponent, LuxMenuItemComponent, LuxMenuTriggerComponent],
-  entryComponents: [LuxButtonComponent]
+    imports: [
+        CommonModule,
+        LuxIconModule,
+        MatButtonModule,
+        MatMenuModule,
+        LuxDirectivesModule,
+        FlexLayoutModule,
+        LuxComponentsConfigModule
+    ],
+    declarations: [LuxButtonComponent, LuxMenuItemComponent, LuxLinkComponent, LuxMenuComponent, LuxMenuTriggerComponent],
+    exports: [LuxButtonComponent, LuxLinkComponent, LuxMenuComponent, LuxMenuItemComponent, LuxMenuTriggerComponent]
 })
 export class LuxActionModule {}

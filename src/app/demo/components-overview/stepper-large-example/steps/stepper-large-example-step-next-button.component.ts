@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LuxStepperLargeClickEvent } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-click-event';
 import { LuxVetoState } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-step.interface';
@@ -13,11 +13,11 @@ import { StepperLargeExampleDataService } from '../stepper-large-example-data.se
   providers: [{ provide: LuxStepperLargeStepComponent, useExisting: StepperLargeExampleStepNextButtonComponent }]
 })
 export class StepperLargeExampleStepNextButtonComponent extends LuxStepperLargeStepComponent implements OnInit, OnDestroy {
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   subscriptions: Subscription[] = [];
 
-  constructor(private fb: FormBuilder, public dataService: StepperLargeExampleDataService) {
+  constructor(private fb: UntypedFormBuilder, public dataService: StepperLargeExampleDataService) {
     super();
   }
 

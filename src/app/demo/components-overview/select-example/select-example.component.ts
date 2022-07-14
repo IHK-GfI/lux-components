@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn } from '@angular/forms';
 import { LuxFormSelectableBase } from '../../../modules/lux-form/lux-form-model/lux-form-selectable-base.class';
 import {
   exampleCompareWithFn,
@@ -69,7 +69,7 @@ export class SelectExampleComponent {
 
   optionsPrimitive: string[] = ['Option #1', 'Option #2', 'Option #3'];
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   log = logResult;
   
   labelLongFormat = false;
@@ -103,7 +103,7 @@ export class SelectExampleComponent {
 
   defaultCompareWith = (o1, o2) => o1 === o2;
 
-  constructor(private _fb: FormBuilder) {
+  constructor(private _fb: UntypedFormBuilder) {
     this.form = this._fb.group({
       selectExample: []
     });

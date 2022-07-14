@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { LuxLookupAutocompleteComponent } from '../../../../modules/lux-lookup/lux-lookup-autocomplete/lux-lookup-autocomplete.component';
 import { LuxLookupHandlerService } from '../../../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 import { LookupExampleComponent } from '../lookup-example.component';
@@ -19,7 +19,7 @@ export class LookupAutocompleteExampleComponent extends LookupExampleComponent i
   labelLongFormat = false;
   optionMultiline = false;
 
-  constructor(lookupHandler: LuxLookupHandlerService, snackbar: LuxSnackbarService, fb: FormBuilder) {
+  constructor(lookupHandler: LuxLookupHandlerService, snackbar: LuxSnackbarService, fb: UntypedFormBuilder) {
     super(lookupHandler, fb);
   }
 

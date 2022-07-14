@@ -33,32 +33,32 @@ const myConfiguration: LuxComponentsConfigParameters = {
 };
 
 @NgModule({
-  declarations: [AppComponent, PlaceholderComponent, RedirectComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HammerModule,
-    FlexLayoutModule,
-    LuxLayoutModule,
-    LuxActionModule,
-    LuxPopupsModule,
-    LuxFormModule,
-    LuxPipesModule,
-    LuxDirectivesModule,
-    LuxCommonModule,
-    LuxErrorModule,
-    LuxFilePreviewModule,
-    HomeModule,
-    ConfigurationModule,
-    BaselineModule,
-    ExampleBaseModule,
-    LuxComponentsConfigModule.forRoot(myConfiguration)
-  ],
-  providers: [
-    { provide: LuxLookupService, useClass: MockLuxLookupService }
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    declarations: [AppComponent, PlaceholderComponent, RedirectComponent],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HammerModule,
+        FlexLayoutModule,
+        LuxLayoutModule,
+        LuxActionModule,
+        LuxPopupsModule,
+        LuxFormModule,
+        LuxPipesModule,
+        LuxDirectivesModule,
+        LuxCommonModule,
+        LuxErrorModule,
+        LuxFilePreviewModule,
+        HomeModule,
+        ConfigurationModule,
+        BaselineModule,
+        ExampleBaseModule,
+        LuxComponentsConfigModule.forRoot(myConfiguration)
+    ],
+    providers: [
+        { provide: LuxLookupService, useClass: MockLuxLookupService }
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {}

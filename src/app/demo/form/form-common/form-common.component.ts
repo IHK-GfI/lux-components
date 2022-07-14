@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { LuxConsoleService } from '../../../modules/lux-util/lux-console.service';
 import { FormBase } from '../model/form-base.class';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
@@ -26,23 +26,23 @@ export class FormCommonComponent extends FormBase implements OnInit {
   }
 
   ngOnInit() {
-    this.myGroup = new FormGroup({
-      user: new FormGroup({
-        firstname: new FormControl('', Validators.pattern('[a-zA-Z0-9]*')),
-        lastname: new FormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
-        email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-        password: new FormControl('')
+    this.myGroup = new UntypedFormGroup({
+      user: new UntypedFormGroup({
+        firstname: new UntypedFormControl('', Validators.pattern('[a-zA-Z0-9]*')),
+        lastname: new UntypedFormControl('', Validators.compose([Validators.required, Validators.minLength(3)])),
+        email: new UntypedFormControl('', Validators.compose([Validators.required, Validators.email])),
+        password: new UntypedFormControl('')
       }),
-      description: new FormControl(''),
-      newsletter: new FormControl(true),
-      hobbies: new FormControl(''),
-      donation: new FormControl('', Validators.compose([Validators.min(0), Validators.max(1000)])),
-      hungry: new FormControl(true),
-      chipsLoeschbar: new FormControl([this.chipItems]),
-      chipsFix: new FormControl([this.chipItems2]),
-      radio: new FormControl(this.hobbies[2]),
-      datepicker: new FormControl(new Date('01.11.2018')),
-      autocomplete: new FormControl(this.chipItems2[1], Validators.required)
+      description: new UntypedFormControl(''),
+      newsletter: new UntypedFormControl(true),
+      hobbies: new UntypedFormControl(''),
+      donation: new UntypedFormControl('', Validators.compose([Validators.min(0), Validators.max(1000)])),
+      hungry: new UntypedFormControl(true),
+      chipsLoeschbar: new UntypedFormControl([this.chipItems]),
+      chipsFix: new UntypedFormControl([this.chipItems2]),
+      radio: new UntypedFormControl(this.hobbies[2]),
+      datepicker: new UntypedFormControl(new Date('01.11.2018')),
+      autocomplete: new UntypedFormControl(this.chipItems2[1], Validators.required)
     });
     this.myGroup.controls['description'].disable();
   }

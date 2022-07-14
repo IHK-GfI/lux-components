@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { SLIDER_COLORS } from '../../../modules/lux-form/lux-slider/lux-slider.component';
 import {
   exampleErrorCallback,
@@ -27,7 +27,7 @@ export class SliderExampleComponent {
     { value: Validators.max(100), label: 'Validators.max(100)' },
     { value: Validators.min(25), label: 'Validators.min(25)' }
   ];
-  form: FormGroup;
+  form: UntypedFormGroup;
   log = logResult;
 
   percent: number;
@@ -66,9 +66,9 @@ export class SliderExampleComponent {
 
   // endregion
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
-      sliderExample: new FormControl()
+      sliderExample: new UntypedFormControl()
     });
   }
 

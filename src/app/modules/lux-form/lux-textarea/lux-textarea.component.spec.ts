@@ -4,7 +4,7 @@ import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxTextareaComponent } from './lux-textarea.component';
 import { By } from '@angular/platform-browser';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxFormControlComponent } from '../lux-form-control/lux-form-control.component';
 
@@ -462,9 +462,9 @@ class LuxMockFormTextareaComponent {
   maxRows: number;
   minRows: number;
 
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       control: []
     });

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxRadioComponent } from '../../../modules/lux-form/lux-radio/lux-radio.component';
 import {
   exampleCompareWithFn,
@@ -37,7 +37,7 @@ export class RadioButtonExampleComponent {
 
   optionsPrimitive: string[] = ['Option #1', 'Option #2', 'Option #3'];
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   log = logResult;
 
   // endregion
@@ -72,7 +72,7 @@ export class RadioButtonExampleComponent {
   labelLongFormat = false;
   // endregion
 
-  constructor(private _fb: FormBuilder) {
+  constructor(private _fb: UntypedFormBuilder) {
     this.form = this._fb.group({
       radioExample: []
     });

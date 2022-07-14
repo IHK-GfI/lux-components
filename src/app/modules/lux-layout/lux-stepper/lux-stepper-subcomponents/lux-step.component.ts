@@ -1,6 +1,6 @@
 import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'lux-step',
@@ -24,7 +24,7 @@ export class LuxStepComponent {
   @Input() luxOptional = false;
   @Input() luxEditable = true;
   @Input() luxCompleted = true;
-  @Input() luxStepControl: FormGroup;
+  @Input() luxStepControl: UntypedFormGroup;
 
   get luxIconName(): string {
     return this._luxIconName;

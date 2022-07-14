@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { OnInit, Directive } from '@angular/core';
 import {
   LuxBehandlungsOptionenUngueltige,
@@ -36,7 +36,7 @@ export abstract class LookupExampleComponent implements OnInit {
   showOutputEvents = false;
   useRenderFn: boolean;
   log = logResult;
-  form: FormGroup;
+  form: UntypedFormGroup;
   originalServices: LuxLookupService[] = [];
   renderFnString = this.renderFn + '';
 
@@ -71,7 +71,7 @@ export abstract class LookupExampleComponent implements OnInit {
 
   protected constructor(
     protected lookupHandler: LuxLookupHandlerService,
-    protected fb: FormBuilder
+    protected fb: UntypedFormBuilder
   ) {}
 
   ngOnInit() {

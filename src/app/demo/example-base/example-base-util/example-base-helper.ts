@@ -1,4 +1,4 @@
-import { FormGroup, Validators } from '@angular/forms';
+import { UntypedFormGroup, Validators } from '@angular/forms';
 
 /**
  * Fügt dem FormControl den required-Validator hinzu bzw. entfernt ihn.
@@ -7,7 +7,7 @@ import { FormGroup, Validators } from '@angular/forms';
  * @param form
  * @param controlName
  */
-export const setRequiredValidatorForFormControl = (addValidator: boolean, form: FormGroup, controlName: string) => {
+export const setRequiredValidatorForFormControl = (addValidator: boolean, form: UntypedFormGroup, controlName: string) => {
   if (addValidator) {
     form.get(controlName).setValidators(Validators.required);
   } else {

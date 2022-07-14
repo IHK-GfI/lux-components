@@ -13,25 +13,24 @@ import { LuxCommonModule } from '../lux-common/lux-common.module';
 import { LuxActionModule } from '../lux-action/lux-action.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FlexLayoutModule,
-    RouterModule,
-    LuxIconModule,
-    LuxLayoutModule,
-    LuxCommonModule,
-    LuxActionModule,
-    LuxComponentsConfigModule
-  ],
-  entryComponents: [LuxErrorPageComponent],
-  declarations: [LuxHttpErrorComponent, LuxErrorPageComponent],
-  exports: [LuxHttpErrorComponent, LuxErrorPageComponent],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LuxHttpErrorInterceptor,
-      multi: true
-    }
-  ]
+    imports: [
+        CommonModule,
+        FlexLayoutModule,
+        RouterModule,
+        LuxIconModule,
+        LuxLayoutModule,
+        LuxCommonModule,
+        LuxActionModule,
+        LuxComponentsConfigModule
+    ],
+    declarations: [LuxHttpErrorComponent, LuxErrorPageComponent],
+    exports: [LuxHttpErrorComponent, LuxErrorPageComponent],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LuxHttpErrorInterceptor,
+            multi: true
+        }
+    ]
 })
 export class LuxErrorModule {}

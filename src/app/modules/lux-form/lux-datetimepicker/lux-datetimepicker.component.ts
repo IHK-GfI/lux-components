@@ -15,7 +15,6 @@ import {
 import { AbstractControl, ControlContainer, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, ThemePalette } from '@angular/material/core';
 import { DateFilterFn } from '@angular/material/datepicker';
-import { MatDatepickerControl } from '@angular/material/datepicker/datepicker-base';
 import { Observable } from 'rxjs';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -48,7 +47,7 @@ export const APP_DATE_TIME_FORMATS = {
 })
 export class LuxDateTimePickerComponent
   extends LuxFormInputBaseClass
-  implements OnInit, OnChanges, AfterViewInit, OnDestroy, MatDatepickerControl<any> {
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @ViewChild(LuxDatetimeOverlayComponent) dateTimeOverlayComponent: LuxDatetimeOverlayComponent;
   @ViewChild('dateTimePickerInput', { read: ElementRef }) dateTimePickerInputEl: ElementRef;
 

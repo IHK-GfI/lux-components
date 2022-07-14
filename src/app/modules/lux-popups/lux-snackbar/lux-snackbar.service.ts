@@ -1,9 +1,7 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { Injectable, OnDestroy } from '@angular/core';
 import { MatSnackBar, MatSnackBarDismiss } from '@angular/material/snack-bar';
-import { MatSnackBarRef } from '@angular/material/snack-bar/snack-bar-ref';
 import { Observable, Subscription } from 'rxjs';
-import { skip } from 'rxjs/operators';
 import { LuxAppService } from '../../lux-util/lux-app.service';
 import { LuxSnackbarComponent } from './lux-snackbar-component/lux-snackbar.component';
 import { LuxSnackbarConfig } from './lux-snackbar-config';

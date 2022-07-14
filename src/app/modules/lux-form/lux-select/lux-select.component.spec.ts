@@ -14,7 +14,7 @@ import {
   TestBed,
   tick
 } from '@angular/core/testing';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
@@ -841,8 +841,8 @@ class SelectInsideFormComponent {
     { label: 'Stricken', value: 's' }
   ];
 
-  formGroup = new FormGroup({
-    hobbies: new FormControl(null)
+  formGroup = new UntypedFormGroup({
+    hobbies: new UntypedFormControl(null)
   });
 }
 
@@ -987,8 +987,8 @@ class SelectValueHookFormComponent {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  formGroup = new FormGroup({
-    hobbies: new FormControl('')
+  formGroup = new UntypedFormGroup({
+    hobbies: new UntypedFormControl('')
   });
 
   hook(option) {

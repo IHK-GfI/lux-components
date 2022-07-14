@@ -1,11 +1,11 @@
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { IUnsavedDataCheck } from '../unsaved-data-guard/unsaved-data-check.interface';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { HostListener, Directive } from '@angular/core';
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class FormBase implements IUnsavedDataCheck {
-  myGroup: FormGroup;
+  myGroup: UntypedFormGroup;
 
   protected constructor(protected snackbar: LuxSnackbarService) {}
 

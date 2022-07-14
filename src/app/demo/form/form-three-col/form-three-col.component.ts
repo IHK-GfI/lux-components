@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { ICompanyType } from '../model/company-type.interface';
 import { ICountry } from '../model/country.interface';
 import { IGender } from '../model/gender.interface';
@@ -18,7 +18,7 @@ export class FormThreeColComponent extends FormBase implements OnInit {
 
   constructor(
     snackbar: LuxSnackbarService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private dataProvider: TableExampleDataProviderService
   ) {
     super(snackbar);

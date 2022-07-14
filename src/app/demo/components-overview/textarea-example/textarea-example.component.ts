@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {
   exampleErrorCallback,
   logResult,
@@ -22,7 +22,7 @@ export class TextareaExampleComponent {
     { value: Validators.email, label: 'Validators.email' }
   ];
   autocompleteOptions = ['on', 'off'];
-  form: FormGroup;
+  form: UntypedFormGroup;
   log = logResult;
 
   // endregion
@@ -51,7 +51,7 @@ export class TextareaExampleComponent {
   
   // endregion
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       textareaExample: ['']
     });

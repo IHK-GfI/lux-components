@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { distinctUntilChanged, skip } from 'rxjs/operators';
 import { LuxFilePreviewService } from '../../../../modules/lux-file-preview/lux-file-preview.service';
@@ -94,7 +94,7 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
   headingValidator = Validators.pattern('[1-6]');
 
   constructor(
-    fb: FormBuilder,
+    fb: UntypedFormBuilder,
     http: HttpClient,
     snackbar: LuxSnackbarService,
     filePreviewService: LuxFilePreviewService,

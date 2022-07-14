@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { ICountry } from '../model/country.interface';
 import { IGender } from '../model/gender.interface';
 import { IRole } from '../model/roles.interface';
@@ -19,7 +19,7 @@ export class FormSingleColComponent extends FormBase {
 
   constructor(
     snackbar: LuxSnackbarService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private dataProvider: TableExampleDataProviderService
   ) {
     super(snackbar);

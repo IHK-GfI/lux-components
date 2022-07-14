@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { By } from '@angular/platform-browser';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 
 describe('LuxSliderComponent', () => {
 
@@ -313,7 +313,7 @@ class MockSliderFormComponent {
 
   valueChanged($event) {}
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({
       slider: [0]
     });

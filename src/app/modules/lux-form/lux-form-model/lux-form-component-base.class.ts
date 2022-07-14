@@ -12,7 +12,7 @@ import {
   SimpleChange,
   SimpleChanges
 } from '@angular/core';
-import { AbstractControl, ControlContainer, Form, FormControl, FormGroup, ValidatorFn, Validators } from "@angular/forms";
+import { AbstractControl, ControlContainer, Form, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -44,8 +44,8 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
 
   controlContainer: ControlContainer;
   inForm: boolean;
-  formGroup: FormGroup;
-  formControl: FormControl;
+  formGroup: UntypedFormGroup;
+  formControl: UntypedFormControl;
 
   uid: string = 'lux-form-control-' + luxFormControlUID++;
 
@@ -187,7 +187,7 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
         return errorMsg;
       }
       // Last-but-not-least => versuchen einen Standardfehler auszulesen
-      errorMsg = LuxUtil.getErrorMessage(this.formControl as FormControl);
+      errorMsg = LuxUtil.getErrorMessage(this.formControl as UntypedFormControl);
     }
 
     return errorMsg;
@@ -284,14 +284,14 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
     this.inForm = !!this.controlContainer && !!this.luxControlBinding;
 
     if (this.inForm) {
-      this.formGroup = this.controlContainer.control as FormGroup;
-      this.formControl = this.formGroup.controls[this.luxControlBinding] as FormControl;
+      this.formGroup = this.controlContainer.control as UntypedFormGroup;
+      this.formControl = this.formGroup.controls[this.luxControlBinding] as UntypedFormControl;
       this.updateValidatorsInForm();
     } else {
-      this.formGroup = new FormGroup({
-        control: new FormControl()
+      this.formGroup = new UntypedFormGroup({
+        control: new UntypedFormControl()
       });
-      this.formControl = this.formGroup.get(LuxFormComponentBase.DEFAULT_CTRL_NAME) as FormControl;
+      this.formControl = this.formGroup.get(LuxFormComponentBase.DEFAULT_CTRL_NAME) as UntypedFormControl;
       this.formControl.setValue(this._initialValue);
     }
   }
