@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, FormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({

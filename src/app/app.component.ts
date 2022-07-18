@@ -1,4 +1,3 @@
-import { ConsoleLogger } from "@angular/compiler-cli/ngcc";
 import { Component, ElementRef, Input, OnInit } from "@angular/core";
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
