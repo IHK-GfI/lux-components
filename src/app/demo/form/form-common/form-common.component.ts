@@ -15,8 +15,8 @@ export class FormCommonComponent extends FormBase implements OnInit {
     { label: 'Handball', value: 'h' },
     { label: 'Stricken', value: 's' }
   ];
-  chipItems = [];
-  chipItems2 = [];
+  chipItems: string[] = [];
+  chipItems2: string[] = [];
 
   constructor(private logger: LuxConsoleService, snackbar: LuxSnackbarService) {
     super(snackbar);
@@ -51,8 +51,8 @@ export class FormCommonComponent extends FormBase implements OnInit {
     this.logger.log(this.myGroup.value);
   }
 
-  chipItemClicked(event) {
-    this.logger.log(event);
+  chipItemClicked(index: number) {
+    this.logger.log(index);
     this.logger.log(this.myGroup.value);
   }
 }

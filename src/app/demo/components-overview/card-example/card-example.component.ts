@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
-import {FormControl, FormGroup, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-card-example',

@@ -32,8 +32,8 @@ export class TextareaExampleComponent {
   value: any;
   controlBinding = 'textareaExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -45,10 +45,10 @@ export class TextareaExampleComponent {
   min = 1;
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
-  maxLength: number;
+  maxLength = 0;
   hideCounterLabel = false;
   labelLongFormat = false;
-  
+
   // endregion
 
   constructor(private fb: UntypedFormBuilder) {

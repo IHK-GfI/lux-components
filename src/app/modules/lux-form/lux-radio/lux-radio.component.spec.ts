@@ -489,8 +489,8 @@ class MockRadioComponent {
 
   selected: any;
   disabled: boolean;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   pickValueFn;
   compareFn = (o1, o2) => o1 === o2;
 

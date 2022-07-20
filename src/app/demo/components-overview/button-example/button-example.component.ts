@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { LuxComponentsConfigService } from '../../../modules/lux-components-config/lux-components-config.service';
 import { LuxComponentsConfigParameters } from '../../../modules/lux-components-config/lux-components-config-parameters.interface';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-button-example',
   templateUrl: './button-example.component.html'
 })
-export class ButtonExampleComponent implements OnInit, OnDestroy {
+export class ButtonExampleComponent implements OnDestroy {
   // region Helper-Properties für das Beispiel
 
   showOutputEvents = false;
@@ -37,9 +37,7 @@ export class ButtonExampleComponent implements OnInit, OnDestroy {
 
   // endregion
 
-  constructor(private configService: LuxComponentsConfigService) {}
-
-  ngOnInit() {
+  constructor(private configService: LuxComponentsConfigService) {
     this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
       this.config = config;
     });

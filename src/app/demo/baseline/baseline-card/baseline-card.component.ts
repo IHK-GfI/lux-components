@@ -45,7 +45,7 @@ export class BaselineCardComponent {
   selectedState: any = this.stateOptions[0];
 
   chipItems: string[] = [ 'Chip 0', 'Chip 1', 'Chip 2'];
-  form: UntypedFormGroup = undefined;
+  form: UntypedFormGroup;
   // endregion
 
   constructor() {
@@ -85,7 +85,7 @@ export class BaselineCardComponent {
       this.form.get(key).updateValueAndValidity();
     });
   }
-  
+
   switchStates($event: boolean) {
     switch (this.selectedState.value) {
       case 'disabledState':

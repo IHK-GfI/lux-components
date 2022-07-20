@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { LuxActionColorType } from "../../../modules/lux-action/lux-action-model/lux-action-component-base.class";
 import { LuxComponentsConfigParameters } from '../../../modules/lux-components-config/lux-components-config-parameters.interface';
 import { LuxComponentsConfigService } from '../../../modules/lux-components-config/lux-components-config.service';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-link-example',
   templateUrl: './link-example.component.html'
 })
-export class LinkExampleComponent implements OnInit, OnDestroy {
+export class LinkExampleComponent implements OnDestroy {
   // region Helper-Properties für das Beispiel
 
   showOutputEvents = false;
@@ -41,11 +41,13 @@ export class LinkExampleComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private configService: LuxComponentsConfigService) {}
+  constructor(private configService: LuxComponentsConfigService) {
+    this.config = this.configService.currentConfig;
 
-  ngOnInit() {
     this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
-      this.config = config;
+      if (this.config !== config) {
+        this.config = config;
+      }
     });
   }
 

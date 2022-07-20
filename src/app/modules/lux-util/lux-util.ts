@@ -412,4 +412,16 @@ export class LuxUtil {
 
     return message;
   }
+
+  /**
+   * Diese Methode wirft einen Fehler, wenn der Wert nicht gesetzt wurde.
+   *
+   * @param name Ein Name.
+   * @param value Ein Wert.
+   */
+  public static assertNonNull(name: string, value: any) {
+    if (value === undefined || value === null) {
+      throw Error(`${name} should be initialized.`);
+    }
+  }
 }

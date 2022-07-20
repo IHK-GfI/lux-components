@@ -231,11 +231,13 @@ export class LuxDateTimePickerComponent
     }
   }
 
-  protected updateValidators(validators: ValidatorFn | ValidatorFn[]) {
+  protected updateValidators(validators: ValidatorFn | ValidatorFn[], checkRequiredValidator: boolean) {
     if ((!Array.isArray(validators) && validators) || (Array.isArray(validators) && validators.length > 0)) {
       if (!this.inForm) {
         setTimeout(() => {
-          this._luxControlValidators = this.checkValidatorsContainRequired(validators);
+          if (checkRequiredValidator) {
+            this._luxControlValidators = this.checkValidatorsContainRequired(validators);
+          }
           this.formControl.setValidators(
             Array.isArray(this.luxControlValidators)
               ? [...this.luxControlValidators, this.dateTimeValidator]
@@ -247,7 +249,9 @@ export class LuxDateTimePickerComponent
     } else {
       if (!this.inForm) {
         setTimeout(() => {
-          this._luxControlValidators = this.checkValidatorsContainRequired(validators);
+          if (checkRequiredValidator) {
+            this._luxControlValidators = this.checkValidatorsContainRequired(validators);
+          }
           this.formControl.setValidators([this.dateTimeValidator]);
           this.formControl.updateValueAndValidity();
         });

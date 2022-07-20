@@ -16,10 +16,8 @@ import { FileExampleComponent } from '../file-example.component';
   styleUrls: ['./file-upload-example.component.scss']
 })
 export class FileUploadExampleComponent extends FileExampleComponent implements OnInit {
-  @ViewChild('fileuploadexamplewithoutform', { read: LuxFileUploadComponent, static: true })
-  fileBaseWithoutComponent: LuxFileUploadComponent;
-  @ViewChild('fileuploadexamplewithform', { read: LuxFileUploadComponent, static: true })
-  fileBaseWithComponent: LuxFileUploadComponent;
+  @ViewChild('fileuploadexamplewithoutform', { read: LuxFileUploadComponent, static: true }) fileBaseWithoutComponent!: LuxFileUploadComponent;
+  @ViewChild('fileuploadexamplewithform', { read: LuxFileUploadComponent, static: true }) fileBaseWithComponent!: LuxFileUploadComponent;
 
   label = $localize`:@@luxc.file.upload.label:Zum Hochladen Datei hier ablegen oder `;
   labelLink = $localize`:@@luxc.file.upload.label.link:Datei durchsuchen`;

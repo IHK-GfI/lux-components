@@ -12,7 +12,7 @@ import { LuxSnackbarService } from '../../../../modules/lux-popups/lux-snackbar/
   styleUrls: ['../lookup-example.component.scss']
 })
 export class LookupAutocompleteExampleComponent extends LookupExampleComponent implements OnInit {
-  @ViewChildren(LuxLookupAutocompleteComponent) lookupAutocompleteCmp: QueryList<LuxLookupAutocompleteComponent>;
+  @ViewChildren(LuxLookupAutocompleteComponent) lookupAutocompleteCmp!: QueryList<LuxLookupAutocompleteComponent>;
 
   debounceTime = 250;
   maximumDisplayed = 50;

@@ -6,13 +6,16 @@ import { Component } from '@angular/core';
 })
 export class TimestampExampleComponent {
   readonly initialNow = Date.now();
-  now: number = this.initialNow;
-  nowISO: string = new Date(this.now).toISOString();
+  now: number | null;
+  nowISO: string;
 
   defaultText = '';
-  prefix: string = undefined;
+  prefix: string | null = null;
 
-  constructor() {}
+  constructor() {
+    this.now = this.initialNow;
+    this.nowISO = new Date(this.now).toISOString();
+  }
 
   updateNow($event: string) {
     this.now = new Date($event).getTime();
@@ -25,7 +28,7 @@ export class TimestampExampleComponent {
   }
 
   clearNow() {
-    this.now = undefined;
+    this.now = null;
     this.nowISO = '';
   }
 }

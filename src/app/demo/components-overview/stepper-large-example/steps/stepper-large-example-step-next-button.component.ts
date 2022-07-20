@@ -19,11 +19,6 @@ export class StepperLargeExampleStepNextButtonComponent extends LuxStepperLargeS
 
   constructor(private fb: UntypedFormBuilder, public dataService: StepperLargeExampleDataService) {
     super();
-  }
-
-  ngOnInit(): void {
-    this.luxTitle = 'Konfiguration: Weiter-Button';
-    this.luxVetoFn = this.createVetoPromise;
 
     this.form = this.fb.group({
       label: [this.dataService.nextButtonConfig.label, Validators.required],
@@ -32,6 +27,11 @@ export class StepperLargeExampleStepNextButtonComponent extends LuxStepperLargeS
       iconShowRight: [this.dataService.nextButtonConfig.iconShowRight],
       alignIconWithLabel: [this.dataService.nextButtonConfig.alignIconWithLabel]
     });
+  }
+
+  ngOnInit(): void {
+    this.luxTitle = 'Konfiguration: Weiter-Button';
+    this.luxVetoFn = this.createVetoPromise;
 
     this.form.get('alignIconWithLabel').disable();
 

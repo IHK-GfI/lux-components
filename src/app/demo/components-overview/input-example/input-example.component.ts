@@ -27,7 +27,7 @@ export class InputExampleComponent {
   autocompleteOptions = ['on', 'off'];
   form: UntypedFormGroup;
   log = logResult;
-  
+
   // endregion
 
   // region Properties der Component
@@ -35,9 +35,9 @@ export class InputExampleComponent {
   value: any;
   controlBinding = 'inputExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
-  numberLeft: boolean;
+  readonly = false;
+  required = false;
+  numberLeft = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -48,7 +48,7 @@ export class InputExampleComponent {
   inputType = 'text';
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
-  maxLength: number;
+  maxLength = 0;
   hideCounterLabel = false;
   labelLongFormat = false;
   // endregion

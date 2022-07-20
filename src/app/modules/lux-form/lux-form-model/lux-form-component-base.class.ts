@@ -62,7 +62,7 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
   @Input() luxHintShowOnlyOnFocus: boolean;
   @Input() luxLabel: string;
   @Input() luxLabelLongFormat = false;
-  
+
   @Input() luxControlBinding: string;
   @Input() luxErrorMessage: string;
   @Input() luxErrorCallback: (value, errors) => any = (value, errors) => undefined;
@@ -73,7 +73,7 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
 
   @Input() set luxControlValidators(validators: ValidatorFn | ValidatorFn[]) {
     this._luxControlValidators = validators;
-    this.updateValidators(validators);
+    this.updateValidators(validators, false);
   }
 
   get luxDisabled(): boolean {
@@ -110,11 +110,11 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
       this.logger.error(
         `Attention: Use the Required-Validator instead of the ` +
         `Property "luxRequired" for components within ReactiveForms..\n` +
-        `Affected component: ${this.luxControlBinding ? this.luxControlBinding : 'No binding found'}`
+        `Affected component: ${ this.luxControlBinding ? this.luxControlBinding : 'No binding found' }`
       );
     } else {
       this._luxRequired = required;
-      this.updateValidators(this.luxControlValidators);
+      this.updateValidators(this.luxControlValidators, true);
       this.cdr.detectChanges();
     }
   }
@@ -133,7 +133,7 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
     this.initDisabledState();
     this.initFormValueSubscription();
     this.initFormStateSubscription();
-    this.updateValidators(this.luxControlValidators);
+    this.updateValidators(this.luxControlValidators, true);
   }
 
   ngDoCheck() {
@@ -378,12 +378,15 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
    * Ist nur erfolgreich, wenn es sich hierbei nicht um eine ReactiveForm-Komponente handelt.
    *
    * @param validators
+   * @param checkRequiredValidator
    */
-  protected updateValidators(validators: ValidatorFn | ValidatorFn[]) {
+  protected updateValidators(validators: ValidatorFn | ValidatorFn[], checkRequiredValidator: boolean) {
     if ((!Array.isArray(validators) && validators) || (Array.isArray(validators) && validators.length > 0)) {
       if (!this.inForm) {
         setTimeout(() => {
-          this._luxControlValidators = this.checkValidatorsContainRequired(validators);
+          if (checkRequiredValidator) {
+            this._luxControlValidators = this.checkValidatorsContainRequired(validators);
+          }
           this.formControl.setValidators(this.luxControlValidators);
           this.formControl.updateValueAndValidity();
         });

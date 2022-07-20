@@ -16,11 +16,11 @@ import { Router } from '@angular/router';
   templateUrl: './form-example.component.html'
 })
 export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestroy {
-  @ViewChild(FormCommonComponent) formCommon: FormCommonComponent;
-  @ViewChild(FormSingleColComponent) formSingle: FormSingleColComponent;
-  @ViewChild(FormDualColComponent) formDuo: FormDualColComponent;
-  @ViewChild(FormThreeColComponent) formThree: FormThreeColComponent;
-  @ViewChild(LuxTabsComponent) tabComponent: LuxTabsComponent;
+  @ViewChild(FormCommonComponent) formCommon!: FormCommonComponent;
+  @ViewChild(FormSingleColComponent) formSingle!: FormSingleColComponent;
+  @ViewChild(FormDualColComponent) formDuo!: FormDualColComponent;
+  @ViewChild(FormThreeColComponent) formThree!: FormThreeColComponent;
+  @ViewChild(LuxTabsComponent) tabComponent!: LuxTabsComponent;
 
   btnShowErrors = LuxAppFooterButtonInfo.generateInfo({
     cmd: 'btnShowErrors',

@@ -7,13 +7,13 @@ import { LuxSanitizeConfig } from '../../../modules/lux-html/lux-sanitize/lux-sa
   templateUrl: './markdown-example.component.html'
 })
 export class MarkdownExampleComponent {
-  @ViewChild(LuxMarkdownComponent) markdownComponent: LuxMarkdownComponent;
+  @ViewChild(LuxMarkdownComponent) markdownComponent!: LuxMarkdownComponent;
 
   flex = 'flex';
   style = '';
   class = '';
 
-  sanitizeConfig: LuxSanitizeConfig;
+  sanitizeConfig: LuxSanitizeConfig | null = null;
 
   _forbiddenTagsToggle = false;
   forbiddenTags = 'a,b';

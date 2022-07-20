@@ -21,8 +21,6 @@ export class MessageBoxExampleComponent implements OnInit {
 
   messages: ILuxMessage[] = [];
   colors = LuxMessageBoxColors;
-  positions = ['unterhalb', 'oberhalb'];
-  selectedPosition = 'oberhalb';
   newMessage: ILuxMessage = { text: '', iconName: '', color: 'blue' };
   messageIndex = 1;
   maximumDisplayed = 10;

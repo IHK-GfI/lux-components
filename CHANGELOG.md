@@ -1,6 +1,7 @@
 # Version 14.0.0
 ## New
-- **allgemein**: Update auf Angular 14
+- **allgemein**: Update auf Angular 14 [Issue 223](https://github.com/IHK-GfI/lux-components/issues/223)
+- **allgemein**: Umstellung auf den strict-Mode. [Issue 224](https://github.com/IHK-GfI/lux-components/issues/224)
 
 # Version 13.1.0
 ## New

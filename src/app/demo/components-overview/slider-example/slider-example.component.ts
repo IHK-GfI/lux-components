@@ -30,12 +30,12 @@ export class SliderExampleComponent {
   form: UntypedFormGroup;
   log = logResult;
 
-  percent: number;
-  percentReactive: number;
+  percent = 0;
+  percentReactive = 0;
   tickIntervalNumber = 0;
   tickIntervalAuto = true;
   labelLongFormat = false;
-  
+
   // endregion
 
   // region Properties der Component
@@ -52,8 +52,8 @@ export class SliderExampleComponent {
   step = 1;
   controlBinding = 'sliderExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -72,7 +72,7 @@ export class SliderExampleComponent {
     });
   }
 
-  tickIntervalChanged(checked) {
+  tickIntervalChanged(checked: boolean) {
     this.tickIntervalAuto = checked;
     if (checked) {
       this.tickInterval = 'auto';
@@ -81,26 +81,26 @@ export class SliderExampleComponent {
     }
   }
 
-  tickIntervalNumberChanged(interval) {
+  tickIntervalNumberChanged(interval: any) {
     this.tickInterval = interval;
     this.tickIntervalNumber = interval;
   }
 
-  colorChanged(color: { label; value }) {
+  colorChanged(color: { label: string; value: SLIDER_COLORS }) {
     this.color = color.value;
   }
 
-  percentChanged(percent) {
+  percentChanged(percent: number) {
     this.percent = percent;
     this.log(this.showOutputEvents, 'Percent changed', percent);
   }
 
-  percentReactiveChanged(percent) {
+  percentReactiveChanged(percent: number) {
     this.percentReactive = percent;
     this.log(this.showOutputEvents, 'Percent (Reactive Example) changed', percent);
   }
 
-  displayFn(value: number | null): string | number {
+  displayFn(value: number | null): string | number | null {
     if (value && value >= 1000) {
       return Math.round(value / 1000) + 'k';
     }

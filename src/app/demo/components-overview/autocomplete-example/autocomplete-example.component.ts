@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AutocompleteExampleOption } from "./autocomplete-example-option";
 import { RenderPropertyItem } from './render-property-item';
 import {
   exampleErrorCallback,
@@ -24,7 +25,7 @@ export class AutocompleteExampleComponent {
   toggleOptions = true;
   optionMultiline = false;
 
-  options = [
+  options: AutocompleteExampleOption[] = [
     { label: 'Meine Aufgaben', short: 'MA', value: 'A' },
     { label: 'Gruppenaufgaben', short: 'GA', value: 'B' },
     { label: 'Zurückgestellte Aufgaben', short: 'ZA', value: 'C' },
@@ -35,7 +36,7 @@ export class AutocompleteExampleComponent {
     { label: 'Optionale Aufgaben', short: 'ZA', value: 'I' }
   ];
 
-  options2 = [
+  options2: AutocompleteExampleOption[] = [
     { label: 'Meine Aufgaben 2', short: 'MA2', value: 'A2' },
     { label: 'Gruppenaufgaben 2', short: 'GA2', value: 'B2' },
     { label: 'Zurückgestellte Aufgaben 2', short: 'ZA2', value: 'C2' },
@@ -43,9 +44,9 @@ export class AutocompleteExampleComponent {
   ];
 
   renderProperties: RenderPropertyItem[] = [
-    new RenderPropertyItem('Bezeichnung (normal)', 'label'),
-    new RenderPropertyItem('Bezeichnung (kurz)', 'short'),
-    new RenderPropertyItem('Wert', 'value')
+    { label: 'Bezeichnung (normal)', value: 'label'},
+    { label: 'Bezeichnung (kurz)', value: 'short'},
+    { label: 'Wert', value: 'value'}
   ];
 
   validatorOptions = [
@@ -56,12 +57,12 @@ export class AutocompleteExampleComponent {
 
   form: UntypedFormGroup;
   log = logResult;
-  labelLongFormat = false;  
+  labelLongFormat = false;
   // endregion
 
   // region Properties der Component
 
-  value;
+  value: AutocompleteExampleOption | string | null = null;
   controlBinding = 'autocompleteExample';
   renderProperty = 'label';
   label = 'Label';
@@ -69,8 +70,8 @@ export class AutocompleteExampleComponent {
   hintShowOnlyOnFocus = false;
   placeholder = 'Placeholder';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   strict = true;
   selectAllOnClick = true;
   delay = 500;

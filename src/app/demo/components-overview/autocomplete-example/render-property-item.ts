@@ -1,3 +1,4 @@
 export class RenderPropertyItem {
-  constructor(public label: string, public value: string) {}
+  label: string;
+  value: string;
 }

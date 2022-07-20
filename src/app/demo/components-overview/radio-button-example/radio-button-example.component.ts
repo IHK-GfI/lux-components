@@ -19,8 +19,8 @@ export class RadioButtonExampleComponent {
   useErrorMessage = true;
   useTemplatesForLabels = false;
   useCompareWithFn = false;
-  useValueFn: boolean;
-  useSimpleArray: boolean;
+  useValueFn = false;
+  useSimpleArray = false;
   showOutputEvents = false;
 
   validatorOptions = [
@@ -47,16 +47,16 @@ export class RadioButtonExampleComponent {
   controlBinding = 'radioExample';
   disabled = false;
   disabledFirst = true;
-  readonly: boolean;
-  required: boolean;
-  isVertical: boolean;
+  readonly = false;
+  required = false;
+  isVertical = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
   controlValidators: ValidatorFn[] = [];
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
 
-  value;
+  value: any;
 
   groupNameReactive = 'reactiveGroup';
   groupNameNormal = 'normalGroup';
@@ -68,7 +68,7 @@ export class RadioButtonExampleComponent {
   pickValueFnString: string;
   compareWithFnString: string;
   errorCallbackString: string;
-  
+
   labelLongFormat = false;
   // endregion
 
@@ -84,7 +84,7 @@ export class RadioButtonExampleComponent {
 
   showErrors(...radioComponents: LuxRadioComponent[]) {
     this.value = null;
-    this.form.get('radioExample').setValue(null);
+    this.form.get('radioExample')!.setValue(null);
 
     this.changeRequired(true);
 
@@ -127,7 +127,7 @@ export class RadioButtonExampleComponent {
 
   reset(...radioComponents: LuxRadioComponent[]) {
     this.value = undefined;
-    this.form.get(this.controlBinding).setValue(undefined);
+    this.form.get(this.controlBinding)!.setValue(undefined);
     this.disabledFirst = false;
 
     radioComponents.forEach((comp: LuxRadioComponent) => {

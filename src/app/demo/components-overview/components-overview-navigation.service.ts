@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   providedIn: 'root'
 })
 export class ComponentsOverviewNavigationService implements OnDestroy {
-  private currentUrl: string;
+  private currentUrl: string | null = null;
 
   components: { onclick: any; label: string; icon: string; useImage?: boolean; moduleName?: string; news?: boolean }[] = [
     { onclick: () => this.goTo('accordion'), icon: 'fas fa-stream', label: 'Accordion', moduleName: 'layout' },

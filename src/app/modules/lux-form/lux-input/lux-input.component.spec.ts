@@ -745,7 +745,7 @@ describe('LuxInputComponent', () => {
   describe('LuxCounterLabel', () => {
     let fixture: ComponentFixture<LuxInputCounterLabelComponent>;
     let testComponent: LuxInputCounterLabelComponent;
-    
+
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(LuxInputCounterLabelComponent);
       testComponent = fixture.componentInstance;
@@ -805,7 +805,7 @@ describe('LuxInputComponent', () => {
       const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
       formControlComponent.focused = true;
 
-      // Input-Value setzen      
+      // Input-Value setzen
       LuxTestHelper.typeInElement(inputEl.nativeElement, 'Lorem ipsum');
       LuxTestHelper.wait(fixture);
 
@@ -1139,9 +1139,9 @@ class LuxInputAttributesComponent {
   label: string;
   hint: string;
   placeholder: string;
-  readonly: boolean;
+  readonly = false;
   disabled: boolean;
-  required: boolean;
+  required = false;
   numberLeft: boolean;
   value: string;
 

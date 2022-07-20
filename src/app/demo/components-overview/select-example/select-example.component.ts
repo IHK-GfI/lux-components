@@ -19,8 +19,8 @@ export class SelectExampleComponent {
   useErrorMessage = true;
   useTemplatesForLabels = false;
   useCompareWithFn = false;
-  useValueFn: boolean;
-  useSimpleArray: boolean;
+  useValueFn = false;
+  useSimpleArray = false;
   showOutputEvents = false;
 
   options: { label: string; value: number }[] = [
@@ -71,7 +71,7 @@ export class SelectExampleComponent {
 
   form: UntypedFormGroup;
   log = logResult;
-  
+
   labelLongFormat = false;
   // endregion
 
@@ -79,8 +79,8 @@ export class SelectExampleComponent {
 
   controlBinding = 'selectExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -88,8 +88,8 @@ export class SelectExampleComponent {
   controlValidators: ValidatorFn[] = [];
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
 
-  value;
-  multiselectValue;
+  value: any = null;
+  multiselectValue: any = null;
 
   errorCallback = exampleErrorCallback;
   pickValueFn = examplePickValueFn;
@@ -101,7 +101,7 @@ export class SelectExampleComponent {
 
   // endregion
 
-  defaultCompareWith = (o1, o2) => o1 === o2;
+  defaultCompareWith = (o1: any, o2: any) => o1 === o2;
 
   constructor(private _fb: UntypedFormBuilder) {
     this.form = this._fb.group({

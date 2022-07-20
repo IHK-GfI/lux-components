@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './dialog-example.component.html'
 })
 export class DialogExampleComponent implements OnDestroy {
-  @ViewChild('contentTemplate', { static: true }) contentTemplate: TemplateRef<any>;
+  @ViewChild('contentTemplate', { static: true }) contentTemplate!: TemplateRef<any>;
   useContentTemplate = false;
   showOutputEvents = false;
   contentTemplateString =
@@ -39,7 +39,7 @@ export class DialogExampleComponent implements OnDestroy {
     }
   };
 
-  exampleData;
+  exampleData: {} | null = null;
 
   private subscriptions: Subscription[] = [];
 

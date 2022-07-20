@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
@@ -14,8 +14,8 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
   templateUrl: './stepper-example.component.html',
   styleUrls: ['./stepper-example.component.scss']
 })
-export class StepperExampleComponent implements OnInit, OnDestroy {
-  @ViewChild(LuxStepperComponent, { static: true }) stepperComponent: LuxStepperComponent;
+export class StepperExampleComponent implements OnDestroy {
+  @ViewChild(LuxStepperComponent, { static: true }) stepperComponent!: LuxStepperComponent;
 
   // region Helper-Properties für das Beispiel
 
@@ -95,9 +95,7 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
     private snackbar: LuxSnackbarService,
     private fb: UntypedFormBuilder,
     private router: Router
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.newStepsForm1 = this.fb.group({
       street: ['', Validators.required],
       number: ['', Validators.required],

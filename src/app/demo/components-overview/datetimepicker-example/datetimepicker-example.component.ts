@@ -14,7 +14,7 @@ import {
   templateUrl: './datetimepicker-example.component.html'
 })
 export class DateTimepickerExampleComponent {
-  @ViewChild('test2') dateTimeInFormComponent: LuxDateTimePickerComponent;
+  @ViewChild('test2') dateTimeInFormComponent!: LuxDateTimePickerComponent;
 
   // region Helper-Properties für das Beispiel
 
@@ -36,8 +36,8 @@ export class DateTimepickerExampleComponent {
   value = null;
   controlBinding = 'datepickerExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -50,11 +50,11 @@ export class DateTimepickerExampleComponent {
   minDate = '01.01.2000, 00:00';
   maxDate = '31.12.2100, 23:59';
   startView: LuxDateTimeStartView = 'month';
-  startDate: string = null;
-  startTime: number[] = null;
-  _startTimeAsString: string = null;
+  startDate: string | null = null;
+  startTime: number[] | null = null;
+  _startTimeAsString: string | null = null;
 
-  get startTimeAsString(): string {
+  get startTimeAsString(): string | null {
     return this._startTimeAsString;
   }
 

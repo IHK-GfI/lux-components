@@ -34,7 +34,7 @@ export abstract class LookupExampleComponent implements OnInit {
 
   useErrorMessage = true;
   showOutputEvents = false;
-  useRenderFn: boolean;
+  useRenderFn = false;
   log = logResult;
   form: UntypedFormGroup;
   originalServices: LuxLookupService[] = [];
@@ -45,15 +45,15 @@ export abstract class LookupExampleComponent implements OnInit {
   // region Properties der Component
 
   renderProp = 'kurzText';
-  parameters: LuxLookupParameters = null;
+  parameters: LuxLookupParameters | null = null;
   selected: any;
-  customStyle;
-  customInvalidStyle;
+  customStyle: {} | null = null;
+  customInvalidStyle: {} | null = null;
   behandlungUngueltige: LuxBehandlungsOptionenUngueltige = LuxBehandlungsOptionenUngueltige.ausgrauen;
   disabled = false;
   controlBinding = 'lookup';
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   tableNo = '1002';
 
   label = 'Label';
@@ -62,7 +62,7 @@ export abstract class LookupExampleComponent implements OnInit {
   placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
-  value;
+  value: LuxLookupTableEntry | LuxLookupTableEntry[] | null = null;
 
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
@@ -72,16 +72,16 @@ export abstract class LookupExampleComponent implements OnInit {
   protected constructor(
     protected lookupHandler: LuxLookupHandlerService,
     protected fb: UntypedFormBuilder
-  ) {}
+  ) {
+    this.form = this.fb.group({
+      lookup: ['']
+    });
+  }
 
   ngOnInit() {
     this.parameters = new LuxLookupParameters({
       knr: 101,
       fields: [LuxFieldValues.kurz, LuxFieldValues.lang1, LuxFieldValues.lang2]
-    });
-
-    this.form = this.fb.group({
-      lookup: ['']
     });
   }
 
@@ -89,24 +89,24 @@ export abstract class LookupExampleComponent implements OnInit {
     return '[RenderFn] ' + entry.kurzText;
   }
 
-  changeCustomStyle($event) {
-    if ($event) {
+  changeCustomStyle(event: any) {
+    if (event) {
       this.customStyle = { 'text-decoration': 'underline', color: 'green' };
     } else {
       this.customStyle = null;
     }
   }
 
-  changeCustomInvalidStyle($event) {
-    if ($event) {
+  changeCustomInvalidStyle(event: any) {
+    if (event) {
       this.customInvalidStyle = { 'text-decoration': 'line-through', color: 'red' };
     } else {
       this.customInvalidStyle = null;
     }
   }
 
-  changeOptionUngueltig($event) {
-    this.behandlungUngueltige = this.options.find(option => option.value === +$event.value).label;
+  changeOptionUngueltig(event: any) {
+    this.behandlungUngueltige = this.options.find(option => option.value === +event.value).label;
   }
 
   changeRequired($event: boolean) {

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { LuxComponentsConfigService } from '../../modules/lux-components-config/lux-components-config.service';
 import { LuxComponentsConfigParameters } from '../../modules/lux-components-config/lux-components-config-parameters.interface';
@@ -10,8 +10,8 @@ import { Subscription } from 'rxjs';
   selector: 'lux-configuration',
   templateUrl: './configuration.component.html'
 })
-export class ConfigurationComponent implements OnInit, OnDestroy {
-  private configSubscription: Subscription;
+export class ConfigurationComponent implements OnDestroy {
+  configSubscription: Subscription;
 
   notAppliedToOptions: string[] = ['lux-link', 'lux-button', 'lux-menu-item', 'lux-side-nav-item', 'lux-tab', 'lux-step'];
   currentConfig: LuxComponentsConfigParameters;
@@ -21,6 +21,8 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
     private router: Router,
     private footerService: LuxAppFooterButtonService
   ) {
+    this.currentConfig = componentsConfigService.currentConfig;
+
     this.footerService.pushButtonInfos(
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Dokumentation',
@@ -45,11 +47,11 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
         }
       })
     );
-  }
 
-  ngOnInit() {
     this.configSubscription = this.componentsConfigService.config.subscribe((newConfig: LuxComponentsConfigParameters) => {
-      this.currentConfig = newConfig;
+      if (this.currentConfig !== newConfig) {
+        this.currentConfig = newConfig;
+      }
     });
   }
 

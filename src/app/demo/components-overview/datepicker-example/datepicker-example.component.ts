@@ -33,8 +33,8 @@ export class DatepickerExampleComponent {
   value = '2020-05-28T14:15:00.000Z';
   controlBinding = 'datepickerExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -43,21 +43,21 @@ export class DatepickerExampleComponent {
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   showToggle = true;
   opened = false;
-  startDate: string;
-  locale = null;
-  minDate: string;
-  maxDate: string;
+  startDate: string | null = null;
+  locale: string | null = null;
+  minDate: string | null = null;
+  maxDate: string | null = null;
   startView: LuxDatepickerStartViewType = 'month';
   touchUi = false;
   labelLongFormat = false;
-  
+
   // endregion
 
   customFilterString = this.customFilter + '';
   errorCallback = exampleErrorCallback;
   errorCallbackString = this.errorCallback + '';
 
-  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale, private fb: UntypedFormBuilder) {
+  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale: string, private fb: UntypedFormBuilder) {
     this.locale = matDateLocale === 'en' ? 'en-US' : matDateLocale;
     switch (matDateLocale) {
       case 'de':

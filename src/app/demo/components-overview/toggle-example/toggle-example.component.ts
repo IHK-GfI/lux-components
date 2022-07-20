@@ -16,14 +16,14 @@ export class ToggleExampleComponent {
 
   // region Properties der Component
 
-  value;
+  value = false;
   controlBinding = 'toggleExample';
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
 

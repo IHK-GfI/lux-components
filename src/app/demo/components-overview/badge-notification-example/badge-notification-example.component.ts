@@ -16,7 +16,7 @@ export class BadgeNotificationExampleComponent {
   position: LuxBadgeNotificationPosition = 'above after';
   size: LuxBadgeNotificationSize = 'medium';
   overlap = true;
-  cap;
+  cap = null;
   noBorder = false;
 
   constructor() {}

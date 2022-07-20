@@ -13,8 +13,8 @@ export class ResponsiveBehaviour {
     ResponsiveBehaviour.COLUMN_DATE
   ];
 
-  label: string;
-  value: string;
+  label = '';
+  value: string | null = '';
 
   constructor(partial: Partial<ResponsiveBehaviour>) {
     Object.assign(this, partial);

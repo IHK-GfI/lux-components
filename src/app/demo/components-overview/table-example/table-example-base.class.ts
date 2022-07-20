@@ -50,7 +50,7 @@ export abstract class TableExampleBaseClass {
   minWidthPx = undefined;
   tableHeightPx = 500;
   hideBorders = false;
-  selected: Set<any>;
+  selected: Set<any> | null = null;
 
   nameConfig: ColumnConfig = new ColumnConfig({ label: 'Name', sticky: false });
   symbolConfig: ColumnConfig = new ColumnConfig({ label: 'Symbol' });
@@ -70,11 +70,11 @@ export abstract class TableExampleBaseClass {
     return o1.name === o2.name;
   }
 
-  pickPageSize(selected) {
+  pickPageSize(selected: any) {
     return selected ? selected.value : selected;
   }
 
-  pickColWidth(selected) {
+  pickColWidth(selected: any) {
     return selected ? selected.value : selected;
   }
 

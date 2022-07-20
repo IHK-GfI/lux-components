@@ -41,7 +41,7 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
   scrollSteps = 5;
   // enthält alle list-item eintraege immer vor
   allMasterEntries: any[];
-  masterEntries = [];
+  masterEntries: any[] = [];
   selectedDetail: any;
 
   constructor(
@@ -131,12 +131,12 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
     this.logger.log('Detail geladen', data);
   }
 
-  changeFilter($event) {
-    if (!$event.value) {
+  changeFilter(event: any) {
+    if (!event.value) {
       this.masterEntries = this.allMasterEntries;
       this.configuration.ignoreScrollLoading = false;
     } else {
-      this.masterEntries = this.allMasterEntries.filter(entry => entry.timestamp < $event.value);
+      this.masterEntries = this.allMasterEntries.filter(entry => entry.timestamp < event.value);
       this.configuration.ignoreScrollLoading = true;
     }
   }
@@ -147,7 +147,7 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
    * @param o1
    * @param o2
    */
-  compareFn(o1, o2) {
+  compareFn(o1: any, o2: any) {
     return o1.id === o2.id;
   }
 

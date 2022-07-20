@@ -17,7 +17,7 @@ import { LuxUtil } from "../../../modules/lux-util/lux-util";
   styleUrls: ['./filter-example.component.scss']
 })
 export class FilterExampleComponent implements OnInit, OnDestroy {
-  @ViewChild(LuxFilterFormComponent) filterComponent: LuxFilterFormComponent;
+  @ViewChild(LuxFilterFormComponent) filterComponent!: LuxFilterFormComponent;
 
   parameters = new LuxLookupParameters({
     knr: 101,
@@ -156,9 +156,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   disableShortcut = false;
 
-  constructor(private mediaQuery: LuxMediaQueryObserverService) {}
-
-  ngOnInit(): void {
+  constructor(private mediaQuery: LuxMediaQueryObserverService) {
     this.mediaQuerySubscription = this.mediaQuery.getMediaQueryChangedAsObservable().subscribe(() => {
       if (this.mediaQuery.isSmallerOrEqual('xs')) {
         this.showFilterChips = false;
@@ -166,7 +164,9 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
         this.showFilterChips = true;
       }
     });
+  }
 
+  ngOnInit(): void {
     // Hier wird die setTimeout-Methode verwendet, um einen Backend-Call zu simulieren.
     setTimeout(() => {
       this.initFilter    = { input: "Lorem ipsum" };

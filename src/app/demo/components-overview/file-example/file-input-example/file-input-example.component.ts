@@ -14,11 +14,9 @@ import { ILuxFileObject } from '../../../../modules/lux-form/lux-file/lux-file-m
   templateUrl: './file-input-example.component.html'
 })
 export class FileInputExampleComponent extends FileExampleComponent implements AfterViewInit {
-  @ViewChildren(LuxFileInputComponent) fileInputs: QueryList<LuxFileInputComponent>;
-  @ViewChild('fileinputexamplewithoutform', { read: LuxFileInputComponent, static: true })
-  fileBaseWithoutComponent: LuxFileInputComponent;
-  @ViewChild('fileinputexamplewithform', { read: LuxFileInputComponent, static: true })
-  fileBaseWithComponent: LuxFileInputComponent;
+  @ViewChildren(LuxFileInputComponent) fileInputs!: QueryList<LuxFileInputComponent>;
+  @ViewChild('fileinputexamplewithoutform', { read: LuxFileInputComponent, static: true }) fileBaseWithoutComponent!: LuxFileInputComponent;
+  @ViewChild('fileinputexamplewithform', { read: LuxFileInputComponent, static: true }) fileBaseWithComponent!: LuxFileInputComponent;
 
   placeholder = 'Placeholder';
   clearOnError = true;
@@ -31,9 +29,9 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
 
   customActionConfigs: ILuxFileActionConfig[] = this.createCustomConfigs();
   customActionsConfigsForm: ILuxFileActionConfig[] = this.createCustomConfigs();
-  
+
   labelLongFormat = false;
-  
+
   constructor(fb: UntypedFormBuilder, http: HttpClient, snackbar: LuxSnackbarService, filePreviewService: LuxFilePreviewService) {
     super(fb, http, snackbar, filePreviewService);
   }

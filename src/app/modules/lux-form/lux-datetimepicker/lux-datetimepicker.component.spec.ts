@@ -671,8 +671,8 @@ describe('LuxDatepickerComponent', () => {
 class LuxNoFormAttributeTestComponent {
   value: string;
   disabled: boolean;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   minDate: Date | string;
   maxDate: Date | string;
   startDate: Date | string;

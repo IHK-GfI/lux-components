@@ -334,7 +334,7 @@ describe('LuxTextareaComponent', () => {
   describe('LuxCounterLabel', () => {
     let fixture: ComponentFixture<LuxTextareaCounterLabelComponent>;
     let testComponent: LuxTextareaCounterLabelComponent;
-    
+
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(LuxTextareaCounterLabelComponent);
       testComponent = fixture.componentInstance;
@@ -347,7 +347,7 @@ describe('LuxTextareaComponent', () => {
       testComponent.maxLength = 50;
 +     fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
-  
+
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
       const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
@@ -371,7 +371,7 @@ describe('LuxTextareaComponent', () => {
       testComponent.maxLength = 50;
 +     fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
-  
+
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
       const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
@@ -389,20 +389,20 @@ describe('LuxTextareaComponent', () => {
       testComponent.maxLength = 50;
 +     fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
-  
+
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
       const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
       formControlComponent.focused = true;
-      
+
       // Wert ändern
       LuxTestHelper.typeInElement( textareaEl.nativeElement, 'Lorem ipsum');
       LuxTestHelper.wait(fixture);
-      
+
       // Prüfen
       let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
       expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
-      
+
       // Fokus deaktivieren
       testComponent.disabled = true;
       formControlComponent.focused = false;
@@ -431,8 +431,8 @@ class LuxMockTextareaComponent {
   disabled: boolean;
   errorMessage: string;
 
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
 
   maxRows: number;
   minRows: number;
@@ -456,8 +456,8 @@ class LuxMockFormTextareaComponent {
   value: string;
   label: string;
   placeholder: string;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
 
   maxRows: number;
   minRows: number;

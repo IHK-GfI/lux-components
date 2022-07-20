@@ -1,4 +1,5 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { LuxLookupTableEntry } from "../../../../modules/lux-lookup/lux-lookup-model/lux-lookup-table-entry";
 import { LuxLookupHandlerService } from '../../../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupComboboxComponent } from '../../../../modules/lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
 import { UntypedFormBuilder } from '@angular/forms';
@@ -10,12 +11,12 @@ import { LookupExampleComponent } from '../lookup-example.component';
   styleUrls: ['../lookup-example.component.scss']
 })
 export class LookupComboboxExampleComponent extends LookupExampleComponent implements OnInit {
-  multiValue;
+  multiValue: LuxLookupTableEntry | LuxLookupTableEntry[] | null = null;
   entryBlockSize = 25;
   bLuxWithEmptyEntry = true;
   labelLongFormat = false;
-  
-  @ViewChildren(LuxLookupComboboxComponent) lookupComboboxCmp: QueryList<LuxLookupComboboxComponent>;
+
+  @ViewChildren(LuxLookupComboboxComponent) lookupComboboxCmp!: QueryList<LuxLookupComboboxComponent>;
 
   constructor(lookupHandler: LuxLookupHandlerService, fb: UntypedFormBuilder) {
     super(lookupHandler, fb);

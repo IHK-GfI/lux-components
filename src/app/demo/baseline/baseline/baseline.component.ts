@@ -10,7 +10,7 @@ export class BaselineComponent {
   @HostBinding('class.show-frames') showFrames = false;
   showAsColumn = false;
   disabled = false;
-  form: UntypedFormGroup = undefined;
+  form: UntypedFormGroup;
 
   constructor() {
     this.form = new UntypedFormGroup({

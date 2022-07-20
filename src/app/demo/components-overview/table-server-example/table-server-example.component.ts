@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { LuxConsoleService } from '../../../modules/lux-util/lux-console.service';
 import { TestHttpDao } from './test-http-dao';
 import { TableExampleBaseClass } from '../table-example/table-example-base.class';
@@ -7,20 +7,18 @@ import { TableExampleBaseClass } from '../table-example/table-example-base.class
   selector: 'app-table-server-example',
   templateUrl: './table-server-example.component.html'
 })
-export class TableServerExampleComponent extends TableExampleBaseClass implements OnInit {
-  httpDAO = null;
+export class TableServerExampleComponent extends TableExampleBaseClass {
+  httpDAO: TestHttpDao;
   reloadCount = 0;
 
   constructor(private logger: LuxConsoleService) {
     super();
+
+    this.httpDAO = new TestHttpDao(this.logger);
   }
 
   getDataArr() {
     return this.httpDAO.data;
-  }
-
-  ngOnInit() {
-    this.httpDAO = new TestHttpDao(this.logger);
   }
 
   onSelectedChange($event) {

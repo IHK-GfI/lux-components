@@ -11,7 +11,7 @@ import { StepperLargeExampleDataService } from './stepper-large-example-data.ser
   styleUrls: ['./stepper-large-example.component.scss']
 })
 export class StepperLargeExampleComponent {
-  @ViewChild(LuxStepperLargeComponent) stepper: LuxStepperLargeComponent;
+  @ViewChild(LuxStepperLargeComponent) stepper!: LuxStepperLargeComponent;
 
   allowed = false;
   stepValidationActive = true;

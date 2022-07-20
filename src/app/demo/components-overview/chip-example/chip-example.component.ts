@@ -23,7 +23,7 @@ export class ChipExampleComponent {
     { label: 'Chip #4', color: 'accent', removable: true, disabled: false, selected: true }
   ];
 
-  openedPanel: number;
+  openedPanel = 0;
   longOpitionLabel =
     'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
   // endregion

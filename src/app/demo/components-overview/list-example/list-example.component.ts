@@ -50,7 +50,7 @@ export class ListExampleComponent {
     this.items[0].selected = true;
   }
 
-  click($event) {
-    this.log(this.showOutputEvents, 'luxClicked', $event);
+  click(event: any) {
+    this.log(this.showOutputEvents, 'luxClicked', event);
   }
 }

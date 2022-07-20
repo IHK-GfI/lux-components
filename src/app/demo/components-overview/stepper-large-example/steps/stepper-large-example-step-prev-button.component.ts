@@ -19,11 +19,6 @@ export class StepperLargeExampleStepPrevButtonComponent extends LuxStepperLargeS
 
   constructor(private fb: UntypedFormBuilder, public dataService: StepperLargeExampleDataService) {
     super();
-  }
-
-  ngOnInit(): void {
-    this.luxTitle = 'Konfiguration: Zurück-Button';
-    this.luxVetoFn = this.createVetoPromise;
 
     this.form = this.fb.group({
       label: [this.dataService.prevButtonConfig.label, Validators.required],
@@ -32,6 +27,11 @@ export class StepperLargeExampleStepPrevButtonComponent extends LuxStepperLargeS
       iconShowRight: [this.dataService.prevButtonConfig.iconShowRight],
       alignIconWithLabel: [this.dataService.prevButtonConfig.alignIconWithLabel]
     });
+  }
+
+  ngOnInit(): void {
+    this.luxTitle = 'Konfiguration: Zurück-Button';
+    this.luxVetoFn = this.createVetoPromise;
 
     this.form.get('alignIconWithLabel').disable();
 

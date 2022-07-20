@@ -44,7 +44,7 @@ export class FormDualColComponent extends FormBase {
     this.streetsFormArray.push(this.createStreetFormGroup());
   }
 
-  removeStreet(index) {
+  removeStreet(index: number) {
     this.streetsFormArray.removeAt(index);
   }
 

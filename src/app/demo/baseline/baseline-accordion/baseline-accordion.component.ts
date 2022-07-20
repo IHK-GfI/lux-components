@@ -38,10 +38,10 @@ export class BaselineAccordionComponent {
   // endregion
 
   prefixOptions = [ '', 'Frau', 'Herr']
-  form: UntypedFormGroup = undefined; 
-  addressForm: UntypedFormGroup = undefined;
-  
-  constructor() { 
+  form: UntypedFormGroup;
+  addressForm: UntypedFormGroup;
+
+  constructor() {
     this.form = new UntypedFormGroup({
       checkbox1: new UntypedFormControl('', Validators.requiredTrue),
       checkbox2: new UntypedFormControl('', Validators.requiredTrue),

@@ -17,15 +17,13 @@ import { Subscription } from 'rxjs';
 export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
   private initialConfig: LuxComponentsConfigParameters;
 
-  @Input() exampleTitle: string;
-  @Input() exampleIconName: string;
-  @Input() exampleDocumentationHref: string;
+  @Input() exampleTitle = 'ToDo';
+  @Input() exampleIconName = '';
+  @Input() exampleDocumentationHref = '';
 
-  @ContentChild(ExampleBaseContentComponent) contentComponent: ExampleBaseContentComponent;
-  @ContentChild(ExampleBaseSimpleOptionsComponent)
-  simpleOptionsComponent: ExampleBaseSimpleOptionsComponent;
-  @ContentChild(ExampleBaseAdvancedOptionsComponent)
-  advancedOptionsComponent: ExampleBaseAdvancedOptionsComponent;
+  @ContentChild(ExampleBaseContentComponent) contentComponent?: ExampleBaseContentComponent;
+  @ContentChild(ExampleBaseSimpleOptionsComponent) simpleOptionsComponent?: ExampleBaseSimpleOptionsComponent;
+  @ContentChild(ExampleBaseAdvancedOptionsComponent) advancedOptionsComponent?: ExampleBaseAdvancedOptionsComponent;
 
   subscription: Subscription;
 
@@ -34,13 +32,16 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
     private footerService: LuxAppFooterButtonService,
     private configService: LuxComponentsConfigService
   ) {
+    this.initialConfig = configService.currentConfig;
+
+    this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
+      if (this.initialConfig !== config) {
+        this.initialConfig = config;
+      }
+    });
   }
 
   ngOnInit() {
-    this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
-      this.initialConfig = config;
-    });
-
     this.footerService.pushButtonInfos(
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Dokumentation',

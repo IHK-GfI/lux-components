@@ -23,7 +23,7 @@ export abstract class FileExampleComponent implements OnInit {
   fileComponents: LuxFormFileBase[] = [];
 
   dndActive = true;
-  selected: ILuxFileObject | ILuxFileObject[] = null;
+  selected: ILuxFileObject | ILuxFileObject[] | null = null;
   contentAsBlob = false;
   reportProgress = false;
   hint = 'Datei hierher ziehen oder über den Button auswählen';
@@ -32,11 +32,11 @@ export abstract class FileExampleComponent implements OnInit {
   uploadUrl = '';
   controlBinding = 'uploadExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   maxSize = 5;
   capture = '';
-  accept: string;
+  accept = '';
   maximumExtended = 6;
   alwaysUseArray = false;
 
@@ -162,14 +162,14 @@ export abstract class FileExampleComponent implements OnInit {
     this.mockBackend = $event;
     if (this.mockBackend) {
       this.realBackends = [];
-      this.fileComponents.forEach((input: LuxFileListComponent) => {
+      this.fileComponents.forEach((input: LuxFormFileBase) => {
         this.realBackends.push(input['http']);
         input['http'] = {
           post: (...args) => of('ok').pipe(delay(2000))
         } as any;
       });
     } else {
-      this.fileComponents.forEach((input: LuxFileListComponent, index: number) => {
+      this.fileComponents.forEach((input: LuxFormFileBase, index: number) => {
         input['http'] = this.realBackends[index];
       });
     }

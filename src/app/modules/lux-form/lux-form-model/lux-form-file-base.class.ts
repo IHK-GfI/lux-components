@@ -705,12 +705,12 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     this.fileuploadInput.nativeElement.value = null;
   }
 
-  protected updateValidators(validators: ValidatorFn | ValidatorFn[]) {
+  protected updateValidators(validators: ValidatorFn | ValidatorFn[], checkRequiredValidator: boolean) {
     if (!validators && this.luxRequired) {
       validators = Validators.required;
     }
 
-    super.updateValidators(validators);
+    super.updateValidators(validators, checkRequiredValidator);
   }
 
   protected initFormValueSubscription() {

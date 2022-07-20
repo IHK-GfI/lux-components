@@ -19,11 +19,6 @@ export class StepperLargeExampleStepFinButtonComponent extends LuxStepperLargeSt
 
   constructor(private fb: UntypedFormBuilder, public dataService: StepperLargeExampleDataService) {
     super();
-  }
-
-  ngOnInit(): void {
-    this.luxTitle = 'Konfiguration: Abschließen-Button';
-    this.luxVetoFn = this.createVetoPromise;
 
     this.form = this.fb.group({
       label: [this.dataService.finButtonConfig.label, Validators.required],
@@ -32,6 +27,11 @@ export class StepperLargeExampleStepFinButtonComponent extends LuxStepperLargeSt
       iconShowRight: [this.dataService.finButtonConfig.iconShowRight],
       alignIconWithLabel: [this.dataService.finButtonConfig.alignIconWithLabel]
     });
+  }
+
+  ngOnInit(): void {
+    this.luxTitle = 'Konfiguration: Abschließen-Button';
+    this.luxVetoFn = this.createVetoPromise;
 
     this.form.get('alignIconWithLabel').disable();
 

@@ -8,8 +8,7 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
 export class TileExampleComponent {
   showIcon = true;
   showOutputEvents = false;
-
-  showNotification;
+  showNotification = false;
   counter = undefined;
   counterCap = 20;
   label = 'Tile Example';

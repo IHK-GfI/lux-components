@@ -17,7 +17,7 @@ export class ErrorpageExampleComponent implements AfterViewInit, OnDestroy {
   errorPageConfig: ILuxErrorPageConfig;
   updateButtonDisabled = true;
   configForm: UntypedFormGroup;
-  subscription: Subscription;
+  subscription!: Subscription;
 
   constructor(private errorService: LuxErrorService, private errorStore: LuxErrorStoreService, private logger: LuxConsoleService) {
     this.errorPageConfig = this.errorStore.config;

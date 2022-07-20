@@ -91,8 +91,12 @@ export class CardRowExampleComponent implements OnInit, OnDestroy {
     private buttonService: LuxAppFooterButtonService,
     private queryObserver: LuxMediaQueryObserverService
   ) {
+    this.query = queryObserver.activeMediaQuery;
+
     this.subscription = queryObserver.getMediaQueryChangedAsObservable().subscribe(query => {
-      this.query = query;
+      if (this.query !== query) {
+        this.query = query;
+      }
     });
   }
 
