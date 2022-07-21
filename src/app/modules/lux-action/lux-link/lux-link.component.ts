@@ -10,16 +10,16 @@ import { LuxActionComponentBaseClass } from '../lux-action-model/lux-action-comp
 export class LuxLinkComponent extends LuxActionComponentBaseClass {
   public readonly iconSize: string = '2x';
 
-  @Input() luxHref: string;
+  @Input() luxHref = '';
   @Input() luxBlank = false;
 
   constructor(private router: Router, public cdr: ChangeDetectorRef) {
     super();
   }
 
-  auxClicked($event) {
-    if ($event.which === 2) {
-      this.redirectToHref($event);
+  auxClicked(event: MouseEvent) {
+    if (event.which === 2) {
+      this.redirectToHref(event);
     }
   }
 

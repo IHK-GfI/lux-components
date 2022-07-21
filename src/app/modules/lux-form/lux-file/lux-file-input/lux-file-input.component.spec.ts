@@ -62,7 +62,7 @@ describe('LuxFileInputComponent', () => {
       const localFileComponent = localFixture.debugElement.query(By.directive(LuxFileInputComponent)).componentInstance;
 
       expect(localFixture.debugElement.query(By.css('.lux-file-visible-input'))).toBeFalsy();
-      expect(localTestComponent.formControl.value).toBe(null);
+      expect(localTestComponent.formControl.value).toBeNull();
       expect(localFileComponent.luxSelectedFiles).toBe(undefined);
 
       // Änderungen durchführen
@@ -95,9 +95,9 @@ describe('LuxFileInputComponent', () => {
 
     it('Sollte required sein', fakeAsync(() => {
       // Vorbedingungen prüfen
-      expect(fileComponent.formControl.errors).toBe(null);
+      expect(fileComponent.formControl.errors).toBeNull();
       expect(fileComponent.formControl.valid).toBe(true);
-      expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
       // Änderungen durchführen
       testComponent.formControl.setValidators(Validators.required);
@@ -107,9 +107,9 @@ describe('LuxFileInputComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.formControl.errors).not.toBe(null);
+      expect(fileComponent.formControl.errors).not.toBeNull();
       expect(fileComponent.formControl.valid).toBe(false);
-      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
     }));
   });
 
@@ -137,9 +137,9 @@ describe('LuxFileInputComponent', () => {
 
     it('Sollte Label, Placeholder und Hint korrekt setzen', fakeAsync(() => {
       // Vorbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-form-label'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('.lux-form-label'))).toBeNull();
       expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.placeholder).toEqual('');
-      expect(fixture.debugElement.query(By.css('mat-hint'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-hint'))).toBeNull();
 
       // Änderungen durchführen
       testComponent.label = 'Label';
@@ -157,9 +157,9 @@ describe('LuxFileInputComponent', () => {
 
     it('Sollte required sein', fakeAsync(() => {
       // Vorbedingungen prüfen
-      expect(fileComponent.formControl.errors).toBe(null);
+      expect(fileComponent.formControl.errors).toBeNull();
       expect(fileComponent.formControl.valid).toBe(true);
-      expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
       // Änderungen durchführen
       testComponent.required = true;
@@ -169,9 +169,9 @@ describe('LuxFileInputComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.formControl.errors).not.toBe(null);
+      expect(fileComponent.formControl.errors).not.toBeNull();
       expect(fileComponent.formControl.valid).toBe(false);
-      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
     }));
 
     it('Sollte disabled sein', fakeAsync(() => {
@@ -188,14 +188,14 @@ describe('LuxFileInputComponent', () => {
 
     it('Sollte readonly sein', fakeAsync(() => {
       // Vorbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).toBeNull();
 
       // Änderungen durchführen
       testComponent.readonly = true;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).not.toBe(null);
+      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).not.toBeNull();
     }));
 
     it('Sollte Drag-and-Drop deaktivieren', fakeAsync(() => {
@@ -443,10 +443,10 @@ describe('LuxFileInputComponent', () => {
         fileComponent.selectFiles(files);
         LuxTestHelper.wait(fixture);
 
-        expect(fileComponent.formControl.errors).toBe(null);
+        expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
         expect(fileComponent.luxSelectedFiles).toBeTruthy();
-        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
         // Änderungen durchführen
         testComponent.maxSizeMb = 5;
@@ -460,12 +460,12 @@ describe('LuxFileInputComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
-        expect(fileComponent.formControl.errors).not.toBe(null);
+        expect(fileComponent.formControl.errors).not.toBeNull();
         expect(fileComponent.formControl.errors[LuxFileErrorCause.MaxSizeError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
         expect(fileComponent.luxSelectedFiles).toBe(undefined);
         expect(fileComponent.formControl.value).toBe(undefined);
-        expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+        expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
         expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
           'Die Datei "mockfile2.txt" überschreitet mit 20MB die erlaubte Dateigröße von 5MB'
         );
@@ -480,10 +480,10 @@ describe('LuxFileInputComponent', () => {
         fileComponent.selectFiles(files);
         LuxTestHelper.wait(fixture);
 
-        expect(fileComponent.formControl.errors).toBe(null);
+        expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
         expect(fileComponent.luxSelectedFiles).toBeTruthy();
-        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
         // Änderungen durchführen
         testComponent.maxSizeMb = 5;
@@ -499,7 +499,7 @@ describe('LuxFileInputComponent', () => {
 
         // Nachbedingungen prüfen
         expect( fileComponent.luxClearOnError).toBe(false);
-        expect(fileComponent.formControl.errors).not.toBe(null);
+        expect(fileComponent.formControl.errors).not.toBeNull();
         expect(fileComponent.formControl.errors[LuxFileErrorCause.MaxSizeError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
         expect(fileComponent.luxSelectedFiles.name).toBe('mockfile1.txt');

@@ -68,7 +68,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   @Input() luxUploadReportProgress = false;
   @Input() luxContentsAsBlob = false;
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
   @Input() luxMaxSizeMB = 10;
   @Input() luxCapture = '';
   @Input() luxUploadUrl = '';

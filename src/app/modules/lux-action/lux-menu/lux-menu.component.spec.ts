@@ -1,4 +1,5 @@
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { LuxActionColorType } from "../lux-action-model/lux-action-component-base.class";
 
 import { LuxMenuComponent } from './lux-menu.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
@@ -84,8 +85,8 @@ describe('LuxMenuComponent', () => {
     let defaultTriggerNode = fixture.debugElement.query(By.css('.lux-menu-trigger-default'));
     let mockTriggerNode = fixture.debugElement.query(By.css('.mock-trigger'));
 
-    expect(defaultTriggerNode).not.toBe(null, 'Vorbedingung 1');
-    expect(mockTriggerNode).toBe(null, 'Vorbedingung 2');
+    expect(defaultTriggerNode).not.toBeNull();
+    expect(mockTriggerNode).toBeNull();
 
     // Änderungen durchführen
     component.showMockTrigger = true;
@@ -95,8 +96,8 @@ describe('LuxMenuComponent', () => {
     defaultTriggerNode = fixture.debugElement.query(By.css('.lux-menu-trigger-default'));
     mockTriggerNode = fixture.debugElement.query(By.css('.mock-trigger'));
 
-    expect(defaultTriggerNode).toBe(null, 'Nachbedingung 1');
-    expect(mockTriggerNode).not.toBe(null, 'Nachbedingung 2');
+    expect(defaultTriggerNode).toBeNull();
+    expect(mockTriggerNode).not.toBeNull();
   }));
 
   it('Sollte nur n (n = luxMaximumExtend) Menu-Items darstellen', fakeAsync(() => {
@@ -153,7 +154,7 @@ describe('LuxMenuComponent', () => {
     component.generateItems(3);
     updateExtendedMenuItems();
 
-    menuComponent.menuTriggerElRef.nativeElement.click();
+    menuComponent.menuTriggerElRef!.nativeElement.click();
     LuxTestHelper.wait(fixture);
 
     let disabledLength = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-hidden) button[disabled]'))
@@ -166,7 +167,7 @@ describe('LuxMenuComponent', () => {
     component.items[2].disabled = true;
     LuxTestHelper.wait(fixture);
 
-    menuComponent.menuTriggerElRef.nativeElement.click();
+    menuComponent.menuTriggerElRef!.nativeElement.click();
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -199,7 +200,7 @@ describe('LuxMenuComponent', () => {
   template:
     '<lux-menu luxTagId="mock-menu" [luxDisplayMenuLeft]="displayMenuLeft" [luxDisplayExtended]="displayExtended" ' +
     '[luxMaximumExtended]="maximumExtended" [luxClassName]="className" ' +
-    '(luxMenuClosed)="closed($event)">' +
+    '(luxMenuClosed)="closed()">' +
     '<lux-menu-item ' +
     ' [luxLabel]="item.label" ' +
     ' [luxIconName]="item.iconName" ' +
@@ -223,11 +224,11 @@ class MockComponent {
   className = '';
   showMockTrigger = false;
 
-  items = [];
+  items: {label: string; tagId: string; alwaysVisible: boolean; disabled: boolean; color: LuxActionColorType}[] = [];
 
-  clicked($event) {}
+  clicked(cmd: string) {}
 
-  closed($event) {}
+  closed() {}
 
   generateItems(amount: number) {
     this.items = [];

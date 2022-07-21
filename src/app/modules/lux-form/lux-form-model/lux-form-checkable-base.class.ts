@@ -12,7 +12,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 export abstract class LuxFormCheckableBaseClass extends LuxFormComponentBase {
   @Output() luxCheckedChange: EventEmitter<boolean> = new EventEmitter();
 
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
 
   get luxChecked() {
     return this.getValue();

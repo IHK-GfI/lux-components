@@ -48,7 +48,7 @@ describe('LuxTagIdDirective', () => {
     fixture.detectChanges();
 
     const tagId = fixture.debugElement.query(By.css('lux-component[data-luxtagid="lux-component#tagid-demo"]'));
-    expect(tagId).not.toBe(null);
+    expect(tagId).not.toBeNull();
     expect(spy).toHaveBeenCalledTimes(0);
   }));
 });

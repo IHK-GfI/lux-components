@@ -39,7 +39,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
   @Input() luxParameters: LuxLookupParameters;
   @Input() luxCustomStyles;
   @Input() luxCustomInvalidStyles;
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
   @Output() luxDataLoaded: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() luxValueChange: EventEmitter<LuxLookupTableEntry | LuxLookupTableEntry[]> = new EventEmitter<
     LuxLookupTableEntry

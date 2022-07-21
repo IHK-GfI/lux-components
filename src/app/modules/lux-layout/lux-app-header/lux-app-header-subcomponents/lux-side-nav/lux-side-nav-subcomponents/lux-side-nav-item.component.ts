@@ -23,7 +23,7 @@ export class LuxSideNavItemComponent implements AfterViewInit, OnChanges {
 
   @Input() luxLabel: string;
   @Input() luxDisabled = false;
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
   @Input() luxSelected = false;
   @Input() luxCloseOnClick = true;
   @Input() luxIconName: string;

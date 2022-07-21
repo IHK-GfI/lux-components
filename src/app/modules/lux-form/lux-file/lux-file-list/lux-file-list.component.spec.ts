@@ -62,7 +62,7 @@ describe('LuxFileListComponent', () => {
       const localFileComponent = localFixture.debugElement.query(By.directive(LuxFileListComponent)).componentInstance;
 
       expect(localFixture.debugElement.query(By.css('.lux-file-list-entry-label'))).toBeFalsy();
-      expect(localTestComponent.formControl.value).toBe(null);
+      expect(localTestComponent.formControl.value).toBeNull();
       expect(localFileComponent.luxSelectedFiles).toBe(undefined);
 
       // Änderungen durchführen
@@ -121,9 +121,9 @@ describe('LuxFileListComponent', () => {
 
     it('Sollte required sein', fakeAsync(() => {
       // Vorbedingungen prüfen
-      expect(fileComponent.formControl.errors).toBe(null);
+      expect(fileComponent.formControl.errors).toBeNull();
       expect(fileComponent.formControl.valid).toBe(true);
-      expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
       // Änderungen durchführen
       testComponent.formControl.setValidators(Validators.required);
@@ -133,7 +133,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.formControl.errors).not.toBe(null);
+      expect(fileComponent.formControl.errors).not.toBeNull();
       expect(fileComponent.formControl.valid).toBe(false);
       expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
     }));

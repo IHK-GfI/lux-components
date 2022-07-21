@@ -40,7 +40,7 @@ export class LuxAutocompleteComponent extends LuxFormComponentBase implements On
   @Input() luxLookupDelay = 500;
   @Input()
   luxErrorMessageNotAnOption = $localize`:@@luxc.autocomplete.error_message.not_an_option:Der eingegebene Wert ist nicht Teil der Auswahl.`;
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
   @Input() luxSelectAllOnClick = true;
   @Input() luxStrict = true;
   @Input() luxPickValue: (selected: any) => any;

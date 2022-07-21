@@ -11,8 +11,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LuxComponentsConfigService {
-  // Fallback-Konfiguration, falls sonst keine gefunden werden konnte
-  public static readonly DEFAULT_CONFIG: LuxComponentsConfigParameters = {
+
+  public static readonly DEFAULT_CONFIG = {
     displayLuxConsoleLogs: false,
     generateLuxTagIds: false,
     lookupServiceUrl: '/lookup/',
@@ -30,7 +30,6 @@ export class LuxComponentsConfigService {
     }
   };
 
-  // Subject mit dem aktuellen Konfig-Wert, welcher ausgelesen werden kann
   private config$: BehaviorSubject<LuxComponentsConfigParameters> = new BehaviorSubject<LuxComponentsConfigParameters>(
     LuxComponentsConfigService.DEFAULT_CONFIG
   );

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed } from '@angular/core/testing';
+import { LuxActionColorType } from "../lux-action-model/lux-action-component-base.class";
 import { LuxLinkComponent } from './lux-link.component';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -32,7 +33,7 @@ describe('LuxLinkComponent', () => {
   it('Sollte das Label darstellen', fakeAsync(() => {
     // Vorbedingungen prüfen
     let label = fixture.debugElement.query(By.css('.lux-button-label'));
-    expect(label).toBe(null);
+    expect(label).toBeNull();
 
     // Änderungen durchführen
     component.label = 'Ein Label sie zu knechten';
@@ -46,7 +47,7 @@ describe('LuxLinkComponent', () => {
   it('Sollte das Icon darstellen', fakeAsync(() => {
     // Vorbedingungen prüfen
     let icon = fixture.debugElement.query(By.css('lux-icon'));
-    expect(icon).toBe(null);
+    expect(icon).toBeNull();
 
     // Änderungen durchführen
     component.iconName = 'fas fa-jedi';
@@ -54,13 +55,13 @@ describe('LuxLinkComponent', () => {
 
     // Nachbedingungen prüfen
     icon = fixture.debugElement.query(By.css('lux-icon'));
-    expect(icon).not.toBe(null);
+    expect(icon).not.toBeNull();
   }));
 
   it('Sollte das Icon mit dem Label ausgerichtet darstellen', fakeAsync(() => {
     // Vorbedingungen prüfen
     let aligned = fixture.debugElement.query(By.css('.lux-align-baseline'));
-    expect(aligned).toBe(null);
+    expect(aligned).toBeNull();
 
     // Änderungen durchführen
     component.align = true;
@@ -69,13 +70,13 @@ describe('LuxLinkComponent', () => {
 
     // Nachbedingungen prüfen
     aligned = fixture.debugElement.query(By.css('.lux-align-baseline'));
-    expect(aligned).not.toBe(null);
+    expect(aligned).not.toBeNull();
   }));
 
   it('Sollte deaktiviert werden', fakeAsync(() => {
     // Vorbedingungen prüfen
     let disabled = fixture.debugElement.query(By.css('button[ng-reflect-disabled="true"]'));
-    expect(disabled).toBe(null);
+    expect(disabled).toBeNull();
 
     // Änderungen durchführen
     component.disabled = true;
@@ -83,13 +84,13 @@ describe('LuxLinkComponent', () => {
 
     // Nachbedingungen prüfen
     disabled = fixture.debugElement.query(By.css('button[ng-reflect-disabled="true"]'));
-    expect(disabled).not.toBe(null);
+    expect(disabled).not.toBeNull();
   }));
 
   it('Sollte raised dargestellt werden', fakeAsync(() => {
     // Vorbedingungen prüfen
     let raised = fixture.debugElement.query(By.css('.mat-raised-button'));
-    expect(raised).toBe(null);
+    expect(raised).toBeNull();
 
     // Änderungen durchführen
     component.raised = true;
@@ -97,7 +98,7 @@ describe('LuxLinkComponent', () => {
 
     // Nachbedingungen prüfen
     raised = fixture.debugElement.query(By.css('.mat-raised-button'));
-    expect(raised).not.toBe(null);
+    expect(raised).not.toBeNull();
   }));
 
   it('Sollte den (internen) href aufrufen', fakeAsync(() => {
@@ -175,7 +176,7 @@ describe('LuxLinkComponent', () => {
   it('Sollte die Farbe anpassen', fakeAsync(() => {
     // Vorbedingungen prüfen
     let color = fixture.debugElement.query(By.css('button[ng-reflect-color=""]'));
-    expect(color).toBe(null);
+    expect(color).not.toBeNull();
 
     // Änderungen durchführen
     component.color = 'primary';
@@ -183,7 +184,7 @@ describe('LuxLinkComponent', () => {
 
     // Nachbedingungen prüfen
     color = fixture.debugElement.query(By.css('button[ng-reflect-color="primary"]'));
-    expect(color).not.toBe(null);
+    expect(color).not.toBeNull();
 
     // Änderungen durchführen
     component.color = 'warn';
@@ -191,7 +192,7 @@ describe('LuxLinkComponent', () => {
 
     // Nachbedingungen prüfen
     color = fixture.debugElement.query(By.css('button[ng-reflect-color="warn"]'));
-    expect(color).not.toBe(null);
+    expect(color).not.toBeNull();
 
     // Änderungen durchführen
     component.color = 'accent';
@@ -199,7 +200,7 @@ describe('LuxLinkComponent', () => {
 
     // Nachbedingungen prüfen
     color = fixture.debugElement.query(By.css('button[ng-reflect-color="accent"]'));
-    expect(color).not.toBe(null);
+    expect(color).not.toBeNull();
   }));
 });
 
@@ -219,12 +220,12 @@ describe('LuxLinkComponent', () => {
   `
 })
 class MockLinkComponent {
-  label;
-  raised;
-  iconName;
-  disabled;
-  blank;
-  href;
-  color;
-  align;
+  label = '';
+  raised = false;
+  iconName = '';
+  disabled = false;
+  blank = false;
+  href = '';
+  color: LuxActionColorType = '';
+  align = false;
 }

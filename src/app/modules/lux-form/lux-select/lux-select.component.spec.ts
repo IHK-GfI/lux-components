@@ -280,7 +280,7 @@ describe('LuxSelectComponent', () => {
       const luxInput: LuxSelectComponent = fixture.debugElement.query(By.directive(LuxSelectComponent))
         .componentInstance;
       let selectRequired = fixture.debugElement.query(By.css('.mat-select-required'));
-      expect(selectRequired).toBe(null);
+      expect(selectRequired).toBeNull();
 
       // Änderungen durchführen
       testComponent.required = true;
@@ -288,7 +288,7 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen prüfen
       selectRequired = fixture.debugElement.query(By.css('.mat-select-required'));
-      expect(selectRequired).not.toBe(null);
+      expect(selectRequired).not.toBeNull();
 
       // Änderungen durchführen
       luxInput.formControl.markAsTouched();
@@ -297,14 +297,14 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen prüfen
       expect(luxInput.formControl.valid).toBe(false);
-      expect(luxInput.formControl.errors).not.toBe(null);
+      expect(luxInput.formControl.errors).not.toBeNull();
       expect(luxInput.formControl.errors.required).toBe(true);
     }));
 
     it('Sollte readonly sein', fakeAsync(() => {
       // Vorbedingungen prüfen
       let readonlySelect = fixture.debugElement.query(By.css('lux-select .lux-form-control-readonly'));
-      expect(readonlySelect).toBe(null);
+      expect(readonlySelect).toBeNull();
 
       // Änderungen durchführen
       testComponent.readonly = true;
@@ -312,13 +312,13 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen prüfen
       readonlySelect = fixture.debugElement.query(By.css('lux-select .lux-form-control-readonly'));
-      expect(readonlySelect).not.toBe(null);
+      expect(readonlySelect).not.toBeNull();
     }));
 
     it('Sollte disabled sein', fakeAsync(() => {
       // Vorbedingungen prüfen
       let disabledSelect = fixture.debugElement.query(By.css('lux-select .lux-form-control-disabled'));
-      expect(disabledSelect).toBe(null);
+      expect(disabledSelect).toBeNull();
 
       // Änderungen durchführen
       testComponent.disabled = true;
@@ -326,7 +326,7 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen prüfen
       disabledSelect = fixture.debugElement.query(By.css('lux-select .lux-form-control-disabled'));
-      expect(disabledSelect).not.toBe(null);
+      expect(disabledSelect).not.toBeNull();
     }));
 
     it('Sollte das Label darstellen', fakeAsync(() => {
@@ -360,7 +360,7 @@ describe('LuxSelectComponent', () => {
     it('Sollte den Hint darstellen', fakeAsync(() => {
       // Vorbedingungen prüfen
       let hint = fixture.debugElement.query(By.css('mat-hint'));
-      expect(hint).toBe(null);
+      expect(hint).toBeNull();
 
       // Änderungen durchführen
       testComponent.hint = 'Hint';
@@ -510,9 +510,9 @@ describe('LuxSelectComponent', () => {
       clickOption(0);
 
       // Nachbedingungen prüfen
-      expect(testComponent.selectedOption).toBe(null);
-      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).toBe(null);
-      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).not.toBe(null);
+      expect(testComponent.selectedOption).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).not.toBeNull();
 
       // Änderungen durchführen
       clickTrigger();
@@ -520,8 +520,8 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen prüfen
       expect(testComponent.selectedOption).toBe('');
-      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).not.toBe(null);
-      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).toBeNull();
 
       // Änderungen durchführen
       clickTrigger();
@@ -529,8 +529,8 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen prüfen
       expect(testComponent.selectedOption).toBe(undefined);
-      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).toBe(null);
-      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).not.toBe(null);
+      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).not.toBeNull();
 
       // Änderungen durchführen
       clickTrigger();
@@ -538,8 +538,8 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen prüfen
       expect(testComponent.selectedOption).toBe('A');
-      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).not.toBe(null);
-      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).toBeNull();
     }));
   });
 

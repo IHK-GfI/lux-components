@@ -30,7 +30,7 @@ export class LuxSelectComponent extends LuxFormSelectableBase {
 
   @Input() luxPlaceholder: string;
   @Input() luxMultiple = false;
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;

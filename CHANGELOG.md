@@ -3,6 +3,19 @@
 - **allgemein**: Update auf Angular 14 [Issue 223](https://github.com/IHK-GfI/lux-components/issues/223)
 - **allgemein**: Umstellung auf den strict-Mode. [Issue 224](https://github.com/IHK-GfI/lux-components/issues/224)
 
+## Breaking changes
+
+### Defaultänderungen
+
+#### LuxActionComponentBaseClass (LUX-Button, LUX-Menu und LUX-Link)
+- luxLabel: undefined -> ''
+- luxColor: undefined -> ''
+- luxRaised: undefined -> false
+- luxIconName: undefined -> ''
+- luxTagId: undefined -> null
+- luxDisabled: undefined -> false
+- luxRounded: undefined -> false
+
 # Version 13.1.0
 ## New
 - **lux-table**: Zusätzliches Outputevent "luxSelectedAsArrayChange" einführen. [Issue 207](https://github.com/IHK-GfI/lux-components/issues/207)

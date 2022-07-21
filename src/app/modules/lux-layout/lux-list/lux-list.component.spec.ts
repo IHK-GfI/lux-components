@@ -43,14 +43,14 @@ describe('LuxListComponent', () => {
   });
 
   it('Sollte Empty-Icon und Empty-Label anzeigen (leere Liste)', fakeAsync(() => {
-    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).not.toBe(null);
-    expect(fixture.debugElement.query(By.css('span.lux-list-empty-icon-text strong'))).not.toBe(null);
+    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).not.toBeNull();
+    expect(fixture.debugElement.query(By.css('span.lux-list-empty-icon-text strong'))).not.toBeNull();
   }));
 
   it('Sollte LuxListItems anzeigen (gefüllte Liste)', fakeAsync(() => {
     // Vorbedingungen prüfen
-    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).not.toBe(null);
-    expect(fixture.debugElement.query(By.css('span.lux-list-empty-icon-text strong'))).not.toBe(null);
+    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).not.toBeNull();
+    expect(fixture.debugElement.query(By.css('span.lux-list-empty-icon-text strong'))).not.toBeNull();
     expect(fixture.debugElement.queryAll(By.directive(LuxListItemComponent)).length).toBe(0);
 
     // Änderungen durchführen
@@ -58,8 +58,8 @@ describe('LuxListComponent', () => {
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).toBe(null);
-    expect(fixture.debugElement.query(By.css('span.lux-list-empty-label'))).toBe(null);
+    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).toBeNull();
+    expect(fixture.debugElement.query(By.css('span.lux-list-empty-label'))).toBeNull();
     expect(fixture.debugElement.queryAll(By.directive(LuxListItemComponent)).length).toBe(5);
     expect(fixture.debugElement.query(By.css('.lux-card-title-container')).nativeElement.textContent.trim()).toEqual(
       'Title 0'
@@ -71,7 +71,7 @@ describe('LuxListComponent', () => {
 
   it('Sollte ein selektiertes LuxListItem haben (max. 1, via LuxListItem)', fakeAsync(() => {
     // Vorbedingungen prüfen
-    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBe(null);
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBeNull();
 
     // Änderungen durchführen
     testComponent.addListItems(5);
@@ -110,7 +110,7 @@ describe('LuxListComponent', () => {
     const focusedSpy = spyOn(testComponent, 'onFocused');
     const focusedItemSpy = spyOn(testComponent, 'onFocusedItem');
 
-    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBe(null);
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBeNull();
 
     // Änderungen durchführen
     testComponent.addListItems(5);
@@ -158,7 +158,7 @@ describe('LuxListComponent', () => {
     const focusedSpy = spyOn(testComponent, 'onFocused');
     const focusedItemSpy = spyOn(testComponent, 'onFocusedItem');
 
-    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBe(null);
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBeNull();
 
     // Änderungen durchführen
     testComponent.addListItems(5);
@@ -211,7 +211,7 @@ describe('LuxListComponent', () => {
     const focusedSpy = spyOn(testComponent, 'onFocused');
     const focusedItemSpy = spyOn(testComponent, 'onFocusedItem');
 
-    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBe(null);
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBeNull();
 
     // Änderungen durchführen
     testComponent.addListItems(5);

@@ -23,7 +23,7 @@ export class LuxProgressComponent {
   @Input() luxValue = 0;
   // Nur für ProgressBar
   @Input() luxSize: LuxProgressSizeType = 'medium';
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
 
   @Input()
   set luxColor(value: LuxProgressColor) {

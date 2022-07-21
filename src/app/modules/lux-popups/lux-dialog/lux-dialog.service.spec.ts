@@ -44,14 +44,14 @@ describe('LuxDialogService', () => {
   describe('[LuxDialogPresetComponent]', () => {
     it('Sollte den Dialog öffnen', fakeAsync(() => {
       // Vorbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
 
       // Änderungen durchführen
       dialogRef = testComponent.dialogService.open({});
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBeNull();
     }));
 
     it('Sollte den Titel setzen', fakeAsync(() => {

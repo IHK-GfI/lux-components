@@ -120,7 +120,7 @@ class Checker {
   static checkLuxLabel(fixture: ComponentFixture<LuxButtonLabelComponent>) {
     // Vorbedingungen testen
     const expectedLabel = 'Testbutton 123';
-    expect(fixture.componentInstance.label).toBeUndefined('Vorbedinung 1');
+    expect(fixture.componentInstance.label).toEqual('');
 
     // Änderungen durchführen
     fixture.componentInstance.label = expectedLabel;
@@ -137,7 +137,7 @@ class Checker {
   static checkLuxClicked(fixture: ComponentFixture<LuxButtonComponent>) {
     // Vorbedingungen testen
     const onClickSpy = spyOn(fixture.componentInstance, 'onClick');
-    expect(fixture.componentInstance.disabled).toBeUndefined(`Vorbedingung 1`);
+    expect(fixture.componentInstance.disabled).toBeFalse();
 
     // Änderungen durchführen
     fixture.componentInstance.disabled = false;
@@ -159,7 +159,7 @@ class Checker {
   static checkLuxDisabled(fixture: ComponentFixture<LuxButtonComponent>) {
     // Vorbedingungen testen
     const onClickSpy = spyOn(fixture.componentInstance, 'onClick');
-    expect(fixture.componentInstance.disabled).toBeUndefined(`Vorbedingung 1`);
+    expect(fixture.componentInstance.disabled).toBeFalse();
 
     // Änderungen durchführen
     fixture.componentInstance.disabled = true;
@@ -182,16 +182,16 @@ class Checker {
     <lux-button
       luxLabel="Lorum ipsum 4711"
       [luxDisabled]="disabled"
-      (luxClicked)="onClick($event)"
+      (luxClicked)="onClick()"
       [luxRounded]="round"
       [luxRaised]="raised"
     ></lux-button>
   `
 })
 class LuxButtonComponent {
-  disabled: boolean;
-  round: boolean;
-  raised;
+  disabled = false;
+  round = false;
+  raised = false;
 
   onClick() {}
 }
@@ -201,14 +201,17 @@ class LuxButtonComponent {
     <lux-button
       [luxLabel]="label"
       [luxDisabled]="disabled"
-      (luxClicked)="onClick($event)"
+      (luxClicked)="onClick()"
       [luxRounded]="round"
       [luxRaised]="raised"
     ></lux-button>
   `
 })
 class LuxButtonLabelComponent {
-  round: boolean;
-  raised;
-  label: string;
+  disabled = false;
+  round = false;
+  raised = false;
+  label = '';
+
+  onClick() {}
 }

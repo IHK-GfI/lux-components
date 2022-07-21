@@ -434,7 +434,7 @@ describe('LuxAutocompleteComponent', () => {
         LuxTestHelper.dispatchFakeEvent(component.autocomplete.matInput.nativeElement, 'focus', true);
         fixture.detectChanges();
 
-        expect(component.autocomplete.formControl.errors).toBe(null);
+        expect(component.autocomplete.formControl.errors).toBeNull();
         expect(component.autocomplete.formControl.valid).toBeTruthy();
         done();
       });

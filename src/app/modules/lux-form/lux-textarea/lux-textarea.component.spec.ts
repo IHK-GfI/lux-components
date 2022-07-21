@@ -203,7 +203,7 @@ describe('LuxTextareaComponent', () => {
     it('Sollte die luxErrorMessage anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
       // Änderungen durchführen
       component.validators = Validators.required;
@@ -215,7 +215,7 @@ describe('LuxTextareaComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
       expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual('Alle meine Entchen');
       expect(textarea.formControl.errors.required).toBeDefined();
     }));
@@ -223,7 +223,7 @@ describe('LuxTextareaComponent', () => {
     it('Sollte den Fehler über luxErrorCallback anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
       // Änderungen durchführen
       component.validators = Validators.required;
@@ -236,7 +236,7 @@ describe('LuxTextareaComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
       expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual('Alle meine Entchen');
       expect(textarea.formControl.errors.required).toBeDefined();
       expect(spy).toHaveBeenCalledTimes(1);

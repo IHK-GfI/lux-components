@@ -1,4 +1,3 @@
-import { ConsoleLogger } from "@angular/compiler-cli/ngcc";
 import {
   AfterContentInit,
   AfterViewChecked,
@@ -42,23 +41,23 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   private readonly canvas;
 
   private menuItemSubscriptions: Subscription[] = [];
-  private menuItemChangeSubscription: Subscription;
+  private menuItemChangeSubscription!: Subscription;
 
   hideToggle = false;
 
-  @ViewChild('defaultTrigger', { read: ElementRef }) defaultTriggerElRef: ElementRef;
-  @ViewChild('menuTrigger', { read: ElementRef }) menuTriggerElRef: ElementRef;
-  @ViewChild('menuExtendedContainer', { read: ElementRef, static: true }) menuExtendedContainer: ElementRef;
-  @ContentChildren(LuxMenuItemComponent) luxMenuItemComponents: QueryList<LuxMenuItemComponent>;
-  @ContentChild(LuxMenuTriggerComponent) luxMenuTriggerComponent: LuxMenuTriggerComponent;
+  @ViewChild('defaultTrigger', { read: ElementRef }) defaultTriggerElRef?: ElementRef;
+  @ViewChild('menuTrigger', { read: ElementRef }) menuTriggerElRef?: ElementRef;
+  @ViewChild('menuExtendedContainer', { read: ElementRef, static: true }) menuExtendedContainer!: ElementRef;
+  @ContentChildren(LuxMenuItemComponent) luxMenuItemComponents!: QueryList<LuxMenuItemComponent>;
+  @ContentChild(LuxMenuTriggerComponent) luxMenuTriggerComponent?: LuxMenuTriggerComponent;
 
   @Output() luxMenuClosed: EventEmitter<void> = new EventEmitter<void>();
 
   @Input() luxMenuLabel = '';
   @Input() luxMenuIconName = 'menu';
   @Input() luxMenuTriggerIconShowRight = false;
-  @Input() luxClassName: string;
-  @Input() luxTagId: string;
+  @Input() luxClassName = '';
+  @Input() luxTagId: string | null = null;
   @Input() luxToggleDisabled = false;
   @Input() luxAriaMenuTriggerLabel = $localize`:@@luxc.menu.trigger.btn:Menü`;
 
@@ -116,14 +115,14 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   constructor(private cdr: ChangeDetectorRef, private themeService: LuxThemeService) {
     this.canvas = document.createElement('canvas');
 
-    // die folgenden Werte sind für die Berechnug der Breite der extended Menüitems    
+    // die folgenden Werte sind für die Berechnug der Breite der extended Menüitems
     // sie müssen entsprechend des aktuellen Themes gesetzt werden.
     // Wird das Theme geändert müssen auch diese Werte angepasst werden.
-    // aktuell wird für die Klasse .lux-extende-menu die Breite der Icons auf 15px gesetzt. 
+    // aktuell wird für die Klasse .lux-extende-menu die Breite der Icons auf 15px gesetzt.
     // bei Änderungend es Icon-Sets muss dieser Wert evtl. angepasst werden
 
     switch(this.themeService.getTheme().name) {
-      case 'green': 
+      case 'green':
         this.PADDING_PX = 16;
         this.MARGIN_PX = 12;
         this.ICON_PX = 23; // 15px Breite plus 8px Gap zwischen Icon - Label
@@ -170,9 +169,10 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
    *
    * @param menuItem
    * @param $event
+   * @param event
    */
-  menuItemClicked(menuItem: LuxMenuItemComponent, $event) {
-    menuItem.clicked($event);
+  menuItemClicked(menuItem: LuxMenuItemComponent, event: MouseEvent) {
+    menuItem.clicked(event);
   }
 
   /**
@@ -199,7 +199,8 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       return;
     }
 
-    const menuTriggerWidth = Math.max(this.menuTriggerElRef.nativeElement.offsetWidth, 50);
+    const menuTriggerOffsetWidth = this.menuTriggerElRef?.nativeElement.offsetWidth;
+    const menuTriggerWidth = Math.max(menuTriggerOffsetWidth ? menuTriggerOffsetWidth : 0, 50);
 
     let availableWidth: number = this.menuExtendedContainer.nativeElement.offsetWidth;
     let count = 0;
@@ -234,7 +235,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
         count++;
       } else {
         menuItem.extended = false;
-      }  
+      }
     }
 
     // Jetzt müssen die sichtbaren Items noch nach der Priorität sortiert werden.
@@ -292,13 +293,13 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
    *
    * @param text
    */
-  private getTextWidth(text): number {
+  private getTextWidth(text: string | null | undefined): number {
     if (!text) {
       return 0;
     }
 
     const canvas = this.canvas;
-    const context = canvas.getContext('2d');
+    const context = canvas.getContext('2d')!;
     context.font = `${this.FONT_WEIGHT} ${this.FONT_SIZE}px ${this.FONT_FAMILY}`;
     const metrics = context.measureText(text);
     // zusätzlich nutzen wir hier einen Standard-Offset von 20px, mit den angepassten Werten für die Themes, aktuell auf 0 gesetzt

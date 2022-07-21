@@ -12,35 +12,37 @@ import { throttleTime } from 'rxjs/operators';
 export class LuxButtonComponent extends LuxActionComponentBaseClass implements OnInit, OnDestroy {
   public readonly iconSize: string = '2x';
 
-  private configSubscription: Subscription;
+  private configSubscription!: Subscription;
 
-  private clickSubject = new Subject();
-  private clickSubscription: Subscription;
+  private clickSubject = new Subject<MouseEvent>();
+  private clickSubscription!: Subscription;
 
-  private auxClickSubject = new Subject();
-  private auxClickSubscription: Subscription;
+  private auxClickSubject = new Subject<MouseEvent>();
+  private auxClickSubscription!: Subscription;
 
   @Input() luxType: 'button' | 'reset' | 'submit' = 'button';
-  @Input() luxThrottleTime;
-  @Output() luxAuxClicked: EventEmitter<any> = new EventEmitter();
+  @Input() luxThrottleTime!: number;
+  @Output() luxAuxClicked: EventEmitter<MouseEvent> = new EventEmitter();
 
-  @HostBinding('class.lux-uppercase') labelUppercase: boolean;
+  @HostBinding('class.lux-uppercase') labelUppercase!: boolean;
 
   constructor(public elementRef: ElementRef, public componentsConfigService: LuxComponentsConfigService) {
     super();
   }
 
   ngOnInit() {
+    if (!this.luxThrottleTime) {
+      this.luxThrottleTime = this.componentsConfigService.currentConfig.buttonConfiguration?.throttleTimeMs
+        ? this.componentsConfigService.currentConfig.buttonConfiguration.throttleTimeMs
+        : LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs;
+    }
+
     this.configSubscription = this.componentsConfigService.config.subscribe((config) => {
       // Hintergrund: LuxLink, LuxSideNavItem und LuxMenuItem benutzen alle unter der Haube
       // den LuxButton. Wenn diese nun als Ausnahmen für Uppercase in der Config eingetragen werden,
       // darf eine Uppercase-Einstellung für den LuxButton diese nicht überschreiben.
       // Deshalb prüft der LuxButton hier, ob er Teil einer dieser Komponenten ist.
       this.detectParent();
-
-      if (!this.luxThrottleTime) {
-        this.luxThrottleTime = config.buttonConfiguration.throttleTimeMs;
-      }
     });
 
     this.clickSubscription = this.clickSubject
@@ -72,14 +74,18 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
 
   private detectParent() {
     const className = this.elementRef.nativeElement.className;
-    let selector = 'lux-button';
+
+    let selector;
     if (className.indexOf('lux-link') > -1) {
       selector = 'lux-link';
     } else if (className.indexOf('lux-side-nav-item-button') > -1) {
       selector = 'lux-side-nav-item';
     } else if (className.indexOf('lux-menu-item') > -1) {
       selector = 'lux-menu-item';
+    } else {
+      selector = 'lux-button';
     }
+
     this.labelUppercase = this.componentsConfigService.isLabelUppercaseForSelector(selector);
   }
 }

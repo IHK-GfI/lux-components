@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { LuxActionComponentBaseClass } from "../../lux-action-model/lux-action-component-base.class";
 
 // @dynamic Erklärung steht in der Datei "lux-decorators.ts".
@@ -7,9 +7,8 @@ import { LuxActionComponentBaseClass } from "../../lux-action-model/lux-action-c
   template: ''
 })
 export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 
-  @Input() luxButtonTooltip: string;
+  @Input() luxButtonTooltip = '';
   @Input() luxPrio = 0;
 
   @Output() luxHiddenChange: EventEmitter<boolean> = new EventEmitter<boolean>();

@@ -15,7 +15,7 @@ export class LuxTagIdDirective implements OnInit, AfterViewInit, OnDestroy {
 
   private configSubscription: Subscription;
 
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
 
   generateLuxTagIds: boolean;
 

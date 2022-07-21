@@ -34,7 +34,7 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() luxTitle: string;
   @Input() luxSubTitle: string;
   @Input() luxDisabled: boolean;
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
   @Input() luxTitleLineBreak = true;
   @Input() luxExpanded = false;
   @Input() luxUseTabIndex = true;

@@ -12,7 +12,7 @@ export class LuxAppHeaderActionNavItemComponent {
   @Input() luxIconName: string;
   @Input() luxColor: LuxActionColorType;
   @Input() luxDisabled: boolean;
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter<any>();
 

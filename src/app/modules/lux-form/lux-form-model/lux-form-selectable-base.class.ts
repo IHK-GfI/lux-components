@@ -19,7 +19,7 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
 
   @Output() luxSelectedChange: EventEmitter<any> = new EventEmitter();
   @Input() luxOptionLabelProp = '';
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
   @Input() luxCompareWith = (o1, o2) => o1 === o2;
 
   get luxSelected(): any {

@@ -500,7 +500,7 @@ describe('LuxDatepickerComponent', () => {
       let matError = fixture.debugElement.query(By.css('mat-error'));
 
       expect(datepickerComponent.formControl.valid).toBe(true);
-      expect(matError).toBe(null);
+      expect(matError).toBeNull();
 
       // Änderungen durchführen
       testComponent.validators = [Validators.required];
@@ -514,7 +514,7 @@ describe('LuxDatepickerComponent', () => {
 
       expect(datepickerComponent.formControl.valid).toBe(false);
       expect(datepickerComponent.formControl.errors.required).toBeDefined();
-      expect(matError).not.toBe(null);
+      expect(matError).not.toBeNull();
 
       flush();
       discardPeriodicTasks();
@@ -524,7 +524,7 @@ describe('LuxDatepickerComponent', () => {
       // Vorbedingungen testen
       let matError = fixture.debugElement.query(By.css('mat-error'));
 
-      expect(matError).toBe(null);
+      expect(matError).toBeNull();
 
       // Änderungen durchführen
       testComponent.errorMessage = 'Ein Fehler sie zu knechten';
@@ -537,7 +537,7 @@ describe('LuxDatepickerComponent', () => {
       // Nachbedingungen testen
       matError = fixture.debugElement.query(By.css('mat-error'));
 
-      expect(matError).not.toBe(null);
+      expect(matError).not.toBeNull();
       expect(matError.nativeElement.textContent.trim()).toEqual('Ein Fehler sie zu knechten');
 
       flush();
@@ -546,7 +546,7 @@ describe('LuxDatepickerComponent', () => {
     it('LuxErrorMessageCallback', fakeAsync(() => {
       // Vorbedingungen testen
       let matError = fixture.debugElement.query(By.css('mat-error'));
-      expect(matError).toBe(null);
+      expect(matError).toBeNull();
 
       // Änderungen durchführen
       testComponent.errorCb = (value, errors) => 'Achtung, das ist ein Fehler';
@@ -561,7 +561,7 @@ describe('LuxDatepickerComponent', () => {
       // Nachbedingungen testen
       matError = fixture.debugElement.query(By.css('mat-error'));
 
-      expect(matError).not.toBe(null);
+      expect(matError).not.toBeNull();
       expect(matError.nativeElement.textContent.trim()).toEqual('Achtung, das ist ein Fehler');
       expect(spy).toHaveBeenCalled();
 
@@ -571,7 +571,7 @@ describe('LuxDatepickerComponent', () => {
     it('LuxOpened', fakeAsync(() => {
       // Vorbedingungen testen
       let calendar = overlayHelper.selectOneFromOverlay('mat-calendar');
-      expect(calendar).toBe(null);
+      expect(calendar).toBeNull();
 
       // Änderungen durchführen
       testComponent.opened = true;
@@ -579,7 +579,7 @@ describe('LuxDatepickerComponent', () => {
 
       // Nachbedingungen testen
       calendar = overlayHelper.selectOneFromOverlay('mat-calendar');
-      expect(calendar).not.toBe(null);
+      expect(calendar).not.toBeNull();
 
       // Änderungen durchführen
       testComponent.opened = false;
@@ -589,7 +589,7 @@ describe('LuxDatepickerComponent', () => {
 
       // Nachbedingungen testen
       calendar = overlayHelper.selectOneFromOverlay('mat-calendar');
-      expect(calendar).toBe(null);
+      expect(calendar).toBeNull();
 
       flush();
     }));

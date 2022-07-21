@@ -136,7 +136,7 @@ describe('LuxInputComponent', () => {
 
         // Nachbedingungen prüfen
         expect(luxInput.formControl.valid).toBe(false);
-        expect(luxInput.formControl.errors).not.toBe(null);
+        expect(luxInput.formControl.errors).not.toBeNull();
         expect(luxInput.formControl.errors.required).toBe(true);
         expect(luxInput.luxRequired).toBe(true);
 
@@ -147,7 +147,7 @@ describe('LuxInputComponent', () => {
 
         // Nachbedingungen prüfen
         expect(luxInput.formControl.valid).toBe(true);
-        expect(luxInput.formControl.errors).toBe(null);
+        expect(luxInput.formControl.errors).toBeNull();
       }));
     });
 
@@ -537,7 +537,7 @@ describe('LuxInputComponent', () => {
 
         // Nachbedingungen prüfen
         expect(luxInput.formControl.valid).toBe(false);
-        expect(luxInput.formControl.errors).not.toBe(null);
+        expect(luxInput.formControl.errors).not.toBeNull();
         expect(luxInput.formControl.errors.required).toBe(true);
         expect(luxInput.luxRequired).toBe(true);
 
@@ -548,7 +548,7 @@ describe('LuxInputComponent', () => {
 
         // Nachbedingungen prüfen
         expect(luxInput.formControl.valid).toBe(true);
-        expect(luxInput.formControl.errors).toBe(null);
+        expect(luxInput.formControl.errors).toBeNull();
       }));
     });
   });

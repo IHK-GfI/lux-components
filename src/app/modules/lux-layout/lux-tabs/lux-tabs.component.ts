@@ -41,7 +41,7 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   @Input() luxActiveTab = 0;
   @Input() luxIconSize = '2x';
   @Input() luxDisplayDivider = true;
-  @Input() luxTagId: string;
+  @Input() luxTagId: string | null = null;
   @Input() luxLazyLoading = false;
 
   @Output() readonly luxActiveTabChanged: EventEmitter<any> = new EventEmitter<any>();
