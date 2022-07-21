@@ -60,7 +60,7 @@ describe('LuxTagIdDirective', () => {
   `
 })
 class MockComponent {
-  tagId;
+  tagId: string | null = null;
 }
 
 @Component({

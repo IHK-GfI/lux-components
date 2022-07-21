@@ -51,7 +51,7 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte den Stepper deaktivieren', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let stepperOverlay = fixture.debugElement.query(By.css('.lux-stepper-disabled-overlay.lux-hidden'));
     expect(stepperOverlay).not.toEqual(null);
 
@@ -65,7 +65,7 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte den Step-Wechsel ohne Validierung erlauben (linear = false)', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let stepSelected = fixture.debugElement.query(By.css('mat-step-header[aria-selected="true"] .step-header'));
     expect(stepSelected.nativeElement.textContent).toEqual('Step 0');
 
@@ -82,7 +82,7 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte den Step-Wechsel ohne Validierung nicht erlauben (linear = true)', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let stepSelected = fixture.debugElement.query(By.css('mat-step-header[aria-selected="true"] .step-header'));
     expect(stepSelected.nativeElement.textContent).toEqual('Step 0');
 
@@ -100,7 +100,7 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte die Validierung über luxCompleted ermöglichen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let stepSelected = fixture.debugElement.query(By.css('mat-step-header[aria-selected="true"] .step-header'));
     expect(stepSelected.nativeElement.textContent).toEqual('Step 0');
 
@@ -133,7 +133,7 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte optionale Steps überspringen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let stepSelected = fixture.debugElement.query(By.css('mat-step-header[aria-selected="true"] .step-header'));
     expect(stepSelected.nativeElement.textContent).toEqual('Step 0');
 
@@ -155,7 +155,7 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte nicht editierbare Steps nicht wieder aktivieren können', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let stepSelected = fixture.debugElement.query(By.css('mat-step-header[aria-selected="true"] .step-header'));
     expect(stepSelected.nativeElement.textContent).toEqual('Step 0');
 
@@ -186,7 +186,7 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte die Standard-Icons ausblenden', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let matStepIcons = fixture.debugElement.queryAll(By.css('.lux-ignore-mat-step-icons .mat-step-icon'));
     expect(matStepIcons.length).toBe(0);
 
@@ -200,7 +200,7 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte die Navigation-Buttons konfigurieren können', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const navButtons = fixture.debugElement.queryAll(By.css('lux-stepper-nav-buttons .lux-button-label'));
     expect(navButtons.length).toBe(3);
     expect(navButtons[0].nativeElement.textContent.trim()).toEqual('Test vorwärts');
@@ -220,7 +220,7 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte die Navigation-Buttons ausblenden können', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let navButtons = fixture.debugElement.queryAll(By.css('lux-stepper-nav-buttons .lux-button-label'));
     expect(navButtons.length).toBe(3);
 
@@ -234,11 +234,11 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte einen vertikalen Stepper erstellen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let stepperHorizontal = fixture.debugElement.query(By.css('mat-horizontal-stepper'));
     let stepperVertical = fixture.debugElement.query(By.css('mat-vertical-stepper'));
-    expect(stepperHorizontal).not.toBe(null);
-    expect(stepperVertical).toBe(null);
+    expect(stepperHorizontal).not.toBeNull();
+    expect(stepperVertical).toBeNull();
 
     // Änderungen durchführen
     component.vertical = true;
@@ -247,12 +247,12 @@ describe('LuxStepperComponent', () => {
     // Nachbedingungen prüfen
     stepperHorizontal = fixture.debugElement.query(By.css('mat-horizontal-stepper'));
     stepperVertical = fixture.debugElement.query(By.css('mat-vertical-stepper'));
-    expect(stepperHorizontal).toBe(null);
-    expect(stepperVertical).not.toBe(null);
+    expect(stepperHorizontal).toBeNull();
+    expect(stepperVertical).not.toBeNull();
   }));
 
   it('Sollte zu einem bestimmten Step springen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let stepSelected = fixture.debugElement.query(By.css('mat-step-header[aria-selected="true"] .step-header'));
     expect(stepSelected.nativeElement.textContent).toEqual('Step 0');
 
@@ -268,7 +268,7 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte luxStepChanged emitten', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const spy = spyOn(component, 'stepChange');
     expect(spy).toHaveBeenCalledTimes(0);
 
@@ -284,7 +284,7 @@ describe('LuxStepperComponent', () => {
   }));
 
   it('Sollte luxFinishButtonClicked emitten', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const spy = spyOn(component, 'finClicked');
     expect(spy).toHaveBeenCalledTimes(0);
 

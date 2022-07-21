@@ -23,10 +23,10 @@ describe('LuxProgressComponent', () => {
 
   describe('Als ProgressBar', () => {
     it('Sollte eine ProgressBar erzeugen', () => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       // Standardmäßig immer ProgressBar
       const progressbar = fixture.debugElement.query(By.css('mat-progress-bar'));
-      expect(progressbar).not.toBe(null, 'Bedingung 1');
+      expect(progressbar).not.toBeNull();
       // Änderungen durchführen
       // n.A.
       // Nachbedingungen prüfen
@@ -34,77 +34,77 @@ describe('LuxProgressComponent', () => {
     });
 
     it('Sollte die CSS-Klassen für Farben eintragen', () => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const blue = fixture.debugElement.query(By.css('.lux-bg-color-blue'));
-      expect(blue).toBeDefined('Vorbedingung 1');
+      expect(blue).toBeDefined();
       // Änderungen durchführen
       component.color = 'red';
       fixture.detectChanges();
       // Nachbedingungen prüfen
       const red = fixture.debugElement.query(By.css('.lux-bg-color-red'));
-      expect(red).toBeDefined('Nachbedingung 1');
+      expect(red).toBeDefined();
       // Änderungen durchführen
       component.color = 'yellow';
       fixture.detectChanges();
       // Nachbedingungen prüfen
       const purple = fixture.debugElement.query(By.css('.lux-bg-color-purple'));
-      expect(purple).toBeDefined('Nachbedingung 2');
+      expect(purple).toBeDefined();
     });
 
     it('Sollte den Wert ändern (mode = determinate)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       component.mode = 'determinate';
       const matProgress: MatProgressBar = fixture.debugElement.query(By.directive(MatProgressBar)).componentInstance;
       LuxTestHelper.wait(fixture);
-      expect(matProgress.value).toBe(0, 'Vorbedingung 1');
+      expect(matProgress.value).toBe(0);
       // Änderungen durchführen
       component.value = 10;
       LuxTestHelper.wait(fixture);
       // Nachbedingungen prüfen
-      expect(matProgress.value).toBe(10, 'Nachbedingung 1');
+      expect(matProgress.value).toBe(10);
     }));
   });
 
   describe('Als Spinner', () => {
     it('Sollte einen Spinner erzeugen', () => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       // Standardmäßig immer ProgressBar
       let progressbar = fixture.debugElement.query(By.css('mat-progress-bar'));
       let spinner = fixture.debugElement.query(By.css('mat-progress-spinner'));
-      expect(progressbar).not.toBe(null, 'Vorbedingung 1');
-      expect(spinner).toBe(null, 'Vorbedingung 2');
+      expect(progressbar).not.toBeNull();
+      expect(spinner).toBeNull();
       // Änderungen durchführen
       component.type = 'Spinner';
       fixture.detectChanges();
       // Nachbedingungen prüfen
       progressbar = fixture.debugElement.query(By.css('mat-progress-bar'));
       spinner = fixture.debugElement.query(By.css('mat-progress-spinner'));
-      expect(progressbar).toBe(null, 'Nachbedingung 1');
-      expect(spinner).toBeDefined('Nachbedingung 2');
+      expect(progressbar).toBeNull();
+      expect(spinner).toBeDefined();
     });
 
     it('Sollte die CSS-Klassen für Farben eintragen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       component.type = 'Spinner';
       fixture.detectChanges();
       const blue = fixture.debugElement.query(By.css('.lux-bg-color-blue'));
-      expect(blue).toBeDefined('Vorbedingung 1');
+      expect(blue).toBeDefined();
       // Änderungen durchführen
       component.color = 'red';
       fixture.detectChanges();
       // Nachbedingungen prüfen
       const red = fixture.debugElement.query(By.css('.lux-bg-color-red'));
-      expect(red).toBeDefined('Nachbedingung 1');
+      expect(red).toBeDefined();
       // Änderungen durchführen
       component.color = 'yellow';
       fixture.detectChanges();
       // Nachbedingungen prüfen
       const purple = fixture.debugElement.query(By.css('.lux-bg-color-purple'));
-      expect(purple).toBeDefined('Nachbedingung 2');
+      expect(purple).toBeDefined();
     }));
 
     it('Sollte den Wert ändern (mode = determinate)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       component.type = 'Spinner';
       fixture.detectChanges();
 
@@ -112,12 +112,12 @@ describe('LuxProgressComponent', () => {
         .componentInstance;
       component.mode = 'determinate';
       LuxTestHelper.wait(fixture);
-      expect(matProgress.value).toBe(0, 'Vorbedingung 1');
+      expect(matProgress.value).toBe(0);
       // Änderungen durchführen
       component.value = 10;
       LuxTestHelper.wait(fixture);
       // Nachbedingungen prüfen
-      expect(matProgress.value).toBe(10, 'Nachbedingung 1');
+      expect(matProgress.value).toBe(10);
     }));
   });
 });

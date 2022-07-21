@@ -48,7 +48,7 @@ describe('LuxListComponent', () => {
   }));
 
   it('Sollte LuxListItems anzeigen (gefüllte Liste)', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).not.toBeNull();
     expect(fixture.debugElement.query(By.css('span.lux-list-empty-icon-text strong'))).not.toBeNull();
     expect(fixture.debugElement.queryAll(By.directive(LuxListItemComponent)).length).toBe(0);
@@ -70,7 +70,7 @@ describe('LuxListComponent', () => {
   }));
 
   it('Sollte ein selektiertes LuxListItem haben (max. 1, via LuxListItem)', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBeNull();
 
     // Änderungen durchführen
@@ -105,7 +105,7 @@ describe('LuxListComponent', () => {
   }));
 
   it('Sollte ein selektiertes LuxListItem haben (max. 1, via LuxList)', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const selectedSpy = spyOn(testComponent, 'onSelected');
     const focusedSpy = spyOn(testComponent, 'onFocused');
     const focusedItemSpy = spyOn(testComponent, 'onFocusedItem');
@@ -153,7 +153,7 @@ describe('LuxListComponent', () => {
   }));
 
   it('Sollte über die Pfeiltasten LuxListItems fokussieren können', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const selectedSpy = spyOn(testComponent, 'onSelected');
     const focusedSpy = spyOn(testComponent, 'onFocused');
     const focusedItemSpy = spyOn(testComponent, 'onFocusedItem');
@@ -206,7 +206,7 @@ describe('LuxListComponent', () => {
   }));
 
   it('Sollte über die Pfeiltasten + Space/Enter ein LuxListItem selektieren können', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const selectedSpy = spyOn(testComponent, 'onSelected');
     const focusedSpy = spyOn(testComponent, 'onFocused');
     const focusedItemSpy = spyOn(testComponent, 'onFocusedItem');

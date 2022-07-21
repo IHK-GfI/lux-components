@@ -226,7 +226,7 @@ describe('LuxAccordionComponent', () => {
 
       it('Toggle prüfen', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(fixture.componentInstance.hide).toBeFalsy('Vorbedingung 1');
+        expect(fixture.componentInstance.hide).toBeFalsy();
         const toggleEl = fixture.debugElement.query(By.css('.mat-expansion-indicator'));
         expect(toggleEl).not.toBeNull();
 
@@ -272,7 +272,7 @@ describe('LuxAccordionComponent', () => {
 
       it('Disabled prüfen', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(fixture.componentInstance.disabled).toBeFalsy('Vorbedingung 1');
+        expect(fixture.componentInstance.disabled).toBeFalsy();
         const headerEl = fixture.debugElement.query(By.css('.mat-expansion-panel-header'));
         expect(headerEl.nativeElement.attributes['aria-disabled'].value).toEqual('false');
 

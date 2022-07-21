@@ -38,7 +38,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte Chips und ChipGroups darstellen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let chipElements = fixture.debugElement.queryAll(By.css('mat-chip'));
       expect(chipElements.length).toBe(0);
 
@@ -62,7 +62,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte alle Chips deaktivieren', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       LuxTestHelper.wait(fixture);
       testComponent.chipGroup = testComponent.chipGroupComponent;
       LuxTestHelper.wait(fixture);
@@ -85,7 +85,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte alle Grouped-Chips deaktivieren', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       LuxTestHelper.wait(fixture);
       testComponent.chipGroup = testComponent.chipGroupComponent;
       LuxTestHelper.wait(fixture);
@@ -108,7 +108,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte einzelne Chips deaktivieren', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       LuxTestHelper.wait(fixture);
       testComponent.chipGroup = testComponent.chipGroupComponent;
       LuxTestHelper.wait(fixture);
@@ -132,7 +132,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte alle Grouped-Chips un-removeable machen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       LuxTestHelper.wait(fixture);
       testComponent.chipGroup = testComponent.chipGroupComponent;
       LuxTestHelper.wait(fixture);
@@ -155,7 +155,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte einzelne Chips un-removeable machen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       LuxTestHelper.wait(fixture);
       testComponent.chipGroup = testComponent.chipGroupComponent;
       LuxTestHelper.wait(fixture);
@@ -179,7 +179,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte neue Chips über das Input hinzufügen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const spy = spyOn(testComponent, 'chipAdded').and.callThrough();
       let chipElements = fixture.debugElement.queryAll(By.css('mat-chip'));
       expect(chipElements.length).toBe(0);
@@ -199,7 +199,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte neue Grouped-Chips über das Input hinzufügen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const spy = spyOn(testComponent, 'groupChipAdded');
       let chipElements = fixture.debugElement.queryAll(By.css('mat-chip'));
       expect(chipElements.length).toBe(0);
@@ -221,7 +221,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte Chips bei Click auf Remove-Icon entfernen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       testComponent.addMockChips();
       LuxTestHelper.wait(fixture);
 
@@ -241,7 +241,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte Grouped-Chips bei Click auf Remove-Icon entfernen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       LuxTestHelper.wait(fixture);
       testComponent.chipGroup = testComponent.chipGroupComponent;
       LuxTestHelper.wait(fixture);
@@ -264,7 +264,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte Chips über Autocomplete hinzufügen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       testComponent.addMockChips();
       testComponent.inputAllowed = true;
       testComponent.autocomplete = true;
@@ -292,7 +292,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte eine einzelne FilteredOption als neuen Chip ergänzen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       testComponent.addMockChips();
       testComponent.inputAllowed = true;
       testComponent.autocomplete = true;
@@ -324,7 +324,7 @@ describe('LuxChipComponent', () => {
     }));
 
     it('Sollte die angeklickten Chips als Event ausgeben', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       LuxTestHelper.wait(fixture);
       testComponent.chipGroup = testComponent.chipGroupComponent;
       LuxTestHelper.wait(fixture);

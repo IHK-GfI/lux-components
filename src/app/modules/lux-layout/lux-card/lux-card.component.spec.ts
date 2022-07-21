@@ -37,7 +37,7 @@ describe('LuxCardComponent', () => {
 
     it('Two-Way-Binding testen', fakeAsync(() => {
       // Vorbedingungen testen
-      expect(component.expanded).toBeFalsy('Vorbedingung 1');
+      expect(component.expanded).toBeFalsy();
 
       // Änderungen durchführen
       const toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button button'));
@@ -45,20 +45,20 @@ describe('LuxCardComponent', () => {
       LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       // Nachbedingungen testen
-      expect(component.expanded).toBeTruthy('Nachbedingung 1');
+      expect(component.expanded).toBeTruthy();
 
       // Änderungen durchführen
       toggleEl.nativeElement.click();
 
       // Nachbedingungen testen
-      expect(component.expanded).toBeFalsy('Nachbedingung 2');
+      expect(component.expanded).toBeFalsy();
 
       discardPeriodicTasks();
     }));
 
     it('Event testen', fakeAsync(() => {
       // Vorbedingungen testen
-      expect(component.expanded).toBeFalsy('Vorbedingung 1');
+      expect(component.expanded).toBeFalsy();
       const onExpandedSpy = spyOn(component, 'onExpanded').and.callThrough();
 
       // Änderungen durchführen
@@ -125,7 +125,7 @@ describe('LuxCardComponent', () => {
       // Vorbedingungen testen
       const cardActionspy = spyOn(component, 'onCardClickedTest');
       const toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button button'));
-      expect(toggleEl).not.toBeNull('Vorbedingung 1');
+      expect(toggleEl).not.toBeNull();
 
       // Änderungen durchführen
       // 1. Durchlauf: Aufklappen
@@ -162,10 +162,10 @@ describe('LuxCardComponent', () => {
       let contentEl = fixture.debugElement.query(By.directive(LuxCardContentComponent));
       let expandedEl = fixture.debugElement.query(By.directive(LuxCardContentExpandedComponent));
       let toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button'));
-      expect(component.card.luxExpanded).toBeFalsy('Vorbedingung 1');
-      expect(contentEl).not.toBeNull('Vorbedingung 2');
+      expect(component.card.luxExpanded).toBeFalsy();
+      expect(contentEl).not.toBeNull();
       expect(contentEl.nativeElement.innerHTML).toEqual('Lorum ipsum');
-      expect(expandedEl).toBeNull('Vorbedingung 3');
+      expect(expandedEl).toBeNull();
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
 
       // Änderungen durchführen
@@ -176,9 +176,9 @@ describe('LuxCardComponent', () => {
       contentEl = fixture.debugElement.query(By.directive(LuxCardContentComponent));
       expandedEl = fixture.debugElement.query(By.directive(LuxCardContentExpandedComponent));
       toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button'));
-      expect(component.card.luxExpanded).toBeTruthy('Nachbedingung 1');
-      expect(contentEl).not.toBeNull('Nachbedingung 2');
-      expect(expandedEl).not.toBeNull('Nachbedingung 3');
+      expect(component.card.luxExpanded).toBeTruthy();
+      expect(contentEl).not.toBeNull();
+      expect(expandedEl).not.toBeNull();
       expect(expandedEl.nativeElement.innerHTML).toEqual('Lorum ipsum expanded');
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-up');
 
@@ -190,9 +190,9 @@ describe('LuxCardComponent', () => {
       contentEl = fixture.debugElement.query(By.directive(LuxCardContentComponent));
       expandedEl = fixture.debugElement.query(By.directive(LuxCardContentExpandedComponent));
       toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button'));
-      expect(component.card.luxExpanded).toBeFalsy('Nachbedingung 4');
+      expect(component.card.luxExpanded).toBeFalsy();
       expect(contentEl.nativeElement.innerHTML).toEqual('Lorum ipsum');
-      expect(expandedEl).toBeNull('Nachbedingung 5');
+      expect(expandedEl).toBeNull();
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
     }));
 
@@ -201,10 +201,10 @@ describe('LuxCardComponent', () => {
       let contentEl = fixture.debugElement.query(By.directive(LuxCardContentComponent));
       let expandedEl = fixture.debugElement.query(By.directive(LuxCardContentExpandedComponent));
       let toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button button'));
-      expect(component.card.luxExpanded).toBeFalsy('Vorbedingung 1');
-      expect(contentEl).not.toBeNull('Vorbedingung 2');
+      expect(component.card.luxExpanded).toBeFalsy();
+      expect(contentEl).not.toBeNull();
       expect(contentEl.nativeElement.innerHTML).toEqual('Lorum ipsum');
-      expect(expandedEl).toBeNull('Vorbedingung 3');
+      expect(expandedEl).toBeNull();
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
 
       // Änderungen durchführen
@@ -215,9 +215,9 @@ describe('LuxCardComponent', () => {
       contentEl = fixture.debugElement.query(By.directive(LuxCardContentComponent));
       expandedEl = fixture.debugElement.query(By.directive(LuxCardContentExpandedComponent));
       toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button button'));
-      expect(component.card.luxExpanded).toBeTruthy('Nachbedingung 1');
-      expect(contentEl).not.toBeNull('Nachbedingung 2');
-      expect(expandedEl).not.toBeNull('Nachbedingung 3');
+      expect(component.card.luxExpanded).toBeTruthy();
+      expect(contentEl).not.toBeNull();
+      expect(expandedEl).not.toBeNull();
       expect(expandedEl.nativeElement.innerHTML).toEqual('Lorum ipsum expanded');
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-up');
 
@@ -229,9 +229,9 @@ describe('LuxCardComponent', () => {
       contentEl = fixture.debugElement.query(By.directive(LuxCardContentComponent));
       expandedEl = fixture.debugElement.query(By.directive(LuxCardContentExpandedComponent));
       toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button'));
-      expect(component.card.luxExpanded).toBeFalsy('Nachbedingung 4');
+      expect(component.card.luxExpanded).toBeFalsy();
       expect(contentEl.nativeElement.innerHTML).toEqual('Lorum ipsum');
-      expect(expandedEl).toBeNull('Nachbedingung 5');
+      expect(expandedEl).toBeNull();
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
 
       discardPeriodicTasks();
@@ -249,7 +249,7 @@ describe('LuxCardComponent', () => {
     }));
 
     it('Sollte luxTitle und luxSubTitle darstellen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(fixture.debugElement.query(By.css('.lux-card-title-container')).nativeElement.textContent.trim()).toEqual(
         ''
       );
@@ -268,7 +268,7 @@ describe('LuxCardComponent', () => {
     }));
 
     it('Sollte mat-card-title ausblenden, wenn luxTitle undefined', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       component.title = 'Hallo';
       LuxTestHelper.wait(fixture);
       expect(fixture.debugElement.query(By.css('.mat-card-title.lux-display-none'))).toBeNull();
@@ -288,7 +288,7 @@ describe('LuxCardComponent', () => {
     }));
 
     it('Sollte mat-card-title nicht ausblenden, wenn luxTitle undefined aber lux-card-info gesetzt ist', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       component.title = 'Hallo';
       LuxTestHelper.wait(fixture);
       expect(fixture.debugElement.query(By.css('.mat-card-title.lux-display-none'))).toBeNull();
@@ -309,7 +309,7 @@ describe('LuxCardComponent', () => {
     }));
 
     it('Sollte mat-card-subtitle ausblenden, wenn luxSubTitle undefined', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       component.subTitle = 'Hallo';
       LuxTestHelper.wait(fixture);
       expect(fixture.debugElement.query(By.css('.mat-card-subtitle.lux-display-none'))).toBeNull();
@@ -323,7 +323,7 @@ describe('LuxCardComponent', () => {
     }));
 
     it('Sollte mat-card-actions ausblenden, wenn keine Actions gesetzt sind', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       component.testShowAction = true;
       LuxTestHelper.wait(fixture);
       expect(fixture.debugElement.query(By.css('.mat-card-actions.lux-display-none'))).toBeNull();
@@ -337,7 +337,7 @@ describe('LuxCardComponent', () => {
     }));
 
     it('Sollte Click-Events deaktivieren (luxDisabled)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const spy = spyOn(component, 'cardClicked');
       fixture.debugElement.query(By.css('mat-card')).nativeElement.click();
       LuxTestHelper.wait(fixture);

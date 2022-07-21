@@ -34,10 +34,10 @@ describe('LuxMenuComponent', () => {
   }));
 
   it('Sollte die MenuItems darstellen (nur im Menu und Extended)', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let menuItems = fixture.debugElement.queryAll(By.css('lux-menu-item'));
-    expect(menuItems.length).toBe(0, 'Vorbedingung 1');
-    expect(menuComponent.menuItems.length).toBe(0, 'Vorbedingung 2');
+    expect(menuItems.length).toBe(0);
+    expect(menuComponent.menuItems.length).toBe(0);
 
     // Änderungen durchführen
     component.generateItems(3);
@@ -45,8 +45,8 @@ describe('LuxMenuComponent', () => {
 
     // Nachbedingungen prüfen
     menuItems = fixture.debugElement.queryAll(By.css('lux-menu-item'));
-    expect(menuItems.length).toBe(3, 'Nachbedingung 1');
-    expect(menuComponent.menuItems.length).toBe(3, 'Nachbedingung 2');
+    expect(menuItems.length).toBe(3);
+    expect(menuComponent.menuItems.length).toBe(3);
 
     // Änderungen durchführen
     component.displayExtended = true;
@@ -54,16 +54,16 @@ describe('LuxMenuComponent', () => {
 
     // Nachbedingungen prüfen
     const extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item'));
-    expect(extendedMenuItems.length).toBe(3, 'Nachbedingung 3');
+    expect(extendedMenuItems.length).toBe(3);
   }));
 
   it('Sollte die MenuItems korrekt ausblenden wenn der Platz nicht mehr ausreicht', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     updateExtendedMenuItems();
 
     let extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
-    expect(extendedMenuItems.length).toBe(3, 'Vorbedingung 1');
+    expect(extendedMenuItems.length).toBe(3);
 
     // Änderungen durchführen
     const extendedNode = fixture.debugElement.query(By.css('.lux-menu-extended')).nativeElement;
@@ -72,12 +72,12 @@ describe('LuxMenuComponent', () => {
 
     // Nachbedingungen prüfen
     extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
-    expect(extendedMenuItems.length).toBeGreaterThan(0, 'Nachbedingung 1');
-    expect(extendedMenuItems.length).toBeLessThan(3, 'Nachbedingung 2');
+    expect(extendedMenuItems.length).toBeGreaterThan(0);
+    expect(extendedMenuItems.length).toBeLessThan(3);
   }));
 
   it('Sollte einen eigenen Toggle-Button injecten', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     component.displayExtended = false;
     LuxTestHelper.wait(fixture);
@@ -101,12 +101,12 @@ describe('LuxMenuComponent', () => {
   }));
 
   it('Sollte nur n (n = luxMaximumExtend) Menu-Items darstellen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     updateExtendedMenuItems();
 
     let extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
-    expect(extendedMenuItems.length).toBe(3, 'Vorbedingung 1');
+    expect(extendedMenuItems.length).toBe(3);
 
     // Änderungen durchführen
     component.maximumExtended = 1;
@@ -114,7 +114,7 @@ describe('LuxMenuComponent', () => {
 
     // Nachbedingungen prüfen
     extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
-    expect(extendedMenuItems.length).toBe(1, 'Vorbedingung 1');
+    expect(extendedMenuItems.length).toBe(1);
 
     // Änderungen durchführen
     component.maximumExtended = 2;
@@ -122,11 +122,11 @@ describe('LuxMenuComponent', () => {
 
     // Nachbedingungen prüfen
     extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
-    expect(extendedMenuItems.length).toBe(2, 'Vorbedingung 1');
+    expect(extendedMenuItems.length).toBe(2);
   }));
 
   it('Sollte das extendedMenu rechtsbündig darstellen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     component.maximumExtended = 2;
     updateExtendedMenuItems();
@@ -150,7 +150,7 @@ describe('LuxMenuComponent', () => {
   }));
 
   it('Sollte Menu-Items deaktivieren', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     updateExtendedMenuItems();
 
@@ -179,7 +179,7 @@ describe('LuxMenuComponent', () => {
   }));
 
   it('Sollte zur Laufzeit weitere Menu-Items hinzufügen können', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     LuxTestHelper.wait(fixture);
 

@@ -96,7 +96,7 @@ describe('LuxInputComponent', () => {
         fixture.detectChanges();
         const textInput = fixture.debugElement.query(By.css('#text')).componentInstance;
         let errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeFalsy(`Vorbedingung 1`);
+        expect(errorEl).toBeFalsy();
 
         // Änderungen durchführen
         LuxTestHelper.wait(fixture);
@@ -106,9 +106,9 @@ describe('LuxInputComponent', () => {
 
         // Nachbedingungen testen
         errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-        expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld', `Nachbedingung 1`);
-        expect(textInput.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+        expect(errorEl).toBeTruthy();
+        expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld');
+        expect(textInput.formControl.valid).toBeFalsy();
       }));
 
       it('Sollte einen Startwert setzen', fakeAsync(() => {
@@ -121,7 +121,7 @@ describe('LuxInputComponent', () => {
       }));
 
       it('Sollte required sein', fakeAsync(() => {
-        // Vorbedingungen prüfen
+        // Vorbedingungen testen
         fixture.detectChanges();
         const luxInput: LuxInputComponent = fixture.debugElement.query(By.css('#text')).componentInstance;
         expect(testComponent.formGroup.get('text').valid).toBe(true);
@@ -495,7 +495,7 @@ describe('LuxInputComponent', () => {
         fixture.detectChanges();
         const numberInput = fixture.debugElement.query(By.css('#amount1')).componentInstance;
         let errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeFalsy(`Vorbedingung 1`);
+        expect(errorEl).toBeFalsy();
 
         // Änderungen durchführen
         LuxTestHelper.wait(fixture);
@@ -506,9 +506,9 @@ describe('LuxInputComponent', () => {
 
         // Nachbedingungen testen
         errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-        expect(errorEl.nativeElement.innerText.trim()).toEqual('Der Maximalwert ist 10', `Nachbedingung 1`);
-        expect(numberInput.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+        expect(errorEl).toBeTruthy();
+        expect(errorEl.nativeElement.innerText.trim()).toEqual('Der Maximalwert ist 10');
+        expect(numberInput.formControl.valid).toBeFalsy();
       }));
 
       it('Sollte einen Startwert setzen', fakeAsync(() => {
@@ -521,7 +521,7 @@ describe('LuxInputComponent', () => {
       }));
 
       it('Sollte required sein', fakeAsync(() => {
-        // Vorbedingungen prüfen
+        // Vorbedingungen testen
         fixture.detectChanges();
         const luxInput: LuxInputComponent = fixture.debugElement.query(By.css('#amount0')).componentInstance;
         expect(testComponent.formGroup.get('amount0').valid).toBe(true);
@@ -591,8 +591,8 @@ describe('LuxInputComponent', () => {
         // Vorbedingungen testen
         const textInput = fixture.debugElement.query(By.css('#text')).componentInstance;
         let errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeFalsy(`Vorbedingung 1`);
-        expect(textInput.formControl.valid).toBeTruthy(`Vorbedingung 2`);
+        expect(errorEl).toBeFalsy();
+        expect(textInput.formControl.valid).toBeTruthy();
 
         // Änderungen durchführen
         testComponent.validators = Validators.compose([Validators.required]);
@@ -603,9 +603,9 @@ describe('LuxInputComponent', () => {
 
         // Nachbedingungen testen
         errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-        expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld', `Nachbedingung 1`);
-        expect(textInput.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+        expect(errorEl).toBeTruthy();
+        expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld');
+        expect(textInput.formControl.valid).toBeFalsy();
       }));
 
       it('Sollte einen Startwert setzen', fakeAsync(() => {
@@ -657,8 +657,8 @@ describe('LuxInputComponent', () => {
         // Vorbedingungen testen
         const numberInput = fixture.debugElement.query(By.css('#amount1')).componentInstance;
         let errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeFalsy(`Vorbedingung 1`);
-        expect(numberInput.formControl.valid).toBeTruthy(`Vorbedingung 2`);
+        expect(errorEl).toBeFalsy();
+        expect(numberInput.formControl.valid).toBeTruthy();
 
         // Änderungen durchführen
         testComponent.validators = Validators.compose([Validators.max(10)]);
@@ -670,9 +670,9 @@ describe('LuxInputComponent', () => {
 
         // Nachbedingungen testen
         errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-        expect(errorEl.nativeElement.innerText.trim()).toEqual('Der Maximalwert ist 10', `Nachbedingung 1`);
-        expect(numberInput.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+        expect(errorEl).toBeTruthy();
+        expect(errorEl.nativeElement.innerText.trim()).toEqual('Der Maximalwert ist 10');
+        expect(numberInput.formControl.valid).toBeFalsy();
       }));
 
       it('Sollte einen Startwert setzen', fakeAsync(() => {
@@ -719,12 +719,12 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte sowohl Pre- als auch Suffix darstellen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let suffix = fixture.debugElement.query(By.css('lux-input-suffix'));
       let prefix = fixture.debugElement.query(By.css('lux-input-prefix'));
 
-      expect(prefix).toBeFalsy('Vorbedingung 1');
-      expect(suffix).toBeFalsy('Vorbedingung 2');
+      expect(prefix).toBeFalsy();
+      expect(suffix).toBeFalsy();
 
       // Änderungen durchführen
       testComponent.showPrefix = true;
@@ -735,10 +735,10 @@ describe('LuxInputComponent', () => {
       suffix = fixture.debugElement.query(By.css('lux-input-suffix'));
       prefix = fixture.debugElement.query(By.css('lux-input-prefix'));
 
-      expect(prefix).toBeDefined('Nachbedingung 1');
-      expect(prefix.nativeElement.innerText.trim()).toEqual('prefix', 'Nachbedingung 2');
-      expect(suffix).toBeDefined('Nachbedingung 3');
-      expect(suffix.nativeElement.innerText.trim()).toEqual('suffix', 'Nachbedingung 4');
+      expect(prefix).toBeDefined();
+      expect(prefix.nativeElement.innerText.trim()).toEqual('prefix');
+      expect(suffix).toBeDefined();
+      expect(suffix.nativeElement.innerText.trim()).toEqual('suffix');
     }));
   });
 
@@ -809,7 +809,7 @@ describe('LuxInputComponent', () => {
       LuxTestHelper.typeInElement(inputEl.nativeElement, 'Lorem ipsum');
       LuxTestHelper.wait(fixture);
 
-      // Vorbedingung Prüfen
+      // Vorbedingungen testen
       let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
       expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
 
@@ -836,7 +836,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte im Label nicht "undefined" oder "null" anzeigen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const label = fixture.debugElement.query(By.css('.lux-label'));
       expect(label.nativeElement.textContent.trim()).not.toEqual(undefined);
       expect(label.nativeElement.textContent.trim()).not.toEqual(null);
@@ -859,7 +859,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte das Label anpassen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let label = fixture.debugElement.query(By.css('.lux-label'));
       expect(label.nativeElement.textContent.trim()).toEqual('');
 
@@ -873,7 +873,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte den Hint anpassen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let hint = fixture.debugElement.query(By.css('mat-hint'));
       expect(hint).toBeNull();
 
@@ -887,7 +887,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte den Placeholder anpassen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const input = fixture.debugElement.query(By.css('input'));
       expect(input.attributes.placeholder).toBeFalsy();
 
@@ -900,7 +900,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte readonly sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const input = fixture.debugElement.query(By.css('input'));
       expect(input.attributes.readonly).toBeFalsy();
 
@@ -913,7 +913,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte disabled sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const input = fixture.debugElement.query(By.css('input'));
       expect(input.nativeElement.disabled).toBe(false);
 
@@ -926,7 +926,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte required sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const luxInput: LuxInputComponent = fixture.debugElement.query(By.directive(LuxInputComponent)).componentInstance;
       const input = fixture.debugElement.query(By.css('input'));
       expect(input.nativeElement.required).toEqual(false);
@@ -945,16 +945,16 @@ describe('LuxInputComponent', () => {
 
       // Nachbedingungen prüfen
       expect(luxInput.formControl.valid).toBe(false);
-      expect(luxInput.formControl.errors).not.toBe(null);
+      expect(luxInput.formControl.errors).not.toBeNull();
       expect(luxInput.formControl.errors.required).toBe(true);
     }));
 
     it('Sollte CSS-Class für linksbündige Zahlen einbauen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       testComponent.type = 'number';
       LuxTestHelper.wait(fixture);
       let inputLeftNumber = fixture.debugElement.query(By.css('input.lux-number-left'));
-      expect(inputLeftNumber).toBe(null);
+      expect(inputLeftNumber).toBeNull();
 
       // Änderungen durchführen
       testComponent.numberLeft = true;
@@ -962,11 +962,11 @@ describe('LuxInputComponent', () => {
 
       // Nachbedingungen prüfen
       inputLeftNumber = fixture.debugElement.query(By.css('input.lux-number-left'));
-      expect(inputLeftNumber).not.toBe(null);
+      expect(inputLeftNumber).not.toBeNull();
     }));
 
     it('Sollte luxValueChange angemessen oft aufrufen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const spy = spyOn(testComponent, 'valueChanged');
       LuxTestHelper.wait(fixture);
 

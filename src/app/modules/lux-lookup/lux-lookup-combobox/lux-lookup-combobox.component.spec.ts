@@ -36,8 +36,8 @@ describe('LuxLookupComboboxComponent', () => {
     it('Validatoren setzen und korrekte Fehlermeldung anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       let errorEl = fixture.debugElement.query(By.css('mat-error'));
-      expect(errorEl).toBeNull(`Vorbedingung 1`);
-      expect(combobox.formControl.valid).toBeTruthy(`Vorbedingung 2`);
+      expect(errorEl).toBeNull();
+      expect(combobox.formControl.valid).toBeTruthy();
 
       // Änderungen durchführen
       component.validators = Validators.compose([Validators.required]);
@@ -48,9 +48,9 @@ describe('LuxLookupComboboxComponent', () => {
 
       // Nachbedingungen testen
       errorEl = fixture.debugElement.query(By.css('mat-error'));
-      expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-      expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld', `Nachbedingung 1`);
-      expect(combobox.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+      expect(errorEl).toBeTruthy();
+      expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld');
+      expect(combobox.formControl.valid).toBeFalsy();
 
       discardPeriodicTasks();
     }));

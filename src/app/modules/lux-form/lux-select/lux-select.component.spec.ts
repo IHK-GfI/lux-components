@@ -123,7 +123,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Den Wert und die Options mit leichter Verzögerung setzen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const luxSelect = fixture.debugElement.query(By.directive(LuxSelectComponent)).componentInstance;
       const mockData = [...testComponent.allHobbies];
 
@@ -143,7 +143,7 @@ describe('LuxSelectComponent', () => {
 
     it('Sollte required sein', fakeAsync(() => {
       fixture.detectChanges();
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const luxSelect: LuxSelectComponent = fixture.debugElement.query(By.directive(LuxSelectComponent))
         .componentInstance;
       expect(luxSelect.luxRequired).toBeFalsy();
@@ -215,7 +215,7 @@ describe('LuxSelectComponent', () => {
       const selectComponent: LuxSelectComponent = fixture.debugElement.query(By.directive(LuxSelectComponent))
         .componentInstance;
       let errorEl = fixture.debugElement.query(By.css('mat-error'));
-      expect(errorEl).toBeFalsy(`Vorbedingung 1`);
+      expect(errorEl).toBeFalsy();
 
       // Änderungen durchführen
       testComponent.validators = Validators.required;
@@ -226,13 +226,13 @@ describe('LuxSelectComponent', () => {
 
       // Nachbedingungen testen
       errorEl = fixture.debugElement.query(By.css('mat-error'));
-      expect(errorEl.nativeElement.innerText.trim().length).toBeGreaterThan(0, `Nachbedingung 1`);
-      expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld', `Nachbedingung 1`);
-      expect(selectComponent.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+      expect(errorEl.nativeElement.innerText.trim().length).toBeGreaterThan(0);
+      expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld');
+      expect(selectComponent.formControl.valid).toBeFalsy();
     }));
 
     it('Array als Value', fakeAsync(() => {
-      // Vorbedingung prüfen
+      // Vorbedingungen testen
       testComponent.options = [
         { label: '0', value: ['0', '1', '2'] },
         { label: '1', value: ['3', '4', '5'] },
@@ -241,20 +241,20 @@ describe('LuxSelectComponent', () => {
       ] as any;
       testComponent.selectedOption = undefined;
       LuxTestHelper.wait(fixture);
-      expect(testComponent.select.luxSelected).toBeUndefined('Vorbedingung 1');
+      expect(testComponent.select.luxSelected).toBeUndefined();
 
       // Änderungen durchführen
       testComponent.selectedOption = testComponent.options[1];
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(testComponent.select.luxSelected).toEqual(testComponent.options[1], 'Nachbedingung 1');
+      expect(testComponent.select.luxSelected).toEqual(testComponent.options[1]);
 
       flush();
     }));
 
     it('Kein initiales Change-Event ausgeben', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       // Die Component muss neu initialisiert werden
       fixture = TestBed.createComponent(SelectOutsideFormComponent);
       testComponent = fixture.componentInstance;
@@ -263,20 +263,20 @@ describe('LuxSelectComponent', () => {
 
       LuxTestHelper.wait(fixture);
 
-      expect(changeEventSpy).toHaveBeenCalledTimes(0); // Vorbedingung 1
+      expect(changeEventSpy).toHaveBeenCalledTimes(0);
 
       // Änderungen durchführen
       testComponent.selectedOption = testComponent.options[0];
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(changeEventSpy).toHaveBeenCalledTimes(1); // Nachbedingung 1
+      expect(changeEventSpy).toHaveBeenCalledTimes(1);
 
       flush();
     }));
 
     it('Sollte required sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const luxInput: LuxSelectComponent = fixture.debugElement.query(By.directive(LuxSelectComponent))
         .componentInstance;
       let selectRequired = fixture.debugElement.query(By.css('.mat-select-required'));
@@ -302,7 +302,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte readonly sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let readonlySelect = fixture.debugElement.query(By.css('lux-select .lux-form-control-readonly'));
       expect(readonlySelect).toBeNull();
 
@@ -316,7 +316,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte disabled sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let disabledSelect = fixture.debugElement.query(By.css('lux-select .lux-form-control-disabled'));
       expect(disabledSelect).toBeNull();
 
@@ -330,7 +330,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte das Label darstellen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let label = fixture.debugElement.query(By.css('.lux-label'));
       expect(label.nativeElement.textContent.trim()).toEqual('');
 
@@ -344,7 +344,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte den Placeholder darstellen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let placeholder = fixture.debugElement.query(By.css('.mat-select-placeholder'));
       expect(placeholder.nativeElement.textContent.trim()).toEqual('');
 
@@ -358,7 +358,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte den Hint darstellen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let hint = fixture.debugElement.query(By.css('mat-hint'));
       expect(hint).toBeNull();
 
@@ -453,7 +453,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Array als Value', fakeAsync(() => {
-      // Vorbedingung prüfen
+      // Vorbedingungen testen
       testComponent.options = [
         ['0', '1', '2'],
         ['3', '4', '5'],
@@ -462,14 +462,14 @@ describe('LuxSelectComponent', () => {
       ] as any;
       testComponent.selectedOption = undefined;
       LuxTestHelper.wait(fixture);
-      expect(testComponent.select.luxSelected).toBeUndefined('Vorbedingung 1');
+      expect(testComponent.select.luxSelected).toBeUndefined();
 
       // Änderungen durchführen
       testComponent.selectedOption = testComponent.options[1];
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(testComponent.select.luxSelected).toEqual(testComponent.options[1], 'Nachbedingung 1');
+      expect(testComponent.select.luxSelected).toEqual(testComponent.options[1]);
 
       flush();
     }));
@@ -487,7 +487,7 @@ describe('LuxSelectComponent', () => {
         flush();
       };
 
-      // Vorbedingung prüfen
+      // Vorbedingungen testen
       testComponent.options.unshift(null, undefined, '');
       LuxTestHelper.wait(fixture);
 
@@ -560,16 +560,16 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('nur Werte und keine Objekte emitten', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       testComponent.selectedOption = testComponent.options[1];
-      expect(testComponent.selectedOption).toEqual(testComponent.options[1], 'Vorbedingung 1');
+      expect(testComponent.selectedOption).toEqual(testComponent.options[1]);
 
       // Änderungen durchführen
       fixture.detectChanges();
       flush();
 
       // Nachbedingungen prüfen
-      expect(testComponent.selectedOption).toEqual('B', 'Nachbedingung 1');
+      expect(testComponent.selectedOption).toEqual('B');
 
       // Änderungen durchführen
       testComponent.selectedOption = testComponent.options[2];
@@ -577,11 +577,11 @@ describe('LuxSelectComponent', () => {
       flush();
 
       // Nachbedingungen prüfen
-      expect(testComponent.selectedOption).toEqual('C', 'Nachbedingung 2');
+      expect(testComponent.selectedOption).toEqual('C');
     }));
 
     it('Array als Value', fakeAsync(() => {
-      // Vorbedingung prüfen
+      // Vorbedingungen testen
       testComponent.options = [
         { label: '0', value: ['0', '1', '2'] },
         { label: '1', value: ['3', '4', '5'] },
@@ -590,7 +590,7 @@ describe('LuxSelectComponent', () => {
       ] as any;
       testComponent.selectedOption = undefined;
       LuxTestHelper.wait(fixture);
-      expect(testComponent.select.luxSelected).toBeUndefined('Vorbedingung 1');
+      expect(testComponent.select.luxSelected).toBeUndefined();
 
       // Änderungen durchführen
       testComponent.selectedOption = testComponent.options[1];
@@ -598,7 +598,7 @@ describe('LuxSelectComponent', () => {
       flush();
 
       // Nachbedingungen prüfen
-      expect(testComponent.select.luxSelected).toEqual(testComponent.options[1].value, 'Nachbedingung 1');
+      expect(testComponent.select.luxSelected).toEqual(testComponent.options[1].value);
     }));
   });
 
@@ -619,14 +619,14 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('nur Werte und keine Objekte emitten', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       testComponent.formGroup.get('hobbies').setValue(testComponent.options[1]);
       // Änderungen durchführen
       LuxTestHelper.wait(fixture);
       flush();
 
       // Nachbedingungen prüfen
-      expect(testComponent.formGroup.value.hobbies).toEqual('B', 'Nachbedingung 1');
+      expect(testComponent.formGroup.value.hobbies).toEqual('B');
 
       // Änderungen durchführen
       testComponent.formGroup.get('hobbies').setValue(testComponent.options[2]);
@@ -634,7 +634,7 @@ describe('LuxSelectComponent', () => {
       flush();
 
       // Nachbedingungen prüfen
-      expect(testComponent.formGroup.value.hobbies).toEqual('C', 'Nachbedingung 2');
+      expect(testComponent.formGroup.value.hobbies).toEqual('C');
     }));
   });
 
@@ -655,7 +655,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte mehrere Werte selektieren können (über PopUp)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(testComponent.selectedOption).toEqual([]);
 
       // Änderungen durchführen
@@ -686,7 +686,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte mehrere Werte selektieren können (über Value)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const luxSelect: LuxSelectComponent = fixture.debugElement.query(By.directive(LuxSelectComponent))
         .componentInstance;
       expect(testComponent.selectedOption).toEqual([]);
@@ -705,7 +705,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte mehrere Werte selektieren können (mit ValueHook)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const luxSelect: LuxSelectComponent = fixture.debugElement.query(By.directive(LuxSelectComponent))
         .componentInstance;
       expect(testComponent.selectedOption).toEqual([]);
@@ -726,7 +726,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte mehrere Werte selektieren können (mit String-Options)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const luxSelect: LuxSelectComponent = fixture.debugElement.query(By.directive(LuxSelectComponent))
         .componentInstance;
       expect(testComponent.selectedOption).toEqual([]);
@@ -745,7 +745,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte falsche Werte auslassen und einen Fehler loggen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(testComponent.selectedOption).toEqual([]);
 
       // Änderungen durchführen
@@ -776,7 +776,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte die Options richtig darstellen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let optionTexts = overlayContainerElement.querySelectorAll('.mat-option-text');
       expect(optionTexts.length).toBe(0);
 
@@ -795,7 +795,7 @@ describe('LuxSelectComponent', () => {
     }));
 
     it('Sollte ngTemplate luxOptionLabelProp vorziehen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let optionTexts = overlayContainerElement.querySelectorAll('.mat-option-text');
       expect(optionTexts.length).toBe(0);
 

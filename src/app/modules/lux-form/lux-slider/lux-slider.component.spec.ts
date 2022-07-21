@@ -25,12 +25,12 @@ describe('LuxSliderComponent', () => {
       fixture.detectChanges();
       sliderComponent = fixture.debugElement.query(By.directive(LuxSliderComponent)).componentInstance;
     });
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     // Änderungen durchführen
     // Nachbedingungen prüfen
 
     it('Sollte den Wert setzen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(component.form.value.slider).toEqual(0);
 
       // Änderungen durchführen
@@ -43,7 +43,7 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte den Wert und Prozent-Wert richtig emitten (bei geändertem Max/Min Wert)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const valueSpy = spyOn(component, 'valueChanged');
       const percentSpy = spyOn(component, 'percentChanged');
 
@@ -67,7 +67,7 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte den Min- und Max-Wert nicht überschreiten', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(component.form.get('slider').value).toEqual(0);
       expect(sliderComponent.luxValue).toEqual(0);
 
@@ -92,9 +92,9 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte deaktiviert werden (über die Property)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let disabledSlider = fixture.debugElement.query(By.css('.mat-slider-disabled'));
-      expect(disabledSlider).toBe(null);
+      expect(disabledSlider).toBeNull();
       expect(sliderComponent.luxDisabled).toBe(false);
 
       // Änderungen durchführen
@@ -108,7 +108,7 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte deaktiviert werden (über die FormControl)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(sliderComponent.formControl.disabled).toBe(false);
 
       // Änderungen durchführen
@@ -133,7 +133,7 @@ describe('LuxSliderComponent', () => {
     });
 
     it('Sollte den Wert setzen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(component.value).toEqual(0);
       expect(sliderComponent.luxValue).toEqual(0);
 
@@ -147,7 +147,7 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte den Wert und Prozent-Wert richtig emitten (bei geändertem Max/Min Wert)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const valueSpy = spyOn(component, 'valueChanged');
       const percentSpy = spyOn(component, 'percentChanged');
 
@@ -171,9 +171,9 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte deaktiviert werden', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let disabledSlider = fixture.debugElement.query(By.css('.mat-slider-disabled'));
-      expect(disabledSlider).toBe(null);
+      expect(disabledSlider).toBeNull();
       expect(sliderComponent.luxDisabled).toBe(false);
 
       // Änderungen durchführen
@@ -187,7 +187,7 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte den Min- und Max-Wert nicht überschreiten', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(component.value).toEqual(0);
       expect(sliderComponent.luxValue).toEqual(0);
 
@@ -212,7 +212,7 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte den Thumb-Label anzeigen und verstecken', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let thumbLabel = fixture.debugElement.query(By.css('.mat-slider-thumb-label-showing .mat-slider-thumb-label'));
       expect(thumbLabel).toBeDefined();
 
@@ -222,11 +222,11 @@ describe('LuxSliderComponent', () => {
 
       // Nachbedingungen prüfen
       thumbLabel = fixture.debugElement.query(By.css('.mat-slider-thumb-label-showing .mat-slider-thumb-label'));
-      expect(thumbLabel).toBe(null);
+      expect(thumbLabel).toBeNull();
     }));
 
     it('Sollte die displayWith-Funktion korrekt ausführen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let thumbLabelText = fixture.debugElement.query(By.css('.mat-slider-thumb-label-text'));
       expect(thumbLabelText.nativeElement.textContent).toEqual('0');
 

@@ -32,7 +32,7 @@ describe('LuxFilterFormComponent', () => {
     // Init
     const spy = spyOn(component, 'onFilter').and.callThrough();
 
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     expect(component.filterComponent.filterForm.get('input').value).toBeUndefined();
 
     // Änderungen durchführen
@@ -48,7 +48,7 @@ describe('LuxFilterFormComponent', () => {
     // Init
     const spy = spyOn(component, 'onFilter').and.callThrough();
 
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     expect(component.filterComponent.filterForm.get('input').value).toBeUndefined();
 
     // Änderungen durchführen
@@ -65,7 +65,7 @@ describe('LuxFilterFormComponent', () => {
     // Init
     const spy = spyOn(component, 'onFilter').and.callThrough();
 
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     expect(component.filterComponent.luxFilterValues).toEqual({});
 
     // Änderungen durchführen

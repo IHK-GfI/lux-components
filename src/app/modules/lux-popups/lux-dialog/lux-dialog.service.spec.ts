@@ -43,7 +43,7 @@ describe('LuxDialogService', () => {
 
   describe('[LuxDialogPresetComponent]', () => {
     it('Sollte den Dialog öffnen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
 
       // Änderungen durchführen
@@ -60,7 +60,7 @@ describe('LuxDialogService', () => {
       });
       LuxTestHelper.wait(fixture);
 
-      expect(overlayHelper.selectOneFromOverlay('lux-dialog-title')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('lux-dialog-title')).not.toBeNull();
       expect(overlayHelper.selectOneFromOverlay('lux-dialog-title').textContent.trim()).toEqual('Hallo Welt');
     }));
 
@@ -70,7 +70,7 @@ describe('LuxDialogService', () => {
       });
       LuxTestHelper.wait(fixture);
 
-      expect(overlayHelper.selectOneFromOverlay('lux-dialog-content')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('lux-dialog-content')).not.toBeNull();
       expect(overlayHelper.selectOneFromOverlay('lux-dialog-content').textContent.trim()).toEqual('Hallo Welt');
     }));
 
@@ -80,18 +80,18 @@ describe('LuxDialogService', () => {
       });
       LuxTestHelper.wait(fixture);
 
-      expect(overlayHelper.selectOneFromOverlay('lux-dialog-content')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('lux-dialog-content')).not.toBeNull();
       expect(overlayHelper.selectOneFromOverlay('lux-dialog-content').textContent.trim()).toEqual('Hallo Welt');
     }));
 
     it('Sollte die ConfirmAction beachten', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       dialogRef = testComponent.dialogService.open({
         confirmAction: undefined
       });
       LuxTestHelper.wait(fixture);
 
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm')).toBeNull();
 
       // Änderungen durchführen
       dialogRef.closeDialog(true);
@@ -106,21 +106,21 @@ describe('LuxDialogService', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm')).not.toBe(null);
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .mat-raised-button')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm')).not.toBeNull();
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .mat-raised-button')).not.toBeNull();
       expect(
         overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .lux-button-label').textContent.trim()
       ).toEqual('Hallo Welt');
     }));
 
     it('Sollte die DeclineAction beachten', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       dialogRef = testComponent.dialogService.open({
         declineAction: undefined
       });
       LuxTestHelper.wait(fixture);
 
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline')).toBeNull();
 
       // Änderungen durchführen
       dialogRef.closeDialog(true);
@@ -135,34 +135,34 @@ describe('LuxDialogService', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline')).not.toBe(null);
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .mat-raised-button')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline')).not.toBeNull();
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .mat-raised-button')).not.toBeNull();
       expect(
         overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .lux-button-label').textContent.trim()
       ).toEqual('Hallo Welt');
     }));
 
     it('Sollte den Dialog schließen', fakeAsync(() => {
-      // Vorbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      // Vorbedingungen testen
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
 
       // Änderungen durchführen
       dialogRef = testComponent.dialogService.open({});
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBeNull();
 
       // Änderungen durchführen
       dialogRef.closeDialog(true);
       waitForDialogClosure();
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
     }));
 
     it('Sollte dialogConfirmed aufrufen', fakeAsync(() => {
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
 
       // Änderungen durchführen
       dialogRef = testComponent.dialogService.open({
@@ -180,7 +180,7 @@ describe('LuxDialogService', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBeNull();
       expect(spy).toHaveBeenCalledTimes(0);
 
       // Änderungen durchführen
@@ -188,12 +188,12 @@ describe('LuxDialogService', () => {
       waitForDialogClosure();
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
       expect(spy).toHaveBeenCalledTimes(1);
     }));
 
     it('Sollte declineConfirmed aufrufen', fakeAsync(() => {
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
 
       // Änderungen durchführen
       dialogRef = testComponent.dialogService.open({
@@ -211,7 +211,7 @@ describe('LuxDialogService', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBeNull();
       expect(spy).toHaveBeenCalledTimes(0);
 
       // Änderungen durchführen
@@ -219,12 +219,12 @@ describe('LuxDialogService', () => {
       waitForDialogClosure();
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
       expect(spy).toHaveBeenCalledTimes(1);
     }));
 
     it('Sollte dialogClosed aufrufen', fakeAsync(() => {
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
 
       // Änderungen durchführen
       dialogRef = testComponent.dialogService.open({
@@ -242,7 +242,7 @@ describe('LuxDialogService', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBeNull();
       expect(spy).toHaveBeenCalledTimes(0);
 
       // Änderungen durchführen
@@ -250,48 +250,48 @@ describe('LuxDialogService', () => {
       waitForDialogClosure();
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
       expect(spy).toHaveBeenCalledTimes(1);
     }));
   });
 
   describe('[LuxDialogStructureComponent]', () => {
     it('Sollte den Dialog öffnen', fakeAsync(() => {
-      // Vorbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      // Vorbedingungen testen
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
 
       // Änderungen durchführen
       dialogRef = testComponent.dialogService.openComponent(MockCustomDialogComponent);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBeNull();
       expect(overlayHelper.selectOneFromOverlay('.mock-dialog-title').textContent.trim()).toEqual('Title');
       expect(overlayHelper.selectOneFromOverlay('.mock-dialog-content').textContent.trim()).toEqual('Content');
-      expect(overlayHelper.selectOneFromOverlay('.mock-dialog-action-ok')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.mock-dialog-action-ok')).not.toBeNull();
     }));
 
     it('Sollte den Dialog schließen', fakeAsync(() => {
-      // Vorbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      // Vorbedingungen testen
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
 
       // Änderungen durchführen
       dialogRef = testComponent.dialogService.openComponent(MockCustomDialogComponent);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBeNull();
 
       // Änderungen durchführen
       overlayHelper.selectOneFromOverlay('.mock-dialog-action-ok button').click();
       waitForDialogClosure();
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
     }));
 
     it('Sollte dialogClosed aufrufen', fakeAsync(() => {
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
 
       // Änderungen durchführen
       dialogRef = testComponent.dialogService.openComponent(MockCustomDialogComponent);
@@ -305,7 +305,7 @@ describe('LuxDialogService', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBeNull();
       expect(spy).toHaveBeenCalledTimes(0);
 
       // Änderungen durchführen
@@ -313,7 +313,7 @@ describe('LuxDialogService', () => {
       waitForDialogClosure();
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBe(null);
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
       expect(spy).toHaveBeenCalledTimes(1);
     }));
   });

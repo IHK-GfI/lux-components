@@ -148,8 +148,8 @@ class Checker {
     fixture.detectChanges();
 
     // Nachbedingungen testen
-    expect(fixture.componentInstance.disabled).toBeFalsy('Nachbedingung 1');
-    expect(buttonEl.nativeElement.disabled).toBeFalsy('Nachbedingung 2');
+    expect(fixture.componentInstance.disabled).toBeFalsy();
+    expect(buttonEl.nativeElement.disabled).toBeFalsy();
     expect(buttonEl.nativeElement.innerHTML).toContain('Lorum ipsum 4711');
     expect(onClickSpy).toHaveBeenCalled();
 
@@ -170,8 +170,8 @@ class Checker {
     fixture.detectChanges();
 
     // Nachbedingungen testen
-    expect(fixture.componentInstance.disabled).toBeTruthy('Nachbedingung 1');
-    expect(buttonEl.nativeElement.disabled).toBeTruthy('Nachbedingung 2');
+    expect(fixture.componentInstance.disabled).toBeTruthy();
+    expect(buttonEl.nativeElement.disabled).toBeTruthy();
     expect(buttonEl.nativeElement.innerHTML).toContain('Lorum ipsum 4711');
     expect(onClickSpy).not.toHaveBeenCalled();
   }

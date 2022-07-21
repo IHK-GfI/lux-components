@@ -51,7 +51,7 @@ describe('LuxAutocompleteComponent', () => {
         expect(component.autocomplete.luxValue).toEqual(component.options[1]);
         expect(component.formGroup.get('aufgaben').value).toEqual(component.options[1]);
         expect(component.autocomplete.matInput.nativeElement.value).toEqual('Gruppenaufgaben');
-        expect(component.autocomplete.matInput.nativeElement.required).toBeFalsy('Nachbedingung 2');
+        expect(component.autocomplete.matInput.nativeElement.required).toBeFalsy();
         discardPeriodicTasks();
       }));
 
@@ -70,7 +70,7 @@ describe('LuxAutocompleteComponent', () => {
         expect(component.autocomplete.luxValue).toEqual(component.options[3]);
         expect(component.formGroup.get('aufgaben').value).toEqual(component.options[3]);
         expect(component.autocomplete.matInput.nativeElement.value).toEqual('Vertretungsaufgaben');
-        expect(component.autocomplete.matInput.nativeElement.required).toBeFalsy('Nachbedingung 2');
+        expect(component.autocomplete.matInput.nativeElement.required).toBeFalsy();
         discardPeriodicTasks();
       }));
 
@@ -195,7 +195,7 @@ describe('LuxAutocompleteComponent', () => {
 
       it('Wert über die Component setzen', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(component.selected).toBeUndefined(`Vorbedingung 1`);
+        expect(component.selected).toBeUndefined();
 
         // Änderungen durchführen
         component.selected = component.options[2];
@@ -208,7 +208,7 @@ describe('LuxAutocompleteComponent', () => {
 
       it('Wert über das Textfeld setzen', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(component.selected).toBeUndefined(`Vorbedingung 1`);
+        expect(component.selected).toBeUndefined();
 
         // Änderungen durchführen
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Vertretungsaufgaben');
@@ -224,8 +224,8 @@ describe('LuxAutocompleteComponent', () => {
 
       it('Wert der keiner Option entspricht', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(component.selected).toBeUndefined(`Vorbedingung 1`);
-        expect(component.strict).toBeTruthy(`Vorbedingung 2`);
+        expect(component.selected).toBeUndefined();
+        expect(component.strict).toBeTruthy();
 
         // Änderungen durchführen
         component.strict = false;
@@ -237,7 +237,7 @@ describe('LuxAutocompleteComponent', () => {
         removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // Nachbedingungen testen
-        expect(component.strict).toBeFalsy('Nachbedingung 1');
+        expect(component.strict).toBeFalsy();
         expect(component.selected).toEqual('zzz');
         expect(component.autocomplete.matInput.nativeElement.value).toEqual('zzz');
         discardPeriodicTasks();
@@ -245,7 +245,7 @@ describe('LuxAutocompleteComponent', () => {
 
       it('Unvollständigen Wert über das Textfeld setzen', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(component.selected).toBeUndefined(`Vorbedingung 1`);
+        expect(component.selected).toBeUndefined();
 
         // Änderungen durchführen
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Ver');
@@ -262,7 +262,7 @@ describe('LuxAutocompleteComponent', () => {
       it('Wert über Popup auswählen', fakeAsync(() => {
         // Vorbedingungen testen
         expect(component.autocomplete.matInput.nativeElement.value).toEqual('');
-        expect(component.selected).toBeUndefined(`Vorbedingung 1`);
+        expect(component.selected).toBeUndefined();
 
         // Änderungen durchführen
         LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'meine');
@@ -295,7 +295,7 @@ describe('LuxAutocompleteComponent', () => {
 
       it('Neue Option auswählen', fakeAsync((done) => {
         // Vorbedingungen testen
-        expect(component.selected).toBeUndefined('Vorbedingung 1');
+        expect(component.selected).toBeUndefined();
         const spy = spyOn(component, 'setSelected').and.callThrough();
 
         // 1. Durchlauf mit dem Wert "Gruppenaufgaben"
@@ -327,7 +327,7 @@ describe('LuxAutocompleteComponent', () => {
 
       it('Gleiche Option auswählen', fakeAsync((done) => {
         // Vorbedingungen testen
-        expect(component.selected).toBeUndefined('Vorbedingung 1');
+        expect(component.selected).toBeUndefined();
         const spy = spyOn(component, 'setSelected').and.callThrough();
 
         // 1. Durchlauf
@@ -353,7 +353,7 @@ describe('LuxAutocompleteComponent', () => {
 
       it('Option deselektieren', fakeAsync((done) => {
         // Vorbedingungen testen
-        expect(component.selected).toBeUndefined('Vorbedingung 1');
+        expect(component.selected).toBeUndefined();
         const spy = spyOn(component, 'setSelected').and.callThrough();
 
         // Ein Element auswählen
@@ -371,7 +371,7 @@ describe('LuxAutocompleteComponent', () => {
         removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
 
         // Nachbedingungen testen
-        expect(component.selected).toBeNull('Nachbedingung 1');
+        expect(component.selected).toBeNull();
         expect(component.autocomplete.matInput.nativeElement.value).toEqual('');
         expect(spy).toHaveBeenCalledTimes(2);
         discardPeriodicTasks();
@@ -458,8 +458,8 @@ describe('LuxAutocompleteComponent', () => {
     });
 
     it('Wert über Textfeld setzen', fakeAsync((done) => {
-      expect(component.selected).toBeUndefined('Vorbedingung 1');
-      expect(component.twoWaySelected).toBeUndefined('Vorbedingung 2');
+      expect(component.selected).toBeUndefined();
+      expect(component.twoWaySelected).toBeUndefined();
       const onSelectedSpy = spyOn(fixture.componentInstance, 'setSelected').and.callThrough();
       expect(onSelectedSpy).toHaveBeenCalledTimes(0);
 

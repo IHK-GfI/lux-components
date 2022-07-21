@@ -199,19 +199,19 @@ describe('LuxMasterDetailComponent', () => {
   }));
 
   it('Zuerst das Template laden, dann luxSelectedDetailChange-Event emitten', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.mockItems = createMockDataArray(10);
     LuxTestHelper.wait(fixture, defaultWaitTime);
 
     const loadDetailSpy = spyOn(component, 'loadDetail').and.callFake(() => {
       // Nachbedingungen prüfen
       detailId = fixture.debugElement.query(By.css('#detail-id'));
-      expect(detailId).toBeDefined('Nachbedigung 1');
-      expect(detailId.nativeElement.textContent).toEqual('detail: 1', 'Nachbedigung 1');
+      expect(detailId).toBeDefined();
+      expect(detailId.nativeElement.textContent).toEqual('detail: 1');
     });
 
     let detailId = fixture.debugElement.query(By.css('#detail-id'));
-    expect(detailId).toBeFalsy('Vorbedingung 1');
+    expect(detailId).toBeFalsy();
     expect(loadDetailSpy).toHaveBeenCalledTimes(0);
 
     // Änderungen durchführen
@@ -220,7 +220,7 @@ describe('LuxMasterDetailComponent', () => {
   }));
 
   it('Sollte bei Änderungen an der Master-Liste korrekt zum selektierten Detail springen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.mockItems = createMockDataArray(10);
     component.detail = component.mockItems[2];
     LuxTestHelper.wait(fixture, defaultWaitTime);
@@ -280,7 +280,7 @@ describe('LuxMasterDetailComponent', () => {
 
         let expandButton = fixture.debugElement.query(By.css('.lux-master-header-collapse button'));
 
-        expect(expandButton).not.toBe(null);
+        expect(expandButton).not.toBeNull();
 
         // When
         mobileHelper.mockMobile = true;
@@ -289,7 +289,7 @@ describe('LuxMasterDetailComponent', () => {
         // Then
         expandButton = fixture.debugElement.query(By.css('.lux-master-header-collapse button'));
 
-        expect(expandButton).toBe(null);
+        expect(expandButton).toBeNull();
       })
     ));
 

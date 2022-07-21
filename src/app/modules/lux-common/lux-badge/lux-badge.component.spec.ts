@@ -52,13 +52,13 @@ describe('LuxBadgeComponent', () => {
       expect(fixture.componentInstance.iconName).toEqual('fa-gear');
 
       // Änderungen durchführen
-      fixture.componentInstance.iconName = null;
+      fixture.componentInstance.iconName = '';
       fixture.detectChanges();
 
       // Nachbedingungen testen
       const iconEl = fixture.debugElement.query(By.css('lux-icon'));
-      expect(fixture.componentInstance.iconName).toBeNull('Nachbedingung 1');
-      expect(iconEl).toBeNull('Nachbedingung 2');
+      expect(fixture.componentInstance.iconName).toEqual('');
+      expect(iconEl).toBeNull();
 
       // Änderungen durchführen
       const expectedIcon = 'fa-user';
@@ -68,7 +68,7 @@ describe('LuxBadgeComponent', () => {
       // Nachbedingungen testen
       const newIconEl = fixture.debugElement.query(By.css('lux-icon'));
       expect(fixture.componentInstance.iconName).toEqual(expectedIcon);
-      expect(newIconEl).not.toBeNull('Nachbedingung 3');
+      expect(newIconEl).not.toBeNull();
       expect(newIconEl.nativeElement.innerHTML).toContain(expectedIcon);
     }));
   });
@@ -95,7 +95,7 @@ describe('LuxBadgeComponent', () => {
       fixture.detectChanges();
 
       // Nachbedingungen testen
-      expect(fixture.componentInstance.uppercase).toBeFalsy('Nachbedingung 2');
+      expect(fixture.componentInstance.uppercase).toBeFalsy();
       expect(badgeEl.nativeElement.classList).not.toContain('lux-badge-uppercase');
 
       // Änderungen durchführen
@@ -103,7 +103,7 @@ describe('LuxBadgeComponent', () => {
       fixture.detectChanges();
 
       // Nachbedingungen testen
-      expect(fixture.componentInstance.uppercase).toBeTruthy('Nachbedingung 1');
+      expect(fixture.componentInstance.uppercase).toBeTruthy();
       expect(badgeEl.nativeElement.classList).toContain('lux-badge-uppercase');
     }));
   });

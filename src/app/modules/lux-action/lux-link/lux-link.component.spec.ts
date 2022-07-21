@@ -31,7 +31,7 @@ describe('LuxLinkComponent', () => {
   }));
 
   it('Sollte das Label darstellen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let label = fixture.debugElement.query(By.css('.lux-button-label'));
     expect(label).toBeNull();
 
@@ -45,7 +45,7 @@ describe('LuxLinkComponent', () => {
   }));
 
   it('Sollte das Icon darstellen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let icon = fixture.debugElement.query(By.css('lux-icon'));
     expect(icon).toBeNull();
 
@@ -59,7 +59,7 @@ describe('LuxLinkComponent', () => {
   }));
 
   it('Sollte das Icon mit dem Label ausgerichtet darstellen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let aligned = fixture.debugElement.query(By.css('.lux-align-baseline'));
     expect(aligned).toBeNull();
 
@@ -74,7 +74,7 @@ describe('LuxLinkComponent', () => {
   }));
 
   it('Sollte deaktiviert werden', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let disabled = fixture.debugElement.query(By.css('button[ng-reflect-disabled="true"]'));
     expect(disabled).toBeNull();
 
@@ -88,7 +88,7 @@ describe('LuxLinkComponent', () => {
   }));
 
   it('Sollte raised dargestellt werden', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let raised = fixture.debugElement.query(By.css('.mat-raised-button'));
     expect(raised).toBeNull();
 
@@ -102,7 +102,7 @@ describe('LuxLinkComponent', () => {
   }));
 
   it('Sollte den (internen) href aufrufen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const spy = spyOn(router, 'navigate').and.callFake(() => Promise.resolve(false));
     expect(spy).toHaveBeenCalledTimes(0);
 
@@ -122,7 +122,7 @@ describe('LuxLinkComponent', () => {
   }));
 
   it('Sollte den (externen) href aufrufen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const spy = spyOn(window, 'open');
     expect(spy).toHaveBeenCalledTimes(0);
 
@@ -153,7 +153,7 @@ describe('LuxLinkComponent', () => {
   }));
 
   it('Sollte den (externen) href in einem neuen Tab aufrufen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const spy = spyOn(window, 'open');
     expect(spy).toHaveBeenCalledTimes(0);
 
@@ -174,7 +174,7 @@ describe('LuxLinkComponent', () => {
   }));
 
   it('Sollte die Farbe anpassen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let color = fixture.debugElement.query(By.css('button[ng-reflect-color=""]'));
     expect(color).not.toBeNull();
 

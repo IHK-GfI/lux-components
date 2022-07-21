@@ -46,9 +46,9 @@ describe('LuxToggleComponent', () => {
 
         // Nachbedingungen testen
         const toggleEl = fixture.debugElement.query(By.css('input'));
-        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy('Nachbedingung 1');
-        expect(toggleEl.nativeElement.checked).toBeFalsy('Nachbedingung 2');
-        expect(toggleEl.nativeElement.required).toBeFalsy('Nachbedingung 3');
+        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy();
+        expect(toggleEl.nativeElement.checked).toBeFalsy();
+        expect(toggleEl.nativeElement.required).toBeFalsy();
       }));
 
       it('Sollte einen Fehler in der Console werfen, wenn luxRequired gesetzt wird', fakeAsync(() => {
@@ -56,7 +56,7 @@ describe('LuxToggleComponent', () => {
         // Vorbedingungen testen
         const consoleSpy = spyOn(console, 'error');
 
-        expect(errorElement).toBeNull(`Vorbedingung 1`);
+        expect(errorElement).toBeNull();
 
         // Änderungen durchführen
         testComponent.required = true;
@@ -66,9 +66,9 @@ describe('LuxToggleComponent', () => {
 
         // Nachbedingungen testen
         errorElement = fixture.debugElement.query(By.css('mat-error'));
-        expect(fixture.componentInstance.formGroup.get('eula').value).toBeTruthy(`Nachbedingung 1`);
-        expect(fixture.componentInstance.formGroup.get('eula').valid).toBeTruthy(`Nachbedingung 2`);
-        expect(errorElement).toBeNull(`Nachbedingung 3`);
+        expect(fixture.componentInstance.formGroup.get('eula').value).toBeTruthy();
+        expect(fixture.componentInstance.formGroup.get('eula').valid).toBeTruthy();
+        expect(errorElement).toBeNull();
         expect(consoleSpy).toHaveBeenCalledTimes(1);
       }));
     });
@@ -93,13 +93,13 @@ describe('LuxToggleComponent', () => {
 
         // Nachbedingungen testen
         const toggleEl = fixture.debugElement.query(By.css('input'));
-        expect(fixture.componentInstance.formGroup.get('eula').value).toBeTruthy('Nachbedingung 1');
-        expect(toggleEl.nativeElement.checked).toBeTruthy('Nachbedingung 2');
+        expect(fixture.componentInstance.formGroup.get('eula').value).toBeTruthy();
+        expect(toggleEl.nativeElement.checked).toBeTruthy();
       }));
 
       it('Label anklicken', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy(`Vorbedingung 1`);
+        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy();
 
         // Änderungen durchführen
         const toggleEl = fixture.debugElement.query(By.css('label'));
@@ -108,12 +108,12 @@ describe('LuxToggleComponent', () => {
         flush();
 
         // Nachbedingungen testen
-        expect(fixture.componentInstance.formGroup.get('eula').value).toBeTruthy('Nachbedingung 1');
+        expect(fixture.componentInstance.formGroup.get('eula').value).toBeTruthy();
       }));
 
       it('Toggle anklicken', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy(`Vorbedingung 1`);
+        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy();
 
         // Änderungen durchführen
         const toggleEl = fixture.debugElement.query(By.css('input'));
@@ -121,15 +121,15 @@ describe('LuxToggleComponent', () => {
         fixture.detectChanges();
 
         // Nachbedingungen testen
-        expect(fixture.componentInstance.formGroup.get('eula').value).toBeTruthy('Nachbedingung 1');
+        expect(fixture.componentInstance.formGroup.get('eula').value).toBeTruthy();
       }));
 
       it('Sollte die korrekte Fehlermeldung anzeigen', () => {
         let errorElement = fixture.debugElement.query(By.css('mat-error'));
 
         // Vorbedingungen testen
-        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy(`Vorbedingung 1`);
-        expect(errorElement).toBeNull(`Vorbedingung 2`);
+        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy();
+        expect(errorElement).toBeNull();
 
         // Änderungen durchführen
         testComponent.formGroup.get('eula').markAsTouched();
@@ -137,7 +137,7 @@ describe('LuxToggleComponent', () => {
 
         // Nachbedingungen testen
         errorElement = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorElement.nativeElement.innerText.trim()).toEqual('Das ist ein Pflichtfeld', `Nachbedingung 1`);
+        expect(errorElement.nativeElement.innerText.trim()).toEqual('Das ist ein Pflichtfeld');
       });
 
       it('Sollte einen Fehler bei Startwert "" anzeigen können', fakeAsync(() => {
@@ -146,8 +146,8 @@ describe('LuxToggleComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Vorbedingungen testen
-        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy(`Vorbedingung 1`);
-        expect(errorElement).toBeNull(`Vorbedingung 2`);
+        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy();
+        expect(errorElement).toBeNull();
 
         // Änderungen durchführen
         testComponent.formGroup.get('eula').markAsTouched();
@@ -155,7 +155,7 @@ describe('LuxToggleComponent', () => {
 
         // Nachbedingungen testen
         errorElement = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorElement.nativeElement.innerText.trim()).toEqual('Das ist ein Pflichtfeld', `Nachbedingung 1`);
+        expect(errorElement.nativeElement.innerText.trim()).toEqual('Das ist ein Pflichtfeld');
       }));
 
       it('Sollte einen Fehler bei Startwert false anzeigen können', fakeAsync(() => {
@@ -164,8 +164,8 @@ describe('LuxToggleComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Vorbedingungen testen
-        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy(`Vorbedingung 1`);
-        expect(errorElement).toBeNull(`Vorbedingung 2`);
+        expect(fixture.componentInstance.formGroup.get('eula').value).toBeFalsy();
+        expect(errorElement).toBeNull();
 
         // Änderungen durchführen
         testComponent.formGroup.get('eula').markAsTouched();
@@ -173,7 +173,7 @@ describe('LuxToggleComponent', () => {
 
         // Nachbedingungen testen
         errorElement = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorElement.nativeElement.innerText.trim()).toEqual('Das ist ein Pflichtfeld', `Nachbedingung 1`);
+        expect(errorElement.nativeElement.innerText.trim()).toEqual('Das ist ein Pflichtfeld');
       }));
 
       it('Sollte einen Fehler bei Startwert true anzeigen können', fakeAsync(() => {
@@ -182,8 +182,8 @@ describe('LuxToggleComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Vorbedingungen testen
-        expect(fixture.componentInstance.formGroup.get('eula').value).toBeTruthy(`Vorbedingung 1`);
-        expect(errorElement).toBeNull(`Vorbedingung 2`);
+        expect(fixture.componentInstance.formGroup.get('eula').value).toBeTruthy();
+        expect(errorElement).toBeNull();
 
         // Änderungen durchführen
         testComponent.formGroup.get('eula').setValue(false);
@@ -192,7 +192,7 @@ describe('LuxToggleComponent', () => {
 
         // Nachbedingungen testen
         errorElement = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorElement.nativeElement.innerText.trim()).toEqual('Das ist ein Pflichtfeld', `Nachbedingung 1`);
+        expect(errorElement.nativeElement.innerText.trim()).toEqual('Das ist ein Pflichtfeld');
       }));
     });
   });
@@ -210,7 +210,7 @@ describe('LuxToggleComponent', () => {
 
       it('Wert über die Component setzen', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(fixture.componentInstance.eula).toBeUndefined(`Vorbedingung 1`);
+        expect(fixture.componentInstance.eula).toBeUndefined();
 
         // Änderungen durchführen
         fixture.componentInstance.eula = true;
@@ -218,12 +218,12 @@ describe('LuxToggleComponent', () => {
 
         // Nachbedingungen testen
         const toggleEl = fixture.debugElement.query(By.css('input'));
-        expect(toggleEl.nativeElement.checked).toBeTruthy('Nachbedingung 1');
+        expect(toggleEl.nativeElement.checked).toBeTruthy();
       }));
 
       it('Label anklicken', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(fixture.componentInstance.eula).toBeFalsy(`Vorbedingung 1`);
+        expect(fixture.componentInstance.eula).toBeFalsy();
 
         // Änderungen durchführen
         const toggleEl = fixture.debugElement.query(By.css('label'));
@@ -232,12 +232,12 @@ describe('LuxToggleComponent', () => {
         flush();
 
         // Nachbedingungen testen
-        expect(fixture.componentInstance.eula).toBeTruthy('Nachbedingung 1');
+        expect(fixture.componentInstance.eula).toBeTruthy();
       }));
 
       it('Toggle anklicken', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(fixture.componentInstance.eula).toBeFalsy(`Vorbedingung 1`);
+        expect(fixture.componentInstance.eula).toBeFalsy();
 
         // Änderungen durchführen
         const toggleEl = fixture.debugElement.query(By.css('input'));
@@ -245,7 +245,7 @@ describe('LuxToggleComponent', () => {
         fixture.detectChanges();
 
         // Nachbedingungen testen
-        expect(fixture.componentInstance.eula).toBeTruthy('Nachbedingung 1');
+        expect(fixture.componentInstance.eula).toBeTruthy();
       }));
     });
 
@@ -261,7 +261,7 @@ describe('LuxToggleComponent', () => {
 
       it('Wert über die Component setzen', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(fixture.componentInstance.disabled).toBeUndefined(`Vorbedingung 1`);
+        expect(fixture.componentInstance.disabled).toBeUndefined();
 
         // Änderungen durchführen
         fixture.componentInstance.disabled = true;
@@ -272,8 +272,8 @@ describe('LuxToggleComponent', () => {
         fixture.detectChanges();
 
         // Nachbedingungen testen
-        expect(fixture.componentInstance.disabled).toBeTruthy('Nachbedingung 1');
-        expect(toggleEl.nativeElement.disabled).toBeTruthy('Nachbedingung 2');
+        expect(fixture.componentInstance.disabled).toBeTruthy();
+        expect(toggleEl.nativeElement.disabled).toBeTruthy();
       }));
     });
 
@@ -319,7 +319,7 @@ describe('LuxToggleComponent', () => {
 
       it('Check Event', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(fixture.componentInstance.eula).toBeNull('Vorbedingung 1');
+        expect(fixture.componentInstance.eula).toBeNull();
 
         // Änderungen durchführen
         // 1. Click => true
@@ -328,7 +328,7 @@ describe('LuxToggleComponent', () => {
         fixture.detectChanges();
 
         // Nachbedingungen testen
-        expect(fixture.componentInstance.eula).toBeTruthy('Nachbedingung 1');
+        expect(fixture.componentInstance.eula).toBeTruthy();
 
         // Änderungen durchführen
         // 2. Click => false
@@ -336,7 +336,7 @@ describe('LuxToggleComponent', () => {
         fixture.detectChanges();
 
         // Nachbedingungen testen
-        expect(fixture.componentInstance.eula).toBeFalsy('Nachbedingung 2');
+        expect(fixture.componentInstance.eula).toBeFalsy();
       }));
     });
 
@@ -356,7 +356,7 @@ describe('LuxToggleComponent', () => {
         let errorElement = fixture.debugElement.query(By.css('mat-error'));
 
         // Vorbedingungen testen
-        expect(errorElement).toBeNull(`Vorbedingung 1`);
+        expect(errorElement).toBeNull();
 
         // Änderungen durchführen
         toggleComponent.formControl.markAsTouched();
@@ -365,7 +365,7 @@ describe('LuxToggleComponent', () => {
 
         // Nachbedingungen testen
         errorElement = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorElement.nativeElement.innerText.trim()).toEqual('Das ist ein Pflichtfeld', `Nachbedingung 1`);
+        expect(errorElement.nativeElement.innerText.trim()).toEqual('Das ist ein Pflichtfeld');
       }));
     });
 
@@ -384,7 +384,7 @@ describe('LuxToggleComponent', () => {
       it('Validatoren setzen und die Fehlermeldungen korrekt anzeigen', fakeAsync(() => {
         // Vorbedingungen testen
         let errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeNull(`Vorbedingung 1`);
+        expect(errorEl).toBeNull();
 
         // Änderungen durchführen
         testComponent.validators = Validators.required;
@@ -395,8 +395,8 @@ describe('LuxToggleComponent', () => {
 
         // Nachbedingungen testen
         errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl.nativeElement.innerText.trim().length).toBeGreaterThan(0, `Nachbedingung 1`);
-        expect(toggleComponent.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+        expect(errorEl.nativeElement.innerText.trim().length).toBeGreaterThan(0);
+        expect(toggleComponent.formControl.valid).toBeFalsy();
       }));
     });
   });

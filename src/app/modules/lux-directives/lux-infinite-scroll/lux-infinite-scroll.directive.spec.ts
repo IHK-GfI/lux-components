@@ -54,7 +54,7 @@ describe('LuxInfiniteScrollDirective', () => {
     }));
 
     it('Sollte luxScrolled ein zweites Mal emitten, wenn weit genug gescrollt worden ist', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const el = fixture.debugElement.query(By.css('#toggleMasterFocus-element'));
       const spy = spyOn(mockComp, 'onMockEvent');
       fixture.detectChanges();
@@ -69,7 +69,7 @@ describe('LuxInfiniteScrollDirective', () => {
     }));
 
     it('Sollte luxScrolled nicht emitten, wenn nach oben gescrollt worden ist', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const el = fixture.debugElement.query(By.css('#toggleMasterFocus-element'));
       const spy = spyOn(mockComp, 'onMockEvent');
       fixture.detectChanges();
@@ -88,7 +88,7 @@ describe('LuxInfiniteScrollDirective', () => {
     }));
 
     it('Sollte luxScrolled nicht emitten, wenn luxImmediateCallback = false ist', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       mockComp.immediateCallback = false;
       const spy = spyOn(mockComp, 'onMockEvent');
       fixture.detectChanges();
@@ -102,7 +102,7 @@ describe('LuxInfiniteScrollDirective', () => {
     }));
 
     it('Sollte luxScrolled nicht emitten, wenn luxImmediateCallback = true und luxIsLoading = true ist', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       mockComp.immediateCallback = true;
       mockComp.isLoading = true;
       const spy = spyOn(mockComp, 'onMockEvent');
@@ -117,7 +117,7 @@ describe('LuxInfiniteScrollDirective', () => {
     }));
 
     it('Sollte luxScrolled nicht emitten, wenn nach unten gescrollt wird und luxIsLoading = true ist', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       mockComp.immediateCallback = true;
       const el = fixture.debugElement.query(By.css('#toggleMasterFocus-element'));
       const spy = spyOn(mockComp, 'onMockEvent');
@@ -146,7 +146,7 @@ describe('LuxInfiniteScrollDirective', () => {
     }));
 
     it('Sollte luxScrolled nicht emitten wenn luxImmediateCallback = true ist', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const el = fixture.debugElement.query(By.css('#toggleMasterFocus-element'));
       const spy = spyOn(mockComp, 'onMockEvent');
 
@@ -161,7 +161,7 @@ describe('LuxInfiniteScrollDirective', () => {
     }));
 
     it('Sollte luxScrolled nicht emitten wenn luxImmediateCallback = false ist', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       mockComp.immediateCallback = false;
       const el = fixture.debugElement.query(By.css('#toggleMasterFocus-element'));
       const spy = spyOn(mockComp, 'onMockEvent');
@@ -191,7 +191,7 @@ describe('LuxInfiniteScrollDirective', () => {
 })
 class MockComponent {
   // Wird benutzt um einen Y-Overflow und damit ein Scrollbar im Testelement zu forcieren
-  private testArr = [];
+  private testArr: string[] = [];
   immediateCallback = true;
   isLoading = false;
 

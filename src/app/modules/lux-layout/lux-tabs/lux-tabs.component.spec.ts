@@ -101,8 +101,8 @@ describe('LuxTabsComponent', () => {
     it('luxDisabled=true ohne Animation', () => {
       // Given
       let tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
-      expect(component.animationActive).toBeFalsy('Vorbedingung 1');
-      expect(component.disabled).toBeFalsy('Vorbedingung 2');
+      expect(component.animationActive).toBeFalsy();
+      expect(component.disabled).toBeFalsy();
       expect(tabEl).toBeNull(tabEl);
 
       // When
@@ -111,16 +111,16 @@ describe('LuxTabsComponent', () => {
 
       // Then
       tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
-      expect(component.animationActive).toBeFalsy('Vorbedingung 1');
-      expect(component.disabled).toBeTruthy('Nachbedingung 2');
+      expect(component.animationActive).toBeFalsy();
+      expect(component.disabled).toBeTruthy();
       expect(tabEl).not.toBeNull(tabEl);
     });
 
     it('luxDisabled=true mit Animation', () => {
       // Given
       let tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
-      expect(component.animationActive).toBeFalsy('Vorbedingung 1');
-      expect(component.disabled).toBeFalsy('Vorbedingung 2');
+      expect(component.animationActive).toBeFalsy();
+      expect(component.disabled).toBeFalsy();
       expect(tabEl).toBeNull(tabEl);
 
       // When
@@ -130,8 +130,8 @@ describe('LuxTabsComponent', () => {
 
       // Then
       tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
-      expect(component.animationActive).toBeTruthy('Vorbedingung 1');
-      expect(component.disabled).toBeTruthy('Nachbedingung 2');
+      expect(component.animationActive).toBeTruthy();
+      expect(component.disabled).toBeTruthy();
       expect(tabEl).not.toBeNull(tabEl);
     });
   });
@@ -148,10 +148,10 @@ describe('LuxTabsComponent', () => {
 
     it('luxLazyLoading=true ohne Animation', () => {
       // Given
-      expect(component.labelAaa).not.toBeUndefined('Vorbedingung 1');
-      expect(component.labelBbb).toBeUndefined('Vorbedingung 2');
-      expect(component.animationActive).toBeFalsy('Vorbedingung 3');
-      expect(component.lazyLoading).toBeTruthy('Vorbedingung 4');
+      expect(component.labelAaa).not.toBeUndefined();
+      expect(component.labelBbb).toBeUndefined();
+      expect(component.animationActive).toBeFalsy();
+      expect(component.lazyLoading).toBeTruthy();
       expect(component.currentTabIndex).toEqual(0);
 
       // When
@@ -161,19 +161,19 @@ describe('LuxTabsComponent', () => {
       fixture.detectChanges();
 
       // Then
-      expect(component.labelAaa).toBeUndefined('Nachbedingung 1');
-      expect(component.labelBbb).not.toBeUndefined('Nachbedingung 2');
-      expect(component.animationActive).toBeFalsy('Nachbedingung 3');
-      expect(component.lazyLoading).toBeTruthy('Nachbedingung 4');
+      expect(component.labelAaa).toBeUndefined();
+      expect(component.labelBbb).not.toBeUndefined();
+      expect(component.animationActive).toBeFalsy();
+      expect(component.lazyLoading).toBeTruthy();
       expect(component.currentTabIndex).toEqual(1);
     });
 
     it('luxLazyLoading=true mit Animation', () => {
       // Given
-      expect(component.labelAaa).not.toBeUndefined('Vorbedingung 1');
-      expect(component.labelBbb).toBeUndefined('Vorbedingung 2');
-      expect(component.animationActive).toBeFalsy('Vorbedingung 3');
-      expect(component.lazyLoading).toBeTruthy('Vorbedingung 4');
+      expect(component.labelAaa).not.toBeUndefined();
+      expect(component.labelBbb).toBeUndefined();
+      expect(component.animationActive).toBeFalsy();
+      expect(component.lazyLoading).toBeTruthy();
       expect(component.currentTabIndex).toEqual(0);
 
       // When
@@ -183,19 +183,19 @@ describe('LuxTabsComponent', () => {
       fixture.detectChanges();
 
       // Then
-      expect(component.labelAaa).toBeUndefined('Nachbedingung 1');
-      expect(component.labelBbb).not.toBeUndefined('Nachbedingung 2');
-      expect(component.animationActive).toBeTruthy('Nachbedingung 3');
-      expect(component.lazyLoading).toBeTruthy('Nachbedingung 4');
+      expect(component.labelAaa).toBeUndefined();
+      expect(component.labelBbb).not.toBeUndefined();
+      expect(component.animationActive).toBeTruthy();
+      expect(component.lazyLoading).toBeTruthy();
       expect(component.currentTabIndex).toEqual(1);
     });
 
     it('luxLazyLoading=false ohne Animation', () => {
       // Given
-      expect(component.labelAaa).not.toBeUndefined('Vorbedingung 1');
-      expect(component.labelBbb).toBeUndefined('Vorbedingung 2');
-      expect(component.animationActive).toBeFalsy('Vorbedingung 3');
-      expect(component.lazyLoading).toBeTruthy('Vorbedingung 4');
+      expect(component.labelAaa).not.toBeUndefined();
+      expect(component.labelBbb).toBeUndefined();
+      expect(component.animationActive).toBeFalsy();
+      expect(component.lazyLoading).toBeTruthy();
       expect(component.currentTabIndex).toEqual(0);
 
       // When
@@ -205,19 +205,19 @@ describe('LuxTabsComponent', () => {
       fixture.detectChanges();
 
       // Then
-      expect(component.labelAaa).not.toBeUndefined('Nachbedingung 1');
-      expect(component.labelBbb).not.toBeUndefined('Nachbedingung 2');
-      expect(component.animationActive).toBeFalsy('Nachbedingung 3');
-      expect(component.lazyLoading).toBeFalsy('Nachbedingung 4');
+      expect(component.labelAaa).not.toBeUndefined();
+      expect(component.labelBbb).not.toBeUndefined();
+      expect(component.animationActive).toBeFalsy();
+      expect(component.lazyLoading).toBeFalsy();
       expect(component.currentTabIndex).toEqual(1);
     });
 
     it('luxLazyLoading=false mit Animation', () => {
       // Given
-      expect(component.labelAaa).not.toBeUndefined('Vorbedingung 1');
-      expect(component.labelBbb).toBeUndefined('Vorbedingung 2');
-      expect(component.animationActive).toBeFalsy('Vorbedingung 3');
-      expect(component.lazyLoading).toBeTruthy('Vorbedingung 4');
+      expect(component.labelAaa).not.toBeUndefined();
+      expect(component.labelBbb).toBeUndefined();
+      expect(component.animationActive).toBeFalsy();
+      expect(component.lazyLoading).toBeTruthy();
       expect(component.currentTabIndex).toEqual(0);
 
       // When
@@ -227,10 +227,10 @@ describe('LuxTabsComponent', () => {
       fixture.detectChanges();
 
       // Then
-      expect(component.labelAaa).not.toBeUndefined('Nachbedingung 1');
-      expect(component.labelBbb).not.toBeUndefined('Nachbedingung 2');
-      expect(component.animationActive).toBeTruthy('Nachbedingung 3');
-      expect(component.lazyLoading).toBeFalsy('Nachbedingung 4');
+      expect(component.labelAaa).not.toBeUndefined();
+      expect(component.labelBbb).not.toBeUndefined();
+      expect(component.animationActive).toBeTruthy();
+      expect(component.lazyLoading).toBeFalsy();
       expect(component.currentTabIndex).toEqual(1);
     });
   });
@@ -388,7 +388,7 @@ describe('LuxTabsComponent', () => {
 
     it('Attribut "tabCounter" nicht gesetzt.', fakeAsync(() => {
       // Nachbedingungen testen
-      expect(getBadgeElement(fixture)).toBeNull( 'Nachbedingung 1');
+      expect(getBadgeElement(fixture)).toBeNull( );
     }));
   });
 });
