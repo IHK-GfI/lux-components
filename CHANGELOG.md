@@ -1,3 +1,9 @@
+# Version 13.2.0
+
+## New
+- **lux-lookup-autocomplete**: Zusätzliches Outputevent "luxDataLoadedAsArray" eingeführt. [Issue 225](https://github.com/IHK-GfI/lux-components/issues/225)
+- **lux-lookup-combobox**: Zusätzliches Outputevent "luxDataLoadedAsArray" eingeführt. [Issue 225](https://github.com/IHK-GfI/lux-components/issues/225)
+
 # Version 13.1.0
 ## New
 - **lux-table**: Zusätzliches Outputevent "luxSelectedAsArrayChange" einführen. [Issue 207](https://github.com/IHK-GfI/lux-components/issues/207)
