@@ -41,6 +41,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
   @Input() luxCustomInvalidStyles;
   @Input() luxTagId: string;
   @Output() luxDataLoaded: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() luxDataLoadedAsArray: EventEmitter<LuxLookupTableEntry[]> = new EventEmitter<LuxLookupTableEntry[]>();
   @Output() luxValueChange: EventEmitter<LuxLookupTableEntry | LuxLookupTableEntry[]> = new EventEmitter<
     LuxLookupTableEntry
   >();
@@ -201,6 +202,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
       (entries: LuxLookupTableEntry[]) => {
         this.setLookupData(entries);
         this.luxDataLoaded.emit(true);
+        this.luxDataLoadedAsArray.emit(entries);
       },
       () => {
         this.luxDataLoaded.emit(false);
