@@ -1,28 +1,109 @@
-import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+/* eslint-disable max-classes-per-file */
+import { HttpClient, HttpRequest } from "@angular/common/http";
+import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
+import { ComponentFixture, fakeAsync, flush, TestBed } from "@angular/core/testing";
 
-import { Component } from '@angular/core';
+import { Component, ViewChild } from "@angular/core";
+import { Subscription } from "rxjs";
+import { skip } from "rxjs/operators";
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { LuxHttpErrorInterceptor } from './lux-http-error-interceptor';
+import { LuxHttpErrorComponent } from "./lux-http-error.component";
 
 describe('LuxHttpErrorComponent', () => {
 
-  beforeEach(async () => {
-    LuxTestHelper.configureTestModule([], [LuxMockHttpErrorComponent]);
-  });
-
   let component: LuxMockHttpErrorComponent;
   let fixture: ComponentFixture<LuxMockHttpErrorComponent>;
+  let httpClient: HttpClient;
+  let httpTestingController: HttpTestingController;
+  let subscription: Subscription;
+
+  beforeEach(async () => {
+    LuxTestHelper.configureTestModule([],[LuxMockHttpErrorComponent],[HttpClientTestingModule]);
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LuxMockHttpErrorComponent);
     component = fixture.componentInstance;
+    httpClient = TestBed.get(HttpClient);
+    httpTestingController = TestBed.get(HttpTestingController);
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    if (subscription) {
+      subscription.unsubscribe();
+    }
+
+    httpTestingController.verify();
   });
 
   it('Sollte erzeugt werden', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Sollte Fehler aus der Property "errors" anzeigen', fakeAsync(() => {
+    // Jeder Request setzt den LuxHttpErrorInterceptor.dataStream$() auf ein leeres Array zurück.
+    // Das folgende If stellt sicher, dass nur der Fehlerfall überprüft wird.
+    subscription = LuxHttpErrorInterceptor.dataStream$().pipe(skip(1)).subscribe((errors) => {
+      if (Array.isArray(errors) && errors.length > 0) {
+        expect(errors).toEqual(data_errors.errors);
+
+        LuxTestHelper.wait(fixture);
+        const messageTexte = fixture.debugElement.queryAll(By.css('.lux-message-text'));
+        expect(messageTexte.length).toEqual(data_errors.errors.length);
+
+        for (let i = 0; i < messageTexte.length; i++) {
+          expect(messageTexte[i].nativeElement.textContent).toBe(data_errors.errors[i].message);
+        }
+      }
+    });
+
+    // Hier wird die Anzahl der gleichzeitig angezeigten Meldungen auf 4 erhöht,
+    // damit alle Meldungen mit einer queryAll-Abfrage eingesammelt werden können.
+    component.errorComponent.messageComponent.luxMaximumDisplayed = 4;
+    LuxTestHelper.wait(fixture);
+
+    httpClient.get<any>('abc').subscribe({ next: () => {}, error: () => {}});
+
+    const request = httpTestingController.expectOne(
+      (req: HttpRequest<any>) => req.url.includes('abc'));
+
+    request.flush(data_errors, { status: 400, statusText: 'Constraint Violation' });
+    flush();
+  }));
+
+  it('Sollte Fehler aus der Property "violations" anzeigen', fakeAsync(() => {
+    subscription = LuxHttpErrorInterceptor.dataStream$().pipe(skip(1)).subscribe((errors) => {
+      // Jeder Request setzt den LuxHttpErrorInterceptor.dataStream$() auf ein leeres Array zurück.
+      // Das folgende If stellt sicher, dass nur der Fehlerfall überprüft wird.
+      if (Array.isArray(errors) && errors.length > 0) {
+        expect(errors).toEqual(data_violations.violations);
+
+        LuxTestHelper.wait(fixture);
+        const messageTexte = fixture.debugElement.queryAll(By.css('.lux-message-text'));
+        expect(messageTexte.length).toEqual(data_violations.violations.length);
+
+        for (let i = 0; i < messageTexte.length; i++) {
+          expect(messageTexte[i].nativeElement.textContent).toBe(data_violations.violations[i].message);
+        }
+      }
+    });
+
+    // Hier wird die Anzahl der gleichzeitig angezeigten Meldungen auf 4 erhöht,
+    // damit alle Meldungen mit einer queryAll-Abfrage eingesammelt werden können.
+    component.errorComponent.messageComponent.luxMaximumDisplayed = 4;
+    LuxTestHelper.wait(fixture);
+
+    httpClient.get<any>('abc').subscribe({ next: () => {}, error: () => {}});
+
+    const request = httpTestingController.expectOne(
+      (req: HttpRequest<any>) => req.url.includes('abc'));
+
+    request.flush(data_violations, { status: 400, statusText: 'Constraint Violation' });
+    flush();
+  }));
 
   it('Sollte die Fehler (aus Strings) anzeigen', fakeAsync(() => {
     // Vorbedingungen prüfen
@@ -172,5 +253,57 @@ describe('LuxHttpErrorComponent', () => {
   template: '<lux-http-error></lux-http-error>'
 })
 class LuxMockHttpErrorComponent {
+  @ViewChild(LuxHttpErrorComponent) errorComponent;
+
   constructor() {}
 }
+
+export class TestService {
+  constructor(private http: HttpClient) {}
+}
+
+
+const data_errors = {
+  status: 400,
+  errors: [
+    {
+      name: 'evaOid',
+      message: 'Die Objekt-ID muss größer/gleich 1 sein.'
+    },
+    {
+      name: 'ident',
+      message: 'Die Ident-Nr. muss größer/gleich 1 sein.'
+    },
+    {
+      name: 'nachname',
+      message: 'Der Nachname darf nicht leer sein.'
+    },
+    {
+      name: 'vorname',
+      message: 'Der Vorname darf nicht leer sein.'
+    }
+  ]
+};
+
+const data_violations = {
+  'title': 'Constraint Violation',
+  'status': 400,
+  'violations': [
+    {
+      field: 'evaOid',
+      message: 'Die Objekt-ID muss größer/gleich 1 sein.'
+    },
+    {
+      field: 'ident',
+      message: 'Die Ident-Nr. muss größer/gleich 1 sein.'
+    },
+    {
+      field: 'nachname',
+      message: 'Der Nachname darf nicht leer sein.'
+    },
+    {
+      field: 'vorname',
+      message: 'Der Vorname darf nicht leer sein.'
+    }
+  ]
+};
