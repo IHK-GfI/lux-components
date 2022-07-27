@@ -145,8 +145,8 @@ describe('LuxMessageBoxComponent', () => {
     expect(messageText.nativeElement.textContent.trim()).toEqual('Msg 1');
     expect(changeSpy).toHaveBeenCalledTimes(1);
     expect(component.eventObject).toBeDefined();
-    expect(component.eventObject.previousPage.index).toBe(0);
-    expect(component.eventObject.currentPage.index).toBe(1);
+    expect(component.eventObject!.previousPage.index).toBe(0);
+    expect(component.eventObject!.currentPage.index).toBe(1);
 
     // Änderungen durchführen [NACH HINTEN STEPPEN]
     matPaginator.previousPage();
@@ -157,8 +157,9 @@ describe('LuxMessageBoxComponent', () => {
 
     expect(messageText.nativeElement.textContent.trim()).toEqual('Msg 0');
     expect(changeSpy).toHaveBeenCalledTimes(2);
-    expect(component.eventObject.previousPage.index).toBe(1);
-    expect(component.eventObject.currentPage.index).toBe(0);
+    expect(component.eventObject).toBeDefined();
+    expect(component.eventObject!.previousPage.index).toBe(1);
+    expect(component.eventObject!.currentPage.index).toBe(0);
   }));
 
   it('Sollte die Nachrichten schließen und das Event ausgeben', fakeAsync(() => {
@@ -195,7 +196,7 @@ class LuxMockMessageBoxComponent {
     { text: 'Msg 1', iconName: 'fa-apple', color: 'blue' }
   ];
 
-  eventObject: ILuxMessageChangeEvent;
+  eventObject?: ILuxMessageChangeEvent;
   index = 0;
   maxDisplayed = 1;
 
@@ -203,7 +204,7 @@ class LuxMockMessageBoxComponent {
 
   closed() {}
 
-  changed($event) {
-    this.eventObject = $event;
+  changed(event: ILuxMessageChangeEvent) {
+    this.eventObject = event;
   }
 }

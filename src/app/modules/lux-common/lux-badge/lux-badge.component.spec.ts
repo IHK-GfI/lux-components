@@ -22,12 +22,12 @@ describe('LuxBadgeComponent', () => {
 
     it('Wert über die Component setzen', fakeAsync(() => {
       // Vorbedingungen testen
-      const badgeEl = fixture.debugElement.query(By.css('#badgelabel'));
+      const badgeEl = fixture.debugElement.query(By.css('#badgeLabel'));
       expect(fixture.componentInstance.label).toEqual('Test 4711');
       expect(badgeEl.nativeElement.innerHTML.trim()).toEqual('Test 4711');
 
       // Änderungen durchführen
-      const expectedLabel = 'New Lorum ipsum 123';
+      const expectedLabel = 'New Lorem ipsum 123';
       fixture.componentInstance.label = expectedLabel;
       fixture.detectChanges();
 
@@ -112,7 +112,7 @@ describe('LuxBadgeComponent', () => {
 @Component({
   template: `
     <lux-badge [luxIconName]="iconName" luxColor="red" [luxUppercase]="uppercase">
-      <lux-label luxId="badgelabel">
+      <lux-label luxId="badgeLabel">
         {{ label }}
       </lux-label>
     </lux-badge>
@@ -127,7 +127,7 @@ class LuxBadgeComponent {
 @Component({
   template: `
     <lux-badge [luxIconName]="iconName">
-      <lux-label luxId="badgelabel">
+      <lux-label luxId="badgeLabel">
         BVB
       </lux-label>
     </lux-badge>

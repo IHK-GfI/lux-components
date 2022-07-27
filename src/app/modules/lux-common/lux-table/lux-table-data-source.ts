@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
  * und ignoriert die Groß- und Kleinschreibung.
  */
 export class LuxTableDataSource<T> extends MatTableDataSource<T> {
-  totalElements: number;
+  totalElements = 0;
   selectedEntries: Set<any> = new Set<any>();
 
   /**

@@ -1254,8 +1254,8 @@ class TableMultiselectComponent {
   showPagination = false;
   showFilter = false;
   showMultiSelect = false;
-  pickFn;
-  compareFn;
+  pickFn = (o: any) => o;
+  compareFn = (o1: any, o2: any) => o1 === o2;
 
   constructor() {}
 }

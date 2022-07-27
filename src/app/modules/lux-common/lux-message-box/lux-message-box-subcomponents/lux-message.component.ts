@@ -7,21 +7,21 @@ import { LuxUtil } from '../../../lux-util/lux-util';
   templateUrl: './lux-message.component.html'
 })
 export class LuxMessageComponent {
-  private _luxMessage: ILuxMessage;
+  private _luxMessage?: ILuxMessage;
 
   backgroundCSSClass = 'lux-bg-color-blue';
   fontCSSClass = 'lux-font-color-white';
 
   @Output() luxMessageClosed: EventEmitter<ILuxMessage> = new EventEmitter<ILuxMessage>();
 
-  @Input() set luxMessage(message: ILuxMessage) {
+  @Input() set luxMessage(message: ILuxMessage | undefined) {
     this._luxMessage = message;
     if (this.luxMessage) {
       this.updateColor();
     }
   }
 
-  get luxMessage(): ILuxMessage {
+  get luxMessage(): ILuxMessage | undefined {
     return this._luxMessage;
   }
 
@@ -38,10 +38,12 @@ export class LuxMessageComponent {
    * Aktualisiert die Farbe dieser Box passend zur Farbe der Nachricht.
    */
   private updateColor() {
-    const color = this.luxMessage.color;
-    const result = LuxUtil.getColorsByBgColorsEnum(color);
+    if (this.luxMessage) {
+      const color  = this.luxMessage.color;
+      const result = LuxUtil.getColorsByBgColorsEnum(color);
 
-    this.fontCSSClass = result.fontCSSClass;
-    this.backgroundCSSClass = result.backgroundCSSClass;
+      this.fontCSSClass       = result.fontCSSClass;
+      this.backgroundCSSClass = result.backgroundCSSClass;
+    }
   }
 }

@@ -22,7 +22,7 @@ export class LuxMessageBoxComponent {
 
   @HostBinding('class.mat-elevation-z4') boxShadow = true;
 
-  @ViewChild('messagebox') messageBoxElRef: ElementRef;
+  @ViewChild('messagebox',{static: false}) messageBoxElRef?: ElementRef;
 
   @Output() luxMessageChanged: EventEmitter<ILuxMessageChangeEvent> = new EventEmitter<ILuxMessageChangeEvent>();
   @Output() luxMessageClosed: EventEmitter<ILuxMessageCloseEvent> = new EventEmitter<ILuxMessageCloseEvent>();

@@ -1,5 +1,6 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { LuxProgressComponent } from './lux-progress.component';
+import { LuxProgressColor } from "../../lux-util/lux-colors.enum";
+import { LuxProgressComponent, LuxProgressModeType, LuxProgressSizeType, LuxProgressType } from "./lux-progress.component";
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -44,7 +45,7 @@ describe('LuxProgressComponent', () => {
       const red = fixture.debugElement.query(By.css('.lux-bg-color-red'));
       expect(red).toBeDefined();
       // Änderungen durchführen
-      component.color = 'yellow';
+      component.color = 'purple';
       fixture.detectChanges();
       // Nachbedingungen prüfen
       const purple = fixture.debugElement.query(By.css('.lux-bg-color-purple'));
@@ -96,7 +97,7 @@ describe('LuxProgressComponent', () => {
       const red = fixture.debugElement.query(By.css('.lux-bg-color-red'));
       expect(red).toBeDefined();
       // Änderungen durchführen
-      component.color = 'yellow';
+      component.color = 'purple';
       fixture.detectChanges();
       // Nachbedingungen prüfen
       const purple = fixture.debugElement.query(By.css('.lux-bg-color-purple'));
@@ -129,11 +130,11 @@ describe('LuxProgressComponent', () => {
     '                    [luxSize]="size" [luxValue]="value"></lux-progress>'
 })
 class LuxMockProgressBarComponent {
-  type;
-  mode;
-  color;
-  size;
-  value;
+  type?: LuxProgressType;
+  mode?: LuxProgressModeType;
+  color?: LuxProgressColor;
+  size?: LuxProgressSizeType;
+  value = 0;
 
   constructor() {}
 }

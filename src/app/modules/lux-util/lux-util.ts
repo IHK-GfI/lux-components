@@ -178,7 +178,7 @@ export class LuxUtil {
     }
   }
 
-  public static getColorsByBgColorsEnum(color: LuxBgAllColor): { backgroundCSSClass; fontCSSClass } {
+  public static getColorsByBgColorsEnum(color: LuxBgAllColor | undefined): { backgroundCSSClass: string; fontCSSClass: string } {
     const result = { backgroundCSSClass: 'lux-bg-color-blue', fontCSSClass: 'lux-font-color-white' };
 
     const found = LuxBgAllColors.find((entry) => entry === color);

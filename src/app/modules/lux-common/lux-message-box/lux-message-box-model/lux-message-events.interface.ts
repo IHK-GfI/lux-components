@@ -21,6 +21,6 @@ export interface ILuxMessageChangeEvent {
  * Event-Emitter ausgegeben wird.
  */
 export interface ILuxMessageCloseEvent {
-  index;
+  index: number;
   message: ILuxMessage;
 }
