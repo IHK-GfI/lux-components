@@ -5,16 +5,16 @@ import { LuxAriaBase } from './lux-aria-base';
   selector: '[luxAriaInvalid]'
 })
 export class LuxAriaInvalidDirective extends LuxAriaBase<string> {
-  _luxAriaInvalid: string;
+  _luxAriaInvalid?: string;
 
-  @Input() luxAriaInvalidSelector: string;
+  @Input() luxAriaInvalidSelector?: string;
 
   @Input()
   get luxAriaInvalid() {
     return this._luxAriaInvalid;
   }
 
-  set luxAriaInvalid(invalid: string) {
+  set luxAriaInvalid(invalid: string | undefined) {
     this._luxAriaInvalid = invalid;
 
     this.renderAria();
@@ -24,11 +24,11 @@ export class LuxAriaInvalidDirective extends LuxAriaBase<string> {
     super(elementRef, renderer, 'aria-invalid');
   }
 
-  getSelector(): string {
+  getSelector(): string | undefined {
     return this.luxAriaInvalidSelector;
   }
 
-  getValue(): string {
+  getValue(): string | undefined {
     return this._luxAriaInvalid;
   }
 }

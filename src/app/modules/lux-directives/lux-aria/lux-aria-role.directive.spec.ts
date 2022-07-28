@@ -28,7 +28,7 @@ describe('LuxAriaRoleDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('role')).toBeNull();
 
       // role setzen
-      let ariaRole = 'menubar';
+      let ariaRole: string | undefined = 'menubar';
       component.ariaRole = ariaRole;
       fixture.detectChanges();
 
@@ -42,7 +42,7 @@ describe('LuxAriaRoleDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('role')).toEqual(ariaRole);
 
       // role entfernen
-      ariaRole = null;
+      ariaRole = undefined;
       component.ariaRole = ariaRole;
       fixture.detectChanges();
 
@@ -64,7 +64,7 @@ describe('LuxAriaRoleDirective', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('role')).toBeNull();
 
       // role setzen
-      let ariaRole = 'menubar';
+      let ariaRole: string | undefined = 'menubar';
       component.ariaRole = ariaRole;
       fixture.detectChanges();
 
@@ -78,7 +78,7 @@ describe('LuxAriaRoleDirective', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('role')).toEqual(ariaRole);
 
       // role entfernen
-      ariaRole = null;
+      ariaRole = undefined;
       component.ariaRole = ariaRole;
       fixture.detectChanges();
 
@@ -94,7 +94,7 @@ describe('LuxAriaRoleDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaRole;
+  ariaRole?: string;
 }
 
 @Component({
@@ -104,5 +104,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaRole;
+  ariaRole?: string;
 }

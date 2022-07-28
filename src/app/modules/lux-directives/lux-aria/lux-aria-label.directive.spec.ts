@@ -29,7 +29,7 @@ describe('LuxAriaLabelDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toBeNull();
 
       // Aria-Label setzen
-      let ariaLabel = 'Nachrichten anzeigen';
+      let ariaLabel: string | undefined = 'Nachrichten anzeigen';
       component.ariaLabel = ariaLabel;
       fixture.detectChanges();
 
@@ -43,7 +43,7 @@ describe('LuxAriaLabelDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toEqual(ariaLabel);
 
       // Aria-Label entfernen
-      ariaLabel = null;
+      ariaLabel = undefined;
       component.ariaLabel = ariaLabel;
       fixture.detectChanges();
 
@@ -65,7 +65,7 @@ describe('LuxAriaLabelDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toBeNull();
 
       // Aria-Label setzen
-      let ariaLabel = 'Nachrichten anzeigen';
+      let ariaLabel: string | undefined = 'Nachrichten anzeigen';
       component.ariaLabel = ariaLabel;
       fixture.detectChanges();
 
@@ -79,7 +79,7 @@ describe('LuxAriaLabelDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toEqual(ariaLabel);
 
       // Aria-Label entfernen
-      ariaLabel = null;
+      ariaLabel = undefined;
       component.ariaLabel = ariaLabel;
       fixture.detectChanges();
 
@@ -95,7 +95,7 @@ describe('LuxAriaLabelDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaLabel;
+  ariaLabel?: string;
 }
 
 @Component({
@@ -105,5 +105,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaLabel;
+  ariaLabel?: string;
 }

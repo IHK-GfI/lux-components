@@ -5,16 +5,16 @@ import { LuxAriaBase } from './lux-aria-base';
   selector: '[luxAriaHidden]'
 })
 export class LuxAriaHiddenDirective extends LuxAriaBase<boolean> {
-  _luxAriaHidden: boolean;
+  _luxAriaHidden?: boolean;
 
-  @Input() luxAriaHiddenSelector: string;
+  @Input() luxAriaHiddenSelector?: string;
 
   @Input()
   get luxAriaHidden() {
     return this._luxAriaHidden;
   }
 
-  set luxAriaHidden(hidden: boolean) {
+  set luxAriaHidden(hidden: boolean | undefined) {
     this._luxAriaHidden = hidden;
 
     this.renderAria();
@@ -24,11 +24,11 @@ export class LuxAriaHiddenDirective extends LuxAriaBase<boolean> {
     super(elementRef, renderer, 'aria-hidden');
   }
 
-  getSelector(): string {
+  getSelector(): string | undefined {
     return this.luxAriaHiddenSelector;
   }
 
-  getValue(): boolean {
+  getValue(): boolean | undefined {
     return this._luxAriaHidden;
   }
 }

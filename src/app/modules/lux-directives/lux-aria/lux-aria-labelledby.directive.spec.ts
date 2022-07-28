@@ -29,7 +29,7 @@ describe('LuxAriaLabelledbyDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toBeNull();
 
       // labelledby setzen
-      let ariaLabelledBy = 'menubar';
+      let ariaLabelledBy: string | undefined = 'menubar';
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
@@ -47,7 +47,7 @@ describe('LuxAriaLabelledbyDirective', () => {
       );
 
       // labelledby entfernen
-      ariaLabelledBy = null;
+      ariaLabelledBy = undefined;
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
@@ -69,7 +69,7 @@ describe('LuxAriaLabelledbyDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toBeNull();
 
       // labelledby setzen
-      let ariaLabelledBy = 'menubar';
+      let ariaLabelledBy: string | undefined = 'menubar';
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
@@ -87,7 +87,7 @@ describe('LuxAriaLabelledbyDirective', () => {
       );
 
       // labelledby entfernen
-      ariaLabelledBy = null;
+      ariaLabelledBy = undefined;
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
@@ -107,7 +107,7 @@ describe('LuxAriaLabelledbyDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaLabelledby;
+  ariaLabelledby?: string;
 }
 
 @Component({
@@ -117,5 +117,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaLabelledby;
+  ariaLabelledby?: string;
 }

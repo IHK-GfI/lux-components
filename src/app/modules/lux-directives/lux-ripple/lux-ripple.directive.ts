@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class LuxRippleDirective extends MatRipple implements OnInit, OnDestroy {
   private configSubscription: Subscription;
 
-  _luxRippleColor: string;
+  _luxRippleColor = '';
   _luxRippleUnbounded = false;
   _luxRippleCentered = false;
   _luxRippleDisabled = false;
@@ -104,21 +104,17 @@ export class LuxRippleDirective extends MatRipple implements OnInit, OnDestroy {
     @Optional() @Inject(ANIMATION_MODULE_TYPE) private luxAnimationMode?: string
   ) {
     super(luxElementRef, luxNgZone, luxPlatform, luxGlobalOptions, luxAnimationMode);
-  }
-
-  ngOnInit() {
-    super.ngOnInit();
 
     // Globale Konfiguration für die LUX-Ripples auslesen und die Component entsprechend aktualisieren
     this.configSubscription = this.configService.config.subscribe(({ rippleConfiguration }) => {
       if (rippleConfiguration) {
         this.luxRippleEnterDuration = rippleConfiguration.enterDuration;
         this.luxRippleExitDuration = rippleConfiguration.exitDuration;
-        this.luxRippleColor = rippleConfiguration.color;
-        this.luxRippleCentered = rippleConfiguration.centered;
-        this.luxRippleDisabled = rippleConfiguration.disabled;
-        this.luxRippleRadius = rippleConfiguration.radius;
-        this.luxRippleUnbounded = rippleConfiguration.unbounded;
+        this.luxRippleColor = rippleConfiguration.color ?? '';
+        this.luxRippleCentered = rippleConfiguration.centered ?? false;
+        this.luxRippleDisabled = rippleConfiguration.disabled ?? false;
+        this.luxRippleRadius = rippleConfiguration.radius ?? 0;
+        this.luxRippleUnbounded = rippleConfiguration.unbounded ?? false;
       }
     });
   }

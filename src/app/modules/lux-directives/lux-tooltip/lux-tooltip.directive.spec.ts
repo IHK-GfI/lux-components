@@ -142,11 +142,11 @@ describe('LuxTooltipDirective', () => {
     ' [luxTooltipDisabled]="disabled">Ich bin ein Demotext</span>'
 })
 class MockComponent {
-  message: string;
-  hideDelay: number;
-  showDelay: number;
+  message?: string;
+  hideDelay?: number;
+  showDelay?: number;
   position: TooltipPosition = 'above';
-  disabled: boolean;
+  disabled?: boolean;
 
   constructor() {}
 }

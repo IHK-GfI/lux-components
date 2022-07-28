@@ -29,25 +29,21 @@ describe('LuxAriaHiddenDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toBeNull();
 
       // Aria-Hidden setzen
-      let ariaHidden = 'Nachrichten anzeigen';
+      let ariaHidden: boolean | undefined = true;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toEqual(
-        ariaHidden
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toEqual('true');
 
       // Aria-Hidden aktualisieren
-      ariaHidden = 'Keine Nachrichten vorhanden';
+      ariaHidden = false;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toEqual(
-        ariaHidden
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toEqual('false');
 
       // Aria-Hidden entfernen
-      ariaHidden = null;
+      ariaHidden = undefined;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
@@ -69,25 +65,21 @@ describe('LuxAriaHiddenDirective', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toBeNull();
 
       // Aria-Hidden setzen
-      let ariaHidden = 'Nachrichten anzeigen';
+      let ariaHidden: boolean | undefined = true;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toEqual(
-        ariaHidden
-      );
+      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toEqual('true');
 
       // Aria-Hidden aktualisieren
-      ariaHidden = 'Keine Nachrichten vorhanden';
+      ariaHidden = false;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toEqual(
-        ariaHidden
-      );
+      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toEqual('false');
 
       // Aria-Hidden entfernen
-      ariaHidden = null;
+      ariaHidden = undefined;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
@@ -103,7 +95,7 @@ describe('LuxAriaHiddenDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaHidden;
+  ariaHidden?: boolean;
 }
 
 @Component({
@@ -113,5 +105,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaHidden;
+  ariaHidden?: boolean;
 }

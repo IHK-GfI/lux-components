@@ -29,25 +29,21 @@ describe('LuxAriaExpandedDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toBeNull();
 
       // Aria-expanded setzen
-      let ariaExpanded = true;
+      let ariaExpanded: boolean | undefined = true;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual(
-        ariaExpanded.toString()
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual('true');
 
       // Aria-expanded aktualisieren
       ariaExpanded = false;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual(
-        ariaExpanded.toString()
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual('false');
 
       // Aria-expanded entfernen
-      ariaExpanded = null;
+      ariaExpanded = undefined;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
@@ -69,25 +65,21 @@ describe('LuxAriaExpandedDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toBeNull();
 
       // Aria-expanded setzen
-      let ariaExpanded = true;
+      let ariaExpanded: boolean | undefined = true;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual(
-        ariaExpanded.toString()
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual('true');
 
       // Aria-expanded aktualisieren
       ariaExpanded = false;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual(
-        ariaExpanded.toString()
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual('false');
 
       // Aria-expanded entfernen
-      ariaExpanded = null;
+      ariaExpanded = undefined;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
@@ -107,7 +99,7 @@ describe('LuxAriaExpandedDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaExpanded;
+  ariaExpanded?: boolean | undefined;
 }
 
 @Component({
@@ -117,5 +109,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaExpanded;
+  ariaExpanded?: boolean | undefined;
 }

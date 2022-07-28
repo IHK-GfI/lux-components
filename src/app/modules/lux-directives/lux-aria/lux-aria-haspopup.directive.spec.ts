@@ -28,25 +28,21 @@ describe('LuxAriaHasPopupDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toBeNull();
 
       // Aria-HasPopup setzen
-      let ariaHasPopup = 'Nachrichten anzeigen';
+      let ariaHasPopup: boolean | undefined = true;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual(
-        ariaHasPopup
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual('true');
 
       // Aria-HasPopup aktualisieren
-      ariaHasPopup = 'Keine Nachrichten vorhanden';
+      ariaHasPopup = false;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual(
-        ariaHasPopup
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual('false' );
 
       // Aria-HasPopup entfernen
-      ariaHasPopup = null;
+      ariaHasPopup = undefined;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
@@ -68,25 +64,21 @@ describe('LuxAriaHasPopupDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toBeNull();
 
       // Aria-HasPopup setzen
-      let ariaHasPopup = 'Nachrichten anzeigen';
+      let ariaHasPopup: boolean | undefined = true;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual(
-        ariaHasPopup
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual('true');
 
       // Aria-HasPopup aktualisieren
-      ariaHasPopup = 'Keine Nachrichten vorhanden';
+      ariaHasPopup = false;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual(
-        ariaHasPopup
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual('false');
 
       // Aria-HasPopup entfernen
-      ariaHasPopup = null;
+      ariaHasPopup = undefined;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
@@ -106,7 +98,7 @@ describe('LuxAriaHasPopupDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaHasPopup;
+  ariaHasPopup?: boolean | undefined;
 }
 
 @Component({
@@ -116,5 +108,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaHasPopup;
+  ariaHasPopup?: boolean | undefined;
 }

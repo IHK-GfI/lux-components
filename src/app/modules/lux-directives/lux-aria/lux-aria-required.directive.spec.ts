@@ -29,25 +29,21 @@ describe('LuxAriaRequiredDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-required')).toBeNull();
 
       // aria-required setzen
-      let ariaRequired = true;
+      let ariaRequired: boolean | undefined = true;
       component.ariaRequired = ariaRequired;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-required')).toEqual(
-        ariaRequired + ''
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-required')).toEqual('true');
 
       // aria-required aktualisieren
       ariaRequired = false;
       component.ariaRequired = ariaRequired;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-required')).toEqual(
-        ariaRequired + ''
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-required')).toEqual('false');
 
       // aria-required entfernen
-      ariaRequired = null;
+      ariaRequired = undefined;
       component.ariaRequired = ariaRequired;
       fixture.detectChanges();
 
@@ -69,25 +65,21 @@ describe('LuxAriaRequiredDirective', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-required')).toBeNull();
 
       // aria-required setzen
-      let ariaRequired = true;
+      let ariaRequired: boolean | undefined = true;
       component.ariaRequired = ariaRequired;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-required')).toEqual(
-        ariaRequired + ''
-      );
+      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-required')).toEqual('true');
 
       // aria-required aktualisieren
       ariaRequired = false;
       component.ariaRequired = ariaRequired;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-required')).toEqual(
-        ariaRequired + ''
-      );
+      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-required')).toEqual('false');
 
       // aria-required entfernen
-      ariaRequired = null;
+      ariaRequired = undefined;
       component.ariaRequired = ariaRequired;
       fixture.detectChanges();
 
@@ -107,7 +99,7 @@ describe('LuxAriaRequiredDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaRequired;
+  ariaRequired?: boolean;
 }
 
 @Component({
@@ -117,5 +109,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaRequired;
+  ariaRequired?: boolean;
 }

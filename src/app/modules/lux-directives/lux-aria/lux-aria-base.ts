@@ -38,7 +38,7 @@ export abstract class LuxAriaBase<T> implements AfterViewInit {
     }
   }
 
-  abstract getSelector(): string;
+  abstract getSelector(): string | undefined;
 
-  abstract getValue(): T;
+  abstract getValue(): T | undefined;
 }

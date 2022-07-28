@@ -93,7 +93,7 @@ class MockComponent {
   notification = '';
   disabled = false;
   hidden = false;
-  maxNumber;
+  maxNumber = 0;
 
   constructor() {}
 }

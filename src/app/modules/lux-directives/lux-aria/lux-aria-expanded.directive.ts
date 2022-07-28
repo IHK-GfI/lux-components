@@ -5,16 +5,16 @@ import { LuxAriaBase } from './lux-aria-base';
   selector: '[luxAriaExpanded]'
 })
 export class LuxAriaExpandedDirective extends LuxAriaBase<boolean> {
-  _luxAriaExpanded: boolean;
+  _luxAriaExpanded?: boolean;
 
-  @Input() luxAriaExpandedSelector: string;
+  @Input() luxAriaExpandedSelector?: string;
 
   @Input()
   get luxAriaExpanded() {
     return this._luxAriaExpanded;
   }
 
-  set luxAriaExpanded(expanded: boolean) {
+  set luxAriaExpanded(expanded: boolean | undefined) {
     this._luxAriaExpanded = expanded;
 
     this.renderAria();
@@ -31,11 +31,11 @@ export class LuxAriaExpandedDirective extends LuxAriaBase<boolean> {
     }
   }
 
-  getSelector(): string {
+  getSelector(): string | undefined {
     return this.luxAriaExpandedSelector;
   }
 
-  getValue(): boolean {
+  getValue(): boolean | undefined {
     return this._luxAriaExpanded;
   }
 }

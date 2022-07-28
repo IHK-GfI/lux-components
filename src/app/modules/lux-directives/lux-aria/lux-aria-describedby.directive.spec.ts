@@ -28,7 +28,7 @@ describe('LuxAriaDescribedbyDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toBeNull();
 
       // describedby setzen
-      let ariaDescribedby = 'menubar';
+      let ariaDescribedby: string | undefined = 'menubar';
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
@@ -46,7 +46,7 @@ describe('LuxAriaDescribedbyDirective', () => {
       );
 
       // describedby entfernen
-      ariaDescribedby = null;
+      ariaDescribedby = undefined;
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
@@ -68,7 +68,7 @@ describe('LuxAriaDescribedbyDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toBeNull();
 
       // describedby setzen
-      let ariaDescribedby = 'menubar';
+      let ariaDescribedby: string | undefined = 'menubar';
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
@@ -86,7 +86,7 @@ describe('LuxAriaDescribedbyDirective', () => {
       );
 
       // describedby entfernen
-      ariaDescribedby = null;
+      ariaDescribedby = undefined;
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
@@ -106,7 +106,7 @@ describe('LuxAriaDescribedbyDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaDescribedby;
+  ariaDescribedby?: string | undefined;
 }
 
 @Component({
@@ -116,5 +116,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaDescribedby;
+  ariaDescribedby?: string | undefined;
 }

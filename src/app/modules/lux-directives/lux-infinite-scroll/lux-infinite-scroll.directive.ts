@@ -28,10 +28,7 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
    *
    * @param elementRef Ziel-Element dieser Direktive
    */
-  constructor(private elementRef: ElementRef) {}
-
-  ngOnInit() {
-    window.addEventListener('scroll', this.onScroll.bind(this), true);
+  constructor(private elementRef: ElementRef) {
     // Die neuen Scroll-Events bündeln und nach der Zeitspanne SCROLL_DEBOUNCE_TIME prüfen ob ein
     // "luxScrolled" emitten soll oder nicht.
     this.scrollSubscription = this.scroll$
@@ -39,6 +36,10 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
       .subscribe(() => {
         this.performScrollCheck();
       });
+  }
+
+  ngOnInit() {
+    window.addEventListener('scroll', this.onScroll.bind(this), true);
   }
 
   ngAfterViewInit() {
@@ -101,7 +102,7 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
    * @param position
    * @returns boolean
    */
-  private isScrollExpectedPercent(position) {
+  private isScrollExpectedPercent(position: LuxScrollPosition) {
     return (position.scrollTop + position.clientHeight) / position.scrollHeight > this.luxScrollPercent / 100;
   }
 

@@ -29,25 +29,25 @@ describe('LuxAriaInvalidDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-invalid')).toBeNull();
 
       // aria-invalid setzen
-      let ariaInvalid = true;
+      let ariaInvalid: string | undefined = 'true';
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid + ''
+        ariaInvalid
       );
 
       // aria-invalid aktualisieren
-      ariaInvalid = false;
+      ariaInvalid = 'false';
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid + ''
+        ariaInvalid
       );
 
       // aria-invalid entfernen
-      ariaInvalid = null;
+      ariaInvalid = undefined;
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
@@ -69,25 +69,25 @@ describe('LuxAriaInvalidDirective', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toBeNull();
 
       // aria-invalid setzen
-      let ariaInvalid = true;
+      let ariaInvalid: string | undefined = 'true';
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid + ''
+        ariaInvalid
       );
 
       // aria-invalid aktualisieren
-      ariaInvalid = false;
+      ariaInvalid = 'spelling';
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid + ''
+        ariaInvalid
       );
 
       // aria-invalid entfernen
-      ariaInvalid = null;
+      ariaInvalid = undefined;
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
@@ -103,7 +103,7 @@ describe('LuxAriaInvalidDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaInvalid;
+  ariaInvalid?: string;
 }
 
 @Component({
@@ -113,5 +113,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaInvalid;
+  ariaInvalid?: string;
 }
