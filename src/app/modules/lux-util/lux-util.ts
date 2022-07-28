@@ -24,16 +24,6 @@ export class LuxUtil {
   );
 
   /**
-   * Prueft ob ein String leer ist.
-   *
-   * @param str
-   * @returns boolean
-   */
-  public static isEmpty(str): boolean {
-    return !str || 0 === str.length;
-  }
-
-  /**
    * Liest aus einem Objekt ein bestimmtes Feld aus.
    * Laesst sich auch ueber mehrere Unterobjekte verschachteln.
    * Beispiele fuer propertyNamePath:

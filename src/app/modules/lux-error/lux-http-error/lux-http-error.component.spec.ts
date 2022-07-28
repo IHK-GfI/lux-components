@@ -1,3 +1,6 @@
+/* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 
 import { Component } from '@angular/core';

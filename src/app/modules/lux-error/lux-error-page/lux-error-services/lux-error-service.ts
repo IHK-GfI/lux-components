@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { LuxUtil } from "../../../lux-util/lux-util";
 import { ILuxErrorPageConfig } from '../lux-error-interfaces/lux-error-page-config.interface';
 import { ILuxError } from '../lux-error-interfaces/lux-error.interface';
 import { LuxErrorPageComponent } from '../lux-error-page.component';
@@ -16,13 +17,13 @@ export class LuxErrorService {
   }
 
   /**
-   * Ueberschreibt die aktuelle Konfiguration fuer die Fehlerseite.
-   * Uebernimmt so viele Werte wie moeglich aus der uebergebenen Konfiguration,
+   * Überschreibt die aktuelle Konfiguration für die Fehlerseite.
+   * Übernimmt so viele Werte wie möglich aus der übergebenen Konfiguration,
    * sonst werden die Default-Werte genutzt.
    *
    * @param luxErrorPageConfig
    */
-  setConfig(luxErrorPageConfig: ILuxErrorPageConfig) {
+  setConfig(luxErrorPageConfig: ILuxErrorPageConfig | null) {
     this.errorStore.safeNewConfig(luxErrorPageConfig);
     // potentielle alte Route zu LuxErrorPageComponent entfernen
     this.router.config = this.router.config.filter(entry => entry.component !== LuxErrorPageComponent);
@@ -42,6 +43,9 @@ export class LuxErrorService {
       this.errorStore.error = error;
     }
     const { errorPageUrl, skipLocationChange } = this.errorStore.config;
-    return of(this.router.navigateByUrl(errorPageUrl, { skipLocationChange }));
+
+    LuxUtil.assertNonNull('errorPageUrl', errorPageUrl);
+
+    return of(this.router.navigateByUrl(errorPageUrl!, { skipLocationChange }));
   }
 }
