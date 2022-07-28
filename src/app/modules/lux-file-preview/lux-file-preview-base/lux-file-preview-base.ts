@@ -7,14 +7,14 @@ import { LuxFilePreviewRef } from '../lux-file-preview-ref';
 
 @Directive()
 export class LuxFilePreviewBase implements OnInit, OnDestroy {
-  url: string;
+  url?: string;
   urls: string[] = [];
 
   paddingWith = 100;
   paddingHeight = 150;
 
-  height: number;
-  width: number;
+  height = 0;
+  width = 0;
 
   startPhase = true;
   startDurationMs = 250;
@@ -55,17 +55,21 @@ export class LuxFilePreviewBase implements OnInit, OnDestroy {
     this.updateWidthAndHeight();
 
     setTimeout(() => {
-      let myBlob: Blob;
-      if ('string' === typeof this.previewData.fileObject.content) {
-        myBlob = new Blob([LuxUtil.base64ToArrayBuffer(this.previewData.fileObject.content.split(',')[1])], {
-          type: this.previewData.fileObject.type
-        });
-      } else {
-        myBlob = this.previewData.fileObject.content;
-      }
+      if (this.previewData.fileObject) {
+        let myBlob: Blob | undefined;
+        if ('string' === typeof this.previewData.fileObject.content) {
+          myBlob = new Blob([LuxUtil.base64ToArrayBuffer(this.previewData.fileObject.content.split(',')[ 1 ])], {
+            type: this.previewData.fileObject.type
+          });
+        } else {
+          myBlob = this.previewData.fileObject.content;
+        }
 
-      this.url = window.URL.createObjectURL(myBlob);
-      this.urls.push(this.url);
+        if (myBlob) {
+          this.url = window.URL.createObjectURL(myBlob);
+          this.urls.push(this.url);
+        }
+      }
     });
   }
 
@@ -76,8 +80,10 @@ export class LuxFilePreviewBase implements OnInit, OnDestroy {
   }
 
   onDownload() {
-    this.previewData.fileComponent.downloadFile(this.previewData.fileObject);
-    this.previewRef.close();
+    if (this.previewData && this.previewData.fileComponent && this.previewData.fileObject) {
+      this.previewData.fileComponent.downloadFile(this.previewData.fileObject);
+      this.previewRef.close();
+    }
   }
 
   onClose() {

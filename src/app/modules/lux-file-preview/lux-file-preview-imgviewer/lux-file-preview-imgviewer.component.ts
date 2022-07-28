@@ -1,13 +1,10 @@
 import {
   AfterViewInit,
   Component,
-  ContentChildren,
   ElementRef,
   Inject,
   OnInit,
-  QueryList,
-  ViewChild,
-  ViewChildren
+  ViewChild
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LuxFilePreviewBase } from '../lux-file-preview-base/lux-file-preview-base';
@@ -21,7 +18,7 @@ import { LuxFilePreviewRef } from '../lux-file-preview-ref';
   styleUrls: ['./lux-file-preview-imgviewer.component.scss']
 })
 export class LuxFilePreviewImgViewerComponent extends LuxFilePreviewBase implements OnInit, AfterViewInit {
-  @ViewChild('previewImg') previewImg: ElementRef;
+  @ViewChild('previewImg') previewImg?: ElementRef;
 
   zoomActive = false;
   zoomWidth = 0;
@@ -30,7 +27,7 @@ export class LuxFilePreviewImgViewerComponent extends LuxFilePreviewBase impleme
   constructor(
     private elementRef: ElementRef,
     protected previewRef: LuxFilePreviewRef,
-    @Inject(LUX_FILE_PREVIEW_DATA) protected previewData: LuxFilePreviewData,
+    @Inject(LUX_FILE_PREVIEW_DATA) public previewData: LuxFilePreviewData,
     public sanitizer: DomSanitizer
   ) {
     super(previewRef, previewData, sanitizer);
@@ -38,19 +35,23 @@ export class LuxFilePreviewImgViewerComponent extends LuxFilePreviewBase impleme
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.zoomActive =
-        this.previewImg && this.previewImg.nativeElement.naturalWidth - this.paddingWith > window.innerWidth;
+      if (this.previewImg) {
+        this.zoomActive =
+          this.previewImg && this.previewImg.nativeElement.naturalWidth - this.paddingWith > window.innerWidth;
 
         const firstButton = (this.elementRef.nativeElement as HTMLElement).querySelector('button');
         if (firstButton) {
           firstButton.focus();
         }
+      }
     });
   }
 
-  onLoad(event: Event) {
-    this.zoomActive =
-      this.previewImg && this.previewImg.nativeElement.naturalWidth - this.paddingWith > window.innerWidth;
+  onLoad() {
+    if (this.previewImg) {
+      this.zoomActive =
+        this.previewImg && this.previewImg.nativeElement.naturalWidth - this.paddingWith > window.innerWidth;
+    }
     this.loadingFinished();
   }
 

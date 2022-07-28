@@ -17,8 +17,8 @@ export class LuxFilePreviewPdfViewerComponent extends LuxFilePreviewBase impleme
   page = 1;
   numPages = 0;
 
-  loadingDivLeft: number;
-  loadingDivTop: number;
+  loadingDivLeft = 0;
+  loadingDivTop = 0;
   loadingDivWidth = 100;
   loadingDivHeight = 50;
 
@@ -104,5 +104,5 @@ export class LuxFilePreviewPdfViewerComponent extends LuxFilePreviewBase impleme
     console.log(event);
   }
 
-  onProgress(progressData: any) {}
+  onProgress() {}
 }

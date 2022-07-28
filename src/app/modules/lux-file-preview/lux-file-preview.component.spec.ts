@@ -1,3 +1,5 @@
+// noinspection DuplicatedCode
+
 import { OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
 import { PortalModule } from '@angular/cdk/portal';
@@ -39,14 +41,14 @@ describe('LuxFilePreviewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', inject([OverlayContainer, Platform], (oc: OverlayContainer, p: Platform) => {
+  it('should create', inject([OverlayContainer, Platform], () => {
     expect(component).toBeTruthy();
   }));
 
   it('Sollte den PDF-Viewer anzeigen', fakeAsync(
     inject(
       [LuxFilePreviewService, OverlayContainer, Platform],
-      (previewService: LuxFilePreviewService, oc: OverlayContainer, p: Platform) => {
+      (previewService: LuxFilePreviewService, oc: OverlayContainer) => {
         // Vorbedingungen testen
         expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
         expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
@@ -56,7 +58,7 @@ describe('LuxFilePreviewComponent', () => {
         // Änderungen durchführen
         const previewRef = previewService.open({
           previewData: {
-            fileComponent: null,
+            fileComponent: undefined,
             fileObject: { name: 'testfile.pdf', content: '', type: 'application/pdf' }
           }
         });
@@ -83,7 +85,7 @@ describe('LuxFilePreviewComponent', () => {
   it('Sollte den Img-Viewer anzeigen', fakeAsync(
     inject(
       [LuxFilePreviewService, OverlayContainer, Platform],
-      (previewService: LuxFilePreviewService, oc: OverlayContainer, p: Platform) => {
+      (previewService: LuxFilePreviewService, oc: OverlayContainer) => {
         // Vorbedingungen testen
         expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
         expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
@@ -93,7 +95,7 @@ describe('LuxFilePreviewComponent', () => {
         // Änderungen durchführen
         const previewRef = previewService.open({
           previewData: {
-            fileComponent: null,
+            fileComponent: undefined,
             fileObject: { name: 'testfile.png', content: '', type: 'image/png' }
           }
         });
@@ -120,7 +122,7 @@ describe('LuxFilePreviewComponent', () => {
   it('Sollte den NotSupported-Viewer anzeigen', fakeAsync(
     inject(
       [LuxFilePreviewService, OverlayContainer, Platform],
-      (previewService: LuxFilePreviewService, oc: OverlayContainer, p: Platform) => {
+      (previewService: LuxFilePreviewService, oc: OverlayContainer) => {
         // Vorbedingungen testen
         expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
         expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
@@ -130,7 +132,7 @@ describe('LuxFilePreviewComponent', () => {
         // Änderungen durchführen
         const previewRef = previewService.open({
           previewData: {
-            fileComponent: null,
+            fileComponent: undefined,
             fileObject: { name: 'testfile.abc', content: '', type: 'ne/abc' }
           }
         });

@@ -1,17 +1,17 @@
-import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { ComponentRef, Injectable, Injector } from '@angular/core';
-import { LUX_FILE_PREVIEW_DATA, LuxFilePreviewConfig } from './lux-file-preview-config';
-import { LuxFilePreviewRef } from './lux-file-preview-ref';
-import { LuxFilePreviewComponent } from './lux-file-preview.component';
+import { Overlay, OverlayConfig, OverlayRef } from "@angular/cdk/overlay";
+import { ComponentPortal } from "@angular/cdk/portal";
+import { ComponentRef, Injectable, Injector } from "@angular/core";
+import { LUX_FILE_PREVIEW_DATA, LuxFilePreviewConfig } from "./lux-file-preview-config";
+import { LuxFilePreviewRef } from "./lux-file-preview-ref";
+import { LuxFilePreviewComponent } from "./lux-file-preview.component";
 
 export const DEFAULT_FILE_PREVIEW_CONFIG: LuxFilePreviewConfig = {
   hasBackdrop: true,
   backdropClass: 'lux-file-preview-backdrop',
   panelClass: 'lux-file-preview-panel',
   previewData: {
-    fileComponent: null,
-    fileObject: null
+    fileComponent: undefined,
+    fileObject: undefined
   }
 };
 
@@ -57,14 +57,12 @@ export class LuxFilePreviewService {
   private getOverlayConfig(config: LuxFilePreviewConfig): OverlayConfig {
     const positionStrategy = this.overlay.position().global().centerHorizontally().centerVertically();
 
-    const overlayConfig = new OverlayConfig({
-      hasBackdrop: config.hasBackdrop,
-      backdropClass: config.backdropClass,
-      panelClass: config.panelClass,
+    return new OverlayConfig({
+      hasBackdrop   : config.hasBackdrop,
+      backdropClass : config.backdropClass,
+      panelClass    : config.panelClass,
       scrollStrategy: this.overlay.scrollStrategies.block(),
       positionStrategy
     });
-
-    return overlayConfig;
   }
 }
