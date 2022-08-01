@@ -3,10 +3,11 @@ import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@
 import { LuxDatepickerStartViewType } from "../../../modules/lux-form/lux-datepicker/lux-datepicker.component";
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
-} from '../../example-base/example-base-util/example-base-helper';
+} from "../../example-base/example-base-util/example-base-helper";
 
 @Component({
   selector: 'app-datepicker-example',
@@ -55,6 +56,7 @@ export class DatepickerExampleComponent {
 
   customFilterString = this.customFilter + '';
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
 
   constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale: string, private fb: UntypedFormBuilder) {
@@ -86,8 +88,6 @@ export class DatepickerExampleComponent {
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
-
-  emptyCallback() {}
 
   customFilter(d: Date) {
     const day = d.getDay();

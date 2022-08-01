@@ -1,4 +1,5 @@
-import { UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormGroup, Validators } from "@angular/forms";
+import { LuxValidationErrors } from "../../../modules/lux-form/lux-form-model/lux-form-component-base.class";
 
 /**
  * Fügt dem FormControl den required-Validator hinzu bzw. entfernt ihn.
@@ -43,7 +44,7 @@ export const logResult = (shouldLog: boolean, msg: string, event?: any) => {
  * @param value
  * @param errors
  */
-export const exampleErrorCallback = (value, errors) => {
+export const exampleErrorCallback = (value: any, errors: LuxValidationErrors) => {
   console.log('exampleErrorCallback (value =', value, ', errors =', errors + ')');
   if (errors.required) {
     return 'Achtung, dies ist ein Pflichtfeld.';
@@ -52,8 +53,13 @@ export const exampleErrorCallback = (value, errors) => {
 };
 
 /**
+ * Eine ErrorCallback-Funktion die immer undefined zurückliefert.
+ */
+export const emptyErrorCallback = () => undefined;
+
+/**
  * Beispielhafte pickValue-Funktion die von einigen Beispielen genutzt wird.
- * Geht davon aus, das die Option eine value-Property hat.
+ * Geht davon aus, dass die Option eine value-Property hat.
  *
  * @param option
  */

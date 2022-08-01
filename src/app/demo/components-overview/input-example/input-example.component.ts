@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
-} from '../../example-base/example-base-util/example-base-helper';
+} from "../../example-base/example-base-util/example-base-helper";
 
 @Component({
   selector: 'app-input-example',
@@ -47,6 +48,7 @@ export class InputExampleComponent {
   autocomplete = 'off';
   inputType = 'text';
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
   maxLength = 0;
   hideCounterLabel = false;
@@ -68,5 +70,4 @@ export class InputExampleComponent {
     return selected.value;
   }
 
-  emptyCallback() {}
 }

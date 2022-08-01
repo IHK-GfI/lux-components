@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn } from '@angular/forms';
 import { LuxFormSelectableBase } from '../../../modules/lux-form/lux-form-model/lux-form-selectable-base.class';
 import {
+  emptyErrorCallback,
   exampleCompareWithFn,
   exampleErrorCallback,
   examplePickValueFn,
   logResult,
   setRequiredValidatorForFormControl
-} from '../../example-base/example-base-util/example-base-helper';
+} from "../../example-base/example-base-util/example-base-helper";
 
 @Component({
   selector: 'app-select-example',
@@ -92,6 +93,7 @@ export class SelectExampleComponent {
   multiselectValue: any = null;
 
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   pickValueFn = examplePickValueFn;
   compareWithFn = exampleCompareWithFn;
 
@@ -151,8 +153,6 @@ export class SelectExampleComponent {
     this.useSimpleArray = $event === true ? false : this.useSimpleArray;
     this.useValueFn = $event === true ? false : this.useValueFn;
   }
-
-  emptyCallback() {}
 
   reset(...comps: LuxFormSelectableBase[]) {
     this.value = undefined;

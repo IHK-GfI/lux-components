@@ -5,9 +5,10 @@ import {
   LuxDateTimePickerComponent,
 } from '../../../modules/lux-form/lux-datetimepicker/lux-datetimepicker.component';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
-  logResult,
-} from '../../example-base/example-base-util/example-base-helper';
+  logResult
+} from "../../example-base/example-base-util/example-base-helper";
 
 @Component({
   selector: 'app-datetimeicker-example',
@@ -77,6 +78,7 @@ export class DateTimepickerExampleComponent {
 
   customFilterString = this.customFilter + '';
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
 
   constructor(private fb: UntypedFormBuilder) {
@@ -98,8 +100,6 @@ export class DateTimepickerExampleComponent {
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
-
-  emptyCallback() {}
 
   customFilter(d: Date) {
     const day = d.getDay();

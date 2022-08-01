@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { SLIDER_COLORS } from '../../../modules/lux-form/lux-slider/lux-slider.component';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
-} from '../../example-base/example-base-util/example-base-helper';
+} from "../../example-base/example-base-util/example-base-helper";
 
 @Component({
   selector: 'app-slider-example',
@@ -62,6 +63,7 @@ export class SliderExampleComponent {
   min = 0;
   controlValidators: ValidatorFn[] = [];
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString: string = this.errorCallback + '';
 
   // endregion
@@ -116,5 +118,4 @@ export class SliderExampleComponent {
     return selected.value;
   }
 
-  emptyCallback() {}
 }

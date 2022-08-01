@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
+import { emptyErrorCallback, exampleErrorCallback } from "../../example-base/example-base-util/example-base-helper";
 
 @Component({
   selector: 'toggle-example',
@@ -26,6 +26,7 @@ export class ToggleExampleComponent {
   required = false;
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
 
   // endregion
 
@@ -45,5 +46,4 @@ export class ToggleExampleComponent {
     this.form.get(this.controlBinding).updateValueAndValidity();
   }
 
-  emptyCallback() {}
 }

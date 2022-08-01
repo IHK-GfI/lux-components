@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LuxDialogRef } from '../../../lux-popups/lux-dialog/lux-dialog-model/lux-dialog-ref.class';
 import { LuxFilter } from '../../lux-filter-base/lux-filter';
 import { LuxFilterFormComponent } from '../../lux-filter-form/lux-filter-form.component';
@@ -8,13 +8,11 @@ import { LuxFilterFormComponent } from '../../lux-filter-form/lux-filter-form.co
   templateUrl: './lux-filter-load-dialog.component.html',
   styleUrls: ['./lux-filter-load-dialog.component.scss']
 })
-export class LuxFilterLoadDialogComponent implements OnInit {
+export class LuxFilterLoadDialogComponent {
   filterArr: LuxFilter[];
   component: LuxFilterFormComponent;
 
-  constructor(public luxDialogRef: LuxDialogRef) {}
-
-  ngOnInit(): void {
+  constructor(public luxDialogRef: LuxDialogRef<LuxFilterFormComponent>) {
     this.component = this.luxDialogRef.data;
     this.filterArr = this.component.luxStoredFilters;
   }

@@ -8,11 +8,16 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  Output,
-  SimpleChange,
-  SimpleChanges
+  Output
 } from '@angular/core';
-import { AbstractControl, ControlContainer, Form, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
+import {
+  AbstractControl,
+  ControlContainer,
+  UntypedFormControl,
+  UntypedFormGroup, ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 import { Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -22,6 +27,8 @@ import { LuxFormHintComponent } from '../lux-form-control/lux-form-control-subco
 import { LuxFormLabelComponent } from '../lux-form-control/lux-form-control-subcomponents/lux-form-label.component';
 
 let luxFormControlUID = 0;
+
+export declare type LuxValidationErrors = ValidationErrors;
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy {
@@ -65,7 +72,7 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
 
   @Input() luxControlBinding: string;
   @Input() luxErrorMessage: string;
-  @Input() luxErrorCallback: (value, errors) => any = (value, errors) => undefined;
+  @Input() luxErrorCallback: (value: any, errors: LuxValidationErrors) => string | undefined = () => undefined;
 
   get luxControlValidators(): ValidatorFn | ValidatorFn[] {
     return this._luxControlValidators;

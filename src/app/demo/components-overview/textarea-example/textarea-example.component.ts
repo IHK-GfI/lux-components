@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
-} from '../../example-base/example-base-util/example-base-helper';
+} from "../../example-base/example-base-util/example-base-helper";
 
 @Component({
   selector: 'app-textarea-example',
@@ -44,6 +45,7 @@ export class TextareaExampleComponent {
   max = -1;
   min = 1;
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
   maxLength = 0;
   hideCounterLabel = false;
@@ -66,5 +68,4 @@ export class TextareaExampleComponent {
     return selected.value;
   }
 
-  emptyCallback() {}
 }

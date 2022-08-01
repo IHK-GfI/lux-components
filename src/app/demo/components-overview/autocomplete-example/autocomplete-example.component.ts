@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { AutocompleteExampleOption } from "./autocomplete-example-option";
 import { RenderPropertyItem } from './render-property-item';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   examplePickValueFn,
   logResult,
   setRequiredValidatorForFormControl
-} from '../../example-base/example-base-util/example-base-helper';
+} from "../../example-base/example-base-util/example-base-helper";
 
 @Component({
   selector: 'app-autocomplete-example',
@@ -79,6 +80,7 @@ export class AutocompleteExampleComponent {
   errorMessageNotAnOption = 'Der eingegebene Wert ist nicht Teil der Auswahl.';
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
   usePickValueFn = false;
   pickValueFn = examplePickValueFn;
@@ -118,6 +120,4 @@ export class AutocompleteExampleComponent {
     this.required = $event;
     setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
   }
-
-  emptyCallback() {}
 }

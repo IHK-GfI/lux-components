@@ -1,5 +1,8 @@
 import { Directive, ElementRef, Input, OnChanges, OnInit, Optional, Renderer2, SimpleChanges } from '@angular/core';
+import { ThemePalette } from "@angular/material/core";
 import { LuxDateTimePickerComponent } from '../../lux-form/lux-datetimepicker/lux-datetimepicker.component';
+import { LuxFormSelectableBase } from "../../lux-form/lux-form-model/lux-form-selectable-base.class";
+import { LuxLookupComponent } from "../../lux-lookup/lux-lookup-model/lux-lookup-component";
 import { LuxFilterItem } from './lux-filter-item';
 import { LuxInputComponent } from '../../lux-form/lux-input/lux-input.component';
 import { LuxDatepickerComponent } from '../../lux-form/lux-datepicker/lux-datepicker.component';
@@ -15,10 +18,10 @@ import { LuxLookupAutocompleteComponent } from '../../lux-lookup/lux-lookup-auto
   selector: '[luxFilterItem]'
 })
 export class LuxFilterItemDirective implements OnInit, OnChanges {
-  filterItem: LuxFilterItem = new LuxFilterItem();
+  filterItem: LuxFilterItem<any>;
 
-  @Input() luxFilterColor = undefined;
-  @Input() luxFilterDefaultValues = [undefined, null, false, ''];
+  @Input() luxFilterColor: ThemePalette = undefined;
+  @Input() luxFilterDefaultValues = [...LuxFilterItem.DEFAULT_VALUES];
   @Input() luxFilterRenderFn = undefined;
   @Input() luxFilterHidden = false;
   @Input() luxFilterDisabled = false;
@@ -35,9 +38,7 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
     @Optional() public selectLookup: LuxLookupComboboxComponent,
     private elRef: ElementRef,
     private renderer: Renderer2
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     let formComponent: LuxFormComponentBase;
     if (this.input) {
       formComponent = this.input;
@@ -57,11 +58,14 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
       formComponent = this.autoCompleteLookup;
     } else if (this.selectLookup) {
       formComponent = this.selectLookup;
+    } else {
+      throw Error(`Die verwendete Formularkomponente ist unbekannt!`);
     }
 
-    this.filterItem.label = formComponent.luxLabel;
-    this.filterItem.binding = formComponent.luxControlBinding;
-    this.filterItem.component = formComponent;
+    this.filterItem = new LuxFilterItem<any>(formComponent.luxLabel, formComponent.luxControlBinding, formComponent);
+  }
+
+  ngOnInit(): void {
     this.filterItem.color = this.luxFilterColor;
     this.filterItem.defaultValues = this.luxFilterDefaultValues;
     this.filterItem.value = this.luxFilterDefaultValues[0];
@@ -98,59 +102,66 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
   }
 
   private updateHiddenState(hidden: boolean) {
-    // Wenn ein Filterelement ausgeblendet wird, wird es zusätzlich deaktiviert,
-    // um es in der Filterkomponente leichter behandeln zu können. An die CSS-Klasse 'lux-display-none'
-    // kommt man dynamisch nicht so einfach heran.
-    if (hidden) {
-      this.renderer.addClass(this.elRef.nativeElement, 'lux-display-none-important');
-      this.filterItem.component.formControl.disable();
-    } else {
-      this.renderer.removeClass(this.elRef.nativeElement, 'lux-display-none-important');
-      this.filterItem.component.formControl.enable();
+    if (this.filterItem) {
+      // Wenn ein Filterelement ausgeblendet wird, wird es zusätzlich deaktiviert,
+      // um es in der Filterkomponente leichter behandeln zu können. An die CSS-Klasse 'lux-display-none'
+      // kommt man dynamisch nicht so einfach heran.
+      if (hidden) {
+        this.renderer.addClass(this.elRef.nativeElement, 'lux-display-none-important');
+        this.filterItem.component.formControl.disable();
+      } else {
+        this.renderer.removeClass(this.elRef.nativeElement, 'lux-display-none-important');
+        this.filterItem.component.formControl.enable();
+      }
     }
   }
 
   private updateDisabledState(disabled: boolean) {
-    if (disabled) {
-      this.filterItem.component.formControl.disable();
-    } else {
-      this.filterItem.component.formControl.enable();
+    if (this.filterItem) {
+      if (disabled) {
+        this.filterItem.component.formControl.disable();
+      } else {
+        this.filterItem.component.formControl.enable();
+      }
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.filterItem.component && changes && changes.luxFilterHidden) {
-      this.updateHiddenState(changes['luxFilterHidden'].currentValue);
-    } else if (this.filterItem.component && changes && changes.luxFilterDisabled) {
-      this.updateDisabledState(changes['luxFilterDisabled'].currentValue);
+    if (this.filterItem) {
+      if (this.filterItem.component && changes && changes.luxFilterHidden) {
+        this.updateHiddenState(changes[ 'luxFilterHidden' ].currentValue);
+      } else if (this.filterItem.component && changes && changes.luxFilterDisabled) {
+        this.updateDisabledState(changes[ 'luxFilterDisabled' ].currentValue);
+      }
     }
   }
 
-  renderLabelFn(filterItem: LuxFilterItem, value: any) {
+  renderLabelFn<T>(filterItem: LuxFilterItem<T>, value: T) {
     if (typeof value === 'string') {
       return value;
-    } else if (typeof value === 'object' && value.hasOwnProperty(filterItem.component['luxOptionLabelProp'])) {
-      return value[filterItem.component['luxOptionLabelProp']];
-    } else if (typeof value === 'object' && value.hasOwnProperty(filterItem.component['luxRenderProp'])) {
-      return value[filterItem.component['luxRenderProp']];
+    } else if (typeof value === "object" &&
+               (filterItem.component instanceof LuxFormSelectableBase || filterItem.component instanceof LuxAutocompleteComponent)) {
+      return (value as any)[filterItem.component.luxOptionLabelProp];
+    } else if (filterItem.component instanceof  LuxLookupComponent) {
+      return filterItem.component.getLabel(value);
     } else {
       return value;
     }
   }
 
-  renderDateFn(filterItem: LuxFilterItem, value: any) {
+  renderDateFn<T>(filterItem: LuxFilterItem<T>) {
     return (filterItem.component as LuxDatepickerComponent).datepickerInput.nativeElement.value;
   }
 
-  renderDateTimeFn(filterItem: LuxFilterItem, value: any) {
+  renderDateTimeFn<T>(filterItem: LuxFilterItem<T>) {
     return (filterItem.component as LuxDateTimePickerComponent).dateTimePickerInputEl.nativeElement.value;
   }
 
-  renderToggleFn(filterItem: LuxFilterItem, value: any) {
+  renderToggleFn<T>(filterItem: LuxFilterItem<T>, value: any) {
     return value ? 'an' : 'aus';
   }
 
-  renderIdentityFn(filterItem: LuxFilterItem, value: any) {
+  renderIdentityFn<T>(filterItem: LuxFilterItem<T>, value: any) {
     return value;
   }
 }

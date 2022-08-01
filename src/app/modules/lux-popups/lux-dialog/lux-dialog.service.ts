@@ -18,7 +18,7 @@ export class LuxDialogService {
 
   private dialogOpened = false;
 
-  constructor(private matDialog: MatDialog, private logger: LuxConsoleService, private luxDialogRef: LuxDialogRef) {}
+  constructor(private matDialog: MatDialog, private logger: LuxConsoleService, private luxDialogRef: LuxDialogRef<any>) {}
 
   /**
    * Öffnet einen Dialog basierend auf der übergebenen Component und den entsprechenden Daten.
@@ -27,7 +27,7 @@ export class LuxDialogService {
    * @param config
    * @param data
    */
-  openComponent(component: ComponentType<any>, config?: ILuxDialogConfig, data?: any): LuxDialogRef {
+  openComponent<T>(component: ComponentType<any>, config?: ILuxDialogConfig, data?: T): LuxDialogRef<T> {
     this.handleOpen(component, config, data, DEFAULT_DIALOG_CONF);
     return this.luxDialogRef;
   }
@@ -51,7 +51,7 @@ export class LuxDialogService {
    *
    * @param config
    */
-  open(config?: ILuxDialogPresetConfig): LuxDialogRef {
+  open<T>(config?: ILuxDialogPresetConfig): LuxDialogRef<T> {
     // Eine Dialog-Instanz erzeugen, als Data übergeben wir hier noch einmal die Config
     this.handleOpen(LuxDialogPresetComponent, config, config, DEFAULT_DIALOG_PRESET_CONF);
     return this.luxDialogRef;

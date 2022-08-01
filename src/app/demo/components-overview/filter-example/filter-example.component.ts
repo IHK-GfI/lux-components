@@ -1,14 +1,11 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { LuxActionColorType } from '../../../modules/lux-action/lux-action-model/lux-action-component-base.class';
-import { LuxFilter } from '../../../modules/lux-filter/lux-filter-base/lux-filter';
-import { LuxFilterItem } from '../../../modules/lux-filter/lux-filter-base/lux-filter-item';
-import { LuxFilterFormComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form.component';
-import { LuxMediaQueryObserverService } from '../../../modules/lux-util/lux-media-query-observer.service';
-import { Subscription } from 'rxjs';
-import {
-  LuxFieldValues,
-  LuxLookupParameters
-} from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
+import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Subscription } from "rxjs";
+import { LuxActionColorType } from "../../../modules/lux-action/lux-action-model/lux-action-component-base.class";
+import { LuxFilter } from "../../../modules/lux-filter/lux-filter-base/lux-filter";
+import { LuxFilterItem } from "../../../modules/lux-filter/lux-filter-base/lux-filter-item";
+import { LuxFilterFormComponent } from "../../../modules/lux-filter/lux-filter-form/lux-filter-form.component";
+import { LuxFieldValues, LuxLookupParameters } from "../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters";
+import { LuxMediaQueryObserverService } from "../../../modules/lux-util/lux-media-query-observer.service";
 import { LuxUtil } from "../../../modules/lux-util/lux-util";
 
 @Component({
@@ -53,7 +50,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   expanded = false;
   showFilterChips = true;
 
-  storedFilters = [
+  storedFilters: LuxFilter[] = [
     {
       name: 'Vollständig',
       data: {
@@ -124,11 +121,11 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   buttonColorOptions = ['default', 'primary', 'accent', 'warn'];
   buttonRaised = false;
   buttonFilterColor: LuxActionColorType = 'primary';
-  buttonDialogSave = 'primary';
-  buttonDialogLoad = 'primary';
-  buttonDialogDelete = 'warn';
-  buttonDialogCancel = 'default';
-  buttonDialogClose = 'default';
+  buttonDialogSave: LuxActionColorType = 'primary';
+  buttonDialogLoad: LuxActionColorType = 'primary';
+  buttonDialogDelete: LuxActionColorType = 'warn';
+  buttonDialogCancel: LuxActionColorType = '';
+  buttonDialogClose: LuxActionColorType = '';
 
   markdownData = `
   Html
@@ -137,13 +134,11 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   ...
     <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '24px', column: '8px' }" luxWrapAt="md">
       <lux-select
-        ...
         luxFilterItem
         [luxNoBottomLabel]="true"
         *luxLayoutRowItem="{}"
       ></lux-select>
       <lux-select
-        ...
         luxFilterItem
         [luxNoBottomLabel]="true"
         *luxLayoutRowItem="{}"
@@ -158,11 +153,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   constructor(private mediaQuery: LuxMediaQueryObserverService) {
     this.mediaQuerySubscription = this.mediaQuery.getMediaQueryChangedAsObservable().subscribe(() => {
-      if (this.mediaQuery.isSmallerOrEqual('xs')) {
-        this.showFilterChips = false;
-      } else {
-        this.showFilterChips = true;
-      }
+      this.showFilterChips = !this.mediaQuery.isSmallerOrEqual('xs');
     });
   }
 
@@ -180,7 +171,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   compareValueFn = (o1: any, o2: any) => o1.value === o2.value;
 
-  renderToggleFn(filterItem: LuxFilterItem, value: any) {
+  renderToggleFn(filterItem: LuxFilterItem<boolean>, value: boolean) {
     return value ? 'aktiviert' : 'deaktiviert';
   }
 
@@ -217,6 +208,12 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   private loadFilter(filterName: string) {
     // Hier müssten die Filtereinstellungen (z.B. aus der Datenbank) gelesen und zurückgeliefert werden.
-    return JSON.parse(JSON.stringify(this.storedFilters.find((filter) => filter.name === filterName).data));
+    const luxFilter = this.storedFilters.find((filter) => filter.name === filterName);
+
+    if (!luxFilter) {
+      throw Error(`Es konnte kein Filter mit dem Namen "${filterName}" gefunden werden.`);
+    }
+
+    return JSON.parse(JSON.stringify(luxFilter.data));
   }
 }

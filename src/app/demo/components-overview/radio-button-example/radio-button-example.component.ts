@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxRadioComponent } from '../../../modules/lux-form/lux-radio/lux-radio.component';
 import {
+  emptyErrorCallback,
   exampleCompareWithFn,
   exampleErrorCallback,
   examplePickValueFn,
   logResult,
   setRequiredValidatorForFormControl
-} from '../../example-base/example-base-util/example-base-helper';
+} from "../../example-base/example-base-util/example-base-helper";
 
 @Component({
   selector: 'app-radio-button-example',
@@ -62,6 +63,7 @@ export class RadioButtonExampleComponent {
   groupNameNormal = 'normalGroup';
 
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   pickValueFn = examplePickValueFn;
   compareWithFn = exampleCompareWithFn;
 
@@ -122,8 +124,6 @@ export class RadioButtonExampleComponent {
     this.useSimpleArray = $event === true ? false : this.useSimpleArray;
     this.useValueFn = $event === true ? false : this.useValueFn;
   }
-
-  emptyCallback() {}
 
   reset(...radioComponents: LuxRadioComponent[]) {
     this.value = undefined;

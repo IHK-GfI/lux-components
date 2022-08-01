@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
+import { emptyErrorCallback, exampleErrorCallback } from "../../example-base/example-base-util/example-base-helper";
 
 @Component({
   selector: 'lux-checkbox-example',
@@ -28,6 +28,7 @@ export class CheckboxExampleComponent {
   required = false;
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
 
   // endregion
 
@@ -51,8 +52,6 @@ export class CheckboxExampleComponent {
     }
     this.form.get(this.controlBinding).updateValueAndValidity();
   }
-
-  emptyCallback() {}
 
   exampleValidator($event: boolean) {
     Object.keys(this.agb.controls).forEach((key) => {

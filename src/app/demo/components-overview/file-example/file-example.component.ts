@@ -151,8 +151,6 @@ export abstract class FileExampleComponent implements OnInit {
 
   onUpload(event: any) {}
 
-  emptyCallback() {}
-
   onSelectedChange($event: ILuxFileObject) {
     this.selected = $event;
     this.log(true, 'luxSelectedChange', $event);

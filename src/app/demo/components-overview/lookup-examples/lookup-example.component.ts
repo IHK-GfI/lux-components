@@ -9,10 +9,11 @@ import { LuxLookupService } from '../../../modules/lux-lookup/lux-lookup-service
 import { LuxLookupHandlerService } from '../../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupTableEntry } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-table-entry';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
-} from '../../example-base/example-base-util/example-base-helper';
+} from "../../example-base/example-base-util/example-base-helper";
 
 @Directive()
 export abstract class LookupExampleComponent implements OnInit {
@@ -65,6 +66,7 @@ export abstract class LookupExampleComponent implements OnInit {
   value: LuxLookupTableEntry | LuxLookupTableEntry[] | null = null;
 
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
 
   // endregion
@@ -118,5 +120,4 @@ export abstract class LookupExampleComponent implements OnInit {
     return selected.value;
   }
 
-  emptyCallback() {}
 }

@@ -1,24 +1,24 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AbstractControl, ValidatorFn } from "@angular/forms";
+import { LuxValidationErrors } from "../../../lux-form/lux-form-model/lux-form-component-base.class";
 import { LuxInputComponent } from '../../../lux-form/lux-input/lux-input.component';
 import { LuxDialogRef } from '../../../lux-popups/lux-dialog/lux-dialog-model/lux-dialog-ref.class';
 import { LuxFilter } from '../../lux-filter-base/lux-filter';
+import { LuxFilterFormComponent } from "../../lux-filter-form/lux-filter-form.component";
 
 @Component({
   selector: 'lux-filter-save-dialog',
   templateUrl: './lux-filter-save-dialog.component.html',
   styleUrls: ['./lux-filter-save-dialog.component.scss']
 })
-export class LuxFilterSaveDialogComponent implements OnInit, AfterViewInit {
-  @ViewChild(LuxInputComponent) filterNameComponent: LuxInputComponent;
+export class LuxFilterSaveDialogComponent implements AfterViewInit {
+  @ViewChild(LuxInputComponent) filterNameComponent!: LuxInputComponent;
 
   currentFilters: LuxFilter[];
 
   filterName = '';
 
-  constructor(public luxDialogRef: LuxDialogRef) {}
-
-  ngOnInit(): void {
+  constructor(public luxDialogRef: LuxDialogRef<LuxFilterFormComponent>) {
     this.currentFilters = this.luxDialogRef.data.luxStoredFilters ? this.luxDialogRef.data.luxStoredFilters : [];
   }
 
@@ -45,7 +45,7 @@ export class LuxFilterSaveDialogComponent implements OnInit, AfterViewInit {
     };
   }
 
-  filterErrorCallback = (value, errors) => {
+  filterErrorCallback = (value: any, errors: LuxValidationErrors) => {
     if (errors.forbiddenName) {
       return 'Der Name existiert bereits.';
     } else if (errors.required) {

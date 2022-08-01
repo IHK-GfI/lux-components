@@ -88,7 +88,7 @@ export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.parent) {
+    if (this.parent && this.subscription) {
       this.subscription.unsubscribe();
     }
   }

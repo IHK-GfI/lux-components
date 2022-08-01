@@ -1,5 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { emptyErrorCallback } from "../../../demo/example-base/example-base-util/example-base-helper";
 
 import { LuxDatepickerComponent } from './lux-datepicker.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';

@@ -37,7 +37,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     panelClass: []
   };
 
-  @ContentChildren(LuxFilterItemDirective, { descendants: true }) formElementes: QueryList<LuxFilterItemDirective>;
+  @ContentChildren(LuxFilterItemDirective, { descendants: true }) formElementes!: QueryList<LuxFilterItemDirective>;
 
   _luxFilterValues = {};
   _luxFilterExpanded = false;
@@ -52,11 +52,11 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   @Input() luxButtonSaveColor: LuxActionColorType = '';
   @Input() luxButtonLoadLabel = $localize `:@@luxc.filter.load.btn:Laden`;
   @Input() luxButtonLoadColor: LuxActionColorType = '';
-  @Input() luxButtonDialogSave = 'primary';
-  @Input() luxButtonDialogLoad = 'primary';
-  @Input() luxButtonDialogDelete = 'warn';
-  @Input() luxButtonDialogCancel = 'default';
-  @Input() luxButtonDialogClose = 'default';
+  @Input() luxButtonDialogSave: LuxActionColorType = 'primary';
+  @Input() luxButtonDialogLoad: LuxActionColorType = 'primary';
+  @Input() luxButtonDialogDelete: LuxActionColorType = 'warn';
+  @Input() luxButtonDialogCancel: LuxActionColorType = '';
+  @Input() luxButtonDialogClose: LuxActionColorType = '';
   @Input() luxDefaultFilterMessage = $localize `:@@luxc.filter.defaultFilterMessage:Es wird nach den Standardeinstellungen gefiltert.`;
   @Input() luxShowChips = true;
   @Input() luxStoredFilters: LuxFilter[] = [];
@@ -99,18 +99,18 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
   filterForm: UntypedFormGroup;
   subscriptions: Subscription[] = [];
-  filterItems: LuxFilterItem[] = [];
-  hasSaveAction: boolean;
-  hasLoadAction: boolean;
+  filterItems: LuxFilterItem<any>[] = [];
+  hasSaveAction = false;
+  hasLoadAction = false;
   initComplete = false;
   initFilterValue = null;
 
-  constructor(private formBuilder: UntypedFormBuilder, private dialogService: LuxDialogService, private cdr: ChangeDetectorRef) {}
+  constructor(private formBuilder: UntypedFormBuilder, private dialogService: LuxDialogService, private cdr: ChangeDetectorRef) {
+    this.filterForm = this.formBuilder.group({});
+  }
 
   ngOnInit(): void {
     this.initFilterValue = this.luxFilterValues;
-
-    this.filterForm = this.formBuilder.group({});
 
     if (this.luxOnSave.observers && this.luxOnSave.observers.length > 0) {
       this.hasSaveAction = true;
@@ -127,7 +127,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
       this.formElementes.forEach((formItem) => {
         if (formItem.filterItem && formItem.filterItem.binding && this.filterForm.get(formItem.filterItem.binding)) {
-          const value = this.filterForm.get(formItem.filterItem.binding).value;
+          const value = this.filterForm.get(formItem.filterItem.binding)!.value;
 
           if (
             !formItem.filterItem.component.formControl.disabled &&
@@ -136,10 +136,10 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
             if (Array.isArray(value)) {
               let i = 0;
               value.forEach((selected) => {
-                const newFilterItem = new LuxFilterItem();
+                const newFilterItem = new LuxFilterItem(formItem.filterItem.label, formItem.filterItem.binding, formItem.filterItem.component);
                 Object.assign(newFilterItem, formItem.filterItem);
                 newFilterItem.value = newFilterItem.renderFn(newFilterItem, selected);
-                newFilterItem['index'] = i++;
+                newFilterItem.multiValueIndex = i++;
                 this.filterItems.push(newFilterItem);
               });
             } else {
@@ -205,7 +205,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     // dass der Aufrufer nicht alle Filterwerte überschreibt. Vielleicht sind auch neue
     // Filterwerte hinzugekommen, etc.
     this.formElementes.forEach((item) => {
-      this.filterForm.get(item.filterItem.binding).setValue(item.filterItem.defaultValues[0]);
+      this.filterForm.get(item.filterItem.binding)!.setValue(item.filterItem.defaultValues[0]);
     });
 
     // Filter zuklappen.
@@ -220,7 +220,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   onReset() {
     // Hier werden alle Filter zurückgesetzt.
     this.formElementes.forEach((item) => {
-      this.filterForm.get(item.filterItem.binding).setValue(item.filterItem.defaultValues[0]);
+      this.filterForm.get(item.filterItem.binding)!.setValue(item.filterItem.defaultValues[0]);
     });
 
     // Filtern...
@@ -232,7 +232,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
   filterChipRemoved(indexRemoved: number) {
     // Ermittle den Filterchip, der entfernt werden soll.
-    const removedFilterItem: LuxFilterItem = this.filterItems.splice(indexRemoved, 1)[0];
+    const removedFilterItem: LuxFilterItem<any> = this.filterItems.splice(indexRemoved, 1)[0];
 
     if (
       (removedFilterItem.component instanceof LuxSelectComponent || removedFilterItem.component instanceof LuxLookupComboboxComponent) &&
@@ -240,14 +240,14 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     ) {
       // Fall: Multiselect
       // Kopie erstellen und nicht nur das bestehende Array manipulieren.
-      const newSelected = [...this.filterForm.get(removedFilterItem.binding).value];
+      const newSelected = [...this.filterForm.get(removedFilterItem.binding)!.value];
       // Gelöschten Wert entfernen.
-      newSelected.splice(removedFilterItem['index'], 1);
+      newSelected.splice(removedFilterItem.multiValueIndex, 1);
       // Das neue Array in das Formularcontrol setzen.
-      this.filterForm.get(removedFilterItem.binding).setValue(newSelected);
+      this.filterForm.get(removedFilterItem.binding)!.setValue(newSelected);
     } else {
-      // Fall: Einfacher Wert
-      this.filterForm.get(removedFilterItem.binding).setValue(removedFilterItem.defaultValues[0]);
+      // Fall: Wert (einfach)
+      this.filterForm.get(removedFilterItem.binding)!.setValue(removedFilterItem.defaultValues[0]);
     }
 
     // Filtern...
@@ -261,14 +261,14 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     // Beispielszenario:
     // Man navigiert im Filterformular über die Tabulator-Taste in ein
     // Autocomplete-Feld. Automatisch würde sich das Panel mit den vorhandenen
-    // Optionen öffnen. Als nächstes könnte man beim geöffneten Optionspanel
+    // Optionen öffnen. Als Nächstes könnte man beim geöffneten Optionspanel
     // über die Tastenkombination "Shift + Enter" das Filtern auslösen. Das
     // Filterpanel würde sich nach dem Filtern schließen, aber das Optionspanel
     // des Autocomplete-Feld-Feldes würde stehen bleiben. Dasselbe Problem
     // besteht natürlich auch beim Datepicker, Select und den
     // Lookup-Komponenten. Aus diesem Grund werden hier zuerst alle geöffneten
     // Popups/Panels geschlossen. Im Anschluss wird wie gewohnt gefiltert.
-    if (!this.luxDisableShortcut) {    
+    if (!this.luxDisableShortcut) {
       this.formElementes.forEach((formComponent) => {
         if (formComponent.datepicker) {
           formComponent.datepicker.matDatepicker.close();
@@ -313,7 +313,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
   private updateContentFilterItems() {
     // An dieser Codestelle ist setTimeout nötig, wenn die Inhalte über eine LUX-Layout-Form-Row gesetzt werden.
-    // D.h. initial gibt es keine Filteritem, aber dann werden die Filteritems über ngAfterContentInit hinzugefügt.
+    // D.h. initial gibt es keine Filteritems, aber dann werden die Filteritems über ngAfterContentInit hinzugefügt.
     setTimeout(() => {
       this.formElementes.forEach((item) => {
         this.filterForm.addControl(item.filterItem.binding, item.filterItem.component.formControl);
@@ -341,9 +341,17 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   private createFilterObject() {
-    const newFilter = {};
+    const newFilter: any = {};
 
     if (this.formElementes && this._luxFilterValues) {
+      // Alle Filterfelder werden auf ihre Defaultwerte zurückgesetzt.
+      //
+      // Erklärung:
+      // Dies ist nötig, da nicht zwangsweise alle Filterwerte übergeben
+      // werden müssen. D.h. obwohl es 5 Filterelemente gibt,
+      // werden vielleicht nur die Werte von 3 Filterfeldern
+      // übergeben und somit blieben die Filterwerte der zwei
+      // übrigen Filterfelder erhalten.
       this.formElementes.forEach((item) => {
         if (
           item &&
@@ -356,6 +364,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
         }
       });
 
+      // Überschreiben der Defaultwerte mit den aktuellen Filterwerten.
       Object.assign(newFilter, this._luxFilterValues);
     }
 

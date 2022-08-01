@@ -7,5 +7,5 @@ import { LuxDialogRef } from '../../../../lux-popups/lux-dialog/lux-dialog-model
   styleUrls: ['./lux-file-replace-dialog.component.scss']
 })
 export class LuxFileReplaceDialogComponent {
-  constructor(public luxDialogRef: LuxDialogRef) {}
+  constructor(public luxDialogRef: LuxDialogRef<{ multiple: boolean }>) {}
 }

@@ -19,7 +19,7 @@ describe('LuxDialogService', () => {
 
   let testComponent: MockDialogComponent;
   let overlayHelper: LuxOverlayHelper;
-  let dialogRef: LuxDialogRef;
+  let dialogRef: LuxDialogRef<void>;
 
   const waitForDialogClosure = () => {
     LuxTestHelper.wait(fixture);
@@ -352,7 +352,7 @@ class MockDialogComponent {
   `
 })
 class MockCustomDialogComponent {
-  constructor(public dialogRef: LuxDialogRef) {}
+  constructor(public dialogRef: LuxDialogRef<void>) {}
 
   dialogClosed() {}
 }
