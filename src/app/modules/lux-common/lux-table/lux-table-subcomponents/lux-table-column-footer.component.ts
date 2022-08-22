@@ -5,8 +5,8 @@ import { LuxUtil } from "../../../lux-util/lux-util";
   selector: 'lux-table-column-footer',
   template: ''
 })
-export class LuxTableColumnFooterComponent implements AfterContentInit {
-  @ContentChild(TemplateRef) tempRef!: TemplateRef<any>;
+export class LuxTableColumnFooterComponent<T = any> implements AfterContentInit {
+  @ContentChild(TemplateRef) tempRef!: TemplateRef<T>;
 
   ngAfterContentInit() {
     LuxUtil.assertNonNull('tempRef', this.tempRef)

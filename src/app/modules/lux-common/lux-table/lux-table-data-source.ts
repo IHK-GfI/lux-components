@@ -10,7 +10,7 @@ export class LuxTableDataSource<T> extends MatTableDataSource<T> {
 
   /**
    * Diese Methode liefert eine sortierte Kopie des Datenarrays zurück.
-   * Die Sortierung berücksichtig ist nicht Case-Sensitive und berücksichtig
+   * Die Sortierung berücksichtigt ist nicht Case-Sensitive und berücksichtigt
    * Sonderzeichen (z.B. öäüßé,...)
    *
    * @param data

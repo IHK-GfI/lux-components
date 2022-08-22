@@ -5,8 +5,8 @@ import { LuxUtil } from "../../../lux-util/lux-util";
   selector: 'lux-table-column-content',
   template: ''
 })
-export class LuxTableColumnContentComponent implements AfterContentInit {
-  @ContentChild(TemplateRef) tempRef!: TemplateRef<any>;
+export class LuxTableColumnContentComponent<T = any> implements AfterContentInit {
+  @ContentChild(TemplateRef) tempRef!: TemplateRef<T>;
 
   ngAfterContentInit() {
     LuxUtil.assertNonNull('tempRef', this.tempRef)

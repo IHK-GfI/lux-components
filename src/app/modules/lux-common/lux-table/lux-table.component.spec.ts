@@ -1,8 +1,13 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
+declare interface TableItem {c1: number; c2: any}
+
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
+import { ICustomCSSConfig } from './lux-table-custom-css-config.interface';
 
 import { LuxTableComponent } from './lux-table.component';
-import { Component, Injectable, OnDestroy, OnInit } from "@angular/core";
+import { Component, Injectable, OnDestroy } from "@angular/core";
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { ILuxTableHttpDao } from './lux-table-http/lux-table-http-dao.interface';
@@ -131,21 +136,21 @@ describe('LuxTableComponent', () => {
       expect(contentRows.length).toEqual(5);
       expect(luxTableComponent.dataSource.data.length).toEqual(17);
       expect(luxTableComponent.paginator).toBeDefined();
-      expect(luxTableComponent.paginator.hasPreviousPage()).toBeFalsy();
+      expect(luxTableComponent.paginator!.hasPreviousPage()).toBeFalsy();
 
       // Änderungen durchführen
-      luxTableComponent.paginator.nextPage();
+      luxTableComponent.paginator!.nextPage();
       LuxTestHelper.wait(fixture);
-      luxTableComponent.paginator.nextPage();
+      luxTableComponent.paginator!.nextPage();
       LuxTestHelper.wait(fixture);
-      luxTableComponent.paginator.nextPage();
+      luxTableComponent.paginator!.nextPage();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
       contentRows = document.querySelectorAll('.mat-row');
       expect(contentRows.length).toEqual(2);
       expect(luxTableComponent.dataSource.data.length).toEqual(17);
-      expect(luxTableComponent.paginator.hasNextPage()).toBeFalsy();
+      expect(luxTableComponent.paginator!.hasNextPage()).toBeFalsy();
 
       flush();
     }));
@@ -193,10 +198,10 @@ describe('LuxTableComponent', () => {
       const sortHeadersBlocked = document.querySelectorAll('.lux-table-header-blocked');
 
       expect(col2FirstElements.length).toBe(4);
-      expect(col2FirstElements.item(3).textContent).toEqual('Alpha');
-      expect(col2FirstElements.item(2).textContent).toEqual('Gamma');
-      expect(col2FirstElements.item(1).textContent).toEqual('Beta');
-      expect(col2FirstElements.item(0).textContent).toEqual('Teta');
+      expect(col2FirstElements.item(3)!.textContent).toEqual('Alpha');
+      expect(col2FirstElements.item(2)!.textContent).toEqual('Gamma');
+      expect(col2FirstElements.item(1)!.textContent).toEqual('Beta');
+      expect(col2FirstElements.item(0)!.textContent).toEqual('Teta');
 
       expect(sortHeaders.length).toBe(1);
       expect(sortHeadersBlocked.length).toBe(1);
@@ -208,10 +213,10 @@ describe('LuxTableComponent', () => {
       // Nachbedingungen testen
       col2FirstElements = document.getElementsByClassName('c2-content');
 
-      expect(col2FirstElements.item(3).textContent).toEqual('Teta');
-      expect(col2FirstElements.item(2).textContent).toEqual('Gamma');
-      expect(col2FirstElements.item(1).textContent).toEqual('Beta');
-      expect(col2FirstElements.item(0).textContent).toEqual('Alpha');
+      expect(col2FirstElements.item(3)!.textContent).toEqual('Teta');
+      expect(col2FirstElements.item(2)!.textContent).toEqual('Gamma');
+      expect(col2FirstElements.item(1)!.textContent).toEqual('Beta');
+      expect(col2FirstElements.item(0)!.textContent).toEqual('Alpha');
 
       // Änderungen durchführen
       (sortHeaders.item(0) as HTMLButtonElement).click();
@@ -220,10 +225,10 @@ describe('LuxTableComponent', () => {
       // Nachbedingungen testen
       col2FirstElements = document.getElementsByClassName('c2-content');
 
-      expect(col2FirstElements.item(3).textContent).toEqual('Alpha');
-      expect(col2FirstElements.item(2).textContent).toEqual('Beta');
-      expect(col2FirstElements.item(1).textContent).toEqual('Gamma');
-      expect(col2FirstElements.item(0).textContent).toEqual('Teta');
+      expect(col2FirstElements.item(3)!.textContent).toEqual('Alpha');
+      expect(col2FirstElements.item(2)!.textContent).toEqual('Beta');
+      expect(col2FirstElements.item(1)!.textContent).toEqual('Gamma');
+      expect(col2FirstElements.item(0)!.textContent).toEqual('Teta');
 
       discardPeriodicTasks();
       flush();
@@ -245,11 +250,11 @@ describe('LuxTableComponent', () => {
       const sortHeaders = document.querySelectorAll('th.mat-sort-header:not(.lux-table-header-blocked)');
 
       expect(col2Elements.length).toBe(5);
-      expect(col2Elements.item(4).textContent).toEqual('  ');
-      expect(col2Elements.item(3).textContent).toEqual('<<');
-      expect(col2Elements.item(2).textContent).toEqual('Hallo');
-      expect(col2Elements.item(1).textContent).toEqual('$ Asdf');
-      expect(col2Elements.item(0).textContent).toEqual('1234');
+      expect(col2Elements.item(4)!.textContent).toEqual('  ');
+      expect(col2Elements.item(3)!.textContent).toEqual('<<');
+      expect(col2Elements.item(2)!.textContent).toEqual('Hallo');
+      expect(col2Elements.item(1)!.textContent).toEqual('$ Asdf');
+      expect(col2Elements.item(0)!.textContent).toEqual('1234');
       expect(sortHeaders.length).toBe(1);
 
       // Änderungen durchführen
@@ -259,11 +264,11 @@ describe('LuxTableComponent', () => {
       // Nachbedingungen testen
       col2Elements = document.getElementsByClassName('c2-content');
 
-      expect(col2Elements.item(4).textContent).toEqual('Hallo');
-      expect(col2Elements.item(3).textContent).toEqual('1234');
-      expect(col2Elements.item(2).textContent).toEqual('$ Asdf');
-      expect(col2Elements.item(1).textContent).toEqual('<<');
-      expect(col2Elements.item(0).textContent).toEqual('  ');
+      expect(col2Elements.item(4)!.textContent).toEqual('Hallo');
+      expect(col2Elements.item(3)!.textContent).toEqual('1234');
+      expect(col2Elements.item(2)!.textContent).toEqual('$ Asdf');
+      expect(col2Elements.item(1)!.textContent).toEqual('<<');
+      expect(col2Elements.item(0)!.textContent).toEqual('  ');
 
       // Änderungen durchführen
       (sortHeaders.item(0) as HTMLButtonElement).click();
@@ -272,11 +277,11 @@ describe('LuxTableComponent', () => {
       // Nachbedingungen testen
       col2Elements = document.getElementsByClassName('c2-content');
 
-      expect(col2Elements.item(4).textContent).toEqual('  ');
-      expect(col2Elements.item(3).textContent).toEqual('<<');
-      expect(col2Elements.item(2).textContent).toEqual('$ Asdf');
-      expect(col2Elements.item(1).textContent).toEqual('1234');
-      expect(col2Elements.item(0).textContent).toEqual('Hallo');
+      expect(col2Elements.item(4)!.textContent).toEqual('  ');
+      expect(col2Elements.item(3)!.textContent).toEqual('<<');
+      expect(col2Elements.item(2)!.textContent).toEqual('$ Asdf');
+      expect(col2Elements.item(1)!.textContent).toEqual('1234');
+      expect(col2Elements.item(0)!.textContent).toEqual('Hallo');
 
       discardPeriodicTasks();
       flush();
@@ -295,7 +300,7 @@ describe('LuxTableComponent', () => {
       expect(tableHeaders.length).toBe(2);
 
       // Änderungen durchführen
-      component.colWidths = ['5', '25'];
+      component.colWidths = ['5', '25'] as any;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
@@ -340,38 +345,38 @@ describe('LuxTableComponent', () => {
       ];
       LuxTestHelper.wait(fixture);
       let rows = document.getElementsByClassName('mat-row');
-      expect(rows.item(0).classList.toString().indexOf('my-custom-class')).toBe(-1);
-      expect(rows.item(1).classList.toString().indexOf('my-custom-class')).toBe(-1);
+      expect(rows.item(0)!.classList.toString().indexOf('my-custom-class')).toBe(-1);
+      expect(rows.item(1)!.classList.toString().indexOf('my-custom-class')).toBe(-1);
 
       // Änderungen durchführen
       component.cssClasses = {
         class: 'my-custom-class',
-        check: (element) => element.c1 === 1 || element.c1 === 2
+        check: (element: TableItem) => element.c1 === 1 || element.c1 === 2
       };
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
       rows = document.getElementsByClassName('mat-row');
-      expect(rows.item(0).classList.toString().indexOf('my-custom-class')).toBeGreaterThan(-1);
-      expect(rows.item(1).classList.toString().indexOf('my-custom-class')).toBeGreaterThan(-1);
+      expect(rows.item(0)!.classList.toString().indexOf('my-custom-class')).toBeGreaterThan(-1);
+      expect(rows.item(1)!.classList.toString().indexOf('my-custom-class')).toBeGreaterThan(-1);
 
       // Änderungen durchführen
       component.cssClasses = [
         {
           class: 'my-custom-class',
-          check: (element) => element.c1 === 1 || element.c1 === 2
+          check: (element: TableItem) => element.c1 === 1 || element.c1 === 2
         },
         {
           class: 'my-custom-class-2',
-          check: (element) => element.c2 === 'Hydrogen' || element.c2 === 'Helium'
+          check: (element: TableItem) => element.c2 === 'Hydrogen' || element.c2 === 'Helium'
         }
       ];
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
       rows = document.getElementsByClassName('mat-row');
-      expect(rows.item(0).classList.toString().indexOf('my-custom-class-2')).toBeGreaterThan(-1);
-      expect(rows.item(1).classList.toString().indexOf('my-custom-class-2')).toBeGreaterThan(-1);
+      expect(rows.item(0)!.classList.toString().indexOf('my-custom-class-2')).toBeGreaterThan(-1);
+      expect(rows.item(1)!.classList.toString().indexOf('my-custom-class-2')).toBeGreaterThan(-1);
     }));
 
     it('Einzelne Columns sollten in speziellen MediaQueries ausgeblendet werden', fakeAsync(
@@ -550,7 +555,7 @@ describe('LuxTableComponent', () => {
       expect(noDataText).toEqual('Tetriandoch');
     }));
 
-    it('Die Breite und Höhe automagisch berechnen', fakeAsync(() => {
+    it('Die Breite und Höhe automatisch berechnen', fakeAsync(() => {
       // Vorbedingungen testen
       component.dataSource = [
         { c1: 1, c2: 'Hydrogen' },
@@ -592,8 +597,8 @@ describe('LuxTableComponent', () => {
       for (let i = 0; i <= 101; i++) {
         data.push({ c1: i, c2: 'Demo ' + i });
       }
-      component.dataSource = data;
-      component.autopaginate = true;
+      component.dataSource   = data;
+      component.autoPaginate = true;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
@@ -661,7 +666,7 @@ describe('LuxTableComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('Die load-Data Funktion des uebergebenen DAOs aufrufen', fakeAsync(() => {
+    it('Die load-Data Funktion des übergebenen DAOs aufrufen', fakeAsync(() => {
       // Vorbedingungen testen
       let contentRows = document.querySelectorAll('.mat-row');
       let headerRow = document.querySelector('.mat-header-row');
@@ -698,9 +703,9 @@ describe('LuxTableComponent', () => {
       expect(contentRows.length).toBe(2);
       expect(luxTableComponent.dataSource.data.length).toEqual(2);
 
-      // Änderungen durchführen
-      // Wir überschreiben hier absichtlich loadData um testen zu können ob ein älterer (veralteter Filtertext) loadData-Response
-      // der aber trotzdem später ankommt als ein neuerer Response korrekt abgefangen und ignoriert wird.
+      // Änderungen durchführen.
+      // Wir überschreiben hier absichtlich loadData um testen zu können, ob ein älterer (veralteter Filtertext) loadData-Response
+      // der aber trotzdem später ankommt als eine neuere Response korrekt abgefangen und ignoriert wird.
       component.httpDao.loadData = (conf: any) => {
         if (conf.filter === 'old_filter_text_later_arrival') {
           return of({
@@ -723,7 +728,7 @@ describe('LuxTableComponent', () => {
 
       LuxTestHelper.wait(fixture, 2500);
 
-      // Nachbedingungen testen
+      // Nachbedingungen testen.
       // Hier muss das Resultat dem der neueren Filterung entsprechend und der alte Request ("old_filter...") darf
       // keine Auswirkungen gehabt haben.
       contentRows = document.querySelectorAll('.mat-row');
@@ -897,21 +902,21 @@ describe('LuxTableComponent', () => {
         { c1: 2, c2: 'Helium' }
       ];
       LuxTestHelper.wait(fixture);
-      // luxSelected von der TableComponent prüfen, da beim progm. Setzen kein Change-Event ausgeführt wird
+      // luxSelected von der TableComponent prüfen, da beim programmatischen Setzen kein Change-Event ausgeführt wird
       expect(luxTableComponent.luxSelected.size).toBe(0);
 
       // Änderungen durchführen
       component.showMultiSelect = true;
       LuxTestHelper.wait(fixture);
 
-      component.preselected = [component.dataSource[0], component.dataSource[1]];
+      component.preselected = new Set([component.dataSource[0], component.dataSource[1]]);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
       expect(luxTableComponent.luxSelected.size).toBe(2);
 
       // Änderungen durchführen
-      component.preselected = [];
+      component.preselected = new Set();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
@@ -925,7 +930,7 @@ describe('LuxTableComponent', () => {
         { c1: 2, c2: 'Helium' }
       ];
       LuxTestHelper.wait(fixture);
-      // luxSelected von der TableComponent prüfen, da beim progm. Setzen kein Change-Event ausgeführt wird
+      // luxSelected von der TableComponent prüfen, da beim programmatischen Setzen kein Change-Event ausgeführt wird
       expect(luxTableComponent.luxSelected.size).toBe(0);
 
       // Änderungen durchführen
@@ -933,14 +938,14 @@ describe('LuxTableComponent', () => {
       component.pickFn = (o) => o.c2;
       LuxTestHelper.wait(fixture);
 
-      component.preselected = [component.dataSource[0], component.dataSource[1]];
+      component.preselected = new Set([component.dataSource[0], component.dataSource[1]]);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
       expect(luxTableComponent.luxSelected.size).toBe(2);
 
       // Änderungen durchführen
-      component.preselected = [];
+      component.preselected = new Set();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
@@ -954,7 +959,7 @@ describe('LuxTableComponent', () => {
         { c1: 2, c2: 'Helium' }
       ];
       LuxTestHelper.wait(fixture);
-      // luxSelected von der TableComponent prüfen, da beim progm. Setzen kein Change-Event ausgeführt wird
+      // luxSelected von der TableComponent prüfen, da beim programmatischen Setzen kein Change-Event ausgeführt wird
       expect(luxTableComponent.luxSelected.size).toBe(0);
 
       // Änderungen durchführen
@@ -962,14 +967,14 @@ describe('LuxTableComponent', () => {
       component.compareFn = (o1, o2) => o1.c1 === o2.c1;
       LuxTestHelper.wait(fixture);
 
-      component.preselected = [{ c1: 1, c2: 'Hydrogen' }];
+      component.preselected = new Set([{ c1: 1, c2: 'Hydrogen' }]);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
       expect(luxTableComponent.luxSelected.size).toBe(1);
 
       // Änderungen durchführen
-      component.preselected = [];
+      component.preselected = new Set();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
@@ -983,7 +988,7 @@ describe('LuxTableComponent', () => {
         { c1: 2, c2: 'Helium' }
       ];
       LuxTestHelper.wait(fixture);
-      // luxSelected von der TableComponent prüfen, da beim progm. Setzen kein Change-Event ausgeführt wird
+      // luxSelected von der TableComponent prüfen, da beim programmatischen Setzen kein Change-Event ausgeführt wird
       expect(luxTableComponent.luxSelected.size).toBe(0);
 
       // Änderungen durchführen
@@ -992,14 +997,14 @@ describe('LuxTableComponent', () => {
       component.pickFn = (o) => o.c1;
       LuxTestHelper.wait(fixture);
 
-      component.preselected = [{ c1: 1, c2: 'Hydrogen' }];
+      component.preselected = new Set([{ c1: 1, c2: 'Hydrogen' }]);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
       expect(luxTableComponent.luxSelected.size).toBe(1);
 
       // Änderungen durchführen
-      component.preselected = [];
+      component.preselected = new Set();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
@@ -1035,8 +1040,8 @@ describe('LuxTableComponent', () => {
       expect(sortHeader).toBeDefined();
 
       let col2FirstElements = document.getElementsByClassName('c2-content');
-      expect(col2FirstElements.item(1).textContent).toEqual('Alpha');
-      expect(col2FirstElements.item(0).textContent).toEqual('Beta');
+      expect(col2FirstElements.item(1)!.textContent).toEqual('Alpha');
+      expect(col2FirstElements.item(0)!.textContent).toEqual('Beta');
 
       // Änderungen durchführen
       (sortHeader as HTMLButtonElement).click();
@@ -1044,8 +1049,8 @@ describe('LuxTableComponent', () => {
 
       // Nachbedingungen testen
       col2FirstElements = document.getElementsByClassName('c2-content');
-      expect(col2FirstElements.item(1).textContent).toEqual('Beta');
-      expect(col2FirstElements.item(0).textContent).toEqual('Alpha');
+      expect(col2FirstElements.item(1)!.textContent).toEqual('Beta');
+      expect(col2FirstElements.item(0)!.textContent).toEqual('Alpha');
     }));
 
     it('Die korrekte Anzahl selektierter Elemente ausgeben', fakeAsync(() => {
@@ -1094,7 +1099,7 @@ describe('LuxTableComponent', () => {
         [luxClasses]="cssClasses"
         [luxNoDataText]="noDataText"
         [luxMinWidthPx]="minWidth"
-        [luxAutoPaginate]="autopaginate"
+        [luxAutoPaginate]="autoPaginate"
         [luxHideBorders]="hideBorders"
       >
         <lux-table-column
@@ -1128,7 +1133,7 @@ describe('LuxTableComponent', () => {
           </lux-table-column-header>
           <lux-table-column-content>
             <ng-template let-element
-              ><span class="c2-content">{{ element.c2 }}</span></ng-template
+            ><span class="c2-content">{{ element.c2 }}</span></ng-template
             >
           </lux-table-column-content>
           <lux-table-column-footer>
@@ -1140,29 +1145,28 @@ describe('LuxTableComponent', () => {
   `
 })
 class TableComponent {
-  dataSource = [];
+  dataSource: TableItem[] = [];
 
   showPagination = false;
   showFilter = false;
-  colWidths;
-  pageSize;
-  cssClasses;
+  colWidths?: number[];
+  pageSize?: number;
+  cssClasses?: ICustomCSSConfig | ICustomCSSConfig[];
   noDataText = 'Keine Daten gefunden.';
-  minWidth;
-  containerHeight;
-  containerWidth;
-  autopaginate = false;
-  hideBorders = false;
+  minWidth?: number;
+  containerHeight?: number;
+  containerWidth?: number;
+  autoPaginate = false;
+  hideBorders  = false;
   hideHeaders = false;
-  c1Sortable;
-  c1Sticky;
-  c2Sortable;
-  c2Sticky;
-  c1FooterSpan;
-  c1RespAt;
-  c2RespAt;
-  c1RespBeh;
-  c2RespBeh;
+  c1Sortable?: boolean;
+  c1Sticky?: boolean;
+  c2Sortable?: boolean;
+  c2Sticky?: boolean;
+  c1RespAt?: string[];
+  c2RespAt?: string | string[];
+  c1RespBeh?: string;
+  c2RespBeh?: string;
 
   constructor() {}
 }
@@ -1248,9 +1252,9 @@ class HttpDaoTableComponent {
   `
 })
 class TableMultiselectComponent {
-  dataSource = [];
+  dataSource: TableItem[] = [];
   selected = new Set();
-  preselected = [];
+  preselected?: Set<TableItem>;
   showPagination = false;
   showFilter = false;
   showMultiSelect = false;
@@ -1269,7 +1273,7 @@ class TestHttpDao implements ILuxTableHttpDao {
   constructor() {}
 
   loadData(conf: { page: number; pageSize: number; filter?: string; sort?: string; order?: string }): Observable<any> {
-    // Beispiel; bis zum return wuerde das alles hier serverseitig stattfinden
+    // Beispiel; bis zum return würde das alles hier serverseitig stattfinden
     return of({ items: this.dataSourceFix, totalCount: this.dataSourceFix.length });
   }
 }

@@ -60,13 +60,9 @@ export abstract class TableExampleBaseClass {
 
   // endregion
 
-  abstract getDataArr();
+  abstract getDataArr(): any[];
 
-  pickFn(o) {
-    return o.name;
-  }
-
-  compareFn(o1, o2) {
+  compareFn(o1: any, o2: any) {
     return o1.name === o2.name;
   }
 

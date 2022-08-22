@@ -2,7 +2,6 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   AfterViewInit,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
   DoCheck,
@@ -203,7 +202,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   }
 
   /**
-   * Die Auswahl der Selektierten Elemente ist eigentlich ein Set,
+   * Die Auswahl der selektierten Elemente ist eigentlich ein Set,
    * nimmt aber Arrays von Außen entgegen (zur Vereinfachung).
    *
    * @param selected
@@ -258,7 +257,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
 
   /**
    * Eigene Implementierung der Filterung für diese Tabelle.
-   * Iteriert über die Values des einzelnen Objektes und prüft dann ob der Filter-Wert irgendwo vorkommt.
+   * Iteriert über die Values des einzelnen Objektes und prüft dann, ob der Filter-Wert irgendwo vorkommt.
    *
    * @param data
    * @param filter
@@ -286,10 +285,9 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   constructor(
     private queryObserver: LuxMediaQueryObserverService,
     private luxConsole: LuxConsoleService,
-    private liveAnnouncer: LiveAnnouncer,
-    private cdr: ChangeDetectorRef
+    private liveAnnouncer: LiveAnnouncer
   ) {
-    // Datasource um eigene Filter-Funktionalitaet ergaenzen
+    // Datasource um eigene Filter-Funktionalität ergänzen
     this.dataSource.filterPredicate = this.customFilterPredicate;
 
     this.mediaQuery = this.queryObserver.activeMediaQuery;
@@ -461,14 +459,14 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   }
 
   /**
-   * Prüft ob die aktuell angezeigten Einträge alle selektiert sind oder nicht.
+   * Prüft, ob die aktuell angezeigten Einträge alle selektiert sind oder nicht.
    */
   checkFilteredAllSelected(): boolean {
     let result = true;
     if (this.luxSelected.size === 0) {
       result = false;
     } else {
-      // Prüfen ob die gefilterten Daten selected sind
+      // Prüfen, ob die gefilterten Daten selected sind
       this.dataSource.filteredData.forEach((dataEntry: any) => {
         if (!this.isEntryDisabled(dataEntry) && !this.luxSelected.has(dataEntry)) {
           result = false;
@@ -487,7 +485,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   }
 
   /**
-   * Aktualisiert die DataSource und evtl. Subscriptions sowie die CustomCSS-Classes
+   * Aktualisiert die DataSource und eventuell Subscriptions sowie die CustomCSS-Classes
    * nach einer Änderung.
    *
    * @param data
@@ -510,13 +508,13 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   }
 
   /**
-   * Prueft anhand der mitgegebenen Callbacks die CSS-Klassen
-   * fuer die einzelnen Rows.
+   * Prüft anhand der mitgegebenen Callbacks die CSS-Klassen
+   * für die einzelnen Rows.
    */
   private insertCustomCSSClasses() {
     if (this.luxClasses && this.dataSource.data) {
       this.currentCustomClasses = [];
-      this.dataSource.data.forEach((entry: any, i: number) => {
+      this.dataSource.data.forEach((entry: any) => {
         let classes = '';
         (this.luxClasses as ICustomCSSConfig[]).forEach((cssClass: ICustomCSSConfig) => {
           if (cssClass.check(entry)) {
@@ -558,7 +556,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       this.liveAnnouncer.announce(
         $localize`:@@luxc.table.sort.announce:Spalte ${columnDef}:column: sortiert nun ${directionDescription}:direction:`,
         'assertive'
-      );
+      ).then();
     }
   }
 
@@ -605,7 +603,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   }
 
   /**
-   * Prüft ob die aktuelle MediaQuery mit der übergebenen MediaQuery/den übergebenen MediaQueries übereinstimmt.
+   * Prüft, ob die aktuelle MediaQuery mit der übergebenen MediaQuery/den übergebenen MediaQueries übereinstimmt.
    *
    * @param responsiveAt
    */
@@ -687,8 +685,8 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   }
 
   /**
-   * Wird aufgerufen wenn der Sort neu zur DataSource hinzugefügt werden soll (Data wurde neu gesetzt).
-   * Resettet die Pagination und aktualisiert wenn es sich um eine asynchrone Tabelle handelt die
+   * Wird aufgerufen, wenn der Sort neu zur DataSource hinzugefügt werden soll (Data wurde neu gesetzt).
+   * Resettet die Pagination und aktualisiert, wenn es sich um eine asynchrone Tabelle handelt die
    * requestConf.
    */
   private handleSort() {
@@ -756,7 +754,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   }
 
   /**
-   * Wird nach dem set von luxShowPagination aufgerufen und setzt wenn es sich hier um
+   * Wird nach dem set von luxShowPagination aufgerufen und setzt, wenn es sich hier um
    * eine asynchrone Tabelle handelt eine Subscription um Pagination-Änderungen zu erhalten.
    */
   private handlePagination() {
@@ -809,14 +807,14 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   private updateSelection() {
     // Prüfen ob selected gesetzt ist
     if (this.luxSelected.size > 0) {
-      // Die selected-Einträge durchgehen und schauen ob diese im data-Block enthalten sind
+      // Die selected-Einträge durchgehen und schauen, ob diese im data-Block enthalten sind
       const foundEntries: any[] = [];
       this.luxSelected.forEach((entry: any) => {
         const newEntry = this.dataSource.data.find((dataEntry: any) =>
           this.luxCompareWith(this.luxPickValue(entry), this.luxPickValue(dataEntry))
         );
 
-        // Merkt sich die Entry wenn sie noch nicht in der Selected-Liste ist (wenn es sich um eine HTTP-Tabelle handelt)
+        // Merkt sich den Entry, wenn dieser noch nicht in der Selected-Liste ist (wenn es sich um eine HTTP-Tabelle handelt)
         if (newEntry && (!this.luxHttpDAO || (this.luxHttpDAO && !this.luxSelected.has(newEntry)))) {
           foundEntries.push(newEntry);
           this.deleteSelected(entry);

@@ -25,7 +25,7 @@ export class TableExampleComponent extends TableExampleBaseClass {
   </lux-table-column-content>
   \`\`\`
   `;
- 
+
   constructor() {
     super();
 
@@ -38,11 +38,11 @@ export class TableExampleComponent extends TableExampleBaseClass {
     return this.dataSource;
   }
 
-  onSelectedChange($event) {
-    console.log('als Set:  ', $event);
+  onSelectedChange(event: Set<any>) {
+    console.log('als Set:  ', event);
   }
 
-  onSelectedAsArrayChange($event) {
+  onSelectedAsArrayChange($event: any[]) {
     console.log('als Array:', $event);
   }
 
@@ -54,7 +54,7 @@ export class TableExampleComponent extends TableExampleBaseClass {
     const data = [
       { name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24), disabled: false },
       { name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22), disabled: false },
-      { name: 'Lithium', ymbol: 'Li', date: new Date(2018, 11, 21), disabled: false },
+      { name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21), disabled: false },
       { name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18), disabled: false },
       { name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24) , disabled: false},
       { name: 'carbon', symbol: 'C', date: new Date(2018, 11, 24), disabled: false },

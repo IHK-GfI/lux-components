@@ -28,7 +28,7 @@ export class LuxMessageComponent {
   constructor() {}
 
   /**
-   * Setzt die Messages auf ein leeres Array um so die MessageBox auszublenden.
+   * Setzt die Messages auf ein leeres Array, um so die MessageBox auszublenden.
    */
   close() {
     this.luxMessageClosed.emit(this.luxMessage);
