@@ -35,7 +35,7 @@ export class DialogExampleComponent implements OnDestroy {
     declineAction: {
       label: 'Abbrechen',
       raised: true,
-      color: ''
+      color: undefined
     }
   };
 

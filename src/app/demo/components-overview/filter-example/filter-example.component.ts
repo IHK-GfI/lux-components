@@ -124,8 +124,8 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   buttonDialogSave: LuxActionColorType = 'primary';
   buttonDialogLoad: LuxActionColorType = 'primary';
   buttonDialogDelete: LuxActionColorType = 'warn';
-  buttonDialogCancel: LuxActionColorType = '';
-  buttonDialogClose: LuxActionColorType = '';
+  buttonDialogCancel?: LuxActionColorType;
+  buttonDialogClose?: LuxActionColorType;
 
   markdownData = `
   Html

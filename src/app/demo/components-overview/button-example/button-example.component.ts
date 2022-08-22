@@ -38,6 +38,8 @@ export class ButtonExampleComponent implements OnDestroy {
   // endregion
 
   constructor(private configService: LuxComponentsConfigService) {
+    this.config = configService.currentConfig;
+
     this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
       this.config = config;
     });
@@ -47,14 +49,10 @@ export class ButtonExampleComponent implements OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  pickValue(option: any) {
-    return option.value;
-  }
-
   updateConfiguration() {
     // Hart das Array leeren, wir triggern die Uppercase Umstellung demo-mäßig einfach für alle entsprechenden Components.
     // Beim Zerstören der Component wird die Konfiguration sowieso wieder resettet (siehe example-base-structure.component.ts).
-    this.config.labelConfiguration.notAppliedTo = [];
+    this.config.labelConfiguration!.notAppliedTo = [];
     this.configService.updateConfiguration(this.config);
   }
 }

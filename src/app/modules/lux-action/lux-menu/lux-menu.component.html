@@ -34,7 +34,7 @@
 
 <!-- Das eigentliche Material-Menu -->
 <mat-menu [classList]="'lux-menu-panel ' + luxClassName" (closed)="onMenuClosed()" #menu="matMenu">
-  <!-- Alle darin angezeigten MenuItems (Voraussgesetzt diese sind nicht als extended gekennzeichnet) -->
+  <!-- Alle darin angezeigten MenuItems (Vorausgesetzt diese sind nicht als extended gekennzeichnet) -->
   <ng-container *ngFor="let menuItem of menuItems">
     <button
       mat-menu-item

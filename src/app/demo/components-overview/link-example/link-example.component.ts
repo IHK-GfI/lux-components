@@ -62,11 +62,11 @@ export class LinkExampleComponent implements OnDestroy {
   updateConfiguration() {
     // Hart das Array leeren, wir triggern die Uppercase Umstellung demo-mäßig einfach für alle entsprechenden Components.
     // Beim Zerstören der Component wird die Konfiguration sowieso wieder resettet (siehe example-base-structure.component.ts).
-    this.config.labelConfiguration.notAppliedTo = [];
+    this.config.labelConfiguration!.notAppliedTo = [];
     this.configService.updateConfiguration(this.config);
   }
 
-  click($event) {
-    this.log(this.showOutputEvents, 'luxClicked', $event);
+  click(event: MouseEvent) {
+    this.log(this.showOutputEvents, 'luxClicked', event);
   }
 }

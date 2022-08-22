@@ -28,7 +28,6 @@ export class StepperLargeExampleStepVetoComponent extends LuxStepperLargeStepCom
     declineAction: {
       label: 'Abbrechen',
       raised: true,
-      color: ''
     }
   };
 

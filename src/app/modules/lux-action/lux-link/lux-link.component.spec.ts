@@ -126,7 +126,7 @@ describe('LuxLinkComponent', () => {
     const spy = spyOn(window, 'open');
     expect(spy).toHaveBeenCalledTimes(0);
 
-    // Änderungen durchführen  [mit HTTP]
+    // Änderungen durchführen [mit HTTP]
     component.href = 'http://mock-route';
     LuxTestHelper.wait(fixture);
 
@@ -176,7 +176,7 @@ describe('LuxLinkComponent', () => {
   it('Sollte die Farbe anpassen', fakeAsync(() => {
     // Vorbedingungen testen
     let color = fixture.debugElement.query(By.css('button[ng-reflect-color=""]'));
-    expect(color).not.toBeNull();
+    expect(color).toBeNull();
 
     // Änderungen durchführen
     component.color = 'primary';
@@ -226,6 +226,6 @@ class MockLinkComponent {
   disabled = false;
   blank = false;
   href = '';
-  color: LuxActionColorType = '';
+  color?: LuxActionColorType;
   align = false;
 }

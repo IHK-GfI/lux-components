@@ -1,3 +1,5 @@
+import { LuxActionColorType } from '../../../lux-action/lux-action-model/lux-action-component-base.class';
+
 export const LUX_STEPPER_LARGE_DEFAULT_PREV_BTN_CONF: LuxStepperLargeButtonInfo = {
   label: $localize`:@@luxc.stepper.back.btn:Zurück`,
   color: null,
@@ -21,7 +23,7 @@ export const LUX_STEPPER_LARGE_DEFAULT_FIN_BTN_CONF: LuxStepperLargeButtonInfo =
 
 export class LuxStepperLargeButtonInfo {
   label?: string;
-  color?: 'primary' | 'accent' | 'warn' | '';
+  color?: LuxActionColorType;
   iconName?: string;
   iconShowRight?: boolean;
   alignIconWithLabel?: boolean;

@@ -49,7 +49,7 @@ export class FileListExampleComponent extends FileExampleComponent<ILuxFileObjec
       declineAction: {
         label: 'Ablehnen',
         raised: true,
-        color: ''
+        color: undefined
       }
     });
 

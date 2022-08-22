@@ -10,12 +10,12 @@
       <div fxLayout="row">
         <div fxLayout="column">
           <lux-toggle luxLabel="Fehler-Status anzeigen" (luxCheckedChange)="toggleErrors($event)"></lux-toggle>
-          <lux-radio 
-            luxGroupName="radio1" 
-            [luxOptions]="stateOptions" 
-            [luxOrientationVertical]="false" 
-            [(luxSelected)]="selectedState" 
-            (luxSelectedChange)="switchStates($event)" 
+          <lux-radio
+            luxGroupName="radio1"
+            [luxOptions]="stateOptions"
+            [luxOrientationVertical]="false"
+            [(luxSelected)]="selectedState"
+            (luxSelectedChange)="switchStates($event)"
             luxLabel="Status der Form-Controls"
           ><ng-template let-option>
               {{ option.label }}
@@ -66,12 +66,12 @@
             </lux-chip-group>
           </lux-chips>
           <lux-file-list luxLabel="Lux-File-List" luxHint="Hinweis" luxControlBinding="file" [luxDisabled]="disabled" [luxReadonly]="readonly"></lux-file-list>
-        </div>  
+        </div>
       </div>
     </lux-card-content>
     <lux-card-actions >
       <lux-button luxLabel="Button 1" [luxRaised]="true" luxIconName="fas fa-user" luxColor="primary"></lux-button>
-      <lux-button luxLabel="Button 2" [luxRaised]="true" luxColor=""></lux-button>
+      <lux-button luxLabel="Button 2" [luxRaised]="true"></lux-button>
     </lux-card-actions>
   </lux-card>
 </div>

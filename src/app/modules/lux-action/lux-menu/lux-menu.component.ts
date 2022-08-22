@@ -37,7 +37,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   // Alle verfügbaren MenuItems als Array
   private _menuItems: LuxMenuItemComponent[] = [];
 
-  // Das Canvas wird genutzt um die Breite potentieller MenuItem-Texte zu berechnen
+  // Das Canvas wird genutzt, um die Breite potenzieller MenuItem-Texte zu berechnen
   private readonly canvas;
 
   private menuItemSubscriptions: Subscription[] = [];
@@ -115,11 +115,11 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   constructor(private cdr: ChangeDetectorRef, private themeService: LuxThemeService) {
     this.canvas = document.createElement('canvas');
 
-    // die folgenden Werte sind für die Berechnug der Breite der extended Menüitems
-    // sie müssen entsprechend des aktuellen Themes gesetzt werden.
+    // die folgenden Werte sind für die Berechnung der Breite der extended Menüitems
+    // sie müssen entsprechend dem aktuellen Theme gesetzt werden.
     // Wird das Theme geändert müssen auch diese Werte angepasst werden.
-    // aktuell wird für die Klasse .lux-extende-menu die Breite der Icons auf 15px gesetzt.
-    // bei Änderungend es Icon-Sets muss dieser Wert evtl. angepasst werden
+    // aktuell wird für die Klasse ".lux-extended-menu" die Breite der Icons auf 15px gesetzt.
+    // bei Änderungen es Icon-Sets muss dieser Wert eventuell angepasst werden
 
     switch(this.themeService.getTheme().name) {
       case 'green':
@@ -168,7 +168,6 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
    * Wird beim Klick auf ein MenuItem aufgerufen.
    *
    * @param menuItem
-   * @param $event
    * @param event
    */
   menuItemClicked(menuItem: LuxMenuItemComponent, event: MouseEvent) {
@@ -208,7 +207,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     availableWidth -= menuTriggerWidth;
 
     // mit condition sind hier die Zustände luxVisible = true || false gemeint
-    this.visibleMenuItems = []; // die sichtbaren Menuitems werden neu einsortiert
+    this.visibleMenuItems = []; // die sichtbaren Menüitems werden neu einsortiert
     for (const condition of [true, false]) {
       for (let i = 0; i < this.menuItems.length; i++) {
         const menuItem = this.menuItems[i];
@@ -242,7 +241,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     //
     // Erklärung:
     // Das Array "visibleMenuItems" wurde initial wie folgt aufgebaut:
-    // - zu erst alle Items mit "luxAlwaysVisible=true" und
+    // - zuerst alle Items mit "luxAlwaysVisible=true" und
     // - danach alle Items mit "luxAlwaysVisible=false".
     // Dies wurde gemacht, damit der zur Verfügung stehende Raum an die Items
     // verteilt wird, die nach Möglichkeit immer angezeigt werden sollten.
@@ -258,7 +257,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   }
 
   /**
-   * Berechnet die Breite für jedes Menuitem und speichert diese abhängig davon ob das Item immer sichtbar sein soll oder nicht
+   * Berechnet die Breite für jedes Menuitem und speichert diese abhängig davon, ob das Item immer sichtbar sein soll oder nicht
    * in 2 verschiedenen Maps.
    */
   private calculateMenuItemWidths() {
