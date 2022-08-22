@@ -39,7 +39,7 @@ describe('LuxIconComponent', () => {
       expect(fixture.componentInstance.iconName).toEqual('fa-gear');
 
       // Änderungen durchführen
-      const expectedIcon = 'card_giftcard';
+      const expectedIcon = 'card_gift_card';
       fixture.componentInstance.iconName = expectedIcon;
       fixture.detectChanges();
 
@@ -81,7 +81,7 @@ describe('LuxIconComponent', () => {
 
       // Änderungen durchführen
       const expectedIconSize = '3x';
-      fixture.componentInstance.iconName = 'card_giftcard';
+      fixture.componentInstance.iconName = 'card_gift_card';
       fixture.componentInstance.iconSize = expectedIconSize;
       fixture.detectChanges();
 

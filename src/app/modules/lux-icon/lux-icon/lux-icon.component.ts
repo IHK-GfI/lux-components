@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { LuxBadgeColors, LuxIconColor, LuxIconColors } from "../../lux-util/lux-colors.enum";
+import { LuxIconColor, LuxIconColors } from "../../lux-util/lux-colors.enum";
 import { LuxUtil } from '../../lux-util/lux-util';
 
 @Component({
@@ -13,14 +13,14 @@ export class LuxIconComponent {
   public static readonly FA_REGULAR = 'far ';
   public static readonly FA_LIGHT = 'fal ';
 
-  private _luxIconSize: string;
-  private _luxIconName: string;
+  private _luxIconSize = '';
+  private _luxIconName = '';
   private _luxPadding = '4px';
   private _backgroundCSSClass = '';
   private _fontCSSClass = '';
 
   currentIconSize = 1;
-  isIconFA: boolean;
+  isIconFA?: boolean;
 
   @HostBinding('style.margin') styleMargin = '0';
 
@@ -50,7 +50,7 @@ export class LuxIconComponent {
 
   @Input() set luxIconSize(iconSizeValue: string) {
     this._luxIconSize = iconSizeValue;
-    if (typeof this.luxIconSize === 'string' && this.luxIconSize.length === 2) {
+    if (this.luxIconSize && this.luxIconSize.length === 2) {
       this.currentIconSize = +this.luxIconSize.slice(0, 1);
     } else {
       this.currentIconSize = 1;
@@ -64,7 +64,7 @@ export class LuxIconComponent {
   @Input()
   set luxIconName(iconNameValue: string) {
     if (iconNameValue) {
-      this._luxIconName = this.modifiyIconName(iconNameValue);
+      this._luxIconName = this.modifyIconName(iconNameValue);
     }
   }
 
@@ -99,7 +99,7 @@ export class LuxIconComponent {
    * @param iconName
    * @returns string
    */
-  private modifiyIconName(iconName: string): string {
+  private modifyIconName(iconName: string): string {
     // Handelt es sich hier um ein Font-Awesome Icon?
     if (iconName.startsWith('fa')) {
       // feststellen, ob ein FA-Präfix vorliegt
@@ -116,7 +116,7 @@ export class LuxIconComponent {
       return iconName;
     }
     this.isIconFA = false;
-    // Ansonsten davon ausgehen das es ein Material Icon ist
+    // Ansonsten davon ausgehen, dass es ein Material Icon ist
     return iconName;
   }
 }

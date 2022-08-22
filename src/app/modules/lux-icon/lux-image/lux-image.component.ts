@@ -10,6 +10,7 @@ export class LuxImageComponent implements OnChanges {
   @Input() luxImageWidth = 'auto';
   @Input() luxImageHeight = 'auto';
   @Input() luxRawSrc = false;
+  @Input() luxAlt = '';
 
   constructor() {}
 
@@ -27,7 +28,7 @@ export class LuxImageComponent implements OnChanges {
 
   private updateImageSrc() {
     if (this.luxImageSrc) {
-      // Pruefen ob es sich um ein externes Bild handelt
+      // Prüfen, ob es sich um ein externes Bild handelt
       if (this.luxImageSrc.startsWith('http')) {
         this.sanitizeImageSrc();
       } else {
@@ -43,7 +44,7 @@ export class LuxImageComponent implements OnChanges {
   private sanitizeImageSrc() {
     // Doppelte Slashes entfernen
     this.luxImageSrc = this.luxImageSrc.replace(/\/\/+/g, '/');
-    // Fuehrende Slashes entfernen
+    // Führende Slashes entfernen
     if (this.luxImageSrc.startsWith('/')) {
       this.luxImageSrc = this.luxImageSrc.slice(1, this.luxImageSrc.length);
     }
