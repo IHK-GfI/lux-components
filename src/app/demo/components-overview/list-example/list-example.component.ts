@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LuxBadgeColors } from "../../../modules/lux-util/lux-colors.enum";
+import { LuxBadgeColors } from '../../../modules/lux-util/lux-colors.enum';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({

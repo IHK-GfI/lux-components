@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { LuxUtil } from "../../../../modules/lux-util/lux-util";
-import { TableExampleBaseClass } from "../table-example-base.class";
+import { Component, Input, OnInit } from '@angular/core';
+import { LuxUtil } from '../../../../modules/lux-util/lux-util';
+import { TableExampleBaseClass } from '../table-example-base.class';
 
 @Component({
   selector: 'table-example-simple-options',

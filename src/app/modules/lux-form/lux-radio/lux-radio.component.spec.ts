@@ -1,5 +1,7 @@
 /* eslint-disable max-classes-per-file */
-import { Component, OnInit } from '@angular/core';
+// noinspection DuplicatedCode
+
+import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatError } from '@angular/material/form-field';
@@ -8,6 +10,7 @@ import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
+import { LuxPickValueFnType } from '../lux-form-model/lux-form-selectable-base.class';
 import { LuxRadioComponent } from './lux-radio.component';
 import { Observable, of } from 'rxjs';
 
@@ -222,7 +225,7 @@ describe('LuxRadioComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(testComponent.selected).toBe(undefined);
+      expect(testComponent.selected).toBeUndefined();
 
       // Änderungen durchführen
       radioButtons[2].nativeElement.click();
@@ -241,7 +244,7 @@ describe('LuxRadioComponent', () => {
 
     it('Werte selektieren (mit PickValue Funktion)', fakeAsync(() => {
       // Vorbedingungen testen
-      testComponent.pickValueFn = (o1) => (o1 ? o1.value : o1);
+      testComponent.pickValueFn = (o1: Option) => (o1 ? o1.value : '');
       fixture.detectChanges();
 
       const radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
@@ -273,8 +276,8 @@ describe('LuxRadioComponent', () => {
     }));
 
     it('Kein initiales Change-Event ausgeben', fakeAsync(() => {
-      // Vorbedingungen testen
-      // Die Component muss neu initialisiert werden
+      // Vorbedingungen testen.
+      // Die Component muss neu initialisiert werden.
       fixture = TestBed.createComponent(MockRadioComponent);
       testComponent = fixture.componentInstance;
       radioComponent = fixture.debugElement.query(By.directive(LuxRadioComponent)).componentInstance;
@@ -371,7 +374,7 @@ describe('LuxRadioComponent', () => {
       LuxTestHelper.wait(fixture);
     }));
 
-    it('Sollte das Template korrekt herausrendern', fakeAsync(() => {
+    it('Sollte das Template korrekt rendern', fakeAsync(() => {
       // Vorbedingungen testen
       let radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
@@ -408,10 +411,10 @@ describe('LuxRadioComponent', () => {
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
       expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Gruppenaufgaben');
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben');
-      expect(testComponent.form.get('radio').value).toBeFalsy();
+      expect(testComponent.form.get('radio')!.value).toBeFalsy();
 
       // Änderungen durchführen
-      testComponent.form.get('radio').setValue(testComponent.options[0]);
+      testComponent.form.get('radio')!.setValue(testComponent.options[0]);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -419,7 +422,7 @@ describe('LuxRadioComponent', () => {
       expect(radioComponent.luxSelected).toEqual(testComponent.options[0]);
       expect(testComponent.selected).toEqual(testComponent.options[0]);
       expect(checkedRadioLabel.nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
-      expect(testComponent.form.get('radio').value).toEqual(testComponent.options[0]);
+      expect(testComponent.form.get('radio')!.value).toEqual(testComponent.options[0]);
     }));
 
     it('Sollte eine Option deaktivieren können', fakeAsync(() => {
@@ -428,7 +431,7 @@ describe('LuxRadioComponent', () => {
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
       expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Gruppenaufgaben');
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben');
-      expect(testComponent.form.get('radio').value).toBeNull();
+      expect(testComponent.form.get('radio')!.value).toBeNull();
 
       // Änderungen durchführen
       testComponent.options[1].disabled = true;
@@ -439,7 +442,7 @@ describe('LuxRadioComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(testComponent.form.get('radio').value).toBeNull();
+      expect(testComponent.form.get('radio')!.value).toBeNull();
     }));
 
     it('Required', fakeAsync(() => {
@@ -448,7 +451,7 @@ describe('LuxRadioComponent', () => {
       expect(errorMessage).toBeNull();
 
       // Änderungen durchführen
-      testComponent.form.get('radio').setValidators(Validators.required);
+      testComponent.form.get('radio')!.setValidators(Validators.required);
       fixture.detectChanges();
       LuxTestHelper.wait(fixture);
       radioComponent.formControl.markAsTouched();
@@ -461,6 +464,8 @@ describe('LuxRadioComponent', () => {
     }));
   });
 });
+
+declare interface Option { label: string; value: string; disabled?: boolean }
 
 @Component({
   template: `
@@ -479,25 +484,25 @@ describe('LuxRadioComponent', () => {
   `
 })
 class MockRadioComponent {
-  label;
-  options: { label: string; value: string; disabled?: boolean }[]= [
+  label?: string;
+  options: Option[]= [
     { label: 'Meine Aufgaben', value: 'A' },
     { label: 'Gruppenaufgaben', value: 'B' },
     { label: 'Zurückgestellte Aufgaben', value: 'C' },
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  selected: any;
-  disabled: boolean;
+  selected?: any;
+  disabled?: boolean;
   readonly = false;
   required = false;
-  pickValueFn;
-  compareFn = (o1, o2) => o1 === o2;
+  pickValueFn?: LuxPickValueFnType<Option, string>;
+  compareFn = (o1: Option, o2: Option) => o1 === o2;
 
   constructor() {}
 
-  radioSelected($event) {
-    this.selected = $event;
+  radioSelected(selected: Option) {
+    this.selected = selected;
   }
 }
 
@@ -543,7 +548,7 @@ class MockRadioFormComponent {
   ];
 
   selected: any;
-  disabled: boolean;
+  disabled?: boolean;
 
   form: UntypedFormGroup;
 
@@ -553,8 +558,8 @@ class MockRadioFormComponent {
     });
   }
 
-  radioSelected($event) {
-    this.selected = $event;
+  radioSelected(selected: Option) {
+    this.selected = selected;
     console.log(this.selected);
   }
 }
@@ -622,7 +627,7 @@ class MockLuxErrorMessageComponent {
 
   form: UntypedFormGroup;
 
-  errorMessage: string;
+  errorMessage?: string;
 
   selected: any;
 

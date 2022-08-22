@@ -1,4 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Optional, Output, ViewChild } from "@angular/core";
+import { LuxValidationErrors } from "../../lux-form/lux-form-model/lux-form-component-base.class";
 import { LuxLookupComponent } from '../lux-lookup-model/lux-lookup-component';
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
@@ -133,7 +134,7 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
    * @param value
    * @param errors
    */
-  errorMessageModifier(value, errors) {
+  errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     const msg = super.errorMessageModifier(value, errors);
     if (msg) {
       return msg;

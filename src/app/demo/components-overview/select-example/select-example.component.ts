@@ -8,7 +8,7 @@ import {
   examplePickValueFn,
   logResult,
   setRequiredValidatorForFormControl
-} from "../../example-base/example-base-util/example-base-helper";
+} from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'app-select-example',
@@ -118,7 +118,7 @@ export class SelectExampleComponent {
   showErrors(...comps: LuxFormSelectableBase[]) {
     this.value = null;
     this.multiselectValue = null;
-    this.form.get(this.controlBinding).setValue(null);
+    this.form.get(this.controlBinding)!.setValue(null);
 
     this.changeRequired(true);
 
@@ -138,26 +138,26 @@ export class SelectExampleComponent {
 
   changeUseSimpleArray($event: boolean) {
     this.reset();
-    this.useValueFn = $event === true ? false : this.useValueFn;
-    this.useCompareWithFn = $event === true ? false : this.useCompareWithFn;
+    this.useValueFn = $event ? false : this.useValueFn;
+    this.useCompareWithFn = $event ? false : this.useCompareWithFn;
   }
 
   changeUseValueFn($event: boolean) {
     this.reset();
-    this.useSimpleArray = $event === true ? false : this.useSimpleArray;
-    this.useCompareWithFn = $event === true ? false : this.useCompareWithFn;
+    this.useSimpleArray = $event ? false : this.useSimpleArray;
+    this.useCompareWithFn = $event ? false : this.useCompareWithFn;
   }
 
   changeCompareWithFn($event: boolean) {
     this.reset();
-    this.useSimpleArray = $event === true ? false : this.useSimpleArray;
-    this.useValueFn = $event === true ? false : this.useValueFn;
+    this.useSimpleArray = $event ? false : this.useSimpleArray;
+    this.useValueFn = $event ? false : this.useValueFn;
   }
 
   reset(...comps: LuxFormSelectableBase[]) {
     this.value = undefined;
     this.multiselectValue = undefined;
-    this.form.get(this.controlBinding).setValue(undefined);
+    this.form.get(this.controlBinding)!.setValue(undefined);
 
     comps.forEach((comp: LuxFormSelectableBase) => {
       comp.formControl.markAsUntouched();

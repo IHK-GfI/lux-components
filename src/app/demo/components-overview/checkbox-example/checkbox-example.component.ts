@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { emptyErrorCallback, exampleErrorCallback } from "../../example-base/example-base-util/example-base-helper";
+import { emptyErrorCallback, exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'lux-checkbox-example',
@@ -46,21 +46,21 @@ export class CheckboxExampleComponent {
   changeRequired($event: boolean) {
     this.required = $event;
     if ($event) {
-      this.form.get(this.controlBinding).setValidators(Validators.requiredTrue);
+      this.form.get(this.controlBinding)!.setValidators(Validators.requiredTrue);
     } else {
-      this.form.get(this.controlBinding).setValidators(null);
+      this.form.get(this.controlBinding)!.setValidators(null);
     }
-    this.form.get(this.controlBinding).updateValueAndValidity();
+    this.form.get(this.controlBinding)!.updateValueAndValidity();
   }
 
   exampleValidator($event: boolean) {
     Object.keys(this.agb.controls).forEach((key) => {
       if ($event) {
-        this.agb.get(key).markAsTouched();
+        this.agb.get(key)!.markAsTouched();
       } else {
-        this.agb.get(key).markAsUntouched();
+        this.agb.get(key)!.markAsUntouched();
       }
-      this.agb.get(key).updateValueAndValidity();
+      this.agb.get(key)!.updateValueAndValidity();
     });
   }
 }

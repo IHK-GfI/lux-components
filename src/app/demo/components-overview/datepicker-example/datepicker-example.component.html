@@ -31,7 +31,6 @@
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
-        #test1
       >
       </lux-datepicker>
       <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px">
@@ -65,7 +64,6 @@
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
-        #test2
       >
       </lux-datepicker>
       <div fxLayout="column" class="lux-highlight-section">
@@ -116,7 +114,6 @@
       >
       </lux-input>
       <lux-toggle
-        luxName="datepicker_luxHintShowOnlyOnFocus"
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
@@ -200,7 +197,7 @@
     <lux-toggle
       class="lux-highlight-section"
       luxLabel="luxTouchUi"
-      luxHint="Diese Property schaltet eine vergrößerte und auf Touchscreens ausgelegete Ansicht der Datumsauswahl ein."
+      luxHint="Diese Property schaltet eine vergrößerte und auf Touchscreens ausgelegte Ansicht der Datumsauswahl ein."
       [(luxChecked)]="touchUi"
       [luxNoTopLabel]="true"
     >

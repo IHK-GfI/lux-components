@@ -55,7 +55,7 @@ describe('LuxMasterDetailComponent', () => {
     fixture = TestBed.createComponent(LuxMockMasterDetailComponent);
     component = fixture.componentInstance;
     masterDetail = fixture.debugElement.query(By.directive(LuxMasterDetailComponent)).componentInstance;
-    masterDetail['liveAnnouncer'] = { announce: (...args) => {} } as any;
+    masterDetail['liveAnnouncer'] = { announce: (...args: string[]) => {} } as any;
   });
 
   it('sollte erstellt werden', () => {

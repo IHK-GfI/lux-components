@@ -2,13 +2,13 @@
 // noinspection DuplicatedCode
 
 import { Component, ViewChild } from '@angular/core';
-import { expect } from "@angular/flex-layout/_private-utils/testing";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ThemePalette } from "@angular/material/core";
+import { expect } from '@angular/flex-layout/_private-utils/testing';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxChipComponent } from './lux-chips-subcomponents/lux-chip.component';
-import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from "@angular/core/testing";
-import { LuxChipsComponent } from './lux-chips.component';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
+import { LuxChipsComponent, LuxChipsOrientation } from './lux-chips.component';
 import { By } from '@angular/platform-browser';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
 import { LuxChipGroupComponent } from './lux-chips-subcomponents/lux-chip-group.component';
@@ -131,7 +131,7 @@ describe('LuxChipComponent', () => {
       flush();
     }));
 
-    it('Sollte alle Grouped-Chips un-removeable machen', fakeAsync(() => {
+    it('Sollte alle Grouped-Chips unlöschbar machen', fakeAsync(() => {
       // Vorbedingungen testen
       LuxTestHelper.wait(fixture);
       testComponent.chipGroup = testComponent.chipGroupComponent;
@@ -154,7 +154,7 @@ describe('LuxChipComponent', () => {
       flush();
     }));
 
-    it('Sollte einzelne Chips un-removeable machen', fakeAsync(() => {
+    it('Sollte einzelne Chips unlöschbar machen', fakeAsync(() => {
       // Vorbedingungen testen
       LuxTestHelper.wait(fixture);
       testComponent.chipGroup = testComponent.chipGroupComponent;
@@ -305,8 +305,8 @@ describe('LuxChipComponent', () => {
       // Änderungen durchführen
       const inputElement = fixture.debugElement.query(By.css('input'));
       chipsComponent.inputValue$.next('1');
-      // eigentlich muss ein "blur"-Event stattfinden um die Options auszublenden, wir machen das im Test per Hand.
-      spyOnProperty(chipsComponent.matAutocomplete, 'isOpen', 'get').and.returnValue(false);
+      // Eigentlich muss ein "blur"-Event stattfinden, um die Options auszublenden, wir machen das im Test per Hand.
+      spyOnProperty(chipsComponent.matAutocomplete!, 'isOpen', 'get').and.returnValue(false);
 
       LuxTestHelper.typeInElementAsynch('1', fixture, inputElement.nativeElement, () => {
         LuxTestHelper.dispatchEvent(inputElement.nativeElement, new Event('blur'));
@@ -355,9 +355,9 @@ describe('LuxChipComponent', () => {
       const testComponent = localFixture.componentInstance;
       localFixture.detectChanges();
 
-      expect(testComponent.form.get('names').value.length).toEqual(2);
-      expect(testComponent.form.get('names').value[0]).toContain('Emma');
-      expect(testComponent.form.get('names').value[1]).toContain('Marie');
+      expect(testComponent.form.get('names')!.value?.length).toEqual(2);
+      expect(testComponent.form.get('names')!.value![0]).toContain('Emma');
+      expect(testComponent.form.get('names')!.value![1]).toContain('Marie');
 
       const chipElements = localFixture.debugElement.queryAll(By.css('mat-chip'));
 
@@ -370,15 +370,15 @@ describe('LuxChipComponent', () => {
       const testComponent = localFixture.componentInstance;
       localFixture.detectChanges();
 
-      expect(testComponent.form.get('names').value.length).toEqual(2);
-      expect(testComponent.form.get('names').value[0]).toContain('Emma');
-      expect(testComponent.form.get('names').value[1]).toContain('Marie');
+      expect(testComponent.form.get('names')!.value?.length).toEqual(2);
+      expect(testComponent.form.get('names')!.value![0]).toContain('Emma');
+      expect(testComponent.form.get('names')!.value![1]).toContain('Marie');
 
       const iconElement = localFixture.debugElement.query(By.css('lux-icon'));
       iconElement.nativeElement.click();
       LuxTestHelper.wait(localFixture);
 
-      expect(testComponent.form.get('names').value).toEqual(['Marie']);
+      expect(testComponent.form.get('names')!.value).toEqual(['Marie']);
     }));
 
     it('Sollte die required-Fehlermeldung zeigen', fakeAsync(() => {
@@ -386,9 +386,9 @@ describe('LuxChipComponent', () => {
       const testComponent = localFixture.componentInstance;
       localFixture.detectChanges();
 
-      expect(testComponent.form.get('names').value).toBeNull();
+      expect(testComponent.form.get('names')!.value).toBeNull();
 
-      testComponent.form.get('names').markAsTouched();
+      testComponent.form.get('names')!.markAsTouched();
       LuxTestHelper.wait(localFixture);
 
       let errorElement = localFixture.debugElement.query(By.css('mat-error'));
@@ -401,16 +401,16 @@ describe('LuxChipComponent', () => {
       const testComponent = localFixture.componentInstance;
       localFixture.detectChanges();
 
-      expect(testComponent.form.get('names').value).toBeNull();
+      expect(testComponent.form.get('names')!.value).toBeNull();
 
-      testComponent.form.get('names').setValue(['Emma', 'Marie', 'Martha']);
+      testComponent.form.get('names')!.setValue(['Emma', 'Marie', 'Martha']);
       LuxTestHelper.wait(localFixture);
 
       let chipElements = localFixture.debugElement.queryAll(By.css('mat-chip'));
 
       expect(chipElements.length).toEqual(3);
 
-      testComponent.form.get('names').setValue(null);
+      testComponent.form.get('names')!.setValue(null);
       LuxTestHelper.wait(localFixture);
 
       chipElements = localFixture.debugElement.queryAll(By.css('mat-chip'));
@@ -494,25 +494,25 @@ describe('LuxChipComponent', () => {
         LuxTestHelper.dispatchEvent(inputElement.nativeElement, new Event('blur'));
         LuxTestHelper.wait(fixture);
 
-        expect(testComponent.form.get('names').value.length).toEqual(1);
-        expect(testComponent.form.get('names').value[0]).toContain('Emma');
+        expect(testComponent.form.get('names')!.value.length).toEqual(1);
+        expect(testComponent.form.get('names')!.value[0]).toContain('Emma');
 
         // Versuchen noch einmal die Option "Emma" hinzuzufügen.
         LuxTestHelper.typeInElement(inputElement.nativeElement, 'Emma', false);
         LuxTestHelper.dispatchEvent(inputElement.nativeElement, new Event('blur'));
         LuxTestHelper.wait(fixture);
 
-        expect(testComponent.form.get('names').value.length).toEqual(1);
-        expect(testComponent.form.get('names').value[0]).toContain('Emma');
+        expect(testComponent.form.get('names')!.value.length).toEqual(1);
+        expect(testComponent.form.get('names')!.value[0]).toContain('Emma');
 
         // Eine andere Option hinzufügen
         LuxTestHelper.typeInElement(inputElement.nativeElement, 'Martha', false);
         LuxTestHelper.dispatchEvent(inputElement.nativeElement, new Event('blur'));
         LuxTestHelper.wait(fixture);
 
-        expect(testComponent.form.get('names').value.length).toEqual(2);
-        expect(testComponent.form.get('names').value[0]).toContain('Emma');
-        expect(testComponent.form.get('names').value[1]).toContain('Martha');
+        expect(testComponent.form.get('names')!.value.length).toEqual(2);
+        expect(testComponent.form.get('names')!.value[0]).toContain('Emma');
+        expect(testComponent.form.get('names')!.value[1]).toContain('Martha');
       }));
     });
 
@@ -523,7 +523,7 @@ describe('LuxChipComponent', () => {
   template: `
     <lux-chips
       luxInputLabel="Strict"
-      [luxNewChipGroup]="mychipgroup"
+      [luxNewChipGroup]="myChipGroup"
       [luxInputAllowed]="true"
       [luxStrict]="strict"
       [luxAutocompleteOptions]="[]"
@@ -532,7 +532,7 @@ describe('LuxChipComponent', () => {
         [luxRemovable]="true"
         luxColor="primary"
         [luxLabels]="chips"
-        #mychipgroup
+        #myChipGroup
       >
       </lux-chip-group>
     </lux-chips>
@@ -550,7 +550,7 @@ class LuxStrictNoFormComponent {
     <div [formGroup]="form">
       <lux-chips
         luxInputLabel="Strict"
-        [luxNewChipGroup]="mychipgroup"
+        [luxNewChipGroup]="myChipGroup"
         luxControlBinding="names"
         [luxInputAllowed]="true"
         [luxStrict]="strict"
@@ -558,7 +558,7 @@ class LuxStrictNoFormComponent {
         <lux-chip-group
           [luxRemovable]="true"
           luxColor="primary"
-          #mychipgroup
+          #myChipGroup
         >
         </lux-chip-group>
       </lux-chips>
@@ -579,7 +579,7 @@ class LuxStrictFormComponent {
     <div [formGroup]="form">
       <lux-chips
         luxInputLabel="Strict"
-        [luxNewChipGroup]="mychipgroup"
+        [luxNewChipGroup]="myChipGroup"
         luxControlBinding="names"
         [luxInputAllowed]="true"
         [luxStrict]="strict"
@@ -587,7 +587,7 @@ class LuxStrictFormComponent {
         <lux-chip-group
           [luxRemovable]="true"
           luxColor="primary"
-          #mychipgroup
+          #myChipGroup
         >
         </lux-chip-group>
       </lux-chips>
@@ -608,7 +608,7 @@ class LuxFormInitValueComponent {
     <div [formGroup]="form">
       <lux-chips
         luxInputLabel="Strict"
-        [luxNewChipGroup]="mychipgroup"
+        [luxNewChipGroup]="myChipGroup"
         luxControlBinding="names"
         [luxInputAllowed]="true"
         [luxStrict]="strict"
@@ -616,7 +616,7 @@ class LuxFormInitValueComponent {
         <lux-chip-group
           [luxRemovable]="true"
           luxColor="primary"
-          #mychipgroup
+          #myChipGroup
         >
         </lux-chip-group>
       </lux-chips>
@@ -627,7 +627,7 @@ class LuxFormRequiredValueComponent {
 
   strict = false;
   form = new FormGroup({
-    names: new FormControl(null, Validators.required)
+    names: new FormControl<string[] | null>(null, Validators.required)
   });
 
 }
@@ -670,19 +670,19 @@ class ChipsComponent {
   disabled = false;
   inputAllowed = false;
   inputLabel = 'Neu';
-  chipOrientation = 'horizontal';
+  chipOrientation: LuxChipsOrientation = 'horizontal';
   autocomplete = false;
-  autocompleteOptions;
+  autocompleteOptions: string[] = [];
 
-  chips: { label: string; color: string; removable: boolean; disabled: boolean; selected: boolean }[] = [];
+  chips: { label: string; color: ThemePalette; removable: boolean; disabled: boolean; selected: boolean }[] = [];
 
   groupRemovable = true;
   groupDisabled = false;
-  groupColor = 'Keine Farbe';
-  groupLabels = [];
+  groupColor: ThemePalette = undefined;
+  groupLabels: string[] = [];
 
-  chipGroup;
-  @ViewChild(LuxChipGroupComponent) chipGroupComponent: LuxChipGroupComponent;
+  chipGroup?: LuxChipGroupComponent;
+  @ViewChild(LuxChipGroupComponent) chipGroupComponent!: LuxChipGroupComponent;
 
   chipAdded($event: string) {
     this.chips.push({
@@ -714,7 +714,7 @@ class ChipsComponent {
 
   addMockChips() {
     this.chips = [
-      { label: 'Hallo Welt!', color: 'Keine Farbe', removable: true, disabled: false, selected: false },
+      { label: 'Hallo Welt!', color: undefined, removable: true, disabled: false, selected: false },
       { label: 'Hello World!', color: 'primary', removable: true, disabled: false, selected: false },
       { label: 'Ciao Mundo!', color: 'warn', removable: true, disabled: false, selected: false },
       { label: 'Привет мир!', color: 'accent', removable: true, disabled: false, selected: false }

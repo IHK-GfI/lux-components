@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LuxIconColor, LuxIconColors } from "../../../modules/lux-util/lux-colors.enum";
+import { LuxIconColor, LuxIconColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-icon-example',

@@ -41,15 +41,16 @@ describe('LuxFileUploadComponent', () => {
 });
 
 class MockHttp {
-  post(...any) {
+  post() {
     return of(null);
   }
 }
 
 class MockStorage {
-  getItem(...any): string {
+
+  getItem(key: string): string {
     return '';
   }
 
-  setItem(...any) {}
+  setItem(key: string, value: string, sensitive: boolean) {}
 }

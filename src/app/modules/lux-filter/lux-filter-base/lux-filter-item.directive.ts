@@ -28,7 +28,7 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
 
   constructor(
     @Optional() public input: LuxInputComponent,
-    @Optional() public autoComplete: LuxAutocompleteComponent,
+    @Optional() public autoComplete: LuxAutocompleteComponent<any, any>,
     @Optional() public autoCompleteLookup: LuxLookupAutocompleteComponent,
     @Optional() public datepicker: LuxDatepickerComponent,
     @Optional() public datetimepicker: LuxDateTimePickerComponent,
@@ -39,7 +39,7 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
     private elRef: ElementRef,
     private renderer: Renderer2
   ) {
-    let formComponent: LuxFormComponentBase;
+    let formComponent: LuxFormComponentBase<any>;
     if (this.input) {
       formComponent = this.input;
     } else if (this.datepicker) {
@@ -150,11 +150,11 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
   }
 
   renderDateFn<T>(filterItem: LuxFilterItem<T>) {
-    return (filterItem.component as LuxDatepickerComponent).datepickerInput.nativeElement.value;
+    return (filterItem.component as any).datepickerInput.nativeElement.value;
   }
 
   renderDateTimeFn<T>(filterItem: LuxFilterItem<T>) {
-    return (filterItem.component as LuxDateTimePickerComponent).dateTimePickerInputEl.nativeElement.value;
+    return (filterItem.component as any).dateTimePickerInputEl.nativeElement.value;
   }
 
   renderToggleFn<T>(filterItem: LuxFilterItem<T>, value: any) {

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { LuxChipsOrientation } from '../../../modules/lux-form/lux-chips/lux-chips.component';
-import { logResult, setRequiredValidatorForFormControl } from "../../example-base/example-base-util/example-base-helper";
+import { logResult, setRequiredValidatorForFormControl } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'app-chip-example',
@@ -24,7 +24,7 @@ export class ChipExampleComponent {
   ];
 
   openedPanel = 0;
-  longOpitionLabel =
+  longOptionLabel =
     'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
   // endregion
 
@@ -36,7 +36,7 @@ export class ChipExampleComponent {
   placeholder = 'eingeben oder auswählen';
   chipOrientation: LuxChipsOrientation = 'horizontal';
   autocomplete = true;
-  autocompleteOptions = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3', this.longOpitionLabel];
+  autocompleteOptions = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3', this.longOptionLabel];
   autocompleteNoGroupAllOptions = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3'];
   autocompleteNoGroupOptions = [...this.autocompleteNoGroupAllOptions];
   multiple = true;

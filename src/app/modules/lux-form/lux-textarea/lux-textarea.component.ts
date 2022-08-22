@@ -9,7 +9,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-textarea.component.html',
   styleUrls: ['./lux-textarea.component.scss']
 })
-export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnInit {
+export class LuxTextareaComponent extends LuxFormInputBaseClass<string> implements OnInit {
   @Input() luxMaxRows = -1;
   @Input() luxMinRows = 0;
   @Input() luxNoLabels = false;
@@ -18,7 +18,7 @@ export class LuxTextareaComponent extends LuxFormInputBaseClass implements OnIni
   @Input() luxHideCounterLabel = false;
   @Input() set luxMaxLength(maxLength: number){
     this._luxMaxLength = maxLength;
-    if (this.formControl) { //erst nach ngOnInit() vorhanden
+    if (this.formControl) { // Erst nach ngOnInit() vorhanden
       this.updateCounterLabel();
     }
   };

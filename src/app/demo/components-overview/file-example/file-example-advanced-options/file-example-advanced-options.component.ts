@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { LuxUtil } from "../../../../modules/lux-util/lux-util";
+import { Component, Input, OnInit } from '@angular/core';
+import { LuxUtil } from '../../../../modules/lux-util/lux-util';
 import { FileExampleComponent } from '../file-example.component';
 
 @Component({
@@ -7,7 +7,7 @@ import { FileExampleComponent } from '../file-example.component';
   templateUrl: './file-example-advanced-options.component.html'
 })
 export class FileExampleAdvancedOptionsComponent implements OnInit {
-  @Input() fileExample!: FileExampleComponent;
+  @Input() fileExample!: FileExampleComponent<any, any>;
   @Input() showHeaderConfigProperties!: boolean;
 
   constructor() {}

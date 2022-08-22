@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnDestroy, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { distinctUntilChanged, skip } from 'rxjs/operators';
+import { distinctUntilChanged, map, skip, take } from 'rxjs/operators';
 import { LuxFilePreviewService } from '../../../../modules/lux-file-preview/lux-file-preview.service';
 import { LuxFileListComponent } from '../../../../modules/lux-form/lux-file/lux-file-list/lux-file-list.component';
 import { ILuxFileActionConfig } from '../../../../modules/lux-form/lux-file/lux-file-model/lux-file-action-config.interface';
+import { ILuxFilesListActionConfig } from '../../../../modules/lux-form/lux-file/lux-file-model/lux-file-list-action-config.interface';
 import { ILuxFileObject } from '../../../../modules/lux-form/lux-file/lux-file-model/lux-file-object.interface';
-import { LuxFormFileBase } from '../../../../modules/lux-form/lux-form-model/lux-form-file-base.class';
 import { LuxDialogService } from '../../../../modules/lux-popups/lux-dialog/lux-dialog.service';
 import { LuxSnackbarService } from '../../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { FileExampleComponent } from '../file-example.component';
@@ -16,7 +16,7 @@ import { FileExampleComponent } from '../file-example.component';
   selector: 'app-file-list-example',
   templateUrl: './file-list-example.component.html'
 })
-export class FileListExampleComponent extends FileExampleComponent implements AfterViewInit, OnDestroy {
+export class FileListExampleComponent extends FileExampleComponent<ILuxFileObject[], ILuxFilesListActionConfig> implements AfterViewInit, OnDestroy {
   @ViewChildren(LuxFileListComponent) fileLists!: QueryList<LuxFileListComponent>;
   @ViewChild('filelistexamplewithoutform', { read: LuxFileListComponent, static: true }) fileBaseWithoutComponent!: LuxFileListComponent;
   @ViewChild('filelistexamplewithform', { read: LuxFileListComponent, static: true }) fileBaseWithComponent!: LuxFileListComponent;
@@ -54,7 +54,7 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
     });
 
     this.subscriptions.push(
-      dialogRef.dialogDeclined.subscribe((result: any) => {
+      dialogRef.dialogDeclined.subscribe(() => {
         fileObject.namePrefix = this.namePrefixDecline;
         fileObject.namePrefixColor = this.namePrefixColorDecline;
         fileObject.nameSuffix = this.nameSuffixDecline;
@@ -63,7 +63,7 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
     );
 
     this.subscriptions.push(
-      dialogRef.dialogConfirmed.subscribe((result: any) => {
+      dialogRef.dialogConfirmed.subscribe(() => {
         fileObject.namePrefix = this.namePrefixAccept;
         fileObject.namePrefixColor = this.namePrefixColorAccept;
         fileObject.nameSuffix = this.nameSuffixAccept;
@@ -79,13 +79,14 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
       iconName: 'fas fa-edit',
       label: 'Dialog öffnen',
       prio: 15,
-      onClick: (fileObject: ILuxFileObject) => {
-        this.openDialog(fileObject);
+      onClick: (fileObject?: ILuxFileObject) => {
+        if (fileObject) {
+          this.openDialog(fileObject);
+        }
       }
     }
   ];
 
-  backgroundIconName = 'fas fa-cloud-upload-alt';
   showPreview = true;
   multiple = true;
   heading = 4;
@@ -101,12 +102,38 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
     super(fb, http, snackbar, filePreviewService);
   }
 
-  getFileComponentWithoutForm(): LuxFormFileBase {
-    return this.fileBaseWithoutComponent;
+  protected initUploadActionConfig() {
+    return {
+      disabled: false,
+      disabledHeader: false,
+      hidden: false,
+      hiddenHeader: false,
+      iconName: 'fas fa-cloud-upload-alt',
+      iconNameHeader: 'fas fa-cloud-upload-alt',
+      label: 'Hochladen',
+      labelHeader: 'Neue Dateien hochladen',
+      onClick: (files: ILuxFileObject[]) => {
+        this.log(this.showOutputEvents, 'uploadActionConfig onClick', files);
+        this.onUpload(files);
+      }
+    }
   }
 
-  getFileComponentWithForm(): LuxFormFileBase {
-    return this.fileBaseWithComponent;
+  initSelected() {
+    this.http
+      .get('assets/png/example.png', { responseType: 'blob' })
+      .pipe(
+        take(1),
+        map((response: Blob) => {
+          const file            = response as any;
+          file.name             = 'example.png';
+          file.lastModifiedDate = new Date();
+          const fileObject      = { name: 'example.png', content: file, type: file.type, size: file.size };
+          this.selected         = [fileObject];
+          this.form.get(this.controlBinding)!.setValue([fileObject]);
+        })
+      )
+      .subscribe(() => {});
   }
 
   ngAfterViewInit() {
@@ -114,7 +141,7 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
 
     this.subscriptions.push(
       this.form
-        .get(this.controlBinding)
+        .get(this.controlBinding)!
         .valueChanges.pipe(skip(1), distinctUntilChanged())
         .subscribe((value) => {
           console.log('formValueChanged', value);

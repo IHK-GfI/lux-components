@@ -1,23 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
 import { map, take } from 'rxjs/operators';
 import { LuxFilePreviewService } from '../../../../modules/lux-file-preview/lux-file-preview.service';
+import { ILuxFilesListActionConfig } from '../../../../modules/lux-form/lux-file/lux-file-model/lux-file-list-action-config.interface';
+import { ILuxFileObject } from '../../../../modules/lux-form/lux-file/lux-file-model/lux-file-object.interface';
 import { LuxFileUploadComponent } from '../../../../modules/lux-form/lux-file/lux-file-upload/lux-file-upload.component';
-import { LuxFormFileBase } from '../../../../modules/lux-form/lux-form-model/lux-form-file-base.class';
-import { LuxDialogService } from '../../../../modules/lux-popups/lux-dialog/lux-dialog.service';
 import { LuxSnackbarService } from '../../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
-import { LuxUtil } from "../../../../modules/lux-util/lux-util";
+import { LuxUtil } from '../../../../modules/lux-util/lux-util';
 import { FileExampleComponent } from '../file-example.component';
 
 @Component({
   selector: 'lux-file-upload-example',
-  templateUrl: './file-upload-example.component.html',
-  styleUrls: ['./file-upload-example.component.scss']
+  templateUrl: './file-upload-example.component.html'
 })
-export class FileUploadExampleComponent extends FileExampleComponent implements OnInit {
-  @ViewChild('fileuploadexamplewithoutform', { read: LuxFileUploadComponent, static: true }) fileBaseWithoutComponent!: LuxFileUploadComponent;
-  @ViewChild('fileuploadexamplewithform', { read: LuxFileUploadComponent, static: true }) fileBaseWithComponent!: LuxFileUploadComponent;
+export class FileUploadExampleComponent extends FileExampleComponent<ILuxFileObject[], ILuxFilesListActionConfig> implements OnInit {
+  @ViewChild('fileBaseWithoutComponent', { read: LuxFileUploadComponent, static: true }) fileBaseWithoutComponent!: LuxFileUploadComponent;
+  @ViewChild('fileBaseWithComponent', { read: LuxFileUploadComponent, static: true }) fileBaseWithComponent!: LuxFileUploadComponent;
 
   label = $localize`:@@luxc.file.upload.label:Zum Hochladen Datei hier ablegen oder `;
   labelLink = $localize`:@@luxc.file.upload.label.link:Datei durchsuchen`;
@@ -30,14 +29,12 @@ export class FileUploadExampleComponent extends FileExampleComponent implements 
     fb: UntypedFormBuilder,
     http: HttpClient,
     snackbar: LuxSnackbarService,
-    filePreviewService: LuxFilePreviewService,
-    private dialogService: LuxDialogService
+    filePreviewService: LuxFilePreviewService
   ) {
     super(fb, http, snackbar, filePreviewService);
   }
 
   ngOnInit() {
-    this.alwaysUseArray = true;
     this.maxSize = 10;
     this.capture = 'environment';
     this.accept = '.pdf,.jpeg,.jpg,.png';
@@ -47,11 +44,38 @@ export class FileUploadExampleComponent extends FileExampleComponent implements 
     super.ngOnInit();
   }
 
-  getFileComponentWithoutForm(): LuxFormFileBase {
-    return this.fileBaseWithoutComponent;
+  initSelected() {
+    this.http
+      .get('assets/png/example.png', { responseType: 'blob' })
+      .pipe(
+        take(1),
+        map((response: Blob) => {
+          const file            = response as any;
+          file.name             = 'example.png';
+          file.lastModifiedDate = new Date();
+          const fileObject      = { name: 'example.png', content: file, type: file.type, size: file.size };
+          this.selected         = [fileObject];
+          this.form.get(this.controlBinding)!.setValue([fileObject]);
+        })
+      )
+      .subscribe(() => {});
   }
 
-  getFileComponentWithForm(): LuxFormFileBase {
-    return this.fileBaseWithComponent;
+  protected initUploadActionConfig() {
+    return {
+      disabled: false,
+      disabledHeader: false,
+      hidden: false,
+      hiddenHeader: false,
+      iconName: 'fas fa-cloud-upload-alt',
+      iconNameHeader: 'fas fa-cloud-upload-alt',
+      label: 'Hochladen',
+      labelHeader: 'Neue Dateien hochladen',
+      onClick: (files: ILuxFileObject[]) => {
+        this.log(this.showOutputEvents, 'uploadActionConfig onClick', files);
+        this.onUpload(files);
+      }
+    }
   }
+
 }

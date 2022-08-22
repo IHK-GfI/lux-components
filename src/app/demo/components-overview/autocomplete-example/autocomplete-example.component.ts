@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from "@angular/forms";
-import { AutocompleteExampleOption } from "./autocomplete-example-option";
+import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AutocompleteExampleOption } from './autocomplete-example-option';
 import { RenderPropertyItem } from './render-property-item';
 import {
   emptyErrorCallback,
@@ -8,7 +8,7 @@ import {
   examplePickValueFn,
   logResult,
   setRequiredValidatorForFormControl
-} from "../../example-base/example-base-util/example-base-helper";
+} from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'app-autocomplete-example',
@@ -22,7 +22,7 @@ export class AutocompleteExampleComponent {
   showOutputEvents = false;
   showPrefix = false;
   showSuffix = false;
-  longOpitionLabel='Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
+  longOptionLabel='Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
   toggleOptions = true;
   optionMultiline = false;
 
@@ -30,7 +30,7 @@ export class AutocompleteExampleComponent {
     { label: 'Meine Aufgaben', short: 'MA', value: 'A' },
     { label: 'Gruppenaufgaben', short: 'GA', value: 'B' },
     { label: 'Zurückgestellte Aufgaben', short: 'ZA', value: 'C' },
-    { label: this.longOpitionLabel, short: 'LI', value: 'D' },
+    { label: this.longOptionLabel, short: 'LI', value: 'D' },
     { label: 'Vertretungsaufgaben', short: 'VA', value: 'F' },
     { label: 'Neue Aufgaben', short: 'NA', value: 'G' },
     { label: 'Extraaufgaben', short: 'EA', value: 'H' },
@@ -103,7 +103,7 @@ export class AutocompleteExampleComponent {
     return selected.value;
   }
 
-  onFilter(filterText: string, optionLabel: string, option: any): boolean {
+  onFilter(filterText: string, optionLabel: string): boolean {
     const filterTerms = filterText.split(' ');
 
     let result = true;

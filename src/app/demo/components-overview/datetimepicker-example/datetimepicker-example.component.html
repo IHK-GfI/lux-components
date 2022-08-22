@@ -30,7 +30,6 @@
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
-        #test1
       >
       </lux-datetimepicker>
       <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px">
@@ -89,11 +88,11 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle 
+    <lux-toggle
       class="lux-highlight-section"
-      luxLabel="Output-Events loggen" 
-      luxHint="(Console --> F12/CMD+ALT+I)" 
-      [(luxChecked)]="showOutputEvents" 
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
     ></lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
@@ -114,7 +113,6 @@
       >
       </lux-input>
       <lux-toggle
-        luxName="datepicker_luxHintShowOnlyOnFocus"
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"

@@ -1,5 +1,5 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { LuxLookupTableEntry } from "../../../../modules/lux-lookup/lux-lookup-model/lux-lookup-table-entry";
+import { LuxLookupTableEntry } from '../../../../modules/lux-lookup/lux-lookup-model/lux-lookup-table-entry';
 import { LuxLookupHandlerService } from '../../../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupComboboxComponent } from '../../../../modules/lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
 import { UntypedFormBuilder } from '@angular/forms';

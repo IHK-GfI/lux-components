@@ -11,14 +11,14 @@ import { LuxDatetimeOverlayComponent } from './lux-datetime-overlay.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LuxDatetimeOverlayContentComponent implements OnInit, AfterViewInit {
-  @ViewChild('hoursinput') hoursInputComponent: LuxInputComponent;
-  @ViewChild('minutesinput') minutesInputComponent: LuxInputComponent;
+  @ViewChild('hoursInput') hoursInputComponent!: LuxInputComponent;
+  @ViewChild('minutesInput') minutesInputComponent!: LuxInputComponent;
 
-  dateTimePicker: LuxDatetimeOverlayComponent;
-  selected: Date;
-  startDate: Date;
-  minCalendarDate: Date;
-  maxCalendarDate: Date;
+  dateTimePicker!: LuxDatetimeOverlayComponent;
+  selected?: Date;
+  startDate?: Date;
+  minCalendarDate?: Date;
+  maxCalendarDate?: Date;
   _hours = '00';
   _minutes = '00';
   touched = false;
@@ -59,7 +59,7 @@ export class LuxDatetimeOverlayContentComponent implements OnInit, AfterViewInit
     this._minutes = newMinutes;
   }
 
-  initDate(value: string) {
+  initDate(value?: string) {
     if (value) {
       this.selected = new Date(value);
       this.hours = this.selected.getUTCHours() < 10 ? '0' + this.selected.getUTCHours() : '' + this.selected.getUTCHours();

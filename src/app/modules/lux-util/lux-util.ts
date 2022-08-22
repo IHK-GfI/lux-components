@@ -1,5 +1,5 @@
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { LuxBgAllColor, LuxBgAllColors } from "./lux-colors.enum";
+import { LuxBgAllColor, LuxBgAllColors } from './lux-colors.enum';
 import {
   BACKSPACE,
   DELETE,

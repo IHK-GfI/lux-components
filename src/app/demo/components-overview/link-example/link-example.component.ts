@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { LuxActionColorType } from "../../../modules/lux-action/lux-action-model/lux-action-component-base.class";
+import { LuxActionColorType } from '../../../modules/lux-action/lux-action-model/lux-action-component-base.class';
 import { LuxComponentsConfigParameters } from '../../../modules/lux-components-config/lux-components-config-parameters.interface';
 import { LuxComponentsConfigService } from '../../../modules/lux-components-config/lux-components-config.service';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';

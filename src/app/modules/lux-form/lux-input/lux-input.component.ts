@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnInit, Optional, ViewChild } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
+import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxInputPrefixComponent } from './lux-input-subcomponents/lux-input-prefix.component';
 import { LuxInputSuffixComponent } from './lux-input-subcomponents/lux-input-suffix.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -11,7 +12,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-input.component.html',
   styleUrls: ['./lux-input.component.scss']
 })
-export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
+export class LuxInputComponent<T = string> extends LuxFormInputBaseClass<T> implements OnInit{
   private readonly symbolRegExp = /[,.]/;
 
   @Input() luxType = 'text';
@@ -32,9 +33,9 @@ export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
     return this._luxMaxLength;
   };
 
-  @ContentChild(LuxInputPrefixComponent) inputPrefix: LuxInputPrefixComponent;
-  @ContentChild(LuxInputSuffixComponent) inputSuffix: LuxInputSuffixComponent;
-  @ViewChild('input', { read: ElementRef }) inputElement: ElementRef;
+  @ContentChild(LuxInputPrefixComponent) inputPrefix?: LuxInputPrefixComponent;
+  @ContentChild(LuxInputSuffixComponent) inputSuffix?: LuxInputSuffixComponent;
+  @ViewChild('input', { read: ElementRef }) inputElement!: ElementRef;
 
   counterLabel = '';
   _luxMaxLength = 0;
@@ -51,6 +52,7 @@ export class LuxInputComponent extends LuxFormInputBaseClass implements OnInit{
   ngOnInit(){
     super.ngOnInit();
     this.updateCounterLabel();
+    LuxUtil.assertNonNull('inputElement', this.inputElement);
   }
 
   /**

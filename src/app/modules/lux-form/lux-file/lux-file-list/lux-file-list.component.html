@@ -26,7 +26,7 @@
       class="lux-file-list-header-add"
       [luxIconName]="luxUploadActionConfig.iconNameHeader"
       luxTagId="lux-file-add"
-      (luxClicked)="fileupload.click()"
+      (luxClicked)="fileUpload.click()"
       fxFlex="0 0 auto"
       [luxDisabled]="luxUploadActionConfig.disabledHeader || luxDisabled || luxReadonly"
       luxColor="primary"
@@ -98,12 +98,12 @@
             [luxIconName]="fileIcons[index]"
             luxIconSize="2x"
             fxFlex="0 0 30px"
-            aria-hidden
+            aria-hidden="true"
           >
           </lux-icon>
         </ng-container>
         <ng-container *ngSwitchCase="true">
-          <img fxFlex="0 0 30px" aria-hidden />
+          <img fxFlex="0 0 30px" aria-hidden="true" />
         </ng-container>
       </ng-container>
       <!-- Der Name der Datei -->
@@ -184,7 +184,7 @@
           [luxAlwaysVisible]="true"
           [luxPrio]="luxUploadActionConfig.prio ? luxUploadActionConfig.prio : 40"
           luxColor="primary"
-          (luxClicked)="fileuploadSingle.click()"
+          (luxClicked)="fileUploadSingle.click()"
           [luxHidden]="!!luxUploadActionConfig.hidden"
         >
         </lux-menu-item>
@@ -235,7 +235,7 @@
   [accept]="luxAccept"
   [luxFileCapture]="luxCapture"
   (change)="onSelectFiles($event.target)"
-  #fileupload
+  #fileUpload
 />
 <!-- File-Upload Single Input -->
 <input
@@ -245,7 +245,7 @@
   [accept]="luxAccept"
   [luxFileCapture]="luxCapture"
   (change)="onSelectFiles($event.target)"
-  #fileuploadSingle
+  #fileUploadSingle
 />
 
 <!-- Download-Node -->

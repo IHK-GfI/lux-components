@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LuxProgressModeType, LuxProgressSizeType } from "../../../modules/lux-common/lux-progress/lux-progress.component";
+import { LuxProgressModeType, LuxProgressSizeType } from '../../../modules/lux-common/lux-progress/lux-progress.component';
 import { LuxProgressColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({

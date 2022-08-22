@@ -23,6 +23,7 @@ import { LuxMediaQueryObserverService } from '../../../lux-util/lux-media-query-
 import { LuxUtil } from '../../../lux-util/lux-util';
 import { LuxFormFileBase } from '../../lux-form-model/lux-form-file-base.class';
 import { LuxFileErrorCause } from '../lux-file-model/lux-file-error.interface';
+import { ILuxFilesListActionConfig } from '../lux-file-model/lux-file-list-action-config.interface';
 import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
 import { LuxFileDeleteDialogComponent } from '../lux-file-subcomponents/lux-file-delete-dialog/lux-file-delete-dialog.component';
 import { LuxFileReplaceDialogComponent } from '../lux-file-subcomponents/lux-file-replace-dialog/lux-file-replace-dialog.component';
@@ -32,9 +33,9 @@ import { LuxFileReplaceDialogComponent } from '../lux-file-subcomponents/lux-fil
   templateUrl: './lux-file-upload.component.html',
   styleUrls: ['./lux-file-upload.component.scss']
 })
-export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('fileupload', { read: ElementRef, static: true }) fileUploadInput: ElementRef;
-  @ViewChildren('fileEntry', { read: ElementRef }) fileEntries: QueryList<ElementRef>;
+export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[], ILuxFilesListActionConfig> implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('fileUpload', { read: ElementRef, static: true }) fileUploadInput!: ElementRef;
+  @ViewChildren('fileEntry', { read: ElementRef }) fileEntries!: QueryList<ElementRef>;
 
   @Input() luxLabel = $localize`:@@luxc.file.upload.label:Zum Hochladen Datei hier ablegen oder `;
   @Input() luxLabelLink = $localize`:@@luxc.file.upload.label.link:Datei durchsuchen`;
@@ -75,6 +76,19 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
     super(controlContainer, cdr, logger, config, http, liveAnnouncer);
   }
 
+  protected initUploadActionConfig(): ILuxFilesListActionConfig {
+    return {
+      disabled: false,
+      disabledHeader: false,
+      hidden: false,
+      hiddenHeader: false,
+      iconName: 'fas fa-cloud-upload-alt',
+      iconNameHeader: 'fas fa-cloud-upload-alt',
+      label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
+      labelHeader: $localize`:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
+    }
+  }
+
   ngOnInit(): void {
     this.subscriptions.push(
       this.queryService.getMediaQueryChangedAsObservable().subscribe((query) => {
@@ -108,6 +122,16 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
     this.formControl.updateValueAndValidity();
   }
 
+  resetSelected() {
+    this.luxSelectedFiles = [];
+  }
+
+  handleUploadClick(files: ILuxFileObject[]) {
+    if (this.luxUploadActionConfig.onClick) {
+      this.luxUploadActionConfig.onClick(files);
+    }
+  }
+
   selectFiles(files: FileList | File[]) {
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();
@@ -121,8 +145,8 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
 
     // Timeout, um Flackern durch Progress zu vermeiden
     setTimeout(() => {
-      // Prüfen ob die Dateien bereits vorhanden sind
-      let selectedFilesArray = [];
+      // Prüfen, ob die Dateien bereits vorhanden sind
+      let selectedFilesArray: ILuxFileObject[] = [];
       const replaceableFilesMap = new Map<number, File>();
       if (this.luxSelectedFiles) {
         files = Array.from(files);
@@ -167,7 +191,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
           this.setFormControlErrors({
             cause: LuxFileErrorCause.MultipleForbidden,
             exception: this.getMultipleForbiddenMessage(),
-            file: null
+            file: undefined
           });
 
           return;
@@ -253,7 +277,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
   }
 
   onCloseErrorMessage() {
-    this.errorMessage = null;
+    this.errorMessage = undefined;
     this.formControl.updateValueAndValidity();
   }
 
@@ -264,15 +288,15 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
     // Wenn mehrere Dateien selektiert sind, diese nach der entfernten Datei filtern ansonsten "undefined" nutzen
     const newFiles = Array.isArray(this.luxSelectedFiles)
       ? this.luxSelectedFiles.filter((file, searchIndex) => searchIndex !== index)
-      : undefined;
+      : null;
 
     // Via LiveAnnouncer mitteilen welche Datei entfernt wird
-    this.announceFileRemove(Array.isArray(this.luxSelectedFiles) ? this.luxSelectedFiles[index].name : this.luxSelectedFiles.name);
+    this.announceFileRemove(this.luxSelectedFiles![index].name);
 
     // Wir entfernen hier nur eine Datei, deshalb ist das neue Auslesen der Base64-Strings nicht nötig
     this.uploadFiles(newFiles).then(
       () => {
-        this.luxSelectedFiles = newFiles && newFiles.length === 1 && !this.useArray() ? newFiles[0] : newFiles;
+        this.luxSelectedFiles = newFiles;
         this.notifyFormValueChanged();
       },
       (error) => this.setFormControlErrors(error)
@@ -300,7 +324,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
    *
    * @param files
    */
-  private setFileIcons(files: ILuxFileObject | ILuxFileObject[]) {
+  private setFileIcons(files: ILuxFileObject | ILuxFileObject[] | null) {
     this.fileIcons = [];
 
     if (!files) {

@@ -13,7 +13,7 @@ import { DatepickerExampleComponent } from './datepicker-example/datepicker-exam
 import { DateTimepickerExampleComponent } from './datetimepicker-example/datetimepicker-example.component';
 import { DividerExampleComponent } from './divider-example/divider-example.component';
 import { ErrorpageExampleComponent } from './errorpage-example/errorpage-example.component';
-import { FileUploadExampleComponent } from "./file-example/file-upload-example/file-upload-example.component";
+import { FileUploadExampleComponent } from './file-example/file-upload-example/file-upload-example.component';
 import { HttpErrorExampleComponent } from './http-error-example/http-error-example.component';
 import { IconExampleComponent } from './icon-example/icon-example.component';
 import { ImageExampleComponent } from './image-example/image-example.component';
@@ -24,7 +24,7 @@ import { RadioButtonExampleComponent } from './radio-button-example/radio-button
 import { SliderExampleComponent } from './slider-example/slider-example.component';
 import { SnackbarExampleComponent } from './snackbar-example/snackbar-example.component';
 import { SpinnerExampleComponent } from './spinner-example/spinner-example.component';
-import { StepperLargeExampleComponent } from "./stepper-large-example/stepper-large-example.component";
+import { StepperLargeExampleComponent } from './stepper-large-example/stepper-large-example.component';
 import { StorageExampleComponent } from './storage-example/storage-example.component';
 import { TableExampleComponent } from './table-example/table-example.component';
 import { TableServerExampleComponent } from './table-server-example/table-server-example.component';

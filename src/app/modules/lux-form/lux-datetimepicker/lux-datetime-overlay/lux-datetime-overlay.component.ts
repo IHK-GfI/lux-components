@@ -16,11 +16,11 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { MAT_DATEPICKER_SCROLL_STRATEGY, MatDateSelectionModel } from '@angular/material/datepicker';
+import { MAT_DATEPICKER_SCROLL_STRATEGY, MatDateSelectionModel } from "@angular/material/datepicker";
 import { MatFormField } from '@angular/material/form-field';
 import { merge, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { LuxDateFilterFn } from "../lux-datetimepicker-model/lux-datetimepicker-types";
+import { LuxDateFilterFn } from "../../lux-datepicker/lux-datepicker.component";
 import { LuxDatetimeOverlayContentComponent } from './lux-datetime-overlay-content.component';
 
 @Component({
@@ -28,13 +28,13 @@ import { LuxDatetimeOverlayContentComponent } from './lux-datetime-overlay-conte
   template: ''
 })
 export class LuxDatetimeOverlayComponent {
-  @Input() luxPickerInput: HTMLInputElement;
+  @Input() luxPickerInput!: HTMLInputElement;
   @Input() luxStartView: 'month' | 'year' | 'multi-year' = 'month';
-  @Input() luxCustomFilter: LuxDateFilterFn = undefined;
-  @Input() luxStartDate: Date = null;
-  @Input() luxStartTime: number[] = null;
-  @Input() luxMinDate: Date = null;
-  @Input() luxMaxDate: Date = null;
+  @Input() luxCustomFilter?: LuxDateFilterFn;
+  @Input() luxStartDate: Date | null = null;
+  @Input() luxStartTime: number[] = [];
+  @Input() luxMinDate: Date | null = null;
+  @Input() luxMaxDate: Date | null = null;
 
   @Output() luxSelected: EventEmitter<Date> = new EventEmitter<Date>();
   @Output() openedStream: EventEmitter<void> = new EventEmitter<void>();
@@ -44,14 +44,14 @@ export class LuxDatetimeOverlayComponent {
   hasBackdrop = true;
   opened = false;
   scrollStrategy: () => ScrollStrategy;
-  _selectedDate: string;
+  _selectedDate?: string;
 
   // Code des Interfaces "MatDatepickerPanel<MatDatepickerControl<any>, any, any>" - Start
-  id: string;
-  disabled: boolean;
-  color: ThemePalette;
+  id = '';
+  disabled = false;
+  color: ThemePalette = 'primary';
   registerInput(input: any): MatDateSelectionModel<any> {
-    return null;
+    return null as any;
   }
   // Code des Interfaces "MatDatepickerPanel<MatDatepickerControl<any>, any, any>" - Ende
 
@@ -64,10 +64,10 @@ export class LuxDatetimeOverlayComponent {
     this._selectedDate = date;
   }
 
-  dateTimePortal: ComponentPortal<LuxDatetimeOverlayContentComponent>;
+  dateTimePortal?: ComponentPortal<LuxDatetimeOverlayContentComponent>;
   lastFocusedElement: HTMLElement | null = null;
-  overlayRef: OverlayRef;
-  overlayComponentRef: ComponentRef<LuxDatetimeOverlayContentComponent> | null;
+  overlayRef?: OverlayRef;
+  overlayComponentRef?: ComponentRef<LuxDatetimeOverlayContentComponent> | null;
   datepickerInput: any;
 
   constructor(
@@ -113,7 +113,7 @@ export class LuxDatetimeOverlayComponent {
       this.createOverlay();
     }
 
-    if (!this.overlayRef.hasAttached()) {
+    if (this.overlayRef && !this.overlayRef.hasAttached()) {
       this.overlayComponentRef = this.overlayRef.attach(this.dateTimePortal);
       this.overlayComponentRef.instance.dateTimePicker = this;
     }

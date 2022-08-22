@@ -89,7 +89,7 @@
           [luxAlwaysVisible]="true"
           [luxPrio]="luxUploadActionConfig.prio ? luxUploadActionConfig.prio : 40"
           luxColor="primary"
-          (luxClicked)="fileupload.click()"
+          (luxClicked)="fileUpload.click()"
           [luxHidden]="!!luxUploadActionConfig.hidden"
         >
         </lux-menu-item>
@@ -121,7 +121,7 @@
   [luxFileCapture]="luxCapture"
   [required]="luxRequired"
   (change)="onSelectFiles($event.target)"
-  #fileupload
+  #fileUpload
 />
 
 <!-- Download-Node -->

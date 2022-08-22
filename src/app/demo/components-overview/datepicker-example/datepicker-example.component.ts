@@ -1,13 +1,13 @@
 import { Component, Inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { LuxDatepickerStartViewType } from "../../../modules/lux-form/lux-datepicker/lux-datepicker.component";
+import { LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
-} from "../../example-base/example-base-util/example-base-helper";
+} from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'app-datepicker-example',
@@ -48,7 +48,7 @@ export class DatepickerExampleComponent {
   locale: string | null = null;
   minDate: string | null = null;
   maxDate: string | null = null;
-  startView: LuxDatepickerStartViewType = 'month';
+  startView: LuxStartView = 'month';
   touchUi = false;
   labelLongFormat = false;
 

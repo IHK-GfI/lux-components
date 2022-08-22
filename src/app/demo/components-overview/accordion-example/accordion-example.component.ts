@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LuxModeType } from "../../../modules/lux-layout/lux-accordion/lux-accordion.component";
+import { LuxModeType } from '../../../modules/lux-layout/lux-accordion/lux-accordion.component';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({

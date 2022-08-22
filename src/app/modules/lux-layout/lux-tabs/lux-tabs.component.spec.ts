@@ -262,7 +262,7 @@ describe('LuxTabsComponent', () => {
         // When
         // Then
         expect(component.currentTabIndex).toBeFalsy();
-        expect(component.luxTabs.luxActiveTab).toBe(undefined);
+        expect(component.luxTabs.luxActiveTab).toBeUndefined();
 
         // When
         component.currentTabIndex = 1;
@@ -300,7 +300,7 @@ describe('LuxTabsComponent', () => {
         // When
         // Then
         expect(component.currentTabIndex).toBeFalsy();
-        expect(component.luxTabs.luxActiveTab).toBe(undefined);
+        expect(component.luxTabs.luxActiveTab).toBeUndefined();
 
         // When
         component.currentTabIndex = 1;

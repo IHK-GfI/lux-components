@@ -12,7 +12,7 @@ import { LuxBehandlungsOptionenUngueltige, LuxLookupParameters } from './lux-loo
 import { LuxLookupTableEntry } from './lux-lookup-table-entry';
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
-import { LuxFormComponentBase } from '../../lux-form/lux-form-model/lux-form-component-base.class';
+import { LuxFormComponentBase, LuxValidationErrors } from "../../lux-form/lux-form-model/lux-form-component-base.class";
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupErrorStateMatcher } from './lux-lookup-error-state-matcher';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs';
 import { LuxComponentsConfigParameters } from '../../lux-components-config/lux-components-config-parameters.interface';
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxLookupComponent extends LuxFormComponentBase implements OnInit, OnDestroy {
+export abstract class LuxLookupComponent extends LuxFormComponentBase<LuxLookupTableEntry | LuxLookupTableEntry[]> implements OnInit, OnDestroy {
   LuxBehandlungsOptionenUngueltige = LuxBehandlungsOptionenUngueltige;
 
   lookupService: LuxLookupService;
@@ -175,7 +175,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase implements
    * @param value
    * @param errors
    */
-  errorMessageModifier(value, errors) {
+  errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     if (errors['ungueltig']) {
       return $localize `:@@luxc.lookup.error_message.invalid:Der ausgewählte Wert ist ungültig.`;
     }

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
+import { map, take } from 'rxjs/operators';
 import { LuxFileInputComponent } from '../../../../modules/lux-form/lux-file/lux-file-input/lux-file-input.component';
 import { LuxFilePreviewService } from '../../../../modules/lux-file-preview/lux-file-preview.service';
 import { ILuxFileActionConfig } from '../../../../modules/lux-form/lux-file/lux-file-model/lux-file-action-config.interface';
-import { LuxFormFileBase } from '../../../../modules/lux-form/lux-form-model/lux-form-file-base.class';
 import { LuxSnackbarService } from '../../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { FileExampleComponent } from '../file-example.component';
 import { ILuxFileObject } from '../../../../modules/lux-form/lux-file/lux-file-model/lux-file-object.interface';
@@ -13,7 +13,7 @@ import { ILuxFileObject } from '../../../../modules/lux-form/lux-file/lux-file-m
   selector: 'app-file-input-example',
   templateUrl: './file-input-example.component.html'
 })
-export class FileInputExampleComponent extends FileExampleComponent implements AfterViewInit {
+export class FileInputExampleComponent extends FileExampleComponent<ILuxFileObject, ILuxFileActionConfig> implements AfterViewInit {
   @ViewChildren(LuxFileInputComponent) fileInputs!: QueryList<LuxFileInputComponent>;
   @ViewChild('fileinputexamplewithoutform', { read: LuxFileInputComponent, static: true }) fileBaseWithoutComponent!: LuxFileInputComponent;
   @ViewChild('fileinputexamplewithform', { read: LuxFileInputComponent, static: true }) fileBaseWithComponent!: LuxFileInputComponent;
@@ -36,31 +36,53 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
     super(fb, http, snackbar, filePreviewService);
   }
 
-  getFileComponentWithoutForm(): LuxFormFileBase {
-    return this.fileBaseWithoutComponent;
+  protected initUploadActionConfig() {
+    return {
+      disabled: false,
+      hidden: false,
+      iconName: 'fas fa-cloud-upload-alt',
+      label: 'Hochladen',
+      onClick: (file?: ILuxFileObject) => {
+        this.log(this.showOutputEvents, 'uploadActionConfig onClick', file);
+        this.onUpload(file);
+      }
+    }
   }
 
-  getFileComponentWithForm(): LuxFormFileBase {
-    return this.fileBaseWithComponent;
+  initSelected() {
+    this.http
+      .get('assets/png/example.png', { responseType: 'blob' })
+      .pipe(
+        take(1),
+        map((response: Blob) => {
+          const file            = response as any;
+          file.name             = 'example.png';
+          file.lastModifiedDate = new Date();
+          const fileObject      = { name: 'example.png', content: file, type: file.type, size: file.size };
+          this.selected         = fileObject;
+          this.form.get(this.controlBinding)!.setValue(fileObject);
+        })
+      )
+      .subscribe(() => {});
   }
 
   onKeepFileWithoutForm(keepFile: boolean) {
     if (keepFile) {
-      const fileCopy = {};
+      const fileCopy = { name: '', type: '' };
       Object.assign(fileCopy, this.selected);
       this.fileBaseWithoutComponent.luxSelectedFiles = fileCopy;
     } else {
-      this.fileBaseWithoutComponent.luxSelectedFiles = undefined;
+      this.fileBaseWithoutComponent.luxSelectedFiles = null;
     }
   }
 
   onKeepFileWithForm(keepFile: boolean) {
     if (keepFile) {
-      const fileCopy = {};
+      const fileCopy = { name: '', type: '' };
       Object.assign(fileCopy, this.fileBaseWithComponent.luxSelectedFiles);
       this.fileBaseWithComponent.luxSelectedFiles = fileCopy;
     } else {
-      this.fileBaseWithComponent.luxSelectedFiles = undefined;
+      this.fileBaseWithComponent.luxSelectedFiles = null;
     }
   }
 
@@ -83,7 +105,7 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
       iconName: 'fas fa-check',
       label: 'Akzeptieren',
       prio: 1,
-      onClick: (fileObject: ILuxFileObject) => {
+      onClick: (fileObject?: ILuxFileObject) => {
         if (fileObject) {
           customConfigAccept.disabled = true;
           customConfigDecline.disabled = false;
@@ -99,7 +121,7 @@ export class FileInputExampleComponent extends FileExampleComponent implements A
       iconName: 'fas fa-times',
       label: 'Ablehnen',
       prio: 2,
-      onClick: (fileObject: ILuxFileObject) => {
+      onClick: (fileObject?: ILuxFileObject) => {
         if (fileObject) {
           customConfigAccept.disabled = false;
           customConfigDecline.disabled = true;

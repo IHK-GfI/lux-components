@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -22,7 +23,7 @@ import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';
 import { LuxLayoutModule } from '../lux-layout/lux-layout.module';
 import { LuxPipesModule } from '../lux-pipes/lux-pipes.module';
-import { LuxPopupsModule } from "../lux-popups/lux-popups.module";
+import { LuxPopupsModule } from '../lux-popups/lux-popups.module';
 import { LuxAutocompleteComponent } from './lux-autocomplete/lux-autocomplete.component';
 import { LuxCheckboxComponent } from './lux-checkbox/lux-checkbox.component';
 import { LuxChipGroupComponent } from './lux-chips/lux-chips-subcomponents/lux-chip-group.component';
@@ -114,7 +115,8 @@ import { LuxFileReplaceDialogComponent } from './lux-file/lux-file-subcomponents
     LuxPopupsModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    OverlayModule
+    OverlayModule,
+    MatButtonModule
   ],
   exports: [
     LuxToggleComponent,

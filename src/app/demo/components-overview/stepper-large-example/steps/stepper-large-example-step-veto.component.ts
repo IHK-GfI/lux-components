@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LuxStepperLargeClickEvent } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-click-event';
 import { LuxVetoState } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-step.interface';
 import { LuxStepperLargeStepComponent } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-step/lux-stepper-large-step.component';
-import { ILuxDialogPresetConfig } from "../../../../modules/lux-popups/lux-dialog/lux-dialog-model/lux-dialog-preset-config.interface";
-import { LuxDialogService } from "../../../../modules/lux-popups/lux-dialog/lux-dialog.service";
+import { ILuxDialogPresetConfig } from '../../../../modules/lux-popups/lux-dialog/lux-dialog-model/lux-dialog-preset-config.interface';
+import { LuxDialogService } from '../../../../modules/lux-popups/lux-dialog/lux-dialog.service';
 import { LuxSnackbarService } from '../../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 
 @Component({

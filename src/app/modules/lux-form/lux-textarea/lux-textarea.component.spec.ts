@@ -1,7 +1,10 @@
 /* eslint-disable max-classes-per-file */
-import { Component, OnInit } from '@angular/core';
+// noinspection DuplicatedCode
+
+import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
+import { LuxErrorCallbackFnType, ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
 import { LuxTextareaComponent } from './lux-textarea.component';
 import { By } from '@angular/platform-browser';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
@@ -28,7 +31,7 @@ describe('LuxTextareaComponent', () => {
     it('Sollte value über das FormControl aktualisieren', fakeAsync(() => {
       // Given
       fixture.detectChanges();
-      const formControl = component.form.get('control');
+      const formControl = component.form.get('control')!;
       const textareaEl = fixture.debugElement.query(By.css('textarea')).nativeElement;
       // When
       // Then
@@ -45,7 +48,7 @@ describe('LuxTextareaComponent', () => {
 
     it('Sollte invalid sein wenn Validators.required', fakeAsync(() => {
       // Given
-      const formControl = component.form.get('control');
+      const formControl = component.form.get('control')!;
       formControl.setValidators(Validators.required);
       component.value = 'Test';
       fixture.detectChanges();
@@ -59,7 +62,7 @@ describe('LuxTextareaComponent', () => {
       fixture.detectChanges();
       // Then
       expect(formControl.errors).toBeTruthy();
-      expect(formControl.errors.required).toBeTruthy();
+      expect(formControl.errors!.required).toBeTruthy();
       expect(formControl.valid).toBeFalsy();
     }));
 
@@ -69,8 +72,8 @@ describe('LuxTextareaComponent', () => {
       expect(errorEl).toBeFalsy();
 
       // Änderungen durchführen
-      component.form.get('control').setValidators(Validators.maxLength(1));
-      component.form.get('control').setValue('12');
+      component.form.get('control')!.setValidators(Validators.maxLength(1));
+      component.form.get('control')!.setValue('12');
       LuxTestHelper.wait(fixture);
       textarea.formControl.markAsTouched();
       textarea.formControl.updateValueAndValidity();
@@ -140,7 +143,7 @@ describe('LuxTextareaComponent', () => {
       fixture.detectChanges();
       // Then
       expect(textarea.formControl.errors).toBeTruthy();
-      expect(textarea.formControl.errors.required).toBeTruthy();
+      expect(textarea.formControl.errors!.required).toBeTruthy();
       expect(textarea.formControl.valid).toBeFalsy();
     }));
 
@@ -217,7 +220,7 @@ describe('LuxTextareaComponent', () => {
       // Nachbedingungen testen
       expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
       expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual('Alle meine Entchen');
-      expect(textarea.formControl.errors.required).toBeDefined();
+      expect(textarea.formControl.errors!.required).toBeDefined();
     }));
 
     it('Sollte den Fehler über luxErrorCallback anzeigen', fakeAsync(() => {
@@ -238,7 +241,7 @@ describe('LuxTextareaComponent', () => {
       // Nachbedingungen testen
       expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
       expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual('Alle meine Entchen');
-      expect(textarea.formControl.errors.required).toBeDefined();
+      expect(textarea.formControl.errors!.required).toBeDefined();
       expect(spy).toHaveBeenCalledTimes(1);
     }));
 
@@ -322,7 +325,7 @@ describe('LuxTextareaComponent', () => {
       expect(spy).toHaveBeenCalledTimes(2);
 
       // Änderungen durchführen
-      // Absichtlich den selben Wert nochmal, sollte nichts auslösen
+      // Absichtlich denselben Wert nochmal, sollte nichts auslösen
       component.value = 'b';
       LuxTestHelper.wait(fixture);
 
@@ -342,7 +345,7 @@ describe('LuxTextareaComponent', () => {
       fixture.detectChanges();
     }));
 
-    it('sollte Counterlabel bei focused=true anzeigen', fakeAsync(() => {
+    it('sollte Counter-Label bei focused=true anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       testComponent.maxLength = 50;
 +     fixture.detectChanges();
@@ -350,7 +353,7 @@ describe('LuxTextareaComponent', () => {
 
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
       formControlComponent.focused = true;
       // // Wert ändern
       LuxTestHelper.typeInElement( textareaEl.nativeElement, 'Lorem ipsum');
@@ -366,7 +369,7 @@ describe('LuxTextareaComponent', () => {
       expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
     }));
 
-    it('sollte Counterlabel bei leerem Value anzeigen', fakeAsync(() => {
+    it('sollte Counter-Label bei leerem Value anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       testComponent.maxLength = 50;
 +     fixture.detectChanges();
@@ -374,7 +377,7 @@ describe('LuxTextareaComponent', () => {
 
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
       formControlComponent.focused = true;
       // // Wert ändern
       LuxTestHelper.typeInElement( textareaEl.nativeElement, '');
@@ -392,7 +395,7 @@ describe('LuxTextareaComponent', () => {
 
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
       formControlComponent.focused = true;
 
       // Wert ändern
@@ -424,21 +427,21 @@ describe('LuxTextareaComponent', () => {
     '[luxErrorMessage]="errorMessage" [luxErrorCallback]="errorCb" (luxValueChange)="valueChanged()"></lux-textarea>'
 })
 class LuxMockTextareaComponent {
-  value: string;
-  label: string;
-  placeholder: string;
-  hint: string;
-  disabled: boolean;
-  errorMessage: string;
+  value?: string;
+  label?: string | null;
+  placeholder?: string;
+  hint?: string;
+  disabled?: boolean;
+  errorMessage?: string;
 
   readonly = false;
   required = false;
 
-  maxRows: number;
-  minRows: number;
+  maxRows?: number;
+  minRows?: number;
 
-  validators;
-  errorCb: (value, errors) => string = (value, errors) => undefined;
+  validators: ValidatorFnType;
+  errorCb: LuxErrorCallbackFnType = () => undefined;
 
   constructor() {}
 
@@ -453,14 +456,14 @@ class LuxMockTextareaComponent {
     '[luxMinRows]="minRows" luxControlBinding="control"></lux-textarea></form>'
 })
 class LuxMockFormTextareaComponent {
-  value: string;
-  label: string;
-  placeholder: string;
+  value?: string;
+  label?: string;
+  placeholder?: string;
   readonly = false;
   required = false;
 
-  maxRows: number;
-  minRows: number;
+  maxRows?: number;
+  minRows?: number;
 
   form: UntypedFormGroup;
 
@@ -484,7 +487,7 @@ class LuxMockFormTextareaComponent {
   `
 })
 class LuxTextareaCounterLabelComponent {
-  hint: string;
-  disabled: boolean;
-  maxLength: number;
+  hint?: string;
+  disabled?: boolean;
+  maxLength?: number;
 }

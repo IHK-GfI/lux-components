@@ -1,7 +1,7 @@
 import { SPACE } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { DebugElement, Provider } from '@angular/core';
-import { ComponentFixture, getTestBed, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -31,17 +31,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule, By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { LuxActionModule } from '../../lux-action/lux-action.module';
+import { LuxCommonModule } from '../../lux-common/lux-common.module';
+import { LuxComponentsConfigModule } from '../../lux-components-config/lux-components-config.module';
 import { LuxDirectivesModule } from '../../lux-directives/lux-directives.module';
+import { LuxErrorModule } from '../../lux-error/lux-error.module';
 import { LuxFormModule } from '../../lux-form/lux-form.module';
 import { LuxIconModule } from '../../lux-icon/lux-icon.module';
 import { LuxLayoutModule } from '../../lux-layout/lux-layout.module';
-import { LuxPipesModule } from '../../lux-pipes/lux-pipes.module';
 import { LuxLookupModule } from '../../lux-lookup/lux-lookup.module';
-import { RouterTestingModule } from '@angular/router/testing';
-import { LuxComponentsConfigModule } from '../../lux-components-config/lux-components-config.module';
-import { LuxErrorModule } from '../../lux-error/lux-error.module';
-import { LuxCommonModule } from '../../lux-common/lux-common.module';
+import { LuxPipesModule } from '../../lux-pipes/lux-pipes.module';
 import { LuxPopupsModule } from '../../lux-popups/lux-popups.module';
 
 export class LuxTestHelper {
@@ -307,7 +307,7 @@ export class LuxTestHelper {
    * @param canBubble
    * @param cancelable
    */
-  public static createFakeEvent(type: string, canBubble = false, cancelable = true) {
+  public static createFakeEvent(type: string, canBubble = false, cancelable = true): Event {
     let event;
     if (typeof Event === 'function') {
       event = new Event(type);
@@ -317,6 +317,15 @@ export class LuxTestHelper {
     }
 
     return event;
+  }
+
+  public static createDropEvent(files: { name: string; type: string }[]): DragEvent {
+    const dataTransfer = new DataTransfer();
+    files.forEach((file) => {
+      dataTransfer.items.add(LuxTestHelper.createFileBrowserSafe(file.name, file.type));
+    })
+
+    return new DragEvent('drop', { dataTransfer })
   }
 
   /**
@@ -367,10 +376,7 @@ export class LuxTestHelper {
    * @param name
    * @param type
    */
-  public static createFileBrowserSafe(name, type) {
-    const file = new Blob([''], { type });
-    file['name'] = name;
-
-    return file as File;
+  public static createFileBrowserSafe(name: string, type: string) {
+    return new File([''], name, { type: type });
   }
 }

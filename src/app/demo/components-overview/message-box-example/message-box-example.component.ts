@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LuxBadgeColors, LuxMessageBoxColors } from "../../../modules/lux-util/lux-colors.enum";
+import { LuxBadgeColors, LuxMessageBoxColors } from '../../../modules/lux-util/lux-colors.enum';
 import { ILuxMessage } from '../../../modules/lux-common/lux-message-box/lux-message-box-model/lux-message.interface';
 import { ILuxMessageCloseEvent } from '../../../modules/lux-common/lux-message-box/lux-message-box-model/lux-message-events.interface';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';

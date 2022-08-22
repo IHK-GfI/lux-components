@@ -12,12 +12,11 @@ import {
 } from '@angular/core';
 import {
   AbstractControl,
-  ControlContainer,
-  UntypedFormControl,
-  UntypedFormGroup, ValidationErrors,
+  ControlContainer, FormControl, FormGroup,
+  ValidationErrors,
   ValidatorFn,
   Validators
-} from "@angular/forms";
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -29,56 +28,61 @@ import { LuxFormLabelComponent } from '../lux-form-control/lux-form-control-subc
 let luxFormControlUID = 0;
 
 export declare type LuxValidationErrors = ValidationErrors;
+export declare type ValidatorFnType = ValidatorFn | ValidatorFn[] | null | undefined;
+export declare type LuxErrorCallbackFnType = (value: any, errors: LuxValidationErrors) => string | undefined;
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy {
+export abstract class LuxFormComponentBase<T> implements OnInit, DoCheck, OnDestroy {
   protected static readonly DEFAULT_CTRL_NAME: string = 'control';
 
-  protected _formValueChangeSubscr: Subscription;
-  protected _formStatusChangeSubscr: Subscription;
-  protected _configSubscription: Subscription;
+  protected _formValueChangeSub?: Subscription;
+  protected _formStatusChangeSub?: Subscription;
+  protected _configSubscription?: Subscription;
 
   private hasHadRequiredValidator = false;
 
   protected latestErrors: any = null;
-  protected _initialValue: any;
-  protected _luxDisabled: boolean;
-  protected _luxReadonly: boolean;
-  protected _luxRequired: boolean;
-  protected _luxControlValidators: ValidatorFn | ValidatorFn[];
+  protected _initialValue: T | null = null;
+  protected _luxDisabled = false;
+  protected _luxReadonly = false;
+  protected _luxRequired = false;
+  protected _luxControlValidators?: ValidatorFnType;
 
-  errorMessage: string = undefined;
+  errorMessage: string | undefined = undefined;
 
   controlContainer: ControlContainer;
-  inForm: boolean;
-  formGroup: UntypedFormGroup;
-  formControl: UntypedFormControl;
+  cdr: ChangeDetectorRef;
+  logger: LuxConsoleService;
+  configService: LuxComponentsConfigService;
+  inForm = false;
+  formGroup!: FormGroup;
+  formControl!: FormControl<T | null>;
 
   uid: string = 'lux-form-control-' + luxFormControlUID++;
 
-  @ContentChild(LuxFormLabelComponent) formLabelComponent: LuxFormLabelComponent;
-  @ContentChild(LuxFormHintComponent) formHintComponent: LuxFormHintComponent;
+  @ContentChild(LuxFormLabelComponent) formLabelComponent?: LuxFormLabelComponent;
+  @ContentChild(LuxFormHintComponent) formHintComponent?: LuxFormHintComponent;
 
-  @HostBinding('class.lux-form-control-readonly') cssReadonly;
+  @HostBinding('class.lux-form-control-readonly') cssReadonly = false;
 
-  @Output() luxFocusIn: EventEmitter<any> = new EventEmitter<any>();
-  @Output() luxFocusOut: EventEmitter<any> = new EventEmitter<any>();
-  @Output() luxDisabledChange: EventEmitter<any> = new EventEmitter<any>();
+  @Output() luxFocusIn: EventEmitter<FocusEvent> = new EventEmitter<any>();
+  @Output() luxFocusOut: EventEmitter<FocusEvent> = new EventEmitter<any>();
+  @Output() luxDisabledChange: EventEmitter<boolean> = new EventEmitter<any>();
 
-  @Input() luxHint: string;
-  @Input() luxHintShowOnlyOnFocus: boolean;
-  @Input() luxLabel: string;
+  @Input() luxHint = '';
+  @Input() luxHintShowOnlyOnFocus = false;
+  @Input() luxLabel = '';
   @Input() luxLabelLongFormat = false;
 
-  @Input() luxControlBinding: string;
-  @Input() luxErrorMessage: string;
-  @Input() luxErrorCallback: (value: any, errors: LuxValidationErrors) => string | undefined = () => undefined;
+  @Input() luxControlBinding?: string;
+  @Input() luxErrorMessage?: string;
+  @Input() luxErrorCallback: LuxErrorCallbackFnType = () => undefined;
 
-  get luxControlValidators(): ValidatorFn | ValidatorFn[] {
+  get luxControlValidators(): ValidatorFnType {
     return this._luxControlValidators;
   }
 
-  @Input() set luxControlValidators(validators: ValidatorFn | ValidatorFn[]) {
+  @Input() set luxControlValidators(validators: ValidatorFnType) {
     this._luxControlValidators = validators;
     this.updateValidators(validators, false);
   }
@@ -116,8 +120,8 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
     if (this.inForm) {
       this.logger.error(
         `Attention: Use the Required-Validator instead of the ` +
-        `Property "luxRequired" for components within ReactiveForms..\n` +
-        `Affected component: ${ this.luxControlBinding ? this.luxControlBinding : 'No binding found' }`
+          `Property "luxRequired" for components within ReactiveForms..\n` +
+          `Affected component: ${this.luxControlBinding ? this.luxControlBinding : 'No binding found'}`
       );
     } else {
       this._luxRequired = required;
@@ -128,16 +132,18 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
 
   protected constructor(
     controlContainer: ControlContainer,
-    protected cdr: ChangeDetectorRef,
-    protected logger: LuxConsoleService,
-    protected configService: LuxComponentsConfigService
+    cdr: ChangeDetectorRef,
+    logger: LuxConsoleService,
+    configService: LuxComponentsConfigService
   ) {
     this.controlContainer = controlContainer;
+    this.cdr = cdr;
+    this.logger = logger;
+    this.configService = configService;
   }
 
   ngOnInit() {
     this.initFormControl();
-    this.initDisabledState();
     this.initFormValueSubscription();
     this.initFormStateSubscription();
     this.updateValidators(this.luxControlValidators, true);
@@ -152,12 +158,12 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
   }
 
   ngOnDestroy() {
-    if (this._formValueChangeSubscr) {
-      this._formValueChangeSubscr.unsubscribe();
+    if (this._formValueChangeSub) {
+      this._formValueChangeSub.unsubscribe();
     }
 
-    if (this._formStatusChangeSubscr) {
-      this._formStatusChangeSubscr.unsubscribe();
+    if (this._formStatusChangeSub) {
+      this._formStatusChangeSub.unsubscribe();
     }
 
     if (this._configSubscription) {
@@ -169,8 +175,8 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
    * Versucht eine Fehlermeldung für diese Komponente auszulesen und gibt diese zurück.
    * Wenn das Element nicht den "touched"-Zustand besitzt, wird keine Fehlermeldung zurückgegeben.
    */
-  protected fetchErrorMessage(): string {
-    // Control undefined/null oder unberührt? => Keinen Fehler ausgeben
+  protected fetchErrorMessage(): string | undefined {
+    // Control undefined/null oder unberührt? Keinen Fehler ausgeben
     if (!this.formControl || !this.formControl.touched) {
       return undefined;
     }
@@ -178,30 +184,30 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
 
     let errorMsg = undefined;
     if (errors) {
-      // Gibt der Callback bereits einen User-definierten Fehler wieder? => diesen zurückgeben
+      // Gibt der Callback bereits einen User-definierten Fehler wieder? Diesen zurückgeben.
       errorMsg = this.luxErrorMessage
         ? this.luxErrorMessage
         : this.luxErrorCallback
-          ? this.luxErrorCallback(value, errors || {})
-          : undefined;
+        ? this.luxErrorCallback(value, errors || {})
+        : undefined;
       if (errors && errorMsg) {
         return errorMsg;
       }
 
-      // Evtl. falls vorhanden Fehlerbehandlung der ableitenden Komponente aufrufen
+      // Eventuell falls vorhanden Fehlerbehandlung der ableitenden Komponente aufrufen
       errorMsg = this.errorMessageModifier(value, errors || {});
       if (errorMsg) {
         return errorMsg;
       }
       // Last-but-not-least => versuchen einen Standardfehler auszulesen
-      errorMsg = LuxUtil.getErrorMessage(this.formControl as UntypedFormControl);
+      errorMsg = LuxUtil.getErrorMessage(this.formControl as FormControl<T>);
     }
 
     return errorMsg;
   }
 
   /**
-   * Mappt den Input-Wert aus disabled auf das FormControl.
+   * Überträgt den Input-Wert aus disabled auf das FormControl.
    */
   protected handleFormDisabledState() {
     if (this.luxDisabled && !this.formControl.disabled) {
@@ -220,12 +226,14 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
    * @param value
    * @param errors
    */
-  protected errorMessageModifier(value, errors) {}
+  protected errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
+    return undefined;
+  }
 
   /**
    * Standard-Getter Funktion für den aktuellen Wert in dieser FormComponent.
    */
-  protected getValue(): any {
+  protected getValue(): T | null {
     return this.formControl ? this.formControl.value : this._initialValue;
   }
 
@@ -234,7 +242,7 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
    *
    * @param value
    */
-  protected setValue(value: any) {
+  protected setValue(value: T | null) {
     // Wenn noch kein FormControl vorhanden, den init-Wert merken und Fn beenden
     if (!this.formControl) {
       this._initialValue = value;
@@ -269,7 +277,7 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
   }
 
   /**
-   * Prueft ob das uebergebene Control einen required-Validator besitzt.
+   * Prüft, ob das übergebene Control einen required-Validator besitzt.
    *
    * @param abstractControl
    */
@@ -290,28 +298,19 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
   protected initFormControl() {
     this.inForm = !!this.controlContainer && !!this.luxControlBinding;
 
-    if (this.inForm) {
-      this.formGroup = this.controlContainer.control as UntypedFormGroup;
-      this.formControl = this.formGroup.controls[this.luxControlBinding] as UntypedFormControl;
+    if (this.inForm && this.luxControlBinding) {
+      this.formGroup = this.controlContainer.control as FormGroup;
+      this.formControl = this.formGroup.controls[this.luxControlBinding] as FormControl<T>;
       this.updateValidatorsInForm();
     } else {
-      this.formGroup = new UntypedFormGroup({
-        control: new UntypedFormControl()
+      this.formGroup = new FormGroup({
+        control: new FormControl()
       });
-      this.formControl = this.formGroup.get(LuxFormComponentBase.DEFAULT_CTRL_NAME) as UntypedFormControl;
+      this.formControl = this.formGroup.get(LuxFormComponentBase.DEFAULT_CTRL_NAME) as FormControl<T>;
       this.formControl.setValue(this._initialValue);
     }
-  }
 
-  /**
-   * Initialisiert den Disabled-Zustand nach Erstellung dieser Component.
-   */
-  protected initDisabledState() {
-    if (this._luxDisabled) {
-      this.handleFormDisabledState();
-    } else if (this.luxDisabled === undefined) {
-      this.luxDisabled = this.formControl.disabled;
-    }
+    this.luxDisabled = this.formControl.disabled;
   }
 
   /**
@@ -324,7 +323,7 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
     }
 
     // Aktualisierungen an dem FormControl-Value sollen auch via EventEmitter bekannt gemacht werden
-    this._formValueChangeSubscr = this.formControl.valueChanges.pipe(distinctUntilChanged()).subscribe((value: any) => {
+    this._formValueChangeSub = this.formControl.valueChanges.pipe(distinctUntilChanged()).subscribe((value: any) => {
       this.notifyFormValueChanged(value);
     });
   }
@@ -333,7 +332,7 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
    * Initialisiert das Handling von Statusaktualisierungen.
    */
   protected initFormStateSubscription() {
-    this._formStatusChangeSubscr = this.formControl.statusChanges.subscribe((status: any) => {
+    this._formStatusChangeSub = this.formControl.statusChanges.subscribe((status: any) => {
       if (status === 'DISABLED' && !this.luxDisabled) {
         // Das FormControl hat den Zustand "DISABLED", aber die Property "luxDisabled"
         // hat noch den Wert "false". D.h. der FormControl-Status und die Property
@@ -359,22 +358,28 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
    *
    * @param validators
    */
-  protected checkValidatorsContainRequired(validators: ValidatorFn | ValidatorFn[]) {
-    // Fall: required = true, aber neue Validatoren werden gesetzt
-    if (this.luxRequired === true) {
-      // Sind es mehrere Validatoren, aber kein .required? Dann wird er ergänzt
-      if (Array.isArray(validators) && validators.indexOf(Validators.required) === -1) {
-        validators.push(Validators.required);
-      } else if (!Array.isArray(validators) && validators !== Validators.required) {
-        // Ist es nur ein einzelner Validator und nicht .required? Dann Array erstellen und beide kombinieren
-        validators = [validators, Validators.required];
+  protected checkValidatorsContainRequired(validators: ValidatorFnType) {
+    if (!this.luxRequired === null && !this.luxRequired === undefined) {
+      if (this.luxRequired) {
+        // Fall: required = true, aber neue Validatoren werden gesetzt.
+        // Sind es mehrere Validatoren, aber kein "required"? Dann wird er ergänzt
+        if (Array.isArray(validators) && validators.indexOf(Validators.required) === -1) {
+          validators.push(Validators.required);
+        } else if (validators && !Array.isArray(validators) && validators !== Validators.required) {
+          // Ist es nur ein einzelner Validator und nicht "required"? Dann Array erstellen und beide kombinieren.
+          validators = [validators, Validators.required];
+        }
+      } else {
+        if (Array.isArray(validators)) {
+          validators = validators.filter((validator: ValidatorFn) => validator !== Validators.required);
+        } else if (validators === Validators.required) {
+          validators = undefined;
+        }
       }
-    } else if (this.luxRequired === false) {
-      if (Array.isArray(validators)) {
-        validators = validators.filter((validator: ValidatorFn) => validator !== Validators.required);
-      } else if (validators === Validators.required) {
-        validators = undefined;
-      }
+    } else {
+      // Die Aufrufe mit "null" und "undefined" werden an dieser Stelle absichtlich nicht weiter behandelt.
+      // Todo: Mit der neuen Angular-Version sind neue Methoden wie z.B. FormControl.hasValidator hinzugekommen.
+      //       D.h. die komplizierte Behandlung von Validators.required kann vereinfacht werden.
     }
 
     return validators;
@@ -387,14 +392,14 @@ export abstract class LuxFormComponentBase implements OnInit, DoCheck, OnDestroy
    * @param validators
    * @param checkRequiredValidator
    */
-  protected updateValidators(validators: ValidatorFn | ValidatorFn[], checkRequiredValidator: boolean) {
+  protected updateValidators(validators: ValidatorFnType, checkRequiredValidator: boolean) {
     if ((!Array.isArray(validators) && validators) || (Array.isArray(validators) && validators.length > 0)) {
       if (!this.inForm) {
         setTimeout(() => {
           if (checkRequiredValidator) {
             this._luxControlValidators = this.checkValidatorsContainRequired(validators);
           }
-          this.formControl.setValidators(this.luxControlValidators);
+          this.formControl.setValidators(this.luxControlValidators ?? null);
           this.formControl.updateValueAndValidity();
         });
       } else {

@@ -1,7 +1,9 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 
-import { LuxSliderComponent } from './lux-slider.component';
+import { LuxDisplayWithFnType, LuxSliderComponent } from './lux-slider.component';
 import { Component } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -34,7 +36,7 @@ describe('LuxSliderComponent', () => {
       expect(component.form.value.slider).toEqual(0);
 
       // Änderungen durchführen
-      component.form.get('slider').setValue(25);
+      component.form.get('slider')!.setValue(25);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -56,7 +58,7 @@ describe('LuxSliderComponent', () => {
       component.max = 50;
       component.min = 25;
       LuxTestHelper.wait(fixture);
-      component.form.get('slider').setValue(30);
+      component.form.get('slider')!.setValue(30);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -68,26 +70,26 @@ describe('LuxSliderComponent', () => {
 
     it('Sollte den Min- und Max-Wert nicht überschreiten', fakeAsync(() => {
       // Vorbedingungen testen
-      expect(component.form.get('slider').value).toEqual(0);
+      expect(component.form.get('slider')!.value).toEqual(0);
       expect(sliderComponent.luxValue).toEqual(0);
 
       // Änderungen durchführen
       component.max = 50;
       component.min = 25;
       LuxTestHelper.wait(fixture);
-      component.form.get('slider').setValue(20);
+      component.form.get('slider')!.setValue(20);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(component.form.get('slider').value).toEqual(25);
+      expect(component.form.get('slider')!.value).toEqual(25);
       expect(sliderComponent.luxValue).toEqual(25);
 
       // Änderungen durchführen
-      component.form.get('slider').setValue(55);
+      component.form.get('slider')!.setValue(55);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(component.form.get('slider').value).toEqual(50);
+      expect(component.form.get('slider')!.value).toEqual(50);
       expect(sliderComponent.luxValue).toEqual(50);
     }));
 
@@ -112,7 +114,7 @@ describe('LuxSliderComponent', () => {
       expect(sliderComponent.formControl.disabled).toBe(false);
 
       // Änderungen durchführen
-      component.form.get('slider').disable();
+      component.form.get('slider')!.disable();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -233,7 +235,8 @@ describe('LuxSliderComponent', () => {
       // Änderungen durchführen
       component.max = 10000;
       component.showThumbLabel = true;
-      component.displayWith = value => {
+      component.displayWith = (value) => {
+        value = value ?? 0;
         if (value && value >= 1000) {
           return Math.round(value / 1000) + 'k';
         }
@@ -280,11 +283,11 @@ class MockSliderNoFormComponent {
   value = 0;
   max = 100;
   min = 0;
-  displayWith;
+  displayWith?: LuxDisplayWithFnType;
 
-  percentChanged($event) {}
+  percentChanged(value: number) {}
 
-  valueChanged($event) {}
+  valueChanged(value: number) {}
 }
 
 @Component({
@@ -309,9 +312,9 @@ class MockSliderFormComponent {
 
   form;
 
-  percentChanged($event) {}
+  percentChanged($event: number) {}
 
-  valueChanged($event) {}
+  valueChanged($event: number) {}
 
   constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({

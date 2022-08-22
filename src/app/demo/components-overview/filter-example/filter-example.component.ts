@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { Subscription } from "rxjs";
-import { LuxActionColorType } from "../../../modules/lux-action/lux-action-model/lux-action-component-base.class";
-import { LuxFilter } from "../../../modules/lux-filter/lux-filter-base/lux-filter";
-import { LuxFilterItem } from "../../../modules/lux-filter/lux-filter-base/lux-filter-item";
-import { LuxFilterFormComponent } from "../../../modules/lux-filter/lux-filter-form/lux-filter-form.component";
-import { LuxFieldValues, LuxLookupParameters } from "../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters";
-import { LuxMediaQueryObserverService } from "../../../modules/lux-util/lux-media-query-observer.service";
-import { LuxUtil } from "../../../modules/lux-util/lux-util";
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { LuxActionColorType } from '../../../modules/lux-action/lux-action-model/lux-action-component-base.class';
+import { LuxFilter } from '../../../modules/lux-filter/lux-filter-base/lux-filter';
+import { LuxFilterItem } from '../../../modules/lux-filter/lux-filter-base/lux-filter-item';
+import { LuxFilterFormComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form.component';
+import { LuxFieldValues, LuxLookupParameters } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
+import { LuxMediaQueryObserverService } from '../../../modules/lux-util/lux-media-query-observer.service';
+import { LuxUtil } from '../../../modules/lux-util/lux-util';
 
 @Component({
   selector: 'lux-filter-example',

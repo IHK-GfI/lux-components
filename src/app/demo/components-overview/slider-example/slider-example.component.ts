@@ -6,7 +6,7 @@ import {
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
-} from "../../example-base/example-base-util/example-base-helper";
+} from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'app-slider-example',

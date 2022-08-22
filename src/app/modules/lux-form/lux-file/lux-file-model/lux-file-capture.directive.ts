@@ -4,7 +4,7 @@ import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
   selector: '[luxFileCapture]'
 })
 export class LuxFileCaptureDirective {
-  _luxFileCapture: string;
+  _luxFileCapture = '';
 
   @Input()
   get luxFileCapture() {

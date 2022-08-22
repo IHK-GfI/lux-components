@@ -20,6 +20,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxUtil } from '../../lux-util/lux-util';
+import { LuxValidationErrors } from '../lux-form-model/lux-form-component-base.class';
 import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
 import { LuxDatepickerAdapter } from './lux-datepicker-adapter';
 import { LuxDatepickerCustomHeaderComponent } from './lux-datepicker-custom-header/lux-datepicker-custom-header.component';
@@ -36,46 +37,46 @@ export const APP_DATE_FORMATS = {
   }
 };
 
-export declare type LuxDatepickerStartViewType = 'month' | 'year';
+export declare type LuxDateFilterFn = (date: Date| null) => boolean;
+export declare type LuxStartView = 'month' | 'year' | 'multi-year';
 
 @Component({
   selector: 'lux-datepicker',
   templateUrl: './lux-datepicker.component.html',
-  styleUrls: ['./lux-datepicker.component.scss'],
   providers: [
     { provide: DateAdapter, useClass: LuxDatepickerAdapter, deps: [MAT_DATE_LOCALE, Platform] },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
   ]
 })
-export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnInit, OnChanges, OnDestroy {
-  private originalTouchUi;
-  private mediaSubscription: Subscription;
-  private previousISO: string;
-  min: Date;
-  max: Date;
-  start: Date;
+export class LuxDatepickerComponent extends LuxFormInputBaseClass<string> implements OnInit, OnChanges, OnDestroy {
+  private originalTouchUi = false;
+  private mediaSubscription?: Subscription;
+  private previousISO?: string;
+  min: Date | null = null;
+  max: Date | null = null;
+  start: Date | null = null;
 
-  @Input() luxStartView: LuxDatepickerStartViewType = 'month';
+  @Input() luxStartView: LuxStartView = 'month';
   @Input() luxTouchUi = false;
   @Input() luxOpened = false;
-  @Input() luxStartDate: string = null;
+  @Input() luxStartDate?: string;
   @Input() luxShowToggle = true;
   @Input() luxLocale = 'de-DE';
-  @Input() luxCustomFilter: any = undefined;
-  @Input() luxMaxDate: string = undefined;
-  @Input() luxMinDate: string = undefined;
+  @Input() luxCustomFilter?: LuxDateFilterFn;
+  @Input() luxMaxDate?: string;
+  @Input() luxMinDate?: string;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
 
-  @ViewChild(MatDatepicker) matDatepicker: MatDatepicker<any>;
-  @ViewChild('datepickerInput', { read: ElementRef }) datepickerInput: ElementRef;
+  @ViewChild(MatDatepicker) matDatepicker?: MatDatepicker<any>;
+  @ViewChild('datepickerInput', { read: ElementRef }) datepickerInput?: ElementRef;
 
-  get luxValue(): string {
+  get luxValue(): string | null {
     return this.getValue();
   }
 
-  @Input() set luxValue(value: string) {
+  @Input() set luxValue(value: string | null) {
     this.setValue(value);
   }
 
@@ -97,7 +98,7 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
 
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (simpleChanges.luxOpened) {
-      // Evtl. gibt es ohne das Timeout sonst Fehler, weil der matDatepicker noch nicht gesetzt ist
+      // Eventuell gibt es ohne das Timeout sonst Fehler, weil der matDatepicker noch nicht gesetzt ist
       setTimeout(() => {
         this.triggerOpenClose();
       });
@@ -127,7 +128,9 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
   ngOnDestroy() {
     super.ngOnDestroy();
 
-    this.mediaSubscription.unsubscribe();
+    if (this.mediaSubscription) {
+      this.mediaSubscription.unsubscribe();
+    }
   }
 
   /**
@@ -136,11 +139,11 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
    * @param value
    * @param errors
    */
-  errorMessageModifier(value, errors) {
+  errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     if (errors.matDatepickerMin) {
       return $localize `:@@luxc.datepicker.error_message.min:Das Datum unterschreitet den Minimalwert`;
     } else if (errors.matDatepickerMax) {
-      return $localize `:@@luxc.datepicker.error_message.max:Das Datum überschreitet den Maximalwert`;;
+      return $localize `:@@luxc.datepicker.error_message.max:Das Datum überschreitet den Maximalwert`;
     } else if (errors.matDatepickerParse) {
       return $localize `:@@luxc.datepicker.error_message.invalid:Das Datum ist ungültig`;
     } else if (errors.required) {
@@ -155,8 +158,8 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
   }
 
   /**
-   * Checkt ob eine mobile Media-Query vorliegt.
-   * Wenn ja, wird automagisch die TouchUI aktiviert.
+   * Checkt, ob eine mobile Media-Query vorliegt.
+   * Wenn ja, wird automatisch die TouchUI aktiviert.
    * Wenn nein, wird der vom Aufrufer/originale luxTouchUI-Wert genutzt.
    */
   private checkMediaObserver() {
@@ -172,9 +175,9 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
    */
   private triggerOpenClose() {
     if (this.luxOpened) {
-      this.matDatepicker.open();
+      this.matDatepicker?.open();
     } else {
-      this.matDatepicker.close();
+      this.matDatepicker?.close();
     }
   }
 
@@ -202,7 +205,7 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
         this.notifyFormValueChanged(isoValue);
       }
 
-      // "silently" den FormControl auf den (potentiell) geänderten Wert aktualisieren
+      // "silently" den FormControl auf den (potenziell) geänderten Wert aktualisieren
       this.formControl.setValue(isoValue, {
         emitEvent: false,
         emitModelToViewChange: false,
@@ -210,7 +213,7 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
       });
 
       // Per Hand dem Input-Element einen formatierten String übergeben
-      if (!this.datepickerInput.nativeElement.value && isoValue) {
+      if (this.datepickerInput && !this.datepickerInput.nativeElement.value && isoValue) {
         this.datepickerInput.nativeElement.value = this.dateAdapter.format(
           isoValue as any,
           APP_DATE_FORMATS.display.dateInput
@@ -233,7 +236,7 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass implements OnI
 
   protected initFormValueSubscription() {
     // Aktualisierungen an dem FormControl-Value sollen auch via EventEmitter bekannt gemacht werden
-    this._formValueChangeSubscr = this.formControl.valueChanges.subscribe((value: any) => {
+    this._formValueChangeSub = this.formControl.valueChanges.subscribe((value: any) => {
       this.updateDateValue(value);
     });
 

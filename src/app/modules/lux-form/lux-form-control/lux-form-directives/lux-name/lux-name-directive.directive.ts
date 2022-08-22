@@ -4,7 +4,7 @@ import {Directive, ElementRef, Input, Renderer2} from '@angular/core';
   selector: '[luxNameAttr]'
 })
 export class LuxNameDirectiveDirective {
-  _luxNameAttr: string;
+  _luxNameAttr = '';
 
   @Input()
   get luxNameAttr() {

@@ -1,5 +1,3 @@
-/* eslint-disable no-shadow */
-// no-shadow meldet fälschlicherweise einen Fehler
 export enum LuxFileErrorCause {
   MaxSizeError = 'luxMaximumSize',
   ReadingFileError = 'luxReadingFile',
@@ -7,7 +5,6 @@ export enum LuxFileErrorCause {
   FileNotAccepted = 'luxUnacceptedFile',
   MultipleForbidden = 'luxMultipleForbidden'
 }
-/* eslint-enable no-shadow */
 
 export interface ILuxFileError {
   cause: LuxFileErrorCause;

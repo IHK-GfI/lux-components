@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { LuxUtil } from '../../../lux-util/lux-util';
 import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface';
 
 @Component({
@@ -10,12 +11,12 @@ import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface
     </ng-template>
   `
 })
-export class LuxChipComponent {
+export class LuxChipComponent implements AfterViewInit{
   private removeClicked = false;
 
   private _luxColor: ThemePalette = 'primary';
 
-  @ViewChild(TemplateRef, { static: true }) templateRef: TemplateRef<any>;
+  @ViewChild(TemplateRef, { static: true }) templateRef!: TemplateRef<any>;
 
   @Output() luxChipRemoved = new EventEmitter<number>();
   @Output() luxChipClicked = new EventEmitter<number>();
@@ -37,6 +38,10 @@ export class LuxChipComponent {
   }
 
   constructor() {}
+
+  ngAfterViewInit() {
+    LuxUtil.assertNonNull('templateRef', this.templateRef);
+  }
 
   remove(index: number) {
     this.luxChipRemoved.emit(index);

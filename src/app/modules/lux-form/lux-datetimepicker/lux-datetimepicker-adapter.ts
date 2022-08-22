@@ -7,15 +7,15 @@ import { LuxUtil } from '../../lux-util/lux-util';
 @Injectable()
 export class LuxDateTimePickerAdapter extends NativeDateAdapter {
   // dd.MM.yyyy
-  private readonly dotRegExp = new RegExp(/\d{1,2}\.\d{1,2}\.\d{4},\W*\d{1,2}\:\d{1,2}/);
+  private readonly dotRegExp = new RegExp(/\d{1,2}\.\d{1,2}\.\d{4},\W*\d{1,2}:\d{1,2}/);
   // MM/dd/yyyy
-  private readonly backslashRegExp = new RegExp(/\d{1,2}\/\d{1,2}\/\d{4},\W*\d{1,2}\:\d{1,2}/);
+  private readonly backslashRegExp = new RegExp(/\d{1,2}\/\d{1,2}\/\d{4},\W*\d{1,2}:\d{1,2}/);
   // dd-MM-yyyy
-  private readonly hyphenRegExp = new RegExp(/\d{1,2}-\d{1,2}-\d{4},\W*\d{1,2}\:\d{1,2}/);
+  private readonly hyphenRegExp = new RegExp(/\d{1,2}-\d{1,2}-\d{4},\W*\d{1,2}:\d{1,2}/);
   // yyyy-MM-dd
-  private readonly hyphenRegExp_1 = new RegExp(/\d{4}-\d{1,2}-\d{1,2},\W*\d{1,2}\:\d{1,2}/);
+  private readonly hyphenRegExp_1 = new RegExp(/\d{4}-\d{1,2}-\d{1,2},\W*\d{1,2}:\d{1,2}/);
   // ddMMyyyy
-  private readonly noSeparatorRegExp = new RegExp(/\d{1,2}\d{1,2}\d{4},\W*\d{1,2}\:\d{1,2}/);
+  private readonly noSeparatorRegExp = new RegExp(/\d{1,2}\d{1,2}\d{4},\W*\d{1,2}:\d{1,2}/);
 
   constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale: string, private platform: Platform) {
     super(matDateLocale, platform);
@@ -168,7 +168,7 @@ export class LuxDateTimePickerAdapter extends NativeDateAdapter {
   }
 
   private calculateMonth(month: number) {
-    let newMonth = month;
+    let newMonth: number;
 
     if (month <= 0) {
       newMonth = 0;

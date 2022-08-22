@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { emptyErrorCallback, exampleErrorCallback } from "../../example-base/example-base-util/example-base-helper";
+import { emptyErrorCallback, exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'toggle-example',
@@ -39,11 +39,11 @@ export class ToggleExampleComponent {
   changeRequired($event: boolean) {
     this.required = $event;
     if ($event) {
-      this.form.get(this.controlBinding).setValidators(Validators.requiredTrue);
+      this.form.get(this.controlBinding)!.setValidators(Validators.requiredTrue);
     } else {
-      this.form.get(this.controlBinding).setValidators(null);
+      this.form.get(this.controlBinding)!.setValidators(null);
     }
-    this.form.get(this.controlBinding).updateValueAndValidity();
+    this.form.get(this.controlBinding)!.updateValueAndValidity();
   }
 
 }

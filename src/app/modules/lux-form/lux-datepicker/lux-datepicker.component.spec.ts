@@ -1,13 +1,15 @@
 /* eslint-disable max-classes-per-file */
-import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { emptyErrorCallback } from "../../../demo/example-base/example-base-util/example-base-helper";
+// noinspection DuplicatedCode
 
-import { LuxDatepickerComponent } from './lux-datepicker.component';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { LuxValidationErrors, ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
+
+import { LuxDateFilterFn, LuxDatepickerComponent } from './lux-datepicker.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
-import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -110,8 +112,6 @@ describe('LuxDatepickerComponent', () => {
       const datepickerEl = fixture.debugElement.query(By.css('input'));
       expect(LuxUtil.stringWithoutASCIIChars(datepickerEl.nativeElement.value)).toEqual('10.06.2015');
       expect(datepickerComponent.luxValue).toEqual(utcNullifiedDate.toISOString(), );
-
-      console.log(new Date(datepickerComponent.luxValue));
     }));
 
     it('Sollte den Wert aktualisieren', fakeAsync(() => {
@@ -181,10 +181,10 @@ describe('LuxDatepickerComponent', () => {
       expect(datepickerComponent.luxValue).toEqual(utcNullifiedDate.toISOString(), );
     }));
 
-    it('Sollte den korrekten, UTC-genullten Wert ausgeben', fakeAsync(() => {
-      const utcNullifedDate = new Date(0);
-      utcNullifedDate.setUTCFullYear(2000, 0, 1);
-      utcNullifedDate.setUTCHours(0);
+    it('Sollte den korrekten mit Nullen aufgefüllten UTC-Wert ausgeben', fakeAsync(() => {
+      const utcDate = new Date(0);
+      utcDate.setUTCFullYear(2000, 0, 1);
+      utcDate.setUTCHours(0);
       // Vorbedingungen testen
       expect(testComponent.formControl.value).toBeFalsy();
       expect(datepickerComponent.luxValue).toBeFalsy();
@@ -194,17 +194,17 @@ describe('LuxDatepickerComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(testComponent.formControl.value).toEqual(utcNullifedDate.toISOString(), );
-      expect(datepickerComponent.luxValue).toEqual(utcNullifedDate.toISOString(), );
+      expect(testComponent.formControl.value).toEqual(utcDate.toISOString(), );
+      expect(datepickerComponent.luxValue).toEqual(utcDate.toISOString(), );
 
       // Änderungen durchführen
       testComponent.formControl.setValue('2000-01-02T03:59:00.000-05:00');
-      utcNullifedDate.setUTCFullYear(2000, 0, 2);
+      utcDate.setUTCFullYear(2000, 0, 2);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(testComponent.formControl.value).toEqual(utcNullifedDate.toISOString(), );
-      expect(datepickerComponent.luxValue).toEqual(utcNullifedDate.toISOString(), );
+      expect(testComponent.formControl.value).toEqual(utcDate.toISOString(), );
+      expect(datepickerComponent.luxValue).toEqual(utcDate.toISOString(), );
     }));
 
     it('Sollte required sein', fakeAsync(() => {
@@ -406,7 +406,7 @@ describe('LuxDatepickerComponent', () => {
       expect(matErrorEl).toBeFalsy();
 
       // Änderungen durchführen
-      testComponent.customFilter = (d: Date): boolean => {
+      testComponent.customFilter = (d: Date | null): boolean => {
         const day = d ? d.getDay() : 0;
         // Prevent Saturday and Sunday from being selected.
         return day !== 0 && day !== 6;
@@ -457,7 +457,7 @@ describe('LuxDatepickerComponent', () => {
       expect(inputEl.attributes.readonly).toBeTruthy();
       expect(toggleEl.disabled).toBeTruthy();
       expect(datepickerComponent.luxReadonly).toBeTruthy();
-      expect(datepickerComponent.matDatepicker.disabled).toBeTruthy();
+      expect(datepickerComponent.matDatepicker!.disabled).toBeTruthy();
     }));
 
     it('LuxValidators', fakeAsync(() => {
@@ -478,7 +478,7 @@ describe('LuxDatepickerComponent', () => {
       matError = fixture.debugElement.query(By.css('mat-error'));
 
       expect(datepickerComponent.formControl.valid).toBe(false);
-      expect(datepickerComponent.formControl.errors.required).toBeDefined();
+      expect(datepickerComponent.formControl.errors!.required).toBeDefined();
       expect(matError).not.toBeNull();
 
       flush();
@@ -514,7 +514,7 @@ describe('LuxDatepickerComponent', () => {
       expect(matError).toBeNull();
 
       // Änderungen durchführen
-      testComponent.errorCb = (value, errors) => 'Achtung, das ist ein Fehler';
+      testComponent.errorCb = () => 'Achtung, das ist ein Fehler';
       const spy = spyOn(testComponent, 'errorCb').and.callThrough();
 
       testComponent.validators = [Validators.required];
@@ -581,7 +581,7 @@ describe('LuxDatepickerComponent', () => {
       expect(spy).toHaveBeenCalledTimes(2);
 
       // Änderungen durchführen
-      // Absichtlich den selben Wert nochmal, sollte nichts auslösen
+      // Absichtlich denselben Wert nochmal, sollte nichts auslösen
       testComponent.value = new Date(2015, 9, 20).toISOString();
       LuxTestHelper.wait(fixture);
 
@@ -736,20 +736,20 @@ describe('LuxDatepickerComponent', () => {
   `
 })
 class LuxNoFormAttributeTestComponent {
-  value: string;
-  disabled: boolean;
+  value?: string;
+  disabled?: boolean;
   readonly = false;
   required = false;
-  locale: string;
-  minDate: Date | string;
-  maxDate: Date | string;
-  startDate: Date | string;
-  customFilter;
+  locale?: string;
+  minDate?: string;
+  maxDate?: string;
+  startDate?: string;
+  customFilter?: LuxDateFilterFn;
   showToggle = true;
-  errorMessage: string;
-  validators: ValidatorFn | ValidatorFn[];
+  errorMessage?: string;
+  validators?: ValidatorFnType;
   opened = false;
-  errorCb: (value, errors) => string = (value, errors) => undefined;
+  errorCb:(value: any, errors: LuxValidationErrors) => string | undefined = () => undefined;
 
   valueChanged() {}
 }
@@ -767,7 +767,7 @@ export const Validator2019NotAllowed = (control: AbstractControl) => {
   return null;
 };
 
-export const exampleErrorCallback = (value, errors) => {
+export const exampleErrorCallback = (value: any, errors: LuxValidationErrors) => {
   if (errors.required) {
     return 'Darf nicht leer sein';
   } else if (errors.NotAllowed2019) {
@@ -797,7 +797,7 @@ class LuxFormCustomValidatorComponent {
     this.form = this.fb.group({
       datepicker: ['', Validators.compose([Validator2019NotAllowed, Validators.required])]
     });
-    this.formControl = this.form.get('datepicker');
+    this.formControl = this.form.get('datepicker')!;
   }
 }
 
@@ -817,6 +817,6 @@ class LuxFormTestComponent {
     this.form = this.fb.group({
       datepicker: []
     });
-    this.formControl = this.form.get('datepicker');
+    this.formControl = this.form.get('datepicker')!;
   }
 }

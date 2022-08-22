@@ -17,25 +17,30 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatOption } from '@angular/material/core';
 
+/**
+ * @param O Optionstyp (z.B Land)
+ * @param V Werttyp (z.B. Land, Land[], string, string[],...)
+ * @param P PickValueFn-Typ (z.B. string, number,...)
+ */
 @Component({
   selector: 'lux-select',
   templateUrl: './lux-select.component.html',
   styleUrls: ['./lux-select.component.scss']
 })
-export class LuxSelectComponent extends LuxFormSelectableBase {
-  // Potentiell eingebettetes Template für Darstellung der Labels
-  @ContentChild(TemplateRef) tempRef: TemplateRef<any>;
-  @ViewChildren(MatOption) matOptions: QueryList<MatOption>;
-  @ViewChild('select', { read: MatSelect }) matSelect: MatSelect;
+export class LuxSelectComponent<O = any, V = any, P = any> extends LuxFormSelectableBase<O,V,P> {
+  // Potenziell eingebettetes Template für Darstellung der Labels
+  @ContentChild(TemplateRef) tempRef?: TemplateRef<any>;
+  @ViewChildren(MatOption) matOptions!: QueryList<MatOption>;
+  @ViewChild('select', { read: MatSelect }) matSelect?: MatSelect;
 
-  @Input() luxPlaceholder: string;
+  @Input() luxPlaceholder = '';
   @Input() luxMultiple = false;
   @Input() luxTagId: string | null = null;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
 
-  displayedViewValue: string;
+  displayedViewValue?: string;
 
   constructor(
     @Optional() controlContainer: ControlContainer,
@@ -52,7 +57,7 @@ export class LuxSelectComponent extends LuxFormSelectableBase {
     const matOption = this.matOptions.find((option: MatOption) => option.value === formValue);
     if (matOption) {
       this.displayedViewValue = matOption.viewValue;
-      this.liveAnnouncer.announce(matOption.viewValue, 'assertive');
+      this.liveAnnouncer.announce(matOption.viewValue, 'assertive').then();
     }
   }
 }

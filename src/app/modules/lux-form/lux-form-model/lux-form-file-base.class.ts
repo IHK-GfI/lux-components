@@ -10,14 +10,15 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { ControlContainer, ValidatorFn, Validators } from '@angular/forms';
+import { ControlContainer, Validators } from '@angular/forms';
 import { LuxProgressModeType } from "../../lux-common/lux-progress/lux-progress.component";
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
-import { LuxUtil } from '../../lux-util/lux-util';
-import { LuxFormComponentBase } from './lux-form-component-base.class';
+import { LuxFormComponentBase, LuxValidationErrors, ValidatorFnType } from "./lux-form-component-base.class";
 import { ILuxFileError, LuxFileErrorCause } from '../lux-file/lux-file-model/lux-file-error.interface';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { ILuxFileActionConfig } from '../lux-file/lux-file-model/lux-file-action-config.interface';
+import {
+  ILuxFileActionConfig
+} from '../lux-file/lux-file-model/lux-file-action-config.interface';
 import { isObservable, Observable, throwError } from 'rxjs';
 import { ILuxFileObject } from '../lux-file/lux-file-model/lux-file-object.interface';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -25,18 +26,15 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { take } from 'rxjs/operators';
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxFormFileBase extends LuxFormComponentBase {
+export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
   defaultReadFileDelay = 1000;
 
   private _luxAccept = '';
-  private _luxSelectedFiles: ILuxFileObject[];
 
-  protected _luxUploadActionConfig: ILuxFileActionConfig = {
-    disabled: false,
-    hidden: false,
-    iconName: 'fas fa-cloud-upload-alt',
-    label: $localize`:@@luxc.form-file-base.upload.action.lbl:Hochladen`
-  };
+  protected abstract initUploadActionConfig(): U;
+
+  protected _luxUploadActionConfig: U = this.initUploadActionConfig();
+
   protected _luxDeleteActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
@@ -61,10 +59,10 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   progress = -1;
   forceProgressIndeterminate = false;
 
-  @ViewChild('downloadLink', { read: ElementRef, static: true }) downloadLink: ElementRef;
-  @ViewChild('fileupload', { read: ElementRef, static: true }) fileuploadInput: ElementRef;
+  @ViewChild('downloadLink', { read: ElementRef, static: true }) downloadLink!: ElementRef;
+  @ViewChild('fileUpload', { read: ElementRef, static: true }) fileUploadInput!: ElementRef;
 
-  @Output() luxSelectedFilesChange: EventEmitter<any> = new EventEmitter<any>();
+  @Output() luxSelectedFilesChange: EventEmitter<T | null> = new EventEmitter();
 
   @Input() luxUploadReportProgress = false;
   @Input() luxContentsAsBlob = false;
@@ -77,29 +75,29 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   @HostBinding('class.lux-file-highlight') isDragActive = false;
 
-  @HostListener('dragover', ['$event']) onDragOver($event) {
+  @HostListener('dragover', ['$event']) onDragOver($event: DragEvent) {
     if (this.isDnDAllowed()) {
       this.handleDragOver($event);
     }
   }
 
-  @HostListener('dragleave', ['$event']) onDragLeave($event) {
+  @HostListener('dragleave', ['$event']) onDragLeave($event: DragEvent) {
     if (this.isDnDAllowed()) {
       this.handleDragLeave($event);
     }
   }
 
-  @HostListener('drop', ['$event']) onDrop($event) {
+  @HostListener('drop', ['$event']) onDrop($event: DragEvent) {
     if (this.isDnDAllowed()) {
       this.handleDrop($event);
     }
   }
 
-  get luxUploadActionConfig(): ILuxFileActionConfig {
+  get luxUploadActionConfig(): U {
     return this._luxUploadActionConfig;
   }
 
-  @Input() set luxUploadActionConfig(config: ILuxFileActionConfig) {
+  @Input() set luxUploadActionConfig(config: U) {
     if (config) {
       this._luxUploadActionConfig = config;
     }
@@ -145,11 +143,11 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     }
   }
 
-  get luxSelectedFiles(): any {
+  get luxSelectedFiles(): T | null {
     return this.getValue();
   }
 
-  @Input() set luxSelectedFiles(selectedFiles: any) {
+  @Input() set luxSelectedFiles(selectedFiles: T | null) {
     this.setValue(selectedFiles);
   }
 
@@ -178,7 +176,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     logger: LuxConsoleService,
     config: LuxComponentsConfigService,
     protected http: HttpClient,
-    private liveAnnouncer: LiveAnnouncer
+    protected liveAnnouncer: LiveAnnouncer
   ) {
     super(controlContainer, cdr, logger, config);
   }
@@ -188,7 +186,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    *
    * @param $event
    */
-  onFocusIn($event) {
+  onFocusIn($event: FocusEvent) {
     this.formControl.markAsTouched();
     this.luxFocusIn.emit($event);
   }
@@ -198,11 +196,11 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    *
    * @param $event
    */
-  clearFiles($event?) {
+  clearFiles($event?: MouseEvent) {
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();
 
-    this.luxSelectedFiles = this.useArray() ? [] : undefined;
+    this.resetSelected();
     this.notifyFormValueChanged();
     this.clearFormControlErrors();
     if (this.luxDeleteActionConfig.onClick) {
@@ -219,22 +217,22 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    */
   downloadFile(file: ILuxFileObject | ILuxFileObject[]) {
     this.formControl.markAsTouched();
-    file = Array.isArray(file) ? file[0] : file;
+    const myFile: ILuxFileObject = Array.isArray(file) ? file[0] : file;
     const downloadLink = this.downloadLink.nativeElement as HTMLAnchorElement;
-    downloadLink.download = file.name;
+    downloadLink.download = myFile.name;
 
-    if (file.content instanceof Blob) {
-      const url = window.URL.createObjectURL(file.content);
+    if (myFile.content instanceof Blob) {
+      const url = window.URL.createObjectURL(myFile.content);
       downloadLink.href = url;
       downloadLink.click();
       window.URL.revokeObjectURL(url);
     } else {
-      downloadLink.href = file.content;
+      downloadLink.href = myFile.content as string;
       downloadLink.click();
     }
 
     if (this.luxDownloadActionConfig.onClick) {
-      this.luxDownloadActionConfig.onClick(file);
+      this.luxDownloadActionConfig.onClick(myFile);
     }
   }
 
@@ -268,18 +266,18 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   }
 
   /**
-   * Wandelt File-Objekt zu LuxFileObjects um und versucht diese Hochzuladen.
+   * Wandelt File-Objekt zu LuxFileObjects um und versucht diese hochzuladen.
    * Gibt ein Promise mit den neuen FileObjects zurück bzw. einen Fehler aus den internen Promises.
    *
    * @param files
    */
   async updateSelectedFiles(files: FileList | File[]) {
     try {
-      let newFiles = [];
+      let newFiles: ILuxFileObject[] = [];
       await this.mapFilesToFileObjects(files).then((fileObjects: ILuxFileObject[]) => (newFiles = fileObjects));
       await this.uploadFiles(newFiles);
-      if (this.luxUploadActionConfig.onClick) {
-        this.luxUploadActionConfig.onClick(newFiles && newFiles.length === 1 && !this.useArray() ? newFiles[0] : newFiles);
+      if (this.luxUploadActionConfig) {
+        this.handleUploadClick(newFiles);
       }
       this.formControl.markAsTouched();
       this.formControl.markAsDirty();
@@ -294,7 +292,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    *
    * @param files
    */
-  async uploadFiles(files: ILuxFileObject[] | ILuxFileObject) {
+  async uploadFiles(files: ILuxFileObject[] | ILuxFileObject | null) {
     if (!this.luxUploadUrl) {
       this.forceProgressIndeterminate = false;
       return Promise.resolve();
@@ -316,16 +314,16 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
       selectedFiles.push(...files);
     }
     selectedFiles.forEach((fileObject: ILuxFileObject) => {
-      formData.append(fileObject.name, fileObject.content);
+      formData.append(fileObject.name, fileObject.content!);
     });
 
     await new Promise<void>((resolve, reject) => {
-      const options = {};
+      const options: any = { responseType: 'blob'};
+
       if (this.luxUploadReportProgress) {
-        options['reportProgress'] = true;
-        options['observe'] = 'events';
+        options.reportProgress = true;
+        options.observe = 'events';
       }
-      options['responseType'] = 'blob';
 
       this.http.post(this.luxUploadUrl, formData, options).subscribe(
         (event: any) => {
@@ -368,12 +366,11 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   /**
    * Liest die übergebenen Dateien aus und erzeugt daraus ein Promise, welches abgefragt werden kann.
-   * Fängt potentielle Fehler ab und gibt diese als abgelehnte Promises zurück.
+   * Fängt potenzielle Fehler ab und gibt diese als abgelehnte Promises zurück.
    *
    * @param files
    */
   async mapFilesToFileObjects(files: FileList | File[]) {
-    this._luxSelectedFiles = [];
     const filesArray: File[] = Array.from(files);
     const newFiles: ILuxFileObject[] = [];
     for (const file of filesArray) {
@@ -394,7 +391,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
       const splitAccepted = this.luxAccept ? this.luxAccept.split(',') : [];
       const splitFileEnding = file.name.split('.');
       const fileEnding = `.${splitFileEnding[splitFileEnding.length - 1]}`;
-      let isAccepted: boolean = splitAccepted.length === 0 ? true : false;
+      let isAccepted: boolean = splitAccepted.length === 0;
       splitAccepted.forEach((accepted: string) => {
         if (accepted) {
           accepted = accepted.toLocaleLowerCase();
@@ -464,9 +461,9 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    */
   readFile(file: File) {
     return new Promise((resolve, reject) => {
-      const reader = new window['FileReader']();
+      const reader = new FileReader();
 
-      reader.onload = (fileData) => resolve(fileData.target.result);
+      reader.onload = (fileData) => resolve(fileData.target!.result);
       reader.onerror = (error) => reject(error);
       reader.readAsDataURL(file);
     });
@@ -475,46 +472,46 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   /**
    * Wird beim Drag-Over über dem LuxFormControl aufgerufen.
    *
-   * @param $event
+   * @param dragEvent
    */
-  handleDragOver($event) {
+  handleDragOver(dragEvent: DragEvent) {
     this.isDragActive = true;
-    $event.stopPropagation();
-    $event.preventDefault();
+    dragEvent.stopPropagation();
+    dragEvent.preventDefault();
 
     // Der Drop Effect wird nur gesetzt, wenn die Property auch
     // vorhanden ist. In den Tests gibt es keinen Drop Effect.
-    if ($event.dataTransfer && $event.dataTransfer.dropEffect) {
-      $event.dataTransfer.dropEffect = 'copy';
+    if (dragEvent.dataTransfer && dragEvent.dataTransfer.dropEffect) {
+      dragEvent.dataTransfer.dropEffect = 'copy';
     }
   }
 
   /**
    * Wird beim Drag-Leave über dem LuxFormControl aufgerufen.
    *
-   * @param $event
+   * @param dragEvent
    */
-  handleDragLeave($event) {
+  handleDragLeave(dragEvent: DragEvent) {
     this.isDragActive = false;
 
-    $event.stopPropagation();
-    $event.preventDefault();
+    dragEvent.stopPropagation();
+    dragEvent.preventDefault();
   }
 
   /**
    * Wird beim Drop eines/mehrerer gezogener Elemente über dem LuxFormControl aufgerufen und löst
-   * die Auswähl-Methoden für die entsprechenden Dateien aus.
+   * die Auswahl-Methoden für die entsprechenden Dateien aus.
    *
-   * @param $event
+   * @param dragEvent
    */
-  handleDrop($event) {
+  handleDrop(dragEvent: DragEvent) {
     this.forceProgressIndeterminate = true;
     this.isDragActive = false;
-    $event.stopPropagation();
-    $event.preventDefault();
+    dragEvent.stopPropagation();
+    dragEvent.preventDefault();
 
-    if ($event.dataTransfer) {
-      this.selectFiles($event.dataTransfer.files);
+    if (dragEvent.dataTransfer) {
+      this.selectFiles(dragEvent.dataTransfer.files);
     }
   }
 
@@ -522,9 +519,11 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
    * Funktion, die das Auswählen von Dateien handeln soll.
    * Die erbenden Klassen implementieren diese Funktion aus.
    */
-  abstract selectFiles(files: FileList | File[]);
+  abstract selectFiles(files: FileList | File[]): void;
 
-  abstract useArray(): boolean;
+  abstract resetSelected(): void;
+
+  abstract handleUploadClick(files: ILuxFileObject[]): void;
 
   /**
    * Prüft ob der Base64-String für die Datei gesetzt ist und ob ein onClick-Aufruf für die View-Action vorhanden ist.
@@ -544,10 +543,11 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   protected clearFormControlErrors() {
     // Das aktuelle Fehlerobjekt auslesen
     let errors = this.formControl.errors;
+
     if (errors) {
-      // Die componentspezifischen Fehler aus dem Objekt entfernen
-      for (const cause of Object.keys(LuxFileErrorCause)) {
-        delete errors[LuxFileErrorCause[cause]];
+      // Die komponentenspezifischen Fehler aus dem Objekt entfernen
+      for (const cause of Object.values(LuxFileErrorCause)) {
+        delete errors[cause];
       }
       // Falls errors ein leeres Objekt ist, nehmen wir stattdessen null
       errors = Object.keys(errors).length === 0 ? null : errors;
@@ -567,7 +567,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
     // Vorherige definierte Fehler entfernen
     this.clearFormControlErrors();
     // Hier aktualisieren wir das Fehlerobjekt an dem zugrunde liegenden FormControl dieser Component
-    const errors = {};
+    const errors: any = {};
     errors[error.cause] = { file: error.file };
 
     this.formControl.setErrors(errors);
@@ -627,8 +627,6 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   /**
    * Gibt die Message für falsche Dateitypen zurück.
-   *
-   * @param file
    */
   protected getMultipleForbiddenMessage(): string {
     return $localize`:@@luxc.form-file-base.error_message.only_one_file:Es darf nur eine Datei ausgewählt werden`;
@@ -681,7 +679,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
   // region Overridden methods
 
-  protected errorMessageModifier(value: any, errors: any) {
+  protected errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     if (errors[LuxFileErrorCause.MaxSizeError]) {
       return this.getMaxSizeErrorMessage(errors[LuxFileErrorCause.MaxSizeError].file);
     } else if (errors[LuxFileErrorCause.ReadingFileError]) {
@@ -702,10 +700,10 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
 
     // Wir leeren nach jedem Value-Change das Input, da wir das FormControl bereits als SSoT besitzen
     // und das Input durch den Browser gelegentlich sonst geblockt werden (wenn eine Datei ausgewählt worden ist)
-    this.fileuploadInput.nativeElement.value = null;
+    this.fileUploadInput.nativeElement.value = null;
   }
 
-  protected updateValidators(validators: ValidatorFn | ValidatorFn[], checkRequiredValidator: boolean) {
+  protected updateValidators(validators: ValidatorFnType, checkRequiredValidator: boolean) {
     if (!validators && this.luxRequired) {
       validators = Validators.required;
     }
@@ -714,7 +712,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   }
 
   protected initFormValueSubscription() {
-    this._formValueChangeSubscr = this.formControl.valueChanges.subscribe(() => {
+    this._formValueChangeSub = this.formControl.valueChanges.subscribe(() => {
       // Wenn die Dateien erfolgreich gelesen werden konnten, die (spezifischen) Fehler entfernen
       this.clearFormControlErrors();
     });

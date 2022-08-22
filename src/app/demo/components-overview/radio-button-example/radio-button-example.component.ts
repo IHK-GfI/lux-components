@@ -8,7 +8,7 @@ import {
   examplePickValueFn,
   logResult,
   setRequiredValidatorForFormControl
-} from "../../example-base/example-base-util/example-base-helper";
+} from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
   selector: 'app-radio-button-example',
@@ -106,23 +106,23 @@ export class RadioButtonExampleComponent {
 
   changeUseSimpleArray($event: boolean) {
     this.reset();
-    this.useValueFn = $event === true ? false : this.useValueFn;
-    this.useCompareWithFn = $event === true ? false : this.useCompareWithFn;
-    if ($event === true) {
+    this.useValueFn = $event ? false : this.useValueFn;
+    this.useCompareWithFn = $event ? false : this.useCompareWithFn;
+    if ($event) {
       this.disabledFirst = false;
     }
   }
 
   changeUseValueFn($event: boolean) {
     this.reset();
-    this.useSimpleArray = $event === true ? false : this.useSimpleArray;
-    this.useCompareWithFn = $event === true ? false : this.useCompareWithFn;
+    this.useSimpleArray = $event ? false : this.useSimpleArray;
+    this.useCompareWithFn = $event ? false : this.useCompareWithFn;
   }
 
   changeCompareWithFn($event: boolean) {
     this.reset();
-    this.useSimpleArray = $event === true ? false : this.useSimpleArray;
-    this.useValueFn = $event === true ? false : this.useValueFn;
+    this.useSimpleArray = $event ? false : this.useSimpleArray;
+    this.useValueFn = $event ? false : this.useValueFn;
   }
 
   reset(...radioComponents: LuxRadioComponent[]) {

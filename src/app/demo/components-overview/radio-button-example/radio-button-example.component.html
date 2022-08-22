@@ -108,14 +108,13 @@
       >
       </lux-input>
       <lux-toggle
-        luxName="radio_luxHintShowOnlyOnFocus"
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
         [luxNoTopLabel]="true"
       ></lux-toggle>
     </div>
-    
+
     <lux-layout-form-row class="lux-highlight-section" [luxGap]="{ rowItem:'32px' }">
       <lux-toggle
         [(luxChecked)]="disabled"

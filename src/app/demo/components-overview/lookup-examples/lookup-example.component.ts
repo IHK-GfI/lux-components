@@ -13,7 +13,7 @@ import {
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
-} from "../../example-base/example-base-util/example-base-helper";
+} from '../../example-base/example-base-util/example-base-helper';
 
 @Directive()
 export abstract class LookupExampleComponent implements OnInit {

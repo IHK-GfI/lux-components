@@ -1,7 +1,7 @@
 import { ControlContainer, ValidatorFn, Validators } from '@angular/forms';
 import {ChangeDetectorRef, Directive, EventEmitter, Input, Output} from '@angular/core';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
-import { LuxFormComponentBase } from './lux-form-component-base.class';
+import { LuxFormComponentBase, LuxValidationErrors, ValidatorFnType } from './lux-form-component-base.class';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
 /**
@@ -9,7 +9,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
  * (LuxToggle und LuxCheckbox z.B.).
  */
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxFormCheckableBaseClass extends LuxFormComponentBase {
+export abstract class LuxFormCheckableBaseClass extends LuxFormComponentBase<boolean> {
   @Output() luxCheckedChange: EventEmitter<boolean> = new EventEmitter();
 
   @Input() luxTagId: string | null = null;
@@ -18,7 +18,7 @@ export abstract class LuxFormCheckableBaseClass extends LuxFormComponentBase {
     return this.getValue();
   }
 
-  @Input() set luxChecked(checked: boolean) {
+  @Input() set luxChecked(checked: boolean | null) {
     this.setValue(checked);
   }
 
@@ -42,21 +42,21 @@ export abstract class LuxFormCheckableBaseClass extends LuxFormComponentBase {
     }
   }
 
-  errorMessageModifier(value, errors) {
+  errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     if (errors.required) {
       return $localize `:@@luxc.form-checkable-base.error_message.required:Das ist ein Pflichtfeld`;
     }
     return undefined;
   }
 
-  protected checkValidatorsContainRequired(validators: ValidatorFn | ValidatorFn[]) {
+  protected checkValidatorsContainRequired(validators: ValidatorFnType) {
     // Fall: required = true, aber neue Validatoren werden gesetzt
     if (this.luxRequired === true) {
-      // Sind es mehrere Validatoren, aber kein .requiredTrue? Dann wird er ergänzt
+      // Sind es mehrere Validatoren, aber kein "requiredTrue"? Dann wird er ergänzt.
       if (Array.isArray(validators) && validators.indexOf(Validators.requiredTrue) === -1) {
         validators.push(Validators.requiredTrue);
-      } else if (!Array.isArray(validators) && validators !== Validators.requiredTrue) {
-        // Ist es nur ein einzelner Validator und nicht .requiredTrue? Dann Array erstellen und beide kombinieren
+      } else if (validators && !Array.isArray(validators) && validators !== Validators.requiredTrue) {
+        // Ist es nur ein einzelner Validator und nicht "requiredTrue"? Dann Array erstellen und beide kombinieren.
         validators = [validators, Validators.requiredTrue];
       }
     } else if (this.luxRequired === false) {

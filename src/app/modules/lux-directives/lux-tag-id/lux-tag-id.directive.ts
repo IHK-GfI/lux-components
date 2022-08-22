@@ -1,8 +1,8 @@
-import { AfterViewInit, Directive, ElementRef, Input, OnDestroy, Renderer2 } from "@angular/core";
-import { Subscription } from "rxjs";
-import { LuxComponentsConfigParameters } from "../../lux-components-config/lux-components-config-parameters.interface";
-import { LuxComponentsConfigService } from "../../lux-components-config/lux-components-config.service";
-import { luxFormControlSelektor } from "../../lux-form/lux-form-control/lux-form-control.component";
+import { AfterViewInit, Directive, ElementRef, Input, OnDestroy, Renderer2 } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { LuxComponentsConfigParameters } from '../../lux-components-config/lux-components-config-parameters.interface';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { luxFormControlSelektor } from '../../lux-form/lux-form-control/lux-form-control.component';
 
 @Directive({
   selector: '[luxTagIdHandler]'

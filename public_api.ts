@@ -137,7 +137,6 @@ export * from './src/app/modules/lux-form/lux-form-control/lux-form-control-subc
 // Classes
 export * from './src/app/modules/lux-form/lux-datepicker/lux-datepicker-adapter';
 export * from './src/app/modules/lux-form/lux-datetimepicker/lux-datetimepicker-adapter';
-export * from './src/app/modules/lux-form/lux-datetimepicker/lux-datetimepicker-model/lux-datetimepicker-types';
 export * from './src/app/modules/lux-form/lux-form-model/lux-form-checkable-base.class';
 export * from './src/app/modules/lux-form/lux-form-model/lux-form-input-base.class';
 export * from './src/app/modules/lux-form/lux-form-model/lux-form-selectable-base.class';

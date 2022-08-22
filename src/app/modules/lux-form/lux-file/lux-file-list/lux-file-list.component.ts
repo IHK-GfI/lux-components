@@ -18,9 +18,10 @@ import { Subscription } from 'rxjs';
 import { LuxComponentsConfigService } from '../../../lux-components-config/lux-components-config.service';
 import { LuxCardComponent } from '../../../lux-layout/lux-card/lux-card.component';
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
+import { LuxValidationErrors } from '../../lux-form-model/lux-form-component-base.class';
 import { LuxFormFileBase } from '../../lux-form-model/lux-form-file-base.class';
 import { LuxFileErrorCause } from '../lux-file-model/lux-file-error.interface';
-import { ILuxFileListActionConfig } from '../lux-file-model/lux-file-list-action-config.interface';
+import { ILuxFileListActionConfig, ILuxFilesListActionConfig } from '../lux-file-model/lux-file-list-action-config.interface';
 import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
 
 @Component({
@@ -28,19 +29,9 @@ import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
   templateUrl: './lux-file-list.component.html',
   styleUrls: ['./lux-file-list.component.scss']
 })
-export class LuxFileListComponent extends LuxFormFileBase implements AfterViewInit, AfterViewChecked, OnDestroy {
-  private _fileEntryNodesChangeSubscr: Subscription;
+export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[], ILuxFilesListActionConfig> implements AfterViewInit, AfterViewChecked, OnDestroy {
+  private _fileEntryNodesChangeSubscr?: Subscription;
 
-  protected _luxUploadActionConfig: ILuxFileListActionConfig = {
-    disabled: false,
-    disabledHeader: false,
-    hidden: false,
-    hiddenHeader: false,
-    iconName: 'fas fa-cloud-upload-alt',
-    iconNameHeader: 'fas fa-cloud-upload-alt',
-    label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
-    labelHeader: $localize`:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
-  };
   protected _luxDeleteActionConfig: ILuxFileListActionConfig = {
     disabled: false,
     disabledHeader: false,
@@ -57,19 +48,32 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
   rowWidth = 0;
   iconActionBarWidth = 50;
 
-  @ViewChildren('fileEntry', { read: ElementRef }) fileEntries: QueryList<ElementRef>;
-  @ViewChild('fileuploadSingle', { read: ElementRef, static: true }) fileuploadSingleInput: ElementRef;
-  @ViewChild(LuxCardComponent, { read: ElementRef, static: true }) fileCard: ElementRef;
+  @ViewChildren('fileEntry', { read: ElementRef }) fileEntries!: QueryList<ElementRef>;
+  @ViewChild('fileUploadSingle', { read: ElementRef, static: true }) fileUploadSingleInput!: ElementRef;
+  @ViewChild(LuxCardComponent, { read: ElementRef, static: true }) fileCard!: ElementRef;
 
   @Input() luxShowPreview = true;
   @Input() luxMultiple = true;
   @Input() luxHeading = 2;
 
-  get luxUploadActionConfig(): ILuxFileListActionConfig {
+  protected initUploadActionConfig(): ILuxFilesListActionConfig {
+    return  {
+        disabled: false,
+        disabledHeader: false,
+        hidden: false,
+        hiddenHeader: false,
+        iconName: 'fas fa-cloud-upload-alt',
+        iconNameHeader: 'fas fa-cloud-upload-alt',
+        label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
+        labelHeader: $localize`:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
+    };
+  }
+
+  get luxUploadActionConfig(): ILuxFilesListActionConfig {
     return this._luxUploadActionConfig;
   }
 
-  @Input() set luxUploadActionConfig(config: ILuxFileListActionConfig) {
+  @Input() set luxUploadActionConfig(config: ILuxFilesListActionConfig) {
     if (config) {
       this._luxUploadActionConfig = config;
     }
@@ -108,7 +112,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     this.setFileIcons();
 
     if (this.luxShowPreview) {
-      this.setImgSrcs();
+      this.setImgSrc();
     }
   }
 
@@ -121,7 +125,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
   }
 
   shouldDisplayPreviewImg(index: number): boolean {
-    return this.luxShowPreview && this.fileIcons && this.fileIcons[index] && this.fileIcons[index] === 'fas fa-file-image';
+    return this.luxShowPreview && this.fileIcons && !!this.fileIcons[index] && this.fileIcons[index] === 'fas fa-file-image';
   }
 
   /**
@@ -133,18 +137,18 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();
 
-    // Wenn mehrere Dateien selektiert sind, diese nach der entfernten Datei filtern ansonsten "undefined" nutzen
+    // Wenn mehrere Dateien selektiert sind, diese nach der entfernten Datei filtern ansonsten "null" nutzen
     const newFiles = Array.isArray(this.luxSelectedFiles)
       ? this.luxSelectedFiles.filter((file, searchIndex) => searchIndex !== index)
-      : undefined;
+      : null;
 
     // Via LiveAnnouncer mitteilen welche Datei entfernt wird
-    this.announceFileRemove(Array.isArray(this.luxSelectedFiles) ? this.luxSelectedFiles[index].name : this.luxSelectedFiles.name);
+    this.announceFileRemove(this.luxSelectedFiles![index].name);
 
     // Wir entfernen hier nur eine Datei, deshalb ist das neue Auslesen der Base64-Strings nicht nötig
     this.uploadFiles(newFiles).then(
       () => {
-        this.luxSelectedFiles = newFiles && newFiles.length === 1 && !this.useArray() ? newFiles[0] : newFiles;
+        this.luxSelectedFiles = newFiles;
         this.notifyFormValueChanged();
       },
       (error) => this.setFormControlErrors(error)
@@ -157,6 +161,16 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
   onSelectFiles(target: EventTarget) {
     const fileList = (target as HTMLInputElement).files;
     this.selectFiles(fileList ? Array.from(fileList) : []);
+  }
+
+  resetSelected() {
+    this.luxSelectedFiles = [];
+  }
+
+  handleUploadClick(files: ILuxFileObject[]) {
+    if (this.luxUploadActionConfig.onClick) {
+      this.luxUploadActionConfig.onClick(files);
+    }
   }
 
   /**
@@ -177,8 +191,8 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
 
     // Timeout, um Flackern durch Progress zu vermeiden
     setTimeout(() => {
-      // Prüfen ob die Dateien bereits vorhanden sind
-      let selectedFilesArray = [];
+      // Prüfen, ob die Dateien bereits vorhanden sind
+      let selectedFilesArray: ILuxFileObject[] = [];
       const replaceableFilesMap = new Map<number, File>();
       if (this.luxSelectedFiles) {
         files = Array.from(files);
@@ -199,14 +213,14 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
         this.setFormControlErrors({
           cause: LuxFileErrorCause.MultipleForbidden,
           exception: this.getMultipleForbiddenMessage(),
-          file: null
+          file: undefined
         });
         return;
       }
 
       this.updateSelectedFiles(files).then(
         (newFiles: ILuxFileObject[]) => {
-          const tempSelectedFiles = selectedFilesArray;
+          const tempSelectedFiles: ILuxFileObject[] = selectedFilesArray;
 
           // die zu ersetzenden Dateien durchgehen und aktualisieren
           replaceableFilesMap.forEach((file: File, index: number) => {
@@ -214,15 +228,12 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
             // das gefundene Objekt aus den newFiles entfernen
             newFiles = newFiles.filter((newFile) => newFile !== replaceableFileObject);
             // die selectedFiles aktualisieren
-            tempSelectedFiles[index] = replaceableFileObject;
+            tempSelectedFiles[index] = replaceableFileObject!;
           });
           // die übrigen neuen Dateien anfügen
           tempSelectedFiles.push(...newFiles);
 
-          this.luxSelectedFiles =
-            tempSelectedFiles && tempSelectedFiles.length === 1 && !this.useArray()
-              ? tempSelectedFiles[0]
-              : tempSelectedFiles;
+          this.luxSelectedFiles = tempSelectedFiles;
           this.notifyFormValueChanged();
         },
         (error) => this.setFormControlErrors(error)
@@ -233,22 +244,20 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
   /**
    * Aktualisiert die Preview-Bilder für die (Image-)Dateien.
    *
-   * Aktualisierung absichtlich via Funktion und nicht Property-Binding, da potentiell Stack-Size Fehler auftreten,
+   * Aktualisierung absichtlich via Funktion und nicht Property-Binding, da potenziell Stack-Size Fehler auftreten,
    * wenn (große) Base64-Strings gegen die src gebunden werden.
    */
-  private setImgSrcs() {
+  private setImgSrc() {
     this.fileEntries.forEach((item: ElementRef, index: number) => {
-      const imgElement: HTMLImageElement = (item.nativeElement as HTMLElement).querySelector('img');
+      const imgElement: HTMLImageElement | null = (item.nativeElement as HTMLElement).querySelector('img');
       if (imgElement && this.luxSelectedFiles) {
-        const targetFileContent = Array.isArray(this.luxSelectedFiles)
-          ? this.luxSelectedFiles[index].content
-          : this.luxSelectedFiles.content;
+        const targetFileContent = this.luxSelectedFiles[index].content;
         if (targetFileContent instanceof Blob) {
-          this.readFile(targetFileContent as File).then((content: string) => {
+          this.readFile(targetFileContent as File).then((content: any) => {
             imgElement.src = content;
           });
         } else {
-          imgElement.src = targetFileContent;
+          imgElement.src = targetFileContent as string;
         }
       }
     });
@@ -341,7 +350,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     }
   }
 
-  protected errorMessageModifier(value: any, errors: any): string | undefined {
+  protected errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     if (errors.required) {
       return $localize`:@@luxc.file-list.error_message.required:Es muss eine Datei ausgewählt werden`;
     }
@@ -358,7 +367,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     super.notifyFormValueChanged();
     this.formControl.updateValueAndValidity();
 
-    this.fileuploadSingleInput.nativeElement.value = null;
+    this.fileUploadSingleInput.nativeElement.value = null;
   }
 
   useArray(): boolean {

@@ -6,7 +6,7 @@ export class LuxFilterItem<T> {
 
   label: string;
   binding: string;
-  component: LuxFormComponentBase;
+  component: LuxFormComponentBase<T>;
   defaultValues: any[] = [...LuxFilterItem.DEFAULT_VALUES];
   value: T = this.defaultValues[0];
   color: ThemePalette = undefined;
@@ -15,7 +15,7 @@ export class LuxFilterItem<T> {
   multiValueIndex = -1;
   renderFn: (filter: LuxFilterItem<T>, value: T) => string = (filterItem: LuxFilterItem<T>, value: any) => value;
 
-  constructor(label: string, binding: string, component: LuxFormComponentBase) {
+  constructor(label: string, binding: string, component: LuxFormComponentBase<T>) {
     this.label = label;
     this.binding = binding;
     this.component = component;

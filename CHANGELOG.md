@@ -4,6 +4,9 @@
 - **allgemein**: Umstellung auf den strict-Mode. [Issue 224](https://github.com/IHK-GfI/lux-components/issues/224)
 
 ## Breaking changes
+- Dieser Punkt ist für die File-Upload-Konfiguration relevant: ILuxFileActionBaseConfig hat die zwei neuen Ableitungen ILuxFileActionConfig und ILuxFilesActionConfig.
+- ILuxFileListActionConfig extends ILuxFileActionConfig
+- ILuxFilesListActionConfig extends ILuxFilesActionConfig
 
 ### Defaultänderungen
 

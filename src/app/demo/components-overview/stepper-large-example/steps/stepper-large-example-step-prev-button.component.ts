@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { LuxStepperLargeClickEvent } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-click-event';
 import { LuxVetoState } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-step.interface';
 import { LuxStepperLargeStepComponent } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-step/lux-stepper-large-step.component';
-import { LuxUtil } from "../../../../modules/lux-util/lux-util";
+import { LuxUtil } from '../../../../modules/lux-util/lux-util';
 import { StepperLargeExampleDataService } from '../stepper-large-example-data.service';
 
 @Component({

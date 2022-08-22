@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { LuxDateTimeStartView } from "../../../modules/lux-form/lux-datetimepicker/lux-datetimepicker-model/lux-datetimepicker-types";
+import { LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
 import {
   LuxDateTimePickerComponent,
 } from '../../../modules/lux-form/lux-datetimepicker/lux-datetimepicker.component';
@@ -8,10 +8,10 @@ import {
   emptyErrorCallback,
   exampleErrorCallback,
   logResult
-} from "../../example-base/example-base-util/example-base-helper";
+} from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
-  selector: 'app-datetimeicker-example',
+  selector: 'app-datetimepicker-example',
   templateUrl: './datetimepicker-example.component.html'
 })
 export class DateTimepickerExampleComponent {
@@ -50,7 +50,7 @@ export class DateTimepickerExampleComponent {
   labelLongFormat = false;
   minDate = '01.01.2000, 00:00';
   maxDate = '31.12.2100, 23:59';
-  startView: LuxDateTimeStartView = 'month';
+  startView: LuxStartView = 'month';
   startDate: string | null = null;
   startTime: number[] | null = null;
   _startTimeAsString: string | null = null;
@@ -90,11 +90,11 @@ export class DateTimepickerExampleComponent {
   changeRequired(required: boolean) {
     this.required = required;
     if (required) {
-      this.form.get(this.controlBinding).setValidators([Validators.required, this.dateTimeInFormComponent.dateTimeValidator]);
+      this.form.get(this.controlBinding)!.setValidators([Validators.required, this.dateTimeInFormComponent.dateTimeValidator]);
     } else {
-      this.form.get(this.controlBinding).setValidators(this.dateTimeInFormComponent.dateTimeValidator);
+      this.form.get(this.controlBinding)!.setValidators(this.dateTimeInFormComponent.dateTimeValidator);
     }
-    this.form.get(this.controlBinding).updateValueAndValidity();
+    this.form.get(this.controlBinding)!.updateValueAndValidity();
   }
 
   pickValidatorValueFn(selected: any) {

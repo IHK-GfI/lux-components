@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LuxActionColorType } from "../../../modules/lux-action/lux-action-model/lux-action-component-base.class";
+import { LuxActionColorType } from '../../../modules/lux-action/lux-action-model/lux-action-component-base.class';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({

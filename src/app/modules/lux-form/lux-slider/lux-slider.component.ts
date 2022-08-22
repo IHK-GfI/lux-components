@@ -6,7 +6,7 @@ import {
   OnChanges, OnDestroy,
   OnInit,
   Optional,
-  Output,
+  Output, SimpleChanges,
   ViewChild
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
@@ -16,6 +16,7 @@ import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { Subscription } from 'rxjs';
 
+export declare type LuxDisplayWithFnType = (value: number | null) => string | number;
 export declare type SLIDER_TICK_INTERVAL = 'auto' | number;
 export declare type SLIDER_COLORS = 'primary' | 'accent' | 'warn';
 
@@ -25,8 +26,8 @@ export declare type SLIDER_COLORS = 'primary' | 'accent' | 'warn';
   templateUrl: './lux-slider.component.html',
   styleUrls: ['./lux-slider.component.scss']
 })
-export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, OnChanges, OnDestroy {
-  @ViewChild(MatSlider) matSlider: MatSlider;
+export class LuxSliderComponent extends LuxFormComponentBase<number> implements OnInit, OnChanges, OnDestroy {
+  @ViewChild(MatSlider) matSlider?: MatSlider;
 
   @Output() luxChange: EventEmitter<MatSliderChange> = new EventEmitter<MatSliderChange>();
   @Output() luxInput: EventEmitter<MatSliderChange> = new EventEmitter<MatSliderChange>();
@@ -39,14 +40,15 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
   @Input() luxShowThumbLabel = true;
   @Input() luxShowThumbLabelAlways = true;
   @Input() luxTickInterval: SLIDER_TICK_INTERVAL = 0;
-  @Input() luxTagId: string = undefined;
-  @Input() luxDisplayWith: (value: number | null) => string | number;
+  @Input() luxTagId?: string;
+  @Input() luxDisplayWith?: LuxDisplayWithFnType;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
 
   get luxValue(): number {
-    return this.getValue();
+    let value = this.getValue();
+    return value ?? 0;
   }
 
   @Input() set luxValue(value: number) {
@@ -60,7 +62,7 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
   _luxMin = 0;
   _luxStep = 1;
 
-  subscription: Subscription;
+  subscription?: Subscription;
 
   get luxMax() {
     return this._luxMax;
@@ -105,7 +107,7 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
   @Input() set luxRequired(value: boolean) {
     this._luxRequired = value;
 
-    if (value === true) {
+    if (value) {
       this.logger.error('The LuxSlider cannot be marked as required.');
     }
   }
@@ -132,22 +134,24 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
   ngOnDestroy() {
     super.ngOnDestroy();
 
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
-  ngOnChanges(simpleChanges) {
+  ngOnChanges(simpleChanges: SimpleChanges) {
     if (simpleChanges.luxDisabled) {
       this.redrawSliderWorkaround();
     }
   }
 
   /**
-   * Wird beim Aendern des Slider-Wertes aufgerufen.
+   * Wird beim Ändern des Slider-Wertes aufgerufen.
    *
    * @param changeEvent
    */
   onChange(changeEvent: MatSliderChange) {
-    this.luxValue = changeEvent.value;
+    this.luxValue = changeEvent.value ?? 0;
     this.luxChange.emit(changeEvent);
   }
 
@@ -157,7 +161,7 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
    * @param inputEvent
    */
   onInput(inputEvent: MatSliderChange) {
-    this.luxValue = inputEvent.value;
+    this.luxValue = inputEvent.value ?? 0;
     this.luxInput.emit(inputEvent);
     if (!this.formControl.touched) {
       this.formControl.markAsTouched();
@@ -183,16 +187,16 @@ export class LuxSliderComponent extends LuxFormComponentBase implements OnInit, 
 
   /**
    * Workaround, ohne den der Slider leider nicht beim Wechsel zum disabled-State den Gab
-   * um den Thumb herum zeichnet. - dron
+   * um den Thumb herum zeichnet.
    */
   private redrawSliderWorkaround() {
-    if (!this.matSlider) {
-      return;
+    if (this.matSlider) {
+      this.matSlider.step = this.luxStep - 1;
+      setTimeout(() => {
+        if (this.matSlider) {
+          this.matSlider.step = this.luxStep;
+        }
+      });
     }
-
-    this.matSlider.step = this.luxStep - 1;
-    setTimeout(() => {
-      this.matSlider.step = this.luxStep;
-    });
   }
 }

@@ -23,7 +23,7 @@
     <div class="lux-file-upload-drop-container-no-progress" *ngIf="!forceProgressIndeterminate"></div>
   </div>
 
-  <mat-hint class="lux-hint lux-file-upload-hint-container" [id]="uid + '-misc'" *ngIf="(formHintComponent || luxHint) && !(formControl?.getError('required') && formControl?.touched); else nohint">
+  <mat-hint class="lux-hint lux-file-upload-hint-container" [id]="uid + '-misc'" *ngIf="(formHintComponent || luxHint) && !(formControl?.getError('required') && formControl?.touched); else noHint">
     <ng-container *ngIf="luxHint; else formHintTemplate">
       {{ luxHint }}
     </ng-container>
@@ -36,7 +36,7 @@
     {{ errorMessage }}
   </mat-error>
 
-  <ng-template #nohint>
+  <ng-template #noHint>
     <div class="lux-hint lux-file-upload-no-hint-container"></div>
   </ng-template>
 
@@ -62,7 +62,7 @@
         [luxIconName]="fileIcons[i]"
         luxIconSize="2x"
         fxFlex="0 0 30px"
-        aria-hidden
+        aria-hidden="true"
       >
       </lux-icon>
       <div class="lux-file-upload-view-item-label-container">
@@ -100,7 +100,7 @@
     [accept]="luxAccept"
     [luxFileCapture]="luxCapture ? luxCapture : 'environment'"
     (change)="onSelectFiles($event.target)"
-    #fileupload
+    #fileUpload
   />
 </div>
 

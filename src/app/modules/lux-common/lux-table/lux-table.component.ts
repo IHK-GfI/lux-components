@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { Direction } from "@angular/cdk/bidi";
 import {
   AfterViewInit,
   ChangeDetectorRef,

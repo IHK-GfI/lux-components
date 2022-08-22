@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { LuxUtil } from "../../../lux-util/lux-util";
+import { LuxUtil } from '../../../lux-util/lux-util';
 import { ILuxErrorPageConfig } from '../lux-error-interfaces/lux-error-page-config.interface';
 import { ILuxError } from '../lux-error-interfaces/lux-error.interface';
 import { LuxErrorPageComponent } from '../lux-error-page.component';
