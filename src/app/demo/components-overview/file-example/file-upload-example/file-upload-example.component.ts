@@ -14,7 +14,7 @@ import { FileExampleComponent } from '../file-example.component';
   selector: 'lux-file-upload-example',
   templateUrl: './file-upload-example.component.html'
 })
-export class FileUploadExampleComponent extends FileExampleComponent<ILuxFileObject[], ILuxFilesListActionConfig> implements OnInit {
+export class FileUploadExampleComponent extends FileExampleComponent<ILuxFileObject[] | null, ILuxFilesListActionConfig> implements OnInit {
   @ViewChild('fileBaseWithoutComponent', { read: LuxFileUploadComponent, static: true }) fileBaseWithoutComponent!: LuxFileUploadComponent;
   @ViewChild('fileBaseWithComponent', { read: LuxFileUploadComponent, static: true }) fileBaseWithComponent!: LuxFileUploadComponent;
 

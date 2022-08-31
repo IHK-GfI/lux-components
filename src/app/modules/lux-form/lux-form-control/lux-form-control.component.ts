@@ -25,7 +25,7 @@ export class LuxFormControlComponent<T> {
   /**
    * Die zugrunde liegende FormComponent
    */
-  @Input() luxFormComponent?: LuxFormComponentBase<T>;
+  @Input() luxFormComponent!: LuxFormComponentBase<T>;
   @Input() luxFormComponentElementRef?: ElementRef;
   @Input() luxIgnoreDefaultLabel = false;
   @Input() luxCounterLabel = '';
@@ -48,7 +48,7 @@ export class LuxFormControlComponent<T> {
   /**
    * Dient dazu, bei einer Component den Label-Container auszublenden.
    *
-   * @param scalable
+   * @param noLabel
    */
   @Input() set luxNoTopLabel(noLabel: boolean) {
     this._luxNoTopLabel = noLabel;
@@ -61,7 +61,7 @@ export class LuxFormControlComponent<T> {
   /**
    * Dient dazu, bei einer Component den Label-Container und den Misc-Container auszublenden.
    *
-   * @param scalable
+   * @param noLabel
    */
   @Input() set luxNoLabels(noLabel: boolean) {
     this._luxNoLabels = noLabel;
@@ -74,7 +74,7 @@ export class LuxFormControlComponent<T> {
   /**
    * Dient dazu, bei einer Component den Misc-Container auszublenden.
    *
-   * @param scalable
+   * @param noLabel
    */
   @Input() set luxNoBottomLabel(noLabel: boolean) {
     this._luxNoBottomLabel = noLabel;
@@ -85,7 +85,7 @@ export class LuxFormControlComponent<T> {
   }
 
   /**
-   * Bestimmt ob die untere Border ausgeblendet werden soll oder nicht (z.B. bei Checkbox).
+   * Bestimmt, ob die untere Border ausgeblendet werden soll oder nicht (z.B. bei Checkbox).
    *
    * @param hide
    */

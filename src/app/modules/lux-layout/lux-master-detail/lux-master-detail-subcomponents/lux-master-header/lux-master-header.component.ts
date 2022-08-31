@@ -9,14 +9,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./lux-master-header.component.scss']
 })
 export class LuxMasterHeaderComponent implements OnDestroy {
-  iconName: string;
-  open: boolean;
+  iconName?: string;
+  open?: boolean;
   subscription: Subscription;
 
-  @Input() luxToggleHidden: boolean;
+  @Input() luxToggleHidden?: boolean;
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 
-  @HostBinding('class.lux-no-toggle') isMobile;
+  @HostBinding('class.lux-no-toggle') isMobile?: boolean;
 
   constructor(private masterDetailMobileHelperService: LuxMasterDetailMobileHelperService) {
     this.subscription = this.masterDetailMobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
@@ -38,8 +38,8 @@ export class LuxMasterHeaderComponent implements OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  getAriaLabelForOpenCloseButton(iconName: string) {
-    if (this.iconName === 'keyboard_arrow_left') {
+  getAriaLabelForOpenCloseButton(iconName?: string): string {
+    if (iconName === 'keyboard_arrow_left') {
       return $localize `:@@luxc.master-detail.header.close.btn:Masterliste zuklappen`;
     } else {
       return $localize `:@@luxc.master-detail.header.open.btn:Masterliste aufklappen`;

@@ -41,7 +41,6 @@ export class LuxSliderComponent extends LuxFormComponentBase<number> implements 
   @Input() luxShowThumbLabelAlways = true;
   @Input() luxTickInterval: SLIDER_TICK_INTERVAL = 0;
   @Input() luxTagId?: string;
-  @Input() luxDisplayWith?: LuxDisplayWithFnType;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
@@ -61,8 +60,18 @@ export class LuxSliderComponent extends LuxFormComponentBase<number> implements 
   _luxRequired = false;
   _luxMin = 0;
   _luxStep = 1;
+  _luxDisplayWith: LuxDisplayWithFnType = (value) => value ?? 0;
 
   subscription?: Subscription;
+
+  get luxDisplayWith() {
+    return this._luxDisplayWith;
+  }
+
+  @Input()
+  set luxDisplayWith(displayFn: LuxDisplayWithFnType | undefined) {
+    this._luxDisplayWith = displayFn ?? ((value) => value ?? 0);
+  }
 
   get luxMax() {
     return this._luxMax;

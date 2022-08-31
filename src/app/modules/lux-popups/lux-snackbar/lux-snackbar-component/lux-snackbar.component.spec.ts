@@ -65,7 +65,7 @@ describe('LuxSnackbarComponent', () => {
   }));
 });
 
-const findToggleElement = (toggleElement) => {
+const findToggleElement = (toggleElement: any) => {
   // Wenn das Element nicht die richtige CSS-Klasse hat, prüfe den Parent und
   // die Children (browserabhängig welches gecatched wird).
   if (toggleElement.className.indexOf('lux-menu-trigger') === -1) {

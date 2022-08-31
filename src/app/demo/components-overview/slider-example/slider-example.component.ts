@@ -102,11 +102,11 @@ export class SliderExampleComponent {
     this.log(this.showOutputEvents, 'Percent (Reactive Example) changed', percent);
   }
 
-  displayFn(value: number | null): string | number | null {
+  displayFn(value: number | null): string | number {
     if (value && value >= 1000) {
       return Math.round(value / 1000) + 'k';
     }
-    return value;
+    return value ?? 0;
   }
 
   changeRequired($event: boolean) {

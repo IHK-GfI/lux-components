@@ -33,7 +33,7 @@ export class StepperLargeExampleStepPrevButtonComponent extends LuxStepperLargeS
     this.luxTitle = 'Konfiguration: Zurück-Button';
     this.luxVetoFn = this.createVetoPromise;
 
-    this.form.get('alignIconWithLabel').disable();
+    this.form.get('alignIconWithLabel')!.disable();
 
     this.luxCompleted = this.form.valid;
 

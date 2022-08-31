@@ -16,7 +16,7 @@ export class LuxPaginatorIntl extends MatPaginatorIntl {
   }
 
   /**
-   * Deutsche Fassunng des Material-Paginators
+   * Deutsche Fassung des Material-Paginators
    *
    * @param page
    * @param pageSize

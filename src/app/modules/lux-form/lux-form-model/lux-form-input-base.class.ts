@@ -9,21 +9,21 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
  * (Input und Textarea z.B.).
  */
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxFormInputBaseClass<T> extends LuxFormComponentBase<T> {
+export abstract class LuxFormInputBaseClass<T = any> extends LuxFormComponentBase<T> {
   @Output() luxValueChange: EventEmitter<T> = new EventEmitter();
   @Output() luxBlur: EventEmitter<any> = new EventEmitter();
   @Output() luxFocus: EventEmitter<any> = new EventEmitter();
 
   @Input() luxPlaceholder = '';
-  @Input() luxTagId: string | null = null;
+  @Input() luxTagId?: string;
   @Input() luxName?: string;
   @Input() luxAutocomplete = 'on';
 
-  get luxValue(): T | null {
+  get luxValue(): T {
     return this.getValue();
   }
 
-  @Input() set luxValue(value: T | null) {
+  @Input() set luxValue(value: T) {
     this.setValue(value);
   }
 

@@ -2,7 +2,7 @@
   <div fxFlex="calc(100% - 350px)" fxLayout="row" fxLayoutAlign="start center">
     <div class="lux-crop" *ngIf="!mobileView">
       <lux-icon luxIconName="fa-file"></lux-icon>
-      {{ data.fileObject.name }}
+      {{ data.fileObject?.name }}
     </div>
   </div>
   <div fxFlex="none" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="end center">

@@ -417,7 +417,7 @@ describe('LuxAutocompleteComponent', () => {
     });
 
     it('sollte keine Ergebnisse haben wenn ein invalider Wert eingetippt wird', (done) => {
-      LuxTestHelper.typeInElementAsynch('xxx', fixture, component.autocomplete.matInput.nativeElement, () => {
+      LuxTestHelper.typeInElementAsync('xxx', fixture, component.autocomplete.matInput.nativeElement, () => {
         const options = overlayHelper.selectAllFromOverlay('mat-option') as NodeListOf<HTMLElement>;
         expect(options.length).toBe(0);
         done();
@@ -425,7 +425,7 @@ describe('LuxAutocompleteComponent', () => {
     });
 
     it('sollte die richtige Anzahl an Ergebnissen haben wenn ein valider Wert eingetippt wird', (done) => {
-      LuxTestHelper.typeInElementAsynch('Meine Aufgaben', fixture, component.autocomplete.matInput.nativeElement, () => {
+      LuxTestHelper.typeInElementAsync('Meine Aufgaben', fixture, component.autocomplete.matInput.nativeElement, () => {
         const options = overlayHelper.selectAllFromOverlay('mat-option') as NodeListOf<HTMLElement>;
         expect(options.length).toBe(1);
         options[0].click();

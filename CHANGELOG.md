@@ -7,6 +7,7 @@
 - Dieser Punkt ist für die File-Upload-Konfiguration relevant: ILuxFileActionBaseConfig hat die zwei neuen Ableitungen ILuxFileActionConfig und ILuxFilesActionConfig.
 - ILuxFileListActionConfig extends ILuxFileActionConfig
 - ILuxFilesListActionConfig extends ILuxFilesActionConfig
+- lux-file-list: Die onClick-Methode der `luxUploadActionConfig` wird bei der Löschaktion im Header pro Datei aufgerufen.
 
 ### Defaultänderungen
 

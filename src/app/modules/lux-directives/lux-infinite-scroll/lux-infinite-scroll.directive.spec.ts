@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { waitForAsync, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -11,7 +13,7 @@ describe('LuxInfiniteScrollDirective', () => {
   const scrollTo = (px: number, src: HTMLElement, componentFixture: ComponentFixture<any>) => {
     src.scrollTop = px;
 
-    let scrollEvent = null;
+    let scrollEvent;
 
     // Workaround, da der IE "new Event()" nicht supportet
     if (typeof Event === 'function') {
@@ -183,15 +185,15 @@ describe('LuxInfiniteScrollDirective', () => {
 @Component({
   selector: 'mock-component',
   template:
-    '<div style="overflow-y: scroll; height: 50px;" id="toggleMasterFocus-element" luxInfiniteScroll ' +
-    '(luxScrolled)="onMockEvent()" [luxScrollPercent]="1" [luxImmediateCallback]="immediateCallback" [luxIsLoading]="isLoading">' +
-    'Text' +
-    '<ul><li *ngFor="let testText of testArr">{{ testText }}</li> </ul>' +
-    '</div>'
+    `<div style="overflow-y: scroll; height: 50px;" id="toggleMasterFocus-element" luxInfiniteScroll
+    (luxScrolled)="onMockEvent()" [luxScrollPercent]="1" [luxImmediateCallback]="immediateCallback" [luxIsLoading]="isLoading">
+    Text
+    <ul><li *ngFor="let testText of testArr">{{ testText }}</li> </ul>
+    </div>`
 })
 class MockComponent {
-  // Wird benutzt um einen Y-Overflow und damit ein Scrollbar im Testelement zu forcieren
-  private testArr: string[] = [];
+  // Wird benutzt, um einen Y-Overflow und damit eine Scrollbar im Testelement zu forcieren
+  testArr: string[] = [];
   immediateCallback = true;
   isLoading = false;
 

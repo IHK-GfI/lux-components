@@ -20,20 +20,28 @@ export class LuxLangSelectComponent implements OnInit {
     { code: 'fr', label: 'Français', labelSelected: 'FR', path: '/fr' }
   ];
 
-  localeOptions = [];
+  localeOptions: LuxLocale[] = [];
 
-  selectedLocale: LuxLocale;
+  selectedLocale = this.allSupportedLocaleArr[0];
 
   constructor(private cookieService: CookieService) {}
 
   ngOnInit() {
-    this.luxLocaleSupported.forEach((locale) => this.localeOptions.push(this.allSupportedLocaleArr.find((item) => item.code === locale)));
+    this.luxLocaleSupported.forEach((locale) => {
+      const foundLocale = this.allSupportedLocaleArr.find((item) => item.code === locale);
+      if (foundLocale) {
+        this.localeOptions.push(foundLocale);
+      }
+    });
 
     let locale = this.cookieService.get(this.cookieName);
     if (!locale || !this.allSupportedLocaleArr.find((item) => item.code === locale)) {
       locale = 'de';
     }
-    this.selectedLocale = this.allSupportedLocaleArr.find((item) => item.code === locale);
+    const newLocale = this.allSupportedLocaleArr.find((item) => item.code === locale);
+    if (newLocale) {
+      this.selectedLocale = newLocale;
+    }
   }
 
   onLocaleChanged(locale: LuxLocale) {

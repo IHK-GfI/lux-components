@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Optional, Output, ViewChild } from "@angular/core";
 import { LuxValidationErrors } from "../../lux-form/lux-form-model/lux-form-component-base.class";
 import { LuxLookupComponent } from '../lux-lookup-model/lux-lookup-component';
+import { LuxLookupErrorStateMatcher } from '../lux-lookup-model/lux-lookup-error-state-matcher';
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -18,9 +19,10 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   styleUrls: ['./lux-lookup-autocomplete.component.scss']
 })
 export class LuxLookupAutocompleteComponent extends LuxLookupComponent implements OnInit, AfterViewInit {
-  filteredEntries: Observable<LuxLookupTableEntry[]>;
-  entriesCount: number;
-  latestSearchValue: string;
+  filteredEntries?: Observable<LuxLookupTableEntry[]>;
+  entriesCount = 0;
+  latestSearchValue?: string;
+  stateMatcher: LuxLookupErrorStateMatcher;
 
   @Input() luxDebounceTime = 250;
   @Input() luxMaximumDisplayed = 50;
@@ -32,8 +34,8 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
   @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
 
-  @ViewChild(MatAutocomplete) matAutocomplete: MatAutocomplete;
-  @ViewChild(MatAutocompleteTrigger) matAutocompleteTrigger: MatAutocompleteTrigger;
+  @ViewChild(MatAutocomplete) matAutocomplete?: MatAutocomplete;
+  @ViewChild(MatAutocompleteTrigger) matAutocompleteTrigger?: MatAutocompleteTrigger;
 
   constructor(
     lookupService: LuxLookupService,
@@ -57,7 +59,7 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
     this.filteredEntries = this.formControl.valueChanges.pipe(
       debounceTime(this.luxDebounceTime),
       distinctUntilChanged(),
-      startWith<string | LuxLookupTableEntry>(''),
+      startWith<any>(''),
       map((value: any) => {
         const searchValue = typeof value === 'string' ? value : this.displayFn(value);
         this.latestSearchValue = searchValue;
@@ -90,13 +92,14 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
    * @param option
    * @returns string
    */
-  displayFn(option: LuxLookupTableEntry): string {
+  displayFn(option: LuxLookupTableEntry | string): string {
     if (typeof option === 'string') {
       return option;
     } else if (this.isRenderPropAFunction()) {
-      return (this.luxRenderProp as (currentOption) => string)(option);
-    } else if (option) {
-      return option[this.luxRenderProp as string] ? option[this.luxRenderProp as string] : 'Fehler beim Auslesen (Property unbekannt)';
+      return (this.luxRenderProp as (currentOption: LuxLookupTableEntry) => string)(option);
+    } else if (option && typeof this.luxRenderProp === 'string') {
+      const optionElement = option as any;
+      return optionElement[this.luxRenderProp] ?? 'Fehler beim Auslesen (Property unbekannt)';
     } else {
       return '';
     }
@@ -109,8 +112,8 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
    */
   onClick(clickEvent: any) {
     clickEvent.target.setSelectionRange(0, clickEvent.target.value.length);
-    // Beim Klick wenn kein Wert gesetzt ist, das Panel oeffnen
-    if (!this.luxValue) {
+    // Beim Klick, wenn kein Wert gesetzt ist, das Panel öffnen
+    if (!this.luxValue && this.matAutocompleteTrigger) {
       this.matAutocompleteTrigger._onChange('');
       this.matAutocompleteTrigger.openPanel();
     }
@@ -119,11 +122,11 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
   /**
    * Setzt den aktuellen Value-Wert auf den ausgewählten Wert.
    *
-   * @param MatAutocompleteSelectedEvent $event
-   * @param $event
+   * @param MatAutocompleteSelectedEvent event
+   * @param event
    */
-  selected($event: MatAutocompleteSelectedEvent) {
-    this.luxValue = $event.option.value;
+  selected(event: MatAutocompleteSelectedEvent) {
+    this.luxValue = event.option.value;
     if (this.inForm) {
       this.formControl.setValue(this.luxValue);
     }

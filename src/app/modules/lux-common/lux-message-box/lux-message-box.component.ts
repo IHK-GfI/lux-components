@@ -142,7 +142,6 @@ export class LuxMessageBoxComponent {
    * Aktualisiert die aktuell angezeigten Nachrichten anhand des Index.
    *
    * @param pageIndex
-   * @param pageSize
    */
   updateDisplayedMessages(pageIndex: number) {
     const start = pageIndex * this.luxMaximumDisplayed;

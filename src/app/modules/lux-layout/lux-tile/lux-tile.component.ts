@@ -11,16 +11,16 @@ export class LuxTileComponent implements OnInit, OnDestroy {
   private static _notificationNewClass = 'lux-notification-new';
   private static _notificationReadClass = 'lux-notification-read';
 
-  @Input() luxLabel: string = undefined;
-  @Input() luxTagId: string = undefined;
-  @Input() luxShowNotification;
-  @Input() luxCounter: number;
+  @Input() luxLabel?: string;
+  @Input() luxTagId?: string;
+  @Input() luxShowNotification?: boolean;
+  @Input() luxCounter?: number;
   @Input() luxCounterCap = 10;
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter<any>();
 
-  mobileView: boolean;
-  subscription: Subscription;
+  mobileView?: boolean;
+  subscription?: Subscription;
 
   constructor(private queryService: LuxMediaQueryObserverService) {}
 
@@ -31,7 +31,9 @@ export class LuxTileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   clicked() {
@@ -39,7 +41,7 @@ export class LuxTileComponent implements OnInit, OnDestroy {
   }
 
   getNotificationIconColorClass(): string {
-    return this.luxShowNotification === true || this.luxShowNotification === 'true'
+    return this.luxShowNotification
       ? LuxTileComponent._notificationNewClass
       : LuxTileComponent._notificationReadClass;
   }

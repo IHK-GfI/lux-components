@@ -68,7 +68,7 @@
       <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <span fxFlex="0 0 auto">Datum (ISO):</span>
-          <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
+          <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
         </div>
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
@@ -139,14 +139,14 @@
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
-          (luxClicked)="form.get(controlBinding).enable()"
-          [luxDisabled]="!form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.enable()"
+          [luxDisabled]="!form.get(controlBinding)!.disabled"
           luxColor="primary"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
-          (luxClicked)="form.get(controlBinding).disable()"
-          [luxDisabled]="form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.disable()"
+          [luxDisabled]="form.get(controlBinding)!.disabled"
           luxColor="primary"
         ></lux-button>
       </div>

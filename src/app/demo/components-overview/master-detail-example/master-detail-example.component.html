@@ -36,7 +36,7 @@
   </lux-master-header-content>
 
   <lux-master-simple luxTitleProp="title" luxSubTitleProp="subtitle">
-    <!-- Zugriff auf jedes einzelne Master-Element ueber "master" -->
+    <!-- Zugriff auf jedes einzelne Master-Element über "master" -->
     <ng-template #luxSimpleIcon let-master>
       <lux-icon [luxIconName]="master.icon"></lux-icon>
     </ng-template>
@@ -49,7 +49,7 @@
   </lux-master-simple>
 
   <lux-detail-view>
-    <!-- Zugriff auf das aktuell selektierte Element ueber "detail" -->
+    <!-- Zugriff auf das aktuell selektierte Element über "detail" -->
     <ng-template let-detail>
         <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0">
           <lux-tab luxTitle="Konfiguration" luxIconName="fas fa-toolbox">

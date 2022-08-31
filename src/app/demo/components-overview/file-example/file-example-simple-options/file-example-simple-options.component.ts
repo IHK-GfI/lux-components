@@ -7,7 +7,7 @@ import { FileExampleComponent } from '../file-example.component';
   templateUrl: './file-example-simple-options.component.html'
 })
 export class FileExampleSimpleOptionsComponent implements OnInit {
-  @Input() fileExample!: FileExampleComponent<any, any>;
+  @Input() fileExample!: FileExampleComponent;
 
   constructor() {}
 

@@ -1,3 +1,6 @@
+// noinspection DuplicatedCode
+
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { waitForAsync, ComponentFixture, fakeAsync, flush, TestBed, discardPeriodicTasks } from '@angular/core/testing';
 
 import { LuxStepperComponent } from './lux-stepper.component';
@@ -53,7 +56,7 @@ describe('LuxStepperComponent', () => {
   it('Sollte den Stepper deaktivieren', fakeAsync(() => {
     // Vorbedingungen testen
     let stepperOverlay = fixture.debugElement.query(By.css('.lux-stepper-disabled-overlay.lux-hidden'));
-    expect(stepperOverlay).not.toEqual(null);
+    expect(stepperOverlay).not.toBeNull();
 
     // Änderungen durchführen
     component.disabled = true;
@@ -61,7 +64,7 @@ describe('LuxStepperComponent', () => {
 
     // Nachbedingungen prüfen
     stepperOverlay = fixture.debugElement.query(By.css('.lux-stepper-disabled-overlay.lux-hidden'));
-    expect(stepperOverlay).toEqual(null);
+    expect(stepperOverlay).toBeNull();
   }));
 
   it('Sollte den Step-Wechsel ohne Validierung erlauben (linear = false)', fakeAsync(() => {
@@ -367,7 +370,7 @@ class MockStepperComponent {
   linear = false;
   horAnimation = true;
   showNavButtons = true;
-  editedIconName;
+  editedIconName?: string;
 
   prevConfig: ILuxStepperButtonConfig = {
     label: 'Test zurück'
@@ -384,20 +387,20 @@ class MockStepperComponent {
   step0Optional = false;
   step0Editable = true;
   step0Completed = false;
-  step0Form;
+  step0Form?: UntypedFormGroup;
   step0Icon = 'fa-user';
 
   step1Optional = false;
   step1Editable = true;
   step1Completed = false;
-  step1Form;
+  step1Form?: UntypedFormGroup;
   step1Icon = 'fa-file-signature';
 
   form;
 
-  stepChange($event) {}
+  stepChange($event: StepperSelectionEvent) {}
 
-  finClicked($event) {}
+  finClicked($event: StepperSelectionEvent) {}
 
   constructor() {
     this.form = new UntypedFormGroup({

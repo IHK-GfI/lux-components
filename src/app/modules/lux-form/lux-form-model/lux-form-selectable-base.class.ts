@@ -5,6 +5,7 @@ import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
 export declare type LuxPickValueFnType<O = any,V = any> = ((option: O) => V) | undefined;
+export declare type LuxCompareWithFnType<O = any> = ((o1: O, o2: O) => boolean) | undefined;
 
 /**
  * Basis-Klasse für FormComponents, die einen ähnlichen Grundaufbau für die Auswahl von
@@ -19,11 +20,20 @@ export abstract class LuxFormSelectableBase<O = any, V = any, P = any> extends L
   _luxOptions: any[] = [];
   _luxOptionsPickValue: any[] = [];
   _luxPickValue?: LuxPickValueFnType<O,P>;
+  _luxCompareWith = (o1: O, o2: O) => o1 === o2;
 
   @Output() luxSelectedChange: EventEmitter<any> = new EventEmitter();
-  @Input() luxOptionLabelProp = '';
-  @Input() luxTagId: string | null = null;
-  @Input() luxCompareWith = (o1: O, o2: O) => o1 === o2;
+  @Input() luxOptionLabelProp? = '';
+  @Input() luxTagId?: string;
+
+  get luxCompareWith(): LuxCompareWithFnType | undefined {
+    return this._luxCompareWith;
+  }
+
+  @Input()
+  set luxCompareWith(compareFn: LuxCompareWithFnType | undefined){
+    this._luxCompareWith = compareFn ?? ((o1: O, o2: O) => o1 === o2);
+  }
 
   get luxSelected(): V | null {
     return this.getValue();
@@ -115,7 +125,7 @@ export abstract class LuxFormSelectableBase<O = any, V = any, P = any> extends L
     if ((!o1 && o2) || (o1 && !o2)) {
       return false;
     } else {
-      return this.luxCompareWith(o1, o2);
+      return this._luxCompareWith(o1, o2);
     }
   };
 

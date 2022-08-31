@@ -47,10 +47,10 @@ export abstract class TableExampleBaseClass {
   multiSelectDisabledProperty = 'disabled';
 
   calculateProportions = false;
-  minWidthPx = undefined;
+  minWidthPx = -1;
   tableHeightPx = 500;
   hideBorders = false;
-  selected: Set<any> | null = null;
+  selected: Set<any> = new Set();
 
   nameConfig: ColumnConfig = new ColumnConfig({ label: 'Name', sticky: false });
   symbolConfig: ColumnConfig = new ColumnConfig({ label: 'Symbol' });

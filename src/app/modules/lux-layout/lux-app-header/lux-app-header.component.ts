@@ -26,11 +26,11 @@ import { Subscription } from 'rxjs';
 export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   @Input() luxLocaleSupported = ['de'];
   @Input() luxLocaleBaseHref  = '';
-  @Input() luxUserName: string;
-  @Input() luxAppTitle: string;
-  @Input() luxAppTitleShort: string;
-  @Input() luxIconName: string;
-  @Input() luxImageSrc: string;
+  @Input() luxUserName?: string;
+  @Input() luxAppTitle?: string;
+  @Input() luxAppTitleShort?: string;
+  @Input() luxIconName?: string;
+  @Input() luxImageSrc?: string;
   @Input() luxImageHeight = '55px';
   @Input() luxAriaAppMenuButtonLabel = $localize `:@@luxc.app-header.aria.appmenu.btn:Anwendungsmenü / Navigation`;
   @Input() luxAriaUserMenuButtonLabel = $localize `:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
@@ -41,38 +41,38 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 
-  isMasterOpen: boolean;
-  isMasterDetailAvailable: boolean;
-  masterHasValue: boolean;
+  isMasterOpen?: boolean;
+  isMasterDetailAvailable?: boolean;
+  masterHasValue?: boolean;
 
-  userNameShort: string;
-  hasOnClickedListener: boolean;
+  userNameShort?: string;
+  hasOnClickedListener?: boolean;
   subscriptions: Subscription[] = [];
 
-  @ViewChild('customTrigger', { read: ElementRef }) customTrigger: ElementRef;
+  @ViewChild('customTrigger', { read: ElementRef }) customTrigger?: ElementRef;
 
-  @ContentChild(LuxAppHeaderActionNavComponent) actionNav: LuxAppHeaderActionNavComponent;
-  @ContentChild(LuxAppHeaderRightNavComponent) rightNav: LuxAppHeaderRightNavComponent;
-  @ContentChild(LuxSideNavComponent) sideNav: LuxSideNavComponent;
+  @ContentChild(LuxAppHeaderActionNavComponent) actionNav?: LuxAppHeaderActionNavComponent;
+  @ContentChild(LuxAppHeaderRightNavComponent) rightNav?: LuxAppHeaderRightNavComponent;
+  @ContentChild(LuxSideNavComponent) sideNav?: LuxSideNavComponent;
 
   constructor(public mobileHelperService: LuxMasterDetailMobileHelperService, private logger: LuxConsoleService, private elementRef: ElementRef, private appService: LuxAppService) {
     this.appService.appHeaderEl = elementRef.nativeElement;
 
-    // Wenn die Master-Ansicht der MD-Komponente aendert, muss ein anderer Navigations-Button angezeigt werden
+    // Wenn die Master-Ansicht der MD-Komponente ändert, muss ein anderer Navigations-Button angezeigt werden
     this.subscriptions.push(this.mobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
       setTimeout(() => {
         this.isMasterOpen = isOpen;
       });
     }));
 
-    // Pruefen ob ein Master-Detail aktuell vorhanden ist
+    // Prüfen, ob ein Master-Detail aktuell vorhanden ist
     this.subscriptions.push(this.mobileHelperService.isRegisteredObservable.subscribe((isRegistered: boolean) => {
       setTimeout(() => {
         this.isMasterDetailAvailable = isRegistered;
       });
     }));
 
-    // Pruefen ob das Master-Detail einen Wert hat
+    // Prüfen, ob das Master-Detail einen Wert hat
     this.subscriptions.push(this.mobileHelperService.hasValueObservable.subscribe((hasValue: boolean) => {
       setTimeout(() => {
         this.masterHasValue = hasValue;
@@ -81,7 +81,7 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit() {
-    if (this.luxClicked.observers && this.luxClicked.observers.length > 0) {
+    if (this.luxClicked.observed) {
       this.hasOnClickedListener = true;
     }
   }
@@ -111,7 +111,9 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   onMenuClosed() {
-    this.customTrigger.nativeElement.focus();
+    if (this.customTrigger) {
+      this.customTrigger.nativeElement.focus();
+    }
   }
 
   onClicked(event: any) {

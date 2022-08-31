@@ -32,7 +32,7 @@ export declare type ValidatorFnType = ValidatorFn | ValidatorFn[] | null | undef
 export declare type LuxErrorCallbackFnType = (value: any, errors: LuxValidationErrors) => string | undefined;
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxFormComponentBase<T> implements OnInit, DoCheck, OnDestroy {
+export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, OnDestroy {
   protected static readonly DEFAULT_CTRL_NAME: string = 'control';
 
   protected _formValueChangeSub?: Subscription;
@@ -42,7 +42,7 @@ export abstract class LuxFormComponentBase<T> implements OnInit, DoCheck, OnDest
   private hasHadRequiredValidator = false;
 
   protected latestErrors: any = null;
-  protected _initialValue: T | null = null;
+  protected _initialValue?: any;
   protected _luxDisabled = false;
   protected _luxReadonly = false;
   protected _luxRequired = false;
@@ -56,7 +56,7 @@ export abstract class LuxFormComponentBase<T> implements OnInit, DoCheck, OnDest
   configService: LuxComponentsConfigService;
   inForm = false;
   formGroup!: FormGroup;
-  formControl!: FormControl<T | null>;
+  formControl!: FormControl<T>;
 
   uid: string = 'lux-form-control-' + luxFormControlUID++;
 
@@ -233,7 +233,7 @@ export abstract class LuxFormComponentBase<T> implements OnInit, DoCheck, OnDest
   /**
    * Standard-Getter Funktion für den aktuellen Wert in dieser FormComponent.
    */
-  protected getValue(): T | null {
+  protected getValue(): T {
     return this.formControl ? this.formControl.value : this._initialValue;
   }
 
@@ -242,7 +242,7 @@ export abstract class LuxFormComponentBase<T> implements OnInit, DoCheck, OnDest
    *
    * @param value
    */
-  protected setValue(value: T | null) {
+  protected setValue(value: T) {
     // Wenn noch kein FormControl vorhanden, den init-Wert merken und Fn beenden
     if (!this.formControl) {
       this._initialValue = value;

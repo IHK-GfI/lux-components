@@ -22,6 +22,7 @@ import { LuxConsoleService } from '../../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../../lux-util/lux-media-query-observer.service';
 import { LuxUtil } from '../../../lux-util/lux-util';
 import { LuxFormFileBase } from '../../lux-form-model/lux-form-file-base.class';
+import { ILuxFileActionConfig, ILuxFilesActionConfig } from '../lux-file-model/lux-file-action-config.interface';
 import { LuxFileErrorCause } from '../lux-file-model/lux-file-error.interface';
 import { ILuxFilesListActionConfig } from '../lux-file-model/lux-file-list-action-config.interface';
 import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
@@ -33,7 +34,7 @@ import { LuxFileReplaceDialogComponent } from '../lux-file-subcomponents/lux-fil
   templateUrl: './lux-file-upload.component.html',
   styleUrls: ['./lux-file-upload.component.scss']
 })
-export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[], ILuxFilesListActionConfig> implements OnInit, AfterViewInit, OnDestroy {
+export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | null> implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('fileUpload', { read: ElementRef, static: true }) fileUploadInput!: ElementRef;
   @ViewChildren('fileEntry', { read: ElementRef }) fileEntries!: QueryList<ElementRef>;
 
@@ -43,6 +44,72 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[], IL
   @Input() luxMultiple = true;
   @Input() luxUploadIcon = 'fas fa-cloud-upload-alt';
   @Input() luxDeleteIcon = 'fas fa-trash';
+
+  get luxUploadActionConfig(): ILuxFilesActionConfig {
+    return this._luxUploadActionConfig;
+  }
+
+  @Input() set luxUploadActionConfig(config: ILuxFilesActionConfig) {
+    if (config) {
+      this._luxUploadActionConfig = config;
+    }
+  }
+
+  get luxDeleteActionConfig(): ILuxFileActionConfig {
+    return this._luxDeleteActionConfig;
+  }
+
+  @Input() set luxDeleteActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxDeleteActionConfig = config;
+    }
+  }
+
+  get luxViewActionConfig(): ILuxFileActionConfig {
+    return this._luxViewActionConfig;
+  }
+
+  @Input() set luxViewActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxViewActionConfig = config;
+    }
+  }
+
+  get luxDownloadActionConfig(): ILuxFileActionConfig {
+    return this._luxDownloadActionConfig;
+  }
+
+  @Input() set luxDownloadActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxDownloadActionConfig = config;
+    }
+  }
+
+  _luxUploadActionConfig: ILuxFilesActionConfig = {
+    disabled: false,
+    hidden: false,
+    iconName: 'fas fa-cloud-upload-alt',
+    label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
+  }
+
+  _luxDeleteActionConfig: ILuxFileActionConfig = {
+    disabled: false,
+    hidden: false,
+    iconName: 'fas fa-trash',
+    label: $localize`:@@luxc.form-file-base.delete.action.lbl:Löschen`
+  };
+  _luxViewActionConfig: ILuxFileActionConfig = {
+    disabled: false,
+    hidden: true,
+    iconName: 'fas fa-eye',
+    label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
+  };
+  _luxDownloadActionConfig: ILuxFileActionConfig = {
+    disabled: false,
+    hidden: true,
+    iconName: 'fas fa-download',
+    label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
+  };
 
   subscriptions: Subscription[] = [];
   fileIcons: string[] = [];
@@ -74,19 +141,6 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[], IL
     private queryService: LuxMediaQueryObserverService
   ) {
     super(controlContainer, cdr, logger, config, http, liveAnnouncer);
-  }
-
-  protected initUploadActionConfig(): ILuxFilesListActionConfig {
-    return {
-      disabled: false,
-      disabledHeader: false,
-      hidden: false,
-      hiddenHeader: false,
-      iconName: 'fas fa-cloud-upload-alt',
-      iconNameHeader: 'fas fa-cloud-upload-alt',
-      label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
-      labelHeader: $localize`:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
-    }
   }
 
   ngOnInit(): void {
@@ -124,6 +178,18 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[], IL
 
   resetSelected() {
     this.luxSelectedFiles = [];
+  }
+
+  handleViewFileClick(file: ILuxFileObject) {
+    if (file.content && this.luxViewActionConfig.onClick) {
+      this.luxViewActionConfig.onClick(file);
+    }
+  }
+
+  handleDownloadClick(file: ILuxFileObject) {
+    if (this.luxDownloadActionConfig.onClick) {
+      this.luxDownloadActionConfig.onClick(file);
+    }
   }
 
   handleUploadClick(files: ILuxFileObject[]) {
@@ -265,8 +331,8 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[], IL
     );
   }
 
-  onSelectFiles(target: EventTarget) {
-    const fileList = (target as HTMLInputElement).files;
+  onSelectFiles(target: EventTarget | null) {
+    const fileList = target ? (target as HTMLInputElement).files : null;
     this.selectFiles(fileList ? Array.from(fileList) : []);
   }
 
@@ -291,7 +357,8 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[], IL
       : null;
 
     // Via LiveAnnouncer mitteilen welche Datei entfernt wird
-    this.announceFileRemove(this.luxSelectedFiles![index].name);
+    const deletedFile = this.luxSelectedFiles![index];
+    this.announceFileRemove(deletedFile.name);
 
     // Wir entfernen hier nur eine Datei, deshalb ist das neue Auslesen der Base64-Strings nicht nötig
     this.uploadFiles(newFiles).then(
@@ -302,7 +369,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[], IL
       (error) => this.setFormControlErrors(error)
     );
     if (this.luxDeleteActionConfig.onClick) {
-      this.luxDeleteActionConfig.onClick();
+      this.luxDeleteActionConfig.onClick(deletedFile);
     }
   }
 

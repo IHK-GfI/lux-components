@@ -24,7 +24,7 @@
           {{ luxFormComponent.luxLabel }}
         </ng-container>
         <ng-template #formLabelTemplate>
-          <ng-container *ngTemplateOutlet="luxFormComponent.formLabelComponent.templateRef"></ng-container>
+          <ng-container *ngTemplateOutlet="luxFormComponent.formLabelComponent?.templateRef ?? null"></ng-container>
         </ng-template>
         {{ luxFormComponent.luxRequired ? ' *' : '' }}
       </label>
@@ -51,7 +51,7 @@
             {{ luxFormComponent.luxHint }}
           </ng-container>
           <ng-template #formHintTemplate>
-            <ng-container *ngTemplateOutlet="luxFormComponent.formHintComponent.templateRef"></ng-container>
+            <ng-container *ngTemplateOutlet="luxFormComponent.formHintComponent?.templateRef ?? null"></ng-container>
           </ng-template>
         </mat-hint>
       </ng-container>

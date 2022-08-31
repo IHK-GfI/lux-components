@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from "rxjs";
-import { LuxAppFooterButtonInfo } from "./lux-app-footer-button-info";
 import { LuxAppFooterLinkInfo } from './lux-app-footer-link-info';
 
 @Injectable({

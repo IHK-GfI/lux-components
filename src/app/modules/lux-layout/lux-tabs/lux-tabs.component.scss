@@ -103,7 +103,7 @@ mat-tab-group ::ng-deep div[role="tab"] {
 
 // Notificationicon neben dem Tablabel auf normalen bis großen Auflösungen
 .lux-tabs-notification-icon-position-after-label {
-  top: 0px;
+  top: 0;
   right: -18px;
 
   &.lux-counter-visible {
@@ -129,7 +129,7 @@ mat-tab-group ::ng-deep div[role="tab"] {
 
   &.lux-counter-visible {
     top: 10px;
-    right: 0px;
+    right: 0;
 
     @media (max-width: 959px) {
       top: 10px;
@@ -138,7 +138,7 @@ mat-tab-group ::ng-deep div[role="tab"] {
 
     @media (max-width: 599px) {
       top: 10px;
-      right: 0px;
+      right: 0;
     }
   }
 }

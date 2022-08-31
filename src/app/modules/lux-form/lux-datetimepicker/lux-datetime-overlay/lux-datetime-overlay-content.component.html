@@ -2,15 +2,27 @@
   <lux-card luxTagId="lux-datetimepicker-overlay-card-content">
     <lux-card-content fxLayout="column">
       <mat-calendar
+        *ngIf="customHeader; else noCustomHeader"
         class="lux-datetime-overlay-calendar"
-        [dateFilter]="dateTimePicker.luxCustomFilter"
+        [dateFilter]="dateTimePicker._luxCustomFilter"
         [startView]="dateTimePicker.luxStartView"
         [(selected)]="selected"
         [startAt]="startDate"
         [minDate]="minCalendarDate"
         [maxDate]="maxCalendarDate"
-        [headerComponent]="getHeaderByTheme()"
+        [headerComponent]="customHeader"
       ></mat-calendar>
+      <ng-template #noCustomHeader>
+        <mat-calendar
+          class="lux-datetime-overlay-calendar"
+          [dateFilter]="dateTimePicker._luxCustomFilter"
+          [startView]="dateTimePicker.luxStartView"
+          [(selected)]="selected"
+          [startAt]="startDate"
+          [minDate]="minCalendarDate"
+          [maxDate]="maxCalendarDate"
+        ></mat-calendar>
+      </ng-template>
       <lux-divider [luxInset]="true"></lux-divider>
       <div fxLayout="row" fxLayoutAlign="center start">
         <lux-input

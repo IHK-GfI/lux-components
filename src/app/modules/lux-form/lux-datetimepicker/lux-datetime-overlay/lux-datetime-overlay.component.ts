@@ -30,7 +30,6 @@ import { LuxDatetimeOverlayContentComponent } from './lux-datetime-overlay-conte
 export class LuxDatetimeOverlayComponent {
   @Input() luxPickerInput!: HTMLInputElement;
   @Input() luxStartView: 'month' | 'year' | 'multi-year' = 'month';
-  @Input() luxCustomFilter?: LuxDateFilterFn;
   @Input() luxStartDate: Date | null = null;
   @Input() luxStartTime: number[] = [];
   @Input() luxMinDate: Date | null = null;
@@ -45,6 +44,7 @@ export class LuxDatetimeOverlayComponent {
   opened = false;
   scrollStrategy: () => ScrollStrategy;
   _selectedDate?: string;
+  _luxCustomFilter: LuxDateFilterFn = () => true;
 
   // Code des Interfaces "MatDatepickerPanel<MatDatepickerControl<any>, any, any>" - Start
   id = '';
@@ -55,12 +55,21 @@ export class LuxDatetimeOverlayComponent {
   }
   // Code des Interfaces "MatDatepickerPanel<MatDatepickerControl<any>, any, any>" - Ende
 
+  get luxCustomFilter(){
+    return this._luxCustomFilter;
+  }
+
+  @Input()
+  set luxCustomFilter(customFilterFn: LuxDateFilterFn | undefined){
+    this._luxCustomFilter = customFilterFn ?? (() => true);
+  }
+
   get selectedDate() {
     return this._selectedDate;
   }
 
   @Input()
-  set selectedDate(date) {
+  set selectedDate(date: string | undefined) {
     this._selectedDate = date;
   }
 

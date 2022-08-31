@@ -1,7 +1,7 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 
 export class LuxStepperLargeMobileOverlayRef {
-  focusedElement = null;
+  focusedElement: Element | null = null;
 
   constructor(private overlayRef: OverlayRef) {
     this.focusedElement = document.activeElement;

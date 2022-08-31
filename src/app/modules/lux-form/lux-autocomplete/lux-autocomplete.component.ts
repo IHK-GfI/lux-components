@@ -26,7 +26,7 @@ import { LuxInputSuffixComponent } from '../lux-input/lux-input-subcomponents/lu
   templateUrl: './lux-autocomplete.component.html',
   styleUrls: ['./lux-autocomplete.component.scss']
 })
-export class LuxAutocompleteComponent<V, O> extends LuxFormComponentBase<V> implements OnInit, OnDestroy, AfterViewInit {
+export class LuxAutocompleteComponent<V = any, O = any> extends LuxFormComponentBase<V> implements OnInit, OnDestroy, AfterViewInit {
   private selected$: ReplaySubject<any> = new ReplaySubject(1);
   private subscriptions: Subscription[] = [];
   private valueChangeSubscription?: Subscription;
@@ -39,11 +39,11 @@ export class LuxAutocompleteComponent<V, O> extends LuxFormComponentBase<V> impl
   @Input() luxOptionLabelProp = 'label';
   @Input() luxLookupDelay = 500;
   @Input() luxErrorMessageNotAnOption = $localize`:@@luxc.autocomplete.error_message.not_an_option:Der eingegebene Wert ist nicht Teil der Auswahl.`;
-  @Input() luxTagId: string | null = null;
+  @Input() luxTagId?: string;
   @Input() luxSelectAllOnClick = true;
   @Input() luxStrict = true;
   @Input() luxFilterFn?: (filterTerm: string, label: string, option: any) => boolean;
-  @Input() luxPanelWidth: string | number | null = null;
+  @Input() luxPanelWidth: string | number = '';
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
@@ -53,7 +53,7 @@ export class LuxAutocompleteComponent<V, O> extends LuxFormComponentBase<V> impl
     return this._luxPickValue;
   }
 
-  @Input() set luxPickValue(pickFn: ((selected: O | null | undefined) => V)){
+  @Input() set luxPickValue(pickFn: ((selected: O | null | undefined) => V) | undefined){
     this._luxPickValue = pickFn ?? ((a: any) => a);
   }
 
@@ -68,13 +68,13 @@ export class LuxAutocompleteComponent<V, O> extends LuxFormComponentBase<V> impl
   @ViewChild('autoCompleteInput', { read: MatAutocompleteTrigger }) matAutoComplete!: MatAutocompleteTrigger;
   @ViewChild('autoCompleteInput', { read: ElementRef }) matInput!: ElementRef;
 
-  get luxValue(): V | null {
+  get luxValue(): V {
     return this.getValue();
   }
 
-  @Input() set luxValue(value: V | null) {
+  @Input() set luxValue(value: V) {
     if (value instanceof Object) {
-      this.setValue(this.luxPickValue(value as any));
+      this.setValue(this._luxPickValue(value as any));
     } else {
       this.setValue(value);
     }
@@ -117,12 +117,12 @@ export class LuxAutocompleteComponent<V, O> extends LuxFormComponentBase<V> impl
             if (this.luxStrict) {
               const selectedOption = this.getPickValueOption(value);
               if (selectedOption) {
-                selected = this.luxPickValue(selectedOption);
+                selected = this._luxPickValue(selectedOption);
               } else {
                 selected = null;
               }
             } else {
-              selected = this.luxPickValue(this.luxOptions.find((option) => value === option));
+              selected = this._luxPickValue(this.luxOptions.find((option) => value === option));
               if (selected === undefined) {
                 selected = null;
               }
@@ -240,7 +240,7 @@ export class LuxAutocompleteComponent<V, O> extends LuxFormComponentBase<V> impl
 
   selected($event: MatAutocompleteSelectedEvent) {
     if (this.luxStrict) {
-      this.luxValue = this.luxPickValue($event.option.value);
+      this.luxValue = this._luxPickValue($event.option.value);
     } else {
       this.luxValue = $event.option.value;
     }
@@ -286,7 +286,7 @@ export class LuxAutocompleteComponent<V, O> extends LuxFormComponentBase<V> impl
   notifyFormValueChanged(formValue: any) {
     let newValue;
     if (this.luxStrict) {
-      newValue = formValue instanceof Object ? this.luxPickValue(formValue) : formValue;
+      newValue = formValue instanceof Object ? this._luxPickValue(formValue) : formValue;
     } else {
       newValue = formValue;
     }
@@ -301,8 +301,8 @@ export class LuxAutocompleteComponent<V, O> extends LuxFormComponentBase<V> impl
   // endregion
 
   private getPickValueOption(value: O) {
-    const pickValue = value instanceof Object ? this.luxPickValue(value) : value;
-    return this.luxOptions.find((currentOption) => pickValue === this.luxPickValue(currentOption));
+    const pickValue = value instanceof Object ? this._luxPickValue(value) : value;
+    return this.luxOptions.find((currentOption) => pickValue === this._luxPickValue(currentOption));
   }
 
   private updateFilterOptions() {
@@ -340,7 +340,7 @@ export class LuxAutocompleteComponent<V, O> extends LuxFormComponentBase<V> impl
       const filterResult = this.filter(this.matInput.nativeElement.value);
 
       if (filterResult.length === 1) {
-        this.formControl.setValue(this.luxPickValue(filterResult[ 0 ]));
+        this.formControl.setValue(this._luxPickValue(filterResult[ 0 ]));
       }
 
       this.handleErrors();

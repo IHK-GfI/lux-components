@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 
@@ -13,6 +13,8 @@ export class LuxMasterDetailMobileHelperService implements OnDestroy {
   mobileView: boolean;
 
   constructor(private mediaObserver: LuxMediaQueryObserverService) {
+    this.mobileView = this.mediaObserver.isXS() || this.mediaObserver.isSM();
+
     this.subscription = this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(() => {
       setTimeout(() => {
         this.mobileView = this.mediaObserver.isXS() || this.mediaObserver.isSM();
@@ -22,7 +24,6 @@ export class LuxMasterDetailMobileHelperService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('LuxMasterDetailMobileHelperService.ngOnDestroy called');
     this.subscription.unsubscribe();
   }
 
@@ -55,15 +56,15 @@ export class LuxMasterDetailMobileHelperService implements OnDestroy {
   }
 
   /**
-   * Sendet ueber den masterCollapsed$-Subject ein Event mit dem Wert true.
-   * Kennzeichnet das der Master geoeffnet werden soll.
+   * Sendet über den masterCollapsed$-Subject ein Event mit dem Wert true.
+   * Kennzeichnet das der Master geöffnet werden soll.
    */
   public openMaster(): void {
     this._masterCollapsed$.next(true);
   }
 
   /**
-   * Sendet ueber den masterCollapsed$-Subject ein Event mit dem Wert false.
+   * Sendet über den masterCollapsed$-Subject ein Event mit dem Wert false.
    * Kennzeichnet das der Master geschlossen werden soll.
    */
   public closeMaster(): void {
@@ -71,7 +72,7 @@ export class LuxMasterDetailMobileHelperService implements OnDestroy {
   }
 
   /**
-   * Gibt zurueck ob eine Media-Query fuer XS oder SM aktuell aktiv ist.
+   * Gibt zurück, ob eine Media-Query für XS oder SM aktuell aktiv ist.
    *
    * @returns boolean
    */
@@ -80,7 +81,7 @@ export class LuxMasterDetailMobileHelperService implements OnDestroy {
   }
 
   /**
-   * Meldet eine Master-Detail-Komponente fuer diesen Service an.
+   * Meldet eine Master-Detail-Komponente für diesen Service an.
    */
   public register() {
     if (!this.isRegistered) {
@@ -102,8 +103,8 @@ export class LuxMasterDetailMobileHelperService implements OnDestroy {
   }
 
   /**
-   * Sendet ein Event um den Master zu oeffnen bzw. zu schliessen
-   * wenn sich der Zustand der Media-Query geaendert hat.
+   * Sendet ein Event, um den Master zu öffnen bzw. zu schliessen,
+   * wenn sich der Zustand der Media-Query geändert hat.
    */
   private handleMasterCollapseState(): void {
     setTimeout(() => {

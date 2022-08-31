@@ -150,7 +150,7 @@ class Checker {
     // Nachbedingungen testen
     expect(fixture.componentInstance.disabled).toBeFalsy();
     expect(buttonEl.nativeElement.disabled).toBeFalsy();
-    expect(buttonEl.nativeElement.innerHTML).toContain('Lorum ipsum 4711');
+    expect(buttonEl.nativeElement.innerHTML).toContain('Lorem ipsum 4711');
     expect(onClickSpy).toHaveBeenCalled();
 
     discardPeriodicTasks();
@@ -172,7 +172,7 @@ class Checker {
     // Nachbedingungen testen
     expect(fixture.componentInstance.disabled).toBeTruthy();
     expect(buttonEl.nativeElement.disabled).toBeTruthy();
-    expect(buttonEl.nativeElement.innerHTML).toContain('Lorum ipsum 4711');
+    expect(buttonEl.nativeElement.innerHTML).toContain('Lorem ipsum 4711');
     expect(onClickSpy).not.toHaveBeenCalled();
   }
 }
@@ -180,7 +180,7 @@ class Checker {
 @Component({
   template: `
     <lux-button
-      luxLabel="Lorum ipsum 4711"
+      luxLabel="Lorem ipsum 4711"
       [luxDisabled]="disabled"
       (luxClicked)="onClick()"
       [luxRounded]="round"

@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from "@angular/core/testing";
 import { By } from '@angular/platform-browser';
 import { LuxIconComponent } from '../../lux-icon/lux-icon/lux-icon.component';
@@ -103,7 +105,7 @@ describe('LuxTabsComponent', () => {
       let tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
       expect(component.animationActive).toBeFalsy();
       expect(component.disabled).toBeFalsy();
-      expect(tabEl).toBeNull(tabEl);
+      expect(tabEl).toBeNull();
 
       // When
       component.disabled = true;
@@ -113,7 +115,7 @@ describe('LuxTabsComponent', () => {
       tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
       expect(component.animationActive).toBeFalsy();
       expect(component.disabled).toBeTruthy();
-      expect(tabEl).not.toBeNull(tabEl);
+      expect(tabEl).not.toBeNull();
     });
 
     it('luxDisabled=true mit Animation', () => {
@@ -121,7 +123,7 @@ describe('LuxTabsComponent', () => {
       let tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
       expect(component.animationActive).toBeFalsy();
       expect(component.disabled).toBeFalsy();
-      expect(tabEl).toBeNull(tabEl);
+      expect(tabEl).toBeNull();
 
       // When
       component.animationActive = true;
@@ -132,7 +134,7 @@ describe('LuxTabsComponent', () => {
       tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
       expect(component.animationActive).toBeTruthy();
       expect(component.disabled).toBeTruthy();
-      expect(tabEl).not.toBeNull(tabEl);
+      expect(tabEl).not.toBeNull();
     });
   });
 
@@ -262,7 +264,7 @@ describe('LuxTabsComponent', () => {
         // When
         // Then
         expect(component.currentTabIndex).toBeFalsy();
-        expect(component.luxTabs.luxActiveTab).toBeUndefined();
+        expect(component.luxTabs!.luxActiveTab).toBeUndefined();
 
         // When
         component.currentTabIndex = 1;
@@ -270,7 +272,7 @@ describe('LuxTabsComponent', () => {
 
         fixture.whenStable().then(() => {
           expect(component.currentTabIndex).toBe(1);
-          expect(component.luxTabs.luxActiveTab).toBe(1);
+          expect(component.luxTabs!.luxActiveTab).toBe(1);
 
           component.currentTabIndex = 2;
           fixture.detectChanges();
@@ -278,7 +280,7 @@ describe('LuxTabsComponent', () => {
           fixture.whenStable().then(() => {
             // Then
             expect(component.currentTabIndex).toBe(2);
-            expect(component.luxTabs.luxActiveTab).toBe(2);
+            expect(component.luxTabs!.luxActiveTab).toBe(2);
             done();
           });
         });
@@ -292,7 +294,7 @@ describe('LuxTabsComponent', () => {
       });
 
       it('sollte erstellt werden', () => {
-        expect(component).toBeTruthy('Die LuxMockTabsComponent (nicht animiert) konnte nicht erzeugt werden.');
+        expect(component).toBeTruthy();
       });
 
       it('sollte den Tab wechseln', (done: DoneFn) => {
@@ -300,7 +302,7 @@ describe('LuxTabsComponent', () => {
         // When
         // Then
         expect(component.currentTabIndex).toBeFalsy();
-        expect(component.luxTabs.luxActiveTab).toBeUndefined();
+        expect(component.luxTabs!.luxActiveTab).toBeUndefined();
 
         // When
         component.currentTabIndex = 1;
@@ -308,7 +310,7 @@ describe('LuxTabsComponent', () => {
 
         fixture.whenStable().then(() => {
           expect(component.currentTabIndex).toBe(1);
-          expect(component.luxTabs.luxActiveTab).toBe(1);
+          expect(component.luxTabs!.luxActiveTab).toBe(1);
 
           component.currentTabIndex = 2;
           fixture.detectChanges();
@@ -316,7 +318,7 @@ describe('LuxTabsComponent', () => {
           fixture.whenStable().then(() => {
             // Then
             expect(component.currentTabIndex).toBe(2);
-            expect(component.luxTabs.luxActiveTab).toBe(2);
+            expect(component.luxTabs!.luxActiveTab).toBe(2);
             done();
           });
         });
@@ -402,25 +404,21 @@ describe('LuxTabsComponent', () => {
       (luxActiveTabChanged)="tabChanged($event)"
     >
       <lux-tab luxIconName="fa-user" luxTitle="Tabname 1">
-        <ng-template>
-          Tab-Content 0
-        </ng-template>
+        <ng-template> Tab-Content 0 </ng-template>
       </lux-tab>
       <lux-tab luxIconName="fa-user" luxTitle="Tabname 2">
-        <ng-template>
-          Tab-Content 1
-        </ng-template>
+        <ng-template> Tab-Content 1 </ng-template>
       </lux-tab>
     </lux-tabs>
   `
 })
 class LuxActiveTabChangedTabsComponent {
   animated = false;
-  currentTabIndex: number;
-  currentTabLabel: string;
+  currentTabIndex?: number;
+  currentTabLabel?: string;
 
-  @ViewChild(LuxTabsComponent) luxTabs: LuxTabsComponent;
-  @ViewChildren(LuxTabComponent) luxTabList: QueryList<LuxTabComponent>;
+  @ViewChild(LuxTabsComponent) luxTabs!: LuxTabsComponent;
+  @ViewChildren(LuxTabComponent) luxTabList!: QueryList<LuxTabComponent>;
 
   constructor() {}
 
@@ -432,32 +430,29 @@ class LuxActiveTabChangedTabsComponent {
 
 @Component({
   selector: 'lux-mock-tabs',
-  template:
-    '<lux-tabs [luxTabAnimationActive]="animated" [luxActiveTab]="currentTabIndex" luxTagId="tabsID"' +
-    '                (luxActiveTabChanged)="tabChanged($event)">' +
-    '        <lux-tab luxIconName="fa-user" luxTitle="Tab-Text 0">' +
-    '          <ng-template>' +
-    '            Tab-Content 0' +
-    '          </ng-template>' +
-    '        </lux-tab>' +
-    '        <lux-tab luxIconName="fa-user" luxTitle="Tab-Text 1">' +
-    '          <ng-template>' +
-    '            Tab-Content 1' +
-    '          </ng-template>' +
-    '        </lux-tab>' +
-    '        <lux-tab luxIconName="fa-user" luxTitle="Tab-Text 2">' +
-    '          <ng-template>' +
-    '            Tab-Content 2' +
-    '          </ng-template>' +
-    '        </lux-tab>' +
-    '        </lux-tabs>'
+  template: `<lux-tabs
+    [luxTabAnimationActive]="animated"
+    [luxActiveTab]="currentTabIndex"
+    luxTagId="tabsID"
+    (luxActiveTabChanged)="tabChanged($event)"
+  >
+    <lux-tab luxIconName="fa-user" luxTitle="Tab-Text 0">
+      <ng-template> Tab-Content 0 </ng-template>
+    </lux-tab>
+    <lux-tab luxIconName="fa-user" luxTitle="Tab-Text 1">
+      <ng-template> Tab-Content 1 </ng-template>
+    </lux-tab>
+    <lux-tab luxIconName="fa-user" luxTitle="Tab-Text 2">
+      <ng-template> Tab-Content 2 </ng-template>
+    </lux-tab>
+  </lux-tabs>`
 })
 class LuxMockTabsComponent {
   animated = false;
-  currentTabIndex: number;
+  currentTabIndex?: number;
 
-  @ViewChild(LuxTabsComponent) luxTabs: LuxTabsComponent;
-  @ViewChildren(LuxTabComponent) luxTabList: QueryList<LuxTabComponent>;
+  @ViewChild(LuxTabsComponent) luxTabs?: LuxTabsComponent;
+  @ViewChildren(LuxTabComponent) luxTabList!: QueryList<LuxTabComponent>;
 
   constructor() {}
 
@@ -517,8 +512,8 @@ class LuxTabWithoutNumberComponent {}
   `
 })
 class LuxTabLazyLoadingComponent {
-  @ViewChild('taba') labelAaa: LuxLabelComponent;
-  @ViewChild('tabb') labelBbb: LuxLabelComponent;
+  @ViewChild('taba') labelAaa!: LuxLabelComponent;
+  @ViewChild('tabb') labelBbb!: LuxLabelComponent;
 
   currentTabIndex = 0;
   animationActive = false;

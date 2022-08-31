@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -123,7 +125,7 @@ describe('LuxCardComponent', () => {
 
     it('Click auf Toggle darf die Card-Action nicht auslösen', fakeAsync(() => {
       // Vorbedingungen testen
-      const cardActionspy = spyOn(component, 'onCardClickedTest');
+      const cardActionSpy = spyOn(component, 'onCardClickedTest');
       const toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button button'));
       expect(toggleEl).not.toBeNull();
 
@@ -133,7 +135,7 @@ describe('LuxCardComponent', () => {
       LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
 
       // Nachbedingungen testen
-      expect(cardActionspy).toHaveBeenCalledTimes(0);
+      expect(cardActionSpy).toHaveBeenCalledTimes(0);
 
       // Änderungen durchführen
       // 2. Durchlauf: Zuklappen
@@ -141,7 +143,7 @@ describe('LuxCardComponent', () => {
       fixture.detectChanges();
 
       // Nachbedingungen testen
-      expect(cardActionspy).toHaveBeenCalledTimes(0);
+      expect(cardActionSpy).toHaveBeenCalledTimes(0);
 
       discardPeriodicTasks();
     }));
@@ -164,7 +166,7 @@ describe('LuxCardComponent', () => {
       let toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button'));
       expect(component.card.luxExpanded).toBeFalsy();
       expect(contentEl).not.toBeNull();
-      expect(contentEl.nativeElement.innerHTML).toEqual('Lorum ipsum');
+      expect(contentEl.nativeElement.innerHTML).toEqual('Lorem ipsum');
       expect(expandedEl).toBeNull();
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
 
@@ -179,7 +181,7 @@ describe('LuxCardComponent', () => {
       expect(component.card.luxExpanded).toBeTruthy();
       expect(contentEl).not.toBeNull();
       expect(expandedEl).not.toBeNull();
-      expect(expandedEl.nativeElement.innerHTML).toEqual('Lorum ipsum expanded');
+      expect(expandedEl.nativeElement.innerHTML).toEqual('Lorem ipsum expanded');
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-up');
 
       // Änderungen durchführen
@@ -191,7 +193,7 @@ describe('LuxCardComponent', () => {
       expandedEl = fixture.debugElement.query(By.directive(LuxCardContentExpandedComponent));
       toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button'));
       expect(component.card.luxExpanded).toBeFalsy();
-      expect(contentEl.nativeElement.innerHTML).toEqual('Lorum ipsum');
+      expect(contentEl.nativeElement.innerHTML).toEqual('Lorem ipsum');
       expect(expandedEl).toBeNull();
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
     }));
@@ -203,7 +205,7 @@ describe('LuxCardComponent', () => {
       let toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button button'));
       expect(component.card.luxExpanded).toBeFalsy();
       expect(contentEl).not.toBeNull();
-      expect(contentEl.nativeElement.innerHTML).toEqual('Lorum ipsum');
+      expect(contentEl.nativeElement.innerHTML).toEqual('Lorem ipsum');
       expect(expandedEl).toBeNull();
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
 
@@ -218,7 +220,7 @@ describe('LuxCardComponent', () => {
       expect(component.card.luxExpanded).toBeTruthy();
       expect(contentEl).not.toBeNull();
       expect(expandedEl).not.toBeNull();
-      expect(expandedEl.nativeElement.innerHTML).toEqual('Lorum ipsum expanded');
+      expect(expandedEl.nativeElement.innerHTML).toEqual('Lorem ipsum expanded');
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-up');
 
       // Änderungen durchführen
@@ -230,7 +232,7 @@ describe('LuxCardComponent', () => {
       expandedEl = fixture.debugElement.query(By.directive(LuxCardContentExpandedComponent));
       toggleEl = fixture.debugElement.query(By.css('.lux-expanded-button'));
       expect(component.card.luxExpanded).toBeFalsy();
-      expect(contentEl.nativeElement.innerHTML).toEqual('Lorum ipsum');
+      expect(contentEl.nativeElement.innerHTML).toEqual('Lorem ipsum');
       expect(expandedEl).toBeNull();
       expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
 
@@ -357,9 +359,9 @@ describe('LuxCardComponent', () => {
 
 @Component({
   template: `
-    <lux-card luxTitle="Lorum ipsum">
+    <lux-card luxTitle="Lorem ipsum">
       <lux-card-content>
-        Lorum ipsum
+        Lorem ipsum
       </lux-card-content>
     </lux-card>
   `
@@ -368,9 +370,9 @@ class NoCardActionComponent {}
 
 @Component({
   template: `
-    <lux-card luxTitle="Lorum ipsum" (luxClicked)="test()">
+    <lux-card luxTitle="Lorem ipsum" (luxClicked)="test()">
       <lux-card-content>
-        Lorum ipsum
+        Lorem ipsum
       </lux-card-content>
     </lux-card>
   `
@@ -381,42 +383,42 @@ class CardActionComponent {
 
 @Component({
   template: `
-    <lux-card luxTitle="Lorum ipsum">
-      <lux-card-content>Lorum ipsum</lux-card-content>
-      <lux-card-content-expanded>Lorum ipsum expanded</lux-card-content-expanded>
+    <lux-card luxTitle="Lorem ipsum">
+      <lux-card-content>Lorem ipsum</lux-card-content>
+      <lux-card-content-expanded>Lorem ipsum expanded</lux-card-content-expanded>
     </lux-card>
   `
 })
 class ExpandedCardComponent {
-  @ViewChild(LuxCardComponent) card: LuxCardComponent;
+  @ViewChild(LuxCardComponent) card!: LuxCardComponent;
 }
 
 @Component({
   template: `
-    <lux-card luxTitle="Lorum ipsum" (luxClicked)="onCardClickedTest()">
-      <lux-card-content>Lorum ipsum</lux-card-content>
-      <lux-card-content-expanded>Lorum ipsum expanded</lux-card-content-expanded>
+    <lux-card luxTitle="Lorem ipsum" (luxClicked)="onCardClickedTest()">
+      <lux-card-content>Lorem ipsum</lux-card-content>
+      <lux-card-content-expanded>Lorem ipsum expanded</lux-card-content-expanded>
     </lux-card>
   `
 })
 class ExpandedClickableCardComponent {
-  @ViewChild(LuxCardComponent) card: LuxCardComponent;
+  @ViewChild(LuxCardComponent) card!: LuxCardComponent;
 
   onCardClickedTest() {}
 }
 
 @Component({
   template: `
-    <lux-card luxTitle="Lorum ipsum" [(luxExpanded)]="expanded" (luxExpandedChange)="onExpanded($event)">
-      <lux-card-content>Lorum ipsum</lux-card-content>
-      <lux-card-content-expanded>Lorum ipsum expanded</lux-card-content-expanded>
+    <lux-card luxTitle="Lorem ipsum" [(luxExpanded)]="expanded" (luxExpandedChange)="onExpanded($event)">
+      <lux-card-content>Lorem ipsum</lux-card-content>
+      <lux-card-content-expanded>Lorem ipsum expanded</lux-card-content-expanded>
     </lux-card>
   `
 })
 class LuxContentExpandedComponent {
   expanded = false;
 
-  @ViewChild(LuxCardComponent) card: LuxCardComponent;
+  @ViewChild(LuxCardComponent) card!: LuxCardComponent;
 
   onExpanded(expanded: boolean) {}
 }
@@ -438,9 +440,9 @@ class LuxContentExpandedComponent {
   `
 })
 class MockCardComponent {
-  title: string;
-  subTitle: string;
-  disabled: boolean;
+  title?: string;
+  subTitle?: string;
+  disabled?: boolean;
 
   testShowIcon = false;
   testShowAction = false;

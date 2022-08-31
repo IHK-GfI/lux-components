@@ -42,7 +42,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
     color: 'primary'
   };
 
-  @ContentChildren(LuxStepComponent) luxSteps: QueryList<LuxStepComponent>;
+  @ContentChildren(LuxStepComponent) luxSteps!: QueryList<LuxStepComponent>;
 
   @Output() luxFinishButtonClicked: EventEmitter<any> = new EventEmitter();
   @Output() luxStepChanged: EventEmitter<StepperSelectionEvent> = new EventEmitter<StepperSelectionEvent>();
@@ -50,9 +50,9 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   @Output() luxCheckValidation: EventEmitter<number> = new EventEmitter<number>();
   @Output() luxStepClicked: EventEmitter<number> = new EventEmitter<number>();
 
-  matStepper: MatStepper;
-  matStepLabels: ViewContainerRef[];
-  matStepHeaders: CdkStepHeader[];
+  matStepper!: MatStepper;
+  matStepLabels!: ViewContainerRef[];
+  matStepHeaders!: CdkStepHeader[];
 
   stepperConfiguration: ILuxStepperConfiguration = {
     luxCurrentStepNumber: 0,
@@ -93,7 +93,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
       this.generateCustomIcons();
     }
 
-    // Workaround: this.matStepper._stepHeader
+    // Workaround: this.matStepper._stepHeader.
     // Normalerweise sollte man über this.matStepper._stepHeader an die MatStepHeader kommen,
     // aber leider ist mit Angular 9 die QueryList<MatStepHeader> nur in diesem Lifecycle Hook
     // "ngAfterViewInit" gefüllt und danach immer leer. Deshalb werden hier die MatStepHeader
@@ -108,7 +108,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
     this.subscriptions.push(this.stepperService
       .getObservable(this)
       .pipe(skip(1))
-      .subscribe((next: boolean) => {
+      .subscribe((next: boolean | null) => {
         // Voraussetzung: Stepper nicht deaktiviert
         if (!this.stepperConfiguration.luxDisabled) {
           if (next === true) {
@@ -163,7 +163,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
-   * Generiert die individuellen Icons fuer die Steps.
+   * Generiert die individuellen Icons für die Steps.
    */
   generateCustomIcons() {
     const factory = this.cfr.resolveComponentFactory(LuxIconComponent);
@@ -175,7 +175,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
-   * Entfernt die eigenen Icons fuer die Steps.
+   * Entfernt die eigenen Icons für die Steps.
    */
   clearCustomIcons() {
     this.matStepLabels.forEach((stepLabel: ViewContainerRef) => {
@@ -187,7 +187,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
    * Stößt die Validierungsprüfung für den aktuell sichtbaren Step und dessen StepControl (wenn vorhanden) an.
    */
   checkValidation() {
-    const stepControl = this.luxSteps.toArray()[this.stepperConfiguration.luxCurrentStepNumber].luxStepControl;
+    const stepControl = this.luxSteps.toArray()[this.stepperConfiguration.luxCurrentStepNumber ?? 0].luxStepControl;
     if (stepControl) {
       LuxUtil.showValidationErrors(stepControl);
     }
@@ -202,7 +202,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
-   * Generiert die Icons fuer einen einzelnen Step
+   * Generiert die Icons für einen einzelnen Step
    *
    * @param stepLabel
    * @param luxStep
@@ -258,7 +258,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**** Getter/Setter luxCurrentStepNumber ****/
   get luxCurrentStepNumber() {
-    return this.stepperConfiguration.luxCurrentStepNumber;
+    return this.stepperConfiguration.luxCurrentStepNumber ?? 0;
   }
 
   @Input() set luxCurrentStepNumber(step: number) {
@@ -276,7 +276,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**** Getter/Setter luxUseCustomIcons ****/
   get luxUseCustomIcons() {
-    return this.stepperConfiguration.luxUseCustomIcons;
+    return this.stepperConfiguration.luxUseCustomIcons ?? false;
   }
 
   @Input() set luxUseCustomIcons(use: boolean) {
@@ -288,7 +288,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**** Getter/Setter luxEditedIconName ****/
   get luxEditedIconName() {
-    return this.stepperConfiguration.luxEditedIconName;
+    return this.stepperConfiguration.luxEditedIconName ?? '';
   }
 
   @Input() set luxEditedIconName(iconName: string) {
@@ -298,7 +298,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**** Getter/Setter luxVerticalStepper ****/
   get luxVerticalStepper() {
-    return this.stepperConfiguration.luxVerticalStepper;
+    return this.stepperConfiguration.luxVerticalStepper!;
   }
 
   @Input() set luxVerticalStepper(vertical: boolean) {
@@ -307,7 +307,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**** Getter/Setter luxLinear ****/
   get luxLinear() {
-    return this.stepperConfiguration.luxLinear;
+    return this.stepperConfiguration.luxLinear ?? true;
   }
 
   @Input() set luxLinear(linear: boolean) {
@@ -316,7 +316,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**** Getter/Setter luxDisabled ****/
   get luxDisabled() {
-    return this.stepperConfiguration.luxDisabled;
+    return this.stepperConfiguration.luxDisabled ?? false;
   }
 
   @Input() set luxDisabled(disabled: boolean) {
@@ -325,7 +325,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**** Getter/Setter luxShowNavigationButtons ****/
   get luxShowNavigationButtons() {
-    return this.stepperConfiguration.luxShowNavigationButtons;
+    return this.stepperConfiguration.luxShowNavigationButtons ?? true;
   }
 
   @Input() set luxShowNavigationButtons(showNavButtons: boolean) {
@@ -334,7 +334,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**** Getter/Setter luxHorizontalStepAnimationActive ****/
   get luxHorizontalStepAnimationActive() {
-    return this.stepperConfiguration.luxHorizontalStepAnimationActive;
+    return this.stepperConfiguration.luxHorizontalStepAnimationActive ?? false;
   }
 
   @Input() set luxHorizontalStepAnimationActive(animationActive: boolean) {
@@ -343,28 +343,28 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   /**** Getter/Setter luxPreviousButtonConfig ****/
   get luxPreviousButtonConfig() {
-    return this.stepperConfiguration.luxPreviousButtonConfig;
+    return this.stepperConfiguration.luxPreviousButtonConfig!;
   }
 
-  @Input() set luxPreviousButtonConfig(config: ILuxStepperButtonConfig) {
+  @Input() set luxPreviousButtonConfig(config: ILuxStepperButtonConfig | undefined) {
     this.stepperConfiguration.luxPreviousButtonConfig = config ? config : this._DEFAULT_PREV_BTN_CONF;
   }
 
   /**** Getter/Setter luxNextButtonConfig ****/
-  get luxNextButtonConfig() {
-    return this.stepperConfiguration.luxNextButtonConfig;
+  get luxNextButtonConfig(): ILuxStepperButtonConfig | undefined {
+    return this.stepperConfiguration.luxNextButtonConfig!;
   }
 
-  @Input() set luxNextButtonConfig(config: ILuxStepperButtonConfig) {
+  @Input() set luxNextButtonConfig(config: ILuxStepperButtonConfig | undefined) {
     this.stepperConfiguration.luxNextButtonConfig = config ? config : this._DEFAULT_NEXT_BTN_CONF;
   }
 
   /**** Getter/Setter luxFinishButtonConfig ****/
   get luxFinishButtonConfig() {
-    return this.stepperConfiguration.luxFinishButtonConfig;
+    return this.stepperConfiguration.luxFinishButtonConfig!;
   }
 
-  @Input() set luxFinishButtonConfig(config: ILuxStepperButtonConfig) {
+  @Input() set luxFinishButtonConfig(config: ILuxStepperButtonConfig | undefined) {
     this.stepperConfiguration.luxFinishButtonConfig = config ? config : this._DEFAULT_FIN_BTN_CONF;
   }
 

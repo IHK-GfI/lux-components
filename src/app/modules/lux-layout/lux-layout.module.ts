@@ -14,7 +14,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { LuxActionModule } from '../lux-action/lux-action.module';
 import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';
-import { LuxIconComponent } from '../lux-icon/lux-icon/lux-icon.component';
 import { LuxPipesModule } from '../lux-pipes/lux-pipes.module';
 import { LuxAccordionComponent } from './lux-accordion/lux-accordion.component';
 import { LuxAppFooterComponent } from './lux-app-footer/lux-app-footer.component';

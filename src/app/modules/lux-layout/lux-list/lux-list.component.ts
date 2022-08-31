@@ -23,12 +23,12 @@ import { LuxUtil } from '../../lux-util/lux-util';
 export class LuxListComponent implements AfterViewInit, OnDestroy {
   private _luxSelectedPosition = 0;
 
-  private previousFocusedPosition: number;
+  private previousFocusedPosition?: number;
   private clickSubscriptions: Subscription[] = [];
-  private listItemsSubscription: Subscription;
+  private listItemsSubscription?: Subscription;
   private keyManager: FocusKeyManager<LuxListItemComponent> = new FocusKeyManager<LuxListItemComponent>([]);
 
-  @ContentChildren(LuxListItemComponent) luxItems: QueryList<LuxListItemComponent>;
+  @ContentChildren(LuxListItemComponent) luxItems!: QueryList<LuxListItemComponent>;
 
   @Output() luxFocusedItemChange: EventEmitter<LuxListItemComponent> = new EventEmitter();
   @Output() luxFocusedPositionChange: EventEmitter<number> = new EventEmitter();
@@ -42,7 +42,7 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
   @HostBinding('attr.tabindex') tabindex = '0';
   @HostBinding('attr.aria-multiselectable') ariaMulti = 'true';
 
-  @HostListener('keydown', ['$event']) onKeydown($event) {
+  @HostListener('keydown', ['$event']) onKeydown($event: KeyboardEvent) {
     this.keydown($event);
   }
 
@@ -98,23 +98,23 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
    */
   keydown($event: KeyboardEvent) {
     if (LuxUtil.isKeySpace($event) || LuxUtil.isKeyEnter($event)) {
-      this.select(this.keyManager.activeItemIndex);
+      this.select(this.keyManager.activeItemIndex!);
       $event.preventDefault();
     } else if (LuxUtil.isKeyHome($event)) {
       this.keyManager.setFirstItemActive();
-      this.focus(this.keyManager.activeItemIndex);
+      this.focus(this.keyManager.activeItemIndex!);
       $event.preventDefault();
     } else if (LuxUtil.isKeyEnd($event)) {
       this.keyManager.setLastItemActive();
-      this.focus(this.keyManager.activeItemIndex);
+      this.focus(this.keyManager.activeItemIndex!);
       $event.preventDefault();
     } else if (LuxUtil.isKeyArrowUp($event)) {
       this.keyManager.setPreviousItemActive();
-      this.focus(this.keyManager.activeItemIndex);
+      this.focus(this.keyManager.activeItemIndex!);
       $event.preventDefault();
     } else if (LuxUtil.isKeyArrowDown($event)) {
       this.keyManager.setNextItemActive();
-      this.focus(this.keyManager.activeItemIndex);
+      this.focus(this.keyManager.activeItemIndex!);
       $event.preventDefault();
     } else {
       this.keyManager.onKeydown($event);
@@ -139,7 +139,7 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
-   * Merkt sich die position als Selektions-Position und aktualisiert den luxSelected-Wert
+   * Merkt sich die Position als Selektionsposition und aktualisiert den luxSelected-Wert
    * aller luxItems, die hier bekannt sind.
    *
    * @param position
@@ -170,7 +170,7 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
     this.keyManager.setActiveItem(position);
 
     this.luxFocusedPositionChange.emit(position);
-    this.luxFocusedItemChange.emit(this.keyManager.activeItem);
+    this.luxFocusedItemChange.emit(this.keyManager.activeItem!);
 
     this.previousFocusedPosition = position;
   }
@@ -191,11 +191,13 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
-   * Gibt das ListItem an der position zurück bzw. null wenn die luxItems undefined/null sind.
+   * Gibt das ListItem an der position zurück bzw. "null" wenn die luxItems undefined/null sind.
    *
    * @param position
    */
-  private findListItem(position: number): LuxListItemComponent {
-    return this.luxItems ? this.luxItems.find((listItem: LuxListItemComponent, index: number) => index === position) : null;
+  private findListItem(position: number): LuxListItemComponent | null {
+    const item = this.luxItems ? this.luxItems.find((listItem: LuxListItemComponent, index: number) => index === position) : null;
+
+    return item ?? null;
   }
 }

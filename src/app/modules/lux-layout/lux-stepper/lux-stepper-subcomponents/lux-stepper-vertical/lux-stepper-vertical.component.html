@@ -1,18 +1,18 @@
 <!-- Vertikaler Stepper, die Konfiguration stammt aus dem LuxStepper und wird hier angewandt -->
 <mat-vertical-stepper
-  [linear]="luxStepperConfig.luxLinear"
-  [selectedIndex]="luxStepperConfig.luxCurrentStepNumber"
+  [linear]="luxStepperConfig?.luxLinear"
+  [selectedIndex]="luxStepperConfig?.luxCurrentStepNumber"
   [ngClass]="{
-    'lux-ignore-mat-step-icons': luxStepperConfig.luxUseCustomIcons,
-    'lux-block-pointer-events': luxStepperConfig.luxDisabled,
-    'lux-linear-stepper': luxStepperConfig.luxLinear
+    'lux-ignore-mat-step-icons': luxStepperConfig?.luxUseCustomIcons,
+    'lux-block-pointer-events': luxStepperConfig?.luxDisabled,
+    'lux-linear-stepper': luxStepperConfig?.luxLinear
   }"
   (selectionChange)="luxStepChanged.emit($event)"
   (click)="onStepClicked($event)"
   (keydown.enter)="onStepClicked($event)"
   #stepper
 >
-  <ng-container *ngFor="let luxStep of luxStepperConfig.luxSteps; let i = index">
+  <ng-container *ngFor="let luxStep of luxStepperConfig?.luxSteps; let i = index">
     <mat-step [completed]="luxStep.isCompleted()" [optional]="luxStep.luxOptional" [editable]="luxStep.luxEditable">
       <!-- Header des Steps -->
       <ng-template matStepLabel>
@@ -31,7 +31,7 @@
         (luxPrevClick)="luxPrevButtonClicked.emit()"
         (luxNextClick)="luxNextButtonClicked.emit()"
         (luxFinClick)="luxFinButtonClicked.emit()"
-        *ngIf="luxStepperConfig.luxShowNavigationButtons"
+        *ngIf="luxStepperConfig?.luxShowNavigationButtons"
       >
       </lux-stepper-nav-buttons>
     </mat-step>

@@ -14,8 +14,8 @@ export class LuxAppFooterLinkInfo implements ILuxAppFooterLinkInfo {
   constructor(label: string, path: string, alwaysVisible?: boolean, blank?: boolean) {
     this.label = label;
     this.path = path;
-    this.alwaysVisible = alwaysVisible;
-    this.blank = blank;
+    this.alwaysVisible = alwaysVisible ?? false;
+    this.blank = blank ?? false;
   }
 
   /**
@@ -26,8 +26,6 @@ export class LuxAppFooterLinkInfo implements ILuxAppFooterLinkInfo {
    * @returns eine Link Info
    */
   static generateInfo(data: ILuxAppFooterLinkInfo): LuxAppFooterLinkInfo {
-    const info: LuxAppFooterLinkInfo = new LuxAppFooterLinkInfo(data.label, data.path, data.alwaysVisible);
-
-    return info;
+    return new LuxAppFooterLinkInfo(data.label, data.path, data.alwaysVisible);
   }
 }

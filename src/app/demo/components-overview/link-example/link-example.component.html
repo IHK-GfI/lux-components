@@ -116,7 +116,7 @@
     <lux-toggle
       class="lux-highlight-section"
       luxLabel="Label Uppercase"
-      [(luxChecked)]="config.labelConfiguration.allUppercase"
+      [(luxChecked)]="config.labelConfiguration!.allUppercase"
       (luxCheckedChange)="updateConfiguration()"
       [luxNoTopLabel]="true"
     >

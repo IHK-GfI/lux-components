@@ -116,16 +116,16 @@ describe('LuxTextareaComponent', () => {
 
     it('Sollte label und placeholder setzen', fakeAsync(() => {
       // Given
-      component.label = 'Testlabel';
-      component.placeholder = 'Testplaceholder';
+      component.label = 'Label';
+      component.placeholder = 'Placeholder';
       fixture.detectChanges();
 
       const labelEl = fixture.debugElement.query(By.css('.lux-label')).nativeElement;
       const textareaEl = fixture.debugElement.query(By.css('textarea')).nativeElement;
       // When
       // Then
-      expect(labelEl.innerText.trim()).toEqual('Testlabel');
-      expect(textareaEl.placeholder).toEqual('Testplaceholder');
+      expect(labelEl.innerText.trim()).toEqual('Label');
+      expect(textareaEl.placeholder).toEqual('Placeholder');
     }));
 
     it('Sollte invalid sein wenn luxRequired = true', fakeAsync(() => {
@@ -230,7 +230,7 @@ describe('LuxTextareaComponent', () => {
 
       // Änderungen durchführen
       component.validators = Validators.required;
-      component.errorCb = (value, errors) => 'Alle meine Entchen';
+      component.errorCb = () => 'Alle meine Entchen';
       const spy = spyOn(component, 'errorCb').and.callThrough();
       LuxTestHelper.wait(fixture);
 
@@ -451,9 +451,9 @@ class LuxMockTextareaComponent {
 @Component({
   selector: 'lux-mock-form-textarea',
   template:
-    '<form [formGroup]="form"><lux-textarea [(luxValue)]="value" [luxLabel]="label" [luxPlaceholder]="placeholder" ' +
-    '[luxReadonly]="readonly" [luxRequired]="required" [luxMaxRows]="maxRows" ' +
-    '[luxMinRows]="minRows" luxControlBinding="control"></lux-textarea></form>'
+    `<form [formGroup]="form"><lux-textarea [(luxValue)]="value" [luxLabel]="label" [luxPlaceholder]="placeholder"
+    [luxReadonly]="readonly" [luxRequired]="required" [luxMaxRows]="maxRows"
+    [luxMinRows]="minRows" luxControlBinding="control"></lux-textarea></form>`
 })
 class LuxMockFormTextareaComponent {
   value?: string;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { LuxConsoleService } from "../lux-util/lux-console.service";
+import { LuxConsoleService } from '../lux-util/lux-console.service';
 import { LuxStorageService } from '../lux-util/lux-storage.service';
 import { LuxTheme } from './lux-theme';
 
@@ -31,10 +31,19 @@ export class LuxThemeService {
   }
 
   setTheme(themeName: string) {
-    const newTheme = this.themes.find((theme) => theme.name === themeName);
-    this.theme$.next(newTheme);
+    this.theme$.next(this.findTheme(themeName));
     this.storageService.setItem(this.storageKeyThemeName, themeName, false);
     this.loadTheme();
+  }
+
+  private findTheme(themeName: string): LuxTheme {
+    const newTheme = this.themes.find((theme) => theme.name === themeName);
+
+    if (!newTheme) {
+      throw Error(`Theme "${ themeName }" not found.`);
+    }
+
+    return newTheme;
   }
 
   setThemes(themes: LuxTheme[]) {

@@ -1,8 +1,8 @@
 /**
- * Enthaelt eine einzelne Scroll-Position
- * scrollHeight = Hoehe des Scrollbars
+ * Enthält eine einzelne Scroll-Position
+ * scrollHeight = Höhe des Scrollbars
  * scrollTop = Entfernung nach oben
- * clientHeight = Hoehe des Mont
+ * clientHeight = Höhe des Mont
  */
 export interface LuxScrollPosition {
   scrollHeight: number;

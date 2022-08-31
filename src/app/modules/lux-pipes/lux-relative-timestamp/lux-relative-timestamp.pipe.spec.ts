@@ -14,7 +14,7 @@ describe('LuxRelativeTimestampPipe', () => {
 
   it('should show default text', () => {
     const pipe = new LuxRelativeTimestampPipe();
-    expect(pipe.transform(null, 'Keine Zeit')).toEqual('Keine Zeit');
+    expect(pipe.transform(null as any, 'Keine Zeit')).toEqual('Keine Zeit');
   });
 
   it('should show correct future times', () => {
@@ -114,12 +114,11 @@ describe('LuxRelativeTimestampPipe', () => {
     const pipe = new LuxRelativeTimestampPipe();
     const now = new Date();
 
-    let timestamp = now.getTime();
-
+    let timestamp;
     timestamp = now.getTime() - day * 6;
-    expect(pipe.transform(timestamp, null, 'seit')).toEqual('seit 6 Tagen');
+    expect(pipe.transform(timestamp, '', 'seit')).toEqual('seit 6 Tagen');
 
     timestamp = now.getTime() - week;
-    expect(pipe.transform(timestamp, null, 'seit')).toEqual('seit 7 Tagen');
+    expect(pipe.transform(timestamp, '', 'seit')).toEqual('seit 7 Tagen');
   });
 });

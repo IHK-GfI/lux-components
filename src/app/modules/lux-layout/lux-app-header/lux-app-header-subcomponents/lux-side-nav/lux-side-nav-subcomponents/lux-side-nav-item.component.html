@@ -42,7 +42,7 @@
     <ng-container *ngIf="luxExpanded">
       <ng-container *ngFor="let sideNavItem of sideNavItems; let i = index">
         <div class="lux-side-nav-sub-item" *ngIf="i >= 0">
-          <ng-container [ngTemplateOutlet]="sideNavItem.templateRef"></ng-container>
+          <ng-container [ngTemplateOutlet]="sideNavItem.templateRef ?? null"></ng-container>
         </div>
       </ng-container>
       <div

@@ -30,7 +30,7 @@
         <lux-divider></lux-divider>
       </ng-container>
       <ng-container *ngFor="let sideNavItem of directSideNavItems">
-        <ng-container [ngTemplateOutlet]="sideNavItem.templateRef"></ng-container>
+        <ng-container [ngTemplateOutlet]="sideNavItem.templateRef ?? null"></ng-container>
       </ng-container>
       <ng-content select="lux-side-nav-item"></ng-content>
     </div>

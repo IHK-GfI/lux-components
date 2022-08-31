@@ -2,8 +2,8 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { inject } from '@angular/core/testing';
 
 export class LuxOverlayHelper {
-  private overlayContainer: OverlayContainer;
-  private htmlElement: HTMLElement;
+  private overlayContainer!: OverlayContainer;
+  private htmlElement!: HTMLElement;
 
   constructor() {
     inject([OverlayContainer], (oc: OverlayContainer) => {
@@ -12,11 +12,11 @@ export class LuxOverlayHelper {
     })();
   }
 
-  public selectAllFromOverlay(query) {
+  public selectAllFromOverlay(query: string) {
     return this.htmlElement.querySelectorAll(query) as NodeListOf<HTMLElement>;
   }
 
-  public selectOneFromOverlay(query) {
+  public selectOneFromOverlay(query: string) {
     return this.htmlElement.querySelector(query) as HTMLElement;
   }
 }

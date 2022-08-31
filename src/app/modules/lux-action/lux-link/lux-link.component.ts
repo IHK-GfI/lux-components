@@ -11,7 +11,7 @@ export class LuxLinkComponent extends LuxActionComponentBaseClass {
   public readonly iconSize: string = '2x';
 
   @Input() luxHref = '';
-  @Input() luxBlank = false;
+  @Input() luxBlank? = false;
 
   constructor(private router: Router, public cdr: ChangeDetectorRef) {
     super();

@@ -23,27 +23,27 @@ import { LuxUtil } from '../../../../lux-util/lux-util';
   animations: [sideNavAnimation, sideNavOverlayAnimation]
 })
 export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
-  @Input() luxDashboardLink: string;
+  @Input() luxDashboardLink?: string;
   @Input() luxDashboardLinkTitle = 'LUX Dashboard';
-  @Input() luxOpenLinkBlank: boolean;
+  @Input() luxOpenLinkBlank?: boolean;
   @Input() luxAriaRoleNavigationLabel = $localize`:@@luxc.side-nav.ariarolenavigation:Anwendungsmenü / Navigation`;
 
   @Output() luxSideNavExpandedChange = new EventEmitter<boolean>();
 
-  @ContentChildren(LuxSideNavItemComponent, { descendants: true }) sideNavItems: QueryList<LuxSideNavItemComponent>;
-  @ContentChildren(LuxSideNavItemComponent, { descendants: false }) directSideNavItems: QueryList<LuxSideNavItemComponent>;
+  @ContentChildren(LuxSideNavItemComponent, { descendants: true }) sideNavItems!: QueryList<LuxSideNavItemComponent>;
+  @ContentChildren(LuxSideNavItemComponent, { descendants: false }) directSideNavItems!: QueryList<LuxSideNavItemComponent>;
 
-  @ViewChild('sideNav', { read: ElementRef, static: true }) sideNavEl: ElementRef;
-  @ViewChild('sideNavHeader', { read: ElementRef, static: true }) sideNavHeaderEl: ElementRef;
-  @ViewChild('sideNavFooter', { read: ElementRef, static: true }) sideNavFooterEl: ElementRef;
+  @ViewChild('sideNav', { read: ElementRef, static: true }) sideNavEl!: ElementRef;
+  @ViewChild('sideNavHeader', { read: ElementRef, static: true }) sideNavHeaderEl!: ElementRef;
+  @ViewChild('sideNavFooter', { read: ElementRef, static: true }) sideNavFooterEl!: ElementRef;
 
-  top: string;
-  left: string;
-  bottom: string;
-  right: string;
+  top?: string;
+  left?: string;
+  bottom?: string;
+  right?: string;
   focusElement: any;
-  height: number;
-  width: number;
+  height?: number;
+  width?: number;
   visibility = 'hidden';
   _sideNavExpanded = false;
 
@@ -57,7 +57,7 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
   }
 
   private itemClickSubscriptions: Subscription[] = [];
-  private subscription: Subscription;
+  private subscription?: Subscription;
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -81,7 +81,7 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
     this.itemClickSubscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }
 
@@ -98,7 +98,7 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
       this.focusElement = document.activeElement;
     } else {
       setTimeout(() => {
-        // Wenn das SideNavMenü geschlossen wird, wird wieder der SideNavMenübutton fokusiert.
+        // Wenn das SideNavMenü geschlossen wird, wird wieder der SideNavMenübutton fokussiert.
         if (this.focusElement) {
           this.focusElement.focus();
         }
@@ -111,14 +111,6 @@ export class LuxSideNavComponent implements AfterViewInit, OnDestroy {
     this.left = this.appService.getAppLeft() + 'px';
     this.bottom = this.appService.getAppBottom() + 'px';
     this.right = this.appService.getAppRight() + 'px';
-  }
-
-  findParent(parent: HTMLElement) {
-    if (parent && parent.classList.contains('lux-app-container')) {
-      return parent.parentElement;
-    } else {
-      return this.findParent(parent.parentElement);
-    }
   }
 
   /**

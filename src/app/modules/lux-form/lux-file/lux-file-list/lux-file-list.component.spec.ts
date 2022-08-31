@@ -65,7 +65,7 @@ describe('LuxFileListComponent', () => {
 
       expect(localFixture.debugElement.query(By.css('.lux-file-list-entry-label'))).toBeFalsy();
       expect(localTestComponent.formControl.value).toBeNull();
-      expect(localFileComponent.luxSelectedFiles).toBeNull();
+      expect(localFileComponent.luxSelectedFiles).toBeUndefined();
 
       // Änderungen durchführen
       const files = [{ name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' }];
@@ -284,7 +284,7 @@ describe('LuxFileListComponent', () => {
 
       expect(localFixture.debugElement.query(By.css('.lux-file-list-entry-label'))).toBeFalsy();
       expect(localTestComponent.selected).toBeNull();
-      expect(localFileComponent.luxSelectedFiles).toBeNull();
+      expect(localFileComponent.luxSelectedFiles).toBeUndefined();
 
       // Änderungen durchführen
       const files = [{ name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' }];
@@ -1091,7 +1091,7 @@ describe('LuxFileListComponent', () => {
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(spy).toHaveBeenCalledTimes(1);
+          expect(spy).toHaveBeenCalledTimes(2);
           expect(fixture.debugElement.queryAll(By.css('.lux-file-list-entry')).length).toBe(0);
 
           // Änderungen durchführen
@@ -1103,7 +1103,7 @@ describe('LuxFileListComponent', () => {
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(spy).toHaveBeenCalledTimes(2);
+          expect(spy).toHaveBeenCalledTimes(3);
           expect(fixture.debugElement.queryAll(By.css('.lux-file-list-entry')).length).toBe(1);
 
           // Änderungen durchführen
@@ -1113,7 +1113,7 @@ describe('LuxFileListComponent', () => {
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(spy).toHaveBeenCalledTimes(3);
+          expect(spy).toHaveBeenCalledTimes(4);
           expect(fixture.debugElement.queryAll(By.css('.lux-file-list-entry')).length).toBe(0);
 
           discardPeriodicTasks();

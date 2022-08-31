@@ -57,7 +57,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   @Input() luxMenuIconName = 'menu';
   @Input() luxMenuTriggerIconShowRight = false;
   @Input() luxClassName = '';
-  @Input() luxTagId: string | null = null;
+  @Input() luxTagId?: string;
   @Input() luxToggleDisabled = false;
   @Input() luxAriaMenuTriggerLabel = $localize`:@@luxc.menu.trigger.btn:Menü`;
 

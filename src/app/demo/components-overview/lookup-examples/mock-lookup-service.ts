@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LuxLookupTableEntry } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-table-entry';
 import { mockResult } from './mock-result';
 import { LuxLookupService } from '../../../modules/lux-lookup/lux-lookup-service/lux-lookup.service';
 import { of } from 'rxjs';
@@ -7,7 +8,7 @@ import { LuxLookupParameters } from '../../../modules/lux-lookup/lux-lookup-mode
 @Injectable()
 export class MockLuxLookupService extends LuxLookupService {
 
-  getLookupTable(tableNo, parameters) {
+  getLookupTable(tableNo: string, parameters: LuxLookupParameters) {
     return of(this.filterKeys([...mockResult], parameters));
   }
 
@@ -17,7 +18,7 @@ export class MockLuxLookupService extends LuxLookupService {
    * @param array
    * @param parameters
    */
-  private filterKeys(array, parameters: LuxLookupParameters) {
+  private filterKeys(array: LuxLookupTableEntry[], parameters: LuxLookupParameters) {
     if (!parameters.keys || parameters.keys.length === 0) {
       return array;
     }

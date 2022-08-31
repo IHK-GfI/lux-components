@@ -33,7 +33,7 @@ export class StepperLargeExampleStepFinButtonComponent extends LuxStepperLargeSt
     this.luxTitle = 'Konfiguration: Abschließen-Button';
     this.luxVetoFn = this.createVetoPromise;
 
-    this.form.get('alignIconWithLabel').disable();
+    this.form.get('alignIconWithLabel')!.disable();
 
     this.luxCompleted = this.form.valid;
 

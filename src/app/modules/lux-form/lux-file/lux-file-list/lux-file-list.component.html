@@ -65,7 +65,7 @@
             {{ luxHint }}
           </ng-container>
           <ng-template #formHintTemplate>
-            <ng-container *ngTemplateOutlet="formHintComponent.templateRef"></ng-container>
+            <ng-container *ngTemplateOutlet="formHintComponent?.templateRef ?? null"></ng-container>
           </ng-template>
         </mat-hint>
       </div>
@@ -198,15 +198,15 @@
           [luxAlwaysVisible]="true"
           [luxPrio]="customConfig.prio ? customConfig.prio : 50 + i"
           luxColor="primary"
-          (luxClicked)="customConfig.onClick(selectedFile)"
+          (luxClicked)="customConfig.onClick ? customConfig.onClick(selectedFile) : noop()"
           [luxHidden]="!!customConfig.hidden"
         >
         </lux-menu-item>
       </lux-menu>
     </div>
   </div>
-  <ng-container *ngIf="luxSelectedFiles.length">
-    <lux-divider *ngIf="index !== this.luxSelectedFiles.length - 1"></lux-divider>
+  <ng-container *ngIf="luxSelectedFiles?.length">
+    <lux-divider *ngIf="index !== (this.luxSelectedFiles?.length ?? 0) - 1"></lux-divider>
   </ng-container>
 </ng-template>
 

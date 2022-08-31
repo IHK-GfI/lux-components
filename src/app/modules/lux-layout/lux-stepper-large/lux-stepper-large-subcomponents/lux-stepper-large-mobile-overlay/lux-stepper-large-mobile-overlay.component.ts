@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { LuxUtil } from '../../../../lux-util/lux-util';
 import { LuxStepperLargeComponent } from '../../lux-stepper-large.component';
 import { LUX_STEPPER_LARGE_OVERLAY_DATA, LuxStepperLargeMobileOverlayData } from './lux-stepper-large-mobile-overlay-data';
@@ -10,9 +10,9 @@ import { LuxStepperLargeMobileOverlayRef } from './lux-stepper-large-mobile-over
   styleUrls: ['./lux-stepper-large-mobile-overlay.component.scss']
 })
 export class LuxStepperLargeMobileOverlayComponent implements OnInit, AfterViewInit {
-  @ViewChildren('links') links: QueryList<ElementRef>;
+  @ViewChildren('links') links!: QueryList<ElementRef>;
 
-  stepperComponent: LuxStepperLargeComponent;
+  stepperComponent!: LuxStepperLargeComponent;
 
   @HostListener('document:keydown', ['$event'])
   handleKeydown(event: KeyboardEvent) {
@@ -28,6 +28,8 @@ export class LuxStepperLargeMobileOverlayComponent implements OnInit, AfterViewI
 
   ngOnInit(): void {
     this.stepperComponent = this.data.stepperComponent;
+
+    LuxUtil.assertNonNull('stepperComponent', this.stepperComponent);
   }
 
   ngAfterViewInit() {

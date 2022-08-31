@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './text-example.component.html'
 })
 export class TextExampleComponent {
-  @Input() title = 'Lorum ipsum';
+  @Input() title = 'Lorem ipsum';
 
   constructor() {}
 }

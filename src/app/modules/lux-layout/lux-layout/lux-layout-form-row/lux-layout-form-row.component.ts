@@ -30,16 +30,16 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
     column: '0px'
   });
 
-  @ContentChildren(LuxLayoutRowItemDirective) rowItems: QueryList<LuxLayoutRowItemDirective>;
+  @ContentChildren(LuxLayoutRowItemDirective) rowItems!: QueryList<LuxLayoutRowItemDirective>;
 
-  _luxMargin: LuxLayoutRowMarginConfig;
-  _luxGap: LuxLayoutRowGapConfig;
+  _luxMargin = new LuxLayoutRowMarginConfig(LuxLayoutFormRowComponent.DEFAULT_MARGINS);
+  _luxGap = new LuxLayoutRowGapConfig(LuxLayoutFormRowComponent.DEFAULT_GAPS);
 
   @Input()
   luxTitle = '';
 
   @Input()
-  luxWrapAt;
+  luxWrapAt = LuxLayoutFormRowComponent.DEFAULT_WRAP_AT;
 
   @Input()
   get luxMargin(): LuxLayoutRowMarginConfig {
@@ -64,15 +64,15 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
   }
 
   headerPaddingLeft = '0';
-  rowItemCount: number;
-  rowItemWidthInPercent: number;
-  rowGap: string;
-  rowItemGap: string;
-  layoutOrientation;
-  margin: string;
-  subscription: Subscription;
-  query: string;
-  greaterWrapAt: boolean;
+  rowItemCount = 0;
+  rowItemWidthInPercent?: number;
+  rowGap?: string;
+  rowItemGap?: string;
+  layoutOrientation?: string;
+  margin?: string;
+  subscription?: Subscription;
+  query?: string;
+  greaterWrapAt?: boolean;
 
   constructor(private config: LuxComponentsConfigService, private queryObserver: LuxMediaQueryObserverService) {}
 
@@ -130,13 +130,15 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
       Beispiele:
        - <lux-... *luxLayoutRowItem="{}">...</lux-...> (normale Elemente)
        - <lux-... *luxLayoutRowItem="{ colSpan: 2 }">...</lux-...> (spaltenübergreifende Elemente)
-       - <lux-... *luxLayoutRowItem="{ flex: 'none' }">...</lux-...> (Spalte nur so groß wie der Inhalt z.B Icon-Button)
+       - <lux-... *luxLayoutRowItem="{ flex: 'none' }">...</lux-...> (Spalte nur so groß wie der Inhalt z.B. Icon-Button)
        - <div *luxLayoutRowItem="{ empty: true }"></div> (leere Elemente)
       `);
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   update() {
@@ -166,7 +168,7 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
 
   updateRowItemCount() {
     this.rowItemCount = 0;
-    this.rowItems.forEach(rowItem => (this.rowItemCount += rowItem.luxLayoutRowItem.colSpan));
+    this.rowItems.forEach(rowItem => (this.rowItemCount += rowItem.luxLayoutRowItem.colSpan!));
   }
 
   updateRowItemWidthInPercent() {
@@ -205,12 +207,12 @@ export class LuxLayoutFormRowComponent implements OnInit, AfterContentInit, OnDe
   }
 
   private calculateRowItemWidth(rowItem: LuxLayoutRowItemDirective) {
-    return rowItem.luxLayoutRowItem.colSpan * this.rowItemWidthInPercent;
+    return rowItem.luxLayoutRowItem.colSpan! * this.rowItemWidthInPercent!;
   }
 
   private calculateRowItemGap(rowItem: LuxLayoutRowItemDirective) {
-    const gapAsNumber = +this.rowItemGap.replace('px', '');
-    if (rowItem.luxLayoutRowItem.colSpan > 1) {
+    const gapAsNumber = +this.rowItemGap!.replace('px', '');
+    if (rowItem.luxLayoutRowItem.colSpan! > 1) {
       return (this.rowItems.length / this.rowItemCount) * gapAsNumber;
     } else {
       return gapAsNumber;

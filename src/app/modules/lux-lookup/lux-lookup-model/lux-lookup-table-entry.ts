@@ -1,5 +1,5 @@
 /**
- * Kennzeichnet einen einzelnen Eintrag in einer Schluesseltabelle.
+ * Kennzeichnet einen einzelnen Eintrag in einer Schlüsseltabelle.
  */
 export class LuxLookupTableEntry {
   gueltigkeitBis?: string | number;
@@ -15,6 +15,11 @@ export class LuxLookupTableEntry {
   isUngueltig?: boolean;
 
   constructor(partial: Partial<LuxLookupTableEntry>) {
+    if (!partial.hasOwnProperty('key') || !partial.key) {
+      throw Error(`The LuxLookupTableEntry has no key.`);
+    }
+    this.key = partial.key;
+
     Object.assign(this, partial);
   }
 }

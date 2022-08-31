@@ -46,7 +46,7 @@ export class AccordionExampleComponent {
   set multiMode(multiMode: boolean) {
     this._multiMode = multiMode;
 
-    if (multiMode === false) {
+    if (!multiMode) {
       this.expanded = false;
     }
   }

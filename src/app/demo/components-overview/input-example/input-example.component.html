@@ -78,7 +78,7 @@
       <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <span fxFlex="35px">Wert:</span>
-          <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
+          <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
         </div>
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
@@ -158,14 +158,14 @@
         <lux-button
           luxLabel="Enable"
           luxColor="primary"
-          (luxClicked)="form.get(controlBinding).enable()"
-          [luxDisabled]="!form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.enable()"
+          [luxDisabled]="!form.get(controlBinding)!.disabled"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
           luxColor="primary"
-          (luxClicked)="form.get(controlBinding).disable()"
-          [luxDisabled]="form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.disable()"
+          [luxDisabled]="form.get(controlBinding)!.disabled"
         ></lux-button>
       </div>
       <div class="lux-hint lux-pt-3">Erlaubt es, die Component über das Formular zu deaktivieren.</div>

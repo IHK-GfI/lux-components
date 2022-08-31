@@ -12,9 +12,9 @@ export class LuxStepperNavButtonsComponent {
   @Output() luxNextClick: EventEmitter<void> = new EventEmitter();
   @Output() luxFinClick: EventEmitter<void> = new EventEmitter();
 
-  @Input() luxIndex: number;
-  @Input() luxStep: LuxStepComponent;
-  @Input() luxStepperConfig: ILuxStepperConfiguration;
+  @Input() luxIndex = -1;
+  @Input() luxStep!: LuxStepComponent;
+  @Input() luxStepperConfig?: ILuxStepperConfiguration;
 
   constructor() {}
 }

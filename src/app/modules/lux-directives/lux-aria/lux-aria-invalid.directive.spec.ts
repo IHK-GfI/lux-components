@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { LuxAriaInvalidDirective } from './lux-aria-invalid.directive';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';

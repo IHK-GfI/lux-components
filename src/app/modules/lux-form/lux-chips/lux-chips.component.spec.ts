@@ -276,7 +276,7 @@ describe('LuxChipComponent', () => {
 
       // Änderungen durchführen
       const inputElement = fixture.debugElement.query(By.css('input'));
-      LuxTestHelper.typeInElementAsynch('Option 1', fixture, inputElement.nativeElement, () => {
+      LuxTestHelper.typeInElementAsync('Option 1', fixture, inputElement.nativeElement, () => {
         const optionElement = overlayHelper.selectOneFromOverlay('mat-option');
         optionElement.click();
         LuxTestHelper.wait(fixture, 500);
@@ -308,7 +308,7 @@ describe('LuxChipComponent', () => {
       // Eigentlich muss ein "blur"-Event stattfinden, um die Options auszublenden, wir machen das im Test per Hand.
       spyOnProperty(chipsComponent.matAutocomplete!, 'isOpen', 'get').and.returnValue(false);
 
-      LuxTestHelper.typeInElementAsynch('1', fixture, inputElement.nativeElement, () => {
+      LuxTestHelper.typeInElementAsync('1', fixture, inputElement.nativeElement, () => {
         LuxTestHelper.dispatchEvent(inputElement.nativeElement, new Event('blur'));
         LuxTestHelper.wait(fixture, 500);
 

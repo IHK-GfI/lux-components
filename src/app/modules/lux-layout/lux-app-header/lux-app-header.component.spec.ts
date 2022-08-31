@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import {
   ComponentFixture,
@@ -9,6 +11,7 @@ import {
   inject,
   TestBed
 } from '@angular/core/testing';
+import { Viewport } from 'karma-viewport/dist/adapter/viewport';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxMasterDetailMobileHelperService } from '../lux-master-detail/lux-master-detail-mobile-helper.service';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -17,6 +20,8 @@ import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper
 import { Router } from '@angular/router';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+
+declare const viewport: Viewport;
 
 describe('LuxAppHeaderComponent', () => {
   beforeEach(async () => {
@@ -139,9 +144,9 @@ describe('LuxAppHeaderComponent', () => {
       // Änderungen durchführen
       testComponent.titleShort = 'ASDF';
       LuxTestHelper.wait(fixture);
-      testComponent.titleShort = null;
-      LuxTestHelper.wait(fixture);
       testComponent.titleShort = undefined;
+      LuxTestHelper.wait(fixture);
+      testComponent.titleShort = null as any;
       LuxTestHelper.wait(fixture);
       testComponent.titleShort = '';
       LuxTestHelper.wait(fixture);
@@ -586,10 +591,10 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .lux-button-label')[0].textContent.trim()).toEqual(
+      expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .lux-button-label')[0].textContent!.trim()).toEqual(
         'Label 0'
       );
-      expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .lux-button-label')[1].textContent.trim()).toEqual(
+      expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .lux-button-label')[1].textContent!.trim()).toEqual(
         'Label 1'
       );
       expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .fas.fa-check')[0]).not.toBeNull();
@@ -742,21 +747,28 @@ class MockIconClickedAppHeaderComponent {
   `
 })
 class MockAppHeaderComponent {
-  username: string;
-  title: string;
-  titleShort: string;
+  username?: string;
+  title?: string;
+  titleShort?: string;
 
-  dashboardLink: string;
-  dashboardTitle: string;
-  dashboardBlank: boolean;
+  dashboardLink?: string;
+  dashboardTitle?: string;
+  dashboardBlank?: boolean;
 
-  testUseSideNav: boolean;
-  testUseRightNav: boolean;
-  testUseActionNav: boolean;
+  testUseSideNav?: boolean;
+  testUseRightNav?: boolean;
+  testUseActionNav?: boolean;
 
-  sideNavItems = [];
-  rightNavItems = [];
-  actionNavItems = [];
+  sideNavItems: {
+    disabled: boolean;
+    label: string;
+    iconName: string;
+    selected: boolean;
+    closeOnClick: boolean;
+    ignoreThisItem: boolean;
+  }[] = [];
+  rightNavItems: { disabled: boolean; label: string; iconName: string }[] = [];
+  actionNavItems: { disabled: boolean; label: string; iconName: string }[] = [];
 
   createSideNavItems(amount: number) {
     this.sideNavItems = [];
@@ -797,7 +809,7 @@ class MockAppHeaderComponent {
     }
   }
 
-  onClick(navItem) {}
+  onClick(navItem: any) {}
 }
 
 class MockMasterDetailHelperService {

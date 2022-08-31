@@ -16,7 +16,7 @@ import { FileExampleComponent } from '../file-example.component';
   selector: 'app-file-list-example',
   templateUrl: './file-list-example.component.html'
 })
-export class FileListExampleComponent extends FileExampleComponent<ILuxFileObject[], ILuxFilesListActionConfig> implements AfterViewInit, OnDestroy {
+export class FileListExampleComponent extends FileExampleComponent<ILuxFileObject[] | null, ILuxFilesListActionConfig> implements AfterViewInit, OnDestroy {
   @ViewChildren(LuxFileListComponent) fileLists!: QueryList<LuxFileListComponent>;
   @ViewChild('filelistexamplewithoutform', { read: LuxFileListComponent, static: true }) fileBaseWithoutComponent!: LuxFileListComponent;
   @ViewChild('filelistexamplewithform', { read: LuxFileListComponent, static: true }) fileBaseWithComponent!: LuxFileListComponent;
@@ -79,10 +79,8 @@ export class FileListExampleComponent extends FileExampleComponent<ILuxFileObjec
       iconName: 'fas fa-edit',
       label: 'Dialog öffnen',
       prio: 15,
-      onClick: (fileObject?: ILuxFileObject) => {
-        if (fileObject) {
-          this.openDialog(fileObject);
-        }
+      onClick: (fileObject: ILuxFileObject) => {
+        this.openDialog(fileObject);
       }
     }
   ];

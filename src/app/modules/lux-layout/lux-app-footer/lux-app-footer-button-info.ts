@@ -22,7 +22,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
   cmd: string;
   hidden: boolean;
   raised: boolean;
-  iconName: string;
+  iconName?: string;
   alwaysVisible: boolean;
   tooltip: string;
   onClick: (that: ILuxAppFooterButtonInfo) => void;
@@ -43,14 +43,14 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
     this.label = label;
     this.color = color;
     this.prio = !prio ? 0 : prio;
-    this.disabled = disabled;
+    this.disabled = disabled ?? false;
     this.cmd = cmd;
-    this.hidden = hidden === true ? true : false;
-    this.raised = raised === undefined || raised === null || raised === true ? true : false;
+    this.hidden = hidden === true;
+    this.raised = raised === undefined || raised === null || raised;
     this.iconName = iconName;
-    this.alwaysVisible = alwaysVisible === undefined || alwaysVisible === null || alwaysVisible === false ? false : true;
+    this.alwaysVisible = !(alwaysVisible === undefined || alwaysVisible === null || !alwaysVisible);
     this.tooltip = tooltip ? tooltip : '';
-    this.onClick = onClick ? onClick : (that: ILuxAppFooterButtonInfo) => {};
+    this.onClick = onClick ? onClick : () => {};
   }
 
   /**
@@ -61,7 +61,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
    * @returns eine Button Info
    */
   static generateInfo(data: Partial<ILuxAppFooterButtonInfo>): LuxAppFooterButtonInfo {
-    const info = new LuxAppFooterButtonInfo(data.label, data.cmd);
+    const info = new LuxAppFooterButtonInfo(data.label ?? '', data.cmd ?? '');
     Object.assign(info, data);
 
     return info;

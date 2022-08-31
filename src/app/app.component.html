@@ -62,7 +62,7 @@
         <lux-side-nav-item
           [luxLabel]="'lux-' + moduleName"
           [luxExpandable]="true"
-          [luxExpanded]="navigationService.currentModules.get(moduleName)"
+          [luxExpanded]="navigationService.currentModules.get(moduleName) ?? false"
           [luxCloseOnClick]="false"
           luxIconName="fas fa-puzzle-piece"
           [luxTagId]="'lux-' + moduleName + '-module'"
@@ -70,14 +70,14 @@
           *ngFor="let moduleName of navigationService.currentModuleNames"
         >
           <ng-container
-            *ngFor="let component of navigationService.sortedComponentEntries.get(moduleName) | luxAlphabeticallySorted"
+            *ngFor="let component of navigationService.sortedComponentEntries.get(moduleName) ?? [] | luxAlphabeticallySorted"
           >
             <lux-side-nav-item
               [luxLabel]="component.label"
               [luxTagId]="component.label + '-side-nav-item'"
               luxIconName="fas fa-circle"
               [luxSelected]="window.location.href.endsWith('/' + component.label.toLowerCase())"
-              (luxClicked)="component.onclick()"
+              (luxClicked)="component.onclick($event)"
             >
             </lux-side-nav-item>
           </ng-container>

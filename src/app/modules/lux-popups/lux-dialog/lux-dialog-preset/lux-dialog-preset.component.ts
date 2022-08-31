@@ -12,7 +12,7 @@ import { ILuxDialogPresetConfig } from '../lux-dialog-model/lux-dialog-preset-co
   styleUrls: ['./lux-dialog-preset.component.scss']
 })
 export class LuxDialogPresetComponent implements OnInit {
-  data: ILuxDialogPresetConfig;
+  data?: ILuxDialogPresetConfig;
 
   constructor(public dialogRef: LuxDialogRef<ILuxDialogPresetConfig>) {}
 

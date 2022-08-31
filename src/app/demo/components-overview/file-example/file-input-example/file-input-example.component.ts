@@ -13,7 +13,7 @@ import { ILuxFileObject } from '../../../../modules/lux-form/lux-file/lux-file-m
   selector: 'app-file-input-example',
   templateUrl: './file-input-example.component.html'
 })
-export class FileInputExampleComponent extends FileExampleComponent<ILuxFileObject, ILuxFileActionConfig> implements AfterViewInit {
+export class FileInputExampleComponent extends FileExampleComponent<ILuxFileObject | null, ILuxFileActionConfig> implements AfterViewInit {
   @ViewChildren(LuxFileInputComponent) fileInputs!: QueryList<LuxFileInputComponent>;
   @ViewChild('fileinputexamplewithoutform', { read: LuxFileInputComponent, static: true }) fileBaseWithoutComponent!: LuxFileInputComponent;
   @ViewChild('fileinputexamplewithform', { read: LuxFileInputComponent, static: true }) fileBaseWithComponent!: LuxFileInputComponent;
@@ -72,7 +72,7 @@ export class FileInputExampleComponent extends FileExampleComponent<ILuxFileObje
       Object.assign(fileCopy, this.selected);
       this.fileBaseWithoutComponent.luxSelectedFiles = fileCopy;
     } else {
-      this.fileBaseWithoutComponent.luxSelectedFiles = null;
+      this.fileBaseWithoutComponent.luxSelectedFiles = null as any;
     }
   }
 
@@ -82,7 +82,7 @@ export class FileInputExampleComponent extends FileExampleComponent<ILuxFileObje
       Object.assign(fileCopy, this.fileBaseWithComponent.luxSelectedFiles);
       this.fileBaseWithComponent.luxSelectedFiles = fileCopy;
     } else {
-      this.fileBaseWithComponent.luxSelectedFiles = null;
+      this.fileBaseWithComponent.luxSelectedFiles = null as any;
     }
   }
 
@@ -105,7 +105,7 @@ export class FileInputExampleComponent extends FileExampleComponent<ILuxFileObje
       iconName: 'fas fa-check',
       label: 'Akzeptieren',
       prio: 1,
-      onClick: (fileObject?: ILuxFileObject) => {
+      onClick: (fileObject: ILuxFileObject) => {
         if (fileObject) {
           customConfigAccept.disabled = true;
           customConfigDecline.disabled = false;
@@ -121,7 +121,7 @@ export class FileInputExampleComponent extends FileExampleComponent<ILuxFileObje
       iconName: 'fas fa-times',
       label: 'Ablehnen',
       prio: 2,
-      onClick: (fileObject?: ILuxFileObject) => {
+      onClick: (fileObject: ILuxFileObject) => {
         if (fileObject) {
           customConfigAccept.disabled = false;
           customConfigDecline.disabled = true;

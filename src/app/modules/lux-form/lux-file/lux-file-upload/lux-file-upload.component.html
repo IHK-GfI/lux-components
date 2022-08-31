@@ -28,7 +28,7 @@
       {{ luxHint }}
     </ng-container>
     <ng-template #formHintTemplate>
-      <ng-container *ngTemplateOutlet="formHintComponent.templateRef"></ng-container>
+      <ng-container *ngTemplateOutlet="formHintComponent?.templateRef ?? null"></ng-container>
     </ng-template>
   </mat-hint>
 

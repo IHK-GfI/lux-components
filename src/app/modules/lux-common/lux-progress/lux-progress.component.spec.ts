@@ -1,3 +1,5 @@
+// noinspection DuplicatedCode
+
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { LuxProgressColor } from "../../lux-util/lux-colors.enum";
 import { LuxProgressComponent, LuxProgressModeType, LuxProgressSizeType, LuxProgressType } from "./lux-progress.component";

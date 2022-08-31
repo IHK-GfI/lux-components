@@ -1,3 +1,5 @@
+// noinspection DuplicatedCode
+
 import { waitForAsync, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 
 import { LuxLayoutFormRowComponent } from './lux-layout-form-row.component';

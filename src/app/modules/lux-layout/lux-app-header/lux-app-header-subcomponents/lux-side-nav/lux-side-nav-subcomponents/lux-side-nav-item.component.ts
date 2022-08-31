@@ -19,20 +19,20 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LuxSideNavItemComponent implements AfterViewInit, OnChanges {
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+  @ViewChild(TemplateRef) templateRef?: TemplateRef<any>;
 
-  @Input() luxLabel: string;
+  @Input() luxLabel?: string;
   @Input() luxDisabled = false;
-  @Input() luxTagId: string | null = null;
+  @Input() luxTagId?: string;
   @Input() luxSelected = false;
   @Input() luxCloseOnClick = true;
-  @Input() luxIconName: string;
+  @Input() luxIconName?: string;
   @Input() luxExpandable = false;
   @Input() luxExpanded = true;
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 
-  @ContentChildren(LuxSideNavItemComponent) sideNavItems: QueryList<LuxSideNavItemComponent>;
+  @ContentChildren(LuxSideNavItemComponent) sideNavItems!: QueryList<LuxSideNavItemComponent>;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -46,8 +46,8 @@ export class LuxSideNavItemComponent implements AfterViewInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  onClick($event) {
-    this.luxClicked.emit($event);
+  onClick(event: MouseEvent) {
+    this.luxClicked.emit(event);
     if (this.luxExpandable) {
       this.luxExpanded = !this.luxExpanded;
     }

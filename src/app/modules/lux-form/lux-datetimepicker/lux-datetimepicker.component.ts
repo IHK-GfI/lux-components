@@ -45,8 +45,8 @@ export const APP_DATE_TIME_FORMATS = {
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_TIME_FORMATS }
   ]
 })
-export class LuxDateTimePickerComponent
-  extends LuxFormInputBaseClass<string>
+export class LuxDateTimePickerComponent<T = any>
+  extends LuxFormInputBaseClass<T>
   implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @ViewChild(LuxDatetimeOverlayComponent) dateTimeOverlayComponent?: LuxDatetimeOverlayComponent;
   @ViewChild('dateTimePickerInput', { read: ElementRef }) dateTimePickerInputEl!: ElementRef;
@@ -90,6 +90,10 @@ export class LuxDateTimePickerComponent
   min: Date | null = null;
   max: Date | null = null;
   start: Date | null = null;
+
+  get selectedDate(): string | undefined {
+    return typeof this.formControl.value === 'string' ? this.formControl.value : undefined;
+  }
 
   get dateTimeInputValue() {
     return this.dateTimePickerInputEl?.nativeElement.value;
@@ -174,7 +178,7 @@ export class LuxDateTimePickerComponent
 
   onFocusOut(event: FocusEvent) {
     if (this.formControl.value) {
-      const formattedDate = this.formatDateTime(this.parseDateTime(this.formControl.value));
+      const formattedDate = this.formatDateTime(this.parseDateTime(this.formControl.value as any));
 
       if (this.dateTimeInputValue !== formattedDate) {
         this.dateTimeInputValue = formattedDate;
@@ -280,7 +284,7 @@ export class LuxDateTimePickerComponent
       }
 
       // "silently" den FormControl auf den (potenziell) geänderten Wert aktualisieren
-      this.formControl.setValue(isoValue, {
+      this.formControl.setValue(isoValue as any, {
         emitEvent: false,
         emitModelToViewChange: false,
         emitViewToModelChange: false

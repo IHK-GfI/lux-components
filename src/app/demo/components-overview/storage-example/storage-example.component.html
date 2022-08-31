@@ -13,14 +13,14 @@
         *ngFor="let item of [].constructor(storageLength); let i = index"
       >
         <span><b>Key:</b> {{ localStorage.key(i) }} </span>
-        <span><b>Value:</b> {{ luxStorageService.getItemAsObservable(localStorage.key(i)) | async }} </span>
+        <span><b>Value:</b> {{ luxStorageService.getItemAsObservable(localStorage.key(i)!) | async }} </span>
         <br>
         <div
           fxLayout="row"
           fxLayoutAlign="space-between"
           fxFlex="1 0 auto"
           fxLayoutGap="16px"
-          *ngIf="!localStorage.key(i).endsWith('sensitive')"
+          *ngIf="!localStorage.key(i)!.endsWith('sensitive')"
         >
           <lux-input fxFlex="1 1 auto" luxLabel="Neuer Value" #luxInput [luxNoBottomLabel]="true"></lux-input>
           <div fxFlex="0 0 auto" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="end">
@@ -31,7 +31,7 @@
               [luxRounded]="true"
               [luxDisabled]="!luxInput.luxValue"
               luxAriaLabel="Wert speichern"
-              (luxClicked)="updateExisting(localStorage.key(i), luxInput)"
+              (luxClicked)="updateExisting(localStorage.key(i)!, luxInput)"
             >
             </lux-button>
             <lux-button
@@ -39,7 +39,7 @@
               luxColor="warn"
               luxTagId="remove-storage-entry-btn"
               [luxRounded]="true"
-              (luxClicked)="luxStorageService.removeItem(localStorage.key(i))"
+              (luxClicked)="luxStorageService.removeItem(localStorage.key(i)!)"
               luxAriaLabel="Wert löschen"
             >
             </lux-button>

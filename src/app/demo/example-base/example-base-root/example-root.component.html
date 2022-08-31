@@ -21,7 +21,7 @@
         <lux-panel-header-title><span class="lux-color-primary-500">lux-{{ moduleName }}</span></lux-panel-header-title>
         <lux-panel-content>
           <ng-container
-            *ngFor="let component of navigationService.sortedComponentEntries.get(moduleName) | luxAlphabeticallySorted"
+            *ngFor="let component of navigationService.sortedComponentEntries.get(moduleName)! | luxAlphabeticallySorted"
           >
             <div
               class="example-component-list-item lux-color-primary-500"

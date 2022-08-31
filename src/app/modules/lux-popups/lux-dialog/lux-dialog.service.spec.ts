@@ -61,7 +61,7 @@ describe('LuxDialogService', () => {
       LuxTestHelper.wait(fixture);
 
       expect(overlayHelper.selectOneFromOverlay('lux-dialog-title')).not.toBeNull();
-      expect(overlayHelper.selectOneFromOverlay('lux-dialog-title').textContent.trim()).toEqual('Hallo Welt');
+      expect(overlayHelper.selectOneFromOverlay('lux-dialog-title').textContent!.trim()).toEqual('Hallo Welt');
     }));
 
     it('Sollte den Content setzen', fakeAsync(() => {
@@ -71,7 +71,7 @@ describe('LuxDialogService', () => {
       LuxTestHelper.wait(fixture);
 
       expect(overlayHelper.selectOneFromOverlay('lux-dialog-content')).not.toBeNull();
-      expect(overlayHelper.selectOneFromOverlay('lux-dialog-content').textContent.trim()).toEqual('Hallo Welt');
+      expect(overlayHelper.selectOneFromOverlay('lux-dialog-content').textContent!.trim()).toEqual('Hallo Welt');
     }));
 
     it('Sollte den Content via TemplateRef setzen', fakeAsync(() => {
@@ -81,7 +81,7 @@ describe('LuxDialogService', () => {
       LuxTestHelper.wait(fixture);
 
       expect(overlayHelper.selectOneFromOverlay('lux-dialog-content')).not.toBeNull();
-      expect(overlayHelper.selectOneFromOverlay('lux-dialog-content').textContent.trim()).toEqual('Hallo Welt');
+      expect(overlayHelper.selectOneFromOverlay('lux-dialog-content').textContent!.trim()).toEqual('Hallo Welt');
     }));
 
     it('Sollte die ConfirmAction beachten', fakeAsync(() => {
@@ -109,7 +109,7 @@ describe('LuxDialogService', () => {
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm')).not.toBeNull();
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .mat-raised-button')).not.toBeNull();
       expect(
-        overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .lux-button-label').textContent.trim()
+        overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .lux-button-label').textContent!.trim()
       ).toEqual('Hallo Welt');
     }));
 
@@ -138,7 +138,7 @@ describe('LuxDialogService', () => {
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline')).not.toBeNull();
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .mat-raised-button')).not.toBeNull();
       expect(
-        overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .lux-button-label').textContent.trim()
+        overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .lux-button-label').textContent!.trim()
       ).toEqual('Hallo Welt');
     }));
 
@@ -266,8 +266,8 @@ describe('LuxDialogService', () => {
 
       // Nachbedingungen prüfen
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).not.toBeNull();
-      expect(overlayHelper.selectOneFromOverlay('.mock-dialog-title').textContent.trim()).toEqual('Title');
-      expect(overlayHelper.selectOneFromOverlay('.mock-dialog-content').textContent.trim()).toEqual('Content');
+      expect(overlayHelper.selectOneFromOverlay('.mock-dialog-title').textContent!.trim()).toEqual('Title');
+      expect(overlayHelper.selectOneFromOverlay('.mock-dialog-content').textContent!.trim()).toEqual('Content');
       expect(overlayHelper.selectOneFromOverlay('.mock-dialog-action-ok')).not.toBeNull();
     }));
 
@@ -325,7 +325,7 @@ describe('LuxDialogService', () => {
   `
 })
 class MockDialogComponent {
-  @ViewChild('testContentTemplate') templateRef: TemplateRef<any>;
+  @ViewChild('testContentTemplate') templateRef!: TemplateRef<any>;
 
   constructor(public dialogService: LuxDialogService) {}
 

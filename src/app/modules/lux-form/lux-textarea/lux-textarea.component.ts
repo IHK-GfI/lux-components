@@ -9,7 +9,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-textarea.component.html',
   styleUrls: ['./lux-textarea.component.scss']
 })
-export class LuxTextareaComponent extends LuxFormInputBaseClass<string> implements OnInit {
+export class LuxTextareaComponent<T = any> extends LuxFormInputBaseClass<T> implements OnInit {
   @Input() luxMaxRows = -1;
   @Input() luxMinRows = 0;
   @Input() luxNoLabels = false;

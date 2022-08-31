@@ -13,7 +13,7 @@ export class LuxIconComponent {
   public static readonly FA_REGULAR = 'far ';
   public static readonly FA_LIGHT = 'fal ';
 
-  private _luxIconSize = '';
+  private _luxIconSize: string | undefined = '';
   private _luxIconName = '';
   private _luxPadding = '4px';
   private _backgroundCSSClass = '';
@@ -44,11 +44,11 @@ export class LuxIconComponent {
     this._luxPadding = padding;
   }
 
-  get luxIconSize(): string {
+  get luxIconSize(): string | undefined {
     return this._luxIconSize;
   }
 
-  @Input() set luxIconSize(iconSizeValue: string) {
+  @Input() set luxIconSize(iconSizeValue: string | undefined) {
     this._luxIconSize = iconSizeValue;
     if (this.luxIconSize && this.luxIconSize.length === 2) {
       this.currentIconSize = +this.luxIconSize.slice(0, 1);
@@ -57,14 +57,16 @@ export class LuxIconComponent {
     }
   }
 
-  get luxIconName(): string {
+  get luxIconName(): string | undefined {
     return this._luxIconName;
   }
 
   @Input()
-  set luxIconName(iconNameValue: string) {
+  set luxIconName(iconNameValue: string | undefined) {
     if (iconNameValue) {
       this._luxIconName = this.modifyIconName(iconNameValue);
+    } else {
+      this._luxIconName = '';
     }
   }
 

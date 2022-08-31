@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   }
 })
 export class LuxRippleDirective extends MatRipple implements OnInit, OnDestroy {
-  private configSubscription: Subscription;
+  configSubscription: Subscription;
 
   _luxRippleColor = '';
   _luxRippleUnbounded = false;

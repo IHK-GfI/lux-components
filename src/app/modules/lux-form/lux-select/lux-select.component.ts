@@ -35,7 +35,7 @@ export class LuxSelectComponent<O = any, V = any, P = any> extends LuxFormSelect
 
   @Input() luxPlaceholder = '';
   @Input() luxMultiple = false;
-  @Input() luxTagId: string | null = null;
+  @Input() luxTagId?: string;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
@@ -57,7 +57,7 @@ export class LuxSelectComponent<O = any, V = any, P = any> extends LuxFormSelect
     const matOption = this.matOptions.find((option: MatOption) => option.value === formValue);
     if (matOption) {
       this.displayedViewValue = matOption.viewValue;
-      this.liveAnnouncer.announce(matOption.viewValue, 'assertive').then();
+      this.liveAnnouncer.announce(matOption.viewValue, 'assertive');
     }
   }
 }

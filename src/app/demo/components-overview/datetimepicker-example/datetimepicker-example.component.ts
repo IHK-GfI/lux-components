@@ -34,7 +34,7 @@ export class DateTimepickerExampleComponent {
 
   // region Properties der Component
 
-  value = null;
+  value?: string;
   controlBinding = 'datepickerExample';
   disabled = false;
   readonly = false;
@@ -51,11 +51,11 @@ export class DateTimepickerExampleComponent {
   minDate = '01.01.2000, 00:00';
   maxDate = '31.12.2100, 23:59';
   startView: LuxStartView = 'month';
-  startDate: string | null = null;
-  startTime: number[] | null = null;
-  _startTimeAsString: string | null = null;
+  startDate = '';
+  startTime: number[] = [];
+  _startTimeAsString?: string;
 
-  get startTimeAsString(): string | null {
+  get startTimeAsString(): string | undefined {
     return this._startTimeAsString;
   }
 
@@ -67,10 +67,10 @@ export class DateTimepickerExampleComponent {
       if (timeArr.length === 2) {
         this.startTime = [+timeArr[0], +timeArr[1]];
       } else {
-        this.startTime = null;
+        this.startTime = [];
       }
     } else {
-      this.startTime = null;
+      this.startTime = [];
     }
   }
 
@@ -101,9 +101,16 @@ export class DateTimepickerExampleComponent {
     return selected.value;
   }
 
-  customFilter(d: Date) {
-    const day = d.getDay();
-    // Samstage und Sonntage als Auswahl unterbinden
-    return day !== 0 && day !== 6;
+  customFilter(d: Date | null): boolean {
+    let result;
+    if (d) {
+      const day = d.getDay();
+      // Samstage und Sonntage als Auswahl unterbinden
+      result = day !== 0 && day !== 6;
+    } else {
+        result = false;
+    }
+
+    return result;
   }
 }

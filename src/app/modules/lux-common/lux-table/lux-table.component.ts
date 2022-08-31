@@ -82,7 +82,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   @Input() luxAutoPaginate = true;
   @Input() luxHideBorders = false;
   @Input() luxMultiSelectOnlyCheckboxClick = false;
-  @Input() luxMultiSelectDisabledProperty = undefined;
+  @Input() luxMultiSelectDisabledProperty?: string;
   @Input() luxPagerDisabled = false;
   @Input() luxPagerTooltip = '';
 
@@ -556,7 +556,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
       this.liveAnnouncer.announce(
         $localize`:@@luxc.table.sort.announce:Spalte ${columnDef}:column: sortiert nun ${directionDescription}:direction:`,
         'assertive'
-      ).then();
+      );
     }
   }
 
@@ -607,7 +607,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
    *
    * @param responsiveAt
    */
-  private doesResponsiveAtApply(responsiveAt: string | string[]) {
+  private doesResponsiveAtApply(responsiveAt: string | string[] | null) {
     const mediaQueries: string[] = [];
 
     if (typeof responsiveAt === 'string' && responsiveAt) {

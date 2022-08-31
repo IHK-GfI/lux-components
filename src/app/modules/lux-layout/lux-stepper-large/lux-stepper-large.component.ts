@@ -20,7 +20,7 @@ import { LuxStepperLargeStepComponent } from './lux-stepper-large-subcomponents/
   styleUrls: ['./lux-stepper-large.component.scss']
 })
 export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDestroy {
-  @ContentChildren(LuxStepperLargeStepComponent) steps: QueryList<ILuxStepperLargeStep>;
+  @ContentChildren(LuxStepperLargeStepComponent) steps!: QueryList<ILuxStepperLargeStep>;
 
   @Input() luxStepValidationActive = true;
   @Input() luxPrevButtonConfig = LUX_STEPPER_LARGE_DEFAULT_PREV_BTN_CONF;
@@ -46,7 +46,7 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
         stepNumber < (this.steps ? this.steps.length : 0) &&
         this.steps &&
         this.steps.get(stepNumber) &&
-        this.steps.get(stepNumber).luxTouched
+        this.steps.get(stepNumber)!.luxTouched
       ) {
         this._luxCurrentStepNumber = stepNumber;
         this.isFirstStep = stepNumber === 0;
@@ -56,9 +56,9 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
         this.luxStepChanged.emit({
           stepper: this,
           prevIndex: prevStepIndex,
-          prevStep: this.steps.get(prevStepIndex),
+          prevStep: this.steps.get(prevStepIndex)!,
           currentIndex: this._luxCurrentStepNumber,
-          currentStep: this.steps.get(this._luxCurrentStepNumber)
+          currentStep: this.steps.get(this._luxCurrentStepNumber)!
         });
         LuxUtil.goTo('luxstepperlargenavitem' + (this.luxCurrentStepNumber + 1));
         if (this.isMobile) {
@@ -94,7 +94,7 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
 
   ngAfterContentInit() {
     if (this.luxCurrentStepNumber >= 0 && this.luxCurrentStepNumber < this.steps.length) {
-      this.steps.get(this.luxCurrentStepNumber).luxTouched = true;
+      this.steps.get(this.luxCurrentStepNumber)!.luxTouched = true;
     }
   }
 
@@ -108,10 +108,10 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     const event: LuxStepperLargeClickEvent = {
       stepper: this,
       newIndex: newIndex,
-      newStep: this.steps.get(newIndex),
+      newStep: this.steps.get(newIndex)!,
       source: 'prev_button'
     };
-    const vetoPromise = this.steps.get(this.luxCurrentStepNumber).luxVetoFn(event);
+    const vetoPromise = this.steps.get(this.luxCurrentStepNumber)!.luxVetoFn(event);
 
     vetoPromise
       .then((veto) => {
@@ -128,10 +128,10 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     const event: LuxStepperLargeClickEvent = {
       stepper: this,
       newIndex: newIndex,
-      newStep: this.steps.get(newIndex),
+      newStep: this.steps.get(newIndex)!,
       source: 'next_button'
     };
-    const vetoPromise = this.steps.get(this.luxCurrentStepNumber).luxVetoFn(event);
+    const vetoPromise = this.steps.get(this.luxCurrentStepNumber)!.luxVetoFn(event);
 
     vetoPromise
       .then((veto) => {
@@ -146,10 +146,10 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     const event: LuxStepperLargeClickEvent = {
       stepper: this,
       newIndex: this.luxCurrentStepNumber,
-      newStep: this.steps.get(this.luxCurrentStepNumber),
+      newStep: this.steps.get(this.luxCurrentStepNumber)!,
       source: 'fin_button'
     };
-    const vetoPromise = this.steps.get(this.luxCurrentStepNumber).luxVetoFn(event);
+    const vetoPromise = this.steps.get(this.luxCurrentStepNumber)!.luxVetoFn(event);
 
     vetoPromise
       .then((veto) => {
@@ -201,8 +201,8 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
   }
 
   onNavLink(stepIndex: number) {
-    const event: LuxStepperLargeClickEvent = { stepper: this, newIndex: stepIndex, newStep: this.steps.get(stepIndex), source: 'nav' };
-    const vetoPromise = this.steps.get(this.luxCurrentStepNumber).luxVetoFn(event);
+    const event: LuxStepperLargeClickEvent = { stepper: this, newIndex: stepIndex, newStep: this.steps.get(stepIndex)!, source: 'nav' };
+    const vetoPromise = this.steps.get(this.luxCurrentStepNumber)!.luxVetoFn(event);
 
     vetoPromise
       .then((veto) => {
@@ -230,7 +230,7 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
 
     if (this.cursorPos > 0) {
       this.cursorPos = this.getPrevIndex(this.cursorPos);
-      this.liveAnnouncer.announce('Schritt' + (this.cursorPos + 1) + ' ' + this.steps.get(this.cursorPos).luxTitle);
+      this.liveAnnouncer.announce('Schritt' + (this.cursorPos + 1) + ' ' + this.steps.get(this.cursorPos)!.luxTitle);
     }
   }
 
@@ -241,7 +241,7 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
 
     if (this.cursorPos < this.steps.length) {
       this.cursorPos = this.getNextIndex(this.cursorPos);
-      this.liveAnnouncer.announce('Schritt' + (this.cursorPos + 1) + ' ' + this.steps.get(this.cursorPos).luxTitle);
+      this.liveAnnouncer.announce('Schritt' + (this.cursorPos + 1) + ' ' + this.steps.get(this.cursorPos)!.luxTitle);
     }
   }
 
@@ -249,9 +249,9 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     const newStepNumber = newIndex;
 
     if (newStepNumber >= 0 && newStepNumber < (this.steps ? this.steps.length : 0) && this.steps && this.steps.get(newStepNumber)) {
-      this.steps.get(newStepNumber).luxTouched = true;
+      this.steps.get(newStepNumber)!.luxTouched = true;
       this.luxCurrentStepNumber = newStepNumber;
-      this.liveAnnouncer.announce('Schritt' + (newStepNumber + 1) + ' ' + this.steps.get(newStepNumber).luxTitle + ' aktiv.');
+      this.liveAnnouncer.announce('Schritt' + (newStepNumber + 1) + ' ' + this.steps.get(newStepNumber)!.luxTitle + ' aktiv.');
     }
   }
 
@@ -259,9 +259,9 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     const newStepNumber = newIndex;
 
     if (newStepNumber >= 0 && newStepNumber < (this.steps ? this.steps.length : 0) && this.steps && this.steps.get(newStepNumber)) {
-      this.steps.get(newStepNumber).luxTouched = true;
+      this.steps.get(newStepNumber)!.luxTouched = true;
       this.luxCurrentStepNumber = newStepNumber;
-      this.liveAnnouncer.announce('Schritt' + (newStepNumber + 1) + ' ' + this.steps.get(newStepNumber).luxTitle + ' aktiv.');
+      this.liveAnnouncer.announce('Schritt' + (newStepNumber + 1) + ' ' + this.steps.get(newStepNumber)!.luxTitle + ' aktiv.');
     }
   }
 
@@ -270,21 +270,21 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     this.luxStepperFinished.emit();
   }
 
-  private getPrevIndex(index: number) {
+  private getPrevIndex(index: number): number {
     const newIndex = index - 1;
-    if (!this.steps.get(newIndex).luxDisabled) {
+    if (!this.steps.get(newIndex)!.luxDisabled) {
       return newIndex;
     } else {
       return this.getPrevIndex(newIndex);
     }
   }
 
-  private getNextIndex(index: number) {
+  private getNextIndex(index: number): number {
     const newIndex = index + 1;
-    if (!this.steps.get(newIndex).luxDisabled) {
+    if (!this.steps.get(newIndex)!.luxDisabled) {
       return newIndex;
     } else {
-      this.steps.get(newIndex).luxTouched = true;
+      this.steps.get(newIndex)!.luxTouched = true;
       return this.getNextIndex(newIndex);
     }
   }

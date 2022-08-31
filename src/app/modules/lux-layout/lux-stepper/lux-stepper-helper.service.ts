@@ -11,8 +11,8 @@ export class LuxStepperHelperService {
   constructor() {}
 
   /**
-   * Springt im Stepper zum naechsten Step.
-   * Alternativ (ohne Stepper als Parameter) laesst die Funktion alle
+   * Springt im Stepper zum nächsten Step.
+   * Alternativ (ohne Stepper als Parameter) lässt die Funktion alle
    * bekannten Stepper einen Schritt nach vorne springen.
    *
    * Voraussetzung: luxLinear = false oder aktuell Form ist valide.
@@ -32,8 +32,8 @@ export class LuxStepperHelperService {
 
   /**
    * Springt im Stepper zum vorherigen Step.
-   * Alternativ (ohne Stepper als Parameter) laesst die Funktion alle
-   * Bekannten Stepper einen Schritt zurueckspringen.
+   * Alternativ (ohne Stepper als Parameter) lässt die Funktion alle
+   * Bekannten Stepper einen Schritt zurückspringen.
    *
    * @param stepper
    */
@@ -49,18 +49,18 @@ export class LuxStepperHelperService {
   }
 
   /**
-   * Gibt das Observable der internen Map fuer den Stepper zurueck.
+   * Gibt das Observable der internen Map für den Stepper zurück.
    *
    * @param stepper
    * @returns Observable<boolean> | Observable<any>
    */
-  public getObservable(stepper: LuxStepperComponent) {
+  public getObservable(stepper: LuxStepperComponent): Observable<boolean | null> {
     const subject = this.switchStep.get(stepper);
     return subject ? subject.asObservable() : of(null);
   }
 
   /**
-   * Traegt den Stepper in die Map der dem Service bekannten Stepper ein.
+   * Trägt den Stepper in die Map der dem Service bekannten Stepper ein.
    *
    * @param stepper
    */

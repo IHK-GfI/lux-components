@@ -4,7 +4,7 @@ export class ColumnConfig {
   label = '';
   sortable = true;
   sticky = false;
-  _responsiveAt: string[] | null = null;
+  _responsiveAt: string | string[] | null = null;
   _responsiveBehaviour: ResponsiveBehaviour = ResponsiveBehaviour.NOT_RESPONSIVE;
 
   constructor(partial: Partial<ColumnConfig>) {
@@ -15,7 +15,7 @@ export class ColumnConfig {
     return this._responsiveAt;
   }
 
-  set responsiveAt(responsiveAt: string[] | null) {
+  set responsiveAt(responsiveAt: string | string[] | null) {
     this._responsiveAt = responsiveAt;
   }
 

@@ -116,7 +116,7 @@ describe('LuxLangSelectComponent', () => {
 });
 
 class MockCookieService {
-  locale = 'de';
+  locale: string | undefined = 'de';
 
   get(name: string) {
     return this.locale;

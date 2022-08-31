@@ -10,12 +10,11 @@ import { LuxMockMasterDetailMobileHelperService } from './lux-mock-master-detail
 import { LuxMasterDetailComponent } from '../../lux-master-detail.component';
 
 describe('LuxMasterDetailComponent', () => {
-  // region #### Hilfsfunktionen fuer diese Testsuite ###
+  // region #### Hilfsfunktionen fÜr diese Testsuite ###
 
   const defaultWaitTime = 1000;
 
   const getMasterList = () => fixture.debugElement.query(By.css('lux-list'));
-
   const getMasterCards = () => fixture.debugElement.queryAll(By.css('lux-list-item > lux-card > mat-card'));
 
   const createMockDataArray = (dataAmount: number) => {
@@ -55,7 +54,7 @@ describe('LuxMasterDetailComponent', () => {
     fixture = TestBed.createComponent(LuxMockMasterDetailComponent);
     component = fixture.componentInstance;
     masterDetail = fixture.debugElement.query(By.directive(LuxMasterDetailComponent)).componentInstance;
-    masterDetail['liveAnnouncer'] = { announce: (...args: string[]) => {} } as any;
+    masterDetail['liveAnnouncer'] = { announce: () => {} } as any;
   });
 
   it('sollte erstellt werden', () => {
@@ -68,7 +67,7 @@ describe('LuxMasterDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('sollte die Detail-Ansicht korrekt neurendern, wenn ein selektierter Wert gewechselt wird', fakeAsync(() => {
+  it('sollte die Detail-Ansicht korrekt neu rendern, wenn ein selektierter Wert gewechselt wird', fakeAsync(() => {
     // Given
     component.mockItems = createMockDataArray(3);
     LuxTestHelper.wait(fixture, defaultWaitTime);
@@ -110,16 +109,13 @@ describe('LuxMasterDetailComponent', () => {
 
     const masterCards = getMasterCards();
     const masterList = getMasterList();
-    const scrollPosition = masterCards.find((v, i) => i === 0).nativeElement.clientHeight * 15;
+    const scrollPosition = masterCards.find((v, i) => i === 0)!.nativeElement.clientHeight * 15;
 
     // When
 
     // Then
-    expect(masterCards.length).toBe(50, 'Es sollten 50 Elemente in der Masterliste sein.');
-    expect((masterCards[15].nativeElement as HTMLElement).parentElement.className).toContain(
-      'selected',
-      'Der 15te Eintrag der Masterliste sollte selektiert sein.'
-    );
+    expect(masterCards.length).toEqual(50);
+    expect((masterCards[15].nativeElement as HTMLElement).parentElement!.className).toContain('selected');
     expect(masterList.nativeElement.scrollTop).toBeGreaterThan(scrollPosition - 100);
     expect(masterList.nativeElement.scrollTop).toBeLessThan(scrollPosition + 100);
   }));
@@ -134,7 +130,7 @@ describe('LuxMasterDetailComponent', () => {
 
     const masterCards = getMasterCards();
     const masterList = getMasterList();
-    const scrollPosition = masterCards.find((v, i) => i === 0).nativeElement.clientHeight * 20;
+    const scrollPosition = masterCards.find((v, i) => i === 0)!.nativeElement.clientHeight * 20;
     const noDetailEl = fixture.debugElement.query(By.css('.lux-detail-empty')).nativeElement;
 
     // When
@@ -146,15 +142,12 @@ describe('LuxMasterDetailComponent', () => {
     component.detail = component.mockItems[20];
     LuxTestHelper.wait(fixture, defaultWaitTime);
     // Then
-    expect((masterCards[20].nativeElement as HTMLElement).parentElement.className).toContain(
-      'selected',
-      'Der 15te Eintrag der Masterliste sollte selektiert sein.'
-    );
+    expect((masterCards[20].nativeElement as HTMLElement).parentElement!.className).toContain('selected');
     expect(masterList.nativeElement.scrollTop).toBeGreaterThan(scrollPosition - 100);
     expect(masterList.nativeElement.scrollTop).toBeLessThan(scrollPosition + 104 /* 4 für Margin */);
   }));
 
-  it('sollte bei leerem Startwert die Anzeige fuer ein leeres Detail anzeigen', fakeAsync(() => {
+  it('sollte bei leerem Startwert die Anzeige fÜr ein leeres Detail anzeigen', fakeAsync(() => {
     // Given
     component.mockItems = createMockDataArray(50);
     LuxTestHelper.wait(fixture, defaultWaitTime);
@@ -163,37 +156,37 @@ describe('LuxMasterDetailComponent', () => {
     // When
 
     // Then
-    expect(noDetailEl).toBeDefined('Es sollte eine Anzeige fuer ein leeres Detail angezeigt werden.');
+    expect(noDetailEl).toBeDefined();
   }));
 
-  it('sollte moeglich sein die Selektion anzupassen', fakeAsync(() => {
+  it('sollte möglich sein die Selektion anzupassen', fakeAsync(() => {
     // Given
     component.mockItems = createMockDataArray(10);
     component.detail = component.mockItems[0];
     LuxTestHelper.wait(fixture, defaultWaitTime);
 
-    spyOnProperty(document.activeElement, 'className').and.returnValue('lux-master-container');
+    spyOnProperty(document.activeElement as any, 'className').and.returnValue('lux-master-container');
 
     // When
     component.masterDetail.selectedPosition = 1;
     LuxTestHelper.wait(fixture, defaultWaitTime);
 
     // Then
-    expect(component.detail).toEqual(component.mockItems[1], 'Das 2te Element der Masterliste sollte selektiert sein.');
+    expect(component.detail).toEqual(component.mockItems[1]);
 
     // When
     component.masterDetail.selectedPosition = 2;
     LuxTestHelper.wait(fixture, defaultWaitTime);
 
     // Then
-    expect(component.detail).toEqual(component.mockItems[2], 'Das 3te Element der Masterliste sollte selektiert sein.');
+    expect(component.detail).toEqual(component.mockItems[2]);
 
     // When
     component.masterDetail.selectedPosition = 1;
     LuxTestHelper.wait(fixture, defaultWaitTime);
 
     // Then
-    expect(component.detail).toEqual(component.mockItems[1], 'Das 2te Element der Masterliste sollte wieder selektiert sein.');
+    expect(component.detail).toEqual(component.mockItems[1]);
 
     discardPeriodicTasks();
   }));
@@ -251,7 +244,7 @@ describe('LuxMasterDetailComponent', () => {
 
     it('Ein- und Ausklappen beim Klick', fakeAsync(() => {
       // Given
-      component.detail = component.mockItems[0];
+      component.detail = component.mockItems![0];
       LuxTestHelper.wait(fixture, defaultWaitTime);
 
       const expandButton = fixture.debugElement.query(By.css('.lux-master-header-collapse button')).nativeElement;
@@ -261,21 +254,21 @@ describe('LuxMasterDetailComponent', () => {
       LuxTestHelper.wait(fixture, defaultWaitTime);
 
       // Then
-      expect(masterContainer.style['max-width']).toEqual('5%', 'Die Breite der Masterliste sollte bei 5% liegen.');
+      expect(masterContainer.style.maxWidth).toEqual('5%');
 
       // When
       LuxTestHelper.dispatchFakeEvent(expandButton, 'click');
       LuxTestHelper.wait(fixture, defaultWaitTime);
 
       // Then
-      expect(masterContainer.style['max-width']).toEqual('30%', 'Die Breite der Masterliste sollte bei 30% liegen.');
+      expect(masterContainer.style.maxWidth).toEqual('30%');
     }));
 
     it('Keinen Toggle-Button für das Ein- und Ausklappen in Mobilansicht haben', fakeAsync(
       inject([LuxMasterDetailMobileHelperService], (mobileHelper: LuxMockMasterDetailMobileHelperService) => {
         // Given
         mobileHelper.mockMobile = false;
-        component.detail = component.mockItems[0];
+        component.detail = component.mockItems![0];
         LuxTestHelper.wait(fixture, defaultWaitTime);
 
         let expandButton = fixture.debugElement.query(By.css('.lux-master-header-collapse button'));
@@ -301,15 +294,15 @@ describe('LuxMasterDetailComponent', () => {
         // When
 
         // Then
-        expect(masterContainer.style['max-width']).toEqual('30%', 'Die Breite der Masterliste sollte bei 30% liegen.');
+        expect(masterContainer.style.maxWidth).toEqual('30%');
 
         // When
         mobileHelper.mockMobile = true;
-        LuxTestHelper.dispatchFakeEvent(masterCards.find((v, i) => i === 0).nativeElement, 'click');
+        LuxTestHelper.dispatchFakeEvent(masterCards.find((v, i) => i === 0)!.nativeElement, 'click');
         LuxTestHelper.wait(fixture, defaultWaitTime);
 
         // Then
-        expect(masterContainer.style['max-width']).toEqual('', 'Die Breite der Masterliste sollte bei 0px liegen.');
+        expect(masterContainer.style.maxWidth).toEqual('');
 
         discardPeriodicTasks();
       })
@@ -322,11 +315,11 @@ describe('LuxMasterDetailComponent', () => {
         mobileHelper.mockMobile = true;
 
         // When
-        LuxTestHelper.dispatchFakeEvent(masterCards.find((v, i) => i === 0).nativeElement, 'click');
+        LuxTestHelper.dispatchFakeEvent(masterCards.find((v, i) => i === 0)!.nativeElement, 'click');
         LuxTestHelper.wait(fixture, defaultWaitTime);
 
         // Then
-        expect(masterContainer.style['max-width']).toEqual('', 'Die Breite der Masterliste sollte bei 0px liegen.');
+        expect(masterContainer.style.maxWidth).toEqual('');
 
         discardPeriodicTasks();
       })
@@ -343,7 +336,7 @@ describe('LuxMasterDetailComponent', () => {
         LuxTestHelper.wait(fixture, defaultWaitTime);
 
         // Then
-        expect(masterContainer.style['max-width']).toEqual('100%', 'Die Breite der Masterliste sollte bei 0px liegen.');
+        expect(masterContainer.style.maxWidth).toEqual('100%');
       })
     ));
 
@@ -358,14 +351,14 @@ describe('LuxMasterDetailComponent', () => {
         LuxTestHelper.wait(fixture, defaultWaitTime);
 
         // Then
-        expect(masterContainer.style['max-width']).toEqual('5%', 'Die Breite der Masterliste sollte bei 5% liegen.');
+        expect(masterContainer.style.maxWidth).toEqual('5%');
 
         // When
         mobileHelper.openMaster();
         LuxTestHelper.wait(fixture, defaultWaitTime);
 
         // Then
-        expect(masterContainer.style['max-width']).toEqual('30%', 'Die Breite der Masterliste sollte bei 5% liegen.');
+        expect(masterContainer.style.maxWidth).toEqual('30%');
       })
     ));
 
@@ -379,11 +372,8 @@ describe('LuxMasterDetailComponent', () => {
       // When
 
       // Then
-      expect(masterCards.length).toBe(50, 'Es sollten 50 Elemente in der Masterliste sein.');
-      expect((masterCards[15].nativeElement as HTMLElement).parentElement.classList).toContain(
-        'lux-list-item-selected',
-        'Der 15te Eintrag der Masterliste sollte selektiert sein.'
-      );
+      expect(masterCards.length).toBe(50);
+      expect((masterCards[15].nativeElement as HTMLElement).parentElement!.classList).toContain('lux-list-item-selected');
 
       // When
       component.mockItems = [];
@@ -393,11 +383,11 @@ describe('LuxMasterDetailComponent', () => {
       const noMasterElementsLabel = fixture.debugElement.query(By.css('.lux-list-empty-icon-text'));
 
       // Then
-      expect(masterCards.length).toBe(0, 'Es sollten 0 Elemente in der Masterliste sein.');
-      expect(component.detail).toBeUndefined('Es sollte kein Eintrag mehr selektiert sein.');
-      expect(masterDetail.luxSelectedDetail).toBeUndefined('Die Komponente sollte kein selektiertes Detail besitzen.');
-      expect(noDetailLabel).toBeDefined('Es sollte ein Text angezeigt werden, wenn das Detail nicht gesetzt ist.');
-      expect(noMasterElementsLabel).toBeDefined('Es sollte ein Text angezeigt werden, wenn die Masterliste leer ist.');
+      expect(masterCards.length).toEqual(0);
+      expect(component.detail).toBeNull();
+      expect(masterDetail.luxSelectedDetail).toBeNull();
+      expect(noDetailLabel).toBeDefined();
+      expect(noMasterElementsLabel).toBeDefined();
 
       discardPeriodicTasks();
     }));
@@ -421,30 +411,30 @@ class LuxMockDetailComponent implements OnInit {
 @Component({
   selector: 'lux-mock-master-detail',
   template:
-    '<div fxLayout="column" style="height: 100vh;">' +
-    '<lux-master-detail   fxFlex="grow" [luxSelectedDetail]="detail"' +
-    '                     [luxMasterList]="mockItems" (luxSelectedDetailChange)="loadDetail($event)">' +
-    '    <lux-master-simple luxTitleProp="title" luxSubTitleProp="subtitle">' +
-    '      <ng-template #luxSimpleIcon let-master>' +
-    '        <lux-icon [luxIconName]="master.icon"></lux-icon>' +
-    '      </ng-template>' +
-    '      <ng-template #luxSimpleContent let-master>' +
-    '        <p>Masteransicht {{ master.id }}</p>' +
-    '      </ng-template>' +
-    '    </lux-master-simple>' +
-    '    <lux-detail-view #detailView>' +
-    '      <ng-template let-detail #detailTemplate>' +
-    '         <lux-mock-detail #detailMock (init)="detailInit()"><p id="detail-id">detail: {{ detail.id }}</p></lux-mock-detail>' +
-    '      </ng-template>' +
-    '     </lux-detail-view>' +
-    '</lux-master-detail>' +
-    '</div>'
+    `<div fxLayout="column" style="height: 100vh;">
+      <lux-master-detail   fxFlex="grow" [luxSelectedDetail]="detail"
+                           [luxMasterList]="mockItems" (luxSelectedDetailChange)="loadDetail($event)">
+        <lux-master-simple luxTitleProp="title" luxSubTitleProp="subtitle">
+          <ng-template #luxSimpleIcon let-master>
+            <lux-icon [luxIconName]="master.icon"></lux-icon>
+          </ng-template>
+          <ng-template #luxSimpleContent let-master>
+            <p>Masteransicht {{ master.id }}</p>
+          </ng-template>
+        </lux-master-simple>
+        <lux-detail-view #detailView>
+          <ng-template let-detail #detailTemplate>
+            <lux-mock-detail #detailMock (init)="detailInit()"><p id="detail-id">detail: {{ detail.id }}</p></lux-mock-detail>
+          </ng-template>
+        </lux-detail-view>
+      </lux-master-detail>
+    </div>`
 })
 class LuxMockMasterDetailComponent {
-  mockItems: any[];
-  detail: any;
-  @ViewChild('detailMock') detailMock: LuxMockDetailComponent;
-  @ViewChild(LuxMasterDetailComponent) masterDetail: LuxMasterDetailComponent;
+  mockItems?: any[];
+  detail?: any;
+  @ViewChild('detailMock') detailMock!: LuxMockDetailComponent;
+  @ViewChild(LuxMasterDetailComponent) masterDetail!: LuxMasterDetailComponent;
 
   constructor() {}
 
@@ -453,6 +443,6 @@ class LuxMockMasterDetailComponent {
   }
 
   detailInit() {
-    // Ich bin nur hier damit der Test weiss ob das Detail initialisiert wurde...
+    // Ich bin nur hier damit der Test weiß; ob das Detail initialisiert wurde...
   }
 }

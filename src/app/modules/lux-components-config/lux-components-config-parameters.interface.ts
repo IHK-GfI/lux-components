@@ -37,7 +37,7 @@ export interface LuxComponentsConfigParameters {
   };
 
   /**
-   * Flag, um die Ausklappanimationen von LuxCards zu aktivieren bzw. zu  deaktivieren
+   * Flag, um die Animationen von LUX-Cards zu aktivieren bzw. zu deaktivieren
    */
   cardExpansionAnimationActive?: boolean;
 

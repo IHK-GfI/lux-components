@@ -89,7 +89,7 @@ export class DialogExampleComponent implements OnDestroy {
     }
   }
 
-  updatePanelClass(event: string | string[]) {
+  updatePanelClass(event: string | string[] | null | undefined) {
     if (Array.isArray(event)) {
       this.dialogConfig.panelClass = event;
     } else if (event && event.length > 0) {

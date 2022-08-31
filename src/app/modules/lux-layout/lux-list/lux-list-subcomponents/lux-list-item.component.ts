@@ -7,12 +7,12 @@ import { FocusableOption } from '@angular/cdk/a11y';
   styleUrls: ['./lux-list-item.component.scss']
 })
 export class LuxListItemComponent implements FocusableOption {
-  private _luxTitle: string;
-  private _luxSubTitle: string;
-  private _luxSelected: boolean;
+  private _luxTitle = '';
+  private _luxSubTitle = '';
+  private _luxSelected = false;
 
-  @HostBinding('attr.aria-label') ariaLabel;
-  @HostBinding('attr.aria-selected') ariaSelected;
+  @HostBinding('attr.aria-label') ariaLabel?: string;
+  @HostBinding('attr.aria-selected') ariaSelected?: boolean;
   @HostBinding('attr.role') role = 'option';
   @HostBinding('attr.tabindex') tabindex = '-1';
 

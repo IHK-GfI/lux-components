@@ -9,7 +9,7 @@ export interface ILuxFileActionBaseConfig {
 }
 
 export interface ILuxFileActionConfig extends ILuxFileActionBaseConfig {
-  onClick?: (file?: ILuxFileObject) => void;
+  onClick?: (file: ILuxFileObject) => void;
 }
 
 export interface ILuxFilesActionConfig extends ILuxFileActionBaseConfig {

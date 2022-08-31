@@ -21,9 +21,9 @@
       [readonly]="true"
       [id]="uid"
       [value]="
-        (luxSelectedFiles?.namePrefix ? luxSelectedFiles.namePrefix : '') +
-        (luxSelectedFiles?.name ? luxSelectedFiles.name : '') +
-        (luxSelectedFiles?.nameSuffix ? luxSelectedFiles.nameSuffix : '')
+        (luxSelectedFiles?.namePrefix ?? '') +
+        (luxSelectedFiles?.name ?? '') +
+        (luxSelectedFiles?.nameSuffix ?? '')
       "
       (blur)="luxBlur.emit($event)"
       (focus)="luxFocus.emit($event)"
@@ -50,7 +50,7 @@
           [luxAlwaysVisible]="true"
           [luxPrio]="luxViewActionConfig.prio ? luxViewActionConfig.prio : 10"
           luxColor="primary"
-          (luxClicked)="viewFile(luxSelectedFiles)"
+          (luxClicked)="viewFile(luxSelectedFiles!)"
           [luxHidden]="!!luxViewActionConfig.hidden"
         >
         </lux-menu-item>
@@ -63,7 +63,7 @@
           [luxAlwaysVisible]="true"
           [luxPrio]="luxDownloadActionConfig.prio ? luxDownloadActionConfig.prio : 20"
           luxColor="primary"
-          (luxClicked)="downloadFile(luxSelectedFiles)"
+          (luxClicked)="downloadFile(luxSelectedFiles!)"
           [luxHidden]="!!luxDownloadActionConfig.hidden"
         >
         </lux-menu-item>
@@ -76,7 +76,7 @@
           [luxAlwaysVisible]="true"
           [luxPrio]="luxDeleteActionConfig.prio ? luxDeleteActionConfig.prio : 30"
           luxColor="primary"
-          (luxClicked)="clearFiles($event)"
+          (luxClicked)="clearFile()"
           [luxHidden]="!!luxDeleteActionConfig.hidden"
         >
         </lux-menu-item>
@@ -97,13 +97,13 @@
           *ngFor="let customConfig of luxCustomActionConfigs; let i = index"
           luxTagId="lux-file-list-entry-custom{{ i }}"
           [luxIconName]="customConfig.iconName"
-          [luxDisabled]="customConfig.disabled || luxDisabled || luxReadonly"
+          [luxDisabled]="customConfig.disabled || luxDisabled || luxReadonly || !luxSelectedFiles "
           [luxLabel]="customConfig.label"
           [luxHideLabelIfExtended]="true"
           [luxPrio]="customConfig.prio ? customConfig.prio : 50 + i"
           [luxAlwaysVisible]="true"
           luxColor="primary"
-          (luxClicked)="customConfig.onClick(luxSelectedFiles)"
+          (luxClicked)="customConfig.onClick ? customConfig.onClick(luxSelectedFiles!) : noop()"
           [luxHidden]="!!customConfig.hidden"
         >
         </lux-menu-item>

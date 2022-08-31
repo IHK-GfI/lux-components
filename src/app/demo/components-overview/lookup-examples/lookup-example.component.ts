@@ -46,7 +46,7 @@ export abstract class LookupExampleComponent implements OnInit {
   // region Properties der Component
 
   renderProp = 'kurzText';
-  parameters: LuxLookupParameters | null = null;
+  parameters?: LuxLookupParameters;
   selected: any;
   customStyle: {} | null = null;
   customInvalidStyle: {} | null = null;
@@ -108,7 +108,10 @@ export abstract class LookupExampleComponent implements OnInit {
   }
 
   changeOptionUngueltig(event: any) {
-    this.behandlungUngueltige = this.options.find(option => option.value === +event.value).label;
+    const found = this.options.find(option => option.value === +event.value);
+    if (found) {
+      this.behandlungUngueltige = found.label;
+    }
   }
 
   changeRequired($event: boolean) {

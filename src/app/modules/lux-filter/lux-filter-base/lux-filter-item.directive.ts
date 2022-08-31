@@ -14,6 +14,8 @@ import { LuxCheckboxComponent } from '../../lux-form/lux-checkbox/lux-checkbox.c
 import { LuxLookupComboboxComponent } from '../../lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
 import { LuxLookupAutocompleteComponent } from '../../lux-lookup/lux-lookup-autocomplete/lux-lookup-autocomplete.component';
 
+export declare type LuxFilterRenderFnType<T = any> = (filter: LuxFilterItem<T>, value: T) => string;
+
 @Directive({
   selector: '[luxFilterItem]'
 })
@@ -22,7 +24,7 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
 
   @Input() luxFilterColor: ThemePalette = undefined;
   @Input() luxFilterDefaultValues = [...LuxFilterItem.DEFAULT_VALUES];
-  @Input() luxFilterRenderFn = undefined;
+  @Input() luxFilterRenderFn?: LuxFilterRenderFnType;
   @Input() luxFilterHidden = false;
   @Input() luxFilterDisabled = false;
 
@@ -59,7 +61,11 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
     } else if (this.selectLookup) {
       formComponent = this.selectLookup;
     } else {
-      throw Error(`Die verwendete Formularkomponente ist unbekannt!`);
+      throw Error(`Die Formularkomponente ist unbekannt!`);
+    }
+
+    if (!formComponent.luxControlBinding) {
+      throw Error(`Die Formularkomponente "${formComponent.luxLabel}" hat kein Binding!`);
     }
 
     this.filterItem = new LuxFilterItem<any>(formComponent.luxLabel, formComponent.luxControlBinding, formComponent);
@@ -141,7 +147,7 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
       return value;
     } else if (typeof value === "object" &&
                (filterItem.component instanceof LuxFormSelectableBase || filterItem.component instanceof LuxAutocompleteComponent)) {
-      return (value as any)[filterItem.component.luxOptionLabelProp];
+      return (value as any)[filterItem.component.luxOptionLabelProp!];
     } else if (filterItem.component instanceof  LuxLookupComponent) {
       return filterItem.component.getLabel(value);
     } else {

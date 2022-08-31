@@ -1,4 +1,5 @@
 import { Platform } from '@angular/cdk/platform';
+import { ComponentType } from '@angular/cdk/portal';
 import {
   ChangeDetectorRef,
   Component,
@@ -37,7 +38,7 @@ export const APP_DATE_FORMATS = {
   }
 };
 
-export declare type LuxDateFilterFn = (date: Date| null) => boolean;
+export declare type LuxDateFilterFn = (date: Date | null) => boolean;
 export declare type LuxStartView = 'month' | 'year' | 'multi-year';
 
 @Component({
@@ -48,23 +49,23 @@ export declare type LuxStartView = 'month' | 'year' | 'multi-year';
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
   ]
 })
-export class LuxDatepickerComponent extends LuxFormInputBaseClass<string> implements OnInit, OnChanges, OnDestroy {
+export class LuxDatepickerComponent<T = any> extends LuxFormInputBaseClass<T> implements OnInit, OnChanges, OnDestroy {
   private originalTouchUi = false;
   private mediaSubscription?: Subscription;
   private previousISO?: string;
   min: Date | null = null;
   max: Date | null = null;
   start: Date | null = null;
+  _luxCustomFilter: LuxDateFilterFn = () => true;
 
   @Input() luxStartView: LuxStartView = 'month';
   @Input() luxTouchUi = false;
   @Input() luxOpened = false;
-  @Input() luxStartDate?: string;
+  @Input() luxStartDate: string | null = null;
   @Input() luxShowToggle = true;
   @Input() luxLocale = 'de-DE';
-  @Input() luxCustomFilter?: LuxDateFilterFn;
-  @Input() luxMaxDate?: string;
-  @Input() luxMinDate?: string;
+  @Input() luxMaxDate: string | null = null;
+  @Input() luxMinDate: string | null = null;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
@@ -72,11 +73,20 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass<string> implem
   @ViewChild(MatDatepicker) matDatepicker?: MatDatepicker<any>;
   @ViewChild('datepickerInput', { read: ElementRef }) datepickerInput?: ElementRef;
 
-  get luxValue(): string | null {
+  get luxCustomFilter(){
+    return this._luxCustomFilter;
+  }
+
+  @Input()
+  set luxCustomFilter(customFilterFn: LuxDateFilterFn | undefined){
+    this._luxCustomFilter = customFilterFn ?? (() => true);
+  }
+
+  get luxValue(): T {
     return this.getValue();
   }
 
-  @Input() set luxValue(value: string | null) {
+  @Input() set luxValue(value: T) {
     this.setValue(value);
   }
 
@@ -206,7 +216,7 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass<string> implem
       }
 
       // "silently" den FormControl auf den (potenziell) geänderten Wert aktualisieren
-      this.formControl.setValue(isoValue, {
+      this.formControl.setValue(isoValue as any, {
         emitEvent: false,
         emitModelToViewChange: false,
         emitViewToModelChange: false
@@ -275,7 +285,7 @@ export class LuxDatepickerComponent extends LuxFormInputBaseClass<string> implem
   // endregion
 
   // für dem Customheader für das "Green"-Theme
-  getHeaderByTheme(){
+  getHeaderByTheme(): any {
     const customHeader = LuxDatepickerCustomHeaderComponent;
     return this.themeService.getTheme().name === 'green' ? customHeader : null;
   }

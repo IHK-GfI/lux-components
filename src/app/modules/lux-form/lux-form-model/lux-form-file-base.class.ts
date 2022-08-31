@@ -26,33 +26,33 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { take } from 'rxjs/operators';
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
+export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   defaultReadFileDelay = 1000;
 
   private _luxAccept = '';
 
-  protected abstract initUploadActionConfig(): U;
+  // protected abstract initUploadActionConfig(): U;
 
-  protected _luxUploadActionConfig: U = this.initUploadActionConfig();
-
-  protected _luxDeleteActionConfig: ILuxFileActionConfig = {
-    disabled: false,
-    hidden: false,
-    iconName: 'fas fa-trash',
-    label: $localize`:@@luxc.form-file-base.delete.action.lbl:Löschen`
-  };
-  protected _luxViewActionConfig: ILuxFileActionConfig = {
-    disabled: false,
-    hidden: true,
-    iconName: 'fas fa-eye',
-    label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
-  };
-  protected _luxDownloadActionConfig: ILuxFileActionConfig = {
-    disabled: false,
-    hidden: true,
-    iconName: 'fas fa-download',
-    label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
-  };
+  // protected _luxUploadActionConfig: U = this.initUploadActionConfig();
+  //
+  // protected _luxDeleteActionConfig: ILuxFileActionConfig = {
+  //   disabled: false,
+  //   hidden: false,
+  //   iconName: 'fas fa-trash',
+  //   label: $localize`:@@luxc.form-file-base.delete.action.lbl:Löschen`
+  // };
+  // protected _luxViewActionConfig: ILuxFileActionConfig = {
+  //   disabled: false,
+  //   hidden: true,
+  //   iconName: 'fas fa-eye',
+  //   label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
+  // };
+  // protected _luxDownloadActionConfig: ILuxFileActionConfig = {
+  //   disabled: false,
+  //   hidden: true,
+  //   iconName: 'fas fa-download',
+  //   label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
+  // };
 
   protected _luxCustomActionConfigs: ILuxFileActionConfig[] = [];
 
@@ -62,11 +62,11 @@ export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
   @ViewChild('downloadLink', { read: ElementRef, static: true }) downloadLink!: ElementRef;
   @ViewChild('fileUpload', { read: ElementRef, static: true }) fileUploadInput!: ElementRef;
 
-  @Output() luxSelectedFilesChange: EventEmitter<T | null> = new EventEmitter();
+  @Output() luxSelectedFilesChange: EventEmitter<T> = new EventEmitter();
 
   @Input() luxUploadReportProgress = false;
   @Input() luxContentsAsBlob = false;
-  @Input() luxTagId: string | null = null;
+  @Input() luxTagId?: string;
   @Input() luxMaxSizeMB = 10;
   @Input() luxCapture = '';
   @Input() luxUploadUrl = '';
@@ -93,45 +93,45 @@ export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
     }
   }
 
-  get luxUploadActionConfig(): U {
-    return this._luxUploadActionConfig;
-  }
-
-  @Input() set luxUploadActionConfig(config: U) {
-    if (config) {
-      this._luxUploadActionConfig = config;
-    }
-  }
-
-  get luxDeleteActionConfig(): ILuxFileActionConfig {
-    return this._luxDeleteActionConfig;
-  }
-
-  @Input() set luxDeleteActionConfig(config: ILuxFileActionConfig) {
-    if (config) {
-      this._luxDeleteActionConfig = config;
-    }
-  }
-
-  get luxViewActionConfig(): ILuxFileActionConfig {
-    return this._luxViewActionConfig;
-  }
-
-  @Input() set luxViewActionConfig(config: ILuxFileActionConfig) {
-    if (config) {
-      this._luxViewActionConfig = config;
-    }
-  }
-
-  get luxDownloadActionConfig(): ILuxFileActionConfig {
-    return this._luxDownloadActionConfig;
-  }
-
-  @Input() set luxDownloadActionConfig(config: ILuxFileActionConfig) {
-    if (config) {
-      this._luxDownloadActionConfig = config;
-    }
-  }
+  // get luxUploadActionConfig(): U {
+  //   return this._luxUploadActionConfig;
+  // }
+  //
+  // @Input() set luxUploadActionConfig(config: U) {
+  //   if (config) {
+  //     this._luxUploadActionConfig = config;
+  //   }
+  // }
+  //
+  // get luxDeleteActionConfig(): ILuxFileActionConfig {
+  //   return this._luxDeleteActionConfig;
+  // }
+  //
+  // @Input() set luxDeleteActionConfig(config: ILuxFileActionConfig) {
+  //   if (config) {
+  //     this._luxDeleteActionConfig = config;
+  //   }
+  // }
+  //
+  // get luxViewActionConfig(): ILuxFileActionConfig {
+  //   return this._luxViewActionConfig;
+  // }
+  //
+  // @Input() set luxViewActionConfig(config: ILuxFileActionConfig) {
+  //   if (config) {
+  //     this._luxViewActionConfig = config;
+  //   }
+  // }
+  //
+  // get luxDownloadActionConfig(): ILuxFileActionConfig {
+  //   return this._luxDownloadActionConfig;
+  // }
+  //
+  // @Input() set luxDownloadActionConfig(config: ILuxFileActionConfig) {
+  //   if (config) {
+  //     this._luxDownloadActionConfig = config;
+  //   }
+  // }
 
   get luxCustomActionConfigs(): ILuxFileActionConfig[] {
     return this._luxCustomActionConfigs;
@@ -143,11 +143,11 @@ export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
     }
   }
 
-  get luxSelectedFiles(): T | null {
+  get luxSelectedFiles(): T  {
     return this.getValue();
   }
 
-  @Input() set luxSelectedFiles(selectedFiles: T | null) {
+  @Input() set luxSelectedFiles(selectedFiles: T) {
     this.setValue(selectedFiles);
   }
 
@@ -192,25 +192,6 @@ export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
   }
 
   /**
-   * Entfernt die aktuell selektierten Dateien und entfernt etwaige (spezifische) Fehler aus dem FormControl.
-   *
-   * @param $event
-   */
-  clearFiles($event?: MouseEvent) {
-    this.formControl.markAsTouched();
-    this.formControl.markAsDirty();
-
-    this.resetSelected();
-    this.notifyFormValueChanged();
-    this.clearFormControlErrors();
-    if (this.luxDeleteActionConfig.onClick) {
-      this.luxDeleteActionConfig.onClick();
-    }
-
-    this.announceAllFilesRemove();
-  }
-
-  /**
    * Löst den Download der übergebenen Datei aus.
    *
    * @param file
@@ -231,9 +212,7 @@ export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
       downloadLink.click();
     }
 
-    if (this.luxDownloadActionConfig.onClick) {
-      this.luxDownloadActionConfig.onClick(myFile);
-    }
+    this.handleDownloadClick(myFile);
   }
 
   /**
@@ -246,7 +225,7 @@ export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
     this.formControl.markAsTouched();
     // Wenn die Datei bereits einen Base64-Wert besitzt, den onClick-Callback ausführen
     if (file.content) {
-      this.triggerViewFileClick(file);
+      this.handleViewFileClick(file);
       return;
     }
     const callbackResult = file.contentCallback();
@@ -254,13 +233,13 @@ export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
     if (isObservable(callbackResult)) {
       (callbackResult as Observable<string>).pipe(take(1)).subscribe((content: any) => {
         file.content = content;
-        this.triggerViewFileClick(file);
+        this.handleViewFileClick(file);
       });
     } else {
       // Wenn der Callback ein normaler String oder Promise ist, diesen auflösen und den File-Base64 aktualisieren
       Promise.resolve(callbackResult as any).then((content: any) => {
         file.content = content;
-        this.triggerViewFileClick(file);
+        this.handleViewFileClick(file);
       });
     }
   }
@@ -276,9 +255,7 @@ export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
       let newFiles: ILuxFileObject[] = [];
       await this.mapFilesToFileObjects(files).then((fileObjects: ILuxFileObject[]) => (newFiles = fileObjects));
       await this.uploadFiles(newFiles);
-      if (this.luxUploadActionConfig) {
-        this.handleUploadClick(newFiles);
-      }
+      this.handleUploadClick(newFiles);
       this.formControl.markAsTouched();
       this.formControl.markAsDirty();
       return Promise.resolve(newFiles);
@@ -515,27 +492,15 @@ export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
     }
   }
 
-  /**
-   * Funktion, die das Auswählen von Dateien handeln soll.
-   * Die erbenden Klassen implementieren diese Funktion aus.
-   */
   abstract selectFiles(files: FileList | File[]): void;
 
   abstract resetSelected(): void;
 
   abstract handleUploadClick(files: ILuxFileObject[]): void;
 
-  /**
-   * Prüft ob der Base64-String für die Datei gesetzt ist und ob ein onClick-Aufruf für die View-Action vorhanden ist.
-   * Wenn ja, wird dieser ausgeführt.
-   *
-   * @param file
-   */
-  protected triggerViewFileClick(file: ILuxFileObject) {
-    if (file.content && this.luxViewActionConfig.onClick) {
-      this.luxViewActionConfig.onClick(file);
-    }
-  }
+  abstract handleDownloadClick(file: ILuxFileObject): void;
+
+  abstract handleViewFileClick(file: ILuxFileObject): void;
 
   /**
    * Entfernt die in dieser Component gesetzten Fehlermeldungen.
@@ -676,6 +641,8 @@ export abstract class LuxFormFileBase<T,U> extends LuxFormComponentBase<T> {
   private isDnDAllowed(): boolean {
     return this.luxDnDActive && !this.luxDisabled && !this.luxReadonly;
   }
+
+  noop() {}
 
   // region Overridden methods
 

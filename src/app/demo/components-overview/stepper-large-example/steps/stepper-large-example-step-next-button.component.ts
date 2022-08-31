@@ -33,7 +33,7 @@ export class StepperLargeExampleStepNextButtonComponent extends LuxStepperLargeS
     this.luxTitle = 'Konfiguration: Weiter-Button';
     this.luxVetoFn = this.createVetoPromise;
 
-    this.form.get('alignIconWithLabel').disable();
+    this.form.get('alignIconWithLabel')!.disable();
 
     this.luxCompleted = this.form.valid;
 

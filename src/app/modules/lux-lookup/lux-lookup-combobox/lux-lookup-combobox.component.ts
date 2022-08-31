@@ -23,10 +23,11 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
 
-  @ViewChild(MatSelect) matSelect: MatSelect;
+  @ViewChild(MatSelect) matSelect!: MatSelect;
 
-  displayedEntries: LuxLookupTableEntry[];
-  subscription: Subscription;
+  stateMatcher: LuxLookupErrorStateMatcher;
+  displayedEntries: LuxLookupTableEntry[] = [];
+  subscription?: Subscription;
 
   constructor(
     lookupService: LuxLookupService,
@@ -52,7 +53,7 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
   ngOnDestroy() {
     super.ngOnDestroy();
 
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   /**
@@ -62,7 +63,7 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
    * @param value2
    * @returns boolean
    */
-  compareByKey(value1, value2) {
+  compareByKey(value1: LuxLookupTableEntry, value2: LuxLookupTableEntry) {
     const key1 = value1 ? value1.key : -1;
     const key2 = value2 ? value2.key : -2;
 
@@ -88,28 +89,28 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
   }
 
   /**
-   * Fuegt beim Oeffnen des Selects einen Scrolllistener hinzu.
+   * Fügt beim Öffnen des Selects einen Scroll-Listener hinzu.
    *
    * @param panelElement
    */
-  private registerPanelScrollEvent(panelElement) {
-    panelElement.addEventListener('scroll', event => this.loadOnScroll(event));
+  private registerPanelScrollEvent(panelElement: Element) {
+    panelElement.addEventListener('scroll', (event) => this.loadOnScroll(event));
   }
 
   /**
-   * Stoesst das Nachladen von Elementen an, wenn ein bestimmter Scrollwert erreicht wurde.
+   * Stößt das Nachladen von Elementen an, wenn ein bestimmter Scrollwert erreicht wurde.
    *
    * @param event - ScrollEvent
    */
-  private loadOnScroll(event) {
-    const position = event.target;
-    if ((position.scrollTop + position.clientHeight) / position.scrollHeight > 85 / 100) {
+  private loadOnScroll(event: Event) {
+    const position = event.target as any;
+    if (position && (position.scrollTop + position.clientHeight) / position.scrollHeight > 85 / 100) {
       this.reloadNextDataBlock();
     }
   }
 
   /**
-   * Laed den naechsten Block Daten aus den Entries nach.
+   * Läd den nächsten Block Daten aus den Entries nach.
    */
   private reloadNextDataBlock() {
     const start = this.displayedEntries.length - 1;

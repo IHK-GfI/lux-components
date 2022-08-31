@@ -7,7 +7,7 @@ import { take } from "rxjs/operators";
   providedIn: 'root'
 })
 export class LuxDialogRef<T> {
-  _matDialogRef: MatDialogRef<any>;
+  _matDialogRef!: MatDialogRef<any>;
   _dialogConfirmed: ReplaySubject<void> = new ReplaySubject(1);
   _dialogDeclined: ReplaySubject<void> = new ReplaySubject(1);
   _dialogClosed: ReplaySubject<any> = new ReplaySubject(1);
@@ -43,7 +43,7 @@ export class LuxDialogRef<T> {
   }
 
   /**
-   * Wird bei Beenden des Dialogs ausgelöst.
+   * Wird beim Beenden des Dialogs ausgelöst.
    */
   get dialogClosed(): Observable<any> {
     return this._dialogClosed.asObservable();
@@ -76,8 +76,8 @@ export class LuxDialogRef<T> {
    * Wenn man innerhalb eines Dialogs einen anderen Dialog (z.B. für Hilfetexte)
    * öffnen möchte, kann man über diese Methode die Referenz inklusive aller
    * benötigten Informationen des aktuell angezeigten Dialogs zwischenspeichern.
-   * Nach dem der Hilfedialog geschlossen wurde, kann über die restoreDialogRef-
-   * Methode die vorherige Dialogreferenz wiederhergestellt werden.
+   * Nachdem der Hilfedialog geschlossen wurde, kann über die restoreDialogRef-Methode
+   * die vorherige Dialogreferenz wiederhergestellt werden.
    */
   storeDialogRef() {
     this.refs.push({

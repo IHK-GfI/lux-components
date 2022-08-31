@@ -31,14 +31,14 @@
   <div fxLayout="row wrap">
     <lux-button
       luxLabel="Enable"
-      (luxClicked)="fileExample.form.get(fileExample.controlBinding).enable()"
-      [luxDisabled]="!fileExample.form.get(fileExample.controlBinding).disabled"
+      (luxClicked)="fileExample.form.get(fileExample.controlBinding)!.enable()"
+      [luxDisabled]="!fileExample.form.get(fileExample.controlBinding)!.disabled"
       luxColor="primary"
     ></lux-button>
     <lux-button
       luxLabel="Disable"
-      (luxClicked)="fileExample.form.get(fileExample.controlBinding).disable()"
-      [luxDisabled]="fileExample.form.get(fileExample.controlBinding).disabled"
+      (luxClicked)="fileExample.form.get(fileExample.controlBinding)!.disable()"
+      [luxDisabled]="fileExample.form.get(fileExample.controlBinding)!.disabled"
       luxColor="primary"
     ></lux-button>
   </div>

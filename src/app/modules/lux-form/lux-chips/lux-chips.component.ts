@@ -203,7 +203,7 @@ export class LuxChipsComponent extends LuxFormComponentBase<string[]> implements
             if (this.luxNewChipGroup.luxLabels && Array.isArray(this.luxNewChipGroup.luxLabels) && this.luxNewChipGroup.luxLabels.length > 0) {
               this.formControl.setValue([...this.luxNewChipGroup.luxLabels]);
             } else {
-              this.formControl.setValue(null);
+              this.formControl.setValue([]);
             }
           }
         } else {
@@ -244,7 +244,7 @@ export class LuxChipsComponent extends LuxFormComponentBase<string[]> implements
         if (chipGroup.luxLabels && Array.isArray(chipGroup.luxLabels) && chipGroup.luxLabels.length > 0) {
           this.formControl.setValue([...chipGroup.luxLabels]);
         } else {
-          this.formControl.setValue(null);
+          this.formControl.setValue([]);
         }
 
         this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];

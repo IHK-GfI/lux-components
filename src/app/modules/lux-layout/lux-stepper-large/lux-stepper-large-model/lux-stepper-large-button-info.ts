@@ -2,7 +2,7 @@ import { LuxActionColorType } from '../../../lux-action/lux-action-model/lux-act
 
 export const LUX_STEPPER_LARGE_DEFAULT_PREV_BTN_CONF: LuxStepperLargeButtonInfo = {
   label: $localize`:@@luxc.stepper.back.btn:Zurück`,
-  color: null,
+  color: undefined,
   iconName: 'fas fa-arrow-left',
   iconShowRight: false
 };

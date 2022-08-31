@@ -23,7 +23,19 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
     { value: Date.now() + MasterDetailExampleDataService.MONTH, label: 'Nächsten Monat' }
   ];
 
-  configuration: any = {
+  configuration: {
+    emptyIconDetail: string;
+    emptyIconMaster: string;
+    emptyIconDetailSize: string;
+    emptyIconMasterSize: string;
+    emptyLabelDetail: string;
+    emptyLabelMaster: string;
+    opened: boolean;
+    lineBreak: boolean;
+    masterIsReloading: boolean;
+    ignoreScrollLoading: boolean;
+    alignEmptyElements: boolean;
+  } = {
     emptyIconDetail: 'fas fa-times',
     emptyIconMaster: 'fas fa-times',
     emptyIconDetailSize: '5x',
@@ -39,7 +51,7 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
 
   // toggleMasterFocus des infinite scroll
   scrollSteps = 5;
-  // enthält alle list-item eintraege immer vor
+  // Enthält alle list-item Einträge immer vor
   allMasterEntries: any[];
   masterEntries: any[] = [];
   selectedDetail: any;

@@ -1,5 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed } from '@angular/core/testing';
+import { ValidatorFnType } from '../../lux-form/lux-form-model/lux-form-component-base.class';
 
 import { LuxLookupAutocompleteComponent } from './lux-lookup-autocomplete.component';
 import { Component } from '@angular/core';
@@ -8,7 +9,7 @@ import { By } from '@angular/platform-browser';
 import { Validators } from '@angular/forms';
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
-import { LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
+import { LuxFieldValues, LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
 import { Observable, of } from 'rxjs';
 import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
@@ -60,6 +61,8 @@ describe('LuxLookupAutocompleteComponent', () => {
 @Component({
   template: `
     <lux-lookup-autocomplete
+      luxTableNo="1004"
+      [luxParameters]="params"
       [luxControlValidators]="validators"
       [(luxValue)]="value"
       luxLookupId="test"
@@ -68,8 +71,12 @@ describe('LuxLookupAutocompleteComponent', () => {
   `
 })
 class LuxNoFormComponent {
-  validators;
-  value;
+  params = new LuxLookupParameters({
+    knr: 101,
+    fields: [LuxFieldValues.kurz, LuxFieldValues.lang1, LuxFieldValues.lang2]
+  });
+  validators?: ValidatorFnType;
+  value?: any;
 }
 
 class MockLookupService {

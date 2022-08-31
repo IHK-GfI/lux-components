@@ -19,7 +19,7 @@
   // Wenn das passende Flag gesetzt ist und keine Mobilansicht vorliegt,
   // für die Zentrierung der Empty-Elemente der Masterliste die relative Position des Master-Containers nutzen
   // Folge: Empty-Elemente von Master und Detail sind gleich hoch
-  &:not(.lux-master-container-mobile).lux-empty-elements-aligned  {
+  &:not(.lux-master-container-mobile).lux-empty-elements-aligned {
     lux-list {
       position: static !important;
     }

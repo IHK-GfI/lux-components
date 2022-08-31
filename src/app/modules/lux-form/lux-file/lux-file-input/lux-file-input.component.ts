@@ -26,7 +26,7 @@ import { LuxComponentsConfigService } from '../../../lux-components-config/lux-c
   templateUrl: './lux-file-input.component.html',
   styleUrls: ['./lux-file-input.component.scss']
 })
-export class LuxFileInputComponent extends LuxFormFileBase<ILuxFileObject, ILuxFileActionConfig> implements AfterViewInit {
+export class LuxFileInputComponent extends LuxFormFileBase<ILuxFileObject | null> implements AfterViewInit {
   @ViewChild('visibleInput', { read: ElementRef }) visibleInput!: ElementRef;
 
   @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
@@ -37,6 +37,71 @@ export class LuxFileInputComponent extends LuxFormFileBase<ILuxFileObject, ILuxF
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
+
+  _luxUploadActionConfig: ILuxFileActionConfig = {
+    disabled: false,
+    hidden: false,
+    iconName: 'fas fa-cloud-upload-alt',
+    label: $localize`:@@luxc.form-file-base.upload.action.lbl:Hochladen`
+  }
+  _luxDeleteActionConfig: ILuxFileActionConfig = {
+      disabled: false,
+      hidden: false,
+      iconName: 'fas fa-trash',
+      label: $localize`:@@luxc.form-file-base.delete.action.lbl:Löschen`
+  };
+  _luxViewActionConfig: ILuxFileActionConfig = {
+      disabled: false,
+      hidden: true,
+      iconName: 'fas fa-eye',
+      label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
+  };
+  _luxDownloadActionConfig: ILuxFileActionConfig = {
+      disabled: false,
+      hidden: true,
+      iconName: 'fas fa-download',
+      label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
+  };
+
+  get luxUploadActionConfig(): ILuxFileActionConfig {
+    return this._luxUploadActionConfig;
+  }
+
+  @Input() set luxUploadActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxUploadActionConfig = config;
+    }
+  }
+
+  get luxDeleteActionConfig(): ILuxFileActionConfig {
+    return this._luxDeleteActionConfig;
+  }
+
+  @Input() set luxDeleteActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxDeleteActionConfig = config;
+    }
+  }
+
+  get luxViewActionConfig(): ILuxFileActionConfig {
+    return this._luxViewActionConfig;
+  }
+
+  @Input() set luxViewActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxViewActionConfig = config;
+    }
+  }
+
+  get luxDownloadActionConfig(): ILuxFileActionConfig {
+    return this._luxDownloadActionConfig;
+  }
+
+  @Input() set luxDownloadActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxDownloadActionConfig = config;
+    }
+  }
 
   constructor(
     @Optional() controlContainer: ControlContainer,
@@ -49,26 +114,44 @@ export class LuxFileInputComponent extends LuxFormFileBase<ILuxFileObject, ILuxF
     super(controlContainer, cdr, logger, config, http, liveAnnouncer);
   }
 
-  protected initUploadActionConfig(): ILuxFileActionConfig {
-    return {
-      disabled: false,
-      hidden: false,
-      iconName: 'fas fa-cloud-upload-alt',
-      label: $localize`:@@luxc.form-file-base.upload.action.lbl:Hochladen`
-    };
-  }
-
   ngAfterViewInit() {
     LuxUtil.assertNonNull('visibleInput', this.visibleInput);
   }
 
-  onSelectFiles(target: EventTarget) {
-    const fileList = (target as HTMLInputElement).files;
+  onSelectFiles(target: EventTarget | null) {
+    const fileList = target ? (target as HTMLInputElement).files : null;
     this.selectFiles(fileList ? Array.from(fileList) : []);
+  }
+
+  clearFile() {
+    this.formControl.markAsTouched();
+    this.formControl.markAsDirty();
+
+    const deletedFile = this.luxSelectedFiles;
+
+    this.resetSelected();
+    this.notifyFormValueChanged();
+    this.clearFormControlErrors();
+    if (deletedFile && this.luxDeleteActionConfig.onClick) {
+      this.luxDeleteActionConfig.onClick(deletedFile);
+      this.announceFileRemove(deletedFile.name);
+    }
   }
 
   resetSelected() {
     this.luxSelectedFiles = null;
+  }
+
+  handleViewFileClick(file: ILuxFileObject) {
+    if (file.content && this.luxViewActionConfig.onClick) {
+      this.luxViewActionConfig.onClick(file);
+    }
+  }
+
+  handleDownloadClick(file: ILuxFileObject) {
+    if (this.luxDownloadActionConfig.onClick) {
+      this.luxDownloadActionConfig.onClick(file);
+    }
   }
 
   handleUploadClick(files: ILuxFileObject[]) {

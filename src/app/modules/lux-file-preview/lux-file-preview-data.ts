@@ -2,6 +2,6 @@ import { ILuxFileObject } from '../lux-form/lux-file/lux-file-model/lux-file-obj
 import { LuxFormFileBase } from '../lux-form/lux-form-model/lux-form-file-base.class';
 
 export interface LuxFilePreviewData {
-  fileComponent?: LuxFormFileBase<any, any>;
+  fileComponent?: LuxFormFileBase;
   fileObject?: ILuxFileObject;
 }

@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
   templateUrl: './button-example.component.html'
 })
 export class ButtonExampleComponent implements OnDestroy {
-  // region Helper-Properties für das Beispiel
 
   showOutputEvents = false;
   config: LuxComponentsConfigParameters;
@@ -22,10 +21,6 @@ export class ButtonExampleComponent implements OnDestroy {
     { value: 'accent', label: 'accent' }
   ];
 
-  // endregion
-
-  // region Properties der Component
-
   label = 'Button';
   iconName = 'fas fa-save';
   iconShowRight = false;
@@ -35,7 +30,15 @@ export class ButtonExampleComponent implements OnDestroy {
 
   subscription: Subscription;
 
-  // endregion
+  get allUpperCase() {
+    return this.config.labelConfiguration!.allUppercase;
+  }
+
+  set allUpperCase(value: boolean) {
+    this.config.labelConfiguration!.allUppercase = value;
+    this.updateConfiguration();
+  }
+
 
   constructor(private configService: LuxComponentsConfigService) {
     this.config = configService.currentConfig;

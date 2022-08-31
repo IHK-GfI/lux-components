@@ -23,7 +23,7 @@ export class ErrorpageExampleComponent implements AfterViewInit, OnDestroy {
     this.errorPageConfig = this.errorStore.config;
     this.configForm = new UntypedFormGroup({});
     Object.keys(this.errorPageConfig).forEach((key: string) => {
-      this.configForm.setControl(key, new UntypedFormControl(this.errorPageConfig[key]));
+      this.configForm.setControl(key, new UntypedFormControl((this.errorPageConfig as any)[key]));
     });
   }
 

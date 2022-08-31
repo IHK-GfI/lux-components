@@ -17,14 +17,14 @@ import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux
 import { logResult, setRequiredValidatorForFormControl } from '../../example-base/example-base-util/example-base-helper';
 
 @Directive()
-export abstract class FileExampleComponent<T, U extends ILuxFileActionBaseConfig> implements OnInit {
+export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBaseConfig = any> implements OnInit {
   showOutputEvents    = true;
   realBackends: any[] = [];
   mockBackend         = false;
   log                 = logResult;
   form: UntypedFormGroup;
 
-  fileComponents: LuxFormFileBase<any, any>[] = [];
+  fileComponents: LuxFormFileBase[] = [];
 
   dndActive           = true;
   selected: T | null  = null;
@@ -64,7 +64,7 @@ export abstract class FileExampleComponent<T, U extends ILuxFileActionBaseConfig
     hidden  : false,
     iconName: 'fas fa-eye',
     label   : 'Ansehen',
-    onClick : (fileObject?: ILuxFileObject) => {
+    onClick : (fileObject: ILuxFileObject) => {
       this.filePreviewService.open({
         previewData: {
           fileComponent: this.fileComponents[ 0 ],
@@ -79,7 +79,7 @@ export abstract class FileExampleComponent<T, U extends ILuxFileActionBaseConfig
     hidden  : false,
     iconName: 'fas fa-eye',
     label   : 'Ansehen',
-    onClick : (fileObject?: ILuxFileObject) => {
+    onClick : (fileObject: ILuxFileObject) => {
       this.filePreviewService.open({
         previewData: {
           fileComponent: this.fileComponents[ 1 ],
@@ -140,14 +140,14 @@ export abstract class FileExampleComponent<T, U extends ILuxFileActionBaseConfig
     this.mockBackend = $event;
     if (this.mockBackend) {
       this.realBackends = [];
-      this.fileComponents.forEach((input: LuxFormFileBase<any, any>) => {
+      this.fileComponents.forEach((input: LuxFormFileBase<any>) => {
         this.realBackends.push(input[ 'http' ]);
         input[ 'http' ] = {
           post: () => of('ok').pipe(delay(2000))
         } as any;
       });
     } else {
-      this.fileComponents.forEach((input: LuxFormFileBase<any, any>, index: number) => {
+      this.fileComponents.forEach((input: LuxFormFileBase<any>, index: number) => {
         input[ 'http' ] = this.realBackends[ index ];
       });
     }

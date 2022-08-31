@@ -49,7 +49,7 @@ export class LuxComponentsConfigService {
   }
 
   constructor(@Inject(LuxConfigTokenService) @Optional() config: LuxComponentsConfigParameters) {
-    // Wenn keine Konfiguration geladen werden konnte, Standard-Konfig benutzen und eine Info ausgeben.
+    // Wenn keine Konfiguration geladen werden konnte, Standard-Konfiguration benutzen.
     if (!config) {
       this.config$.next(LuxComponentsConfigService.DEFAULT_CONFIG);
     } else {
@@ -86,9 +86,9 @@ export class LuxComponentsConfigService {
   }
 
   /**
-   * Kombiniert die übergebene Konfiguration mit der Standard-Konfig.
+   * Kombiniert die übergebene Konfiguration mit der Standard-Konfiguration.
    *
-   * Übernimmt die Werte aus der Standard-Konfig, die nicht im übergebenen gesetzt wurden.
+   * Übernimmt die Werte aus der Standard-Konfiguration, die nicht im übergebenen gesetzt wurden.
    *
    * @param config
    */

@@ -69,7 +69,7 @@
 </ng-template>
 
 <ng-template #content>
-  <ng-container *ngTemplateOutlet="steps.get(luxCurrentStepNumber).contentTemplate"></ng-container>
+  <ng-container *ngTemplateOutlet="steps.get(luxCurrentStepNumber)!.contentTemplate"></ng-container>
 </ng-template>
 
 <ng-template #buttons>
@@ -93,7 +93,7 @@
     [luxIconAlignWithLabel]="luxNextButtonConfig.alignIconWithLabel"
     [luxColor]="luxNextButtonConfig.color"
     [luxRaised]="true"
-    [luxDisabled]="luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber).luxCompleted)"
+    [luxDisabled]="luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber)!.luxCompleted)"
     (luxClicked)="onNextStep()"
     *ngIf="!isLastStep"
   ></lux-button>
@@ -105,7 +105,7 @@
     [luxIconAlignWithLabel]="luxFinButtonConfig.alignIconWithLabel"
     [luxColor]="luxFinButtonConfig.color"
     [luxRaised]="true"
-    [luxDisabled]="luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber).luxCompleted || isFinished)"
+    [luxDisabled]="luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber)!.luxCompleted || isFinished)"
     (luxClicked)="onFinStep()"
     *ngIf="isLastStep"
   ></lux-button>

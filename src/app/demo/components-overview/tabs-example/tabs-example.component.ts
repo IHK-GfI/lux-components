@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -57,11 +58,11 @@ export class TabsExampleComponent {
 
   constructor() {}
 
-  activeTabChanged($event) {
-    this.log(this.showOutputEvents, 'luxActiveTabChanged', $event);
+  activeTabChanged(event: MatTabChangeEvent) {
+    this.log(this.showOutputEvents, 'luxActiveTabChanged', event);
   }
 
-  tabContentCreated(tab) {
+  tabContentCreated(tab: any) {
     this.log(this.showOutputEvents, 'Tab-Content created', tab);
   }
 }

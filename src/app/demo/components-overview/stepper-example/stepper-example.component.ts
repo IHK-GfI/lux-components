@@ -1,3 +1,4 @@
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -116,11 +117,9 @@ export class StepperExampleComponent implements OnDestroy {
   /**
    * Loggt das luxFinishButtonClicked-Event und gibt eine Snackbar-Mitteilung aus.
    * Anschließend wird der aktuelle Step wieder auf 0 gesetzt und die Forms resettet.
-   *
-   * @param $event
    */
-  finishClicked($event) {
-    this.log(this.showOutputEvents, 'luxFinishButtonClicked', $event);
+  finishClicked() {
+    this.log(this.showOutputEvents, 'luxFinishButtonClicked');
 
     const snackbarDuration = 5000;
 
@@ -142,30 +141,30 @@ export class StepperExampleComponent implements OnDestroy {
   /**
    * Loggt das luxCurrentStepNumberChange-Event.
    *
-   * @param $event
+   * @param event
    */
-  stepNumberChanged($event) {
-    this.log(this.showOutputEvents, 'luxCurrentStepNumberChange', $event);
+  stepNumberChanged(event: number) {
+    this.log(this.showOutputEvents, 'luxCurrentStepNumberChange', event);
   }
 
   /**
-   * Loggt das luxStepChanged-Event und aktualisiert die CurrentStepNumber sowie die Footer-Button Zustände.
+   * Loggt das luxStepChanged-Event und aktualisiert die CurrentStepNumber sowie die Footer-Button-Zustände.
    *
-   * @param $event
+   * @param event
    */
-  stepChanged($event) {
-    this.log(this.showOutputEvents, 'luxStepChanged', $event);
-    if (this.currentStepNumber !== $event.selectedIndex) {
-      this.currentStepNumber = $event.selectedIndex;
+  stepChanged(event: StepperSelectionEvent) {
+    this.log(this.showOutputEvents, 'luxStepChanged', event);
+    if (this.currentStepNumber !== event.selectedIndex) {
+      this.currentStepNumber = event.selectedIndex;
     }
     this.updateFooterButtonStates();
   }
 
-  stepClicked($event) {
+  stepClicked($event: number) {
     this.log(this.showOutputEvents, `luxStepClicked`, $event);
   }
 
-  checkValidation($event) {
+  checkValidation($event: number) {
     this.log(this.showOutputEvents, `luxCheckValidation`, $event);
   }
 
@@ -177,17 +176,17 @@ export class StepperExampleComponent implements OnDestroy {
       return;
     }
     if (this.currentStepNumber === 0) {
-      this.buttonService.getButtonInfoByCMD('previous').disabled = true;
-      this.buttonService.getButtonInfoByCMD('next').disabled = false;
-      this.buttonService.getButtonInfoByCMD('finish').disabled = true;
+      this.buttonService.getButtonInfoByCMD('previous')!.disabled = true;
+      this.buttonService.getButtonInfoByCMD('next')!.disabled = false;
+      this.buttonService.getButtonInfoByCMD('finish')!.disabled = true;
     } else if (this.currentStepNumber === this.steps.length) {
-      this.buttonService.getButtonInfoByCMD('previous').disabled = false;
-      this.buttonService.getButtonInfoByCMD('next').disabled = true;
-      this.buttonService.getButtonInfoByCMD('finish').disabled = false;
+      this.buttonService.getButtonInfoByCMD('previous')!.disabled = false;
+      this.buttonService.getButtonInfoByCMD('next')!.disabled = true;
+      this.buttonService.getButtonInfoByCMD('finish')!.disabled = false;
     } else {
-      this.buttonService.getButtonInfoByCMD('previous').disabled = false;
-      this.buttonService.getButtonInfoByCMD('next').disabled = false;
-      this.buttonService.getButtonInfoByCMD('finish').disabled = true;
+      this.buttonService.getButtonInfoByCMD('previous')!.disabled = false;
+      this.buttonService.getButtonInfoByCMD('next')!.disabled = false;
+      this.buttonService.getButtonInfoByCMD('finish')!.disabled = true;
     }
   }
 

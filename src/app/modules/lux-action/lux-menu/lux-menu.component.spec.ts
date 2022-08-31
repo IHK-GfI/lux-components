@@ -197,25 +197,30 @@ describe('LuxMenuComponent', () => {
 });
 
 @Component({
-  template:
-    '<lux-menu luxTagId="mock-menu" [luxDisplayMenuLeft]="displayMenuLeft" [luxDisplayExtended]="displayExtended" ' +
-    '[luxMaximumExtended]="maximumExtended" [luxClassName]="className" ' +
-    '(luxMenuClosed)="closed()">' +
-    '<lux-menu-item ' +
-    ' [luxLabel]="item.label" ' +
-    ' [luxIconName]="item.iconName" ' +
-    ' [luxTagId]="item.label" ' +
-    ' [luxAlwaysVisible]="item.alwaysVisible" ' +
-    ' [luxDisabled]="item.disabled" ' +
-    ' [luxRaised]="item.raised" ' +
-    ' [luxColor]="item.color" ' +
-    ' (luxClicked)="clicked(item.cmd)" ' +
-    ' *ngFor="let item of items">' +
-    '</lux-menu-item>' +
-    ' <lux-menu-trigger *ngIf="showMockTrigger">' +
-    '   <span class="mock-trigger">Mock-Spock</span>' +
-    ' </lux-menu-trigger>' +
-    '</lux-menu>'
+  template: `<lux-menu
+    luxTagId="mock-menu"
+    [luxDisplayMenuLeft]="displayMenuLeft"
+    [luxDisplayExtended]="displayExtended"
+    [luxMaximumExtended]="maximumExtended"
+    [luxClassName]="className"
+    (luxMenuClosed)="closed()"
+  >
+    <lux-menu-item
+      [luxLabel]="item.label"
+      [luxIconName]="item.iconName"
+      [luxTagId]="item.label"
+      [luxAlwaysVisible]="item.alwaysVisible"
+      [luxDisabled]="item.disabled"
+      [luxRaised]="item.raised"
+      [luxColor]="item.color"
+      (luxClicked)="clicked()"
+      *ngFor="let item of items"
+    >
+    </lux-menu-item>
+    <lux-menu-trigger *ngIf="showMockTrigger">
+      <span class="mock-trigger">Mock-Spock</span>
+    </lux-menu-trigger>
+  </lux-menu>`
 })
 class MockComponent {
   displayMenuLeft = true;
@@ -224,9 +229,18 @@ class MockComponent {
   className = '';
   showMockTrigger = false;
 
-  items: {label: string; tagId: string; alwaysVisible: boolean; disabled: boolean; color: LuxActionColorType}[] = [];
+  items: {
+    label: string;
+    cmd?: string;
+    iconName?: string;
+    tagId: string;
+    alwaysVisible: boolean;
+    disabled: boolean;
+    raised?: boolean;
+    color: LuxActionColorType;
+  }[] = [];
 
-  clicked(cmd: string) {}
+  clicked() {}
 
   closed() {}
 

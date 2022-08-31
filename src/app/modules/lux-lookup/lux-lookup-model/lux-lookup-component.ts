@@ -21,29 +21,26 @@ import { Subscription } from 'rxjs';
 import { LuxComponentsConfigParameters } from '../../lux-components-config/lux-components-config-parameters.interface';
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxLookupComponent extends LuxFormComponentBase<LuxLookupTableEntry | LuxLookupTableEntry[]> implements OnInit, OnDestroy {
+export abstract class LuxLookupComponent<T = LuxLookupTableEntry | LuxLookupTableEntry[]> extends LuxFormComponentBase<T> implements OnInit, OnDestroy {
   LuxBehandlungsOptionenUngueltige = LuxBehandlungsOptionenUngueltige;
 
   lookupService: LuxLookupService;
   lookupHandler: LuxLookupHandlerService;
   componentsConfigService: LuxComponentsConfigService;
 
-  stateMatcher: LuxLookupErrorStateMatcher;
-  apiPath: string;
+  apiPath = LuxComponentsConfigService.DEFAULT_CONFIG.lookupServiceUrl;
 
-  @Input() luxPlaceholder: string;
-  @Input() luxLookupId: string;
-  @Input() luxTableNo: string;
+  @Input() luxPlaceholder = '';
+  @Input() luxLookupId!: string;
+  @Input() luxTableNo!: string;
   @Input() luxRenderProp: any;
   @Input() luxBehandlungUngueltige: LuxBehandlungsOptionenUngueltige = LuxBehandlungsOptionenUngueltige.ausgrauen;
-  @Input() luxParameters: LuxLookupParameters;
-  @Input() luxCustomStyles;
-  @Input() luxCustomInvalidStyles;
-  @Input() luxTagId: string | null = null;
+  @Input() luxParameters?: LuxLookupParameters;
+  @Input() luxCustomStyles?: {} | null;
+  @Input() luxCustomInvalidStyles?: {} | null;
+  @Input() luxTagId?: string;
   @Output() luxDataLoaded: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() luxValueChange: EventEmitter<LuxLookupTableEntry | LuxLookupTableEntry[]> = new EventEmitter<
-    LuxLookupTableEntry
-  >();
+  @Output() luxValueChange: EventEmitter<LuxLookupTableEntry | LuxLookupTableEntry[]> = new EventEmitter();
   entries: LuxLookupTableEntry[] = [];
 
   private subscriptions: Subscription[] = [];
@@ -74,20 +71,28 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase<LuxLookupT
   ngOnInit() {
     super.ngOnInit();
 
+    if (!this.luxParameters) {
+      throw Error(`The lookup component with the table number ${this.luxTableNo} has no LookupParameter.`);
+    }
+
     if (!this.luxLookupId) {
-      console.error(
-        `The lookup component with the table number ${this.luxTableNo} has no LookupId.`
-      );
+      throw Error(`The lookup component with the table number ${this.luxTableNo} has no LookupId.`);
     }
 
     this.lookupHandler.addLookupElement(this.luxLookupId);
-    this.subscriptions.push(this.lookupHandler.getLookupElementObsv(this.luxLookupId).subscribe(() => {
+
+    const lookupElementObs = this.lookupHandler.getLookupElementObsv(this.luxLookupId);
+    if (!lookupElementObs) {
+      throw Error(`Observable "${this.luxLookupId}" not found."`);
+    }
+
+    this.subscriptions.push(lookupElementObs.subscribe(() => {
       this.fetchLookupData();
     }));
 
     this.subscriptions.push(this.componentsConfigService.config.subscribe(
       (newConfig: LuxComponentsConfigParameters) => {
-        this.apiPath = newConfig.lookupServiceUrl;
+        this.apiPath = newConfig.lookupServiceUrl ?? LuxComponentsConfigService.DEFAULT_CONFIG.lookupServiceUrl;
 
         this.lookupHandler.reloadData(this.luxLookupId);
       }
@@ -163,7 +168,7 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase<LuxLookupT
    * @param invalid
    * @returns LuxLookupOptionStyle
    */
-  getStyles(invalid: boolean) {
+  getStyles(invalid: boolean | undefined) {
     if (invalid) {
       return this.luxCustomInvalidStyles ? this.luxCustomInvalidStyles : {};
     }
@@ -196,6 +201,10 @@ export abstract class LuxLookupComponent extends LuxFormComponentBase<LuxLookupT
    * Holt die Lookup-Table Daten vom Backend
    */
   protected fetchLookupData() {
+    if (!this.luxParameters) {
+      throw Error('LuxParameters not found!');
+    }
+
     const backendRequest = this.lookupService.getLookupTable(this.luxTableNo, this.luxParameters, this.apiPath);
     this.subscriptions.push(backendRequest.subscribe(
       (entries: LuxLookupTableEntry[]) => {

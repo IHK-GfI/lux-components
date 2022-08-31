@@ -50,14 +50,12 @@ export class LuxStepperLargeMobileOverlayService {
   private getOverlayConfig(config: LuxStepperLargeMobileOverlayConfig): OverlayConfig {
     const positionStrategy = this.overlay.position().global().right();
 
-    const overlayConfig = new OverlayConfig({
-      hasBackdrop: config.hasBackdrop,
-      backdropClass: config.backdropClass,
-      panelClass: config.panelClass,
+    return new OverlayConfig({
+      hasBackdrop   : config.hasBackdrop,
+      backdropClass : config.backdropClass,
+      panelClass    : config.panelClass,
       scrollStrategy: this.overlay.scrollStrategies.block(),
       positionStrategy
     });
-
-    return overlayConfig;
   }
 }

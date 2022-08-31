@@ -1,3 +1,5 @@
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -7,19 +9,6 @@ import { LuxListItemComponent } from './lux-list-subcomponents/lux-list-item.com
 import { DOWN_ARROW, ENTER, SPACE, UP_ARROW } from '@angular/cdk/keycodes';
 
 describe('LuxListComponent', () => {
-  const simulateKeydownEvent = (keyCode: number, target: any) => {
-    let event;
-    if (typeof Event === 'function') {
-      event = new Event('keydown');
-    } else {
-      event = document.createEvent('Event');
-      event.initEvent('keydown', true, true);
-    }
-
-    event.keyCode = keyCode;
-
-    LuxTestHelper.dispatchEvent(target, event);
-  };
 
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockListComponent]);
@@ -169,7 +158,7 @@ describe('LuxListComponent', () => {
 
     listNativeElement.focus();
     fixture.detectChanges();
-    simulateKeydownEvent(DOWN_ARROW, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -181,7 +170,7 @@ describe('LuxListComponent', () => {
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(0);
 
     // Änderungen durchführen
-    simulateKeydownEvent(DOWN_ARROW, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -193,7 +182,7 @@ describe('LuxListComponent', () => {
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(0);
 
     // Änderungen durchführen
-    simulateKeydownEvent(UP_ARROW, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', UP_ARROW);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -222,9 +211,9 @@ describe('LuxListComponent', () => {
 
     listNativeElement.focus();
     fixture.detectChanges();
-    simulateKeydownEvent(DOWN_ARROW, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
     LuxTestHelper.wait(fixture);
-    simulateKeydownEvent(SPACE, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', SPACE);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -242,9 +231,9 @@ describe('LuxListComponent', () => {
     ).toEqual('Title 0');
 
     // Änderungen durchführen
-    simulateKeydownEvent(DOWN_ARROW, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
     LuxTestHelper.wait(fixture);
-    simulateKeydownEvent(ENTER, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', ENTER);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -290,17 +279,17 @@ describe('LuxListComponent', () => {
   `
 })
 class MockListComponent {
-  selectedPosition;
+  selectedPosition?: number;
 
-  list = [];
+  list: { title: string; subTitle: string; selected: boolean }[] = [];
 
   constructor() {}
 
-  onSelected($event: number) {}
+  onSelected(event: number) {}
 
-  onFocused($event: number) {}
+  onFocused(event: number) {}
 
-  onFocusedItem($event: LuxListItemComponent) {}
+  onFocusedItem(event: LuxListItemComponent) {}
 
   addListItems(amount: number) {
     for (let i = 0; i < amount; i++) {

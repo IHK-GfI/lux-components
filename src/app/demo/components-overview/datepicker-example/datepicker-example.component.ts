@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
+import { LuxDateFilterFn, LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   emptyErrorCallback,
@@ -45,7 +45,7 @@ export class DatepickerExampleComponent {
   showToggle = true;
   opened = false;
   startDate: string | null = null;
-  locale: string | null = null;
+  locale = 'de-DE';
   minDate: string | null = null;
   maxDate: string | null = null;
   startView: LuxStartView = 'month';
@@ -89,8 +89,8 @@ export class DatepickerExampleComponent {
     return selected.value;
   }
 
-  customFilter(d: Date) {
-    const day = d.getDay();
+  customFilter(d: Date | null) {
+    const day = d ? d.getDay() : 0;
     // Samstage und Sonntage als Auswahl unterbinden
     return day !== 0 && day !== 6;
   }

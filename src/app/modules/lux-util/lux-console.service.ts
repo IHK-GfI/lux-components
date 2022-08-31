@@ -16,7 +16,6 @@ export class LuxConsoleService implements OnDestroy {
   configSubscription: Subscription;
 
   constructor(componentsConfigService: LuxComponentsConfigService) {
-    // Aus der Konfiguration die Info erhalten, ob Logs angezeigt werden sollen
     this.configSubscription = componentsConfigService.config.subscribe((newConfig: LuxComponentsConfigParameters) => {
       LuxConsoleService.config = newConfig;
     });
@@ -31,6 +30,15 @@ export class LuxConsoleService implements OnDestroy {
       return noop;
     }
   }
+
+  get info() {
+    if (LuxConsoleService.isDebugMode()) {
+      return console.info.bind.call(console.info, console);
+    } else {
+      return noop;
+    }
+  }
+
 
   get warn() {
     if (LuxConsoleService.isDebugMode()) {
@@ -56,14 +64,6 @@ export class LuxConsoleService implements OnDestroy {
     }
   }
 
-  get info() {
-    if (LuxConsoleService.isDebugMode()) {
-      return console.info.bind.call(console.info, console);
-    } else {
-      return noop;
-    }
-  }
-
   get groupEnd() {
     if (LuxConsoleService.isDebugMode()) {
       return console.groupEnd.bind.call(console.groupEnd, console);
@@ -74,7 +74,7 @@ export class LuxConsoleService implements OnDestroy {
 
   /* Statische Log-Methoden, sie zeigen nicht die Quelle des Logs an! */
 
-  static LOG(...args) {
+  static LOG(...args: any[]) {
     if (!LuxConsoleService.isDebugMode()) {
       return;
     }
@@ -87,7 +87,7 @@ export class LuxConsoleService implements OnDestroy {
     }
   }
 
-  static WARN(...args) {
+  static WARN(...args: any[]) {
     if (!LuxConsoleService.isDebugMode()) {
       return;
     }
@@ -100,7 +100,7 @@ export class LuxConsoleService implements OnDestroy {
     }
   }
 
-  static ERROR(...args) {
+  static ERROR(...args: any[]) {
     if (!LuxConsoleService.isDebugMode()) {
       return;
     }
@@ -126,8 +126,8 @@ export class LuxConsoleService implements OnDestroy {
     return day + '.' + month + '.' + year + ' ' + hours + ':' + minutes + ':' + seconds;
   }
 
-  private static getLogValue(...args) {
-    const logValue = [];
+  private static getLogValue(...args: any[]) {
+    const logValue: string[] = [];
 
     args.forEach(arg => {
       if (arg !== null && typeof arg === 'object') {

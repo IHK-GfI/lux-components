@@ -7,7 +7,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { LuxLookupComboboxComponent } from './lux-lookup-combobox/lux-lookup-combobox.component';
-import { LuxLookupService } from './lux-lookup-service/lux-lookup.service';
 import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxLookupAutocompleteComponent } from './lux-lookup-autocomplete/lux-lookup-autocomplete.component';
 import { LuxFormModule } from '../lux-form/lux-form.module';

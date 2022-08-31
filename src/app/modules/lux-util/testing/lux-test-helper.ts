@@ -28,7 +28,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BrowserModule, By } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -142,7 +142,6 @@ export class LuxTestHelper {
    * Sendet ein Klick-Event ab und wartet dann.
    *
    * @param fixture
-   * @param DebugElement
    * @param debugElement
    */
   public static click(fixture: any, debugElement: DebugElement) {
@@ -151,20 +150,7 @@ export class LuxTestHelper {
   }
 
   /**
-   * Wichtig: aus fakeAsync-Block heraus aufrufen, da hier tick() genutzt wird.
-   * Sendet ein Change-Event ab und wartet dann.
-   *
-   * @param fixture
-   * @param DebugElement
-   * @param radioButton
-   */
-  public static radioButtonChange(fixture: any, radioButton: DebugElement) {
-    radioButton.nativeElement.dispatchEvent(LuxTestHelper.createFakeEvent('change'));
-    LuxTestHelper.wait(fixture);
-  }
-
-  /**
-   * Erstellt eine ComponentFixture fuer die mitgegebene Komponente, optional ist es moeglich
+   * Erstellt eine ComponentFixture für die mitgegebene Komponente, optional ist es möglich
    * weitere Provider und Declarations einzutragen. Diese werden dann im Testmodul eingetragen.
    *
    * @param component
@@ -226,7 +212,7 @@ export class LuxTestHelper {
   }
 
   /**
-   * Focuses an input and sets its value. Dispatches an fake input event afterwards.
+   * Focuses an input and sets its value. Dispatches a fake input event afterwards.
    *
    * @param element
    * @param value
@@ -243,7 +229,7 @@ export class LuxTestHelper {
   /** Steuerung und triggern von Overlays implementieren */
 
   /**
-   * Inserts data into an input field, that has to update asynchrounos before calling a callback-function
+   * Inserts data into an input field, that has to update asynchronous before calling a callback-function
    * Allows to use RxJs Interval-Timers within the Target-Components.
    *
    * @param text
@@ -251,7 +237,7 @@ export class LuxTestHelper {
    * @param element
    * @param callback
    */
-  public static typeInElementAsynch(text: string, fixture: ComponentFixture<any>, element: HTMLInputElement, callback) {
+  public static typeInElementAsync(text: string, fixture: ComponentFixture<any>, element: HTMLInputElement, callback: () => void) {
     fixture.whenStable().then(() => {
       LuxTestHelper.typeInElement(element, text);
       fixture.detectChanges();
@@ -291,7 +277,7 @@ export class LuxTestHelper {
       target: { get: () => target }
     });
 
-    // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
+    // IE won't set `defaultPrevented` on synthetic events, so we need to do it manually.
     event.preventDefault = function() {
       Object.defineProperty(event, 'defaultPrevented', { get: () => true });
       return originalPreventDefault.apply(this, arguments);
@@ -326,26 +312,6 @@ export class LuxTestHelper {
     })
 
     return new DragEvent('drop', { dataTransfer })
-  }
-
-  /**
-   * Selektiert ein Element anhand der Query von dem Fixture
-   *
-   * @param fixture
-   * @param query
-   */
-  public static selectOneFromFixture(fixture: ComponentFixture<any>, query: string): DebugElement {
-    return fixture.debugElement.query(By.css(query));
-  }
-
-  /**
-   * Selektiert ein Array von Elementen anhand der Query von dem Fixture
-   *
-   * @param fixture
-   * @param query
-   */
-  public static selectAllFromFixture(fixture: ComponentFixture<any>, query: string): DebugElement[] {
-    return fixture.debugElement.queryAll(By.css(query));
   }
 
   /**

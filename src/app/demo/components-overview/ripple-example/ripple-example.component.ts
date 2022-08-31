@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './ripple-example.component.html'
 })
 export class RippleExampleComponent {
-  color = null;
+  color = '';
   unbounded = false;
   centered = false;
   radius = 0;

@@ -8,4 +8,16 @@ export class LuxStepperLargeClickEvent {
   newIndex: number;
   newStep: ILuxStepperLargeStep;
   source: LuxStepperLargeClickEventSourceType;
+
+  constructor(
+    stepper: LuxStepperLargeComponent,
+    newIndex: number,
+    newStep: ILuxStepperLargeStep,
+    source: LuxStepperLargeClickEventSourceType
+  ) {
+    this.stepper = stepper;
+    this.newIndex = newIndex;
+    this.newStep = newStep;
+    this.source = source;
+  }
 }

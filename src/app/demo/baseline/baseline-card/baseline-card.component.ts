@@ -78,11 +78,11 @@ export class BaselineCardComponent {
   toggleErrors($event: boolean) {
     Object.keys(this.form.controls).forEach((key) => {
       if ($event) {
-        this.form.get(key).markAsTouched();
+        this.form.get(key)!.markAsTouched();
       } else {
-        this.form.get(key).markAsUntouched();
+        this.form.get(key)!.markAsUntouched();
       }
-      this.form.get(key).updateValueAndValidity();
+      this.form.get(key)!.updateValueAndValidity();
     });
   }
 

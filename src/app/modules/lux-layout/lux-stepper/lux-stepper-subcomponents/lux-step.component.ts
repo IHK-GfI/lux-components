@@ -15,23 +15,23 @@ import { UntypedFormGroup } from '@angular/forms';
 })
 export class LuxStepComponent {
   private _iconChange: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  private _luxIconName: string = undefined;
+  private _luxIconName?: string = undefined;
 
-  @ViewChild('header', { static: true }) headerTemplate: TemplateRef<any>;
-  @ViewChild('content', { static: true }) contentTemplate: TemplateRef<any>;
+  @ViewChild('header', { static: true }) headerTemplate!: TemplateRef<any>;
+  @ViewChild('content', { static: true }) contentTemplate!: TemplateRef<any>;
 
   @Input() luxIconSize = '1x';
   @Input() luxOptional = false;
   @Input() luxEditable = true;
   @Input() luxCompleted = true;
-  @Input() luxStepControl: UntypedFormGroup;
+  @Input() luxStepControl?: UntypedFormGroup;
 
-  get luxIconName(): string {
+  get luxIconName(): string | undefined {
     return this._luxIconName;
   }
 
   @Input()
-  set luxIconName(iconName: string) {
+  set luxIconName(iconName: string | undefined) {
     this._luxIconName = iconName;
     this._iconChange.next(true);
   }

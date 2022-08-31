@@ -12,7 +12,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-input.component.html',
   styleUrls: ['./lux-input.component.scss']
 })
-export class LuxInputComponent<T = string> extends LuxFormInputBaseClass<T> implements OnInit{
+export class LuxInputComponent<T = any> extends LuxFormInputBaseClass<T> implements OnInit{
   private readonly symbolRegExp = /[,.]/;
 
   @Input() luxType = 'text';

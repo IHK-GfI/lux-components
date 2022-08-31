@@ -10,10 +10,10 @@ import { LuxInputComponent } from '../../../modules/lux-form/lux-input/lux-input
 })
 export class StorageExampleComponent implements OnDestroy, DoCheck {
   key = 'Storage_Example_Key';
-  value = '';
+  value: string | null = '';
   sensitive = false;
 
-  value$: Observable<string>;
+  value$: Observable<string | null>;
   valueSubscription: Subscription;
 
   localStorage = localStorage;
@@ -38,6 +38,10 @@ export class StorageExampleComponent implements OnDestroy, DoCheck {
   }
 
   updateExisting(key: string, luxInput: LuxInputComponent) {
+    if(!luxInput.luxValue) {
+      throw Error('Null is not allowed!');
+    }
+
     this.luxStorageService.setItem(key, luxInput.luxValue, false);
     luxInput.luxValue = '';
   }

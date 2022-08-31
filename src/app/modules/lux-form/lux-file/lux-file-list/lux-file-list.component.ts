@@ -20,6 +20,7 @@ import { LuxCardComponent } from '../../../lux-layout/lux-card/lux-card.componen
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
 import { LuxValidationErrors } from '../../lux-form-model/lux-form-component-base.class';
 import { LuxFormFileBase } from '../../lux-form-model/lux-form-file-base.class';
+import { ILuxFileActionConfig } from '../lux-file-model/lux-file-action-config.interface';
 import { LuxFileErrorCause } from '../lux-file-model/lux-file-error.interface';
 import { ILuxFileListActionConfig, ILuxFilesListActionConfig } from '../lux-file-model/lux-file-list-action-config.interface';
 import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
@@ -29,19 +30,8 @@ import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
   templateUrl: './lux-file-list.component.html',
   styleUrls: ['./lux-file-list.component.scss']
 })
-export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[], ILuxFilesListActionConfig> implements AfterViewInit, AfterViewChecked, OnDestroy {
-  private _fileEntryNodesChangeSubscr?: Subscription;
-
-  protected _luxDeleteActionConfig: ILuxFileListActionConfig = {
-    disabled: false,
-    disabledHeader: false,
-    hidden: false,
-    hiddenHeader: false,
-    iconName: 'fas fa-trash',
-    iconNameHeader: 'fas fa-trash',
-    label: $localize`:@@luxc.file-list.delete.lbl:Löschen`,
-    labelHeader: $localize`:@@luxc.file-list.delete_title.lbl:Alle Dateien entfernen`
-  };
+export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | null> implements AfterViewInit, AfterViewChecked, OnDestroy {
+  private _fileEntryNodesChangeSub?: Subscription;
 
   fileIcons: string[] = [];
 
@@ -56,18 +46,38 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[], ILux
   @Input() luxMultiple = true;
   @Input() luxHeading = 2;
 
-  protected initUploadActionConfig(): ILuxFilesListActionConfig {
-    return  {
-        disabled: false,
-        disabledHeader: false,
-        hidden: false,
-        hiddenHeader: false,
-        iconName: 'fas fa-cloud-upload-alt',
-        iconNameHeader: 'fas fa-cloud-upload-alt',
-        label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
-        labelHeader: $localize`:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
-    };
+  _luxUploadActionConfig: ILuxFilesListActionConfig = {
+      disabled: false,
+      disabledHeader: false,
+      hidden: false,
+      hiddenHeader: false,
+      iconName: 'fas fa-cloud-upload-alt',
+      iconNameHeader: 'fas fa-cloud-upload-alt',
+      label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
+      labelHeader: $localize`:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
   }
+  _luxDeleteActionConfig: ILuxFileListActionConfig = {
+    disabled: false,
+    disabledHeader: false,
+    hidden: false,
+    hiddenHeader: false,
+    iconName: 'fas fa-trash',
+    iconNameHeader: 'fas fa-trash',
+    label: $localize`:@@luxc.file-list.delete.lbl:Löschen`,
+    labelHeader: $localize`:@@luxc.file-list.delete_title.lbl:Alle Dateien entfernen`
+  };
+  _luxViewActionConfig: ILuxFileActionConfig = {
+    disabled: false,
+    hidden: true,
+    iconName: 'fas fa-eye',
+    label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
+  };
+  _luxDownloadActionConfig: ILuxFileActionConfig = {
+    disabled: false,
+    hidden: true,
+    iconName: 'fas fa-download',
+    label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
+  };
 
   get luxUploadActionConfig(): ILuxFilesListActionConfig {
     return this._luxUploadActionConfig;
@@ -89,6 +99,26 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[], ILux
     }
   }
 
+  get luxViewActionConfig(): ILuxFileActionConfig {
+    return this._luxViewActionConfig;
+  }
+
+  @Input() set luxViewActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxViewActionConfig = config;
+    }
+  }
+
+  get luxDownloadActionConfig(): ILuxFileActionConfig {
+    return this._luxDownloadActionConfig;
+  }
+
+  @Input() set luxDownloadActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxDownloadActionConfig = config;
+    }
+  }
+
   constructor(
     @Optional() controlContainer: ControlContainer,
     cdr: ChangeDetectorRef,
@@ -101,7 +131,7 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[], ILux
   }
 
   ngAfterViewInit() {
-    this._fileEntryNodesChangeSubscr = this.fileEntries.changes.subscribe(() => {
+    this._fileEntryNodesChangeSub = this.fileEntries.changes.subscribe(() => {
       this.updateIconAndImage();
     });
 
@@ -119,8 +149,8 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[], ILux
   ngOnDestroy() {
     super.ngOnDestroy();
 
-    if (this._fileEntryNodesChangeSubscr) {
-      this._fileEntryNodesChangeSubscr.unsubscribe();
+    if (this._fileEntryNodesChangeSub) {
+      this._fileEntryNodesChangeSub.unsubscribe();
     }
   }
 
@@ -143,7 +173,8 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[], ILux
       : null;
 
     // Via LiveAnnouncer mitteilen welche Datei entfernt wird
-    this.announceFileRemove(this.luxSelectedFiles![index].name);
+    const deletedFile = this.luxSelectedFiles![index];
+    this.announceFileRemove(deletedFile.name);
 
     // Wir entfernen hier nur eine Datei, deshalb ist das neue Auslesen der Base64-Strings nicht nötig
     this.uploadFiles(newFiles).then(
@@ -154,12 +185,12 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[], ILux
       (error) => this.setFormControlErrors(error)
     );
     if (this.luxDeleteActionConfig.onClick) {
-      this.luxDeleteActionConfig.onClick();
+      this.luxDeleteActionConfig.onClick(deletedFile);
     }
   }
 
-  onSelectFiles(target: EventTarget) {
-    const fileList = (target as HTMLInputElement).files;
+  onSelectFiles(target: EventTarget | null) {
+    const fileList = target ? (target as HTMLInputElement).files : null;
     this.selectFiles(fileList ? Array.from(fileList) : []);
   }
 
@@ -167,10 +198,48 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[], ILux
     this.luxSelectedFiles = [];
   }
 
+  handleViewFileClick(file: ILuxFileObject) {
+    if (file.content && this.luxViewActionConfig.onClick) {
+      this.luxViewActionConfig.onClick(file);
+      this.updateIconAndImage();
+    }
+  }
+
+  handleDownloadClick(file: ILuxFileObject) {
+    if (this.luxDownloadActionConfig.onClick) {
+      this.luxDownloadActionConfig.onClick(file);
+    }
+  }
+
   handleUploadClick(files: ILuxFileObject[]) {
     if (this.luxUploadActionConfig.onClick) {
       this.luxUploadActionConfig.onClick(files);
     }
+  }
+
+  /**
+   * Entfernt die aktuell selektierten Dateien und entfernt etwaige (spezifische) Fehler aus dem FormControl.
+   *
+   * @param $event
+   */
+  clearFiles($event?: MouseEvent) {
+    this.formControl.markAsTouched();
+    this.formControl.markAsDirty();
+
+    const deletedFiles = this.luxSelectedFiles;
+
+    this.resetSelected();
+    this.notifyFormValueChanged();
+    this.clearFormControlErrors();
+      if (deletedFiles) {
+        deletedFiles.forEach((file) => {
+          if (this.luxDeleteActionConfig.onClick) {
+            this.luxDeleteActionConfig.onClick(file);
+          }
+        });
+    }
+
+    this.announceAllFilesRemove();
   }
 
   /**
@@ -357,20 +426,10 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[], ILux
     return super.errorMessageModifier(value, errors);
   }
 
-  protected triggerViewFileClick(file: ILuxFileObject) {
-    super.triggerViewFileClick(file);
-
-    this.updateIconAndImage();
-  }
-
   protected notifyFormValueChanged() {
     super.notifyFormValueChanged();
     this.formControl.updateValueAndValidity();
 
     this.fileUploadSingleInput.nativeElement.value = null;
-  }
-
-  useArray(): boolean {
-    return true;
   }
 }

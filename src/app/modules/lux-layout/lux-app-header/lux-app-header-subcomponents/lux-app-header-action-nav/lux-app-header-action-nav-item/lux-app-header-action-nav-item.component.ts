@@ -8,15 +8,15 @@ import { LuxAppHeaderActionNavItemCustomComponent } from "./lux-app-header-actio
   styleUrls: ['./lux-app-header-action-nav-item.component.scss']
 })
 export class LuxAppHeaderActionNavItemComponent {
-  @Input() luxLabel: string;
-  @Input() luxIconName: string;
+  @Input() luxLabel = '';
+  @Input() luxIconName?: string;
   @Input() luxColor: LuxActionColorType;
-  @Input() luxDisabled: boolean;
-  @Input() luxTagId: string | null = null;
+  @Input() luxDisabled = false;
+  @Input() luxTagId?: string;
 
   @Output() luxClicked: EventEmitter<any> = new EventEmitter<any>();
 
-  @ContentChild(LuxAppHeaderActionNavItemCustomComponent) customComponent: LuxAppHeaderActionNavItemCustomComponent;
+  @ContentChild(LuxAppHeaderActionNavItemCustomComponent) customComponent?: LuxAppHeaderActionNavItemCustomComponent;
 
   constructor() {}
 }

@@ -65,7 +65,7 @@ describe('LuxFileInputComponent', () => {
 
       expect(localFixture.debugElement.query(By.css('.lux-file-visible-input'))).toBeFalsy();
       expect(localTestComponent.formControl.value).toBeNull();
-      expect(localFileComponent.luxSelectedFiles).toBeNull();
+      expect(localFileComponent.luxSelectedFiles).toBeUndefined();
 
       // Änderungen durchführen
       const fileObject = { name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' };
@@ -269,7 +269,7 @@ describe('LuxFileInputComponent', () => {
 
       expect(localFixture.debugElement.query(By.css('.lux-file-visible-input'))).toBeFalsy();
       expect(localTestComponent.selected).toBeNull();
-      expect(localFileComponent.luxSelectedFiles).toBeNull();
+      expect(localFileComponent.luxSelectedFiles).toBeUndefined();
 
       // Änderungen durchführen
       const fileObject = { name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' };

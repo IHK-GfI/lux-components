@@ -10,7 +10,7 @@ export class TimestampExampleComponent {
   nowISO: string;
 
   defaultText = '';
-  prefix: string | null = null;
+  prefix?: string;
 
   constructor() {
     this.now = this.initialNow;

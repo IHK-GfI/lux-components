@@ -10,11 +10,11 @@ import { LuxValidationErrors } from '../../../modules/lux-form/lux-form-model/lu
  */
 export const setRequiredValidatorForFormControl = (addValidator: boolean, form: UntypedFormGroup, controlName: string) => {
   if (addValidator) {
-    form.get(controlName).setValidators(Validators.required);
+    form.get(controlName)!.setValidators(Validators.required);
   } else {
-    form.get(controlName).setValidators(null);
+    form.get(controlName)!.setValidators(null);
   }
-  form.get(controlName).updateValueAndValidity();
+  form.get(controlName)!.updateValueAndValidity();
 };
 
 /**
