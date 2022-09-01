@@ -150,6 +150,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   `;
 
   disableShortcut = false;
+  initRunning = false;
 
   constructor(private mediaQuery: LuxMediaQueryObserverService) {
     this.mediaQuerySubscription = this.mediaQuery.getMediaQueryChangedAsObservable().subscribe(() => {
@@ -158,10 +159,16 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.initRunning = true;
+
     // Hier wird die setTimeout-Methode verwendet, um einen Backend-Call zu simulieren.
     setTimeout(() => {
       this.initFilter    = { input: "Lorem ipsum" };
       this.currentFilter = this.initFilter;
+
+      setTimeout(() => {
+        this.initRunning = false;
+      });
     }, 100);
   }
 
@@ -177,7 +184,10 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   onFilter(filter: any) {
     this.currentFilter = filter;
-    console.log('Please filter...', filter);
+
+    if (!this.initRunning) {
+      console.log('Neuer Filter:', filter);
+    }
   }
 
   onSave(filter: LuxFilter) {
