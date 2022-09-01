@@ -1,5 +1,5 @@
-import { ThemePalette } from "@angular/material/core";
 import { LuxFormComponentBase } from '../../lux-form/lux-form-model/lux-form-component-base.class';
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 
 export class LuxFilterItem<T> {
   public static DEFAULT_VALUES = [undefined, null, false, ''];
@@ -9,7 +9,7 @@ export class LuxFilterItem<T> {
   component: LuxFormComponentBase<T>;
   defaultValues: any[] = [...LuxFilterItem.DEFAULT_VALUES];
   value: T = this.defaultValues[0];
-  color: ThemePalette = undefined;
+  color: LuxThemePalette = undefined;
   disabled = false;
   hidden = false;
   multiValueIndex = -1;

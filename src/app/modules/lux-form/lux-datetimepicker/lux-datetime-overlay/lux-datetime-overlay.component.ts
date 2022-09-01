@@ -15,11 +15,11 @@ import {
   Output,
   ViewContainerRef
 } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 import { MAT_DATEPICKER_SCROLL_STRATEGY, MatDateSelectionModel } from "@angular/material/datepicker";
 import { MatFormField } from '@angular/material/form-field';
 import { merge, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { LuxThemePalette } from '../../../lux-util/lux-colors.enum';
 import { LuxDateFilterFn } from "../../lux-datepicker/lux-datepicker.component";
 import { LuxDatetimeOverlayContentComponent } from './lux-datetime-overlay-content.component';
 
@@ -49,7 +49,7 @@ export class LuxDatetimeOverlayComponent {
   // Code des Interfaces "MatDatepickerPanel<MatDatepickerControl<any>, any, any>" - Start
   id = '';
   disabled = false;
-  color: ThemePalette = 'primary';
+  color: LuxThemePalette = 'primary';
   registerInput(input: any): MatDateSelectionModel<any> {
     return null as any;
   }

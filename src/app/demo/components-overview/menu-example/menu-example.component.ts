@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LuxActionColorType } from '../../../modules/lux-action/lux-action-model/lux-action-component-base.class';
+import { LuxThemePalette } from '../../../modules/lux-util/lux-colors.enum';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -75,7 +75,7 @@ export class MenuExampleComponent {
 interface ExampleMenuItem {
   iconName: string;
   raised: boolean;
-  color: LuxActionColorType;
+  color: LuxThemePalette;
   disabled: boolean;
   hidden: boolean;
   label: string;

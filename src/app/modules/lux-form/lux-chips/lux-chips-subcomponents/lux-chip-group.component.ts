@@ -1,5 +1,5 @@
 import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
+import { LuxThemePalette } from '../../../lux-util/lux-colors.enum';
 import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface';
 
 @Component({
@@ -7,7 +7,7 @@ import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface
   template: ''
 })
 export class LuxChipGroupComponent {
-  private _luxColor: ThemePalette = 'primary';
+  private _luxColor: LuxThemePalette = 'primary';
 
   @ContentChild(TemplateRef) tempRef?: TemplateRef<any>;
 
@@ -21,11 +21,11 @@ export class LuxChipGroupComponent {
   @Input() luxRemovable = true;
   @Input() luxSelected = true;
 
-  get luxColor(): ThemePalette {
+  get luxColor(): LuxThemePalette {
     return this._luxColor;
   }
 
-  @Input() set luxColor(color: ThemePalette) {
+  @Input() set luxColor(color: LuxThemePalette) {
     if (color !== 'primary' && color !== 'accent' && color !== 'warn') {
       color = undefined;
     }

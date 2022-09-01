@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LuxActionColorType } from '../../../modules/lux-action/lux-action-model/lux-action-component-base.class';
 import { LuxFilter } from '../../../modules/lux-filter/lux-filter-base/lux-filter';
 import { LuxFilterItem } from '../../../modules/lux-filter/lux-filter-base/lux-filter-item';
 import { LuxFilterFormComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form.component';
 import { LuxFieldValues, LuxLookupParameters } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
+import { LuxThemePalette } from '../../../modules/lux-util/lux-colors.enum';
 import { LuxMediaQueryObserverService } from '../../../modules/lux-util/lux-media-query-observer.service';
 import { LuxUtil } from '../../../modules/lux-util/lux-util';
 
@@ -120,12 +120,12 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   buttonColorOptions = ['default', 'primary', 'accent', 'warn'];
   buttonRaised = false;
-  buttonFilterColor: LuxActionColorType = 'primary';
-  buttonDialogSave: LuxActionColorType = 'primary';
-  buttonDialogLoad: LuxActionColorType = 'primary';
-  buttonDialogDelete: LuxActionColorType = 'warn';
-  buttonDialogCancel?: LuxActionColorType;
-  buttonDialogClose?: LuxActionColorType;
+  buttonFilterColor: LuxThemePalette = 'primary';
+  buttonDialogSave: LuxThemePalette = 'primary';
+  buttonDialogLoad: LuxThemePalette = 'primary';
+  buttonDialogDelete: LuxThemePalette = 'warn';
+  buttonDialogCancel?: LuxThemePalette;
+  buttonDialogClose?: LuxThemePalette;
 
   markdownData = `
   Html

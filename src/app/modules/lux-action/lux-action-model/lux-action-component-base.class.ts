@@ -1,6 +1,5 @@
 import { Directive, EventEmitter, Input, Output } from '@angular/core';
-
-export declare type LuxActionColorType = 'primary' | 'accent' | 'warn' | undefined;
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 
 /**
  * Base-Klasse der LuxActionComponents.
@@ -10,7 +9,7 @@ export declare type LuxActionColorType = 'primary' | 'accent' | 'warn' | undefin
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export class LuxActionComponentBaseClass {
   @Input() luxLabel? = '';
-  @Input() luxColor?: LuxActionColorType;
+  @Input() luxColor?: LuxThemePalette;
   @Input() luxRaised? = false;
   @Input() luxIconName? = '';
   @Input() luxIconShowRight? = false;

@@ -9,6 +9,7 @@
 - ILuxFilesListActionConfig extends ILuxFilesActionConfig
 - lux-file-list: Die onClick-Methode der `luxUploadActionConfig` wird bei der Löschaktion im Header pro Datei aufgerufen.
 - LuxMasterHeaderComponent.luxClicked -> LuxMasterHeaderComponent.luxOpened
+- LuxActionColorType -> LuxThemePalette
 
 ### Defaultänderungen
 

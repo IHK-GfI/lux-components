@@ -1,11 +1,11 @@
 /**
  * Config-Interface für die Dialog-Actions in der LuxDialogPresetComponent.
  */
-import { LuxActionColorType } from "../../../lux-action/lux-action-model/lux-action-component-base.class";
+import { LuxThemePalette } from '../../../lux-util/lux-colors.enum';
 
 export interface ILuxDialogAction {
   label?: string;
-  color?: LuxActionColorType;
+  color?: LuxThemePalette;
   raised?: boolean;
   iconName?: string;
   tagId?: string;

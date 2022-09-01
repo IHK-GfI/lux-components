@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
+import { LuxThemePalette } from '../../../lux-util/lux-colors.enum';
 import { LuxUtil } from '../../../lux-util/lux-util';
 import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface';
 
@@ -14,7 +14,7 @@ import { ILuxChipSelected } from '../lux-chips-model/lux-chip-selected.interface
 export class LuxChipComponent implements AfterViewInit{
   private removeClicked = false;
 
-  private _luxColor: ThemePalette = 'primary';
+  private _luxColor: LuxThemePalette = 'primary';
 
   @ViewChild(TemplateRef, { static: true }) templateRef!: TemplateRef<any>;
 
@@ -26,11 +26,11 @@ export class LuxChipComponent implements AfterViewInit{
   @Input() luxRemovable = true;
   @Input() luxSelected = true;
 
-  get luxColor(): ThemePalette {
+  get luxColor(): LuxThemePalette {
     return this._luxColor;
   }
 
-  @Input() set luxColor(color: ThemePalette) {
+  @Input() set luxColor(color: LuxThemePalette) {
     if (color !== 'primary' && color !== 'accent' && color !== 'warn') {
       color = undefined;
     }

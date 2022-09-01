@@ -13,10 +13,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { AbstractControl, ControlContainer, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, ThemePalette } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { DateFilterFn } from '@angular/material/datepicker';
 import { Observable } from 'rxjs';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxDateFilterFn, LuxStartView } from '../lux-datepicker/lux-datepicker.component';
@@ -119,7 +120,7 @@ export class LuxDateTimePickerComponent<T = any>
   getStartValue() {
     return this.luxStartDate;
   }
-  getThemePalette(): ThemePalette {
+  getThemePalette(): LuxThemePalette {
     return undefined;
   }
   disabled = false;

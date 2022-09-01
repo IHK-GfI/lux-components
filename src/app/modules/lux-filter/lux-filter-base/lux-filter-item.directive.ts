@@ -1,8 +1,8 @@
 import { Directive, ElementRef, Input, OnChanges, OnInit, Optional, Renderer2, SimpleChanges } from '@angular/core';
-import { ThemePalette } from "@angular/material/core";
 import { LuxDateTimePickerComponent } from '../../lux-form/lux-datetimepicker/lux-datetimepicker.component';
 import { LuxFormSelectableBase } from "../../lux-form/lux-form-model/lux-form-selectable-base.class";
 import { LuxLookupComponent } from "../../lux-lookup/lux-lookup-model/lux-lookup-component";
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 import { LuxFilterItem } from './lux-filter-item';
 import { LuxInputComponent } from '../../lux-form/lux-input/lux-input.component';
 import { LuxDatepickerComponent } from '../../lux-form/lux-datepicker/lux-datepicker.component';
@@ -22,7 +22,7 @@ export declare type LuxFilterRenderFnType<T = any> = (filter: LuxFilterItem<T>, 
 export class LuxFilterItemDirective implements OnInit, OnChanges {
   filterItem: LuxFilterItem<any>;
 
-  @Input() luxFilterColor: ThemePalette = undefined;
+  @Input() luxFilterColor: LuxThemePalette = undefined;
   @Input() luxFilterDefaultValues = [...LuxFilterItem.DEFAULT_VALUES];
   @Input() luxFilterRenderFn?: LuxFilterRenderFnType;
   @Input() luxFilterHidden = false;

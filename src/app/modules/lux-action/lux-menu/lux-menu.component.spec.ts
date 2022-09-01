@@ -1,5 +1,5 @@
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { LuxActionColorType } from "../lux-action-model/lux-action-component-base.class";
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 
 import { LuxMenuComponent } from './lux-menu.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
@@ -237,7 +237,7 @@ class MockComponent {
     alwaysVisible: boolean;
     disabled: boolean;
     raised?: boolean;
-    color: LuxActionColorType;
+    color: LuxThemePalette;
   }[] = [];
 
   clicked() {}

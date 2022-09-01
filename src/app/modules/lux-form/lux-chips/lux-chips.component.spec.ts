@@ -4,7 +4,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { expect } from '@angular/flex-layout/_private-utils/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ThemePalette } from '@angular/material/core';
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxChipComponent } from './lux-chips-subcomponents/lux-chip.component';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
@@ -674,11 +674,11 @@ class ChipsComponent {
   autocomplete = false;
   autocompleteOptions: string[] = [];
 
-  chips: { label: string; color: ThemePalette; removable: boolean; disabled: boolean; selected: boolean }[] = [];
+  chips: { label: string; color: LuxThemePalette; removable: boolean; disabled: boolean; selected: boolean }[] = [];
 
   groupRemovable = true;
   groupDisabled = false;
-  groupColor: ThemePalette = undefined;
+  groupColor: LuxThemePalette = undefined;
   groupLabels: string[] = [];
 
   chipGroup?: LuxChipGroupComponent;

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ThemePalette } from '@angular/material/core';
 import { LuxChipsOrientation } from '../../../modules/lux-form/lux-chips/lux-chips.component';
+import { LuxThemePalette } from '../../../modules/lux-util/lux-colors.enum';
 import { logResult, setRequiredValidatorForFormControl } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -16,7 +16,7 @@ export class ChipExampleComponent {
 
   colors = ['Keine Farbe', 'warn', 'accent', 'primary'];
 
-  chips: { label: string; color: ThemePalette; removable: boolean; disabled: boolean; selected: boolean }[] = [
+  chips: { label: string; color: LuxThemePalette; removable: boolean; disabled: boolean; selected: boolean }[] = [
     { label: 'Chip #1', color: undefined, removable: true, disabled: false, selected: true },
     { label: 'Chip #2', color: 'primary', removable: true, disabled: false, selected: true },
     { label: 'Chip #3', color: 'warn', removable: true, disabled: false, selected: true },
@@ -50,7 +50,7 @@ export class ChipExampleComponent {
   groupSelected = true;
   groupRemovable = true;
   groupDisabled = false;
-  groupColor: ThemePalette = undefined;
+  groupColor?: LuxThemePalette;
   groupLabels = ['Group Chip #1', 'Group Chip #2', 'Group Chip #3'];
 
   labelLongFormat = false;

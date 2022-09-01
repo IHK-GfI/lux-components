@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed } from '@angular/core/testing';
-import { LuxActionColorType } from "../lux-action-model/lux-action-component-base.class";
 import { LuxLinkComponent } from './lux-link.component';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -226,6 +226,6 @@ class MockLinkComponent {
   disabled = false;
   blank = false;
   href = '';
-  color?: LuxActionColorType;
+  color?: LuxThemePalette;
   align = false;
 }

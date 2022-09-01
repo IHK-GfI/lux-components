@@ -1,10 +1,10 @@
-import { LuxActionColorType } from "../../lux-action/lux-action-model/lux-action-component-base.class";
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 
 export interface ILuxAppFooterButtonInfo {
   label: string;
   cmd: string;
   prio: number;
-  color?: LuxActionColorType;
+  color?: LuxThemePalette;
   disabled?: boolean;
   hidden?: boolean;
   raised?: boolean;
@@ -16,7 +16,7 @@ export interface ILuxAppFooterButtonInfo {
 
 export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
   label: string;
-  color: LuxActionColorType;
+  color: LuxThemePalette;
   prio: number;
   disabled: boolean;
   cmd: string;
@@ -31,7 +31,7 @@ export class LuxAppFooterButtonInfo implements ILuxAppFooterButtonInfo {
     label: string,
     cmd: string,
     prio?: number,
-    color?: LuxActionColorType,
+    color?: LuxThemePalette,
     disabled?: boolean,
     hidden?: boolean,
     raised?: boolean,

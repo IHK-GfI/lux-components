@@ -1,3 +1,4 @@
+export declare type LuxThemePalette = 'primary' | 'accent' | 'warn' | undefined;
 export declare type LuxFgColor = 'white' | 'black';
 export declare type LuxBgBaseColor = 'red' | 'green' | 'purple' | 'blue' | 'gray' | 'orange' | 'brown';
 export declare type LuxBgAllColor = LuxBgBaseColor | 'black' | 'white';
