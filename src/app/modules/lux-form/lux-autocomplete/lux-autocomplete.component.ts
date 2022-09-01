@@ -42,6 +42,7 @@ export class LuxAutocompleteComponent<V = any, O = any> extends LuxFormComponent
   @Input() luxTagId?: string;
   @Input() luxSelectAllOnClick = true;
   @Input() luxStrict = true;
+  @Input() luxName?: string;
   @Input() luxFilterFn?: (filterTerm: string, label: string, option: any) => boolean;
   @Input() luxPanelWidth: string | number = '';
   @Input() luxNoLabels = false;
