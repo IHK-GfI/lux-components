@@ -179,7 +179,7 @@
     </div>
     <div class="lux-highlight-section filter-config-item" fxLayout="column">
       <h3 class="lux-highlight-section-label">Filterwert</h3>
-      <lux-textarea [luxNoTopLabel]="true" [(luxValue)]="replaceFilterJson" luxHint="JSON-Format"></lux-textarea>
+      <lux-textarea luxTagId="filter-value" [luxNoTopLabel]="true" [(luxValue)]="replaceFilterJson" luxHint="JSON-Format"></lux-textarea>
       <lux-button luxLabel="Filterwert ersetzen" luxColor="primary" (luxClicked)="onSetFilter()"></lux-button>
     </div>
   </example-base-simple-options>
