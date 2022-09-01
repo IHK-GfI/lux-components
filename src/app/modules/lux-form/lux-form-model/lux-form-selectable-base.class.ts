@@ -79,13 +79,9 @@ export abstract class LuxFormSelectableBase<O = any, V = any, P = any> extends L
     super(controlContainer, cdr, logger, config);
   }
 
-  // region Overridden methods
-
   notifyFormValueChanged(formValue: any) {
     this.checkSelectedAndUpdate(formValue);
   }
-
-  // endregion
 
   /**
    * Versucht, wenn Options und FormControl vorhanden sind, den selected-Wert mit den Options

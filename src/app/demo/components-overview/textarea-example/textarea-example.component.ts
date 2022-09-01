@@ -12,11 +12,8 @@ import {
   templateUrl: './textarea-example.component.html'
 })
 export class TextareaExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useErrorMessage = true;
   showOutputEvents = false;
-
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' },
@@ -25,11 +22,6 @@ export class TextareaExampleComponent {
   autocompleteOptions = ['on', 'off'];
   form: UntypedFormGroup;
   log = logResult;
-
-  // endregion
-
-  // region Properties der Component
-
   value: any;
   controlBinding = 'textareaExample';
   disabled = false;
@@ -50,8 +42,6 @@ export class TextareaExampleComponent {
   maxLength = 0;
   hideCounterLabel = false;
   labelLongFormat = false;
-
-  // endregion
 
   constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({

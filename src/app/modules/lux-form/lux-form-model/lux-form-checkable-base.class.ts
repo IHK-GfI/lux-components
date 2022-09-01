@@ -31,7 +31,6 @@ export abstract class LuxFormCheckableBaseClass<T> extends LuxFormComponentBase<
     super(controlContainer, cdr, logger, config);
   }
 
-  // region Overridden methods
   notifyFormValueChanged(formValue: boolean) {
     // Aktualisierungen an dem FormControl-Value sollen auch via EventEmitter bekannt gemacht werden
     this.luxCheckedChange.emit(formValue);
@@ -75,6 +74,4 @@ export abstract class LuxFormCheckableBaseClass<T> extends LuxFormComponentBase<
 
     return validators;
   }
-
-  // endregion
 }

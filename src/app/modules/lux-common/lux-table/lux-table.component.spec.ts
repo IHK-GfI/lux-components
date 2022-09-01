@@ -1085,8 +1085,6 @@ describe('LuxTableComponent', () => {
   });
 });
 
-// region Mock Components, Classes & Services
-
 @Component({
   template: `
     <div [ngStyle]="{ height: containerHeight + 'px', width: containerWidth + 'px' }">
@@ -1296,5 +1294,3 @@ class MockMediaObserverService implements OnDestroy {
 class MockConsoleService {
   error(param: any) {}
 }
-
-// endregion

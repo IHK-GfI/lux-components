@@ -13,8 +13,6 @@ import {
   styleUrls: ['./input-example.component.scss']
 })
 export class InputExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   showSuffix = false;
   showPrefix = false;
   useErrorMessage = true;
@@ -28,11 +26,6 @@ export class InputExampleComponent {
   autocompleteOptions = ['on', 'off'];
   form: UntypedFormGroup;
   log = logResult;
-
-  // endregion
-
-  // region Properties der Component
-
   value: any;
   controlBinding = 'inputExample';
   disabled = false;
@@ -53,7 +46,6 @@ export class InputExampleComponent {
   maxLength = 0;
   hideCounterLabel = false;
   labelLongFormat = false;
-  // endregion
 
   constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({

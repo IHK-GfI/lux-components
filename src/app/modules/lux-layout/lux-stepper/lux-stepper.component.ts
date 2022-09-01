@@ -254,8 +254,6 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  // region ###### Accessoren, die auf die stepperConfiguration verweisen ######
-
   /**** Getter/Setter luxCurrentStepNumber ****/
   get luxCurrentStepNumber() {
     return this.stepperConfiguration.luxCurrentStepNumber ?? 0;
@@ -367,6 +365,4 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   @Input() set luxFinishButtonConfig(config: ILuxStepperButtonConfig | undefined) {
     this.stepperConfiguration.luxFinishButtonConfig = config ? config : this._DEFAULT_FIN_BTN_CONF;
   }
-
-  // endregion
 }

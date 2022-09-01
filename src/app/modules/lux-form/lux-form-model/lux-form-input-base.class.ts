@@ -36,12 +36,8 @@ export abstract class LuxFormInputBaseClass<T = any> extends LuxFormComponentBas
     super(controlContainer, cdr, logger, config);
   }
 
-  // region Overridden methods
-
   notifyFormValueChanged(formValue: any) {
     // Aktualisierungen an dem FormControl-Value sollen auch via EventEmitter bekannt gemacht werden
     this.luxValueChange.emit(formValue);
   }
-
-  // endregion
 }

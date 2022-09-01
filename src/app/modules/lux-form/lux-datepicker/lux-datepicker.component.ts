@@ -232,8 +232,6 @@ export class LuxDatepickerComponent<T = any> extends LuxFormInputBaseClass<T> im
     });
   }
 
-  // region overridden methods
-
   protected setValue(value: any) {
     if (value !== this.luxValue) {
       if (!this.formControl) {
@@ -282,7 +280,6 @@ export class LuxDatepickerComponent<T = any> extends LuxFormInputBaseClass<T> im
       this.setISOValue(tempDate.toISOString());
     }
   }
-  // endregion
 
   // für dem Customheader für das "Green"-Theme
   getHeaderByTheme(): any {

@@ -177,7 +177,6 @@ export class LuxSliderComponent extends LuxFormComponentBase<number> implements 
     }
   }
 
-  // region Overridden methods
   notifyFormValueChanged(formValue: any) {
     if (this.luxValue < this.luxMin) {
       setTimeout(() => {
@@ -192,7 +191,6 @@ export class LuxSliderComponent extends LuxFormComponentBase<number> implements 
       this.luxValuePercent.emit(((formValue - this.luxMin) * 100) / (this.luxMax - this.luxMin));
     }
   }
-  // endregion
 
   /**
    * Workaround, ohne den der Slider leider nicht beim Wechsel zum disabled-State den Gab

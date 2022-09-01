@@ -9,27 +9,18 @@ import { logResult, setRequiredValidatorForFormControl } from '../../example-bas
   templateUrl: './chip-example.component.html'
 })
 export class ChipExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   showOutputEvents = false;
   log = logResult;
-
   colors = ['Keine Farbe', 'warn', 'accent', 'primary'];
-
   chips: { label: string; color: LuxThemePalette; removable: boolean; disabled: boolean; selected: boolean }[] = [
     { label: 'Chip #1', color: undefined, removable: true, disabled: false, selected: true },
     { label: 'Chip #2', color: 'primary', removable: true, disabled: false, selected: true },
     { label: 'Chip #3', color: 'warn', removable: true, disabled: false, selected: true },
     { label: 'Chip #4', color: 'accent', removable: true, disabled: false, selected: true }
   ];
-
   openedPanel = 0;
   longOptionLabel =
     'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
-  // endregion
-
-  // region Properties der Component
-
   disabled = false;
   inputAllowed = true;
   inputLabel = 'Neu';
@@ -46,16 +37,12 @@ export class ChipExampleComponent {
   form: FormGroup;
   controlBinding = 'names';
   requiredValidatorFn = Validators.required;
-
   groupSelected = true;
   groupRemovable = true;
   groupDisabled = false;
   groupColor?: LuxThemePalette;
   groupLabels = ['Group Chip #1', 'Group Chip #2', 'Group Chip #3'];
-
   labelLongFormat = false;
-
-  // endregion
 
   constructor() {
     this.form = new FormGroup({

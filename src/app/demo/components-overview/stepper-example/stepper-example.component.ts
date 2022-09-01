@@ -17,17 +17,12 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
 })
 export class StepperExampleComponent implements OnDestroy {
   @ViewChild(LuxStepperComponent, { static: true }) stepperComponent!: LuxStepperComponent;
-
-  // region Helper-Properties für das Beispiel
-
   newStepsVisible = false;
   newStepsForm1: UntypedFormGroup;
   newStepsForm2: UntypedFormGroup;
-
   showOutputEvents = false;
   useCustomButtonConfig = false;
   log = logResult;
-
   steps: any[] = [
     {
       iconName: 'fas fa-bookmark',
@@ -56,29 +51,21 @@ export class StepperExampleComponent implements OnDestroy {
       hide: false
     }
   ];
-
-  // endregion
-
-  // region Properties der Component
-
   previousButtonConfig: ILuxStepperButtonConfig = {
     label: '',
     iconName: 'fa-arrow-left',
     color: 'primary'
   };
-
   nextButtonConfig: ILuxStepperButtonConfig = {
     label: '',
     iconName: 'fa-arrow-right',
     color: 'primary'
   };
-
   finishButtonConfig: ILuxStepperButtonConfig = {
     label: '',
     iconName: 'fa-check',
     color: 'primary'
   };
-
   disabled = false;
   showNavigationButtons = true;
   linear = true;
@@ -87,8 +74,6 @@ export class StepperExampleComponent implements OnDestroy {
   editedIconName = 'fas fa-pencil-alt';
   horizontalAnimation = false;
   verticalStepper = false;
-
-  // endregion
 
   constructor(
     private stepperService: LuxStepperHelperService,

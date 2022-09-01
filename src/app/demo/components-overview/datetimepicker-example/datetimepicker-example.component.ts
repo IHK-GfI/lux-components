@@ -16,24 +16,15 @@ import {
 })
 export class DateTimepickerExampleComponent {
   @ViewChild('test2') dateTimeInFormComponent!: LuxDateTimePickerComponent;
-
-  // region Helper-Properties für das Beispiel
-
   useCustomFilter = false;
   useErrorMessage = true;
   showOutputEvents = false;
   form: UntypedFormGroup;
   log = logResult;
-
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' }
   ];
-
-  // endregion
-
-  // region Properties der Component
-
   value?: string;
   controlBinding = 'datepickerExample';
   disabled = false;
@@ -73,9 +64,6 @@ export class DateTimepickerExampleComponent {
       this.startTime = [];
     }
   }
-
-  // endregion
-
   customFilterString = this.customFilter + '';
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;

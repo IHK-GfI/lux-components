@@ -13,12 +13,9 @@ import {
   templateUrl: './slider-example.component.html'
 })
 export class SliderExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useErrorMessage = true;
   useDisplayFn = false;
   showOutputEvents = false;
-
   colorOptions = [
     { label: 'Primary', value: 'primary' },
     { label: 'Accent', value: 'accent' },
@@ -30,20 +27,13 @@ export class SliderExampleComponent {
   ];
   form: UntypedFormGroup;
   log = logResult;
-
   percent = 0;
   percentReactive = 0;
   tickIntervalNumber = 0;
   tickIntervalAuto = true;
   labelLongFormat = false;
-
-  // endregion
-
-  // region Properties der Component
-
   value = 0;
   displayWithFnString: string = this.displayFn + '';
-
   color: SLIDER_COLORS = 'primary';
   vertical = false;
   invert = false;
@@ -65,8 +55,6 @@ export class SliderExampleComponent {
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;
   errorCallbackString: string = this.errorCallback + '';
-
-  // endregion
 
   constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({

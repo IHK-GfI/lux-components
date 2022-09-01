@@ -97,8 +97,6 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
   @ViewChild('tableContainer', { read: ElementRef, static: true }) tableContainerElement!: ElementRef;
   @ContentChildren(LuxTableColumnComponent) tableColumns!: QueryList<LuxTableColumnComponent>;
 
-  // region Setter/Getters
-
   get luxHttpDAO(): ILuxTableHttpDao | undefined {
     return this._luxHttpDAO;
   }
@@ -279,8 +277,6 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
     }
     return false;
   };
-
-  // endregion
 
   constructor(
     private queryObserver: LuxMediaQueryObserverService,

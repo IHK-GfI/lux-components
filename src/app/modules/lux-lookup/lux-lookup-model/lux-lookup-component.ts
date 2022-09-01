@@ -233,10 +233,7 @@ export abstract class LuxLookupComponent<T = LuxLookupTableEntry | LuxLookupTabl
     }
   }
 
-  // region Overridden methods
   notifyFormValueChanged(formValue: any) {
     this.luxValueChange.emit(formValue);
   }
-
-  // endregion
 }

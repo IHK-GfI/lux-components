@@ -14,23 +14,15 @@ import {
   templateUrl: './datepicker-example.component.html'
 })
 export class DatepickerExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useCustomFilter = false;
   useErrorMessage = true;
   showOutputEvents = false;
   form: UntypedFormGroup;
   log = logResult;
-
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' }
   ];
-
-  // endregion
-
-  // region Properties der Component
-
   value = '2020-05-28T14:15:00.000Z';
   controlBinding = 'datepickerExample';
   disabled = false;
@@ -51,9 +43,6 @@ export class DatepickerExampleComponent {
   startView: LuxStartView = 'month';
   touchUi = false;
   labelLongFormat = false;
-
-  // endregion
-
   customFilterString = this.customFilter + '';
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;

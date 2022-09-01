@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
   templateUrl: './link-example.component.html'
 })
 export class LinkExampleComponent implements OnDestroy {
-  // region Helper-Properties für das Beispiel
 
   showOutputEvents = false;
   colors: any[] = [
@@ -21,11 +20,6 @@ export class LinkExampleComponent implements OnDestroy {
   ];
   config: LuxComponentsConfigParameters;
   log = logResult;
-
-  // endregion
-
-  // region Properties der Component
-
   label = 'Beispiel-Link';
   color: LuxThemePalette = 'primary';
   iconName = '';
@@ -36,9 +30,6 @@ export class LinkExampleComponent implements OnDestroy {
   disabled = false;
   blank = true;
   href = 'https://www.ihk-gfi.de/';
-
-  // endregion
-
   subscription: Subscription;
 
   constructor(private configService: LuxComponentsConfigService) {

@@ -46,7 +46,6 @@ export class BaselineCardComponent {
 
   chipItems: string[] = [ 'Chip 0', 'Chip 1', 'Chip 2'];
   form: UntypedFormGroup;
-  // endregion
 
   constructor() {
     this.form = new UntypedFormGroup({

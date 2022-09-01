@@ -8,23 +8,14 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
   styleUrls: ['./list-example.component.scss']
 })
 export class ListExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   showOutputEvents = false;
   log = logResult;
   items: any[] = [];
   colors = LuxBadgeColors;
-
-  // endregion
-
-  // region Properties der Component
-
   emptyLabel = 'Keine Daten!';
   emptyIconName = 'fas fa-exclamation';
   emptyIconSize = '5x';
   selectedPosition = 0;
-
-  // endregion
 
   constructor() {
     this.clear();

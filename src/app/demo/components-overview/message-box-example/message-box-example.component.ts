@@ -13,22 +13,13 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
   styleUrls: ['./message-box-example.component.scss']
 })
 export class MessageBoxExampleComponent implements OnInit {
-  // region Helper-Properties für das Beispiel
-
   showOutputEvents = false;
   log = logResult;
-
-  // endregion
-
-  // region Properties der Component
-
   messages: ILuxMessage[] = [];
   colors = LuxMessageBoxColors;
   newMessage: ILuxMessage = { text: '', iconName: '', color: 'blue' };
   messageIndex = 1;
   maximumDisplayed = 10;
-
-  // endregion
 
   constructor() {}
 

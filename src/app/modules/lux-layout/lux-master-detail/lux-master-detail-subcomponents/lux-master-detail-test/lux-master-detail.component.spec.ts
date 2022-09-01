@@ -10,10 +10,8 @@ import { LuxMockMasterDetailMobileHelperService } from './lux-mock-master-detail
 import { LuxMasterDetailComponent } from '../../lux-master-detail.component';
 
 describe('LuxMasterDetailComponent', () => {
-  // region #### Hilfsfunktionen fÜr diese Testsuite ###
 
   const defaultWaitTime = 1000;
-
   const getMasterList = () => fixture.debugElement.query(By.css('lux-list'));
   const getMasterCards = () => fixture.debugElement.queryAll(By.css('lux-list-item > lux-card > mat-card'));
 
@@ -30,8 +28,6 @@ describe('LuxMasterDetailComponent', () => {
     }
     return result;
   };
-
-  // endregion
 
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(

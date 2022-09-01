@@ -7,11 +7,8 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
   templateUrl: './menu-example.component.html'
 })
 export class MenuExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   showOutputEvents = false;
   log = logResult;
-
   menuItems: ExampleMenuItem[] = [
     {
       iconName: 'fas fa-address-book',
@@ -53,11 +50,6 @@ export class MenuExampleComponent {
       prio: 3
     }
   ];
-
-  // endregion
-
-  // region Properties der Component
-
   displayExtended = true;
   displayMenuLeft = true;
   maximumExtended = 5;
@@ -65,8 +57,6 @@ export class MenuExampleComponent {
   menuTriggerIconShowRight = false;
   menuLabel = '';
   className = '';
-
-  // endregion
 
   constructor() {}
 

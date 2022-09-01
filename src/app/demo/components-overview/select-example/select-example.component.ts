@@ -15,15 +15,12 @@ import {
   templateUrl: './select-example.component.html'
 })
 export class SelectExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useErrorMessage = true;
   useTemplatesForLabels = false;
   useCompareWithFn = false;
   useValueFn = false;
   useSimpleArray = false;
   showOutputEvents = false;
-
   options: { label: string; value: number }[] = [
     { label: 'Afghanistan', value: 1 },
     { label: 'Albanien', value: 2 },
@@ -67,17 +64,10 @@ export class SelectExampleComponent {
     { label: 'Weihnachtsinsel', value: 40 },
     { label: 'Zypern', value: 41 }
   ];
-
   optionsPrimitive: string[] = ['Option #1', 'Option #2', 'Option #3'];
-
   form: UntypedFormGroup;
   log = logResult;
-
   labelLongFormat = false;
-  // endregion
-
-  // region Properties der Component
-
   controlBinding = 'selectExample';
   disabled = false;
   readonly = false;
@@ -88,21 +78,15 @@ export class SelectExampleComponent {
   placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
-
   value: any = null;
   multiselectValue: any = null;
-
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;
   pickValueFn = examplePickValueFn;
   compareWithFn = exampleCompareWithFn;
-
   pickValueFnString: string;
   compareWithFnString: string;
   errorCallbackString: string;
-
-  // endregion
-
   defaultCompareWith = (o1: any, o2: any) => o1 === o2;
 
   constructor(private _fb: UntypedFormBuilder) {

@@ -35,8 +35,6 @@ export class BaselineAccordionComponent {
     {label: 'Griechenland', value: 'F'},
   ]
 
-  // endregion
-
   prefixOptions = [ '', 'Frau', 'Herr']
   form: UntypedFormGroup;
   addressForm: UntypedFormGroup;

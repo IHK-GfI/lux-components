@@ -17,34 +17,22 @@ import {
 
 @Directive()
 export abstract class LookupExampleComponent implements OnInit {
-  // region Helper-Properties für das Beispiel
-
   options = [
     { label: LuxBehandlungsOptionenUngueltige.ausgrauen, value: 0 },
     { label: LuxBehandlungsOptionenUngueltige.anzeigen, value: 1 },
     { label: LuxBehandlungsOptionenUngueltige.ausblenden, value: 2 }
   ];
-
-  fieldOptions = [...Object.keys(LuxFieldValues)];
-
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' },
     { value: Validators.email, label: 'Validators.email' }
   ];
-
   useErrorMessage = true;
   showOutputEvents = false;
   useRenderFn = false;
   log = logResult;
   form: UntypedFormGroup;
-  originalServices: LuxLookupService[] = [];
   renderFnString = this.renderFn + '';
-
-  // endregion
-
-  // region Properties der Component
-
   renderProp = 'kurzText';
   parameters?: LuxLookupParameters;
   selected: any;
@@ -56,7 +44,6 @@ export abstract class LookupExampleComponent implements OnInit {
   readonly = false;
   required = false;
   tableNo = '1002';
-
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -64,12 +51,9 @@ export abstract class LookupExampleComponent implements OnInit {
   controlValidators: ValidatorFn[] = [];
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   value: LuxLookupTableEntry | LuxLookupTableEntry[] | null = null;
-
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
-
-  // endregion
 
   protected constructor(
     protected lookupHandler: LuxLookupHandlerService,

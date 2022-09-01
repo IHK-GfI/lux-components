@@ -8,18 +8,11 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./card-example.component.scss']
 })
 export class CardExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   showActions = true;
   showIcon = true;
   showInfo = true;
   useExpandableContent = true;
   btn2Raised = true;
-
-  // endregion
-
-  // region Properties der Component
-
   disabled = false;
   titleLineBreak = false;
   title = `Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
@@ -27,8 +20,6 @@ export class CardExampleComponent {
   expanded = false;
   heading = 2;
   headingValidator = Validators.pattern('[1-6]');
-
-  // endregion
 
   constructor(private snackbar: LuxSnackbarService) {
   }

@@ -8,16 +8,9 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
   styleUrls: ['./accordion-example.component.scss']
 })
 export class AccordionExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   showOutputEvents = false;
   log = logResult;
   displayModes = ['flat', 'default'];
-
-  // endregion
-
-  // region Properties der Component
-
   disabled = false;
   disabled1Panel = false;
   disabled2Panel = false;
@@ -36,7 +29,6 @@ export class AccordionExampleComponent {
     { title: 'Panel #1', description: 'Beschreibung Panel #1' },
     { title: 'Panel #2', description: 'Beschreibung Panel #2' },
   ];
-
   _multiMode = true;
 
   get multiMode() {
@@ -50,8 +42,6 @@ export class AccordionExampleComponent {
       this.expanded = false;
     }
   }
-
-  // endregion
 
   constructor() {}
 }

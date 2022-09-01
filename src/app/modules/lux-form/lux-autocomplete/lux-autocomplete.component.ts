@@ -283,7 +283,6 @@ export class LuxAutocompleteComponent<V = any, O = any> extends LuxFormComponent
     }
   }
 
-  // region overridden methods
   notifyFormValueChanged(formValue: any) {
     let newValue;
     if (this.luxStrict) {
@@ -298,8 +297,6 @@ export class LuxAutocompleteComponent<V = any, O = any> extends LuxFormComponent
       this.matInput.nativeElement.value = newValue[this.luxOptionLabelProp];
     }
   }
-
-  // endregion
 
   private getPickValueOption(value: O) {
     const pickValue = value instanceof Object ? this._luxPickValue(value) : value;

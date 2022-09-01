@@ -15,36 +15,25 @@ import {
   templateUrl: './radio-button-example.component.html'
 })
 export class RadioButtonExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useErrorMessage = true;
   useTemplatesForLabels = false;
   useCompareWithFn = false;
   useValueFn = false;
   useSimpleArray = false;
   showOutputEvents = false;
-
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' },
     { value: Validators.email, label: 'Validators.email' }
   ];
-
   options: { label: string; value: number; disabled?: boolean }[] = [
     { label: 'Option #1', value: 1, disabled: true },
     { label: 'Option #2', value: 2 },
     { label: 'Option #3', value: 3 }
   ];
-
   optionsPrimitive: string[] = ['Option #1', 'Option #2', 'Option #3'];
-
   form: UntypedFormGroup;
   log = logResult;
-
-  // endregion
-
-  // region Properties der Component
-
   controlBinding = 'radioExample';
   disabled = false;
   disabledFirst = true;
@@ -56,23 +45,17 @@ export class RadioButtonExampleComponent {
   hintShowOnlyOnFocus = false;
   controlValidators: ValidatorFn[] = [];
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
-
   value: any;
-
   groupNameReactive = 'reactiveGroup';
   groupNameNormal = 'normalGroup';
-
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;
   pickValueFn = examplePickValueFn;
   compareWithFn = exampleCompareWithFn;
-
   pickValueFnString: string;
   compareWithFnString: string;
   errorCallbackString: string;
-
   labelLongFormat = false;
-  // endregion
 
   constructor(private _fb: UntypedFormBuilder) {
     this.form = this._fb.group({

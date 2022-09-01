@@ -580,8 +580,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   noop() {}
 
-  // region Overridden methods
-
   protected errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     if (errors[LuxFileErrorCause.MaxSizeError]) {
       return this.getMaxSizeErrorMessage(errors[LuxFileErrorCause.MaxSizeError].file);
@@ -624,6 +622,4 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
       this.setValue(this._initialValue);
     }
   }
-
-  // endregion
 }
