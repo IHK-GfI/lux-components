@@ -15,7 +15,7 @@
             [luxOptions]="stateOptions"
             [luxOrientationVertical]="false"
             [(luxSelected)]="selectedState"
-            (luxSelectedChange)="switchStates($event)"
+            (luxSelectedChange)="switchStates()"
             luxLabel="Status der Form-Controls"
           ><ng-template let-option>
               {{ option.label }}

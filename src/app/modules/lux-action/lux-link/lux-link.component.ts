@@ -17,19 +17,19 @@ export class LuxLinkComponent extends LuxActionComponentBaseClass {
     super();
   }
 
-  auxClicked(event: MouseEvent) {
-    if (event.which === 2) {
-      this.redirectToHref(event);
+  auxClicked(mouseEvent: MouseEvent) {
+    if (mouseEvent.which === 2) {
+      this.redirectToHref(mouseEvent);
     }
   }
 
-  redirectToHref($event: any) {
-    this.luxClicked.emit($event);
+  redirectToHref(mouseEvent: MouseEvent) {
+    this.luxClicked.emit(mouseEvent);
 
     if (this.luxHref) {
       this.luxHref = this.luxHref.trim();
       if (!this.luxHref.startsWith('http')) {
-        if (this.luxBlank || $event.ctrlKey || $event.metaKey || $event.which === 2) {
+        if (this.luxBlank || mouseEvent.ctrlKey || mouseEvent.metaKey || mouseEvent.which === 2) {
           let newRelativeUrl = this.router.createUrlTree([this.luxHref]);
           let baseUrl = window.location.href.replace(this.router.url, '');
 
@@ -38,7 +38,7 @@ export class LuxLinkComponent extends LuxActionComponentBaseClass {
           this.router.navigate([this.luxHref]).then(() => {});
         }
       } else {
-        window.open(this.luxHref, this.luxBlank || $event.ctrlKey || $event.metaKey || $event.which === 2 ? '_blank' : '_self');
+        window.open(this.luxHref, this.luxBlank || mouseEvent.ctrlKey || mouseEvent.metaKey || mouseEvent.which === 2 ? '_blank' : '_self');
       }
     }
   }

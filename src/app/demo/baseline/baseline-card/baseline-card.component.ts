@@ -65,19 +65,19 @@ export class BaselineCardComponent {
     });
    }
 
-  chipRemoved($event: any) {
-    console.log($event);
+  chipRemoved(index: number) {
+    console.log(index);
   }
-  chipAdded($event: string) {
-      console.log($event);
+  chipAdded(newChip: string) {
+      console.log(newChip);
   }
-  chipItemClicked($event: any) {
-      console.log($event);
+  chipItemClicked(index: any) {
+      console.log(index);
   }
 
-  toggleErrors($event: boolean) {
+  toggleErrors(showErrorState: boolean) {
     Object.keys(this.form.controls).forEach((key) => {
-      if ($event) {
+      if (showErrorState) {
         this.form.get(key)!.markAsTouched();
       } else {
         this.form.get(key)!.markAsUntouched();
@@ -86,7 +86,7 @@ export class BaselineCardComponent {
     });
   }
 
-  switchStates($event: boolean) {
+  switchStates() {
     switch (this.selectedState.value) {
       case 'disabledState':
         this.disabledForm = true;

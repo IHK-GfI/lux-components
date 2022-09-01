@@ -148,18 +148,18 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   /**
    * Wird beim Wechsel des aktuellen Steps (Klick auf Tab oder .next()/.previous() Aufruf) aufgerufen.
    *
-   * @param $event
+   * @param selectionEvent
    */
-  onStepChanged($event: StepperSelectionEvent) {
-    this.luxCurrentStepNumber = $event.selectedIndex;
-    this.luxStepChanged.emit($event);
+  onStepChanged(selectionEvent: StepperSelectionEvent) {
+    this.luxCurrentStepNumber = selectionEvent.selectedIndex;
+    this.luxStepChanged.emit(selectionEvent);
 
     const matStepHeaders: NodeListOf<any> = this.elementRef.nativeElement.querySelectorAll('mat-step-header');
-    if (matStepHeaders.item($event.selectedIndex).className.indexOf('lux-step-header-touched') === -1) {
-      matStepHeaders.item($event.selectedIndex).className += ' lux-step-header-touched';
+    if (matStepHeaders.item(selectionEvent.selectedIndex).className.indexOf('lux-step-header-touched') === -1) {
+      matStepHeaders.item(selectionEvent.selectedIndex).className += ' lux-step-header-touched';
     }
 
-    this.setFocusedCSS($event.selectedIndex);
+    this.setFocusedCSS(selectionEvent.selectedIndex);
   }
 
   /**

@@ -42,8 +42,8 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
   @HostBinding('attr.tabindex') tabindex = '0';
   @HostBinding('attr.aria-multiselectable') ariaMulti = 'true';
 
-  @HostListener('keydown', ['$event']) onKeydown($event: KeyboardEvent) {
-    this.keydown($event);
+  @HostListener('keydown', ['$event']) onKeydown(keyboardEvent: KeyboardEvent) {
+    this.keydown(keyboardEvent);
   }
 
   get luxSelectedPosition(): number {
@@ -94,30 +94,30 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
    * Wird beim Drücken einer Taste ausgeführt und handelt die Aktionen bei speziellen Tasten
    * (UP_ARROW || DOWN_ARROW werden vom KeyManager selbstständig gepflegt)
    *
-   * @param $event
+   * @param keyboardEvent
    */
-  keydown($event: KeyboardEvent) {
-    if (LuxUtil.isKeySpace($event) || LuxUtil.isKeyEnter($event)) {
+  keydown(keyboardEvent: KeyboardEvent) {
+    if (LuxUtil.isKeySpace(keyboardEvent) || LuxUtil.isKeyEnter(keyboardEvent)) {
       this.select(this.keyManager.activeItemIndex!);
-      $event.preventDefault();
-    } else if (LuxUtil.isKeyHome($event)) {
+      keyboardEvent.preventDefault();
+    } else if (LuxUtil.isKeyHome(keyboardEvent)) {
       this.keyManager.setFirstItemActive();
       this.focus(this.keyManager.activeItemIndex!);
-      $event.preventDefault();
-    } else if (LuxUtil.isKeyEnd($event)) {
+      keyboardEvent.preventDefault();
+    } else if (LuxUtil.isKeyEnd(keyboardEvent)) {
       this.keyManager.setLastItemActive();
       this.focus(this.keyManager.activeItemIndex!);
-      $event.preventDefault();
-    } else if (LuxUtil.isKeyArrowUp($event)) {
+      keyboardEvent.preventDefault();
+    } else if (LuxUtil.isKeyArrowUp(keyboardEvent)) {
       this.keyManager.setPreviousItemActive();
       this.focus(this.keyManager.activeItemIndex!);
-      $event.preventDefault();
-    } else if (LuxUtil.isKeyArrowDown($event)) {
+      keyboardEvent.preventDefault();
+    } else if (LuxUtil.isKeyArrowDown(keyboardEvent)) {
       this.keyManager.setNextItemActive();
       this.focus(this.keyManager.activeItemIndex!);
-      $event.preventDefault();
+      keyboardEvent.preventDefault();
     } else {
-      this.keyManager.onKeydown($event);
+      this.keyManager.onKeydown(keyboardEvent);
     }
   }
 

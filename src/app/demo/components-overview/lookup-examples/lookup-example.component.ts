@@ -114,9 +114,9 @@ export abstract class LookupExampleComponent implements OnInit {
     }
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
 
   pickValidatorValueFn(selected: any) {

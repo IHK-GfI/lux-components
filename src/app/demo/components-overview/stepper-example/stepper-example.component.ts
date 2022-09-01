@@ -160,12 +160,12 @@ export class StepperExampleComponent implements OnDestroy {
     this.updateFooterButtonStates();
   }
 
-  stepClicked($event: number) {
-    this.log(this.showOutputEvents, `luxStepClicked`, $event);
+  stepClicked(index: number) {
+    this.log(this.showOutputEvents, `luxStepClicked`, index);
   }
 
-  checkValidation($event: number) {
-    this.log(this.showOutputEvents, `luxCheckValidation`, $event);
+  checkValidation(index: number) {
+    this.log(this.showOutputEvents, `luxCheckValidation`, index);
   }
 
   /**
@@ -193,11 +193,11 @@ export class StepperExampleComponent implements OnDestroy {
   /**
    * Aktualisiert die Footer-Buttons passend zum aktuellen Step (wenn Footer-Buttons überhaupt dargestellt werden sollen).
    *
-   * @param $event
+   * @param showNavigationButtons
    */
-  updateNavigationButtons($event: boolean) {
+  updateNavigationButtons(showNavigationButtons: boolean) {
     this.clearButtonInfos();
-    if (!$event) {
+    if (!showNavigationButtons) {
       this.buttonService.pushButtonInfos(
         LuxAppFooterButtonInfo.generateInfo({
           cmd: 'previous',

@@ -41,26 +41,19 @@ export class CardExampleComponent {
     });
   }
 
-  changeInfo($event: boolean) {
-    if ($event === true) {
+  changeInfo(showInfo: boolean) {
+    if (showInfo === true) {
       this.useExpandableContent = false;
     }
 
-    this.showInfo = $event;
+    this.showInfo = showInfo;
   }
 
-  changeSwitched($event: boolean) {
-    if ($event === true) {
-      this.showInfo = false;
-      this.useExpandableContent = false;
-    }
-  }
-
-  changeExpandable($event: boolean) {
-    if ($event === true) {
+  changeExpandable(showExpandableContent: boolean) {
+    if (showExpandableContent === true) {
       this.showInfo = false;
     }
 
-    this.useExpandableContent = $event;
+    this.useExpandableContent = showExpandableContent;
   }
 }

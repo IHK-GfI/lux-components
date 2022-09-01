@@ -82,10 +82,10 @@ export class LuxLookupComboboxComponent extends LuxLookupComponent implements Af
   /**
    * Setzt den aktuellen Value-Wert auf den ausgewählten Wert.
    *
-   * @param $event
+   * @param selectChange
    */
-  selected($event: MatSelectChange) {
-    this.luxValue = $event.value;
+  selected(selectChange: MatSelectChange) {
+    this.luxValue = selectChange.value;
   }
 
   /**

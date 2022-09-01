@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LuxMessageBoxColors } from '../../../modules/lux-util/lux-colors.enum';
 import { ILuxMessage } from '../../../modules/lux-common/lux-message-box/lux-message-box-model/lux-message.interface';
-import { ILuxMessageCloseEvent } from '../../../modules/lux-common/lux-message-box/lux-message-box-model/lux-message-events.interface';
+import {
+  ILuxMessageChangeEvent,
+  ILuxMessageCloseEvent
+} from '../../../modules/lux-common/lux-message-box/lux-message-box-model/lux-message-events.interface';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -55,18 +58,18 @@ export class MessageBoxExampleComponent implements OnInit {
     this.messages = this.messages.filter((value, index) => index !== i);
   }
 
-  logChanged($event: any) {
-    this.log(this.showOutputEvents, '[Output-Event] Message wurde geändert:', $event);
+  logChanged(messageChangeEvent: ILuxMessageChangeEvent) {
+    this.log(this.showOutputEvents, '[Output-Event] Message wurde geändert:', messageChangeEvent);
   }
 
-  logClosed($event: ILuxMessageCloseEvent) {
-    this.log(this.showOutputEvents, '[Output-Event] Message wurde geschlossen', $event);
-    if (Array.isArray($event)) {
-      $event.forEach((eventValue: ILuxMessageCloseEvent) => {
+  logClosed(messageCloseEvent: ILuxMessageCloseEvent) {
+    this.log(this.showOutputEvents, '[Output-Event] Message wurde geschlossen', messageCloseEvent);
+    if (Array.isArray(messageCloseEvent)) {
+      messageCloseEvent.forEach((eventValue: ILuxMessageCloseEvent) => {
         this.messages = this.messages.filter((compareMessage: ILuxMessage) => compareMessage !== eventValue.message);
       });
     } else {
-      this.messages = this.messages.filter((compareMessage: ILuxMessage) => compareMessage !== $event.message);
+      this.messages = this.messages.filter((compareMessage: ILuxMessage) => compareMessage !== messageCloseEvent.message);
     }
   }
 

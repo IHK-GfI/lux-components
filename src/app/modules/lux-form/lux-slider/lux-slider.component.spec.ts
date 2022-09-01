@@ -312,9 +312,9 @@ class MockSliderFormComponent {
 
   form;
 
-  percentChanged($event: number) {}
+  percentChanged(value: number) {}
 
-  valueChanged($event: number) {}
+  valueChanged(value: number) {}
 
   constructor(private fb: UntypedFormBuilder) {
     this.form = this.fb.group({

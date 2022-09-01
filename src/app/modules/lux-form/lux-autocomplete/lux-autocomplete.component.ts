@@ -238,11 +238,11 @@ export class LuxAutocompleteComponent<V = any, O = any> extends LuxFormComponent
     }
   }
 
-  selected($event: MatAutocompleteSelectedEvent) {
+  selected(selectedEvent: MatAutocompleteSelectedEvent) {
     if (this.luxStrict) {
-      this.luxValue = this._luxPickValue($event.option.value);
+      this.luxValue = this._luxPickValue(selectedEvent.option.value);
     } else {
-      this.luxValue = $event.option.value;
+      this.luxValue = selectedEvent.option.value;
     }
   }
 

@@ -36,9 +36,9 @@ export class ToggleExampleComponent {
     });
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    if ($event) {
+  changeRequired(required: boolean) {
+    this.required = required;
+    if (required) {
       this.form.get(this.controlBinding)!.setValidators(Validators.requiredTrue);
     } else {
       this.form.get(this.controlBinding)!.setValidators(null);

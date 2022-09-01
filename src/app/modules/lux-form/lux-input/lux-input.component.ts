@@ -58,19 +58,19 @@ export class LuxInputComponent<T = any> extends LuxFormInputBaseClass<T> impleme
   /**
    * Wird bei jedem Tastendruck auf dem Inputfeld aufgerufen.
    *
-   * @param $event
+   * @param keyboardEvent
    */
-  onKeyDown($event: KeyboardEvent) {
+  onKeyDown(keyboardEvent: KeyboardEvent) {
     // Soll nur für number-Inputs greifen
     if (this.inputElement) {
       const value = this.inputElement.nativeElement.value;
       // Doppelte Punkt-/Komma-Setzung und E's vermeiden
       if (
         value &&
-        this.symbolRegExp.test($event.key) &&
+        this.symbolRegExp.test(keyboardEvent.key) &&
         (this.inputElement.nativeElement.value.match(this.symbolRegExp) || []).length > 0
       ) {
-        $event.preventDefault();
+        keyboardEvent.preventDefault();
       }
     }
   }

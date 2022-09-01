@@ -204,7 +204,7 @@ class LuxMockMessageBoxComponent {
 
   closed() {}
 
-  changed(event: ILuxMessageChangeEvent) {
-    this.eventObject = event;
+  changed(messageChangeEvent: ILuxMessageChangeEvent) {
+    this.eventObject = messageChangeEvent;
   }
 }

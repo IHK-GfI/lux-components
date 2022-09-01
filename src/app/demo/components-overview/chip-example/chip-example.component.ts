@@ -63,41 +63,41 @@ export class ChipExampleComponent {
     });
   }
 
-  chipAdded($event: string) {
-    const add = !this.strict || (this.strict && this.shouldAddChip($event));
+  chipAdded(newChip: string) {
+    const add = !this.strict || (this.strict && this.shouldAddChip(newChip));
 
     if (add) {
       this.chips.push({
-        label: $event,
+        label: newChip,
         color: 'warn',
         removable: true,
         disabled: false,
         selected: true
       });
-      this.log(this.showOutputEvents, `Der Chip "${$event}" wurde hinzugefügt.`);
+      this.log(this.showOutputEvents, `Der Chip "${newChip}" wurde hinzugefügt.`);
 
       this.updateChipOptions();
     } else {
-      if (this.hasChip($event)) {
-        this.log(this.showOutputEvents, `Der Chip "${$event}" ist bereits ausgewählt.`);
+      if (this.hasChip(newChip)) {
+        this.log(this.showOutputEvents, `Der Chip "${newChip}" ist bereits ausgewählt.`);
       } else {
         this.log(
           this.showOutputEvents,
-          `Der Chip "${$event}" kann nicht hinzugefügt werden, da dieser nicht Teil der Optionen ist (siehe luxStrict).`
+          `Der Chip "${newChip}" kann nicht hinzugefügt werden, da dieser nicht Teil der Optionen ist (siehe luxStrict).`
         );
       }
     }
   }
 
-  chipRemoved($event: number) {
-    this.chips = this.chips.filter((value: any, index: number) => index !== $event);
-    this.log(this.showOutputEvents, `Der Chip "${$event}" wurde entfernt.`);
+  chipRemoved(chipIndex: number) {
+    this.chips = this.chips.filter((value: any, index: number) => index !== chipIndex);
+    this.log(this.showOutputEvents, `Der Chip "${chipIndex}" wurde entfernt.`);
     this.updateChipOptions();
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
 
   private hasChip(newChip: string): boolean {

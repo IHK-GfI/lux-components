@@ -81,8 +81,8 @@ export class DialogExampleComponent implements OnDestroy {
     );
   }
 
-  useContentTemplateChange($event: boolean) {
-    if ($event) {
+  useContentTemplateChange(useContentTemplate: boolean) {
+    if (useContentTemplate) {
       this.dialogConfig.contentTemplate = this.contentTemplate;
     } else {
       this.dialogConfig.contentTemplate = undefined;

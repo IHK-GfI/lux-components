@@ -422,9 +422,9 @@ class LuxActiveTabChangedTabsComponent {
 
   constructor() {}
 
-  tabChanged($event: MatTabChangeEvent) {
-    this.currentTabIndex = $event.index;
-    this.currentTabLabel = $event.tab.textLabel;
+  tabChanged(tabChangeEvent: MatTabChangeEvent) {
+    this.currentTabIndex = tabChangeEvent.index;
+    this.currentTabLabel = tabChangeEvent.tab.textLabel;
   }
 }
 
@@ -456,8 +456,8 @@ class LuxMockTabsComponent {
 
   constructor() {}
 
-  tabChanged($event: MatTabChangeEvent) {
-    this.currentTabIndex = $event.index;
+  tabChanged(tabChangeEvent: MatTabChangeEvent) {
+    this.currentTabIndex = tabChangeEvent.index;
   }
 }
 

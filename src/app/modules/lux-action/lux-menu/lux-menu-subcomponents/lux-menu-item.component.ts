@@ -58,7 +58,7 @@ export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
     super();
   }
 
-  clicked($event: any) {
-    this.luxClicked.emit($event);
+  clicked(mouseEvent: MouseEvent) {
+    this.luxClicked.emit(mouseEvent);
   }
 }

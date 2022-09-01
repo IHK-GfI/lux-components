@@ -30,8 +30,8 @@ export class LuxFilePreviewBase implements OnInit, OnDestroy {
   closeAriaLabel = $localize `:@@luxc.file-preview.close.arialabel:Dateivorschau schließen`;
 
   @HostListener('document:keydown', ['$event'])
-  handleKeydown(event: KeyboardEvent) {
-    if (LuxUtil.isKeyEscape(event)) {
+  handleKeydown(keyboardEvent: KeyboardEvent) {
+    if (LuxUtil.isKeyEscape(keyboardEvent)) {
       this.onClose();
     }
   }

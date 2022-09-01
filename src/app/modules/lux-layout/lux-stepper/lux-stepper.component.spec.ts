@@ -398,9 +398,9 @@ class MockStepperComponent {
 
   form;
 
-  stepChange($event: StepperSelectionEvent) {}
+  stepChange(selectionEvent: StepperSelectionEvent) {}
 
-  finClicked($event: StepperSelectionEvent) {}
+  finClicked(selectionEvent: StepperSelectionEvent) {}
 
   constructor() {
     this.form = new UntypedFormGroup({

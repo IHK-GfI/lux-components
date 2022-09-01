@@ -100,29 +100,29 @@ export class LuxMessageBoxComponent {
    *
    * Gibt eine Event-Payload mit der betroffenen Nachricht mit Index weiter.
    *
-   * @param $event
+   * @param closedMessage
    */
-  messageClosed($event: ILuxMessage) {
+  messageClosed(closedMessage: ILuxMessage) {
     const eventPayload: ILuxMessageCloseEvent = {
-      index: this.luxMessages.findIndex((compareMessage: ILuxMessage) => compareMessage === $event),
-      message: $event
+      index: this.luxMessages.findIndex((compareMessage: ILuxMessage) => compareMessage === closedMessage),
+      message: closedMessage
     };
     this.luxMessageClosed.emit(eventPayload);
 
-    this.luxMessages = this.luxMessages.filter((message: ILuxMessage) => message !== $event);
+    this.luxMessages = this.luxMessages.filter((message: ILuxMessage) => message !== closedMessage);
   }
 
   /**
    * Aktualisiert die angezeigten Nachrichten und den Paginator,
    * gibt außerdem das Change-Event mit den angezeigten/vorherigen Nachrichten.
    *
-   * @param $event
+   * @param pageEvent
    */
-  pageChanged($event: PageEvent) {
+  pageChanged(pageEvent: PageEvent) {
     const previousDisplayedMessages = [...this.displayedMessages];
     const previousIndex = this.luxIndex;
 
-    this.updateDisplayedMessages($event.pageIndex);
+    this.updateDisplayedMessages(pageEvent.pageIndex);
 
     const messageChangePayload: ILuxMessageChangeEvent = {
       currentPage: {

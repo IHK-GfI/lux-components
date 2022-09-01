@@ -21,12 +21,12 @@ export class TableServerExampleComponent extends TableExampleBaseClass {
     return this.httpDAO.data;
   }
 
-  onSelectedChange($event: Set<any>) {
-    console.log('als Set:  ', $event);
+  onSelectedChange(selected: Set<any>) {
+    console.log('als Set:  ', selected);
   }
 
-  onSelectedAsArrayChange($event: any[]) {
-    console.log('als Array:', $event);
+  onSelectedAsArrayChange(selected: any[]) {
+    console.log('als Array:', selected);
   }
 
   reload() {

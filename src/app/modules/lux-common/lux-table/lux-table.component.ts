@@ -35,7 +35,7 @@ import { LuxTableColumnComponent } from './lux-table-subcomponents/lux-table-col
   styleUrls: ['./lux-table.component.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: LuxPaginatorIntl }]
 })
-export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDestroy {
+export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoCheck, OnDestroy {
   static AUTO_PAGINATION_START = 100; // 100 Elemente bis automatisch die Pagination aktiviert wird
 
   private _luxClasses: ICustomCSSConfig | ICustomCSSConfig[] = [];
@@ -86,8 +86,8 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   @Input() luxPagerDisabled = false;
   @Input() luxPagerTooltip = '';
 
-  @Output() luxSelectedChange: EventEmitter<Set<any>> = new EventEmitter<Set<any>>();
-  @Output() luxSelectedAsArrayChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Output() luxSelectedChange: EventEmitter<Set<T>> = new EventEmitter<Set<T>>();
+  @Output() luxSelectedAsArrayChange: EventEmitter<T[]> = new EventEmitter<T[]>();
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;
@@ -195,9 +195,9 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
     });
   }
 
-  private _luxSelected: Set<any> = new Set();
+  private _luxSelected: Set<T> = new Set();
 
-  get luxSelected(): Set<any> {
+  get luxSelected(): Set<T> {
     return this._luxSelected;
   }
 
@@ -207,7 +207,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
    *
    * @param selected
    */
-  @Input() set luxSelected(selected: Set<any>) {
+  @Input() set luxSelected(selected: Set<T>) {
     if (!selected && !this.luxSelected) {
       // Nothing to do
     } else if (selected && !this.luxSelected) {
@@ -221,7 +221,7 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
     }
   }
 
-  private luxSelectedIntern(selected: Set<any>) {
+  private luxSelectedIntern(selected: Set<T>) {
     const newSelected = selected ? Array.from(selected) : [];
     this.luxSelected.clear();
     if (newSelected) {
@@ -529,19 +529,19 @@ export class LuxTableComponent implements OnInit, AfterViewInit, DoCheck, OnDest
   /**
    * Gibt über den liveAnnouncer eine Nachricht aus, dass sich die Sortierung einer Spalte geändert hat.
    *
-   * @param $event
+   * @param sort
    */
-  announceSortChange($event: Sort) {
+  announceSortChange(sort: Sort) {
     const index = this.tableColumns
       .toArray()
-      .findIndex((tableColumn: LuxTableColumnComponent) => $event.active === tableColumn.luxColumnDef);
+      .findIndex((tableColumn: LuxTableColumnComponent) => sort.active === tableColumn.luxColumnDef);
     let columnDef = index > -1 ? this.tableColumns.toArray()[index].luxColumnDef : null;
     if (columnDef === null) {
-      columnDef = $event.active === 'multiSelect' ? 'multiSelect' : null;
+      columnDef = sort.active === 'multiSelect' ? 'multiSelect' : null;
     }
     if (columnDef !== null) {
       let directionDescription;
-      switch ($event.direction) {
+      switch (sort.direction) {
         case 'desc':
           directionDescription = $localize`:@@luxc.table.sort.descending:absteigend`;
           break;

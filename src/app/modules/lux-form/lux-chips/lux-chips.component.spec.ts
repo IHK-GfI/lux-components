@@ -684,9 +684,9 @@ class ChipsComponent {
   chipGroup?: LuxChipGroupComponent;
   @ViewChild(LuxChipGroupComponent) chipGroupComponent!: LuxChipGroupComponent;
 
-  chipAdded($event: string) {
+  chipAdded(newChip: string) {
     this.chips.push({
-      label: $event,
+      label: newChip,
       color: 'warn',
       removable: true,
       disabled: false,
@@ -694,22 +694,22 @@ class ChipsComponent {
     });
   }
 
-  chipClicked($event: number) {}
+  chipClicked(index: number) {}
 
-  chipRemoved($event: number) {
-    this.chips = this.chips.filter((value: any, index: number) => index !== $event);
+  chipRemoved(chipIndex: number) {
+    this.chips = this.chips.filter((value: any, index: number) => index !== chipIndex);
   }
 
-  groupChipRemoved($event: number) {
-    console.log('[GROUP] Chip removed', $event);
+  groupChipRemoved(index: number) {
+    console.log('[GROUP] Chip removed', index);
   }
 
-  groupChipAdded($event: string) {
-    console.log('[GROUP] Chip added', $event);
+  groupChipAdded(newChip: string) {
+    console.log('[GROUP] Chip added', newChip);
   }
 
-  groupChipClicked($event: number) {
-    console.log('[GROUP] Chip clicked', $event);
+  groupChipClicked(index: number) {
+    console.log('[GROUP] Chip clicked', index);
   }
 
   addMockChips() {

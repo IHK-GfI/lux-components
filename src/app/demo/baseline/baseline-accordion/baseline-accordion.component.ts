@@ -62,13 +62,13 @@ export class BaselineAccordionComponent {
     })
   }
 
-  chipRemoved($event: any) {
-    console.log($event);
+  chipRemoved(index: number) {
+    console.log(index);
   }
-  chipAdded($event: string) {
-      console.log($event);
+  chipAdded(newChip: string) {
+      console.log(newChip);
   }
-  chipItemClicked($event: any) {
-      console.log($event);
+  chipItemClicked(index: number) {
+      console.log(index);
   }
 }

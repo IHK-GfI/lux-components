@@ -127,31 +127,31 @@ export class SelectExampleComponent {
     });
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
 
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
 
-  changeUseSimpleArray($event: boolean) {
+  changeUseSimpleArray(useSimpleArray: boolean) {
     this.reset();
-    this.useValueFn = $event ? false : this.useValueFn;
-    this.useCompareWithFn = $event ? false : this.useCompareWithFn;
+    this.useValueFn = useSimpleArray ? false : this.useValueFn;
+    this.useCompareWithFn = useSimpleArray ? false : this.useCompareWithFn;
   }
 
-  changeUseValueFn($event: boolean) {
+  changeUseValueFn(useValueFn: boolean) {
     this.reset();
-    this.useSimpleArray = $event ? false : this.useSimpleArray;
-    this.useCompareWithFn = $event ? false : this.useCompareWithFn;
+    this.useSimpleArray = useValueFn ? false : this.useSimpleArray;
+    this.useCompareWithFn = useValueFn ? false : this.useCompareWithFn;
   }
 
-  changeCompareWithFn($event: boolean) {
+  changeCompareWithFn(useCompareWithfn: boolean) {
     this.reset();
-    this.useSimpleArray = $event ? false : this.useSimpleArray;
-    this.useValueFn = $event ? false : this.useValueFn;
+    this.useSimpleArray = useCompareWithfn ? false : this.useSimpleArray;
+    this.useValueFn = useCompareWithfn ? false : this.useValueFn;
   }
 
   reset(...comps: LuxFormSelectableBase[]) {

@@ -902,8 +902,8 @@ class FileComponent {
     onClick: () => null
   };
 
-  selectedChange($event: ILuxFileObject) {
-    this.selected = $event;
+  selectedChange(file: ILuxFileObject) {
+    this.selected = file;
   }
 }
 

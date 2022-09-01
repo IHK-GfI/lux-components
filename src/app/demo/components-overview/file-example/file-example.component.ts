@@ -54,9 +54,9 @@ export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBase
     iconNameHeader: 'fas fa-trash',
     label         : 'Löschen',
     labelHeader   : 'Alle Dateien entfernen',
-    onClick       : ($event) => {
-      this.log(this.showOutputEvents, 'deleteActionConfig onClick', $event);
-      this.onDelete($event);
+    onClick       : (file) => {
+      this.log(this.showOutputEvents, 'deleteActionConfig onClick', file);
+      this.onDelete(file);
     }
   };
   viewActionConfig: ILuxFileActionConfig       = {
@@ -94,7 +94,7 @@ export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBase
     hidden  : false,
     iconName: 'fas fa-download',
     label   : 'Download',
-    onClick : ($event) => this.log(this.showOutputEvents, 'downloadActionConfig onClick', $event)
+    onClick : (file) => this.log(this.showOutputEvents, 'downloadActionConfig onClick', file)
   };
 
   protected constructor(
@@ -108,9 +108,9 @@ export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBase
     });
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
 
   pickValidatorValueFn(selected: any) {
@@ -125,10 +125,10 @@ export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBase
 
   protected abstract initUploadActionConfig(): U;
 
-  onDelete(event: any) {
+  onDelete(file: ILuxFileObject) {
   }
 
-  onUpload(event: any) {
+  onUpload(files: ILuxFileObject[]) {
   }
 
   onSelectedChange(files: T | null) {
@@ -136,8 +136,8 @@ export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBase
     this.log(true, 'luxSelectedChange', files);
   }
 
-  changeMockBackend($event: boolean) {
-    this.mockBackend = $event;
+  changeMockBackend(useMockBackend: boolean) {
+    this.mockBackend = useMockBackend;
     if (this.mockBackend) {
       this.realBackends = [];
       this.fileComponents.forEach((input: LuxFormFileBase<any>) => {

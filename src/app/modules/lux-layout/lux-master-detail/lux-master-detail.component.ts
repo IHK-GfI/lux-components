@@ -190,13 +190,13 @@ export class LuxMasterDetailComponent<T = any> implements OnInit, AfterContentIn
    * Wenn in der LuxList ein neuer Selected-Wert gepusht wird, diesen abfangen und
    * ein neues Detail auswählen.
    *
-   * @param $event
+   * @param index
    */
-  onSelectedChange($event: number) {
-    if ($event > -1) {
-      this.selectedPosition = $event;
+  onSelectedChange(index: number) {
+    if (index > -1) {
+      this.selectedPosition = index;
 
-      this.updateDetail$.next(this.luxMasterList[$event]);
+      this.updateDetail$.next(this.luxMasterList[index]);
 
       if (this.mobileHelperService.isMobile()) {
         this.mobileHelperService.closeMaster();

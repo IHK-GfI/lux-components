@@ -17,8 +17,8 @@ export class TimestampExampleComponent {
     this.nowISO = new Date(this.now).toISOString();
   }
 
-  updateNow($event: string) {
-    this.now = new Date($event).getTime();
+  updateNow(timestamp: string) {
+    this.now = new Date(timestamp).getTime();
     this.nowISO = new Date(this.now).toISOString();
   }
 

@@ -69,7 +69,7 @@ export class LuxTooltipDirective extends MatTooltip implements OnChanges {
     super.show(this.luxTooltipShowDelay);
   }
 
-  @HostListener('document:keydown.escape', ['$event']) _handleEscape() {
+  @HostListener('document:keydown.escape') _handleEscape() {
     super.hide(0);
   }
 

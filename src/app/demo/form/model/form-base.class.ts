@@ -10,12 +10,12 @@ export abstract class FormBase implements IUnsavedDataCheck {
   protected constructor(protected snackbar: LuxSnackbarService) {}
 
   @HostListener('window:beforeunload', ['$event'])
-  handleBeforeUnload($event: any) {
+  handleBeforeUnload(unloadEvent: Event) {
     // hier muss irgendwie geprüft werden, ob es ungespeicherte Daten gibt
     if (this.hasUnsavedData()) {
-      $event.preventDefault();
+      unloadEvent.preventDefault();
       // Damit der Browser eine Warnung ausgibt (die je nach Browser variiert und nicht anpassbar ist), muss ein returnValue gesetzt sein.
-      $event.returnValue = '';
+      unloadEvent.returnValue = false;
     }
   }
 

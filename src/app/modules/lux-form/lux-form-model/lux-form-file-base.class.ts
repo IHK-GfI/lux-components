@@ -30,30 +30,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   defaultReadFileDelay = 1000;
 
   private _luxAccept = '';
-
-  // protected abstract initUploadActionConfig(): U;
-
-  // protected _luxUploadActionConfig: U = this.initUploadActionConfig();
-  //
-  // protected _luxDeleteActionConfig: ILuxFileActionConfig = {
-  //   disabled: false,
-  //   hidden: false,
-  //   iconName: 'fas fa-trash',
-  //   label: $localize`:@@luxc.form-file-base.delete.action.lbl:Löschen`
-  // };
-  // protected _luxViewActionConfig: ILuxFileActionConfig = {
-  //   disabled: false,
-  //   hidden: true,
-  //   iconName: 'fas fa-eye',
-  //   label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
-  // };
-  // protected _luxDownloadActionConfig: ILuxFileActionConfig = {
-  //   disabled: false,
-  //   hidden: true,
-  //   iconName: 'fas fa-download',
-  //   label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
-  // };
-
   protected _luxCustomActionConfigs: ILuxFileActionConfig[] = [];
 
   progress = -1;
@@ -75,63 +51,23 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   @HostBinding('class.lux-file-highlight') isDragActive = false;
 
-  @HostListener('dragover', ['$event']) onDragOver($event: DragEvent) {
+  @HostListener('dragover', ['$event']) onDragOver(dragEvent: DragEvent) {
     if (this.isDnDAllowed()) {
-      this.handleDragOver($event);
+      this.handleDragOver(dragEvent);
     }
   }
 
-  @HostListener('dragleave', ['$event']) onDragLeave($event: DragEvent) {
+  @HostListener('dragleave', ['$event']) onDragLeave(dragEvent: DragEvent) {
     if (this.isDnDAllowed()) {
-      this.handleDragLeave($event);
+      this.handleDragLeave(dragEvent);
     }
   }
 
-  @HostListener('drop', ['$event']) onDrop($event: DragEvent) {
+  @HostListener('drop', ['$event']) onDrop(dragEvent: DragEvent) {
     if (this.isDnDAllowed()) {
-      this.handleDrop($event);
+      this.handleDrop(dragEvent);
     }
   }
-
-  // get luxUploadActionConfig(): U {
-  //   return this._luxUploadActionConfig;
-  // }
-  //
-  // @Input() set luxUploadActionConfig(config: U) {
-  //   if (config) {
-  //     this._luxUploadActionConfig = config;
-  //   }
-  // }
-  //
-  // get luxDeleteActionConfig(): ILuxFileActionConfig {
-  //   return this._luxDeleteActionConfig;
-  // }
-  //
-  // @Input() set luxDeleteActionConfig(config: ILuxFileActionConfig) {
-  //   if (config) {
-  //     this._luxDeleteActionConfig = config;
-  //   }
-  // }
-  //
-  // get luxViewActionConfig(): ILuxFileActionConfig {
-  //   return this._luxViewActionConfig;
-  // }
-  //
-  // @Input() set luxViewActionConfig(config: ILuxFileActionConfig) {
-  //   if (config) {
-  //     this._luxViewActionConfig = config;
-  //   }
-  // }
-  //
-  // get luxDownloadActionConfig(): ILuxFileActionConfig {
-  //   return this._luxDownloadActionConfig;
-  // }
-  //
-  // @Input() set luxDownloadActionConfig(config: ILuxFileActionConfig) {
-  //   if (config) {
-  //     this._luxDownloadActionConfig = config;
-  //   }
-  // }
 
   get luxCustomActionConfigs(): ILuxFileActionConfig[] {
     return this._luxCustomActionConfigs;
@@ -184,11 +120,11 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   /**
    * Wird beim Fokussieren des Elements aufgerufen und markiert das FormControl als "touched".
    *
-   * @param $event
+   * @param focusEvent
    */
-  onFocusIn($event: FocusEvent) {
+  onFocusIn(focusEvent: FocusEvent) {
     this.formControl.markAsTouched();
-    this.luxFocusIn.emit($event);
+    this.luxFocusIn.emit(focusEvent);
   }
 
   /**

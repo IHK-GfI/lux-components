@@ -15,8 +15,8 @@ export class LuxStepperLargeMobileOverlayComponent implements OnInit, AfterViewI
   stepperComponent!: LuxStepperLargeComponent;
 
   @HostListener('document:keydown', ['$event'])
-  handleKeydown(event: KeyboardEvent) {
-    if (LuxUtil.isKeyEscape(event)) {
+  handleKeydown(keyboardEvent: KeyboardEvent) {
+    if (LuxUtil.isKeyEscape(keyboardEvent)) {
       this.overlayRef.close();
     }
   }

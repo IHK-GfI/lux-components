@@ -27,9 +27,9 @@ export class BaselineComponent {
     });
   }
 
-  toggleErrors($event: boolean) {
+  toggleErrors(showErrorState: boolean) {
     Object.keys(this.form.controls).forEach((key) => {
-      if ($event) {
+      if (showErrorState) {
         this.form.get(key)!.markAsTouched();
       } else {
         this.form.get(key)!.markAsUntouched();
