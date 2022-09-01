@@ -90,12 +90,12 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     }
   }
 
-  @Output() luxOnFilter: EventEmitter<string> = new EventEmitter<string>();
-  @Output() luxOnSave: EventEmitter<LuxFilter> = new EventEmitter<LuxFilter>();
-  @Output() luxOnLoad: EventEmitter<string> = new EventEmitter<string>();
-  @Output() luxOnDelete: EventEmitter<LuxFilter> = new EventEmitter<LuxFilter>();
-  @Output() luxOnReset: EventEmitter<void> = new EventEmitter<void>();
-  @Output() luxFilterExpandedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() luxOnFilter = new EventEmitter<string>();
+  @Output() luxOnSave = new EventEmitter<LuxFilter>();
+  @Output() luxOnLoad  = new EventEmitter<string>();
+  @Output() luxOnDelete = new EventEmitter<LuxFilter>();
+  @Output() luxOnReset = new EventEmitter<void>();
+  @Output() luxFilterExpandedChange = new EventEmitter<boolean>();
 
   filterForm: UntypedFormGroup;
   subscriptions: Subscription[] = [];

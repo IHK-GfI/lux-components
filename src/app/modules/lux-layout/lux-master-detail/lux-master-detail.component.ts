@@ -47,8 +47,8 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
   ]
 })
 export class LuxMasterDetailComponent<T = any> implements OnInit, AfterContentInit, AfterViewInit, DoCheck, OnDestroy {
-  @Output() luxSelectedDetailChange: EventEmitter<any> = new EventEmitter();
-  @Output() luxScrolled: EventEmitter<any> = new EventEmitter();
+  @Output() luxSelectedDetailChange = new EventEmitter<T | null>();
+  @Output() luxScrolled = new EventEmitter<void>();
 
   @ContentChild(LuxMasterSimpleComponent) masterSimple?: LuxMasterSimpleComponent;
   @ContentChild(LuxDetailViewComponent) detailView!: LuxDetailViewComponent;

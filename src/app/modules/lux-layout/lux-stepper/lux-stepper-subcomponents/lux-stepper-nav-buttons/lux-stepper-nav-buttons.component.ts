@@ -8,9 +8,9 @@ import { ILuxStepperConfiguration } from '../../lux-stepper-model/lux-stepper-co
   styleUrls: ['./lux-stepper-nav-buttons.component.scss']
 })
 export class LuxStepperNavButtonsComponent {
-  @Output() luxPrevClick: EventEmitter<void> = new EventEmitter();
-  @Output() luxNextClick: EventEmitter<void> = new EventEmitter();
-  @Output() luxFinClick: EventEmitter<void> = new EventEmitter();
+  @Output() luxPrevClick = new EventEmitter<void>();
+  @Output() luxNextClick = new EventEmitter<void>();
+  @Output() luxFinClick = new EventEmitter<void>();
 
   @Input() luxIndex = -1;
   @Input() luxStep!: LuxStepComponent;

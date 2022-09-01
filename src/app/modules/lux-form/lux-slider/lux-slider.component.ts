@@ -29,10 +29,10 @@ export declare type SLIDER_COLORS = 'primary' | 'accent' | 'warn';
 export class LuxSliderComponent extends LuxFormComponentBase<number> implements OnInit, OnChanges, OnDestroy {
   @ViewChild(MatSlider) matSlider?: MatSlider;
 
-  @Output() luxChange: EventEmitter<MatSliderChange> = new EventEmitter<MatSliderChange>();
-  @Output() luxInput: EventEmitter<MatSliderChange> = new EventEmitter<MatSliderChange>();
-  @Output() luxValueChange: EventEmitter<number> = new EventEmitter<number>();
-  @Output() luxValuePercent: EventEmitter<number> = new EventEmitter<number>();
+  @Output() luxChange = new EventEmitter<MatSliderChange>();
+  @Output() luxInput = new EventEmitter<MatSliderChange>();
+  @Output() luxValueChange = new EventEmitter<number>();
+  @Output() luxValuePercent = new EventEmitter<number>();
 
   @Input() luxColor: SLIDER_COLORS = 'primary';
   @Input() luxVertical = false;

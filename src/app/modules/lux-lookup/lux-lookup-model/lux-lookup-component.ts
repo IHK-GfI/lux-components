@@ -39,8 +39,8 @@ export abstract class LuxLookupComponent<T = LuxLookupTableEntry | LuxLookupTabl
   @Input() luxCustomStyles?: {} | null;
   @Input() luxCustomInvalidStyles?: {} | null;
   @Input() luxTagId?: string;
-  @Output() luxDataLoaded: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() luxValueChange: EventEmitter<LuxLookupTableEntry | LuxLookupTableEntry[]> = new EventEmitter();
+  @Output() luxDataLoaded = new EventEmitter<boolean>();
+  @Output() luxValueChange = new EventEmitter<LuxLookupTableEntry | LuxLookupTableEntry[]>();
   entries: LuxLookupTableEntry[] = [];
 
   private subscriptions: Subscription[] = [];

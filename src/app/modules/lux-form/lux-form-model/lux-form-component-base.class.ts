@@ -65,9 +65,9 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
 
   @HostBinding('class.lux-form-control-readonly') cssReadonly = false;
 
-  @Output() luxFocusIn: EventEmitter<FocusEvent> = new EventEmitter<any>();
-  @Output() luxFocusOut: EventEmitter<FocusEvent> = new EventEmitter<any>();
-  @Output() luxDisabledChange: EventEmitter<boolean> = new EventEmitter<any>();
+  @Output() luxFocusIn = new EventEmitter<FocusEvent>();
+  @Output() luxFocusOut = new EventEmitter<FocusEvent>();
+  @Output() luxDisabledChange = new EventEmitter<boolean>();
 
   @Input() luxHint = '';
   @Input() luxHintShowOnlyOnFocus = false;

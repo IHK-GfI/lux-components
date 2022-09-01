@@ -399,7 +399,7 @@ describe('LuxMasterDetailComponent', () => {
   template: '<h2>Mock-Detail</h2><ng-content></ng-content>'
 })
 class LuxMockDetailComponent implements OnInit {
-  @Output() init: EventEmitter<any> = new EventEmitter<any>();
+  @Output() init = new EventEmitter<any>();
 
   constructor() {}
 

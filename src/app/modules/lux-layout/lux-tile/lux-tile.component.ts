@@ -17,7 +17,7 @@ export class LuxTileComponent implements OnInit, OnDestroy {
   @Input() luxCounter?: number;
   @Input() luxCounterCap = 10;
 
-  @Output() luxClicked: EventEmitter<any> = new EventEmitter<any>();
+  @Output() luxClicked = new EventEmitter<Event>();
 
   mobileView?: boolean;
   subscription?: Subscription;

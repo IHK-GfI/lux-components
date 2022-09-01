@@ -16,7 +16,7 @@ export class LuxListItemComponent implements FocusableOption {
   @HostBinding('attr.role') role = 'option';
   @HostBinding('attr.tabindex') tabindex = '-1';
 
-  @Output() luxClicked: EventEmitter<any> = new EventEmitter();
+  @Output() luxClicked = new EventEmitter<Event>();
 
   @Input() luxTitleLineBreak = true;
 
@@ -49,8 +49,8 @@ export class LuxListItemComponent implements FocusableOption {
 
   constructor(public elementRef: ElementRef) {}
 
-  clicked() {
-    this.luxClicked.emit(null);
+  clicked(event: Event) {
+    this.luxClicked.emit(event);
   }
 
   focus(): void {

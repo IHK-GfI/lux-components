@@ -86,8 +86,8 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
   @Input() luxPagerDisabled = false;
   @Input() luxPagerTooltip = '';
 
-  @Output() luxSelectedChange: EventEmitter<Set<T>> = new EventEmitter<Set<T>>();
-  @Output() luxSelectedAsArrayChange: EventEmitter<T[]> = new EventEmitter<T[]>();
+  @Output() luxSelectedChange = new EventEmitter<Set<T>>();
+  @Output() luxSelectedAsArrayChange = new EventEmitter<T[]>();
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;

@@ -22,7 +22,7 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
 
   @Input() luxType: 'button' | 'reset' | 'submit' = 'button';
   @Input() luxThrottleTime!: number;
-  @Output() luxAuxClicked: EventEmitter<MouseEvent> = new EventEmitter();
+  @Output() luxAuxClicked = new EventEmitter<Event>();
 
   @HostBinding('class.lux-uppercase') labelUppercase!: boolean;
 
@@ -64,11 +64,11 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
     this.auxClickSubject.complete();
   }
 
-  clicked(event: any) {
+  clicked(event: MouseEvent) {
     this.clickSubject.next(event);
   }
 
-  auxClicked(event: any) {
+  auxClicked(event: MouseEvent) {
     this.auxClickSubject.next(event);
   }
 

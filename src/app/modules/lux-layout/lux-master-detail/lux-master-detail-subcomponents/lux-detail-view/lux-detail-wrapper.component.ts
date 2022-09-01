@@ -8,7 +8,7 @@ import { LuxUtil } from '../../../../lux-util/lux-util';
 export class LuxDetailWrapperComponent implements OnInit, AfterViewInit {
   private _luxDetailTemplate!: TemplateRef<any>;
 
-  @Output() luxDetailRendered: EventEmitter<void> = new EventEmitter();
+  @Output() luxDetailRendered = new EventEmitter<void>();
 
   @Input() luxDetailContext: any;
 

@@ -39,7 +39,7 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   @Input() luxAriaTitleLinkLabel = $localize `:@@luxc.app-header.aria.title.link.lbl:`;
   @Input() luxAriaRoleHeaderLabel = $localize `:@@luxc.app-header.aria.role_header.lbl:Kopfbereich / Menübereich`;
 
-  @Output() luxClicked: EventEmitter<any> = new EventEmitter();
+  @Output() luxClicked = new EventEmitter<Event>();
 
   isMasterOpen?: boolean;
   isMasterDetailAvailable?: boolean;
@@ -116,7 +116,7 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  onClicked(event: any) {
+  onClicked(event: Event) {
     this.luxClicked.emit(event);
   }
 

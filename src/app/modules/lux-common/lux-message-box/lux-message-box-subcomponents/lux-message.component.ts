@@ -12,7 +12,7 @@ export class LuxMessageComponent {
   backgroundCSSClass = 'lux-bg-color-blue';
   fontCSSClass = 'lux-font-color-white';
 
-  @Output() luxMessageClosed: EventEmitter<ILuxMessage> = new EventEmitter<ILuxMessage>();
+  @Output() luxMessageClosed = new EventEmitter<ILuxMessage>();
 
   @Input() set luxMessage(message: ILuxMessage | undefined) {
     this._luxMessage = message;

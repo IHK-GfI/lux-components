@@ -31,8 +31,8 @@ export class LuxLookupAutocompleteComponent extends LuxLookupComponent implement
   @Input() luxNoBottomLabel = false;
   @Input() luxOptionMultiline = true;
 
-  @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
-  @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
+  @Output() luxBlur = new EventEmitter<FocusEvent>();
+  @Output() luxFocus = new EventEmitter<FocusEvent>();
 
   @ViewChild(MatAutocomplete) matAutocomplete?: MatAutocomplete;
   @ViewChild(MatAutocompleteTrigger) matAutocompleteTrigger?: MatAutocompleteTrigger;

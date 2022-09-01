@@ -27,9 +27,9 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
   @Input() luxNextButtonConfig = LUX_STEPPER_LARGE_DEFAULT_NEXT_BTN_CONF;
   @Input() luxFinButtonConfig = LUX_STEPPER_LARGE_DEFAULT_FIN_BTN_CONF;
 
-  @Output() luxStepperFinished: EventEmitter<void> = new EventEmitter<void>();
-  @Output() luxStepChanged: EventEmitter<LuxStepperLargeSelectionEvent> = new EventEmitter<LuxStepperLargeSelectionEvent>();
-  @Output() luxCurrentStepNumberChange: EventEmitter<number> = new EventEmitter();
+  @Output() luxStepperFinished = new EventEmitter<void>();
+  @Output() luxStepChanged = new EventEmitter<LuxStepperLargeSelectionEvent>();
+  @Output() luxCurrentStepNumberChange = new EventEmitter<number>();
 
   _luxCurrentStepNumber = 0;
 

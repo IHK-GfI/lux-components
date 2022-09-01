@@ -10,7 +10,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
  */
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormCheckableBaseClass<T> extends LuxFormComponentBase<T> {
-  @Output() luxCheckedChange: EventEmitter<boolean> = new EventEmitter();
+  @Output() luxCheckedChange = new EventEmitter<boolean>();
 
   @Input() luxTagId?: string;
 

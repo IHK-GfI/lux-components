@@ -29,8 +29,8 @@ import { LuxComponentsConfigService } from '../../../lux-components-config/lux-c
 export class LuxFileInputComponent extends LuxFormFileBase<ILuxFileObject | null> implements AfterViewInit {
   @ViewChild('visibleInput', { read: ElementRef }) visibleInput!: ElementRef;
 
-  @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
-  @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
+  @Output() luxBlur = new EventEmitter<FocusEvent>();
+  @Output() luxFocus = new EventEmitter<FocusEvent>();
 
   @Input() luxPlaceholder = '';
   @Input() luxClearOnError = true;

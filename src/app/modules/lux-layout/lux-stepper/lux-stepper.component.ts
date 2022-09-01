@@ -44,11 +44,11 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   @ContentChildren(LuxStepComponent) luxSteps!: QueryList<LuxStepComponent>;
 
-  @Output() luxFinishButtonClicked: EventEmitter<any> = new EventEmitter();
-  @Output() luxStepChanged: EventEmitter<StepperSelectionEvent> = new EventEmitter<StepperSelectionEvent>();
-  @Output() luxCurrentStepNumberChange: EventEmitter<number> = new EventEmitter<number>();
-  @Output() luxCheckValidation: EventEmitter<number> = new EventEmitter<number>();
-  @Output() luxStepClicked: EventEmitter<number> = new EventEmitter<number>();
+  @Output() luxFinishButtonClicked = new EventEmitter<void>();
+  @Output() luxStepChanged = new EventEmitter<StepperSelectionEvent>();
+  @Output() luxCurrentStepNumberChange = new EventEmitter<number>();
+  @Output() luxCheckValidation = new EventEmitter<number>();
+  @Output() luxStepClicked = new EventEmitter<number>();
 
   matStepper!: MatStepper;
   matStepLabels!: ViewContainerRef[];

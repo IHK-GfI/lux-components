@@ -57,10 +57,10 @@ export class LuxAutocompleteComponent<V = any, O = any> extends LuxFormComponent
     this._luxPickValue = pickFn ?? ((a: any) => a);
   }
 
-  @Output() luxValueChange: EventEmitter<V | null> = new EventEmitter();
-  @Output() luxOptionSelected: EventEmitter<V | null> = new EventEmitter();
-  @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
-  @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
+  @Output() luxValueChange = new EventEmitter<V | null>();
+  @Output() luxOptionSelected = new EventEmitter<V | null>();
+  @Output() luxBlur = new EventEmitter<FocusEvent>();
+  @Output() luxFocus = new EventEmitter<FocusEvent>();
 
   @ContentChild(LuxInputPrefixComponent) inputPrefix?: LuxInputPrefixComponent;
   @ContentChild(LuxInputSuffixComponent) inputSuffix?: LuxInputSuffixComponent;

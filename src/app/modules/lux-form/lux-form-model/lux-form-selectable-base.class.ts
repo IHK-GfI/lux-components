@@ -22,7 +22,7 @@ export abstract class LuxFormSelectableBase<O = any, V = any, P = any> extends L
   _luxPickValue?: LuxPickValueFnType<O,P>;
   _luxCompareWith = (o1: O, o2: O) => o1 === o2;
 
-  @Output() luxSelectedChange: EventEmitter<any> = new EventEmitter();
+  @Output() luxSelectedChange = new EventEmitter<any>();
   @Input() luxOptionLabelProp? = '';
   @Input() luxTagId?: string;
 

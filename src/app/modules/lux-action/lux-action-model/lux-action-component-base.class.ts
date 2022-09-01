@@ -19,5 +19,5 @@ export class LuxActionComponentBaseClass {
   @Input() luxRounded? = false;
   @Input() luxIconAlignWithLabel? = false;
 
-  @Output() luxClicked: EventEmitter<MouseEvent> = new EventEmitter();
+  @Output() luxClicked = new EventEmitter<Event>();
 }

@@ -39,9 +39,9 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() luxExpanded = false;
   @Input() luxUseTabIndex = true;
   @Input() luxHeading = 2;
-  @Output() luxExpandedChange: EventEmitter<boolean> = new EventEmitter();
-  @Output() luxAfterExpansion: EventEmitter<void> = new EventEmitter();
-  @Output() luxClicked: EventEmitter<any> = new EventEmitter();
+  @Output() luxExpandedChange = new EventEmitter<boolean>();
+  @Output() luxAfterExpansion = new EventEmitter<void>();
+  @Output() luxClicked = new EventEmitter<Event>();
 
   @ContentChildren(LuxIconComponent, { descendants: false }) iconComponents!: QueryList<LuxIconComponent>;
   @ContentChild(LuxCardActionsComponent) actionsComponent?: LuxCardActionsComponent;
@@ -95,9 +95,9 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.luxExpandedChange.emit(this.luxExpanded);
   }
 
-  clicked() {
+  clicked(event: Event) {
     if (!this.luxDisabled && !this.showButtons) {
-      this.luxClicked.emit(null);
+      this.luxClicked.emit(event);
     }
   }
 

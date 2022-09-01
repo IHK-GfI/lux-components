@@ -14,7 +14,7 @@ export class LuxAppHeaderActionNavItemComponent {
   @Input() luxDisabled = false;
   @Input() luxTagId?: string;
 
-  @Output() luxClicked: EventEmitter<any> = new EventEmitter<any>();
+  @Output() luxClicked = new EventEmitter<Event>();
 
   @ContentChild(LuxAppHeaderActionNavItemCustomComponent) customComponent?: LuxAppHeaderActionNavItemCustomComponent;
 

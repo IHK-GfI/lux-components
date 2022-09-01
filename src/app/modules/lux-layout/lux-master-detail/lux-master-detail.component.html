@@ -23,7 +23,7 @@
   >
     <!-- Header Element über der Master-Liste -->
     <lux-master-header
-      (luxClicked)="toggleList($event)"
+      (luxOpened)="toggleList($event)"
       [luxToggleHidden]="
         (mobileHelperService.isMobile() && !this.luxSelectedDetail && !luxOpen) || mobileHelperService.isMobile()
       "

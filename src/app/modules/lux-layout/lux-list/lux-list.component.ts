@@ -30,9 +30,9 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
 
   @ContentChildren(LuxListItemComponent) luxItems!: QueryList<LuxListItemComponent>;
 
-  @Output() luxFocusedItemChange: EventEmitter<LuxListItemComponent> = new EventEmitter();
-  @Output() luxFocusedPositionChange: EventEmitter<number> = new EventEmitter();
-  @Output() luxSelectedPositionChange: EventEmitter<number> = new EventEmitter();
+  @Output() luxFocusedItemChange = new EventEmitter<LuxListItemComponent>();
+  @Output() luxFocusedPositionChange = new EventEmitter<number>();
+  @Output() luxSelectedPositionChange = new EventEmitter<number>();
 
   @Input() luxEmptyIconName = 'fas fa-info-circle';
   @Input() luxEmptyIconSize = '5x';

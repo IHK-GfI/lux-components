@@ -35,9 +35,9 @@ export class LuxDatetimeOverlayComponent {
   @Input() luxMinDate: Date | null = null;
   @Input() luxMaxDate: Date | null = null;
 
-  @Output() luxSelected: EventEmitter<Date> = new EventEmitter<Date>();
-  @Output() openedStream: EventEmitter<void> = new EventEmitter<void>();
-  @Output() closedStream: EventEmitter<void> = new EventEmitter<void>();
+  @Output() luxSelected = new EventEmitter<Date>();
+  @Output() openedStream = new EventEmitter<void>();
+  @Output() closedStream = new EventEmitter<void>();
 
   stateChanges = new Subject<void>();
   hasBackdrop = true;

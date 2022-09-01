@@ -17,19 +17,19 @@ export class LuxLinkComponent extends LuxActionComponentBaseClass {
     super();
   }
 
-  auxClicked(mouseEvent: MouseEvent) {
-    if (mouseEvent.which === 2) {
-      this.redirectToHref(mouseEvent);
+  auxClicked(event: Event) {
+    if (event instanceof UIEvent && event.which === 2) {
+      this.redirectToHref(event);
     }
   }
 
-  redirectToHref(mouseEvent: MouseEvent) {
-    this.luxClicked.emit(mouseEvent);
+  redirectToHref(event: Event) {
+    this.luxClicked.emit(event);
 
     if (this.luxHref) {
       this.luxHref = this.luxHref.trim();
       if (!this.luxHref.startsWith('http')) {
-        if (this.luxBlank || mouseEvent.ctrlKey || mouseEvent.metaKey || mouseEvent.which === 2) {
+        if (this.isOpenInNewTab(event)) {
           let newRelativeUrl = this.router.createUrlTree([this.luxHref]);
           let baseUrl = window.location.href.replace(this.router.url, '');
 
@@ -38,8 +38,18 @@ export class LuxLinkComponent extends LuxActionComponentBaseClass {
           this.router.navigate([this.luxHref]).then(() => {});
         }
       } else {
-        window.open(this.luxHref, this.luxBlank || mouseEvent.ctrlKey || mouseEvent.metaKey || mouseEvent.which === 2 ? '_blank' : '_self');
+        window.open(this.luxHref, this.isOpenInNewTab(event) ? '_blank' : '_self');
       }
     }
+  }
+
+  isOpenInNewTab(event: Event): boolean {
+    let result = false;
+
+    if (event instanceof MouseEvent || event instanceof KeyboardEvent) {
+      result = this.luxBlank || event.ctrlKey || event.metaKey || event.which === 2;
+    }
+
+    return result;
   }
 }

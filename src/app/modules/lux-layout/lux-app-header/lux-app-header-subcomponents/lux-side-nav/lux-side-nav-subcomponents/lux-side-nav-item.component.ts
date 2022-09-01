@@ -30,7 +30,7 @@ export class LuxSideNavItemComponent implements AfterViewInit, OnChanges {
   @Input() luxExpandable = false;
   @Input() luxExpanded = true;
 
-  @Output() luxClicked: EventEmitter<any> = new EventEmitter();
+  @Output() luxClicked = new EventEmitter<Event>();
 
   @ContentChildren(LuxSideNavItemComponent) sideNavItems!: QueryList<LuxSideNavItemComponent>;
 
@@ -46,7 +46,7 @@ export class LuxSideNavItemComponent implements AfterViewInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  onClick(event: MouseEvent) {
+  onClick(event: Event) {
     this.luxClicked.emit(event);
     if (this.luxExpandable) {
       this.luxExpanded = !this.luxExpanded;

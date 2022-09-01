@@ -21,7 +21,7 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
   // Flag, ob aktuell Daten geladen werden (aus aufrufender Komponente)
   @Input() luxIsLoading = false;
   // Emitter an den sich andere Komponenten hängen können, um auf den Scroll zu reagieren
-  @Output() luxScrolled: EventEmitter<void> = new EventEmitter<void>();
+  @Output() luxScrolled = new EventEmitter<void>();
 
   /**
    * Constructor

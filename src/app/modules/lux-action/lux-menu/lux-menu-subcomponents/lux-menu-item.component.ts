@@ -11,9 +11,9 @@ export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
   @Input() luxButtonTooltip = '';
   @Input() luxPrio = 0;
 
-  @Output() luxHiddenChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() luxHideLabelIfExtendedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() luxAlwaysVisibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() luxHiddenChange = new EventEmitter<boolean>();
+  @Output() luxHideLabelIfExtendedChange = new EventEmitter<boolean>();
+  @Output() luxAlwaysVisibleChange = new EventEmitter<boolean>();
 
   _luxAlwaysVisible = true;
   _luxHideLabelIfExtended = false;
@@ -58,7 +58,7 @@ export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
     super();
   }
 
-  clicked(mouseEvent: MouseEvent) {
-    this.luxClicked.emit(mouseEvent);
+  clicked(event: Event) {
+    this.luxClicked.emit(event);
   }
 }

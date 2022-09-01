@@ -23,15 +23,15 @@ import { ILuxStepperConfiguration } from './lux-stepper-configuration.interface'
 export class LuxStepperParent implements OnDestroy, AfterViewInit {
   // Diese Outputs werden bei den Klicks auf die Stepper-eigenen Navigations-Buttons ausgelöst und informieren die
   // LuxStepperComponent
-  @Output() luxFinButtonClicked: EventEmitter<void> = new EventEmitter();
-  @Output() luxNextButtonClicked: EventEmitter<void> = new EventEmitter();
-  @Output() luxPrevButtonClicked: EventEmitter<void> = new EventEmitter();
+  @Output() luxFinButtonClicked = new EventEmitter<void>();
+  @Output() luxNextButtonClicked = new EventEmitter<void>();
+  @Output() luxPrevButtonClicked = new EventEmitter<void>();
   // Wird beim Wechsel des Steps (über Header oder Button) aufgerufen
-  @Output() luxStepChanged: EventEmitter<StepperSelectionEvent> = new EventEmitter<StepperSelectionEvent>();
+  @Output() luxStepChanged = new EventEmitter<StepperSelectionEvent>();
   // über die aktuellen Elemente informiert zu halten
-  @Output() luxMatStepperLoaded: EventEmitter<MatStepper> = new EventEmitter();
-  @Output() luxMatStepLabelsLoaded: EventEmitter<ViewContainerRef[]> = new EventEmitter();
-  @Output() luxStepClicked: EventEmitter<number> = new EventEmitter<number>();
+  @Output() luxMatStepperLoaded = new EventEmitter<MatStepper>();
+  @Output() luxMatStepLabelsLoaded = new EventEmitter<ViewContainerRef[]>();
+  @Output() luxStepClicked = new EventEmitter<number>();
 
   @ViewChild('stepper', { static: true }) matStepper!: MatStepper;
   @ViewChildren('matStepLabel', { read: ViewContainerRef }) matStepLabels!: QueryList<ViewContainerRef>;

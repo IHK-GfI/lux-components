@@ -220,9 +220,9 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
   /**
    * Entfernt die aktuell selektierten Dateien und entfernt etwaige (spezifische) Fehler aus dem FormControl.
    *
-   * @param mouseEvent
+   * @param event
    */
-  clearFiles(mouseEvent?: MouseEvent) {
+  clearFiles(event?: Event) {
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();
 

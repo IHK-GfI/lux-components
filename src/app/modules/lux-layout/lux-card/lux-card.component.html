@@ -1,7 +1,7 @@
 <mat-card
-  (click)="clicked()"
-  (keydown.enter)="clicked()"
-  (keydown.space)="clicked()"
+  (click)="clicked($event)"
+  (keydown.enter)="clicked($event)"
+  (keydown.space)="clicked($event)"
   [attr.tabindex]="!showButtons && hasCardAction && !luxDisabled && luxUseTabIndex ? '0' : null"
   fxLayout="row"
   luxTagIdHandler

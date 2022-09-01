@@ -24,9 +24,9 @@ export class LuxMessageBoxComponent {
 
   @ViewChild('messagebox',{static: false}) messageBoxElRef?: ElementRef;
 
-  @Output() luxMessageChanged: EventEmitter<ILuxMessageChangeEvent> = new EventEmitter<ILuxMessageChangeEvent>();
-  @Output() luxMessageClosed: EventEmitter<ILuxMessageCloseEvent> = new EventEmitter<ILuxMessageCloseEvent>();
-  @Output() luxMessageBoxClosed: EventEmitter<void> = new EventEmitter<void>();
+  @Output() luxMessageChanged = new EventEmitter<ILuxMessageChangeEvent>();
+  @Output() luxMessageClosed = new EventEmitter<ILuxMessageCloseEvent>();
+  @Output() luxMessageBoxClosed = new EventEmitter<void>();
 
   @Input() luxGrabFocus = false;
   @Input() set luxIndex(index: number) {

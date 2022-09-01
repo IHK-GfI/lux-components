@@ -32,7 +32,7 @@ export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Output() luxOpened = new EventEmitter<void>();
   @Output() luxClosed = new EventEmitter<void>();
-  @Output() luxExpandedChange: EventEmitter<boolean> = new EventEmitter();
+  @Output() luxExpandedChange = new EventEmitter<boolean>();
 
   @ViewChild(MatExpansionPanel, { static: true }) matExpansionPanel!: MatExpansionPanel;
 

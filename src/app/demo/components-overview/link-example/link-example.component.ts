@@ -66,7 +66,7 @@ export class LinkExampleComponent implements OnDestroy {
     this.configService.updateConfiguration(this.config);
   }
 
-  click(event: MouseEvent) {
+  click(event: Event) {
     this.log(this.showOutputEvents, 'luxClicked', event);
   }
 }

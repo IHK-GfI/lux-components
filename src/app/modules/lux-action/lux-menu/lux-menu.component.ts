@@ -51,7 +51,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   @ContentChildren(LuxMenuItemComponent) luxMenuItemComponents!: QueryList<LuxMenuItemComponent>;
   @ContentChild(LuxMenuTriggerComponent) luxMenuTriggerComponent?: LuxMenuTriggerComponent;
 
-  @Output() luxMenuClosed: EventEmitter<void> = new EventEmitter<void>();
+  @Output() luxMenuClosed = new EventEmitter<void>();
 
   @Input() luxMenuLabel = '';
   @Input() luxMenuIconName = 'menu';
@@ -170,7 +170,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
    * @param menuItem
    * @param event
    */
-  menuItemClicked(menuItem: LuxMenuItemComponent, event: MouseEvent) {
+  menuItemClicked(menuItem: LuxMenuItemComponent, event: Event) {
     menuItem.clicked(event);
   }
 

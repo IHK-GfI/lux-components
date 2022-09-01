@@ -38,7 +38,7 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   @ViewChild('downloadLink', { read: ElementRef, static: true }) downloadLink!: ElementRef;
   @ViewChild('fileUpload', { read: ElementRef, static: true }) fileUploadInput!: ElementRef;
 
-  @Output() luxSelectedFilesChange: EventEmitter<T> = new EventEmitter();
+  @Output() luxSelectedFilesChange = new EventEmitter<T>();
 
   @Input() luxUploadReportProgress = false;
   @Input() luxContentsAsBlob = false;

@@ -14,7 +14,7 @@ export class LuxMasterHeaderComponent implements OnDestroy {
   subscription: Subscription;
 
   @Input() luxToggleHidden?: boolean;
-  @Output() luxClicked: EventEmitter<any> = new EventEmitter();
+  @Output() luxOpened = new EventEmitter<boolean>();
 
   @HostBinding('class.lux-no-toggle') isMobile?: boolean;
 
@@ -52,7 +52,7 @@ export class LuxMasterHeaderComponent implements OnDestroy {
     } else {
       this.masterDetailMobileHelperService.openMaster();
     }
-    this.luxClicked.emit(this.open);
+    this.luxOpened.emit(!!this.open);
     that.elementRef.nativeElement.focus();
   }
 }
