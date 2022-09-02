@@ -27,7 +27,7 @@ describe('LuxAriaHiddenDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-hidden in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte aria-hidden in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toBeNull();
 
       // Aria-Hidden setzen
@@ -50,7 +50,7 @@ describe('LuxAriaHiddenDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -63,7 +63,7 @@ describe('LuxAriaHiddenDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-hidden in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte aria-hidden in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toBeNull();
 
       // Aria-Hidden setzen
@@ -86,7 +86,7 @@ describe('LuxAriaHiddenDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toBeNull();
-    }));
+    });
   });
 });
 

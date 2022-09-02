@@ -26,7 +26,7 @@ describe('LuxAriaRoleDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte role in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte role in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('role')).toBeNull();
 
       // role setzen
@@ -49,7 +49,7 @@ describe('LuxAriaRoleDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('role')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -62,7 +62,7 @@ describe('LuxAriaRoleDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte role in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte role in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('role')).toBeNull();
 
       // role setzen
@@ -85,7 +85,7 @@ describe('LuxAriaRoleDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('role')).toBeNull();
-    }));
+    });
   });
 });
 

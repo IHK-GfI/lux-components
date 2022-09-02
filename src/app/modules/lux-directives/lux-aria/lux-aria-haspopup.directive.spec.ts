@@ -26,7 +26,7 @@ describe('LuxAriaHasPopupDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-haspopup in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte aria-haspopup in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toBeNull();
 
       // Aria-HasPopup setzen
@@ -49,7 +49,7 @@ describe('LuxAriaHasPopupDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -62,7 +62,7 @@ describe('LuxAriaHasPopupDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-haspopup in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte aria-haspopup in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toBeNull();
 
       // Aria-HasPopup setzen
@@ -85,7 +85,7 @@ describe('LuxAriaHasPopupDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toBeNull();
-    }));
+    });
   });
 });
 

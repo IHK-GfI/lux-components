@@ -30,10 +30,10 @@ describe('LuxInputComponent', () => {
     let fixture: ComponentFixture<LuxInputInsideFormComponent>;
     let testComponent: LuxInputInsideFormComponent;
 
-    beforeEach(fakeAsync(() => {
+    beforeEach(() => {
       fixture = TestBed.createComponent(LuxInputInsideFormComponent);
       testComponent = fixture.componentInstance;
-    }));
+    });
 
     describe('type="text"', () => {
       it('Wert über das FormControl setzen', fakeAsync(() => {

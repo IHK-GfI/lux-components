@@ -27,7 +27,7 @@ describe('LuxAriaExpandedDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-expanded in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte aria-expanded in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toBeNull();
 
       // Aria-expanded setzen
@@ -50,7 +50,7 @@ describe('LuxAriaExpandedDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -63,7 +63,7 @@ describe('LuxAriaExpandedDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-expanded in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte aria-expanded in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toBeNull();
 
       // Aria-expanded setzen
@@ -86,7 +86,7 @@ describe('LuxAriaExpandedDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toBeNull();
-    }));
+    });
   });
 });
 

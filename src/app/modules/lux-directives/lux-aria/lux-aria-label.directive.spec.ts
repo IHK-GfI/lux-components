@@ -27,7 +27,7 @@ describe('LuxAriaLabelDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-label in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte aria-label in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toBeNull();
 
       // Aria-Label setzen
@@ -50,7 +50,7 @@ describe('LuxAriaLabelDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -63,7 +63,7 @@ describe('LuxAriaLabelDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-label in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte aria-label in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toBeNull();
 
       // Aria-Label setzen
@@ -86,7 +86,7 @@ describe('LuxAriaLabelDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toBeNull();
-    }));
+    });
   });
 });
 

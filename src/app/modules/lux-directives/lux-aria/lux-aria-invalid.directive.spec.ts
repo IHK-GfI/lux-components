@@ -27,7 +27,7 @@ describe('LuxAriaInvalidDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-invalid in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte aria-invalid in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-invalid')).toBeNull();
 
       // aria-invalid setzen
@@ -54,7 +54,7 @@ describe('LuxAriaInvalidDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -67,7 +67,7 @@ describe('LuxAriaInvalidDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-invalid in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte aria-invalid in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toBeNull();
 
       // aria-invalid setzen
@@ -94,7 +94,7 @@ describe('LuxAriaInvalidDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toBeNull();
-    }));
+    });
   });
 });
 

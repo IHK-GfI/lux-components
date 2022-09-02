@@ -80,10 +80,10 @@ describe('LuxSelectComponent', () => {
     let testComponent: SelectInsideFormComponent;
     let trigger: HTMLElement;
 
-    beforeEach(fakeAsync(() => {
+    beforeEach(() => {
       fixture = TestBed.createComponent(SelectInsideFormComponent);
       testComponent = fixture.componentInstance;
-    }));
+    });
 
     it('Wert über das FormControl setzen', fakeAsync(() => {
       fixture.detectChanges();

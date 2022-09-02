@@ -26,7 +26,7 @@ describe('LuxAriaDescribedbyDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte describedby in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte describedby in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toBeNull();
 
       // describedby setzen
@@ -53,7 +53,7 @@ describe('LuxAriaDescribedbyDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -66,7 +66,7 @@ describe('LuxAriaDescribedbyDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte describedby in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte describedby in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toBeNull();
 
       // describedby setzen
@@ -93,7 +93,7 @@ describe('LuxAriaDescribedbyDirective', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toBeNull();
-    }));
+    });
   });
 });
 
