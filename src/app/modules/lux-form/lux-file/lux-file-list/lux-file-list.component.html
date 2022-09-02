@@ -6,14 +6,14 @@
   tabindex="0"
   [luxHeading]="luxHeading"
 >
-  <lux-card-info *ngIf="luxMultiple || !luxSelectedFiles">
+  <lux-card-info *ngIf="luxMultiple || !luxSelected">
     <lux-button
       class="lux-file-list-header-clear"
       [luxIconName]="luxDeleteActionConfig.iconNameHeader"
       luxTagId="lux-file-clear"
       luxColor="primary"
       [luxDisabled]="
-        !luxSelectedFiles || luxSelectedFiles.length === 0 || luxDeleteActionConfig.disabledHeader || luxDisabled || luxReadonly
+        !luxSelected || luxSelected.length === 0 || luxDeleteActionConfig.disabledHeader || luxDisabled || luxReadonly
       "
       (luxClicked)="clearFiles($event)"
       fxFlex="0 0 auto"
@@ -41,14 +41,14 @@
       class="lux-file-list-content"
       fxFlex="1 0 75px"
       fxLayout="column"
-      fxLayoutAlign="{{ !luxSelectedFiles || luxSelectedFiles.length === 0 ? 'center center' : 'start start' }}"
+      fxLayoutAlign="{{ !luxSelected || luxSelected.length === 0 ? 'center center' : 'start start' }}"
     >
       <div
         class="lux-file-icon-hint"
         fxFlexFill
         fxLayout="column"
         fxLayoutAlign="center center"
-        *ngIf="!luxSelectedFiles || luxSelectedFiles.length === 0; else showFileList"
+        *ngIf="!luxSelected || luxSelected.length === 0; else showFileList"
       >
         <lux-divider></lux-divider>
         <lux-icon
@@ -205,24 +205,24 @@
       </lux-menu>
     </div>
   </div>
-  <ng-container *ngIf="luxSelectedFiles?.length">
-    <lux-divider *ngIf="index !== (this.luxSelectedFiles?.length ?? 0) - 1"></lux-divider>
+  <ng-container *ngIf="luxSelected?.length">
+    <lux-divider *ngIf="index !== (this.luxSelected?.length ?? 0) - 1"></lux-divider>
   </ng-container>
 </ng-template>
 
 <ng-template #showFileList>
-  <div class="lux-file-list-entries" fxFlexFill *ngIf="luxSelectedFiles">
+  <div class="lux-file-list-entries" fxFlexFill *ngIf="luxSelected">
     <!-- Mehrere Dateien ausgewählt -->
-    <ng-container *ngIf="isArray(luxSelectedFiles)">
+    <ng-container *ngIf="isArray(luxSelected)">
       <lux-divider></lux-divider>
-      <ng-container *ngFor="let selectedFile of luxSelectedFiles; let i = index">
+      <ng-container *ngFor="let selectedFile of luxSelected; let i = index">
         <ng-container *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: selectedFile, index: i }"> </ng-container>
       </ng-container>
     </ng-container>
     <!-- Nur eine Datei ausgewählt -->
-    <ng-container *ngIf="!isArray(luxSelectedFiles)">
+    <ng-container *ngIf="!isArray(luxSelected)">
       <lux-divider></lux-divider>
-      <ng-container *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: luxSelectedFiles, index: 0 }"> </ng-container>
+      <ng-container *ngTemplateOutlet="fileListEntryTemplate; context: { selectedFile: luxSelected, index: 0 }"> </ng-container>
     </ng-container>
   </div>
 </ng-template>

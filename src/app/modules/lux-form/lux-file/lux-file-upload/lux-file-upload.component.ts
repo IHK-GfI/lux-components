@@ -177,7 +177,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
   }
 
   resetSelected() {
-    this.luxSelectedFiles = [];
+    this.luxSelected = [];
   }
 
   handleViewFileClick(file: ILuxFileObject) {
@@ -214,9 +214,9 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
       // Prüfen, ob die Dateien bereits vorhanden sind
       let selectedFilesArray: ILuxFileObject[] = [];
       const replaceableFilesMap = new Map<number, File>();
-      if (this.luxSelectedFiles) {
+      if (this.luxSelected) {
         files = Array.from(files);
-        selectedFilesArray = Array.isArray(this.luxSelectedFiles) ? this.luxSelectedFiles : [this.luxSelectedFiles];
+        selectedFilesArray = Array.isArray(this.luxSelected) ? this.luxSelected : [this.luxSelected];
         // zu ersetzende Indizes herausfinden
         files.forEach((file: File) => {
           const index = selectedFilesArray.findIndex((compareFile: ILuxFileObject) => compareFile.name === file.name);
@@ -261,16 +261,16 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
           });
 
           return;
-        } else if (files.length === 1 && (!this.luxSelectedFiles || this.luxSelectedFiles.length === 0)) {
+        } else if (files.length === 1 && (!this.luxSelected || this.luxSelected.length === 0)) {
           this.updateSelectedFiles(files).then(
             (newFiles: ILuxFileObject[]) => {
-              this.luxSelectedFiles = newFiles;
+              this.luxSelected = newFiles;
               this.notifyFormValueChanged();
               this.fileUploadInput.nativeElement.value = '';
             },
             (error) => this.setFormControlErrors(error)
           );
-        } else if (files.length === 1 && this.luxSelectedFiles && this.luxSelectedFiles.length > 0) {
+        } else if (files.length === 1 && this.luxSelected && this.luxSelected.length > 0) {
           this.dialogService.storeDialogRef();
           const dialogRef = this.dialogService.openComponent(LuxFileReplaceDialogComponent, this.dialogReplaceConfig, {
             multiple: this.luxMultiple
@@ -280,7 +280,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
           dialogRef.dialogConfirmed.subscribe(() => {
             this.updateSelectedFiles(files).then(
               (newFiles: ILuxFileObject[]) => {
-                this.luxSelectedFiles = newFiles;
+                this.luxSelected = newFiles;
                 this.notifyFormValueChanged();
                 this.fileUploadInput.nativeElement.value = '';
               },
@@ -320,7 +320,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
         // die übrigen neuen Dateien anfügen
         tempSelectedFiles.push(...newFiles);
 
-        this.luxSelectedFiles =
+        this.luxSelected =
           tempSelectedFiles && tempSelectedFiles.length === 1 && !this.useArray()
             ? tempSelectedFiles[0]
             : tempSelectedFiles;
@@ -352,18 +352,18 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
     this.formControl.markAsDirty();
 
     // Wenn mehrere Dateien selektiert sind, diese nach der entfernten Datei filtern ansonsten "undefined" nutzen
-    const newFiles = Array.isArray(this.luxSelectedFiles)
-      ? this.luxSelectedFiles.filter((file, searchIndex) => searchIndex !== index)
+    const newFiles = Array.isArray(this.luxSelected)
+      ? this.luxSelected.filter((file, searchIndex) => searchIndex !== index)
       : null;
 
     // Via LiveAnnouncer mitteilen welche Datei entfernt wird
-    const deletedFile = this.luxSelectedFiles![index];
+    const deletedFile = this.luxSelected![index];
     this.announceFileRemove(deletedFile.name);
 
     // Wir entfernen hier nur eine Datei, deshalb ist das neue Auslesen der Base64-Strings nicht nötig
     this.uploadFiles(newFiles).then(
       () => {
-        this.luxSelectedFiles = newFiles;
+        this.luxSelected = newFiles;
         this.notifyFormValueChanged();
       },
       (error) => this.setFormControlErrors(error)

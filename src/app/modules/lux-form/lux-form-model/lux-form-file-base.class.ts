@@ -38,7 +38,7 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   @ViewChild('downloadLink', { read: ElementRef, static: true }) downloadLink!: ElementRef;
   @ViewChild('fileUpload', { read: ElementRef, static: true }) fileUploadInput!: ElementRef;
 
-  @Output() luxSelectedFilesChange = new EventEmitter<T>();
+  @Output() luxSelectedChange = new EventEmitter<T>();
 
   @Input() luxUploadReportProgress = false;
   @Input() luxContentsAsBlob = false;
@@ -79,11 +79,11 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
     }
   }
 
-  get luxSelectedFiles(): T  {
+  get luxSelected(): T  {
     return this.getValue();
   }
 
-  @Input() set luxSelectedFiles(selectedFiles: T) {
+  @Input() set luxSelected(selectedFiles: T) {
     this.setValue(selectedFiles);
   }
 
@@ -597,7 +597,7 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   }
 
   protected notifyFormValueChanged() {
-    this.luxSelectedFilesChange.emit(this.luxSelectedFiles);
+    this.luxSelectedChange.emit(this.luxSelected);
 
     // Wir leeren nach jedem Value-Change das Input, da wir das FormControl bereits als SSoT besitzen
     // und das Input durch den Browser gelegentlich sonst geblockt werden (wenn eine Datei ausgewählt worden ist)

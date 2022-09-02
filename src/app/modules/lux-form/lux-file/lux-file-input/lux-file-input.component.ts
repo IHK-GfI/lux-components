@@ -127,7 +127,7 @@ export class LuxFileInputComponent extends LuxFormFileBase<ILuxFileObject | null
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();
 
-    const deletedFile = this.luxSelectedFiles;
+    const deletedFile = this.luxSelected;
 
     this.resetSelected();
     this.notifyFormValueChanged();
@@ -139,7 +139,7 @@ export class LuxFileInputComponent extends LuxFormFileBase<ILuxFileObject | null
   }
 
   resetSelected() {
-    this.luxSelectedFiles = null;
+    this.luxSelected = null;
   }
 
   handleViewFileClick(file: ILuxFileObject) {
@@ -182,7 +182,7 @@ export class LuxFileInputComponent extends LuxFormFileBase<ILuxFileObject | null
     setTimeout(() => {
       this.updateSelectedFiles(files).then(
         (newFiles: ILuxFileObject[]) => {
-          this.luxSelectedFiles = newFiles[0];
+          this.luxSelected = newFiles[0];
           this.notifyFormValueChanged();
         },
         error => this.setFormControlErrors(error)
@@ -199,7 +199,7 @@ export class LuxFileInputComponent extends LuxFormFileBase<ILuxFileObject | null
 
   protected setFormControlErrors(error: ILuxFileError) {
     if (this.luxClearOnError) {
-      this.luxSelectedFiles = null;
+      this.luxSelected = null;
     }
 
     super.setFormControlErrors(error);

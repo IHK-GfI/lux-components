@@ -65,7 +65,7 @@ describe('LuxFileListComponent', () => {
 
       expect(localFixture.debugElement.query(By.css('.lux-file-list-entry-label'))).toBeFalsy();
       expect(localTestComponent.formControl.value).toBeNull();
-      expect(localFileComponent.luxSelectedFiles).toBeUndefined();
+      expect(localFileComponent.luxSelected).toBeUndefined();
 
       // Änderungen durchführen
       const files = [{ name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' }];
@@ -77,7 +77,7 @@ describe('LuxFileListComponent', () => {
         localFixture.debugElement.query(By.css('.lux-file-list-entry-label')).nativeElement.textContent.trim()
       ).toEqual('mockfile.txt');
       expect(localTestComponent.formControl.value).toEqual(files);
-      expect(localFileComponent.luxSelectedFiles).toEqual(files);
+      expect(localFileComponent.luxSelected).toEqual(files);
       expect(localFileComponent.formControl.value).toEqual(files);
     }));
 
@@ -262,7 +262,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       expect(spy).toHaveBeenCalledTimes(0);
-      expect(fileComponent.luxSelectedFiles).toBeTruthy();
+      expect(fileComponent.luxSelected).toBeTruthy();
 
       // Änderungen durchführen
       testComponent.uploadUrl = '/test/api/';
@@ -272,7 +272,7 @@ describe('LuxFileListComponent', () => {
 
       // Nachbedingungen prüfen
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(fileComponent.luxSelectedFiles!.length).toBe(2);
+      expect(fileComponent.luxSelected!.length).toBe(2);
       flush();
     }));
 
@@ -284,7 +284,7 @@ describe('LuxFileListComponent', () => {
 
       expect(localFixture.debugElement.query(By.css('.lux-file-list-entry-label'))).toBeFalsy();
       expect(localTestComponent.selected).toBeNull();
-      expect(localFileComponent.luxSelectedFiles).toBeUndefined();
+      expect(localFileComponent.luxSelected).toBeUndefined();
 
       // Änderungen durchführen
       const files = [{ name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' }];
@@ -296,7 +296,7 @@ describe('LuxFileListComponent', () => {
         localFixture.debugElement.query(By.css('.lux-file-list-entry-label')).nativeElement.textContent.trim()
       ).toEqual('mockfile.txt');
       expect(localTestComponent.selected).toEqual(files);
-      expect(localFileComponent.luxSelectedFiles).toEqual(files);
+      expect(localFileComponent.luxSelected).toEqual(files);
       expect(localFileComponent.formControl.value).toEqual(files);
     }));
 
@@ -311,7 +311,7 @@ describe('LuxFileListComponent', () => {
       ];
       LuxTestHelper.wait(fixture);
 
-      expect(fileComponent.luxSelectedFiles).toEqual(testComponent.selected);
+      expect(fileComponent.luxSelected).toEqual(testComponent.selected);
       expect(
         fixture.debugElement.queryAll(By.css('.lux-file-list-entry-label'))[0].nativeElement.textContent.trim()
       ).toEqual('mockfile1.txt');
@@ -324,7 +324,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles).toEqual([]);
+      expect(fileComponent.luxSelected).toEqual([]);
       expect(fixture.debugElement.queryAll(By.css('.lux-file-list-entry-label')).length).toBe(0);
 
       discardPeriodicTasks();
@@ -335,7 +335,7 @@ describe('LuxFileListComponent', () => {
       testComponent.hint = 'Hint';
       LuxTestHelper.wait(fixture);
 
-      expect(fileComponent.luxSelectedFiles).toBeFalsy();
+      expect(fileComponent.luxSelected).toBeFalsy();
       expect(fixture.debugElement.query(By.css('.lux-file-icon'))).not.toBeNull();
       expect(fixture.debugElement.query(By.css('mat-hint'))).not.toBeNull();
 
@@ -344,7 +344,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles).toBeTruthy();
+      expect(fileComponent.luxSelected).toBeTruthy();
       expect(fixture.debugElement.query(By.css('.lux-file-icon'))).toBeNull();
       expect(fixture.debugElement.query(By.css('mat-hint'))).toBeNull();
 
@@ -367,8 +367,8 @@ describe('LuxFileListComponent', () => {
       expect(spyDrop).toHaveBeenCalledTimes(1);
       expect(testComponent.selected![0].name).toEqual('mockfile1.txt');
       expect(testComponent.selected![0].content).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles![0].name).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelectedFiles![0].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
 
       flush();
     }));
@@ -393,12 +393,12 @@ describe('LuxFileListComponent', () => {
       expect(spyDrop).toHaveBeenCalledTimes(1);
       expect(testComponent.selected![0].name).toEqual('mockfile1.txt');
       expect(testComponent.selected![0].content).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles![0].name).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelectedFiles![0].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
       expect(testComponent.selected![1].name).toEqual('mockfile2.pdf');
       expect(testComponent.selected![1].content).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles![1].name).toEqual('mockfile2.pdf');
-      expect(fileComponent.luxSelectedFiles![1].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![1].name).toEqual('mockfile2.pdf');
+      expect(fileComponent.luxSelected![1].content).toEqual('base64-dummy');
 
       flush();
     }));
@@ -417,8 +417,8 @@ describe('LuxFileListComponent', () => {
       expect(spy).toHaveBeenCalledTimes(1);
       expect(testComponent.selected![0].name).toEqual('mockfile1.txt');
       expect(testComponent.selected![0].content).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles![0].name).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelectedFiles![0].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
 
       // Änderungen durchführen
       fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/html')]);
@@ -429,8 +429,8 @@ describe('LuxFileListComponent', () => {
       expect(spy).toHaveBeenCalledTimes(2);
       expect(testComponent.selected![0].name).toEqual('mockfile1.txt');
       expect(testComponent.selected![0].content).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles![0].name).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelectedFiles![0].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
     }));
 
     it('Sollte Image-Preview für Bilder anzeigen', fakeAsync(() => {
@@ -471,8 +471,8 @@ describe('LuxFileListComponent', () => {
       expect(fixture.debugElement.query(By.css('.lux-file-list-entry-label')).nativeElement.textContent.trim()).toEqual(
         'mockfile.txt'
       );
-      expect(fileComponent.luxSelectedFiles![0].name).toEqual('mockfile.txt');
-      expect(fileComponent.luxSelectedFiles![0].content).toEqual(undefined);
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual(undefined);
 
       // Änderungen durchführen
       fixture.debugElement
@@ -484,8 +484,8 @@ describe('LuxFileListComponent', () => {
       expect(fixture.debugElement.query(By.css('.lux-file-list-entry-label')).nativeElement.textContent.trim()).toEqual(
         'mockfile.txt'
       );
-      expect(fileComponent.luxSelectedFiles![0].name).toEqual('mockfile.txt');
-      expect(fileComponent.luxSelectedFiles![0].content).toEqual('callback base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual('callback base64-dummy');
 
       discardPeriodicTasks();
     }));
@@ -495,7 +495,7 @@ describe('LuxFileListComponent', () => {
       fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.png', 'image/png')]);
       LuxTestHelper.wait(fixture);
 
-      expect(typeof fileComponent.luxSelectedFiles![0].content).toEqual('string');
+      expect(typeof fileComponent.luxSelected![0].content).toEqual('string');
 
       // Änderungen durchführen
       testComponent.contentsAsBlob = true;
@@ -504,7 +504,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles![0].content instanceof Blob).toBe(true);
+      expect(fileComponent.luxSelected![0].content instanceof Blob).toBe(true);
     }));
 
     it('Sollte eine Datei auswählen, löschen und erneut auswählen können', fakeAsync(() => {
@@ -513,8 +513,8 @@ describe('LuxFileListComponent', () => {
       fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.png', 'image/png')]);
       LuxTestHelper.wait(fixture);
 
-      expect(fileComponent.luxSelectedFiles![0].name).toEqual('mockfile1.png');
-      expect(fileComponent.luxSelectedFiles![0].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.png');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
       expect(spy).toHaveBeenCalledTimes(1);
 
       // Änderungen durchführen
@@ -524,7 +524,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles).toEqual([]);
+      expect(fileComponent.luxSelected).toEqual([]);
       expect(spy).toHaveBeenCalledTimes(2);
 
       // Änderungen durchführen
@@ -532,8 +532,8 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles![0].name).toEqual('mockfile1.png');
-      expect(fileComponent.luxSelectedFiles![0].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.png');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
       expect(spy).toHaveBeenCalledTimes(3);
 
       flush();
@@ -605,7 +605,7 @@ describe('LuxFileListComponent', () => {
 
         expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
-        expect(fileComponent.luxSelectedFiles).toBeTruthy();
+        expect(fileComponent.luxSelected).toBeTruthy();
         expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
         // Änderungen durchführen
@@ -623,7 +623,7 @@ describe('LuxFileListComponent', () => {
         expect(fileComponent.formControl.errors).not.toBeNull();
         expect(fileComponent.formControl.errors![LuxFileErrorCause.MaxSizeError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
-        expect(fileComponent.luxSelectedFiles![0].name).toEqual('mockfile1.txt');
+        expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
         expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
         expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
           'Die Datei "mockfile2.txt" überschreitet mit 20MB die erlaubte Dateigröße von 5MB'
@@ -654,7 +654,7 @@ describe('LuxFileListComponent', () => {
         expect(fileComponent.formControl.errors).not.toBeNull();
         expect(fileComponent.formControl.errors![LuxFileErrorCause.UploadFileError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
-        expect(fileComponent.luxSelectedFiles![0].name).toEqual('mockfile1.txt');
+        expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
         expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
         expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
           'Das Hochladen der ausgewählten Datei ist fehlgeschlagen'
@@ -666,7 +666,7 @@ describe('LuxFileListComponent', () => {
         expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
         expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
-        expect(fileComponent.luxSelectedFiles).toBeFalsy();
+        expect(fileComponent.luxSelected).toBeFalsy();
 
         // Änderungen durchführen
         const files = [
@@ -680,7 +680,7 @@ describe('LuxFileListComponent', () => {
         expect(fileComponent.formControl.errors).not.toBeNull();
         expect(fileComponent.formControl.errors![LuxFileErrorCause.MultipleForbidden]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
-        expect(fileComponent.luxSelectedFiles).toBeFalsy();
+        expect(fileComponent.luxSelected).toBeFalsy();
         expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
         expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
           'Es darf nur eine Datei ausgewählt werden'
@@ -694,7 +694,7 @@ describe('LuxFileListComponent', () => {
         expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
         expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
-        expect(fileComponent.luxSelectedFiles).toBeTruthy();
+        expect(fileComponent.luxSelected).toBeTruthy();
 
         // Änderungen durchführen
         testComponent.multiple = true;
@@ -706,7 +706,7 @@ describe('LuxFileListComponent', () => {
         expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
         expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
-        expect(fileComponent.luxSelectedFiles).toBeTruthy();
+        expect(fileComponent.luxSelected).toBeTruthy();
 
         flush();
       }));
@@ -874,7 +874,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(1);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected);
 
           // Änderungen durchführen
           fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')]);
@@ -882,7 +882,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(2);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected);
 
           discardPeriodicTasks();
         }));
@@ -977,7 +977,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(1);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles![0]);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected![0]);
 
           // Änderungen durchführen
           fixture.debugElement
@@ -987,7 +987,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(2);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles![1]);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected![1]);
 
           discardPeriodicTasks();
         }));
@@ -1205,7 +1205,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(1);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles![0]);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected![0]);
 
           // Änderungen durchführen
           fixture.debugElement
@@ -1215,7 +1215,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(2);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles![1]);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected![1]);
 
           discardPeriodicTasks();
         }));
@@ -1236,7 +1236,7 @@ describe('LuxFileListComponent', () => {
       [luxCapture]="capture"
       [luxMaxSizeMB]="maxSizeMb"
       [luxUploadUrl]="uploadUrl"
-      [luxSelectedFiles]="selected"
+      [luxSelected]="selected"
       [luxShowPreview]="showPreview"
       [luxMultiple]="multiple"
       [luxUploadActionConfig]="uploadActionConfig"
@@ -1244,7 +1244,7 @@ describe('LuxFileListComponent', () => {
       [luxDeleteActionConfig]="deleteActionConfig"
       [luxViewActionConfig]="viewActionConfig"
       [luxContentsAsBlob]="contentsAsBlob"
-      (luxSelectedFilesChange)="selectedChange($event)"
+      (luxSelectedChange)="selectedChange($event)"
     >
     </lux-file-list>
   `

@@ -168,18 +168,18 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
     this.formControl.markAsDirty();
 
     // Wenn mehrere Dateien selektiert sind, diese nach der entfernten Datei filtern ansonsten "null" nutzen
-    const newFiles = Array.isArray(this.luxSelectedFiles)
-      ? this.luxSelectedFiles.filter((file, searchIndex) => searchIndex !== index)
+    const newFiles = Array.isArray(this.luxSelected)
+      ? this.luxSelected.filter((file, searchIndex) => searchIndex !== index)
       : null;
 
     // Via LiveAnnouncer mitteilen welche Datei entfernt wird
-    const deletedFile = this.luxSelectedFiles![index];
+    const deletedFile = this.luxSelected![index];
     this.announceFileRemove(deletedFile.name);
 
     // Wir entfernen hier nur eine Datei, deshalb ist das neue Auslesen der Base64-Strings nicht nötig
     this.uploadFiles(newFiles).then(
       () => {
-        this.luxSelectedFiles = newFiles;
+        this.luxSelected = newFiles;
         this.notifyFormValueChanged();
       },
       (error) => this.setFormControlErrors(error)
@@ -195,7 +195,7 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
   }
 
   resetSelected() {
-    this.luxSelectedFiles = [];
+    this.luxSelected = [];
   }
 
   handleViewFileClick(file: ILuxFileObject) {
@@ -226,7 +226,7 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();
 
-    const deletedFiles = this.luxSelectedFiles;
+    const deletedFiles = this.luxSelected;
 
     this.resetSelected();
     this.notifyFormValueChanged();
@@ -263,9 +263,9 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
       // Prüfen, ob die Dateien bereits vorhanden sind
       let selectedFilesArray: ILuxFileObject[] = [];
       const replaceableFilesMap = new Map<number, File>();
-      if (this.luxSelectedFiles) {
+      if (this.luxSelected) {
         files = Array.from(files);
-        selectedFilesArray = Array.isArray(this.luxSelectedFiles) ? this.luxSelectedFiles : [this.luxSelectedFiles];
+        selectedFilesArray = Array.isArray(this.luxSelected) ? this.luxSelected : [this.luxSelected];
         // zu ersetzende Indizes herausfinden
         files.forEach((file: File) => {
           const index = selectedFilesArray.findIndex((compareFile: ILuxFileObject) => compareFile.name === file.name);
@@ -277,7 +277,7 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
 
       // Wenn mehrere Dateien selektiert sind und luxMultiple dies unterbindet, Fehler werfen und Fn beenden
       // Ausnahme ist, wenn die Dateien nur ersetzt werden sollen
-      const fileCount = (this.luxSelectedFiles ? this.luxSelectedFiles.length : 0) + (files ? files.length : 0) - replaceableFilesMap.size;
+      const fileCount = (this.luxSelected ? this.luxSelected.length : 0) + (files ? files.length : 0) - replaceableFilesMap.size;
       if (!this.luxMultiple && fileCount > 1) {
         this.setFormControlErrors({
           cause: LuxFileErrorCause.MultipleForbidden,
@@ -302,7 +302,7 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
           // die übrigen neuen Dateien anfügen
           tempSelectedFiles.push(...newFiles);
 
-          this.luxSelectedFiles = tempSelectedFiles;
+          this.luxSelected = tempSelectedFiles;
           this.notifyFormValueChanged();
         },
         (error) => this.setFormControlErrors(error)
@@ -319,8 +319,8 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
   private setImgSrc() {
     this.fileEntries.forEach((item: ElementRef, index: number) => {
       const imgElement: HTMLImageElement | null = (item.nativeElement as HTMLElement).querySelector('img');
-      if (imgElement && this.luxSelectedFiles) {
-        const targetFileContent = this.luxSelectedFiles[index].content;
+      if (imgElement && this.luxSelected) {
+        const targetFileContent = this.luxSelected[index].content;
         if (targetFileContent instanceof Blob) {
           this.readFile(targetFileContent as File).then((content: any) => {
             imgElement.src = content;
@@ -336,17 +336,17 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
    * Setzt die Icons für die Elemente in der Auflistung
    */
   private setFileIcons() {
-    if (!this.luxSelectedFiles) {
+    if (!this.luxSelected) {
       return;
     }
 
     this.fileIcons = [];
     const selectedFiles = [];
 
-    if (!Array.isArray(this.luxSelectedFiles)) {
-      selectedFiles.push(this.luxSelectedFiles);
+    if (!Array.isArray(this.luxSelected)) {
+      selectedFiles.push(this.luxSelected);
     } else {
-      selectedFiles.push(...this.luxSelectedFiles);
+      selectedFiles.push(...this.luxSelected);
     }
     selectedFiles.forEach((selectedFile: ILuxFileObject) => {
       let newFileIcon = 'fas fa-file';

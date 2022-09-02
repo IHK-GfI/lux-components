@@ -70,19 +70,19 @@ export class FileInputExampleComponent extends FileExampleComponent<ILuxFileObje
     if (keepFile) {
       const fileCopy = { name: '', type: '' };
       Object.assign(fileCopy, this.selected);
-      this.fileBaseWithoutComponent.luxSelectedFiles = fileCopy;
+      this.fileBaseWithoutComponent.luxSelected = fileCopy;
     } else {
-      this.fileBaseWithoutComponent.luxSelectedFiles = null as any;
+      this.fileBaseWithoutComponent.luxSelected = null as any;
     }
   }
 
   onKeepFileWithForm(keepFile: boolean) {
     if (keepFile) {
       const fileCopy = { name: '', type: '' };
-      Object.assign(fileCopy, this.fileBaseWithComponent.luxSelectedFiles);
-      this.fileBaseWithComponent.luxSelectedFiles = fileCopy;
+      Object.assign(fileCopy, this.fileBaseWithComponent.luxSelected);
+      this.fileBaseWithComponent.luxSelected = fileCopy;
     } else {
-      this.fileBaseWithComponent.luxSelectedFiles = null as any;
+      this.fileBaseWithComponent.luxSelected = null as any;
     }
   }
 

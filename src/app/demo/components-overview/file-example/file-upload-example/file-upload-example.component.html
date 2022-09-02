@@ -28,12 +28,12 @@
         [luxHint]="hint"
         [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxDnDActive]="dndActive"
-        [luxSelectedFiles]="selected"
+        [luxSelected]="selected"
         [luxContentsAsBlob]="contentAsBlob"
         [luxUploadReportProgress]="reportProgress"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
-        (luxSelectedFilesChange)="onSelectedChange($event)"
+        (luxSelectedChange)="onSelectedChange($event)"
         #fileBaseWithoutComponent
       >
       </lux-file-upload>
