@@ -3,6 +3,8 @@
 ## Bug Fixes
 - **lux-stepper-large**: Stepper mit nur einem Schritt zeigt nicht den Finish-Button an. [Issue 233](https://github.com/IHK-GfI/lux-components/issues/233)
 
+# Version 13.2.0
+
 ## New
 - **allgemein**: Sicherheitsupdates eingespielt.
 - **lux-lookup-autocomplete**: Zusätzliches Outputevent "luxDataLoadedAsArray" eingeführt. [Issue 225](https://github.com/IHK-GfI/lux-components/issues/225)
