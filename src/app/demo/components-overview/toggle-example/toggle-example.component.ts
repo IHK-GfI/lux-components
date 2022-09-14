@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { emptyErrorCallback, exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
+
+interface ToggleDummyForm {
+  toggleExample: FormControl<boolean | null>;
+}
 
 @Component({
   selector: 'toggle-example',
@@ -8,7 +12,7 @@ import { emptyErrorCallback, exampleErrorCallback } from '../../example-base/exa
 })
 export class ToggleExampleComponent {
   useErrorMessage = true;
-  form: UntypedFormGroup;
+  form: FormGroup<ToggleDummyForm>;
   value = false;
   controlBinding = 'toggleExample';
   label = 'Label';
@@ -21,9 +25,9 @@ export class ToggleExampleComponent {
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      toggleExample: []
+  constructor() {
+    this.form = new FormGroup<ToggleDummyForm>({
+      toggleExample: new FormControl<boolean | null>(null)
     });
   }
 

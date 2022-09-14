@@ -3,7 +3,7 @@
 
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
@@ -460,12 +460,12 @@ class LuxRequiredAttributeComponent {
   `
 })
 class LuxToggleInFormAttributeComponent {
-  formGroup: UntypedFormGroup;
+  formGroup: FormGroup;
   required?: boolean;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.formGroup = this.fb.group({
-      eula: [true]
+  constructor() {
+    this.formGroup = new FormGroup<any>({
+      eula: new FormControl<boolean>(true)
     });
   }
 }
@@ -478,11 +478,11 @@ class LuxToggleInFormAttributeComponent {
   `
 })
 class LuxToggleRequiredInFormAttributeComponent {
-  formGroup: UntypedFormGroup;
+  formGroup: FormGroup;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.formGroup = this.fb.group({
-      eula: [null, Validators.requiredTrue]
+  constructor() {
+    this.formGroup = new FormGroup<any>({
+      eula: new FormControl<boolean | null>(null, Validators.requiredTrue)
     });
   }
 }

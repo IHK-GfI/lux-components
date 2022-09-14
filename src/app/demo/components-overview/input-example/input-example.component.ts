@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {
   emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface InputDummyForm {
+  inputExample: FormControl<string | null>;
+}
 
 @Component({
   selector: 'app-input-example',
@@ -24,7 +28,7 @@ export class InputExampleComponent {
   ];
   typeOptions = ['text', 'number', 'email', 'time', 'password', 'color'];
   autocompleteOptions = ['on', 'off'];
-  form: UntypedFormGroup;
+  form: FormGroup<InputDummyForm>;
   log = logResult;
   value: any;
   controlBinding = 'inputExample';
@@ -47,9 +51,9 @@ export class InputExampleComponent {
   hideCounterLabel = false;
   labelLongFormat = false;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      inputExample: []
+  constructor() {
+    this.form = new FormGroup<InputDummyForm>({
+      inputExample: new FormControl<string | null>(null)
     });
   }
 

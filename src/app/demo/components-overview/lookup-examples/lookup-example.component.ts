@@ -1,11 +1,10 @@
-import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { OnInit, Directive } from '@angular/core';
 import {
   LuxBehandlungsOptionenUngueltige,
   LuxFieldValues,
   LuxLookupParameters
 } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
-import { LuxLookupService } from '../../../modules/lux-lookup/lux-lookup-service/lux-lookup.service';
 import { LuxLookupHandlerService } from '../../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupTableEntry } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-table-entry';
 import {
@@ -14,6 +13,10 @@ import {
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface LookupDummyForm {
+  lookup: FormControl<LuxLookupTableEntry | LuxLookupTableEntry[] | null>;
+}
 
 @Directive()
 export abstract class LookupExampleComponent implements OnInit {
@@ -31,7 +34,7 @@ export abstract class LookupExampleComponent implements OnInit {
   showOutputEvents = false;
   useRenderFn = false;
   log = logResult;
-  form: UntypedFormGroup;
+  form: FormGroup<LookupDummyForm>;
   renderFnString = this.renderFn + '';
   renderProp = 'kurzText';
   parameters?: LuxLookupParameters;
@@ -56,11 +59,10 @@ export abstract class LookupExampleComponent implements OnInit {
   errorCallbackString = this.errorCallback + '';
 
   protected constructor(
-    protected lookupHandler: LuxLookupHandlerService,
-    protected fb: UntypedFormBuilder
+    protected lookupHandler: LuxLookupHandlerService
   ) {
-    this.form = this.fb.group({
-      lookup: ['']
+    this.form = new FormGroup<LookupDummyForm>({
+      lookup: new FormControl<LuxLookupTableEntry | LuxLookupTableEntry[] | null>(null)
     });
   }
 

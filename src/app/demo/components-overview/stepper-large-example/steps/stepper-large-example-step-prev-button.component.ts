@@ -1,11 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LuxStepperLargeClickEvent } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-click-event';
 import { LuxVetoState } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-step.interface';
 import { LuxStepperLargeStepComponent } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-step/lux-stepper-large-step.component';
+import { LuxThemePalette } from '../../../../modules/lux-util/lux-colors.enum';
 import { LuxUtil } from '../../../../modules/lux-util/lux-util';
 import { StepperLargeExampleDataService } from '../stepper-large-example-data.service';
+
+interface StepperLargePrevButtonDummyForm {
+  label: FormControl<string>;
+  iconName: FormControl<string | undefined>;
+  color: FormControl<LuxThemePalette | undefined>;
+  iconShowRight: FormControl<boolean | undefined>;
+  alignIconWithLabel: FormControl<boolean | undefined>;
+}
 
 @Component({
   selector: 'app-stepper-large-example-step-prev-button',
@@ -13,19 +22,19 @@ import { StepperLargeExampleDataService } from '../stepper-large-example-data.se
   providers: [{ provide: LuxStepperLargeStepComponent, useExisting: StepperLargeExampleStepPrevButtonComponent }]
 })
 export class StepperLargeExampleStepPrevButtonComponent extends LuxStepperLargeStepComponent implements OnInit, OnDestroy {
-  form: UntypedFormGroup;
+  form: FormGroup<StepperLargePrevButtonDummyForm>;
 
   subscriptions: Subscription[] = [];
 
-  constructor(private fb: UntypedFormBuilder, public dataService: StepperLargeExampleDataService) {
+  constructor(public dataService: StepperLargeExampleDataService) {
     super();
 
-    this.form = this.fb.group({
-      label: [this.dataService.prevButtonConfig.label, Validators.required],
-      iconName: [this.dataService.prevButtonConfig.iconName],
-      color: [this.dataService.prevButtonConfig.color],
-      iconShowRight: [this.dataService.prevButtonConfig.iconShowRight],
-      alignIconWithLabel: [this.dataService.prevButtonConfig.alignIconWithLabel]
+    this.form = new FormGroup<StepperLargePrevButtonDummyForm>({
+      label: new FormControl<string>(this.dataService.prevButtonConfig.label ?? '', { validators: Validators.required, nonNullable: true }),
+      iconName: new FormControl<string | undefined>(this.dataService.prevButtonConfig.iconName, { nonNullable: true }),
+      color: new FormControl<LuxThemePalette | undefined>(this.dataService.prevButtonConfig.color, { nonNullable: true }),
+      iconShowRight: new FormControl<boolean | undefined>(this.dataService.prevButtonConfig.iconShowRight, { nonNullable: true }),
+      alignIconWithLabel: new FormControl<boolean | undefined>(this.dataService.prevButtonConfig.alignIconWithLabel, { nonNullable: true })
     });
   }
 

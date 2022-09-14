@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { OnInit, Directive } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import {
@@ -16,13 +16,17 @@ import { LuxFormFileBase } from '../../../modules/lux-form/lux-form-model/lux-fo
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { logResult, setRequiredValidatorForFormControl } from '../../example-base/example-base-util/example-base-helper';
 
+interface FileDummyForm {
+  uploadExample: FormControl<ILuxFileObject[] | null>;
+}
+
 @Directive()
 export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBaseConfig = any> implements OnInit {
   showOutputEvents    = true;
   realBackends: any[] = [];
   mockBackend         = false;
   log                 = logResult;
-  form: UntypedFormGroup;
+  form: FormGroup<FileDummyForm>;
 
   fileComponents: LuxFormFileBase[] = [];
 
@@ -98,13 +102,12 @@ export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBase
   };
 
   protected constructor(
-    protected fb: UntypedFormBuilder,
     protected http: HttpClient,
     protected snackbar: LuxSnackbarService,
     protected filePreviewService: LuxFilePreviewService
   ) {
-    this.form = this.fb.group({
-      uploadExample: []
+    this.form = new FormGroup({
+      uploadExample: new FormControl<ILuxFileObject[] | null>(null)
     });
   }
 

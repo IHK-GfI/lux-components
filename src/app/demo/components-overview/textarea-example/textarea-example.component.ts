@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {
   emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface TextareaDummyForm {
+  textareaExample: FormControl<string | null>;
+}
 
 @Component({
   selector: 'app-textarea-example',
@@ -20,7 +24,7 @@ export class TextareaExampleComponent {
     { value: Validators.email, label: 'Validators.email' }
   ];
   autocompleteOptions = ['on', 'off'];
-  form: UntypedFormGroup;
+  form: FormGroup<TextareaDummyForm>;
   log = logResult;
   value: any;
   controlBinding = 'textareaExample';
@@ -43,9 +47,9 @@ export class TextareaExampleComponent {
   hideCounterLabel = false;
   labelLongFormat = false;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      textareaExample: ['']
+  constructor() {
+    this.form = new FormGroup<TextareaDummyForm>({
+      textareaExample: new FormControl<string | null>(null)
     });
   }
 

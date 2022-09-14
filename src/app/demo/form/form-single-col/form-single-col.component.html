@@ -3,13 +3,13 @@
     <lux-card luxTitle="Einstellungen" luxTagId="form1row" *luxLayoutRowItem="{}">
       <lux-card-content>
         <form [formGroup]="myGroup">
-          <div formGroupName="userInformation">
+          <div formGroupName="user">
             <lux-layout>
               <lux-layout-form-row luxTitle="Benutzer">
                 <lux-input
-                  luxName="username"
-                  luxLabel="Username"
-                  luxControlBinding="username"
+                  luxName="user"
+                  luxLabel="Name"
+                  luxControlBinding="name"
                   *luxLayoutRowItem="{}"
                 ></lux-input>
               </lux-layout-form-row>

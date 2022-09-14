@@ -1,5 +1,24 @@
 import { Component, HostBinding } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+interface DummyForm {
+  checkbox1: FormControl<boolean>;
+  checkbox2: FormControl<boolean>;
+  checkbox3: FormControl<boolean>;
+}
+
+interface DummyAddressForm {
+  title: FormControl<string>;
+  firstname: FormControl<string>;
+  lastname: FormControl<string>;
+  streetAddress: FormControl<string>;
+  streetNumber: FormControl<string>;
+  addressInfo: FormControl<string>;
+  postalCode: FormControl<string>;
+  city: FormControl<string>;
+  country: FormControl<string>;
+  comment: FormControl<string>;
+}
 
 @Component({
   selector: 'lux-baseline-accordion',
@@ -12,10 +31,6 @@ export class BaselineAccordionComponent {
 
   // Properties für die Form-Controls
   testHint = 'Hinweistext für ein Form-Control';
-  testValue = '';
-  testOption: any = null;
-  testDate = '';
-  testDate2 = '';
   options = [
     {label: 'Option 1', value: 'A'},
     {label: 'Option 2', value: 'B'},
@@ -36,28 +51,28 @@ export class BaselineAccordionComponent {
   ]
 
   prefixOptions = [ '', 'Frau', 'Herr']
-  form: UntypedFormGroup;
-  addressForm: UntypedFormGroup;
+  form: FormGroup<DummyForm>;
+  addressForm: FormGroup<DummyAddressForm>;
 
   constructor() {
-    this.form = new UntypedFormGroup({
-      checkbox1: new UntypedFormControl('', Validators.requiredTrue),
-      checkbox2: new UntypedFormControl('', Validators.requiredTrue),
-      checkbox3: new UntypedFormControl('', Validators.requiredTrue),
+    this.form = new FormGroup<DummyForm>({
+      checkbox1: new FormControl(false, { validators: Validators.requiredTrue, nonNullable: true}),
+      checkbox2: new FormControl(false, { validators: Validators.requiredTrue, nonNullable: true}),
+      checkbox3: new FormControl(false, { validators: Validators.requiredTrue, nonNullable: true})
     });
 
-    this.addressForm = new UntypedFormGroup ({
-      title: new UntypedFormControl('', Validators.required),
-      firstname: new UntypedFormControl('', Validators.required),
-      lastname: new UntypedFormControl('', Validators.required),
-      streetAddress: new UntypedFormControl('', Validators.required),
-      streetNumber: new UntypedFormControl('', Validators.required),
-      addressInfo: new UntypedFormControl('', Validators.maxLength(100)),
-      postalCode: new UntypedFormControl('', Validators.compose([Validators.required, Validators.maxLength(5)]) ),
-      city: new UntypedFormControl('', Validators.required),
-      country: new UntypedFormControl('', Validators.required),
-      comment: new UntypedFormControl(''),
-    })
+    this.addressForm = new FormGroup<DummyAddressForm>({
+      title: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      firstname: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      lastname: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      streetAddress: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      streetNumber: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      addressInfo: new FormControl('', { validators: Validators.maxLength(100), nonNullable: true}),
+      postalCode: new FormControl('', { validators: Validators.compose([Validators.required, Validators.maxLength(5)]), nonNullable: true}),
+      city: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      country: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      comment: new FormControl('', { nonNullable: true})
+    });
   }
 
   chipRemoved(index: number) {

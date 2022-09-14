@@ -1,6 +1,6 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component, OnDestroy, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
 import { LuxAppFooterButtonService } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
@@ -10,6 +10,22 @@ import { LuxStepperComponent } from '../../../modules/lux-layout/lux-stepper/lux
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
+interface StepperDummyForm {
+  control1: FormControl<string>;
+  control2: FormControl<string>;
+}
+
+interface StepperForm1DummyForm {
+  street: FormControl<string>;
+  number: FormControl<string>;
+  city: FormControl<string>;
+}
+
+interface StepperForm2DummyForm {
+  iban: FormControl<string>;
+  bic: FormControl<string | null>;
+}
+
 @Component({
   selector: 'app-stepper-example',
   templateUrl: './stepper-example.component.html',
@@ -18,8 +34,8 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
 export class StepperExampleComponent implements OnDestroy {
   @ViewChild(LuxStepperComponent, { static: true }) stepperComponent!: LuxStepperComponent;
   newStepsVisible = false;
-  newStepsForm1: UntypedFormGroup;
-  newStepsForm2: UntypedFormGroup;
+  newStepsForm1: FormGroup<StepperForm1DummyForm>
+  newStepsForm2: FormGroup<StepperForm2DummyForm>
   showOutputEvents = false;
   useCustomButtonConfig = false;
   log = logResult;
@@ -31,9 +47,9 @@ export class StepperExampleComponent implements OnDestroy {
       editable: true,
       completed: false,
       useStepControl: true,
-      stepControl: new UntypedFormGroup({
-        control1: new UntypedFormControl('', Validators.required),
-        control2: new UntypedFormControl('', Validators.compose([Validators.minLength(5), Validators.required]))
+      stepControl: new FormGroup<StepperDummyForm>({
+        control1: new FormControl<string>('', { validators: Validators.required, nonNullable: true}),
+        control2: new FormControl<string>('', { validators: Validators.compose([Validators.minLength(5), Validators.required]), nonNullable: true}),
       }),
       hide: false
     },
@@ -44,9 +60,9 @@ export class StepperExampleComponent implements OnDestroy {
       editable: true,
       completed: false,
       useStepControl: true,
-      stepControl: new UntypedFormGroup({
-        control1: new UntypedFormControl('', Validators.required),
-        control2: new UntypedFormControl('', Validators.compose([Validators.minLength(5), Validators.required]))
+      stepControl: new FormGroup<StepperDummyForm>({
+        control1: new FormControl<string>('', { validators: Validators.required, nonNullable: true}),
+        control2: new FormControl<string>('', { validators: Validators.compose([Validators.minLength(5), Validators.required]), nonNullable: true}),
       }),
       hide: false
     }
@@ -79,18 +95,17 @@ export class StepperExampleComponent implements OnDestroy {
     private stepperService: LuxStepperHelperService,
     private buttonService: LuxAppFooterButtonService,
     private snackbar: LuxSnackbarService,
-    private fb: UntypedFormBuilder,
     private router: Router
   ) {
-    this.newStepsForm1 = this.fb.group({
-      street: ['', Validators.required],
-      number: ['', Validators.required],
-      city: ['', Validators.required]
+    this.newStepsForm1 = new FormGroup<StepperForm1DummyForm>({
+      street: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
+      number: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
+      city: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
     });
 
-    this.newStepsForm2 = this.fb.group({
-      iban: ['', Validators.required],
-      bic: ['']
+    this.newStepsForm2 = new FormGroup<StepperForm2DummyForm>({
+      iban: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
+      bic: new FormControl<string | null>(null)
     });
   }
 

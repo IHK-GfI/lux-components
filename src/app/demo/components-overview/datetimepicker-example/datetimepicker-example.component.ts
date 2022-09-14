@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
 import {
   LuxDateTimePickerComponent,
@@ -10,6 +10,10 @@ import {
   logResult
 } from '../../example-base/example-base-util/example-base-helper';
 
+interface DatetimeDummyForm {
+  datepickerExample: FormControl<string | null>;
+}
+
 @Component({
   selector: 'app-datetimepicker-example',
   templateUrl: './datetimepicker-example.component.html'
@@ -19,7 +23,7 @@ export class DateTimepickerExampleComponent {
   useCustomFilter = false;
   useErrorMessage = true;
   showOutputEvents = false;
-  form: UntypedFormGroup;
+  form: FormGroup<DatetimeDummyForm>;
   log = logResult;
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
@@ -69,9 +73,9 @@ export class DateTimepickerExampleComponent {
   emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      datepickerExample: ['']
+  constructor() {
+    this.form = new FormGroup<DatetimeDummyForm>({
+      datepickerExample: new FormControl<string | null>(null)
     });
   }
 

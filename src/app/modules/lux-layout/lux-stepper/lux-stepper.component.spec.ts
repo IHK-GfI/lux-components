@@ -8,7 +8,7 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Component } from '@angular/core';
 import { ILuxStepperButtonConfig } from './lux-stepper-model/lux-stepper-button-config.interface';
 import { By } from '@angular/platform-browser';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxStepperHelperService } from './lux-stepper-helper.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
@@ -323,7 +323,7 @@ describe('LuxStepperComponent', () => {
       [luxNextButtonConfig]="nextConf"
       [luxFinishButtonConfig]="finConf"
       (luxStepChanged)="stepChange($event)"
-      (luxFinishButtonClicked)="finClicked($event)"
+      (luxFinishButtonClicked)="finClicked()"
     >
       <lux-step
         [luxCompleted]="step0Completed"
@@ -387,28 +387,28 @@ class MockStepperComponent {
   step0Optional = false;
   step0Editable = true;
   step0Completed = false;
-  step0Form?: UntypedFormGroup;
+  step0Form?: FormGroup;
   step0Icon = 'fa-user';
 
   step1Optional = false;
   step1Editable = true;
   step1Completed = false;
-  step1Form?: UntypedFormGroup;
+  step1Form?: FormGroup;
   step1Icon = 'fa-file-signature';
 
   form;
 
   stepChange(selectionEvent: StepperSelectionEvent) {}
 
-  finClicked(selectionEvent: StepperSelectionEvent) {}
+  finClicked() {}
 
   constructor() {
-    this.form = new UntypedFormGroup({
-      step0: new UntypedFormGroup({
-        input: new UntypedFormControl('', Validators.required)
+    this.form = new FormGroup<any>({
+      step0: new FormGroup<any>({
+        input: new FormControl<string>('', { validators: Validators.required, nonNullable: true})
       }),
-      step1: new UntypedFormGroup({
-        input: new UntypedFormControl('', Validators.required)
+      step1: new FormGroup<any>({
+        input: new FormControl<string>('', { validators: Validators.required, nonNullable: true})
       })
     });
   }

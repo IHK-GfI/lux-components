@@ -13,7 +13,7 @@ import { of, throwError } from 'rxjs';
 import { LuxFileErrorCause } from '../lux-file-model/lux-file-error.interface';
 import { Component } from '@angular/core';
 import { ILuxFileActionConfig } from '../lux-file-model/lux-file-action-config.interface';
-import { AbstractControl, FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxFormFileBase } from '../../lux-form-model/lux-form-file-base.class';
 import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
 import { LuxStorageService } from '../../../lux-util/lux-storage.service';
@@ -1328,7 +1328,7 @@ class FileComponent {
   `
 })
 class FileFormComponent {
-  form: UntypedFormGroup;
+  form: FormGroup;
   formControl: AbstractControl<ILuxFileObject[] | null>;
 
   label?: string;
@@ -1342,8 +1342,8 @@ class FileFormComponent {
   uploadUrl?: string;
   multiple?: boolean;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
+  constructor() {
+    this.form = new FormGroup({
       file: new FormControl<ILuxFileObject[] | null>(null)
     });
     this.formControl = this.form.get('file')!;

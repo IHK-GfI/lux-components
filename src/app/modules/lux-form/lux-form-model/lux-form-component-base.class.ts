@@ -43,6 +43,7 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
 
   protected latestErrors: any = null;
   protected _initialValue?: any;
+  protected _initialDisabled?: boolean;
   protected _luxDisabled = false;
   protected _luxReadonly = false;
   protected _luxRequired = false;
@@ -97,6 +98,8 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
 
     if (this.formControl) {
       this.handleFormDisabledState();
+    } else {
+      this._initialDisabled = disabled;
     }
 
     this.luxDisabledChange.emit(this._luxDisabled);
@@ -308,6 +311,10 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
       });
       this.formControl = this.formGroup.get(LuxFormComponentBase.DEFAULT_CTRL_NAME) as FormControl<T>;
       this.formControl.setValue(this._initialValue);
+    }
+
+    if (this._initialDisabled) {
+      this.formControl.disable();
     }
 
     this.luxDisabled = this.formControl.disabled;

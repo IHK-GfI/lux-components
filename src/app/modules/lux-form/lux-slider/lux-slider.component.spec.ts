@@ -2,13 +2,13 @@
 // noinspection DuplicatedCode
 
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { LuxDisplayWithFnType, LuxSliderComponent } from './lux-slider.component';
 import { Component } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { By } from '@angular/platform-browser';
-import { UntypedFormBuilder } from '@angular/forms';
 
 describe('LuxSliderComponent', () => {
 
@@ -316,9 +316,9 @@ class MockSliderFormComponent {
 
   valueChanged(value: number) {}
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      slider: [0]
+  constructor() {
+    this.form = new FormGroup({
+      slider: new FormControl<number>(0)
     });
   }
 }

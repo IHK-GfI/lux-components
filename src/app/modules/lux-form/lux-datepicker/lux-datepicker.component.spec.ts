@@ -9,7 +9,7 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
-import { AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -788,14 +788,14 @@ export const exampleErrorCallback = (value: any, errors: LuxValidationErrors) =>
   `
 })
 class LuxFormCustomValidatorComponent {
-  form: UntypedFormGroup;
+  form: FormGroup;
   formControl: AbstractControl;
 
   errorCallBack = exampleErrorCallback;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      datepicker: ['', Validators.compose([Validator2019NotAllowed, Validators.required])]
+  constructor() {
+    this.form = new FormGroup<any>({
+      datepicker: new FormControl<string>('', { validators: Validators.compose([Validator2019NotAllowed, Validators.required]), nonNullable: true})
     });
     this.formControl = this.form.get('datepicker')!;
   }
@@ -810,12 +810,12 @@ class LuxFormCustomValidatorComponent {
   `
 })
 class LuxFormTestComponent {
-  form: UntypedFormGroup;
+  form: FormGroup;
   formControl: AbstractControl;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      datepicker: []
+  constructor() {
+    this.form = new FormGroup<any>({
+      datepicker: new FormControl<string | null>(null)
     });
     this.formControl = this.form.get('datepicker')!;
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { AutocompleteExampleOption } from './autocomplete-example-option';
 import { RenderPropertyItem } from './render-property-item';
 import {
@@ -9,6 +9,10 @@ import {
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface AutocompleteForm {
+  autocompleteExample: FormControl<string | null>;
+}
 
 @Component({
   selector: 'app-autocomplete-example',
@@ -49,7 +53,7 @@ export class AutocompleteExampleComponent {
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' },
     { value: Validators.email, label: 'Validators.email' }
   ];
-  form: UntypedFormGroup;
+  form: FormGroup<AutocompleteForm>;
   log = logResult;
   labelLongFormat = false;
   value: AutocompleteExampleOption | string | null = null;
@@ -76,9 +80,9 @@ export class AutocompleteExampleComponent {
   useFilterFn = false;
   luxPanelWidth: string | number = '';
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      autocompleteExample: []
+  constructor() {
+    this.form = new FormGroup<AutocompleteForm>({
+      autocompleteExample: new FormControl<string | null>(null)
     });
   }
 

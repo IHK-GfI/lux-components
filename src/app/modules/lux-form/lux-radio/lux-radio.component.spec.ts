@@ -3,7 +3,7 @@
 
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatError } from '@angular/material/form-field';
 import { By } from '@angular/platform-browser';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -550,11 +550,11 @@ class MockRadioFormComponent {
   selected: any;
   disabled?: boolean;
 
-  form: UntypedFormGroup;
+  form: FormGroup;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      radio: []
+  constructor() {
+    this.form = new FormGroup<any>({
+      radio: new FormControl(null)
     });
   }
 
@@ -592,13 +592,13 @@ class MockWithoutLuxErrorMessageComponent {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  form: UntypedFormGroup;
+  form: FormGroup;
 
   selected: any;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      radio: ['', Validators.required]
+  constructor() {
+    this.form = new FormGroup<any>({
+      radio: new FormControl('', { validators: Validators.required, nonNullable: true})
     });
   }
 }
@@ -625,15 +625,15 @@ class MockLuxErrorMessageComponent {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  form: UntypedFormGroup;
+  form: FormGroup;
 
   errorMessage?: string;
 
   selected: any;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      radio: ['', Validators.required]
+  constructor() {
+    this.form = new FormGroup<any>({
+      radio: new FormControl('', { validators: Validators.required, nonNullable: true})
     });
   }
 }

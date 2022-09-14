@@ -1,6 +1,16 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { emptyErrorCallback, exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
+
+interface CheckboxDummyForm {
+  checkboxExample: FormControl<boolean | null>;
+}
+
+interface CheckboxAgbDummyForm {
+  checkbox1: FormControl<boolean>;
+  checkbox2: FormControl<boolean>;
+  checkbox3: FormControl<boolean>;
+}
 
 @Component({
   selector: 'lux-checkbox-example',
@@ -9,8 +19,8 @@ import { emptyErrorCallback, exampleErrorCallback } from '../../example-base/exa
 })
 export class CheckboxExampleComponent {
   useErrorMessage = true;
-  form: UntypedFormGroup;
-  agb: UntypedFormGroup;
+  form: FormGroup<CheckboxDummyForm>;
+  agb: FormGroup<CheckboxAgbDummyForm>;
   exampleText = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
   value = false;
   controlBinding = 'checkboxExample';
@@ -24,14 +34,14 @@ export class CheckboxExampleComponent {
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      checkboxExample: []
+  constructor() {
+    this.form = new FormGroup<CheckboxDummyForm>({
+      checkboxExample: new FormControl<boolean | null>(null)
     });
-    this.agb = this.fb.group({
-      checkbox1: [ '', Validators.requiredTrue ],
-      checkbox2: [ '', Validators.requiredTrue ],
-      checkbox3: [ '', Validators.requiredTrue ]
+    this.agb = new FormGroup<CheckboxAgbDummyForm>({
+      checkbox1: new FormControl<boolean>(false, {validators: Validators.required, nonNullable: true}),
+      checkbox2: new FormControl<boolean>(false, {validators: Validators.required, nonNullable: true}),
+      checkbox3: new FormControl<boolean>(false, {validators: Validators.required, nonNullable: true}),
     });
   }
 

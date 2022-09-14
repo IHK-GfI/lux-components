@@ -3,7 +3,7 @@
 
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
@@ -27,8 +27,8 @@ describe('LuxInputComponent', () => {
   });
 
   describe('innerhalb eines Formulars', () => {
-    let fixture: ComponentFixture<LuxInputInsideFormComponent>;
-    let testComponent: LuxInputInsideFormComponent;
+    let fixture: ComponentFixture<any>;
+    let testComponent: any;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(LuxInputInsideFormComponent);
@@ -75,7 +75,7 @@ describe('LuxInputComponent', () => {
 
         LuxTestHelper.wait(fixture);
 
-        expect('def').toEqual(fixture.componentInstance.formGroup.get('text')!.value);
+        expect(fixture.componentInstance.formGroup.get('text')!.value).toEqual('def');
       }));
 
       it('Validatoren setzen und die Fehlermeldungen korrekt anzeigen', fakeAsync(() => {
@@ -393,7 +393,7 @@ describe('LuxInputComponent', () => {
 
         // Änderungen durchführen
         testComponent.formGroup.get('amount0')!.setValidators(Validators.required);
-        testComponent.formGroup.get('amount0')!.setValue(null);
+        testComponent.formGroup.get('amount0')!.setValue(null as any);
         LuxTestHelper.wait(fixture);
 
         testComponent.formGroup.get('amount0')!.markAsTouched();
@@ -889,24 +889,24 @@ describe('LuxInputComponent', () => {
 class LuxInputWerteInsideFormComponent {
   fieldType = 'number';
 
-  formGroup = new UntypedFormGroup({
-    amount01: new UntypedFormControl(0),
-    amount02: new UntypedFormControl(0),
-    amount03: new UntypedFormControl(0),
-    amount04: new UntypedFormControl(0),
-    amount05: new UntypedFormControl(0),
-    amount06: new UntypedFormControl(0),
-    amount07: new UntypedFormControl(0),
-    amount08: new UntypedFormControl(0),
-    amount09: new UntypedFormControl(0),
-    amount10: new UntypedFormControl(0),
-    amount11: new UntypedFormControl(0),
-    amount12: new UntypedFormControl(0),
-    amount13: new UntypedFormControl(0),
-    amount14: new UntypedFormControl(0),
-    amount15: new UntypedFormControl(0),
-    amount16: new UntypedFormControl(0),
-    amount17: new UntypedFormControl(0)
+  formGroup = new FormGroup({
+    amount01: new FormControl<number>(0, {nonNullable: true}),
+    amount02: new FormControl<number>(0, {nonNullable: true}),
+    amount03: new FormControl<number>(0, {nonNullable: true}),
+    amount04: new FormControl<number>(0, {nonNullable: true}),
+    amount05: new FormControl<number>(0, {nonNullable: true}),
+    amount06: new FormControl<number>(0, {nonNullable: true}),
+    amount07: new FormControl<number>(0, {nonNullable: true}),
+    amount08: new FormControl<number>(0, {nonNullable: true}),
+    amount09: new FormControl<number>(0, {nonNullable: true}),
+    amount10: new FormControl<number>(0, {nonNullable: true}),
+    amount11: new FormControl<number>(0, {nonNullable: true}),
+    amount12: new FormControl<number>(0, {nonNullable: true}),
+    amount13: new FormControl<number>(0, {nonNullable: true}),
+    amount14: new FormControl<number>(0, {nonNullable: true}),
+    amount15: new FormControl<number>(0, {nonNullable: true}),
+    amount16: new FormControl<number>(0, {nonNullable: true}),
+    amount17: new FormControl<number>(0, {nonNullable: true})
   });
 }
 
@@ -926,11 +926,11 @@ class LuxInputWerteInsideFormComponent {
 class LuxInputInsideFormComponent {
   fieldType = 'number';
 
-  formGroup = new UntypedFormGroup({
-    amount0: new UntypedFormControl(0),
-    amount1: new UntypedFormControl(0),
-    amount2: new UntypedFormControl(0),
-    text: new UntypedFormControl(null)
+  formGroup = new FormGroup({
+    amount0: new FormControl<number>(0, {nonNullable: true}),
+    amount1: new FormControl<number>(0, {nonNullable: true}),
+    amount2: new FormControl<number>(0, {nonNullable: true}),
+    text: new FormControl<string | null>(null)
   });
 }
 

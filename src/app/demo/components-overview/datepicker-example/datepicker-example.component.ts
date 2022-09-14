@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { LuxDateFilterFn, LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   emptyErrorCallback,
@@ -8,6 +8,10 @@ import {
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface DatepickerDummyForm {
+  datepickerExample: FormControl<string | null>;
+}
 
 @Component({
   selector: 'app-datepicker-example',
@@ -17,7 +21,7 @@ export class DatepickerExampleComponent {
   useCustomFilter = false;
   useErrorMessage = true;
   showOutputEvents = false;
-  form: UntypedFormGroup;
+  form: FormGroup<DatepickerDummyForm>;
   log = logResult;
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
@@ -48,7 +52,7 @@ export class DatepickerExampleComponent {
   emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
 
-  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale: string, private fb: UntypedFormBuilder) {
+  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale: string) {
     this.locale = matDateLocale === 'en' ? 'en-US' : matDateLocale;
     switch (matDateLocale) {
       case 'de':
@@ -64,8 +68,8 @@ export class DatepickerExampleComponent {
         this.locale = matDateLocale;
     }
 
-    this.form = this.fb.group({
-      datepickerExample: [new Date(2020, 5, 28, 14, 15)] //['2021-09-07T23:00:00.000Z']
+    this.form = new FormGroup<DatepickerDummyForm>({
+      datepickerExample: new FormControl<string | null>(new Date(2020, 5, 28, 14, 15) as any) // Das FormControl wandelt das Date-Objekt in einen String um -> ['2021-09-07T23:00:00.000Z']
     });
   }
 

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { FormCommonComponent } from './form-common/form-common.component';
 import { FormDualColComponent } from './form-dual-col/form-dual-col.component';
 import { FormSingleColComponent } from './form-single-col/form-single-col.component';
@@ -82,26 +83,34 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
   }
 
   handleSaveClicked() {
+    let formGroup: FormGroup | null;
     switch (this.tabComponent.luxActiveTab) {
       case 0:
-        this.formCommon.myGroup.markAsPristine();
+        formGroup = this.formCommon.myGroup;
         break;
       case 1:
-        this.formSingle.myGroup.markAsPristine();
+        formGroup = this.formSingle.myGroup;
         break;
       case 2:
-        this.formDuo.myGroup.markAsPristine();
+        formGroup = this.formDuo.myGroup;
         break;
       case 3:
-        this.formThree.myGroup.markAsPristine();
+        formGroup = this.formThree.myGroup;
         break;
       default:
+        formGroup = null;
         break;
     }
 
-    this.snackbar.open(2000, {
-      text: 'Daten gespeichert!'
-    });
+    if (formGroup && formGroup.valid) {
+      formGroup.markAsPristine();
+
+      this.snackbar.open(2000, {
+        text: 'Daten gespeichert!'
+      });
+    } else {
+      this.highlightErrors();
+    }
   }
 
   highlightErrors() {

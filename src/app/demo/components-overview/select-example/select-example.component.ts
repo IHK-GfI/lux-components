@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { LuxFormSelectableBase } from '../../../modules/lux-form/lux-form-model/lux-form-selectable-base.class';
 import {
   emptyErrorCallback,
@@ -9,6 +9,10 @@ import {
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface SelectDummyForm {
+  selectExample: FormControl<any>;
+}
 
 @Component({
   selector: 'app-select-example',
@@ -65,7 +69,7 @@ export class SelectExampleComponent {
     { label: 'Zypern', value: 41 }
   ];
   optionsPrimitive: string[] = ['Option #1', 'Option #2', 'Option #3'];
-  form: UntypedFormGroup;
+  form: FormGroup<SelectDummyForm>;
   log = logResult;
   labelLongFormat = false;
   controlBinding = 'selectExample';
@@ -89,9 +93,9 @@ export class SelectExampleComponent {
   errorCallbackString: string;
   defaultCompareWith = (o1: any, o2: any) => o1 === o2;
 
-  constructor(private _fb: UntypedFormBuilder) {
-    this.form = this._fb.group({
-      selectExample: []
+  constructor() {
+    this.form = new FormGroup<SelectDummyForm>({
+      selectExample: new FormControl<any>(null)
     });
 
     this.pickValueFnString = '' + this.pickValueFn;

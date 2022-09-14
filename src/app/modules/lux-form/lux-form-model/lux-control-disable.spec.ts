@@ -2,7 +2,7 @@
 
 import { Component } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed } from '@angular/core/testing';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
@@ -468,7 +468,7 @@ describe('LuxControlDisable', () => {
   `
 })
 class LuxControlDisableComponent {
-  myForm: UntypedFormGroup;
+  myForm: FormGroup;
   disabledState = false;
 
   options = [
@@ -478,19 +478,19 @@ class LuxControlDisableComponent {
     { label: 'Option #4', short: 'O4', value: '#4' }
   ];
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.myForm = this.fb.group({
-      input: [''],
-      autocomplete: [''],
-      checkbox: [''],
-      datepicker: [''],
-      fileInput: [''],
-      fileList: [''],
-      radio: [''],
-      select: [''],
-      slider: [''],
-      textarea: [''],
-      toggle: ['']
+  constructor() {
+    this.myForm = new FormGroup<any>({
+      input: new FormControl<any>(null),
+      autocomplete: new FormControl<any>(null),
+      checkbox: new FormControl<any>(null),
+      datepicker: new FormControl<any>(null),
+      fileInput: new FormControl<any>(null),
+      fileList: new FormControl<any>(null),
+      radio: new FormControl<any>(null),
+      select: new FormControl<any>(null),
+      slider: new FormControl<any>(null),
+      textarea: new FormControl<any>(null),
+      toggle: new FormControl<any>(null),
     });
   }
 

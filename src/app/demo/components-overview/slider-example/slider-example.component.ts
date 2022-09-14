@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { SLIDER_COLORS } from '../../../modules/lux-form/lux-slider/lux-slider.component';
 import {
   emptyErrorCallback,
@@ -7,6 +7,10 @@ import {
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface SliderDummyForm {
+  sliderExample: FormControl<number | null>;
+}
 
 @Component({
   selector: 'app-slider-example',
@@ -25,7 +29,7 @@ export class SliderExampleComponent {
     { value: Validators.max(100), label: 'Validators.max(100)' },
     { value: Validators.min(25), label: 'Validators.min(25)' }
   ];
-  form: UntypedFormGroup;
+  form: FormGroup<SliderDummyForm>;
   log = logResult;
   percent = 0;
   percentReactive = 0;
@@ -56,9 +60,9 @@ export class SliderExampleComponent {
   emptyCallback = emptyErrorCallback;
   errorCallbackString: string = this.errorCallback + '';
 
-  constructor(private fb: UntypedFormBuilder) {
-    this.form = this.fb.group({
-      sliderExample: new UntypedFormControl()
+  constructor() {
+    this.form = new FormGroup<SliderDummyForm>({
+      sliderExample: new FormControl<number | null>(null)
     });
   }
 

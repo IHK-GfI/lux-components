@@ -1,4 +1,4 @@
-import { UntypedFormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { LuxValidationErrors } from '../../../modules/lux-form/lux-form-model/lux-form-component-base.class';
 
 /**
@@ -8,7 +8,7 @@ import { LuxValidationErrors } from '../../../modules/lux-form/lux-form-model/lu
  * @param form
  * @param controlName
  */
-export const setRequiredValidatorForFormControl = (addValidator: boolean, form: UntypedFormGroup, controlName: string) => {
+export const setRequiredValidatorForFormControl = (addValidator: boolean, form: FormGroup, controlName: string) => {
   if (addValidator) {
     form.get(controlName)!.setValidators(Validators.required);
   } else {

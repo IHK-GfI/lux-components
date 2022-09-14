@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxRadioComponent } from '../../../modules/lux-form/lux-radio/lux-radio.component';
 import {
   emptyErrorCallback,
@@ -9,6 +9,10 @@ import {
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface RadioDummyForm {
+  radioExample: FormControl;
+}
 
 @Component({
   selector: 'app-radio-button-example',
@@ -32,7 +36,7 @@ export class RadioButtonExampleComponent {
     { label: 'Option #3', value: 3 }
   ];
   optionsPrimitive: string[] = ['Option #1', 'Option #2', 'Option #3'];
-  form: UntypedFormGroup;
+  form: FormGroup<RadioDummyForm>;
   log = logResult;
   controlBinding = 'radioExample';
   disabled = false;
@@ -57,9 +61,9 @@ export class RadioButtonExampleComponent {
   errorCallbackString: string;
   labelLongFormat = false;
 
-  constructor(private _fb: UntypedFormBuilder) {
-    this.form = this._fb.group({
-      radioExample: []
+  constructor() {
+    this.form = new FormGroup<RadioDummyForm>({
+      radioExample: new FormControl()
     });
 
     this.pickValueFnString = '' + this.pickValueFn;

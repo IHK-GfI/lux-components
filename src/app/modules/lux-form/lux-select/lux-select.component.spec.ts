@@ -16,7 +16,7 @@ import {
   TestBed,
   tick
 } from '@angular/core/testing';
-import { FormControl, FormGroup, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
@@ -990,8 +990,8 @@ class SelectValueHookFormComponent {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  formGroup = new UntypedFormGroup({
-    hobbies: new UntypedFormControl('')
+  formGroup = new FormGroup<any>({
+    hobbies: new FormControl<any>('')
   });
 
   hook(option: Option) {

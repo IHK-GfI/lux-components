@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UntypedFormBuilder } from '@angular/forms';
 import { map, take } from 'rxjs/operators';
 import { LuxFilePreviewService } from '../../../../modules/lux-file-preview/lux-file-preview.service';
 import { ILuxFilesListActionConfig } from '../../../../modules/lux-form/lux-file/lux-file-model/lux-file-list-action-config.interface';
@@ -26,12 +25,11 @@ export class FileUploadExampleComponent extends FileExampleComponent<ILuxFileObj
   multiple = true;
 
   constructor(
-    fb: UntypedFormBuilder,
     http: HttpClient,
     snackbar: LuxSnackbarService,
     filePreviewService: LuxFilePreviewService
   ) {
-    super(fb, http, snackbar, filePreviewService);
+    super(http, snackbar, filePreviewService);
   }
 
   ngOnInit() {
