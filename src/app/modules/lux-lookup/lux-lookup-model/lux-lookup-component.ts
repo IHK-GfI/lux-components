@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs';
 import { LuxComponentsConfigParameters } from '../../lux-components-config/lux-components-config-parameters.interface';
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxLookupComponent<T = LuxLookupTableEntry | LuxLookupTableEntry[]> extends LuxFormComponentBase<T> implements OnInit, OnDestroy {
+export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> implements OnInit, OnDestroy {
   LuxBehandlungsOptionenUngueltige = LuxBehandlungsOptionenUngueltige;
 
   lookupService: LuxLookupService;
@@ -40,7 +40,7 @@ export abstract class LuxLookupComponent<T = LuxLookupTableEntry | LuxLookupTabl
   @Input() luxCustomInvalidStyles?: {} | null;
   @Input() luxTagId?: string;
   @Output() luxDataLoaded = new EventEmitter<boolean>();
-  @Output() luxValueChange = new EventEmitter<LuxLookupTableEntry | LuxLookupTableEntry[]>();
+  @Output() luxValueChange = new EventEmitter<T>();
   entries: LuxLookupTableEntry[] = [];
 
   private subscriptions: Subscription[] = [];
@@ -60,11 +60,11 @@ export abstract class LuxLookupComponent<T = LuxLookupTableEntry | LuxLookupTabl
     this.componentsConfigService = componentsConfigService;
   }
 
-  get luxValue(): any {
+  get luxValue(): T {
     return this.getValue();
   }
 
-  @Input() set luxValue(value: any) {
+  @Input() set luxValue(value: T) {
     this.setValue(value);
   }
 

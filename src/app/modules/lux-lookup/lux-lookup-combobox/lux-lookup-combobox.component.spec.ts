@@ -68,8 +68,8 @@ describe('LuxLookupComboboxComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(combobox.luxValue).not.toEqual(null);
-      expect(component.value).not.toEqual(null);
+      expect(combobox.luxValue).not.toBeNull();
+      expect(component.value).not.toBeNull();
     }));
   });
 });

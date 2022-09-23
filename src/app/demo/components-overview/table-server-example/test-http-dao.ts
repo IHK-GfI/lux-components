@@ -31,7 +31,7 @@ export class TestHttpDao implements ILuxTableHttpDao {
   loadData(conf: { page: number; pageSize: number; filter?: string; sort?: string; order?: string }): Observable<any> {
     this.logger.log('gemockter http-Request (config):', conf);
 
-    // Beispiel; bis zum return wuerde das alles hier serverseitig stattfinden
+    // Beispiel; bis zum return würde das alles hier serverseitig stattfinden
     let tempDataSourceFix = this.dataSourceFix.slice(0, this.dataSourceFix.length);
     conf.pageSize = conf.pageSize ? conf.pageSize : tempDataSourceFix.length;
     conf.page = conf.page ? conf.page : 0;

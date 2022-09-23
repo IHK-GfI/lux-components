@@ -12,16 +12,16 @@ export class LuxAppFooterLinkService {
     return this.linkInfoSubject.getValue();
   }
 
-  set linkInfos(value: LuxAppFooterLinkInfo[]) {
-    this.linkInfoSubject.next(value ? value : []);
+  set linkInfos(links: LuxAppFooterLinkInfo[]) {
+    this.linkInfoSubject.next(links ? links : []);
   }
 
   getLinkInfosAsObservable(): Observable<LuxAppFooterLinkInfo[]> {
     return this.linkInfoSubject.asObservable();
   }
 
-  pushLinkInfos(...value: LuxAppFooterLinkInfo[]) {
-    this.linkInfos = [...this.linkInfos, ...value];
+  pushLinkInfos(...links: LuxAppFooterLinkInfo[]) {
+    this.linkInfos = [...this.linkInfos, ...links];
   }
 
   removeLinkInfoAtIndex(i: number) {

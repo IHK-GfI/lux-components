@@ -3,10 +3,12 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges, OnDestroy,
+  OnChanges,
+  OnDestroy,
   OnInit,
   Optional,
-  Output, SimpleChanges,
+  Output,
+  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
@@ -17,8 +19,8 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { Subscription } from 'rxjs';
 
 export declare type LuxDisplayWithFnType = (value: number | null) => string | number;
-export declare type SLIDER_TICK_INTERVAL = 'auto' | number;
-export declare type SLIDER_COLORS = 'primary' | 'accent' | 'warn';
+export declare type LuxSliderTickInterval = 'auto' | number;
+export declare type LuxSliderColor = 'primary' | 'accent' | 'warn';
 
 // @dynamic Erklärung steht in der Datei "lux-decorators.ts".
 @Component({
@@ -34,12 +36,12 @@ export class LuxSliderComponent extends LuxFormComponentBase<number> implements 
   @Output() luxValueChange = new EventEmitter<number>();
   @Output() luxValuePercent = new EventEmitter<number>();
 
-  @Input() luxColor: SLIDER_COLORS = 'primary';
+  @Input() luxColor: LuxSliderColor = 'primary';
   @Input() luxVertical = false;
   @Input() luxInvert = false;
   @Input() luxShowThumbLabel = true;
   @Input() luxShowThumbLabelAlways = true;
-  @Input() luxTickInterval: SLIDER_TICK_INTERVAL = 0;
+  @Input() luxTickInterval: LuxSliderTickInterval = 0;
   @Input() luxTagId?: string;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;

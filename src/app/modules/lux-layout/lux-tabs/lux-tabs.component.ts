@@ -44,7 +44,7 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   @Input() luxTagId?: string;
   @Input() luxLazyLoading = false;
 
-  @Output() readonly luxActiveTabChanged = new EventEmitter<any>();
+  @Output() luxActiveTabChanged = new EventEmitter<MatTabChangeEvent>();
 
   @ContentChildren(LuxTabComponent) luxTabs!: QueryList<LuxTabComponent>;
   @ViewChild('matTabs', { read: ElementRef, static: true }) tabHeader!: ElementRef;

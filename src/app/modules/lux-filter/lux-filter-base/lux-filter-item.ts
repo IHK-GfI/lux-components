@@ -1,7 +1,7 @@
 import { LuxFormComponentBase } from '../../lux-form/lux-form-model/lux-form-component-base.class';
 import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 
-export class LuxFilterItem<T> {
+export class LuxFilterItem<T = any> {
   public static DEFAULT_VALUES = [undefined, null, false, ''];
 
   label: string;

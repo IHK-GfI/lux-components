@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './lux-lookup-combobox.component.html',
   styleUrls: ['./lux-lookup-combobox.component.scss']
 })
-export class LuxLookupComboboxComponent extends LuxLookupComponent implements AfterViewInit, OnDestroy {
+export class LuxLookupComboboxComponent<T = LuxLookupTableEntry> extends LuxLookupComponent<T> implements AfterViewInit, OnDestroy {
   @Input() luxMultiple = false;
   @Input() luxEntryBlockSize = 25;
   @Input() luxWithEmptyEntry = true;

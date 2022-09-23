@@ -18,7 +18,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-lookup-autocomplete.component.html',
   styleUrls: ['./lux-lookup-autocomplete.component.scss']
 })
-export class LuxLookupAutocompleteComponent extends LuxLookupComponent implements OnInit, AfterViewInit {
+export class LuxLookupAutocompleteComponent<T = LuxLookupTableEntry | null> extends LuxLookupComponent<T> implements OnInit, AfterViewInit {
   filteredEntries?: Observable<LuxLookupTableEntry[]>;
   entriesCount = 0;
   latestSearchValue?: string;

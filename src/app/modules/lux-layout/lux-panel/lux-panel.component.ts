@@ -23,9 +23,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./lux-panel.component.scss']
 })
 export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input() luxDisabled?: boolean;
+  @Input() luxDisabled = false;
   @Input() luxExpanded = false;
-  @Input() luxHideToggle?: boolean;
+  @Input() luxHideToggle = false;
 
   @Input() luxCollapsedHeaderHeight?: string;
   @Input() luxExpandedHeaderHeight?: string;

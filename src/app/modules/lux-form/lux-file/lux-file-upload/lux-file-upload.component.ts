@@ -24,7 +24,6 @@ import { LuxUtil } from '../../../lux-util/lux-util';
 import { LuxFormFileBase } from '../../lux-form-model/lux-form-file-base.class';
 import { ILuxFileActionConfig, ILuxFilesActionConfig } from '../lux-file-model/lux-file-action-config.interface';
 import { LuxFileErrorCause } from '../lux-file-model/lux-file-error.interface';
-import { ILuxFilesListActionConfig } from '../lux-file-model/lux-file-list-action-config.interface';
 import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
 import { LuxFileDeleteDialogComponent } from '../lux-file-subcomponents/lux-file-delete-dialog/lux-file-delete-dialog.component';
 import { LuxFileReplaceDialogComponent } from '../lux-file-subcomponents/lux-file-replace-dialog/lux-file-replace-dialog.component';

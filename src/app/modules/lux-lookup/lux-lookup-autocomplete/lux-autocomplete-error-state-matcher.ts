@@ -6,7 +6,7 @@ import { LuxLookupErrorStateMatcher } from '../lux-lookup-model/lux-lookup-error
 export class LuxAutocompleteErrorStateMatcher extends LuxLookupErrorStateMatcher {
   entries: LuxLookupTableEntry[] = [];
 
-  constructor(lookupComponent: LuxLookupComponent, entries: LuxLookupTableEntry[]) {
+  constructor(lookupComponent: LuxLookupComponent<any>, entries: LuxLookupTableEntry[]) {
     super(lookupComponent);
 
     this.entries = entries;

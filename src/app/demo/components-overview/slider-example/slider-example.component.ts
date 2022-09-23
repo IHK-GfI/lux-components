@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { SLIDER_COLORS } from '../../../modules/lux-form/lux-slider/lux-slider.component';
+import { LuxSliderColor } from '../../../modules/lux-form/lux-slider/lux-slider.component';
 import {
   emptyErrorCallback,
   exampleErrorCallback,
@@ -38,7 +38,7 @@ export class SliderExampleComponent {
   labelLongFormat = false;
   value = 0;
   displayWithFnString: string = this.displayFn + '';
-  color: SLIDER_COLORS = 'primary';
+  color: LuxSliderColor = 'primary';
   vertical = false;
   invert = false;
   showThumbLabel = true;
@@ -80,7 +80,7 @@ export class SliderExampleComponent {
     this.tickIntervalNumber = interval;
   }
 
-  colorChanged(color: { label: string; value: SLIDER_COLORS }) {
+  colorChanged(color: { label: string; value: LuxSliderColor }) {
     this.color = color.value;
   }
 
@@ -109,5 +109,4 @@ export class SliderExampleComponent {
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
-
 }

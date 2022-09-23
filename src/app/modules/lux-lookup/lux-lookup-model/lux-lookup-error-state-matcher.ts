@@ -3,9 +3,9 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { LuxLookupComponent } from './lux-lookup-component';
 
 export class LuxLookupErrorStateMatcher implements ErrorStateMatcher {
-  lookupComponent: LuxLookupComponent;
+  lookupComponent: LuxLookupComponent<any>;
 
-  constructor(lookupComponent: LuxLookupComponent) {
+  constructor(lookupComponent: LuxLookupComponent<any>) {
     this.lookupComponent = lookupComponent;
   }
 

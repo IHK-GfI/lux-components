@@ -60,6 +60,7 @@ export class LuxChipsComponent extends LuxFormComponentBase<string[]> implements
   newChip$: Subject<any> = new Subject<any>();
   canClose = false;
   actionRunning = false;
+  initRunning = false;
 
   @Input() luxOrientation: LuxChipsOrientation = 'horizontal';
   @Input() luxInputAllowed = false;
@@ -86,10 +87,13 @@ export class LuxChipsComponent extends LuxFormComponentBase<string[]> implements
 
   @Input() set luxDisabled(disabled: boolean) {
     this._luxDisabled = disabled;
-    setTimeout(() => {
-      this.luxChipGroupComponents.forEach((chipGroup) => (chipGroup.luxDisabled = disabled));
-      this.luxChipComponents.forEach((chip) => (chip.luxDisabled = disabled));
-    });
+    if (!this.initRunning) {
+      // Den Disabled-State nicht während der Initialisierung übertragen.
+      setTimeout(() => {
+        this.luxChipGroupComponents.forEach((chipGroup) => (chipGroup.luxDisabled = disabled));
+        this.luxChipComponents.forEach((chip) => (chip.luxDisabled = disabled));
+      });
+    }
   }
 
   get luxAutocompleteOptions(): string[] {
@@ -351,6 +355,15 @@ export class LuxChipsComponent extends LuxFormComponentBase<string[]> implements
       }
     } else {
       this.matAutocompleteTrigger?.openPanel();
+    }
+  }
+
+  protected initFormControl() {
+    try {
+      this.initRunning = true;
+      super.initFormControl();
+    } finally {
+      this.initRunning = false;
     }
   }
 
