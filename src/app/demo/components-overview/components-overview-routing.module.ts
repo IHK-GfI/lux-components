@@ -76,6 +76,7 @@ import { TextareaAuthenticExampleComponent } from './textarea-authentic-example/
 import { FileInputAuthenticExampleComponent } from './file-example/file-input-authentic-example/file-input-authentic-example.component';
 import { ChipAuthenticExampleComponent } from './chip-authentic-example/chip-authentic-example.component';
 import { SliderAuthenticExampleComponent } from './slider-authentic-example/slider-authentic-example.component';
+import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -154,6 +155,7 @@ const routes: Routes = [
       { path: 'input-ac', component: InputAuthenticExampleComponent },
       { path: 'checkbox-ac', component: CheckboxAuthenticExampleComponent },
       { path: 'tile-overview', component: OverviewExampleComponent },
+      { path: 'icon-overview', component: IconOverviewComponent },
       { path: 'master-detail-light', component: MasterDetailLightExampleComponent },
     ]
   }

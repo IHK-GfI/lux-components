@@ -4,7 +4,7 @@
     <div *ngFor="let component of navigationService.components | luxAlphabeticallySorted" class="lux-tile-authentic-wrapper-demo">
       <lux-tile-authentic
         [luxLabel]="component.label"
-        luxSubTitle="Modul: lux-{{component.moduleName}}"
+        luxSubTitle="Modul: LUX-{{ component.moduleName | uppercase }}"
         (luxClicked)="component.onclick()"
         [luxTagId]="component.label"
         fxFlex="1 1 100"
@@ -12,7 +12,7 @@
         luxBadgeColor="accent"
         luxBadgeSize="large"
       >
-        <lux-icon [luxIconName]="component.icon" luxIconSize="5x" *ngIf="!component.useImage"></lux-icon>
+        <lux-icon [luxIconName]="navigationService.moduleIcons.get(component.moduleName)" *ngIf="!component.useImage"></lux-icon>
         <lux-image
           [luxImageSrc]="component.icon"
           luxImageWidth="100%"

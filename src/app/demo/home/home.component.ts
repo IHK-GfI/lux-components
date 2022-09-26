@@ -23,6 +23,9 @@ export class HomeComponent {
       case 'Baseline':
         this.router.navigate(['/baseline']);
         break;
+      case 'Iconsearch':
+        this.router.navigate(['/components-overview/example/icon-overview']);
+        break;
     }
   }
 }

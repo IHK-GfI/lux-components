@@ -41,7 +41,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('select-ac'), icon: 'fab fa-get-pocket', label: 'Select-Ac', moduleName: 'form', news: true },
     { onclick: () => this.goTo('slider'), icon: 'fas fa-sliders-h', label: 'Slider', moduleName: 'form' },
     { onclick: () => this.goTo('slider-ac'), icon: 'fas fa-sliders-h', label: 'Slider-Ac', moduleName: 'form', news: true },
-    { onclick: () => this.goTo('snackbar'), icon: 'fas fa-eye', label: 'Snackbar', moduleName: 'popup' },
+    { onclick: () => this.goTo('snackbar'), icon: 'lux-interface-edit-view', label: 'Snackbar', moduleName: 'popup' },
     { onclick: () => this.goTo('spinner'), icon: 'fas fa-spinner', label: 'Spinner', moduleName: 'common' },
     { onclick: () => this.goTo('storage'), icon: 'fas fa-hdd', label: 'Storage', moduleName: 'layout' },
     { onclick: () => this.goTo('table'), icon: 'fas fa-table', label: 'Table', moduleName: 'common', news: true },
@@ -90,9 +90,9 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     },
     { onclick: () => this.goTo('tile'), icon: 'fas fa-qrcode', label: 'Tile', moduleName: 'layout' },
     { onclick: () => this.goTo('message-box'), icon: 'fas fa-comments', label: 'Message-Box', moduleName: 'common', news: true },
-    { onclick: () => this.goTo('checkbox'), icon: 'fas fa-check-square', label: 'Checkbox', moduleName: 'form'},
-    { onclick: () => this.goTo('checkbox-ac'), icon: 'fas fa-check-square', label: 'Checkbox-Ac', moduleName: 'form', news: true },
-    { onclick: () => this.goTo('menu'), icon: 'fas fa-ellipsis-v', label: 'Menu', moduleName: 'action' },
+    { onclick: () => this.goTo('checkbox'), icon: 'lux-interface-validation-check-square-1', label: 'Checkbox', moduleName: 'form'},
+    { onclick: () => this.goTo('checkbox-ac'), icon: 'lux-interface-validation-check-square-1', label: 'Checkbox-Ac', moduleName: 'form', news: true },
+    { onclick: () => this.goTo('menu'), icon: 'lux-interface-setting-menu-vertical', label: 'Menu', moduleName: 'action' },
     { onclick: () => this.goTo('app-footer'), icon: 'fas fa-shoe-prints', label: 'App-Footer', moduleName: 'layout' },
     { onclick: () => this.goTo('toggle'), icon: 'fas fa-toggle-on', label: 'Toggle', moduleName: 'form' },
     { onclick: () => this.goTo('toggle-ac'), icon: 'fas fa-toggle-on', label: 'Toggle-Ac', moduleName: 'form', news: true },
@@ -111,18 +111,18 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('dialog'), icon: 'fas fa-question-circle', label: 'Dialog', moduleName: 'popup', news: true },
     {
       onclick: () => this.goTo('file-input'),
-      icon: 'fas fa-cloud-upload-alt',
+      icon: 'lux-interface-upload-box-1',
       label: 'File-Input',
       moduleName: 'form'
     },
     {
-      onclick: () => this.goTo('file-input-ac'), icon: 'fas fa-cloud-upload-alt',
+      onclick: () => this.goTo('file-input-ac'), icon: 'lux-interface-upload-box-1',
       label: 'File-Input-Ac',
       moduleName: 'form',
       news: true
     },
-    { onclick: () => this.goTo('file-list'), icon: 'fas fa-cloud-upload-alt', label: 'File-List', moduleName: 'form' },
-    { onclick: () => this.goTo('file-upload'), icon: 'fas fa-cloud-upload-alt', label: 'File-Upload', moduleName: 'form' },
+    { onclick: () => this.goTo('file-list'), icon: 'lux-interface-upload-box-1', label: 'File-List', moduleName: 'form' },
+    { onclick: () => this.goTo('file-upload'), icon: 'lux-interface-upload-box-1', label: 'File-Upload', moduleName: 'form' },
     { onclick: () => this.goTo('ripple'), icon: 'fas fa-water', label: 'Ripple', moduleName: 'directive' },
     {
       onclick: () => this.goTo('badge-notification'),
@@ -161,6 +161,21 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
   currentModuleNames: string[] = [];
   selectedComponent: any;
   subscription: Subscription;
+  moduleIcons: Map<string, string> = new Map<string, string>([
+    ['action', 'lux-running'],
+    ['common', 'lux-atom'],
+    ['directive', 'lux-interface-alert-warning-circle'],
+    ['error', 'lux-interface-alert-radio-active-1'],
+    ['filter', 'lux-interface-text-formatting-filter-1'],
+    ['form', 'lux-interface-file-text'],
+    ['html', 'lux-interface-security-shield-4'],
+    ['icon', 'lux-image-picture-landscape-1'],
+    ['layout', 'lux-interface-layout-2'],
+    ['lookup', 'lux-interface-edit-binocular'],
+    ['markdown', 'lux-interface-edit-pencil'],
+    ['pipes', 'lux-recording-tape-2'],
+    ['popup', 'lux-interface-align-layers-2']
+  ]);
 
   constructor(private router: Router, private snackbar: LuxSnackbarService) {
     this.currentModuleNames = Array.from(this.currentModules.keys());
