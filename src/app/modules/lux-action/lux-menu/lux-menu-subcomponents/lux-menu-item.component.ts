@@ -55,6 +55,8 @@ export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
     this.luxHiddenChange.emit(value);
   }
 
+ @Input() luxClass: string | string[] | Set<string> | { [klass: string]: any;}; //vgl. ngClass
+
   constructor() {
     super();
   }

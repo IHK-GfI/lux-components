@@ -5,7 +5,7 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-describe('LuxMenuComponent', () => {
+fdescribe('LuxMenuComponent', () => {
   const updateExtendedMenuItems = () => {
     LuxTestHelper.wait(fixture);
     menuComponent.updateExtendedMenuItems();
@@ -32,23 +32,24 @@ describe('LuxMenuComponent', () => {
     expect(component).toBeTruthy();
   }));
 
-  it('Sollte die MenuItems darstellen (nur im Menu und Extended)', fakeAsync(() => {
+  fit('Sollte die MenuItems darstellen (nur im Menu und Extended)', fakeAsync(() => {
     // Vorbedingungen prüfen
     let menuItems = fixture.debugElement.queryAll(By.css('lux-menu-item'));
     expect(menuItems.length).toBe(0, 'Vorbedingung 1');
     expect(menuComponent.menuItems.length).toBe(0, 'Vorbedingung 2');
+    expect(component.displayExtended).toBeTrue();
 
     // Änderungen durchführen
     component.generateItems(3);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    menuItems = fixture.debugElement.queryAll(By.css('lux-menu-item'));
+    menuItems = fixture.debugElement.queryAll(By.css('lux-button'));
     expect(menuItems.length).toBe(3, 'Nachbedingung 1');
     expect(menuComponent.menuItems.length).toBe(3, 'Nachbedingung 2');
 
     // Änderungen durchführen
-    component.displayExtended = true;
+    component.displayExtended = false;
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -197,24 +198,24 @@ describe('LuxMenuComponent', () => {
 
 @Component({
   template:
-    '<lux-menu luxTagId="mock-menu" [luxDisplayMenuLeft]="displayMenuLeft" [luxDisplayExtended]="displayExtended" ' +
-    '[luxMaximumExtended]="maximumExtended" [luxClassName]="className" ' +
-    '(luxMenuClosed)="closed($event)">' +
-    '<lux-menu-item ' +
-    ' [luxLabel]="item.label" ' +
-    ' [luxIconName]="item.iconName" ' +
-    ' [luxTagId]="item.label" ' +
-    ' [luxAlwaysVisible]="item.alwaysVisible" ' +
-    ' [luxDisabled]="item.disabled" ' +
-    ' [luxRaised]="item.raised" ' +
-    ' [luxColor]="item.color" ' +
-    ' (luxClicked)="clicked(item.cmd)" ' +
-    ' *ngFor="let item of items">' +
-    '</lux-menu-item>' +
-    ' <lux-menu-trigger *ngIf="showMockTrigger">' +
-    '   <span class="mock-trigger">Mock-Spock</span>' +
-    ' </lux-menu-trigger>' +
-    '</lux-menu>'
+    `<lux-menu luxTagId="mock-menu" [luxDisplayMenuLeft]="displayMenuLeft" [luxDisplayExtended]="displayExtended"
+    [luxMaximumExtended]="maximumExtended" [luxClassName]="className"
+    (luxMenuClosed)="closed($event)">
+    <lux-menu-item
+     [luxLabel]="item.label"
+     [luxIconName]="item.iconName"
+     [luxTagId]="item.label"
+     [luxAlwaysVisible]="item.alwaysVisible"
+     [luxDisabled]="item.disabled"
+     [luxRaised]="item.raised"
+     [luxColor]="item.color"
+     (luxClicked)="clicked(item.cmd)"
+     *ngFor="let item of items">
+    </lux-menu-item>
+     <lux-menu-trigger *ngIf="showMockTrigger">
+       <span class="mock-trigger">Mock-Spock</span>
+     </lux-menu-trigger>
+    </lux-menu>`
 })
 class MockComponent {
   displayMenuLeft = true;

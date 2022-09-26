@@ -8,16 +8,9 @@
 
 /* Menu-Overlay-Panel anpassen */
 ::ng-deep .lux-menu-panel {
-  padding: 0 $outline-width;
 
   .lux-menu-item {
-    padding: 0 8px;
-    font-size: 16px;
-
-    lux-icon {
-      min-width: 25px;
-      max-width: 25px;
-    }
+    font-size: 16px
   }
 }
 
@@ -65,8 +58,11 @@
     margin-bottom: $outline-width;
     lux-icon {
       i,
-      mat-icon {
+      mat-icon:not(.lux-lx-icon) {
         font-size: 15px;
+      }
+      mat-icon.mat-icon-no-color {
+        color: #036;
       }
     }
   }

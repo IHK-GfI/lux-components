@@ -54,6 +54,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   @ContentChild(LuxMenuTriggerComponent) luxMenuTriggerComponent: LuxMenuTriggerComponent;
 
   @Output() luxMenuClosed: EventEmitter<any> = new EventEmitter();
+  @Output() luxMenuOpened: EventEmitter<any> = new EventEmitter();
 
   @Input() luxMenuLabel = '';
   @Input() luxMenuIconName = 'menu';
@@ -147,6 +148,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     this.menuItemChangeSubscription = this.luxMenuItemComponents.changes.subscribe(() => {
       this.menuItems = this.luxMenuItemComponents.toArray();
       this.calculateMenuItemWidths();
+      this.updateExtendedMenuItems();
     });
   }
 
@@ -185,6 +187,13 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     if (this.defaultTriggerElRef) {
       (this.defaultTriggerElRef.nativeElement.children.item(0) as any).focus();
     }
+  }
+  
+  /**
+   * Wird nach dem Öffnen des Menus aufgerufen und emitted die Output-Property.
+   */
+  onMenuOpened() {
+    this.luxMenuOpened.emit();
   }
 
   /**
