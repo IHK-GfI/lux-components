@@ -424,7 +424,7 @@ class LuxContentExpandedComponent {
 @Component({
   template: `
     <lux-card [luxTitle]="title" [luxSubTitle]="subTitle" [luxDisabled]="disabled" (luxClicked)="cardClicked()">
-      <lux-icon luxIconName="fas fa-check" *ngIf="testShowIcon"></lux-icon>
+      <lux-icon luxIconName="lux-interface-validation-check" *ngIf="testShowIcon"></lux-icon>
       <lux-card-info *ngIf="testShowInfo">
         <span class="test-card-info">Card-Info</span>
       </lux-card-info>

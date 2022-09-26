@@ -12,6 +12,11 @@ lux-progress ::ng-deep mat-progress-bar {
 .lux-table {
   height: 100%;
 
+  .lux-table-filter {
+    width: 100%;
+    max-width: 350px;
+  }
+  
   .lux-table-content {
     position: relative;
     overflow: auto;

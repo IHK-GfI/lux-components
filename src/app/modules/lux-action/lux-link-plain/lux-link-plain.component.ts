@@ -17,7 +17,6 @@ export class LuxLinkPlainComponent extends LuxActionComponentBaseClass {
     super();
   }
 
-
   auxClicked($event) {
     if ($event.which === 2) {
       this.redirectToHref($event);

@@ -13,7 +13,7 @@
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
   <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
-  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
+  <span style="display: inline-block;" class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
     {{ luxLabel }}
   </span>
   <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
@@ -95,10 +95,14 @@
   [ngClass]="{ 'lux-icon-button': !!luxIconName }"
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
-  <ng-container  *ngTemplateOutlet="iconTemplate"></ng-container>
+  <ng-container  *ngTemplateOutlet="iconTemplateRoundButton"></ng-container>
 </button>
 
 <ng-template #iconTemplate>
-  <lux-icon [luxIconName]="luxIconName" luxMargin="0" luxPadding="0"></lux-icon>
+  <lux-icon [luxIconName]="luxIconName" class="lux-button-icon"></lux-icon>
 </ng-template>
+<ng-template #iconTemplateRoundButton>
+  <lux-icon [luxIconName]="luxIconName" luxPadding="2px" class="lux-button-icon-round"></lux-icon>
+</ng-template>
+
 <ng-template #noIconTemplate></ng-template>

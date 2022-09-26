@@ -33,7 +33,9 @@
       *ngIf="luxShowToggle"
       fxFlex="auto"
       matSuffix
-    ></mat-datepicker-toggle>
+    >
+      <lux-icon matDatepickerToggleIcon luxIconName="lux-interface-calendar" luxIconSize="1x" class="lux-datepicker-toggle-icon lux-color-blue"></lux-icon>
+    </mat-datepicker-toggle>
     <lux-datetime-overlay-ac
       [luxPickerInput]="dateTimePickerInput"
       [luxStartView]="luxStartView"

@@ -58,7 +58,7 @@
     [luxColor]="luxButtonFilterColor"
     [luxStroked]="!luxButtonFlat" 
     [luxFlat]="luxButtonFlat"
-    luxIconName="fas fa-filter"
+    luxIconName="lux-interface-text-formatting-filter-1"
     luxTooltip="{{ luxDisableShortcut ? '' : '(Shift + Enter)' }}"
     (luxClicked)="onFilter()"
     luxTagId="filterFormButton"
@@ -69,20 +69,18 @@
 <ng-template #filterActionTemplate>
   <lux-menu 
     [luxDisplayExtended]="false" 
-    luxMenuIconName="fas fa-ellipsis-v" 
+    luxMenuIconName="lux-interface-setting-menu-vertical" 
     class="filter-menu" 
   >
     <lux-menu-item
       [luxLabel]="luxButtonResetLabel"
       [luxAlwaysVisible]="false"
-      luxIconName="fas fa-redo"
       [luxColor]="luxButtonResetColor"
       (luxClicked)="onReset()"
     ></lux-menu-item>
     <lux-menu-item
       [luxLabel]="luxButtonSaveLabel"
       [luxAlwaysVisible]="false"
-      luxIconName="fas fa-upload"
       [luxColor]="luxButtonSaveColor"
       (luxClicked)="openSaveDialog()"
       *ngIf="hasSaveAction"
@@ -91,7 +89,6 @@
       [luxLabel]="luxButtonLoadLabel"
       [luxAlwaysVisible]="false"
       [luxColor]="luxButtonLoadColor"
-      luxIconName="fas fa-download"
       (luxClicked)="openLoadDialog()"
       *ngIf="hasLoadAction"
     ></lux-menu-item>

@@ -8,14 +8,18 @@
   >
   <lux-icon 
     [luxIconName]="luxIconName" 
+    luxIconSize="1x"
     *ngIf="!luxIconShowRight && luxIconName" 
   ></lux-icon>
   <span 
     class="lux-link-plain-text"
-    [ngClass]="{ 'lux-ml-2': !luxIconShowRight, 'lux-mr-2': luxIconShowRight}"
-  >{{ luxLabel }}</span>
+    [ngClass]="{ 'lux-ml-2': !luxIconShowRight && luxIconName, 'lux-mr-2': luxIconShowRight && luxIconName }"
+  >
+    {{ luxLabel }}
+  </span>
   <lux-icon 
     [luxIconName]="luxIconName" 
+    luxIconSize="1x"
     *ngIf="luxIconShowRight && luxIconName"
   ></lux-icon>
 </div>

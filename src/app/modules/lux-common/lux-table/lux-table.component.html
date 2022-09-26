@@ -10,16 +10,19 @@
   </div>
   <!-- Input-Feld für das Filtern der Datensätze dieser Tabelle -->
   <div class="lux-table-filter" fxLayout="row" fxFlexAlign="start center" fxLayoutGap="16px" [ngClass]="{ 'lux-hide': !luxShowFilter }">
-    <lux-icon luxIconName="search" luxIconSize="3x"></lux-icon>
-    <lux-input
+    <lux-input-ac
       class="lux-table-filter"
       luxAutocomplete="off"
       [luxTagId]="luxFilterText"
       [luxLabel]="luxFilterText"
       (luxValueChange)="filtered$.next($event)"
+      fxFill
       #filter
     >
-    </lux-input>
+      <lux-input-ac-prefix class="lux-mr-2">
+        <lux-icon luxIconName="lux-interface-search"></lux-icon>
+      </lux-input-ac-prefix>
+    </lux-input-ac>
   </div>
   <!-- Die eigentliche Struktur der Tabelle -->
   <div

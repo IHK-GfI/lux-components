@@ -1,49 +1,52 @@
-.lux-button-rounded {
-  width: 45px;
-  ::ng-deep {
-    lux-icon {
-
-      i,
-      mat-icon {
-        line-height: 1;
-        font-size: 1.5em !important;
-        display: inline-block;
-      }
-    }
-    .mat-button-wrapper {
-      padding: 0;
-      display: inline-flex;
-      vertical-align: middle;
-      line-height: 1;
-    }
+lux-icon.lux-button-icon-round ::ng-deep{
+  height: 20px;
+  width: 20px;
+  display: inline-table;
+  i {
+    line-height: 1;
+    font-size: 1.5em !important;
+    display: inline-block;
+  }
+  mat-icon.mat-icon.lux-material-icon {
+    line-height: 1;
+    font-size: 1.8em !important;
+    display: inline-block;
+    vertical-align: middle;
+    height: unset;
+    width: unset;
   }
 }
 
-// .lux-icon-button.mat-fab ::ng-deep .mat-button-wrapper {
-//   padding: 0;
-//   line-height: 24px;
-// }
+.lux-icon-button.mat-fab ::ng-deep .mat-button-wrapper {
+  padding: 0;
+  line-height: 24px;
+  vertical-align: unset;
+}
 
 .lux-button {
   &.mat-raised-button, 
   &.mat-button, 
   &.mat-flat-button, 
   &.mat-stroked-button { 
-    line-height: normal;
-    
+
     ::ng-deep {
-      .mat-button-wrapper {
-        height: 100%;
-        display: inline-flex;
-        align-items: center;
-      }
       lux-icon {
-        i,
-        mat-icon {
+        i {
           line-height: 1;
-          font-size: 1.2em !important;
+          font-size: 1.4em !important;
           vertical-align: middle;
         }
+        mat-icon.mat-icon.lux-material-icon {
+          line-height: 1;
+          font-size: 1.6em !important;
+          vertical-align: middle;
+          height: unset !important;
+          width: unset !important;
+        }
+      }
+      
+      .mat-button-wrapper  {
+        font-size: var(--lux-theme-button-font-size);
       }
     }
   }

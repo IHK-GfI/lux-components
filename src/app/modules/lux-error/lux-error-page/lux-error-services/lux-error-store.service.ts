@@ -19,7 +19,7 @@ export class LuxErrorStoreService {
    * Enthaelt die normale Konfiguration der Fehlerseite, kann bei Bedarf mit setConfig ueberschrieben werden.
    */
   private readonly _defaultConfig: ILuxErrorPageConfig = {
-    iconName: 'far fa-times-circle',
+    iconName: 'lux-interface-delete-2',
     iconSize: '5x',
     errorText: 'Uups... da ist etwas schief gelaufen. Wir kennen die Fehlerdetails bereits und kümmern uns darum.',
     homeRedirectText: 'Zurück zur Startseite',

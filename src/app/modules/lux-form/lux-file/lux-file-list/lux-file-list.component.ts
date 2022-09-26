@@ -36,8 +36,8 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     disabledHeader: false,
     hidden: false,
     hiddenHeader: false,
-    iconName: 'fas fa-cloud-upload-alt',
-    iconNameHeader: 'fas fa-cloud-upload-alt',
+    iconName: 'lux-interface-upload-box-1',
+    iconNameHeader: 'lux-interface-upload-box-1',
     label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
     labelHeader: $localize`:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
   };
@@ -46,8 +46,8 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     disabledHeader: false,
     hidden: false,
     hiddenHeader: false,
-    iconName: 'fas fa-trash',
-    iconNameHeader: 'fas fa-trash',
+    iconName: 'lux-interface-delete-bin-5',
+    iconNameHeader: 'lux-interface-delete-bin-5',
     label: $localize`:@@luxc.file-list.delete.lbl:Löschen`,
     labelHeader: $localize`:@@luxc.file-list.delete_title.lbl:Alle Dateien entfernen`
   };

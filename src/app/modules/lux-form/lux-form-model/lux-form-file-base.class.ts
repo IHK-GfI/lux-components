@@ -34,25 +34,25 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   protected _luxUploadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-cloud-upload-alt',
+    iconName: 'lux-interface-upload-box-1',
     label: $localize`:@@luxc.form-file-base.upload.action.lbl:Hochladen`
   };
   protected _luxDeleteActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-trash',
+    iconName: 'lux-interface-delete-bin-5',
     label: $localize`:@@luxc.form-file-base.delete.action.lbl:Löschen`
   };
   protected _luxViewActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: true,
-    iconName: 'fas fa-eye',
+    iconName: 'lux-interface-edit-view',
     label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
   };
   protected _luxDownloadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: true,
-    iconName: 'fas fa-download',
+    iconName: 'lux-interface-download-button-2',
     label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
   };
 

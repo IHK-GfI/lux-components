@@ -129,7 +129,7 @@
     <div fxLayout="row" fxLayoutAlign="start center" [fxFlex]="'1 0 ' + iconActionBarWidth + 'px'">
       <!-- Buttons zum erneuten Hochladen bzw. Löschen der Datei -->
       <lux-menu
-        luxMenuIconName="fas fa-ellipsis-v"
+        luxMenuIconName="lux-interface-setting-menu-vertical"
         luxTagId="{{ 'lux-file-list-entry-' + index + '-actions' }}"
         (luxMenuClosed)="fileEntry.focus()"
         [luxToggleDisabled]="luxDisabled || luxReadonly"

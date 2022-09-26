@@ -879,28 +879,28 @@ class FileComponent {
   uploadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-cloud-upload-alt',
+    iconName: 'lux-interface-upload-box-1',
     label: 'Hochladen',
     onClick: $event => null
   };
   deleteActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-trash',
+    iconName: 'lux-interface-delete-bin-5',
     label: 'Löschen',
     onClick: $event => null
   };
   viewActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-eye',
+    iconName: 'lux-interface-edit-view',
     label: 'Anzeigen',
     onClick: $event => null
   };
   downloadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-download',
+    iconName: 'lux-interface-download-button-2',
     label: 'Downloaden',
     onClick: $event => null
   };

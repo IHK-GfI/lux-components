@@ -21,7 +21,7 @@ export class LuxFilePreviewBase implements OnInit, OnDestroy {
   loading = true;
   loadingTimer: any;
 
-  downloadIconName = 'fas fa-download';
+  downloadIconName = 'lux-interface-download-button-2';
   downloadTagId = 'file-preview-download-btn';
   downloadAriaLabel = $localize `:@@luxc.file-preview.download.arialabel:Datei herunterladen`;
 

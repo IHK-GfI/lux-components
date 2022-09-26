@@ -40,8 +40,8 @@ export class LuxFileUploadComponent extends LuxFormFileBase implements OnInit, A
   @Input() luxLabelLink = $localize`:@@luxc.file.upload.label.link:Datei durchsuchen`;
   @Input() luxLabelLinkShort = $localize`:@@luxc.file.upload.label.link.short:Datei hochladen`;
   @Input() luxMultiple = true;
-  @Input() luxUploadIcon = 'fas fa-cloud-upload-alt';
-  @Input() luxDeleteIcon = 'fas fa-trash';
+  @Input() luxUploadIcon = 'lux-interface-upload-box-1';
+  @Input() luxDeleteIcon = 'lux-interface-delete-bin-1';
 
   subscriptions: Subscription[] = [];
   fileIcons: string[] = [];
