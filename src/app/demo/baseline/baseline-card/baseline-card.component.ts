@@ -28,13 +28,6 @@ export class BaselineCardComponent {
     {label: 'Option 3', value: 'C'},
     {label: 'Option 4', value: 'D'},
     {label: 'Option 5', value: 'A'},
-    {label: 'Option 6', value: 'B'},
-    {label: 'Option 7', value: 'C'},
-    {label: 'Option 8', value: 'D'},
-    {label: 'Option 9', value: 'A'},
-    {label: 'Option 10', value: 'B'},
-    {label: 'Option 11', value: 'C'},
-    {label: 'Option 12', value: 'D'}
   ];
 
   stateOptions = [

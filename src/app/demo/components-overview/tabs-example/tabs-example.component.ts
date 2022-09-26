@@ -45,7 +45,7 @@ export class TabsExampleComponent {
     {
       title: 'Title #3',
       disabled: false,
-      iconName: 'fas fa-check',
+      iconName: 'lux-interface-validation-check',
       imageSrc: 'assets/png/image-36x36.png',
       imageHeight: '36px',
       imageWidth: '36px',

@@ -1,26 +1,34 @@
 <div class="lux-app-container">
-  <lux-app-header-next
+  <lux-app-header-ac
     luxAppTitle="LUX Components"
     luxAppTitleShort="Components"
-    luxUserName="Max Mustermann"
+    [luxUserName]="demoUserName"
     luxAppIconName="dashboard_customize"
-    luxBrandLogoSrc="/assets/png/Brand_logo_platzhalter.png"
+    luxBrandLogoSrc="/assets/png/GfI_Logo_Final.png"
+    luxAppLogoSrc="/assets/png/demoAppLogo.svg"
     [luxLocaleSupported]="['de', 'en']"
     (luxClicked)="router.navigate(['/']);"
   >
-    <lux-app-header-next-user-menu *ngIf="luxMode === 'stand-alone'">
-      <lux-menu-item luxLabel="Abmelden" luxIconName="power_settings_new" luxTagId="abmelden-menu-item"></lux-menu-item>
-      <lux-menu-item luxLabel="Theme (blue)" luxIconName="brush" luxTagId="theme-blue-menu-item" (luxClicked)="onChangeTheme('blue')"></lux-menu-item>
-      <lux-menu-item luxLabel="Theme (green)" luxIconName="imagesearch_roller" luxTagId="theme-green-menu-item" (luxClicked)="onChangeTheme('green')"></lux-menu-item>
-      <lux-menu-item luxLabel="Theme (authentic)" luxIconName="format_shapes" luxTagId="theme-authentic-menu-item" (luxClicked)="onChangeTheme('authentic')"></lux-menu-item>
-    </lux-app-header-next-user-menu>
+    <lux-app-header-ac-user-menu *ngIf="luxMode === 'stand-alone'">
+      <lux-menu-item [luxLabel]="demoLoginBtn" (luxClicked)="toggleLogin()" luxTagId="abmelden-menu-item"></lux-menu-item>
+      <lux-menu-item luxLabel="Theme - blue" [luxDisabled]="themeName === 'blue'" luxTagId="theme-blue-menu-item" (luxClicked)="onChangeTheme('blue')"></lux-menu-item>
+      <lux-menu-item luxLabel="Theme - green" [luxDisabled]="themeName === 'green'" luxTagId="theme-green-menu-item" (luxClicked)="onChangeTheme('green')"></lux-menu-item>
+      <lux-menu-item luxLabel="Theme - authentic" [luxDisabled]="themeName === 'authentic'" luxTagId="theme-authentic-menu-item" (luxClicked)="onChangeTheme('authentic')"></lux-menu-item>
+    </lux-app-header-ac-user-menu>
 
-    <lux-app-header-next-nav-menu [luxNavMenuMaximumExtended]="5">
+    <lux-app-header-ac-nav-menu [luxNavMenuMaximumExtended]="5">
       <lux-menu-item
         luxLabel="Komponenten"
         luxAriaLabel="Komponenten Übersicht"
         luxTagId="navItem0"
         (luxClicked)="goToComponents()"
+      >
+      </lux-menu-item>
+      <lux-menu-item 
+        luxLabel="Iconsuche"
+        luxAriaLabel="Lux-Icons suchen"
+        luxTagId="navItem4"
+        (luxClicked)="goToIconSearch()"
       >
       </lux-menu-item>
       <lux-menu-item
@@ -44,8 +52,8 @@
         (luxClicked)="goToConfig()"
       >
       </lux-menu-item>
-    </lux-app-header-next-nav-menu>
-  </lux-app-header-next>
+    </lux-app-header-ac-nav-menu>
+  </lux-app-header-ac>
   <lux-app-content luxAriaRoleMainLabel=""></lux-app-content>
   <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="13.1.0"></lux-app-footer>
 </div>

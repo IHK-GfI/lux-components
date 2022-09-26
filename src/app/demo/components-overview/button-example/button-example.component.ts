@@ -27,8 +27,8 @@ export class ButtonExampleComponent implements OnInit, OnDestroy {
   // region Properties der Component
 
   label = 'BUTTON';
-  //iconName = 'fas fa-save';
-  iconName = 'home';
+  iconName = 'lux-interface-user-circle';
+ 
   iconShowRight = false;
   disabled = false;
   backgroundColor = '';

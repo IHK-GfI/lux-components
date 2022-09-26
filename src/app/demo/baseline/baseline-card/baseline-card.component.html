@@ -4,11 +4,15 @@
     luxSubTitle="Ausrichtung in einer Lux-Card"
   >
     <lux-card-info>
-      <lux-icon luxIconName="fas fa-eye" luxIconSize="1x"></lux-icon>
+      <lux-icon luxIconName="lux-interface-edit-view" luxIconSize="1x"></lux-icon>
     </lux-card-info>
     <lux-card-content>
       <div fxLayout="row">
         <div fxLayout="column">
+          <p class="message-box">
+            Dieses Beispiel dient für Testzwecke bei der Weiterentwicklung der Lux-Components, dazu befinden sich alle Form-Controls in einer Spalte. <br>
+            Um evtl. Inkonsistenzen aufzudecken, können alle Form-Controls gleichzeitig in den selben "State" versetzt werden.<br>
+          </p>
           <lux-toggle luxLabel="Fehler-Status anzeigen" (luxCheckedChange)="toggleErrors($event)"></lux-toggle>
           <lux-radio 
             luxGroupName="radio1" 
@@ -21,57 +25,52 @@
               {{ option.label }}
             </ng-template>
           </lux-radio>
-          <p class="message-box">
-            In dieser Card wird die Ausrichtung der Form-Controls ohne "lux-layout-form-row" überprüft. <br/>
-            Zusätzlich kann zwischen den unterschiedlichen States der Form-Controls gewechselt werden.<br/>
-            Dieses Beispiel dient für Testzwecke bei der Weiterentwicklung der Lux-Components.<br/>
-            Wir empfehlen ausdrücklich die Verwendung der Lux-Layout-Form-Row für die Ausrichtung der Formcontrols.
-          </p>
         </div>
       </div>
+      <lux-divider [luxInset]="true"></lux-divider>
       <div [formGroup]="form" fxLayout="column" >
         <div fxLayout="row" fxLayoutGap.gt-sm="16px">
           <div fxLayout="column" fxFlex.gt-sm="30" fxFlex.lt-sm="100" fxLayoutGap.gt-sm="16px">
-            <lux-input luxLabel="Lux-Input" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="input" luxAutocomplete="off" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-input>
-            <lux-input luxType="number" luxLabel="Lux-Input mit Pre-/Suffix" luxPlaceholder="0" [luxHint]="testHint" luxControlBinding="input" luxAutocomplete="off" [luxDisabled]="disabledForm" [luxReadonly]="readonly">
-              <lux-input-prefix> EUR </lux-input-prefix>
-              <lux-input-suffix> .00 <lux-icon luxIconName="fas fa-euro-sign"></lux-icon></lux-input-suffix>
-            </lux-input>
-            <lux-autocomplete luxLabel="Lux-Autocomplete" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="autocomplete" luxOptionLabelProp="label" [luxOptions]="options" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-autocomplete>
-            <lux-datepicker luxLabel="Lux-Datepicker" luxLocale="de-DE" luxPlaceholder="Platzhalter" luxControlBinding="datepicker" [luxHint]="testHint" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-datepicker>
-            <lux-datetimepicker luxLabel="Lux-Datetimepicker" luxLocale="de-DE" luxPlaceholder="Platzhalter" luxControlBinding="datetimepicker" [luxHint]="testHint" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-datetimepicker>
-            <lux-select luxLabel="Lux-Select" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="select"[luxSelected]="testOption" luxOptionLabelProp="label" [luxOptions]="options" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-select>
-            <lux-file-input luxLabel="Lux-File-Input" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="file" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-file-input>
-            <lux-textarea luxLabel="Lux-Textarea" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="textarea" [luxMinRows]="1" [luxMaxRows]="-1" [luxDisabled]="disabledForm" [luxReadonly]="readonly" [luxMaxLength]="100"></lux-textarea>
-            <lux-toggle luxLabel="Option" [luxChecked]="false" luxHint="Hinweis" luxControlBinding="toggle" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-toggle>
-            <lux-checkbox luxLabel="Option" [luxChecked]="false" luxHint="Hinweis" luxControlBinding="checkbox" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-checkbox>
-            <lux-radio luxGroupName="radio1" [luxOptions]="options" [luxOrientationVertical]="true" [luxSelected]="options[0]" luxLabel="Lux-Radio - vertikal" luxHint="Hinweis" [luxDisabled]="disabledForm" [luxReadonly]="readonly" luxControlBinding="radio">
+            <lux-input-ac luxLabel="Lux-input-ac" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="input" luxAutocomplete="off" [luxDisabled]="disabledForm" [luxReadonly]="readonly" class="lux-mt-5"></lux-input-ac>
+            <lux-input-ac luxType="number" luxLabel="Lux-input-ac mit Pre-/Suffix" luxPlaceholder="0" [luxHint]="testHint" luxControlBinding="input" luxAutocomplete="off" [luxDisabled]="disabledForm" [luxReadonly]="readonly">
+              <lux-input-ac-prefix> EUR </lux-input-ac-prefix>
+              <lux-input-ac-suffix> .00 <lux-icon luxIconName="fas fa-euro-sign"></lux-icon></lux-input-ac-suffix>
+            </lux-input-ac>
+            <lux-autocomplete-ac luxLabel="Lux-Autocomplete" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="autocomplete" luxOptionLabelProp="label" [luxOptions]="options" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-autocomplete-ac>
+            <lux-datepicker-ac luxLabel="Lux-Datepicker" luxLocale="de-DE" luxPlaceholder="Platzhalter" luxControlBinding="datepicker" [luxHint]="testHint" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-datepicker-ac>
+            <lux-datetimepicker-ac luxLabel="Lux-Datetimepicker" luxLocale="de-DE" luxPlaceholder="Platzhalter" luxControlBinding="datetimepicker" [luxHint]="testHint" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-datetimepicker-ac>
+            <lux-select-ac luxLabel="Lux-Select" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="select"[luxSelected]="testOption" luxOptionLabelProp="label" [luxOptions]="options" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-select-ac>
+            <lux-file-input-ac luxLabel="Lux-File-Input" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="file" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-file-input-ac>
+            <lux-textarea-ac luxLabel="Lux-Textarea" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxControlBinding="textarea" [luxMinRows]="1" [luxMaxRows]="-1" [luxDisabled]="disabledForm" [luxReadonly]="readonly" [luxMaxLength]="100"></lux-textarea-ac>
+            <lux-toggle-ac luxLabel="Option" [luxChecked]="false" luxHint="Hinweis" luxControlBinding="toggle" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-toggle-ac>
+            <lux-checkbox-ac luxLabel="Option" [luxChecked]="false" luxHint="Hinweis" luxControlBinding="checkbox" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-checkbox-ac>
+            <lux-radio-ac luxGroupName="radio1" [luxOptions]="options" [luxOrientationVertical]="true" [luxSelected]="options[0]" luxLabel="Lux-Radio - vertikal" luxHint="Hinweis" [luxDisabled]="disabledForm" [luxReadonly]="readonly" luxControlBinding="radio">
               <ng-template let-option>
                 {{ option.label }}
               </ng-template>
-            </lux-radio>
-            <lux-radio luxGroupName="radio2" [luxOptions]="options2" [luxOrientationVertical]="false" [luxSelected]="options[0]" luxLabel="Lux-Radio - horizontal" luxHint="Hinweis" [luxDisabled]="disabledForm" [luxReadonly]="readonly" luxControlBinding="radio">
+            </lux-radio-ac>
+            <lux-radio-ac luxGroupName="radio2" [luxOptions]="options2" [luxOrientationVertical]="false" [luxSelected]="options[0]" luxLabel="Lux-Radio - horizontal" luxHint="Hinweis" [luxDisabled]="disabledForm" [luxReadonly]="readonly" luxControlBinding="radio">
               <ng-template let-option>
                 {{ option.label }}
               </ng-template>
-            </lux-radio>
+            </lux-radio-ac>
           </div>
         </div>
         <div fxLayout="column" fxLayoutGap.gt-sm="16px">
-          <lux-slider luxLabel="Lux-Slider" luxControlBinding="slider" luxHint="testHint" [luxDisabled]="disabled" [luxReadonly]="readonly"></lux-slider>
-          <lux-chips [luxInputAllowed]="true" luxInputLabel="Lux-Chips im Input-Element" luxHint="Hinweis" [luxNewChipGroup]="group">
-            <lux-chip-group [luxLabels]="chipItems" luxColor="accent" [luxRemovable]="true"
+          <lux-slider-ac luxLabel="Lux-Slider" luxControlBinding="slider" [luxShowThumbLabelAlways]="true" luxHint="testHint" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-slider-ac>
+          <lux-chips-ac [luxInputAllowed]="true" luxInputLabel="Lux-Chips im Input-Element" luxHint="Hinweis" [luxNewChipGroup]="group">
+            <lux-chip-ac-group [luxLabels]="chipItems" luxColor="accent" [luxRemovable]="true"
                             (luxChipAdded)="chipAdded($event)" (luxChipRemoved)="chipRemoved($event)"
                             (luxChipClicked)="chipItemClicked($event)" #group>
-            </lux-chip-group>
-          </lux-chips>
+            </lux-chip-ac-group>
+          </lux-chips-ac>
           <lux-file-list luxLabel="Lux-File-List" luxHint="Hinweis" luxControlBinding="file" [luxDisabled]="disabled" [luxReadonly]="readonly"></lux-file-list>
         </div>  
       </div>
     </lux-card-content>
     <lux-card-actions >
-      <lux-button luxLabel="Button 1" [luxRaised]="true" luxIconName="fas fa-user" luxColor="primary"></lux-button>
-      <lux-button luxLabel="Button 2" [luxRaised]="true" luxColor=""></lux-button>
+      <lux-button luxLabel="Button 1" [luxFlat]="true" luxIconName="fas fa-user" luxColor="primary"></lux-button>
+      <lux-button luxLabel="Button 2" [luxStroked]="true" luxColor="primary"></lux-button>
     </lux-card-actions>
   </lux-card>
 </div>

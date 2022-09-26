@@ -45,8 +45,8 @@ export abstract class FileExampleComponent implements OnInit {
     disabledHeader: false,
     hidden: false,
     hiddenHeader: false,
-    iconName: 'fas fa-cloud-upload-alt',
-    iconNameHeader: 'fas fa-cloud-upload-alt',
+    iconName: 'lux-interface-upload-box-1',
+    iconNameHeader: 'lux-interface-upload-box-1',
     label: 'Hochladen',
     labelHeader: 'Neue Dateien hochladen',
     onClick: ($event) => {
@@ -59,8 +59,8 @@ export abstract class FileExampleComponent implements OnInit {
     disabledHeader: false,
     hidden: false,
     hiddenHeader: false,
-    iconName: 'fas fa-trash',
-    iconNameHeader: 'fas fa-trash',
+    iconName: 'lux-interface-delete-bin-5',
+    iconNameHeader: 'lux-interface-delete-bin-5',
     label: 'Löschen',
     labelHeader: 'Alle Dateien entfernen',
     onClick: ($event) => {
@@ -71,7 +71,7 @@ export abstract class FileExampleComponent implements OnInit {
   viewActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-eye',
+    iconName: 'lux-interface-edit-view',
     label: 'Ansehen',
     onClick: (fileObject: ILuxFileObject) => {
       this.filePreviewService.open({
@@ -86,7 +86,7 @@ export abstract class FileExampleComponent implements OnInit {
   viewActionConfigForm: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-eye',
+    iconName: 'lux-interface-edit-view',
     label: 'Ansehen',
     onClick: (fileObject: ILuxFileObject) => {
       this.filePreviewService.open({
@@ -101,7 +101,7 @@ export abstract class FileExampleComponent implements OnInit {
   downloadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-download',
+    iconName: 'lux-interface-download-button-2',
     label: 'Download',
     onClick: ($event) => this.log(this.showOutputEvents, 'downloadActionConfig onClick', $event)
   };

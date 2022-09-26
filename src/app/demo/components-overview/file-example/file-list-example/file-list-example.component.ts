@@ -78,7 +78,7 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
     {
       disabled: false,
       hidden: false,
-      iconName: 'fas fa-edit',
+      iconName: 'lux-interface-edit-write-2',
       label: 'Dialog öffnen',
       prio: 15,
       onClick: (fileObject: ILuxFileObject) => {
@@ -87,7 +87,7 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
     }
   ];
 
-  backgroundIconName = 'fas fa-cloud-upload-alt';
+  backgroundIconName = 'lux-interface-upload-box-1';
   showPreview = true;
   multiple = true;
   heading = 4;

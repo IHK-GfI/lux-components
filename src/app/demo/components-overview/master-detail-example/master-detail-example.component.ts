@@ -24,8 +24,8 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
   ];
 
   configuration: any = {
-    emptyIconDetail: 'fas fa-times',
-    emptyIconMaster: 'fas fa-times',
+    emptyIconDetail: 'lux-interface-delete-1',
+    emptyIconMaster: 'lux-interface-delete-1',
     emptyIconDetailSize: '5x',
     emptyIconMasterSize: '5x',
     emptyLabelDetail: 'Keine Daten!',

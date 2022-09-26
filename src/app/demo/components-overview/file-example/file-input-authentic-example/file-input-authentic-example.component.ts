@@ -82,7 +82,7 @@ export class FileInputAuthenticExampleComponent extends FileExampleComponent imp
     const customConfigAccept = {
       disabled: false,
       hidden: false,
-      iconName: 'fas fa-check',
+      iconName: 'lux-interface-validation-check',
       label: 'Akzeptieren',
       prio: 1,
       onClick: (fileObject: ILuxFileObject) => {
@@ -98,7 +98,7 @@ export class FileInputAuthenticExampleComponent extends FileExampleComponent imp
     const customConfigDecline = {
       disabled: false,
       hidden: false,
-      iconName: 'fas fa-times',
+      iconName: 'lux-interface-delete-1',
       label: 'Ablehnen',
       prio: 2,
       onClick: (fileObject: ILuxFileObject) => {

@@ -15,12 +15,6 @@ export class LinkPlainExampleComponent implements OnInit, OnDestroy {
   // region Helper-Properties für das Beispiel
 
   showOutputEvents = false;
-  colors: any[] = [
-    { value: '', label: 'default' },
-    { value: 'primary', label: 'primary' },
-    { value: 'warn', label: 'warn' },
-    { value: 'accent', label: 'accent' }
-  ];
   config: LuxComponentsConfigParameters;
   log = logResult;
 
@@ -29,9 +23,8 @@ export class LinkPlainExampleComponent implements OnInit, OnDestroy {
   // region Properties der Component
 
   label = 'Beispiel-Link';
-  color: LuxActionColorType = 'primary';
-  iconName = 'language';
-  iconShowRight = false;
+  iconName = 'lux-interface-favorite-like-1';
+  iconShowRight = true;
   disabled = false;
   blank = true;
   href = 'https://www.ihk-gfi.de/';

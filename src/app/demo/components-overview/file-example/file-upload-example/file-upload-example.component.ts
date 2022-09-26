@@ -24,8 +24,8 @@ export class FileUploadExampleComponent extends FileExampleComponent implements 
   label = $localize`:@@luxc.file.upload.label:Zum Hochladen Datei hier ablegen oder `;
   labelLink = $localize`:@@luxc.file.upload.label.link:Datei durchsuchen`;
   labelLinkShort = $localize`:@@luxc.file.upload.label.link.short:Datei hochladen`;
-  uploadIcon = 'fas fa-cloud-upload-alt';
-  deleteIcon = 'fas fa-trash';
+  uploadIcon = 'lux-interface-upload-box-1';
+  deleteIcon = 'lux-interface-delete-bin-5';
   multiple = true;
 
   constructor(

@@ -27,9 +27,9 @@ export class LinkExampleComponent implements OnInit, OnDestroy {
 
   // region Properties der Component
 
-  label = 'Beispiel-Link';
+  label = 'LOGIN';
   color: LuxActionColorType = 'primary';
-  iconName = 'language';
+  iconName = 'lux-interface-login-circle';
   iconShowRight = false;
   raised = true;
   round = false;

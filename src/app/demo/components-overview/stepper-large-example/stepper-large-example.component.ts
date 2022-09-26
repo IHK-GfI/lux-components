@@ -37,7 +37,7 @@ export class StepperLargeExampleComponent {
     const snackbarDuration = 5000;
 
     this.snackbar.open(snackbarDuration, {
-      iconName: 'fas fa-info',
+      iconName: 'lux-info',
       iconSize: '2x',
       iconColor: 'green',
       text: 'Stepper erfolgreich abgeschlossen!'

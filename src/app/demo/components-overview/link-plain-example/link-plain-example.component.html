@@ -7,35 +7,17 @@
     <span class="lux-mt-5">Dies ist ein  
       <lux-link-plain
         [luxLabel]="label"
-        [luxColor]="color"
-        [luxIconName]="iconName"
         [luxDisabled]="disabled"
-        [luxIconShowRight]="iconShowRight"
         luxTagId="demo-link"
         [luxHref]="href"
         [luxBlank]="blank"
       ></lux-link-plain>
       im normalen Fließtext.
     </span>
-    <!-- <span style=" color: pink; font-family: 'Times New Roman', Times, serif; font-size: 20px; ">Dies ist ein  
-      <lux-link-plain
-        [luxLabel]="label"
-        [luxColor]="color"
-        [luxIconName]="iconName"
-        [luxDisabled]="disabled"
-        [luxIconShowRight]="iconShowRight"
-        luxTagId="demo-link"
-        [luxHref]="href"
-        [luxBlank]="blank"
-        
-      ></lux-link-plain>
-      im Text mit eigenem Styling.
-    </span> -->
     <br>
     <h2>Dies ist ein 
       <lux-link-plain
         [luxLabel]="label"
-        [luxColor]="color"
         [luxIconName]="iconName"
         [luxDisabled]="disabled"
         [luxIconShowRight]="iconShowRight"
@@ -43,7 +25,7 @@
         [luxHref]="href"
         [luxBlank]="blank"
       ></lux-link-plain>
-      in einer H2!
+      in einer H2 mit einem Icon!
     </h2>
     <div>
       Und hier ist eine Liste mit mehreren Links
@@ -51,7 +33,7 @@
         <li>
           <lux-link-plain
             luxLabel="Formulare"
-            luxIconName="link"
+            luxIconName="lux-interface-arrows-right"
             [luxIconShowRight]="true"
             luxTagId="demo-link"
             [luxBlank]="false"
@@ -61,7 +43,7 @@
         <li>
           <lux-link-plain
             luxLabel="Komponenten"
-            luxIconName="link"
+            luxIconName="lux-interface-arrows-right"
             [luxIconShowRight]="true"
             luxTagId="demo-link"
             [luxBlank]="false"
@@ -71,7 +53,7 @@
         <li>
           <lux-link-plain
             luxLabel="Baseline"
-            luxIconName="link"
+            luxIconName="lux-interface-arrows-right"
             [luxIconShowRight]="true"
             luxTagId="demo-link"
             [luxBlank]="false"
@@ -81,7 +63,7 @@
         <li>
           <lux-link-plain
             luxLabel="Konfiguration"
-            luxIconName="link"
+            luxIconName="lux-interface-arrows-right"
             [luxIconShowRight]="true"
             luxTagId="demo-link"
             [luxBlank]="false"
@@ -90,35 +72,35 @@
         </li>
       </ul>
     </div>
+    <h2>Beispiel für eine Breadcrump-Komponente</h2>
     <div fxLayout="row" class="breadcrump" fxLayoutAlign="start end">
-  
       <span>
-      <lux-link-plain
-        luxLabel="Home"
-        luxIconName="arrow_forward_ios"
-        [luxIconShowRight]="true"
-        luxTagId="breadcrump-item"
-        luxHref="/home"
-        class="lux-mr-3 breadcrump-item"
-      ></lux-link-plain>
-    </span>
-  <span>
-      <lux-link-plain
-        luxLabel="Components"
-        luxIconName="arrow_forward_ios"
-        [luxIconShowRight]="true"
-        luxTagId="breadcrump-item"
-        luxHref="/components-overview"
-        class="lux-mr-3 breadcrump-item"
-      ></lux-link-plain></span>
-    <span>
-      <lux-link-plain
-        luxLabel="Link-Plain"
-        luxTagId="breadcrump-item"
-        [luxDisabled]="true"
-        class="lux-mr-3 breadcrump-item"
-      ></lux-link-plain>
-    </span>
+        <lux-link-plain
+          luxLabel="Home"
+          luxIconName="lux-interface-arrows-button-right"
+          [luxIconShowRight]="true"
+          luxTagId="breadcrump-item"
+          luxHref="/home"
+          class="lux-mr-3 breadcrump-item"
+        ></lux-link-plain>
+      </span>
+      <span>
+        <lux-link-plain
+          luxLabel="Components"
+          luxIconName="lux-interface-arrows-button-right"
+          [luxIconShowRight]="true"
+          luxTagId="breadcrump-item"
+          luxHref="/components-overview"
+          class="lux-mr-3 breadcrump-item"
+        ></lux-link-plain></span>
+      <span>
+        <lux-link-plain
+          luxLabel="Link-Plain"
+          luxTagId="breadcrump-item"
+          [luxDisabled]="true"
+          class="lux-mr-3 breadcrump-item"
+        ></lux-link-plain>
+      </span>
     </div>
   </div>
   </example-base-content>
@@ -171,19 +153,6 @@
         </lux-form-hint>
       </lux-toggle>
     </div>
-    <lux-select
-      class="lux-highlight-section"
-      [(luxSelected)]="color"
-      [luxOptions]="colors"
-      luxLabel="luxColor"
-      [luxPickValue]="pickValue"
-      luxOptionLabelProp="label"
-    >
-      <lux-form-hint>
-        Bestimmt die Farbe des Buttons.<br />
-        Die möglichen Werte sind 'primary', 'warn', 'accent', 'default' / undefined.
-      </lux-form-hint>
-    </lux-select>
 
     <lux-toggle
       class="lux-highlight-section"
