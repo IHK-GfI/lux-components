@@ -1,0 +1,31 @@
+<lux-menu
+  class="lux-lang-select-menu-ac"
+  luxAriaMenuTriggerLabel="Sprachmenü"
+  i18n-luxAriaMenuTriggerLabel="@@luxc.lang-select.aria.langmenu.btn"
+  [luxDisplayExtended]="false"
+  (luxMenuOpened)="onMenuOpened()"
+  (luxMenuClosed)="onMenuClosed()"
+  >
+  <lux-menu-item
+    class="lux-lang-select-menu-item"
+    *ngFor="let item of localeOptions"
+    [luxLabel]="item.label"
+    [luxDisabled]="item === selectedLocale"
+    (luxClicked)="onLocaleChanged(item)"
+  ></lux-menu-item>
+  <lux-menu-trigger>
+    <lux-button
+      [luxRounded]="true"
+      luxColor="primary"
+      luxIconName="lux-network"
+      class="lang-select-trigger-ac"
+      ngClass.lt-md="lang-select-trigger-mobile"
+      luxAriaLabel="Spracheinstellungen"
+      i18n-luxAriaLabel="@@luxc.app-header.lang.select.trigger"
+      aria-haspopup="true"
+      [ngClass]="menuOpened ? 'menu-opened' : ''"
+      #customTrigger
+    ></lux-button>
+  </lux-menu-trigger>
+</lux-menu>
+

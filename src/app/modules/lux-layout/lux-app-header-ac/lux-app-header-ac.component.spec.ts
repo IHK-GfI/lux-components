@@ -3,19 +3,19 @@ import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxButtonComponent } from '../../lux-action/lux-button/lux-button.component';
-import { LuxAppHeaderNextComponent } from './lux-app-header-next.component';
+import { LuxAppHeaderAcComponent } from './lux-app-header-ac.component';
 
-describe('LuxAppHeaderNextComponent', () => {
-  //let component: LuxAppHeaderNextComponent;
-  //let fixture: ComponentFixture<LuxAppHeaderNextComponent>;
+describe('LuxAppHeaderAcComponent', () => {
+  //let component: LuxAppHeaderAcComponent;
+  //let fixture: ComponentFixture<LuxAppHeaderAcComponent>;
 
   beforeEach(async () => {
-    LuxTestHelper.configureTestModule([], [LuxAppHeaderNextComponent, MockIconsClickedAppHeaderNextComponent]);
+    LuxTestHelper.configureTestModule([], [LuxAppHeaderAcComponent, MockIconsClickedAppHeaderAcComponent]);
   });
   
   describe('luxClicked', () => {
     it('Applogo im Header soll klickbar sein ', fakeAsync(() => {
-      const fixture = TestBed.createComponent(MockIconsClickedAppHeaderNextComponent);
+      const fixture = TestBed.createComponent(MockIconsClickedAppHeaderAcComponent);
       LuxTestHelper.wait(fixture);
       
       const element = fixture.debugElement.query(By.directive(LuxButtonComponent));
@@ -34,16 +34,16 @@ describe('LuxAppHeaderNextComponent', () => {
 
 @Component({
   template: `
-    <lux-app-header-next 
+    <lux-app-header-ac 
       (luxClicked)="onClicked()" 
       luxAppTitle="MyClickTitle"
       luxAppIconName="appIcon"
      
       >
-    </lux-app-header-next>
+    </lux-app-header-ac>
   `
 })
-class MockIconsClickedAppHeaderNextComponent {
+class MockIconsClickedAppHeaderAcComponent {
   appIcon = "home";
   
   onClicked() {}

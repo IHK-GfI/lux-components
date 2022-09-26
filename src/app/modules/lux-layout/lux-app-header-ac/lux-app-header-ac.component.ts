@@ -1,19 +1,19 @@
 import { Component, ContentChild, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
-import { LuxAppHeaderNextNavMenuComponent } from './lux-app-header-next-subcomponent/lux-app-header-next-nav-menu/lux-app-header-next-nav-menu.component';
-import { LuxAppHeaderNextUserMenuComponent } from './lux-app-header-next-subcomponent/lux-app-header-next-user-menu.component'; 
+import { LuxAppHeaderAcNavMenuComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu.component';
+import { LuxAppHeaderAcUserMenuComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-user-menu.component'; 
 
 @Component({
-  selector: 'lux-app-header-next',
-  templateUrl: './lux-app-header-next.component.html',
-  styleUrls: ['./lux-app-header-next.component.scss']
+  selector: 'lux-app-header-ac',
+  templateUrl: './lux-app-header-ac.component.html',
+  styleUrls: ['./lux-app-header-ac.component.scss']
 })
-export class LuxAppHeaderNextComponent implements OnInit, OnChanges {
+export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   @Input() luxUserName: string;
-  //@Input() luxIconName: string; //für das APP-Icon
-  //@Input() luxImageSrc: string; //alternative zum APP-Icon
   @Input() luxAppTitle: string;
   @Input() luxAppTitleShort: string;
   @Input() 
@@ -28,17 +28,20 @@ export class LuxAppHeaderNextComponent implements OnInit, OnChanges {
   _luxAppIconName = 'home';
 
   @Input() luxBrandLogoSrc: string;
+  @Input() luxAppLogoSrc: string;
   @Input() luxAriaUserMenuButtonLabel = $localize `:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
   @Input() luxLocaleSupported = ['de'];
   @Input() luxLocaleBaseHref  = '';
+  @Input() luxHideTopBar = false;
+  @Input() luxHideNavBar = false;
   
   @Output() luxClicked: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('customTrigger', { read: ElementRef }) customTrigger: ElementRef;
 
 
-  @ContentChild(LuxAppHeaderNextNavMenuComponent) navMenu: LuxAppHeaderNextNavMenuComponent;
-  @ContentChild(LuxAppHeaderNextUserMenuComponent) userMenu: LuxAppHeaderNextUserMenuComponent;
+  @ContentChild(LuxAppHeaderAcNavMenuComponent) navMenu: LuxAppHeaderAcNavMenuComponent;
+  @ContentChild(LuxAppHeaderAcUserMenuComponent) userMenu: LuxAppHeaderAcUserMenuComponent;
   
   hasOnClickedListener: boolean;
   userNameShort: string;
@@ -49,10 +52,20 @@ export class LuxAppHeaderNextComponent implements OnInit, OnChanges {
   mobileView: boolean;
   subscription: Subscription;
 
-
-  constructor(private logger: LuxConsoleService, private queryService: LuxMediaQueryObserverService) { 
-    this.updateGreetingLabel();
-  }
+  menuOpened = false;
+  svgIcon: string;
+  constructor(
+    private logger: LuxConsoleService, 
+    private queryService: LuxMediaQueryObserverService, 
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+    ) { 
+      this.updateGreetingLabel();
+      this.matIconRegistry.addSvgIcon(
+        "luxAppIcon",
+        this.domSanitizer.bypassSecurityTrustResourceUrl("../../../assets/svg/demoAppLogo.svg")
+      );
+    }
 
   ngOnInit(): void {
     if (this.luxClicked.observers && this.luxClicked.observers.length > 0) {
@@ -72,8 +85,12 @@ export class LuxAppHeaderNextComponent implements OnInit, OnChanges {
     }
   }
 
+  onMenuOpened() {
+    this.menuOpened = true;
+  }
+
   onMenuClosed() {
-    this.customTrigger.nativeElement.focus();
+    this.menuOpened = false;
   }
 
   onClicked(event: any) {
