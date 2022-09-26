@@ -1,6 +1,9 @@
 :host {
   position: relative;
-  display: inline-block;
+  box-sizing: border-box; //brauchen die neuen icons bei roundes Buttons
+  display: inline-block; // führt bei rounded Buttons zu einer Verschiebung bei den neuen Icons
+  line-height: 1;
+  //display: initial;
 }
 
 i.lux-fa-icon,
@@ -15,12 +18,40 @@ i.lux-fa-icon,
 }
 
 mat-icon.mat-icon {
-  &.lux-icon-rounded {
-    height: unset !important;
-  }
+  //vertical-align: middle;
 
-  &:not(.lux-icon-rounded) {
-    height: unset !important;
-    width: unset !important;
+  :not(.lux-lx-icon){
+
+    &.lux-icon-rounded {
+      height: unset !important;
+    }
+
+    &:not(.lux-icon-rounded) {
+      height: unset !important;
+      width: unset !important;
+    }
+
   }
+}
+
+
+.lux-lx-icon-rounded-1em {
+  border-radius: 50%;
+  padding: 4px !important;  
+}
+.lux-lx-icon-rounded-2em {
+  border-radius: 50%;
+  padding: 8px !important;  
+}
+.lux-lx-icon-rounded-3em {
+  border-radius: 50%;
+  padding: 12px !important;  
+}
+.lux-lx-icon-rounded-4em {
+  border-radius: 50%;
+  padding: 16px !important;  
+}
+.lux-lx-icon-rounded-5em {
+  border-radius: 50%;
+  padding: 20px !important;  
 }
