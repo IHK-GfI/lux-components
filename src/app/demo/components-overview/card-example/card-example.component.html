@@ -1,6 +1,5 @@
  <example-base-structure
   exampleTitle="Card"
-  exampleIconName="fas fa-square"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90card"
 >
   <example-base-content fxLayout="column" fxLayoutGap="32px">
@@ -27,9 +26,9 @@
       [luxExpandedLabelClose]="closeLabel"
       [luxExpandedLabelOpen]="openLabel"
     >
-      <lux-icon luxIconName="fas fa-cogs" *ngIf="showIcon"></lux-icon>
+      <lux-icon luxIconName="lux-cogs" *ngIf="showIcon"></lux-icon>
       <lux-card-info *ngIf="showInfo">
-        <lux-icon luxIconName="fas fa-home"></lux-icon>
+        <lux-icon luxIconName="lux-interface-home-3"></lux-icon>
       </lux-card-info>
       <lux-card-content>
         <h3>H3 - Lorem ipsum</h3>
@@ -56,7 +55,7 @@
         </p>
       </lux-card-content-expanded>
       <lux-card-actions *ngIf="showActions">
-        <lux-button luxLabel="Button 1" [luxRaised]="true" luxIconName="fas fa-user" luxColor="primary"></lux-button>
+        <lux-button luxLabel="Button 1" [luxRaised]="true" luxIconName="lux-interface-user-single" luxColor="primary"></lux-button>
         <lux-button luxLabel="Button 2" [luxRaised]="btn2Raised" luxColor=""></lux-button>
       </lux-card-actions>
     </lux-card>

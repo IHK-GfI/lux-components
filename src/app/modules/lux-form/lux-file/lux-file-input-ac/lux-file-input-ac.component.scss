@@ -26,6 +26,11 @@ lux-form-control-wrapper {
           }
         }
       }
+      lux-icon.lux-button-icon mat-icon.lux-lx-icon-responsive {
+        height: 16px;
+        width: 16px;
+        vertical-align: super;
+      }
     }
   }
 }

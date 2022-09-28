@@ -16,7 +16,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('autocomplete-ac'), icon: 'fas fa-font', label: 'Autocomplete-Ac', moduleName: 'form', news: true },
     { onclick: () => this.goTo('badge'), icon: 'fas fa-ribbon', label: 'Badge', moduleName: 'common' },
     { onclick: () => this.goTo('button'), icon: 'fas fa-bullseye', label: 'Button', moduleName: 'action', news: true },
-    { onclick: () => this.goTo('card'), icon: 'fas fa-square', label: 'Card', moduleName: 'layout' },
+    { onclick: () => this.goTo('card'), icon: 'lux-interface-geometric-square', label: 'Card', moduleName: 'layout' },
     { onclick: () => this.goTo('chips'), icon: 'fas fa-ship', label: 'Chips', moduleName: 'form' },
     { onclick: () => this.goTo('chips-ac'), icon: 'fas fa-ship', label: 'Chips-Ac', moduleName: 'form', news: true },
     { onclick: () => this.goTo('datepicker'), icon: 'fas fa-calendar-day', label: 'Datepicker', moduleName: 'form' },
@@ -26,7 +26,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('divider'), icon: 'fas fa-divide', label: 'Divider', moduleName: 'layout' },
     {
       onclick: () => this.goTo('error-page'),
-      icon: 'fas fa-exclamation-circle',
+      icon: 'lux-interface-alert-warning-circle',
       label: 'Error-Page',
       moduleName: 'error'
     },
@@ -96,7 +96,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('app-footer'), icon: 'fas fa-shoe-prints', label: 'App-Footer', moduleName: 'layout' },
     { onclick: () => this.goTo('toggle'), icon: 'fas fa-toggle-on', label: 'Toggle', moduleName: 'form' },
     { onclick: () => this.goTo('toggle-ac'), icon: 'fas fa-toggle-on', label: 'Toggle-Ac', moduleName: 'form', news: true },
-    { onclick: () => this.goTo('list'), icon: 'fas fa-list-ul', label: 'List', moduleName: 'layout' },
+    { onclick: () => this.goTo('list'), icon: 'fas lux-interface-text-formatting-list-bullets-ul', label: 'List', moduleName: 'layout' },
     { onclick: () => this.goToMasterDetail(), icon: 'fas fa-th-list', label: 'Master-Detail', moduleName: 'layout' },
     { onclick: () => this.goToTabs(), icon: 'fas fa-columns', label: 'Tabs', moduleName: 'layout', news: true },
     { onclick: () => this.goToStepper(), icon: 'fas fa-chevron-circle-right', label: 'Stepper', moduleName: 'layout', news: true },
@@ -111,18 +111,18 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('dialog'), icon: 'fas fa-question-circle', label: 'Dialog', moduleName: 'popup', news: true },
     {
       onclick: () => this.goTo('file-input'),
-      icon: 'lux-interface-upload-box-1',
+      icon: 'fas fa-cloud-upload-alt',
       label: 'File-Input',
       moduleName: 'form'
     },
     {
-      onclick: () => this.goTo('file-input-ac'), icon: 'lux-interface-upload-box-1',
+      onclick: () => this.goTo('file-input-ac'), icon: 'fas fa-cloud-upload-alt',
       label: 'File-Input-Ac',
       moduleName: 'form',
       news: true
     },
-    { onclick: () => this.goTo('file-list'), icon: 'lux-interface-upload-box-1', label: 'File-List', moduleName: 'form' },
-    { onclick: () => this.goTo('file-upload'), icon: 'lux-interface-upload-box-1', label: 'File-Upload', moduleName: 'form' },
+    { onclick: () => this.goTo('file-list'), icon: 'fas fa-cloud-upload-alt', label: 'File-List', moduleName: 'form' },
+    { onclick: () => this.goTo('file-upload'), icon: 'fas fa-cloud-upload-alt', label: 'File-Upload', moduleName: 'form' },
     { onclick: () => this.goTo('ripple'), icon: 'fas fa-water', label: 'Ripple', moduleName: 'directive' },
     {
       onclick: () => this.goTo('badge-notification'),

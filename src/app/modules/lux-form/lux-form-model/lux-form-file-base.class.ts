@@ -34,7 +34,7 @@ export abstract class LuxFormFileBase extends LuxFormComponentBase {
   protected _luxUploadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'lux-interface-upload-box-1',
+    iconName: 'fas fa-cloud-upload-alt',
     label: $localize`:@@luxc.form-file-base.upload.action.lbl:Hochladen`
   };
   protected _luxDeleteActionConfig: ILuxFileActionConfig = {

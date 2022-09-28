@@ -49,7 +49,7 @@
   <!-- zurück zum Detail-Button für die mobile Ansicht-->
   <div class="detail-button-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" *ngIf="isMobile">
     <lux-button
-      luxIconName="keyboard_arrow_left"
+      luxIconName="lux-interface-arrows-button-left"
       [luxRounded]="true"
       (luxClicked)="toggleMobileView()"
       class="back-to-master-button"
@@ -72,7 +72,7 @@
     [luxRounded]="true"
     [luxIconName]="iconName"
     luxTagId="master-detail.toggle"
-    [luxAriaExpanded]="iconName === 'keyboard_arrow_left'"
+    [luxAriaExpanded]="iconName === 'lux-interface-arrows-button-left'"
     luxAriaLabel="{{ getAriaLabelForOpenCloseButton(iconName) }}"
     luxAriaLabelSelector="button"
     luxAriaExpandedSelector="button"

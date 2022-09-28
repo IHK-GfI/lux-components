@@ -12,3 +12,6 @@
 .lux-badge > lux-icon ::ng-deep * {
   padding: 0 !important;
 }
+.lux-badge > lux-icon ::ng-deep mat-icon {
+  vertical-align: bottom;
+}

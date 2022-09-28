@@ -13,7 +13,7 @@
         <lux-list-item [luxTitle]="listItem.title" [luxSubTitle]="listItem.subtitle" [luxSelected]="listItem.selected"
                        (luxClicked)="onClick(listItem)">
           <lux-list-item-icon>
-            <lux-icon luxIconName="fas fa-cogs"></lux-icon>
+            <lux-icon luxIconName="lux-cogs"></lux-icon>
           </lux-list-item-icon>
           <lux-list-item-content>
             Value: {{ listItem.value }}
@@ -26,11 +26,11 @@
   <lux-master-footer-light>
     <div fxLayout="row" fxLayoutAlign="space-between start">
       <div fxLayout="row" fxLayoutGap="8px">
-        <lux-button luxLabel="Sortieren" luxColor="primary" luxIconName="fa-sort-amount-up" [luxFlat]="false"></lux-button>
-        <lux-button luxLabel="Aktualisieren" luxColor="primary" luxIconName="fa-sync"[luxFlat]="false"></lux-button>
+        <lux-button luxLabel="Sortieren" luxColor="primary" luxIconName="lux-amount-up-asc" [luxFlat]="false"></lux-button>
+        <lux-button luxLabel="Aktualisieren" luxColor="primary" luxIconName="lux-interface-arrows-synchronize"[luxFlat]="false"></lux-button>
       </div>
       
-      <lux-button luxLabel="Hinzufügen" luxTagId="add" luxIconName="fa-plus" luxColor="primary" [luxFlat]="false"></lux-button>
+      <lux-button luxLabel="Hinzufügen" luxTagId="add" luxIconName="lux-interface-add-1" luxColor="primary" [luxFlat]="false"></lux-button>
     </div>
   </lux-master-footer-light>
 
@@ -40,7 +40,7 @@
         <lux-list-item [luxTitle]="listItems[0].title" [luxSubTitle]="listItems[0].subtitle" 
                        >
           <lux-list-item-icon>
-            <lux-icon luxIconName="fas fa-cogs"></lux-icon>
+            <lux-icon luxIconName="lux-cogs"></lux-icon>
           </lux-list-item-icon>
           <lux-list-item-content>
             Value: {{ listItems[0].value }}
@@ -51,14 +51,14 @@
   </lux-detail-header-light>
   <lux-detail-content-light>
     <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0">
-      <lux-tab luxTitle="Beispiel" luxIconName="fa-cog">
+      <lux-tab luxTitle="Beispiel" luxIconName="lux-interface-setting-cog">
         <ng-template>Lorem Ipsum...</ng-template>
         
       </lux-tab>
-      <lux-tab luxIconName="fa-list">
+      <lux-tab luxIconName="lux-interface-text-formatting-list-bullets">
         <ng-template>Lorem Ipsum...</ng-template>
       </lux-tab>
-      <lux-tab luxIconName="fa-trash">
+      <lux-tab luxIconName="lux-interface-delete-bin-2">
         <ng-template>Lorem Ipsum...</ng-template>
       </lux-tab>
     </lux-tabs>

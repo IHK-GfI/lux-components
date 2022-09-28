@@ -21,12 +21,12 @@ export class LuxMasterHeaderComponent implements OnDestroy {
   constructor(private masterDetailMobileHelperService: LuxMasterDetailMobileHelperService) {
     this.subscription = this.masterDetailMobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
       if (this.masterDetailMobileHelperService.isMobile()) {
-        this.iconName = 'keyboard_arrow_right';
+        this.iconName = 'lux-interface-arrows-button-right';
       } else {
         if (isOpen) {
-          this.iconName = 'keyboard_arrow_left';
+          this.iconName = 'lux-interface-arrows-button-left';
         } else {
-          this.iconName = 'keyboard_arrow_right';
+          this.iconName = 'lux-interface-arrows-button-right';
         }
       }
       this.open = isOpen;
@@ -39,7 +39,7 @@ export class LuxMasterHeaderComponent implements OnDestroy {
   }
 
   getAriaLabelForOpenCloseButton(iconName: string) {
-    if (this.iconName === 'keyboard_arrow_left') {
+    if (this.iconName === 'lux-interface-arrows-button-left') {
       return $localize `:@@luxc.master-detail.header.close.btn:Masterliste zuklappen`;
     } else {
       return $localize `:@@luxc.master-detail.header.open.btn:Masterliste aufklappen`;

@@ -49,7 +49,7 @@ export class LuxMasterDetailLightComponent implements OnDestroy {
   @ContentChild(LuxDetailHeaderLightComponent) detailHeader: LuxDetailHeaderLightComponent;
   @ContentChild(LuxDetailContentLightComponent) detailContent: LuxDetailContentLightComponent;
   
-  iconName = 'keyboard_arrow_left'; // icon für den MasterToggleButton
+  iconName = 'lux-interface-arrows-button-left'; // icon für den MasterToggleButton
   //luxToggleHidden = false; //Relikt ?!
   luxMasterOpen = true; //Master geöffnet
   counter = 1; // wird für die Animation benötigt
@@ -79,15 +79,15 @@ export class LuxMasterDetailLightComponent implements OnDestroy {
     this.isExpanded = !this.isExpanded;
     if(this.isExpanded) {
       this.counter--;
-      this.iconName = 'keyboard_arrow_left';
+      this.iconName = 'lux-interface-arrows-button-left';
     } else {
       this.counter++;
-      this.iconName = 'keyboard_arrow_right';
+      this.iconName = 'lux-interface-arrows-button-right';
     }
   }
 
   getAriaLabelForOpenCloseButton(iconName: string) {
-    if (this.iconName === 'keyboard_arrow_left') {
+    if (this.iconName === 'lux-interface-arrows-button-left') {
       return $localize `:@@luxc.master-detail.header.close.btn:Masterliste zuklappen`;
     } else {
       return $localize `:@@luxc.master-detail.header.open.btn:Masterliste aufklappen`;

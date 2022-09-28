@@ -7,14 +7,15 @@ lux-icon.lux-button-icon-round ::ng-deep{
     font-size: 1.5em !important;
     display: inline-block;
   }
-  mat-icon.mat-icon.lux-material-icon {
+  mat-icon.mat-icon.lux-material-icon,
+  mat-icon.mat-icon.lux-lx-icon-responsive {
     line-height: 1;
-    font-size: 1.8em !important;
+    font-size: 1.5em !important;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top !important;
     height: unset;
     width: unset;
-  }
+  } 
 }
 
 .lux-icon-button.mat-fab ::ng-deep .mat-button-wrapper {
@@ -24,9 +25,9 @@ lux-icon.lux-button-icon-round ::ng-deep{
 }
 
 .lux-button {
-  &.mat-raised-button, 
-  &.mat-button, 
-  &.mat-flat-button, 
+  &.mat-raised-button,
+  &.mat-button,
+  &.mat-flat-button,
   &.mat-stroked-button { 
 
     ::ng-deep {

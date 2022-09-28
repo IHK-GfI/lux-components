@@ -45,8 +45,8 @@ export abstract class FileExampleComponent implements OnInit {
     disabledHeader: false,
     hidden: false,
     hiddenHeader: false,
-    iconName: 'lux-interface-upload-box-1',
-    iconNameHeader: 'lux-interface-upload-box-1',
+    iconName: 'fas fa-cloud-upload-alt',
+    iconNameHeader: 'fas fa-cloud-upload-alt',
     label: 'Hochladen',
     labelHeader: 'Neue Dateien hochladen',
     onClick: ($event) => {

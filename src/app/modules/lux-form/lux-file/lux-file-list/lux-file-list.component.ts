@@ -36,8 +36,8 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
     disabledHeader: false,
     hidden: false,
     hiddenHeader: false,
-    iconName: 'lux-interface-upload-box-1',
-    iconNameHeader: 'lux-interface-upload-box-1',
+    iconName: 'fas fa-cloud-upload-alt',
+    iconNameHeader: 'fas fa-cloud-upload-alt',
     label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
     labelHeader: $localize`:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
   };
@@ -121,7 +121,7 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
   }
 
   shouldDisplayPreviewImg(index: number): boolean {
-    return this.luxShowPreview && this.fileIcons && this.fileIcons[index] && this.fileIcons[index] === 'fas fa-file-image';
+    return this.luxShowPreview && this.fileIcons && this.fileIcons[index] && this.fileIcons[index] === 'lux-file-image';
   }
 
   /**
@@ -271,16 +271,16 @@ export class LuxFileListComponent extends LuxFormFileBase implements AfterViewIn
       selectedFiles.push(...this.luxSelectedFiles);
     }
     selectedFiles.forEach((selectedFile: ILuxFileObject) => {
-      let newFileIcon = 'fas fa-file';
+      let newFileIcon = 'lux-interface-content-file';
       if (selectedFile.type) {
         if (selectedFile.type.indexOf('image') > -1) {
-          newFileIcon = 'fas fa-file-image';
+          newFileIcon = 'lux-file-image';
         } else if (selectedFile.type.indexOf('pdf') > -1) {
-          newFileIcon = 'fas fa-file-pdf';
+          newFileIcon = 'lux-file-pdf';
         } else if (selectedFile.type.indexOf('spreadsheet') > -1) {
-          newFileIcon = 'fas fa-file-excel';
+          newFileIcon = 'lux-interface-file-delete';
         } else if (selectedFile.type.indexOf('officedocument') > -1) {
-          newFileIcon = 'fas fa-file-signature';
+          newFileIcon = 'lux-file-signature';
         } else if (selectedFile.type.indexOf('json') > -1) {
           newFileIcon = 'fas fa-file-code';
         }

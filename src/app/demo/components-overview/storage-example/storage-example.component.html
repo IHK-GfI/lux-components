@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Storage"
-  exampleIconName="fas fa-hdd"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/util#luxstorageservice"
 >
   <example-base-content fxLayout="column">
@@ -25,7 +24,7 @@
           <lux-input fxFlex="1 1 auto" luxLabel="Neuer Value" #luxInput [luxNoBottomLabel]="true"></lux-input>
           <div fxFlex="0 0 auto" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="end">
             <lux-button
-              luxIconName="fas fa-sync"
+              luxIconName="lux-interface-arrows-synchronize"
               luxColor="accent"
               luxTagId="refresh-storage-entry-btn"
               [luxRounded]="true"
@@ -83,7 +82,7 @@
       </lux-toggle>
       <div fxLayout="row" fxLayoutAlign="start" class="lux-mt-4">
         <lux-button
-          luxIconName="fas fa-plus"
+          luxIconName="lux-interface-add-1"
           luxColor="accent"
           [luxRounded]="true"
           (luxClicked)="submit()"

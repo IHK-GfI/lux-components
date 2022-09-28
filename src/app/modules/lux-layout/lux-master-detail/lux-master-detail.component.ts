@@ -85,9 +85,9 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   // Flag welches bestimmt ob die Empty-Anzeigen der Masterliste anhand der Detail-Ansicht ausgerichtet werden
   alignEmptyIndicators = true;
 
-  @Input() luxEmptyIconMaster = 'fas fa-info-circle';
+  @Input() luxEmptyIconMaster = 'lux-interface-alert-information-circle';
   @Input() luxEmptyLabelMaster = $localize `:@@luxc.master-detail.master.empty_label:Keine Einträge vorhanden`;
-  @Input() luxEmptyIconDetail = 'fas fa-info-circle';
+  @Input() luxEmptyIconDetail = 'lux-interface-alert-information-circle';
   @Input() luxEmptyLabelDetail = $localize `:@@luxc.master-detail.detail.empty_label:Kein Element ausgewählt`;
   @Input() luxEmptyIconMasterSize = '5x';
   @Input() luxEmptyIconDetailSize = '5x';

@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Input"
-  exampleIconName="fas fa-text-width"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90input"
 >
   <example-base-content>
@@ -31,7 +30,7 @@
         luxTagId="input-non-reactive"
       >
         <lux-input-prefix *ngIf="showPrefix">
-          <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp;
+          <lux-icon [luxIconName]="'lux-cogs'"></lux-icon>&nbsp;
         </lux-input-prefix>
         <lux-input-suffix *ngIf="showSuffix"> .00 EUR </lux-input-suffix>
       </lux-input>
@@ -71,7 +70,7 @@
       >
 
         <lux-input-prefix *ngIf="showPrefix">
-          <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp;
+          <lux-icon [luxIconName]="'lux-cogs'"></lux-icon>&nbsp;
         </lux-input-prefix>
         <lux-input-suffix *ngIf="showSuffix"> .00 EUR </lux-input-suffix>
       </lux-input>
@@ -99,12 +98,12 @@
 
    <div class="message-box">
       <div fxLayout="row" fxLayoutAlign="start center" class="box-header">
-        <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+        <lux-icon luxIconName="lux-interface-favorite-like-1" luxIconSize="2x"></lux-icon>
         <h2>Beispiel für luxNoLabels</h2>
       </div>
       <div class="search-row" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start center">
         <lux-input [luxNoLabels]="true" luxLabel="Suche" luxPlaceholder="Gib einen Suchbegriff ein..."></lux-input>
-        <lux-button luxIconName="fa-search" luxColor="primary" [luxRaised]="true" luxAriaLabel="Suche" luxTagId="input-search-btn"></lux-button>
+        <lux-button luxIconName="lux-interface-search" luxColor="primary" [luxRaised]="true" luxAriaLabel="Suche" luxTagId="input-search-btn"></lux-button>
       </div>
     </div>
 

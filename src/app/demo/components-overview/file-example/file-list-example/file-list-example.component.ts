@@ -87,7 +87,7 @@ export class FileListExampleComponent extends FileExampleComponent implements Af
     }
   ];
 
-  backgroundIconName = 'lux-interface-upload-box-1';
+  backgroundIconName = 'fas fa-cloud-upload-alt';
   showPreview = true;
   multiple = true;
   heading = 4;

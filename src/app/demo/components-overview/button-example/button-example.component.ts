@@ -27,7 +27,7 @@ export class ButtonExampleComponent implements OnInit, OnDestroy {
   // region Properties der Component
 
   label = 'BUTTON';
-  iconName = 'lux-interface-user-circle';
+  iconName = 'lux-interface-delete-1';
  
   iconShowRight = false;
   disabled = false;

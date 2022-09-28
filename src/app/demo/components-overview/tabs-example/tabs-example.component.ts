@@ -21,7 +21,7 @@ export class TabsExampleComponent {
     {
       title: 'Title #1',
       disabled: false,
-      iconName: 'fas fa-bookmark',
+      iconName: 'lux-interface-bookmark',
       imageSrc: 'assets/png/image-36x36.png',
       imageAlign: 'center',
       imageHeight: '36px',
@@ -33,7 +33,7 @@ export class TabsExampleComponent {
     {
       title: 'Title #2',
       disabled: false,
-      iconName: 'fas fa-user',
+      iconName: 'lux-interface-user-single',
       imageSrc: 'assets/png/image-36x36.png',
       imageHeight: '36px',
       imageWidth: '36px',

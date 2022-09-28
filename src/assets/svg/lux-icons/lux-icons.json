@@ -420,7 +420,7 @@
     "iconPath":  "/assets/svg/lux-icons/Icons/Entertainment/Recording/recording-tape-1--film-television-tv-movies-reel-video.svg"
   },
   {
-    "iconName":  "lux-recording-tape-2--phone-device-mail-mobile-fax-voice-machine-answering",
+    "iconName":  "lux-recording-tape-2--phone-device-mail-email-mobile-fax-voice-machine-answering",
     "iconPath":  "/assets/svg/lux-icons/Icons/Entertainment/Recording/recording-tape-2--phone-device-mail-mobile-fax-voice-machine-answering.svg"
   },
   {
@@ -1424,7 +1424,7 @@
     "iconPath":  "/assets/svg/lux-icons/Icons/Interface-Essentials/Calendar/interface-calendar-remove--calendar-date-day-delete-month-remove-subtract.svg"
   },
   {
-    "iconName":  "lux-interface-calendar-setting--calendar-cog-date-day-gear-load-loading-month-setting-work",
+    "iconName":  "lux-interface-calendar-setting--calendar-cog-cogs-date-day-gear-load-loading-month-setting-work",
     "iconPath":  "/assets/svg/lux-icons/Icons/Interface-Essentials/Calendar/interface-calendar-setting--calendar-cog-date-day-gear-load-loading-month-setting-work.svg"
   },
   {
@@ -2084,7 +2084,7 @@
     "iconPath":  "/assets/svg/lux-icons/Icons/Interface-Essentials/Gemetric-Shape/interface-geometric-triangle--geometric-triangle-shape-design-shapes.svg"
   },
   {
-    "iconName":  "lux-Handshake--gfi__lux-handshake-hands-contract-arangement",
+    "iconName":  "lux-Handshake--gfi__lux-handshake-hands-hand-contract-arangement",
     "iconPath":  "/assets/svg/lux-icons/Icons/Interface-Essentials/Hand Gestures/Handshake--gfi__lux-handshake.svg"
   },
   {
@@ -2488,7 +2488,7 @@
     "iconPath":  "/assets/svg/lux-icons/Icons/Interface-Essentials/Security/interface-security-shield-profile—shield-secure-security-profile-person.svg"
   },
   {
-    "iconName":  "lux-Cogs--gfi__lux-cogs-gears-wheels",
+    "iconName":  "lux-Cogs--gfi__lux-cogs-cog-gears-gear-wheels-wheel",
     "iconPath":  "/assets/svg/lux-icons/Icons/Interface-Essentials/Setting/Cogs--gfi__lux-cogs.svg"
   },
   {
@@ -2848,7 +2848,7 @@
     "iconPath":  "/assets/svg/lux-icons/Icons/Interface-Essentials/Text-Formatting/Signature--gfi.svg"
   },
   {
-    "iconName":  "lux-Spellcheck--gfi-checkmark-spelling-orthography",
+    "iconName":  "lux-Spellcheck--gfi-checkmark-spelling-spell-check-orthography",
     "iconPath":  "/assets/svg/lux-icons/Icons/Interface-Essentials/Text-Formatting/Spellcheck--gfi.svg"
   },
   {
@@ -3268,15 +3268,15 @@
     "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Chat-Bubble/Ovals--gfi__lux-comments.svg"
   },
   {
-    "iconName":  "lux-Bulk--gfi__lux-mail-bulk-letters-envelope-postbox",
+    "iconName":  "lux-Bulk--gfi__lux-mail-email-bulk-letters-envelope-postbox",
     "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Send/Bulk--gfi__lux-mail-bulk.svg"
   },
   {
-    "iconName":  "lux-Envelope-Open--gfi__lux-envelope-open-letter-mail",
+    "iconName":  "lux-Envelope-Open--gfi__lux-envelope-open-letter-mail-email",
     "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Send/Envelope-Open--gfi__lux-envelope-open.svg"
   },
   {
-    "iconName":  "lux-Envelope-Open-Text--gfi__lux-envelope-open-text-mail-letter",
+    "iconName":  "lux-Envelope-Open-Text--gfi__lux-envelope-open-text-mail-letter-email",
     "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Send/Envelope-Open-Text--gfi__lux-envelope-open-text.svg"
   },
   {

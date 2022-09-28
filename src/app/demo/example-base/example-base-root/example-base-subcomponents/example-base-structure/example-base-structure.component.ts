@@ -44,7 +44,7 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
     this.footerService.pushButtonInfos(
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Dokumentation',
-        iconName: 'fas fa-external-link-alt',
+        iconName: 'lux-interface-arrows-expand-5',
         cmd: 'documentation-btn',
         color: 'primary',
         flat: true,
@@ -56,7 +56,7 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
       }),
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Overview',
-        iconName: 'fas fa-caret-left',
+        iconName: 'lux-interface-arrows-button-left',
         cmd: 'back-btn',
         color: 'primary',
         flat: true,

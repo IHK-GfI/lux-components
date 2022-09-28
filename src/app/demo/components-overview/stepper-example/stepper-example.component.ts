@@ -29,7 +29,7 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
 
   steps: any[] = [
     {
-      iconName: 'fas fa-bookmark',
+      iconName: 'lux-interface-bookmark',
       iconSize: '2x',
       optional: false,
       editable: true,
@@ -42,7 +42,7 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
       hide: false
     },
     {
-      iconName: 'fas fa-user',
+      iconName: 'lux-interface-user-single',
       iconSize: '2x',
       optional: false,
       editable: true,
@@ -62,19 +62,19 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
 
   previousButtonConfig: ILuxStepperButtonConfig = {
     label: '',
-    iconName: 'fa-arrow-left',
+    iconName: 'lux-interface-arrows-left',
     color: 'primary'
   };
 
   nextButtonConfig: ILuxStepperButtonConfig = {
     label: '',
-    iconName: 'fa-arrow-right',
+    iconName: 'lux-interface-arrows-right',
     color: 'primary'
   };
 
   finishButtonConfig: ILuxStepperButtonConfig = {
     label: '',
-    iconName: 'fa-check',
+    iconName: 'lux-interface-validation-check',
     color: 'primary'
   };
 
@@ -83,7 +83,7 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
   linear = true;
   useCustomIcons = false;
   currentStepNumber = 0;
-  editedIconName = 'fas fa-pencil-alt';
+  editedIconName = 'lux-interface-edit-pencil';
   horizontalAnimation = false;
   verticalStepper = false;
 
@@ -127,7 +127,7 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
     const snackbarDuration = 5000;
 
     this.snackbar.open(snackbarDuration, {
-      iconName: 'fas fa-info',
+      iconName: 'lux-info',
       iconSize: '2x',
       iconColor: 'green',
       text: 'Stepper erfolgreich abgeschlossen!'

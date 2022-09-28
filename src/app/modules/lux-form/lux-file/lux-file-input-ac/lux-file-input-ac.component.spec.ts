@@ -881,7 +881,7 @@ class FileComponent {
   uploadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'lux-interface-upload-box-1',
+    iconName: 'fas fa-cloud-upload-alt',
     label: 'Hochladen',
     onClick: $event => null
   };

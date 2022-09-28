@@ -10,7 +10,7 @@ export class MasterDetailExampleDataService {
   createExampleData(amount: number) {
     const now = Date.now();
     const data = [];
-    const icons = ['fas fa-home', 'fas fa-cogs'];
+    const icons = ['lux-interface-home-3', 'lux-cogs'];
 
     for (let i = 0; i < amount; i++) {
       data.push({

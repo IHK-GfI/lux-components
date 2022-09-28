@@ -23,7 +23,7 @@ export class CardExampleComponent {
   titleLineBreak = true;
   title = `Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
   subTitle = 'Sed eiusmod tempor incidunt ut labore et dolore magna aliqua.';
-  iconName ="fas fa-cogs"
+  iconName ="lux-cogs"
   iconShowRight = true;
   raised = false;
   expanded = false;
@@ -40,7 +40,7 @@ export class CardExampleComponent {
     console.log('Card clicked');
     this.snackbar.open(3000, {
       text: 'Card clicked',
-      iconName: 'fas fa-info'
+      iconName: 'lux-info'
     });
   }
 

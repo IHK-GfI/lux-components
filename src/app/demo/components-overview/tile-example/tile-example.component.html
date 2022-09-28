@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Tile"
-  exampleIconName="fas fa-qrcode"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tile"
 >
   <example-base-content [exampleCentered]="true">
@@ -12,7 +11,7 @@
       luxTagId="example-tile"
       (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
     >
-      <lux-icon luxIconName="fas fa-video" *ngIf="showIcon"></lux-icon>
+      <lux-icon luxIconName="lux-camera-video" *ngIf="showIcon"></lux-icon>
       <lux-image
         luxImageSrc="assets/svg/red_power_button.svg"
         luxImageWidth="50px"

@@ -52,17 +52,17 @@
     <!-- Zugriff auf das aktuell selektierte Element ueber "detail" -->
     <ng-template let-detail>
         <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0">
-          <lux-tab luxTitle="Konfiguration" luxIconName="fas fa-toolbox">
+          <lux-tab luxTitle="Konfiguration" luxIconName="lux-interface-setting-tool-box">
             <ng-template>
               <detail-example [masterDetailConfig]="configuration" [selectedDetail]="detail"></detail-example>
             </ng-template>
           </lux-tab>
-          <lux-tab luxTitle="Scroll-Example" luxIconName="fas fa-sort-amount-down">
+          <lux-tab luxTitle="Scroll-Example" luxIconName="lux-amount-down-asc">
             <ng-template>
               <text-example [title]="detail.title"></text-example>
             </ng-template>
           </lux-tab>
-          <lux-tab luxTitle="Deaktiviert" luxIconName="fas fa-ban" [luxDisabled]="true">
+          <lux-tab luxTitle="Deaktiviert" luxIconName="lux-interface-block" [luxDisabled]="true">
             <ng-template>
             </ng-template>
           </lux-tab>
@@ -87,10 +87,10 @@
           (luxClicked)="selectedDetail = masterEntries[4]"
         >
         </lux-button>
-        <lux-menu luxIconName="fa fa-bars" luxTagId="master_footer_menu">
+        <lux-menu luxIconName="lux-interface-setting-menu-1" luxTagId="master_footer_menu">
           <lux-menu-item
             luxLabel="Liste umkehren"
-            luxIconName="fas fa-undo"
+            luxIconName="lux-interface-arrows-turn-backward"
             [luxDisabled]="masterEntries.length === 0"
             (luxClicked)="reverseList()"
           >
@@ -102,16 +102,16 @@
             (luxClicked)="clearList()"
           >
           </lux-menu-item>
-          <lux-menu-item luxLabel="Liste füllen" luxIconName="fas fa-fill" (luxClicked)="fillList()"> </lux-menu-item>
+          <lux-menu-item luxLabel="Liste füllen" luxIconName="lux-interface-edit-layer-add-2" (luxClicked)="fillList()"> </lux-menu-item>
           <lux-menu-item
             luxLabel="Liste füllen (erste 10 Elemente)"
-            luxIconName="fas fa-fill"
+            luxIconName="lux-interface-edit-layer-add-2"
             (luxClicked)="fillListFirstTenItems()"
           >
           </lux-menu-item>
           <lux-menu-item
             luxLabel="Liste füllen (letzte 10 Elemente)"
-            luxIconName="fas fa-fill"
+            luxIconName="lux-interface-edit-layer-add-2"
             (luxClicked)="fillListLastTenItems()"
           >
           </lux-menu-item>

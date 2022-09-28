@@ -25,7 +25,7 @@ export class LuxFilePreviewBase implements OnInit, OnDestroy {
   downloadTagId = 'file-preview-download-btn';
   downloadAriaLabel = $localize `:@@luxc.file-preview.download.arialabel:Datei herunterladen`;
 
-  closeIconName = 'fas fa-window-close';
+  closeIconName = 'lux-close';
   closeTagId = 'file-preview-close-btn';
   closeAriaLabel = $localize `:@@luxc.file-preview.close.arialabel:Dateivorschau schließen`;
 
