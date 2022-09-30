@@ -5,6 +5,7 @@ import {
   ContentChild,
   ContentChildren,
   EventEmitter,
+  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -33,15 +34,37 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() luxTitle?: string;
   @Input() luxSubTitle?: string;
+  @Input() luxIconName?: string;
   @Input() luxDisabled?: boolean;
   @Input() luxTagId?: string;
   @Input() luxTitleLineBreak = true;
   @Input() luxExpanded = false;
   @Input() luxUseTabIndex = true;
   @Input() luxHeading = 2;
-  @Output() luxExpandedChange = new EventEmitter<boolean>();
-  @Output() luxAfterExpansion = new EventEmitter<void>();
-  @Output() luxClicked = new EventEmitter<Event>();
+
+  @Input() set luxExpandedLabelOpen(label: string) {
+    if(label) {
+      this._luxExpandedLabelOpen = label;
+    }
+  }
+  get luxExpandedLabelOpen(){
+    return this._luxExpandedLabelOpen;
+  }
+  @Input() set luxExpandedLabelClose(label: string) {
+    if(label) {
+      this._luxExpandedLabelClose = label;
+    }
+  }
+  get luxExpandedLabelClose(){
+    return this._luxExpandedLabelClose;
+  }
+
+  _luxExpandedLabelOpen = $localize `:@@luxc.card.expandedLabel.open:Mehr`;
+  _luxExpandedLabelClose = $localize `:@@luxc.card.expandedLabel.close:Weniger`;
+
+  @Output() luxExpandedChange: EventEmitter<boolean> = new EventEmitter();
+  @Output() luxAfterExpansion: EventEmitter<void> = new EventEmitter();
+  @Output() luxClicked: EventEmitter<Event> = new EventEmitter();
 
   @ContentChildren(LuxIconComponent, { descendants: false }) iconComponents!: QueryList<LuxIconComponent>;
   @ContentChild(LuxCardActionsComponent) actionsComponent?: LuxCardActionsComponent;

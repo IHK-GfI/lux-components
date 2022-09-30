@@ -1,3 +1,4 @@
+import { ConsoleLogger } from '@angular/compiler-cli/ngcc';
 import {
   ChangeDetectorRef,
   ContentChild,

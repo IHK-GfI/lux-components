@@ -10,25 +10,29 @@ import { LuxPopupsModule } from '../lux-popups/lux-popups.module';
 import { LuxFilterSaveDialogComponent } from './lux-filter-dialog/lux-filter-save-dialog/lux-filter-save-dialog.component';
 import { LuxFilterLoadDialogComponent } from './lux-filter-dialog/lux-filter-load-dialog/lux-filter-load-dialog.component';
 import { LuxFilterItemDirective } from './lux-filter-base/lux-filter-item.directive';
+import { LuxFilterFormExtendedComponent } from './lux-filter-form/lux-filter-form-extended/lux-filter-form-extended.component';
+import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 
 @NgModule({
-    declarations: [
-        LuxFilterFormComponent,
-        LuxFilterItemDirective,
-        LuxFilterSaveDialogComponent,
-        LuxFilterLoadDialogComponent
-    ],
-    imports: [
-        CommonModule,
-        FlexLayoutModule,
-        FormsModule,
-        ReactiveFormsModule,
-        LuxLayoutModule,
-        LuxFormModule,
-        LuxActionModule,
-        LuxPopupsModule
-    ],
-    exports: [LuxFilterFormComponent, LuxFilterItemDirective, LuxFilterSaveDialogComponent, LuxFilterLoadDialogComponent],
-    providers: []
+  declarations: [
+    LuxFilterFormComponent,
+    LuxFilterItemDirective,
+    LuxFilterSaveDialogComponent,
+    LuxFilterLoadDialogComponent,
+    LuxFilterFormExtendedComponent
+  ],
+  imports: [
+    CommonModule,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    LuxLayoutModule,
+    LuxFormModule,
+    LuxActionModule,
+    LuxPopupsModule,
+    LuxDirectivesModule
+  ],
+  exports: [LuxFilterFormComponent, LuxFilterItemDirective, LuxFilterSaveDialogComponent, LuxFilterLoadDialogComponent, LuxFilterFormExtendedComponent],
+  providers: []
 })
 export class LuxFilterModule {}

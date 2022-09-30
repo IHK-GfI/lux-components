@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Autocomplete"
-  exampleIconName="fas fa-font"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90autocomplete"
 >
   <example-base-content>
@@ -38,7 +37,7 @@
         luxTagId="autocomplete-non-reactive"
       >
         <lux-input-prefix *ngIf="showPrefix">
-          <lux-icon [luxIconName]="'fas fa-tasks'"></lux-icon>&nbsp;
+          <lux-icon [luxIconName]="'lux-tasks'"></lux-icon>&nbsp;
         </lux-input-prefix>
         <lux-input-suffix *ngIf="showSuffix">ABC</lux-input-suffix>
       </lux-autocomplete>
@@ -79,7 +78,7 @@
         luxTagId="autocomplete-reactive"
       >
         <lux-input-prefix *ngIf="showPrefix">
-          <lux-icon [luxIconName]="'fas fa-tasks'"></lux-icon>&nbsp;
+          <lux-icon [luxIconName]="'lux-tasks'"></lux-icon>&nbsp;
         </lux-input-prefix>
         <lux-input-suffix *ngIf="showSuffix">ABC</lux-input-suffix>
       </lux-autocomplete>
@@ -285,14 +284,13 @@
       [(luxValue)]="luxPanelWidth"
     >
     </lux-input>
-    <div class="lux-highlight-section column">
-      <lux-toggle
-        class="lux-highlight-section"
-        [(luxChecked)]="optionMultiline"
-        luxLabel="luxOptionMultiline"
-        luxHint="Mit diesem Flag kann aktiviert werden, dass der Text in einer Option mehrzeilig wird."
-      ></lux-toggle>
-    </div>
+    <lux-toggle
+      class="lux-highlight-section"
+      [luxNoTopLabel]="true"
+      [(luxChecked)]="optionMultiline"
+      luxLabel="luxOptionMultiline"
+      luxHint="Mit diesem Flag kann aktiviert werden, dass der Text in einer Option mehrzeilig wird."
+    ></lux-toggle>
     <div fxLayout="column" class="lux-highlight-section">
       <lux-input
         luxName="autocomplete_luxErrorMessageNotAnOption"
@@ -344,6 +342,7 @@
       class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [luxNoTopLabel]="true"
       [(luxChecked)]="labelLongFormat"
     >
     </lux-toggle>

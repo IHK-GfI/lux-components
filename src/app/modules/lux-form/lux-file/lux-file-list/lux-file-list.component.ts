@@ -47,35 +47,35 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
   @Input() luxHeading = 2;
 
   _luxUploadActionConfig: ILuxFilesListActionConfig = {
-      disabled: false,
-      disabledHeader: false,
-      hidden: false,
-      hiddenHeader: false,
-      iconName: 'fas fa-cloud-upload-alt',
-      iconNameHeader: 'fas fa-cloud-upload-alt',
-      label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
-      labelHeader: $localize`:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
+    disabled: false,
+    disabledHeader: false,
+    hidden: false,
+    hiddenHeader: false,
+    iconName: 'lux-interface-delete-bin-5',
+    iconNameHeader: 'lux-interface-delete-bin-5',
+    label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
+    labelHeader: $localize`:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
   }
   _luxDeleteActionConfig: ILuxFileListActionConfig = {
     disabled: false,
     disabledHeader: false,
     hidden: false,
     hiddenHeader: false,
-    iconName: 'fas fa-trash',
-    iconNameHeader: 'fas fa-trash',
+    iconName: 'lux-interface-delete-bin-5',
+    iconNameHeader: 'lux-interface-delete-bin-5',
     label: $localize`:@@luxc.file-list.delete.lbl:Löschen`,
     labelHeader: $localize`:@@luxc.file-list.delete_title.lbl:Alle Dateien entfernen`
   };
   _luxViewActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: true,
-    iconName: 'fas fa-eye',
+    iconName: 'lux-interface-edit-view',
     label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
   };
   _luxDownloadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: true,
-    iconName: 'fas fa-download',
+    iconName: 'lux-interface-download-button-2',
     label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
   };
 
@@ -155,7 +155,7 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
   }
 
   shouldDisplayPreviewImg(index: number): boolean {
-    return this.luxShowPreview && this.fileIcons && !!this.fileIcons[index] && this.fileIcons[index] === 'fas fa-file-image';
+    return this.luxShowPreview && this.fileIcons && !!this.fileIcons[index] && this.fileIcons[index] === 'lux-file-image';
   }
 
   /**
@@ -349,16 +349,16 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
       selectedFiles.push(...this.luxSelected);
     }
     selectedFiles.forEach((selectedFile: ILuxFileObject) => {
-      let newFileIcon = 'fas fa-file';
+      let newFileIcon = 'lux-interface-content-file';
       if (selectedFile.type) {
         if (selectedFile.type.indexOf('image') > -1) {
-          newFileIcon = 'fas fa-file-image';
+          newFileIcon = 'lux-file-image';
         } else if (selectedFile.type.indexOf('pdf') > -1) {
-          newFileIcon = 'fas fa-file-pdf';
+          newFileIcon = 'lux-file-pdf';
         } else if (selectedFile.type.indexOf('spreadsheet') > -1) {
-          newFileIcon = 'fas fa-file-excel';
+          newFileIcon = 'lux-interface-file-delete';
         } else if (selectedFile.type.indexOf('officedocument') > -1) {
-          newFileIcon = 'fas fa-file-signature';
+          newFileIcon = 'lux-file-signature';
         } else if (selectedFile.type.indexOf('json') > -1) {
           newFileIcon = 'fas fa-file-code';
         }

@@ -2,14 +2,17 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  ContentChild,
   ContentChildren,
+  ElementRef,
   EventEmitter,
   HostListener,
   Input,
   OnDestroy,
   OnInit,
   Output,
-  QueryList
+  QueryList,
+  ViewChild
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -24,6 +27,7 @@ import { LuxFilterLoadDialogComponent } from '../lux-filter-dialog/lux-filter-lo
 import { LuxFilterItemDirective } from '../lux-filter-base/lux-filter-item.directive';
 import { LuxFilterItem } from '../lux-filter-base/lux-filter-item';
 import { LuxLookupComboboxComponent } from '../../lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
+import { LuxFilterFormExtendedComponent } from './lux-filter-form-extended/lux-filter-form-extended.component';
 
 @Component({
   selector: 'lux-filter-form',
@@ -38,12 +42,14 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   };
 
   @ContentChildren(LuxFilterItemDirective, { descendants: true }) formElementes!: QueryList<LuxFilterItemDirective>;
+  @ContentChild(LuxFilterFormExtendedComponent) extendedOptions?: LuxFilterFormExtendedComponent;
 
   _luxFilterValues = {};
   _luxFilterExpanded = false;
 
   @Input() luxTitle = $localize `:@@luxc.filter.title:Filter`;
   @Input() luxButtonRaised = false;
+  @Input() luxButtonFlat = false;
   @Input() luxButtonFilterLabel = $localize `:@@luxc.filter.filter.btn:Filtern`;
   @Input() luxButtonFilterColor: LuxThemePalette = 'primary';
   @Input() luxButtonResetLabel = $localize `:@@luxc.filter.reset.btn:Zurücksetzen`;
@@ -61,6 +67,26 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   @Input() luxShowChips = true;
   @Input() luxStoredFilters: LuxFilter[] = [];
   @Input() luxDisableShortcut = false;
+  @Input() luxShowAsCard = false;
+  @Input() set luxExpandedLabelOpen(label: string) {
+    if(label) {
+      this._luxExpandedLabelOpen = label;
+    }
+  }
+  get luxExpandedLabelOpen() {
+    return this._luxExpandedLabelOpen;
+  }
+  _luxExpandedLabelOpen = $localize `:@@luxc.filter.expandedLabel.open:Mehr Optionen`;
+  @Input() set luxExpandedLabelClose(label: string) {
+    if(label){
+      this._luxExpandedLabelClose = label;
+    }
+  }
+  get luxExpandedLabelClose() {
+    return this._luxExpandedLabelClose;
+  }
+  _luxExpandedLabelClose = $localize `:@@luxc.filter.expandedLabel.close:Weniger Optionen`;
+
 
   @Input()
   get luxFilterExpanded() {
@@ -225,6 +251,9 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
     // Filtern...
     this.onFilter();
+
+    // Chips aktualisieren
+    this.updateFilterChips();
 
     // Die Interessenten darüber informieren, dass ein Filterreset durchgeführt wurde.
     this.luxOnReset.emit();

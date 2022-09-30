@@ -1,0 +1,349 @@
+<example-base-structure
+  exampleTitle="Input-Authentic"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90input"
+>
+  <example-base-content>
+    <div fxLayout="column" fxLayoutGap="32px">
+      <h3>Beispiel ohne Reactive-Form</h3>
+      <lux-input-ac
+        [(luxDisabled)]="disabled"
+        [luxRequired]="required"
+        [luxReadonly]="readonly"
+        [(luxValue)]="value"
+        [luxAutocomplete]="autocomplete"
+        [luxPlaceholder]="placeholder"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
+        [luxMaxLength]="maxLength"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxControlValidators]="controlValidators"
+        [luxType]="inputType"
+        [luxNumberAlignLeft]="numberLeft"
+        [luxHideCounterLabel]="hideCounterLabel"
+        [luxLabelLongFormat]="labelLongFormat"
+        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+        luxTagId="input-non-reactive"
+      >
+        <lux-input-ac-prefix *ngIf="showPrefix">
+          <lux-icon [luxIconName]="'info'"></lux-icon>&nbsp;
+        </lux-input-ac-prefix>
+        <lux-input-ac-suffix *ngIf="showSuffix"> .00 EUR </lux-input-ac-suffix>
+      </lux-input-ac>
+      <div
+        class="lux-highlight-section"
+        fxLayout="row"
+        fxLayoutGap="5px"
+        *ngIf="value !== null && value !== undefined"
+      >
+        <span fxFlex="0 0 auto">Wert:</span>
+        <span fxFlex="auto">{{ value | json }}</span>
+      </div>
+    </div>
+    <div fxLayout="column" [formGroup]="form" fxLayoutGap="32px" class="lux-mt-5">
+      <h3>Beispiel in Reactive-Form</h3>
+      <lux-input-ac
+        [(luxDisabled)]="disabled"
+        [luxReadonly]="readonly"
+        [luxAutocomplete]="autocomplete"
+        [luxPlaceholder]="placeholder"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
+        [luxMaxLength]="maxLength"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxControlBinding]="controlBinding"
+        [luxType]="inputType"
+        [luxNumberAlignLeft]="numberLeft"
+        [luxHideCounterLabel]="hideCounterLabel"
+        [luxLabelLongFormat]="labelLongFormat"
+        (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
+        luxTagId="input-reactive"
+      >
+        <lux-input-ac-prefix *ngIf="showPrefix">
+          <lux-icon [luxIconName]="'lux-cogs'"></lux-icon>&nbsp;
+        </lux-input-ac-prefix>
+        <lux-input-ac-suffix *ngIf="showSuffix"> .00 EUR </lux-input-ac-suffix>
+      </lux-input-ac>
+      <div fxLayout="column" class="lux-highlight-section">
+        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+          <span fxFlex="35px">Wert:</span>
+          <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+          <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
+            <span fxFlex="35px">Valid:</span>
+            <span fxFlex="30px">{{ form.valid }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Dirty:</span>
+            <span fxFlex="30px">{{ form.dirty }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Touched:</span>
+            <span fxFlex="30px">{{ form.touched }}</span>
+          </div>
+        </div>
+      </div>
+      <h3>Beispiel-Formular</h3>
+      <lux-card
+        luxTitle="Suche nach Anschrift"
+        class="example-form"
+      >
+      <lux-card-content fxLayout="column" fxLayoutGap="20px">
+        <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
+          <lux-input-ac
+            luxLabel="Firma"
+            luxPlaceholder="IHK-GfI"
+            [luxValue]="exampleCompany"
+            fxFlex="50"
+            [luxRequired]="true"
+          ></lux-input-ac>
+          <lux-datepicker-ac
+            luxLabel="Geburtsdatum"
+            luxPlaceholder="01.05.2022"
+            [luxValue]="exampleDate"
+            fxFlex="50"
+            luxHint="Diese Angabe ist optional."
+          >
+        </lux-datepicker-ac>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
+          <lux-input-ac
+            luxLabel="Straße"
+            luxPlaceholder="Hörder Hafenstr."
+            [luxValue]="exampleStreet"
+            fxFlex="50"
+          ></lux-input-ac>
+          <lux-input-ac
+            luxLabel="Hausnummer"
+            luxPlaceholder="5"
+            [luxValue]="exampleNumber"
+            fxFlex="50"
+            luxHint="Dieser Hinweis erscheint nur onFocus"
+            [luxHintShowOnlyOnFocus]="true"
+            [luxAutocomplete]="autocomplete"
+          >
+        </lux-input-ac>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
+          <lux-input-ac
+            luxLabel="Postleitzahl"
+            luxPlaceholder="44263"
+            [luxValue]="exampleCompany"
+            fxFlex="50"
+            luxHint="Die Postleitzahl besteht aus 5 Ziffern."
+          ></lux-input-ac>
+          <lux-input-ac
+            luxLabel="Ort"
+            luxPlaceholder="Dortmund"
+            [luxValue]="exampleDate"
+            fxFlex="50"
+          ></lux-input-ac>
+        </div>
+      </lux-card-content>
+      <lux-card-actions>
+        <lux-button [luxStroked]="true" luxLabel="ZURÜCKSETZEN" luxColor="primary"></lux-button>
+        <lux-button [luxFlat]="true" luxLabel="SUCHEN" luxColor="primary"></lux-button>
+      </lux-card-actions>
+    </lux-card>
+
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
+    ></lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="lux-highlight-section"
+      luxLabel="luxLabel"
+      luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
+      [(luxValue)]="label"
+    >
+    </lux-input>
+    <div class="lux-highlight-section column">
+      <lux-input
+        luxLabel="luxHint"
+        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+        [(luxValue)]="hint"
+      >
+      </lux-input>
+      <lux-toggle
+        luxLabel="luxHintShowOnlyOnFocus"
+        luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+        [(luxChecked)]="hintShowOnlyOnFocus"
+        [luxNoTopLabel]="true"
+      ></lux-toggle>
+    </div>
+    <lux-input
+      class="lux-highlight-section"
+      luxLabel="luxPlaceholder"
+      luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
+      [(luxValue)]="placeholder"
+    >
+    </lux-input>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="disabled"
+      luxLabel="luxDisabled"
+      luxHint="Erlaubt es, die Component zu deaktivieren."
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle>
+    <div class="lux-highlight-section column">
+      <div fxLayout="row wrap" fxLayoutGap="8px">
+        <lux-button
+          luxLabel="Enable"
+          luxColor="primary"
+          (luxClicked)="form.get(controlBinding)!.enable()"
+          [luxDisabled]="!form.get(controlBinding)!.disabled"
+        ></lux-button>
+        <lux-button
+          luxLabel="Disable"
+          luxColor="primary"
+          (luxClicked)="form.get(controlBinding)!.disable()"
+          [luxDisabled]="form.get(controlBinding)!.disabled"
+        ></lux-button>
+      </div>
+      <div class="lux-hint lux-pt-3">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
+    </div>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="readonly"
+      luxLabel="luxReadonly"
+      luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="luxRequired"
+      (luxCheckedChange)="changeRequired($event)"
+      [luxNoTopLabel]="true"
+    >
+      <lux-form-hint>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
+        Reactive-Form sind.<br />
+        <b
+          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
+          Form-Control gesetzt.</b
+        >
+      </lux-form-hint>
+    </lux-toggle>
+    <div class="lux-highlight-section column">
+      <lux-select
+        luxLabel="luxType"
+        luxHint="Über diese Property kann der erwartete Eingabewert für das Feld definiert werden."
+        [(luxSelected)]="inputType"
+        [luxOptions]="typeOptions"
+      >
+      </lux-select>
+      <lux-input
+        luxLabel="luxMaxLength"
+        luxHint="Über diese Property kann die maximale Länge angegeben werden. Vorsicht funktioniert nicht für den Type 'number'"
+        luxType="number"
+        [luxDisabled]="inputType === 'number'"
+        [luxNumberAlignLeft]="true"
+        [(luxValue)]="maxLength"
+      >
+      </lux-input>
+      <lux-toggle
+        luxLabel="luxNumberAlignLeft"
+        luxHint="Mithilfe dieses Flags kann eingestellt werden, ob Zahlen links- oder rechtsbündig dargestellt werden."
+        [(luxChecked)]="numberLeft"
+        [luxNoTopLabel]="true"
+        *ngIf="inputType === 'number'"
+      >
+      </lux-toggle>
+      <lux-toggle
+        luxLabel="luxHideCounterLabel"
+        luxHint="Mithilfe dieses Flags kann eingestellt werden, ob das Counter-Label ausgeblendet werden soll."
+        [(luxChecked)]="hideCounterLabel"
+        [luxNoTopLabel]="true"
+        *ngIf="inputType === 'text' && maxLength"
+      >
+      </lux-toggle>
+    </div>
+    <lux-select
+      class="lux-highlight-section"
+      luxLabel="luxAutocomplete"
+      luxHint="Dieser Flag schaltet die Einblendung früherer Eingaben für dieses Feld durch den Browser ein."
+      [luxOptions]="autocompleteOptions"
+      [(luxSelected)]="autocomplete"
+    >
+    </lux-select>
+    <div class="lux-highlight-section column">
+      <lux-toggle
+        [(luxChecked)]="showPrefix"
+        [luxNoTopLabel]="true"
+        luxLabel="Präfix einblenden"
+        luxHint="Blendet einen 'lux-input-prefix' ein."
+      >
+      </lux-toggle>
+      <lux-toggle
+        [(luxChecked)]="showSuffix"
+        [luxNoTopLabel]="true"
+        luxLabel="Suffix einblenden"
+        luxHint="Blendet einen 'lux-input-suffix' ein."
+      >
+      </lux-toggle>
+    </div>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div class="lux-highlight-section column">
+      <lux-toggle
+        luxLabel="luxErrorMessage verwenden"
+        luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
+        [(luxChecked)]="useErrorMessage"
+        [luxNoTopLabel]="true"
+      >
+      </lux-toggle>
+      <lux-input
+        luxLabel="luxErrorMessage"
+        luxHint="Über diese Property lässt sich eine feste Fehlermeldung
+                 (unabhängig vom speziellen Validierungsfehler) einstellen."
+        [(luxValue)]="errorMessage"
+        *ngIf="useErrorMessage"
+      >
+      </lux-input>
+      <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
+    </div>
+    <lux-select
+      class="lux-highlight-section"
+      [luxOptions]="validatorOptions"
+      luxOptionLabelProp="label"
+      [luxMultiple]="true"
+      [luxPickValue]="pickValidatorValueFn"
+      luxLabel="luxControlValidators"
+      [(luxSelected)]="controlValidators"
+    >
+      <lux-form-hint>
+        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und
+        Weise trotzdem Validatoren zu übergeben.<br />
+        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die
+        entsprechende FormControl setzen.
+      </lux-form-hint>
+    </lux-select>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
+      luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [luxNoTopLabel]="true"
+      [(luxChecked)]="labelLongFormat"
+    >
+    </lux-toggle>
+  </example-base-advanced-options>
+</example-base-structure>

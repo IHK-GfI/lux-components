@@ -26,7 +26,7 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
   btnShowErrors = LuxAppFooterButtonInfo.generateInfo({
     cmd: 'btnShowErrors',
     label: 'Fehler anzeigen',
-    iconName: 'fas fa-exclamation',
+    iconName: 'lux-exclamation-mark',
     raised: true,
     alwaysVisible: false,
     onClick: this.highlightErrors.bind(this)
@@ -35,7 +35,7 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
   btnSave = LuxAppFooterButtonInfo.generateInfo({
     cmd: 'btnSave',
     label: 'Speichern',
-    iconName: 'fas fa-save',
+    iconName: 'lux-save',
     raised: true,
     color: 'primary',
     alwaysVisible: false,
@@ -47,7 +47,7 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
   ngOnInit(): void {
     this.buttonService.buttonInfos = [this.btnShowErrors, this.btnSave, LuxAppFooterButtonInfo.generateInfo({
       label: 'Dokumentation',
-      iconName: 'fas fa-external-link-alt',
+      iconName: 'lux-interface-arrows-expand-5',
       cmd: 'documentation-btn',
       color: 'primary',
       raised: true,
@@ -58,7 +58,7 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
     }),
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Overview',
-        iconName: 'fas fa-caret-left',
+        iconName: 'lux-interface-arrows-button-left',
         cmd: 'back-btn',
         color: 'primary',
         raised: true,

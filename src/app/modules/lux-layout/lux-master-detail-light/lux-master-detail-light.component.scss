@@ -1,0 +1,60 @@
+
+.animation-container {
+  position: relative; 
+  display: flex; 
+  width: 100%; 
+  height: 100%; 
+  overflow: hidden;
+}
+
+
+.master-light-container {
+  height: 100%;
+  &.extended {   
+  }
+  &.collapsed {
+    left: -5px;
+    height: 100%;
+    border: 1px solid rgba(black, 0.12);
+    border-radius: 4px;
+    background-color: #fff;
+  }
+}
+
+.master-light-header{
+  width: 100%;
+}
+.master-light-content{
+  width: 100%;
+ 
+  ::ng-deep lux-list {
+    border: unset;
+  }
+  overflow: auto;
+}
+.master-light-footer {
+  border: 1px solid rgba(black, 0.12);
+  border-radius: 4px;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.detail-light-container {
+  border: 1px solid rgba(black, 0.12);
+  border-radius: 4px;
+  height: 100%;
+  background-color: #fff;
+  overflow-x: auto;
+}
+
+.detail-light-header{
+  // background-color: lavenderblush;
+  // height: 30px;
+}
+.detail-light-content{
+  // background-color: papayawhip;
+  // height: 50px;
+}
+.master-light-toggle {
+
+}

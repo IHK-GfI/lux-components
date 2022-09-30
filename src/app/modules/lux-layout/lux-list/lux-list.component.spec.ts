@@ -257,7 +257,7 @@ describe('LuxListComponent', () => {
   template: `
     <lux-list
       luxEmptyLabel="Empty-Label"
-      luxEmptyIconName="fas fa-times"
+      luxEmptyIconName="lux-interface-delete-1"
       luxEmptyIconSize="5x"
       [luxSelectedPosition]="selectedPosition"
       (luxSelectedPositionChange)="onSelected($event)"

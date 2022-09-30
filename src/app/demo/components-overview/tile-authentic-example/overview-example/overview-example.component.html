@@ -1,0 +1,83 @@
+<div class="page">
+  <div fxLayout="column" fxLayoutGap="24px">
+    <div fxLayout="row wrap"  fxLayoutAlign="start start" fxLayoutGap="24px grid"  *ngFor="let color of ['primary', 'accent', 'warn', 'default']">
+      <div class="lux-tile-authentic-wrapper-demo">
+        <lux-tile-authentic
+          luxLabel="luxBadgeNotification"
+          luxSubTitle="luxBadgeColor: {{ color }}, luxBadgeSize: small, luxBadgePosition: above after"
+          luxBadgeNotification="5"
+          luxBadgeColor="{{color}}"
+          luxBadgeSize="small"
+          luxTagId="example-tile"
+        >
+        <lux-icon luxIconName="pets" ></lux-icon>
+      </lux-tile-authentic>
+      </div>
+      <div class="lux-tile-authentic-wrapper-demo">
+        <lux-tile-authentic
+          luxLabel="luxBadgeNotification"
+          luxSubTitle="luxBadgeColor: {{ color }}, luxBadgeSize: medium, luxBadgePosition: above after"
+          luxBadgeNotification="7"
+          luxBadgeColor="{{color}}"
+          luxBadgeSize="medium"
+          luxTagId="example-tile"
+        >
+        <lux-icon luxIconName="pets" ></lux-icon>
+      </lux-tile-authentic>
+    </div>
+    <div class="lux-tile-authentic-wrapper-demo">
+      <lux-tile-authentic
+        luxLabel="mit luxBadgeNotification"
+        luxSubTitle="luxBadgeColor: {{ color }}, luxBadgeSize: large, luxBadgePosition: above after"
+        luxBadgeNotification="15"
+        luxBadgeColor="{{color}}"
+        luxBadgeSize="large"
+        luxTagId="example-tile"
+      >
+        <lux-icon luxIconName="pets" ></lux-icon>
+      </lux-tile-authentic>
+    </div>
+
+    </div>
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px grid">
+      <div class="lux-tile-authentic-wrapper-demo">
+      <lux-tile-authentic
+        luxLabel="luxBadgeNotification"
+        luxSubTitle=" luxBadgeDisabled: true, luxBadgeSize: small, luxBadgePosition: above after"
+        luxBadgeNotification="5"
+        [luxBadgeDisabled]="true"
+        luxBadgeSize="small"
+        luxTagId="example-tile"
+      >
+        <lux-icon luxIconName="pets" ></lux-icon>
+      </lux-tile-authentic>
+    </div>
+    <div class="lux-tile-authentic-wrapper-demo">
+      <lux-tile-authentic
+        luxLabel="luxBadgeNotification"
+        luxSubTitle=" luxBadgeDisabled: true, luxBadgeSize: medium, luxBadgePosition: above after"
+        luxBadgeNotification="7"
+        [luxBadgeDisabled]="true"
+        luxBadgeSize="medium"
+        luxTagId="example-tile"
+      >
+        <lux-icon luxIconName="pets" ></lux-icon>
+      </lux-tile-authentic>
+    </div>
+    <div class="lux-tile-authentic-wrapper-demo">
+      <lux-tile-authentic
+        luxLabel="luxBadgeNotification"
+        luxSubTitle=" luxBadgeDisabled: true, luxBadgeSize: large, luxBadgePosition: above after"
+        luxBadgeNotification="15"
+        [luxBadgeDisabled]="true"
+        luxBadgeSize="large"
+        luxTagId="example-tile"
+      >
+        <lux-icon luxIconName="pets" ></lux-icon>
+      </lux-tile-authentic>
+    </div>
+
+    </div>
+  </div>
+</div>
+

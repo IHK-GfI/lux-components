@@ -5,7 +5,6 @@ mat-tab-group.lux-tabs-no-divider ::ng-deep mat-tab-header {
 }
 
 mat-tab-group ::ng-deep div[role="tab"] {
-  margin: $outline-width;
 
   &:not(.mat-tab-disabled) {
     opacity: 1;

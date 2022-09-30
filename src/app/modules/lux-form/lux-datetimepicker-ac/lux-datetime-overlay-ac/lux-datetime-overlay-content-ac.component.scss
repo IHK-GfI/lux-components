@@ -1,0 +1,40 @@
+::ng-deep .lux-datetimepicker-overlay {
+  & lux-card {
+    & mat-card {
+      padding: 0 8px 0 0;
+      min-width: 300px;
+      min-height: 480px;
+
+      mat-card-content {
+        padding: 0 0 0px 0;
+        margin: 0;
+      }
+    }
+  }
+  
+  .mat-calendar-previous-button, .mat-calendar-next-button, .mat-calendar-period-button {
+    color: #036 !important;
+  }
+}
+
+.lux-datetime-overlay-calendar {
+  min-height: 350px;
+}
+
+.lux-datetime-error-message-container {
+  min-height: 18px;
+  padding-left: 20px;
+}
+
+.lux-datetime-icon{
+  margin-left: 20px!important;
+  margin-right: 45px!important;
+}
+lux-input-ac.lux-datetime-hour ::ng-deep, 
+lux-input-ac.lux-datetime-minute ::ng-deep {
+  width: 40px;
+  .lux-form-control-container-authentic {
+    padding: 0.5em !important;
+    text-align: center;
+  }
+}

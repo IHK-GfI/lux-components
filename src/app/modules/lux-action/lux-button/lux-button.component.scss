@@ -1,61 +1,53 @@
-.lux-align-baseline:not(.lux-button-rounded) {
-  padding-bottom: 10px !important;
-
-  ::ng-deep {
-    .mat-button-wrapper {
-      align-items: flex-end;
-    }
+lux-icon.lux-button-icon-round ::ng-deep{
+  height: 20px;
+  width: 20px;
+  display: inline-table;
+  i {
+    line-height: 1;
+    font-size: 1.5em !important;
+    display: inline-block;
   }
-}
-
-.lux-button-label {
-  line-height: 1;
-}
-
-.lux-button-rounded {
-  width: 45px;
-  ::ng-deep {
-    lux-icon {
-      i,
-      mat-icon {
-        font-size: 1.5em;
-      }
-    }
-    .mat-button-wrapper {
-      padding: 0;
-    }
-  }
+  mat-icon.mat-icon.lux-material-icon,
+  mat-icon.mat-icon.lux-lx-icon-responsive {
+    line-height: 1;
+    font-size: 1.5em !important;
+    display: inline-block;
+    vertical-align: top !important;
+    height: unset;
+    width: unset;
+  } 
 }
 
 .lux-icon-button.mat-fab ::ng-deep .mat-button-wrapper {
   padding: 0;
-  line-height: inherit;
+  line-height: 24px;
+  vertical-align: unset;
 }
 
-:host {
-  ::ng-deep {
-    .mat-button-wrapper {
-      height: 100%;
-      display: inline-flex;
-      align-items: center;
-    }
+.lux-button {
+  &.mat-raised-button,
+  &.mat-button,
+  &.mat-flat-button,
+  &.mat-stroked-button { 
 
-    .mat-raised-button, .mat-button { // damit der Focus-indicator im Firefox richtig berechnet wird
-      line-height: inherit;
-    }
-
-    lux-icon {
-      line-height: 1;
-      i,
-      mat-icon {
-        line-height: 1;
+    ::ng-deep {
+      lux-icon {
+        i {
+          line-height: 1;
+          font-size: 1.4em !important;
+          vertical-align: middle;
+        }
+        mat-icon.mat-icon.lux-material-icon {
+          line-height: 1;
+          font-size: 1.6em !important;
+          vertical-align: middle;
+          height: unset !important;
+          width: unset !important;
+        }
       }
-      mat-icon {
-        vertical-align: middle;
-      }
-
-      &i {
-        display: block;
+      
+      .mat-button-wrapper  {
+        font-size: var(--lux-theme-button-font-size);
       }
     }
   }

@@ -42,7 +42,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
   @Input() luxLabelLinkShort = $localize`:@@luxc.file.upload.label.link.short:Datei hochladen`;
   @Input() luxMultiple = true;
   @Input() luxUploadIcon = 'fas fa-cloud-upload-alt';
-  @Input() luxDeleteIcon = 'fas fa-trash';
+  @Input() luxDeleteIcon = 'lux-interface-delete-bin-1';
 
   get luxUploadActionConfig(): ILuxFilesActionConfig {
     return this._luxUploadActionConfig;
@@ -405,16 +405,16 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
     }
 
     selectedFiles.forEach((selectedFile: ILuxFileObject) => {
-      let newFileIcon = 'fas fa-file';
+      let newFileIcon = 'lux-interface-content-file';
       if (selectedFile.type) {
         if (selectedFile.type.indexOf('image') > -1) {
-          newFileIcon = 'fas fa-file-image';
+          newFileIcon = 'lux-file-image';
         } else if (selectedFile.type.indexOf('pdf') > -1) {
-          newFileIcon = 'fas fa-file-pdf';
+          newFileIcon = 'lux-file-pdf';
         } else if (selectedFile.type.indexOf('spreadsheet') > -1) {
-          newFileIcon = 'fas fa-file-excel';
+          newFileIcon = 'lux-interface-file-delete';
         } else if (selectedFile.type.indexOf('officedocument') > -1) {
-          newFileIcon = 'fas fa-file-signature';
+          newFileIcon = 'lux-file-signature';
         } else if (selectedFile.type.indexOf('json') > -1) {
           newFileIcon = 'fas fa-file-code';
         }

@@ -1,9 +1,20 @@
-<example-base-structure
+ <example-base-structure
   exampleTitle="Card"
-  exampleIconName="fas fa-square"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90card"
 >
-  <example-base-content>
+  <example-base-content fxLayout="column" fxLayoutGap="32px">
+    <lux-card
+      luxTitle="Suche nach Identnummer"
+    >
+    <lux-card-content>
+      <lux-input-ac luxLabel="Identnummer" luxPlaceholder="ID123456"></lux-input-ac>
+    </lux-card-content>
+    <lux-card-actions>
+      <lux-button [luxStroked]="true" luxColor="primary" luxLabel="ZURÜCKSETZEN"></lux-button>
+      <lux-button [luxFlat]="true" luxColor="primary" luxLabel="SUCHEN"></lux-button>
+    </lux-card-actions>
+    </lux-card>
+
     <lux-card
       [luxTitle]="title"
       [luxSubTitle]="subTitle"
@@ -12,16 +23,18 @@
       [luxHeading]="heading"
       [luxTitleLineBreak]="titleLineBreak"
       (luxClicked)="onCardClicked()"
+      [luxExpandedLabelClose]="closeLabel"
+      [luxExpandedLabelOpen]="openLabel"
     >
-      <lux-icon luxIconName="fas fa-cogs" *ngIf="showIcon"></lux-icon>
+      <lux-icon luxIconName="lux-cogs" *ngIf="showIcon"></lux-icon>
       <lux-card-info *ngIf="showInfo && !useExpandableContent">
-        <lux-icon luxIconName="fas fa-home"></lux-icon>
+        <lux-icon luxIconName="lux-interface-home-3"></lux-icon>
       </lux-card-info>
       <lux-card-content>
         <h3>H3 - Lorem ipsum</h3>
         <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+          Diese Karte enthält für Testzwecke alle möglichen Konfigurationen auf einmal. Auch wenn dieses technisch möglich ist, soll es nicht zur Nachahmung annimieren.
+          Bitte entscheidet euch, je nach Anwendungsfall, wie ihr eure Karte gestaltet. Weniger ist Besser!
         </p>
       </lux-card-content>
       <lux-card-content-expanded *ngIf="useExpandableContent">
@@ -42,9 +55,18 @@
         </p>
       </lux-card-content-expanded>
       <lux-card-actions *ngIf="showActions">
-        <lux-button luxLabel="Button 1" [luxRaised]="true" luxIconName="fas fa-user" luxColor="primary"></lux-button>
+        <lux-button luxLabel="Button 1" [luxRaised]="true" luxIconName="lux-interface-user-single" luxColor="primary"></lux-button>
         <lux-button luxLabel="Button 2" [luxRaised]="btn2Raised"></lux-button>
       </lux-card-actions>
+    </lux-card>
+    <lux-card luxTitle="Auswählbare Karte" luxSubTitle="zum bearbeiten Häckchen setzen">
+      <lux-icon luxIconName="fa-phone"></lux-icon>
+      <lux-card-info>
+        <lux-checkbox [luxNoLabels]="true" class="example-box"></lux-checkbox>
+      </lux-card-info>
+      <lux-card-content>
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+      </lux-card-content>
     </lux-card>
   </example-base-content>
   <example-base-simple-options>
@@ -133,6 +155,18 @@
           Dieser wird dann unterhalb des eigentlichen Inhalts dargestellt.
         </lux-form-hint>
       </lux-toggle>
+    </div>
+    <div class="lux-highlight-section column">
+      <lux-input
+        luxLabel="luxExpandedLabelOpen"
+        luxHint="Diese Property steuert den Labeltext auf dem Button zum Ausklappen des erweiterten Card-Contents."
+        [(luxValue)]="openLabel"
+      ></lux-input>
+      <lux-input
+        luxLabel="luxExpandedLabelClose"
+        luxHint="Diese Property steuert den Labeltext auf dem Button zum Einklappen des erweiterten Card-Contents."
+        [(luxValue)]="closeLabel"
+    ></lux-input>
     </div>
   </example-base-advanced-options>
 </example-base-structure>

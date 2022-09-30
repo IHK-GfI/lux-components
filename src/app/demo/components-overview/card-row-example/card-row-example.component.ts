@@ -104,7 +104,7 @@ export class CardRowExampleComponent implements OnInit, OnDestroy {
     this.buttonService.buttonInfos = [
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Dokumentation',
-        iconName: 'fas fa-external-link-alt',
+        iconName: 'lux-interface-arrows-expand-5',
         cmd: 'documentation-btn',
         color: 'primary',
         raised: true,
@@ -118,7 +118,7 @@ export class CardRowExampleComponent implements OnInit, OnDestroy {
       }),
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Overview',
-        iconName: 'fas fa-caret-left',
+        iconName: 'lux-interface-arrows-button-left',
         cmd: 'back-btn',
         color: 'primary',
         raised: true,

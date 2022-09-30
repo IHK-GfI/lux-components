@@ -58,7 +58,7 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
     luxCurrentStepNumber: 0,
     luxShowNavigationButtons: true,
     luxHorizontalStepAnimationActive: true,
-    luxEditedIconName: 'fa-pencil'
+    luxEditedIconName: 'lux-interface-edit-pencil'
   };
 
   private subscriptions: Subscription[] = [];

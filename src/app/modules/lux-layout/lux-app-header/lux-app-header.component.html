@@ -12,7 +12,7 @@
       <ng-container *ngIf="isMasterToggleVisible(); else sideNavTriggerTemplate">
         <lux-button
           (luxClicked)="showMasterClick()"
-          luxIconName="keyboard_arrow_left"
+          luxIconName="lux-interface-arrows-button-left"
           class="lux-master-toggle"
           luxTagId="btnMasterToggle"
           fxFlex="auto"
@@ -24,7 +24,7 @@
           class="lux-side-nav-trigger"
           [ngClass]="{ 'lux-side-nav-trigger-active': sideNav.sideNavExpanded }"
           (luxClicked)="sideNav.toggle()"
-          luxIconName="fas fa-bars"
+          luxIconName="lux-interface-setting-menu-1"
           luxTagId="lux-side-nav-trigger"
           [luxAriaExpanded]="sideNav.sideNavExpanded"
           [luxAriaLabel]="luxAriaAppMenuButtonLabel"
@@ -85,7 +85,7 @@
     fxFlex="0 0 auto"
     fxLayoutAlign="end center"
     class="lux-lang-select-menu lux-header-action"
-    *ngIf="luxLocaleSupported && luxLocaleSupported.length > 1"
+    *ngIf="luxLocaleSupported && (luxLocaleSupported?.length ?? 0)  > 1"
   >
     <lux-lang-select
       [luxLocaleSupported]="luxLocaleSupported"
@@ -155,7 +155,7 @@
           <lux-icon
             class="lux-icon-menu-0"
             luxIconSize="1x"
-            luxIconName="fas fa-user"
+            luxIconName="lux-interface-user-single"
             luxMargin="0 0 0 8px"
             [fxShow.xs]="!luxUserName"
             [fxShow.sm]="!luxUserName"
@@ -164,7 +164,7 @@
           <lux-icon
             class="lux-icon-menu-1"
             luxIconSize="1x"
-            luxIconName="fas fa-sort-down"
+            luxIconName="lux-interface-arrows-button-down"
             luxPadding="0"
             luxMargin="-3px 0 0 0"
           >

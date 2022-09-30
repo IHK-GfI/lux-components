@@ -11,4 +11,6 @@ export interface ILuxDialogAction {
   tagId?: string;
   disabled?: boolean;
   rounded?: boolean;
+  flat?: boolean;
+  outlined?: boolean;
 }

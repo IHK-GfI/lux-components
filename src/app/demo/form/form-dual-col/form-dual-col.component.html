@@ -64,7 +64,7 @@
                   *luxLayoutRowItem="{}"
                 ></lux-input>
                 <lux-button
-                  luxIconName="fas fa-trash"
+                  luxIconName="lux-interface-delete-bin-5"
                   (luxClicked)="removeStreet(i)"
                   luxTagId="btnRemoveStreet"
                   [luxDisabled]="!myGroup.enabled"
@@ -78,7 +78,7 @@
               <lux-layout-form-row luxWrapAt="none">
                 <div *luxLayoutRowItem="{ empty: true, colSpan: 3 }"></div>
                 <lux-button
-                  luxIconName="fa-plus"
+                  luxIconName="lux-interface-add-1"
                   (luxClicked)="addStreet()"
                   [luxRounded]="true"
                   [luxDisabled]="!latestStreetGroupValid()"

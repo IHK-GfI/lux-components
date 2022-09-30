@@ -6,8 +6,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 
 @Component({
   selector: 'lux-textarea',
-  templateUrl: './lux-textarea.component.html',
-  styleUrls: ['./lux-textarea.component.scss']
+  templateUrl: './lux-textarea.component.html'
 })
 export class LuxTextareaComponent<T = string> extends LuxFormInputBaseClass<T> implements OnInit {
   @Input() luxMaxRows = -1;

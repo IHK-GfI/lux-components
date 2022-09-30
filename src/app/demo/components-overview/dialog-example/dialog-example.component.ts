@@ -29,12 +29,14 @@ export class DialogExampleComponent implements OnDestroy {
     panelClass: [],
     confirmAction: {
       label: 'Löschen',
-      raised: true,
+      raised: false,
+      outlined: true,
       color: 'warn'
     },
     declineAction: {
       label: 'Abbrechen',
-      raised: true,
+      raised: false,
+      flat: true,
       color: undefined
     }
   };

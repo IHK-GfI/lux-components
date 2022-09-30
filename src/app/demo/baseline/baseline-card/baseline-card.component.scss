@@ -2,14 +2,15 @@
   width: 100%;
   margin: 0 auto;
   padding: 8px;
-  max-width: 1200px;
+  max-width: 1000px;
   box-sizing: border-box;
 }
 
 .message-box {
-  border-left: 8px solid var(--lux-theme-primary-color);
+  border: 2px solid var(--lux-theme-primary-color);
   border-radius: 4px;
   background-color: var(--lux-theme-primary-50);
+  background: var(--lux-theme-app-gradient);
   padding: 12px 24px;
   margin: 32px 0;
 }

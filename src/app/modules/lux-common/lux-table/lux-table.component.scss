@@ -7,15 +7,16 @@ lux-progress ::ng-deep mat-progress-bar {
 :host {
   display: block;
   height: 100%;
-
-  > div {
-    padding-bottom: 8px;
-  }
 }
 
 .lux-table {
   height: 100%;
 
+  .lux-table-filter {
+    width: 100%;
+    max-width: 350px;
+  }
+  
   .lux-table-content {
     position: relative;
     overflow: auto;
@@ -23,22 +24,21 @@ lux-progress ::ng-deep mat-progress-bar {
     width: 100%;
 
     table {
-      width: calc(100% - #{$outline-width} - #{$outline-width});
+      width: 100%;
       border-spacing: 0 $outline-width;
-      margin-left: $outline-width;
 
-      td.mat-table-sticky {
-        z-index: 103 !important;
-      }
-      td:not(.mat-table-sticky) {
-        z-index: 97 !important;
-      }
-      td.mat-header-cell {
-        z-index: 103 !important;
-      }
+      // td.mat-table-sticky {
+      //   z-index: 103 !important;
+      // }
+      // td:not(.mat-table-sticky) {
+      //   z-index: 97 !important;
+      // }
+      // td.mat-header-cell {
+      //   z-index: 103 !important;
+      // }
 
-      ::ng-deep tfoot td.mat-table-sticky:first-of-type {
-        z-index: 105 !important;
+      ::ng-deep .mat-table tfoot, .mat-table-sticky {
+        background: unset;
       }
 
       th {
@@ -48,19 +48,20 @@ lux-progress ::ng-deep mat-progress-bar {
 
       .lux-table-header-no-data th {
         height: 30px;
-        vertical-align: middle;
+        vertical-align: top;
       }
 
       td,
       th {
-        padding: 8px;
+        padding: 8px 16px;
       }
-
-      th.lux-multiselect-th + th,
-      td.lux-multiselect-td + td,
-      td.lux-multiselect-tf + td {
-        padding-left: 16px;
+      th {
+        padding-top: 16px;
       }
+      td.mat-footer-cell {
+        padding-bottom: 16px;
+      }
+    
 
       ::ng-deep tr.mat-header-row {
         height: auto;
@@ -75,11 +76,11 @@ lux-progress ::ng-deep mat-progress-bar {
         }
       }
 
-      td.mat-cell:last-of-type,
-      td.mat-footer-cell:last-of-type,
-      th.mat-header-cell:last-of-type {
-        padding-right: 0;
-      }
+      // td.mat-cell:last-of-type,
+      // td.mat-footer-cell:last-of-type,
+      // th.mat-header-cell:last-of-type {
+      //   padding-right: 0;
+      // }
 
       ::ng-deep tbody tr:last-of-type td {
         border-bottom: none;
@@ -135,8 +136,7 @@ lux-progress ::ng-deep mat-progress-bar {
   min-width: 70px;
   width: 70px;
 
-  padding-right: 6px;
-  margin-right: 6px;
+
 
   lux-checkbox {
     pointer-events: none;
@@ -151,25 +151,14 @@ lux-progress ::ng-deep mat-progress-bar {
   ::ng-deep .lux-form-field {
     margin-bottom: 0;
   }
-
-  + td,
-  + th {
-    padding-left: 6px;
-  }
 }
 
 .lux-multiselect-th {
-  padding-left: 6px !important;
   width: 1% !important;
 
   span {
     text-align: start;
   }
-}
-
-.lux-multiselect-td,
-.lux-multiselect-tf:not(.lux-ignore-multiselect-tf) {
-  border-right: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .lux-multiselect-field {
@@ -211,9 +200,6 @@ lux-progress ::ng-deep mat-progress-bar {
   }
 }
 
-.lux-table-filter {
-  display: block;
-}
 
 .lux-aria-visible {
   position: absolute;

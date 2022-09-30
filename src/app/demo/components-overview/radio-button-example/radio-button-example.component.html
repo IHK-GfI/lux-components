@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Radio-Buttons"
-  exampleIconName="fas fa-circle"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90radio"
 >
   <example-base-content>
@@ -272,6 +271,7 @@
       class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [luxNoTopLabel]="true"
       [(luxChecked)]="labelLongFormat"
     >
     </lux-toggle>

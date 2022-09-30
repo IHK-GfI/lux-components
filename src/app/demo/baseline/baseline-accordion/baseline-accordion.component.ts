@@ -53,6 +53,7 @@ export class BaselineAccordionComponent {
   prefixOptions = [ '', 'Frau', 'Herr']
   form: FormGroup<DummyForm>;
   addressForm: FormGroup<DummyAddressForm>;
+  addressForm2: FormGroup<DummyAddressForm>;
 
   constructor() {
     this.form = new FormGroup<DummyForm>({
@@ -62,6 +63,19 @@ export class BaselineAccordionComponent {
     });
 
     this.addressForm = new FormGroup<DummyAddressForm>({
+      title: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      firstname: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      lastname: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      streetAddress: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      streetNumber: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      addressInfo: new FormControl('', { validators: Validators.maxLength(100), nonNullable: true}),
+      postalCode: new FormControl('', { validators: Validators.compose([Validators.required, Validators.maxLength(5)]), nonNullable: true}),
+      city: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      country: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      comment: new FormControl('', { nonNullable: true})
+    });
+
+    this.addressForm2 = new FormGroup<DummyAddressForm>({
       title: new FormControl('', { validators: Validators.required, nonNullable: true}),
       firstname: new FormControl('', { validators: Validators.required, nonNullable: true}),
       lastname: new FormControl('', { validators: Validators.required, nonNullable: true}),

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LuxAppFooterButtonService } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
 import { LuxThemeService } from '../../../modules/lux-theme/lux-theme.service';
+import { ThemePalette } from "@angular/material/core";
 
 @Component({
   selector: 'app-layout-row-example',
@@ -57,6 +58,18 @@ export class FormRowExampleComponent implements OnInit, OnDestroy {
   </lux-layout>
   \`\`\`
   `;
+
+  chips: {label: string; color: ThemePalette; removable: boolean; disabled: boolean; selected: boolean}[] = [
+    { label: 'Chip #1', color: undefined, removable: true, disabled: false, selected: true },
+    { label: 'Chip #2', color: 'primary', removable: true, disabled: false, selected: true },
+    { label: 'Chip #3', color: 'warn', removable: true, disabled: false, selected: true },
+    { label: 'Chip #4', color: 'accent', removable: true, disabled: false, selected: true }
+  ];
+
+  chipsOptions: string[] = ['Hallo', 'Ciao', 'Privet'];
+ 
+  selected: any;
+
   
   constructor(private router: Router, private buttonService: LuxAppFooterButtonService, private themeService: LuxThemeService) {
     themeService.getTheme().name === 'blue' ? this.rowHeight = '63px' : this.rowHeight = '77px';
@@ -66,7 +79,7 @@ export class FormRowExampleComponent implements OnInit, OnDestroy {
     this.buttonService.buttonInfos = [
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Dokumentation',
-        iconName: 'fas fa-external-link-alt',
+        iconName: 'lux-interface-arrows-expand-5',
         cmd: 'documentation-btn',
         color: 'primary',
         raised: true,
@@ -77,7 +90,7 @@ export class FormRowExampleComponent implements OnInit, OnDestroy {
       }),
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Overview',
-        iconName: 'fas fa-caret-left',
+        iconName: 'lux-interface-arrows-button-left',
         cmd: 'back-btn',
         color: 'primary',
         raised: true,
@@ -91,5 +104,18 @@ export class FormRowExampleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.buttonService.buttonInfos = [];
+  }
+
+  chipAdded($event: string) {
+    this.chips.push({
+      label: $event,
+      color: 'warn',
+      removable: true,
+      disabled: false,
+      selected: true
+    });
+  }
+  chipRemoved($event: number) {
+    this.chips = this.chips.filter((value: any, index: number) => index !== $event);
   }
 }

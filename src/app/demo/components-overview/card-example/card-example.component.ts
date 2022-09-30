@@ -14,12 +14,17 @@ export class CardExampleComponent {
   useExpandableContent = true;
   btn2Raised = true;
   disabled = false;
-  titleLineBreak = false;
+  titleLineBreak = true;
   title = `Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
   subTitle = 'Sed eiusmod tempor incidunt ut labore et dolore magna aliqua.';
+  iconName ="lux-cogs"
+  iconShowRight = true;
+  raised = false;
   expanded = false;
   heading = 2;
   headingValidator = Validators.pattern('[1-6]');
+  closeLabel = 'Weniger Inhalt Anzeigen';
+  openLabel = 'Mehr Inhalt Anzeigen';
 
   constructor(private snackbar: LuxSnackbarService) {
   }
@@ -28,7 +33,7 @@ export class CardExampleComponent {
     console.log('Card clicked');
     this.snackbar.open(3000, {
       text: 'Card clicked',
-      iconName: 'fas fa-info'
+      iconName: 'lux-info'
     });
   }
 

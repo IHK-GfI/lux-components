@@ -22,6 +22,10 @@ export class AppComponent implements OnInit {
   @Input() luxMode: 'stand-alone' | 'portal' = 'stand-alone';
 
   window = window;
+  jsonDataResult: any;
+  demoUserName = "Susanne Sonnenschein";
+  demoLoginBtn = "Abmelden";
+  themeName = 'authentic';
 
   constructor(
     public router: Router,
@@ -32,11 +36,10 @@ export class AppComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private themeService: LuxThemeService,
     private elementRef: ElementRef,
-    private appService: LuxAppService
+    private appService: LuxAppService,
   ) {
     themeService.loadTheme();
     router.initialNavigation();
-
     this.appService.appEl = elementRef.nativeElement;
   }
 
@@ -53,6 +56,17 @@ export class AppComponent implements OnInit {
 
   onChangeTheme(themeName: string) {
     this.themeService.setTheme(themeName);
+    this.themeName = themeName;
+  }
+
+  toggleLogin(){
+    if (this.demoUserName){
+      this.demoUserName='';
+      this.demoLoginBtn='Anmelden';
+    } else {
+      this.demoUserName="Susanne Sonnenschein"
+      this.demoLoginBtn='Abmelden'
+    }
   }
 
   goToHome() {
@@ -85,6 +99,9 @@ export class AppComponent implements OnInit {
 
   goToBaseline() {
     this.router.navigate(['baseline']);
+  }
+  goToIconSearch() {
+    this.router.navigate(['components-overview/example/icon-overview']);
   }
 
   actionClicked(text: string) {

@@ -34,7 +34,7 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
   @Output() luxFocusedPositionChange = new EventEmitter<number>();
   @Output() luxSelectedPositionChange = new EventEmitter<number>();
 
-  @Input() luxEmptyIconName = 'fas fa-info-circle';
+  @Input() luxEmptyIconName = 'lux-interface-alert-information-circle';
   @Input() luxEmptyIconSize = '5x';
   @Input() luxEmptyLabel =  $localize `:@@luxc.list.empty_label:Keine Einträge vorhanden`;
 

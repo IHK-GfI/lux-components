@@ -1,0 +1,29 @@
+<!-- Navigations-Menu -->
+<lux-menu
+  [luxDisplayExtended]="!mobileView"
+  [luxMaximumExtended]="luxNavMenuMaximumExtended"
+  class="lux-header-ac-nav-menu"
+  ngClass.lt-md="lux-header-ac-nav-menu-mobile"
+  luxClassName="lux-header-ac-nav"
+  luxTagId="app_header_nav_menu"
+>
+  <ng-container *ngFor="let navMenuItem of menuItemComponents; let navIndex = index">
+    <lux-menu-item
+      [luxLabel]="navMenuItem.luxLabel"
+      [luxIconName]="navMenuItem.luxIconName"
+      [luxTagId]="navMenuItem.luxLabel"
+      [luxAlwaysVisible]="navMenuItem.luxAlwaysVisible"
+      [luxDisabled]="navMenuItem.luxDisabled"
+      [luxFlat]="false"
+      [luxRaised]="false"
+      [luxStroked]="false"
+      [luxRounded]="false"
+      luxColor="primary"
+      [luxClass]="navIndex === selectedItem ? 'nav-item-selected' : ''"
+      [luxPrio]="navMenuItem.luxPrio"
+      class="nav-item"
+      (luxClicked)="navItemClicked($event, navIndex)"
+    >
+    </lux-menu-item>
+  </ng-container>
+</lux-menu>

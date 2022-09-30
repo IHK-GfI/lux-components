@@ -1,0 +1,124 @@
+<div fxLayout="column">
+  <!-- Top-Bar -->
+  <div
+    *ngIf="!luxHideTopBar"
+    fxLayout="row"
+    class="lux-app-header-top-bar"
+    ngClass.lt-md="lux-mobile"
+    fxFlex="100"
+  >
+    <!-- Brand-Logo -->
+    <div fxFlex.gt-sm="33" fxFlex.lt-md="50" fxLayoutAlign="start center" fxLayoutAlign.lt-md="space-between center">
+      <lux-image
+        [luxImageSrc]="luxBrandLogoSrc"
+        luxImageHeight="3em"
+        class="brand-logo"
+        (click)="onClicked($event)"
+        *ngIf="luxBrandLogoSrc"
+      ></lux-image>
+    </div>
+    <!-- App-Logo -->
+    <div fxFlex="fill" fxLayoutAlign="center center" class="app-logo-container" *ngIf="!mobileView">
+      <!-- <lux-button
+        [luxIconName]="luxAppIconName"
+        luxColor="primary"
+        (click)="onClicked($event)"
+      ></lux-button> -->
+      <mat-icon svgIcon="luxAppIcon" (click)="onClicked($event)"></mat-icon>
+    </div>
+    <!-- User-Menu -->
+    <div
+      fxLayout="row"
+      fxFlex="0 0 33%"
+      fxFlex.lt-md="0 0 50"
+      fxLayoutAlign="end center"
+      class="user-menu lux-header-user"
+      [luxAriaLabel]="luxAriaUserMenuButtonLabel"
+    >
+
+      <!-- Greeting -->
+      <!-- <div *ngIf="luxUserName" fxFlex="0 0 75%" fxLayoutAlign="end center" [fxShow.lt-md]="false">
+        <span class="lux-nowrap lux-header-username">
+          {{ greetingLabel }} {{ luxUserName }}
+        </span>
+      </div> -->
+
+      <lux-lang-select-ac
+        [luxLocaleSupported]="luxLocaleSupported"
+        [luxLocaleBaseHref]="luxLocaleBaseHref"
+        fxFlex="0 0 auto"
+        class="lux-lang-select-ac lux-mr-3"
+        *ngIf="luxLocaleSupported && (luxLocaleSupported?.length ?? 0) > 1"
+      ></lux-lang-select-ac>
+
+      <!-- User-Menu -->
+      <lux-menu
+        class="lux-user-menu"
+        ngClass.lt-md="lux-user-menu-mobile"
+        [luxDisplayExtended]="false"
+        (luxMenuClosed)="onMenuClosed()"
+        (luxMenuOpened)="onMenuOpened()"
+        luxClassName="lux-header-user-menu"
+        luxTagId="app_header_user_menu"
+        fxFlex="0 0 auto"
+      >
+        <!-- Anzeige des Usernames falls dieser vorhanden und eingeloggt ist -->
+
+        <lux-menu-item *ngIf="luxUserName"
+          [luxLabel]="luxUserName"
+          [luxDisabled]="true"
+          luxClass="lux-user-name-label"
+        ></lux-menu-item>
+
+        <ng-container *ngFor="let menuItem of userMenu?.menuItemComponents">
+          <lux-menu-item
+            [luxLabel]="menuItem.luxLabel"
+            [luxTagId]="menuItem.luxLabel"
+            [luxIconName]="menuItem.luxIconName"
+            [luxAlwaysVisible]="menuItem.luxAlwaysVisible"
+            [luxDisabled]="menuItem.luxDisabled"
+            [luxRaised]="menuItem.luxRaised"
+            [luxColor]="menuItem.luxColor"
+            [luxRounded]="menuItem.luxRounded"
+            (luxClicked)="menuItem.luxClicked.emit($event)"
+          >
+          </lux-menu-item>
+        </ng-container>
+        <lux-menu-trigger>
+          <lux-button
+            [luxRounded]="true"
+            [luxIconName]="luxUserName ? 'lux-interface-user-check' : 'lux-interface-user-single' "
+            luxColor="primary"
+            class="user-menu-trigger-ac"
+            ngClass.lt-md="user-menu-trigger-mobile"
+            luxAriaLabel="Benutzermenü"
+            i18n-luxAriaLabel="@@luxc.app-header.user.menu.trigger"
+            aria-haspopup="true"
+            [ngClass]="menuOpened ? 'menu-opened' : ''"
+            #customTrigger
+          >
+          </lux-button>
+        </lux-menu-trigger>
+      </lux-menu>
+    <!-- </div> -->
+  </div>
+
+  </div>
+  <!-- Nav-Bar -->
+  <div
+    *ngIf="!luxHideNavBar"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    class="lux-app-header-nav-bar"
+    ngClass.lt-md="lux-mobile"
+    fxFlex="100"
+  >
+    <div class="lux-app-title">{{ luxAppTitle }}</div>
+
+    <div fxFlex="fill"  class="lux-app-nav-menu">
+      <ng-content select="lux-app-header-ac-nav-menu" *ngIf="navMenu"></ng-content>
+    </div>
+
+  </div>
+
+</div>

@@ -34,22 +34,23 @@ describe('LuxMenuComponent', () => {
   }));
 
   it('Sollte die MenuItems darstellen (nur im Menu und Extended)', fakeAsync(() => {
-    // Vorbedingungen testen
+    // Vorbedingungen prüfen
     let menuItems = fixture.debugElement.queryAll(By.css('lux-menu-item'));
     expect(menuItems.length).toBe(0);
     expect(menuComponent.menuItems.length).toBe(0);
+    expect(component.displayExtended).toBeTrue();
 
     // Änderungen durchführen
     component.generateItems(3);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    menuItems = fixture.debugElement.queryAll(By.css('lux-menu-item'));
+    menuItems = fixture.debugElement.queryAll(By.css('lux-button'));
     expect(menuItems.length).toBe(3);
     expect(menuComponent.menuItems.length).toBe(3);
 
     // Änderungen durchführen
-    component.displayExtended = true;
+    component.displayExtended = false;
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen

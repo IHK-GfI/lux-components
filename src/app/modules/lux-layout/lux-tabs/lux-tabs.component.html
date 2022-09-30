@@ -1,83 +1,88 @@
-<mat-tab-group
-  [dynamicHeight]="false"
-  [selectedIndex]="luxActiveTab"
-  (selectedTabChange)="tabChange$.next($event)"
-  class="lux-tab-group"
-  [ngClass]="{
-    'lux-tabs-no-divider': !luxDisplayDivider,
-    'lux-tabs-no-anim': !luxTabAnimationActive,
-    'lux-tabs-mobile': smallDevice
-  }"
-  #matTabs
-  luxTagIdHandler
-  [luxTagId]="luxTagId"
+<div 
+  [ngClass]="{ 'lux-tabs-show-border': luxShowBorder }" 
 >
-  <ng-container *ngIf="luxTabAnimationActive">
-    <!-- Lazy Loading
-         ============
-         Durch die Property "luxLazyLoading" musste der mat-tab-Teil gedoppelt werden,
-         da ein *ngIf im <ng-template matTabLabel> nicht möglich war.
-         Der Testcase "luxLazyLoading=true mit Animation" war rot, da der Inhalt beim
-         Testen der Nachbedingung noch nicht zur Verfügung stand.
-    -->
-    <ng-container *ngIf="luxLazyLoading">
-      <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [disabled]="luxTab.luxDisabled">
-        <ng-template matTabLabel>
-          <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
-        </ng-template>
-        <ng-template matTabContent>
-          <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdContent" class="lux-mt-3 lux-tab-content">
+  <mat-tab-group
+    [dynamicHeight]="false"
+    [selectedIndex]="luxActiveTab"
+    (selectedTabChange)="tabChange$.next($event)"
+    class="lux-tab-group"
+    [ngClass]="{
+      'lux-tabs-no-divider': !luxDisplayDivider,
+      'lux-tabs-no-anim': !luxTabAnimationActive,
+      'lux-tabs-mobile': smallDevice
+    }"
+    #matTabs
+    luxTagIdHandler
+    [luxTagId]="luxTagId"
+  >
+    <ng-container *ngIf="luxTabAnimationActive">
+      <!-- Lazy Loading
+          ============
+          Durch die Property "luxLazyLoading" musste der mat-tab-Teil gedoppelt werden,
+          da ein *ngIf im <ng-template matTabLabel> nicht möglich war.
+          Der Testcase "luxLazyLoading=true mit Animation" war rot, da der Inhalt beim
+          Testen der Nachbedingung noch nicht zur Verfügung stand.
+      -->
+      <ng-container *ngIf="luxLazyLoading">
+        <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [disabled]="luxTab.luxDisabled">
+          <ng-template matTabLabel>
+            <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
+          </ng-template>
+          <ng-template matTabContent>
+            <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdContent" class="lux-mt-3 lux-tab-content" [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }">
+              <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
+              <span>&nbsp;</span>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </ng-container>
+      <ng-container *ngIf="!luxLazyLoading">
+        <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [disabled]="luxTab.luxDisabled">
+          <ng-template matTabLabel>
+            <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
+          </ng-template>
+          <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdContent" class="lux-mt-3 lux-tab-content" [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }">
             <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
             <span>&nbsp;</span>
           </div>
-        </ng-template>
-      </mat-tab>
+        </mat-tab>
+      </ng-container>
     </ng-container>
-    <ng-container *ngIf="!luxLazyLoading">
+    <ng-container *ngIf="!luxTabAnimationActive">
       <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [disabled]="luxTab.luxDisabled">
         <ng-template matTabLabel>
           <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
         </ng-template>
-        <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdContent" class="lux-mt-3 lux-tab-content">
-          <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
-          <span>&nbsp;</span>
-        </div>
       </mat-tab>
     </ng-container>
-  </ng-container>
+  </mat-tab-group>
+
   <ng-container *ngIf="!luxTabAnimationActive">
-    <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [disabled]="luxTab.luxDisabled">
-      <ng-template matTabLabel>
-        <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
-      </ng-template>
-    </mat-tab>
+    <ng-container *ngFor="let luxTab of luxTabs; trackBy: trackTab; let i = index">
+      <section
+        luxTagIdHandler
+        [luxTagId]="luxTab.luxTagIdContent"
+        *ngIf="!luxLazyLoading"
+        [class.lux-display-none]="i !== luxActiveTab"
+        class="lux-mt-3 lux-tab-content"
+        [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }"
+      >
+        <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
+        <span>&nbsp;</span>
+      </section>
+      <section
+        luxTagIdHandler
+        [luxTagId]="luxTab.luxTagIdContent"
+        *ngIf="luxLazyLoading && i === luxActiveTab"
+        class="lux-mt-3 lux-tab-content"
+        [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }"
+      >
+        <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
+        <span>&nbsp;</span>
+      </section>
+    </ng-container>
   </ng-container>
-</mat-tab-group>
-
-<ng-container *ngIf="!luxTabAnimationActive">
-  <ng-container *ngFor="let luxTab of luxTabs; trackBy: trackTab; let i = index">
-    <section
-      luxTagIdHandler
-      [luxTagId]="luxTab.luxTagIdContent"
-      *ngIf="!luxLazyLoading"
-      [class.lux-display-none]="i !== luxActiveTab"
-      class="lux-mt-3 lux-tab-content"
-    >
-      <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
-      <span>&nbsp;</span>
-    </section>
-    <section
-      luxTagIdHandler
-      [luxTagId]="luxTab.luxTagIdContent"
-      *ngIf="luxLazyLoading && i === luxActiveTab"
-      class="lux-mt-3 lux-tab-content"
-    >
-      <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
-      <span>&nbsp;</span>
-    </section>
-  </ng-container>
-</ng-container>
-
+</div>
 <ng-template #tabLabelTemplate let-luxTab>
   <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdHeader" class="lux-mt-3 lux-mb-3">
     <div fxFlex="auto" fxLayout.gt-sm="column" fxLayout.xs="row">

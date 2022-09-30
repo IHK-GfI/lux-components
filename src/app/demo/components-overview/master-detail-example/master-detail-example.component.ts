@@ -36,8 +36,8 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
     ignoreScrollLoading: boolean;
     alignEmptyElements: boolean;
   } = {
-    emptyIconDetail: 'fas fa-times',
-    emptyIconMaster: 'fas fa-times',
+    emptyIconDetail: 'lux-interface-delete-1',
+    emptyIconMaster: 'lux-interface-delete-1',
     emptyIconDetailSize: '5x',
     emptyIconMasterSize: '5x',
     emptyLabelDetail: 'Keine Daten!',
@@ -72,7 +72,7 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
     this.footerService.pushButtonInfos(
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Dokumentation',
-        iconName: 'fas fa-external-link-alt',
+        iconName: 'lux-interface-arrows-expand-5',
         cmd: 'documentation-btn',
         color: 'primary',
         raised: true,
@@ -83,7 +83,7 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
       }),
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Overview',
-        iconName: 'fas fa-caret-left',
+        iconName: 'lux-interface-arrows-button-left',
         cmd: 'back-btn',
         color: 'primary',
         raised: true,

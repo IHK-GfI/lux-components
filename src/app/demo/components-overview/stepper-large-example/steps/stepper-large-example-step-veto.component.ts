@@ -77,7 +77,7 @@ export class StepperLargeExampleStepVetoComponent extends LuxStepperLargeStepCom
     this.logEvent(event);
 
     // this.snackbar.open(5000, {
-    //   iconName: 'fas fa-exclamation-circle',
+    //   iconName: 'lux-interface-alert-warning-circle',
     //   iconSize: '2x',
     //   iconColor: 'red',
     //   text: 'Es wurde ein Veto eingelegt!'

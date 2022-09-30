@@ -16,7 +16,7 @@ export class LuxErrorStoreService {
    * Enthält die normale Konfiguration der Fehlerseite, kann bei Bedarf mit setConfig überschrieben werden.
    */
   static readonly DEFAULT_CONFIG: ILuxErrorPageConfig = {
-    iconName: 'far fa-times-circle',
+    iconName: 'lux-interface-delete-2',
     iconSize: '5x',
     errorText: 'Es ist ein Fehler aufgetreten',
     homeRedirectText: 'Zurück zur Startseite',

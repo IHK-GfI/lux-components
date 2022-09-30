@@ -1,177 +1,360 @@
 <example-base-structure
   exampleTitle="Button"
-  exampleIconName="fas fa-bullseye"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90button"
 >
   <example-base-content>
     <div fxLayout="column" fxLayoutGap="24px">
       <div
         fxLayout="column"
+        fxLayoutGap="24px"
         class="lux-app-data-bg lux-highlight-section"
         [ngStyle]="{ backgroundColor: backgroundColor }"
       >
-        <h3 class="lux-highlight-section-label">Default</h3>
-        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="grid 12px">
-          <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
-            <lux-button
-              *ngFor="let color of colors; let i = index"
-              style="height: 60px"
-              [luxLabel]="label"
-              [luxColor]="color.value"
-              [luxIconName]="iconName"
-              [luxIconShowRight]="iconShowRight"
-              [luxRaised]="true"
-              [luxIconAlignWithLabel]="align"
-              [luxDisabled]="disabled"
-              luxTagId="demo-button-default{{ i }}"
-              (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-              (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-            >
-            </lux-button>
-          </div>
-          <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
-            <lux-button
-              *ngFor="let color of colors; let i = index"
-              style="height: 60px"
-              [luxLabel]="label"
-              [luxColor]="color.value"
-              [luxIconName]="iconName"
-              [luxIconShowRight]="iconShowRight"
-              [luxRaised]="false"
-              [luxIconAlignWithLabel]="align"
-              [luxDisabled]="disabled"
-              luxTagId="demo-button-hover{{ i }}"
-              (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-              (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-            >
-            </lux-button>
-          </div>
-          <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
-            <lux-button
-              *ngFor="let color of colors; let i = index"
-              style="height: 60px"
-              [luxLabel]="iconName ? '' : '??'"
-              [luxColor]="color.value"
-              [luxIconName]="iconName"
-              [luxIconShowRight]="iconShowRight"
-              [luxRounded]="true"
-              [luxIconAlignWithLabel]="align"
-              [luxDisabled]="disabled"
-              luxTagId="demo-button-focus{{ i }}"
-              (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-              (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-            >
-            </lux-button>
-          </div>
+        <h3 class="lux-highlight-section-label lux-mb-4">Alle Button-Variationen</h3>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px" class="lux-mt-4">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxRaised]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxFlat]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxStroked]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-hover{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="iconName ? '' : '??'"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxRounded]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-focus{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
         </div>
       </div>
-      <div fxLayout="column" class="lux-hover-bg lux-highlight-section">
+      <div 
+        fxLayout="column"
+        fxLayoutGap="24px"
+        class="lux-highlight-section"
+      >
+        <h3 class="lux-highlight-section-label lux-mb-4">Button-Hierarchie für Theme Authentic</h3>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <span fxFlex="20">Primary:</span>
+          <lux-button luxColor="primary" [luxFlat]="true" luxLabel="Primary"></lux-button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <span fxFlex="20">Secondary:</span>
+          <lux-button luxColor="primary" [luxStroked]="true" luxLabel="Secondary"></lux-button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <span fxFlex="20">Tertiary:</span>
+          <lux-button luxColor="primary"  luxLabel="Tertiary"></lux-button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <span fxFlex="20">Warnung:</span>
+          <lux-button luxColor="warn" [luxStroked]="true" luxLabel="Achtung"></lux-button>
+        </div>
+      </div>
+
+      <div 
+        fxLayout="column"
+        fxLayoutGap="24px"
+        class="lux-hover-bg lux-highlight-section"
+      >
         <h3 class="lux-highlight-section-label">Hover</h3>
-        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="grid 12px">
-          <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
-            <lux-button
-              *ngFor="let color of colors"
-              [luxLabel]="label"
-              [luxColor]="color.value"
-              [luxIconName]="iconName"
-              [luxIconShowRight]="iconShowRight"
-              [luxRaised]="true"
-              [luxIconAlignWithLabel]="align"
-              [luxDisabled]="disabled"
-              luxTagId="demo-button"
-              (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-              (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-            >
-            </lux-button>
-          </div>
-          <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
-            <lux-button
-              *ngFor="let color of colors"
-              [luxLabel]="label"
-              [luxColor]="color.value"
-              [luxIconName]="iconName"
-              [luxIconShowRight]="iconShowRight"
-              [luxRaised]="false"
-              [luxIconAlignWithLabel]="align"
-              [luxDisabled]="disabled"
-              luxTagId="demo-button"
-              (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-              (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-            >
-            </lux-button>
-          </div>
-          <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
-            <lux-button
-              *ngFor="let color of colors"
-              [luxLabel]="iconName ? '' : '??'"
-              [luxColor]="color.value"
-              [luxIconName]="iconName"
-              [luxIconShowRight]="iconShowRight"
-              [luxRounded]="true"
-              [luxIconAlignWithLabel]="align"
-              [luxDisabled]="disabled"
-              luxTagId="demo-button"
-              (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-              (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-            >
-            </lux-button>
-          </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px" class="lux-mt-4">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxRaised]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxFlat]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxStroked]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-hover{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="iconName ? '' : '??'"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxRounded]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-focus{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
         </div>
       </div>
-      <div fxLayout="column" class="lux-selected-bg lux-highlight-section">
+      <div 
+        fxLayout="column"
+        fxLayoutGap="24px"
+        class="lux-selected-bg lux-highlight-section"
+      >
         <h3 class="lux-highlight-section-label">Focus</h3>
-        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="grid 12px">
-          <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
-            <lux-button
-              *ngFor="let color of colors"
-              [luxLabel]="label"
-              [luxColor]="color.value"
-              [luxIconName]="iconName"
-              [luxIconShowRight]="iconShowRight"
-              [luxRaised]="true"
-              [luxIconAlignWithLabel]="align"
-              [luxDisabled]="disabled"
-              luxTagId="demo-button"
-              (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-              (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-            >
-            </lux-button>
-          </div>
-          <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
-            <lux-button
-              *ngFor="let color of colors"
-              [luxLabel]="label"
-              [luxColor]="color.value"
-              [luxIconName]="iconName"
-              [luxIconShowRight]="iconShowRight"
-              [luxRaised]="false"
-              [luxIconAlignWithLabel]="align"
-              [luxDisabled]="disabled"
-              luxTagId="demo-button"
-              (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-              (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-            >
-            </lux-button>
-          </div>
-          <div fxFlex="0 1 calc(33% - 12px)" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
-            <lux-button
-              *ngFor="let color of colors"
-              [luxLabel]="iconName ? '' : '??'"
-              [luxColor]="color.value"
-              [luxIconName]="iconName"
-              [luxIconShowRight]="iconShowRight"
-              [luxRounded]="true"
-              [luxIconAlignWithLabel]="align"
-              [luxDisabled]="disabled"
-              luxTagId="demo-button"
-              (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-              (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-            >
-            </lux-button>
-          </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px" class="lux-mt-4">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxRaised]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxFlat]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxStroked]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-hover{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="iconName ? '' : '??'"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxRounded]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-focus{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+      </div>
+      <div 
+        fxLayout="column"
+        fxLayoutGap="24px"
+        class="lux-gradient-bg lux-highlight-section"
+      >
+        <h3 class="lux-highlight-section-label">Gradient</h3>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px" class="lux-mt-4">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxRaised]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxFlat]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxStroked]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-default{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="label"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-hover{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="iconName ? '' : '??'"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxRounded]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-focus{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
         </div>
       </div>
     </div>
+
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
@@ -209,15 +392,6 @@
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Diese Property deaktiviert den Button."
-      [luxNoTopLabel]="true"
-    >
-    </lux-toggle>
-    <lux-toggle
-      class="lux-highlight-section"
-      [(luxChecked)]="align"
-      luxLabel="luxIconAlignWithLabel"
-      luxHint="Mithilfe dieser Property werden Icon und Schrift auf einer Baseline ausgerichtet."
-      [luxDisabled]="!iconName"
       [luxNoTopLabel]="true"
     >
     </lux-toggle>

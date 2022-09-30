@@ -1,0 +1,121 @@
+.lux-readonly {
+  pointer-events: none;
+}
+
+.lux-show-thumb-label-always,
+.cdk-focused:not(.lux-show-thumb-label-always) {
+  &.mat-slider-vertical ::ng-deep {
+    .mat-slider-thumb-label {
+      transform: rotate(-45deg) !important;
+      border-radius: 0 50% 50% 50% !important;
+    }
+  }
+
+  &.mat-slider-horizontal ::ng-deep {
+    .mat-slider-thumb-label {
+      transform: rotate(45deg) !important;
+      border-radius: 50% 50% 0 !important;
+    }
+  }
+}
+
+.lux-show-thumb-label-always {
+  ::ng-deep {
+    .mat-slider-thumb {
+      transform: scale(0) !important;
+    }
+
+    .mat-slider-thumb-label-text {
+      opacity: 1 !important;
+    }
+  }
+
+  &.mat-slider-disabled {
+    ::ng-deep {
+      .mat-slider-thumb-label {
+        display: flex !important;
+      }
+    }
+
+    &.mat-slider-horizontal,
+    &.mat-slider-vertical {
+      ::ng-deep {
+        .mat-slider-track-background {
+          visibility: hidden;
+        }
+        .mat-slider-track-fill {
+          transform: translateX(0px) scale3d(1, 1, 1) !important;
+        }
+      }
+    }
+  }
+}
+
+mat-slider {
+  ::ng-deep {
+    .mat-slider-thumb-label {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+mat-slider.mat-slider-horizontal {
+  ::ng-deep {
+    .mat-slider-thumb-label {
+      top: -32px;
+      right: -13px;
+    }
+  }
+}
+
+mat-slider.mat-slider-vertical {
+  ::ng-deep {
+    .mat-slider-thumb-label {
+      bottom: -11px;
+      left: 10px;
+    }
+  }
+}
+
+mat-slider.lux-thumb-label-1k {
+  &.mat-slider-horizontal {
+    ::ng-deep .mat-slider-thumb-label {
+      top: -36px;
+      right: -13px;
+    }
+  }
+
+  &.mat-slider-vertical {
+    ::ng-deep .mat-slider-thumb-label {
+      bottom: -15px;
+      left: 10px;
+    }
+  }
+
+  ::ng-deep .mat-slider-thumb-label {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+mat-slider.lux-thumb-label-10k {
+  &.mat-slider-horizontal {
+    ::ng-deep .mat-slider-thumb-label {
+      top: -44px;
+      right: -16px;
+    }
+  }
+
+  &.mat-slider-vertical {
+    ::ng-deep .mat-slider-thumb-label {
+      bottom: -18px;
+      left: 10px;
+    }
+  }
+
+  ::ng-deep .mat-slider-thumb-label {
+    width: 34px;
+    height: 34px;
+  }
+}

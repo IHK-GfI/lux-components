@@ -1,0 +1,115 @@
+<!-- Container für die Animation in der Desktop-Variante -->
+<div 
+  *ngIf="!isMobile; else masterDetailMobile"
+  class="animation-container" 
+  [@toggleMaster]="counter" 
+>
+  <div  
+    *ngIf="isExpanded; else masterDetailCollapsedView" 
+    fxLayout="row" 
+    fxLayoutAlign="start start" 
+    fxLayoutGap="30px"
+    fxFlex="100" 
+    class="master-detail-expanded-view" 
+  >
+    <!-- Master-Container Expanded-->
+    <div 
+      fxLayout="column"
+      fxFlex.md="calc(50% - 15px)" 
+      fxFlex.gt-md="30"
+      fxLayoutAlign="space-between stretch"
+      class="master-light-container extended"
+    >
+      <ng-container *ngTemplateOutlet="master"></ng-container>
+    </div>
+
+    <!-- Detail-container -->
+    <div class="detail-light-container" fxLayout="column" fxFlex="fill">
+      <ng-container *ngTemplateOutlet="detail"></ng-container>
+    </div>
+  </div>
+
+  <ng-template #masterDetailCollapsedView>
+    <div fxLayout="row" fxLayoutGap="30px" fxFlex="100" fxLayoutAlign="start start" class="master-detail-collapsed-view">
+      <!-- Master-Container -->
+      <div class="master-light-container collapsed" fxLayout="column" fxFlex="0 0 30px">
+        <ng-container *ngTemplateOutlet="master"></ng-container>
+      </div>
+      <!-- detail-Container -->
+      <div class="detail-light-container" fxLayout="column" fxFlex="fill">
+        <ng-container *ngTemplateOutlet="detail"></ng-container>
+      </div>
+    </div>
+  </ng-template>
+</div> <!-- Ende animation-Container -->
+
+
+<!-- Template für den kompletten Detail -->
+<ng-template #detail>
+  <!-- zurück zum Detail-Button für die mobile Ansicht-->
+  <div class="detail-button-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" *ngIf="isMobile">
+    <lux-button
+      luxIconName="lux-interface-arrows-button-left"
+      [luxRounded]="true"
+      (luxClicked)="toggleMobileView()"
+      class="back-to-master-button"
+    ></lux-button>
+    <span class="back-to-master-label">Zurück zur Liste</span>
+  </div>
+  <!-- Detail-Header Standard oder Custom-header -->
+  <div class="detail-light-header">
+    <ng-content select="lux-detail-header-light"></ng-content>
+  </div>
+  <!-- Detail-Content -->
+  <div class="detail-light-content">
+    <ng-content select="lux-detail-content-light"></ng-content>
+  </div>
+</ng-template>
+
+<!-- Template für den kompletten Master -->
+<ng-template #master>
+  <lux-button
+    [luxRounded]="true"
+    [luxIconName]="iconName"
+    luxTagId="master-detail.toggle"
+    [luxAriaExpanded]="iconName === 'lux-interface-arrows-button-left'"
+    luxAriaLabel="{{ getAriaLabelForOpenCloseButton(iconName) }}"
+    luxAriaLabelSelector="button"
+    luxAriaExpandedSelector="button"
+    class="master-light-toggle"
+    (luxClicked)="toggleMaster()"
+    #toggleButton
+    *ngIf="!isMobile"
+  ></lux-button>
+
+  <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="start start" >
+    <!-- Master-Header -->
+    <div class="master-light-header" *ngIf="masterHeader && isExpanded">
+      <ng-content select="lux-master-header-light"></ng-content>
+    </div>
+    <!-- Master-Content -->
+    <div class="master-light-content" *ngIf="masterContent && isExpanded">
+      <ng-content select="lux-master-content-light"></ng-content>
+      <!-- bis ein Testitem eingbaut ist, um die Ansicht in der Mobilen View wechseln zu könnnen, muss wieder entfernt werden -->
+      <lux-button *ngIf="isMobile" luxLabel="testitem" (luxClicked)="toggleMobileView()"></lux-button>
+    </div>
+  </div>
+  <!-- Master-Footer -->
+  <div class="master-light-footer" *ngIf="masterFooter && isExpanded">
+    <ng-content select="lux-master-footer-light"></ng-content>
+  </div>
+</ng-template>
+
+<!-- Container für die Mobile Variante -->
+<ng-template #masterDetailMobile>
+  <div class="master-light-container mobile" fxLayout="column" fxFlex="fill" *ngIf="showMaster">
+    Master-mobile
+    <ng-container  *ngTemplateOutlet="master"></ng-container>
+  </div>
+  
+  <div class="detail-light-container mobile" fxLayout="column" fxFlex="fill" *ngIf="!showMaster">
+    Detail-container-mobile
+    <ng-container *ngTemplateOutlet="detail"></ng-container>
+  </div>
+</ng-template>
+

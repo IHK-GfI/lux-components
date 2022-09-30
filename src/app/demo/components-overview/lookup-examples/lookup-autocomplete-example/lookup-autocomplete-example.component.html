@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Lookup-Autocomplete"
-  exampleIconName="fas fa-binoculars"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90lookup%E2%80%90autocomplete"
 >
   <example-base-content>
@@ -223,6 +222,7 @@
       <lux-toggle
         luxLabel="luxOptionMultiline"
         luxHint="Wenn 'true' wird der Option-Text mehrzeilig angezeigt"
+        [luxNoTopLabel]="true"
         [(luxChecked)]="optionMultiline"
       >
     </lux-toggle>
@@ -302,6 +302,7 @@
       class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [luxNoTopLabel]="true"
       [(luxChecked)]="labelLongFormat"
     >
     </lux-toggle>

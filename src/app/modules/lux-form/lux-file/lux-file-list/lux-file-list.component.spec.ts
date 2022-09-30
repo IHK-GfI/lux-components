@@ -1282,8 +1282,8 @@ class FileComponent {
     disabledHeader: false,
     hidden: false,
     hiddenHeader: false,
-    iconName: 'fas fa-trash',
-    iconNameHeader: 'fas fa-trash',
+    iconName: 'lux-interface-delete-bin-5',
+    iconNameHeader: 'lux-interface-delete-bin-5',
     label: 'Löschen',
     labelHeader: 'Alle Dateien entfernen',
     onClick: () => null
@@ -1291,14 +1291,14 @@ class FileComponent {
   viewActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-eye',
+    iconName: 'lux-interface-edit-view',
     label: 'Anzeigen',
     onClick: () => null
   };
   downloadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-download',
+    iconName: 'lux-interface-download-button-2',
     label: 'Downloaden',
     onClick: () => null
   };

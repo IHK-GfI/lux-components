@@ -3,14 +3,14 @@ import { LuxThemePalette } from '../../../lux-util/lux-colors.enum';
 export const LUX_STEPPER_LARGE_DEFAULT_PREV_BTN_CONF: LuxStepperLargeButtonInfo = {
   label: $localize`:@@luxc.stepper.back.btn:Zurück`,
   color: undefined,
-  iconName: 'fas fa-arrow-left',
+  iconName: 'lux-interface-arrows-left',
   iconShowRight: false
 };
 
 export const LUX_STEPPER_LARGE_DEFAULT_NEXT_BTN_CONF: LuxStepperLargeButtonInfo = {
   label: $localize`:@@luxc.stepper.next.btn:Weiter`,
   color: 'primary',
-  iconName: 'fas fa-arrow-right',
+  iconName: 'lux-interface-arrows-right',
   iconShowRight: true
 };
 

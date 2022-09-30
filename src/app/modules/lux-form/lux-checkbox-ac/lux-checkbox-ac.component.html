@@ -1,0 +1,40 @@
+<lux-form-control-wrapper
+  *ngIf="formGroup"
+  [luxFormComponent]="this"
+  [formGroup]="formGroup"
+  [luxNoInputRow]="true"
+  [luxIgnoreDefaultLabel]="true"
+  [luxNoLabels]="luxNoLabels"
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  (click)="formControl.markAsTouched()"
+>
+  <mat-checkbox
+    [formControl]="formControl"
+    [disableRipple]="true"
+    [required]="luxRequired"
+    color="primary"
+    luxTagIdHandler
+    [luxTagId]="luxTagId"
+    [id]="uid"
+    [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+    luxAriaDescribedbySelector=".mat-checkbox-input"
+    [luxAriaRequired]="luxRequired"
+    luxAriaRequiredSelector=".mat-checkbox-input"
+    [luxAriaInvalid]="'' + formControl.invalid"
+    luxAriaInvalidSelector=".mat-checkbox-input"
+    (focusin)="luxFocusIn.emit($event)"
+    (focusout)="luxFocusOut.emit($event)"
+    tabIndex="{{ luxReadonly ? -1 : 0 }}"
+  >
+    <label class="lux-form-label" [for]="uid + '-input'" *ngIf="formLabelComponent || luxLabel">
+      <ng-container *ngIf="luxLabel; else formLabelTemplate">
+        {{ luxLabel }}
+      </ng-container>
+      <ng-template #formLabelTemplate>
+        <ng-container *ngTemplateOutlet="formLabelComponent?.templateRef ?? null"></ng-container>
+      </ng-template>
+      {{ luxRequired ? ' *' : '' }}
+    </label>
+  </mat-checkbox>
+</lux-form-control-wrapper>

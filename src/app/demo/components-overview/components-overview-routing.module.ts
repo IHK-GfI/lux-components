@@ -32,6 +32,8 @@ import { TextareaExampleComponent } from './textarea-example/textarea-example.co
 import { TooltipExampleComponent } from './tooltip-example/tooltip-example.component';
 import { LookupComboboxExampleComponent } from './lookup-examples/lookup-combobox-example/lookup-combobox-example.component';
 import { LookupAutocompleteExampleComponent } from './lookup-examples/lookup-autocomplete-example/lookup-autocomplete-example.component';
+import { LookupComboboxAcExampleComponent } from './lookup-examples/lookup-combobox-ac-example/lookup-combobox-ac-example.component';
+import { LookupAutocompleteAcExampleComponent } from './lookup-examples/lookup-autocomplete-ac-example/lookup-autocomplete-ac-example.component';
 import { LookupLabelExampleComponent } from './lookup-examples/lookup-label-example/lookup-label-example.component';
 import { SelectExampleComponent } from './select-example/select-example.component';
 import { TabindexExampleComponent } from './tabindex-example/tabindex-example.component';
@@ -58,6 +60,23 @@ import { MarkdownExampleComponent } from './markdown-example/markdown-example.co
 import { FormRowExampleComponent } from './form-row-example/form-row-example.component';
 import { CardRowExampleComponent } from './card-row-example/card-row-example.component';
 import { FilterExampleComponent } from './filter-example/filter-example.component';
+import { LinkPlainExampleComponent } from './link-plain-example/link-plain-example.component';
+import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-authentic-example.component';
+import { InputAuthenticExampleComponent } from './input-authentic-example/input-authentic-example.component';
+import { OverviewExampleComponent } from './tile-authentic-example/overview-example/overview-example.component';
+import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
+import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/checkbox-authentic-example.component';
+import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
+import { AutocompleteAuthenticExampleComponent } from './autocomplete-authentic-example/autocomplete-authentic-example.component';
+import { SelectAuthenticExampleComponent } from './select-authentic-example/select-authentic-example.component';
+import { RadioAuthenticExampleComponent } from './radio-authentic-example/radio-authentic-example.component';
+import { DatepickerAuthenticExampleComponent } from './datepicker-authentic-example/datepicker-authentic-example.component';
+import { DatetimepickerAuthenticExampleComponent } from './datetimepicker-authentic-example/datetimepicker-authentic-example.component';
+import { TextareaAuthenticExampleComponent } from './textarea-authentic-example/textarea-authentic-example.component';
+import { FileInputAuthenticExampleComponent } from './file-example/file-input-authentic-example/file-input-authentic-example.component';
+import { ChipAuthenticExampleComponent } from './chip-authentic-example/chip-authentic-example.component';
+import { SliderAuthenticExampleComponent } from './slider-authentic-example/slider-authentic-example.component';
+import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -67,12 +86,16 @@ const routes: Routes = [
     children: [
       { path: 'accordion', component: AccordionExampleComponent },
       { path: 'autocomplete', component: AutocompleteExampleComponent },
+      { path: 'autocomplete-ac', component: AutocompleteAuthenticExampleComponent },
       { path: 'badge', component: BadgeExampleComponent },
       { path: 'button', component: ButtonExampleComponent },
       { path: 'card', component: CardExampleComponent },
       { path: 'chips', component: ChipExampleComponent },
+      { path: 'chips-ac', component: ChipAuthenticExampleComponent },
       { path: 'datepicker', component: DatepickerExampleComponent },
+      { path: 'datepicker-ac', component: DatepickerAuthenticExampleComponent },
       { path: 'datetimepicker', component: DateTimepickerExampleComponent },
+      { path: 'datetimepicker-ac', component: DatetimepickerAuthenticExampleComponent },
       { path: 'divider', component: DividerExampleComponent },
       { path: 'error-page', component: ErrorpageExampleComponent },
       { path: 'http-error', component: HttpErrorExampleComponent },
@@ -81,17 +104,23 @@ const routes: Routes = [
       { path: 'link', component: LinkExampleComponent },
       { path: 'progress', component: ProgressBarExampleComponent },
       { path: 'radio-button', component: RadioButtonExampleComponent },
+      { path: 'radio-button-ac', component: RadioAuthenticExampleComponent },
       { path: 'select', component: SelectExampleComponent },
+      { path: 'select-ac', component: SelectAuthenticExampleComponent },
       { path: 'slider', component: SliderExampleComponent },
+      { path: 'slider-ac', component: SliderAuthenticExampleComponent },
       { path: 'snackbar', component: SnackbarExampleComponent },
       { path: 'spinner', component: SpinnerExampleComponent },
       { path: 'storage', component: StorageExampleComponent },
       { path: 'table', component: TableExampleComponent },
       { path: 'table-server', component: TableServerExampleComponent },
       { path: 'textarea', component: TextareaExampleComponent },
+      { path: 'textarea-ac', component: TextareaAuthenticExampleComponent },
       { path: 'tooltip', component: TooltipExampleComponent },
       { path: 'lookup-combobox', component: LookupComboboxExampleComponent },
+      { path: 'lookup-combobox-ac', component: LookupComboboxAcExampleComponent },
       { path: 'lookup-autocomplete', component: LookupAutocompleteExampleComponent },
+      { path: 'lookup-autocomplete-ac', component: LookupAutocompleteAcExampleComponent },
       { path: 'lookup-label', component: LookupLabelExampleComponent },
       { path: 'input', component: InputExampleComponent },
       { path: 'tabindex', component: TabindexExampleComponent },
@@ -101,6 +130,7 @@ const routes: Routes = [
       { path: 'checkbox', component: CheckboxExampleComponent },
       { path: 'app-footer', component: AppFooterExampleComponent },
       { path: 'toggle', component: ToggleExampleComponent },
+      { path: 'toggle-ac', component: ToggleAuthenticExampleComponent },
       { path: 'list', component: ListExampleComponent },
       { path: 'timestamp', component: TimestampExampleComponent },
       { path: 'master-detail', component: MasterDetailExampleComponent },
@@ -110,6 +140,7 @@ const routes: Routes = [
       { path: 'infinite-scrolling', component: InfiniteScrollingExampleComponent },
       { path: 'dialog', component: DialogExampleComponent },
       { path: 'file-input', component: FileInputExampleComponent },
+      { path: 'file-input-ac', component: FileInputAuthenticExampleComponent },
       { path: 'file-list', component: FileListExampleComponent },
       { path: 'file-upload', component: FileUploadExampleComponent },
       { path: 'badge-notification', component: BadgeNotificationExampleComponent },
@@ -118,7 +149,14 @@ const routes: Routes = [
       { path: 'markdown', component: MarkdownExampleComponent },
       { path: 'form-row', component: FormRowExampleComponent },
       { path: 'card-row', component: CardRowExampleComponent },
-      { path: 'filter', component: FilterExampleComponent }
+      { path: 'filter', component: FilterExampleComponent },
+      { path: 'link-plain', component: LinkPlainExampleComponent },
+      { path: 'tile-ac', component: TileAuthenticExampleComponent },
+      { path: 'input-ac', component: InputAuthenticExampleComponent },
+      { path: 'checkbox-ac', component: CheckboxAuthenticExampleComponent },
+      { path: 'tile-overview', component: OverviewExampleComponent },
+      { path: 'icon-overview', component: IconOverviewComponent },
+      { path: 'master-detail-light', component: MasterDetailLightExampleComponent },
     ]
   }
 ];

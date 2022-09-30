@@ -33,6 +33,7 @@ export abstract class TableExampleBaseClass {
   cssClass: ICustomCSSConfig[] = [];
   pagerDisabled = false;
   pagerTooltip = '';
+  pagerFirstLastButton = true;
   columnWidthOption = this.columnWidthOptions[1].value;
   multiSelect = true;
   multiSelectOnlyCheckboxClick = true;

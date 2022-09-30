@@ -85,6 +85,7 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
   @Input() luxMultiSelectDisabledProperty?: string;
   @Input() luxPagerDisabled = false;
   @Input() luxPagerTooltip = '';
+  @Input() luxPagerFirstLastButton = true;
 
   @Output() luxSelectedChange = new EventEmitter<Set<T>>();
   @Output() luxSelectedAsArrayChange = new EventEmitter<T[]>();

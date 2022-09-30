@@ -1,0 +1,36 @@
+@import '../lux-file-style/lux-file-common';
+
+lux-form-control-wrapper {
+  display: block;
+}
+
+.lux-file-container {
+  input {
+    width: auto !important;
+  }
+
+  lux-menu {
+    ::ng-deep {
+      > div {
+        height: 24px; //1.5em muss angepass werden, wenn sich die App-Font-Size ändert
+      }
+
+      .lux-menu-extended {
+        justify-content: end;
+        overflow: unset;
+        gap: 2px;
+        lux-button {
+          button {
+            width: unset;
+            min-width: 30px !important;
+          }
+        }
+      }
+      lux-icon.lux-button-icon mat-icon.lux-lx-icon-responsive {
+        height: 16px;
+        width: 16px;
+        vertical-align: super;
+      }
+    }
+  }
+}

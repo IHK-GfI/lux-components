@@ -21,7 +21,7 @@ export class FileUploadExampleComponent extends FileExampleComponent<ILuxFileObj
   labelLink = $localize`:@@luxc.file.upload.label.link:Datei durchsuchen`;
   labelLinkShort = $localize`:@@luxc.file.upload.label.link.short:Datei hochladen`;
   uploadIcon = 'fas fa-cloud-upload-alt';
-  deleteIcon = 'fas fa-trash';
+  deleteIcon = 'lux-interface-delete-bin-5';
   multiple = true;
 
   constructor(

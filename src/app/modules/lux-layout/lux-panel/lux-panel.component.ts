@@ -36,9 +36,6 @@ export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatExpansionPanel, { static: true }) matExpansionPanel!: MatExpansionPanel;
 
-  @HostBinding('class.lux-pr-1') pr1 = true;
-  @HostBinding('class.lux-pl-1') pl1 = true;
-
   subscription?: Subscription;
 
   constructor(@Optional() @Host() @SkipSelf() private parent: LuxAccordionComponent) {}

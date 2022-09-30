@@ -20,13 +20,12 @@ export class LinkExampleComponent implements OnDestroy {
   ];
   config: LuxComponentsConfigParameters;
   log = logResult;
-  label = 'Beispiel-Link';
+  label = 'LOGIN';
   color: LuxThemePalette = 'primary';
-  iconName = '';
+  iconName = 'lux-interface-login-circle';
   iconShowRight = false;
   raised = true;
   round = false;
-  align = false;
   disabled = false;
   blank = true;
   href = 'https://www.ihk-gfi.de/';

@@ -12,7 +12,7 @@ export class TileExampleComponent {
   counter = undefined;
   counterCap = 20;
   label = 'Tile Example';
-
+  subTitle = 'Kurzer erklärender Text'
   log = logResult;
 
   constructor() {}

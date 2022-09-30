@@ -54,8 +54,8 @@ export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBase
     disabledHeader: false,
     hidden        : false,
     hiddenHeader  : false,
-    iconName      : 'fas fa-trash',
-    iconNameHeader: 'fas fa-trash',
+    iconName: 'lux-interface-delete-bin-5',
+    iconNameHeader: 'lux-interface-delete-bin-5',
     label         : 'Löschen',
     labelHeader   : 'Alle Dateien entfernen',
     onClick       : (file) => {
@@ -66,7 +66,7 @@ export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBase
   viewActionConfig: ILuxFileActionConfig       = {
     disabled: false,
     hidden  : false,
-    iconName: 'fas fa-eye',
+    iconName: 'lux-interface-edit-view',
     label   : 'Ansehen',
     onClick : (fileObject: ILuxFileObject) => {
       this.filePreviewService.open({
@@ -81,7 +81,7 @@ export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBase
   viewActionConfigForm: ILuxFileActionConfig = {
     disabled: false,
     hidden  : false,
-    iconName: 'fas fa-eye',
+    iconName: 'lux-interface-edit-view',
     label   : 'Ansehen',
     onClick : (fileObject: ILuxFileObject) => {
       this.filePreviewService.open({
@@ -96,7 +96,7 @@ export abstract class FileExampleComponent<T = any, U extends ILuxFileActionBase
   downloadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden  : false,
-    iconName: 'fas fa-download',
+    iconName: 'lux-interface-download-button-2',
     label   : 'Download',
     onClick : (file) => this.log(this.showOutputEvents, 'downloadActionConfig onClick', file)
   };

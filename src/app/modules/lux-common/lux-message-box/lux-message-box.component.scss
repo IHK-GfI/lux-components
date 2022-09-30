@@ -24,6 +24,10 @@
           min-width: 32px;
           font-size: 0.75em;
           padding: 0;
+
+          mat-icon.lux-lx-icon-responsive {
+            vertical-align: super;
+          }
         }
 
         .mat-button-ripple,

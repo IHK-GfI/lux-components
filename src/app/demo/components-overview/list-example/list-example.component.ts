@@ -13,7 +13,7 @@ export class ListExampleComponent {
   items: any[] = [];
   colors = LuxBadgeColors;
   emptyLabel = 'Keine Daten!';
-  emptyIconName = 'fas fa-exclamation';
+  emptyIconName = 'lux-exclamation-mark';
   emptyIconSize = '5x';
   selectedPosition = 0;
 
@@ -34,7 +34,7 @@ export class ListExampleComponent {
         subTitle: `Untertitel Item #${i + 1}`,
         lineBreak: false,
         selected: false,
-        iconName: 'fas fa-user'
+        iconName: 'lux-interface-user-single'
       });
     }
 

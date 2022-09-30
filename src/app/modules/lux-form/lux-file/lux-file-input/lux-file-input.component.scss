@@ -21,20 +21,25 @@ lux-form-control {
       .lux-menu-extended {
         justify-content: end;
         overflow: unset;
-
+        
         lux-button {
-          height: 15px;
-
+          
           button {
             width: unset;
             min-width: 24px;
+            margin-right: 4px;
             margin-bottom: $outline-width;
-
+            
             &:last-of-type {
-              margin-right: 0;
+              margin-right: 0px;
             }
           }
         }
+      }
+      lux-icon.lux-button-icon mat-icon.lux-lx-icon-responsive {
+        height: 16px;
+        width: 16px;
+        vertical-align: super;
       }
     }
   }

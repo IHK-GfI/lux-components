@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Datepicker"
-  exampleIconName="fas fa-calendar-day"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90datepicker"
 >
   <example-base-content>
@@ -291,6 +290,7 @@
       class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [luxNoTopLabel]="true"
       [(luxChecked)]="labelLongFormat"
     >
     </lux-toggle>

@@ -33,7 +33,7 @@ export class MessageBoxExampleComponent implements OnInit {
     LuxMessageBoxColors.forEach((color, index) => {
       this.messages.push({
         text: 'Message #' + (index + 1),
-        iconName: 'fas fa-bell',
+        iconName: 'lux-interface-alert-alarm-bell-2',
         color: color
       });
     });

@@ -777,7 +777,7 @@ class MockAppHeaderComponent {
       this.sideNavItems.push({
         disabled: false,
         label: 'Label ' + i,
-        iconName: 'fas fa-check',
+        iconName: 'lux-interface-validation-check',
         selected: false,
         closeOnClick: false,
         ignoreThisItem: false
@@ -792,7 +792,7 @@ class MockAppHeaderComponent {
       this.rightNavItems.push({
         disabled: false,
         label: 'Label ' + i,
-        iconName: 'fas fa-check'
+        iconName: 'lux-interface-validation-check'
       });
     }
   }
@@ -804,7 +804,7 @@ class MockAppHeaderComponent {
       this.actionNavItems.push({
         disabled: false,
         label: 'Label ' + i,
-        iconName: 'fas fa-check'
+        iconName: 'lux-interface-validation-check'
       });
     }
   }

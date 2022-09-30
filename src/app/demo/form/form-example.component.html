@@ -1,20 +1,25 @@
 <lux-tabs luxTagId="form-tabs" [luxTabAnimationActive]="false" [luxDisplayDivider]="true" luxAriaRole="main">
-  <lux-tab luxIconName="fas fa-info" luxTitle="Allgemein">
+  <lux-tab luxIconName="lux-food-drinks-teapot" luxTitle="Authentic">
+    <ng-template>
+      <app-form-authentic></app-form-authentic>
+    </ng-template>
+  </lux-tab>
+  <lux-tab luxIconName="lux-info" luxTitle="Allgemein">
     <ng-template>
       <app-form-common></app-form-common>
     </ng-template>
   </lux-tab>
-  <lux-tab luxIconName="fas fa-square" luxTitle="1 Karte">
+  <lux-tab luxIconName="lux-interface-geometric-square" luxTitle="1 Karte">
     <ng-template>
       <app-form-single-col></app-form-single-col>
     </ng-template>
   </lux-tab>
-  <lux-tab luxIconName="fas fa-th-large" luxTitle="2 Karten">
+  <lux-tab luxIconName="lux-interface-dashboard-layout-square" luxTitle="2 Karten">
     <ng-template>
       <app-form-dual-col></app-form-dual-col>
     </ng-template>
   </lux-tab>
-  <lux-tab luxIconName="fas fa-th" luxTitle="3 Karten">
+  <lux-tab luxIconName="lux-interface-login-dial-pad-2" luxTitle="3 Karten">
     <ng-template>
       <app-form-three-col></app-form-three-col>
     </ng-template>

@@ -1,0 +1,58 @@
+<lux-form-control-wrapper
+  *ngIf="formGroup"
+  [luxFormComponent]="this"
+  [formGroup]="formGroup"
+  [luxNoLabels]="luxNoLabels"
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  [luxLabelLongFormat]="luxLabelLongFormat"
+>
+  <div class="lux-input-row-authentic" fxLayout="row" fxLayoutAlign="start center">
+    <span class="lux-input-prefix-container" fxFlex="auto" matPrefix *ngIf="inputPrefix">
+      <ng-content select="lux-input-ac-prefix"></ng-content>
+    </span>
+    <input
+      type="text"
+      matInput
+      autocomplete="off"
+      luxTagIdHandler
+      [luxTagId]="luxTagId"
+      [formControl]="formControl"
+      [placeholder]="luxPlaceholder"
+      [matAutocomplete]="auto"
+      [readonly]="luxReadonly"
+      [required]="luxRequired"
+      (click)="onClick($event)"
+      (blur)="luxBlur.emit($event)"
+      (focus)="luxFocus.emit($event)"
+      (focusin)="luxFocusIn.emit($event)"
+      (focusout)="onFocusOut($event)"
+      [id]="uid"
+      [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+      #autoCompleteInput
+    />
+    <span class="lux-input-suffix-container" fxFlex="auto" matSuffix *ngIf="inputSuffix">
+      <ng-content select="lux-input-ac-suffix"></ng-content>
+    </span>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      [class]="'lux-autocomplete-panel-ac'"
+      [panelWidth]="luxPanelWidth"
+      [displayWith]="displayFn.bind(this)"
+      (optionSelected)="selected($event)"
+    >
+      <mat-option *ngFor="let option of filteredOptions" [value]="option" [ngClass]="{ 'lux-option-multiline': luxOptionMultiline }">
+        <ng-container *ngTemplateOutlet="optionTemplate; context: { $implicit: option }"></ng-container>
+      </mat-option>
+    </mat-autocomplete>
+  </div>
+</lux-form-control-wrapper>
+
+<ng-template #optionTemplate let-option>
+  <ng-container *ngIf="option[luxOptionLabelProp]; else showObjectTemplate">
+    {{ option | luxRenderProperty: luxOptionLabelProp }}
+  </ng-container>
+  <ng-template #showObjectTemplate>
+    {{ option }}
+  </ng-template>
+</ng-template>

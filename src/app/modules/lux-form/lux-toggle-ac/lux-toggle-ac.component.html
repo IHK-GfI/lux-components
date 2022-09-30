@@ -1,0 +1,40 @@
+<lux-form-control-wrapper
+  [luxFormComponent]="this"
+  [luxNoInputRow]="true"
+  [formGroup]="formGroup"
+  [luxIgnoreDefaultLabel]="true"
+  [luxNoLabels]="luxNoLabels"
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  (click)="formControl.markAsTouched()"
+  *ngIf="formGroup"
+>
+  <mat-slide-toggle
+    luxTagIdHandler
+    [luxTagId]="luxTagId"
+    [disableRipple]="true"
+    [required]="luxRequired"
+    [formControl]="formControl"
+    color="primary"
+    (focusin)="luxFocusIn.emit($event)"
+    (focusout)="luxFocusOut.emit($event)"
+    [id]="uid"
+    [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+    luxAriaDescribedbySelector=".mat-slide-toggle-input"
+    [luxAriaRequired]="luxRequired"
+    luxAriaRequiredSelector=".mat-slide-toggle-input"
+    [luxAriaInvalid]="'' + formControl.invalid"
+    luxAriaInvalidSelector=".mat-slide-toggle-input"
+    tabIndex="{{ luxReadonly ? -1 : 0 }}"
+  >
+    <label class="lux-form-label" [for]="uid + '-input'" *ngIf="formLabelComponent || luxLabel">
+      <ng-container *ngIf="luxLabel; else formLabelTemplate">
+        {{ luxLabel }}
+      </ng-container>
+      <ng-template #formLabelTemplate>
+        <ng-container *ngTemplateOutlet="formLabelComponent?.templateRef ?? null"></ng-container>
+      </ng-template>
+      {{ luxRequired ? ' *' : '' }}
+    </label>
+  </mat-slide-toggle>
+</lux-form-control-wrapper>

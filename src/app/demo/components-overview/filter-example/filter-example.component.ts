@@ -5,6 +5,7 @@ import { LuxFilterItem } from '../../../modules/lux-filter/lux-filter-base/lux-f
 import { LuxFilterFormComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form.component';
 import { LuxFieldValues, LuxLookupParameters } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
 import { LuxThemePalette } from '../../../modules/lux-util/lux-colors.enum';
+import { LuxFilterFormExtendedComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form-extended/lux-filter-form-extended.component';
 import { LuxMediaQueryObserverService } from '../../../modules/lux-util/lux-media-query-observer.service';
 import { LuxUtil } from '../../../modules/lux-util/lux-util';
 
@@ -14,7 +15,9 @@ import { LuxUtil } from '../../../modules/lux-util/lux-util';
   styleUrls: ['./filter-example.component.scss']
 })
 export class FilterExampleComponent implements OnInit, OnDestroy {
+
   @ViewChild(LuxFilterFormComponent) filterComponent!: LuxFilterFormComponent;
+  @ViewChild(LuxFilterFormExtendedComponent) filterExtendedOptionsComponent?: LuxFilterFormExtendedComponent;
 
   parameters = new LuxLookupParameters({
     knr: 101,
@@ -119,13 +122,16 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   toggleSelectHidden = false;
 
   buttonColorOptions = ['default', 'primary', 'accent', 'warn'];
-  buttonRaised = false;
-  buttonFilterColor: LuxThemePalette = 'primary';
-  buttonDialogSave: LuxThemePalette = 'primary';
-  buttonDialogLoad: LuxThemePalette = 'primary';
-  buttonDialogDelete: LuxThemePalette = 'warn';
-  buttonDialogCancel?: LuxThemePalette;
-  buttonDialogClose?: LuxThemePalette;
+  buttonFlat = false;
+  buttonFilterColor: LuxThemePalette  = 'primary';
+  buttonDialogSave: LuxThemePalette =  'primary';
+  buttonDialogLoad: LuxThemePalette =  'primary';
+  buttonDialogDelete: LuxThemePalette =  'warn';
+  buttonDialogCancel: LuxThemePalette =  undefined;
+  buttonDialogClose: LuxThemePalette =  undefined;
+
+  openLabel = '';
+  closeLabel = '';
 
   markdownData = `
   Html

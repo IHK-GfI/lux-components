@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Stepper"
-  exampleIconName="fas fa-chevron-circle-right"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90stepper"
 >
   <example-base-content>
@@ -44,7 +43,7 @@
         </lux-step>
       </ng-container>
 
-      <lux-step luxIconName="far fa-address-book" [luxStepControl]="newStepsForm1" *ngIf="newStepsVisible">
+      <lux-step luxIconName="lux-card" [luxStepControl]="newStepsForm1" *ngIf="newStepsVisible">
         <lux-step-header> Step #3 </lux-step-header>
         <lux-step-content [formGroup]="newStepsForm1">
           <h3>Adresse</h3>
@@ -84,7 +83,7 @@
       </lux-step>
 
       <!-- Abschluss-Step des Steppers -->
-      <lux-step luxIconName="fas fa-check">
+      <lux-step luxIconName="lux-interface-validation-check">
         <lux-step-header>
           Fin
         </lux-step-header>
@@ -315,12 +314,5 @@
       [luxOptions]="['primary', 'accent', 'warn', 'none']"
     >
     </lux-select>
-    <lux-toggle
-      luxLabel="alignIconWithLabel"
-      luxHint="Dieser Flag ordnet Icon und Label auf einer Basislinie an."
-      [(luxChecked)]="configurationObject.alignIconWithLabel"
-      [luxNoTopLabel]="true"
-    >
-    </lux-toggle>
   </div>
 </ng-template>

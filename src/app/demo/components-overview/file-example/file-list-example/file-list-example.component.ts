@@ -76,7 +76,7 @@ export class FileListExampleComponent extends FileExampleComponent<ILuxFileObjec
     {
       disabled: false,
       hidden: false,
-      iconName: 'fas fa-edit',
+      iconName: 'lux-interface-edit-write-2',
       label: 'Dialog öffnen',
       prio: 15,
       onClick: (fileObject: ILuxFileObject) => {

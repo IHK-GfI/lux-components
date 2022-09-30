@@ -12,12 +12,23 @@
           display: none;
         }
       }
+      lux-icon.lux-button-icon mat-icon.lux-lx-icon-responsive {
+        vertical-align: super;
+      }
     }
   }
 
   lux-card-actions ::ng-deep,
   .lux-file-icon-hint mat-hint {
     font-size: 12px;
+  }
+
+  lux-menu ::ng-deep {
+    lux-icon.lux-button-icon mat-icon.lux-lx-icon-responsive {
+      height: 16px;
+      width: 16px;
+      vertical-align: super;
+    }
   }
 
   ::ng-deep mat-card-title {

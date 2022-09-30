@@ -11,7 +11,7 @@ export class MenuExampleComponent {
   log = logResult;
   menuItems: ExampleMenuItem[] = [
     {
-      iconName: 'fas fa-address-book',
+      iconName: 'lux-interface-file-add',
       raised: false,
       color: 'primary',
       disabled: false,
@@ -21,10 +21,11 @@ export class MenuExampleComponent {
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
-      prio: 1
+      prio: 1,
+      class: 'lux-test-class'
     },
     {
-      iconName: 'fas fa-address-card',
+      iconName: 'lux-file-signature',
       raised: false,
       color: 'primary',
       disabled: false,
@@ -37,7 +38,7 @@ export class MenuExampleComponent {
       prio: 2
     },
     {
-      iconName: 'fas fa-id-card',
+      iconName: 'lux-file-download',
       raised: false,
       color: 'primary',
       disabled: false,
@@ -53,7 +54,7 @@ export class MenuExampleComponent {
   displayExtended = true;
   displayMenuLeft = true;
   maximumExtended = 5;
-  iconName = 'fas fa-bars';
+  iconName = 'lux-interface-setting-menu-1';
   menuTriggerIconShowRight = false;
   menuLabel = '';
   className = '';
@@ -74,4 +75,5 @@ interface ExampleMenuItem {
   round: boolean;
   hideLabelIfExtended: boolean;
   prio: number;
+  class?: string;
 }

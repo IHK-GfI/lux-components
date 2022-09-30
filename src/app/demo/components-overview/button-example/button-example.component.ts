@@ -22,9 +22,8 @@ export class ButtonExampleComponent implements OnDestroy {
   ];
 
   label = 'Button';
-  iconName = 'fas fa-save';
+  iconName = 'lux-interface-delete-1';
   iconShowRight = false;
-  align = false;
   disabled = false;
   backgroundColor = '';
 

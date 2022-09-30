@@ -1,6 +1,7 @@
-import { Component, HostBinding, Input } from '@angular/core';
-import { LuxIconColor, LuxIconColors } from "../../lux-util/lux-colors.enum";
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { LuxBadgeColors, LuxIconColor, LuxIconColors } from "../../lux-util/lux-colors.enum";
 import { LuxUtil } from '../../lux-util/lux-util';
+import { LuxIconRegistryService } from './lux-icon-registry.service';
 
 @Component({
   selector: 'lux-icon',
@@ -17,10 +18,11 @@ export class LuxIconComponent {
   private _luxIconName = '';
   private _luxPadding = '4px';
   private _backgroundCSSClass = '';
-  private _fontCSSClass = '';
+  private _fontCSSClass = 'blue';
 
   currentIconSize = 1;
   isIconFA?: boolean;
+  isIconLX?: boolean;
 
   @HostBinding('style.margin') styleMargin = '0';
 
@@ -90,7 +92,11 @@ export class LuxIconComponent {
     }
   }
 
-  constructor() {}
+  @Output() luxLoad = new EventEmitter<Event>()
+
+  jsonDataResult: any;
+
+  constructor(private iconReg: LuxIconRegistryService) {  }
 
   /**
    * Generiert aus dem mitgegebenen Wert einen String-Wert
@@ -115,10 +121,29 @@ export class LuxIconComponent {
         iconName = 'fas ' + iconName;
       }
       this.isIconFA = true;
+      this.isIconLX = false;
       return iconName;
     }
+    if (iconName.startsWith('lux')) {
+      this.isIconLX = true;
+      this.isIconFA = false;
+      this.registerIcon(iconName);
+      return iconName;
+    }
+
     this.isIconFA = false;
-    // Ansonsten davon ausgehen, dass es ein Material Icon ist
+    this.isIconLX = false;
     return iconName;
+  }
+
+  private registerIcon(iconName:string) {
+    if (this.isIconLX) {
+      try {
+        this.iconReg.registerIcon(iconName);
+      } catch (error) {
+        console.log(error);
+        this._luxIconName = '';
+      }
+    }
   }
 }

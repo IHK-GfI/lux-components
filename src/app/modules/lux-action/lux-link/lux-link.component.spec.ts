@@ -58,21 +58,6 @@ describe('LuxLinkComponent', () => {
     expect(icon).not.toBeNull();
   }));
 
-  it('Sollte das Icon mit dem Label ausgerichtet darstellen', fakeAsync(() => {
-    // Vorbedingungen testen
-    let aligned = fixture.debugElement.query(By.css('.lux-align-baseline'));
-    expect(aligned).toBeNull();
-
-    // Änderungen durchführen
-    component.align = true;
-    component.iconName = 'fas fa-cog';
-    LuxTestHelper.wait(fixture);
-
-    // Nachbedingungen prüfen
-    aligned = fixture.debugElement.query(By.css('.lux-align-baseline'));
-    expect(aligned).not.toBeNull();
-  }));
-
   it('Sollte deaktiviert werden', fakeAsync(() => {
     // Vorbedingungen testen
     let disabled = fixture.debugElement.query(By.css('button[ng-reflect-disabled="true"]'));
@@ -214,7 +199,6 @@ describe('LuxLinkComponent', () => {
       [luxBlank]="blank"
       [luxHref]="href"
       [luxColor]="color"
-      [luxIconAlignWithLabel]="align"
     >
     </lux-link>
   `
@@ -227,5 +211,4 @@ class MockLinkComponent {
   blank = false;
   href = '';
   color?: LuxThemePalette;
-  align = false;
 }
