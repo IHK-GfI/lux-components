@@ -2,8 +2,7 @@
   position: relative;
   box-sizing: border-box; //brauchen die neuen icons bei roundes Buttons
   display: inline-block; // führt bei rounded Buttons zu einer Verschiebung bei den neuen Icons
-  line-height: 1;
-  //display: initial;
+  line-height: 0.5; //ToDo: ohne diese Angabe, wird das Host-Element größer als das eigentliche Icon, warum ist noch unklar
 }
 
 i.lux-fa-icon,
@@ -18,10 +17,7 @@ i.lux-fa-icon,
 }
 
 mat-icon.mat-icon {
-  //vertical-align: middle;
-
   :not(.lux-lx-icon){
-
     &.lux-icon-rounded {
       height: unset !important;
     }
@@ -30,10 +26,8 @@ mat-icon.mat-icon {
       height: unset !important;
       width: unset !important;
     }
-
   }
 }
-
 
 .lux-lx-icon-rounded-1em {
   border-radius: 50%;

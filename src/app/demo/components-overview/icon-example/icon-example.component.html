@@ -4,7 +4,6 @@
 >
   <example-base-content>
     <div fxLayout="column" fxLayoutGap="24px">
-
       <div fxLayout="column" class="lux-app-data-bg lux-highlight-section column" [ngStyle]="{ backgroundColor: backgroundColor }">
         <h3 class="lux-highlight-section-label">Default</h3>
         <div fxLayout="row wrap" fxLayoutGap="12px grid">
@@ -20,8 +19,7 @@
           </lux-icon>
         </div>
         <div fxLayout="row wrap" fxLayoutGap="12px grid">
-          <lux-icon
-            *ngFor="let color of colors; let i = index"
+          <lux-icon *ngFor="let color of colors; let i = index"
             [luxIconName]="iconName"
             [luxIconSize]="iconSize"
             [luxPadding]="padding"
@@ -113,20 +111,6 @@
           </lux-icon>
         </div>
       </div>
-      <div fxLayout="column" class="lux-app-data-bg lux-highlight-section" [ngStyle]="{ backgroundColor: backgroundColor }">
-        <h3><lux-link-plain luxLabel="Alle Icons" luxHref="/components-overview/example/icon-overview"></lux-link-plain></h3>
-        <!-- <h3 class="lux-highlight-section-label">Alle neuen Icons in der Übersicht</h3> -->
-        <!-- <ng-container *ngFor="let category of iconCategories ">
-          <h4>{{ category }} </h4>
-          <div fxLayout="row wrap" fxLayoutGap="12px grid">
-          
-            <div *ngFor="let iconName of iconNames" class="example-icon-container">
-              <lux-icon [luxIconName]="iconName" luxIconSize="2x" class="lux-color-blue"></lux-icon>
-              {{ iconName }}--
-            </div>
-          </div>
-        </ng-container> -->
-      </div>
     </div> 
   </example-base-content>
   <example-base-simple-options>
@@ -168,14 +152,12 @@
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen. <br/> Z.B. #f0f0f2 oder </lux-form-hint>
     </lux-input>
     <div class="lux-highlight-section">
-      <p>
-        <lux-link-plain 
-          luxLabel="Zur Iconsuche" 
-          luxHref="/components-overview/example/icon-overview" 
-          luxIconName="lux-interface-arrows-button-right" 
-          [luxIconShowRight]="true"
-          ></lux-link-plain>
-      </p>
+      <lux-link-plain 
+        luxLabel="Zur Iconsuche" 
+        luxHref="/components-overview/example/icon-overview" 
+        luxIconName="lux-interface-arrows-button-right" 
+        [luxIconShowRight]="true"
+      ></lux-link-plain>
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>

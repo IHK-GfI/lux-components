@@ -13,7 +13,7 @@
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
   <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
-  <span style="display: inline-block;" class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
+  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
     {{ luxLabel }}
   </span>
   <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>

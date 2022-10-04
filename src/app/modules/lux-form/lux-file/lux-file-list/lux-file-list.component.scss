@@ -12,7 +12,7 @@
           display: none;
         }
       }
-      lux-icon.lux-button-icon mat-icon.lux-lx-icon-responsive {
+      lux-icon.lux-button-icon mat-icon.lux-lx-icon-no-size {
         vertical-align: super;
       }
     }
@@ -24,7 +24,7 @@
   }
 
   lux-menu ::ng-deep {
-    lux-icon.lux-button-icon mat-icon.lux-lx-icon-responsive {
+    lux-icon.lux-button-icon mat-icon.lux-lx-icon-no-size {
       height: 16px;
       width: 16px;
       vertical-align: super;

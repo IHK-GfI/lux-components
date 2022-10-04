@@ -186,10 +186,8 @@ export class IconOverviewComponent implements OnInit {
     this.iconClass = `lux-color-${color.value}`
   }
 
-  optionChanged(option: { label: string; value: LuxIconColor }) {
-    console.log('option changed')
-    // ToDo (Trowe): ???
-    // this.isBgColor = option.value;
+  optionChanged(option: { label: string; value: boolean }) {
+    this.isBgColor = option.value;
   }
 
   private uptdateCodeSnippet() {

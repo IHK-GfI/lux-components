@@ -3,7 +3,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from "@angular/material/icon";
 import { LuxSvgIcon } from "./lux-svg-icon";
 import iconFilesJson from 'assets/svg/lux-icons/lux-icons.json';
-import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -23,7 +22,6 @@ export class LuxIconRegistryService {
 
     if (icon) {
       if (!this.registeredIcons.includes(_iconName)) {
-
         this.matIconRegistry.addSvgIcon(
           _iconName,
           this.sanitizer.bypassSecurityTrustResourceUrl(icon.iconPath)

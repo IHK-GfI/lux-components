@@ -3,7 +3,6 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { Subject, Subscription } from 'rxjs';
 import { LuxActionComponentBaseClass } from '../lux-action-model/lux-action-component-base.class';
 import { throttleTime } from 'rxjs/operators';
-import { LuxIconRegistryService } from '../../lux-icon/lux-icon/lux-icon-registry.service';
 
 @Component({
   selector: 'lux-button',
@@ -11,7 +10,6 @@ import { LuxIconRegistryService } from '../../lux-icon/lux-icon/lux-icon-registr
   styleUrls: ['./lux-button.component.scss']
 })
 export class LuxButtonComponent extends LuxActionComponentBaseClass implements OnInit, OnDestroy {
-  // public readonly iconSize: string = '2x';
 
   private configSubscription!: Subscription;
 
