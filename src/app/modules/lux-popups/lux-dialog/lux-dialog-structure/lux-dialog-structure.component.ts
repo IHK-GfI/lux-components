@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { LuxUtil } from '../../../lux-util/lux-util';
 
 /**
@@ -12,7 +12,16 @@ import { LuxUtil } from '../../../lux-util/lux-util';
 })
 export class LuxDialogStructureComponent implements AfterViewInit {
   @ViewChild('dialogBase', { read: ElementRef, static: true }) dialogBase!: ElementRef;
-
+  
+  private _iconName = 'lux-oval';
+  @Input() set luxDialogIcon(name: string | undefined) {
+    if (name)
+      this._iconName = name;
+  }
+  get luxDialogIcon() {
+    return this._iconName;
+  }
+  
   constructor() {}
 
   ngAfterViewInit() {

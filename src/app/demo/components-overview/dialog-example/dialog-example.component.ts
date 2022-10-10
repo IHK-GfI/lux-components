@@ -26,6 +26,7 @@ export class DialogExampleComponent implements OnDestroy {
     disableClose: true,
     width: 'auto',
     height: 'auto',
+    iconName: 'lux-interface-alert-warning-triangle',
     panelClass: [],
     confirmAction: {
       label: 'Löschen',
@@ -37,7 +38,7 @@ export class DialogExampleComponent implements OnDestroy {
       label: 'Abbrechen',
       raised: false,
       flat: true,
-      color: undefined
+      color: 'primary'
     }
   };
 
