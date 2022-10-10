@@ -4,19 +4,20 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
 
 @Component({
   selector: 'app-menu-example',
-  templateUrl: './menu-example.component.html'
+  templateUrl: './menu-example.component.html',
+  styleUrls: ['./menu-example.component.scss']
 })
 export class MenuExampleComponent {
   showOutputEvents = false;
   log = logResult;
   menuItems: ExampleMenuItem[] = [
     {
-      iconName: 'lux-interface-file-add',
+      iconName: 'lux-interface-login-circle',
       raised: false,
       color: 'primary',
       disabled: false,
       hidden: false,
-      label: 'Menu-Item 0',
+      label: 'Registrierung',
       tooltip: '',
       alwaysVisible: false,
       round: false,
@@ -25,12 +26,12 @@ export class MenuExampleComponent {
       class: 'lux-test-class'
     },
     {
-      iconName: 'lux-file-signature',
+      iconName: 'lux-interface-help-question-message',
       raised: false,
       color: 'primary',
       disabled: false,
       hidden: false,
-      label: 'Menu-Item 1',
+      label: 'FAQ´s',
       tooltip: '',
       alwaysVisible: false,
       round: false,
@@ -43,7 +44,7 @@ export class MenuExampleComponent {
       color: 'primary',
       disabled: false,
       hidden: false,
-      label: 'Menu-Item 2',
+      label: 'Downloads',
       tooltip: '',
       alwaysVisible: false,
       round: false,

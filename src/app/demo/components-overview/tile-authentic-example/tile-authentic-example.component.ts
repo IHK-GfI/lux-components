@@ -4,15 +4,14 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
 
 @Component({
   selector: 'app-tile-authentic-example',
-  templateUrl: './tile-authentic-example.component.html',
-  styleUrls: ['./tile-authentic-example.component.scss']
+  templateUrl: './tile-authentic-example.component.html'
 })
 export class TileAuthenticExampleComponent {
   showIcon = true;
   showOutputEvents = false;
 
-  label = 'Tile-Authentic';
-  subTitle = 'Die neue Kachel mit einem Subtitle'
+  label = 'Wetter';
+  subTitle = 'Vorschau auf die kommende Woche'
   log = logResult;
 
   badgeContent = '';

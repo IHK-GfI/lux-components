@@ -18,7 +18,7 @@ export const DEFAULT_DIALOG_PRESET_CONF: ILuxDialogPresetConfig = {
   width: 'auto',
   height: 'auto',
   title: '',
-  iconName: 'lux-Oval',
+  iconName: 'lux-oval',
   content: '',
   panelClass: [],
   disableClose: true,

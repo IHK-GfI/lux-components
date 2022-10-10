@@ -22,7 +22,7 @@ export class SnackbarExampleComponent implements OnDestroy {
   snackbarConfig: LuxSnackbarConfig = {
     text: 'Text',
     textColor: 'gray',
-    iconName: 'lux-info',
+    iconName: 'lux-interface-alert-information-circle',
     iconColor: 'gray',
     iconSize: '2x',
     action: 'Action',

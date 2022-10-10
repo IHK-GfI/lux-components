@@ -42,7 +42,7 @@ export class StepperExampleComponent implements OnDestroy {
   steps: any[] = [
     {
       iconName: 'lux-interface-bookmark',
-      iconSize: '2x',
+      iconSize: '1x',
       optional: false,
       editable: true,
       completed: false,
@@ -55,7 +55,7 @@ export class StepperExampleComponent implements OnDestroy {
     },
     {
       iconName: 'lux-interface-user-single',
-      iconSize: '2x',
+      iconSize: '1x',
       optional: false,
       editable: true,
       completed: false,

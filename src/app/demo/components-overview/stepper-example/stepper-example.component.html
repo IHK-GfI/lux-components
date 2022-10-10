@@ -26,6 +26,7 @@
       <ng-container *ngFor="let step of steps; let i = index">
         <lux-step
           [luxIconName]="step.iconName"
+          [luxIconSize]="step.iconSize"
           [luxOptional]="step.optional"
           [luxEditable]="step.editable"
           [luxCompleted]="step.completed"

@@ -16,7 +16,7 @@
         luxTagId="example-tile"
         (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
       >
-        <lux-icon luxIconName="pets" *ngIf="showIcon"></lux-icon>
+        <lux-icon luxIconName="lux-interface-weather-sun-1" *ngIf="showIcon"></lux-icon>
         <lux-image
           luxImageSrc="assets/svg/red_power_button.svg"
           luxImageWidth="50px"
@@ -25,7 +25,6 @@
         ></lux-image>
       </lux-tile-authentic>
     </div>
-    <h3><lux-link-plain luxLabel="Übersicht" luxHref="/components-overview/example/tile-overview"></lux-link-plain></h3>
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
@@ -52,6 +51,14 @@
           Wenn 'false' wird stattdessen in dem Beispiel ein LuxImageComponent genutzt.
         </lux-form-hint>
       </lux-toggle>
+    </div>
+    <div class="lux-highlight-section">
+      <lux-link-plain 
+        luxLabel="Testseite mit mehreren Kacheln" 
+        luxHref="/components-overview/example/tile-overview"
+        luxIconName="lux-interface-arrows-button-right" 
+        [luxIconShowRight]="true"
+      ></lux-link-plain>
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
