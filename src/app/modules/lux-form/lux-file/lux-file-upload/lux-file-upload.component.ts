@@ -41,7 +41,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
   @Input() luxLabelLink = $localize`:@@luxc.file.upload.label.link:Datei durchsuchen`;
   @Input() luxLabelLinkShort = $localize`:@@luxc.file.upload.label.link.short:Datei hochladen`;
   @Input() luxMultiple = true;
-  @Input() luxUploadIcon = 'fas fa-cloud-upload-alt';
+  @Input() luxUploadIcon = 'lux-programming-cloud-upload';
   @Input() luxDeleteIcon = 'lux-interface-delete-bin-1';
 
   get luxUploadActionConfig(): ILuxFilesActionConfig {
@@ -87,26 +87,26 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
   _luxUploadActionConfig: ILuxFilesActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-cloud-upload-alt',
+    iconName: 'lux-programming-cloud-upload',
     label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
   }
 
   _luxDeleteActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-trash',
+    iconName: 'lux-interface-delete-bin-2',
     label: $localize`:@@luxc.form-file-base.delete.action.lbl:Löschen`
   };
   _luxViewActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: true,
-    iconName: 'fas fa-eye',
+    iconName: 'lux-interface-edit-view',
     label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
   };
   _luxDownloadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: true,
-    iconName: 'fas fa-download',
+    iconName: 'lux-interface-download-button-2',
     label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
   };
 
@@ -416,7 +416,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
         } else if (selectedFile.type.indexOf('officedocument') > -1) {
           newFileIcon = 'lux-file-signature';
         } else if (selectedFile.type.indexOf('json') > -1) {
-          newFileIcon = 'fas fa-file-code';
+          newFileIcon = 'lux-programming-script-file-code-1';
         }
       }
       this.fileIcons.push(newFileIcon);

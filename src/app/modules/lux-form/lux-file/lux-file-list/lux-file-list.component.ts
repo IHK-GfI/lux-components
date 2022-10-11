@@ -51,8 +51,8 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
     disabledHeader: false,
     hidden: false,
     hiddenHeader: false,
-    iconName: 'lux-interface-delete-bin-5',
-    iconNameHeader: 'lux-interface-delete-bin-5',
+    iconName: 'lux-programming-cloud-upload',
+    iconNameHeader: 'lux-programming-cloud-upload',
     label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
     labelHeader: $localize`:@@luxc.file-list.upload_title.lbl:Neue Dateien hochladen`
   }
@@ -360,7 +360,7 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
         } else if (selectedFile.type.indexOf('officedocument') > -1) {
           newFileIcon = 'lux-file-signature';
         } else if (selectedFile.type.indexOf('json') > -1) {
-          newFileIcon = 'fas fa-file-code';
+          newFileIcon = 'lux-programming-script-file-code-1';
         }
       }
       this.fileIcons.push(newFileIcon);

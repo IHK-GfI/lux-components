@@ -41,19 +41,19 @@ export class LuxFileInputComponent extends LuxFormFileBase<ILuxFileObject | null
   _luxUploadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-cloud-upload-alt',
+    iconName: 'lux-programming-cloud-upload',
     label: $localize`:@@luxc.form-file-base.upload.action.lbl:Hochladen`
   }
   _luxDeleteActionConfig: ILuxFileActionConfig = {
       disabled: false,
       hidden: false,
-      iconName: 'fas fa-trash',
+      iconName: 'lux-interface-delete-bin-2',
       label: $localize`:@@luxc.form-file-base.delete.action.lbl:Löschen`
   };
   _luxViewActionConfig: ILuxFileActionConfig = {
       disabled: false,
       hidden: true,
-      iconName: 'fas fa-eye',
+      iconName: 'lux-interface-edit-view',
       label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
   };
   _luxDownloadActionConfig: ILuxFileActionConfig = {
