@@ -192,7 +192,7 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
     if (typeof value === 'string') {
       return value;
     } else if (typeof value === "object" &&
-               (filterItem.component instanceof LuxFormSelectableBase || filterItem.component instanceof LuxAutocompleteComponent)) {
+               (filterItem.component instanceof LuxFormSelectableBase || filterItem.component instanceof LuxAutocompleteComponent || filterItem.component instanceof LuxAutocompleteAcComponent)) {
       return (value as any)[filterItem.component.luxOptionLabelProp!];
     } else if (filterItem.component instanceof  LuxLookupComponent) {
       return filterItem.component.getLabel(value);

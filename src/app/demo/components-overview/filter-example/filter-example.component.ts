@@ -43,7 +43,9 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   ];
 
   initFilter: any = {};
+  initFilterAc: any = {};
   currentFilter: any = {};
+  currentFilterAc: any = {};
   replaceFilterJson = `{
   "input": "Lorem ipsum",
   "datepicker": "${LuxUtil.newDateWithoutTime().toISOString()}",
@@ -77,6 +79,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
           value: 'a'
         },
         datepicker: '2020-07-21T00:00:00.000Z',
+        datetimepicker: '2020-07-21T12:15:00.000Z',
         singleSelect: {
           label: 'Single 4711',
           value: '4711'
@@ -99,6 +102,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
       }
     }
   ];
+  storedFiltersAc: LuxFilter[] = JSON.parse(JSON.stringify(this.storedFilters))
 
   mediaQuerySubscription: Subscription;
 
@@ -148,7 +152,9 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
     // Hier wird die setTimeout-Methode verwendet, um einen Backend-Call zu simulieren.
     setTimeout(() => {
       this.initFilter    = { input: "Lorem ipsum" };
+      this.initFilterAc    = { input: "Lorem ipsum" };
       this.currentFilter = this.initFilter;
+      this.currentFilterAc = this.initFilterAc;
 
       setTimeout(() => {
         this.initRunning = false;
@@ -174,8 +180,20 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
     }
   }
 
+  onFilterAc(filter: any) {
+    this.currentFilterAc = filter;
+
+    if (!this.initRunning) {
+      console.log('Neuer Filter:', filter);
+    }
+  }
+
   onSave(filter: LuxFilter) {
     this.saveFilter(filter);
+  }
+
+  onSaveAc(filter: LuxFilter) {
+    this.saveFilterAc(filter);
   }
 
   onDelete(filter: LuxFilter) {
@@ -190,13 +208,24 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
     this.initFilter = this.loadFilter(filterName);
   }
 
+  onLoadAc(filterName: string) {
+    this.initFilterAc = this.loadFilter(filterName);
+  }
+
   onSetFilter() {
     this.initFilter = JSON.parse(this.replaceFilterJson);
+    this.initFilterAc = JSON.parse(this.replaceFilterJson);
   }
 
   private saveFilter(filter: LuxFilter) {
     // Hier müssten die Filtereinstellungen (z.B. in die Datenbank) geschrieben werden.
     this.storedFilters.push(filter);
+    console.log('Filter saved.', filter);
+  }
+
+  private saveFilterAc(filter: LuxFilter) {
+    // Hier müssten die Filtereinstellungen (z.B. in die Datenbank) geschrieben werden.
+    this.storedFiltersAc.push(filter);
     console.log('Filter saved.', filter);
   }
 
