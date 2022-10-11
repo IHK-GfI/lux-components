@@ -3366,5 +3366,169 @@
   {
     "iconName":  "lux-Maximize--gfi__lux-window-maximize-programming-coding",
     "iconPath":  "/assets/svg/lux-icons/Icons/Programming/Window/Maximize--gfi__lux-window-maximize.svg"
+  },
+  {
+    "iconName":  "lux-mail-chat-bubble-square--message-speech-empty",
+    "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Chat-Bubble/lux-mail-chat-bubble-square--message-speech-empty.svg"
+  },
+  {
+      "iconName":  "lux-mail-chat-bubble-typing-oval--message-speech-ellipsis",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Chat-Bubble/lux-mail-chat-bubble-typing-oval--message-speech-ellipsis.svg"
+  },
+  {
+      "iconName":  "lux-mail-chat-bubble-typing-square--message-speech-ellipsis",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Chat-Bubble/lux-mail-chat-bubble-typing-square--message-speech-ellipsis.svg"
+  },
+  {
+      "iconName":  "lux-mail-chat-bubble-warning--alert-message-notification-square-speech",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Chat-Bubble/lux-mail-chat-bubble-warning--alert-message-notification-square-speech.svg"
+  },
+  {
+      "iconName":  "lux-mail-inbox--postbox-drawer-email-outbox-open",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Inbox/lux-mail-inbox--postbox-drawer-email-outbox-open.svg"
+  },
+  {
+      "iconName":  "lux-mail-send-email--airplane-paper-plane-send-message",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Send/lux-mail-send-email--airplane-paper-plane-send-message.svg"
+  },
+  {
+      "iconName":  "lux-mail-send-envelope--message-email",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Send/lux-mail-send-envelope--message-email.svg"
+  },
+  {
+      "iconName":  "lux-mail-send-forward--email-message-redo-arrow-right",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Send/lux-mail-send-forward--email-message-redo-arrow-right.svg"
+  },
+  {
+      "iconName":  "lux-mail-send-reply--message-arrow-left-email-revert-undo",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Send/lux-mail-send-reply--message-arrow-left-email-revert-undo.svg"
+  },
+  {
+      "iconName":  "lux-mail-sign-at--mail-address-email-read-sign",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Misc/lux-mail-sign-at--mail-address-email-read-sign.svg"
+  },
+  {
+      "iconName":  "lux-mail-smiley-happy-face--chat-emoji-face-message",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Smiley/lux-mail-smiley-happy-face--chat-emoji-face-message.svg"
+  },
+  {
+      "iconName":  "lux-mail-smiley-sad-face--chat-emoji-face-message",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Smiley/lux-mail-smiley-sad-face--chat-emoji-face-message.svg"
+  },
+  {
+      "iconName":  "lux-mail-smiley-straight-face--chat-emoji-face-message",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Mail/Smiley/lux-mail-smiley-straight-face--chat-emoji-face-message.svg"
+  },
+  {
+      "iconName":  "lux-ecology-science-planet--globe-astronomy-ring-saturn-solar-space-nature-ecology",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Nature-Ecology/Science/lux-ecology-science-planet--globe-astronomy-ring-saturn-solar-space-nature-ecology.svg"
+  },
+  {
+      "iconName":  "lux-interface-page-controller-scroll-up-down--interface-essential-sort",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Interface-Essentials/Page-Controller/lux-interface-page-controller-scroll-up-down--interface-essential-sort.svg"
+  },
+  {
+      "iconName":  "lux-phone--telephone-mobile-phone-smartphone-device-android-iphone-call-message",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Phone/lux-phone--telephone-mobile-phone-smartphone-device-android-iphone-call-message.svg"
+  },
+  {
+      "iconName":  "lux-phone-book--contact-phonebook-number-diary-notebook-agenda-content-address-addressbook",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Phone/lux-phone-book--contact-phonebook-number-diary-notebook-agenda-content-address-addressbook.svg"
+  },
+  {
+      "iconName":  "lux-shopping-briefcase--suitcase-money-shopping-bag-buisiness-suit-case-travel",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Money-Shopping/Bags/lux-shopping-briefcase--suitcase-money-shopping-bag-buisiness-suit-case-travel.svg"
+  },
+  {
+      "iconName":  "lux-money-atm-card-1--money-shopping-banking-credit-pay-payment-plastic",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Money-Shopping/Payment-Currency/lux-money-atm-card-1--money-shopping-banking-credit-pay-payment-plastic.svg"
+  },
+  {
+      "iconName":  "lux-money-cash-file-dollar--common-currency-payment-pay-finance-business",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Money-Shopping/Payment-Currency/lux-money-cash-file-dollar--common-currency-payment-pay-finance-business.svg"
+  },
+  {
+      "iconName":  "lux-money-cashier--cash-pay-payment-register-shopping-finance",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Money-Shopping/Cashier/lux-money-cashier--cash-pay-payment-register-shopping-finance.svg"
+  },
+  {
+      "iconName":  "lux-money-cashier-bar-code--tag-barcode-upc-shopping",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Money-Shopping/Cashier/lux-money-cashier-bar-code--tag-barcode-upc-shopping.svg"
+  },
+  {
+      "iconName":  "lux-money-currency-euro--money-shopping-banking-payment-currency-exchange-pay",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Money-Shopping/Payment-Currency/lux-money-currency-euro--money-shopping-banking-payment-currency-exchange-pay.svg"
+  },
+  {
+      "iconName":  "lux-money-currency-euro-circle--money-shopping-banking-payment-currency-pay-coin",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Money-Shopping/Payment-Currency/lux-money-currency-euro-circle--money-shopping-banking-payment-currency-pay-coin.svg"
+  },
+  {
+      "iconName":  "lux-money-graph--chart-line-shopping-diagram-data-analytic-analysis",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Money-Shopping/lux-money-graph--chart-line-shopping-diagram-data-analytic-analysis.svg"
+  },
+  {
+      "iconName":  "lux-money-wallet--money-shopping-payment-pay",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Money-Shopping/Bags/lux-money-wallet--money-shopping-payment-pay.svg"
+  },
+  {
+      "iconName":  "lux-programming-browser-window--cascade-code-tow-windows-app",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Programming/Window/lux-programming-browser-window--cascade-code-tow-windows-app.svg"
+  },
+  {
+      "iconName":  "lux-programming-bug--code-computer-secure-security",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Programming/Misc/lux-programming-bug--code-computer-secure-security.svg"
+  },
+  {
+      "iconName":  "lux-programming-cloud-download--arrow-down-network-wifi",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Programming/Cloud/lux-programming-cloud-download--arrow-down-network-wifi.svg"
+  },
+  {
+      "iconName":  "lux-programming-cloud-upload--arrow-up-network-wifi",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Programming/Cloud/lux-programming-cloud-upload--arrow-up-network-wifi.svg"
+  },
+  {
+      "iconName":  "lux-programming-module-puzzle--piece-plugin-code-app",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Programming/Misc/lux-programming-module-puzzle--piece-plugin-code-app.svg"
+  },
+  {
+      "iconName":  "lux-programming-script-file-code-1--programming-angle-bracket",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Programming/Script/lux-programming-script-file-code-1--programming-angle-bracket.svg"
+  },
+  {
+      "iconName":  "lux-programming-web--earth-globe-network-internet-server",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Programming/Web/lux-programming-web--earth-globe-network-internet-server.svg"
+  },
+  {
+      "iconName":  "lux-travel-hotel-bed-1--maps-bedroom-hotel-night-sleep-sigle",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Map-Travel/Hotel/lux-travel-hotel-bed-1--maps-bedroom-hotel-night-sleep-sigle.svg"
+  },
+  {
+      "iconName":  "lux-travel-hotel-bed-2--maps-bedroom-hotel-nicht-sleep-double",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Map-Travel/Hotel/lux-travel-hotel-bed-2--maps-bedroom-hotel-nicht-sleep-double.svg"
+  },
+  {
+      "iconName":  "lux-travel-map--maps-travel-gps-navigation-book",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Map-Travel/Map/lux-travel-map--maps-travel-gps-navigation-book.svg"
+  },
+  {
+      "iconName":  "lux-travel-map-earth-1--earth-globe-world-planet",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Map-Travel/Map/lux-travel-map-earth-1--earth-globe-world-planet.svg"
+  },
+  {
+      "iconName":  "lux-travel-map-earth-2--earth-globe-world-planet",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Map-Travel/Map/lux-travel-map-earth-2--earth-globe-world-planet.svg"
+  },
+  {
+      "iconName":  "lux-travel-map-location-target-1--crosshair-crosshairs-maps-location-destination-gps-location",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Map-Travel/Map/lux-travel-map-location-target-1--crosshair-crosshairs-maps-location-destination-gps-location.svg"
+  },
+  {
+      "iconName":  "lux-travel-map-rectangle-flag--goal-location-navigation-destination-maps",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Map-Travel/Map/lux-travel-map-rectangle-flag--goal-location-navigation-destination-maps.svg"
+  },
+  {
+      "iconName":  "lux-travel-wayfinder-lifebuoy--life-lifebelt-ring-water-wheely-maps-map-sea",
+      "iconPath":  "/assets/svg/lux-icons/Icons/Map-Travel/Wayfinder/lux-travel-wayfinder-lifebuoy--life-lifebelt-ring-water-wheely-maps-map-sea.svg"
   }
 ]
