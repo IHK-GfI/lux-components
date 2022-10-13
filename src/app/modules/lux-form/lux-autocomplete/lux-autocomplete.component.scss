@@ -1,4 +1,4 @@
-@import '~@ihk-gfi/lux-components-theme/src/public/global';
+@import '@ihk-gfi/lux-components-theme/src/public/global';
 
 ::ng-deep .lux-autocomplete-panel {
   padding: $outline-width;
@@ -6,7 +6,7 @@
   mat-option.lux-option-multiline {
     padding: 16px;
     height: unset;
-    
+
     .mat-option-text {
       white-space: pre-line;
       text-overflow: unset;

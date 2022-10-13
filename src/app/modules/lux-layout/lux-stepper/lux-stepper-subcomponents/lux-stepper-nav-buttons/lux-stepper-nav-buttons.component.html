@@ -15,7 +15,7 @@
     [luxColor]="luxStepperConfig?.luxNextButtonConfig?.color"
     [luxIconName]="luxStepperConfig?.luxNextButtonConfig?.iconName"
     (luxClicked)="luxNextClick.emit()"
-    [luxDisabled]="!luxStep?.isCompleted() && luxStepperConfig?.luxLinear"
+    [luxDisabled]="!luxStep.isCompleted() && luxStepperConfig && luxStepperConfig.luxLinear"
     luxTagId="luxStepper.nextStep"
     *ngIf="luxIndex < ((luxStepperConfig?.luxSteps?.length) ?? 0) - 1"
   >
@@ -26,7 +26,7 @@
     [luxColor]="luxStepperConfig?.luxFinishButtonConfig?.color"
     [luxIconName]="luxStepperConfig?.luxFinishButtonConfig?.iconName"
     (luxClicked)="luxFinClick.emit()"
-    [luxDisabled]="!luxStep?.isCompleted() && luxStepperConfig?.luxLinear"
+    [luxDisabled]="!luxStep.isCompleted() && luxStepperConfig && luxStepperConfig.luxLinear"
     luxTagId="luxStepper.finished"
     *ngIf="luxIndex === ((luxStepperConfig?.luxSteps?.length) ?? 0) - 1"
   >

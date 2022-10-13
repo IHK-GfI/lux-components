@@ -35,7 +35,7 @@
             [luxOptions]="notAppliedToOptions"
             [(luxSelected)]="currentConfig.labelConfiguration!.notAppliedTo"
             (luxSelectedChange)="updateConfig()"
-            [luxDisabled]="!currentConfig?.labelConfiguration?.allUppercase"
+            [luxDisabled]="!currentConfig.labelConfiguration!.allUppercase"
             [luxNoBottomLabel]="true"
           ></lux-select>
       </div>

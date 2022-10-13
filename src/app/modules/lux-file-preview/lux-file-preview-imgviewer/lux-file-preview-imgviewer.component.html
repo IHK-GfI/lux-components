@@ -41,7 +41,7 @@
 <div class="overlay-content" [ngStyle]="{ 'max-width': width + 'px', 'max-height': height + 'px' }">
   <img
     [src]="this.sanitizer.bypassSecurityTrustResourceUrl(this.url)"
-    [alt]="previewData?.fileObject?.name"
+    [alt]="previewData.fileObject && previewData.fileObject.name ? previewData.fileObject.name : ''"
     *ngIf="url"
     (load)="onLoad()"
     [ngStyle]="{

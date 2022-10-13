@@ -35,6 +35,7 @@
         [luxLocaleBaseHref]="luxLocaleBaseHref"
         fxFlex="0 0 auto"
         class="lux-lang-select-ac lux-mr-3"
+        luxTagId="app_header_lang_menu"
         *ngIf="luxLocaleSupported && (luxLocaleSupported?.length ?? 0) > 1"
       ></lux-lang-select-ac>
 
@@ -81,6 +82,7 @@
             luxAriaLabel="Benutzermenü"
             i18n-luxAriaLabel="@@luxc.app-header.user.menu.trigger"
             aria-haspopup="true"
+            luxTagId="user-menu-trigger-ac"
             [ngClass]="menuOpened ? 'menu-opened' : ''"
             #customTrigger
           >

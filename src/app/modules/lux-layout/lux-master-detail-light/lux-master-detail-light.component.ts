@@ -72,7 +72,6 @@ export class LuxMasterDetailLightComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('LuxMasterDetailMobileHelperService.ngOnDestroy called');
     this.subscription.unsubscribe();
   }
 
