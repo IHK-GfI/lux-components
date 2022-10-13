@@ -35,7 +35,7 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   @Input() luxHideTopBar = false;
   @Input() luxHideNavBar = false;
 
-  @Output() luxClicked: EventEmitter<any> = new EventEmitter();
+  @Output() luxClicked: EventEmitter<Event> = new EventEmitter();
 
   @ViewChild('customTrigger', { read: ElementRef }) customTrigger?: ElementRef;
 
@@ -96,9 +96,7 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   }
 
   onClicked(event: any) {
-    // allgemeines ClickEvent, dass an den Parent weitergeben wird
     this.luxClicked.emit(event);
-    console.log("clicked", event);
   }
 
   private generateUserNameShort(): string {

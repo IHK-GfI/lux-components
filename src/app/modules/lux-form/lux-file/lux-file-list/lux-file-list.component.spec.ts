@@ -25,10 +25,6 @@ describe('LuxFileListComponent', () => {
       [
         LuxConsoleService,
         {
-          provide: HttpClient,
-          useClass: MockHttp
-        },
-        {
           provide: LuxStorageService,
           useClass: MockStorage
         }
@@ -1347,12 +1343,6 @@ class FileFormComponent {
       file: new FormControl<ILuxFileObject[] | null>(null)
     });
     this.formControl = this.form.get('file')!;
-  }
-}
-
-class MockHttp {
-  post() {
-    return of(null);
   }
 }
 

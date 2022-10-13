@@ -94,8 +94,6 @@ export class LuxIconComponent {
 
   @Output() luxLoad = new EventEmitter<Event>()
 
-  jsonDataResult: any;
-
   constructor(private iconReg: LuxIconRegistryService) {  }
 
   /**

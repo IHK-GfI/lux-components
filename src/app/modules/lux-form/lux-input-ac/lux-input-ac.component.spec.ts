@@ -4,7 +4,7 @@ import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
-import { LuxFormControlComponent } from '../lux-form-control/lux-form-control.component';
+import { LuxFormControlWrapperComponent } from '../lux-form-control-wrapper/lux-form-control-wrapper.component';
 import { ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
 import { LuxInputAcComponent } from './lux-input-ac.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -618,42 +618,42 @@ describe('LuxCounterLabel', () => {
   it('sollte Counter-Label bei focused=true anzeigen', fakeAsync(() => {
     // Vorbedingung
     testComponent.maxLength = 50;
-    +     fixture.detectChanges();
+    fixture.detectChanges();
 
     // Fokus aktivieren
-    const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-    const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
+    const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlWrapperComponent))!;
+    const formControlComponent = formControlEl.injector.get<LuxFormControlWrapperComponent>(LuxFormControlWrapperComponent);
     formControlComponent.focused = true;
     // Wert ändern
     const inputEL = fixture.debugElement.query(By.css('input'));
     LuxTestHelper.typeInElement( inputEL.nativeElement, 'Lorem ipsum');
     LuxTestHelper.wait(fixture);
     // Prüfen
-    let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+    let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter-authentic'));
     expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
     // Fokus deaktivieren
     formControlComponent.focused = false;
     fixture.detectChanges();
     // Prüfen
-    labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+    labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter-authentic'));
     expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
   }));
 
   it('sollte Counter-Label auch bei leerem Value anzeigen', fakeAsync(() => {
     // Vorbedingung
     testComponent.maxLength = 50;
-    +     fixture.detectChanges();
+    fixture.detectChanges();
 
     // Fokus aktivieren
-    const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-    const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
+    const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlWrapperComponent))!;
+    const formControlComponent = formControlEl.injector.get<LuxFormControlWrapperComponent>(LuxFormControlWrapperComponent);
     formControlComponent.focused = true;
     // Wert ändern
     const inputEL = fixture.debugElement.query(By.css('input'));
     LuxTestHelper.typeInElement( inputEL.nativeElement, '');
     LuxTestHelper.wait(fixture);
     // Prüfen
-    let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+    let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter-authentic'));
     expect(labelEl.nativeElement.innerHTML.trim()).toContain('0/50');
   }));
 
@@ -661,11 +661,11 @@ describe('LuxCounterLabel', () => {
     // Vorbedingungen
     const inputEl = fixture.debugElement.query(By.css('input'));
     testComponent.maxLength = 50;
-    +     fixture.detectChanges();
+    fixture.detectChanges();
 
     // Fokus aktivieren
-    const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-    const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
+    const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlWrapperComponent))!;
+    const formControlComponent = formControlEl.injector.get<LuxFormControlWrapperComponent>(LuxFormControlWrapperComponent);
     formControlComponent.focused = true;
 
     // Input-Value setzen
@@ -673,7 +673,7 @@ describe('LuxCounterLabel', () => {
     LuxTestHelper.wait(fixture);
 
     // Vorbedingungen testen
-    let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+    let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter-authentic'));
     expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
 
     // TestComponent deaktivieren und Focus zurücksetzen
@@ -682,7 +682,7 @@ describe('LuxCounterLabel', () => {
     fixture.detectChanges();
 
     // Nachbedingungen prüfen
-    labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+    labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter-authentic'));
     expect(inputEl.nativeElement.disabled).toBe(true);
     expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
   }));
@@ -700,7 +700,7 @@ describe('Input-Attribute', () => {
 
   it('Sollte im Label nicht "undefined" oder "null" anzeigen', fakeAsync(() => {
     // Vorbedingungen testen
-    const label = fixture.debugElement.query(By.css('.lux-label'));
+    const label = fixture.debugElement.query(By.css('.lux-label-authentic'));
     expect(label.nativeElement.textContent.trim()).not.toEqual(undefined);
     expect(label.nativeElement.textContent.trim()).not.toEqual(null);
 
@@ -723,7 +723,7 @@ describe('Input-Attribute', () => {
 
   it('Sollte das Label anpassen', fakeAsync(() => {
     // Vorbedingungen testen
-    let label = fixture.debugElement.query(By.css('.lux-label'));
+    let label = fixture.debugElement.query(By.css('.lux-label-authentic'));
     expect(label.nativeElement.textContent.trim()).toEqual('');
 
     // Änderungen durchführen
@@ -731,7 +731,7 @@ describe('Input-Attribute', () => {
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    label = fixture.debugElement.query(By.css('.lux-label'));
+    label = fixture.debugElement.query(By.css('.lux-label-authentic'));
     expect(label.nativeElement.textContent.trim()).toEqual('Lorem Ipsum');
   }));
 

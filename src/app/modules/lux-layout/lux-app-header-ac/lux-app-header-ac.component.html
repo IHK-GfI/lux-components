@@ -19,11 +19,6 @@
     </div>
     <!-- App-Logo -->
     <div fxFlex="fill" fxLayoutAlign="center center" class="app-logo-container" *ngIf="!mobileView">
-      <!-- <lux-button
-        [luxIconName]="luxAppIconName"
-        luxColor="primary"
-        (click)="onClicked($event)"
-      ></lux-button> -->
       <mat-icon svgIcon="luxAppIcon" (click)="onClicked($event)"></mat-icon>
     </div>
     <!-- User-Menu -->
@@ -35,14 +30,6 @@
       class="user-menu lux-header-user"
       [luxAriaLabel]="luxAriaUserMenuButtonLabel"
     >
-
-      <!-- Greeting -->
-      <!-- <div *ngIf="luxUserName" fxFlex="0 0 75%" fxLayoutAlign="end center" [fxShow.lt-md]="false">
-        <span class="lux-nowrap lux-header-username">
-          {{ greetingLabel }} {{ luxUserName }}
-        </span>
-      </div> -->
-
       <lux-lang-select-ac
         [luxLocaleSupported]="luxLocaleSupported"
         [luxLocaleBaseHref]="luxLocaleBaseHref"
@@ -100,7 +87,6 @@
           </lux-button>
         </lux-menu-trigger>
       </lux-menu>
-    <!-- </div> -->
   </div>
 
   </div>

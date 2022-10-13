@@ -561,11 +561,12 @@ describe('LuxTableComponent', () => {
         { c1: 1, c2: 'Hydrogen' },
         { c1: 2, c2: 'Helium' }
       ];
+      component.showFilter = false;
       LuxTestHelper.wait(fixture);
-      let tableContent = document.getElementsByClassName('lux-table').item(0) as HTMLElement;
-      let table = document.getElementsByTagName('table').item(0) as HTMLElement;
-      let paginator = document.getElementsByTagName('mat-paginator').item(0) as HTMLElement;
-      let filter = document.getElementsByTagName('lux-input').item(0) as HTMLElement;
+      let tableContent = fixture.debugElement.query(By.css('lux-table')).nativeElement as HTMLElement;
+      let table = fixture.debugElement.query(By.css('table')).nativeElement as HTMLElement;
+      let paginator = fixture.debugElement.query(By.css('mat-paginator')).nativeElement as HTMLElement;
+      let filter = fixture.debugElement.query(By.css('lux-input-ac')).nativeElement as HTMLElement;
 
       expect(tableContent.offsetHeight - paginator.offsetHeight - filter.offsetHeight).not.toBe(400);
       expect(table.style.minWidth).not.toBe('600px');
@@ -577,10 +578,10 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      tableContent = document.getElementsByClassName('lux-table').item(0) as HTMLElement;
-      table = document.getElementsByTagName('table').item(0) as HTMLElement;
-      paginator = document.getElementsByTagName('mat-paginator').item(0) as HTMLElement;
-      filter = document.getElementsByTagName('lux-input').item(0) as HTMLElement;
+      tableContent = fixture.debugElement.query(By.css('lux-table')).nativeElement as HTMLElement;
+      table = fixture.debugElement.query(By.css('table')).nativeElement as HTMLElement;
+      paginator = fixture.debugElement.query(By.css('mat-paginator')).nativeElement as HTMLElement;
+      filter = fixture.debugElement.query(By.css('lux-input-ac')).nativeElement as HTMLElement;
 
       expect(tableContent.offsetHeight + paginator.offsetHeight + filter.offsetHeight).toBe(400);
       expect(table.style.minWidth).toBe('600px');

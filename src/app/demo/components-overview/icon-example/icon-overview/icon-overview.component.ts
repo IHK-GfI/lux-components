@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 import { LuxSvgIcon } from '../../../../modules/lux-icon/lux-icon/lux-svg-icon'
 import { LuxIconRegistryService } from '../../../../modules/lux-icon/lux-icon/lux-icon-registry.service';
@@ -14,12 +14,12 @@ import { Observable } from 'rxjs';
   templateUrl: './icon-overview.component.html',
   styleUrls: ['./icon-overview.component.scss']
 })
-export class IconOverviewComponent implements OnInit {
+export class IconOverviewComponent implements OnInit, AfterViewInit {
 
   iconList: LuxSvgIcon[] = new Array<LuxSvgIcon>();
   isLoading = false;
   copiedToClipboard = false;
-  codeSnippet: string = '<lux-icon></lux-icon>';
+  codeSnippet = '<lux-icon></lux-icon>';
 
   private _inputValue = '';
   get inputValue(){
@@ -38,9 +38,7 @@ export class IconOverviewComponent implements OnInit {
   }
   set chipLabels(labels: string[]) {
     this._chipLabels=labels;
-    this._chipLabels.filter((item) => {
-      item.length === 0;
-    });
+    this._chipLabels.filter((item) => item.length === 0);
   }
 
   private allIcons: LuxSvgIcon[];

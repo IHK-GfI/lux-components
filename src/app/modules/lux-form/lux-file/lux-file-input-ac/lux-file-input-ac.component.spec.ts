@@ -20,10 +20,7 @@ describe('LuxFileInputAcComponent', () => {
     LuxTestHelper.configureTestModule(
       [
         LuxConsoleService,
-        {
-          provide: HttpClient,
-          useClass: MockHttp
-        },
+
         {
           provide: LuxStorageService,
           useClass: MockStorage
@@ -137,7 +134,7 @@ describe('LuxFileInputAcComponent', () => {
 
     it('Sollte Label, Placeholder und Hint korrekt setzen', fakeAsync(() => {
       // Vorbedingungen testen
-      expect(fixture.debugElement.query(By.css('.lux-form-label'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.lux-form-label-authentic'))).toBeNull();
       expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.placeholder).toEqual('');
       expect(fixture.debugElement.query(By.css('mat-hint'))).toBeNull();
 
@@ -148,7 +145,7 @@ describe('LuxFileInputAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-form-label')).nativeElement.textContent.trim()).toEqual('Label');
+      expect(fixture.debugElement.query(By.css('.lux-form-label-authentic')).nativeElement.textContent.trim()).toEqual('Label');
       expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.placeholder).toEqual(
         'Placeholder'
       );
@@ -188,14 +185,14 @@ describe('LuxFileInputAcComponent', () => {
 
     it('Sollte readonly sein', fakeAsync(() => {
       // Vorbedingungen testen
-      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly-authentic'))).toBeNull();
 
       // Änderungen durchführen
       testComponent.readonly = true;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly-authentic'))).not.toBeNull();
     }));
 
     it('Sollte Drag-and-Drop deaktivieren', fakeAsync(() => {
@@ -948,12 +945,6 @@ class FileFormComponent {
       file: new FormControl<ILuxFileObject | null>(null)
     });
     this.formControl = this.form.get('file')!;
-  }
-}
-
-class MockHttp {
-  post() {
-    return of(null);
   }
 }
 

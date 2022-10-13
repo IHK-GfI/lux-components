@@ -3,6 +3,7 @@
 
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { LuxIconRegistryService } from '../../../lux-icon/lux-icon/lux-icon-registry.service';
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
 import { LuxTestHelper } from '../../../lux-util/testing/lux-test-helper';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
@@ -22,10 +23,6 @@ describe('LuxFileInputComponent', () => {
     LuxTestHelper.configureTestModule(
       [
         LuxConsoleService,
-        {
-          provide: HttpClient,
-          useClass: MockHttp
-        },
         {
           provide: LuxStorageService,
           useClass: MockStorage
@@ -950,12 +947,6 @@ class FileFormComponent {
       file: new FormControl<ILuxFileObject | null>(null)
     });
     this.formControl = this.form.get('file')!;
-  }
-}
-
-class MockHttp {
-  post() {
-    return of(null);
   }
 }
 

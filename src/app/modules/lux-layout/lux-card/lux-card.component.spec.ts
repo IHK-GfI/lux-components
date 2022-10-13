@@ -168,7 +168,7 @@ describe('LuxCardComponent', () => {
       expect(contentEl).not.toBeNull();
       expect(contentEl.nativeElement.innerHTML).toEqual('Lorem ipsum');
       expect(expandedEl).toBeNull();
-      expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
+      expect(toggleEl.nativeElement.innerHTML).toContain('lux-interface-arrows-button-down');
 
       // Änderungen durchführen
       component.card.luxExpanded = true;
@@ -182,7 +182,7 @@ describe('LuxCardComponent', () => {
       expect(contentEl).not.toBeNull();
       expect(expandedEl).not.toBeNull();
       expect(expandedEl.nativeElement.innerHTML).toEqual('Lorem ipsum expanded');
-      expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-up');
+      expect(toggleEl.nativeElement.innerHTML).toContain('lux-interface-arrows-button-up');
 
       // Änderungen durchführen
       component.card.luxExpanded = false;
@@ -195,7 +195,7 @@ describe('LuxCardComponent', () => {
       expect(component.card.luxExpanded).toBeFalsy();
       expect(contentEl.nativeElement.innerHTML).toEqual('Lorem ipsum');
       expect(expandedEl).toBeNull();
-      expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
+      expect(toggleEl.nativeElement.innerHTML).toContain('lux-interface-arrows-button-down');
     }));
 
     it('Card über den Button auf- und zuklappen', fakeAsync(() => {
@@ -207,8 +207,8 @@ describe('LuxCardComponent', () => {
       expect(contentEl).not.toBeNull();
       expect(contentEl.nativeElement.innerHTML).toEqual('Lorem ipsum');
       expect(expandedEl).toBeNull();
-      expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
-      
+      expect(toggleEl.nativeElement.innerHTML).toContain('lux-interface-arrows-button-down');
+
       // Änderungen durchführen
       toggleEl.nativeElement.click();
       LuxTestHelper.wait(fixture, LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs);
@@ -221,7 +221,7 @@ describe('LuxCardComponent', () => {
       expect(contentEl).not.toBeNull();
       expect(expandedEl).not.toBeNull();
       expect(expandedEl.nativeElement.innerHTML).toEqual('Lorem ipsum expanded');
-      expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-up');
+      expect(toggleEl.nativeElement.innerHTML).toContain('lux-interface-arrows-button-up');
 
       // Änderungen durchführen
       toggleEl.nativeElement.click();
@@ -234,7 +234,7 @@ describe('LuxCardComponent', () => {
       expect(component.card.luxExpanded).toBeFalsy();
       expect(contentEl.nativeElement.innerHTML).toEqual('Lorem ipsum');
       expect(expandedEl).toBeNull();
-      expect(toggleEl.nativeElement.innerHTML).toContain('fa-angle-down');
+      expect(toggleEl.nativeElement.innerHTML).toContain('lux-interface-arrows-button-down');
 
       discardPeriodicTasks();
     }));

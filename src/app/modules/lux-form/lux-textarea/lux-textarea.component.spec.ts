@@ -348,7 +348,7 @@ describe('LuxTextareaComponent', () => {
     it('sollte Counter-Label bei focused=true anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
 
       // Fokus aktivieren
@@ -372,7 +372,7 @@ describe('LuxTextareaComponent', () => {
     it('sollte Counter-Label bei leerem Value anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
 
       // Fokus aktivieren
@@ -390,7 +390,7 @@ describe('LuxTextareaComponent', () => {
     it('bei disabled sollte kein Wert gezeigt werden', fakeAsync(() => {
       // Vorbedingungen testen
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
 
       // Fokus aktivieren

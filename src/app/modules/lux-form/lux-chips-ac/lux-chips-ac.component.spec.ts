@@ -31,7 +31,7 @@ describe('LuxChipComponent-Authentic', () => {
       fixture = TestBed.createComponent(ChipsComponent);
       overlayHelper = new LuxOverlayHelper();
       testComponent = fixture.componentInstance;
-      chipsComponent = fixture.debugElement.query(By.directive(ChipsComponent)).componentInstance;
+      chipsComponent = fixture.debugElement.query(By.directive(LuxChipsAcComponent)).componentInstance;
       discardPeriodicTasks();
       flush();
     }));

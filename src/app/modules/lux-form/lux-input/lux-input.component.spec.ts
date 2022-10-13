@@ -620,7 +620,7 @@ describe('LuxInputComponent', () => {
     it('sollte Counter-Label bei focused=true anzeigen', fakeAsync(() => {
       // Vorbedingung
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
 
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
@@ -644,7 +644,7 @@ describe('LuxInputComponent', () => {
     it('sollte Counter-Label auch bei leerem Value anzeigen', fakeAsync(() => {
       // Vorbedingung
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
 
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
@@ -663,7 +663,7 @@ describe('LuxInputComponent', () => {
       // Vorbedingungen
       const inputEl = fixture.debugElement.query(By.css('input'));
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
 
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;

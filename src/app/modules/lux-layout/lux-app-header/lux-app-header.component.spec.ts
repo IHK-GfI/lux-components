@@ -244,10 +244,10 @@ describe('LuxAppHeaderComponent', () => {
       expect(luxSideNavItems[2].query(By.css('.lux-button-label')).nativeElement.textContent.trim()).toEqual('Label 2');
       expect(luxSideNavItems[3].query(By.css('.lux-button-label')).nativeElement.textContent.trim()).toEqual('Label 3');
 
-      expect(luxSideNavItems[0].query(By.css('.fas.fa-check')).nativeElement.textContent.trim()).not.toBeNull();
-      expect(luxSideNavItems[1].query(By.css('.fas.fa-check')).nativeElement.textContent.trim()).not.toBeNull();
-      expect(luxSideNavItems[2].query(By.css('.fas.fa-check')).nativeElement.textContent.trim()).not.toBeNull();
-      expect(luxSideNavItems[3].query(By.css('.fas.fa-check')).nativeElement.textContent.trim()).not.toBeNull();
+      expect(luxSideNavItems[0].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()).not.toBeNull();
+      expect(luxSideNavItems[1].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()).not.toBeNull();
+      expect(luxSideNavItems[2].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()).not.toBeNull();
+      expect(luxSideNavItems[3].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()).not.toBeNull();
     }));
 
     it('Sollte lux-side-nav-items deaktivieren', fakeAsync(() => {
@@ -512,12 +512,12 @@ describe('LuxAppHeaderComponent', () => {
       fixture.detectChanges();
 
       viewport.set('desktop');
-      expect(fixture.debugElement.query(By.css('[luxIconName="fas fa-user"]')).nativeElement.style.display).not.toEqual(
+      expect(fixture.debugElement.query(By.css('[luxIconName="lux-interface-user-single"]')).nativeElement.style.display).not.toEqual(
         'none'
       );
 
       viewport.set('mobile');
-      expect(fixture.debugElement.query(By.css('[luxIconName="fas fa-user"]')).nativeElement.style.display).not.toEqual(
+      expect(fixture.debugElement.query(By.css('[luxIconName="lux-interface-user-single"]')).nativeElement.style.display).not.toEqual(
         'none'
       );
 

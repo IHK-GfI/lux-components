@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from "@angular/material/icon";
 import { LuxSvgIcon } from "./lux-svg-icon";
-import iconFilesJson from 'assets/svg/lux-icons/lux-icons.json';
+import iconFilesJson from './../../../../assets/svg/lux-icons/lux-icons.json';
 
 @Injectable({
   providedIn: "root"
@@ -11,12 +11,12 @@ export class LuxIconRegistryService {
 
   private registeredIcons = new Array<string>();
   private svgIcons: LuxSvgIcon[] = iconFilesJson;
- 
-  constructor(    
-    private matIconRegistry: MatIconRegistry,  
+
+  constructor(
+    private matIconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) { }
-  
+
   registerIcon(_iconName: string){
     let icon = this.svgIcons.find( item => item.iconName.split('--')[0].toLowerCase() === _iconName );
 

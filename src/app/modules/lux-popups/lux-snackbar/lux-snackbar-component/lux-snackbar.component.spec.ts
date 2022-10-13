@@ -1,4 +1,5 @@
 /* eslint-disable max-classes-per-file */
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, NgModule, Injectable } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -18,7 +19,7 @@ describe('LuxSnackbarComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [MockSnackbarModule]
+      imports: [MockSnackbarModule, HttpClientTestingModule]
     });
   });
 

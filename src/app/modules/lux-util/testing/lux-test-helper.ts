@@ -1,5 +1,6 @@
 import { SPACE } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement, Provider } from '@angular/core';
 import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -324,6 +325,7 @@ export class LuxTestHelper {
   public static configureTestModule(providers: Provider[] = [], declarations: any[] = [], imports: any[] = []) {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         ...LuxTestHelper.COMMON_ANGULAR_MODULES,
         ...LuxTestHelper.MATERIAL_MODULES,
         ...LuxTestHelper.LUX_MODULES,

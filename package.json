@@ -20,7 +20,7 @@
     "test": "ng test",
     "test-headless": "ng test --watch=false --browsers=ChromeHeadless --code-coverage=true",
     "lint": "ng lint --fix",
-    "packagr": "ng-packagr -p ng-package.json",
+    "packagr": "ng-packagr -p ng-package.json --config tsconfig.lib.json",
     "security": "npm audit --registry=https://registry.npmjs.org --audit-level high",
     "smoketest": "npm run build-prod && npm run lint && npm run test-headless && npm run xi18n && npm run packagr",
     "move-de-files": "node move-de-files.js",

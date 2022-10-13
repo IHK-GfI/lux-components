@@ -298,7 +298,7 @@ describe('LuxSelectAcComponent', () => {
 
     it('Sollte readonly sein', fakeAsync(() => {
       // Vorbedingungen testen
-      let readonlySelect = fixture.debugElement.query(By.css('lux-select-ac .lux-form-control-readonly'));
+      let readonlySelect = fixture.debugElement.query(By.css('lux-select-ac .lux-form-control-readonly-authentic'));
       expect(readonlySelect).toBeNull();
 
       // Änderungen durchführen
@@ -306,13 +306,13 @@ describe('LuxSelectAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      readonlySelect = fixture.debugElement.query(By.css('lux-select-ac .lux-form-control-readonly'));
+      readonlySelect = fixture.debugElement.query(By.css('lux-select-ac .lux-form-control-readonly-authentic'));
       expect(readonlySelect).not.toBeNull();
     }));
 
     it('Sollte disabled sein', fakeAsync(() => {
       // Vorbedingungen testen
-      let disabledSelect = fixture.debugElement.query(By.css('lux-select-ac .lux-form-control-disabled'));
+      let disabledSelect = fixture.debugElement.query(By.css('lux-select-ac .lux-form-control-disabled-authentic'));
       expect(disabledSelect).toBeNull();
 
       // Änderungen durchführen
@@ -320,13 +320,13 @@ describe('LuxSelectAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      disabledSelect = fixture.debugElement.query(By.css('lux-select-ac .lux-form-control-disabled'));
+      disabledSelect = fixture.debugElement.query(By.css('lux-select-ac .lux-form-control-disabled-authentic'));
       expect(disabledSelect).not.toBeNull();
     }));
 
     it('Sollte das Label darstellen', fakeAsync(() => {
       // Vorbedingungen testen
-      let label = fixture.debugElement.query(By.css('.lux-label'));
+      let label = fixture.debugElement.query(By.css('.lux-label-authentic'));
       expect(label.nativeElement.textContent.trim()).toEqual('');
 
       // Änderungen durchführen
@@ -334,7 +334,7 @@ describe('LuxSelectAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      label = fixture.debugElement.query(By.css('.lux-label'));
+      label = fixture.debugElement.query(By.css('.lux-label-authentic'));
       expect(label.nativeElement.textContent.trim()).toEqual('Label');
     }));
 

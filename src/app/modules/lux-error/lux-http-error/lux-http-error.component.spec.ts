@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { LuxHttpErrorInterceptor } from './lux-http-error-interceptor';
+import { LuxHttpErrorComponent } from './lux-http-error.component';
 
 describe('LuxHttpErrorComponent', () => {
 
@@ -143,7 +144,7 @@ describe('LuxHttpErrorComponent', () => {
 
     // Änderungen durchführen
     paginatorNext.nativeElement.click();
-    LuxTestHelper.wait(fixture);
+    fixture.autoDetectChanges();
 
     // Nachbedingungen prüfen
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
@@ -151,7 +152,7 @@ describe('LuxHttpErrorComponent', () => {
 
     // Änderungen durchführen
     paginatorNext.nativeElement.click();
-    LuxTestHelper.wait(fixture);
+    fixture.autoDetectChanges();
 
     // Nachbedingungen prüfen
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
@@ -159,7 +160,7 @@ describe('LuxHttpErrorComponent', () => {
 
     // Änderungen durchführen
     paginatorPrev.nativeElement.click();
-    LuxTestHelper.wait(fixture);
+    fixture.autoDetectChanges();
 
     // Nachbedingungen prüfen
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));

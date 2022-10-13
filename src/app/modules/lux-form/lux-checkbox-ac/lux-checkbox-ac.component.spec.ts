@@ -1,10 +1,9 @@
 /* eslint-disable max-classes-per-file */
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
-import { LuxCheckboxComponent } from '../lux-checkbox/lux-checkbox.component';
 import { ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
 import { LuxCheckboxAcComponent } from './lux-checkbox-ac.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -343,13 +342,13 @@ describe('LuxCheckboxAcComponent', () => {
     describe('Attribut "luxRequired"', () => {
       let fixture: ComponentFixture<LuxRequiredAttributeComponent>;
       let testComponent: LuxRequiredAttributeComponent;
-      let checkboxComponent: LuxCheckboxComponent;
+      let checkboxComponent: LuxCheckboxAcComponent;
 
       beforeEach(fakeAsync(() => {
         fixture = TestBed.createComponent(LuxRequiredAttributeComponent);
         fixture.detectChanges();
         testComponent = fixture.componentInstance;
-        checkboxComponent = fixture.debugElement.query(By.directive(LuxCheckboxComponent)).componentInstance;
+        checkboxComponent = fixture.debugElement.query(By.directive(LuxCheckboxAcComponent)).componentInstance;
       }));
 
       it('Sollte die korrekte Fehlermeldung anzeigen', fakeAsync(() => {
@@ -371,13 +370,13 @@ describe('LuxCheckboxAcComponent', () => {
     describe('Error-Message', () => {
       let fixture: ComponentFixture<LuxValidatorsComponent>;
       let testComponent: LuxValidatorsComponent;
-      let checkboxComponent: LuxCheckboxComponent;
+      let checkboxComponent: LuxCheckboxAcComponent;
 
       beforeEach(fakeAsync(() => {
         fixture = TestBed.createComponent(LuxValidatorsComponent);
         fixture.detectChanges();
         testComponent = fixture.componentInstance;
-        checkboxComponent = fixture.debugElement.query(By.directive(LuxCheckboxComponent)).componentInstance;
+        checkboxComponent = fixture.debugElement.query(By.directive(LuxCheckboxAcComponent)).componentInstance;
       }));
 
       it('Validatoren setzen und die Fehlermeldungen korrekt anzeigen', fakeAsync(() => {
@@ -403,7 +402,7 @@ describe('LuxCheckboxAcComponent', () => {
 
 @Component({
   template: `
-    <lux-checkbox luxLabel="Magst du Pommes?" [luxChecked]="true" [luxDisabled]="disabled"></lux-checkbox>
+    <lux-checkbox-ac luxLabel="Magst du Pommes?" [luxChecked]="true" [luxDisabled]="disabled"></lux-checkbox-ac>
   `
 })
 class LuxDisabledAttributeComponent {
@@ -412,7 +411,7 @@ class LuxDisabledAttributeComponent {
 
 @Component({
   template: `
-    <lux-checkbox luxLabel="Eula gelesen?" (luxCheckedChange)="onCheckedChange($event)"></lux-checkbox>
+    <lux-checkbox-ac luxLabel="Eula gelesen?" (luxCheckedChange)="onCheckedChange($event)"></lux-checkbox-ac>
   `
 })
 class LuxCheckedChangeComponent {
@@ -425,7 +424,7 @@ class LuxCheckedChangeComponent {
 
 @Component({
   template: `
-    <lux-checkbox luxLabel="Eula gelesen?" [(luxChecked)]="eula"></lux-checkbox>
+    <lux-checkbox-ac luxLabel="Eula gelesen?" [(luxChecked)]="eula"></lux-checkbox-ac>
   `
 })
 class LuxCheckedAttributeComponent {
@@ -434,7 +433,7 @@ class LuxCheckedAttributeComponent {
 
 @Component({
   template: `
-    <lux-checkbox [luxLabel]="label" [luxChecked]="false"></lux-checkbox>
+    <lux-checkbox-ac [luxLabel]="label" [luxChecked]="false"></lux-checkbox-ac>
   `
 })
 class LuxLabelAttributeComponent {
@@ -443,7 +442,7 @@ class LuxLabelAttributeComponent {
 
 @Component({
   template: `
-    <lux-checkbox [luxLabel]="label" [luxRequired]="true"></lux-checkbox>
+    <lux-checkbox-ac [luxLabel]="label" [luxRequired]="true"></lux-checkbox-ac>
   `
 })
 class LuxRequiredAttributeComponent {
@@ -453,7 +452,7 @@ class LuxRequiredAttributeComponent {
 @Component({
   template: `
     <form [formGroup]="formGroup">
-      <lux-checkbox luxLabel="Eula gelesen?" luxControlBinding="eula" [luxRequired]="required"></lux-checkbox>
+      <lux-checkbox-ac luxLabel="Eula gelesen?" luxControlBinding="eula" [luxRequired]="required"></lux-checkbox-ac>
     </form>
   `
 })

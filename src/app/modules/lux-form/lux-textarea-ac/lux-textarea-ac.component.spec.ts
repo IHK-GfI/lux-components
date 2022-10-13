@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
-import { LuxFormControlComponent } from '../lux-form-control/lux-form-control.component';
+import { LuxFormControlWrapperComponent } from '../lux-form-control-wrapper/lux-form-control-wrapper.component';
 import { LuxErrorCallbackFnType, ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
 import { LuxTextareaAcComponent } from './lux-textarea-ac.component';
 import { By } from '@angular/platform-browser';
@@ -118,7 +118,7 @@ describe('LuxTextareaAcComponent', () => {
       component.placeholder = 'Placeholder';
       fixture.detectChanges();
 
-      const labelEl = fixture.debugElement.query(By.css('.lux-label')).nativeElement;
+      const labelEl = fixture.debugElement.query(By.css('.lux-label-authentic')).nativeElement;
       const textareaEl = fixture.debugElement.query(By.css('textarea')).nativeElement;
       // When
       // Then
@@ -253,14 +253,14 @@ describe('LuxTextareaAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(fixture.debugElement.query(By.css('.lux-label')).nativeElement.textContent.trim()).toEqual('');
+      expect(fixture.debugElement.query(By.css('.lux-label-authentic')).nativeElement.textContent.trim()).toEqual('');
 
       // Änderungen durchführen
       component.label = undefined;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(fixture.debugElement.query(By.css('.lux-label')).nativeElement.textContent.trim()).toEqual('');
+      expect(fixture.debugElement.query(By.css('.lux-label-authentic')).nativeElement.textContent.trim()).toEqual('');
     }));
 
     it('Sollte readonly sein', fakeAsync(() => {
@@ -346,54 +346,54 @@ describe('LuxTextareaAcComponent', () => {
     it('sollte Counter-Label bei focused=true anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       testComponent.maxLength = 50;
-      +     fixture.detectChanges();
+      fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
 
       // Fokus aktivieren
-      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
+      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlWrapperComponent))!;
+      const formControlComponent = formControlEl.injector.get<LuxFormControlWrapperComponent>(LuxFormControlWrapperComponent);
       formControlComponent.focused = true;
       // // Wert ändern
       LuxTestHelper.typeInElement( textareaEl.nativeElement, 'Lorem ipsum');
       LuxTestHelper.wait(fixture);
       // // Prüfen
-      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter-authentic'));
       expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
       // Fokus deaktivieren
       formControlComponent.focused = false;
       fixture.detectChanges();
       // Prüfen
-      labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter-authentic'));
       expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
     }));
 
     it('sollte Counter-Label bei leerem Value anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       testComponent.maxLength = 50;
-      +     fixture.detectChanges();
+      fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
 
       // Fokus aktivieren
-      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
+      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlWrapperComponent))!;
+      const formControlComponent = formControlEl.injector.get<LuxFormControlWrapperComponent>(LuxFormControlWrapperComponent);
       formControlComponent.focused = true;
       // // Wert ändern
       LuxTestHelper.typeInElement( textareaEl.nativeElement, '');
       LuxTestHelper.wait(fixture);
       // // Prüfen
-      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter-authentic'));
       expect(labelEl.nativeElement.innerHTML.trim()).toContain('0/50');
     }));
 
     it('bei disabled sollte kein Wert gezeigt werden', fakeAsync(() => {
       // Vorbedingungen testen
       testComponent.maxLength = 50;
-      +     fixture.detectChanges();
+      fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
 
       // Fokus aktivieren
-      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
+      const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlWrapperComponent))!;
+      const formControlComponent = formControlEl.injector.get<LuxFormControlWrapperComponent>(LuxFormControlWrapperComponent);
       formControlComponent.focused = true;
 
       // Wert ändern
@@ -401,7 +401,7 @@ describe('LuxTextareaAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Prüfen
-      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter-authentic'));
       expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
 
       // Fokus deaktivieren
@@ -409,7 +409,7 @@ describe('LuxTextareaAcComponent', () => {
       formControlComponent.focused = false;
       fixture.detectChanges();
       // Prüfen
-      labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
+      labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter-authentic'));
       expect(textareaEl.nativeElement.disabled).toBe(true);
       expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
     }));
