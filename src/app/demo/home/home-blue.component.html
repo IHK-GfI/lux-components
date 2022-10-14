@@ -1,0 +1,20 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="lux-mt-3" luxAriaRole="main">
+  <div fxShow="false" fxShow.gt-xs="true" fxFlex="15%"></div>
+  <div fxFlex="100%" fxFlex.gt-xs="0 1 600px">
+    <div fxLayout="row wrap" fxFlex="1 1 auto" fxLayoutAlign="center stretch">
+      <lux-tile (luxClicked)="goTo('Components')" luxLabel="Komponenten">
+        <lux-icon luxIconName="lux-interface-setting-tool-box"></lux-icon>
+      </lux-tile>
+      <lux-tile (luxClicked)="goTo('Form')" luxLabel="Formulare">
+        <lux-icon luxIconName="lux-interface-file-text"></lux-icon>
+      </lux-tile>
+      <lux-tile (luxClicked)="goTo('Baseline')" luxLabel="Baseline">
+        <lux-icon luxIconName="lux-interface-remove-1"></lux-icon>
+      </lux-tile>
+      <lux-tile (luxClicked)="goTo('Configuration')" luxLabel="Konfiguration">
+        <lux-icon luxIconName="lux-interface-setting-slider-horizontal"></lux-icon>
+      </lux-tile>
+    </div>
+  </div>
+  <div fxShow="false" fxShow.gt-xs="true" fxFlex="15%"></div>
+</div>

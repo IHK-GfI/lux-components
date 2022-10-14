@@ -115,6 +115,8 @@ import { LookupComboboxAcExampleComponent } from './lookup-examples/lookup-combo
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
+import { ComponentsOverviewBlueComponent } from './components-overview-blue.component';
+import { ComponentsOverviewAuthenticComponent } from './components-overview-authentic.component';
 
 @NgModule({
   imports: [
@@ -236,7 +238,9 @@ import { IconOverviewComponent } from './icon-example/icon-overview/icon-overvie
     SliderAuthenticExampleComponent,
     LookupAutocompleteAcExampleComponent,
     LookupComboboxAcExampleComponent,
-    IconOverviewComponent
+    IconOverviewComponent,
+    ComponentsOverviewBlueComponent,
+    ComponentsOverviewAuthenticComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]
