@@ -20,7 +20,7 @@ export class FileUploadExampleComponent extends FileExampleComponent<ILuxFileObj
   label = $localize`:@@luxc.file.upload.label:Zum Hochladen Datei hier ablegen oder `;
   labelLink = $localize`:@@luxc.file.upload.label.link:Datei durchsuchen`;
   labelLinkShort = $localize`:@@luxc.file.upload.label.link.short:Datei hochladen`;
-  uploadIcon = 'fas fa-cloud-upload-alt';
+  uploadIcon = 'lux-programming-cloud-upload';
   deleteIcon = 'lux-interface-delete-bin-5';
   multiple = true;
 
@@ -65,8 +65,8 @@ export class FileUploadExampleComponent extends FileExampleComponent<ILuxFileObj
       disabledHeader: false,
       hidden: false,
       hiddenHeader: false,
-      iconName: 'fas fa-cloud-upload-alt',
-      iconNameHeader: 'fas fa-cloud-upload-alt',
+      iconName: 'lux-programming-cloud-upload',
+      iconNameHeader: 'lux-programming-cloud-upload',
       label: 'Hochladen',
       labelHeader: 'Neue Dateien hochladen',
       onClick: (files: ILuxFileObject[]) => {

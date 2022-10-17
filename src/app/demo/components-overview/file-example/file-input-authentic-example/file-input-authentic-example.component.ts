@@ -39,7 +39,7 @@ export class FileInputAuthenticExampleComponent extends FileExampleComponent imp
     return {
       disabled: false,
       hidden: false,
-      iconName: 'fas fa-cloud-upload-alt',
+      iconName: 'lux-programming-cloud-upload',
       label: 'Hochladen',
       onClick: (file?: ILuxFileObject) => {
         this.log(this.showOutputEvents, 'uploadActionConfig onClick', file);

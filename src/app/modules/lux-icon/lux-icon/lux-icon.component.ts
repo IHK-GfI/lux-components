@@ -142,7 +142,7 @@ export class LuxIconComponent {
         this.iconReg.registerIcon(iconName);
       } catch (error) {
         console.log(error);
-        this._luxIconName = '';
+        this._luxIconName = 'lux-interface-alert-warning-diamond';
       }
     }
   }

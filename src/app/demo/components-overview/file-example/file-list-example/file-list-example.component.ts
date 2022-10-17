@@ -105,8 +105,8 @@ export class FileListExampleComponent extends FileExampleComponent<ILuxFileObjec
       disabledHeader: false,
       hidden: false,
       hiddenHeader: false,
-      iconName: 'fas fa-cloud-upload-alt',
-      iconNameHeader: 'fas fa-cloud-upload-alt',
+      iconName: 'lux-programming-cloud-upload',
+      iconNameHeader: 'lux-programming-cloud-upload',
       label: 'Hochladen',
       labelHeader: 'Neue Dateien hochladen',
       onClick: (files: ILuxFileObject[]) => {
