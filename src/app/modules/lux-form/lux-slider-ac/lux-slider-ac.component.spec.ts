@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { LuxDisplayWithAcFnType, LuxSliderAcComponent } from './lux-slider-ac.component';
 import { Component } from '@angular/core';

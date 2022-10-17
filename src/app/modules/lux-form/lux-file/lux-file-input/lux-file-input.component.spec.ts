@@ -3,7 +3,6 @@
 
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { LuxIconRegistryService } from '../../../lux-icon/lux-icon/lux-icon-registry.service';
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
 import { LuxTestHelper } from '../../../lux-util/testing/lux-test-helper';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
@@ -492,7 +491,7 @@ describe('LuxFileInputComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
-        expect( fileComponent.luxClearOnError).toBe(false);
+        expect(fileComponent.luxClearOnError).toBe(false);
         expect(fileComponent.formControl.errors).not.toBeNull();
         expect(fileComponent.formControl.errors![LuxFileErrorCause.MaxSizeError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);

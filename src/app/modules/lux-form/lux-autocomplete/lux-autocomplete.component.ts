@@ -21,6 +21,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { LuxInputPrefixComponent } from '../lux-input/lux-input-subcomponents/lux-input-prefix.component';
 import { LuxInputSuffixComponent } from '../lux-input/lux-input-subcomponents/lux-input-suffix.component';
 
+
 @Component({
   selector: 'lux-autocomplete',
   templateUrl: './lux-autocomplete.component.html',

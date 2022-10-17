@@ -1,5 +1,7 @@
 /* eslint-disable max-classes-per-file */
-import { Component, OnInit } from '@angular/core';
+// noinspection DuplicatedCode
+
+import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxFormControlWrapperComponent } from '../lux-form-control-wrapper/lux-form-control-wrapper.component';

@@ -17,6 +17,11 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatOption } from '@angular/material/core';
 
+/**
+ * @param O Optionstyp (z.B Land)
+ * @param V Werttyp (z.B. Land, Land[], string, string[],...)
+ * @param P PickValueFn-Typ (z.B. string, number,...)
+ */
 @Component({
   selector: 'lux-select-ac',
   templateUrl: './lux-select-ac.component.html',

@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnInit, Optional } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxFormCheckableBaseClass } from '../lux-form-model/lux-form-checkable-base.class';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
 @Component({
   selector: 'lux-checkbox-ac',

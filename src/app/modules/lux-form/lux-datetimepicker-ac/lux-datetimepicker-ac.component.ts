@@ -13,18 +13,14 @@ import {
   ViewChild
 } from '@angular/core';
 import { AbstractControl, ControlContainer, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, ThemePalette } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { DateFilterFn } from '@angular/material/datepicker';
 import { Observable } from 'rxjs';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxUtil } from '../../lux-util/lux-util';
-import {
-  LuxDatepickerAcCustomHeaderComponent
-} from '../lux-datepicker-ac/lux-datepicker-ac-custom-header/lux-datepicker-ac-custom-header.component';
 import { LuxDateFilterAcFn, LuxStartAcView } from '../lux-datepicker-ac/lux-datepicker-ac.component';
-import { LuxDatepickerCustomHeaderComponent } from '../lux-datepicker/lux-datepicker-custom-header/lux-datepicker-custom-header.component';
 import { APP_DATE_TIME_FORMATS } from '../lux-datetimepicker/lux-datetimepicker.component';
 import { LuxValidationErrors, ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
 import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
@@ -45,7 +41,6 @@ export const APP_DATE_TIME_FORMATS_AC = {
 @Component({
   selector: 'lux-datetimepicker-ac',
   templateUrl: './lux-datetimepicker-ac.component.html',
-  styleUrls: ['./lux-datetimepicker-ac.component.scss'],
   providers: [
     { provide: DateAdapter, useClass: LuxDateTimePickerAcAdapter, deps: [MAT_DATE_LOCALE, Platform] },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_TIME_FORMATS_AC }

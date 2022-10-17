@@ -44,7 +44,6 @@ export declare type LuxStartAcView = 'month' | 'year' | 'multi-year';
 @Component({
   selector: 'lux-datepicker-ac',
   templateUrl: './lux-datepicker-ac.component.html',
-  styleUrls: ['./lux-datepicker-ac.component.scss'],
   providers: [
     { provide: DateAdapter, useClass: LuxDatepickerAcAdapter, deps: [MAT_DATE_LOCALE, Platform] },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS_AC }
