@@ -67,6 +67,13 @@ export class LuxTagIdDirective implements AfterViewInit, OnDestroy {
             this.renderer.setAttribute(luxComponent, LuxTagIdDirective.luxTagIdAttrName, newTagId);
 
             usedLabel = true;
+          } else if (luxComponent.getElementsByClassName('lux-form-label-authentic')[0]) {
+            let text = luxComponent.getElementsByClassName('lux-form-label-authentic')[0].textContent;
+            newTagId = this.mergeTagIds(newTagId, text ? text.trim() : null);
+            newTagId = newTagId.toLowerCase();
+            this.renderer.setAttribute(luxComponent, LuxTagIdDirective.luxTagIdAttrName, newTagId);
+
+            usedLabel = true;
           } else if (luxComponent.nodeName && luxComponent.nodeName.toLowerCase() === 'lux-button') {
             const labelEl = luxComponent.querySelector('.lux-button-label');
             if (labelEl && labelEl.textContent && labelEl.textContent.trim()) {

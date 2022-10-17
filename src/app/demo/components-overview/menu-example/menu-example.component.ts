@@ -4,8 +4,7 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
 
 @Component({
   selector: 'app-menu-example',
-  templateUrl: './menu-example.component.html',
-  styleUrls: ['./menu-example.component.scss']
+  templateUrl: './menu-example.component.html'
 })
 export class MenuExampleComponent {
   showOutputEvents = false;

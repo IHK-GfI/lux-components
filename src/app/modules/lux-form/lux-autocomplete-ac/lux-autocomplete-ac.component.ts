@@ -28,10 +28,9 @@ import { LuxInputSuffixComponent } from '../lux-input/lux-input-subcomponents/lu
   styleUrls: ['./lux-autocomplete-ac.component.scss']
 })
 export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormComponentBase<V> implements OnInit, OnDestroy, AfterViewInit {
-  private selected$: ReplaySubject<any> = new ReplaySubject(1);
+  private selected$: ReplaySubject<any> = new ReplaySubject<any>(1);
   private subscriptions: Subscription[] = [];
   private valueChangeSubscription?: Subscription;
-  private _luxPickValue = (o: any) => o;
 
   filteredOptions: O[] = [];
   _luxOptions: O[] = [];
@@ -44,20 +43,13 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   @Input() luxSelectAllOnClick = true;
   @Input() luxStrict = true;
   @Input() luxName?: string;
+  @Input() luxPickValue?: ((selected: O | null | undefined) => V) | undefined;
   @Input() luxFilterFn?: (filterTerm: string, label: string, option: any) => boolean;
   @Input() luxPanelWidth: string | number = '';
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
   @Input() luxOptionMultiline = false;
-
-  get luxPickValue() {
-    return this._luxPickValue;
-  }
-
-  @Input() set luxPickValue(pickFn: ((selected: O | null | undefined) => V) | undefined){
-    this._luxPickValue = pickFn ?? ((a: any) => a);
-  }
 
   @Output() luxValueChange = new EventEmitter<V | null>();
   @Output() luxOptionSelected = new EventEmitter<V | null>();
@@ -75,8 +67,8 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   }
 
   @Input() set luxValue(value: V) {
-    if (value instanceof Object) {
-      this.setValue(this._luxPickValue(value as any));
+    if (value instanceof Object && !!this.luxPickValue) {
+      this.setValue(this.luxPickValue(value as any));
     } else {
       this.setValue(value);
     }
@@ -115,20 +107,15 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
             this.luxOptionSelected.emit(null);
             this.luxValueChange.emit(null);
           } else {
+            const selectedOption = this.getPickValueOption(value);
+
             let selected: V | null;
-            if (this.luxStrict) {
-              const selectedOption = this.getPickValueOption(value);
-              if (selectedOption) {
-                selected = this._luxPickValue(selectedOption);
-              } else {
-                selected = null;
-              }
+            if (selectedOption instanceof Object && !!this.luxPickValue) {
+              selected = this.luxPickValue(selectedOption);
             } else {
-              selected = this._luxPickValue(this.luxOptions.find((option) => value === option));
-              if (selected === undefined) {
-                selected = null;
-              }
+              selected = selectedOption as any;
             }
+
             if (selected) {
               this.luxOptionSelected.emit(selected);
               this.luxValueChange.emit(selected);
@@ -146,10 +133,7 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
     super.ngOnDestroy();
 
     this.subscriptions.forEach((sub) => sub.unsubscribe());
-
-    if (this.valueChangeSubscription) {
-      this.valueChangeSubscription.unsubscribe();
-    }
+    this.valueChangeSubscription?.unsubscribe();
   }
 
   ngAfterViewInit() {
@@ -183,10 +167,10 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
    */
   displayFn(value: any): string {
     let selected;
-    if (this.luxStrict) {
+    if (this.luxStrict && !!this.luxPickValue) {
       selected = this.getPickValueOption(value);
     } else {
-      selected = value;
+      selected = this.luxValue;
     }
     return this.getOptionLabel(selected);
   }
@@ -241,8 +225,8 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   }
 
   selected(selectedEvent: MatAutocompleteSelectedEvent) {
-    if (this.luxStrict) {
-      this.luxValue = this._luxPickValue(selectedEvent.option.value);
+    if (this.luxStrict && !!this.luxPickValue) {
+      this.luxValue = this.luxPickValue(selectedEvent.option.value);
     } else {
       this.luxValue = selectedEvent.option.value;
     }
@@ -287,7 +271,7 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   notifyFormValueChanged(formValue: any) {
     let newValue;
     if (this.luxStrict) {
-      newValue = formValue instanceof Object ? this._luxPickValue(formValue) : formValue;
+      newValue = formValue instanceof Object && !!this.luxPickValue? this.luxPickValue(formValue) : formValue;
     } else {
       newValue = formValue;
     }
@@ -299,9 +283,14 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
     }
   }
 
-  private getPickValueOption(value: O) {
-    const pickValue = value instanceof Object ? this._luxPickValue(value) : value;
-    return this.luxOptions.find((currentOption) => pickValue === this._luxPickValue(currentOption));
+  private getPickValueOption(value: O): O | null {
+    const pickValue = value instanceof Object && !!this.luxPickValue? this.luxPickValue(value) : value;
+    const found = this.luxOptions.find((currentOption) => {
+      const pickOptionValue = currentOption instanceof Object && !!this.luxPickValue? this.luxPickValue(currentOption) : currentOption;
+      return pickValue === pickOptionValue;
+    });
+
+    return found ?? null;
   }
 
   private updateFilterOptions() {
@@ -339,7 +328,13 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
       const filterResult = this.filter(this.matInput.nativeElement.value);
 
       if (filterResult.length === 1) {
-        this.formControl.setValue(this._luxPickValue(filterResult[ 0 ]));
+        let selected;
+        if (this.luxStrict && !!this.luxPickValue) {
+          selected = this.luxPickValue(filterResult[ 0 ]);
+        } else {
+          selected = filterResult[ 0 ];
+        }
+        this.formControl.setValue(selected as any);
       }
 
       this.handleErrors();

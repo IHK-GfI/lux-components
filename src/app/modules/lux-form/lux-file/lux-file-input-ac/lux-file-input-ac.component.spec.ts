@@ -1,6 +1,8 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
 import { LuxTestHelper } from '../../../lux-util/testing/lux-test-helper';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
@@ -20,10 +22,6 @@ describe('LuxFileInputAcComponent', () => {
     LuxTestHelper.configureTestModule(
       [
         LuxConsoleService,
-        {
-          provide: HttpClient,
-          useClass: MockHttp
-        },
         {
           provide: LuxStorageService,
           useClass: MockStorage
@@ -137,7 +135,7 @@ describe('LuxFileInputAcComponent', () => {
 
     it('Sollte Label, Placeholder und Hint korrekt setzen', fakeAsync(() => {
       // Vorbedingungen testen
-      expect(fixture.debugElement.query(By.css('.lux-form-label'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.lux-form-label-authentic'))).toBeNull();
       expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.placeholder).toEqual('');
       expect(fixture.debugElement.query(By.css('mat-hint'))).toBeNull();
 
@@ -148,7 +146,7 @@ describe('LuxFileInputAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-form-label')).nativeElement.textContent.trim()).toEqual('Label');
+      expect(fixture.debugElement.query(By.css('.lux-form-label-authentic')).nativeElement.textContent.trim()).toEqual('Label');
       expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.placeholder).toEqual(
         'Placeholder'
       );
@@ -188,14 +186,14 @@ describe('LuxFileInputAcComponent', () => {
 
     it('Sollte readonly sein', fakeAsync(() => {
       // Vorbedingungen testen
-      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly-authentic'))).toBeNull();
 
       // Änderungen durchführen
       testComponent.readonly = true;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly-authentic'))).not.toBeNull();
     }));
 
     it('Sollte Drag-and-Drop deaktivieren', fakeAsync(() => {
@@ -493,7 +491,7 @@ describe('LuxFileInputAcComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
-        expect( fileComponent.luxClearOnError).toBe(false);
+        expect(fileComponent.luxClearOnError).toBe(false);
         expect(fileComponent.formControl.errors).not.toBeNull();
         expect(fileComponent.formControl.errors![LuxFileErrorCause.MaxSizeError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
@@ -948,12 +946,6 @@ class FileFormComponent {
       file: new FormControl<ILuxFileObject | null>(null)
     });
     this.formControl = this.form.get('file')!;
-  }
-}
-
-class MockHttp {
-  post() {
-    return of(null);
   }
 }
 

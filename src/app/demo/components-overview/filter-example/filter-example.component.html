@@ -150,9 +150,9 @@
         [luxShowAsCard]="true"
         [luxExpandedLabelOpen]="openLabel"
         [luxExpandedLabelClose]="closeLabel"
-        [luxFilterValues]="initFilter"
+        [luxFilterValues]="initFilterAc"
         [luxShowChips]="showFilterChips"
-        [luxStoredFilters]="storedFilters"
+        [luxStoredFilters]="storedFiltersAc"
         [luxButtonFlat]="buttonFlat"
         [luxButtonFilterColor]="buttonFilterColor"
         [luxButtonDialogSave]="buttonDialogSave"
@@ -161,11 +161,11 @@
         [luxButtonDialogCancel]="buttonDialogCancel"
         [luxButtonDialogClose]="buttonDialogClose"
         [luxDisableShortcut]="disableShortcut"
-        (luxOnSave)="onSave($event)"
-        (luxOnLoad)="onLoad($event)"
+        (luxOnSave)="onSaveAc($event)"
+        (luxOnLoad)="onLoadAc($event)"
         (luxOnReset)="onReset()"
         (luxOnDelete)="onDelete($event)"
-        (luxOnFilter)="onFilter($event)"
+        (luxOnFilter)="onFilterAc($event)"
       >
       <lux-layout-form-row luxWrapAt="md">
         <lux-input-ac
@@ -178,7 +178,6 @@
         ></lux-input-ac>
         <lux-autocomplete-ac
               luxLabel="Autocomplete-Ac"
-              luxName="filter_autocomplete_ac"
               [luxOptions]="autoCompleteOptions"
               luxControlBinding="autocomplete"
               [luxFilterDisabled]="autoCompleteDisabled"
@@ -238,7 +237,7 @@
           <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px'}" luxWrapAt="md">
             <lux-select-ac
               luxLabel="Single-Select-Ac"
-              luxControlBinding="singleSelect_ac"
+              luxControlBinding="singleSelect"
               luxOptionLabelProp="label"
               [luxMultiple]="false"
               [luxOptions]="singleSelectOptions"
@@ -252,7 +251,7 @@
             ></lux-select-ac>
             <lux-select-ac
               luxLabel="Multi-Select-Ac"
-              luxControlBinding="multiSelect_ac"
+              luxControlBinding="multiSelect"
               luxOptionLabelProp="label"
               [luxMultiple]="true"
               [luxOptions]="multiSelectOptions"

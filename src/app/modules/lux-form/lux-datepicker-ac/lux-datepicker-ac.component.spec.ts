@@ -1,8 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { LuxDatepickerComponent } from '../lux-datepicker/lux-datepicker.component';
 import { LuxValidationErrors, ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
-import { LuxDatepickerAcCustomHeaderComponent } from './lux-datepicker-ac-custom-header/lux-datepicker-ac-custom-header.component';
 import { LuxDateFilterAcFn, LuxDatepickerAcComponent } from './lux-datepicker-ac.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
@@ -25,7 +23,7 @@ describe('LuxDatepickerAcComponent', () => {
   describe('Validatoren', () => {
     let fixture: ComponentFixture<LuxFormCustomValidatorComponent>;
     let testComponent: LuxFormCustomValidatorComponent;
-    let datepickerComponent: LuxDatepickerComponent;
+    let datepickerComponent: LuxDatepickerAcComponent;
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(LuxFormCustomValidatorComponent);
@@ -86,12 +84,12 @@ describe('LuxDatepickerAcComponent', () => {
   describe('innerhalb eines Formulars', () => {
     let fixture: ComponentFixture<LuxFormTestComponent>;
     let testComponent: LuxFormTestComponent;
-    let datepickerComponent: LuxDatepickerComponent;
+    let datepickerComponent: LuxDatepickerAcComponent;
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(LuxFormTestComponent);
       testComponent = fixture.componentInstance;
-      datepickerComponent = fixture.debugElement.query(By.directive(LuxDatepickerComponent)).componentInstance;
+      datepickerComponent = fixture.debugElement.query(By.directive(LuxDatepickerAcComponent)).componentInstance;
       flush();
     }));
 
@@ -247,13 +245,13 @@ describe('LuxDatepickerAcComponent', () => {
   describe('außerhalb eines Formulars', () => {
     let fixture: ComponentFixture<LuxNoFormAttributeTestComponent>;
     let testComponent: LuxNoFormAttributeTestComponent;
-    let datepickerComponent: LuxDatepickerComponent;
+    let datepickerComponent: LuxDatepickerAcComponent;
     let overlayHelper: LuxOverlayHelper;
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(LuxNoFormAttributeTestComponent);
       testComponent = fixture.componentInstance;
-      datepickerComponent = fixture.debugElement.query(By.directive(LuxDatepickerComponent)).componentInstance;
+      datepickerComponent = fixture.debugElement.query(By.directive(LuxDatepickerAcComponent)).componentInstance;
       overlayHelper = new LuxOverlayHelper();
 
       fixture.detectChanges();
@@ -263,7 +261,7 @@ describe('LuxDatepickerAcComponent', () => {
     it('sollte "de-DE" als Default-Locale haben', fakeAsync(() => {
       fixture = TestBed.createComponent(LuxNoFormAttributeTestComponent);
       testComponent = fixture.componentInstance;
-      datepickerComponent = fixture.debugElement.query(By.directive(LuxDatepickerComponent)).componentInstance;
+      datepickerComponent = fixture.debugElement.query(By.directive(LuxDatepickerAcComponent)).componentInstance;
 
       testComponent.value = '03/05/2019';
 

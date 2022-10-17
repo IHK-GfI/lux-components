@@ -19,7 +19,7 @@ import { MatChip } from '@angular/material/chips';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxUtil } from '../../lux-util/lux-util';
-import { LuxFormComponentBase } from "../lux-form-model/lux-form-component-base.class";
+import { LuxFormComponentBase } from '../lux-form-model/lux-form-component-base.class';
 import { LuxChipAcGroupComponent } from './lux-chips-subcomponents/lux-chip-ac-group.component';
 import { LuxChipAcComponent } from './lux-chips-subcomponents/lux-chip-ac.component';
 import { Subject, Subscription } from 'rxjs';

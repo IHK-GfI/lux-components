@@ -1,7 +1,9 @@
 /* eslint-disable max-classes-per-file */
-import { Component, OnInit } from '@angular/core';
+// noinspection DuplicatedCode
+
+import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatError } from '@angular/material/form-field';
 import { By } from '@angular/platform-browser';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -295,7 +297,7 @@ describe('LuxRadioAcComponent', () => {
 
     it('Label anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
-      let luxLabel = fixture.debugElement.query(By.css('.lux-label'));
+      let luxLabel = fixture.debugElement.query(By.css('.lux-label-authentic'));
       expect(luxLabel.nativeElement.innerText.trim()).toEqual('');
 
       // Änderungen durchführen
@@ -303,7 +305,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      luxLabel = fixture.debugElement.query(By.css('.lux-label'));
+      luxLabel = fixture.debugElement.query(By.css('.lux-label-authentic'));
       expect(luxLabel.nativeElement.innerText.trim()).toEqual('Demolabel');
     }));
 
@@ -324,7 +326,7 @@ describe('LuxRadioAcComponent', () => {
     it('Readonly', fakeAsync(() => {
       // Vorbedingungen testen
       let disabledRadioButtons = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
-      let readonlyRadioGroup = fixture.debugElement.query(By.css('.lux-readonly'));
+      let readonlyRadioGroup = fixture.debugElement.query(By.css('.lux-readonly-authentic'));
 
       expect(disabledRadioButtons.length).toBe(0);
       expect(readonlyRadioGroup).toBeFalsy();
@@ -335,7 +337,7 @@ describe('LuxRadioAcComponent', () => {
 
       // Nachbedingungen prüfen
       disabledRadioButtons = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
-      readonlyRadioGroup = fixture.debugElement.query(By.css('.lux-readonly'));
+      readonlyRadioGroup = fixture.debugElement.query(By.css('.lux-readonly-authentic'));
 
       expect(disabledRadioButtons.length).toBe(0);
       expect(readonlyRadioGroup).toBeDefined();

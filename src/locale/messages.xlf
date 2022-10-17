@@ -326,11 +326,11 @@
         <source>Der eingegebene Wert ist nicht Teil der Auswahl.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-autocomplete-ac/lux-autocomplete-ac.component.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-autocomplete/lux-autocomplete.component.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.chips.input.placeholder.lbl" datatype="html">
@@ -831,7 +831,7 @@
         <source>Benutzermenü</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.html</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">82</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.html</context>
@@ -916,7 +916,7 @@
         <source>Masterliste zuklappen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-light/lux-master-detail-light.component.ts</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">92</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail/lux-master-detail-subcomponents/lux-master-header/lux-master-header.component.ts</context>
@@ -927,7 +927,7 @@
         <source>Masterliste aufklappen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-light/lux-master-detail-light.component.ts</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">94</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail/lux-master-detail-subcomponents/lux-master-header/lux-master-header.component.ts</context>

@@ -63,7 +63,7 @@ describe('LuxMenuComponent', () => {
     component.generateItems(3);
     updateExtendedMenuItems();
 
-    let extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
+    let extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not([style*=none])'));
     expect(extendedMenuItems.length).toBe(3);
 
     // Änderungen durchführen
@@ -72,7 +72,7 @@ describe('LuxMenuComponent', () => {
     updateExtendedMenuItems();
 
     // Nachbedingungen prüfen
-    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
+    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not([style*=none])'));
     expect(extendedMenuItems.length).toBeGreaterThan(0);
     expect(extendedMenuItems.length).toBeLessThan(3);
   }));
@@ -106,7 +106,7 @@ describe('LuxMenuComponent', () => {
     component.generateItems(3);
     updateExtendedMenuItems();
 
-    let extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
+    let extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not([style*=none])'));
     expect(extendedMenuItems.length).toBe(3);
 
     // Änderungen durchführen
@@ -114,7 +114,7 @@ describe('LuxMenuComponent', () => {
     updateExtendedMenuItems();
 
     // Nachbedingungen prüfen
-    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
+    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not([style*=none])'));
     expect(extendedMenuItems.length).toBe(1);
 
     // Änderungen durchführen
@@ -122,7 +122,7 @@ describe('LuxMenuComponent', () => {
     updateExtendedMenuItems();
 
     // Nachbedingungen prüfen
-    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
+    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not([style*=none])'));
     expect(extendedMenuItems.length).toBe(2);
   }));
 

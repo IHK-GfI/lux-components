@@ -17,10 +17,6 @@ describe('LuxFileUploadComponent', () => {
       [
         LuxConsoleService,
         {
-          provide: HttpClient,
-          useClass: MockHttp
-        },
-        {
           provide: LuxStorageService,
           useClass: MockStorage
         }
@@ -39,12 +35,6 @@ describe('LuxFileUploadComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
-class MockHttp {
-  post() {
-    return of(null);
-  }
-}
 
 class MockStorage {
 

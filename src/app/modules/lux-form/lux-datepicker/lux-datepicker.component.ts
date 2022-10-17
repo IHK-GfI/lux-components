@@ -1,5 +1,4 @@
 import { Platform } from '@angular/cdk/platform';
-import { ComponentType } from '@angular/cdk/portal';
 import {
   ChangeDetectorRef,
   Component,

@@ -115,9 +115,9 @@ export class LuxLookupComboboxAcComponent<T = LuxLookupTableEntry> extends LuxLo
   private reloadNextDataBlock() {
     const start = this.displayedEntries.length - 1;
     const end =
-            start + this.luxEntryBlockSize > this.entries.length
-              ? this.entries.length - start
-              : start + this.luxEntryBlockSize;
+      start + this.luxEntryBlockSize > this.entries.length
+        ? this.entries.length - start
+        : start + this.luxEntryBlockSize;
     this.displayedEntries.push(...this.entries.splice(start, end));
   }
 }

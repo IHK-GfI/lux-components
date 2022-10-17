@@ -1,4 +1,4 @@
-@import '~@ihk-gfi/lux-components-theme/src/public/global';
+@import '@ihk-gfi/lux-components-theme/src/public/global';
 
 .lux-dialog {
   // Das Element kann fokussiert werden, das muss aber nicht zwingend mit der Outline gezeigt werden
@@ -22,7 +22,7 @@
     height: 32px;
     font-size: 1.5em;
   }
-  
+
   .lux-dialog-icon ::ng-deep {
     mat-icon.mat-icon.lux-material-icon {
       height: unset;

@@ -23,10 +23,6 @@ describe('LuxFileInputComponent', () => {
       [
         LuxConsoleService,
         {
-          provide: HttpClient,
-          useClass: MockHttp
-        },
-        {
           provide: LuxStorageService,
           useClass: MockStorage
         }
@@ -495,7 +491,7 @@ describe('LuxFileInputComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
-        expect( fileComponent.luxClearOnError).toBe(false);
+        expect(fileComponent.luxClearOnError).toBe(false);
         expect(fileComponent.formControl.errors).not.toBeNull();
         expect(fileComponent.formControl.errors![LuxFileErrorCause.MaxSizeError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
@@ -950,12 +946,6 @@ class FileFormComponent {
       file: new FormControl<ILuxFileObject | null>(null)
     });
     this.formControl = this.form.get('file')!;
-  }
-}
-
-class MockHttp {
-  post() {
-    return of(null);
   }
 }
 

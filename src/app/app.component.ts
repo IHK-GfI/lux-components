@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   jsonDataResult: any;
   demoUserName = "Susanne Sonnenschein";
   demoLoginBtn = "Abmelden";
-  themeName = 'authentic';
+  themeName: string;
 
   constructor(
     public router: Router,
@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
     private appService: LuxAppService,
   ) {
     themeService.loadTheme();
+    this.themeName = themeService.getTheme().name;
     router.initialNavigation();
     this.appService.appEl = elementRef.nativeElement;
   }
@@ -75,18 +76,6 @@ export class AppComponent implements OnInit {
 
   goToComponents() {
     this.router.navigate(['components-overview']);
-  }
-
-  goToMasterDetail() {
-    this.router.navigate(['components-overview/example/master-detail']);
-  }
-
-  goToStepper() {
-    this.router.navigate(['components-overview/example/stepper']);
-  }
-
-  goToTabs() {
-    this.router.navigate(['components-overview/example/tabs']);
   }
 
   goToForm() {

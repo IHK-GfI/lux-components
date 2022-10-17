@@ -1,6 +1,6 @@
 <lux-card
   class="lux-file-list"
-  [ngClass]="{ 'lux-file-list-disabled': luxDisabled, 'lux-file-list-error': (errorMessage && formControl?.touched) }"
+  [ngClass]="{ 'lux-file-list-disabled': luxDisabled, 'lux-file-list-error': (errorMessage && formControl && formControl.touched) }"
   [luxTitle]="(luxLabel ? luxLabel : '') + (luxRequired ? ' *' : '')"
   [luxAriaInvalid]="formControl ? '' + formControl.invalid : ''"
   tabindex="0"

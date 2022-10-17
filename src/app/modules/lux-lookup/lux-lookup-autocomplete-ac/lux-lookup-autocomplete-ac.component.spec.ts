@@ -60,7 +60,7 @@ describe('LuxLookupAutocompleteAcComponent', () => {
 
 @Component({
   template: `
-    <lux-lookup-autocomplete-ac>
+    <lux-lookup-autocomplete-ac
       luxTableNo="1004"
       [luxParameters]="params"
       [luxControlValidators]="validators"

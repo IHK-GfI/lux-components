@@ -29,15 +29,15 @@
         <lux-button luxLabel="Sortieren" luxColor="primary" luxIconName="lux-amount-up-asc" [luxFlat]="false"></lux-button>
         <lux-button luxLabel="Aktualisieren" luxColor="primary" luxIconName="lux-interface-arrows-synchronize"[luxFlat]="false"></lux-button>
       </div>
-      
+
       <lux-button luxLabel="Hinzufügen" luxTagId="add" luxIconName="lux-interface-add-1" luxColor="primary" [luxFlat]="false"></lux-button>
     </div>
   </lux-master-footer-light>
 
   <lux-detail-header-light class="header-example">
       <lux-list>
-      
-        <lux-list-item [luxTitle]="listItems[0].title" [luxSubTitle]="listItems[0].subtitle" 
+
+        <lux-list-item [luxTitle]="listItems[0].title" [luxSubTitle]="listItems[0].subtitle"
                        >
           <lux-list-item-icon>
             <lux-icon luxIconName="lux-cogs"></lux-icon>
@@ -46,19 +46,18 @@
             Value: {{ listItems[0].value }}
           </lux-list-item-content>
         </lux-list-item>
-    
+
     </lux-list>
   </lux-detail-header-light>
   <lux-detail-content-light>
-    <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0">
-      <lux-tab luxTitle="Beispiel" luxIconName="lux-interface-setting-cog">
-        <ng-template>Lorem Ipsum...</ng-template>
-        
-      </lux-tab>
-      <lux-tab luxIconName="lux-interface-text-formatting-list-bullets">
+    <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0" luxTagId="master-detail-light-tabs">
+      <lux-tab luxTitle="Beispiel" luxIconName="lux-interface-setting-cog" luxTagIdHeader="master-detail-light-tab-1">
         <ng-template>Lorem Ipsum...</ng-template>
       </lux-tab>
-      <lux-tab luxIconName="lux-interface-delete-bin-2">
+      <lux-tab luxIconName="lux-interface-text-formatting-list-bullets" luxTagIdHeader="master-detail-light-tab-2">
+        <ng-template>Lorem Ipsum...</ng-template>
+      </lux-tab>
+      <lux-tab luxIconName="lux-interface-delete-bin-2" luxTagIdHeader="master-detail-light-tab-3">
         <ng-template>Lorem Ipsum...</ng-template>
       </lux-tab>
     </lux-tabs>

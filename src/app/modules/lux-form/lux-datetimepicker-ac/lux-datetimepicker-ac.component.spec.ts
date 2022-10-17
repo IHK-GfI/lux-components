@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
@@ -651,7 +653,7 @@ describe('LuxDatetimepickerAcComponent', () => {
 
 @Component({
   template: `
-    <lux-datetimepicker
+    <lux-datetimepicker-ac
       luxLabel="Datum"
       [(luxValue)]="value"
       [luxDisabled]="disabled"
@@ -667,7 +669,7 @@ describe('LuxDatetimepickerAcComponent', () => {
       [luxControlValidators]="validators"
       [luxOpened]="opened"
       (luxValueChange)="valueChanged()"
-    ></lux-datetimepicker>
+    ></lux-datetimepicker-ac>
   `
 })
 class LuxNoFormAttributeTestComponent {
@@ -713,7 +715,7 @@ export const exampleErrorCallback = (value: any, errors: LuxValidationErrors) =>
 @Component({
   template: `
     <div [formGroup]="form">
-      <lux-datetimepicker luxLabel="Datum" luxControlBinding="datepicker" [luxErrorCallback]="errorCallBack"></lux-datetimepicker>
+      <lux-datetimepicker-ac luxLabel="Datum" luxControlBinding="datepicker" [luxErrorCallback]="errorCallBack"></lux-datetimepicker-ac>
     </div>
   `
 })
@@ -734,7 +736,7 @@ class LuxFormCustomValidatorComponent {
 @Component({
   template: `
     <div [formGroup]="form">
-      <lux-datetimepicker luxLabel="Datum" luxControlBinding="datepicker"></lux-datetimepicker>
+      <lux-datetimepicker-ac luxLabel="Datum" luxControlBinding="datepicker"></lux-datetimepicker-ac>
       {{ formControl.value }}
     </div>
   `
