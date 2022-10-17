@@ -148,6 +148,8 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
               this.currentModules.set(moduleName, moduleName === component.moduleName)
             );
             break;
+          } else {
+            this.selectedComponent = null;
           }
         }
       }));

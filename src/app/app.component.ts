@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ComponentsOverviewNavigationService } from './demo/components-overview/components-overview-navigation.service';
 import { LuxAppFooterButtonService } from './modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxAppFooterLinkInfo } from './modules/lux-layout/lux-app-footer/lux-app-footer-link-info';
@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   demoUserName = "Susanne Sonnenschein";
   demoLoginBtn = "Abmelden";
   themeName: string;
+  url = '/';
 
   constructor(
     public router: Router,
@@ -42,6 +43,12 @@ export class AppComponent implements OnInit {
     this.themeName = themeService.getTheme().name;
     router.initialNavigation();
     this.appService.appEl = elementRef.nativeElement;
+
+    router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.url = event.url;
+      }
+    });
   }
 
   ngOnInit() {
