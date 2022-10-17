@@ -230,6 +230,10 @@ export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcom
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item-custom.component';
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
 export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu.component';
+export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu-item/lux-app-header-ac-nav-menu-item.component';
+export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item.component'
+export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav.component'
+export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item-custom.component'
 export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-user-menu.component';
 export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component';
 export * from './src/app/modules/lux-layout/lux-card/lux-card.component';

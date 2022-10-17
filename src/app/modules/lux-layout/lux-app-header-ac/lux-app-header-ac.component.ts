@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
+import { LuxAppHeaderAcActionNavComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav.component';
 import { LuxAppHeaderAcNavMenuComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu.component';
 import { LuxAppHeaderAcUserMenuComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-user-menu.component';
 
@@ -42,12 +43,10 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
 
   @ContentChild(LuxAppHeaderAcNavMenuComponent) navMenu?: LuxAppHeaderAcNavMenuComponent;
   @ContentChild(LuxAppHeaderAcUserMenuComponent) userMenu?: LuxAppHeaderAcUserMenuComponent;
+  @ContentChild(LuxAppHeaderAcActionNavComponent) actionNav?: LuxAppHeaderAcActionNavComponent;
 
   hasOnClickedListener?: boolean;
   userNameShort?: string;
-
-  greetingLabel = 'Guten Tag, ';
-  luxGreeting = [ 'Guten Morgen, ', 'Guten Tag, ', 'Guten Abend, ', 'Gute Nacht, '];
 
   mobileView: boolean;
   subscription?: Subscription;
@@ -60,7 +59,6 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
     ) {
-      this.updateGreetingLabel();
       this.matIconRegistry.addSvgIcon(
         "luxAppIcon",
         this.domSanitizer.bypassSecurityTrustResourceUrl("../../../assets/svg/demoAppLogo.svg")
@@ -86,9 +84,13 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
       this.logger.warn('No title is set for the mobile view.');
     }
   }
+  ngAfterContentInit(){
+    console.log('ActionNav', this.actionNav);
+  }
 
   onMenuOpened() {
     this.menuOpened = true;
+    console.log("Menu Openend")
   }
 
   onMenuClosed() {
@@ -108,14 +110,5 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
       short = short.charAt(0);
     }
     return short.toUpperCase();
-  }
-
-  private updateGreetingLabel(){
-    let hour =  new Date().getHours();
-    if ( hour < 6 ) this.greetingLabel = this.luxGreeting [3];
-    else if ( hour < 12 ) this.greetingLabel = this.luxGreeting [0];
-    else if ( hour < 18 ) this.greetingLabel = this.luxGreeting [1];
-    else if ( hour < 22 ) this.greetingLabel = this.luxGreeting [2];
-    else this.greetingLabel = this.luxGreeting[3];
   }
 }

@@ -19,11 +19,11 @@
       [luxStroked]="false"
       [luxRounded]="false"
       luxColor="primary"
-      [luxClass]="navIndex === selectedItem ? 'nav-item-selected' : ''"
+      [luxClass]="navMenuItem.luxSelected ? 'nav-item-selected' : ''"
       [luxPrio]="navMenuItem.luxPrio"
       class="nav-item"
-      (luxClicked)="navItemClicked($event, navIndex)"
+      (luxClicked)="navMenuItemClicked(navMenuItem, $event)"
     >
-    </lux-menu-item>
+    </lux-menu-item>>
   </ng-container>
 </lux-menu>

@@ -84,6 +84,10 @@ import { LuxDetailHeaderLightComponent } from './lux-master-detail-light/lux-det
 import { LuxDetailFooterLightComponent } from './lux-master-detail-light/lux-detail-footer-light/lux-detail-footer-light.component';
 import { LuxMasterFooterLightComponent } from './lux-master-detail-light/lux-master-footer-light/lux-master-footer-light.component';
 import { LuxLangSelectAcComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-lang-select-ac/lux-lang-select-ac.component';
+import { LuxAppHeaderAcNavMenuItemComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu-item/lux-app-header-ac-nav-menu-item.component';
+import { LuxAppHeaderAcActionNavComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav.component';
+import { LuxAppHeaderAcActionNavItemComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item.component';
+import { LuxAppHeaderAcActionNavItemCustomComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item-custom.component';
 
 @NgModule({
   imports: [
@@ -171,7 +175,11 @@ import { LuxLangSelectAcComponent } from './lux-app-header-ac/lux-app-header-ac-
     LuxDetailHeaderLightComponent,
     LuxDetailFooterLightComponent,
     LuxMasterFooterLightComponent,
-    LuxLangSelectAcComponent
+    LuxLangSelectAcComponent,
+    LuxAppHeaderAcNavMenuItemComponent,
+    LuxAppHeaderAcActionNavComponent,
+    LuxAppHeaderAcActionNavItemComponent,
+    LuxAppHeaderAcActionNavItemCustomComponent
   ],
   exports: [
     LuxAppHeaderComponent,
@@ -238,7 +246,11 @@ import { LuxLangSelectAcComponent } from './lux-app-header-ac/lux-app-header-ac-
     LuxMasterFooterLightComponent,
     LuxDetailContentLightComponent,
     LuxDetailHeaderLightComponent,
-    LuxAppHeaderActionNavItemCustomComponent
+    LuxAppHeaderActionNavItemCustomComponent,
+    LuxAppHeaderAcNavMenuItemComponent,
+    LuxAppHeaderAcActionNavComponent,
+    LuxAppHeaderAcActionNavItemComponent,
+    LuxAppHeaderAcActionNavItemCustomComponent
   ],
   providers: []
 })

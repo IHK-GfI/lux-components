@@ -17,13 +17,15 @@
     <lux-button
       [luxRounded]="true"
       luxColor="primary"
-      luxIconName="lux-network"
+      luxIconName="lux-programming-web"
       class="lang-select-trigger-ac"
       ngClass.lt-md="lang-select-trigger-mobile"
       luxAriaLabel="Spracheinstellungen"
       i18n-luxAriaLabel="@@luxc.app-header.lang.select.trigger"
       aria-haspopup="true"
       [ngClass]="menuOpened ? 'menu-opened' : ''"
+      luxTagId="lang-select-trigger-btn"
+      luxTooltip="Sprache wechseln"
       #customTrigger
     ></lux-button>
   </lux-menu-trigger>

@@ -9,7 +9,7 @@
     [luxLocaleSupported]="['de', 'en']"
     (luxClicked)="router.navigate(['/']);"
   >
-    <lux-app-header-ac-user-menu *ngIf="luxMode === 'stand-alone'">
+    <lux-app-header-ac-user-menu *ngIf="luxMode === 'stand-alone'" luxTooltip="Usermenü">
       <lux-menu-item [luxLabel]="demoLoginBtn" (luxClicked)="toggleLogin()" luxTagId="abmelden-menu-item"></lux-menu-item>
       <lux-menu-item luxLabel="Theme - blue" [luxDisabled]="themeName === 'blue'" luxTagId="theme-blue-menu-item" (luxClicked)="onChangeTheme('blue')"></lux-menu-item>
       <lux-menu-item luxLabel="Theme - green" [luxDisabled]="themeName === 'green'" luxTagId="theme-green-menu-item" (luxClicked)="onChangeTheme('green')"></lux-menu-item>
@@ -17,43 +17,197 @@
     </lux-app-header-ac-user-menu>
 
     <lux-app-header-ac-nav-menu [luxNavMenuMaximumExtended]="5">
-      <lux-menu-item
+      <lux-app-header-ac-nav-menu-item
         luxLabel="Komponenten"
         luxAriaLabel="Komponenten Übersicht"
         luxTagId="navItem0"
+        [luxSelected]="window.location.href.endsWith('components-overview')"
         (luxClicked)="goToComponents()"
       >
-      </lux-menu-item>
-      <lux-menu-item 
+      </lux-app-header-ac-nav-menu-item>
+      <lux-app-header-ac-nav-menu-item 
         luxLabel="Iconsuche"
         luxAriaLabel="Lux-Icons suchen"
         luxTagId="navItem4"
+        [luxSelected]="window.location.href.endsWith('components-overview/example/icon-overview')"
         (luxClicked)="goToIconSearch()"
-      >
-      </lux-menu-item>
-      <lux-menu-item
+      ></lux-app-header-ac-nav-menu-item>
+      <lux-app-header-ac-nav-menu-item
         luxLabel="Formulare"
         luxAriaLabel="Beispielformulare"
         luxTagId="navItem1"
+        [luxSelected]="window.location.href.endsWith('form')"
         (luxClicked)="goToForm()"
       >
-      </lux-menu-item>
-      <lux-menu-item
+      </lux-app-header-ac-nav-menu-item>
+      <lux-app-header-ac-nav-menu-item
         luxLabel="Baseline"
         luxAriaLabel="Baseline Beispiele"
         luxTagId="navItem2"
+        [luxSelected]="window.location.href.endsWith('baseline')"
         (luxClicked)="goToBaseline()"
       >
-      </lux-menu-item>
-      <lux-menu-item 
+      </lux-app-header-ac-nav-menu-item>
+      <lux-app-header-ac-nav-menu-item
         luxLabel="Konfiguration"
         luxAriaLabel="Konfiguration einstellen"
         luxTagId="navItem3"
+        [luxSelected]="window.location.href.endsWith('configuration')"
         (luxClicked)="goToConfig()"
       >
-      </lux-menu-item>
+      </lux-app-header-ac-nav-menu-item>
     </lux-app-header-ac-nav-menu>
+
+    <lux-app-header-ac-action-nav>
+      <lux-app-header-ac-action-nav-item>
+        <lux-app-header-ac-action-nav-item-custom>
+          <lux-menu luxMenuLabel="IHK" luxMenuIconName="lux-interface-arrows-button-down" [luxMenuTriggerIconShowRight]="true" [luxDisplayExtended]="false" luxTooltip="IHK wechseln">
+            <lux-menu-item luxLabel="IHK 101" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 101-Action clicked!')"></lux-menu-item>
+            <lux-menu-item luxLabel="IHK 106" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 106-Action clicked!')"></lux-menu-item>
+            <lux-menu-item luxLabel="IHK 189" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 189-Action clicked!')"></lux-menu-item>
+          </lux-menu>
+        </lux-app-header-ac-action-nav-item-custom>
+      </lux-app-header-ac-action-nav-item>
+     
+      <lux-app-header-ac-action-nav-item
+        luxIconName="lux-interface-arrows-reload-2"
+        luxColor="primary"
+        luxAriaLabel="Header austauschen"
+        luxTagId="action0"
+        luxTooltip="Header wechseln"
+        (luxClicked)="actionClicked('Hier wird bald der Header gewechselt')"
+      ></lux-app-header-ac-action-nav-item>
+      
+    </lux-app-header-ac-action-nav>
+    
   </lux-app-header-ac>
+  <!-- <lux-app-header
+    luxAppTitle="LUX Components"
+    luxAppTitleShort="Components"
+    luxUserName="Max Mustermann"
+    luxIconName="far fa-lightbulb"
+    luxImageSrc="assets/png/example.png"
+    luxAriaTitleIconLabel="Titelicon  / Zur Hauptseie"
+    luxAriaTitleImageLabel="Titelbild  / Zur Hauptseie"
+    luxAriaTitleLinkLabel="LUX Components / Zur Hauptseie"
+    [luxLocaleSupported]="['de', 'en']"
+    *ngIf="this.luxAppHeader !== 'none'"
+    (luxClicked)="router.navigate(['/'])"
+  > -->
+  <!-- <lux-side-nav
+    luxDashboardLink="https://github.com/IHK-GfI/lux-components/wiki"
+    [luxOpenLinkBlank]="true"
+    (luxSideNavExpandedChange)="onSideNavExpandedChange($event)"
+  >
+    <lux-side-nav-header>
+      <h3 class="lux-side-nav-header-greeting">Navigation</h3>
+    </lux-side-nav-header>
+    <lux-side-nav-item
+      luxLabel="Home"
+      luxIconName="fas fa-home"
+      (luxClicked)="goToHome()"
+      luxTagId="home-side-nav-item"
+      [luxSelected]="window.location.href.endsWith('home')"
+    >
+    </lux-side-nav-item>
+    <lux-side-nav-item
+      luxLabel="Formulare"
+      luxIconName="fas fa-file-alt"
+      (luxClicked)="goToForm()"
+      luxTagId="form-side-nav-item"
+      [luxSelected]="window.location.href.endsWith('form')"
+    >
+    </lux-side-nav-item>
+    <lux-side-nav-item
+      luxLabel="Baseline"
+      luxIconName="fas fa-align-left"
+      (luxClicked)="goToBaseline()"
+      luxTagId="baseline-side-nav-item"
+      [luxSelected]="window.location.href.endsWith('baseline')"
+    >
+    </lux-side-nav-item>
+    <lux-side-nav-item
+      luxLabel="Konfiguration"
+      luxIconName="fas fa-sliders-h"
+      (luxClicked)="goToConfig()"
+      luxTagId="config-side-nav-item"
+      [luxSelected]="window.location.href.endsWith('configuration')"
+    >
+    </lux-side-nav-item>
+    <lux-side-nav-item
+      luxLabel="Komponenten"
+      luxIconName="fas fa-toolbox"
+      (luxClicked)="goToComponents()"
+      luxTagId="cmp-side-nav-item"
+      [luxSelected]="window.location.href.endsWith('components-overview')"
+    >
+      <lux-side-nav-item
+        [luxLabel]="'lux-' + moduleName"
+        [luxExpandable]="true"
+        [luxExpanded]="navigationService.currentModules.get(moduleName)"
+        [luxCloseOnClick]="false"
+        luxIconName="fas fa-puzzle-piece"
+        [luxTagId]="'lux-' + moduleName + '-module'"
+        (luxClicked)="onModuleClicked(moduleName)"
+        *ngFor="let moduleName of navigationService.currentModuleNames"
+      >
+        <ng-container
+          *ngFor="let component of navigationService.sortedComponentEntries.get(moduleName) | luxAlphabeticallySorted"
+        >
+          <lux-side-nav-item
+            [luxLabel]="component.label"
+            [luxTagId]="component.label + '-side-nav-item'"
+            luxIconName="fas fa-circle"
+            [luxSelected]="window.location.href.endsWith('/' + component.label.toLowerCase())"
+            (luxClicked)="component.onclick()"
+          >
+          </lux-side-nav-item>
+        </ng-container>
+      </lux-side-nav-item>
+    </lux-side-nav-item>
+    <lux-side-nav-footer>
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+        <lux-button luxLabel="Aufklappen" [luxRaised]="true" (luxClicked)="navigationService.onExpandAll()"></lux-button>
+        <lux-button luxLabel="Zuklappen" [luxRaised]="true" (luxClicked)="navigationService.onCollapseAll()"></lux-button>
+      </div>
+    </lux-side-nav-footer>
+  </lux-side-nav> -->
+  <!-- <lux-app-header-action-nav>
+    <lux-app-header-action-nav-item
+      fxShow="true" fxShow.xs="false"
+      luxIconName="fas fa-bell"
+      luxColor="accent"
+      luxAriaLabel="Nachrichten anzeigen"
+      luxTagId="action0"
+      (luxClicked)="actionClicked('#0 Action clicked!')"
+    >
+    </lux-app-header-action-nav-item>
+    <lux-app-header-action-nav-item
+      fxShow="true" fxShow.xs="false"
+      luxIconName="fas fa-trash"
+      luxColor="warn"
+      luxAriaLabel="Nachrichten löschen"
+      luxTagId="action1"
+      [luxDisabled]="true"
+      (luxClicked)="actionClicked('#1 Action clicked!')"
+    >
+    </lux-app-header-action-nav-item>
+    <lux-app-header-action-nav-item>
+      <lux-app-header-action-nav-item-custom>
+        <lux-menu luxMenuLabel="IHK" luxMenuIconName="fas fa-caret-down" [luxMenuTriggerIconShowRight]="true" [luxDisplayExtended]="false">
+          <lux-menu-item luxLabel="IHK 101" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 101-Action clicked!')"></lux-menu-item>
+          <lux-menu-item luxLabel="IHK 106" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 106-Action clicked!')"></lux-menu-item>
+          <lux-menu-item luxLabel="IHK 189" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 189-Action clicked!')"></lux-menu-item>
+        </lux-menu>
+      </lux-app-header-action-nav-item-custom>
+    </lux-app-header-action-nav-item>
+  </lux-app-header-action-nav>
+  <lux-app-header-right-nav *ngIf="luxMode === 'stand-alone'">
+    <lux-menu-item luxLabel="Abmelden" luxIconName="fa-power-off" luxTagId="abmelden-menu-item"></lux-menu-item>
+    <lux-menu-item luxLabel="Theme (blue)" luxIconName="fa-paint-brush" luxTagId="theme-blue-menu-item" (luxClicked)="onChangeTheme('blue')"></lux-menu-item>
+    <lux-menu-item luxLabel="Theme (green)" luxIconName="fa-paint-brush" luxTagId="theme-green-menu-item" (luxClicked)="onChangeTheme('green')"></lux-menu-item>
+  </lux-app-header-right-nav>
+</lux-app-header>  -->
   <lux-app-content luxAriaRoleMainLabel=""></lux-app-content>
   <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="13.1.0"></lux-app-footer>
 </div>

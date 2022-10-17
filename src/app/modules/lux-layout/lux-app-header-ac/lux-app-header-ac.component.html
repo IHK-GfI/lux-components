@@ -8,11 +8,12 @@
     fxFlex="100"
   >
     <!-- Brand-Logo -->
-    <div fxFlex.gt-sm="33" fxFlex.lt-md="50" fxLayoutAlign="start center" fxLayoutAlign.lt-md="space-between center">
+    <div fxFlex.gt-sm="40" fxFlex.lt-md="50" fxLayoutAlign="start center" fxLayoutAlign.lt-md="space-between center">
       <lux-image
         [luxImageSrc]="luxBrandLogoSrc"
         luxImageHeight="3em"
         class="brand-logo"
+        luxTagId="lux-brand-logo-button"
         (click)="onClicked($event)"
         *ngIf="luxBrandLogoSrc"
       ></lux-image>
@@ -22,32 +23,31 @@
       <!-- <lux-button
         [luxIconName]="luxAppIconName"
         luxColor="primary"
+        luxTagId="luxAppIcon"
         (click)="onClicked($event)"
       ></lux-button> -->
-      <mat-icon svgIcon="luxAppIcon" (click)="onClicked($event)"></mat-icon>
+      <mat-icon svgIcon="luxAppIcon" luxTagId="luxAppIconButton" (click)="onClicked($event)"></mat-icon>
     </div>
-    <!-- User-Menu -->
+    <!-- Action-Nav / Lang-Select / User-Menu -->
     <div
       fxLayout="row"
-      fxFlex="0 0 33%"
+      fxFlex="0 0 40"
       fxFlex.lt-md="0 0 50"
       fxLayoutAlign="end center"
+      fxLayoutGap="8px"
+      fxLayoutGap.lt-md="4px"
       class="user-menu lux-header-user"
       [luxAriaLabel]="luxAriaUserMenuButtonLabel"
     >
-
-      <!-- Greeting -->
-      <!-- <div *ngIf="luxUserName" fxFlex="0 0 75%" fxLayoutAlign="end center" [fxShow.lt-md]="false">
-        <span class="lux-nowrap lux-header-username">
-          {{ greetingLabel }} {{ luxUserName }}
-        </span>
-      </div> -->
+      <div fxflex="0 0 auto" *ngIf="actionNav" class="lux-action-nav-ac-container">
+         <ng-container [ngTemplateOutlet]="actionNav.templateRef" *ngIf="actionNav"></ng-container>
+      </div>
 
       <lux-lang-select-ac
         [luxLocaleSupported]="luxLocaleSupported"
         [luxLocaleBaseHref]="luxLocaleBaseHref"
         fxFlex="0 0 auto"
-        class="lux-lang-select-ac lux-mr-3"
+        class="lux-lang-select-ac"
         *ngIf="luxLocaleSupported && (luxLocaleSupported?.length ?? 0) > 1"
       ></lux-lang-select-ac>
 
@@ -60,6 +60,7 @@
         (luxMenuOpened)="onMenuOpened()"
         luxClassName="lux-header-user-menu"
         luxTagId="app_header_user_menu"
+        luxTooltip="Benutzermenü"
         fxFlex="0 0 auto"
       >
         <!-- Anzeige des Usernames falls dieser vorhanden und eingeloggt ist -->
@@ -96,6 +97,7 @@
             aria-haspopup="true"
             [ngClass]="menuOpened ? 'menu-opened' : ''"
             #customTrigger
+            luxTagId="lux-user-menu-trigger-btn"
           >
           </lux-button>
         </lux-menu-trigger>
@@ -120,5 +122,4 @@
     </div>
 
   </div>
-
 </div>
