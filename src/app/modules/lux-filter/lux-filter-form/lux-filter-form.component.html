@@ -29,6 +29,7 @@
   [luxExpandedLabelOpen]="luxExpandedLabelOpen"
   [luxExpandedLabelClose]="luxExpandedLabelClose"  
   class="lux-filter-card"
+  luxTagId="luxFilterCard"
 >
 <lux-card-info>
   <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container>
@@ -37,7 +38,7 @@
     <ng-container *ngTemplateOutlet="filterFormTemplate"></ng-container>
   </lux-card-content>
   <!-- Optional können bei der Darstellung in einer Card erweiterte Optionen als Expanded-Content der Card angezeigt werden -->
-  <lux-card-content-expanded *ngIf="extendedOptions" >
+  <lux-card-content-expanded *ngIf="extendedOptions" luxTagId="luxFilterFormExtendedContent">
     <ng-content select='lux-filter-form-extended'></ng-content>
   </lux-card-content-expanded>
   <lux-card-actions>
