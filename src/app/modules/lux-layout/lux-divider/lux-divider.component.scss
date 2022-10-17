@@ -17,5 +17,16 @@
     margin-top: 8px;
     margin-bottom: 8px;
     min-height: 1px;
+
+    & .mat-divider.mat-divider-inset {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
+}
+
+::ng-deep .mat-card .mat-divider-horizontal:not(.mat-divider-inset) {
+  position: absolute;
+  left: 0;
+  width: 100%;
 }
