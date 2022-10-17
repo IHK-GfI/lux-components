@@ -15,7 +15,6 @@ export class LuxAppHeaderAcActionNavComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     LuxUtil.assertNonNull('templateRef', this.templateRef);
-    console.log("Contenchildren", this.menuItemComponents)
   }
 
 }

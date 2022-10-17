@@ -84,13 +84,9 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
       this.logger.warn('No title is set for the mobile view.');
     }
   }
-  ngAfterContentInit(){
-    console.log('ActionNav', this.actionNav);
-  }
 
   onMenuOpened() {
     this.menuOpened = true;
-    console.log("Menu Openend")
   }
 
   onMenuClosed() {

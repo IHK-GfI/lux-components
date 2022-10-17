@@ -18,7 +18,5 @@ export class LuxAppHeaderAcActionNavItemComponent {
 
   @ContentChild(LuxAppHeaderAcActionNavItemCustomComponent) customComponent?: LuxAppHeaderAcActionNavItemCustomComponent;
 
-  constructor() {
-    console.log('constructor ActionNavItemComponent')
-  }
+  constructor() {}
 }

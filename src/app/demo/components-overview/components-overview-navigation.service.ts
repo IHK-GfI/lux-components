@@ -159,6 +159,10 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
+  get filteredComponents() {
+    return this.components.filter((component: any) => !component.themes || !!component.themes.find((theme: string) => theme === this.themeName));
+  }
+
   goTo(id: string): void {
     this.router.navigate([`components-overview/example/${ id }`]);
   }
