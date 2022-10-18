@@ -21,15 +21,15 @@ lux-form-control {
       .lux-menu-extended {
         justify-content: end;
         overflow: unset;
-        
+
         lux-button {
-          
+
           button {
             width: unset;
             min-width: 24px;
             margin-right: 4px;
-            margin-bottom: $outline-width;
-            
+            margin-bottom: var(--lux-theme-outline-width);
+
             &:last-of-type {
               margin-right: 0px;
             }

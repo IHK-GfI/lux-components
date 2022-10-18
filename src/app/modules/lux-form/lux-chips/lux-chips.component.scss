@@ -1,5 +1,3 @@
-@import '@ihk-gfi/lux-components-theme/src/public/global';
-
 .lux-chips-input-container {
   display: flex;
   flex: 1 1 auto;
@@ -52,7 +50,7 @@ mat-chip-list {
 }
 
 ::ng-deep .lux-chips-autocomplete-panel {
-  padding: $outline-width;
+  padding: var(--lux-theme-outline-width);
 
   mat-option.lux-option-multiline {
     padding: 16px;

@@ -1,5 +1,3 @@
-@import '@ihk-gfi/lux-components-theme/src/public/global';
-
 :host {
   display: block;
 }
@@ -18,7 +16,7 @@
   }
 
   ::ng-deep lux-panel-content {
-    margin-bottom: $outline-width;
+    margin-bottom: var(--lux-theme-outline-width);
   }
 }
 
