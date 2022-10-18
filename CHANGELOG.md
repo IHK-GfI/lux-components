@@ -2,6 +2,9 @@
 ## New
 - **allgemein**: Update auf Angular 14 [Issue 223](https://github.com/IHK-GfI/lux-components/issues/223)
 - **allgemein**: Umstellung auf den strict-Mode. [Issue 224](https://github.com/IHK-GfI/lux-components/issues/224)
+- **allgemein**: Konstanten (z.B. $outline-with) in das Theme gezogen.
+  - $outline-with -> var(--lux-theme-outline-width)
+  - $outline-style -> var(--lux-theme-outline-style)
 
 ## Breaking changes
 - Dieser Punkt ist für die File-Upload-Konfiguration relevant: ILuxFileActionBaseConfig hat die zwei neuen Ableitungen ILuxFileActionConfig und ILuxFilesActionConfig.

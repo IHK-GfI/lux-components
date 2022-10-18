@@ -1,5 +1,3 @@
-@import '@ihk-gfi/lux-components-theme/src/public/global';
-
 lux-progress ::ng-deep mat-progress-bar {
   margin-bottom: 8px;
 }
@@ -25,17 +23,7 @@ lux-progress ::ng-deep mat-progress-bar {
 
     table {
       width: 100%;
-      border-spacing: 0 $outline-width;
-
-      // td.mat-table-sticky {
-      //   z-index: 103 !important;
-      // }
-      // td:not(.mat-table-sticky) {
-      //   z-index: 97 !important;
-      // }
-      // td.mat-header-cell {
-      //   z-index: 103 !important;
-      // }
+      border-spacing: 0 var(--lux-theme-outline-width);
 
       ::ng-deep .mat-table tfoot, .mat-table-sticky {
         background: unset;
@@ -75,12 +63,6 @@ lux-progress ::ng-deep mat-progress-bar {
           margin-top: 8px;
         }
       }
-
-      // td.mat-cell:last-of-type,
-      // td.mat-footer-cell:last-of-type,
-      // th.mat-header-cell:last-of-type {
-      //   padding-right: 0;
-      // }
 
       ::ng-deep tbody tr:last-of-type td {
         border-bottom: none;

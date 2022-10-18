@@ -1,7 +1,7 @@
 @import './../lux-lookup-model/lux-lookup-component';
 
 ::ng-deep .lux-select-panel {
-  padding: $outline-width !important;
+  padding: var(--lux-theme-outline-width) !important;
 
   mat-option:not(:last-of-type) {
     // Wenn man den Wert von "margin-bottom" verändert, muss man auch die Höhenberechnung in der

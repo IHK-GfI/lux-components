@@ -1,7 +1,5 @@
-@import '@ihk-gfi/lux-components-theme/src/public/global';
-
 ::ng-deep .lux-autocomplete-panel {
-  padding: $outline-width;
+  padding: var(--lux-theme-outline-width);
 
   mat-option.lux-option-multiline {
     padding: 16px;

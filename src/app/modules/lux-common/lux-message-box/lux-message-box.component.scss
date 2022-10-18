@@ -1,12 +1,10 @@
-@import '@ihk-gfi/lux-components-theme/src/public/global';
-
 :host {
   display: block;
   overflow: hidden;
   margin: 10px 20px 20px 10px;
 
   .lux-message-box-content {
-    margin: $outline-width;
+    margin: var(--lux-theme-outline-width);
   }
 
   .lux-display-none {
@@ -38,7 +36,7 @@
     }
 
     .lux-message-container {
-      padding: $outline-width 24px;
+      padding: var(--lux-theme-outline-width) 24px;
     }
 
     .lux-hidden {

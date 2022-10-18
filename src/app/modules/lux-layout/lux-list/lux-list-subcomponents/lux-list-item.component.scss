@@ -1,5 +1,3 @@
-@import '@ihk-gfi/lux-components-theme/src/public/global';
-
 .lux-card-footer {
   margin: 0;
 }
@@ -17,5 +15,5 @@
 }
 
 :host ::ng-deep lux-card > mat-card.mat-card {
-  margin: $outline-width 0;
+  margin: var(--lux-theme-outline-width) 0;
 }
