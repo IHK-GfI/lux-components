@@ -38,7 +38,7 @@ export class MenuExampleComponent {
       prio: 2
     },
     {
-      iconName: 'lux-file-download',
+      iconName: 'lux-interface-download-button-2',
       raised: false,
       color: 'primary',
       disabled: false,
@@ -51,6 +51,93 @@ export class MenuExampleComponent {
       prio: 3
     }
   ];
+
+  menuItemsFa: ExampleMenuItem[] = [
+    {
+      iconName: 'fas fa-sign-in-alt',
+      raised: false,
+      color: 'primary',
+      disabled: false,
+      hidden: false,
+      label: 'Registrierung',
+      tooltip: '',
+      alwaysVisible: false,
+      round: false,
+      hideLabelIfExtended: false,
+      prio: 1,
+      class: 'lux-test-class'
+    },
+    {
+      iconName: 'fas fa-question', 
+      raised: false,
+      color: 'primary',
+      disabled: false,
+      hidden: false,
+      label: 'FAQ´s',
+      tooltip: '',
+      alwaysVisible: false,
+      round: false,
+      hideLabelIfExtended: false,
+      prio: 2
+    },
+    {
+      iconName: 'fa-download',
+      raised: false,
+      color: 'primary',
+      disabled: false,
+      hidden: false,
+      label: 'Downloads',
+      tooltip: '',
+      alwaysVisible: false,
+      round: false,
+      hideLabelIfExtended: false,
+      prio: 3
+    }
+  ];
+
+  menuItemsMat: ExampleMenuItem[] = [
+    {
+      iconName: 'login', 
+      raised: false,
+      color: 'primary',
+      disabled: false,
+      hidden: false,
+      label: 'Registrierung',
+      tooltip: '',
+      alwaysVisible: false,
+      round: false,
+      hideLabelIfExtended: false,
+      prio: 1,
+      class: 'lux-test-class'
+    },
+    {
+      iconName: 'live_help',
+      raised: false,
+      color: 'primary',
+      disabled: false,
+      hidden: false,
+      label: 'FAQ´s',
+      tooltip: '',
+      alwaysVisible: false,
+      round: false,
+      hideLabelIfExtended: false,
+      prio: 2
+    },
+    {
+      iconName: 'download',
+      raised: false,
+      color: 'primary',
+      disabled: false,
+      hidden: false,
+      label: 'Downloads',
+      tooltip: '',
+      alwaysVisible: false,
+      round: false,
+      hideLabelIfExtended: false,
+      prio: 3
+    }
+  ];
+
   displayExtended = true;
   displayMenuLeft = true;
   maximumExtended = 5;
