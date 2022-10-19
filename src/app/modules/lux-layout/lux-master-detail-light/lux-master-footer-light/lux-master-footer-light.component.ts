@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'lux-master-footer-light',
@@ -6,5 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lux-master-footer-light.component.scss']
 })
 export class LuxMasterFooterLightComponent {
-  constructor() { }
+  constructor() {}
 }

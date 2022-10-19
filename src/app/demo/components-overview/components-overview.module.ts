@@ -31,6 +31,7 @@ import { HttpErrorExampleComponent } from './http-error-example/http-error-examp
 import { IconExampleComponent } from './icon-example/icon-example.component';
 import { ImageExampleComponent } from './image-example/image-example.component';
 import { LinkExampleComponent } from './link-example/link-example.component';
+import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
 import { ProgressBarExampleComponent } from './progress-example/progress-example.component';
 import { RadioButtonExampleComponent } from './radio-button-example/radio-button-example.component';
 import { SliderExampleComponent } from './slider-example/slider-example.component';
@@ -98,7 +99,6 @@ import { FileUploadExampleComponent } from './file-example/file-upload-example/f
 import { InputAuthenticExampleComponent } from './input-authentic-example/input-authentic-example.component';
 import { MatListModule } from '@angular/material/list';
 import { OverviewExampleComponent } from './tile-authentic-example/overview-example/overview-example.component';
-import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
 import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/checkbox-authentic-example.component';
 import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
 import { AutocompleteAuthenticExampleComponent } from './autocomplete-authentic-example/autocomplete-authentic-example.component';
@@ -224,7 +224,6 @@ import { ComponentsOverviewAuthenticComponent } from './components-overview-auth
     FileUploadExampleComponent,
     InputAuthenticExampleComponent,
     OverviewExampleComponent,
-    MasterDetailLightExampleComponent,
     CheckboxAuthenticExampleComponent,
     ToggleAuthenticExampleComponent,
     AutocompleteAuthenticExampleComponent,
@@ -240,7 +239,8 @@ import { ComponentsOverviewAuthenticComponent } from './components-overview-auth
     LookupComboboxAcExampleComponent,
     IconOverviewComponent,
     ComponentsOverviewBlueComponent,
-    ComponentsOverviewAuthenticComponent
+    ComponentsOverviewAuthenticComponent,
+    MasterDetailLightExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]

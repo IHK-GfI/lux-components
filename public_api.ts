@@ -254,10 +254,12 @@ export * from './src/app/modules/lux-layout/lux-master-detail/lux-master-detail-
 export * from './src/app/modules/lux-layout/lux-master-detail/lux-master-detail-subcomponents/lux-master-header/lux-master-header-content.component';
 export * from './src/app/modules/lux-layout/lux-master-detail/lux-master-detail-subcomponents/lux-master-simple/lux-master-simple.component';
 export * from './src/app/modules/lux-layout/lux-master-detail/lux-master-detail-subcomponents/lux-master-view/lux-master-view.component';
-export * from './src/app/modules/lux-layout/lux-master-detail-light/lux-detail-content-light/lux-detail-content-light.component';
-export * from './src/app/modules/lux-layout/lux-master-detail-light/lux-detail-header-light/lux-detail-header-light.component';
-export * from './src/app/modules/lux-layout/lux-master-detail-light/lux-master-content-light/lux-master-content-light.component';
+export * from './src/app/modules/lux-layout/lux-master-detail-light/lux-detail-view-light/lux-detail-view-light.component';
+export * from './src/app/modules/lux-layout/lux-master-detail-light/lux-detail-view-light/lux-detail-wrapper-light.component';
 export * from './src/app/modules/lux-layout/lux-master-detail-light/lux-master-header-light/lux-master-header-light.component';
+export * from './src/app/modules/lux-layout/lux-master-detail-light/lux-master-header-light/lux-master-header-content-light.component';
+export * from './src/app/modules/lux-layout/lux-master-detail-light/lux-master-footer-light/lux-master-footer-light.component';
+export * from './src/app/modules/lux-layout/lux-master-detail-light/lux-master-list-light/lux-master-list-light.component';
 export * from './src/app/modules/lux-layout/lux-master-detail-light/lux-master-detail-light.component';
 export * from './src/app/modules/lux-layout/lux-master-detail-light/lux-master-footer-light/lux-master-footer-light.component';
 export * from './src/app/modules/lux-layout/lux-panel/lux-panel.component';

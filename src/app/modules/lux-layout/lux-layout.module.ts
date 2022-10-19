@@ -14,7 +14,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { LuxActionModule } from '../lux-action/lux-action.module';
 import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';
-import { LuxIconComponent } from '../lux-icon/lux-icon/lux-icon.component';
 import { LuxPipesModule } from '../lux-pipes/lux-pipes.module';
 import { LuxAccordionComponent } from './lux-accordion/lux-accordion.component';
 import { LuxAppFooterComponent } from './lux-app-footer/lux-app-footer.component';
@@ -33,6 +32,15 @@ import { LuxListItemContentComponent } from './lux-list/lux-list-subcomponents/l
 import { LuxListItemIconComponent } from './lux-list/lux-list-subcomponents/lux-list-item-icon.component';
 import { LuxListItemComponent } from './lux-list/lux-list-subcomponents/lux-list-item.component';
 import { LuxListComponent } from './lux-list/lux-list.component';
+import { LuxDetailViewLightComponent } from './lux-master-detail-light/lux-detail-view-light/lux-detail-view-light.component';
+import { LuxDetailWrapperLightComponent } from './lux-master-detail-light/lux-detail-view-light/lux-detail-wrapper-light.component';
+import { LuxMasterDetailLightComponent } from './lux-master-detail-light/lux-master-detail-light.component';
+import { LuxMasterFooterLightComponent } from './lux-master-detail-light/lux-master-footer-light/lux-master-footer-light.component';
+import {
+  LuxMasterHeaderContentLightComponent
+} from './lux-master-detail-light/lux-master-header-light/lux-master-header-content-light.component';
+import { LuxMasterHeaderLightComponent } from './lux-master-detail-light/lux-master-header-light/lux-master-header-light.component';
+import { LuxMasterListLightComponent } from './lux-master-detail-light/lux-master-list-light/lux-master-list-light.component';
 import { LuxDetailViewComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-detail-view/lux-detail-view.component';
 import { LuxMasterFooterComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-master-footer/lux-master-footer.component';
 import { LuxMasterHeaderContentComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-master-header/lux-master-header-content.component';
@@ -76,13 +84,6 @@ import { LuxStepperLargeMobileOverlayComponent } from './lux-stepper-large/lux-s
 import { LuxAppHeaderAcComponent } from './lux-app-header-ac/lux-app-header-ac.component';
 import { LuxAppHeaderAcNavMenuComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu.component';
 import { LuxTileAuthenticComponent } from './lux-tile-authentic/lux-tile-authentic.component';
-import { LuxMasterDetailLightComponent } from './lux-master-detail-light/lux-master-detail-light.component';
-import { LuxMasterHeaderLightComponent } from './lux-master-detail-light/lux-master-header-light/lux-master-header-light.component';
-import { LuxMasterContentLightComponent } from './lux-master-detail-light/lux-master-content-light/lux-master-content-light.component';
-import { LuxDetailContentLightComponent } from './lux-master-detail-light/lux-detail-content-light/lux-detail-content-light.component';
-import { LuxDetailHeaderLightComponent } from './lux-master-detail-light/lux-detail-header-light/lux-detail-header-light.component';
-import { LuxDetailFooterLightComponent } from './lux-master-detail-light/lux-detail-footer-light/lux-detail-footer-light.component';
-import { LuxMasterFooterLightComponent } from './lux-master-detail-light/lux-master-footer-light/lux-master-footer-light.component';
 import { LuxLangSelectAcComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-lang-select-ac/lux-lang-select-ac.component';
 import { LuxAppHeaderAcNavMenuItemComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu-item/lux-app-header-ac-nav-menu-item.component';
 import { LuxAppHeaderAcActionNavComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav.component';
@@ -168,18 +169,18 @@ import { LuxAppHeaderAcActionNavItemCustomComponent } from './lux-app-header-ac/
     LuxAppHeaderAcUserMenuComponent,
     LuxAppHeaderAcNavMenuComponent,
     LuxTileAuthenticComponent,
-    LuxMasterDetailLightComponent,
-    LuxMasterHeaderLightComponent,
-    LuxMasterContentLightComponent,
-    LuxDetailContentLightComponent,
-    LuxDetailHeaderLightComponent,
-    LuxDetailFooterLightComponent,
-    LuxMasterFooterLightComponent,
     LuxLangSelectAcComponent,
     LuxAppHeaderAcNavMenuItemComponent,
     LuxAppHeaderAcActionNavComponent,
     LuxAppHeaderAcActionNavItemComponent,
-    LuxAppHeaderAcActionNavItemCustomComponent
+    LuxAppHeaderAcActionNavItemCustomComponent,
+    LuxDetailViewLightComponent,
+    LuxDetailWrapperLightComponent,
+    LuxMasterFooterLightComponent,
+    LuxMasterHeaderContentLightComponent,
+    LuxMasterHeaderLightComponent,
+    LuxMasterDetailLightComponent,
+    LuxMasterListLightComponent
   ],
   exports: [
     LuxAppHeaderComponent,
@@ -240,17 +241,18 @@ import { LuxAppHeaderAcActionNavItemCustomComponent } from './lux-app-header-ac/
     LuxAppHeaderAcUserMenuComponent,
     LuxAppHeaderAcNavMenuComponent,
     LuxTileAuthenticComponent,
-    LuxMasterDetailLightComponent,
-    LuxMasterHeaderLightComponent,
-    LuxMasterContentLightComponent,
-    LuxMasterFooterLightComponent,
-    LuxDetailContentLightComponent,
-    LuxDetailHeaderLightComponent,
     LuxAppHeaderActionNavItemCustomComponent,
     LuxAppHeaderAcNavMenuItemComponent,
     LuxAppHeaderAcActionNavComponent,
     LuxAppHeaderAcActionNavItemComponent,
-    LuxAppHeaderAcActionNavItemCustomComponent
+    LuxAppHeaderAcActionNavItemCustomComponent,
+    LuxDetailViewLightComponent,
+    LuxDetailWrapperLightComponent,
+    LuxMasterFooterLightComponent,
+    LuxMasterHeaderContentLightComponent,
+    LuxMasterHeaderLightComponent,
+    LuxMasterDetailLightComponent,
+    LuxMasterListLightComponent
   ],
   providers: []
 })
