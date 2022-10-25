@@ -6,6 +6,9 @@
   - $outline-with -> var(--lux-theme-outline-width)
   - $outline-style -> var(--lux-theme-outline-style)
 
+## Bug Fixes
+- **lux-snackbar**: Lange Texte werden abgeschnitten oder schieben die Aktion raus. [Issue 237](https://github.com/IHK-GfI/lux-components/issues/237)
+
 ## Breaking changes
 - Dieser Punkt ist für die File-Upload-Konfiguration relevant: ILuxFileActionBaseConfig hat die zwei neuen Ableitungen ILuxFileActionConfig und ILuxFilesActionConfig.
 - ILuxFileListActionConfig extends ILuxFileActionConfig
