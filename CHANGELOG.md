@@ -5,6 +5,7 @@
 - **allgemein**: Konstanten (z.B. $outline-with) in das Theme gezogen.
   - $outline-with -> var(--lux-theme-outline-width)
   - $outline-style -> var(--lux-theme-outline-style)
+- **allgemein**: Neues Icon-Set integriert. 
 
 ## Bug Fixes
 - **lux-snackbar**: Lange Texte werden abgeschnitten oder schieben die Aktion raus. [Issue 237](https://github.com/IHK-GfI/lux-components/issues/237)
