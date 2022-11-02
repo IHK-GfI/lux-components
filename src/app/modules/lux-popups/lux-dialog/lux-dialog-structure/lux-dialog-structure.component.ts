@@ -13,7 +13,7 @@ import { LuxUtil } from '../../../lux-util/lux-util';
 export class LuxDialogStructureComponent implements AfterViewInit {
   @ViewChild('dialogBase', { read: ElementRef, static: true }) dialogBase!: ElementRef;
   
-  private _iconName = 'lux-oval';
+  private _iconName = '';
   @Input() set luxDialogIcon(name: string | undefined) {
     if (name)
       this._iconName = name;
