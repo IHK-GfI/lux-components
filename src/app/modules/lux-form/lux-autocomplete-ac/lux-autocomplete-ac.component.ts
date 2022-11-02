@@ -18,8 +18,8 @@ import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operato
 import { ReplaySubject, Subscription } from 'rxjs';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
-import { LuxInputPrefixComponent } from '../lux-input/lux-input-subcomponents/lux-input-prefix.component';
-import { LuxInputSuffixComponent } from '../lux-input/lux-input-subcomponents/lux-input-suffix.component';
+import { LuxInputAcPrefixComponent } from '../lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-prefix.component';
+import { LuxInputAcSuffixComponent } from '../lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-suffix.component';
 
 
 @Component({
@@ -56,8 +56,8 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   @Output() luxBlur = new EventEmitter<FocusEvent>();
   @Output() luxFocus = new EventEmitter<FocusEvent>();
 
-  @ContentChild(LuxInputPrefixComponent) inputPrefix?: LuxInputPrefixComponent;
-  @ContentChild(LuxInputSuffixComponent) inputSuffix?: LuxInputSuffixComponent;
+  @ContentChild(LuxInputAcPrefixComponent) inputPrefix?: LuxInputAcPrefixComponent;
+  @ContentChild(LuxInputAcSuffixComponent) inputSuffix?: LuxInputAcSuffixComponent;
 
   @ViewChild('autoCompleteInput', { read: MatAutocompleteTrigger }) matAutoComplete!: MatAutocompleteTrigger;
   @ViewChild('autoCompleteInput', { read: ElementRef }) matInput!: ElementRef;

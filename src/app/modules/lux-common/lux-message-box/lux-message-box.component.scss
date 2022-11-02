@@ -12,28 +12,6 @@
   }
 
   ::ng-deep {
-    /* Anpassungen an den Styles der LuxButtons und der zugrunde liegenden LuxIcons */
-    lux-button {
-      & ::ng-deep {
-        button,
-        lux-icon {
-          width: 32px;
-          max-width: 32px;
-          min-width: 32px;
-          font-size: 0.75em;
-          padding: 0;
-
-          mat-icon.lux-lx-icon-no-size {
-            vertical-align: super;
-          }
-        }
-
-        .mat-button-ripple,
-        .mat-button-focus-overlay {
-          display: none;
-        }
-      }
-    }
 
     .lux-message-container {
       padding: var(--lux-theme-outline-width) 24px;

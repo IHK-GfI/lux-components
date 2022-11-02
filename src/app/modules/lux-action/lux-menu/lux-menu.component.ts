@@ -125,18 +125,27 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
 
     switch(this.themeService.getTheme().name) {
       case 'green':
-        this.PADDING_PX = 16;
-        this.MARGIN_PX = 12;
-        this.ICON_PX = 23; // 15px Breite plus 8px Gap zwischen Icon - Label
-        this.FONT_SIZE = 22;
+        this.PADDING_PX = 32;
+        this.MARGIN_PX = 8;
+        this.ICON_PX = 30; // 22px Breite plus 8px Gap zwischen Icon - Label
+        this.FONT_SIZE = 14; //im Theming wird die Fontsize der Buttons auf 14px gesetzt
         this.FONT_WEIGHT = 400;
         this.FONT_FAMILY = '"Korb", "Source Sans Pro","Helvetica","Arial","sans-serif"';
+        break;
+
+      case 'authentic':
+        this.PADDING_PX = 16;
+        this.MARGIN_PX = 8;
+        this.ICON_PX = 24; // 16px Breite plus 8px Gap zwischen Icon - Label
+        this.FONT_SIZE = 16;
+        this.FONT_WEIGHT = 400;
+        this.FONT_FAMILY = '"Blogger Sans", "Source Sans Pro","Helvetica","Arial","sans-serif"';
         break;
 
       default:
         this.PADDING_PX = 16;
         this.MARGIN_PX = 12;
-        this.ICON_PX = 23; // 15px Breite plus 8px Gap zwischen Icon - Button-Label
+        this.ICON_PX = 36; // 28px Breite plus 8px Gap zwischen Icon - Button-Label
         this.FONT_SIZE = 14;
         this.FONT_WEIGHT = 700;
         this.FONT_FAMILY = 'Roboto, "Helvetica Neue", sans-serif';
@@ -290,7 +299,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   /**
    * Gibt die berechnete Breite des MenuItems zurück.
    * Diese setzt sich aus dem Padding (links und rechts, je 16px), dem Icon (wenn vorhanden, 15px) und der berechneten
-   * Textbreite zusammen.
+   * Textbreite zusammen + 10px Sicherheitspuffer.
    *
    * @param menuItem
    */
@@ -304,6 +313,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       (menuItem.luxIconName ? this.ICON_PX : 0) +
       (!menuItem.luxHideLabelIfExtended ? this.getTextWidth(menuItem.luxLabel) : 0) +
       this.MARGIN_PX
+      + 15
     );
   }
 

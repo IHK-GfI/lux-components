@@ -144,8 +144,11 @@ export class LuxSnackbarService implements OnDestroy {
 
     if (snackbarContainerArr.length > 0) {
       const snackbarEl = snackbarContainerArr[0] as HTMLElement;
-      snackbarEl.style.top = this.appService.getAppTop() + this.appService.getHeaderHeight() + 3 /* Abstand zum Header */ + 'px';
-      snackbarEl.style.right = this.appService.getAppRight() + 3 /* Abstand zum Rand */ + 'px';
+      const snackbarElParent = snackbarContainerArr[0].parentElement as HTMLElement; 
+      // Die Overlay-Paine für die Snackbar muss verschoben werden, da diese sonst den Header blockiert
+      snackbarElParent.style.top = this.appService.getAppTop() + this.appService.getHeaderHeight() + 3 /* Abstand zum Header */ + 'px';
+      snackbarElParent.style.right = this.appService.getAppRight() + 3 /* Abstand zum Rand */ + 'px';
+      snackbarElParent.style.position = 'absolute';
       snackbarEl.style.visibility = 'visible';
     } else {
       if (logError) {
