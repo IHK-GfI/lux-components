@@ -14,20 +14,20 @@
       ></lux-input>
     </div>
   </lux-dialog-content>
-  <lux-dialog-actions fxLayout="row" fxLayoutGap="12px grid">
+  <lux-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxFlex="100" fxLayoutGap="12px grid">
     <lux-button
       luxLabel="Speichern"
       i18n-luxLabel="@@luxc.file-preview.filter-save-dialog.save.lbl"
       [luxColor]="luxDialogRef.data.luxButtonDialogSave"
       [luxDisabled]="!filterName"
-      [luxRaised]="true"
+      [luxFlat]="true"
       (luxClicked)="onSave()"
     ></lux-button>
     <lux-button
       luxLabel="Abbrechen"
       i18n-luxLabel="@@luxc.file-preview.filter-save-dialog.cancel.lbl"
       [luxColor]="luxDialogRef.data.luxButtonDialogCancel"
-      [luxRaised]="true"
+      [luxStroked]="true"
       (luxClicked)="luxDialogRef.closeDialog(false)"
     ></lux-button>
   </lux-dialog-actions>
