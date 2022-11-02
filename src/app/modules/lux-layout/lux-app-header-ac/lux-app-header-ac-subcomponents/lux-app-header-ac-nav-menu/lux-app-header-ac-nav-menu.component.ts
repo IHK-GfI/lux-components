@@ -1,3 +1,4 @@
+import { ConsoleLogger } from '@angular/compiler-cli/ngcc';
 import { Component, ContentChildren, ContentChild, Input, OnDestroy, Output, QueryList, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LuxMediaQueryObserverService } from '../../../../lux-util/lux-media-query-observer.service';
@@ -15,6 +16,7 @@ export class LuxAppHeaderAcNavMenuComponent implements OnDestroy {
   
   mobileView: boolean;
   subscription: Subscription;
+  navMenuOpened=false;
 
   constructor(private queryService: LuxMediaQueryObserverService) {
     this.mobileView = this.queryService.activeMediaQuery === 'xs' ||  this.queryService.activeMediaQuery === 'sm';
@@ -29,5 +31,18 @@ export class LuxAppHeaderAcNavMenuComponent implements OnDestroy {
 
   navMenuItemClicked(navItem: LuxAppHeaderAcNavMenuItemComponent, event: Event){
     navItem.clicked(event);
+  }
+
+  toggleMenuOpend(){
+    this.navMenuOpened=!this.navMenuOpened;
+    console.log('navmenutoggle', this.navMenuOpened)
+  }
+  onNavMenuOpend(){
+    this.navMenuOpened = true;
+    console.log('navmenuopen', this.navMenuOpened)
+  }
+  onNavMenuClosed(){
+    this.navMenuOpened = false;
+    console.log('navmenuclose', this.navMenuOpened)
   }
 }

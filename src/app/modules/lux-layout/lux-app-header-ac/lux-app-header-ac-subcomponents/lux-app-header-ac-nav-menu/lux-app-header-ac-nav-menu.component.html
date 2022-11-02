@@ -3,9 +3,11 @@
   [luxDisplayExtended]="!mobileView"
   [luxMaximumExtended]="luxNavMenuMaximumExtended"
   class="lux-header-ac-nav-menu"
-  ngClass.lt-md="lux-header-ac-nav-menu-mobile"
+  [ngClass]="{'lux-mobile': mobileView}"
   luxClassName="lux-header-ac-nav"
   luxTagId="app_header_nav_menu"
+  (luxMenuClosed)=" onNavMenuClosed()"
+  (luxMenuOpened)=" onNavMenuOpend()"
 >
   <ng-container *ngFor="let navMenuItem of menuItemComponents; let navIndex = index">
     <lux-menu-item
@@ -26,4 +28,20 @@
     >
     </lux-menu-item>>
   </ng-container>
+  <lux-menu-trigger>
+    <lux-button
+      [luxRounded]="true"
+      luxIconName="lux-interface-setting-menu-1"
+      luxColor="primary"
+      class="nav-menu-trigger-ac"
+      [ngClass]="{'lux-mobile': mobileView, 'menu-opened': navMenuOpened}"
+      luxAriaLabel="Navigationsmenü"
+      i18n-luxAriaLabel="@@luxc.app-header.user.menu.trigger"
+      aria-haspopup="true"
+      luxTagId="nav-menu-trigger-ac"
+      #customTrigger
+      luxTagId="lux-nav-menu-trigger-btn"
+    >
+    </lux-button>
+  </lux-menu-trigger>
 </lux-menu>

@@ -1,4 +1,4 @@
-<div fxLayout="column">
+<div fxLayout="column" class="lux-app-header-ac-container">
   <!-- Top-Bar -->
   <div
     *ngIf="!luxHideTopBar"
@@ -6,37 +6,42 @@
     class="lux-app-header-top-bar"
     ngClass.lt-md="lux-mobile"
     fxFlex="100"
+    fxLayoutAlign="space-between center"
   >
     <!-- Brand-Logo -->
-    <div fxFlex.gt-sm="40" fxFlex.lt-md="50" fxLayoutAlign="start center" fxLayoutAlign.lt-md="space-between center">
+    <div fxFlex.gt-sm="0 0 45" fxFlex.lt-md="30" fxLayoutAlign="start center" class="lux-brand-logo-container">
       <lux-image
         [luxImageSrc]="luxBrandLogoSrc"
-        luxImageHeight="3em"
-        class="brand-logo"
+        [luxImageHeight]="mobileView ? '24px': '36px'"
+        class="lux-brand-logo"
+        [ngClass]="{ 'lux-brand-logo-mobile': mobileView }"
+        luxAlt="Lux-Brand-Logo"
         luxTagId="lux-brand-logo-button"
-        (click)="onClicked($event)"
+        (luxClicked)="onBrandLogoClicked($event)"
         *ngIf="luxBrandLogoSrc"
+        [ngStyle]="{display: 'flex'}"
       ></lux-image>
     </div>
     <!-- App-Logo -->
-    <div fxFlex="fill" fxLayoutAlign="center center" class="app-logo-container" *ngIf="!mobileView">
-      <!-- <lux-button
-        [luxIconName]="luxAppIconName"
-        luxColor="primary"
-        luxTagId="luxAppIcon"
-        (click)="onClicked($event)"
-      ></lux-button> -->
-      <mat-icon svgIcon="luxAppIcon" luxTagId="luxAppIconButton" (click)="onClicked($event)"></mat-icon>
+    <div fxFlex="0 0 10" fxLayoutAlign="center center" class="lux-app-logo-container" *ngIf="!mobileView">
+      <lux-image
+        [luxImageSrc]="luxAppLogoSrc"
+        luxImageHeight="36px"
+        class="lux-app-logo"
+        luxAlt="Lux-App-Logo"
+        (luxClicked)="onAppLogoClicked($event)"
+        *ngIf="luxAppLogoSrc"
+      ></lux-image>
     </div>
     <!-- Action-Nav / Lang-Select / User-Menu -->
     <div
       fxLayout="row"
-      fxFlex="0 0 40"
-      fxFlex.lt-md="0 0 50"
+      fxFlex="0 0 45"
+      fxFlex.lt-md="0 0 70"
       fxLayoutAlign="end center"
       fxLayoutGap="8px"
       fxLayoutGap.lt-md="4px"
-      class="user-menu lux-header-user"
+      class="header-menu-container"
       [luxAriaLabel]="luxAriaUserMenuButtonLabel"
     >
       <div fxflex="0 0 auto" *ngIf="actionNav" class="lux-action-nav-ac-container">
@@ -115,7 +120,17 @@
     ngClass.lt-md="lux-mobile"
     fxFlex="100"
   >
-    <div class="lux-app-title">{{ luxAppTitle }}</div>
+    <div class="lux-app-title-container" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+      <lux-image
+        [luxImageSrc]="luxAppLogoSrc"
+        luxImageHeight="18px"
+        class="lux-app-logo-mobile"
+        luxAlt="Lux-App-Logo"
+        (luxClicked)="onAppLogoClicked($event)"
+        *ngIf="luxAppLogoSrc && mobileView"
+      ></lux-image>
+      <div class="lux-app-title" [ngClass]="{ 'lux-mobile': mobileView }">{{ mobileView ? luxAppTitleShort : luxAppTitle }}</div>
+    </div>
 
     <div fxFlex="fill"  class="lux-app-nav-menu">
       <ng-content select="lux-app-header-ac-nav-menu" *ngIf="navMenu"></ng-content>

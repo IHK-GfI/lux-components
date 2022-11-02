@@ -100,9 +100,17 @@ export class AppComponent implements OnInit {
     this.router.navigate(['components-overview/example/icon-overview']);
   }
 
-  actionClicked(text: string) {
-    this.snackbarService.open(2000, {
-      text
+  goToHomepage() {
+    window.open('https://www.ihk-gfi.de/');
+  }
+
+  actionClicked(text: string, iconName?: string ) {
+    this.snackbarService.open(3000, {
+      text,
+      iconName,
+      iconColor: 'orange',
+      action: 'OK',
+      actionColor: 'green'
     });
   }
 

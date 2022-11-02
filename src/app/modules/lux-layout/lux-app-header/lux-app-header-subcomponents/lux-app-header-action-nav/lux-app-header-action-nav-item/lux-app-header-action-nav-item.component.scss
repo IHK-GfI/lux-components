@@ -4,11 +4,27 @@ lux-button {
     min-width: 30px;
     max-height: 30px !important;
     min-height: 30px !important;
+    .mat-button-wrapper {
+      display: inline-flex;
+      height: 100%;
+      lux-icon.lux-button-icon {
+        i.lux-fa-icon, mat-icon.mat-icon {
+          font-size: 18px !important;
+        }
+      }
+    } 
   }
 
   &.lux-button-with-label ::ng-deep button {
     padding: 0 4px;
     max-height: 45px !important;
     min-height: 45px !important;
+
+    lux-icon.lux-button-icon {
+      display: inline-block;
+      mat-icon.mat-icon.lux-lx-icon{
+        font-size: 16px !important;
+      }
+    }
   }
 }

@@ -2,6 +2,7 @@ import { Component, ContentChild, ElementRef, EventEmitter, Input, OnChanges, On
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { LuxAppService } from '../../lux-util/lux-app.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxAppHeaderAcActionNavComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav.component';
@@ -17,17 +18,6 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   @Input() luxUserName?: string;
   @Input() luxAppTitle?: string;
   @Input() luxAppTitleShort?: string;
-  @Input()
-  set luxAppIconName(iconName: string) {
-    if (iconName) {
-      this._luxAppIconName = iconName;
-    }
-  }
-  get luxAppIconName() {
-    return this._luxAppIconName;
-  }
-  _luxAppIconName = 'home';
-
   @Input() luxBrandLogoSrc?: string;
   @Input() luxAppLogoSrc?: string;
   @Input() luxAriaUserMenuButtonLabel = $localize `:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
@@ -37,9 +27,10 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   @Input() luxHideNavBar = false;
 
   @Output() luxClicked: EventEmitter<Event> = new EventEmitter();
+  @Output() luxAppLogoClicked: EventEmitter<Event> = new EventEmitter();
+  @Output() luxBrandLogoClicked: EventEmitter<Event> = new EventEmitter();
 
   @ViewChild('customTrigger', { read: ElementRef }) customTrigger?: ElementRef;
-
 
   @ContentChild(LuxAppHeaderAcNavMenuComponent) navMenu?: LuxAppHeaderAcNavMenuComponent;
   @ContentChild(LuxAppHeaderAcUserMenuComponent) userMenu?: LuxAppHeaderAcUserMenuComponent;
@@ -56,30 +47,24 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   constructor(
     private logger: LuxConsoleService,
     private queryService: LuxMediaQueryObserverService,
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private elementRef: ElementRef, 
+    private appService: LuxAppService
     ) {
-      this.matIconRegistry.addSvgIcon(
-        "luxAppIcon",
-        this.domSanitizer.bypassSecurityTrustResourceUrl("../../../assets/svg/demoAppLogo.svg")
-      );
-
-    this.mobileView = this.queryService.activeMediaQuery === 'xs' || this.queryService.activeMediaQuery === 'sm'
-    this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe(query => {
-      this.mobileView = query === 'xs' ||  query === 'sm';
-    });
+      this.mobileView = this.queryService.activeMediaQuery === 'xs' || this.queryService.activeMediaQuery === 'sm'
+      this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe(query => {
+        this.mobileView = query === 'xs' ||  query === 'sm';
+      });
+      this.appService.appHeaderEl = elementRef.nativeElement;
     }
 
   ngOnInit(): void {
+    //für die lux-images für das Brandlogo und Applogo
     if (this.luxClicked.observed) {
       this.hasOnClickedListener = true;
     }
   }
-  ngOnChanges(simpleChanges: SimpleChanges) {
-    if (simpleChanges.luxUserName) {
-      this.userNameShort = this.generateUserNameShort();
-    }
 
+  ngOnChanges(simpleChanges: SimpleChanges) {
     if (!this.luxAppTitleShort || this.luxAppTitleShort.length === 0) {
       this.logger.warn('No title is set for the mobile view.');
     }
@@ -91,18 +76,20 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
 
   onMenuClosed() {
     this.menuOpened = false;
+    if (this.customTrigger) {
+      this.customTrigger.nativeElement.children[0].focus();
+    }
   }
 
   onClicked(event: any) {
     this.luxClicked.emit(event);
   }
 
-  private generateUserNameShort(): string {
-    let short = this.luxUserName ? this.luxUserName.trim() : '';
+  onAppLogoClicked(event: any) {
+    this.luxAppLogoClicked.emit(event);
+  }
 
-    if (short.length > 0) {
-      short = short.charAt(0);
-    }
-    return short.toUpperCase();
+  onBrandLogoClicked(event: any) {
+    this.luxBrandLogoClicked.emit(event);
   }
 }

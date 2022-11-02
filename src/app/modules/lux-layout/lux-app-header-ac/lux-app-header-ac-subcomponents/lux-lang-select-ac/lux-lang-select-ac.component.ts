@@ -1,15 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { LuxLocaleAc } from './lux-locale-ac';
 
 @Component({
   selector: 'lux-lang-select-ac',
-  templateUrl: './lux-lang-select-ac.component.html',
-  styleUrls: ['./lux-lang-select-ac.component.scss']
+  templateUrl: './lux-lang-select-ac.component.html'
 })
 export class LuxLangSelectAcComponent implements OnInit {
   @Input() luxLocaleSupported = ['de'];
   @Input() luxLocaleBaseHref = '';
+
+  @ViewChild('customTrigger', { read: ElementRef }) customTrigger?: ElementRef;
 
   menuOpened = false;
 
@@ -99,11 +100,12 @@ export class LuxLangSelectAcComponent implements OnInit {
   }
 
   onMenuOpened(){
-    console.log("Lang-Menu opened")
     this.menuOpened = true;
   }
   onMenuClosed() {
-    console.log("lang-menu-closed")
     this.menuOpened = false;
+    if (this.customTrigger) {
+      this.customTrigger.nativeElement.children[0].focus();
+    }
   }
 }

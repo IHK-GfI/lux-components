@@ -112,7 +112,7 @@
       </lux-app-header-action-nav-item>
       <lux-app-header-action-nav-item>
         <lux-app-header-action-nav-item-custom>
-          <lux-menu luxMenuLabel="IHK" luxMenuIconName="fas fa-caret-down" [luxMenuTriggerIconShowRight]="true" [luxDisplayExtended]="false">
+          <lux-menu luxMenuLabel="IHK" luxMenuIconName="lux-interface-arrows-button-down" [luxMenuTriggerIconShowRight]="true" [luxDisplayExtended]="false">
             <lux-menu-item luxLabel="IHK 101" luxIconName="far fa-building" (luxClicked)="actionClicked('IHK 101-Action clicked!')"></lux-menu-item>
             <lux-menu-item luxLabel="IHK 106" luxIconName="far fa-building" (luxClicked)="actionClicked('IHK 106-Action clicked!')"></lux-menu-item>
             <lux-menu-item luxLabel="IHK 189" luxIconName="far fa-building" (luxClicked)="actionClicked('IHK 189-Action clicked!')"></lux-menu-item>
@@ -127,15 +127,18 @@
       <lux-menu-item luxLabel="Theme - authentic" [luxDisabled]="false" luxTagId="theme-authentic-menu-item-ac" (luxClicked)="onChangeTheme('authentic')"></lux-menu-item>
     </lux-app-header-right-nav>
   </lux-app-header>
+  
   <lux-app-header-ac
     luxAppTitle="LUX Components"
     luxAppTitleShort="Components"
     [luxUserName]="demoUserName"
     luxAppIconName="dashboard_customize"
     luxBrandLogoSrc="/assets/png/GfI_Logo_Final.png"
-    luxAppLogoSrc="/assets/png/demoAppLogo.svg"
+    luxAppLogoSrc="/assets/svg/demoAppLogo.svg"
     [luxLocaleSupported]="['de', 'en']"
     (luxClicked)="router.navigate(['/']);"
+    (luxAppLogoClicked)="goToHome()"
+    (luxBrandLogoClicked)="goToHomepage()"
     *ngIf="this.luxAppHeader !== 'none' && themeName === 'authentic'"
   >
     <lux-app-header-ac-user-menu *ngIf="luxMode === 'stand-alone'" luxTooltip="Usermenü">
@@ -191,20 +194,19 @@
       <lux-app-header-ac-action-nav-item>
         <lux-app-header-ac-action-nav-item-custom>
           <lux-menu luxMenuLabel="IHK" luxMenuIconName="lux-interface-arrows-button-down" [luxMenuTriggerIconShowRight]="true" [luxDisplayExtended]="false" luxTooltip="IHK wechseln">
-            <lux-menu-item luxLabel="IHK 101" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 101-Action clicked!')"></lux-menu-item>
-            <lux-menu-item luxLabel="IHK 106" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 106-Action clicked!')"></lux-menu-item>
-            <lux-menu-item luxLabel="IHK 189" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 189-Action clicked!')"></lux-menu-item>
+            <lux-menu-item luxLabel="IHK 101" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 101-Action clicked!', 'lux-factory')"></lux-menu-item>
+            <lux-menu-item luxLabel="IHK 106" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 106-Action clicked!', 'lux-factory')"></lux-menu-item>
+            <lux-menu-item luxLabel="IHK 189" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 189-Action clicked!', 'lux-factory')"></lux-menu-item>
           </lux-menu>
         </lux-app-header-ac-action-nav-item-custom>
       </lux-app-header-ac-action-nav-item>
 
       <lux-app-header-ac-action-nav-item
-        luxIconName="lux-interface-arrows-reload-2"
+        luxIconName="lux-interface-alert-alarm-bell-2"
         luxColor="primary"
-        luxAriaLabel="Header austauschen"
+        luxAriaLabel="Actionbeispiel-Button"
         luxTagId="action0"
-        luxTooltip="Header wechseln"
-        (luxClicked)="actionClicked('Hier wird bald der Header gewechselt')"
+        (luxClicked)="actionClicked('Ihre Bestellung wird nun zubereitet!', 'lux-food-pizza')"
       ></lux-app-header-ac-action-nav-item>
 
     </lux-app-header-ac-action-nav>
