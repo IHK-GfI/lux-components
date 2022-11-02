@@ -1,8 +1,7 @@
 :host {
   position: relative;
   box-sizing: border-box; //brauchen die neuen icons bei roundes Buttons
-  display: inline-block; // führt bei rounded Buttons zu einer Verschiebung bei den neuen Icons
-  line-height: 0.5; //ToDo: ohne diese Angabe, wird das Host-Element größer als das eigentliche Icon, warum ist noch unklar
+  display: inline-block;
 }
 
 i.lux-fa-icon,

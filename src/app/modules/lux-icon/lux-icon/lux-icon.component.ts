@@ -21,10 +21,10 @@ export class LuxIconComponent {
   private _fontCSSClass = 'blue';
 
   currentIconSize = 1;
-  isIconFA?: boolean;
-  isIconLX?: boolean;
 
   @HostBinding('style.margin') styleMargin = '0';
+  @HostBinding('class.lux-lx-icon') isIconLX = false;
+  @HostBinding('class.lux-fa-icon') isIconFA = false;
 
   @Input() luxRounded = false;
 
