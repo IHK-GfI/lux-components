@@ -57,7 +57,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   storedFilters: LuxFilter[] = [
     {
-      name: 'Vollständig',
+      name: 'Demo-Test-Filter',
       data: {
         autocompleteLookup: {
           key: '1',
@@ -131,8 +131,8 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   buttonDialogSave: LuxThemePalette =  'primary';
   buttonDialogLoad: LuxThemePalette =  'primary';
   buttonDialogDelete: LuxThemePalette =  'warn';
-  buttonDialogCancel: LuxThemePalette =  undefined;
-  buttonDialogClose: LuxThemePalette =  undefined;
+  buttonDialogCancel: LuxThemePalette =  'primary';
+  buttonDialogClose: LuxThemePalette =  'primary';
 
   openLabel = '';
   closeLabel = '';
@@ -209,7 +209,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   }
 
   onLoadAc(filterName: string) {
-    this.initFilterAc = this.loadFilter(filterName);
+    this.initFilterAc = this.loadFilterAc(filterName);
   }
 
   onSetFilter() {
@@ -232,6 +232,17 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   private loadFilter(filterName: string) {
     // Hier müssten die Filtereinstellungen (z.B. aus der Datenbank) gelesen und zurückgeliefert werden.
     const luxFilter = this.storedFilters.find((filter) => filter.name === filterName);
+
+    if (!luxFilter) {
+      throw Error(`Es konnte kein Filter mit dem Namen "${filterName}" gefunden werden.`);
+    }
+
+    return JSON.parse(JSON.stringify(luxFilter.data));
+  }
+
+  private loadFilterAc(filterName: string) {
+    // Hier müssten die Filtereinstellungen (z.B. aus der Datenbank) gelesen und zurückgeliefert werden.
+    const luxFilter = this.storedFiltersAc.find((filter) => filter.name === filterName);
 
     if (!luxFilter) {
       throw Error(`Es konnte kein Filter mit dem Namen "${filterName}" gefunden werden.`);

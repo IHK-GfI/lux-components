@@ -36,16 +36,13 @@
               (keydown.enter)="onComponentClick(component)"
             >
               {{ component.label }}
-              <lux-badge luxColor="green" [luxUppercase]="false"  *ngIf="component.news">
-                <lux-label luxId="Badge_news">Neu</lux-label>
-              </lux-badge>
             </div>
           </ng-container>
         </lux-panel-content>
       </lux-panel>
     </ng-container>
   </div>
-  <div class="example-base-content" fxFlex="0 0 calc(100% - 300px)" fxFlex.sm="0 0 auto" fxFlex.xs="0 0 auto" luxAriaRole="main">
+  <div class="example-base-content" fxFlex="0 0 calc(100% - 270px)" fxFlex.sm="0 0 auto" fxFlex.xs="0 0 auto" luxAriaRole="main">
     <router-outlet></router-outlet>
   </div>
 </div>

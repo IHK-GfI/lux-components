@@ -23,7 +23,6 @@
 
         mat-expansion-panel-header {
           font-size: 16px;
-          margin: var(--lux-theme-outline-width);
         }
 
         mat-expansion-panel-header,
@@ -45,11 +44,6 @@
       cursor: pointer;
       font-size: 16px;
       padding: 2px 0 2px 32px;
-      margin: var(--lux-theme-outline-width);
-      lux-badge {
-        font-size: 12px;
-        line-height: 1;
-      }
     }
   }
 

@@ -4,18 +4,6 @@
 >
   <example-base-content fxLayout="column" fxLayoutGap="32px">
     <lux-card
-      luxTitle="Suche nach Identnummer"
-    >
-    <lux-card-content>
-      <lux-input-ac luxLabel="Identnummer" luxPlaceholder="ID123456"></lux-input-ac>
-    </lux-card-content>
-    <lux-card-actions>
-      <lux-button [luxStroked]="true" luxColor="primary" luxLabel="ZURÜCKSETZEN"></lux-button>
-      <lux-button [luxFlat]="true" luxColor="primary" luxLabel="SUCHEN"></lux-button>
-    </lux-card-actions>
-    </lux-card>
-
-    <lux-card
       [luxTitle]="title"
       [luxSubTitle]="subTitle"
       [luxExpanded]="expanded"
@@ -27,7 +15,7 @@
       [luxExpandedLabelOpen]="openLabel"
     >
       <lux-icon luxIconName="lux-cogs" *ngIf="showIcon"></lux-icon>
-      <lux-card-info *ngIf="showInfo && !useExpandableContent">
+      <lux-card-info *ngIf="showInfo">
         <lux-icon luxIconName="lux-interface-home-3"></lux-icon>
       </lux-card-info>
       <lux-card-content>
@@ -59,15 +47,19 @@
         <lux-button luxLabel="Button 2" [luxRaised]="btn2Raised"></lux-button>
       </lux-card-actions>
     </lux-card>
-    <lux-card luxTitle="Auswählbare Karte" luxSubTitle="zum bearbeiten Häckchen setzen">
-      <lux-icon luxIconName="fa-phone"></lux-icon>
-      <lux-card-info>
-        <lux-checkbox [luxNoLabels]="true" class="example-box" luxTagId="lux-card-example-checkbox"></lux-checkbox>
-      </lux-card-info>
-      <lux-card-content>
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-      </lux-card-content>
+    <h3>Einfaches Anwendungsbeispiel</h3>
+    <lux-card
+      luxTitle="Suche nach Identnummer"
+    >
+    <lux-card-content>
+      <lux-input-ac luxLabel="Identnummer" luxPlaceholder="ID123456"></lux-input-ac>
+    </lux-card-content>
+    <lux-card-actions>
+      <lux-button [luxStroked]="true" luxColor="primary" luxLabel="ZURÜCKSETZEN"></lux-button>
+      <lux-button [luxFlat]="true" luxColor="primary" luxLabel="SUCHEN"></lux-button>
+    </lux-card-actions>
     </lux-card>
+
   </example-base-content>
   <example-base-simple-options>
     <div class="lux-highlight-section column">
@@ -137,17 +129,14 @@
     >
     </lux-toggle>
     <div class="lux-highlight-section column">
-      <lux-toggle luxLabel="luxCardInfo anzeigen" [luxChecked]="showInfo" (luxCheckedChange)="changeInfo($event)" [luxNoTopLabel]="true">
+      <lux-toggle luxLabel="luxCardInfo anzeigen" [(luxChecked)]="showInfo" [luxNoTopLabel]="true">
         <lux-form-hint>
-          Die Component für die Darstellung von Zusatzinfos rechts vom Titel anzeigen.<br />
-          Sie wird nur dargestellt, wenn die Card keinen ausklappbaren oder austauschbaren Content besitzt und somit
-          kein Toggle-Button vorhanden ist. (hier in dem Beispiel ist es das rechtsbündige "i"-Icon)
+          Die Component für die Darstellung von Zusatzinfos rechts vom Titel anzeigen.
         </lux-form-hint>
       </lux-toggle>
       <lux-toggle
         luxLabel="luxCardContentExpanded aktivieren"
-        [luxChecked]="useExpandableContent"
-        (luxCheckedChange)="changeExpandable($event)"
+        [(luxChecked)]="useExpandableContent"
         [luxNoTopLabel]="true"
       >
         <lux-form-hint>

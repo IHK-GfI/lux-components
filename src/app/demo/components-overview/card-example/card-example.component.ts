@@ -11,11 +11,11 @@ export class CardExampleComponent {
   showActions = true;
   showIcon = true;
   showInfo = true;
-  useExpandableContent = true;
+  useExpandableContent = false;
   btn2Raised = true;
   disabled = false;
   titleLineBreak = true;
-  title = `Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
+  title = `Testkarte - Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
   subTitle = 'Sed eiusmod tempor incidunt ut labore et dolore magna aliqua.';
   iconName ="lux-cogs"
   iconShowRight = true;
@@ -35,21 +35,5 @@ export class CardExampleComponent {
       text: 'Card clicked',
       iconName: 'lux-info'
     });
-  }
-
-  changeInfo(showInfo: boolean) {
-    if (showInfo === true) {
-      this.useExpandableContent = false;
-    }
-
-    this.showInfo = showInfo;
-  }
-
-  changeExpandable(showExpandableContent: boolean) {
-    if (showExpandableContent === true) {
-      this.showInfo = false;
-    }
-
-    this.useExpandableContent = showExpandableContent;
   }
 }
