@@ -1,19 +1,29 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'lux-image',
   templateUrl: './lux-image.component.html',
   styleUrls: ['./lux-image.component.scss']
 })
-export class LuxImageComponent implements OnChanges {
+export class LuxImageComponent implements OnChanges, OnInit {
   @Input() luxImageSrc = '';
   @Input() luxImageWidth = 'auto';
   @Input() luxImageHeight = 'auto';
   @Input() luxRawSrc = false;
   @Input() luxAlt = '';
 
+  @Output() luxClicked: EventEmitter<Event> = new EventEmitter();
+  
+  isObserved = false;
+
   constructor() {}
 
+  ngOnInit() {
+    if (this.luxClicked.observed) {
+      this.isObserved=true;
+    }
+  }
+  
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (simpleChanges.luxImageSrc) {
       if (!this.luxRawSrc) {
@@ -24,6 +34,10 @@ export class LuxImageComponent implements OnChanges {
         this.updateImageSrc();
       }
     }
+  }
+
+  clicked(event: Event) {
+    this.luxClicked.emit(event);
   }
 
   private updateImageSrc() {
