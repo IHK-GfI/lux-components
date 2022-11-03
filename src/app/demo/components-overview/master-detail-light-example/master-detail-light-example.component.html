@@ -1,65 +1,122 @@
-<lux-master-detail-light>
-  <lux-master-header-light>
-    <lux-filter-form
-      [luxShowAsCard]="true"
-    >
-      <lux-input-ac luxLabel="TestFilter" luxPlaceholder="Filteroption eingeben..."></lux-input-ac>
-    </lux-filter-form>
-  </lux-master-header-light>
+<lux-master-detail-light
+  [luxEmptyIconDetail]="configuration.emptyIconDetail"
+  [luxEmptyIconMaster]="configuration.emptyIconMaster"
+  [luxEmptyIconDetailSize]="configuration.emptyIconDetailSize"
+  [luxEmptyIconMasterSize]="configuration.emptyIconMasterSize"
+  [luxEmptyLabelDetail]="configuration.emptyLabelDetail"
+  [luxEmptyLabelMaster]="configuration.emptyLabelMaster"
+  [luxOpen]="configuration.opened"
+  [luxTitleLineBreak]="configuration.lineBreak"
+  [luxMasterIsLoading]="configuration.masterIsReloading"
+  [luxMasterList]="masterEntries"
+  [luxSelectedDetail]="selectedDetail"
+  [luxCompareWith]="compareFn"
+  luxTagIdMaster="masterTagId"
+  luxTagIdDetail="detailTagId"
+  (luxScrolled)="onLoadListTest()"
+  (luxSelectedDetailChange)="loadDetail($event)"
+  fxFill
+>
+  <lux-master-header-content-light>
+    <lux-accordion>
+      <lux-panel>
+        <lux-panel-header-title>Filter</lux-panel-header-title>
+        <lux-panel-content>
+          <lux-select
+            luxLabel="Fälligkeit"
+            [luxOptions]="options"
+            [luxSelected]="options[0]"
+            luxOptionLabelProp="label"
+            (luxSelectedChange)="changeFilter($event)"
+          >
+          </lux-select>
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  </lux-master-header-content-light>
 
-  <lux-master-content-light>
-    <lux-list>
-      <ng-container *ngFor="let listItem of listItems">
-        <lux-list-item [luxTitle]="listItem.title" [luxSubTitle]="listItem.subtitle" [luxSelected]="listItem.selected"
-                       (luxClicked)="onClick(listItem)">
-          <lux-list-item-icon>
-            <lux-icon luxIconName="lux-cogs"></lux-icon>
-          </lux-list-item-icon>
-          <lux-list-item-content>
-            Value: {{ listItem.value }}
-          </lux-list-item-content>
-        </lux-list-item>
-    </ng-container>
-    </lux-list>
-  </lux-master-content-light>
+  <lux-master-list-light luxTitleProp="title" luxSubTitleProp="subtitle">
+    <!-- Zugriff auf jedes einzelne Master-Element über "master" -->
+    <ng-template #luxSimpleIcon let-master>
+      <lux-icon [luxIconName]="master.icon"></lux-icon>
+    </ng-template>
+    <ng-template #luxSimpleContent let-master>
+      {{ master.content }}
+      <p>
+        Fällig <b>{{ master.timestamp | luxRelativeTimestamp: 'TIMESTAMP NULL' }}</b>
+      </p>
+    </ng-template>
+  </lux-master-list-light>
+
+  <lux-detail-view-light>
+    <!-- Zugriff auf das aktuell selektierte Element über "detail" -->
+    <ng-template let-detail>
+      <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0">
+        <lux-tab luxTitle="Konfiguration" luxIconName="lux-interface-setting-tool-box">
+          <ng-template>
+            <detail-example [masterDetailConfig]="configuration" [selectedDetail]="detail"></detail-example>
+          </ng-template>
+        </lux-tab>
+        <lux-tab luxTitle="Scroll-Example" luxIconName="lux-amount-down-asc">
+          <ng-template>
+            <text-example [title]="detail.title"></text-example>
+          </ng-template>
+        </lux-tab>
+        <lux-tab luxTitle="Deaktiviert" luxIconName="lux-interface-block" [luxDisabled]="true">
+          <ng-template>
+          </ng-template>
+        </lux-tab>
+      </lux-tabs>
+    </ng-template>
+  </lux-detail-view-light>
 
   <lux-master-footer-light>
-    <div fxLayout="row" fxLayoutAlign="space-between start">
-      <div fxLayout="row" fxLayoutGap="8px">
-        <lux-button luxLabel="Sortieren" luxColor="primary" luxIconName="lux-amount-up-asc" [luxFlat]="false"></lux-button>
-        <lux-button luxLabel="Aktualisieren" luxColor="primary" luxIconName="lux-interface-arrows-synchronize"[luxFlat]="false"></lux-button>
+    <div fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="end center">
+        <lux-button
+          luxLabel="#1"
+          [luxRaised]="true"
+          luxColor="primary"
+          (luxClicked)="selectedDetail = masterEntries[0]"
+        >
+        </lux-button>
+        <lux-button
+          luxLabel="#5"
+          [luxRaised]="true"
+          luxColor="primary"
+          (luxClicked)="selectedDetail = masterEntries[4]"
+        >
+        </lux-button>
+        <lux-menu luxIconName="lux-interface-setting-menu-1" luxTagId="master_footer_menu">
+          <lux-menu-item
+            luxLabel="Liste umkehren"
+            luxIconName="lux-interface-arrows-turn-backward"
+            [luxDisabled]="masterEntries.length === 0"
+            (luxClicked)="reverseList()"
+          >
+          </lux-menu-item>
+          <lux-menu-item
+            luxLabel="Liste leeren"
+            luxIconName="lux-interface-delete-bin-5"
+            [luxDisabled]="masterEntries.length === 0"
+            (luxClicked)="clearList()"
+          >
+          </lux-menu-item>
+          <lux-menu-item luxLabel="Liste füllen" luxIconName="lux-interface-edit-layer-add-2" (luxClicked)="fillList()"> </lux-menu-item>
+          <lux-menu-item
+            luxLabel="Liste füllen (erste 10 Elemente)"
+            luxIconName="lux-interface-edit-layer-add-2"
+            (luxClicked)="fillListFirstTenItems()"
+          >
+          </lux-menu-item>
+          <lux-menu-item
+            luxLabel="Liste füllen (letzte 10 Elemente)"
+            luxIconName="lux-interface-edit-layer-add-2"
+            (luxClicked)="fillListLastTenItems()"
+          >
+          </lux-menu-item>
+        </lux-menu>
       </div>
-
-      <lux-button luxLabel="Hinzufügen" luxTagId="add" luxIconName="lux-interface-add-1" luxColor="primary" [luxFlat]="false"></lux-button>
     </div>
   </lux-master-footer-light>
-
-  <lux-detail-header-light class="header-example">
-      <lux-list>
-
-        <lux-list-item [luxTitle]="listItems[0].title" [luxSubTitle]="listItems[0].subtitle"
-                       >
-          <lux-list-item-icon>
-            <lux-icon luxIconName="lux-cogs"></lux-icon>
-          </lux-list-item-icon>
-          <lux-list-item-content>
-            Value: {{ listItems[0].value }}
-          </lux-list-item-content>
-        </lux-list-item>
-
-    </lux-list>
-  </lux-detail-header-light>
-  <lux-detail-content-light>
-    <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0" luxTagId="master-detail-light-tabs">
-      <lux-tab luxTitle="Beispiel" luxIconName="lux-interface-setting-cog" luxTagIdHeader="master-detail-light-tab-1">
-        <ng-template>Lorem Ipsum...</ng-template>
-      </lux-tab>
-      <lux-tab luxIconName="lux-interface-text-formatting-list-bullets" luxTagIdHeader="master-detail-light-tab-2">
-        <ng-template>Lorem Ipsum...</ng-template>
-      </lux-tab>
-      <lux-tab luxIconName="lux-interface-delete-bin-2" luxTagIdHeader="master-detail-light-tab-3">
-        <ng-template>Lorem Ipsum...</ng-template>
-      </lux-tab>
-    </lux-tabs>
-  </lux-detail-content-light>
 </lux-master-detail-light>

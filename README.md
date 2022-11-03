@@ -48,7 +48,7 @@ npm install -g @angular-devkit/schematics-cli
 Zuerst erzeugt man über die Angular CLI eine neue App.
 
 ```
-npx @angular/cli@13 new my-new-app
+npx @angular/cli@14 new my-new-app
 ? Would you like to add Angular routing? Yes
 ? Which stylesheet format would you like to use? SCSS
 
@@ -59,7 +59,7 @@ cd my-new-app
 Im Anschluss installiert man sich den [LUX-Componentsupdater](https://github.com/IHK-GfI/lux-components-update). 
 
 ```bash
-npm install @ihk-gfi/lux-components-update@13 --save-dev
+npm install @ihk-gfi/lux-components-update@14 --save-dev
 ```
 
 Dann kann man über den LUX-Componentsupdater die LUX-Components seiner App hinzufügen: 

@@ -1,0 +1,16 @@
+:host {
+  padding: 10px;
+  font-weight: 500;
+  z-index: 100;
+
+  &.lux-no-toggle {
+    padding-right: 24px;
+  }
+}
+
+.lux-master-header-collapse {
+  ::ng-deep button {
+    padding: 0;
+    min-width: 50px;
+  }
+}

@@ -6,7 +6,7 @@ import { take } from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
-export class LuxDialogRef<T> {
+export class LuxDialogRef<T = any> {
   _matDialogRef!: MatDialogRef<any>;
   _dialogConfirmed: ReplaySubject<void> = new ReplaySubject(1);
   _dialogDeclined: ReplaySubject<void> = new ReplaySubject(1);

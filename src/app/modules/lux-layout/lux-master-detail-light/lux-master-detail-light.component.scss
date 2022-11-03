@@ -1,60 +1,80 @@
-
-.animation-container {
-  position: relative; 
-  display: flex; 
-  width: 100%; 
-  height: 100%; 
-  overflow: hidden;
+:focus {
+  outline: none;
 }
 
+.lux-master-detail {
+  max-width: 100%;
+  z-index: 10;
+}
 
-.master-light-container {
-  height: 100%;
-  &.extended {   
+.lux-master-container {
+  margin: 0 2px 2px 2px;
+  min-width: 60px;
+  position: relative;
+
+  .lux-not-open {
+    padding: 10px 4px;
   }
-  &.collapsed {
-    left: -5px;
-    height: 100%;
-    border: 1px solid rgba(black, 0.12);
-    border-radius: 4px;
-    background-color: #fff;
+
+  // Wenn das passende Flag gesetzt ist und keine Mobilansicht vorliegt,
+  // für die Zentrierung der Empty-Elemente der Masterliste die relative Position des Master-Containers nutzen
+  // Folge: Empty-Elemente von Master und Detail sind gleich hoch
+  &:not(.lux-master-container-mobile).lux-empty-elements-aligned {
+    lux-list {
+      position: static !important;
+    }
   }
 }
 
-.master-light-header{
-  width: 100%;
+lux-master-view {
+  border-top: 2px solid rgba(0, 0, 0, 0.12);;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);;
+  z-index: 100
 }
-.master-light-content{
-  width: 100%;
- 
-  ::ng-deep lux-list {
-    border: unset;
+
+.lux-spinner-hidden {
+  display: none !important;
+}
+
+lux-list-item {
+  margin-bottom: 1px;
+
+  ::ng-deep {
+    lux-card {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+    }
   }
-  overflow: auto;
-}
-.master-light-footer {
-  border: 1px solid rgba(black, 0.12);
-  border-radius: 4px;
-  padding: 16px;
-  background-color: #fff;
 }
 
-.detail-light-container {
-  border: 1px solid rgba(black, 0.12);
-  border-radius: 4px;
-  height: 100%;
-  background-color: #fff;
-  overflow-x: auto;
+lux-list-item,
+lux-list-item-content {
+  display: block;
 }
 
-.detail-light-header{
-  // background-color: lavenderblush;
-  // height: 30px;
+.lux-display-none {
+  display: none !important;
 }
-.detail-light-content{
-  // background-color: papayawhip;
-  // height: 50px;
-}
-.master-light-toggle {
 
+.lux-0-width {
+  width: 0;
+  min-width: 0;
+}
+
+.lux-detail-container {
+  position: relative;
+
+  .lux-detail-empty {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .lux-detail-empty-icon,
+  .lux-detail-empty-icon-text {
+    opacity: 0.6;
+    padding: 0 8px;
+  }
 }

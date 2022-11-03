@@ -75,7 +75,7 @@
     "karma-safari-launcher": "1.0.0",
     "karma-viewport": "1.0.9",
     "material-design-icons-iconfont": "6.5.0",
-    "ng-packagr": "14.0.0",
+    "ng-packagr": "14.2.2",
     "ngx-build-plus": "14.0.0",
     "ngx-cookie-service": "14.0.1",
     "prettier": "2.6.2",

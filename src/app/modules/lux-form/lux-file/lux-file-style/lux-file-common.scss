@@ -21,12 +21,6 @@
   position: relative;
 
   &.lux-file-highlight {
-    // Hart alle Events für alle Kind-Elemente unterbinden, weil sonst kaskadierend die drag-Events aufgerufen werden
-    ::ng-deep *,
-    * {
-      pointer-events: none;
-    }
-
     // Pseudo-Element zum Highlighten des Drop-Bereichs
     &:after {
       content: '';
@@ -35,8 +29,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      //border: var(--lux-theme-outline-width) $outline-style $outline-color-dark;
-      //background: $dark-focused;
+      background-color: rgba(gray, 0.5);
+      opacity: 0.5;
       -webkit-border-radius: 4px;
       -moz-border-radius: 4px;
       border-radius: 4px;
