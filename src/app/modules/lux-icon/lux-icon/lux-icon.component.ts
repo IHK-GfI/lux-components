@@ -22,10 +22,12 @@ export class LuxIconComponent {
 
   currentIconSize = 1;
 
+
   @HostBinding('style.margin') styleMargin = '0';
   @HostBinding('class.lux-lx-icon') isIconLX = false;
   @HostBinding('class.lux-fa-icon') isIconFA = false;
-
+  @HostBinding('class.lux-no-size') noSize = true;
+ 
   @Input() luxRounded = false;
 
   get luxMargin(): string {
@@ -54,8 +56,10 @@ export class LuxIconComponent {
     this._luxIconSize = iconSizeValue;
     if (this.luxIconSize && this.luxIconSize.length === 2) {
       this.currentIconSize = +this.luxIconSize.slice(0, 1);
+      this.noSize = false;
     } else {
       this.currentIconSize = 1;
+      this.noSize = true;
     }
   }
 

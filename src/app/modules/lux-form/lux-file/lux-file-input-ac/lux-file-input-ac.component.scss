@@ -19,10 +19,12 @@ lux-form-control-wrapper {
         justify-content: end;
         overflow: unset;
         gap: 2px;
+        
         lux-button {
           button {
             width: unset;
             min-width: 30px !important;
+            height: 36px;
           }
         }
       }

@@ -1,7 +1,10 @@
 :host {
   position: relative;
-  box-sizing: border-box; //brauchen die neuen icons bei roundes Buttons
   display: inline-block;
+
+  &.lux-no-size {
+    display: unset;
+  }
 }
 
 i.lux-fa-icon,
@@ -25,6 +28,11 @@ mat-icon.mat-icon {
       height: unset !important;
       width: unset !important;
     }
+  }
+
+  &.lux-lx-icon-no-size {
+    width: 100%;
+    height: 100%;
   }
 }
 
