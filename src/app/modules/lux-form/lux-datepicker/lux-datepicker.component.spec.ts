@@ -755,11 +755,6 @@ class LuxNoFormAttributeTestComponent {
 }
 
 export const Validator2019NotAllowed = (control: AbstractControl) => {
-  console.log(
-    'Validator called',
-    control.value,
-    'value' in control && typeof control.value === 'string' && (control.value as string).indexOf('2019') !== -1
-  );
   if ('value' in control && typeof control.value === 'string' && (control.value as string).indexOf('2019') !== -1) {
     return { NotAllowed2019: true };
   }

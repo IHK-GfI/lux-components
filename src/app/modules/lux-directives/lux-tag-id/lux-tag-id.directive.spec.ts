@@ -28,20 +28,6 @@ describe('LuxTagIdDirective', () => {
     mockComp = fixture.componentInstance;
   }));
 
-  it('Sollte erstellt werden', () => {
-    fixture.detectChanges();
-    expect(mockComp).toBeTruthy();
-  });
-
-  it('Sollte eine Warnung abgeben, wenn luxTagId falsy ist', () => {
-    const spy = spyOn(console, 'warn');
-    fixture.detectChanges();
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(
-      'Dem Tag "LUX-COMPONENT(.BODY.HTML)" fehlt das luxTagId-Attribut. Dieses Attribut wird für die automatischen Tests benötigt.'
-    );
-  });
-
   it('Sollte die Tag-ID generieren', () => {
     const spy = spyOn(console, 'warn');
     mockComp.tagId = 'tagid-demo';

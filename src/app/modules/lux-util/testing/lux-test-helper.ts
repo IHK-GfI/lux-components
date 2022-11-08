@@ -1,7 +1,7 @@
 import { SPACE } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DebugElement, Provider } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, NO_ERRORS_SCHEMA, Provider } from '@angular/core';
 import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -99,7 +99,7 @@ export class LuxTestHelper {
     LuxPopupsModule,
     LuxComponentsConfigModule.forRoot({
       generateLuxTagIds: false,
-      displayLuxConsoleLogs: true,
+      displayLuxConsoleLogs: false,
       labelConfiguration: {
         allUppercase: true,
         notAppliedTo: []
@@ -332,7 +332,11 @@ export class LuxTestHelper {
         ...imports
       ],
       declarations: [...declarations],
-      providers: [...providers]
+      providers: [...providers],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+        NO_ERRORS_SCHEMA
+      ]
     });
 
     TestBed.compileComponents();

@@ -1,13 +1,13 @@
 /* eslint-disable max-classes-per-file */
 // noinspection DuplicatedCode
 
+import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { ILuxFileListActionConfig, ILuxFilesListActionConfig } from '../lux-file-model/lux-file-list-action-config.interface';
 
 import { LuxFileListComponent } from './lux-file-list.component';
 import { LuxTestHelper } from '../../../lux-util/testing/lux-test-helper';
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
-import { HttpClient } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
 import { LuxFileErrorCause } from '../lux-file-model/lux-file-error.interface';
@@ -630,6 +630,7 @@ describe('LuxFileListComponent', () => {
         // Vorbedingungen testen
         const httpClient = fixture.debugElement.injector.get(HttpClient);
         const spy = spyOn(httpClient, 'post').and.returnValue(throwError('404'));
+        const spyLog = spyOn(fileComponent, 'logError');
         testComponent.multiple = true;
         fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')]);
         LuxTestHelper.wait(fixture);
@@ -647,6 +648,7 @@ describe('LuxFileListComponent', () => {
 
         // Nachbedingungen prüfen
         expect(spy).toHaveBeenCalledTimes(1);
+        expect(spyLog).toHaveBeenCalledTimes(1);
         expect(fileComponent.formControl.errors).not.toBeNull();
         expect(fileComponent.formControl.errors![LuxFileErrorCause.UploadFileError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);

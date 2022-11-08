@@ -252,8 +252,7 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
           }
         },
         (error) => {
-          // Hier geben wir den speziellen Fehler noch mal in die console
-          console.error(error);
+          this.logError(error);
           // Für den Fall das der Upload fehlschlägt, melden wir einen Fehler am Component
           reject(error);
           return throwError(error);
@@ -426,6 +425,10 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
     if (dragEvent.dataTransfer) {
       this.selectFiles(dragEvent.dataTransfer.files);
     }
+  }
+
+  logError(error: any) {
+    console.error(error);
   }
 
   abstract selectFiles(files: FileList | File[]): void;
@@ -622,4 +625,5 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
       this.setValue(this._initialValue);
     }
   }
+
 }

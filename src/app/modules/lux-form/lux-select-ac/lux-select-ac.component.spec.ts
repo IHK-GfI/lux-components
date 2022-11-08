@@ -884,8 +884,7 @@ class SelectOutsideFormComponent {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  selectedChange(selected: Option) {
-    console.log(selected);
+  selectedChange(_selected: Option) {
   }
 }
 
@@ -915,7 +914,6 @@ class SelectCustomCompareComponent {
   ];
 
   compareFn(o1: Option, o2: Option) {
-    console.log('compareFn', o1.value === o2.value);
     return o1.value === o2.value;
   }
 }

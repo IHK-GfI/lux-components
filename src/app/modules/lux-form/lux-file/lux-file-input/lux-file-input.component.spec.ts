@@ -509,6 +509,7 @@ describe('LuxFileInputComponent', () => {
         // Vorbedingungen testen
         const httpClient = fixture.debugElement.injector.get(HttpClient);
         const spy = spyOn(httpClient, 'post').and.returnValue(throwError('404'));
+        const spyLog = spyOn(fileComponent, 'logError');
         const files = [LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')];
 
         fileComponent.selectFiles(files);
@@ -527,6 +528,7 @@ describe('LuxFileInputComponent', () => {
 
         // Nachbedingungen prüfen
         expect(spy).toHaveBeenCalledTimes(1);
+        expect(spyLog).toHaveBeenCalledTimes(1);
         expect(fileComponent.formControl.errors).not.toBeNull();
         expect(fileComponent.formControl.errors![LuxFileErrorCause.UploadFileError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);

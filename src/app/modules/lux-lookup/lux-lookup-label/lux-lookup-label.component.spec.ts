@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
@@ -97,6 +97,7 @@ class LuxTable500212Component {
   value?: any;
 }
 
+@Injectable()
 class MockLuxLookupLabelService extends LuxLookupService {
   changeTableValue() {
     mockResult500211[0] = {
