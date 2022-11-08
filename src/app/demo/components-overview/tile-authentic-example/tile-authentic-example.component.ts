@@ -20,6 +20,8 @@ export class TileAuthenticExampleComponent {
   badgeSize: LuxBadgeNotificationSize = 'medium';
   badgeColor = 'primary';
   badgeDisabled = false;
+  showNotification = false;
+  counter?: number;
 
   constructor() { }
 
