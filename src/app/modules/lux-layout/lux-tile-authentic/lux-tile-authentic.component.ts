@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LuxBadgeNotificationColor, LuxBadgeNotificationSize } from '../../lux-directives/lux-badge-notification/lux-badge-notification.directive';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
@@ -8,7 +8,7 @@ import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-obs
   templateUrl: './lux-tile-authentic.component.html',
   styleUrls: ['./lux-tile-authentic.component.scss']
 })
-export class LuxTileAuthenticComponent implements OnInit, OnDestroy {
+export class LuxTileAuthenticComponent implements OnInit, OnChanges, OnDestroy {
   @Input() luxLabel?: string;
   @Input() luxSubTitle?: string;
   @Input() luxTagId?: string;
