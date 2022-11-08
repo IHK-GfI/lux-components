@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { LuxBadgeNotificationColor, LuxBadgeNotificationSize } from '../../lux-directives/lux-badge-notification/lux-badge-notification.directive';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 
 @Component({
@@ -11,10 +12,33 @@ export class LuxTileAuthenticComponent implements OnInit, OnDestroy {
   @Input() luxLabel?: string;
   @Input() luxSubTitle?: string;
   @Input() luxTagId?: string;
-  @Input() luxShowNotification?: boolean;
-  @Input() luxCounter?: number;
-  @Input() luxCounterCap = 10;
 
+  @Input() set luxShowNotification(value: boolean) {
+    this._showNotification = value;
+    this.updateBadgeContent();
+  };
+  get luxShowNotification() {
+    return this._showNotification;
+  }
+
+  @Input() set luxCounter(counter: number | undefined){
+    this._counter = counter;
+    console.log(this.luxCounter)
+    this.updateBadgeContent()
+  }
+  get luxCounter() {
+    return this._counter;
+  }
+
+  @Input() luxCounterCap = 10;
+  @Input() luxNotificationColor: LuxBadgeNotificationColor = 'primary';
+  @Input() luxNotificationSize: LuxBadgeNotificationSize = 'medium';
+
+  private _showNotification = false;
+  private _counter?: number;
+ 
+  luxBadgeContent = '';
+  
   @Output() luxClicked = new EventEmitter<Event>();
 
   mobileView?: boolean;
@@ -26,6 +50,11 @@ export class LuxTileAuthenticComponent implements OnInit, OnDestroy {
     this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe(query => {
       this.mobileView = query === 'xs' ||  query === 'sm';
     });
+    this.updateBadgeContent();
+  }
+
+  ngOnChanges() {
+    this.updateBadgeContent();
   }
 
   ngOnDestroy() {
@@ -36,5 +65,22 @@ export class LuxTileAuthenticComponent implements OnInit, OnDestroy {
 
   clicked() {
     this.luxClicked.emit();
+  }
+
+  getBadgeContent(){
+    this.updateBadgeContent();
+    return this.luxBadgeContent;
+  }
+
+  private updateBadgeContent(){
+    if(!this.luxCounter){
+      if(this.luxShowNotification) {
+        this.luxBadgeContent = ' ';
+      } else {
+        this.luxBadgeContent = '';
+      }
+    } else {
+      this.luxBadgeContent = '' + this.luxCounter;
+    }    
   }
 }

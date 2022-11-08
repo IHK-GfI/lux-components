@@ -7,12 +7,11 @@
       <lux-tile-authentic
         [luxLabel]="label"
         [luxSubTitle]="subTitle"
-        [luxBadgeNotification]="badgeContent"
-        [luxBadgeColor]="badgeColor"
-        [luxBadgePosition]="badgePosition"
-        [luxBadgeSize]="badgeSize"
-        [luxBadgeCap]="badgeCap"
-        [luxBadgeDisabled]="badgeDisabled"
+        [luxCounter]="counter"
+        [luxNotificationColor]="badgeColor"
+        [luxNotificationSize]="badgeSize"
+        [luxCounterCap]="badgeCap"
+        [luxShowNotification]="showNotification"
         luxTagId="example-tile"
         (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
       >
@@ -25,6 +24,32 @@
         ></lux-image>
       </lux-tile-authentic>
     </div>
+    
+      <lux-tile-authentic
+        [luxLabel]="label"
+        [luxCounter]="counter"
+        [luxNotificationColor]="badgeColor"
+        [luxNotificationSize]="badgeSize"
+        [luxCounterCap]="badgeCap"
+        [luxShowNotification]="showNotification"
+        luxTagId="example-tile"
+        (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
+      >
+        
+      </lux-tile-authentic>
+      <lux-tile-authentic
+        [luxLabel]="label"
+        [luxCounter]="counter"
+        [luxNotificationColor]="badgeColor"
+        [luxNotificationSize]="badgeSize"
+        [luxCounterCap]="badgeCap"
+        [luxShowNotification]="showNotification"
+        luxTagId="example-tile"
+        (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
+      >
+      <lux-icon luxIconName="lux-interface-weather-sun-1" *ngIf="showIcon"></lux-icon>
+      </lux-tile-authentic>
+   
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
@@ -63,40 +88,34 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <div fxLayout="column" fxLayoutGap="32px" class="lux-highlight-section">
-    <lux-input 
-      luxLabel="BadgeContent"
-      [(luxValue)]="badgeContent"
-      luxHint="Ein Leerzeichen im Content erzeugt eine Bubble ohne Textinhalt"
-    ></lux-input>
-    <lux-select 
-      luxLabel="BadgeColor"
-      [(luxSelected)]="badgeColor"
-      luxHint="Diese Property definiert die Farbe der Notification"
-      [luxOptions]="['primary', 'warn', 'accent', 'default']"
-    ></lux-select>
-    <lux-select 
-      luxLabel="BadgePosition"
-      [(luxSelected)]="badgePosition"
-      luxLabel="luxBadgePosition"
-      luxHint="Diese Property definiert die Position der Notification"
-      [luxOptions]="['above after', 'above before', 'below before', 'below after']"
-    ></lux-select>
-    <lux-radio 
-      luxLabel="BadgeSize"
-      luxHint="Diese Property definiert die Größe der Notification"
-      [luxOptions]="['small', 'medium', 'large']"
-      [(luxSelected)]="badgeSize"  
-      [luxOrientationVertical]="false"
-      ></lux-radio>
-      <lux-input luxLabel="BadgeCap" [(luxValue)]="badgeCap" luxType="number" [luxNumberAlignLeft]="true">
+      <lux-input luxLabel="luxCounter" [(luxValue)]="counter" luxType="number" [luxNumberAlignLeft]="true" luxAutocomplete="off">
         <lux-form-hint>
           Die Property definiert den aktuellen Zähler für die Tile.<br />
           Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
         </lux-form-hint>
       </lux-input>
+      <lux-input luxLabel="luxCounterCap" [(luxValue)]="badgeCap" luxType="number" [luxNumberAlignLeft]="true" luxAutocomplete="off">
+        <lux-form-hint>
+          Die Property definiert den aktuellen Zähler für die Tile.<br />
+          Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
+        </lux-form-hint>
+      </lux-input>
+      <lux-select 
+      luxLabel="BadgeColor"
+      [(luxSelected)]="badgeColor"
+      luxHint="Diese Property definiert die Farbe der Notification"
+      [luxOptions]="['primary', 'warn', 'accent', 'default']"
+    ></lux-select>
+    <lux-radio 
+      luxLabel="luxNotificationSize"
+      luxHint="Diese Property definiert die Größe der Notification"
+      [luxOptions]="['small', 'medium', 'large']"
+      [(luxSelected)]="badgeSize"  
+      [luxOrientationVertical]="false"
+      ></lux-radio>
       <lux-toggle
-        luxLabel="Badge auf disabled setzen"
-        [(luxChecked)]="badgeDisabled"
+        luxLabel="luxShowNotification"
+        [(luxChecked)]="showNotification"
         [luxNoLabels]="true"
       ></lux-toggle>
     </div>

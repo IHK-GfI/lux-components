@@ -9,7 +9,7 @@ import {
   templateUrl: './badge-notification-example.component.html'
 })
 export class BadgeNotificationExampleComponent {
-  notification = '0';
+  notification = ' ';
   color = 'default';
   disabled = false;
   hidden = false;
