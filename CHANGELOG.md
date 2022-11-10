@@ -1,3 +1,8 @@
+# Version 13.x.x
+
+## Bug Fixes
+- **lux-tabs**: Tabs ohne Icons werden auf mobilen Auflösungen fehlerhaft dargestellt. [Issue 235](https://github.com/IHK-GfI/lux-components/issues/235)
+
 # Version 13.2.0
 
 ## New
