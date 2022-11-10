@@ -1,5 +1,5 @@
-<div 
-  [ngClass]="{ 'lux-tabs-show-border': luxShowBorder }" 
+<div
+  [ngClass]="{ 'lux-tabs-show-border': luxShowBorder }"
 >
   <mat-tab-group
     [dynamicHeight]="false"
@@ -24,7 +24,7 @@
           Testen der Nachbedingung noch nicht zur Verfügung stand.
       -->
       <ng-container *ngIf="luxLazyLoading">
-        <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [disabled]="luxTab.luxDisabled">
+        <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []" [disabled]="luxTab.luxDisabled">
           <ng-template matTabLabel>
             <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
           </ng-template>
@@ -37,7 +37,7 @@
         </mat-tab>
       </ng-container>
       <ng-container *ngIf="!luxLazyLoading">
-        <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [disabled]="luxTab.luxDisabled">
+        <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []" [disabled]="luxTab.luxDisabled">
           <ng-template matTabLabel>
             <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
           </ng-template>
@@ -49,7 +49,7 @@
       </ng-container>
     </ng-container>
     <ng-container *ngIf="!luxTabAnimationActive">
-      <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [disabled]="luxTab.luxDisabled">
+      <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []" [disabled]="luxTab.luxDisabled">
         <ng-template matTabLabel>
           <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
         </ng-template>

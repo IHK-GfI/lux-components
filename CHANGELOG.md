@@ -11,6 +11,8 @@
 - **lux-snackbar**: Lange Texte werden abgeschnitten oder schieben die Aktion raus. [Issue 237](https://github.com/IHK-GfI/lux-components/issues/237)
 - **lux-file-list**: Fehler beim Drag&Drop der File-Komponenten behoben.
 - **lux-file-list**: Fehler beim Drag&Drop der File-Komponenten behoben.
+- **lux-stepper-large**: Stepper mit nur einem Schritt zeigt nicht den Finish-Button an. [Issue 233](https://github.com/IHK-GfI/lux-components/issues/233)
+- **lux-tabs**: Tabs ohne Icons werden auf mobilen Auflösungen fehlerhaft dargestellt. [Issue 235](https://github.com/IHK-GfI/lux-components/issues/235)
 
 ## Breaking changes
 - Dieser Punkt ist für die File-Upload-Konfiguration relevant: ILuxFileActionBaseConfig hat die zwei neuen Ableitungen ILuxFileActionConfig und ILuxFilesActionConfig.

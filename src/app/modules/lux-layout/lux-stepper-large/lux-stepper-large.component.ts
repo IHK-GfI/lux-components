@@ -96,6 +96,8 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
     if (this.luxCurrentStepNumber >= 0 && this.luxCurrentStepNumber < this.steps.length) {
       this.steps.get(this.luxCurrentStepNumber)!.luxTouched = true;
     }
+
+    this.isLastStep = this.luxCurrentStepNumber === this.steps.length - 1;
   }
 
   ngOnDestroy() {
