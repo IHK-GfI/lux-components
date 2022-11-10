@@ -26,10 +26,12 @@ describe('LuxLookupAutocompleteComponent', () => {
     let fixture: ComponentFixture<LuxNoFormComponent>;
     let component: LuxNoFormComponent;
     let autocomplete: LuxLookupAutocompleteComponent;
+    let onDataLoadedSpy: any;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(LuxNoFormComponent);
       component = fixture.componentInstance;
+      onDataLoadedSpy = spyOn(component, 'onDataLoaded');
       autocomplete = fixture.debugElement.query(By.directive(LuxLookupAutocompleteComponent)).componentInstance;
       fixture.detectChanges();
     });
@@ -55,6 +57,11 @@ describe('LuxLookupAutocompleteComponent', () => {
 
       discardPeriodicTasks();
     }));
+
+    it('Sollte Daten über das Outputevent "luxDataLoadedAsArray" senden',  fakeAsync(() => {
+      expect(onDataLoadedSpy).toHaveBeenCalledOnceWith(lookupData);
+    }));
+
   });
 });
 
@@ -67,6 +74,7 @@ describe('LuxLookupAutocompleteComponent', () => {
       [(luxValue)]="value"
       luxLookupId="test"
       [luxLabel]="'Label'"
+      (luxDataLoadedAsArray)="onDataLoaded($event)"
     ></lux-lookup-autocomplete>
   `
 })
@@ -77,10 +85,35 @@ class LuxNoFormComponent {
   });
   validators?: ValidatorFnType;
   value?: any;
+
+  onDataLoaded(data: LuxLookupTableEntry[]) {}
 }
 
 class MockLookupService {
   getLookupTable(tableNo: string, parameters: LuxLookupParameters, url: string): Observable<LuxLookupTableEntry[]> {
-    return of([]);
+    return of(lookupData);
   }
 }
+
+const lookupData = [
+  {
+    "key": "1",
+    "kurzText": "Frankreich",
+    "langText1": "Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?",
+    "isUngueltig": false
+  },
+  {
+    "key": "2",
+    "kurzText": "Bellux",
+    "langText1": "Belgien und Luxemburg",
+    "gueltigkeitVon": "19900101",
+    "gueltigkeitBis": "20090101",
+    "isUngueltig": true
+  },
+  {
+    "key": "3",
+    "kurzText": "Niederlande",
+    "langText1": "Niederlande",
+    "isUngueltig": false
+  }
+];

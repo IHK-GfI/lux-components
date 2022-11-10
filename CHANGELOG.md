@@ -32,6 +32,14 @@
 - luxDisabled: undefined -> false
 - luxRounded: undefined -> false
 
+# Version 13.2.0
+
+## New
+- **allgemein**: Sicherheitsupdates eingespielt.
+- **lux-lookup-autocomplete**: Zusätzliches Outputevent "luxDataLoadedAsArray" eingeführt. [Issue 225](https://github.com/IHK-GfI/lux-components/issues/225)
+- **lux-lookup-combobox**: Zusätzliches Outputevent "luxDataLoadedAsArray" eingeführt. [Issue 225](https://github.com/IHK-GfI/lux-components/issues/225)
+- **lux-http-error**: Http-Fehler (Status 400) aus den Properties "errors" und "violations" anzeigen. [Issue 227](https://github.com/IHK-GfI/lux-components/issues/227)
+
 # Version 13.1.0
 ## New
 - **lux-table**: Zusätzliches Outputevent "luxSelectedAsArrayChange" einführen. [Issue 207](https://github.com/IHK-GfI/lux-components/issues/207)
