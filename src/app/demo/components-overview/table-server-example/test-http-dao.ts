@@ -68,6 +68,10 @@ export class TestHttpDao implements ILuxTableHttpDao {
   }
 
   isSameFilter(newFilter: string | undefined): boolean {
+    if (newFilter === undefined || newFilter === null) {
+      newFilter = '';
+    }
+
     return this.filter === newFilter;
   }
 }
