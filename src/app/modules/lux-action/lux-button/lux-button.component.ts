@@ -54,13 +54,9 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
   }
 
   ngOnDestroy() {
-    this.configSubscription.unsubscribe();
-
-    this.clickSubscription.unsubscribe();
-    this.clickSubject.complete();
-
-    this.auxClickSubscription.unsubscribe();
-    this.auxClickSubject.complete();
+    this.configSubscription?.unsubscribe();
+    this.clickSubscription?.unsubscribe();
+    this.auxClickSubscription?.unsubscribe();
   }
 
   clicked(event: MouseEvent) {

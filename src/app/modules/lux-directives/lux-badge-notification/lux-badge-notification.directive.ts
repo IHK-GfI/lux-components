@@ -34,8 +34,9 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
   @Input() luxBadgeOverlap = true;
   @Input() luxBadgeNoBorder = false;
   @Input() luxBadgeCap = 0;
-  
-  private newTempContent:  undefined // Tempvariable um eine leer Badge anzuzeigen
+
+  private showEmptyBadge = false;
+
   constructor(
     private luxNgZone: NgZone,
     private luxElementRef: ElementRef<HTMLElement>,
@@ -43,9 +44,7 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
     @Optional() private luxRenderer: Renderer2
   ) {
     super(luxNgZone, luxElementRef, luxAriaDescriber, luxRenderer);
-    console.log('Constructor 1', this.hidden , this.isHidden())
-    this.updateContent(this.luxBadgeNotification);
-    console.log('Constructor', this.hidden , this.isHidden(), this.luxElementRef.nativeElement.classList)
+
     luxElementRef.nativeElement.classList.add('lux-badge-notification');
   }
 
@@ -62,7 +61,6 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
     } else {
       this.luxElementRef.nativeElement.classList.remove('lux-badge-no-border');
     }
-    console.log('changes', this.luxElementRef.nativeElement.classList)
   }
 
   updateContent(value: any) {
@@ -80,20 +78,24 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
       } else {
         newContent = newContent + '';
       }
-    } else if (newContent === undefined || newContent === null || newContent === '') {
+    } else if (!newContent) {
       // Die Werte "undefined" und "null" zum Leerstring umwandeln,
       // damit diese nicht angezeigt werden.
       newContent = '';
     }
     this.content = newContent;
-    this.newTempContent = newContent;
     this.description = newContent;
-    console.log(`newTemp: ${this.newTempContent}!`,  this.isHidden( )
-   );
+    this.showEmptyBadge = newContent === ' ';
+  }
+
+  get content(): string | number | undefined | null {
+    return this.showEmptyBadge ? ' ' : super.content;
+  }
+  set content(newContent: string | number | undefined | null){
+    super.content = newContent;
   }
 
   isHidden(): boolean {
-    //console.log('isHidden', '"' + this.newTempContent + '"', this.hidden, this.newTempContent === undefined, this.newTempContent === null, this.newTempContent === '');
-    return this.hidden || (this.newTempContent === undefined || this.newTempContent === null || this.newTempContent === '');
+    return this.hidden || !this.content;
   }
 }

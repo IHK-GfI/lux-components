@@ -699,16 +699,13 @@ class ChipsComponent {
     this.chips = this.chips.filter((value: any, index: number) => index !== chipIndex);
   }
 
-  groupChipRemoved(index: number) {
-    console.log('[GROUP] Chip removed', index);
+  groupChipRemoved(_index: number) {
   }
 
-  groupChipAdded(newChip: string) {
-    console.log('[GROUP] Chip added', newChip);
+  groupChipAdded(_newChip: string) {
   }
 
-  groupChipClicked(index: number) {
-    console.log('[GROUP] Chip clicked', index);
+  groupChipClicked(_index: number) {
   }
 
   addMockChips() {

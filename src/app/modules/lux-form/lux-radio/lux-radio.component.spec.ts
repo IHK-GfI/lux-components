@@ -560,7 +560,6 @@ class MockRadioFormComponent {
 
   radioSelected(selected: Option) {
     this.selected = selected;
-    console.log(this.selected);
   }
 }
 

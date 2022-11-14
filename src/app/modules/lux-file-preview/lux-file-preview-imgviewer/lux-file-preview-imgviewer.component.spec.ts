@@ -56,6 +56,5 @@ describe('LuxFilePreviewImgViewerComponent', () => {
 
 class MockLuxFilePreviewRef {
   close() {
-    console.log('Closed');
   }
 }

@@ -40,6 +40,7 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
   @Input() luxCustomInvalidStyles?: {} | null;
   @Input() luxTagId?: string;
   @Output() luxDataLoaded = new EventEmitter<boolean>();
+  @Output() luxDataLoadedAsArray: EventEmitter<T[]> = new EventEmitter<T[]>();
   @Output() luxValueChange = new EventEmitter<T>();
   entries: LuxLookupTableEntry[] = [];
 
@@ -210,6 +211,7 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
       (entries: LuxLookupTableEntry[]) => {
         this.setLookupData(entries);
         this.luxDataLoaded.emit(true);
+        this.luxDataLoadedAsArray.emit(entries as any);
       },
       () => {
         this.luxDataLoaded.emit(false);

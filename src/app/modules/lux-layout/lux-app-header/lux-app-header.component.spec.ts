@@ -135,25 +135,6 @@ describe('LuxAppHeaderComponent', () => {
       // Nachbedingungen prüfen
       expect(fixture.debugElement.query(By.css('.lux-header-title')).nativeElement.textContent.trim()).toEqual('T');
     }));
-
-    it('Sollte eine Warnung loggen, wenn kein luxAppTitleShort gesetzt ist', fakeAsync(() => {
-      // Vorbedingungen testen
-      const spy = spyOn(console, 'warn');
-      expect(spy).toHaveBeenCalledTimes(0);
-
-      // Änderungen durchführen
-      testComponent.titleShort = 'ASDF';
-      LuxTestHelper.wait(fixture);
-      testComponent.titleShort = undefined;
-      LuxTestHelper.wait(fixture);
-      testComponent.titleShort = null as any;
-      LuxTestHelper.wait(fixture);
-      testComponent.titleShort = '';
-      LuxTestHelper.wait(fixture);
-
-      // Nachbedingungen prüfen
-      expect(spy).toHaveBeenCalledTimes(3);
-    }));
   });
 
   describe('mit lux-side-nav', () => {

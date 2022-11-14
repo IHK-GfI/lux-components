@@ -53,27 +53,6 @@ describe('LuxToggleComponent', () => {
         expect(toggleEl.nativeElement.checked).toBeFalsy();
         expect(toggleEl.nativeElement.required).toBeFalsy();
       }));
-
-      it('Sollte einen Fehler in der Console werfen, wenn luxRequired gesetzt wird', fakeAsync(() => {
-        let errorElement = fixture.debugElement.query(By.css('mat-error'));
-        // Vorbedingungen testen
-        const consoleSpy = spyOn(console, 'error');
-
-        expect(errorElement).toBeNull();
-
-        // Änderungen durchführen
-        testComponent.required = true;
-        LuxTestHelper.wait(fixture);
-        testComponent.formGroup.get('eula')!.markAsTouched();
-        fixture.detectChanges();
-
-        // Nachbedingungen testen
-        errorElement = fixture.debugElement.query(By.css('mat-error'));
-        expect(fixture.componentInstance.formGroup.get('eula')!.value).toBeTruthy();
-        expect(fixture.componentInstance.formGroup.get('eula')!.valid).toBeTruthy();
-        expect(errorElement).toBeNull();
-        expect(consoleSpy).toHaveBeenCalledTimes(1);
-      }));
     });
 
     describe('FormGroup (required)"', () => {

@@ -12,8 +12,8 @@ export class LuxAppHeaderAcNavMenuComponent implements OnDestroy {
 
   @ContentChildren(LuxAppHeaderAcNavMenuItemComponent) menuItemComponents!: QueryList<LuxAppHeaderAcNavMenuItemComponent>;
 
-  @Input() luxNavMenuMaximumExtended = 0;
-  
+  @Input() luxNavMenuMaximumExtended = 5;
+
   mobileView: boolean;
   subscription: Subscription;
   navMenuOpened=false;
