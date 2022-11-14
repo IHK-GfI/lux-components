@@ -30,6 +30,7 @@
 <ng-container *ngIf="isIconLX && !luxIconSize">
   <mat-icon
     [svgIcon]="luxIconName ?? ''"
+    [ngStyle]="{ padding: luxPadding }"
     [ngClass]="[
       backgroundCSSClass,
       fontCSSClass,
