@@ -915,8 +915,8 @@
       <trans-unit id="luxc.master-detail.master.empty_label" datatype="html">
         <source>Keine Einträge vorhanden</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-light/lux-master-detail-light.component.ts</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-ac/lux-master-detail-ac.component.ts</context>
+          <context context-type="linenumber">95</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail/lux-master-detail.component.ts</context>
@@ -926,8 +926,8 @@
       <trans-unit id="luxc.master-detail.detail.empty_label" datatype="html">
         <source>Kein Element ausgewählt</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-light/lux-master-detail-light.component.ts</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-ac/lux-master-detail-ac.component.ts</context>
+          <context context-type="linenumber">97</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail/lux-master-detail.component.ts</context>
@@ -937,8 +937,8 @@
       <trans-unit id="luxc.master-detail.header.close.btn" datatype="html">
         <source>Masterliste zuklappen</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-light/lux-master-header-light/lux-master-header-light.component.ts</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-ac/lux-master-header-ac/lux-master-header-ac.component.ts</context>
+          <context context-type="linenumber">39</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail/lux-master-detail-subcomponents/lux-master-header/lux-master-header.component.ts</context>
@@ -948,8 +948,8 @@
       <trans-unit id="luxc.master-detail.header.open.btn" datatype="html">
         <source>Masterliste aufklappen</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-light/lux-master-header-light/lux-master-header-light.component.ts</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-ac/lux-master-header-ac/lux-master-header-ac.component.ts</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail/lux-master-detail-subcomponents/lux-master-header/lux-master-header.component.ts</context>

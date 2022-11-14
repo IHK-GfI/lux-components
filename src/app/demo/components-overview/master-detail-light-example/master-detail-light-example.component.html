@@ -1,4 +1,4 @@
-<lux-master-detail-light
+<lux-master-detail-ac
   [luxEmptyIconDetail]="configuration.emptyIconDetail"
   [luxEmptyIconMaster]="configuration.emptyIconMaster"
   [luxEmptyIconDetailSize]="configuration.emptyIconDetailSize"
@@ -17,7 +17,7 @@
   (luxSelectedDetailChange)="loadDetail($event)"
   fxFill
 >
-  <lux-master-header-content-light [ngSwitch]="masterHeaderOption">
+  <lux-master-header-content-ac [ngSwitch]="masterHeaderOption">
     <lux-filter-form
       *ngSwitchCase="'card'"
       fxFlex="1 1 auto"
@@ -54,9 +54,9 @@
       </lux-panel>
     </lux-accordion>
     <ng-container *ngSwitchCase="'empty'"></ng-container>
-  </lux-master-header-content-light>
+  </lux-master-header-content-ac>
 
-  <lux-master-list-light luxTitleProp="title" luxSubTitleProp="subtitle">
+  <lux-master-list-ac luxTitleProp="title" luxSubTitleProp="subtitle">
     <!-- Zugriff auf jedes einzelne Master-Element über "master" -->
     <ng-template #luxSimpleIcon let-master>
       <lux-icon [luxIconName]="master.icon"></lux-icon>
@@ -67,14 +67,14 @@
         Fällig <b>{{ master.timestamp | luxRelativeTimestamp: 'TIMESTAMP NULL' }}</b>
       </p>
     </ng-template>
-  </lux-master-list-light>
-  <lux-detail-header-light class="custom-example-header" *ngIf="showCustomDetailHeader">
+  </lux-master-list-ac>
+  <lux-detail-header-ac class="custom-example-header" *ngIf="showCustomDetailHeader">
     <div class="example-header">
       <h2>My Custom Detail Header!</h2>
       <p>Hier ist Platz für individuellen Inhalt!</p>
     </div>
-  </lux-detail-header-light>
-  <lux-detail-view-light>
+  </lux-detail-header-ac>
+  <lux-detail-view-ac>
     <!-- Zugriff auf das aktuell selektierte Element über "detail" -->
     <ng-template let-detail>
       <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0">
@@ -98,9 +98,9 @@
         </lux-tab>
       </lux-tabs>
     </ng-template>
-  </lux-detail-view-light>
+  </lux-detail-view-ac>
 
-  <lux-master-footer-light>
+  <lux-master-footer-ac>
     <div fxLayout="column">
       <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="end center">
         <lux-button
@@ -148,5 +148,5 @@
         </lux-menu>
       </div>
     </div>
-  </lux-master-footer-light>
-</lux-master-detail-light>
+  </lux-master-footer-ac>
+</lux-master-detail-ac>

@@ -4,11 +4,11 @@ import { LuxBadgeNotificationColor, LuxBadgeNotificationSize } from '../../lux-d
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 
 @Component({
-  selector: 'lux-tile-authentic',
-  templateUrl: './lux-tile-authentic.component.html',
-  styleUrls: ['./lux-tile-authentic.component.scss']
+  selector: 'lux-tile-ac',
+  templateUrl: './lux-tile-ac.component.html',
+  styleUrls: ['./lux-tile-ac.component.scss']
 })
-export class LuxTileAuthenticComponent implements OnInit, OnChanges, OnDestroy {
+export class LuxTileAcComponent implements OnInit, OnChanges, OnDestroy {
   @Input() luxLabel?: string;
   @Input() luxSubTitle?: string;
   @Input() luxTagId?: string;

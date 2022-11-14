@@ -3,8 +3,8 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tile"
 >
   <example-base-content [exampleCentered]="true" fxLayout="column" fxLayoutGap="32px">
-    <div class="lux-tile-authentic-wrapper-demo lux-mt-5">
-      <lux-tile-authentic
+    <div class="lux-tile-ac-wrapper-demo lux-mt-5">
+      <lux-tile-ac
         [luxLabel]="label"
         [luxSubTitle]="subTitle"
         [luxCounter]="counter"
@@ -22,10 +22,10 @@
           luxImageHeight="50px"
           *ngIf="!showIcon"
         ></lux-image>
-      </lux-tile-authentic>
+      </lux-tile-ac>
     </div>
     
-      <lux-tile-authentic
+      <lux-tile-ac
         [luxLabel]="label"
         [luxCounter]="counter"
         [luxNotificationColor]="badgeColor"
@@ -36,8 +36,8 @@
         (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
       >
         
-      </lux-tile-authentic>
-      <lux-tile-authentic
+      </lux-tile-ac>
+      <lux-tile-ac
         [luxLabel]="label"
         [luxCounter]="counter"
         [luxNotificationColor]="badgeColor"
@@ -48,7 +48,7 @@
         (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
       >
       <lux-icon luxIconName="lux-interface-weather-sun-1" *ngIf="showIcon"></lux-icon>
-      </lux-tile-authentic>
+      </lux-tile-ac>
    
   </example-base-content>
   <example-base-simple-options>

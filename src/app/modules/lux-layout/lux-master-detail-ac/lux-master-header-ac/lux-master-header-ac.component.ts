@@ -4,11 +4,10 @@ import { LuxButtonComponent } from '../../../lux-action/lux-button/lux-button.co
 import { LuxMediaQueryObserverService } from '../../../lux-util/lux-media-query-observer.service';
 
 @Component({
-  selector: 'lux-master-header-light',
-  templateUrl: './lux-master-header-light.component.html',
-  styleUrls: ['./lux-master-header-light.component.scss'] 
+  selector: 'lux-master-header-ac',
+  templateUrl: './lux-master-header-ac.component.html'
 })
-export class LuxMasterHeaderLightComponent implements OnDestroy {
+export class LuxMasterHeaderAcComponent implements OnDestroy {
   iconName?: string = 'lux-interface-arrows-button-left';
   open?: boolean;
   subscription: Subscription;

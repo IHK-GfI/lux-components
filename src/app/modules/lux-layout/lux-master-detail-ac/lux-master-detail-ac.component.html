@@ -24,7 +24,7 @@
     #masterContainer
   >
     <!-- Header Element über der Master-Liste -->
-    <lux-master-header-light
+    <lux-master-header-ac
       (luxOpened)="toggleList($event)"
       [luxToggleHidden]="
         (isMobile && !this.luxSelectedDetail && !luxOpen) || isMobile
@@ -35,8 +35,8 @@
         'lux-empty-master-header': !showMasterHeader && !isMobile && luxOpen
       }"
     >
-      <ng-content select="lux-master-header-content-light" *ngIf="luxOpen"></ng-content>
-    </lux-master-header-light>
+      <ng-content select="lux-master-header-content-ac" *ngIf="luxOpen"></ng-content>
+    </lux-master-header-ac>
 
     <!-- Master Simple Component gesetzt? -> Standard Lux Liste als Master nutzen  (window:keydown)="handleMasterKeyInput($event)" -->
     <lux-master-view fxFlex="grow" [ngClass]="{ 'lux-hidden': !luxOpen && !isMobile }" class="lux-master-view-ac">
@@ -88,7 +88,7 @@
     </lux-master-view>
 
     <!-- Footer Element unter der Master-Liste -->
-    <ng-content select="lux-master-footer-light" *ngIf="luxOpen"></ng-content>
+    <ng-content select="lux-master-footer-ac" *ngIf="luxOpen"></ng-content>
   </div>
   <!-- Detail - Container -->
   <div
@@ -136,7 +136,7 @@
         ></ng-container>
       </lux-card-content>
     </lux-card>
-    <ng-content select="lux-detail-header-light" *ngIf="detailHeader"></ng-content>
+    <ng-content select="lux-detail-header-ac" *ngIf="detailHeader"></ng-content>
     </div>
     <div class="lux-detail-view-container">
     <ng-template #detailViewContainerRef></ng-template>

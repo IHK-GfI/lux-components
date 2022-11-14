@@ -1,10 +1,10 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 
 @Component({
-  selector: 'lux-master-list-light',
+  selector: 'lux-master-list-ac',
   template: ''
 })
-export class LuxMasterListLightComponent {
+export class LuxMasterListAcComponent {
   @Input() luxTitleProp?: string;
   @Input() luxSubTitleProp?: string;
 

@@ -32,15 +32,15 @@ import { LuxListItemContentComponent } from './lux-list/lux-list-subcomponents/l
 import { LuxListItemIconComponent } from './lux-list/lux-list-subcomponents/lux-list-item-icon.component';
 import { LuxListItemComponent } from './lux-list/lux-list-subcomponents/lux-list-item.component';
 import { LuxListComponent } from './lux-list/lux-list.component';
-import { LuxDetailViewLightComponent } from './lux-master-detail-light/lux-detail-view-light/lux-detail-view-light.component';
-import { LuxDetailWrapperLightComponent } from './lux-master-detail-light/lux-detail-view-light/lux-detail-wrapper-light.component';
-import { LuxMasterDetailLightComponent } from './lux-master-detail-light/lux-master-detail-light.component';
-import { LuxMasterFooterLightComponent } from './lux-master-detail-light/lux-master-footer-light/lux-master-footer-light.component';
+import { LuxDetailViewAcComponent } from './lux-master-detail-ac/lux-detail-view-ac/lux-detail-view-ac.component';
+import { LuxDetailWrapperAcComponent } from './lux-master-detail-ac/lux-detail-view-ac/lux-detail-wrapper-ac.component';
+import { LuxMasterDetailAcComponent } from './lux-master-detail-ac/lux-master-detail-ac.component';
+import { LuxMasterFooterAcComponent } from './lux-master-detail-ac/lux-master-footer-ac/lux-master-footer-ac.component';
 import {
-  LuxMasterHeaderContentLightComponent
-} from './lux-master-detail-light/lux-master-header-light/lux-master-header-content-light.component';
-import { LuxMasterHeaderLightComponent } from './lux-master-detail-light/lux-master-header-light/lux-master-header-light.component';
-import { LuxMasterListLightComponent } from './lux-master-detail-light/lux-master-list-light/lux-master-list-light.component';
+  LuxMasterHeaderContentAcComponent
+} from './lux-master-detail-ac/lux-master-header-ac/lux-master-header-content-ac.component';
+import { LuxMasterHeaderAcComponent } from './lux-master-detail-ac/lux-master-header-ac/lux-master-header-ac.component';
+import { LuxMasterListAcComponent } from './lux-master-detail-ac/lux-master-list-ac/lux-master-list-ac.component';
 import { LuxDetailViewComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-detail-view/lux-detail-view.component';
 import { LuxMasterFooterComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-master-footer/lux-master-footer.component';
 import { LuxMasterHeaderContentComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-master-header/lux-master-header-content.component';
@@ -83,13 +83,13 @@ import { LuxStepperLargeStepComponent } from './lux-stepper-large/lux-stepper-la
 import { LuxStepperLargeMobileOverlayComponent } from './lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay.component';
 import { LuxAppHeaderAcComponent } from './lux-app-header-ac/lux-app-header-ac.component';
 import { LuxAppHeaderAcNavMenuComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu.component';
-import { LuxTileAuthenticComponent } from './lux-tile-authentic/lux-tile-authentic.component';
+import { LuxTileAcComponent } from './lux-tile-ac/lux-tile-ac.component';
 import { LuxLangSelectAcComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-lang-select-ac/lux-lang-select-ac.component';
 import { LuxAppHeaderAcNavMenuItemComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu-item/lux-app-header-ac-nav-menu-item.component';
 import { LuxAppHeaderAcActionNavComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav.component';
 import { LuxAppHeaderAcActionNavItemComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item.component';
 import { LuxAppHeaderAcActionNavItemCustomComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item-custom.component';
-import { LuxDetailHeaderLightComponent } from './lux-master-detail-light/lux-detail-header-light/lux-detail-header-light.component';
+import { LuxDetailHeaderAcComponent } from './lux-master-detail-ac/lux-detail-header-ac/lux-detail-header-ac.component';
 
 @NgModule({
   imports: [
@@ -169,20 +169,20 @@ import { LuxDetailHeaderLightComponent } from './lux-master-detail-light/lux-det
     LuxAppHeaderAcComponent,
     LuxAppHeaderAcUserMenuComponent,
     LuxAppHeaderAcNavMenuComponent,
-    LuxTileAuthenticComponent,
+    LuxTileAcComponent,
     LuxLangSelectAcComponent,
     LuxAppHeaderAcNavMenuItemComponent,
     LuxAppHeaderAcActionNavComponent,
     LuxAppHeaderAcActionNavItemComponent,
     LuxAppHeaderAcActionNavItemCustomComponent,
-    LuxDetailViewLightComponent,
-    LuxDetailWrapperLightComponent,
-    LuxMasterFooterLightComponent,
-    LuxMasterHeaderContentLightComponent,
-    LuxMasterHeaderLightComponent,
-    LuxMasterDetailLightComponent,
-    LuxMasterListLightComponent,
-    LuxDetailHeaderLightComponent
+    LuxDetailViewAcComponent,
+    LuxDetailWrapperAcComponent,
+    LuxMasterFooterAcComponent,
+    LuxMasterHeaderContentAcComponent,
+    LuxMasterHeaderAcComponent,
+    LuxMasterDetailAcComponent,
+    LuxMasterListAcComponent,
+    LuxDetailHeaderAcComponent
   ],
   exports: [
     LuxAppHeaderComponent,
@@ -242,20 +242,20 @@ import { LuxDetailHeaderLightComponent } from './lux-master-detail-light/lux-det
     LuxAppHeaderAcComponent,
     LuxAppHeaderAcUserMenuComponent,
     LuxAppHeaderAcNavMenuComponent,
-    LuxTileAuthenticComponent,
+    LuxTileAcComponent,
     LuxAppHeaderActionNavItemCustomComponent,
     LuxAppHeaderAcNavMenuItemComponent,
     LuxAppHeaderAcActionNavComponent,
     LuxAppHeaderAcActionNavItemComponent,
     LuxAppHeaderAcActionNavItemCustomComponent,
-    LuxDetailViewLightComponent,
-    LuxDetailWrapperLightComponent,
-    LuxMasterFooterLightComponent,
-    LuxMasterHeaderContentLightComponent,
-    LuxMasterHeaderLightComponent,
-    LuxMasterDetailLightComponent,
-    LuxMasterListLightComponent,
-    LuxDetailHeaderLightComponent
+    LuxDetailViewAcComponent,
+    LuxDetailWrapperAcComponent,
+    LuxMasterFooterAcComponent,
+    LuxMasterHeaderContentAcComponent,
+    LuxMasterHeaderAcComponent,
+    LuxMasterDetailAcComponent,
+    LuxMasterListAcComponent,
+    LuxDetailHeaderAcComponent
   ],
   providers: []
 })

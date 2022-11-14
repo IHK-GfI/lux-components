@@ -2,10 +2,10 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, Template
 import { LuxUtil } from '../../../lux-util/lux-util';
 
 @Component({
-  selector: 'lux-detail-wrapper-light',
+  selector: 'lux-detail-wrapper-ac',
   template: '<ng-container *ngTemplateOutlet="luxDetailTemplate; context: luxDetailContext"></ng-container>'
 })
-export class LuxDetailWrapperLightComponent implements OnInit, AfterViewInit {
+export class LuxDetailWrapperAcComponent implements OnInit, AfterViewInit {
   private _luxDetailTemplate!: TemplateRef<any>;
 
   @Output() luxDetailRendered = new EventEmitter<void>();

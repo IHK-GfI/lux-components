@@ -8,7 +8,7 @@ import { LuxConsoleService } from '../../../modules/lux-util/lux-console.service
 import { MasterDetailExampleDataService } from '../master-detail-example/master-detail-example-data.service';
 
 @Component({
-  selector: 'lux-master-detail-light-example',
+  selector: 'lux-master-detail-ac-example',
   templateUrl: './master-detail-light-example.component.html',
   styleUrls: ['./master-detail-light-example.component.scss'],
   providers: [
