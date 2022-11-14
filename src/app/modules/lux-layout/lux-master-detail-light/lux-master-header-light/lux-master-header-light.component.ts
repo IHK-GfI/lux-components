@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LuxButtonComponent } from '../../../lux-action/lux-button/lux-button.component';
 import { LuxMediaQueryObserverService } from '../../../lux-util/lux-media-query-observer.service';
@@ -6,16 +6,18 @@ import { LuxMediaQueryObserverService } from '../../../lux-util/lux-media-query-
 @Component({
   selector: 'lux-master-header-light',
   templateUrl: './lux-master-header-light.component.html',
-  styleUrls: ['./lux-master-header-light.component.scss']
+  styleUrls: ['./lux-master-header-light.component.scss'] 
 })
 export class LuxMasterHeaderLightComponent implements OnDestroy {
-  iconName?: string;
+  iconName?: string = 'lux-interface-arrows-button-left';
   open?: boolean;
   subscription: Subscription;
 
   @Input() luxToggleHidden?: boolean;
   @Output() luxOpened = new EventEmitter<boolean>();
-
+  
+  @ViewChild('headerContentContainer', { read: ElementRef, static: true }) headerContentContainer!:  ElementRef;
+  
   @HostBinding('class.lux-no-toggle') isMobile?: boolean;
 
   constructor(private mediaObserver: LuxMediaQueryObserverService) {
@@ -42,12 +44,14 @@ export class LuxMasterHeaderLightComponent implements OnDestroy {
   }
 
   clicked(that: LuxButtonComponent) {
-    // if (this.open) {
-    //   this.masterDetailMobileHelperService.closeMaster();
-    // } else {
-    //   this.masterDetailMobileHelperService.openMaster();
-    // }
-    // this.luxOpened.emit(!!this.open);
-    // that.elementRef.nativeElement.focus();
+    if (this.iconName === 'lux-interface-arrows-button-left') {
+      this.iconName ='lux-interface-arrows-button-right';
+      this.open = false;
+    } else {
+      this.iconName = 'lux-interface-arrows-button-left';
+      this.open = true;
+    }
+
+    this.luxOpened.emit(!!this.open);
   }
 }

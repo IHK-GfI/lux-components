@@ -27,6 +27,7 @@ import { LuxListComponent } from '../../lux-layout/lux-list/lux-list.component';
 import { LuxTabsComponent } from '../../lux-layout/lux-tabs/lux-tabs.component';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxUtil } from '../../lux-util/lux-util';
+import { LuxDetailHeaderLightComponent } from './lux-detail-header-light/lux-detail-header-light.component';
 import { LuxDetailViewLightComponent } from './lux-detail-view-light/lux-detail-view-light.component';
 import { LuxDetailWrapperLightComponent } from './lux-detail-view-light/lux-detail-wrapper-light.component';
 import { LuxMasterFooterLightComponent } from './lux-master-footer-light/lux-master-footer-light.component';
@@ -53,10 +54,12 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
   @ContentChild(LuxMasterListLightComponent) masterSimple?: LuxMasterListLightComponent;
   @ContentChild(LuxDetailViewLightComponent) detailView!: LuxDetailViewLightComponent;
   @ContentChild(LuxMasterFooterLightComponent, { read: ElementRef }) masterFooter?: ElementRef;
+  @ContentChild(LuxDetailHeaderLightComponent, { read: ElementRef }) detailHeader?: ElementRef;
 
   @ViewChildren(LuxListComponent, { read: ElementRef, emitDistinctChangesOnly: false }) luxMasterQueryList!: QueryList<ElementRef>;
   @ViewChildren(LuxListItemComponent) luxMasterListItemQueryList!: QueryList<LuxListItemComponent>;
   @ViewChild(LuxMasterHeaderLightComponent, { read: ElementRef, static: true }) masterHeader?: ElementRef;
+  @ViewChild(LuxMasterHeaderLightComponent, { static: true }) masterHeaderComponent?: LuxMasterHeaderLightComponent;
   @ViewChild(LuxListItemComponent, { read: ElementRef }) luxMasterEntryElementRef?: ElementRef;
   @ContentChild(LuxTabsComponent) tabsComponent?: LuxTabsComponent;
   @ViewChild('masterSpinnerCard', { read: ElementRef, static: true }) masterSpinnerCard?: ElementRef;
@@ -77,10 +80,11 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
   private subscriptions: Subscription[] = [];
 
   isMobile: boolean;
+  isMedium: boolean;
   detailContext = { $implicit: {} };
   flexMaster?: string;
   flexDetail?: string;
-
+  showMasterHeader?: boolean;
   // Enthält die Position des aktuell selektierten Elements
   selectedPosition = -1;
 
@@ -99,6 +103,7 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
   @Input() luxTitleLineBreak = false;
   @Input() luxMasterIsLoading = false;
   @Input() luxCompareWith = (o1: T, o2: T) => o1 === o2;
+  @Input() luxDefaultDetailHeader = true;
 
   get luxOpen() {
     return this._luxOpen;
@@ -141,11 +146,12 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
     private mediaObserver: LuxMediaQueryObserverService
   ) {
     this.isMobile = this.mediaObserver.isXS() || this.mediaObserver.isSM();
-
+    this.isMedium = this.mediaObserver.isMD();
     this.subscriptions.push(
       this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(() => {
           this.isMobile = this.mediaObserver.isXS() || this.mediaObserver.isSM();
-          if (this.isMobile) {
+          this.isMedium = this.mediaObserver.isMD();
+          if (this.isMobile || this.isMedium) {
             this.updateOpen();
           }
       })
@@ -164,9 +170,10 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
 
   ngAfterViewInit() {
     LuxUtil.assertNonNull('detailViewContainerRef', this.detailViewContainerRef);
-
+    this.showMasterHeader = this.masterHeaderComponent?.headerContentContainer.nativeElement.children.length > 0;
     this.handleDetailUpdate();
     this.handleMasterQueryList();
+    this.cdr.detectChanges();
   }
 
   ngOnDestroy() {
@@ -236,6 +243,11 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
     }
   }
 
+  onBackToMaster(){
+    console.log('Back to Master clicked')
+    
+  }
+
   /**
    * Prüft, ob die Detailansicht gerade für den User sichtbar ist.
    *
@@ -284,6 +296,9 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
       if (this.isMobile) {
         this.flexMaster = '100';
         this.flexDetail = '0';
+      } else if (this.isMedium){
+        this.flexMaster = 'calc(50% - 30px)'; /** 30px = Gap zwischen Master und Detail */
+        this.flexDetail = '50';
       } else {
         this.flexMaster = '30';
         this.flexDetail = '70';
@@ -293,8 +308,8 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
         this.flexMaster = '0';
         this.flexDetail = '100';
       } else {
-        this.flexMaster = '5';
-        this.flexDetail = '95';
+        this.flexMaster = '20px';
+        this.flexDetail = 'grow';
       }
     }
   }

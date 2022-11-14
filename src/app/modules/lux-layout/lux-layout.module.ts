@@ -89,6 +89,7 @@ import { LuxAppHeaderAcNavMenuItemComponent } from './lux-app-header-ac/lux-app-
 import { LuxAppHeaderAcActionNavComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav.component';
 import { LuxAppHeaderAcActionNavItemComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item.component';
 import { LuxAppHeaderAcActionNavItemCustomComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item-custom.component';
+import { LuxDetailHeaderLightComponent } from './lux-master-detail-light/lux-detail-header-light/lux-detail-header-light.component';
 
 @NgModule({
   imports: [
@@ -180,7 +181,8 @@ import { LuxAppHeaderAcActionNavItemCustomComponent } from './lux-app-header-ac/
     LuxMasterHeaderContentLightComponent,
     LuxMasterHeaderLightComponent,
     LuxMasterDetailLightComponent,
-    LuxMasterListLightComponent
+    LuxMasterListLightComponent,
+    LuxDetailHeaderLightComponent
   ],
   exports: [
     LuxAppHeaderComponent,
@@ -252,7 +254,8 @@ import { LuxAppHeaderAcActionNavItemCustomComponent } from './lux-app-header-ac/
     LuxMasterHeaderContentLightComponent,
     LuxMasterHeaderLightComponent,
     LuxMasterDetailLightComponent,
-    LuxMasterListLightComponent
+    LuxMasterListLightComponent,
+    LuxDetailHeaderLightComponent
   ],
   providers: []
 })

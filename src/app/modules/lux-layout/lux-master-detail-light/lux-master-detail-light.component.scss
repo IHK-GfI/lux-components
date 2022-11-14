@@ -2,19 +2,9 @@
   outline: none;
 }
 
-.lux-master-detail {
-  max-width: 100%;
-  z-index: 10;
-}
 
-.lux-master-container {
-  margin: 0 2px 2px 2px;
-  min-width: 60px;
-  position: relative;
+.lux-master-ac-container {
 
-  .lux-not-open {
-    padding: 10px 4px;
-  }
 
   // Wenn das passende Flag gesetzt ist und keine Mobilansicht vorliegt,
   // für die Zentrierung der Empty-Elemente der Masterliste die relative Position des Master-Containers nutzen
@@ -26,30 +16,8 @@
   }
 }
 
-lux-master-view {
-  border-top: 2px solid rgba(0, 0, 0, 0.12);;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.12);;
-  z-index: 100
-}
-
 .lux-spinner-hidden {
   display: none !important;
-}
-
-lux-list-item {
-  margin-bottom: 1px;
-
-  ::ng-deep {
-    lux-card {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      border-right: 1px solid rgba(0, 0, 0, 0.08);
-    }
-  }
-}
-
-lux-list-item,
-lux-list-item-content {
-  display: block;
 }
 
 .lux-display-none {
@@ -59,22 +27,4 @@ lux-list-item-content {
 .lux-0-width {
   width: 0;
   min-width: 0;
-}
-
-.lux-detail-container {
-  position: relative;
-
-  .lux-detail-empty {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-
-  .lux-detail-empty-icon,
-  .lux-detail-empty-icon-text {
-    opacity: 0.6;
-    padding: 0 8px;
-  }
 }

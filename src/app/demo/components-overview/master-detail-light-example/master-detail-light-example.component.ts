@@ -24,6 +24,13 @@ export class MasterDetailLightExampleComponent implements OnInit, OnDestroy {
     { value: Date.now() + MasterDetailExampleDataService.MONTH, label: 'Nächsten Monat' }
   ];
 
+  masterHeaderOptions = [
+    { value: 'card', label: 'Filter in einer Card' },
+    { value: 'accordion', label: 'Filter in einem Accordion' },
+    { value: 'empty', label: 'Leerer Master-Header' }
+  ];
+  masterHeaderOption = 'card';
+
   configuration: {
     emptyIconDetail: string;
     emptyIconMaster: string;
@@ -56,6 +63,7 @@ export class MasterDetailLightExampleComponent implements OnInit, OnDestroy {
   allMasterEntries: any[];
   masterEntries: any[] = [];
   selectedDetail: any;
+  showCustomDetailHeader = false;
 
   constructor(
     private dataService: MasterDetailExampleDataService,
