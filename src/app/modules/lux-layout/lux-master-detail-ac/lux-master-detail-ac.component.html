@@ -101,26 +101,26 @@
     tabindex="2"
   >
     <!-- Button für die Mobile Ansicht -->
-    <div 
-      class="back-to-master-button-container lux-mb-3" 
-      fxLayout="row" 
-      fxLayoutAlign="start center" 
-      fxLayoutGap="10px" 
+    <div
+      class="back-to-master-button-container lux-mb-3"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="10px"
       (click)="onOpenMaster()"
       *ngIf="!luxOpen && isMobile"
     >
-      <lux-button 
-        [luxRounded]="true" 
-        class="back-to-master-button" 
-        luxIconName="lux-interface-arrows-button-left" 
+      <lux-button
+        [luxRounded]="true"
+        class="back-to-master-button"
+        luxIconName="lux-interface-arrows-button-left"
         luxTagId="back-to-master-btn"
       ></lux-button>
-      <span class="backt-to-master-label">Zurück zur Liste</span>
+      <span class="back-to-master-label" i18n="@@luxc.master-detail.back-to-master-label">Zurück zur Liste</span>
     </div>
     <!-- Detail-Header -->
     <div class="detail-header-container"
       fxLayout="row"
-      fxLayoutAlign="start center"  
+      fxLayoutAlign="start center"
     >
     <lux-card
       *ngIf="!detailHeader && luxDefaultDetailHeader"
