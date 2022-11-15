@@ -2,10 +2,10 @@ import { AfterContentInit, Component, ContentChild, TemplateRef } from '@angular
 import { LuxUtil } from '../../../lux-util/lux-util';
 
 @Component({
-  selector: 'lux-detail-view-light',
+  selector: 'lux-detail-view-ac',
   template: ''
 })
-export class LuxDetailViewLightComponent implements AfterContentInit {
+export class LuxDetailViewAcComponent implements AfterContentInit {
   @ContentChild(TemplateRef) tempRef!: TemplateRef<any>;
 
   constructor() {}

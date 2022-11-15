@@ -1,8 +1,8 @@
 <div fxLayout="column" id="Home" luxAriaRole="main" class="page-content">
   <h4 class="page-title" style="font-size: 34px;">Die Komponenten von A-Z</h4>
   <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px grid">
-    <div *ngFor="let component of navigationService.filteredComponents | luxAlphabeticallySorted" class="lux-tile-authentic-wrapper-demo">
-      <lux-tile-authentic
+    <div *ngFor="let component of navigationService.filteredComponents | luxAlphabeticallySorted" class="lux-tile-ac-wrapper-demo">
+      <lux-tile-ac
         [luxLabel]="component.label"
         luxSubTitle="Modul: LUX-{{ component.moduleName | uppercase }}"
         (luxClicked)="component.onclick()"
@@ -19,7 +19,7 @@
           luxImageHeight="100%"
           *ngIf="component.useImage"
         ></lux-image>
-      </lux-tile-authentic>
+      </lux-tile-ac>
     </div>
   </div>
 </div>

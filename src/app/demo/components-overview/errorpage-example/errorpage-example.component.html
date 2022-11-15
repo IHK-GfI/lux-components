@@ -85,7 +85,6 @@
   <example-base-options-actions>
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="end start">
       <lux-button
-        class="restrict-width"
         luxLabel="Konfiguration aktualisieren"
         [luxRaised]="true"
         luxColor="primary"
@@ -93,8 +92,7 @@
         [luxDisabled]="updateButtonDisabled"
       >
       </lux-button>
-      <lux-button
-        class="restrict-width"
+      <lux-button 
         luxLabel="Fehlerseite öffnen"
         [luxRaised]="true"
         (luxClicked)="openErrorpage()"

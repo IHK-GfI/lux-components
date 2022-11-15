@@ -1,0 +1,11 @@
+detail-example ::ng-deep lux-card mat-card.mat-card {
+  border: none;
+}
+.example-header, .example-tab-content {
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+

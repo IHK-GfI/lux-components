@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lux-master-header-content-light',
+  selector: 'lux-master-header-content-ac',
   template: `<ng-content></ng-content>`
 })
-export class LuxMasterHeaderContentLightComponent {
+export class LuxMasterHeaderContentAcComponent {
   constructor() {}
 }

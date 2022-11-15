@@ -1,21 +1,23 @@
-<div fxLayout="row" fxLayoutAlign="start center">
-  <div fxFlex="calc(100% - 55px)">
-    <ng-content></ng-content>
-  </div>
-
+<div 
+  fxLayout="row" 
+  fxLayoutAlign="start center" 
+  class="lux-master-header-container-ac"
+  >
   <lux-button
-    (luxClicked)="clicked(toggleButton)"
     [luxIconName]="iconName"
-    class="lux-master-header-collapse"
+    [luxRounded]="true"
     luxTagId="master-detail.toggle"
-    fxFlex="none"
-    fxFlexAlign="start"
-    #toggleButton
     luxAriaLabel="{{ getAriaLabelForOpenCloseButton(iconName) }}"
     luxAriaLabelSelector="button"
     [luxAriaExpanded]="iconName === 'lux-interface-arrows-button-left'"
     luxAriaExpandedSelector="button"
+    (luxClicked)="clicked(toggleButton)"
+    class="master-light-toggle"
+    #toggleButton
     *ngIf="!luxToggleHidden"
-  >
-  </lux-button>
+  ></lux-button>
+
+  <div fxFlex="100" #headerContentContainer>
+    <ng-content></ng-content>
+  </div>
 </div>

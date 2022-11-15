@@ -22,21 +22,22 @@ import {
 } from '@angular/core';
 import { BehaviorSubject, ReplaySubject, Subscription, tap } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { LuxListItemComponent } from '../../lux-layout/lux-list/lux-list-subcomponents/lux-list-item.component';
-import { LuxListComponent } from '../../lux-layout/lux-list/lux-list.component';
-import { LuxTabsComponent } from '../../lux-layout/lux-tabs/lux-tabs.component';
+import { LuxListItemComponent } from '../lux-list/lux-list-subcomponents/lux-list-item.component';
+import { LuxListComponent } from '../lux-list/lux-list.component';
+import { LuxTabsComponent } from '../lux-tabs/lux-tabs.component';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxUtil } from '../../lux-util/lux-util';
-import { LuxDetailViewLightComponent } from './lux-detail-view-light/lux-detail-view-light.component';
-import { LuxDetailWrapperLightComponent } from './lux-detail-view-light/lux-detail-wrapper-light.component';
-import { LuxMasterFooterLightComponent } from './lux-master-footer-light/lux-master-footer-light.component';
-import { LuxMasterHeaderLightComponent } from './lux-master-header-light/lux-master-header-light.component';
-import { LuxMasterListLightComponent } from './lux-master-list-light/lux-master-list-light.component';
+import { LuxDetailHeaderAcComponent } from './lux-detail-header-ac/lux-detail-header-ac.component';
+import { LuxDetailViewAcComponent } from './lux-detail-view-ac/lux-detail-view-ac.component';
+import { LuxDetailWrapperAcComponent } from './lux-detail-view-ac/lux-detail-wrapper-ac.component';
+import { LuxMasterFooterAcComponent } from './lux-master-footer-ac/lux-master-footer-ac.component';
+import { LuxMasterHeaderAcComponent } from './lux-master-header-ac/lux-master-header-ac.component';
+import { LuxMasterListAcComponent } from './lux-master-list-ac/lux-master-list-ac.component';
 
 @Component({
-  selector: 'lux-master-detail-light',
-  templateUrl: './lux-master-detail-light.component.html',
-  styleUrls: ['./lux-master-detail-light.component.scss'],
+  selector: 'lux-master-detail-ac',
+  templateUrl: './lux-master-detail-ac.component.html',
+  styleUrls: ['./lux-master-detail-ac.component.scss'],
   animations: [
     trigger('masterIsLoadingChanged', [
       state('true', style({ opacity: 1 })),
@@ -46,17 +47,19 @@ import { LuxMasterListLightComponent } from './lux-master-list-light/lux-master-
     ])
   ]
 })
-export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterContentInit, AfterViewInit, DoCheck, OnDestroy {
+export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContentInit, AfterViewInit, DoCheck, OnDestroy {
   @Output() luxSelectedDetailChange = new EventEmitter<T | null>();
   @Output() luxScrolled = new EventEmitter<void>();
 
-  @ContentChild(LuxMasterListLightComponent) masterSimple?: LuxMasterListLightComponent;
-  @ContentChild(LuxDetailViewLightComponent) detailView!: LuxDetailViewLightComponent;
-  @ContentChild(LuxMasterFooterLightComponent, { read: ElementRef }) masterFooter?: ElementRef;
+  @ContentChild(LuxMasterListAcComponent) masterSimple?: LuxMasterListAcComponent;
+  @ContentChild(LuxDetailViewAcComponent) detailView!: LuxDetailViewAcComponent;
+  @ContentChild(LuxMasterFooterAcComponent, { read: ElementRef }) masterFooter?: ElementRef;
+  @ContentChild(LuxDetailHeaderAcComponent, { read: ElementRef }) detailHeader?: ElementRef;
 
   @ViewChildren(LuxListComponent, { read: ElementRef, emitDistinctChangesOnly: false }) luxMasterQueryList!: QueryList<ElementRef>;
   @ViewChildren(LuxListItemComponent) luxMasterListItemQueryList!: QueryList<LuxListItemComponent>;
-  @ViewChild(LuxMasterHeaderLightComponent, { read: ElementRef, static: true }) masterHeader?: ElementRef;
+  @ViewChild(LuxMasterHeaderAcComponent, { read: ElementRef, static: true }) masterHeader?: ElementRef;
+  @ViewChild(LuxMasterHeaderAcComponent, { static: true }) masterHeaderComponent?: LuxMasterHeaderAcComponent;
   @ViewChild(LuxListItemComponent, { read: ElementRef }) luxMasterEntryElementRef?: ElementRef;
   @ContentChild(LuxTabsComponent) tabsComponent?: LuxTabsComponent;
   @ViewChild('masterSpinnerCard', { read: ElementRef, static: true }) masterSpinnerCard?: ElementRef;
@@ -77,10 +80,11 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
   private subscriptions: Subscription[] = [];
 
   isMobile: boolean;
+  isMedium: boolean;
   detailContext = { $implicit: {} };
   flexMaster?: string;
   flexDetail?: string;
-
+  showMasterHeader?: boolean;
   // Enthält die Position des aktuell selektierten Elements
   selectedPosition = -1;
 
@@ -99,6 +103,7 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
   @Input() luxTitleLineBreak = false;
   @Input() luxMasterIsLoading = false;
   @Input() luxCompareWith = (o1: T, o2: T) => o1 === o2;
+  @Input() luxDefaultDetailHeader = true;
 
   get luxOpen() {
     return this._luxOpen;
@@ -141,11 +146,12 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
     private mediaObserver: LuxMediaQueryObserverService
   ) {
     this.isMobile = this.mediaObserver.isXS() || this.mediaObserver.isSM();
-
+    this.isMedium = this.mediaObserver.isMD();
     this.subscriptions.push(
       this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(() => {
           this.isMobile = this.mediaObserver.isXS() || this.mediaObserver.isSM();
-          if (this.isMobile) {
+          this.isMedium = this.mediaObserver.isMD();
+          if (this.isMobile || this.isMedium) {
             this.updateOpen();
           }
       })
@@ -164,9 +170,10 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
 
   ngAfterViewInit() {
     LuxUtil.assertNonNull('detailViewContainerRef', this.detailViewContainerRef);
-
+    this.showMasterHeader = this.masterHeaderComponent?.headerContentContainer.nativeElement.children.length > 0;
     this.handleDetailUpdate();
     this.handleMasterQueryList();
+    this.cdr.detectChanges();
   }
 
   ngOnDestroy() {
@@ -236,6 +243,11 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
     }
   }
 
+  onBackToMaster(){
+    console.log('Back to Master clicked')
+    
+  }
+
   /**
    * Prüft, ob die Detailansicht gerade für den User sichtbar ist.
    *
@@ -284,6 +296,9 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
       if (this.isMobile) {
         this.flexMaster = '100';
         this.flexDetail = '0';
+      } else if (this.isMedium){
+        this.flexMaster = 'calc(50% - 30px)'; /** 30px = Gap zwischen Master und Detail */
+        this.flexDetail = '50';
       } else {
         this.flexMaster = '30';
         this.flexDetail = '70';
@@ -293,8 +308,8 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
         this.flexMaster = '0';
         this.flexDetail = '100';
       } else {
-        this.flexMaster = '5';
-        this.flexDetail = '95';
+        this.flexMaster = '20px';
+        this.flexDetail = 'grow';
       }
     }
   }
@@ -356,7 +371,7 @@ export class LuxMasterDetailLightComponent<T = any> implements OnInit, AfterCont
               this.detailContext = { $implicit: detail };
 
               // Den Detail-Wrapper erzeugen und abfangen, wann die Nodes geladen worden sind
-              const child = this.cfr.resolveComponentFactory(LuxDetailWrapperLightComponent);
+              const child = this.cfr.resolveComponentFactory(LuxDetailWrapperAcComponent);
               const childRef = this.detailViewContainerRef.createComponent(child);
               const instance = childRef.instance;
               instance.luxDetailContext = this.detailContext;

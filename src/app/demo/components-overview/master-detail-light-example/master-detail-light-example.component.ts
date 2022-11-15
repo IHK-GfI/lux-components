@@ -8,7 +8,7 @@ import { LuxConsoleService } from '../../../modules/lux-util/lux-console.service
 import { MasterDetailExampleDataService } from '../master-detail-example/master-detail-example-data.service';
 
 @Component({
-  selector: 'lux-master-detail-light-example',
+  selector: 'lux-master-detail-ac-example',
   templateUrl: './master-detail-light-example.component.html',
   styleUrls: ['./master-detail-light-example.component.scss'],
   providers: [
@@ -23,6 +23,13 @@ export class MasterDetailLightExampleComponent implements OnInit, OnDestroy {
     { value: Date.now() + MasterDetailExampleDataService.DAY * 14, label: 'Nächste 14 Tage' },
     { value: Date.now() + MasterDetailExampleDataService.MONTH, label: 'Nächsten Monat' }
   ];
+
+  masterHeaderOptions = [
+    { value: 'card', label: 'Filter in einer Card' },
+    { value: 'accordion', label: 'Filter in einem Accordion' },
+    { value: 'empty', label: 'Leerer Master-Header' }
+  ];
+  masterHeaderOption = 'card';
 
   configuration: {
     emptyIconDetail: string;
@@ -56,6 +63,7 @@ export class MasterDetailLightExampleComponent implements OnInit, OnDestroy {
   allMasterEntries: any[];
   masterEntries: any[] = [];
   selectedDetail: any;
+  showCustomDetailHeader = false;
 
   constructor(
     private dataService: MasterDetailExampleDataService,
