@@ -67,7 +67,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('toggle'), icon: 'fas fa-toggle-on', label: 'Toggle', moduleName: 'form', themes: this.themeArrBG },
     { onclick: () => this.goTo('toggle-ac'), icon: 'fas fa-toggle-on', label: 'Toggle-Ac', moduleName: 'form', news: true, themes: this.themeArrAC },
     { onclick: () => this.goTo('list'), icon: 'fas fa-list-ul', label: 'List', moduleName: 'layout' },
-    { onclick: () => this.goToMasterDetail(), icon: 'fas fa-th-list', label: 'Master-Detail', moduleName: 'layout' },
+    { onclick: () => this.goToMasterDetail(), icon: 'fas fa-th-list', label: 'Master-Detail', moduleName: 'layout', themes: this.themeArrBG },
     { onclick: () => this.goToTabs(), icon: 'fas fa-columns', label: 'Tabs', moduleName: 'layout', news: true },
     { onclick: () => this.goToStepper(), icon: 'fas fa-chevron-circle-right', label: 'Stepper', moduleName: 'layout', news: true },
     { onclick: () => this.goTo('stepper-large'), icon: 'fas fa-chevron-circle-right', label: 'Stepper-Large', moduleName: 'layout', news: true },
@@ -86,7 +86,7 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     { onclick: () => this.goTo('card-row'), icon: 'fas fa-grip-horizontal', label: 'Card-Row', moduleName: 'layout' },
     { onclick: () => this.goTo('filter'), icon: 'fas fa-filter', label: 'Filter', moduleName: 'filter', news: true },
     { onclick: () => this.goTo('link-plain'), icon: 'fas fa-globe', label: 'Link-Plain', moduleName: 'action', news: true },
-    { onclick: () => this.goTo('master-detail-light'), icon: 'fas fa-globe', label: 'Master-Detail-Light', moduleName: 'layout', news: true }
+    { onclick: () => this.goTo('master-detail-ac'), icon: 'fas fa-globe', label: 'Master-Detail-Ac', moduleName: 'layout', news: true, themes: this.themeArrAC }
   ];
 
   sortedComponentEntries: Map<string, any[]> = new Map<string, any[]>();

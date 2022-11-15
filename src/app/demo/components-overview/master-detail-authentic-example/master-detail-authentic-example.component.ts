@@ -9,13 +9,13 @@ import { MasterDetailExampleDataService } from '../master-detail-example/master-
 
 @Component({
   selector: 'lux-master-detail-ac-example',
-  templateUrl: './master-detail-light-example.component.html',
-  styleUrls: ['./master-detail-light-example.component.scss'],
+  templateUrl: './master-detail-authentic-example.component.html',
+  styleUrls: ['./master-detail-authentic-example.component.scss'],
   providers: [
     MasterDetailExampleDataService,
   ]
 })
-export class MasterDetailLightExampleComponent implements OnInit, OnDestroy {
+export class MasterDetailAuthenticExampleComponent implements OnInit, OnDestroy {
   options = [
     { value: null, label: 'Kein Filter' },
     { value: Date.now() + MasterDetailExampleDataService.DAY * 3, label: 'Nächste 3 Tage' },

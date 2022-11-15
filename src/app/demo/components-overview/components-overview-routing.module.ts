@@ -19,6 +19,7 @@ import { IconExampleComponent } from './icon-example/icon-example.component';
 import { ImageExampleComponent } from './image-example/image-example.component';
 import { InputExampleComponent } from './input-example/input-example.component';
 import { LinkExampleComponent } from './link-example/link-example.component';
+import { MasterDetailAuthenticExampleComponent } from './master-detail-authentic-example/master-detail-authentic-example.component';
 import { ProgressBarExampleComponent } from './progress-example/progress-example.component';
 import { RadioButtonExampleComponent } from './radio-button-example/radio-button-example.component';
 import { SliderExampleComponent } from './slider-example/slider-example.component';
@@ -64,7 +65,6 @@ import { LinkPlainExampleComponent } from './link-plain-example/link-plain-examp
 import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-authentic-example.component';
 import { InputAuthenticExampleComponent } from './input-authentic-example/input-authentic-example.component';
 import { OverviewExampleComponent } from './tile-authentic-example/overview-example/overview-example.component';
-import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
 import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/checkbox-authentic-example.component';
 import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
 import { AutocompleteAuthenticExampleComponent } from './autocomplete-authentic-example/autocomplete-authentic-example.component';
@@ -156,7 +156,7 @@ const routes: Routes = [
       { path: 'checkbox-ac', component: CheckboxAuthenticExampleComponent },
       { path: 'tile-overview', component: OverviewExampleComponent },
       { path: 'icon-overview', component: IconOverviewComponent },
-      { path: 'master-detail-light', component: MasterDetailLightExampleComponent },
+      { path: 'master-detail-ac', component: MasterDetailAuthenticExampleComponent },
     ]
   }
 ];

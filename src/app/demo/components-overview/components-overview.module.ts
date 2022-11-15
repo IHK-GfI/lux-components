@@ -31,7 +31,7 @@ import { HttpErrorExampleComponent } from './http-error-example/http-error-examp
 import { IconExampleComponent } from './icon-example/icon-example.component';
 import { ImageExampleComponent } from './image-example/image-example.component';
 import { LinkExampleComponent } from './link-example/link-example.component';
-import { MasterDetailLightExampleComponent } from './master-detail-light-example/master-detail-light-example.component';
+import { MasterDetailAuthenticExampleComponent } from './master-detail-authentic-example/master-detail-authentic-example.component';
 import { ProgressBarExampleComponent } from './progress-example/progress-example.component';
 import { RadioButtonExampleComponent } from './radio-button-example/radio-button-example.component';
 import { SliderExampleComponent } from './slider-example/slider-example.component';
@@ -240,7 +240,7 @@ import { ComponentsOverviewAuthenticComponent } from './components-overview-auth
     IconOverviewComponent,
     ComponentsOverviewBlueComponent,
     ComponentsOverviewAuthenticComponent,
-    MasterDetailLightExampleComponent
+    MasterDetailAuthenticExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]
