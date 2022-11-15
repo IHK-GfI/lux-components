@@ -70,7 +70,7 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
 
   @HostBinding('class.lux-overflow-y-auto') overflowY = true;
 
-  private _luxOpen = false;
+  private _luxOpen = true;
   private _luxMasterList = new BehaviorSubject<Array<any>>([]);
   private _luxSelectedDetail: T | null = null;
 
@@ -161,7 +161,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
   ngOnInit() {
     this.handleMasterListUpdate();
     this.updateOpen();
-    // this.mobileHelperService.openMaster();
   }
 
   ngAfterContentInit() {
@@ -241,11 +240,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
     if (this.tabsComponent) {
       this.tabsComponent.rerenderTabs();
     }
-  }
-
-  onBackToMaster(){
-    console.log('Back to Master clicked')
-    
   }
 
   /**
