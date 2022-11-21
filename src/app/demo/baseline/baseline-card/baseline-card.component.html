@@ -58,7 +58,7 @@
         </div>
         <div fxLayout="column" fxLayoutGap.gt-sm="16px">
           <lux-slider-ac luxLabel="Lux-Slider" luxControlBinding="slider" [luxShowThumbLabelAlways]="true" luxHint="testHint" [luxDisabled]="disabledForm" [luxReadonly]="readonly"></lux-slider-ac>
-          <lux-chips-ac [luxInputAllowed]="true" luxInputLabel="Lux-Chips im Input-Element" luxHint="Hinweis" [luxNewChipGroup]="group">
+          <lux-chips-ac [luxInputAllowed]="true" luxInputLabel="Lux-Chips im Input-Element" luxHint="Hinweis" [luxNewChipGroup]="group" [luxDisabled]="disabledForm">
             <lux-chip-ac-group [luxLabels]="chipItems" luxColor="accent" [luxRemovable]="true"
                             (luxChipAdded)="chipAdded($event)" (luxChipRemoved)="chipRemoved($event)"
                             (luxChipClicked)="chipItemClicked($event)" #group>
