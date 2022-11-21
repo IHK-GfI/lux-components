@@ -36,6 +36,10 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
         : LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs;
     }
 
+    if((this.luxRaised && this.luxFlat) || (this.luxRaised && this.luxStroked) || (this.luxStroked && this.luxFlat)) {
+      console.log('Es kann nur eine Property gesetzt werden!', 'luxRaised: ', this.luxRaised, 'luxFlat: ', this.luxFlat, 'luxStroked: ', this.luxStroked)
+    }
+
     this.configSubscription = this.componentsConfigService.config.subscribe(() => {
       // Hintergrund: LuxLink, LuxSideNavItem und LuxMenuItem benutzen alle unter der Haube
       // den LuxButton. Wenn diese nun als Ausnahmen für Uppercase in der Config eingetragen werden,

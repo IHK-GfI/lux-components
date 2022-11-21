@@ -100,13 +100,21 @@
             >
             </lux-toggle>
             <lux-toggle
-            class="lux-highlight-section"
-            luxLabel="flat"
-            luxHint="Dieser Flag hebt den Button hervor."
-            [(luxChecked)]="buttonInfo.flat"
-            [luxNoTopLabel]="true"
-          >
-          </lux-toggle>
+              class="lux-highlight-section"
+              luxLabel="flat"
+              luxHint="Dieser Flag zeigt einen Button ohne Hervorhebung."
+              [(luxChecked)]="buttonInfo.flat"
+              [luxNoTopLabel]="true"
+            >
+            </lux-toggle>
+            <lux-toggle
+              class="lux-highlight-section"
+              luxLabel="stroked"
+              luxHint="Dieser Flag zeigt einen Button mit Umrandung."
+              [(luxChecked)]="buttonInfo.stroked"
+              [luxNoTopLabel]="true"
+            >
+            </lux-toggle>
             <lux-toggle
               class="lux-highlight-section"
               luxLabel="disabled"

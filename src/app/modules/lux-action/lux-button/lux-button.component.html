@@ -1,5 +1,5 @@
 <button
-  *ngIf="luxRaised && !luxRounded"
+  *ngIf="luxRaised && !luxRounded && !luxFlat && !luxStroked"
   mat-raised-button
   [color]="luxColor"
   (click)="clicked($event)"
@@ -20,7 +20,7 @@
 </button>
 
 <button
-  *ngIf="luxFlat && !luxRounded"
+  *ngIf="!luxRaised && !luxRounded && luxFlat && !luxStroked"
   mat-flat-button
   [color]="luxColor"
   (click)="clicked($event)"
@@ -40,7 +40,7 @@
   <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
 </button>
 <button
-  *ngIf="luxStroked && !luxRounded"
+  *ngIf="!luxRaised && !luxRounded && !luxFlat && luxStroked"
   mat-stroked-button
   [color]="luxColor"
   (click)="clicked($event)"
