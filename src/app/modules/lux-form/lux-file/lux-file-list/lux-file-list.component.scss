@@ -12,8 +12,8 @@
           display: none;
         }
       }
-      lux-icon.lux-button-icon mat-icon.lux-lx-icon-no-size {
-        vertical-align: super;
+      .mat-button-wrapper {
+       line-height: 30px;
       }
     }
   }
@@ -27,7 +27,9 @@
     lux-icon.lux-button-icon mat-icon.lux-lx-icon-no-size {
       height: 16px;
       width: 16px;
-      vertical-align: super;
+    }
+    .mat-button-wrapper {
+      line-height: 30px;
     }
   }
 
