@@ -17,9 +17,8 @@
   (luxSelectedDetailChange)="loadDetail($event)"
   fxFill
 >
-  <lux-master-header-content-ac [ngSwitch]="masterHeaderOption">
+  <lux-master-header-content-ac>
     <lux-filter-form
-      *ngSwitchCase="'card'"
       fxFlex="1 1 auto"
       [luxShowAsCard]="true"
       [luxShowChips]="false"
@@ -34,26 +33,6 @@
       >
       </lux-select-ac>
     </lux-filter-form>
-    <lux-accordion *ngSwitchCase="'accordion'">
-      <lux-panel 
-        [luxHideToggle]="true"
-        luxExpandedHeaderHeight="88px"  
-        luxCollapsedHeaderHeight="88px"  
-      >
-        <lux-panel-header-title>Filter</lux-panel-header-title>
-        <lux-panel-content>
-          <lux-select
-            luxLabel="Fälligkeit"
-            [luxOptions]="options"
-            [luxSelected]="options[0]"
-            luxOptionLabelProp="label"
-            (luxSelectedChange)="changeFilter($event)"
-          >
-          </lux-select>
-        </lux-panel-content>
-      </lux-panel>
-    </lux-accordion>
-    <ng-container *ngSwitchCase="'empty'"></ng-container>
   </lux-master-header-content-ac>
 
   <lux-master-list-ac luxTitleProp="title" luxSubTitleProp="subtitle">
@@ -83,7 +62,6 @@
             <detail-example [masterDetailConfig]="configuration" [selectedDetail]="detail"></detail-example>
             <div class="example-tab-content">
               <lux-toggle [(luxChecked)]="showCustomDetailHeader" luxLabel="Custom Detail-Header anzeigen" [luxNoLabels]="true"></lux-toggle>
-              <!-- <lux-radio [luxOptions]="masterHeaderOptions" [(luxSelected)]="masterHeaderOption" luxOptionLabelProp="label" [luxOrientationVertical]="false"></lux-radio> -->
             </div>
           </ng-template>
         </lux-tab>
