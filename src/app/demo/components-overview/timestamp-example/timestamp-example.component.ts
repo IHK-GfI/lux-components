@@ -18,8 +18,10 @@ export class TimestampExampleComponent {
   }
 
   updateNow(timestamp: string) {
-    this.now = new Date(timestamp).getTime();
-    this.nowISO = new Date(this.now).toISOString();
+    if(timestamp) {
+      this.now = new Date(timestamp).getTime();
+      this.nowISO = new Date(this.now).toISOString();
+    }
   }
 
   resetNow() {

@@ -24,7 +24,18 @@ export class AccordionExampleComponent {
   collapsedHeaderHeight1Panel = '64px';
   expandedHeaderHeight2Panel = '64px';
   collapsedHeaderHeight2Panel = '64px';
-  displayMode: LuxModeType = 'default';
+  _displayMode: LuxModeType = 'default';
+  
+  set displayMode(mode: LuxModeType) {
+    this.expanded = false;
+    this._displayMode = mode;
+    setTimeout(() => this.expanded = true);
+  }
+  
+  get displayMode() {
+    return this._displayMode;
+  }
+  
   panelConfigArr: { title: string; description: string }[] = [
     { title: 'Panel #1 -  Hauptüberschrift im Panel', description: 'Optionale zusätzliche Beschreibung' },
     { title: 'Panel #2', description: 'Beschreibung Panel #2' },
