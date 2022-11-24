@@ -56,21 +56,30 @@ mat-tab-group ::ng-deep div[role="tab"] {
     @media (max-width: 959px) {
       padding-left: 40px;
       padding-right: 40px;
-
-      min-width: 125px;
-      width: 125px;
     }
 
     @media (max-width: 599px) {
       padding-left: 30px;
       padding-right: 30px;
-
-      min-width: 90px;
-      width: 90px;
     }
 
     mat-chip {
       background: white !important;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .mat-tab-label.lux-tab-with-icon {
+
+    @media (max-width: 959px) {
+      min-width: 125px;
+      width: 125px;
+    }
+
+    @media (max-width: 599px) {
+      min-width: 90px;
+      width: 90px;
     }
   }
 }
