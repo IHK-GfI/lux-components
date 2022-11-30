@@ -193,7 +193,7 @@
     <lux-app-header-ac-action-nav>
       <lux-app-header-ac-action-nav-item>
         <lux-app-header-ac-action-nav-item-custom>
-          <lux-menu luxMenuLabel="IHK" luxMenuIconName="lux-interface-arrows-button-down" [luxMenuTriggerIconShowRight]="true" [luxDisplayExtended]="false" luxTooltip="IHK wechseln">
+          <lux-menu luxMenuLabel="IHK" luxMenuIconName="lux-interface-arrows-button-down" [luxMenuTriggerIconShowRight]="true" [luxDisplayExtended]="false" luxTooltip="IHK wechseln" [luxTooltipShowDelay]="1000">
             <lux-menu-item luxLabel="IHK 101" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 101-Action clicked!', 'lux-factory')"></lux-menu-item>
             <lux-menu-item luxLabel="IHK 106" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 106-Action clicked!', 'lux-factory')"></lux-menu-item>
             <lux-menu-item luxLabel="IHK 189" luxIconName="lux-factory" (luxClicked)="actionClicked('IHK 189-Action clicked!', 'lux-factory')"></lux-menu-item>
@@ -206,6 +206,8 @@
         luxColor="primary"
         luxAriaLabel="Actionbeispiel-Button"
         luxTagId="action0"
+        luxTooltip="Test für Action-Nav-Item"
+        [luxTooltipShowDelay]="1000"
         (luxClicked)="actionClicked('Ihre Bestellung wird nun zubereitet!', 'lux-food-pizza')"
       ></lux-app-header-ac-action-nav-item>
 

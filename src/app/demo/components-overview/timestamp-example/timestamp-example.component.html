@@ -27,19 +27,32 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <div class="lux-highlight-section" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="16px" >
+    <div 
+      class="lux-highlight-section" 
+      fxLayout.gt-sm="row" 
+      fxLayout.lt-md="column" 
+      fxLayoutAlign.gt-sm="space-between start" 
+      fxLayoutAlign.lt-md="space-between stretch" 
+      fxLayoutGap.gt-sm="16px" 
+      fxLayoutGap.lt-md="8px" >
       <lux-datepicker
         luxLabel="timestamp"
         [(luxValue)]="nowISO"
         (luxValueChange)="updateNow($event)"
-        fxFlex="0 1 calc(80%-16px)"
+        fxFlex.gt-sm="0 1 calc(100%-114px)"
       >
         <lux-form-hint>
           Hier kann ein Datum für das Beispiel eingetragen werden.<br />
           Das Beispiel nimmt dann den Timestamp aus dem Date-Objekt.
         </lux-form-hint>
       </lux-datepicker>
-      <div fxLayout="row" fxLayoutAlign="end center" fxFlex="1 1 20%" fxLayoutGap="8px" class="lux-mt-4">
+      <div 
+        fxLayout="row" 
+        fxLayoutAlign.gt-sm="end center" 
+        fxLayoutAlign.lt-md="center center" 
+        fxFlex.gt-sm="1 1 98px"
+        fxLayoutGap="8px" 
+        class="lux-mt-4">
         <lux-button
           luxIconName="lux-interface-delete-1"
           luxColor="warn"
@@ -55,7 +68,6 @@
           (luxClicked)="resetNow()"
         ></lux-button>
       </div>
-     
     </div>
     <lux-input
       class="lux-highlight-section"

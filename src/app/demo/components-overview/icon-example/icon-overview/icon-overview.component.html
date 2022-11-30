@@ -38,7 +38,7 @@
         <div [ngStyle]="{ visibility: isLoading? 'hidden' : 'visible' }">
           <div fxLayout="row wrap" fxLayoutGap="30px grid" fxLayoutAlign="start center" class="icon-list" *ngIf="iconList.length > 0; else noItems">  
               <div style="display: flex;" *ngFor="let icon of iconList">
-                <div fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="start center" class="icon-container" (click)="onItemClicked(icon)">
+                <div fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="start center" class="icon-container" (click)="onItemClicked(icon)"[ngClass]="{ 'selected-item': icon===previewItem }">
                   <lux-icon [luxIconName]="icon.iconName.split('--')[0].toLocaleLowerCase()" class="lux-color-blue" luxIconSize="2x"></lux-icon>
                   <p class="icon-name">{{ icon.iconName.split('--')[0].toLocaleLowerCase() }}</p>
                 </div>

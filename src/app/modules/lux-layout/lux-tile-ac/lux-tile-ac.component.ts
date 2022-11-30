@@ -23,7 +23,6 @@ export class LuxTileAcComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() set luxCounter(counter: number | undefined){
     this._counter = counter;
-    console.log(this.luxCounter)
     this.updateBadgeContent()
   }
   get luxCounter() {

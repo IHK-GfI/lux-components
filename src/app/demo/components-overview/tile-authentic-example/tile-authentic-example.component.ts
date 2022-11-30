@@ -14,13 +14,18 @@ export class TileAuthenticExampleComponent {
   subTitle = 'Vorschau auf die kommende Woche'
   log = logResult;
 
-  badgeContent = '';
   badgeCap = 20;
   badgePosition: LuxBadgeNotificationPosition = 'above after';
   badgeSize: LuxBadgeNotificationSize = 'medium';
   badgeColor = 'primary';
   badgeDisabled = false;
-  showNotification = false;
+  private _showNotification = true;
+  set showNotification(value: boolean) {
+    this._showNotification = value;
+  }
+  get showNotification() {
+    return this._showNotification;
+  }
   counter?: number;
 
   constructor() { }

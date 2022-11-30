@@ -4,7 +4,7 @@
     [(luxExpanded)]="luxFilterExpanded"
     class="filterPanel"
     luxCollapsedHeaderHeight="40px"
-    luxExpandedHeaderHeight="40px"
+    luxExpandedHeaderHeight="48px"
     [luxHideToggle]="true"
   >
     <lux-panel-header-title class="lux-filter-panel-header"> 
@@ -48,7 +48,7 @@
 
 <!-- der eigentliche Inhalt des Filterformulars, wird via Content-Projection eingefügt -->
 <ng-template #filterFormTemplate>
-  <form [formGroup]="filterForm" class="lux-mt-4 lux-mb-4">
+  <form [formGroup]="filterForm" class="lux-filter-form">
     <ng-content></ng-content>
   </form>
 </ng-template>
@@ -71,7 +71,6 @@
 <ng-template #filterActionTemplate>
   <lux-menu 
     [luxDisplayExtended]="false" 
-    luxMenuIconName="lux-interface-setting-menu-vertical" 
     class="filter-menu" 
   >
     <lux-menu-item
@@ -94,6 +93,17 @@
       (luxClicked)="openLoadDialog()"
       *ngIf="hasLoadAction"
     ></lux-menu-item>
+
+    <lux-menu-trigger>
+      <lux-button
+        [luxRounded]="true"
+        luxIconName="lux-interface-setting-menu-vertical"
+        luxColor="primary"
+        class="lux-filter-menu-trigger"
+        luxTagId="filter-menu-trigger"
+      >
+      </lux-button>
+    </lux-menu-trigger>
   </lux-menu>
 </ng-template>
 

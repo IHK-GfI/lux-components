@@ -38,8 +38,13 @@
     margin-bottom: 8px;
   }
 
-  .lux-dialog .lux-dialog-actions {
-    margin: 8px 0 0 0;
+  .lux-dialog {
+    .lux-dialog-actions {
+      margin: 8px 0 0 0;
+    }
+    .lux-icon-close {
+      margin: -5px -5px 0 0
+    }
   }
 }
 

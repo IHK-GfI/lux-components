@@ -71,7 +71,7 @@
         <lux-checkbox-ac [luxNoTopLabel]="true" luxControlBinding="checkbox2" luxLabel="{{exampleText}}"></lux-checkbox-ac>
         <lux-checkbox-ac [luxNoTopLabel]="true" luxControlBinding="checkbox3" luxLabel="{{exampleText}}"></lux-checkbox-ac>
       </div>
-      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px" >
+      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end center" fxLayoutAlign.lt-md="start stretch" fxLayoutGap="8px">
         <lux-button [luxStroked]="true" luxColor="primary" luxLabel="Formular zurücksetzen" (luxClicked)="exampleValidator(false)"></lux-button>
         <lux-button [luxFlat]="true" luxColor="primary" luxLabel="Weiter" (luxClicked)="exampleValidator(true)"></lux-button>
       </div>
