@@ -39,7 +39,7 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
 
   private _luxAutocompleteOptions: string[] = [];
 
-  uid: string = 'lux-chip-control-' + luxChipControlUID++;
+  uid: string = 'lux-chip-control-ac-' + luxChipControlUID++;
 
   _filteredOptions: string[] = [];
 
