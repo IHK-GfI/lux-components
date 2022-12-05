@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LuxBadgeNotificationPosition, LuxBadgeNotificationSize } from '../../../modules/lux-directives/lux-badge-notification/lux-badge-notification.directive';
+import { Component } from '@angular/core';
+import { LuxBadgeNotificationSize } from '../../../modules/lux-directives/lux-badge-notification/lux-badge-notification.directive';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -15,17 +15,9 @@ export class TileAuthenticExampleComponent {
   log = logResult;
 
   badgeCap = 20;
-  badgePosition: LuxBadgeNotificationPosition = 'above after';
   badgeSize: LuxBadgeNotificationSize = 'medium';
   badgeColor = 'primary';
-  badgeDisabled = false;
-  private _showNotification = true;
-  set showNotification(value: boolean) {
-    this._showNotification = value;
-  }
-  get showNotification() {
-    return this._showNotification;
-  }
+  showNotification = false;
   counter?: number;
 
   constructor() { }
