@@ -7,7 +7,7 @@
 </div>
 <div fxLayout="row" [ngStyle]="{ 'margin-bottom': rowGap }">
   <div *ngIf="margin && luxMargin.marginLeft" [fxFlex]="margin"></div>
-  <div fxFlex="flex" [fxLayout]="layoutOrientation" [fxLayoutGap]="rowItemGap" class="row-content-container">
+  <div fxFlex="flex" [fxLayout]="layoutOrientation" [fxLayoutGap]="rowItemGap" [ngStyle]="{ maxWidth: 'calc(100% - ' + (luxMargin.marginLeft ? margin : '0') + ' - ' + (luxMargin.marginRight ? margin : '0') + ')' }">
     <ng-container *ngFor="let rowItem of rowItems">
       <div
         [fxFlex]="rowItem.luxLayoutRowItem.flex ? rowItem.luxLayoutRowItem.flex : calculateWidth(rowItem)"
