@@ -6,6 +6,7 @@
   - $outline-with -> var(--lux-theme-outline-width)
   - $outline-style -> var(--lux-theme-outline-style)
 - **allgemein**: Neues Icon-Set integriert. 
+- **lux-menu-item**: Tooltipps werden auch im Menü angezeigt. [Issue 242](https://github.com/IHK-GfI/lux-components/issues/242)
 
 ## Bug Fixes
 - **lux-snackbar**: Lange Texte werden abgeschnitten oder schieben die Aktion raus. [Issue 237](https://github.com/IHK-GfI/lux-components/issues/237)

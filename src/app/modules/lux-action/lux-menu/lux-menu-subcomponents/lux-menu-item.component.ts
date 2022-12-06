@@ -9,6 +9,7 @@ import { LuxActionComponentBaseClass } from "../../lux-action-model/lux-action-c
 export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
 
   @Input() luxButtonTooltip = '';
+  @Input() luxMenuTooltip = '';
   @Input() luxPrio = 0;
 
   @Output() luxHiddenChange = new EventEmitter<boolean>();
