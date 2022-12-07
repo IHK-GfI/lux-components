@@ -34,6 +34,11 @@
 - luxDisabled: undefined -> false
 - luxRounded: undefined -> false
 
+# Version 13.3.0
+
+## New
+- **allgemein**: Sicherheitsupdates eingespielt.
+
 # Version 13.2.0
 
 ## New
