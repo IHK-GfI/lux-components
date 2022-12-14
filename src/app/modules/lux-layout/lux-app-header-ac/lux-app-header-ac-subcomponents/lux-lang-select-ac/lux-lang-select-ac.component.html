@@ -10,7 +10,7 @@
     class="lux-lang-select-menu-item"
     *ngFor="let item of localeOptions"
     [luxLabel]="item.label"
-    [luxDisabled]="item === selectedLocale"
+    [luxClass]="item === selectedLocale ? 'lux-selected-item-ac' : ''"
     (luxClicked)="onLocaleChanged(item)"
   ></lux-menu-item>
   <lux-menu-trigger>
@@ -32,4 +32,3 @@
     ></lux-button>
   </lux-menu-trigger>
 </lux-menu>
-

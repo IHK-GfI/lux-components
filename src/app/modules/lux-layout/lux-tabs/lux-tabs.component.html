@@ -5,6 +5,7 @@
     [dynamicHeight]="false"
     [selectedIndex]="luxActiveTab"
     (selectedTabChange)="tabChange$.next($event)"
+    [disableRipple]="true"
     class="lux-tab-group"
     [ngClass]="{
       'lux-tabs-no-divider': !luxDisplayDivider,
