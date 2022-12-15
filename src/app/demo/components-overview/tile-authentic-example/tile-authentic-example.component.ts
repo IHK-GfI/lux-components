@@ -17,8 +17,20 @@ export class TileAuthenticExampleComponent {
   badgeCap = 20;
   badgeSize: LuxBadgeNotificationSize = 'medium';
   badgeColor = 'primary';
-  showNotification = false;
   counter?: number;
+  _showNotification = false;
+
+  get showNotification(){
+    return this._showNotification;
+  }
+
+  set showNotification(show: boolean) {
+    this._showNotification = show;
+
+    if (show && this.counter) {
+      this.counter = undefined;
+    }
+  }
 
   constructor() { }
 
