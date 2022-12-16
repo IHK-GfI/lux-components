@@ -18,6 +18,7 @@ export class MenuExampleComponent {
       hidden: false,
       label: 'Registrierung',
       tooltip: '',
+      tooltipMenu: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
@@ -32,6 +33,7 @@ export class MenuExampleComponent {
       hidden: false,
       label: 'FAQ´s',
       tooltip: '',
+      tooltipMenu: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
@@ -45,6 +47,7 @@ export class MenuExampleComponent {
       hidden: false,
       label: 'Downloads',
       tooltip: '',
+      tooltipMenu: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
@@ -61,6 +64,7 @@ export class MenuExampleComponent {
       hidden: false,
       label: 'Registrierung',
       tooltip: '',
+      tooltipMenu: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
@@ -68,13 +72,14 @@ export class MenuExampleComponent {
       class: 'lux-test-class'
     },
     {
-      iconName: 'fas fa-question', 
+      iconName: 'fas fa-question',
       raised: false,
       color: 'primary',
       disabled: false,
       hidden: false,
       label: 'FAQ´s',
       tooltip: '',
+      tooltipMenu: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
@@ -88,6 +93,7 @@ export class MenuExampleComponent {
       hidden: false,
       label: 'Downloads',
       tooltip: '',
+      tooltipMenu: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
@@ -97,13 +103,14 @@ export class MenuExampleComponent {
 
   menuItemsMat: ExampleMenuItem[] = [
     {
-      iconName: 'login', 
+      iconName: 'login',
       raised: false,
       color: 'primary',
       disabled: false,
       hidden: false,
       label: 'Registrierung',
       tooltip: '',
+      tooltipMenu: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
@@ -118,6 +125,7 @@ export class MenuExampleComponent {
       hidden: false,
       label: 'FAQ´s',
       tooltip: '',
+      tooltipMenu: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
@@ -131,6 +139,7 @@ export class MenuExampleComponent {
       hidden: false,
       label: 'Downloads',
       tooltip: '',
+      tooltipMenu: '',
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
@@ -158,6 +167,7 @@ interface ExampleMenuItem {
   hidden: boolean;
   label: string;
   tooltip: string;
+  tooltipMenu: string;
   alwaysVisible: boolean;
   round: boolean;
   hideLabelIfExtended: boolean;

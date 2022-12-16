@@ -24,6 +24,7 @@
           [luxDisabled]="item.disabled"
           [luxLabel]="item.label"
           [luxButtonTooltip]="item.tooltip"
+          [luxMenuTooltip]="item.tooltipMenu"
           [luxAlwaysVisible]="item.alwaysVisible"
           [luxTagId]="item.label"
           (luxClicked)="log(showOutputEvents, 'Item clicked', $event)"
@@ -59,6 +60,7 @@
           [luxDisabled]="item.disabled"
           [luxLabel]="item.label"
           [luxButtonTooltip]="item.tooltip"
+          [luxMenuTooltip]="item.tooltipMenu"
           [luxAlwaysVisible]="item.alwaysVisible"
           [luxTagId]="item.label"
           (luxClicked)="log(showOutputEvents, 'Item clicked', $event)"
@@ -94,6 +96,7 @@
           [luxDisabled]="item.disabled"
           [luxLabel]="item.label"
           [luxButtonTooltip]="item.tooltip"
+          [luxMenuTooltip]="item.tooltipMenu"
           [luxAlwaysVisible]="item.alwaysVisible"
           [luxTagId]="item.label"
           (luxClicked)="log(showOutputEvents, 'Item clicked', $event)"
@@ -198,13 +201,20 @@
             [(luxValue)]="item.prio"
           >
           </lux-input>
-          <lux-input
-            class="lux-highlight-section"
-            luxLabel="luxButtonTooltip"
-            luxHint="Diese Property ermöglicht es, das Label eines Menu-Eintrags zu ändern."
-            [(luxValue)]="item.tooltip"
-          >
-          </lux-input>
+          <div fxLayout="column" fxLayoutGap="24px" class="lux-highlight-section">
+            <lux-input
+              luxLabel="luxButtonTooltip"
+              luxHint="Wenn als Button dargestellt"
+              [(luxValue)]="item.tooltip"
+            >
+            </lux-input>
+            <lux-input
+              luxLabel="luxMenuTooltip"
+              luxHint="Wenn im Menü dargestellt"
+              [(luxValue)]="item.tooltipMenu"
+            >
+            </lux-input>
+          </div>
           <lux-input
             class="lux-highlight-section"
             luxLabel="luxIconName"
