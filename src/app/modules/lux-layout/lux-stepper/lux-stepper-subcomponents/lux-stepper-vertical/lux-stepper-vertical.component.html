@@ -7,6 +7,7 @@
     'lux-block-pointer-events': luxStepperConfig?.luxDisabled,
     'lux-linear-stepper': luxStepperConfig?.luxLinear
   }"
+  [disableRipple]="true"
   (selectionChange)="luxStepChanged.emit($event)"
   (click)="onStepClicked($event)"
   (keydown.enter)="onStepClicked($event)"

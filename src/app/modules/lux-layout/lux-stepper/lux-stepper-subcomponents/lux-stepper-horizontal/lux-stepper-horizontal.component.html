@@ -8,6 +8,7 @@
     'lux-linear-stepper': luxStepperConfig?.luxLinear,
     'lux-no-animation': !luxStepperConfig?.luxHorizontalStepAnimationActive
   }"
+  [disableRipple]="true"
   (selectionChange)="luxStepChanged.emit($event)"
   (click)="onStepClicked($event)"
   (keydown.enter)="onStepClicked($event)"

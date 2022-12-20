@@ -35,6 +35,7 @@
     <mat-datepicker-toggle
       [disabled]="luxDisabled || luxReadonly"
       [for]="datepicker"
+      [disableRipple]="true"
       *ngIf="luxShowToggle"
       fxFlex="auto"
       matSuffix
