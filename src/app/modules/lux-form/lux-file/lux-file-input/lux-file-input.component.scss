@@ -33,14 +33,14 @@ lux-form-control {
             &:last-of-type {
               margin-right: 0px;
             }
+            lux-icon.lux-button-icon mat-icon.lux-lx-icon-no-size {
+              height: 14px !important;
+              width: 14px !important;
+              vertical-align: super;
+            }
           }
         }
-      }
-      lux-icon.lux-button-icon mat-icon.lux-lx-icon-no-size {
-        height: 16px !important;
-        width: 16px !important;
-        vertical-align: super;
-      }
+      } 
     }
   }
 }

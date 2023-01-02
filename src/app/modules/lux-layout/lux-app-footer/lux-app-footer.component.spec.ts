@@ -112,9 +112,10 @@ describe('LuxAppFooterComponent', () => {
       const iconName = 'fas fa-user';
       const alwaysVisible = true;
       const tooltip = 'Tooltip'
+      const tooltipMenu = 'TooltipMenu'
       const onClick = () => {};
 
-      const infoConstruktor = new LuxAppFooterButtonInfo(label, cmd, prio, color, disabled, hidden, raised, flat, stroked, iconName, alwaysVisible, tooltip, onClick);
+      const infoConstruktor = new LuxAppFooterButtonInfo(label, cmd, prio, color, disabled, hidden, raised, flat, stroked, iconName, alwaysVisible, tooltip, tooltipMenu, onClick);
       const infoMethod =  LuxAppFooterButtonInfo.generateInfo({ label, cmd, prio, color, disabled, hidden, raised, flat, stroked, iconName, alwaysVisible, tooltip, onClick });
 
       expect(infoConstruktor.label).toEqual(infoMethod.label);

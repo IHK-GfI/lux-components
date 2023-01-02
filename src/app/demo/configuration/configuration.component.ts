@@ -29,7 +29,7 @@ export class ConfigurationComponent implements OnDestroy {
         iconName: 'lux-interface-arrows-expand-5',
         cmd: 'documentation-btn',
         color: 'primary',
-        raised: true,
+        flat: true,
         alwaysVisible: false,
         onClick: () => {
           window.open('https://github.com/IHK-GfI/lux-components/wiki/config', '_blank');
@@ -40,7 +40,7 @@ export class ConfigurationComponent implements OnDestroy {
         iconName: 'lux-interface-arrows-button-left',
         cmd: 'back-btn',
         color: 'primary',
-        raised: true,
+        flat: true,
         alwaysVisible: true,
         onClick: () => {
           this.router.navigate(['/']);

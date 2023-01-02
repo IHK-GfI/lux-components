@@ -6,6 +6,7 @@
   - $outline-with -> var(--lux-theme-outline-width)
   - $outline-style -> var(--lux-theme-outline-style)
 - **allgemein**: Neues Icon-Set integriert. 
+- **lux-menu-item**: Tooltipps werden auch im Menü angezeigt. [Issue 242](https://github.com/IHK-GfI/lux-components/issues/242)
 
 ## Bug Fixes
 - **lux-file-list**: Fehler beim Drag&Drop der File-Komponenten behoben.
@@ -34,6 +35,11 @@
 - luxTagId: undefined -> null
 - luxDisabled: undefined -> false
 - luxRounded: undefined -> false
+
+# Version 13.3.0
+
+## New
+- **allgemein**: Sicherheitsupdates eingespielt.
 
 # Version 13.2.0
 

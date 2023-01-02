@@ -1,5 +1,13 @@
 <div class="lux-dialog" fxLayout="column" fxFlex="1 1 auto" #dialogBase>
-  <div mat-dialog-close class="lux-icon-close" fxFlexAlign="end" tabindex="0"><lux-icon luxIconName="lux-interface-delete-1" luxIconSize="1x"></lux-icon></div>
+  <div 
+    mat-dialog-close
+    aria-label="Schließen"
+    class="lux-icon-close" 
+    fxFlexAlign="end" 
+    tabindex="0"
+  >
+    <lux-icon luxIconName="lux-interface-delete-1" luxIconSize="1x"></lux-icon>
+  </div>
   <lux-icon *ngIf="luxDialogIcon" [luxIconName]="luxDialogIcon" fxFlexAlign="center" luxIconSize="3x" luxMargin="16px" class="lux-color-blue lux-dialog-icon"></lux-icon>
   <div mat-dialog-title class="lux-dialog-title" fxFlex="1 1 auto" fxFlexAlign="start">
     <ng-content select="lux-dialog-title"></ng-content>

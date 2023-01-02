@@ -29,7 +29,17 @@ import { PlaceholderComponent } from './demo/abstract/placeholder/placeholder.co
 import { RedirectComponent } from './demo/abstract/redirect/redirect.component';
 
 const myConfiguration: LuxComponentsConfigParameters = {
-  generateLuxTagIds: environment.generateLuxTagIds
+  generateLuxTagIds: environment.generateLuxTagIds,
+  labelConfiguration: {
+    allUppercase: true,
+    notAppliedTo: [
+      "lux-link",
+      "lux-menu-item",
+      "lux-side-nav-item",
+      "lux-tab",
+      "lux-step"
+    ]
+  },
 };
 
 @NgModule({

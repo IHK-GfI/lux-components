@@ -1,15 +1,5 @@
 <lux-dialog-structure>
   <lux-dialog-title class="file-upload-dialog-title-container file-replace-dialog-title-container">
-    <div class="file-upload-dialog-close-button-container file-replace-dialog-close-button-container">
-      <lux-button
-        luxAriaLabel="Schließen"
-        i18n-luxAriaLabel="@@luxc.file.upload.dialog.close.btn.arialabel"
-        luxTagId="file-replace-dialog-close-button"
-        luxIconName="close"
-        class="file-upload-dialog-close-button file-replace-dialog-close-button"
-        (luxClicked)="luxDialogRef.closeDialog()"
-      ></lux-button>
-    </div>
     <div
       *ngIf="luxDialogRef.data.multiple"
       class="file-upload-dialog-title file-replace-dialog-title"

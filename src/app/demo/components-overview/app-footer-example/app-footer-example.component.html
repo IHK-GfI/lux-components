@@ -70,9 +70,15 @@
             <lux-input
               class="lux-highlight-section"
               luxName="app-footer_tooltip"
-              luxLabel="Tooltip"
-              luxHint="Mit dieser Property wird der Tooltip des Footer-Buttons festgelegt."
+              luxLabel="Tooltip (wenn Button)"
               [(luxValue)]="buttonInfo.tooltip"
+            >
+            </lux-input>
+            <lux-input
+              class="lux-highlight-section"
+              luxName="app-footer_tooltip_menu"
+              luxLabel="Tooltip (im Menu)"
+              [(luxValue)]="buttonInfo.tooltipMenu"
             >
             </lux-input>
             <lux-input

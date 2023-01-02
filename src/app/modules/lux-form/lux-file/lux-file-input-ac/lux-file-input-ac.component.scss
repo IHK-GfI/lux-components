@@ -22,16 +22,15 @@ lux-form-control-wrapper {
         
         lux-button {
           button {
-            width: unset;
+            width: 30px;
             min-width: 30px !important;
             height: 36px;
           }
         }
       }
       lux-icon.lux-button-icon mat-icon.lux-lx-icon-no-size {
-        height: 16px;
-        width: 16px;
-        vertical-align: super;
+        height: 14px;
+        width: 14px !important;
       }
     }
   }

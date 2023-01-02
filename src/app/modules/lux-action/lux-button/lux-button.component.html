@@ -1,6 +1,7 @@
 <button
   *ngIf="luxRaised && !luxRounded && !luxFlat && !luxStroked"
   mat-raised-button
+  [disableRipple]="true"
   [color]="luxColor"
   (click)="clicked($event)"
   (auxclick)="auxClicked($event)"
@@ -22,6 +23,7 @@
 <button
   *ngIf="!luxRaised && !luxRounded && luxFlat && !luxStroked"
   mat-flat-button
+  [disableRipple]="true"
   [color]="luxColor"
   (click)="clicked($event)"
   (auxclick)="auxClicked($event)"
@@ -42,6 +44,7 @@
 <button
   *ngIf="!luxRaised && !luxRounded && !luxFlat && luxStroked"
   mat-stroked-button
+  [disableRipple]="true"
   [color]="luxColor"
   (click)="clicked($event)"
   (auxclick)="auxClicked($event)"
@@ -63,6 +66,7 @@
 <button
   *ngIf="!luxRaised && !luxRounded && !luxFlat && !luxStroked"
   mat-button
+  [disableRipple]="true"
   [color]="luxColor"
   (click)="clicked($event)"
   (auxclick)="auxClicked($event)"
@@ -84,6 +88,7 @@
 <button
   *ngIf="luxRounded"
   mat-fab
+  [disableRipple]="true"
   [color]="luxColor"
   (click)="clicked($event)"
   (auxclick)="auxClicked($event)"
