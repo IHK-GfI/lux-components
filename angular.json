@@ -63,6 +63,11 @@
                 "output": "./assets/cmaps"
               },
               {
+                "glob": "**/*",
+                "input": "./node_modules/@ihk-gfi/lux-components-icons-and-fonts/assets/icons/",
+                "output": "./assets/lux-icons"
+              },
+              {
                 "glob": "*(*min.css|*min.css.map)",
                 "input": "./node_modules/@ihk-gfi/lux-components-theme/prebuilt-themes",
                 "output": "./assets/themes"
@@ -174,6 +179,11 @@
                 "glob": "**/*",
                 "input": "./node_modules/pdfjs-dist/cmaps/",
                 "output": "./assets/cmaps"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ihk-gfi/lux-components-icons-and-fonts/assets/icons/",
+                "output": "./assets/lux-icons"
               }
             ]
           }
