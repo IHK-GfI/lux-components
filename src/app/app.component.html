@@ -88,6 +88,10 @@
           <lux-button luxLabel="Aufklappen" [luxRaised]="true" (luxClicked)="navigationService.onExpandAll()"></lux-button>
           <lux-button luxLabel="Zuklappen" [luxRaised]="true" (luxClicked)="navigationService.onCollapseAll()"></lux-button>
         </div>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px" class="lux-mt-3">
+          <lux-link-plain luxLabel="Impressum" [luxRaised]="true" (luxClicked)="goToImpressum()"></lux-link-plain>
+          <lux-link-plain luxLabel="Lizenzhinweis" [luxRaised]="true" (luxClicked)="goToLicenseHint()"></lux-link-plain>
+        </div>
       </lux-side-nav-footer>
     </lux-side-nav>
     <lux-app-header-action-nav>

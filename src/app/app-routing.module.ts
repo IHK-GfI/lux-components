@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LicenseHintComponent } from './demo/base/license-hint/license-hint.component';
 import { HomeComponent } from './demo/home/home.component';
 import { LuxConsoleService } from './modules/lux-util/lux-console.service';
 import { ConfigurationComponent } from './demo/configuration/configuration.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'datenschutz', component: PlaceholderComponent },
   { path: 'impressum', component: RedirectComponent },
+  { path: 'license-hint', component: LicenseHintComponent },
   {
     path: 'components-overview',
     loadChildren: () =>
