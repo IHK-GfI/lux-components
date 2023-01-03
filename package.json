@@ -51,7 +51,7 @@
     "@angular/platform-browser-dynamic": "14.2.11",
     "@angular/router": "14.2.11",
     "@fortawesome/fontawesome-free": "5.15.4",
-    "@ihk-gfi/lux-components-theme": "13.0.0",
+    "@ihk-gfi/lux-components-theme": "14.0.0",
     "@ihk-gfi/lux-components-icons-and-fonts": "1.0.0",
     "@types/jasmine": "4.0.3",
     "@typescript-eslint/eslint-plugin": "5.29.0",

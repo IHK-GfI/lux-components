@@ -68,6 +68,12 @@ Dann kann man über den LUX-Componentsupdater die LUX-Components seiner App hinz
 ng generate @ihk-gfi/lux-components-update:add-lux-components
 ```
 
+Danach muss die Datei "package-lock.json" und der Ordner "node_modules" gelöscht werden.
+
+```bash
+npm install
+```
+
 Jetzt kann die App normal gestartet werden: 
 
 ```bash
