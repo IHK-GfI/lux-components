@@ -1,10 +1,11 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { ComponentsOverviewNavigationService } from './demo/components-overview/components-overview-navigation.service';
 import { LuxAppFooterButtonService } from './modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxAppFooterLinkInfo } from './modules/lux-layout/lux-app-footer/lux-app-footer-link-info';
 import { LuxAppFooterLinkService } from './modules/lux-layout/lux-app-footer/lux-app-footer-link.service';
+import { LuxSideNavComponent } from './modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component';
 import { LuxSnackbarService } from './modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { LuxThemeService } from './modules/lux-theme/lux-theme.service';
 import { LuxAppService } from './modules/lux-util/lux-app.service';
@@ -16,6 +17,8 @@ import { LuxConsoleService } from './modules/lux-util/lux-console.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  @ViewChild(LuxSideNavComponent) sideNavComp!: LuxSideNavComponent;
 
   @Input() luxAppHeader: 'normal' | 'minimal' | 'none' = 'normal';
   @Input() luxAppFooter: 'normal' | 'minimal' | 'none' = 'normal';
@@ -54,7 +57,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.linkService.pushLinkInfos(
       new LuxAppFooterLinkInfo('Datenschutz', 'datenschutz', true),
-      new LuxAppFooterLinkInfo('Impressum', 'impressum')
+      new LuxAppFooterLinkInfo('Impressum', 'impressum'),
+      new LuxAppFooterLinkInfo('Lizenzhinweis', 'license-hint')
     );
   }
 
@@ -102,6 +106,16 @@ export class AppComponent implements OnInit {
 
   goToHomepage() {
     window.open('https://www.ihk-gfi.de/');
+  }
+
+  goToImpressum() {
+    this.sideNavComp.close();
+    this.router.navigate(['impressum']);
+  }
+
+  goToLicenseHint() {
+    this.sideNavComp.close();
+    this.router.navigate(['license-hint']);
   }
 
   actionClicked(text: string, iconName?: string ) {
