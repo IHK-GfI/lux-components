@@ -65,7 +65,7 @@
               {
                 "glob": "**/*",
                 "input": "./node_modules/@ihk-gfi/lux-components-icons-and-fonts/assets/icons/",
-                "output": "./assets/lux-icons"
+                "output": "./assets/icons"
               },
               {
                 "glob": "*(*min.css|*min.css.map)",
@@ -183,7 +183,7 @@
               {
                 "glob": "**/*",
                 "input": "./node_modules/@ihk-gfi/lux-components-icons-and-fonts/assets/icons/",
-                "output": "./assets/lux-icons"
+                "output": "./assets/icons"
               }
             ]
           }
