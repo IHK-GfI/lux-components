@@ -5,11 +5,11 @@ import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
   template: ''
 })
 export class LuxMasterSimpleComponent {
-  @Input() luxTitleProp: string;
-  @Input() luxSubTitleProp: string;
+  @Input() luxTitleProp?: string;
+  @Input() luxSubTitleProp?: string;
 
-  @ContentChild('luxSimpleContent') contentTempRef: TemplateRef<any>;
-  @ContentChild('luxSimpleIcon') iconTempRef: TemplateRef<any>;
+  @ContentChild('luxSimpleContent') contentTempRef?: TemplateRef<any>;
+  @ContentChild('luxSimpleIcon') iconTempRef?: TemplateRef<any>;
 
   constructor() {}
 }

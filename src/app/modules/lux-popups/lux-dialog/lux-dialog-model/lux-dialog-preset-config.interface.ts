@@ -9,6 +9,7 @@ export interface ILuxDialogPresetConfig extends ILuxDialogConfig {
   confirmAction?: ILuxDialogAction;
   declineAction?: ILuxDialogAction;
   title?: string;
+  iconName?: string;
   content?: string;
   contentTemplate?: TemplateRef<any>;
 }
@@ -23,10 +24,12 @@ export const DEFAULT_DIALOG_PRESET_CONF: ILuxDialogPresetConfig = {
   contentTemplate: undefined,
   confirmAction: {
     label: $localize `:@@luxc.dialog-preset.ok:Bestätigen`,
-    raised: true
+    flat: true,
+    color: 'primary'
   },
   declineAction: {
     label: $localize `:@@luxc.dialog-preset.cancel:Ablehnen`,
-    raised: true
+    outlined: true,
+    color: 'primary'
   }
 };

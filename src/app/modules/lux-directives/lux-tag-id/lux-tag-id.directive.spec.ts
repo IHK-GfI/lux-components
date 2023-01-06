@@ -28,29 +28,15 @@ describe('LuxTagIdDirective', () => {
     mockComp = fixture.componentInstance;
   }));
 
-  it('Sollte erstellt werden', fakeAsync(() => {
-    fixture.detectChanges();
-    expect(mockComp).toBeTruthy();
-  }));
-
-  it('Sollte eine Warnung abgeben, wenn luxTagId falsy ist', fakeAsync(() => {
-    const spy = spyOn(console, 'warn');
-    fixture.detectChanges();
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(
-      'Dem Tag "LUX-COMPONENT(.BODY.HTML)" fehlt das luxTagId-Attribut. Dieses Attribut wird für die automatischen Tests benötigt.'
-    );
-  }));
-
-  it('Sollte die Tag-ID generieren', fakeAsync(() => {
+  it('Sollte die Tag-ID generieren', () => {
     const spy = spyOn(console, 'warn');
     mockComp.tagId = 'tagid-demo';
     fixture.detectChanges();
 
     const tagId = fixture.debugElement.query(By.css('lux-component[data-luxtagid="lux-component#tagid-demo"]'));
-    expect(tagId).not.toBe(null);
+    expect(tagId).not.toBeNull();
     expect(spy).toHaveBeenCalledTimes(0);
-  }));
+  });
 });
 
 @Component({
@@ -60,7 +46,7 @@ describe('LuxTagIdDirective', () => {
   `
 })
 class MockComponent {
-  tagId;
+  tagId: string | null = null;
 }
 
 @Component({

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { FormCommonComponent } from './form-common/form-common.component';
 import { FormDualColComponent } from './form-dual-col/form-dual-col.component';
 import { FormSingleColComponent } from './form-single-col/form-single-col.component';
@@ -16,18 +17,17 @@ import { Router } from '@angular/router';
   templateUrl: './form-example.component.html'
 })
 export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestroy {
-  @ViewChild(FormCommonComponent) formCommon: FormCommonComponent;
-  @ViewChild(FormSingleColComponent) formSingle: FormSingleColComponent;
-  @ViewChild(FormDualColComponent) formDuo: FormDualColComponent;
-  @ViewChild(FormThreeColComponent) formThree: FormThreeColComponent;
-  @ViewChild(LuxTabsComponent) tabComponent: LuxTabsComponent;
+  @ViewChild(FormCommonComponent) formCommon!: FormCommonComponent;
+  @ViewChild(FormSingleColComponent) formSingle!: FormSingleColComponent;
+  @ViewChild(FormDualColComponent) formDuo!: FormDualColComponent;
+  @ViewChild(FormThreeColComponent) formThree!: FormThreeColComponent;
+  @ViewChild(LuxTabsComponent) tabComponent!: LuxTabsComponent;
 
   btnShowErrors = LuxAppFooterButtonInfo.generateInfo({
     cmd: 'btnShowErrors',
     label: 'Fehler anzeigen',
-    iconName: 'fas fa-exclamation',
+    iconName: 'lux-exclamation-mark',
     raised: true,
-    color: '',
     alwaysVisible: false,
     onClick: this.highlightErrors.bind(this)
   });
@@ -35,7 +35,7 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
   btnSave = LuxAppFooterButtonInfo.generateInfo({
     cmd: 'btnSave',
     label: 'Speichern',
-    iconName: 'fas fa-save',
+    iconName: 'lux-save',
     raised: true,
     color: 'primary',
     alwaysVisible: false,
@@ -47,7 +47,7 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
   ngOnInit(): void {
     this.buttonService.buttonInfos = [this.btnShowErrors, this.btnSave, LuxAppFooterButtonInfo.generateInfo({
       label: 'Dokumentation',
-      iconName: 'fas fa-external-link-alt',
+      iconName: 'lux-interface-arrows-expand-5',
       cmd: 'documentation-btn',
       color: 'primary',
       raised: true,
@@ -58,7 +58,7 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
     }),
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Overview',
-        iconName: 'fas fa-caret-left',
+        iconName: 'lux-interface-arrows-button-left',
         cmd: 'back-btn',
         color: 'primary',
         raised: true,
@@ -83,26 +83,34 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
   }
 
   handleSaveClicked() {
+    let formGroup: FormGroup | null;
     switch (this.tabComponent.luxActiveTab) {
       case 0:
-        this.formCommon.myGroup.markAsPristine();
+        formGroup = this.formCommon.myGroup;
         break;
       case 1:
-        this.formSingle.myGroup.markAsPristine();
+        formGroup = this.formSingle.myGroup;
         break;
       case 2:
-        this.formDuo.myGroup.markAsPristine();
+        formGroup = this.formDuo.myGroup;
         break;
       case 3:
-        this.formThree.myGroup.markAsPristine();
+        formGroup = this.formThree.myGroup;
         break;
       default:
+        formGroup = null;
         break;
     }
 
-    this.snackbar.open(2000, {
-      text: 'Daten gespeichert!'
-    });
+    if (formGroup && formGroup.valid) {
+      formGroup.markAsPristine();
+
+      this.snackbar.open(2000, {
+        text: 'Daten gespeichert!'
+      });
+    } else {
+      this.highlightErrors();
+    }
   }
 
   highlightErrors() {

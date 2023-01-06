@@ -1,13 +1,12 @@
 <example-base-structure
   exampleTitle="Dialog"
-  exampleIconName="fas fa-question-circle"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90dialog"
 >
   <example-base-simple-options>
-    <lux-toggle 
-      class="lux-highlight-section" 
-      luxLabel="Output-Events loggen" 
-      luxHint="(Console --> F12/CMD+ALT+I)" 
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true">
     </lux-toggle>
@@ -63,6 +62,14 @@
       [(luxValue)]="dialogConfig.title"
     >
     </lux-input>
+    <lux-input
+      class="lux-highlight-section"
+      luxName="dialog_icon"
+      luxLabel="dialogIcon"
+      luxHint="Diese Property enthält den Iconnamen des Dialogs."
+      [(luxValue)]="dialogConfig.iconName"
+    >
+  </lux-input>
     <div class="lux-highlight-section column">
       <lux-toggle
         luxLabel="Content-Template nutzen"
@@ -131,7 +138,7 @@
 </example-base-structure>
 
 <ng-template #contentTemplate>
-  <i>Achtung: Ihre Daten werden gespeichert.</i><br />
+  <i>Achtung: Ihre Daten werden gelöscht.</i><br />
   <b>Möchten Sie fortfahren?</b>
 </ng-template>
 

@@ -1,6 +1,7 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { LuxBadgeColors, LuxIconColor, LuxIconColors } from "../../lux-util/lux-colors.enum";
 import { LuxUtil } from '../../lux-util/lux-util';
+import { LuxIconRegistryService } from './lux-icon-registry.service';
 
 @Component({
   selector: 'lux-icon',
@@ -13,17 +14,20 @@ export class LuxIconComponent {
   public static readonly FA_REGULAR = 'far ';
   public static readonly FA_LIGHT = 'fal ';
 
-  private _luxIconSize: string;
-  private _luxIconName: string;
+  private _luxIconSize: string | undefined = '';
+  private _luxIconName = '';
   private _luxPadding = '4px';
   private _backgroundCSSClass = '';
-  private _fontCSSClass = '';
+  private _fontCSSClass = 'blue';
 
   currentIconSize = 1;
-  isIconFA: boolean;
+
 
   @HostBinding('style.margin') styleMargin = '0';
-
+  @HostBinding('class.lux-lx-icon') isIconLX = false;
+  @HostBinding('class.lux-fa-icon') isIconFA = false;
+  @HostBinding('class.lux-no-size') noSize = true;
+ 
   @Input() luxRounded = false;
 
   get luxMargin(): string {
@@ -44,27 +48,31 @@ export class LuxIconComponent {
     this._luxPadding = padding;
   }
 
-  get luxIconSize(): string {
+  get luxIconSize(): string | undefined {
     return this._luxIconSize;
   }
 
-  @Input() set luxIconSize(iconSizeValue: string) {
+  @Input() set luxIconSize(iconSizeValue: string | undefined) {
     this._luxIconSize = iconSizeValue;
-    if (typeof this.luxIconSize === 'string' && this.luxIconSize.length === 2) {
+    if (this.luxIconSize && this.luxIconSize.length === 2) {
       this.currentIconSize = +this.luxIconSize.slice(0, 1);
+      this.noSize = false;
     } else {
       this.currentIconSize = 1;
+      this.noSize = true;
     }
   }
 
-  get luxIconName(): string {
+  get luxIconName(): string | undefined {
     return this._luxIconName;
   }
 
   @Input()
-  set luxIconName(iconNameValue: string) {
+  set luxIconName(iconNameValue: string | undefined) {
     if (iconNameValue) {
-      this._luxIconName = this.modifiyIconName(iconNameValue);
+      this._luxIconName = this.modifyIconName(iconNameValue);
+    } else {
+      this._luxIconName = '';
     }
   }
 
@@ -88,7 +96,9 @@ export class LuxIconComponent {
     }
   }
 
-  constructor() {}
+  @Output() luxLoad = new EventEmitter<Event>()
+
+  constructor(private iconReg: LuxIconRegistryService) {  }
 
   /**
    * Generiert aus dem mitgegebenen Wert einen String-Wert
@@ -99,7 +109,7 @@ export class LuxIconComponent {
    * @param iconName
    * @returns string
    */
-  private modifiyIconName(iconName: string): string {
+  private modifyIconName(iconName: string): string {
     // Handelt es sich hier um ein Font-Awesome Icon?
     if (iconName.startsWith('fa')) {
       // feststellen, ob ein FA-Präfix vorliegt
@@ -113,10 +123,29 @@ export class LuxIconComponent {
         iconName = 'fas ' + iconName;
       }
       this.isIconFA = true;
+      this.isIconLX = false;
       return iconName;
     }
+    if (iconName.startsWith('lux')) {
+      this.isIconLX = true;
+      this.isIconFA = false;
+      this.registerIcon(iconName);
+      return iconName;
+    }
+
     this.isIconFA = false;
-    // Ansonsten davon ausgehen das es ein Material Icon ist
+    this.isIconLX = false;
     return iconName;
+  }
+
+  private registerIcon(iconName:string) {
+    if (this.isIconLX) {
+      try {
+        this.iconReg.registerIcon(iconName);
+      } catch (error) {
+        console.log(error);
+        this._luxIconName = 'lux-interface-alert-warning-diamond';
+      }
+    }
   }
 }

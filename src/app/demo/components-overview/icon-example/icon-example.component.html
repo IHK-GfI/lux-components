@@ -1,11 +1,10 @@
 <example-base-structure
   exampleTitle="Icon"
-  exampleIconName="fas fa-image"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90icon"
 >
   <example-base-content>
     <div fxLayout="column" fxLayoutGap="24px">
-      <div fxLayout="column" class="lux-app-data-bg lux-highlight-section" [ngStyle]="{ backgroundColor: backgroundColor }">
+      <div fxLayout="column" class="lux-app-data-bg lux-highlight-section column" [ngStyle]="{ backgroundColor: backgroundColor }">
         <h3 class="lux-highlight-section-label">Default</h3>
         <div fxLayout="row wrap" fxLayoutGap="12px grid">
           <lux-icon
@@ -20,8 +19,7 @@
           </lux-icon>
         </div>
         <div fxLayout="row wrap" fxLayoutGap="12px grid">
-          <lux-icon
-            *ngFor="let color of colors; let i = index"
+          <lux-icon *ngFor="let color of colors; let i = index"
             [luxIconName]="iconName"
             [luxIconSize]="iconSize"
             [luxPadding]="padding"
@@ -32,7 +30,7 @@
           </lux-icon>
         </div>
       </div>
-      <div fxLayout="column" class="lux-hover-bg lux-highlight-section">
+      <div fxLayout="column" class="lux-hover-bg lux-highlight-section column">
         <h3 class="lux-highlight-section-label">Hover</h3>
         <div fxLayout="row wrap" fxLayoutGap="12px grid">
           <lux-icon
@@ -59,7 +57,7 @@
           </lux-icon>
         </div>
       </div>
-      <div fxLayout="column" class="lux-selected-bg lux-highlight-section">
+      <div fxLayout="column" class="lux-selected-bg lux-highlight-section column">
         <h3 class="lux-highlight-section-label">Focus</h3>
         <div fxLayout="row wrap" fxLayoutGap="12px grid">
           <lux-icon
@@ -86,7 +84,34 @@
           </lux-icon>
         </div>
       </div>
-    </div>
+      <div fxLayout="column" class="lux-gradient-bg lux-highlight-section column">
+        <h3 class="lux-highlight-section-label">Gradient</h3>
+        <div fxLayout="row wrap" fxLayoutGap="12px grid">
+          <lux-icon
+            *ngFor="let color of colors"
+            [luxIconName]="iconName"
+            [luxIconSize]="iconSize"
+            [luxPadding]="padding"
+            [luxMargin]="margin"
+            [luxRounded]="rounded"
+            [luxColor]="color"
+          >
+          </lux-icon>
+        </div>
+        <div fxLayout="row wrap" fxLayoutGap="12px grid">
+          <lux-icon
+            *ngFor="let color of colors; let i = index"
+            [luxIconName]="iconName"
+            [luxIconSize]="iconSize"
+            [luxPadding]="padding"
+            [luxMargin]="margin"
+            [luxRounded]="rounded"
+            class="{{ 'lux-color-' + (colors[i % colors.length]) }}"
+          >
+          </lux-icon>
+        </div>
+      </div>
+    </div> 
   </example-base-content>
   <example-base-simple-options>
     <div class="lux-highlight-section">
@@ -126,6 +151,14 @@
     >
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen. <br/> Z.B. #f0f0f2 oder </lux-form-hint>
     </lux-input>
+    <div class="lux-highlight-section">
+      <lux-link-plain 
+        luxLabel="Zur Iconsuche" 
+        luxHref="/components-overview/example/icon-overview" 
+        luxIconName="lux-interface-arrows-button-right" 
+        [luxIconShowRight]="true"
+      ></lux-link-plain>
+    </div>
   </example-base-simple-options>
   <example-base-advanced-options>
     <div class="lux-highlight-section column">

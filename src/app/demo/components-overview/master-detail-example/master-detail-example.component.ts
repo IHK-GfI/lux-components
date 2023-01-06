@@ -23,9 +23,21 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
     { value: Date.now() + MasterDetailExampleDataService.MONTH, label: 'Nächsten Monat' }
   ];
 
-  configuration: any = {
-    emptyIconDetail: 'fas fa-times',
-    emptyIconMaster: 'fas fa-times',
+  configuration: {
+    emptyIconDetail: string;
+    emptyIconMaster: string;
+    emptyIconDetailSize: string;
+    emptyIconMasterSize: string;
+    emptyLabelDetail: string;
+    emptyLabelMaster: string;
+    opened: boolean;
+    lineBreak: boolean;
+    masterIsReloading: boolean;
+    ignoreScrollLoading: boolean;
+    alignEmptyElements: boolean;
+  } = {
+    emptyIconDetail: 'lux-interface-delete-1',
+    emptyIconMaster: 'lux-interface-delete-1',
     emptyIconDetailSize: '5x',
     emptyIconMasterSize: '5x',
     emptyLabelDetail: 'Keine Daten!',
@@ -39,9 +51,9 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
 
   // toggleMasterFocus des infinite scroll
   scrollSteps = 5;
-  // enthält alle list-item eintraege immer vor
+  // Enthält alle list-item Einträge immer vor
   allMasterEntries: any[];
-  masterEntries = [];
+  masterEntries: any[] = [];
   selectedDetail: any;
 
   constructor(
@@ -60,7 +72,7 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
     this.footerService.pushButtonInfos(
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Dokumentation',
-        iconName: 'fas fa-external-link-alt',
+        iconName: 'lux-interface-arrows-expand-5',
         cmd: 'documentation-btn',
         color: 'primary',
         raised: true,
@@ -71,7 +83,7 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
       }),
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Overview',
-        iconName: 'fas fa-caret-left',
+        iconName: 'lux-interface-arrows-button-left',
         cmd: 'back-btn',
         color: 'primary',
         raised: true,
@@ -131,12 +143,12 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
     this.logger.log('Detail geladen', data);
   }
 
-  changeFilter($event) {
-    if (!$event.value) {
+  changeFilter(event: any) {
+    if (!event.value) {
       this.masterEntries = this.allMasterEntries;
       this.configuration.ignoreScrollLoading = false;
     } else {
-      this.masterEntries = this.allMasterEntries.filter(entry => entry.timestamp < $event.value);
+      this.masterEntries = this.allMasterEntries.filter(entry => entry.timestamp < event.value);
       this.configuration.ignoreScrollLoading = true;
     }
   }
@@ -147,7 +159,7 @@ export class MasterDetailExampleComponent implements OnInit, OnDestroy {
    * @param o1
    * @param o2
    */
-  compareFn(o1, o2) {
+  compareFn(o1: any, o2: any) {
     return o1.id === o2.id;
   }
 

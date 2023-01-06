@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -15,12 +16,13 @@ export class TabsExampleComponent {
   displayDivider = true;
   lazyLoading = false;
   backgroundColor = '#ffffff';
+  showBorder = false;
 
   tabs: any[] = [
     {
       title: 'Title #1',
       disabled: false,
-      iconName: 'fas fa-bookmark',
+      iconName: 'lux-interface-bookmark',
       imageSrc: 'assets/png/image-36x36.png',
       imageAlign: 'center',
       imageHeight: '36px',
@@ -32,7 +34,7 @@ export class TabsExampleComponent {
     {
       title: 'Title #2',
       disabled: false,
-      iconName: 'fas fa-user',
+      iconName: 'lux-interface-user-single',
       imageSrc: 'assets/png/image-36x36.png',
       imageHeight: '36px',
       imageWidth: '36px',
@@ -44,7 +46,7 @@ export class TabsExampleComponent {
     {
       title: 'Title #3',
       disabled: false,
-      iconName: 'fas fa-check',
+      iconName: 'lux-interface-validation-check',
       imageSrc: 'assets/png/image-36x36.png',
       imageHeight: '36px',
       imageWidth: '36px',
@@ -57,11 +59,11 @@ export class TabsExampleComponent {
 
   constructor() {}
 
-  activeTabChanged($event) {
-    this.log(this.showOutputEvents, 'luxActiveTabChanged', $event);
+  activeTabChanged(event: MatTabChangeEvent) {
+    this.log(this.showOutputEvents, 'luxActiveTabChanged', event);
   }
 
-  tabContentCreated(tab) {
+  tabContentCreated(tab: any) {
     this.log(this.showOutputEvents, 'Tab-Content created', tab);
   }
 }

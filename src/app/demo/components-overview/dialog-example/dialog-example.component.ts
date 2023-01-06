@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './dialog-example.component.html'
 })
 export class DialogExampleComponent implements OnDestroy {
-  @ViewChild('contentTemplate', { static: true }) contentTemplate: TemplateRef<any>;
+  @ViewChild('contentTemplate', { static: true }) contentTemplate!: TemplateRef<any>;
   useContentTemplate = false;
   showOutputEvents = false;
   contentTemplateString =
@@ -26,20 +26,23 @@ export class DialogExampleComponent implements OnDestroy {
     disableClose: true,
     width: 'auto',
     height: 'auto',
+    iconName: 'lux-interface-alert-warning-triangle',
     panelClass: [],
     confirmAction: {
       label: 'Löschen',
-      raised: true,
+      raised: false,
+      outlined: true,
       color: 'warn'
     },
     declineAction: {
       label: 'Abbrechen',
-      raised: true,
-      color: ''
+      raised: false,
+      flat: true,
+      color: 'primary'
     }
   };
 
-  exampleData;
+  exampleData: {} | null = null;
 
   private subscriptions: Subscription[] = [];
 
@@ -81,17 +84,19 @@ export class DialogExampleComponent implements OnDestroy {
     );
   }
 
-  useContentTemplateChange($event: boolean) {
-    if ($event) {
+  useContentTemplateChange(useContentTemplate: boolean) {
+    if (useContentTemplate) {
       this.dialogConfig.contentTemplate = this.contentTemplate;
     } else {
       this.dialogConfig.contentTemplate = undefined;
     }
   }
 
-  updatePanelClass($event: string) {
-    if ($event && $event.length > 0) {
-      this.dialogConfig.panelClass = $event.split(',');
+  updatePanelClass(event: string | string[] | null | undefined) {
+    if (Array.isArray(event)) {
+      this.dialogConfig.panelClass = event;
+    } else if (event && event.length > 0) {
+      this.dialogConfig.panelClass = event.split(',');
     }
   }
 }

@@ -39,7 +39,7 @@
 </lux-form-control>
 
 <ng-template #noTemplateRefTemplate let-option>
-  <ng-container *ngIf="option && option[luxOptionLabelProp]; else showObjectTemplate">
+  <ng-container *ngIf="option && luxOptionLabelProp && option[luxOptionLabelProp]; else showObjectTemplate">
     {{ option | luxRenderProperty: luxOptionLabelProp }}
   </ng-container>
   <ng-template #showObjectTemplate>

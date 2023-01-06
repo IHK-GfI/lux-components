@@ -13,8 +13,8 @@ export const luxFormControlSelektor = 'lux-form-control';
   templateUrl: './lux-form-control.component.html',
   styleUrls: ['./lux-form-control.component.scss']
 })
-export class LuxFormControlComponent {
-  focused: boolean;
+export class LuxFormControlComponent<T> {
+  focused = false;
 
   @HostBinding('class.lux-form-control-scalable-height') _luxScalableHeight = false;
   @HostBinding('class.lux-form-control-no-top-label') _luxNoTopLabel = false;
@@ -25,10 +25,10 @@ export class LuxFormControlComponent {
   /**
    * Die zugrunde liegende FormComponent
    */
-  @Input() luxFormComponent: LuxFormComponentBase;
-  @Input() luxFormComponentElementRef: ElementRef;
+  @Input() luxFormComponent!: LuxFormComponentBase<T>;
+  @Input() luxFormComponentElementRef?: ElementRef;
   @Input() luxIgnoreDefaultLabel = false;
-  @Input() luxCounterLabel = ''; 
+  @Input() luxCounterLabel = '';
   @Input() luxHideCounterLabel = false;
   @Input() luxLabelLongFormat = false;
 
@@ -48,7 +48,7 @@ export class LuxFormControlComponent {
   /**
    * Dient dazu, bei einer Component den Label-Container auszublenden.
    *
-   * @param scalable
+   * @param noLabel
    */
   @Input() set luxNoTopLabel(noLabel: boolean) {
     this._luxNoTopLabel = noLabel;
@@ -61,7 +61,7 @@ export class LuxFormControlComponent {
   /**
    * Dient dazu, bei einer Component den Label-Container und den Misc-Container auszublenden.
    *
-   * @param scalable
+   * @param noLabel
    */
   @Input() set luxNoLabels(noLabel: boolean) {
     this._luxNoLabels = noLabel;
@@ -74,7 +74,7 @@ export class LuxFormControlComponent {
   /**
    * Dient dazu, bei einer Component den Misc-Container auszublenden.
    *
-   * @param scalable
+   * @param noLabel
    */
   @Input() set luxNoBottomLabel(noLabel: boolean) {
     this._luxNoBottomLabel = noLabel;
@@ -85,7 +85,7 @@ export class LuxFormControlComponent {
   }
 
   /**
-   * Bestimmt ob die untere Border ausgeblendet werden soll oder nicht (z.B. bei Checkbox).
+   * Bestimmt, ob die untere Border ausgeblendet werden soll oder nicht (z.B. bei Checkbox).
    *
    * @param hide
    */
@@ -96,26 +96,14 @@ export class LuxFormControlComponent {
   get luxHideBottomBorder(): boolean {
     return this._luxHideBottomBorder;
   }
-  
+
   constructor(private cdr: ChangeDetectorRef) {}
 
   /**
    * Gibt wieder, ob der Fehler für diese FormComponent dargestellt werden soll.
    */
   shouldDisplayError() {
-    return this.luxFormComponent.errorMessage && this.luxFormComponent.formControl.touched;
-  }
-
-  shouldDisplayMisc() {
-    return (!this.luxNoBottomLabel && !this.luxNoLabels)
-  }
-
-  shouldDisplayLabelByProperty() {
-    return !this.luxFormComponent.formLabelComponent && this.luxFormComponent.luxLabel;
-  }
-
-  shouldDisplayHintByProperty() {
-    return this.luxFormComponent.formHintComponent && !this.luxFormComponent.luxHint;
+    return this.luxFormComponent && this.luxFormComponent.errorMessage && this.luxFormComponent.formControl.touched;
   }
 
   /**

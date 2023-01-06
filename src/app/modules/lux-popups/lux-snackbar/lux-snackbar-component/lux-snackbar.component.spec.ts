@@ -1,4 +1,5 @@
 /* eslint-disable max-classes-per-file */
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, NgModule, Injectable } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -18,7 +19,7 @@ describe('LuxSnackbarComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [MockSnackbarModule]
+      imports: [MockSnackbarModule, HttpClientTestingModule]
     });
   });
 
@@ -65,7 +66,7 @@ describe('LuxSnackbarComponent', () => {
   }));
 });
 
-const findToggleElement = (toggleElement) => {
+const findToggleElement = (toggleElement: any) => {
   // Wenn das Element nicht die richtige CSS-Klasse hat, prüfe den Parent und
   // die Children (browserabhängig welches gecatched wird).
   if (toggleElement.className.indexOf('lux-menu-trigger') === -1) {
@@ -117,13 +118,12 @@ class MockStorageService {
 }
 
 @NgModule({
-  imports: [MatSnackBarModule, LuxPopupsModule, LuxLayoutModule, LuxActionModule, NoopAnimationsModule],
-  exports: [],
-  providers: [
-    { provide: LuxMasterDetailMobileHelperService, useClass: MockMobileHelperService },
-    { provide: LuxStorageService, useClass: MockStorageService }
-  ],
-  declarations: [MockSnackbarComponent],
-  entryComponents: [LuxSnackbarComponent]
+    imports: [MatSnackBarModule, LuxPopupsModule, LuxLayoutModule, LuxActionModule, NoopAnimationsModule],
+    exports: [],
+    providers: [
+        { provide: LuxMasterDetailMobileHelperService, useClass: MockMobileHelperService },
+        { provide: LuxStorageService, useClass: MockStorageService }
+    ],
+    declarations: [MockSnackbarComponent]
 })
 class MockSnackbarModule {}

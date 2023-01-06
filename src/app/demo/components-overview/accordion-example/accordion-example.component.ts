@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LuxModeType } from "../../../modules/lux-layout/lux-accordion/lux-accordion.component";
+import { LuxModeType } from '../../../modules/lux-layout/lux-accordion/lux-accordion.component';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -8,16 +8,9 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
   styleUrls: ['./accordion-example.component.scss']
 })
 export class AccordionExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   showOutputEvents = false;
   log = logResult;
   displayModes = ['flat', 'default'];
-
-  // endregion
-
-  // region Properties der Component
-
   disabled = false;
   disabled1Panel = false;
   disabled2Panel = false;
@@ -31,12 +24,22 @@ export class AccordionExampleComponent {
   collapsedHeaderHeight1Panel = '64px';
   expandedHeaderHeight2Panel = '64px';
   collapsedHeaderHeight2Panel = '64px';
-  displayMode: LuxModeType = 'default';
+  _displayMode: LuxModeType = 'default';
+  
+  set displayMode(mode: LuxModeType) {
+    this.expanded = false;
+    this._displayMode = mode;
+    setTimeout(() => this.expanded = true);
+  }
+  
+  get displayMode() {
+    return this._displayMode;
+  }
+  
   panelConfigArr: { title: string; description: string }[] = [
-    { title: 'Panel #1', description: 'Beschreibung Panel #1' },
+    { title: 'Panel #1 -  Hauptüberschrift im Panel', description: 'Optionale zusätzliche Beschreibung' },
     { title: 'Panel #2', description: 'Beschreibung Panel #2' },
   ];
-
   _multiMode = true;
 
   get multiMode() {
@@ -46,12 +49,10 @@ export class AccordionExampleComponent {
   set multiMode(multiMode: boolean) {
     this._multiMode = multiMode;
 
-    if (multiMode === false) {
+    if (!multiMode) {
       this.expanded = false;
     }
   }
-
-  // endregion
 
   constructor() {}
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { ComponentsOverviewNavigationService } from '../../components-overview/components-overview-navigation.service';
 import { LuxMediaQueryObserverService } from '../../../modules/lux-util/lux-media-query-observer.service';
 import { NavigationEnd, Router } from '@angular/router';
@@ -9,22 +9,20 @@ import { Subscription } from 'rxjs';
   templateUrl: './example-root.component.html',
   styleUrls: ['./example-root.component.scss']
 })
-export class ExampleRootComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ExampleRootComponent implements AfterViewInit, OnDestroy {
   private routerSubscription: Subscription;
   private blockScrolling = false;
   private subscription: Subscription;
 
   desktopView: boolean;
 
-  @ViewChild('exampleListElement') exampleListElement: ElementRef;
+  @ViewChild('exampleListElement') exampleListElement!: ElementRef;
 
   constructor(
     private router: Router,
     public navigationService: ComponentsOverviewNavigationService,
     private mediaQueryService: LuxMediaQueryObserverService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.routerSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         if (this.blockScrolling) {
@@ -34,6 +32,8 @@ export class ExampleRootComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
     });
+
+    this.desktopView = !this.mediaQueryService.isXS() && !this.mediaQueryService.isSM();
 
     this.subscription = this.mediaQueryService.getMediaQueryChangedAsObservable().subscribe(query => {
       this.desktopView = !this.mediaQueryService.isXS() && !this.mediaQueryService.isSM();
@@ -47,7 +47,6 @@ export class ExampleRootComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
-      this.routerSubscription = null;
     }
 
     this.subscription.unsubscribe();

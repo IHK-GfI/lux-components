@@ -5,14 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './ripple-example.component.html'
 })
 export class RippleExampleComponent {
-  color;
+  color = '';
   unbounded = false;
   centered = false;
   radius = 0;
-  animation;
   disabled = false;
-  enterDuration;
-  exitDuration;
+  enterDuration = 0;
+  exitDuration = 0;
 
   constructor() {}
 }

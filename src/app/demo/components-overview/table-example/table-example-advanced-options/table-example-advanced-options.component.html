@@ -61,7 +61,7 @@
       <lux-panel-content>
         <lux-toggle luxLabel="Sortierbar" [(luxChecked)]="config.sortable" [luxNoTopLabel]="true">
         </lux-toggle>
-        <lux-toggle [(luxChecked)]="config.sticky" [luxDisabled]="config.sticky === undefined" [luxNoTopLabel]="true">
+        <lux-toggle luxTagId="table-advanced-options-sticky" [(luxChecked)]="config.sticky" [luxDisabled]="config.sticky === undefined" [luxNoTopLabel]="true">
           <lux-form-label>Sticky</lux-form-label>
         </lux-toggle>
         <lux-select

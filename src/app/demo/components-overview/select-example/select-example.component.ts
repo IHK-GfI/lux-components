@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { LuxFormSelectableBase } from '../../../modules/lux-form/lux-form-model/lux-form-selectable-base.class';
 import {
+  emptyErrorCallback,
   exampleCompareWithFn,
   exampleErrorCallback,
   examplePickValueFn,
@@ -9,20 +10,21 @@ import {
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
 
+interface SelectDummyForm {
+  selectExample: FormControl<any>;
+}
+
 @Component({
   selector: 'app-select-example',
   templateUrl: './select-example.component.html'
 })
 export class SelectExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useErrorMessage = true;
   useTemplatesForLabels = false;
   useCompareWithFn = false;
-  useValueFn: boolean;
-  useSimpleArray: boolean;
+  useValueFn = false;
+  useSimpleArray = false;
   showOutputEvents = false;
-
   options: { label: string; value: number }[] = [
     { label: 'Afghanistan', value: 1 },
     { label: 'Albanien', value: 2 },
@@ -66,46 +68,34 @@ export class SelectExampleComponent {
     { label: 'Weihnachtsinsel', value: 40 },
     { label: 'Zypern', value: 41 }
   ];
-
   optionsPrimitive: string[] = ['Option #1', 'Option #2', 'Option #3'];
-
-  form: FormGroup;
+  form: FormGroup<SelectDummyForm>;
   log = logResult;
-  
   labelLongFormat = false;
-  // endregion
-
-  // region Properties der Component
-
   controlBinding = 'selectExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
   placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
-
-  value;
-  multiselectValue;
-
+  value: any = null;
+  multiselectValue: any = null;
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   pickValueFn = examplePickValueFn;
   compareWithFn = exampleCompareWithFn;
-
   pickValueFnString: string;
   compareWithFnString: string;
   errorCallbackString: string;
+  defaultCompareWith = (o1: any, o2: any) => o1 === o2;
 
-  // endregion
-
-  defaultCompareWith = (o1, o2) => o1 === o2;
-
-  constructor(private _fb: FormBuilder) {
-    this.form = this._fb.group({
-      selectExample: []
+  constructor() {
+    this.form = new FormGroup<SelectDummyForm>({
+      selectExample: new FormControl<any>(null)
     });
 
     this.pickValueFnString = '' + this.pickValueFn;
@@ -116,7 +106,7 @@ export class SelectExampleComponent {
   showErrors(...comps: LuxFormSelectableBase[]) {
     this.value = null;
     this.multiselectValue = null;
-    this.form.get(this.controlBinding).setValue(null);
+    this.form.get(this.controlBinding)!.setValue(null);
 
     this.changeRequired(true);
 
@@ -125,39 +115,37 @@ export class SelectExampleComponent {
     });
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
 
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
 
-  changeUseSimpleArray($event: boolean) {
+  changeUseSimpleArray(useSimpleArray: boolean) {
     this.reset();
-    this.useValueFn = $event === true ? false : this.useValueFn;
-    this.useCompareWithFn = $event === true ? false : this.useCompareWithFn;
+    this.useValueFn = useSimpleArray ? false : this.useValueFn;
+    this.useCompareWithFn = useSimpleArray ? false : this.useCompareWithFn;
   }
 
-  changeUseValueFn($event: boolean) {
+  changeUseValueFn(useValueFn: boolean) {
     this.reset();
-    this.useSimpleArray = $event === true ? false : this.useSimpleArray;
-    this.useCompareWithFn = $event === true ? false : this.useCompareWithFn;
+    this.useSimpleArray = useValueFn ? false : this.useSimpleArray;
+    this.useCompareWithFn = useValueFn ? false : this.useCompareWithFn;
   }
 
-  changeCompareWithFn($event: boolean) {
+  changeCompareWithFn(useCompareWithfn: boolean) {
     this.reset();
-    this.useSimpleArray = $event === true ? false : this.useSimpleArray;
-    this.useValueFn = $event === true ? false : this.useValueFn;
+    this.useSimpleArray = useCompareWithfn ? false : this.useSimpleArray;
+    this.useValueFn = useCompareWithfn ? false : this.useValueFn;
   }
-
-  emptyCallback() {}
 
   reset(...comps: LuxFormSelectableBase[]) {
     this.value = undefined;
     this.multiselectValue = undefined;
-    this.form.get(this.controlBinding).setValue(undefined);
+    this.form.get(this.controlBinding)!.setValue(undefined);
 
     comps.forEach((comp: LuxFormSelectableBase) => {
       comp.formControl.markAsUntouched();

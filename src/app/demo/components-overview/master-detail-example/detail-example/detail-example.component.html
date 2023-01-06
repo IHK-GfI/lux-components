@@ -9,7 +9,7 @@
           luxName="master-detail_luxEmptyLabelDetail"
           luxLabel="luxEmptyLabelDetail"
           luxHint="Diese Property bestimmt das Label welches angezeigt wird, wenn kein Detail selektiert ist."
-          [(luxValue)]="masterDetailConfig.emptyLabelDetail"
+          [(luxValue)]="masterDetailConfig!.emptyLabelDetail"
           fxFlex.gt-sm="0 0 calc(50% - 32px)"
         >
         </lux-input>
@@ -17,7 +17,7 @@
           luxName="master-detail_luxEmptyLabelMaster"
           luxLabel="luxEmptyLabelMaster"
           luxHint="Diese Property bestimmt das Label welches angezeigt wird, wenn keine Master-Elemente vorhanden sind."
-          [(luxValue)]="masterDetailConfig.emptyLabelMaster"
+          [(luxValue)]="masterDetailConfig!.emptyLabelMaster"
           fxFlex.gt-sm="0 0 50%"
         >
         </lux-input>
@@ -27,7 +27,7 @@
           luxName="master-detail_luxEmptyIconDetail"
           luxLabel="luxEmptyIconDetail"
           luxHint="Die Property legt das Icon fest, das angezeigt wird wenn kein Detail ausgewählt ist."
-          [(luxValue)]="masterDetailConfig.emptyIconDetail"
+          [(luxValue)]="masterDetailConfig!.emptyIconDetail"
           fxFlex.gt-sm="0 0 calc(50% - 32px)"
         >
         </lux-input>
@@ -35,7 +35,7 @@
           luxName="master-detail_luxEmptyIconMaster"
           luxLabel="luxEmptyIconMaster"
           luxHint="Die Property legt das Icon fest, das angezeigt wird wenn keine Master-Elemente vorhanden sind."
-          [(luxValue)]="masterDetailConfig.emptyIconMaster"
+          [(luxValue)]="masterDetailConfig!.emptyIconMaster"
           fxFlex.gt-sm="0 0 50%"
         >
         </lux-input>
@@ -44,7 +44,7 @@
         <lux-select
           luxLabel="luxEmptyIconDetailSize"
           luxHint="Über diese Eigenschaft wird die (relative) Größe des EmptyDetail-Icons festgelegt."
-          [(luxSelected)]="masterDetailConfig.emptyIconDetailSize"
+          [(luxSelected)]="masterDetailConfig!.emptyIconDetailSize"
           [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
           fxFlex.gt-sm="0 0 calc(50% - 32px)"
         >
@@ -52,40 +52,40 @@
         <lux-select
           luxLabel="luxEmptyIconMasterSize"
           luxHint="Über diese Eigenschaft wird die (relative) Größe des EmptyMaster-Icons festgelegt."
-          [(luxSelected)]="masterDetailConfig.emptyIconMasterSize"
+          [(luxSelected)]="masterDetailConfig!.emptyIconMasterSize"
           [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
           fxFlex.gt-sm="0 0 50%"
         >
         </lux-select>
       </div>
-    
+
       <lux-divider [luxInset]="true"></lux-divider>
       <div class="lux-simple-form column">
         <lux-toggle
           luxLabel="luxOpen"
           luxHint="Die Property stellt ein ob die Masterliste aufgeklappt ist."
-          [(luxChecked)]="masterDetailConfig.opened"
+          [(luxChecked)]="masterDetailConfig!.opened"
           [luxNoTopLabel]="true"
         >
         </lux-toggle>
         <lux-toggle
           luxLabel="luxTitleLineBreak"
           luxHint="Mithilfe dieses Flags kann eingestellt werden, ob die Titel in der Masterliste umbrechen oder mit '...' abgekürzt werden."
-          [(luxChecked)]="masterDetailConfig.lineBreak"
+          [(luxChecked)]="masterDetailConfig!.lineBreak"
           [luxNoTopLabel]="true"
         >
         </lux-toggle>
         <lux-toggle
           luxLabel="luxMasterIsReloading"
           luxHint="Über diesen Flag kann der Spinner am Ende der Masterliste sichtbar gemacht werden."
-          [(luxChecked)]="masterDetailConfig.masterIsReloading"
+          [(luxChecked)]="masterDetailConfig!.masterIsReloading"
           [luxNoTopLabel]="true"
         >
         </lux-toggle>
         <lux-toggle
           luxLabel="Infinite-Scrolling ignorieren"
           luxHint="Das Nachladen weiterer Master-Einträge mithilfe von Infinite-Scrolling unterbinden."
-          [(luxChecked)]="masterDetailConfig.ignoreScrollLoading"
+          [(luxChecked)]="masterDetailConfig!.ignoreScrollLoading"
           [luxNoTopLabel]="true"
         >
         </lux-toggle>

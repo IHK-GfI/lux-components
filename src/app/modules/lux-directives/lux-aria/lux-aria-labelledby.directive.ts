@@ -5,16 +5,16 @@ import { LuxAriaBase } from './lux-aria-base';
   selector: '[luxAriaLabelledby]'
 })
 export class LuxAriaLabelledbyDirective extends LuxAriaBase<string> {
-  _luxAriaLabelledby: string;
+  _luxAriaLabelledby?: string;
 
-  @Input() luxAriaLabelledbySelector: string;
+  @Input() luxAriaLabelledbySelector?: string;
 
   @Input()
   get luxAriaLabelledby() {
     return this._luxAriaLabelledby;
   }
 
-  set luxAriaLabelledby(labelledby: string) {
+  set luxAriaLabelledby(labelledby: string | undefined) {
     this._luxAriaLabelledby = labelledby;
 
     this.renderAria();
@@ -33,11 +33,11 @@ export class LuxAriaLabelledbyDirective extends LuxAriaBase<string> {
     }
   }
 
-  getSelector(): string {
+  getSelector(): string | undefined {
     return this.luxAriaLabelledbySelector;
   }
 
-  getValue(): string {
+  getValue(): string | undefined {
     return this._luxAriaLabelledby;
   }
 }

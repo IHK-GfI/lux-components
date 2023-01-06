@@ -5,16 +5,16 @@ import { LuxAriaBase } from './lux-aria-base';
   selector: '[luxAriaRequired]'
 })
 export class LuxAriaRequiredDirective extends LuxAriaBase<boolean> {
-  _luxAriaRequired: boolean;
+  _luxAriaRequired?: boolean;
 
-  @Input() luxAriaRequiredSelector: string;
+  @Input() luxAriaRequiredSelector?: string;
 
   @Input()
   get luxAriaRequired() {
     return this._luxAriaRequired;
   }
 
-  set luxAriaRequired(required: boolean) {
+  set luxAriaRequired(required: boolean | undefined) {
     this._luxAriaRequired = required;
 
     this.renderAria();
@@ -24,11 +24,11 @@ export class LuxAriaRequiredDirective extends LuxAriaBase<boolean> {
     super(elementRef, renderer, 'aria-required');
   }
 
-  getSelector(): string {
+  getSelector(): string | undefined {
     return this.luxAriaRequiredSelector;
   }
 
-  getValue(): boolean {
+  getValue(): boolean | undefined {
     return this._luxAriaRequired;
   }
 }

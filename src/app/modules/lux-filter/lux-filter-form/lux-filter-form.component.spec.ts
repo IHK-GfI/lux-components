@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { Component, OnDestroy, ViewChild } from "@angular/core";
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Subscription } from 'rxjs';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
@@ -32,8 +32,8 @@ describe('LuxFilterFormComponent', () => {
     // Init
     const spy = spyOn(component, 'onFilter').and.callThrough();
 
-    // Vorbedingungen prüfen
-    expect(component.filterComponent.filterForm.get('input').value).toBeUndefined();
+    // Vorbedingungen testen
+    expect(component.filterComponent.filterForm.get('input')!.value).toBeUndefined();
 
     // Änderungen durchführen
     component.initFilter = { input: 'Not empty' };
@@ -48,8 +48,8 @@ describe('LuxFilterFormComponent', () => {
     // Init
     const spy = spyOn(component, 'onFilter').and.callThrough();
 
-    // Vorbedingungen prüfen
-    expect(component.filterComponent.filterForm.get('input').value).toBeUndefined();
+    // Vorbedingungen testen
+    expect(component.filterComponent.filterForm.get('input')!.value).toBeUndefined();
 
     // Änderungen durchführen
     // Validierungsfehler: Das Feld 'input' ist required und darf somit nicht leer sein.
@@ -65,7 +65,7 @@ describe('LuxFilterFormComponent', () => {
     // Init
     const spy = spyOn(component, 'onFilter').and.callThrough();
 
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     expect(component.filterComponent.luxFilterValues).toEqual({});
 
     // Änderungen durchführen
@@ -75,15 +75,15 @@ describe('LuxFilterFormComponent', () => {
     // Nachbedingungen prüfen
     expect(spy).toHaveBeenCalledTimes(1);
 
-    // Änderungen durchführen
+    // Änderungen durchführen.
     // Hier sollen die Filterwerte ersetzt werden.
     component.initFilter = { autocomplete: component.autoCompleteOptions[0] };
     fixture.detectChanges();
 
     // Nachbedingungen prüfen
     expect(spy).toHaveBeenCalledTimes(1); // Es bleibt bei 1, weil das Pflichtfeld "input" nicht gefüllt ist.
-    expect(component.filterComponent.filterForm.get('autocomplete').value).toEqual(component.autoCompleteOptions[0]);
-    expect(component.filterComponent.filterForm.get('input').value).toBeUndefined();
+    expect(component.filterComponent.filterForm.get('autocomplete')!.value).toEqual(component.autoCompleteOptions[0]);
+    expect(component.filterComponent.filterForm.get('input')!.value).toBeUndefined();
   });
 });
 
@@ -97,7 +97,7 @@ describe('LuxFilterFormComponent', () => {
       (luxOnSave)="onSave($event)"
       (luxOnLoad)="onLoad($event)"
       (luxOnReset)="onReset()"
-      (luxOnDelete)="onDelete($event)"
+      (luxOnDelete)="onDelete()"
       [luxShowChips]="showFilterChips"
       [luxStoredFilters]="storedFilters"
       class="lux-ml-1 lux-mr-1 lux-mb-3"
@@ -121,7 +121,6 @@ describe('LuxFilterFormComponent', () => {
           fxFlex.xs="1 1 auto"
           fxFlex.md="1 1 auto"
           luxLabel="Autocomplete"
-          luxName="filter_autocomplete"
           [luxOptions]="autoCompleteOptions"
           luxControlBinding="autocomplete"
           [luxFilterDisabled]="autoCompleteDisabled"
@@ -174,7 +173,6 @@ describe('LuxFilterFormComponent', () => {
           fxFlex.xs="1 1 auto"
           fxFlex.md="1 1 auto"
           luxLabel="Toggle"
-          luxName="filter_toggle"
           luxControlBinding="toggle"
           [luxFilterRenderFn]="renderToggleFn"
           [luxFilterDisabled]="toggleSelectDisabled"
@@ -186,8 +184,8 @@ describe('LuxFilterFormComponent', () => {
     </lux-filter-form>
   `
 })
-class TestFilterFormComponent implements OnInit, OnDestroy {
-  @ViewChild(LuxFilterFormComponent) filterComponent: LuxFilterFormComponent;
+class TestFilterFormComponent implements OnDestroy {
+  @ViewChild(LuxFilterFormComponent) filterComponent!: LuxFilterFormComponent;
 
   autoCompleteOptions: any[] = [
     { label: 'Auto A', value: 'a' },
@@ -213,7 +211,7 @@ class TestFilterFormComponent implements OnInit, OnDestroy {
   expanded = false;
   showFilterChips = true;
 
-  storedFilters = [];
+  storedFilters: LuxFilter[] = [];
 
   mediaQuerySubscription: Subscription;
 
@@ -230,15 +228,9 @@ class TestFilterFormComponent implements OnInit, OnDestroy {
   toggleSelectDisabled = false;
   toggleSelectHidden = false;
 
-  constructor(private mediaQuery: LuxMediaQueryObserverService) {}
-
-  ngOnInit(): void {
+  constructor(private mediaQuery: LuxMediaQueryObserverService) {
     this.mediaQuerySubscription = this.mediaQuery.getMediaQueryChangedAsObservable().subscribe(() => {
-      if (this.mediaQuery.isSmallerOrEqual('xs')) {
-        this.showFilterChips = false;
-      } else {
-        this.showFilterChips = true;
-      }
+      this.showFilterChips = !this.mediaQuery.isSmallerOrEqual('xs');
     });
   }
 
@@ -250,7 +242,7 @@ class TestFilterFormComponent implements OnInit, OnDestroy {
     return o1.value === o2.value;
   };
 
-  renderToggleFn(filterItem: LuxFilterItem, value: any) {
+  renderToggleFn(filterItem: LuxFilterItem<boolean>, value: boolean) {
     return value ? 'aktiviert' : 'deaktiviert';
   }
 
@@ -262,7 +254,7 @@ class TestFilterFormComponent implements OnInit, OnDestroy {
     this.saveFilter(filter);
   }
 
-  onDelete(filter: LuxFilter) {}
+  onDelete() {}
 
   onReset() {}
 
@@ -277,6 +269,12 @@ class TestFilterFormComponent implements OnInit, OnDestroy {
 
   private loadFilter(filterName: string) {
     // Hier müssten die Filtereinstellungen (z.B. aus der Datenbank) gelesen und zurückgeliefert werden.
-    return JSON.parse(JSON.stringify(this.storedFilters.find((filter) => filter.name === filterName).data));
+    const luxFilter = this.storedFilters.find((filter) => filter.name === filterName);
+
+    if (!luxFilter) {
+      throw Error(`Es konnte kein Filter mit dem Namen "${filterName}" gefunden werden.`);
+    }
+
+    return JSON.parse(JSON.stringify(luxFilter.data));
   }
 }

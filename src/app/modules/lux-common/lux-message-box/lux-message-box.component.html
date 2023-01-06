@@ -1,4 +1,4 @@
-<div fxLayout="column" [@messageBoxVisibility] *ngIf="luxMessages && luxMessages.length > 0" luxAriaLabel="Meldungen" i18n-luxAriaLabel="@@luxc.message.container.arialabel" class="lux-message-box-content" tabindex="0" #messagebox>
+<div fxLayout="column" @messageBoxVisibility *ngIf="luxMessages && luxMessages.length > 0" luxAriaLabel="Meldungen" i18n-luxAriaLabel="@@luxc.message.container.arialabel" class="lux-message-box-content" tabindex="0" #messagebox>
   <div role="list">
     <lux-message
       *ngFor="let displayedMessage of displayedMessages"

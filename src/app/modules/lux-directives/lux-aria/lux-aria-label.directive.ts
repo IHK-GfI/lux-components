@@ -5,16 +5,16 @@ import { LuxAriaBase } from './lux-aria-base';
   selector: '[luxAriaLabel]'
 })
 export class LuxAriaLabelDirective extends LuxAriaBase<string> {
-  _luxAriaLabel: string;
+  _luxAriaLabel?: string;
 
-  @Input() luxAriaLabelSelector: string;
+  @Input() luxAriaLabelSelector?: string;
 
   @Input()
   get luxAriaLabel() {
     return this._luxAriaLabel;
   }
 
-  set luxAriaLabel(label: string) {
+  set luxAriaLabel(label: string | undefined) {
     this._luxAriaLabel = label;
 
     this.renderAria();
@@ -33,11 +33,11 @@ export class LuxAriaLabelDirective extends LuxAriaBase<string> {
     }
   }
 
-  getSelector(): string {
+  getSelector(): string | undefined {
     return this.luxAriaLabelSelector;
   }
 
-  getValue(): string {
+  getValue(): string | undefined {
     return this._luxAriaLabel;
   }
 }

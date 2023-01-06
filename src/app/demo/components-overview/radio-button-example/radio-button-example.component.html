@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Radio-Buttons"
-  exampleIconName="fas fa-circle"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90radio"
 >
   <example-base-content>
@@ -63,7 +62,7 @@
       <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <span fxFlex="35px">Wert:</span>
-          <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
+          <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
         </div>
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
@@ -108,14 +107,13 @@
       >
       </lux-input>
       <lux-toggle
-        luxName="radio_luxHintShowOnlyOnFocus"
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
         [luxNoTopLabel]="true"
       ></lux-toggle>
     </div>
-    
+
     <lux-layout-form-row class="lux-highlight-section" [luxGap]="{ rowItem:'32px' }">
       <lux-toggle
         [(luxChecked)]="disabled"
@@ -141,14 +139,14 @@
         <lux-button
           luxLabel="Enable"
           luxColor="primary"
-          (luxClicked)="form.get(controlBinding).enable()"
-          [luxDisabled]="!form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.enable()"
+          [luxDisabled]="!form.get(controlBinding)!.disabled"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
           luxColor="primary"
-          (luxClicked)="form.get(controlBinding).disable()"
-          [luxDisabled]="form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.disable()"
+          [luxDisabled]="form.get(controlBinding)!.disabled"
         ></lux-button>
       </div>
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
@@ -273,6 +271,7 @@
       class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [luxNoTopLabel]="true"
       [(luxChecked)]="labelLongFormat"
     >
     </lux-toggle>
@@ -283,7 +282,6 @@
         [luxRaised]="true"
         luxLabel="Werte resetten"
         (luxClicked)="reset(defaultRadioComp, reactiveRadioComp)"
-        luxColor=""
         fxFlex="0 0 auto"
       ></lux-button>
       <lux-button

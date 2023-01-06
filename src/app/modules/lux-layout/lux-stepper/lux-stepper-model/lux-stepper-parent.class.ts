@@ -11,7 +11,7 @@ import {
   ViewChildren,
   ViewContainerRef
 } from '@angular/core';
-import { MatHorizontalStepper, MatVerticalStepper } from '@angular/material/stepper';
+import { MatStepper } from '@angular/material/stepper';
 import { Subscription } from 'rxjs';
 import { ILuxStepperConfiguration } from './lux-stepper-configuration.interface';
 
@@ -21,24 +21,24 @@ import { ILuxStepperConfiguration } from './lux-stepper-configuration.interface'
  */
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export class LuxStepperParent implements OnDestroy, AfterViewInit {
-  // Diese Outputs werden bei den Klicks auf die Stepper-eigenen Navigations-Buttons augelöst und informieren die
+  // Diese Outputs werden bei den Klicks auf die Stepper-eigenen Navigations-Buttons ausgelöst und informieren die
   // LuxStepperComponent
-  @Output() luxFinButtonClicked: EventEmitter<any> = new EventEmitter();
-  @Output() luxNextButtonClicked: EventEmitter<any> = new EventEmitter();
-  @Output() luxPrevButtonClicked: EventEmitter<any> = new EventEmitter();
+  @Output() luxFinButtonClicked = new EventEmitter<void>();
+  @Output() luxNextButtonClicked = new EventEmitter<void>();
+  @Output() luxPrevButtonClicked = new EventEmitter<void>();
   // Wird beim Wechsel des Steps (über Header oder Button) aufgerufen
-  @Output() luxStepChanged: EventEmitter<StepperSelectionEvent> = new EventEmitter<StepperSelectionEvent>();
+  @Output() luxStepChanged = new EventEmitter<StepperSelectionEvent>();
   // über die aktuellen Elemente informiert zu halten
-  @Output() luxMatStepperLoaded: EventEmitter<MatHorizontalStepper | MatVerticalStepper> = new EventEmitter();
-  @Output() luxMatStepLabelsLoaded: EventEmitter<ViewContainerRef[]> = new EventEmitter();
-  @Output() luxStepClicked: EventEmitter<number> = new EventEmitter<number>();
+  @Output() luxMatStepperLoaded = new EventEmitter<MatStepper>();
+  @Output() luxMatStepLabelsLoaded = new EventEmitter<ViewContainerRef[]>();
+  @Output() luxStepClicked = new EventEmitter<number>();
 
-  @ViewChild('stepper', { static: true }) matStepper: MatHorizontalStepper | MatVerticalStepper;
-  @ViewChildren('matStepLabel', { read: ViewContainerRef }) matStepLabels: QueryList<ViewContainerRef>;
+  @ViewChild('stepper', { static: true }) matStepper!: MatStepper;
+  @ViewChildren('matStepLabel', { read: ViewContainerRef }) matStepLabels!: QueryList<ViewContainerRef>;
 
-  @Input() luxStepperConfig: ILuxStepperConfiguration;
+  @Input() luxStepperConfig?: ILuxStepperConfiguration;
 
-  subscription: Subscription;
+  subscription?: Subscription;
 
   constructor() {}
 
@@ -52,7 +52,7 @@ export class LuxStepperParent implements OnDestroy, AfterViewInit {
     });
   }
 
-  onStepClicked(event) {
+  onStepClicked(event: Event) {
     const target = event.target || event.srcElement || event.currentTarget;
     const stepIndex = this.getStepIndex(target as HTMLElement);
 
@@ -62,7 +62,9 @@ export class LuxStepperParent implements OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   private getStepIndex(element: HTMLElement, count = 0): number {
@@ -71,10 +73,10 @@ export class LuxStepperParent implements OnDestroy, AfterViewInit {
         // Das Attribut "aria-posinset" fängt mit dem Index 1 an,
         // während das Property "luxCurrentStepNumber" bei Index 0 beginnt.
         // Deshalb wird hier -1 gerechnet.
-        return (+element.getAttribute('aria-posinset')) - 1;
+        return (+element.getAttribute('aria-posinset')!) - 1;
       } else {
         if (count <= 10) {
-          return this.getStepIndex(element.parentElement, count + 1);
+          return this.getStepIndex(element.parentElement!, count + 1);
         } else {
           return -1;
         }

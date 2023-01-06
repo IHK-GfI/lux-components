@@ -1,6 +1,6 @@
 @media only screen and (max-width: 599px) {
   lux-accordion.tip-panel lux-panel ::ng-deep{
-    margin: 0 4px;
+    //margin: 0 4px;
     padding-right: 0;
     padding-left: 0;
   }
@@ -10,7 +10,6 @@
 }
 @media only screen and (min-width: 600px) and (max-width: 1279px) {
   lux-accordion.tip-panel lux-panel ::ng-deep{
-    margin: 0 4px;
     padding-right: 0;
     padding-left: 0;
   }
@@ -18,9 +17,8 @@
     margin: 0 2.5%
   }
 }
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1280px) and (max-width: 1919px) {
   lux-accordion.tip-panel lux-panel ::ng-deep{
-    margin: 0 8px;
     padding-right: 0;
     padding-left: 0;
   }
@@ -28,11 +26,17 @@
     margin: 0 10%
   }
 }
+@media only screen and (min-width: 1920px) {
+  lux-accordion.tip-panel lux-panel ::ng-deep{
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .accordion-wrapper {
+    margin: 0 15%
+  }
+}
 
 lux-accordion.tip-panel lux-panel ::ng-deep {
-  mat-expansion-panel-header .mat-content {
-    align-items: center;
-  }
   .mat-expansion-panel-body{
     padding: 0 54px 40px 78px;
   }

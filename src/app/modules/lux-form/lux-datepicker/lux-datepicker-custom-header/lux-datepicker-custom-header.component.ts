@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy } from '@angular/core';
 import { DateAdapter, MatDateFormats, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatCalendar } from '@angular/material/datepicker';
 import { Subject } from 'rxjs';
@@ -7,7 +7,6 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'lux-datepicker-custom-header',
   templateUrl: './lux-datepicker-custom-header.component.html',
-  styleUrls: ['./lux-datepicker-custom-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LuxDatepickerCustomHeaderComponent<D> implements OnDestroy {

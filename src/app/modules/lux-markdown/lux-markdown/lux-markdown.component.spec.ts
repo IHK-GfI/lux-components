@@ -125,7 +125,6 @@ describe('LuxMarkdownComponent', () => {
     fixture.detectChanges();
 
     expect(component.luxClass).toEqual('my-class-1 my-class-2');
-    console.log('Gefunden?', fixture.debugElement.query(By.css('lux-html > div')).nativeElement.classList);
     expect(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.classList).toContain('my-class-1');
     expect(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.classList).toContain('my-class-2');
     expect(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.classList).not.toContain(

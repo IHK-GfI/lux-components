@@ -13,9 +13,9 @@ export declare type LuxProgressSizeType = 'small' | 'medium' | 'large';
 export class LuxProgressComponent {
   readonly DEFAULT_PROGRESS_COLOR: LuxProgressColor = 'blue';
 
-  private _luxMode: LuxProgressModeType;
-  private _luxType: LuxProgressType;
-  private _luxColor: LuxProgressColor;
+  private _luxMode?: LuxProgressModeType;
+  private _luxType?: LuxProgressType;
+  private _luxColor?: LuxProgressColor;
 
   animDurationCSS = '';
   typeCSS = '';
@@ -23,18 +23,18 @@ export class LuxProgressComponent {
   @Input() luxValue = 0;
   // Nur für ProgressBar
   @Input() luxSize: LuxProgressSizeType = 'medium';
-  @Input() luxTagId: string;
+  @Input() luxTagId?: string;
 
   @Input()
-  set luxColor(value: LuxProgressColor) {
+  set luxColor(value: LuxProgressColor| undefined) {
     this._luxColor = LuxProgressColors.find((entry) => entry === value) ?? this.DEFAULT_PROGRESS_COLOR;
   }
 
-  get luxColor() {
+  get luxColor(): LuxProgressColor | undefined {
     return this._luxColor;
   }
 
-  @Input() set luxMode(mode: LuxProgressModeType) {
+  @Input() set luxMode(mode: LuxProgressModeType ) {
     this._luxMode = mode;
   }
 
@@ -45,7 +45,7 @@ export class LuxProgressComponent {
     return this._luxMode;
   }
 
-  @Input() set luxType(type: LuxProgressType) {
+  @Input() set luxType(type: LuxProgressType | undefined) {
     this._luxType = type;
     if (this._luxType === 'Progressbar') {
       this.typeCSS = 'lux-progress-bar';
@@ -56,7 +56,7 @@ export class LuxProgressComponent {
     }
   }
 
-  get luxType() {
+  get luxType(): LuxProgressType | undefined {
     return this._luxType;
   }
 

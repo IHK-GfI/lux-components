@@ -9,16 +9,21 @@
     ></lux-progress>
   </div>
   <!-- Input-Feld für das Filtern der Datensätze dieser Tabelle -->
-  <lux-input
-    class="lux-table-filter"
-    luxAutocomplete="off"
-    [luxTagId]="luxFilterText"
-    [luxLabel]="luxFilterText"
-    (luxValueChange)="filtered$.next($event)"
-    [ngClass]="{ 'lux-hide': !luxShowFilter }"
-    #filter
-  >
-  </lux-input>
+  <div class="lux-table-filter" fxLayout="row" fxFlexAlign="start center" fxLayoutGap="16px" [ngClass]="{ 'lux-hide': !luxShowFilter }">
+    <lux-input-ac
+      class="lux-table-filter"
+      luxAutocomplete="off"
+      [luxTagId]="luxFilterText"
+      [luxLabel]="luxFilterText"
+      (luxValueChange)="filtered$.next($event)"
+      fxFill
+      #filter
+    >
+      <lux-input-ac-prefix class="lux-mr-2">
+        <lux-icon luxIconName="lux-interface-search"></lux-icon>
+      </lux-input-ac-prefix>
+    </lux-input-ac>
+  </div>
   <!-- Die eigentliche Struktur der Tabelle -->
   <div
     [ngStyle]="{ height: tableHeightCSSCalc }"
@@ -38,7 +43,6 @@
         [trackBy]="trackFn"
         matSort
         (matSortChange)="announceSortChange($event)"
-        #table
       >
         <ng-container *ngIf="tableColumns">
           <!-- Zellen, welche nur bei Multiselect-Tabellen dargestellt werden und die Checkboxen + Counter beinhalten -->
@@ -47,7 +51,7 @@
               class="lux-multiselect-th"
               mat-header-cell
               *matHeaderCellDef
-              mat-sort-header
+              mat-sort-header="multiSelect"
             >
               <div fxLayout="column">
                 <span class="lux-selected-count"
@@ -63,7 +67,7 @@
               <lux-checkbox
                 luxTagId="lux-table-multiselect-content-{{ i }}"
                 class="lux-multiselect-toggle"
-                [luxDisabled]="element[luxMultiSelectDisabledProperty] === true"
+                [luxDisabled]="element[luxMultiSelectDisabledProperty!] === true"
                 luxTabIndex="-1"
                 [luxApplyToChildren]="true"
                 luxAriaLabel="Reihe {{ i }}"
@@ -118,7 +122,8 @@
               <th
                 mat-header-cell
                 *matHeaderCellDef
-                mat-sort-header [disabled]="!tableColumn.luxSortable"
+                [mat-sort-header]="tableColumn.luxColumnDef"
+                [disabled]="!tableColumn.luxSortable"
                 [ngClass]="
                   'lux-table-column-header-' +
                   i +
@@ -129,10 +134,10 @@
                   width: luxColWidthsPercent && luxColWidthsPercent[i] ? luxColWidthsPercent[i] + '%' : 'unset'
                 }"
               >
-                <ng-container *ngTemplateOutlet="tableColumn.header?.tempRef"></ng-container>
+                <ng-container *ngTemplateOutlet="tableColumn.header?.tempRef ?? null"></ng-container>
               </th>
 
-              <!-- Hier enstehen die Zellen mit den Inhalten -->
+              <!-- Hier entstehen die Zellen mit den Inhalten -->
               <td
                 mat-cell
                 *matCellDef="let element"
@@ -141,10 +146,10 @@
                 }"
               >
                 <div class="lux-header-title lux-label" *ngIf="hasMovedColumnsMap.has(tableColumn.luxColumnDef)">
-                  <ng-container *ngTemplateOutlet="tableColumn.header?.tempRef"></ng-container>
+                  <ng-container *ngTemplateOutlet="tableColumn.header?.tempRef ?? null"></ng-container>
                 </div>
                 <ng-container
-                  *ngTemplateOutlet="tableColumn.content?.tempRef; context: { $implicit: element }"
+                  *ngTemplateOutlet="tableColumn.content?.tempRef ?? null; context: { $implicit: element }"
                 ></ng-container>
                 <div class="lux-mb-3" *ngIf="hasMovedColumnsMap.has(tableColumn.luxColumnDef)"></div>
 
@@ -152,11 +157,11 @@
                 <ng-container *ngFor="let movedTableColumn of movedTableColumns">
                   <ng-container *ngIf="movedTableColumn.luxResponsiveBehaviour === tableColumn.luxColumnDef">
                     <div class="lux-moved-header-title lux-label">
-                      <ng-container *ngTemplateOutlet="movedTableColumn.header?.tempRef"></ng-container>
+                      <ng-container *ngTemplateOutlet="movedTableColumn.header?.tempRef ?? null"></ng-container>
                     </div>
                     <div>
                       <ng-container
-                        *ngTemplateOutlet="movedTableColumn.content.tempRef; context: { $implicit: element }"
+                        *ngTemplateOutlet="movedTableColumn.content?.tempRef ?? null; context: { $implicit: element }"
                       ></ng-container>
                     </div>
                     <div class="lux-mb-3"></div>
@@ -164,7 +169,7 @@
                 </ng-container>
               </td>
               <td mat-footer-cell *matFooterCellDef>
-                <ng-container *ngTemplateOutlet="tableColumn.footer?.tempRef"></ng-container>
+                <ng-container *ngTemplateOutlet="tableColumn.footer?.tempRef ?? null"></ng-container>
               </td>
             </ng-container>
           </ng-container>
@@ -214,7 +219,7 @@
     [length]="dataSource.totalElements"
     [pageSize]="luxPageSize"
     [pageSizeOptions]="luxPageSizeOptions"
-    [showFirstLastButtons]="true"
+    [showFirstLastButtons]="luxPagerFirstLastButton"
     [ngClass]="{ 'lux-hide': !luxShowPagination }"
     [ngClass.xs]="{ 'lux-paginator-xs': true, 'lux-hide': !luxShowPagination }"
     fxFlex="auto"

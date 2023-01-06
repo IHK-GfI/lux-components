@@ -14,7 +14,7 @@
   white-space: nowrap;
 
   .lux-app-header-title-label {
-  margin-left: 5px;
+    margin-left: 5px;
   }
 
   ::ng-deep button,
@@ -37,9 +37,11 @@
       span {
         font-size: 16px;
       }
-
+      lux-icon {
+        line-height: 1;
+      }
       i,
-      mat-icon {
+      mat-icon:not(.lux-lx-icon) {
         font-size: 18px !important;
       }
     }
@@ -97,8 +99,14 @@
   .lux-header-side-nav {
     .lux-side-nav-trigger {
       ::ng-deep {
-        i {
-          font-size: 1.5em;
+        lux-icon {
+          height: 45px !important;
+          i {
+            font-size: 1.5em;
+          }
+          mat-icon {
+            display: inline;
+          }
         }
       }
     }

@@ -1,12 +1,12 @@
 <!-- Horizontaler Stepper, die Konfiguration stammt aus dem LuxStepper und wird hier angewandt -->
 <mat-horizontal-stepper
-  [linear]="luxStepperConfig.luxLinear"
-  [selectedIndex]="luxStepperConfig.luxCurrentStepNumber"
+  [linear]="luxStepperConfig?.luxLinear"
+  [selectedIndex]="luxStepperConfig?.luxCurrentStepNumber"
   [ngClass]="{
-    'lux-ignore-mat-step-icons': luxStepperConfig.luxUseCustomIcons,
-    'lux-block-pointer-events': luxStepperConfig.luxDisabled,
-    'lux-linear-stepper': luxStepperConfig.luxLinear,
-    'lux-no-animation': !luxStepperConfig.luxHorizontalStepAnimationActive
+    'lux-ignore-mat-step-icons': luxStepperConfig?.luxUseCustomIcons,
+    'lux-block-pointer-events': luxStepperConfig?.luxDisabled,
+    'lux-linear-stepper': luxStepperConfig?.luxLinear,
+    'lux-no-animation': !luxStepperConfig?.luxHorizontalStepAnimationActive
   }"
   (selectionChange)="luxStepChanged.emit($event)"
   (click)="onStepClicked($event)"
@@ -14,7 +14,7 @@
   #stepper
 >
   <!-- Alle aktuell bekannten Steps zeichnen -->
-  <ng-container *ngFor="let luxStep of luxStepperConfig.luxSteps; let i = index">
+  <ng-container *ngFor="let luxStep of luxStepperConfig?.luxSteps; let i = index">
     <mat-step [completed]="luxStep.isCompleted()" [optional]="luxStep.luxOptional" [editable]="luxStep.luxEditable">
       <!-- Header des Steps -->
       <ng-template matStepLabel>
@@ -24,7 +24,7 @@
         </div>
       </ng-template>
       <!-- Content des Steps, wenn Animationen aktiviert sind -->
-      <ng-container *ngIf="luxStepperConfig.luxHorizontalStepAnimationActive">
+      <ng-container *ngIf="luxStepperConfig?.luxHorizontalStepAnimationActive">
         <ng-container *ngTemplateOutlet="luxStep.contentTemplate"></ng-container>
         <ng-container *ngTemplateOutlet="navButtonsTemplate; context: { index: i, step: luxStep }"></ng-container>
       </ng-container>
@@ -33,8 +33,8 @@
 </mat-horizontal-stepper>
 
 <!-- Content des Steps, wenn Animationen deaktiviert sind -->
-<ng-container *ngIf="!luxStepperConfig.luxHorizontalStepAnimationActive">
-  <ng-container *ngFor="let luxStep of luxStepperConfig.luxSteps; let i = index">
+<ng-container *ngIf="!luxStepperConfig?.luxHorizontalStepAnimationActive">
+  <ng-container *ngFor="let luxStep of luxStepperConfig?.luxSteps; let i = index">
     <section
       class="lux-stepper-content-section"
       [class.lux-display-none]="i !== matStepper.selectedIndex"
@@ -58,7 +58,7 @@
     (luxPrevClick)="luxPrevButtonClicked.emit()"
     (luxNextClick)="luxNextButtonClicked.emit()"
     (luxFinClick)="luxFinButtonClicked.emit()"
-    *ngIf="luxStepperConfig.luxShowNavigationButtons"
+    *ngIf="luxStepperConfig?.luxShowNavigationButtons"
   >
   </lux-stepper-nav-buttons>
 </ng-template>

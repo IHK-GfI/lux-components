@@ -1,7 +1,7 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 
 /**
- * Mock-Service fuer den Mobile-Helper, der das Ein- und Ausklappen der Master/Detail-Ansicht steuert
+ * Mock-Service für den Mobile-Helper, der das Ein- und Ausklappen der Master/Detail-Ansicht steuert
  */
 export class LuxMockMasterDetailMobileHelperService {
   mockMobile = false;
@@ -14,15 +14,15 @@ export class LuxMockMasterDetailMobileHelperService {
   }
 
   /**
-   * Sendet ueber den masterCollapsed$-Subject ein Event mit dem Wert true.
-   * Kennzeichnet das der Master geoeffnet werden soll.
+   * Sendet über den masterCollapsed$-Subject ein Event mit dem Wert true.
+   * Kennzeichnet das der Master geöffnet werden soll.
    */
   public openMaster(): void {
     this._masterCollapsed.next(true);
   }
 
   /**
-   * Sendet ueber den masterCollapsed$-Subject ein Event mit dem Wert false.
+   * Sendet über den masterCollapsed$-Subject ein Event mit dem Wert false.
    * Kennzeichnet das der Master geschlossen werden soll.
    */
   public closeMaster(): void {

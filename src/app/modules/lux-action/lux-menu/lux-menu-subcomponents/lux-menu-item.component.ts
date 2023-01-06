@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { LuxActionComponentBaseClass } from "../../lux-action-model/lux-action-component-base.class";
 
 // @dynamic Erklärung steht in der Datei "lux-decorators.ts".
@@ -7,14 +7,14 @@ import { LuxActionComponentBaseClass } from "../../lux-action-model/lux-action-c
   template: ''
 })
 export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 
-  @Input() luxButtonTooltip: string;
+  @Input() luxButtonTooltip = '';
+  @Input() luxMenuTooltip = '';
   @Input() luxPrio = 0;
 
-  @Output() luxHiddenChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() luxHideLabelIfExtendedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() luxAlwaysVisibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() luxHiddenChange = new EventEmitter<boolean>();
+  @Output() luxHideLabelIfExtendedChange = new EventEmitter<boolean>();
+  @Output() luxAlwaysVisibleChange = new EventEmitter<boolean>();
 
   _luxAlwaysVisible = true;
   _luxHideLabelIfExtended = false;
@@ -55,11 +55,13 @@ export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
     this.luxHiddenChange.emit(value);
   }
 
+ @Input() luxClass?: string | string[] | Set<string> | { [klass: string]: any}; //vgl. ngClass
+
   constructor() {
     super();
   }
 
-  clicked($event: any) {
-    this.luxClicked.emit($event);
+  clicked(event: Event) {
+    this.luxClicked.emit(event);
   }
 }

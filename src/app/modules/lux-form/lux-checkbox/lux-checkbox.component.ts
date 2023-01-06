@@ -9,7 +9,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-checkbox.component.html',
   styleUrls: ['./lux-checkbox.component.scss']
 })
-export class LuxCheckboxComponent extends LuxFormCheckableBaseClass implements OnInit {
+export class LuxCheckboxComponent<T = boolean> extends LuxFormCheckableBaseClass<T> implements OnInit {
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;

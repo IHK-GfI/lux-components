@@ -6,7 +6,6 @@
   [luxNoTopLabel]="luxNoTopLabel"
   [formGroup]="formGroup"
   [luxLabelLongFormat]="luxLabelLongFormat"
-  #datepickerFormControl
 >
   <div class="lux-input-row" fxLayout="row">
     <input
@@ -43,7 +42,7 @@
       [luxMinDate]="min"
       [luxMaxDate]="max"
       (luxSelected)="onOk($event)"
-      [selectedDate]="formControl.value"
+      [selectedDate]="selectedDate"
       #datepicker
     ></lux-datetime-overlay>
   </div>

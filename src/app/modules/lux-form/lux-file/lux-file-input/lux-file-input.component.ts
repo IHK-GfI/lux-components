@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -10,7 +11,10 @@ import {
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
+import { LuxUtil } from '../../../lux-util/lux-util';
+import { LuxValidationErrors } from '../../lux-form-model/lux-form-component-base.class';
 import { LuxFormFileBase } from '../../lux-form-model/lux-form-file-base.class';
+import { ILuxFileActionConfig } from '../lux-file-model/lux-file-action-config.interface';
 import { ILuxFileError } from '../lux-file-model/lux-file-error.interface';
 import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
@@ -22,17 +26,82 @@ import { LuxComponentsConfigService } from '../../../lux-components-config/lux-c
   templateUrl: './lux-file-input.component.html',
   styleUrls: ['./lux-file-input.component.scss']
 })
-export class LuxFileInputComponent extends LuxFormFileBase {
-  @ViewChild('visibleInput', { read: ElementRef }) visibleInput: ElementRef;
+export class LuxFileInputComponent extends LuxFormFileBase<ILuxFileObject | null> implements AfterViewInit {
+  @ViewChild('visibleInput', { read: ElementRef }) visibleInput!: ElementRef;
 
-  @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
-  @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
+  @Output() luxBlur = new EventEmitter<FocusEvent>();
+  @Output() luxFocus = new EventEmitter<FocusEvent>();
 
   @Input() luxPlaceholder = '';
   @Input() luxClearOnError = true;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
+
+  _luxUploadActionConfig: ILuxFileActionConfig = {
+    disabled: false,
+    hidden: false,
+    iconName: 'lux-programming-cloud-upload',
+    label: $localize`:@@luxc.form-file-base.upload.action.lbl:Hochladen`
+  }
+  _luxDeleteActionConfig: ILuxFileActionConfig = {
+      disabled: false,
+      hidden: false,
+      iconName: 'lux-interface-delete-bin-2',
+      label: $localize`:@@luxc.form-file-base.delete.action.lbl:Löschen`
+  };
+  _luxViewActionConfig: ILuxFileActionConfig = {
+      disabled: false,
+      hidden: true,
+      iconName: 'lux-interface-edit-view',
+      label: $localize`:@@luxc.form-file-base.view.action.lbl:Ansehen`
+  };
+  _luxDownloadActionConfig: ILuxFileActionConfig = {
+      disabled: false,
+      hidden: true,
+      iconName: 'fas fa-download',
+      label: $localize`:@@luxc.form-file-base.download.action.lbl:Download`
+  };
+
+  get luxUploadActionConfig(): ILuxFileActionConfig {
+    return this._luxUploadActionConfig;
+  }
+
+  @Input() set luxUploadActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxUploadActionConfig = config;
+    }
+  }
+
+  get luxDeleteActionConfig(): ILuxFileActionConfig {
+    return this._luxDeleteActionConfig;
+  }
+
+  @Input() set luxDeleteActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxDeleteActionConfig = config;
+    }
+  }
+
+  get luxViewActionConfig(): ILuxFileActionConfig {
+    return this._luxViewActionConfig;
+  }
+
+  @Input() set luxViewActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxViewActionConfig = config;
+    }
+  }
+
+  get luxDownloadActionConfig(): ILuxFileActionConfig {
+    return this._luxDownloadActionConfig;
+  }
+
+  @Input() set luxDownloadActionConfig(config: ILuxFileActionConfig) {
+    if (config) {
+      this._luxDownloadActionConfig = config;
+    }
+  }
 
   constructor(
     @Optional() controlContainer: ControlContainer,
@@ -45,19 +114,60 @@ export class LuxFileInputComponent extends LuxFormFileBase {
     super(controlContainer, cdr, logger, config, http, liveAnnouncer);
   }
 
-  onSelectFiles(target: EventTarget) {
-    const fileList = (target as HTMLInputElement).files;
+  ngAfterViewInit() {
+    LuxUtil.assertNonNull('visibleInput', this.visibleInput);
+  }
+
+  onSelectFiles(target: EventTarget | null) {
+    const fileList = target ? (target as HTMLInputElement).files : null;
     this.selectFiles(fileList ? Array.from(fileList) : []);
+  }
+
+  clearFile() {
+    this.formControl.markAsTouched();
+    this.formControl.markAsDirty();
+
+    const deletedFile = this.luxSelected;
+
+    this.resetSelected();
+    this.notifyFormValueChanged();
+    this.clearFormControlErrors();
+    if (deletedFile && this.luxDeleteActionConfig.onClick) {
+      this.luxDeleteActionConfig.onClick(deletedFile);
+      this.announceFileRemove(deletedFile.name);
+    }
+  }
+
+  resetSelected() {
+    this.luxSelected = null;
+  }
+
+  handleViewFileClick(file: ILuxFileObject) {
+    if (file.content && this.luxViewActionConfig.onClick) {
+      this.luxViewActionConfig.onClick(file);
+    }
+  }
+
+  handleDownloadClick(file: ILuxFileObject) {
+    if (this.luxDownloadActionConfig.onClick) {
+      this.luxDownloadActionConfig.onClick(file);
+    }
+  }
+
+  handleUploadClick(files: ILuxFileObject[]) {
+    if (this.luxUploadActionConfig.onClick) {
+      this.luxUploadActionConfig.onClick(files[ 0 ]);
+    }
   }
 
   /**
    * Wird bei der Auswahl von Dateien (Dialog oder DnD) aufgerufen.
    * Aktualisiert die aktuell selektierten Dateien, stößt einen Upload an, handelt Fehlermeldungen und
-   * emittet die entspechenden Events.
+   * emittet die entsprechenden Events.
    *
    * @param files
    */
-  selectFiles(files: File[]) {
+  selectFiles(files: FileList | File[]) {
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();
     this.forceProgressIndeterminate = true;
@@ -72,7 +182,7 @@ export class LuxFileInputComponent extends LuxFormFileBase {
     setTimeout(() => {
       this.updateSelectedFiles(files).then(
         (newFiles: ILuxFileObject[]) => {
-          this.luxSelectedFiles = newFiles[0];
+          this.luxSelected = newFiles[0];
           this.notifyFormValueChanged();
         },
         error => this.setFormControlErrors(error)
@@ -80,7 +190,7 @@ export class LuxFileInputComponent extends LuxFormFileBase {
     }, this.defaultReadFileDelay);
   }
 
-  protected errorMessageModifier(value: any, errors: any): string | undefined {
+  protected errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     if (errors.required) {
       return $localize `:@@luxc.file-input.error_message.required:Es muss eine Datei ausgewählt werden`;
     }
@@ -89,14 +199,10 @@ export class LuxFileInputComponent extends LuxFormFileBase {
 
   protected setFormControlErrors(error: ILuxFileError) {
     if (this.luxClearOnError) {
-      this.luxSelectedFiles = undefined;
+      this.luxSelected = null;
     }
 
     super.setFormControlErrors(error);
-  }
-
-  useArray(): boolean {
-    return false;
   }
 
 }

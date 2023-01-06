@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { LuxComponentsConfigService } from '../../../modules/lux-components-config/lux-components-config.service';
 import { LuxComponentsConfigParameters } from '../../../modules/lux-components-config/lux-components-config-parameters.interface';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
@@ -8,8 +8,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-button-example',
   templateUrl: './button-example.component.html'
 })
-export class ButtonExampleComponent implements OnInit, OnDestroy {
-  // region Helper-Properties für das Beispiel
+export class ButtonExampleComponent implements OnDestroy {
 
   showOutputEvents = false;
   config: LuxComponentsConfigParameters;
@@ -22,24 +21,27 @@ export class ButtonExampleComponent implements OnInit, OnDestroy {
     { value: 'accent', label: 'accent' }
   ];
 
-  // endregion
-
-  // region Properties der Component
-
   label = 'Button';
-  iconName = 'fas fa-save';
+  iconName = 'lux-interface-delete-1';
   iconShowRight = false;
-  align = false;
   disabled = false;
   backgroundColor = '';
 
   subscription: Subscription;
 
-  // endregion
+  get allUpperCase() {
+    return this.config.labelConfiguration!.allUppercase;
+  }
 
-  constructor(private configService: LuxComponentsConfigService) {}
+  set allUpperCase(value: boolean) {
+    this.config.labelConfiguration!.allUppercase = value;
+    this.updateConfiguration();
+  }
 
-  ngOnInit() {
+
+  constructor(private configService: LuxComponentsConfigService) {
+    this.config = configService.currentConfig;
+
     this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
       this.config = config;
     });
@@ -49,14 +51,10 @@ export class ButtonExampleComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  pickValue(option: any) {
-    return option.value;
-  }
-
   updateConfiguration() {
     // Hart das Array leeren, wir triggern die Uppercase Umstellung demo-mäßig einfach für alle entsprechenden Components.
     // Beim Zerstören der Component wird die Konfiguration sowieso wieder resettet (siehe example-base-structure.component.ts).
-    this.config.labelConfiguration.notAppliedTo = [];
+    this.config.labelConfiguration!.notAppliedTo = [];
     this.configService.updateConfiguration(this.config);
   }
 }

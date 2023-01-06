@@ -21,9 +21,9 @@
     }"
     #masterContainer
   >
-    <!-- Header Element ueber der Master-Liste -->
+    <!-- Header Element über der Master-Liste -->
     <lux-master-header
-      (luxClicked)="toggleList($event)"
+      (luxOpened)="toggleList($event)"
       [luxToggleHidden]="
         (mobileHelperService.isMobile() && !this.luxSelectedDetail && !luxOpen) || mobileHelperService.isMobile()
       "
@@ -49,22 +49,22 @@
         [luxEmptyIconName]="luxEmptyIconMaster"
         [luxSelectedPosition]="selectedPosition"
         (luxSelectedPositionChange)="onSelectedChange($event)"
-        (luxScrolled)="onInfiniteScrollingLoad($event)"
+        (luxScrolled)="onInfiniteScrollingLoad()"
       >
         <lux-list-item
           *ngFor="let masterElement of luxMasterList"
           [luxTitleLineBreak]="luxTitleLineBreak"
-          luxTitle="{{ masterElement | luxPropertyFromObject: masterSimple.luxTitleProp }}"
-          luxSubTitle="{{ masterElement | luxPropertyFromObject: masterSimple.luxSubTitleProp }}"
+          luxTitle="{{ masterElement | luxPropertyFromObject: masterSimple?.luxTitleProp ?? '' }}"
+          luxSubTitle="{{ masterElement | luxPropertyFromObject: masterSimple?.luxSubTitleProp ?? '' }}"
         >
           <lux-list-item-icon>
             <ng-container
-              *ngTemplateOutlet="masterSimple.iconTempRef; context: { $implicit: masterElement }"
+              *ngTemplateOutlet="masterSimple?.iconTempRef ?? null; context: { $implicit: masterElement }"
             ></ng-container>
           </lux-list-item-icon>
           <lux-list-item-content>
             <ng-container
-              *ngTemplateOutlet="masterSimple.contentTempRef; context: { $implicit: masterElement }"
+              *ngTemplateOutlet="masterSimple?.contentTempRef ?? null; context: { $implicit: masterElement }"
             ></ng-container>
           </lux-list-item-content>
         </lux-list-item>

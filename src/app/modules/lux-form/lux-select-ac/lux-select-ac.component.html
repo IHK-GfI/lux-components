@@ -1,0 +1,51 @@
+<lux-form-control-wrapper
+  *ngIf="formGroup"
+  [luxFormComponent]="this"
+  [formGroup]="formGroup"
+  [luxNoLabels]="luxNoLabels"
+  [luxNoBottomLabel]="luxNoBottomLabel"
+  [luxNoTopLabel]="luxNoTopLabel"
+  [luxLabelLongFormat]="luxLabelLongFormat"
+  luxTagId="luxSelectWrapper"
+>
+  <mat-select
+    luxTagIdHandler
+    [luxTagId]="luxTagId"
+    [placeholder]="luxPlaceholder"
+    [multiple]="luxMultiple"
+    [compareWith]="compareObjects"
+    [required]="luxRequired"
+    [formControl]="formControl"
+    [attr.aria-invalid]="formControl.invalid"
+    [attr.aria-required]="luxRequired"
+    [id]="uid"
+    [panelClass]="'lux-select-panel-ac'"
+    [luxAriaLabelledby]="uid + '-label'"
+    [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+    (focusin)="luxFocusIn.emit($event)"
+    (focusout)="luxFocusOut.emit($event)"
+    #select
+  >
+    <mat-option *ngFor="let item of luxOptions; let i = index" [value]="luxPickValue ? _luxOptionsPickValue[i] : item" class="option-height">
+      <ng-container
+        *ngTemplateOutlet="
+          tempRef && !luxOptionLabelProp ? tempRef : noTemplateRefTemplate;
+          context: { $implicit: item }
+        "
+      >
+      </ng-container>
+    </mat-option>
+  </mat-select>
+</lux-form-control-wrapper>
+
+<ng-template #noTemplateRefTemplate let-option>
+  <ng-container *ngIf="option && luxOptionLabelProp && option[luxOptionLabelProp]; else showObjectTemplate">
+    {{ option | luxRenderProperty: luxOptionLabelProp }}
+  </ng-container>
+  <ng-template #showObjectTemplate>
+    <ng-container *ngIf="!!option">
+      {{ option }}
+    </ng-container>
+  </ng-template>
+</ng-template>
+

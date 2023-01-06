@@ -1,7 +1,7 @@
 import { LuxRenderPropertyPipe } from './lux-render-property.pipe';
 
 describe('LuxRenderPropertyPipe', () => {
-  let pipe: LuxRenderPropertyPipe = null;
+  let pipe: LuxRenderPropertyPipe = new LuxRenderPropertyPipe();
 
   beforeEach(() => {
     pipe = new LuxRenderPropertyPipe();
@@ -17,7 +17,7 @@ describe('LuxRenderPropertyPipe', () => {
     // When
     const result = pipe.transform(testObject, 'label');
     // Then
-    expect(result).toEqual('TESTLABEL', 'Der Wert des Label-Properties muss ausgegeben werden!');
+    expect(result).toEqual('TESTLABEL');
   });
 
   it('get empty string if value or label do not exist', () => {
@@ -28,7 +28,7 @@ describe('LuxRenderPropertyPipe', () => {
     const result1 = pipe.transform(testObject1, 'label');
     const result2 = pipe.transform(testObject2, 'label');
     // Then
-    expect(result1).toEqual('', 'Bei einem leeren Objekt muss das Ergebnis ein Leerstring ("") sein!');
-    expect(result2).toEqual('', 'Bei nicht vorhandenem Label-Attribut muss das Ergebnis ein Leerstring ("") sein!');
+    expect(result1).toEqual('');
+    expect(result2).toEqual('');
   });
 });

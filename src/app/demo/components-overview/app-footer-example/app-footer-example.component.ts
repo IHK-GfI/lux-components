@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { LuxAppFooterButtonService } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxAppFooterLinkService } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-link.service';
-import { LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
+import { ILuxAppFooterButtonInfo, LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { LuxAppFooterLinkInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-link-info';
 
@@ -47,7 +47,7 @@ export class AppFooterExampleComponent implements OnDestroy {
     this.buttonService.removeButtonInfoAtIndex(this.buttonService.buttonInfos.length - 1);
   }
 
-  buttonInfoClicked(that: LuxAppFooterButtonInfo) {
+  buttonInfoClicked(that: ILuxAppFooterButtonInfo) {
     this.snackbar.open(2000, {
       text: that.label + ' clicked! [cmd: ' + that.cmd + ']'
     });

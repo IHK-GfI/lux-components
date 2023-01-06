@@ -51,7 +51,7 @@ describe('LuxTooltipDirective', () => {
   }));
 
   afterEach(inject([OverlayContainer], (currentOverlayContainer: OverlayContainer) => {
-    // Since we're resetting the testing module in some of the tests,
+    // Since we're resetting the testing module in some tests,
     // we can potentially have multiple overlay containers.
     currentOverlayContainer.ngOnDestroy();
     overlayContainer.ngOnDestroy();
@@ -137,16 +137,16 @@ describe('LuxTooltipDirective', () => {
 @Component({
   selector: 'mock-component',
   template:
-    '<span luxTooltip [luxTooltip]="message" [luxTooltipHideDelay]="hideDelay"' +
-    ' [luxTooltipShowDelay]="showDelay" [luxTooltipPosition]="position"' +
-    ' [luxTooltipDisabled]="disabled">Ich bin ein Demotext</span>'
+    `<span [luxTooltip]="message" [luxTooltipHideDelay]="hideDelay"
+      [luxTooltipShowDelay]="showDelay" [luxTooltipPosition]="position"
+      [luxTooltipDisabled]="disabled">Ich bin ein Demotext</span>`
 })
 class MockComponent {
-  message: string;
-  hideDelay: number;
-  showDelay: number;
+  message?: string;
+  hideDelay?: number;
+  showDelay?: number;
   position: TooltipPosition = 'above';
-  disabled: boolean;
+  disabled?: boolean;
 
   constructor() {}
 }

@@ -5,16 +5,16 @@ import { LuxAriaBase } from './lux-aria-base';
   selector: '[luxAriaRole]'
 })
 export class LuxAriaRoleDirective extends LuxAriaBase<string> {
-  _luxAriaRole: string;
+  _luxAriaRole?: string;
 
-  @Input() luxAriaRoleSelector: string;
+  @Input() luxAriaRoleSelector?: string;
 
   @Input()
   get luxAriaRole() {
     return this._luxAriaRole;
   }
 
-  set luxAriaRole(role: string) {
+  set luxAriaRole(role: string | undefined) {
     this._luxAriaRole = role;
 
     this.renderAria();
@@ -24,11 +24,11 @@ export class LuxAriaRoleDirective extends LuxAriaBase<string> {
     super(elementRef, renderer, 'role');
   }
 
-  getSelector(): string {
+  getSelector(): string | undefined {
     return this.luxAriaRoleSelector;
   }
 
-  getValue(): string {
+  getValue(): string | undefined {
     return this._luxAriaRole;
   }
 }

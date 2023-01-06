@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { LuxAriaLabelledbyDirective } from './lux-aria-labelledby.directive';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -25,11 +27,11 @@ describe('LuxAriaLabelledbyDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte labelledby in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte labelledby in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toBeNull();
 
       // labelledby setzen
-      let ariaLabelledBy = 'menubar';
+      let ariaLabelledBy: string | undefined = 'menubar';
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
@@ -47,12 +49,12 @@ describe('LuxAriaLabelledbyDirective', () => {
       );
 
       // labelledby entfernen
-      ariaLabelledBy = null;
+      ariaLabelledBy = undefined;
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -65,11 +67,11 @@ describe('LuxAriaLabelledbyDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte labelledby in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte labelledby in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toBeNull();
 
       // labelledby setzen
-      let ariaLabelledBy = 'menubar';
+      let ariaLabelledBy: string | undefined = 'menubar';
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
@@ -87,12 +89,12 @@ describe('LuxAriaLabelledbyDirective', () => {
       );
 
       // labelledby entfernen
-      ariaLabelledBy = null;
+      ariaLabelledBy = undefined;
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toBeNull();
-    }));
+    });
   });
 });
 
@@ -107,7 +109,7 @@ describe('LuxAriaLabelledbyDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaLabelledby;
+  ariaLabelledby?: string;
 }
 
 @Component({
@@ -117,5 +119,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaLabelledby;
+  ariaLabelledby?: string;
 }

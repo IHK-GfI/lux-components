@@ -11,19 +11,19 @@ import { ILuxMessage } from '../../lux-common/lux-message-box/lux-message-box-mo
   styleUrls: ['lux-http-error.component.scss']
 })
 export class LuxHttpErrorComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild(LuxMessageBoxComponent) messageComponent;
+  @ViewChild(LuxMessageBoxComponent) messageComponent!: LuxMessageBoxComponent;
 
   private subs: Subscription[] = [];
 
-  errors: any[];
+  errors: ILuxMessage[] = [];
 
   constructor(router: Router) {
     // Beim Ansteuern einer neuen Route, die aktuellen Fehler resetten.
-    router.events.forEach(event => {
+    this.subs.push(router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         LuxHttpErrorInterceptor.dataStream.next([]);
       }
-    });
+    }));
   }
 
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class LuxHttpErrorComponent implements OnInit, OnDestroy, AfterViewInit {
     if (errors && errors.length > 0) {
       errors.forEach((error: any) => {
         errorMessages.push({
-          text: this.readErrorMessage(error),
+          text: LuxHttpErrorComponent.readErrorMessage(error),
           color: 'red',
           iconName: 'fa-bug'
         });
@@ -70,13 +70,13 @@ export class LuxHttpErrorComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /**
    * Versucht eine Fehlermeldung aus dem Fehler zu lesen.
-   * Zuerst wird geschaut, ob der Fehler selbst nur ein String ist ==> Wenn ja, diesen zurückgeben.
-   * Dann wird geprüft, ob der Fehler eine "message"-Property besitzt ==> Wenn ja, diese zurückgeben
+   * Zuerst wird geschaut, ob der Fehler selbst nur ein String ist. Wenn ja, diesen zurückgeben.
+   * Dann wird geprüft, ob der Fehler eine "message"-Property besitzt. Wenn ja, diese zurückgeben.
    * Als letzter Ausweg wird das "error"-Objekt selbst über die toString-Methode zurückgegeben.
    *
    * @param error
    */
-  private readErrorMessage(error: any): string {
+  private static readErrorMessage(error: any): string {
     if (typeof error === 'string') {
       return error;
     } else if (error.hasOwnProperty('message')) {

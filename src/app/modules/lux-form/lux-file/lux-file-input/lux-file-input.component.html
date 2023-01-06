@@ -21,9 +21,9 @@
       [readonly]="true"
       [id]="uid"
       [value]="
-        (luxSelectedFiles?.namePrefix ? luxSelectedFiles.namePrefix : '') +
-        (luxSelectedFiles?.name ? luxSelectedFiles.name : '') +
-        (luxSelectedFiles?.nameSuffix ? luxSelectedFiles.nameSuffix : '')
+        (luxSelected?.namePrefix ?? '') +
+        (luxSelected?.name ?? '') +
+        (luxSelected?.nameSuffix ?? '')
       "
       (blur)="luxBlur.emit($event)"
       (focus)="luxFocus.emit($event)"
@@ -35,7 +35,7 @@
     />
     <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 65px">
       <lux-menu
-        luxMenuIconName="fas fa-ellipsis-v"
+        luxMenuIconName="lux-interface-setting-menu-vertical"
         luxTagId="{{ 'lux-file-input-actions' }}"
         [luxMaximumExtended]="luxMaximumExtended"
         [luxToggleDisabled]="luxDisabled || luxReadonly"
@@ -44,39 +44,39 @@
         <lux-menu-item
           luxTagId="lux-file-view"
           [luxIconName]="luxViewActionConfig.iconName"
-          [luxDisabled]="luxViewActionConfig.disabled || luxDisabled || !luxSelectedFiles || luxReadonly"
+          [luxDisabled]="luxViewActionConfig.disabled || luxDisabled || !luxSelected || luxReadonly"
           [luxLabel]="luxViewActionConfig.label"
           [luxHideLabelIfExtended]="true"
           [luxAlwaysVisible]="true"
           [luxPrio]="luxViewActionConfig.prio ? luxViewActionConfig.prio : 10"
           luxColor="primary"
-          (luxClicked)="viewFile(luxSelectedFiles)"
+          (luxClicked)="viewFile(luxSelected!)"
           [luxHidden]="!!luxViewActionConfig.hidden"
         >
         </lux-menu-item>
         <lux-menu-item
           luxTagId="lux-file-download"
           [luxIconName]="luxDownloadActionConfig.iconName"
-          [luxDisabled]="luxDownloadActionConfig.disabled || luxDisabled || !luxSelectedFiles || luxReadonly"
+          [luxDisabled]="luxDownloadActionConfig.disabled || luxDisabled || !luxSelected || luxReadonly"
           [luxLabel]="luxDownloadActionConfig.label"
           [luxHideLabelIfExtended]="true"
           [luxAlwaysVisible]="true"
           [luxPrio]="luxDownloadActionConfig.prio ? luxDownloadActionConfig.prio : 20"
           luxColor="primary"
-          (luxClicked)="downloadFile(luxSelectedFiles)"
+          (luxClicked)="downloadFile(luxSelected!)"
           [luxHidden]="!!luxDownloadActionConfig.hidden"
         >
         </lux-menu-item>
         <lux-menu-item
           luxTagId="lux-file-remove"
           [luxIconName]="luxDeleteActionConfig.iconName"
-          [luxDisabled]="!luxSelectedFiles || luxDisabled || luxDeleteActionConfig.disabled || luxReadonly"
+          [luxDisabled]="!luxSelected || luxDisabled || luxDeleteActionConfig.disabled || luxReadonly"
           [luxLabel]="luxDeleteActionConfig.label"
           [luxHideLabelIfExtended]="true"
           [luxAlwaysVisible]="true"
           [luxPrio]="luxDeleteActionConfig.prio ? luxDeleteActionConfig.prio : 30"
           luxColor="primary"
-          (luxClicked)="clearFiles($event)"
+          (luxClicked)="clearFile()"
           [luxHidden]="!!luxDeleteActionConfig.hidden"
         >
         </lux-menu-item>
@@ -89,7 +89,7 @@
           [luxAlwaysVisible]="true"
           [luxPrio]="luxUploadActionConfig.prio ? luxUploadActionConfig.prio : 40"
           luxColor="primary"
-          (luxClicked)="fileupload.click()"
+          (luxClicked)="fileUpload.click()"
           [luxHidden]="!!luxUploadActionConfig.hidden"
         >
         </lux-menu-item>
@@ -97,13 +97,13 @@
           *ngFor="let customConfig of luxCustomActionConfigs; let i = index"
           luxTagId="lux-file-list-entry-custom{{ i }}"
           [luxIconName]="customConfig.iconName"
-          [luxDisabled]="customConfig.disabled || luxDisabled || luxReadonly"
+          [luxDisabled]="customConfig.disabled || luxDisabled || luxReadonly || !luxSelected "
           [luxLabel]="customConfig.label"
           [luxHideLabelIfExtended]="true"
           [luxPrio]="customConfig.prio ? customConfig.prio : 50 + i"
           [luxAlwaysVisible]="true"
           luxColor="primary"
-          (luxClicked)="customConfig.onClick(luxSelectedFiles)"
+          (luxClicked)="customConfig.onClick ? customConfig.onClick(luxSelected!) : noop()"
           [luxHidden]="!!customConfig.hidden"
         >
         </lux-menu-item>
@@ -121,7 +121,7 @@
   [luxFileCapture]="luxCapture"
   [required]="luxRequired"
   (change)="onSelectFiles($event.target)"
-  #fileupload
+  #fileUpload
 />
 
 <!-- Download-Node -->

@@ -1,4 +1,3 @@
-import { Platform } from '@angular/cdk/platform';
 import { NativeDateAdapter } from '@angular/material/core';
 import { Injectable } from '@angular/core';
 import { LuxUtil } from '../../lux-util/lux-util';
@@ -126,7 +125,7 @@ export class LuxDatepickerAdapter extends NativeDateAdapter {
   }
 
   private calculateMonth(month: number) {
-    let newMonth = month;
+    let newMonth: number;
 
     if (month <= 0) {
       newMonth = 0;

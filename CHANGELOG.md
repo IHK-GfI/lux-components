@@ -1,11 +1,44 @@
+# Version 14.0.0
+## New
+- **allgemein**: Update auf Angular 14 [Issue 223](https://github.com/IHK-GfI/lux-components/issues/223)
+- **allgemein**: Umstellung auf den strict-Mode. [Issue 224](https://github.com/IHK-GfI/lux-components/issues/224)
+- **allgemein**: Konstanten (z.B. $outline-with) in das Theme gezogen.
+  - $outline-with -> var(--lux-theme-outline-width)
+  - $outline-style -> var(--lux-theme-outline-style)
+- **allgemein**: Neues Icon-Set integriert. 
+- **lux-menu-item**: Tooltipps werden auch im Menü angezeigt. [Issue 242](https://github.com/IHK-GfI/lux-components/issues/242)
+
+## Bug Fixes
+- **lux-snackbar**: Lange Texte werden abgeschnitten oder schieben die Aktion raus. [Issue 237](https://github.com/IHK-GfI/lux-components/issues/237)
+- **lux-file-list**: Fehler beim Drag&Drop der File-Komponenten behoben.
+- **lux-file-list**: Fehler beim Drag&Drop der File-Komponenten behoben.
+- **lux-stepper-large**: Stepper mit nur einem Schritt zeigt nicht den Finish-Button an. [Issue 233](https://github.com/IHK-GfI/lux-components/issues/233)
+- **lux-tabs**: Tabs ohne Icons werden auf mobilen Auflösungen fehlerhaft dargestellt. [Issue 235](https://github.com/IHK-GfI/lux-components/issues/235)
+
+## Breaking changes
+- Dieser Punkt ist für die File-Upload-Konfiguration relevant: ILuxFileActionBaseConfig hat die zwei neuen Ableitungen ILuxFileActionConfig und ILuxFilesActionConfig.
+- ILuxFileListActionConfig extends ILuxFileActionConfig
+- ILuxFilesListActionConfig extends ILuxFilesActionConfig
+- lux-file-list: Die onClick-Methode der `luxUploadActionConfig` wird bei der Löschaktion im Header pro Datei aufgerufen.
+- LuxMasterHeaderComponent.luxClicked -> LuxMasterHeaderComponent.luxOpened
+- LuxActionColorType -> LuxThemePalette
+- luxSelectedFiles -> luxSelected
+
+### Defaultänderungen
+
+#### LuxActionComponentBaseClass (LUX-Button, LUX-Menu und LUX-Link)
+- luxLabel: undefined -> ''
+- luxColor: undefined -> ''
+- luxRaised: undefined -> false
+- luxIconName: undefined -> ''
+- luxTagId: undefined -> null
+- luxDisabled: undefined -> false
+- luxRounded: undefined -> false
+
 # Version 13.3.0
 
 ## New
 - **allgemein**: Sicherheitsupdates eingespielt.
-
-## Bug Fixes
-- **lux-stepper-large**: Stepper mit nur einem Schritt zeigt nicht den Finish-Button an. [Issue 233](https://github.com/IHK-GfI/lux-components/issues/233)
-- **lux-tabs**: Tabs ohne Icons werden auf mobilen Auflösungen fehlerhaft dargestellt. [Issue 235](https://github.com/IHK-GfI/lux-components/issues/235)
 
 # Version 13.2.0
 

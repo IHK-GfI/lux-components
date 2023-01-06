@@ -6,7 +6,6 @@
   [luxNoBottomLabel]="luxNoBottomLabel"
   [luxNoTopLabel]="luxNoTopLabel"
   [luxLabelLongFormat]="luxLabelLongFormat"
-  #datepickerFormControl
 >
   <div class="lux-input-row" fxLayout="row">
     <input
@@ -17,7 +16,7 @@
       [matDatepicker]="datepicker"
       [min]="min"
       [max]="max"
-      [matDatepickerFilter]="luxCustomFilter"
+      [matDatepickerFilter]="_luxCustomFilter"
       [placeholder]="luxPlaceholder"
       [required]="luxRequired"
       [readonly]="luxReadonly"

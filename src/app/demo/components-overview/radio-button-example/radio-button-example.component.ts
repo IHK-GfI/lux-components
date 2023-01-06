@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxRadioComponent } from '../../../modules/lux-form/lux-radio/lux-radio.component';
 import {
+  emptyErrorCallback,
   exampleCompareWithFn,
   exampleErrorCallback,
   examplePickValueFn,
@@ -9,72 +10,60 @@ import {
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
 
+interface RadioDummyForm {
+  radioExample: FormControl;
+}
+
 @Component({
   selector: 'app-radio-button-example',
   templateUrl: './radio-button-example.component.html'
 })
 export class RadioButtonExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useErrorMessage = true;
   useTemplatesForLabels = false;
   useCompareWithFn = false;
-  useValueFn: boolean;
-  useSimpleArray: boolean;
+  useValueFn = false;
+  useSimpleArray = false;
   showOutputEvents = false;
-
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' },
     { value: Validators.email, label: 'Validators.email' }
   ];
-
   options: { label: string; value: number; disabled?: boolean }[] = [
     { label: 'Option #1', value: 1, disabled: true },
     { label: 'Option #2', value: 2 },
     { label: 'Option #3', value: 3 }
   ];
-
   optionsPrimitive: string[] = ['Option #1', 'Option #2', 'Option #3'];
-
-  form: FormGroup;
+  form: FormGroup<RadioDummyForm>;
   log = logResult;
-
-  // endregion
-
-  // region Properties der Component
-
   controlBinding = 'radioExample';
   disabled = false;
   disabledFirst = true;
-  readonly: boolean;
-  required: boolean;
-  isVertical: boolean;
+  readonly = false;
+  required = false;
+  isVertical = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
   controlValidators: ValidatorFn[] = [];
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
-
-  value;
-
+  value: any;
   groupNameReactive = 'reactiveGroup';
   groupNameNormal = 'normalGroup';
-
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   pickValueFn = examplePickValueFn;
   compareWithFn = exampleCompareWithFn;
-
   pickValueFnString: string;
   compareWithFnString: string;
   errorCallbackString: string;
-  
   labelLongFormat = false;
-  // endregion
 
-  constructor(private _fb: FormBuilder) {
-    this.form = this._fb.group({
-      radioExample: []
+  constructor() {
+    this.form = new FormGroup<RadioDummyForm>({
+      radioExample: new FormControl()
     });
 
     this.pickValueFnString = '' + this.pickValueFn;
@@ -84,7 +73,7 @@ export class RadioButtonExampleComponent {
 
   showErrors(...radioComponents: LuxRadioComponent[]) {
     this.value = null;
-    this.form.get('radioExample').setValue(null);
+    this.form.get('radioExample')!.setValue(null);
 
     this.changeRequired(true);
 
@@ -93,41 +82,39 @@ export class RadioButtonExampleComponent {
     });
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
 
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
 
-  changeUseSimpleArray($event: boolean) {
+  changeUseSimpleArray(useSimpleArray: boolean) {
     this.reset();
-    this.useValueFn = $event === true ? false : this.useValueFn;
-    this.useCompareWithFn = $event === true ? false : this.useCompareWithFn;
-    if ($event === true) {
+    this.useValueFn = useSimpleArray ? false : this.useValueFn;
+    this.useCompareWithFn = useSimpleArray ? false : this.useCompareWithFn;
+    if (useSimpleArray) {
       this.disabledFirst = false;
     }
   }
 
-  changeUseValueFn($event: boolean) {
+  changeUseValueFn(useValueFn: boolean) {
     this.reset();
-    this.useSimpleArray = $event === true ? false : this.useSimpleArray;
-    this.useCompareWithFn = $event === true ? false : this.useCompareWithFn;
+    this.useSimpleArray = useValueFn ? false : this.useSimpleArray;
+    this.useCompareWithFn = useValueFn ? false : this.useCompareWithFn;
   }
 
-  changeCompareWithFn($event: boolean) {
+  changeCompareWithFn(useCompareWithFn: boolean) {
     this.reset();
-    this.useSimpleArray = $event === true ? false : this.useSimpleArray;
-    this.useValueFn = $event === true ? false : this.useValueFn;
+    this.useSimpleArray = useCompareWithFn ? false : this.useSimpleArray;
+    this.useValueFn = useCompareWithFn ? false : this.useValueFn;
   }
-
-  emptyCallback() {}
 
   reset(...radioComponents: LuxRadioComponent[]) {
     this.value = undefined;
-    this.form.get(this.controlBinding).setValue(undefined);
+    this.form.get(this.controlBinding)!.setValue(undefined);
     this.disabledFirst = false;
 
     radioComponents.forEach((comp: LuxRadioComponent) => {

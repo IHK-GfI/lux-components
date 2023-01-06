@@ -38,7 +38,7 @@ export class InfiniteScrollingExampleComponent {
     this.createListItems();
   }
 
-  trackByFn(index, item) {
+  trackByFn(index: number, item: string) {
     return index;
   }
 

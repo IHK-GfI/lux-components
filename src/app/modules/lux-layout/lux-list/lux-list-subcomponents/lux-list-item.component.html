@@ -5,7 +5,7 @@
   [luxSubTitle]="luxSubTitle"
   [luxTitleLineBreak]="luxTitleLineBreak"
   [luxUseTabIndex]="false"
-  (luxClicked)="clicked()"
+  (luxClicked)="clicked($event)"
 >
   <lux-card-info>
     <ng-content select="lux-list-item-icon"></ng-content>

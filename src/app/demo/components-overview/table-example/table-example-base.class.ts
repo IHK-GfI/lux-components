@@ -2,8 +2,6 @@ import { ICustomCSSConfig } from '../../../modules/lux-common/lux-table/lux-tabl
 import { ColumnConfig } from './column-config';
 
 export abstract class TableExampleBaseClass {
-  // region Helper-Properties für das Beispiel
-
   pageSizeOptions = [
     { label: '[5, 10, 25, 50]', value: [5, 10, 25, 50] },
     { label: '[10, 20, 30, 40]', value: [10, 20, 30, 40] },
@@ -15,11 +13,6 @@ export abstract class TableExampleBaseClass {
     { label: '[20%, 20%, 20%, 20%, 20%]', value: [20, 20, 20, 20, 20] },
     { label: '[10%, 20%, 50%, 10%, 10%]', value: [10, 20, 50, 10, 10] }
   ];
-
-  // endregion
-
-  // region Properties der Component
-
   tableCSS: ICustomCSSConfig[] = [
     {
       class: 'demo-year-2017',
@@ -40,41 +33,33 @@ export abstract class TableExampleBaseClass {
   cssClass: ICustomCSSConfig[] = [];
   pagerDisabled = false;
   pagerTooltip = '';
+  pagerFirstLastButton = true;
   columnWidthOption = this.columnWidthOptions[1].value;
   multiSelect = true;
   multiSelectOnlyCheckboxClick = true;
   multiSelectDisabledPropertyActive = false;
   multiSelectDisabledProperty = 'disabled';
-
   calculateProportions = false;
-  minWidthPx = undefined;
+  minWidthPx = -1;
   tableHeightPx = 500;
   hideBorders = false;
-  selected: Set<any>;
-
+  selected: Set<any> = new Set();
   nameConfig: ColumnConfig = new ColumnConfig({ label: 'Name', sticky: false });
   symbolConfig: ColumnConfig = new ColumnConfig({ label: 'Symbol' });
   dateConfig: ColumnConfig = new ColumnConfig({ label: 'Datum', sticky: false });
-
   columnConfigs = [this.nameConfig, this.symbolConfig, this.dateConfig];
 
-  // endregion
+  abstract getDataArr(): any[];
 
-  abstract getDataArr();
-
-  pickFn(o) {
-    return o.name;
-  }
-
-  compareFn(o1, o2) {
+  compareFn(o1: any, o2: any) {
     return o1.name === o2.name;
   }
 
-  pickPageSize(selected) {
+  pickPageSize(selected: any) {
     return selected ? selected.value : selected;
   }
 
-  pickColWidth(selected) {
+  pickColWidth(selected: any) {
     return selected ? selected.value : selected;
   }
 

@@ -12,7 +12,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LuxStorageService implements OnDestroy {
   private readonly postfixSensitive = '.sensitive';
 
-  private itemSources: Map<string, BehaviorSubject<string>> = new Map();
+  private itemSources: Map<string, BehaviorSubject<string | null>> = new Map();
 
   constructor() {
     addEventListener('storage', this.onStorageEvent.bind(this));
@@ -25,7 +25,7 @@ export class LuxStorageService implements OnDestroy {
   private onStorageEvent(event: StorageEvent) {
       if (event.key) {
         if (this.itemSources.has(event.key)) {
-          this.itemSources.get(event.key).next(event.newValue);
+          this.itemSources.get(event.key)!.next(event.newValue);
         }
       }
   }
@@ -36,12 +36,12 @@ export class LuxStorageService implements OnDestroy {
    * @param key - Der eindeutige Schlüssel.
    * @returns Liefert den Wert für den übergebenen Schlüssel zurück.
    */
-  getItem(key: string): string {
+  getItem(key: string): string | null {
     if (!this.itemSources.has(key)) {
-      this.itemSources.set(key, new BehaviorSubject<string>(localStorage.getItem(key)));
+      this.itemSources.set(key, new BehaviorSubject<string | null>(localStorage.getItem(key)));
     }
 
-    return this.itemSources.get(key).getValue();
+    return this.itemSources.get(key)!.getValue();
   }
 
   /**
@@ -50,12 +50,12 @@ export class LuxStorageService implements OnDestroy {
    * @param key - Der eindeutige Schlüssel.
    * @returns Liefert ein Observable zurück, das über alle Änderungen an dem Schlüssel informiert wird.
    */
-  getItemAsObservable(key: string): Observable<string> {
+  getItemAsObservable(key: string): Observable<string | null> {
     if (!this.itemSources.has(key)) {
-      this.itemSources.set(key, new BehaviorSubject<string>(localStorage.getItem(key)));
+      this.itemSources.set(key, new BehaviorSubject<string | null>(localStorage.getItem(key)));
     }
 
-    return this.itemSources.get(key).asObservable();
+    return this.itemSources.get(key)!.asObservable();
   }
 
   /**
@@ -75,10 +75,10 @@ export class LuxStorageService implements OnDestroy {
         localStorage.setItem(key + this.postfixSensitive, 'true');
       }
       if (this.itemSources.has(key)) {
-        this.itemSources.get(key).next(localStorage.getItem(key));
+        this.itemSources.get(key)!.next(localStorage.getItem(key));
       }
     } catch (error) {
-      this.itemSources.get(key).error(error);
+      this.itemSources.get(key)!.error(error);
     }
   }
 
@@ -92,7 +92,7 @@ export class LuxStorageService implements OnDestroy {
     localStorage.removeItem(key + this.postfixSensitive);
 
     if (this.itemSources.has(key)) {
-      this.itemSources.get(key).next(localStorage.getItem(key));
+      this.itemSources.get(key)!.next(localStorage.getItem(key));
     }
   }
 
@@ -104,7 +104,7 @@ export class LuxStorageService implements OnDestroy {
     // Alle Schlüssel sammeln.
     const keys: string[] = [];
     for (let i = 0; i < localStorage.length; i++) {
-      keys.push(localStorage.key(i));
+      keys.push(localStorage.key(i)!);
     }
 
     // Alle sensiblen Einträge löschen.
@@ -120,7 +120,7 @@ export class LuxStorageService implements OnDestroy {
    */
   clearAll(): void {
     localStorage.clear();
-    this.itemSources.forEach((itemSource: BehaviorSubject<string>) => {
+    this.itemSources.forEach((itemSource: BehaviorSubject<string | null>) => {
       itemSource.next(null);
       itemSource.complete();
     });

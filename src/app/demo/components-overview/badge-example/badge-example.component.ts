@@ -7,7 +7,7 @@ import { LuxBadgeColors } from '../../../modules/lux-util/lux-colors.enum';
 })
 export class BadgeExampleComponent {
   colors = LuxBadgeColors;
-  iconName = 'fa-arrow-circle-right';
+  iconName = 'lux-interface-arrows-left-circle-1';
   text = 'Badge';
   uppercase = false;
   backgroundColor = '';

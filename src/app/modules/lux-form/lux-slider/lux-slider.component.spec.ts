@@ -1,12 +1,14 @@
 /* eslint-disable max-classes-per-file */
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+// noinspection DuplicatedCode
 
-import { LuxSliderComponent } from './lux-slider.component';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { FormControl, FormGroup } from '@angular/forms';
+
+import { LuxDisplayWithFnType, LuxSliderComponent } from './lux-slider.component';
 import { Component } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { By } from '@angular/platform-browser';
-import { FormBuilder } from '@angular/forms';
 
 describe('LuxSliderComponent', () => {
 
@@ -25,16 +27,16 @@ describe('LuxSliderComponent', () => {
       fixture.detectChanges();
       sliderComponent = fixture.debugElement.query(By.directive(LuxSliderComponent)).componentInstance;
     });
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     // Änderungen durchführen
     // Nachbedingungen prüfen
 
     it('Sollte den Wert setzen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(component.form.value.slider).toEqual(0);
 
       // Änderungen durchführen
-      component.form.get('slider').setValue(25);
+      component.form.get('slider')!.setValue(25);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -43,7 +45,7 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte den Wert und Prozent-Wert richtig emitten (bei geändertem Max/Min Wert)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const valueSpy = spyOn(component, 'valueChanged');
       const percentSpy = spyOn(component, 'percentChanged');
 
@@ -56,7 +58,7 @@ describe('LuxSliderComponent', () => {
       component.max = 50;
       component.min = 25;
       LuxTestHelper.wait(fixture);
-      component.form.get('slider').setValue(30);
+      component.form.get('slider')!.setValue(30);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -67,34 +69,34 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte den Min- und Max-Wert nicht überschreiten', fakeAsync(() => {
-      // Vorbedingungen prüfen
-      expect(component.form.get('slider').value).toEqual(0);
+      // Vorbedingungen testen
+      expect(component.form.get('slider')!.value).toEqual(0);
       expect(sliderComponent.luxValue).toEqual(0);
 
       // Änderungen durchführen
       component.max = 50;
       component.min = 25;
       LuxTestHelper.wait(fixture);
-      component.form.get('slider').setValue(20);
+      component.form.get('slider')!.setValue(20);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(component.form.get('slider').value).toEqual(25);
+      expect(component.form.get('slider')!.value).toEqual(25);
       expect(sliderComponent.luxValue).toEqual(25);
 
       // Änderungen durchführen
-      component.form.get('slider').setValue(55);
+      component.form.get('slider')!.setValue(55);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(component.form.get('slider').value).toEqual(50);
+      expect(component.form.get('slider')!.value).toEqual(50);
       expect(sliderComponent.luxValue).toEqual(50);
     }));
 
     it('Sollte deaktiviert werden (über die Property)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let disabledSlider = fixture.debugElement.query(By.css('.mat-slider-disabled'));
-      expect(disabledSlider).toBe(null);
+      expect(disabledSlider).toBeNull();
       expect(sliderComponent.luxDisabled).toBe(false);
 
       // Änderungen durchführen
@@ -108,11 +110,11 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte deaktiviert werden (über die FormControl)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(sliderComponent.formControl.disabled).toBe(false);
 
       // Änderungen durchführen
-      component.form.get('slider').disable();
+      component.form.get('slider')!.disable();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -133,7 +135,7 @@ describe('LuxSliderComponent', () => {
     });
 
     it('Sollte den Wert setzen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(component.value).toEqual(0);
       expect(sliderComponent.luxValue).toEqual(0);
 
@@ -147,7 +149,7 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte den Wert und Prozent-Wert richtig emitten (bei geändertem Max/Min Wert)', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const valueSpy = spyOn(component, 'valueChanged');
       const percentSpy = spyOn(component, 'percentChanged');
 
@@ -171,9 +173,9 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte deaktiviert werden', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let disabledSlider = fixture.debugElement.query(By.css('.mat-slider-disabled'));
-      expect(disabledSlider).toBe(null);
+      expect(disabledSlider).toBeNull();
       expect(sliderComponent.luxDisabled).toBe(false);
 
       // Änderungen durchführen
@@ -187,7 +189,7 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte den Min- und Max-Wert nicht überschreiten', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(component.value).toEqual(0);
       expect(sliderComponent.luxValue).toEqual(0);
 
@@ -212,7 +214,7 @@ describe('LuxSliderComponent', () => {
     }));
 
     it('Sollte den Thumb-Label anzeigen und verstecken', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let thumbLabel = fixture.debugElement.query(By.css('.mat-slider-thumb-label-showing .mat-slider-thumb-label'));
       expect(thumbLabel).toBeDefined();
 
@@ -222,18 +224,19 @@ describe('LuxSliderComponent', () => {
 
       // Nachbedingungen prüfen
       thumbLabel = fixture.debugElement.query(By.css('.mat-slider-thumb-label-showing .mat-slider-thumb-label'));
-      expect(thumbLabel).toBe(null);
+      expect(thumbLabel).toBeNull();
     }));
 
     it('Sollte die displayWith-Funktion korrekt ausführen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let thumbLabelText = fixture.debugElement.query(By.css('.mat-slider-thumb-label-text'));
       expect(thumbLabelText.nativeElement.textContent).toEqual('0');
 
       // Änderungen durchführen
       component.max = 10000;
       component.showThumbLabel = true;
-      component.displayWith = value => {
+      component.displayWith = (value) => {
+        value = value ?? 0;
         if (value && value >= 1000) {
           return Math.round(value / 1000) + 'k';
         }
@@ -280,11 +283,11 @@ class MockSliderNoFormComponent {
   value = 0;
   max = 100;
   min = 0;
-  displayWith;
+  displayWith?: LuxDisplayWithFnType;
 
-  percentChanged($event) {}
+  percentChanged(value: number) {}
 
-  valueChanged($event) {}
+  valueChanged(value: number) {}
 }
 
 @Component({
@@ -309,13 +312,13 @@ class MockSliderFormComponent {
 
   form;
 
-  percentChanged($event) {}
+  percentChanged(value: number) {}
 
-  valueChanged($event) {}
+  valueChanged(value: number) {}
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      slider: [0]
+  constructor() {
+    this.form = new FormGroup({
+      slider: new FormControl<number>(0)
     });
   }
 }

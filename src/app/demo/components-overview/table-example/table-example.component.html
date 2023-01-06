@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Tabelle"
-  exampleIconName="fas fa-table"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90table"
 >
   <example-base-content>
@@ -27,6 +26,7 @@
         [luxAutoPaginate]="autoPagination"
         [luxPagerDisabled]="pagerDisabled"
         [luxPagerTooltip]="pagerTooltip"
+        [luxPagerFirstLastButton]="pagerFirstLastButton"
       >
         <lux-table-column
           luxColumnDef="name"
@@ -36,19 +36,19 @@
           [luxResponsiveBehaviour]="nameConfig.responsiveBehaviour?.value"
         >
           <lux-table-column-header>
-            <ng-template><span [luxTooltip]="'Tooltipp Spalte \'Name\''">Name</span></ng-template>
+            <ng-template><span [luxTooltip]="'Tooltip Spalte \'Name\''">Name</span></ng-template>
           </lux-table-column-header>
           <lux-table-column-content>
             <ng-template let-element>
               <span *ngIf="!element.editable">{{ element.name }}</span>
-              <lux-input
+              <lux-input-ac
                 *ngIf="element.editable"
                 luxAriaLabel="Name"
                 luxTagId="table.row.control.name"
                 class="lux-table-no-label"
                 [(luxValue)]="element.name"
                 [luxNoLabels]="true"
-              ></lux-input>
+              ></lux-input-ac>
             </ng-template>
           </lux-table-column-content>
           <lux-table-column-footer>
@@ -64,14 +64,14 @@
         >
           <lux-table-column-header>
             <ng-template>
-              <span [luxTooltip]="'Tooltipp Spalte \'Symbol\''">Symbol</span>
+              <span [luxTooltip]="'Tooltip Spalte \'Symbol\''">Symbol</span>
             </ng-template>
           </lux-table-column-header>
           <lux-table-column-content>
             <ng-template let-element>
               <span *ngIf="!element.editable">{{ element.symbol | lowercase }}</span>
               <div fxLayout="row wrap">
-                <lux-input
+                <lux-input-ac
                   *ngIf="element.editable"
                   luxAriaLabel="Symbol"
                   luxTagId="table.row.control.symbol"
@@ -79,7 +79,7 @@
                   class="lux-table-no-label"
                   [(luxValue)]="element.symbol"
                   [luxNoLabels]="true"
-                ></lux-input>
+                ></lux-input-ac>
               </div>
             </ng-template>
           </lux-table-column-content>
@@ -119,7 +119,7 @@
                 luxTagId="table.row.action.edit"
                 class="lux-table-example"
                 luxColor="primary"
-                luxIconName="fas fa-edit"
+                luxIconName="lux-interface-edit-write-2"
                 (luxClicked)="onEdit(element)"
               ></lux-button>
               <lux-button
@@ -128,7 +128,7 @@
                 luxTagId="table.row.action.save"
                 class="lux-table-example"
                 luxColor="primary"
-                luxIconName="fas fa-save"
+                luxIconName="lux-save"
                 (luxClicked)="onSave(element)"
               ></lux-button>
               <lux-button
@@ -137,7 +137,7 @@
                 luxTagId="table.row.action.cancel"
                 class="lux-table-example"
                 luxColor="primary"
-                luxIconName="fas fa-undo"
+                luxIconName="lux-interface-arrows-round-left"
                 (luxClicked)="onCancel(element)"
               ></lux-button>
             </ng-template>
@@ -148,9 +148,9 @@
         </lux-table-column>
       </lux-table>
     </div>
-    <div ngClass="message-box" ngClass.lt-md="message-box-small">
+    <!-- <div ngClass="message-box" ngClass.lt-md="message-box-small">
       <div fxLayout="row" fxLayoutAlign="start start" class="box-header">
-        <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+        <lux-icon luxIconName="lux-interface-favorite-like-1" luxIconSize="2x"></lux-icon>
         <div fxLayout="column">
           <h2>Tipp</h2>
           <h3>Formcontrols in editierbaren Tabellen anpassen</h3>
@@ -159,12 +159,12 @@
       <p>
         Die Lux-Form-Controls haben standardmäßig einen Label- und einen Hint/Error-Container. In editierbaren Tabellen werden diese jedoch nicht benötigt. <br>
         Für diesen Anwendungsfall kann ab Version 13.0.0 das Attribut <strong>luxNoLabels</strong> bei den Form-Controls genutzt werden. Dabei werden die unnötigen Container ausgeblendet
-        und das Formcontrol in der Zelle zentriert angeszeigt.
+        und das Formcontrol in der Zelle zentriert angezeigt.
       </p>
       <div class="code-section">
         <lux-markdown [luxData]="markdownData"></lux-markdown>
       </div>
-    </div>
+    </div> -->
   </example-base-content>
   <example-base-simple-options>
     <table-example-simple-options [tableExample]="this"></table-example-simple-options>
@@ -175,7 +175,7 @@
   <example-base-options-actions>
     <lux-menu
       fxFlex="0 0 250px"
-      luxMenuIconName="fas fa-ellipsis-v"
+      luxMenuIconName="lux-interface-setting-menu-vertical"
       [luxDisplayExtended]="true"
       [luxDisplayMenuLeft]="false"
       [luxMaximumExtended]="4"

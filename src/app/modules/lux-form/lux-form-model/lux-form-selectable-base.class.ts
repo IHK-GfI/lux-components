@@ -4,42 +4,55 @@ import { ControlContainer } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
+export declare type LuxPickValueFnType<O = any,V = any> = ((option: O) => V) | undefined;
+export declare type LuxCompareWithFnType<O = any> = ((o1: O, o2: O) => boolean) | undefined;
+
 /**
  * Basis-Klasse für FormComponents, die einen ähnlichen Grundaufbau für die Auswahl von
  * Optionen aus einem Array anbieten (Radio-Buttons und Selects z.B.).
  *
- * @param o1
- * @param o2
+ * @param O Optionstyp (z.B Land)
+ * @param V Werttyp (z.B. Land, Land[], string, string[],...)
+ * @param P PickValueFn-Typ (z.B. string, number,...)
  */
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
+export abstract class LuxFormSelectableBase<O = any, V = any, P = any> extends LuxFormComponentBase<V> {
   _luxOptions: any[] = [];
   _luxOptionsPickValue: any[] = [];
-  _luxPickValue: (selected) => {};
+  _luxPickValue?: LuxPickValueFnType<O,P>;
+  _luxCompareWith = (o1: O, o2: O) => o1 === o2;
 
-  @Output() luxSelectedChange: EventEmitter<any> = new EventEmitter();
-  @Input() luxOptionLabelProp = '';
-  @Input() luxTagId: string;
-  @Input() luxCompareWith = (o1, o2) => o1 === o2;
+  @Output() luxSelectedChange = new EventEmitter<any>();
+  @Input() luxOptionLabelProp? = '';
+  @Input() luxTagId?: string;
 
-  get luxSelected(): any {
+  get luxCompareWith(): LuxCompareWithFnType | undefined {
+    return this._luxCompareWith;
+  }
+
+  @Input()
+  set luxCompareWith(compareFn: LuxCompareWithFnType | undefined){
+    this._luxCompareWith = compareFn ?? ((o1: O, o2: O) => o1 === o2);
+  }
+
+  get luxSelected(): V | null {
     return this.getValue();
   }
 
-  @Input() set luxSelected(selected: any) {
-    this.setValue(selected);
+  @Input() set luxSelected(selected: V | null) {
+    this.setValue(selected as V);
   }
 
-  get luxPickValue(): (selected) => {} {
+  get luxPickValue(): LuxPickValueFnType<O,P> {
     return this._luxPickValue;
   }
 
-  @Input() set luxPickValue(pickValueFn: (selected) => {}) {
+  @Input() set luxPickValue(pickValueFn:LuxPickValueFnType<O,P>) {
     this._luxPickValue = pickValueFn;
     this._luxOptionsPickValue = [];
 
-    if (this._luxPickValue && this.luxOptions) {
-      this._luxOptions.forEach(option => this._luxOptionsPickValue.push(this.luxPickValue(option)));
+    if (pickValueFn && this.luxOptions) {
+      this._luxOptions.forEach(option => this._luxOptionsPickValue.push(pickValueFn(option)));
     }
   }
 
@@ -51,8 +64,9 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
     this._luxOptions = options;
     this._luxOptionsPickValue = [];
 
-    if (this._luxOptions && this.luxPickValue) {
-      this._luxOptions.forEach(option => this._luxOptionsPickValue.push(this.luxPickValue(option)));
+    const pickValueFn = this.luxPickValue;
+    if (this._luxOptions && pickValueFn) {
+      this._luxOptions.forEach(option => this._luxOptionsPickValue.push(pickValueFn(option)));
     }
   }
 
@@ -65,17 +79,13 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
     super(controlContainer, cdr, logger, config);
   }
 
-  // region Overridden methods
-
   notifyFormValueChanged(formValue: any) {
     this.checkSelectedAndUpdate(formValue);
   }
 
-  // endregion
-
   /**
    * Versucht, wenn Options und FormControl vorhanden sind, den selected-Wert mit den Options
-   * zu vergleichen und dann auch wenn möglich als luxSelected-Wert zu sichern.
+   * zu vergleichen und wenn möglich als luxSelected-Wert zu sichern.
    *
    * @param selected
    */
@@ -90,7 +100,7 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
           this.checkSelectedAndUpdate(selected);
         });
       } else {
-        // Für den Fall, das der eingesetzte Wert sich doch noch vom FormControl-Value unterscheidet,
+        // Für den Fall, dass der eingesetzte Wert sich doch noch vom FormControl-Value unterscheidet,
         // diesen ergänzen
         if (this.luxSelected !== selected) {
           this.luxSelected = selected;
@@ -107,13 +117,11 @@ export abstract class LuxFormSelectableBase extends LuxFormComponentBase {
    * @param o1
    * @param o2
    */
-  compareObjects = (o1, o2) => {
+  compareObjects = (o1: O, o2: O) => {
     if ((!o1 && o2) || (o1 && !o2)) {
       return false;
-    } else if (this.luxCompareWith && !!o1 && !!o2) {
-      return this.luxCompareWith(o1, o2);
     } else {
-      return o1 === o2;
+      return this._luxCompareWith(o1, o2);
     }
   };
 

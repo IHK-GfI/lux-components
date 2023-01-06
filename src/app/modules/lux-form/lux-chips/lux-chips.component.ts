@@ -18,7 +18,8 @@ import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autoc
 import { MatChip } from '@angular/material/chips';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
-import { LuxFormComponentBase } from "../lux-form-model/lux-form-component-base.class";
+import { LuxUtil } from '../../lux-util/lux-util';
+import { LuxFormComponentBase } from '../lux-form-model/lux-form-component-base.class';
 import { LuxChipGroupComponent } from './lux-chips-subcomponents/lux-chip-group.component';
 import { LuxChipComponent } from './lux-chips-subcomponents/lux-chip.component';
 import { Subject, Subscription } from 'rxjs';
@@ -32,9 +33,9 @@ let luxChipControlUID = 0;
   templateUrl: './lux-chips.component.html',
   styleUrls: ['./lux-chips.component.scss']
 })
-export class LuxChipsComponent extends LuxFormComponentBase implements AfterContentInit, AfterViewInit, OnDestroy {
-  private readonly inputValueSubscription: Subscription = new Subscription();
-  private readonly newChipSubscription: Subscription = new Subscription();
+export class LuxChipsComponent extends LuxFormComponentBase<string[]> implements AfterContentInit, AfterViewInit, OnDestroy {
+  private readonly inputValueSubscription = new Subscription();
+  private readonly newChipSubscription = new Subscription();
 
   private _luxAutocompleteOptions: string[] = [];
 
@@ -59,10 +60,11 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
   newChip$: Subject<any> = new Subject<any>();
   canClose = false;
   actionRunning = false;
+  initRunning = false;
 
   @Input() luxOrientation: LuxChipsOrientation = 'horizontal';
   @Input() luxInputAllowed = false;
-  @Input() luxNewChipGroup: LuxChipGroupComponent;
+  @Input() luxNewChipGroup?: LuxChipGroupComponent;
   @Input() luxMultiple = true;
   @Input() luxStrict = false;
   @Input() luxLabelLongFormat = false;
@@ -71,13 +73,13 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
 
   @Output() luxChipAdded = new EventEmitter<string>();
 
-  @ContentChildren(LuxChipComponent) luxChipComponents: QueryList<LuxChipComponent>;
-  @ContentChildren(LuxChipGroupComponent) luxChipGroupComponents: QueryList<LuxChipGroupComponent>;
-  @ViewChildren(MatChip) matChips: QueryList<MatChip>;
+  @ContentChildren(LuxChipComponent) luxChipComponents!: QueryList<LuxChipComponent>;
+  @ContentChildren(LuxChipGroupComponent) luxChipGroupComponents!: QueryList<LuxChipGroupComponent>;
+  @ViewChildren(MatChip) matChips!: QueryList<MatChip>;
 
-  @ViewChild('input', { read: MatAutocompleteTrigger }) matAutocompleteTrigger: MatAutocompleteTrigger;
-  @ViewChild('auto', { read: MatAutocomplete }) matAutocomplete: MatAutocomplete;
-  @ViewChild('chipscontainerdiv') chipContainerDivRef: ElementRef;
+  @ViewChild('input', { read: MatAutocompleteTrigger }) matAutocompleteTrigger?: MatAutocompleteTrigger;
+  @ViewChild('auto', { read: MatAutocomplete }) matAutocomplete?: MatAutocomplete;
+  @ViewChild('chipsContainerDiv') chipContainerDivRef!: ElementRef;
 
   get luxDisabled(): boolean {
     return this._luxDisabled;
@@ -85,10 +87,13 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
 
   @Input() set luxDisabled(disabled: boolean) {
     this._luxDisabled = disabled;
-    setTimeout(() => {
-      this.luxChipGroupComponents.forEach((chipGroup) => (chipGroup.luxDisabled = disabled));
-      this.luxChipComponents.forEach((chip) => (chip.luxDisabled = disabled));
-    });
+    if (!this.initRunning) {
+      // Den Disabled-State nicht während der Initialisierung übertragen.
+      setTimeout(() => {
+        this.luxChipGroupComponents.forEach((chipGroup) => (chipGroup.luxDisabled = disabled));
+        this.luxChipComponents.forEach((chip) => (chip.luxDisabled = disabled));
+      });
+    }
   }
 
   get luxAutocompleteOptions(): string[] {
@@ -148,11 +153,11 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
   }
 
   ngAfterContentInit() {
-    if (this.inForm) {
+    if (this.inForm && this.luxNewChipGroup) {
       if (this.formControl.value && Array.isArray(this.formControl.value)) {
         this.luxNewChipGroup.luxLabels = [...this.formControl.value];
       } else {
-        this.luxNewChipGroup.luxLabels = null;
+        this.luxNewChipGroup.luxLabels = [];
       }
 
       this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];
@@ -160,6 +165,8 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
   }
 
   ngAfterViewInit() {
+    LuxUtil.assertNonNull('chipContainerDivRef', this.chipContainerDivRef);
+
     if (this.matAutocompleteTrigger && this.chipContainerDivRef) {
       this.matAutocompleteTrigger.connectedTo = { elementRef: this.chipContainerDivRef };
       this.cdr.detectChanges();
@@ -176,8 +183,8 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
   }
 
   /**
-   * Fuegt einen Chip hinzu.
-   * Fuegt ihn entweder der explizit mitgeteilten newChipList hinzu oder einfach
+   * Fügt einen Chip hinzu.
+   * Fügt ihn entweder der explizit mitgeteilten newChipList hinzu oder einfach
    * der letzten mitgegebenen Liste.
    *
    * @param value
@@ -200,7 +207,7 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
             if (this.luxNewChipGroup.luxLabels && Array.isArray(this.luxNewChipGroup.luxLabels) && this.luxNewChipGroup.luxLabels.length > 0) {
               this.formControl.setValue([...this.luxNewChipGroup.luxLabels]);
             } else {
-              this.formControl.setValue(null);
+              this.formControl.setValue([]);
             }
           }
         } else {
@@ -208,7 +215,11 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
         }
 
         // Autocomplete-Feld in jedem Fall schließen (Delay über Timeout, damit kein visuelles Flackern entsteht)
-        setTimeout(() => this.matAutocompleteTrigger.closePanel());
+        setTimeout(() => {
+          if (this.matAutocompleteTrigger) {
+            this.matAutocompleteTrigger.closePanel();
+          }
+        });
       }
     } finally {
       this.actionRunning = false;
@@ -237,7 +248,7 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
         if (chipGroup.luxLabels && Array.isArray(chipGroup.luxLabels) && chipGroup.luxLabels.length > 0) {
           this.formControl.setValue([...chipGroup.luxLabels]);
         } else {
-          this.formControl.setValue(null);
+          this.formControl.setValue([]);
         }
 
         this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];
@@ -273,7 +284,9 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
    * auswählen.
    */
   onAutocompleteClick() {
-    this.matAutocompleteTrigger.openPanel();
+    if (this.matAutocompleteTrigger) {
+      this.matAutocompleteTrigger.openPanel();
+    }
   }
 
   /**
@@ -282,7 +295,7 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
    * @param input
    * @param value
    */
-  autoCompleteAdd(input, value) {
+  autoCompleteAdd(input: HTMLInputElement, value: string) {
     this.newChip$.next(value);
     input.value = '';
   }
@@ -293,8 +306,8 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
    *
    * @param input
    */
-  inputAdd(input) {
-    if (!this.matAutocomplete.isOpen) {
+  inputAdd(input: HTMLInputElement) {
+    if (!this.matAutocomplete?.isOpen) {
       // Falls nur eine Option übrig ist, wird diese als Wert anstelle des Inputtextes verwendet.
       if (
         input.value &&
@@ -324,7 +337,7 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
       // Dieser Workaround ist nötig, da das Autocomplete-Panel in dem folgenden Fall sofort nach
       // dem Öffnen wieder geschlossen wird.
       //
-      // Fall: Keine Chips vorhanden und der Benutzer klickt auf die Pfeil-Action
+      // Fall: Keine Chips vorhanden und der Benutzer klickt auf die Pfeil-Action.
       // In diesem Fall wird das Autocomplete-Panel durch die Material-Komponente (focusin) geöffnet
       // und durch die Pfeil-Action direkt wieder geschlossen. D.h. man kann das Autocomplete-Panel
       // nicht immer schließen, wenn es bereits geöffnet ist, weil man nicht erkennen kann, ob das
@@ -336,12 +349,21 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
   }
 
   onArrowIcon() {
-    if (this.matAutocompleteTrigger.panelOpen) {
+    if (this.matAutocompleteTrigger?.panelOpen) {
       if (this.matChips.length > 0 || this.canClose) {
-        this.matAutocompleteTrigger.closePanel();
+        this.matAutocompleteTrigger?.closePanel();
       }
     } else {
-      this.matAutocompleteTrigger.openPanel();
+      this.matAutocompleteTrigger?.openPanel();
+    }
+  }
+
+  protected initFormControl() {
+    try {
+      this.initRunning = true;
+      super.initFormControl();
+    } finally {
+      this.initRunning = false;
     }
   }
 
@@ -353,11 +375,11 @@ export class LuxChipsComponent extends LuxFormComponentBase implements AfterCont
     // wurden. In diesen Fällen sind die luxLabels der ChipGroup
     // bereits aktualisiert worden. Um das doppelte Setzen zu
     // verhindern, wurde hier das actionRunning-Flag eingeführt.
-    if (!this.actionRunning && this.inForm) {
+    if (!this.actionRunning && this.inForm && this.luxNewChipGroup) {
       if (formValue && Array.isArray(formValue)) {
         this.luxNewChipGroup.luxLabels = [...formValue];
       } else {
-        this.luxNewChipGroup.luxLabels = null;
+        this.luxNewChipGroup.luxLabels = [];
       }
 
       this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];

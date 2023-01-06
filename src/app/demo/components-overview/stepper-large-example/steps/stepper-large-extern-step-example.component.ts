@@ -7,6 +7,7 @@ import { LuxStepperLargeStepComponent } from '../../../../modules/lux-layout/lux
   providers: [{ provide: LuxStepperLargeStepComponent, useExisting: StepperLargeExternStepExampleComponent }]
 })
 export class StepperLargeExternStepExampleComponent extends LuxStepperLargeStepComponent implements OnInit, AfterViewInit {
+
   constructor(private cdr: ChangeDetectorRef) {
     super();
   }

@@ -11,25 +11,26 @@ import { ILuxError } from '../lux-error-interfaces/lux-error.interface';
   providedIn: 'root'
 })
 export class LuxErrorStoreService {
-  private _config: ILuxErrorPageConfig;
-  private _error: ILuxError;
-  private _lastErrors: ILuxError[];
 
   /**
-   * Enthaelt die normale Konfiguration der Fehlerseite, kann bei Bedarf mit setConfig ueberschrieben werden.
+   * Enthält die normale Konfiguration der Fehlerseite, kann bei Bedarf mit setConfig überschrieben werden.
    */
-  private readonly _defaultConfig: ILuxErrorPageConfig = {
-    iconName: 'far fa-times-circle',
+  static readonly DEFAULT_CONFIG: ILuxErrorPageConfig = {
+    iconName: 'lux-interface-delete-2',
     iconSize: '5x',
-    errorText: 'Uups... da ist etwas schief gelaufen. Wir kennen die Fehlerdetails bereits und kümmern uns darum.',
+    errorText: 'Es ist ein Fehler aufgetreten',
     homeRedirectText: 'Zurück zur Startseite',
     homeRedirectUrl: '',
     errorPageUrl: 'errorpage',
     skipLocationChange: true
   };
 
+  private _config: ILuxErrorPageConfig = {};
+  private _error: ILuxError | null = null;
+  private _lastErrors: ILuxError[] = [];
+
   /**
-   * Gibt die aktuelle Konfiguration zurueck.
+   * Gibt die aktuelle Konfiguration zurück.
    *
    * @returns ILuxErrorPageConfig
    */
@@ -38,7 +39,7 @@ export class LuxErrorStoreService {
   }
 
   /**
-   * Gibt ein Array der letzten Fehler zurueck.
+   * Gibt ein Array der letzten Fehler zurück.
    *
    * @returns Array<ILuxError[]>
    */
@@ -47,11 +48,11 @@ export class LuxErrorStoreService {
   }
 
   /**
-   * Gibt den aktuellen Fehler zurueck.
+   * Gibt den aktuellen Fehler zurück.
    *
    * @returns ILuxError
    */
-  get error(): ILuxError {
+  get error(): ILuxError | null {
     return this._error;
   }
 
@@ -60,9 +61,12 @@ export class LuxErrorStoreService {
    *
    * @param newError
    */
-  set error(newError: ILuxError) {
+  set error(newError: ILuxError | null) {
     this._error = newError;
-    this._lastErrors.push(newError);
+
+    if (newError) {
+      this._lastErrors.push(newError);
+    }
   }
 
   constructor() {}
@@ -74,24 +78,20 @@ export class LuxErrorStoreService {
     this._lastErrors = [];
     this._error = null;
     this._config = {};
-    this.safeNewConfig(this._defaultConfig);
+    this.safeNewConfig(LuxErrorStoreService.DEFAULT_CONFIG);
   }
 
   /**
+   * Diese Methode sichert die übergebene Konfiguration.
    *
    * @param luxErrorPageConfig
    */
-  safeNewConfig(luxErrorPageConfig: ILuxErrorPageConfig) {
-    // wenn keine Config übergeben wird, ein leeres Objekt erzeugen
-    // das sorgt dafür, dass wenigstens die default-Werte genommen werden
-    luxErrorPageConfig = luxErrorPageConfig ? luxErrorPageConfig : {};
-    // alle Werte der übergebenen Config prüfen und ggf. default-Werte nutzen
-    Object.keys(luxErrorPageConfig).forEach(e => {
-      if (luxErrorPageConfig[e] !== undefined && luxErrorPageConfig[e] !== null) {
-        this._config[e] = luxErrorPageConfig[e];
-      } else {
-        this._config[e] = this._defaultConfig[e];
-      }
-    });
+  safeNewConfig(luxErrorPageConfig: ILuxErrorPageConfig | null) {
+    const newConfig: ILuxErrorPageConfig = {};
+
+    Object.assign(newConfig, LuxErrorStoreService.DEFAULT_CONFIG);
+    Object.assign(newConfig, luxErrorPageConfig ?? {});
+
+    this._config = newConfig;
   }
 }

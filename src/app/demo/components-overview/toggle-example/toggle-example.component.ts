@@ -1,49 +1,44 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { emptyErrorCallback, exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
+
+interface ToggleDummyForm {
+  toggleExample: FormControl<boolean | null>;
+}
 
 @Component({
   selector: 'toggle-example',
   templateUrl: './toggle-example.component.html'
 })
 export class ToggleExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useErrorMessage = true;
-  form: FormGroup;
-
-  // endregion
-
-  // region Properties der Component
-
-  value;
+  form: FormGroup<ToggleDummyForm>;
+  value = false;
   controlBinding = 'toggleExample';
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
 
-  // endregion
-
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      toggleExample: []
+  constructor() {
+    this.form = new FormGroup<ToggleDummyForm>({
+      toggleExample: new FormControl<boolean | null>(null)
     });
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    if ($event) {
-      this.form.get(this.controlBinding).setValidators(Validators.requiredTrue);
+  changeRequired(required: boolean) {
+    this.required = required;
+    if (required) {
+      this.form.get(this.controlBinding)!.setValidators(Validators.requiredTrue);
     } else {
-      this.form.get(this.controlBinding).setValidators(null);
+      this.form.get(this.controlBinding)!.setValidators(null);
     }
-    this.form.get(this.controlBinding).updateValueAndValidity();
+    this.form.get(this.controlBinding)!.updateValueAndValidity();
   }
 
-  emptyCallback() {}
 }

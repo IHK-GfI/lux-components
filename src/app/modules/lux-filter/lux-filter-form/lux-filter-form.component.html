@@ -1,54 +1,113 @@
-<lux-accordion luxMode="flat">
+<!-- Standardmäßig wird das Lux-Filter-Form in einem Accordion dargestellt -->
+<lux-accordion luxMode="flat" *ngIf="!luxShowAsCard" [luxHideToggle]="true">
   <lux-panel
     [(luxExpanded)]="luxFilterExpanded"
     class="filterPanel"
     luxCollapsedHeaderHeight="40px"
-    luxExpandedHeaderHeight="40px"
+    luxExpandedHeaderHeight="48px"
+    [luxHideToggle]="true"
   >
-    <lux-panel-header-description>{{ luxTitle }}</lux-panel-header-description>
-    <lux-panel-content>
-      <form [formGroup]="filterForm" class="lux-mb-4">
-        <ng-content></ng-content>
-      </form>
+    <lux-panel-header-title class="lux-filter-panel-header"> 
+      {{ luxTitle }} 
+      <ng-container *ngIf="luxFilterExpanded">
+        <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container>
+      </ng-container>
+    </lux-panel-header-title>
+    <lux-panel-content class="lux-filter-panel-content">
+      <ng-container *ngTemplateOutlet="filterFormTemplate"></ng-container>
     </lux-panel-content>
-    <lux-panel-action>
-      <lux-menu [luxDisplayExtended]="true" [luxMaximumExtended]="1" luxMenuIconName="fas fa-ellipsis-v">
-        <lux-menu-item
-          [luxLabel]="luxButtonFilterLabel"
-          [luxAlwaysVisible]="true"
-          luxIconName="fas fa-filter"
-          [luxColor]="luxButtonFilterColor"
-          [luxRaised]="luxButtonRaised"
-          luxButtonTooltip="{{ luxDisableShortcut ? '' : '(Shift + Enter)' }}"
-          (luxClicked)="onFilter()"
-        ></lux-menu-item>
-        <lux-menu-item
-          [luxLabel]="luxButtonResetLabel"
-          [luxAlwaysVisible]="false"
-          luxIconName="fas fa-redo"
-          [luxColor]="luxButtonResetColor"
-          (luxClicked)="onReset()"
-        ></lux-menu-item>
-        <lux-menu-item
-          [luxLabel]="luxButtonSaveLabel"
-          [luxAlwaysVisible]="false"
-          luxIconName="fas fa-upload"
-          [luxColor]="luxButtonSaveColor"
-          (luxClicked)="openSaveDialog()"
-          *ngIf="hasSaveAction"
-        ></lux-menu-item>
-        <lux-menu-item
-          [luxLabel]="luxButtonLoadLabel"
-          [luxAlwaysVisible]="false"
-          [luxColor]="luxButtonLoadColor"
-          luxIconName="fas fa-download"
-          (luxClicked)="openLoadDialog()"
-          *ngIf="hasLoadAction"
-        ></lux-menu-item>
-      </lux-menu>
+    <lux-panel-action class="lux-filter-panel-action">
+      <ng-container *ngTemplateOutlet="filterButtonTemplate"></ng-container>
     </lux-panel-action>
   </lux-panel>
 </lux-accordion>
+
+<!-- Template für die Darstellung des Lux-Filter-Forms in einer Lux-Card -->
+<lux-card 
+  *ngIf="luxShowAsCard"
+  luxTitle="{{luxTitle}}" 
+  [luxExpandedLabelOpen]="luxExpandedLabelOpen"
+  [luxExpandedLabelClose]="luxExpandedLabelClose"  
+  class="lux-filter-card"
+  luxTagId="luxFilterCard"
+>
+<lux-card-info>
+  <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container>
+</lux-card-info>
+  <lux-card-content>
+    <ng-container *ngTemplateOutlet="filterFormTemplate"></ng-container>
+  </lux-card-content>
+  <!-- Optional können bei der Darstellung in einer Card erweiterte Optionen als Expanded-Content der Card angezeigt werden -->
+  <lux-card-content-expanded *ngIf="extendedOptions" luxTagId="luxFilterFormExtendedContent">
+    <ng-content select='lux-filter-form-extended'></ng-content>
+  </lux-card-content-expanded>
+  <lux-card-actions>
+    <ng-container *ngTemplateOutlet="filterButtonTemplate"></ng-container>
+  </lux-card-actions>
+</lux-card>
+
+<!-- der eigentliche Inhalt des Filterformulars, wird via Content-Projection eingefügt -->
+<ng-template #filterFormTemplate>
+  <form [formGroup]="filterForm" class="lux-filter-form">
+    <ng-content></ng-content>
+  </form>
+</ng-template>
+
+<!-- Filter-Button ist jetzt vom Menü getrennt -->
+<ng-template #filterButtonTemplate>
+  <lux-button 
+    [luxLabel]="luxButtonFilterLabel"
+    [luxColor]="luxButtonFilterColor"
+    [luxStroked]="!luxButtonFlat" 
+    [luxFlat]="luxButtonFlat"
+    luxIconName="lux-interface-text-formatting-filter-1"
+    luxTooltip="{{ luxDisableShortcut ? '' : '(Shift + Enter)' }}"
+    (luxClicked)="onFilter()"
+    luxTagId="filterFormButton"
+    class="lux-filter-form-button"
+  ></lux-button>
+</ng-template>
+<!-- die Menü-Leiste mit den Filterfunktionen ist in beiden Darstellungen gleich -->
+<ng-template #filterActionTemplate>
+  <lux-menu 
+    [luxDisplayExtended]="false" 
+    class="filter-menu" 
+  >
+    <lux-menu-item
+      [luxLabel]="luxButtonResetLabel"
+      [luxAlwaysVisible]="false"
+      [luxColor]="luxButtonResetColor"
+      (luxClicked)="onReset()"
+    ></lux-menu-item>
+    <lux-menu-item
+      [luxLabel]="luxButtonSaveLabel"
+      [luxAlwaysVisible]="false"
+      [luxColor]="luxButtonSaveColor"
+      (luxClicked)="openSaveDialog()"
+      *ngIf="hasSaveAction"
+    ></lux-menu-item>
+    <lux-menu-item
+      [luxLabel]="luxButtonLoadLabel"
+      [luxAlwaysVisible]="false"
+      [luxColor]="luxButtonLoadColor"
+      (luxClicked)="openLoadDialog()"
+      *ngIf="hasLoadAction"
+    ></lux-menu-item>
+
+    <lux-menu-trigger>
+      <lux-button
+        [luxRounded]="true"
+        luxIconName="lux-interface-setting-menu-vertical"
+        luxColor="primary"
+        class="lux-filter-menu-trigger"
+        luxTagId="filter-menu-trigger"
+      >
+      </lux-button>
+    </lux-menu-trigger>
+  </lux-menu>
+</ng-template>
+
+<!-- Chips mit den Filterfunktionen unterhalb des Filter-Formulars (optional) -->
 <div
   class="lux-label"
   ngClass.gt-sm="no-filter-active" ngClass.lt-md="no-filter-active-sm"

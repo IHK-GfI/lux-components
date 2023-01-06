@@ -1,0 +1,188 @@
+<div class="example-container">
+  <lux-layout>
+    <lux-layout-card-row>
+      <lux-card luxTitle="Benutzer" luxTagId="forms" *luxLayoutRowItem="{}">
+        <lux-card-content>
+          <form [formGroup]="myGroup">
+            <div formGroupName="user">
+              <div fxLayout="column" fxLayoutGap="12px" class="lux-mb-4">
+                <div fxLayout="row" fxLayoutGap="20px">
+                  <lux-input-ac
+                    luxName="first-name"
+                    luxLabel="Vorname"
+                    luxControlBinding="firstname"
+                    fxFlex="50"
+                  ></lux-input-ac>
+                  <lux-input-ac
+                    luxName="given-name"
+                    luxLabel="Nachname"
+                    luxControlBinding="lastname"
+                    fxFlex="50"
+                  ></lux-input-ac>
+                </div>
+                <div fxLayout="row" fxLayoutGap="20px">
+                  <lux-input-ac luxName="email" luxLabel="E-Mail" luxControlBinding="email" fxFlex="50">
+                    <lux-input-ac-suffix>
+                      <lux-icon luxIconName="lux-mail-sign-at"></lux-icon>
+                    </lux-input-ac-suffix>
+                  </lux-input-ac>
+                  <lux-input-ac
+                    luxName="current-password"
+                    luxLabel="Passwort"
+                    luxHint="Das Passwort ist geheim."
+                    [luxHintShowOnlyOnFocus]="true"
+                    luxControlBinding="password"
+                    luxType="password"
+                    fxFlex="50"
+                  >
+                    <lux-input-ac-suffix>
+                      <lux-icon luxIconName="lux-interface-lock"></lux-icon>
+                    </lux-input-ac-suffix>
+                  </lux-input-ac>
+                </div>
+              </div>
+            </div>
+  
+            <div fxLayout="column" fxLayoutGap="12px">
+              <div fxLayout="row" fxLayoutGap="20px">
+                <lux-select-ac
+                  luxLabel="Hobbys"
+                  luxControlBinding="hobbies"
+                  [luxOptions]="hobbies"
+                  luxOptionLabelProp="label"
+                  [luxMultiple]="true"
+                  fxFlex="50"
+                ></lux-select-ac>
+                <lux-input-ac
+                  luxName="form-common_Spende"
+                  luxLabel="Spende"
+                  luxControlBinding="donation"
+                  luxType="number"
+                  fxFlex="50"
+                >
+                  <lux-input-ac-prefix>
+                    <lux-icon luxIconName="lux-interface-favorite-give-heart"></lux-icon>
+                  </lux-input-ac-prefix>
+                  <lux-input-ac-suffix>
+                    <lux-icon luxIconName="lux-money-currency-euro"></lux-icon>
+                  </lux-input-ac-suffix>
+                </lux-input-ac>
+              </div>
+  
+              <div fxLayout="row" fxLayoutGap="20px">
+                <lux-toggle-ac luxLabel="Newsletter" luxControlBinding="newsletter" fxFlex="50"></lux-toggle-ac>
+                <lux-checkbox-ac luxControlBinding="hungry" luxLabel="Hungrig" fxFlex="50"></lux-checkbox-ac>
+              </div>
+  
+              <div fxLayout="row" fxLayoutGap="20px">
+                <lux-input-ac
+                  luxName="form-common_Beschreibung"
+                  luxLabel="Beschreibung"
+                  luxControlBinding="description"
+                  fxFlex="100"
+                ></lux-input-ac>
+              </div>
+  
+              <div fxLayout="row" fxLayoutGap="20px">
+                <lux-chips-ac
+                  [luxInputAllowed]="true"
+                  luxInputLabel="Neuen Chip erstellen..."
+                  luxOrientation="horizontal"
+                  [luxAutocompleteOptions]="chipOptions"
+                  [luxNewChipGroup]="chipGroup2"
+                  fxFlex="100"
+                >
+                  <lux-chip-ac [luxRemovable]="false" luxColor="warn">
+                    Chip ohne Group
+                  </lux-chip-ac>
+                  <lux-chip-ac-group
+                    [luxRemovable]="false"
+                    luxColor="primary"
+                    (luxChipClicked)="chipItemClicked($event)"
+                    [luxLabels]="chipItems"
+                    #chipGroup
+                  >
+                    <ng-template let-chipItem>
+                      {{ chipItem | lowercase }}
+                    </ng-template>
+                  </lux-chip-ac-group>
+                  <lux-chip-ac-group
+                    [luxRemovable]="true"
+                    luxColor="accent"
+                    (luxChipClicked)="chipItemClicked($event)"
+                    [luxLabels]="chipItems2"
+                    #chipGroup2
+                  >
+                    <ng-template let-chipItem>
+                      {{ chipItem | uppercase }}
+                    </ng-template>
+                  </lux-chip-ac-group>
+                </lux-chips-ac>
+              </div>
+            </div>
+  
+            <div fxLayout="row" fxLayoutGap="20px">
+              <lux-radio-ac
+                [luxOptions]="hobbies"
+                luxGroupName="1"
+                luxControlBinding="radio"
+                [luxOrientationVertical]="false"
+                luxLabel="Hobbies"
+                fxFlex="100"
+              >
+                <ng-template let-option>
+                  {{ option['label'] }}
+                </ng-template>
+              </lux-radio-ac>
+            </div>
+  
+            <div fxLayout="row" fxLayoutGap="20px">
+              <lux-datepicker-ac
+                [luxTouchUi]="true"
+                luxControlBinding="datepicker"
+                luxLabel="Datepicker"
+                fxFlex="50"
+              >
+              </lux-datepicker-ac>
+  
+              <lux-autocomplete-ac
+                [luxOptions]="chipItems2"
+                luxLabel="Autocomplete"
+                [luxLookupDelay]="100"
+                [luxSelectAllOnClick]="false"
+                luxControlBinding="autocomplete"
+                fxFlex="50"
+              >
+              </lux-autocomplete-ac>
+            </div>
+            <div fxLayout="row" fxLayoutGap="20px">
+              <lux-textarea-ac 
+                luxLabel="Textarea" 
+                luxPlaceholder="Bitte hinterlasse hier einen Kommentar..." 
+                [luxMaxLength]="300" 
+                [luxMinRows]="2"
+                [luxMaxRows]="3"
+                fxFlex="100"  
+              >
+              </lux-textarea-ac>
+            </div>
+          </form>
+        </lux-card-content>
+      </lux-card>
+    </lux-layout-card-row>
+    <lux-layout-card-row>
+      <lux-card luxTitle="Formulardaten" *luxLayoutRowItem="{}">
+        <lux-card-content>
+          <lux-layout>
+            <lux-layout-form-row>
+              <div *luxLayoutRowItem="{}">
+                <pre>{{ myGroup.value | json }}</pre>
+              </div>
+            </lux-layout-form-row>
+          </lux-layout>
+        </lux-card-content>
+      </lux-card>
+    </lux-layout-card-row>
+  </lux-layout>
+  
+</div>

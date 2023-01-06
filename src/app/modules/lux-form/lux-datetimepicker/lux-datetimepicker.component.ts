@@ -13,17 +13,18 @@ import {
   ViewChild
 } from '@angular/core';
 import { AbstractControl, ControlContainer, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, ThemePalette } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { DateFilterFn } from '@angular/material/datepicker';
-import { MatDatepickerControl } from '@angular/material/datepicker/datepicker-base';
 import { Observable } from 'rxjs';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxUtil } from '../../lux-util/lux-util';
+import { LuxDateFilterFn, LuxStartView } from '../lux-datepicker/lux-datepicker.component';
+import { LuxValidationErrors, ValidatorFnType } from "../lux-form-model/lux-form-component-base.class";
 import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
 import { LuxDatetimeOverlayComponent } from './lux-datetime-overlay/lux-datetime-overlay.component';
 import { LuxDateTimePickerAdapter } from './lux-datetimepicker-adapter';
-import { LuxDateFilterFn, LuxDateTimeStartView } from "./lux-datetimepicker-model/lux-datetimepicker-types";
 
 export const APP_DATE_TIME_FORMATS = {
   parse: {
@@ -40,26 +41,25 @@ export const APP_DATE_TIME_FORMATS = {
 @Component({
   selector: 'lux-datetimepicker',
   templateUrl: './lux-datetimepicker.component.html',
-  styleUrls: ['./lux-datetimepicker.component.scss'],
   providers: [
     { provide: DateAdapter, useClass: LuxDateTimePickerAdapter, deps: [MAT_DATE_LOCALE, Platform] },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_TIME_FORMATS }
   ]
 })
-export class LuxDateTimePickerComponent
-  extends LuxFormInputBaseClass
-  implements OnInit, OnChanges, AfterViewInit, OnDestroy, MatDatepickerControl<any> {
-  @ViewChild(LuxDatetimeOverlayComponent) dateTimeOverlayComponent: LuxDatetimeOverlayComponent;
-  @ViewChild('dateTimePickerInput', { read: ElementRef }) dateTimePickerInputEl: ElementRef;
+export class LuxDateTimePickerComponent<T = any>
+  extends LuxFormInputBaseClass<T>
+  implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+  @ViewChild(LuxDatetimeOverlayComponent) dateTimeOverlayComponent?: LuxDatetimeOverlayComponent;
+  @ViewChild('dateTimePickerInput', { read: ElementRef }) dateTimePickerInputEl!: ElementRef;
 
-  @Input() luxStartView: LuxDateTimeStartView = 'month';
+  @Input() luxStartView: LuxStartView = 'month';
   @Input() luxOpened = false;
-  @Input() luxStartDate: string = null;
-  @Input() luxStartTime: number[] = null;
+  @Input() luxStartDate?: string;
+  @Input() luxStartTime: number[] = [];
   @Input() luxShowToggle = true;
-  @Input() luxCustomFilter: LuxDateFilterFn = null;
-  @Input() luxMaxDate: string = null;
-  @Input() luxMinDate: string = null;
+  @Input() luxCustomFilter?: LuxDateFilterFn;
+  @Input() luxMaxDate?: string;
+  @Input() luxMinDate?: string;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
@@ -88,12 +88,16 @@ export class LuxDateTimePickerComponent
     return result;
   };
 
-  min: Date;
-  max: Date;
-  start: Date;
+  min: Date | null = null;
+  max: Date | null = null;
+  start: Date | null = null;
+
+  get selectedDate(): string | undefined {
+    return typeof this.formControl.value === 'string' ? this.formControl.value : undefined;
+  }
 
   get dateTimeInputValue() {
-    return this.dateTimePickerInputEl.nativeElement.value;
+    return this.dateTimePickerInputEl?.nativeElement.value;
   }
 
   set dateTimeInputValue(newValue: string) {
@@ -116,24 +120,24 @@ export class LuxDateTimePickerComponent
   getStartValue() {
     return this.luxStartDate;
   }
-  getThemePalette(): ThemePalette {
+  getThemePalette(): LuxThemePalette {
     return undefined;
   }
   disabled = false;
-  dateFilter: DateFilterFn<any> = null;
-  getConnectedOverlayOrigin(): ElementRef<any> {
+  dateFilter?: DateFilterFn<any>;
+  getConnectedOverlayOrigin(): ElementRef {
     return this.dateTimePickerInputEl;
   }
 
   getOverlayLabelId() {
     return null;
   }
-  stateChanges: Observable<void>;
+  stateChanges?: Observable<void>;
   // Code des Interfaces "MatDatepickerControl" - Ende
 
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (simpleChanges.luxOpened) {
-      // Evtl. gibt es ohne das Timeout sonst Fehler, weil die OverlayComponent noch nicht gesetzt ist
+      // Eventuell gibt es ohne das Timeout sonst Fehler, weil die OverlayComponent noch nicht gesetzt ist
       setTimeout(() => {
         this.triggerOpenClose();
       });
@@ -160,7 +164,7 @@ export class LuxDateTimePickerComponent
 
   ngAfterViewInit() {
     this.dateTimeInputValue = this.formatDateTime(this.formControl.value);
-    this.formControl.setValidators([this.formControl.validator, this.dateTimeValidator]);
+    this.formControl.addValidators(this.dateTimeValidator);
   }
 
   onOk(date: Date) {
@@ -173,9 +177,9 @@ export class LuxDateTimePickerComponent
     this.dateTimeInputValue = this.formatDateTime(selected);
   }
 
-  onFocusOut(event) {
+  onFocusOut(event: FocusEvent) {
     if (this.formControl.value) {
-      const formattedDate = this.formatDateTime(this.parseDateTime(this.formControl.value));
+      const formattedDate = this.formatDateTime(this.parseDateTime(this.formControl.value as any));
 
       if (this.dateTimeInputValue !== formattedDate) {
         this.dateTimeInputValue = formattedDate;
@@ -185,7 +189,7 @@ export class LuxDateTimePickerComponent
     this.luxFocusOut.emit(event);
   }
 
-  errorMessageModifier(value, errors) {
+  errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     if (errors.matDatepickerMin) {
       return $localize`:@@luxc.datetimepicker.error_message.min:Das Datum unterschreitet den Minimalwert`;
     } else if (errors.matDatepickerMax) {
@@ -214,7 +218,7 @@ export class LuxDateTimePickerComponent
   }
 
   protected initFormValueSubscription() {
-    this._formValueChangeSubscr = this.formControl.valueChanges.subscribe((value: any) => {
+    this._formValueChangeSub = this.formControl.valueChanges.subscribe((value: any) => {
       this.updateDateValue(value);
 
       if (LuxUtil.ISO_8601_FULL.test(value)) {
@@ -232,23 +236,25 @@ export class LuxDateTimePickerComponent
     }
   }
 
-  protected updateValidators(validators: ValidatorFn | ValidatorFn[]) {
+  protected updateValidators(validators: ValidatorFnType, checkRequiredValidator: boolean) {
     if ((!Array.isArray(validators) && validators) || (Array.isArray(validators) && validators.length > 0)) {
       if (!this.inForm) {
         setTimeout(() => {
-          this._luxControlValidators = this.checkValidatorsContainRequired(validators);
-          this.formControl.setValidators(
-            Array.isArray(this.luxControlValidators)
-              ? [...this.luxControlValidators, this.dateTimeValidator]
-              : [this.luxControlValidators, this.dateTimeValidator]
-          );
+          if (checkRequiredValidator) {
+            this._luxControlValidators = this.checkValidatorsContainRequired(validators);
+          }
+
+          this.formControl.setValidators(validators ?? null);
+          this.formControl.addValidators(this.dateTimeValidator);
           this.formControl.updateValueAndValidity();
         });
       }
     } else {
       if (!this.inForm) {
         setTimeout(() => {
-          this._luxControlValidators = this.checkValidatorsContainRequired(validators);
+          if (checkRequiredValidator) {
+            this._luxControlValidators = this.checkValidatorsContainRequired(validators);
+          }
           this.formControl.setValidators([this.dateTimeValidator]);
           this.formControl.updateValueAndValidity();
         });
@@ -278,8 +284,8 @@ export class LuxDateTimePickerComponent
         this.notifyFormValueChanged(isoValue);
       }
 
-      // "silently" den FormControl auf den (potentiell) geänderten Wert aktualisieren
-      this.formControl.setValue(isoValue, {
+      // "silently" den FormControl auf den (potenziell) geänderten Wert aktualisieren
+      this.formControl.setValue(isoValue as any, {
         emitEvent: false,
         emitModelToViewChange: false,
         emitViewToModelChange: false
@@ -294,9 +300,9 @@ export class LuxDateTimePickerComponent
 
   private triggerOpenClose() {
     if (this.luxOpened) {
-      this.dateTimeOverlayComponent.open();
+      this.dateTimeOverlayComponent?.open();
     } else {
-      this.dateTimeOverlayComponent.close();
+      this.dateTimeOverlayComponent?.close();
     }
   }
 

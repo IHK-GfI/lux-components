@@ -1,11 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LuxStepperLargeClickEvent } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-click-event';
 import { LuxVetoState } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-step.interface';
 import { LuxStepperLargeStepComponent } from '../../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-step/lux-stepper-large-step.component';
+import { LuxThemePalette } from '../../../../modules/lux-util/lux-colors.enum';
 import { LuxUtil } from '../../../../modules/lux-util/lux-util';
 import { StepperLargeExampleDataService } from '../stepper-large-example-data.service';
+
+interface StepperLargeFinButtonDummyForm {
+  label: FormControl<string>;
+  iconName: FormControl<string | undefined>;
+  color: FormControl<LuxThemePalette | undefined>;
+  iconShowRight: FormControl<boolean | undefined>;
+  alignIconWithLabel: FormControl<boolean | undefined>;
+}
 
 @Component({
   selector: 'app-stepper-large-example-step-fin-button',
@@ -13,27 +22,27 @@ import { StepperLargeExampleDataService } from '../stepper-large-example-data.se
   providers: [{ provide: LuxStepperLargeStepComponent, useExisting: StepperLargeExampleStepFinButtonComponent }]
 })
 export class StepperLargeExampleStepFinButtonComponent extends LuxStepperLargeStepComponent implements OnInit, OnDestroy {
-  form: FormGroup;
+  form: FormGroup<StepperLargeFinButtonDummyForm>;
 
   subscriptions: Subscription[] = [];
 
-  constructor(private fb: FormBuilder, public dataService: StepperLargeExampleDataService) {
+  constructor(public dataService: StepperLargeExampleDataService) {
     super();
+
+    this.form = new FormGroup<StepperLargeFinButtonDummyForm>({
+      label: new FormControl<string>(this.dataService.finButtonConfig.label ?? '', { validators: Validators.required, nonNullable: true }),
+      iconName: new FormControl<string | undefined>(this.dataService.finButtonConfig.iconName, { nonNullable: true }),
+      color: new FormControl<LuxThemePalette | undefined>(this.dataService.finButtonConfig.color, { nonNullable: true }),
+      iconShowRight: new FormControl<boolean | undefined>(this.dataService.finButtonConfig.iconShowRight, { nonNullable: true }),
+      alignIconWithLabel: new FormControl<boolean | undefined>(this.dataService.finButtonConfig.alignIconWithLabel, { nonNullable: true })
+    });
   }
 
   ngOnInit(): void {
     this.luxTitle = 'Konfiguration: Abschließen-Button';
     this.luxVetoFn = this.createVetoPromise;
 
-    this.form = this.fb.group({
-      label: [this.dataService.finButtonConfig.label, Validators.required],
-      iconName: [this.dataService.finButtonConfig.iconName],
-      color: [this.dataService.finButtonConfig.color],
-      iconShowRight: [this.dataService.finButtonConfig.iconShowRight],
-      alignIconWithLabel: [this.dataService.finButtonConfig.alignIconWithLabel]
-    });
-
-    this.form.get('alignIconWithLabel').disable();
+    this.form.get('alignIconWithLabel')!.disable();
 
     this.luxCompleted = this.form.valid;
 

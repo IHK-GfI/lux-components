@@ -34,20 +34,21 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   private subscriptions: Subscription[] = [];
 
   tabChange$: ReplaySubject<MatTabChangeEvent> = new ReplaySubject<MatTabChangeEvent>(1);
-  labelUppercase: boolean;
-  smallDevice: boolean;
+  labelUppercase?: boolean;
+  smallDevice?: boolean;
 
   @Input() luxTabAnimationActive = true;
   @Input() luxActiveTab = 0;
   @Input() luxIconSize = '2x';
   @Input() luxDisplayDivider = true;
-  @Input() luxTagId: string;
+  @Input() luxTagId?: string;
   @Input() luxLazyLoading = false;
+  @Input() luxShowBorder = false;
 
-  @Output() readonly luxActiveTabChanged: EventEmitter<any> = new EventEmitter<any>();
+  @Output() luxActiveTabChanged = new EventEmitter<MatTabChangeEvent>();
 
-  @ContentChildren(LuxTabComponent) luxTabs: QueryList<LuxTabComponent>;
-  @ViewChild('matTabs', { read: ElementRef, static: true }) tabHeader;
+  @ContentChildren(LuxTabComponent) luxTabs!: QueryList<LuxTabComponent>;
+  @ViewChild('matTabs', { read: ElementRef, static: true }) tabHeader!: ElementRef;
 
   constructor(
     public componentsConfigService: LuxComponentsConfigService,
@@ -96,15 +97,15 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   }
 
   getNotificationIconColorClassForTab(luxTab: LuxTabComponent): string {
-    return luxTab.luxShowNotification === true || luxTab.luxShowNotification === 'true'
+    return luxTab.luxShowNotification === true
       ? LuxTabsComponent._notificationNewClass
       : LuxTabsComponent._notificationReadClass;
   }
 
   /**
-   * Forciert Angular die Tab-Header neu zu pruefen, in dem
-   * der erste Tab ein Leerzeichen bekommt, welches im naechsten
-   * Pruefzyklus entfernt wird.
+   * Forciert Angular die Tab-Header neu zu prüfen, in dem
+   * der erste Tab ein Leerzeichen bekommt, welches im nächsten
+   * Prüfzyklus entfernt wird.
    */
   rerenderTabs() {
     if (this.luxTabs.length > 0) {

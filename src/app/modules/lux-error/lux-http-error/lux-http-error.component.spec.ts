@@ -1,33 +1,34 @@
 /* eslint-disable max-classes-per-file */
-import { HttpClient, HttpRequest } from "@angular/common/http";
-import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
-import { ComponentFixture, fakeAsync, flush, TestBed } from "@angular/core/testing";
+// noinspection DuplicatedCode
 
-import { Component, ViewChild } from "@angular/core";
-import { Subscription } from "rxjs";
-import { skip } from "rxjs/operators";
-import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
+import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpTestingController } from '@angular/common/http/testing';
+import { Component, ViewChild } from '@angular/core';
+import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
+import { skip } from 'rxjs/operators';
+import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxHttpErrorInterceptor } from './lux-http-error-interceptor';
-import { LuxHttpErrorComponent } from "./lux-http-error.component";
+import { LuxHttpErrorComponent } from './lux-http-error.component';
 
 describe('LuxHttpErrorComponent', () => {
 
   let component: LuxMockHttpErrorComponent;
   let fixture: ComponentFixture<LuxMockHttpErrorComponent>;
   let httpClient: HttpClient;
-  let httpTestingController: HttpTestingController;
+  let httpController: HttpTestingController;
   let subscription: Subscription;
 
   beforeEach(async () => {
-    LuxTestHelper.configureTestModule([],[LuxMockHttpErrorComponent],[HttpClientTestingModule]);
+    LuxTestHelper.configureTestModule([],[LuxMockHttpErrorComponent]);
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LuxMockHttpErrorComponent);
     component = fixture.componentInstance;
     httpClient = TestBed.get(HttpClient);
-    httpTestingController = TestBed.get(HttpTestingController);
+    httpController = TestBed.get(HttpTestingController);
     fixture.detectChanges();
   });
 
@@ -36,11 +37,7 @@ describe('LuxHttpErrorComponent', () => {
       subscription.unsubscribe();
     }
 
-    httpTestingController.verify();
-  });
-
-  it('Sollte erzeugt werden', () => {
-    expect(component).toBeTruthy();
+    httpController.verify();
   });
 
   it('Sollte Fehler aus der Property "errors" anzeigen', fakeAsync(() => {
@@ -65,13 +62,12 @@ describe('LuxHttpErrorComponent', () => {
     component.errorComponent.messageComponent.luxMaximumDisplayed = 4;
     LuxTestHelper.wait(fixture);
 
-    httpClient.get<any>('abc').subscribe({ next: () => {}, error: () => {}});
+    httpClient.get<any>('abc').subscribe({ next: () => {}, error: () => {} });
+    httpController
+      .expectOne((req: HttpRequest<any>) => req.url.includes('abc'))
+      .flush(data_errors, { status: 400, statusText: 'Constraint Violation' });
 
-    const request = httpTestingController.expectOne(
-      (req: HttpRequest<any>) => req.url.includes('abc'));
-
-    request.flush(data_errors, { status: 400, statusText: 'Constraint Violation' });
-    flush();
+    handleIconRequests(httpController, fixture);
   }));
 
   it('Sollte Fehler aus der Property "violations" anzeigen', fakeAsync(() => {
@@ -96,24 +92,23 @@ describe('LuxHttpErrorComponent', () => {
     component.errorComponent.messageComponent.luxMaximumDisplayed = 4;
     LuxTestHelper.wait(fixture);
 
-    httpClient.get<any>('abc').subscribe({ next: () => {}, error: () => {}});
+    httpClient.get<any>('abc').subscribe({ next: () => {}, error: () => {} });
+    httpController
+      .expectOne((req: HttpRequest<any>) => req.url.includes('abc'))
+      .flush(data_violations, { status: 400, statusText: 'Constraint Violation' });
 
-    const request = httpTestingController.expectOne(
-      (req: HttpRequest<any>) => req.url.includes('abc'));
-
-    request.flush(data_violations, { status: 400, statusText: 'Constraint Violation' });
-    flush();
+    handleIconRequests(httpController, fixture);
   }));
 
   it('Sollte die Fehler (aus Strings) anzeigen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let messageContainer = fixture.debugElement.query(By.css('.lux-message-container'));
     let messageText = fixture.debugElement.query(By.css('.lux-message-text'));
     let messageIcon = fixture.debugElement.query(By.css('.lux-message-icon i'));
 
-    expect(messageContainer).toBe(null, 'Vorbedingung 1');
-    expect(messageText).toBe(null, 'Vorbedingung 1');
-    expect(messageIcon).toBe(null, 'Vorbedingung 1');
+    expect(messageContainer).toBeNull();
+    expect(messageText).toBeNull();
+    expect(messageIcon).toBeNull();
 
     // Änderungen durchführen
     LuxHttpErrorInterceptor.dataStream.next(['Error 0', 'Error 1', 'Error 2']);
@@ -124,25 +119,24 @@ describe('LuxHttpErrorComponent', () => {
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
     messageIcon = fixture.debugElement.query(By.css('.lux-message-icon i'));
 
-    expect(messageContainer).not.toBe(null, 'Nachbedingung 1');
-    expect(messageText.nativeElement.textContent).toBe('Error 0', 'Nachbedingung 2');
-    expect(messageIcon.nativeElement.className).toContain('fa-bug', 'Nachbedingung 3');
-    expect(messageContainer.nativeElement.className).toContain('lux-bg-color-red', 'Nachbedingung 4');
-    expect(messageContainer.nativeElement.className).toContain('lux-font-color-white', 'Nachbedingung 5');
+    expect(messageContainer).not.toBeNull();
+    expect(messageText.nativeElement.textContent).toBe('Error 0');
+    expect(messageIcon.nativeElement.className).toContain('fa-bug');
+    expect(messageContainer.nativeElement.className).toContain('lux-bg-color-red');
+    expect(messageContainer.nativeElement.className).toContain('lux-font-color-white');
 
-    LuxTestHelper.wait(fixture);
-    flush();
+    handleIconRequests(httpController, fixture);
   }));
 
   it('Sollte die Fehler (aus Objekten mit .message) anzeigen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let messageContainer = fixture.debugElement.query(By.css('.lux-message-container'));
     let messageText = fixture.debugElement.query(By.css('.lux-message-text'));
     let messageIcon = fixture.debugElement.query(By.css('.lux-message-icon i'));
 
-    expect(messageContainer).toBe(null, 'Vorbedingung 1');
-    expect(messageText).toBe(null, 'Vorbedingung 1');
-    expect(messageIcon).toBe(null, 'Vorbedingung 1');
+    expect(messageContainer).toBeNull();
+    expect(messageText).toBeNull();
+    expect(messageIcon).toBeNull();
 
     // Änderungen durchführen
     LuxHttpErrorInterceptor.dataStream.next([
@@ -157,25 +151,24 @@ describe('LuxHttpErrorComponent', () => {
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
     messageIcon = fixture.debugElement.query(By.css('.lux-message-icon i'));
 
-    expect(messageContainer).not.toBe(null, 'Nachbedingung 1');
-    expect(messageText.nativeElement.textContent).toBe('Error 404', 'Nachbedingung 2');
-    expect(messageIcon.nativeElement.className).toContain('fa-bug', 'Nachbedingung 3');
-    expect(messageContainer.nativeElement.className).toContain('lux-bg-color-red', 'Nachbedingung 4');
-    expect(messageContainer.nativeElement.className).toContain('lux-font-color-white', 'Nachbedingung 5');
+    expect(messageContainer).not.toBeNull();
+    expect(messageText.nativeElement.textContent).toBe('Error 404');
+    expect(messageIcon.nativeElement.className).toContain('fa-bug');
+    expect(messageContainer.nativeElement.className).toContain('lux-bg-color-red');
+    expect(messageContainer.nativeElement.className).toContain('lux-font-color-white');
 
-    LuxTestHelper.wait(fixture);
-    flush();
+    handleIconRequests(httpController, fixture);
   }));
 
   it('Sollte die Fehler (aus Objekten mit .toString()) anzeigen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let messageContainer = fixture.debugElement.query(By.css('.lux-message-container'));
     let messageText = fixture.debugElement.query(By.css('.lux-message-text'));
     let messageIcon = fixture.debugElement.query(By.css('.lux-message-icon i'));
 
-    expect(messageContainer).toBe(null, 'Vorbedingung 1');
-    expect(messageText).toBe(null, 'Vorbedingung 1');
-    expect(messageIcon).toBe(null, 'Vorbedingung 1');
+    expect(messageContainer).toBeNull();
+    expect(messageText).toBeNull();
+    expect(messageIcon).toBeNull();
 
     // Änderungen durchführen
     LuxHttpErrorInterceptor.dataStream.next([
@@ -190,20 +183,19 @@ describe('LuxHttpErrorComponent', () => {
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
     messageIcon = fixture.debugElement.query(By.css('.lux-message-icon i'));
 
-    expect(messageContainer).not.toBe(null, 'Nachbedingung 1');
-    expect(messageText.nativeElement.textContent).toBe('404', 'Nachbedingung 2');
-    expect(messageIcon.nativeElement.className).toContain('fa-bug', 'Nachbedingung 3');
-    expect(messageContainer.nativeElement.className).toContain('lux-bg-color-red', 'Nachbedingung 4');
-    expect(messageContainer.nativeElement.className).toContain('lux-font-color-white', 'Nachbedingung 5');
+    expect(messageContainer).not.toBeNull();
+    expect(messageText.nativeElement.textContent).toBe('404');
+    expect(messageIcon.nativeElement.className).toContain('fa-bug');
+    expect(messageContainer.nativeElement.className).toContain('lux-bg-color-red');
+    expect(messageContainer.nativeElement.className).toContain('lux-font-color-white');
 
-    LuxTestHelper.wait(fixture);
-    flush();
+    handleIconRequests(httpController, fixture);
   }));
 
   it('Sollte durch die Fehler navigieren können', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     let messageText = fixture.debugElement.query(By.css('.lux-message-text'));
-    expect(messageText).toBe(null, 'Vorbedingung 1');
+    expect(messageText).toBeNull();
 
     // Änderungen durchführen
     LuxHttpErrorInterceptor.dataStream.next([
@@ -217,34 +209,33 @@ describe('LuxHttpErrorComponent', () => {
     const paginatorPrev = fixture.debugElement.query(By.css('.mat-paginator-navigation-previous'));
     const paginatorNext = fixture.debugElement.query(By.css('.mat-paginator-navigation-next'));
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
-    expect(messageText.nativeElement.textContent).toBe('404', 'Nachbedingung 1');
+    expect(messageText.nativeElement.textContent).toBe('404');
 
     // Änderungen durchführen
     paginatorNext.nativeElement.click();
-    LuxTestHelper.wait(fixture);
+    fixture.autoDetectChanges();
 
     // Nachbedingungen prüfen
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
-    expect(messageText.nativeElement.textContent).toBe('403', 'Nachbedingung 2');
+    expect(messageText.nativeElement.textContent).toBe('403');
 
     // Änderungen durchführen
     paginatorNext.nativeElement.click();
-    LuxTestHelper.wait(fixture);
+    fixture.autoDetectChanges();
 
     // Nachbedingungen prüfen
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
-    expect(messageText.nativeElement.textContent).toBe('401', 'Nachbedingung 3');
+    expect(messageText.nativeElement.textContent).toBe('401');
 
     // Änderungen durchführen
     paginatorPrev.nativeElement.click();
-    LuxTestHelper.wait(fixture);
+    fixture.autoDetectChanges();
 
     // Nachbedingungen prüfen
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
-    expect(messageText.nativeElement.textContent).toBe('403', 'Nachbedingung 4');
+    expect(messageText.nativeElement.textContent).toBe('403');
 
-    LuxTestHelper.wait(fixture);
-    flush();
+    handleIconRequests(httpController, fixture);
   }));
 });
 
@@ -253,7 +244,7 @@ describe('LuxHttpErrorComponent', () => {
   template: '<lux-http-error></lux-http-error>'
 })
 class LuxMockHttpErrorComponent {
-  @ViewChild(LuxHttpErrorComponent) errorComponent;
+  @ViewChild(LuxHttpErrorComponent) errorComponent!: LuxHttpErrorComponent;
 
   constructor() {}
 }
@@ -307,3 +298,22 @@ const data_violations = {
     }
   ]
 };
+
+const svg_icon = `<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="-0.952 -0.602 511 454"></svg>
+`;
+
+/**
+ *
+ * @param httpTestingController
+ * @param fixture
+ */
+function handleIconRequests(httpTestingController: HttpTestingController, fixture: ComponentFixture<LuxMockHttpErrorComponent>) {
+  httpTestingController.match((req: HttpRequest<any>) => req.url.includes('assets/icons/')).forEach((request) => {
+    if (!request.cancelled) {
+      request.flush(svg_icon);
+      LuxTestHelper.wait(fixture);
+    }
+  });
+  flush();
+}

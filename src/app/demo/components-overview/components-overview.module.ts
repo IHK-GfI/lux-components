@@ -31,6 +31,7 @@ import { HttpErrorExampleComponent } from './http-error-example/http-error-examp
 import { IconExampleComponent } from './icon-example/icon-example.component';
 import { ImageExampleComponent } from './image-example/image-example.component';
 import { LinkExampleComponent } from './link-example/link-example.component';
+import { MasterDetailAuthenticExampleComponent } from './master-detail-authentic-example/master-detail-authentic-example.component';
 import { ProgressBarExampleComponent } from './progress-example/progress-example.component';
 import { RadioButtonExampleComponent } from './radio-button-example/radio-button-example.component';
 import { SliderExampleComponent } from './slider-example/slider-example.component';
@@ -92,7 +93,30 @@ import { StepperLargeExampleStepPrevButtonComponent } from './stepper-large-exam
 import { StepperLargeExampleStepNextButtonComponent } from './stepper-large-example/steps/stepper-large-example-step-next-button.component';
 import { StepperLargeExampleStepFinButtonComponent } from './stepper-large-example/steps/stepper-large-example-step-fin-button.component';
 import { StepperLargeExampleStepVetoComponent } from './stepper-large-example/steps/stepper-large-example-step-veto.component';
+import { LinkPlainExampleComponent } from './link-plain-example/link-plain-example.component';
+import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-authentic-example.component';
 import { FileUploadExampleComponent } from './file-example/file-upload-example/file-upload-example.component';
+import { InputAuthenticExampleComponent } from './input-authentic-example/input-authentic-example.component';
+import { MatListModule } from '@angular/material/list';
+import { OverviewExampleComponent } from './tile-authentic-example/overview-example/overview-example.component';
+import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/checkbox-authentic-example.component';
+import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
+import { AutocompleteAuthenticExampleComponent } from './autocomplete-authentic-example/autocomplete-authentic-example.component';
+import { SelectAuthenticExampleComponent } from './select-authentic-example/select-authentic-example.component';
+import { RadioAuthenticExampleComponent } from './radio-authentic-example/radio-authentic-example.component';
+import { DatepickerAuthenticExampleComponent } from './datepicker-authentic-example/datepicker-authentic-example.component';
+import { DatetimepickerAuthenticExampleComponent } from './datetimepicker-authentic-example/datetimepicker-authentic-example.component';
+import { TextareaAuthenticExampleComponent } from './textarea-authentic-example/textarea-authentic-example.component';
+import { FileInputAuthenticExampleComponent } from './file-example/file-input-authentic-example/file-input-authentic-example.component';
+import { ChipAuthenticExampleComponent } from './chip-authentic-example/chip-authentic-example.component';
+import { SliderAuthenticExampleComponent } from './slider-authentic-example/slider-authentic-example.component';
+import { LookupAutocompleteAcExampleComponent } from './lookup-examples/lookup-autocomplete-ac-example/lookup-autocomplete-ac-example.component';
+import { LookupComboboxAcExampleComponent } from './lookup-examples/lookup-combobox-ac-example/lookup-combobox-ac-example.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
+import { ComponentsOverviewBlueComponent } from './components-overview-blue.component';
+import { ComponentsOverviewAuthenticComponent } from './components-overview-authentic.component';
 
 @NgModule({
   imports: [
@@ -120,7 +144,10 @@ import { FileUploadExampleComponent } from './file-example/file-upload-example/f
     ExampleBaseModule,
     ExampleBaseModule,
     MatBadgeModule,
-    LuxFilterModule
+    LuxFilterModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule
   ],
   declarations: [
     MasterDetailExampleComponent,
@@ -192,7 +219,28 @@ import { FileUploadExampleComponent } from './file-example/file-upload-example/f
     StepperLargeExampleStepNextButtonComponent,
     StepperLargeExampleStepFinButtonComponent,
     StepperLargeExampleStepVetoComponent,
-    FileUploadExampleComponent
+    LinkPlainExampleComponent,
+    TileAuthenticExampleComponent,
+    FileUploadExampleComponent,
+    InputAuthenticExampleComponent,
+    OverviewExampleComponent,
+    CheckboxAuthenticExampleComponent,
+    ToggleAuthenticExampleComponent,
+    AutocompleteAuthenticExampleComponent,
+    SelectAuthenticExampleComponent,
+    RadioAuthenticExampleComponent,
+    DatepickerAuthenticExampleComponent,
+    DatetimepickerAuthenticExampleComponent,
+    TextareaAuthenticExampleComponent,
+    FileInputAuthenticExampleComponent,
+    ChipAuthenticExampleComponent,
+    SliderAuthenticExampleComponent,
+    LookupAutocompleteAcExampleComponent,
+    LookupComboboxAcExampleComponent,
+    IconOverviewComponent,
+    ComponentsOverviewBlueComponent,
+    ComponentsOverviewAuthenticComponent,
+    MasterDetailAuthenticExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]

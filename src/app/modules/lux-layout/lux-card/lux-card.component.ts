@@ -5,6 +5,7 @@ import {
   ContentChild,
   ContentChildren,
   EventEmitter,
+  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -29,28 +30,49 @@ import { LuxCardInfoComponent } from './lux-card-subcomponents/lux-card-info.com
   animations: [expansionAnim]
 })
 export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
-  private configSubscription: Subscription;
+  private configSubscription?: Subscription;
 
-  @Input() luxTitle: string;
-  @Input() luxSubTitle: string;
-  @Input() luxDisabled: boolean;
-  @Input() luxTagId: string;
+  @Input() luxTitle?: string;
+  @Input() luxSubTitle?: string;
+  @Input() luxIconName?: string;
+  @Input() luxDisabled?: boolean;
+  @Input() luxTagId?: string;
   @Input() luxTitleLineBreak = true;
   @Input() luxExpanded = false;
   @Input() luxUseTabIndex = true;
   @Input() luxHeading = 2;
+
+  @Input() set luxExpandedLabelOpen(label: string) {
+    if(label) {
+      this._luxExpandedLabelOpen = label;
+    }
+  }
+  get luxExpandedLabelOpen(){
+    return this._luxExpandedLabelOpen;
+  }
+  @Input() set luxExpandedLabelClose(label: string) {
+    if(label) {
+      this._luxExpandedLabelClose = label;
+    }
+  }
+  get luxExpandedLabelClose(){
+    return this._luxExpandedLabelClose;
+  }
+
+  _luxExpandedLabelOpen = $localize `:@@luxc.card.expandedLabel.open:Mehr`;
+  _luxExpandedLabelClose = $localize `:@@luxc.card.expandedLabel.close:Weniger`;
+
   @Output() luxExpandedChange: EventEmitter<boolean> = new EventEmitter();
   @Output() luxAfterExpansion: EventEmitter<void> = new EventEmitter();
-  @Output() luxClicked: EventEmitter<any> = new EventEmitter();
+  @Output() luxClicked: EventEmitter<Event> = new EventEmitter();
 
-  @ContentChildren(LuxIconComponent, { descendants: false }) iconComponents: QueryList<LuxIconComponent>;
-  @ContentChild(LuxCardActionsComponent) actionsComponent: LuxCardActionsComponent;
-  @ContentChild(LuxCardInfoComponent) infoComponent: LuxCardInfoComponent;
-  @ContentChild(LuxCardContentExpandedComponent)
-  contentExpandedComponent: LuxCardContentExpandedComponent;
-  @ContentChild(LuxCardContentComponent) contentComponent: LuxCardContentComponent;
+  @ContentChildren(LuxIconComponent, { descendants: false }) iconComponents!: QueryList<LuxIconComponent>;
+  @ContentChild(LuxCardActionsComponent) actionsComponent?: LuxCardActionsComponent;
+  @ContentChild(LuxCardInfoComponent) infoComponent?: LuxCardInfoComponent;
+  @ContentChild(LuxCardContentExpandedComponent) contentExpandedComponent?: LuxCardContentExpandedComponent;
+  @ContentChild(LuxCardContentComponent) contentComponent?: LuxCardContentComponent;
 
-  hasCardAction: boolean;
+  hasCardAction?: boolean;
   animationDisabled = true;
 
   constructor(private componentsConfigService: LuxComponentsConfigService, private cdr: ChangeDetectorRef) {}
@@ -60,7 +82,7 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
       this.luxTagId = this.luxTitle;
     }
 
-    if (this.luxClicked.observers && this.luxClicked.observers.length > 0) {
+    if (this.luxClicked.observed) {
       this.hasCardAction = true;
     }
   }
@@ -74,7 +96,7 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.configSubscription.unsubscribe();
+    this.configSubscription?.unsubscribe();
   }
 
   get showButtons() {
@@ -96,16 +118,16 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.luxExpandedChange.emit(this.luxExpanded);
   }
 
-  clicked() {
+  clicked(event: Event) {
     if (!this.luxDisabled && !this.showButtons) {
-      this.luxClicked.emit(null);
+      this.luxClicked.emit(event);
     }
   }
 
   /**
    * setzt das korrekte Alignment der Titelzeile. Ist der Titel im Zweifel mehrzeilig, so wird das Icon
-   * im Titel nach oben ausgerichtet, damit es nicht mittig nebem dem Titel schwebt. Ist der Titel aber
-   * einzeilig, so wird das Icon vertikal zum Titel alignt.
+   * im Titel nach oben ausgerichtet, damit es nicht mittig neben dem Titel schwebt. Ist der Titel aber
+   * einzeilig, so wird das Icon vertikal zum Titel ausgerichtet.
    */
   getTitleAlignment(): string {
     if (this.luxTitleLineBreak && this.showIcon) {
@@ -123,14 +145,14 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /**
-   * Gibt die Dauer der Animation abhängig davon ob sie via Config deaktiviert wurden oder nicht zurück.
+   * Gibt die Dauer der Animation abhängig davon, ob sie via Config deaktiviert wurden oder nicht zurück.
    */
   getAnimDuration() {
     return this.animationDisabled ? 0 : 300;
   }
 
   /**
-   * Wird am Ende der Ausklappanimation aufgerufen und setzt das animationActive-Flag auf false und gibt ein Event
+   * Wird am Ende der Ausklapp-Animation aufgerufen und setzt das animationActive-Flag auf false und gibt ein Event
    * über den luxAfterExpansion-EventEmitter ab.
    */
   expansionDone() {

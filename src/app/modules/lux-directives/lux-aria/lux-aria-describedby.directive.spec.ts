@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { waitForAsync, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -24,11 +26,11 @@ describe('LuxAriaDescribedbyDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte describedby in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte describedby in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toBeNull();
 
       // describedby setzen
-      let ariaDescribedby = 'menubar';
+      let ariaDescribedby: string | undefined = 'menubar';
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
@@ -46,12 +48,12 @@ describe('LuxAriaDescribedbyDirective', () => {
       );
 
       // describedby entfernen
-      ariaDescribedby = null;
+      ariaDescribedby = undefined;
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -64,11 +66,11 @@ describe('LuxAriaDescribedbyDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte describedby in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte describedby in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toBeNull();
 
       // describedby setzen
-      let ariaDescribedby = 'menubar';
+      let ariaDescribedby: string | undefined = 'menubar';
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
@@ -86,12 +88,12 @@ describe('LuxAriaDescribedbyDirective', () => {
       );
 
       // describedby entfernen
-      ariaDescribedby = null;
+      ariaDescribedby = undefined;
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toBeNull();
-    }));
+    });
   });
 });
 
@@ -106,7 +108,7 @@ describe('LuxAriaDescribedbyDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaDescribedby;
+  ariaDescribedby?: string | undefined;
 }
 
 @Component({
@@ -116,5 +118,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaDescribedby;
+  ariaDescribedby?: string | undefined;
 }

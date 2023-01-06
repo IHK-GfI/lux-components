@@ -1,4 +1,5 @@
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 
 import { LuxMenuComponent } from './lux-menu.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
@@ -35,34 +36,35 @@ describe('LuxMenuComponent', () => {
   it('Sollte die MenuItems darstellen (nur im Menu und Extended)', fakeAsync(() => {
     // Vorbedingungen prüfen
     let menuItems = fixture.debugElement.queryAll(By.css('lux-menu-item'));
-    expect(menuItems.length).toBe(0, 'Vorbedingung 1');
-    expect(menuComponent.menuItems.length).toBe(0, 'Vorbedingung 2');
+    expect(menuItems.length).toBe(0);
+    expect(menuComponent.menuItems.length).toBe(0);
+    expect(component.displayExtended).toBeTrue();
 
     // Änderungen durchführen
     component.generateItems(3);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    menuItems = fixture.debugElement.queryAll(By.css('lux-menu-item'));
-    expect(menuItems.length).toBe(3, 'Nachbedingung 1');
-    expect(menuComponent.menuItems.length).toBe(3, 'Nachbedingung 2');
+    menuItems = fixture.debugElement.queryAll(By.css('lux-button'));
+    expect(menuItems.length).toBe(3);
+    expect(menuComponent.menuItems.length).toBe(3);
 
     // Änderungen durchführen
-    component.displayExtended = true;
+    component.displayExtended = false;
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
     const extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item'));
-    expect(extendedMenuItems.length).toBe(3, 'Nachbedingung 3');
+    expect(extendedMenuItems.length).toBe(3);
   }));
 
   it('Sollte die MenuItems korrekt ausblenden wenn der Platz nicht mehr ausreicht', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     updateExtendedMenuItems();
 
-    let extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
-    expect(extendedMenuItems.length).toBe(3, 'Vorbedingung 1');
+    let extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not([style*=none])'));
+    expect(extendedMenuItems.length).toBe(3);
 
     // Änderungen durchführen
     const extendedNode = fixture.debugElement.query(By.css('.lux-menu-extended')).nativeElement;
@@ -70,13 +72,13 @@ describe('LuxMenuComponent', () => {
     updateExtendedMenuItems();
 
     // Nachbedingungen prüfen
-    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
-    expect(extendedMenuItems.length).toBeGreaterThan(0, 'Nachbedingung 1');
-    expect(extendedMenuItems.length).toBeLessThan(3, 'Nachbedingung 2');
+    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not([style*=none])'));
+    expect(extendedMenuItems.length).toBeGreaterThan(0);
+    expect(extendedMenuItems.length).toBeLessThan(3);
   }));
 
   it('Sollte einen eigenen Toggle-Button injecten', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     component.displayExtended = false;
     LuxTestHelper.wait(fixture);
@@ -84,8 +86,8 @@ describe('LuxMenuComponent', () => {
     let defaultTriggerNode = fixture.debugElement.query(By.css('.lux-menu-trigger-default'));
     let mockTriggerNode = fixture.debugElement.query(By.css('.mock-trigger'));
 
-    expect(defaultTriggerNode).not.toBe(null, 'Vorbedingung 1');
-    expect(mockTriggerNode).toBe(null, 'Vorbedingung 2');
+    expect(defaultTriggerNode).not.toBeNull();
+    expect(mockTriggerNode).toBeNull();
 
     // Änderungen durchführen
     component.showMockTrigger = true;
@@ -95,37 +97,37 @@ describe('LuxMenuComponent', () => {
     defaultTriggerNode = fixture.debugElement.query(By.css('.lux-menu-trigger-default'));
     mockTriggerNode = fixture.debugElement.query(By.css('.mock-trigger'));
 
-    expect(defaultTriggerNode).toBe(null, 'Nachbedingung 1');
-    expect(mockTriggerNode).not.toBe(null, 'Nachbedingung 2');
+    expect(defaultTriggerNode).toBeNull();
+    expect(mockTriggerNode).not.toBeNull();
   }));
 
   it('Sollte nur n (n = luxMaximumExtend) Menu-Items darstellen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     updateExtendedMenuItems();
 
-    let extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
-    expect(extendedMenuItems.length).toBe(3, 'Vorbedingung 1');
+    let extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not([style*=none])'));
+    expect(extendedMenuItems.length).toBe(3);
 
     // Änderungen durchführen
     component.maximumExtended = 1;
     updateExtendedMenuItems();
 
     // Nachbedingungen prüfen
-    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
-    expect(extendedMenuItems.length).toBe(1, 'Vorbedingung 1');
+    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not([style*=none])'));
+    expect(extendedMenuItems.length).toBe(1);
 
     // Änderungen durchführen
     component.maximumExtended = 2;
     updateExtendedMenuItems();
 
     // Nachbedingungen prüfen
-    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-display-none)'));
-    expect(extendedMenuItems.length).toBe(2, 'Vorbedingung 1');
+    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not([style*=none])'));
+    expect(extendedMenuItems.length).toBe(2);
   }));
 
   it('Sollte das extendedMenu rechtsbündig darstellen', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     component.maximumExtended = 2;
     updateExtendedMenuItems();
@@ -149,11 +151,11 @@ describe('LuxMenuComponent', () => {
   }));
 
   it('Sollte Menu-Items deaktivieren', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     updateExtendedMenuItems();
 
-    menuComponent.menuTriggerElRef.nativeElement.click();
+    menuComponent.menuTriggerElRef!.nativeElement.click();
     LuxTestHelper.wait(fixture);
 
     let disabledLength = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-hidden) button[disabled]'))
@@ -166,7 +168,7 @@ describe('LuxMenuComponent', () => {
     component.items[2].disabled = true;
     LuxTestHelper.wait(fixture);
 
-    menuComponent.menuTriggerElRef.nativeElement.click();
+    menuComponent.menuTriggerElRef!.nativeElement.click();
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -178,7 +180,7 @@ describe('LuxMenuComponent', () => {
   }));
 
   it('Sollte zur Laufzeit weitere Menu-Items hinzufügen können', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     component.generateItems(3);
     LuxTestHelper.wait(fixture);
 
@@ -196,25 +198,30 @@ describe('LuxMenuComponent', () => {
 });
 
 @Component({
-  template:
-    '<lux-menu luxTagId="mock-menu" [luxDisplayMenuLeft]="displayMenuLeft" [luxDisplayExtended]="displayExtended" ' +
-    '[luxMaximumExtended]="maximumExtended" [luxClassName]="className" ' +
-    '(luxMenuClosed)="closed($event)">' +
-    '<lux-menu-item ' +
-    ' [luxLabel]="item.label" ' +
-    ' [luxIconName]="item.iconName" ' +
-    ' [luxTagId]="item.label" ' +
-    ' [luxAlwaysVisible]="item.alwaysVisible" ' +
-    ' [luxDisabled]="item.disabled" ' +
-    ' [luxRaised]="item.raised" ' +
-    ' [luxColor]="item.color" ' +
-    ' (luxClicked)="clicked(item.cmd)" ' +
-    ' *ngFor="let item of items">' +
-    '</lux-menu-item>' +
-    ' <lux-menu-trigger *ngIf="showMockTrigger">' +
-    '   <span class="mock-trigger">Mock-Spock</span>' +
-    ' </lux-menu-trigger>' +
-    '</lux-menu>'
+  template: `<lux-menu
+    luxTagId="mock-menu"
+    [luxDisplayMenuLeft]="displayMenuLeft"
+    [luxDisplayExtended]="displayExtended"
+    [luxMaximumExtended]="maximumExtended"
+    [luxClassName]="className"
+    (luxMenuClosed)="closed()"
+  >
+    <lux-menu-item
+      [luxLabel]="item.label"
+      [luxIconName]="item.iconName"
+      [luxTagId]="item.label"
+      [luxAlwaysVisible]="item.alwaysVisible"
+      [luxDisabled]="item.disabled"
+      [luxRaised]="item.raised"
+      [luxColor]="item.color"
+      (luxClicked)="clicked()"
+      *ngFor="let item of items"
+    >
+    </lux-menu-item>
+    <lux-menu-trigger *ngIf="showMockTrigger">
+      <span class="mock-trigger">Mock-Spock</span>
+    </lux-menu-trigger>
+  </lux-menu>`
 })
 class MockComponent {
   displayMenuLeft = true;
@@ -223,11 +230,20 @@ class MockComponent {
   className = '';
   showMockTrigger = false;
 
-  items = [];
+  items: {
+    label: string;
+    cmd?: string;
+    iconName?: string;
+    tagId: string;
+    alwaysVisible: boolean;
+    disabled: boolean;
+    raised?: boolean;
+    color: LuxThemePalette;
+  }[] = [];
 
-  clicked($event) {}
+  clicked() {}
 
-  closed($event) {}
+  closed() {}
 
   generateItems(amount: number) {
     this.items = [];

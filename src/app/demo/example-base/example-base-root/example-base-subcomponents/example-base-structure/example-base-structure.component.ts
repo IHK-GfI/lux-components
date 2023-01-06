@@ -17,15 +17,13 @@ import { Subscription } from 'rxjs';
 export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
   private initialConfig: LuxComponentsConfigParameters;
 
-  @Input() exampleTitle: string;
-  @Input() exampleIconName: string;
-  @Input() exampleDocumentationHref: string;
+  @Input() exampleTitle = 'ToDo';
+  @Input() exampleIconName = '';
+  @Input() exampleDocumentationHref = '';
 
-  @ContentChild(ExampleBaseContentComponent) contentComponent: ExampleBaseContentComponent;
-  @ContentChild(ExampleBaseSimpleOptionsComponent)
-  simpleOptionsComponent: ExampleBaseSimpleOptionsComponent;
-  @ContentChild(ExampleBaseAdvancedOptionsComponent)
-  advancedOptionsComponent: ExampleBaseAdvancedOptionsComponent;
+  @ContentChild(ExampleBaseContentComponent) contentComponent?: ExampleBaseContentComponent;
+  @ContentChild(ExampleBaseSimpleOptionsComponent) simpleOptionsComponent?: ExampleBaseSimpleOptionsComponent;
+  @ContentChild(ExampleBaseAdvancedOptionsComponent) advancedOptionsComponent?: ExampleBaseAdvancedOptionsComponent;
 
   subscription: Subscription;
 
@@ -34,20 +32,24 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
     private footerService: LuxAppFooterButtonService,
     private configService: LuxComponentsConfigService
   ) {
+    this.initialConfig = configService.currentConfig;
+
+    this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
+      if (this.initialConfig !== config) {
+        this.initialConfig = config;
+      }
+    });
   }
 
   ngOnInit() {
-    this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
-      this.initialConfig = config;
-    });
-
     this.footerService.pushButtonInfos(
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Dokumentation',
-        iconName: 'fas fa-external-link-alt',
+        iconName: 'lux-interface-arrows-expand-5',
         cmd: 'documentation-btn',
         color: 'primary',
-        raised: true,
+        flat: true,
+        raised: false,
         alwaysVisible: false,
         onClick: () => {
           window.open(this.exampleDocumentationHref, '_blank');
@@ -55,10 +57,11 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
       }),
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Overview',
-        iconName: 'fas fa-caret-left',
+        iconName: 'lux-interface-arrows-button-left',
         cmd: 'back-btn',
         color: 'primary',
-        raised: true,
+        flat: true,
+        raised: false,
         alwaysVisible: true,
         onClick: () => {
           this.router.navigate(['components-overview']);

@@ -1,0 +1,118 @@
+<div class="lux-chips" fxLayout="column" #chipsContainerDiv>
+  <lux-form-control-wrapper
+    [luxFormComponent]="this"
+    [luxIgnoreDefaultLabel]="!luxInputAllowed"
+    [luxLabelLongFormat]="luxLabelLongFormat"
+    luxTagId="luxChipsWrapper"
+  >
+    <mat-chip-list
+      [ngClass]="[
+        luxOrientation.toLocaleLowerCase() === 'vertical' ? 'mat-chip-list-stacked' : 'mat-chip-list-horizontal',
+        luxOrientation === 'horizontal' && luxInputAllowed ? 'lux-chips-list-offset' : 'lux-chips-list'
+      ]"
+      [disabled]="luxDisabled"
+      [aria-orientation]="luxOrientation"
+      [multiple]="luxMultiple"
+      #chips
+    >
+      <!-- Direkte Chip-Components -->
+      <ng-container *ngFor="let chip of chipComponents; let i = index">
+        <mat-chip
+          class="lux-chip"
+          [ngClass]="{'lux-chip-selected': chip.luxSelected, 'lux-chip-disabled': chip.luxDisabled}"
+          [removable]="chip.luxRemovable"
+          [disabled]="chip.luxDisabled"
+          [selectable]="!chip.luxDisabled"
+          [selected]="chip.luxSelected"
+          [color]="chip.luxColor"
+          (keydown.delete)="chip.remove(i)"
+          (selectionChange)="chip.select($event.selected, i)"
+          (click)="chip.click(i)"
+        >
+          <ng-template *ngTemplateOutlet="chip.templateRef"></ng-template>
+          <lux-icon
+            class="lux-chip-icon"
+            [ngClass]="{'lux-chip-icon-selected': chip.luxSelected, 'lux-chip-icon-disabled': chip.luxDisabled}"
+            matChipRemove
+            luxIconName="lux-interface-delete-circle"
+            luxMargin="0 0 0 6px"
+            luxPadding="0px"
+            class="lux-chip-icon lux-cursor"
+            (click)="chip.remove(i)"
+            *ngIf="chip.luxRemovable"
+          ></lux-icon>
+        </mat-chip>
+      </ng-container>
+
+      <!-- Chips via ChipGroup-Components -->
+      <ng-container *ngFor="let chipGroup of chipGroupComponents">
+        <ng-container *ngFor="let label of chipGroup.luxLabels; let i = index">
+          <mat-chip
+            class="lux-chip"
+            [ngClass]="{'lux-chip-selected': chipGroup.luxSelected, 'lux-chip-disabled': chipGroup.luxDisabled}"
+            [removable]="chipGroup.luxRemovable"
+            [disabled]="chipGroup.luxDisabled"
+            [selectable]="!chipGroup.luxDisabled"
+            [selected]="chipGroup.luxSelected"
+            [color]="chipGroup.luxColor"
+            (keydown.delete)="onChipGroupRemove(chipGroup, i)"
+            (selectionChange)="chipGroup.select($event.selected, i)"
+            (click)="chipGroup.click(i)"
+          >
+            <ng-container
+              *ngTemplateOutlet="chipGroup.tempRef ? chipGroup.tempRef : noTemplateRef; context: { $implicit: label }"
+            ></ng-container>
+            <lux-icon
+              class="lux-chip-icon"
+              [ngClass]="{'lux-chip-icon-selected': chipGroup.luxSelected, 'lux-chip-icon-disabled': chipGroup.luxDisabled}"
+              matChipRemove
+              luxIconName="lux-interface-delete-circle"
+              luxMargin="0 0 0 6px"
+              luxPadding="0px"
+              class="lux-chip-icon lux-cursor"
+              (click)="onChipGroupRemove(chipGroup, i)"
+              *ngIf="chipGroup.luxRemovable"
+            ></lux-icon>
+          </mat-chip>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="luxInputAllowed">
+        <div class="lux-chips-input-container">
+          <input
+            [id]="uid"
+            [placeholder]="luxPlaceholder"
+            [matChipInputFor]="chips"
+            [matChipInputAddOnBlur]="true"
+            [matAutocomplete]="auto"
+            [attr.aria-labelledby]="uid + '-label'"
+            [disabled]="luxDisabled"
+            (matChipInputTokenEnd)="inputAdd(input)"
+            (focusout)="onFocusOut()"
+            (keyup)="inputChanged(input.value)"
+            (click)="onAutocompleteClick()"
+            type="text"
+            fxFlex="1 1 auto"
+            #input
+          >
+          <i aria-hidden="true" class="fas fa-caret-down lux-chips-autocomplete-icon"
+             [ngClass]="{'lux-disabled': luxDisabled}" (click)="onArrowIcon()"></i>
+        </div>
+        <mat-autocomplete
+          [class]="'lux-chips-ac-autocomplete-panel'"
+          (optionSelected)="autoCompleteAdd(input, $event.option.value)"
+          (opened)="onAutoCompleteOpened()"
+          #auto="matAutocomplete"
+        >
+          <mat-option *ngFor="let option of filteredOptions" [value]="option" [ngClass]="{ 'lux-option-multiline': luxOptionMultiline }">
+            {{ option }}
+          </mat-option>
+        </mat-autocomplete>
+      </ng-container>
+    </mat-chip-list>
+  </lux-form-control-wrapper>
+</div>
+
+<ng-template #noTemplateRef let-label>
+  {{ label }}
+</ng-template>

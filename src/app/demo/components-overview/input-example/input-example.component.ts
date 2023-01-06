@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface InputDummyForm {
+  inputExample: FormControl<string | null>;
+}
 
 @Component({
   selector: 'app-input-example',
@@ -12,8 +17,6 @@ import {
   styleUrls: ['./input-example.component.scss']
 })
 export class InputExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   showSuffix = false;
   showPrefix = false;
   useErrorMessage = true;
@@ -25,19 +28,14 @@ export class InputExampleComponent {
   ];
   typeOptions = ['text', 'number', 'email', 'time', 'password', 'color'];
   autocompleteOptions = ['on', 'off'];
-  form: FormGroup;
+  form: FormGroup<InputDummyForm>;
   log = logResult;
-  
-  // endregion
-
-  // region Properties der Component
-
   value: any;
   controlBinding = 'inputExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
-  numberLeft: boolean;
+  readonly = false;
+  required = false;
+  numberLeft = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -47,26 +45,25 @@ export class InputExampleComponent {
   autocomplete = 'off';
   inputType = 'text';
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
-  maxLength: number;
+  maxLength = 0;
   hideCounterLabel = false;
   labelLongFormat = false;
-  // endregion
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      inputExample: []
+  constructor() {
+    this.form = new FormGroup<InputDummyForm>({
+      inputExample: new FormControl<string | null>(null)
     });
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
 
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
 
-  emptyCallback() {}
 }

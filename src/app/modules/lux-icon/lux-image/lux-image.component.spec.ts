@@ -25,10 +25,7 @@ describe('LuxImageComponent', () => {
     // When
     fixture.detectChanges();
     // Then
-    expect(component.imageCmp.luxImageSrc).toEqual(
-      'assets/png/example.png',
-      'Der Pfad zum Assets-Ordner sollte hinzugefügt werden!'
-    );
+    expect(component.imageCmp.luxImageSrc).toEqual('assets/png/example.png');
   });
 
   it('Sollte mehrfache und anführende Schrägstriche entfernen', () => {
@@ -37,10 +34,7 @@ describe('LuxImageComponent', () => {
     // When
     fixture.detectChanges();
     // Then
-    expect(component.imageCmp.luxImageSrc).toEqual(
-      'assets/png/example.png',
-      'Doppelte Backslashes sollten entfernt werden!'
-    );
+    expect(component.imageCmp.luxImageSrc).toEqual('assets/png/example.png');
   });
 
   it('Sollte den Pfad zum Bild enthalten', fakeAsync(() => {
@@ -50,10 +44,7 @@ describe('LuxImageComponent', () => {
     fixture.detectChanges();
     const imageEl = fixture.debugElement.query(By.css('.lux-image'));
     // Then
-    expect(imageEl.nativeElement.src).toContain(
-      'assets/png/example.png',
-      'Der Pfad muss zum Bild im Assets-Ordner weisen!'
-    );
+    expect(imageEl.nativeElement.src).toContain('assets/png/example.png');
   }));
 
   it('Sollte den Pfad ohne Bearbeitung anzeigen [luxRawSrc]', fakeAsync(() => {
@@ -75,7 +66,7 @@ describe('LuxImageComponent', () => {
   `
 })
 class MockComponent {
-  href: string;
-  raw: boolean;
-  @ViewChild(LuxImageComponent) imageCmp: LuxImageComponent;
+  href?: string;
+  raw?: boolean;
+  @ViewChild(LuxImageComponent) imageCmp!: LuxImageComponent;
 }

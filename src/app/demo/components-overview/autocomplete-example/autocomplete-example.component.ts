@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AutocompleteExampleOption } from './autocomplete-example-option';
 import { RenderPropertyItem } from './render-property-item';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   examplePickValueFn,
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface AutocompleteForm {
+  autocompleteExample: FormControl<string | null>;
+}
 
 @Component({
   selector: 'app-autocomplete-example',
@@ -14,54 +20,43 @@ import {
   styleUrls: ['./autocomplete-example.component.scss']
 })
 export class AutocompleteExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useErrorMessage = true;
   showOutputEvents = false;
   showPrefix = false;
   showSuffix = false;
-  longOpitionLabel='Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
+  longOptionLabel='Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
   toggleOptions = true;
   optionMultiline = false;
-
-  options = [
+  options: AutocompleteExampleOption[] = [
     { label: 'Meine Aufgaben', short: 'MA', value: 'A' },
     { label: 'Gruppenaufgaben', short: 'GA', value: 'B' },
     { label: 'Zurückgestellte Aufgaben', short: 'ZA', value: 'C' },
-    { label: this.longOpitionLabel, short: 'LI', value: 'D' },
+    { label: this.longOptionLabel, short: 'LI', value: 'D' },
     { label: 'Vertretungsaufgaben', short: 'VA', value: 'F' },
     { label: 'Neue Aufgaben', short: 'NA', value: 'G' },
     { label: 'Extraaufgaben', short: 'EA', value: 'H' },
     { label: 'Optionale Aufgaben', short: 'ZA', value: 'I' }
   ];
-
-  options2 = [
+  options2: AutocompleteExampleOption[] = [
     { label: 'Meine Aufgaben 2', short: 'MA2', value: 'A2' },
     { label: 'Gruppenaufgaben 2', short: 'GA2', value: 'B2' },
     { label: 'Zurückgestellte Aufgaben 2', short: 'ZA2', value: 'C2' },
     { label: 'Vertretungsaufgaben 2', short: 'VA2', value: 'D2' }
   ];
-
   renderProperties: RenderPropertyItem[] = [
-    new RenderPropertyItem('Bezeichnung (normal)', 'label'),
-    new RenderPropertyItem('Bezeichnung (kurz)', 'short'),
-    new RenderPropertyItem('Wert', 'value')
+    { label: 'Bezeichnung (normal)', value: 'label'},
+    { label: 'Bezeichnung (kurz)', value: 'short'},
+    { label: 'Wert', value: 'value'}
   ];
-
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' },
     { value: Validators.email, label: 'Validators.email' }
   ];
-
-  form: FormGroup;
+  form: FormGroup<AutocompleteForm>;
   log = logResult;
-  labelLongFormat = false;  
-  // endregion
-
-  // region Properties der Component
-
-  value;
+  labelLongFormat = false;
+  value: AutocompleteExampleOption | string | null = null;
   controlBinding = 'autocompleteExample';
   renderProperty = 'label';
   label = 'Label';
@@ -69,8 +64,8 @@ export class AutocompleteExampleComponent {
   hintShowOnlyOnFocus = false;
   placeholder = 'Placeholder';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   strict = true;
   selectAllOnClick = true;
   delay = 500;
@@ -78,17 +73,16 @@ export class AutocompleteExampleComponent {
   errorMessageNotAnOption = 'Der eingegebene Wert ist nicht Teil der Auswahl.';
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
   usePickValueFn = false;
   pickValueFn = examplePickValueFn;
   useFilterFn = false;
-  luxPanelWidth = null;
+  luxPanelWidth: string | number = '';
 
-  // endregion
-
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      autocompleteExample: []
+  constructor() {
+    this.form = new FormGroup<AutocompleteForm>({
+      autocompleteExample: new FormControl<string | null>(null)
     });
   }
 
@@ -100,7 +94,7 @@ export class AutocompleteExampleComponent {
     return selected.value;
   }
 
-  onFilter(filterText: string, optionLabel: string, option: any): boolean {
+  onFilter(filterText: string, optionLabel: string): boolean {
     const filterTerms = filterText.split(' ');
 
     let result = true;
@@ -113,10 +107,8 @@ export class AutocompleteExampleComponent {
     return result;
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
-
-  emptyCallback() {}
 }

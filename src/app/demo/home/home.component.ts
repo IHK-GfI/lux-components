@@ -1,27 +1,24 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { LuxThemeService } from '../../modules/lux-theme/lux-theme.service';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-  constructor(private router: Router) {}
+export class HomeComponent implements OnDestroy {
+  themeName: string;
+  subscription?: Subscription;
 
-  goTo(target: string) {
-    switch (target) {
-      case 'Components':
-        this.router.navigate(['/components-overview']);
-        break;
-      case 'Form':
-        this.router.navigate(['/form']);
-        break;
-      case 'Configuration':
-        this.router.navigate(['/configuration']);
-        break;
-      case 'Baseline':
-        this.router.navigate(['/baseline']);
-        break;
-    }
+  constructor(private themeService: LuxThemeService) {
+    this.themeName = this.themeService.getTheme().name;
+    this.subscription = this.themeService.getThemeAsObservable().subscribe((theme) => {
+      this.themeName = theme.name;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

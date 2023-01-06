@@ -10,18 +10,20 @@
         [luxLabel]="menuItem.luxHideLabelIfExtended ? '' : menuItem.luxLabel"
         [luxColor]="menuItem.luxColor"
         [luxRaised]="menuItem.luxRaised"
+        [luxFlat]="menuItem.luxFlat"
+        [luxStroked]="menuItem.luxStroked"
         [luxIconName]="menuItem.luxIconName"
         [luxDisabled]="menuItem.luxDisabled"
         [luxTagId]="menuItem.luxTagId"
         [luxRounded]="menuItem.luxRounded"
-        [luxIconAlignWithLabel]="menuItem.luxIconAlignWithLabel"
         (luxClicked)="menuItemClicked(menuItem, $event)"
         luxAriaLabel="{{ menuItem.luxLabel }}"
         luxAriaLabelSelector="button"
         luxTabIndex="0"
         [luxTooltip]="menuItem.luxButtonTooltip"
         [luxApplyToChildren]="true"
-        [ngClass]="{ 'lux-display-none': !menuItem.extended || menuItem.luxHidden }"
+        [ngClass]="menuItem.luxClass ?? ''"
+        [ngStyle]="{display:  !menuItem.extended || menuItem.luxHidden ? 'none' : 'inline-block'}"
       >
       </lux-button>
     </ng-container>
@@ -34,26 +36,27 @@
 
 <!-- Das eigentliche Material-Menu -->
 <mat-menu [classList]="'lux-menu-panel ' + luxClassName" (closed)="onMenuClosed()" #menu="matMenu">
-  <!-- Alle darin angezeigten MenuItems (Voraussgesetzt diese sind nicht als extended gekennzeichnet) -->
+  <!-- Alle darin angezeigten MenuItems (Vorausgesetzt diese sind nicht als extended gekennzeichnet) -->
   <ng-container *ngFor="let menuItem of menuItems">
     <button
       mat-menu-item
       class="lux-menu-item"
       fxLayout="row"
       fxLayoutAlign="space-between center"
+      [luxTooltip]="menuItem.luxMenuTooltip"
       [disabled]="menuItem.luxDisabled"
       luxTagIdHandler
       [luxTagId]="menuItem.luxTagId"
+      [ngClass]="menuItem.luxClass ?? ''"
       (click)="menuItemClicked(menuItem, $event)"
       *ngIf="!menuItem.extended && !menuItem.luxHidden"
     >
       <lux-icon
         [luxIconName]="menuItem.luxIconName"
         luxPadding="0"
-        luxIconSize="2x"
-        fxFlex="0 0 30px"
-        fxLayout="row"
-        fxLayoutAlign="center center"
+        [luxMargin]="menuItem.luxIconShowRight ? '0 0 0 8px' : '0 8px 0 0'"
+        class="lux-menu-item-icon"
+        *ngIf="menuItem.luxIconName"
       ></lux-icon>
       <span class="lux-button-label" fxFlex="auto">
         {{ menuItem.luxLabel }}
@@ -66,11 +69,14 @@
 <ng-template #menuTriggerTemplate>
   <div
     [matMenuTriggerFor]="menu"
-    class="lux-menu-trigger lux-color-primary-500"
     fxFlex="0 0 auto"
-    [ngClass]="{ 'lux-display-none': hideToggle }"
     fxFlexAlign="center"
+    class="lux-menu-trigger lux-color-primary-500"
+    [ngClass]="{ 'lux-display-none': hideToggle }"
     #menuTrigger
+    (menuOpened)="onMenuOpened()"
+    (click)="menuTriggerStopPropagation($event)"
+    (keydown.enter)="menuTriggerStopPropagation($event)"
   >
     <!-- Custom-Trigger, der über Content-Projection geladen werden kann -->
     <ng-content select="lux-menu-trigger"> </ng-content>
@@ -92,5 +98,3 @@
     </lux-button>
   </div>
 </ng-template>
-
-<ng-content select="lux-menu-item"></ng-content>

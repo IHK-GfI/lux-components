@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="File-List"
-  exampleIconName="fas fa-cloud-upload-alt"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90file%E2%80%90list"
 >
   <example-base-content fxLayout="column">
@@ -27,12 +26,12 @@
         [luxHint]="hint"
         [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxDnDActive]="dndActive"
-        [luxSelectedFiles]="selected"
+        [luxSelected]="selected"
         [luxContentsAsBlob]="contentAsBlob"
         [luxUploadReportProgress]="reportProgress"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
-        (luxSelectedFilesChange)="onSelectedChange($event)"
+        (luxSelectedChange)="onSelectedChange($event)"
         #filelistexamplewithoutform
       >
       </lux-file-list>
@@ -103,14 +102,6 @@
       [(luxChecked)]="showPreview"
       luxLabel="luxShowPreview"
       luxHint="Diese Eigenschaft definiert, ob einzelne Bilder in einer Vorschau angezeigt werden sollen."
-      [luxNoTopLabel]="true"
-    >
-    </lux-toggle>
-    <lux-toggle
-      class="lux-highlight-section"
-      [(luxChecked)]="multiple"
-      luxLabel="luxMultiple"
-      luxHint="Dieses Flag legt fest, ob nur eine oder mehrere Dateien selektiert werden können."
       [luxNoTopLabel]="true"
     >
     </lux-toggle>

@@ -1,4 +1,4 @@
-<lux-dialog-structure *ngIf="data">
+<lux-dialog-structure *ngIf="data" [luxDialogIcon]="data.iconName">
   <lux-dialog-title>
     {{ data.title }}
   </lux-dialog-title>
@@ -12,33 +12,37 @@
   </lux-dialog-content>
   <lux-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="8px grid">
     <lux-button
-      class="lux-mr-3 lux-dialog-preset-decline"
-      luxTabIndex="0"
-      [luxPotentialChildren]="['button']"
-      [luxLabel]="data.declineAction.label"
-      [luxColor]="data.declineAction.color"
-      [luxRaised]="data.declineAction.raised"
-      [luxIconName]="data.declineAction.iconName"
-      [luxTagId]="data.declineAction.tagId"
-      [luxDisabled]="data.declineAction.disabled"
-      [luxRounded]="data.declineAction.rounded"
-      (luxClicked)="onDeclineClick()"
-      *ngIf="data.declineAction"
-    >
-    </lux-button>
-    <lux-button
       class="lux-mr-3 lux-dialog-preset-confirm"
       luxTabIndex="0"
       [luxPotentialChildren]="['button']"
       [luxLabel]="data.confirmAction.label"
       [luxColor]="data.confirmAction.color"
       [luxRaised]="data.confirmAction.raised"
+      [luxFlat]="data.confirmAction.flat"
+      [luxStroked]="data.confirmAction.outlined"
       [luxIconName]="data.confirmAction.iconName"
       [luxTagId]="data.confirmAction.tagId"
       [luxDisabled]="data.confirmAction.disabled"
       [luxRounded]="data.confirmAction.rounded"
       (luxClicked)="onConfirmClick()"
       *ngIf="data.confirmAction"
+    >
+    </lux-button>
+    <lux-button
+      class="lux-mr-3 lux-dialog-preset-decline"
+      luxTabIndex="0"
+      [luxPotentialChildren]="['button']"
+      [luxLabel]="data.declineAction.label"
+      [luxColor]="data.declineAction.color"
+      [luxRaised]="data.declineAction.raised"
+      [luxFlat]="data.declineAction.flat"
+      [luxStroked]="data.declineAction.outlined"
+      [luxIconName]="data.declineAction.iconName"
+      [luxTagId]="data.declineAction.tagId"
+      [luxDisabled]="data.declineAction.disabled"
+      [luxRounded]="data.declineAction.rounded"
+      (luxClicked)="onDeclineClick()"
+      *ngIf="data.declineAction"
     >
     </lux-button>
   </lux-dialog-actions>

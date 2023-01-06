@@ -1,3 +1,5 @@
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -7,19 +9,6 @@ import { LuxListItemComponent } from './lux-list-subcomponents/lux-list-item.com
 import { DOWN_ARROW, ENTER, SPACE, UP_ARROW } from '@angular/cdk/keycodes';
 
 describe('LuxListComponent', () => {
-  const simulateKeydownEvent = (keyCode: number, target: any) => {
-    let event;
-    if (typeof Event === 'function') {
-      event = new Event('keydown');
-    } else {
-      event = document.createEvent('Event');
-      event.initEvent('keydown', true, true);
-    }
-
-    event.keyCode = keyCode;
-
-    LuxTestHelper.dispatchEvent(target, event);
-  };
 
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockListComponent]);
@@ -43,14 +32,14 @@ describe('LuxListComponent', () => {
   });
 
   it('Sollte Empty-Icon und Empty-Label anzeigen (leere Liste)', fakeAsync(() => {
-    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).not.toBe(null);
-    expect(fixture.debugElement.query(By.css('span.lux-list-empty-icon-text strong'))).not.toBe(null);
+    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).not.toBeNull();
+    expect(fixture.debugElement.query(By.css('span.lux-list-empty-icon-text strong'))).not.toBeNull();
   }));
 
   it('Sollte LuxListItems anzeigen (gefüllte Liste)', fakeAsync(() => {
-    // Vorbedingungen prüfen
-    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).not.toBe(null);
-    expect(fixture.debugElement.query(By.css('span.lux-list-empty-icon-text strong'))).not.toBe(null);
+    // Vorbedingungen testen
+    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).not.toBeNull();
+    expect(fixture.debugElement.query(By.css('span.lux-list-empty-icon-text strong'))).not.toBeNull();
     expect(fixture.debugElement.queryAll(By.directive(LuxListItemComponent)).length).toBe(0);
 
     // Änderungen durchführen
@@ -58,8 +47,8 @@ describe('LuxListComponent', () => {
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).toBe(null);
-    expect(fixture.debugElement.query(By.css('span.lux-list-empty-label'))).toBe(null);
+    expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).toBeNull();
+    expect(fixture.debugElement.query(By.css('span.lux-list-empty-label'))).toBeNull();
     expect(fixture.debugElement.queryAll(By.directive(LuxListItemComponent)).length).toBe(5);
     expect(fixture.debugElement.query(By.css('.lux-card-title-container')).nativeElement.textContent.trim()).toEqual(
       'Title 0'
@@ -70,8 +59,8 @@ describe('LuxListComponent', () => {
   }));
 
   it('Sollte ein selektiertes LuxListItem haben (max. 1, via LuxListItem)', fakeAsync(() => {
-    // Vorbedingungen prüfen
-    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBe(null);
+    // Vorbedingungen testen
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBeNull();
 
     // Änderungen durchführen
     testComponent.addListItems(5);
@@ -105,12 +94,12 @@ describe('LuxListComponent', () => {
   }));
 
   it('Sollte ein selektiertes LuxListItem haben (max. 1, via LuxList)', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const selectedSpy = spyOn(testComponent, 'onSelected');
     const focusedSpy = spyOn(testComponent, 'onFocused');
     const focusedItemSpy = spyOn(testComponent, 'onFocusedItem');
 
-    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBe(null);
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBeNull();
 
     // Änderungen durchführen
     testComponent.addListItems(5);
@@ -153,12 +142,12 @@ describe('LuxListComponent', () => {
   }));
 
   it('Sollte über die Pfeiltasten LuxListItems fokussieren können', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const selectedSpy = spyOn(testComponent, 'onSelected');
     const focusedSpy = spyOn(testComponent, 'onFocused');
     const focusedItemSpy = spyOn(testComponent, 'onFocusedItem');
 
-    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBe(null);
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBeNull();
 
     // Änderungen durchführen
     testComponent.addListItems(5);
@@ -169,7 +158,7 @@ describe('LuxListComponent', () => {
 
     listNativeElement.focus();
     fixture.detectChanges();
-    simulateKeydownEvent(DOWN_ARROW, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -181,7 +170,7 @@ describe('LuxListComponent', () => {
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(0);
 
     // Änderungen durchführen
-    simulateKeydownEvent(DOWN_ARROW, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -193,7 +182,7 @@ describe('LuxListComponent', () => {
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(0);
 
     // Änderungen durchführen
-    simulateKeydownEvent(UP_ARROW, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', UP_ARROW);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -206,12 +195,12 @@ describe('LuxListComponent', () => {
   }));
 
   it('Sollte über die Pfeiltasten + Space/Enter ein LuxListItem selektieren können', fakeAsync(() => {
-    // Vorbedingungen prüfen
+    // Vorbedingungen testen
     const selectedSpy = spyOn(testComponent, 'onSelected');
     const focusedSpy = spyOn(testComponent, 'onFocused');
     const focusedItemSpy = spyOn(testComponent, 'onFocusedItem');
 
-    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBe(null);
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected'))).toBeNull();
 
     // Änderungen durchführen
     testComponent.addListItems(5);
@@ -222,9 +211,9 @@ describe('LuxListComponent', () => {
 
     listNativeElement.focus();
     fixture.detectChanges();
-    simulateKeydownEvent(DOWN_ARROW, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
     LuxTestHelper.wait(fixture);
-    simulateKeydownEvent(SPACE, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', SPACE);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -242,9 +231,9 @@ describe('LuxListComponent', () => {
     ).toEqual('Title 0');
 
     // Änderungen durchführen
-    simulateKeydownEvent(DOWN_ARROW, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
     LuxTestHelper.wait(fixture);
-    simulateKeydownEvent(ENTER, listNativeElement);
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', ENTER);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -268,7 +257,7 @@ describe('LuxListComponent', () => {
   template: `
     <lux-list
       luxEmptyLabel="Empty-Label"
-      luxEmptyIconName="fas fa-times"
+      luxEmptyIconName="lux-interface-delete-1"
       luxEmptyIconSize="5x"
       [luxSelectedPosition]="selectedPosition"
       (luxSelectedPositionChange)="onSelected($event)"
@@ -290,17 +279,17 @@ describe('LuxListComponent', () => {
   `
 })
 class MockListComponent {
-  selectedPosition;
+  selectedPosition?: number;
 
-  list = [];
+  list: { title: string; subTitle: string; selected: boolean }[] = [];
 
   constructor() {}
 
-  onSelected($event: number) {}
+  onSelected(event: number) {}
 
-  onFocused($event: number) {}
+  onFocused(event: number) {}
 
-  onFocusedItem($event: LuxListItemComponent) {}
+  onFocusedItem(event: LuxListItemComponent) {}
 
   addListItems(amount: number) {
     for (let i = 0; i < amount; i++) {

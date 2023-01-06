@@ -9,14 +9,14 @@ import {
   templateUrl: './badge-notification-example.component.html'
 })
 export class BadgeNotificationExampleComponent {
-  notification = '0';
+  notification = ' ';
   color = 'default';
   disabled = false;
   hidden = false;
   position: LuxBadgeNotificationPosition = 'above after';
   size: LuxBadgeNotificationSize = 'medium';
   overlap = true;
-  cap;
+  cap = 0;
   noBorder = false;
 
   constructor() {}

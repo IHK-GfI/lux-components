@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
+  AfterContentInit,
   AfterViewInit,
   ChangeDetectorRef,
   Component,
@@ -18,6 +19,7 @@ import {
   ViewChildren,
   ViewContainerRef
 } from '@angular/core';
+import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxListItemComponent } from '../lux-list/lux-list-subcomponents/lux-list-item.component';
 import { LuxListComponent } from '../lux-list/lux-list.component';
 import { LuxTabsComponent } from '../lux-tabs/lux-tabs.component';
@@ -44,59 +46,58 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
     ])
   ]
 })
-export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck, OnDestroy {
-  @Output() luxSelectedDetailChange: EventEmitter<any> = new EventEmitter();
-  @Output() luxScrolled: EventEmitter<any> = new EventEmitter();
+export class LuxMasterDetailComponent<T = any> implements OnInit, AfterContentInit, AfterViewInit, DoCheck, OnDestroy {
+  @Output() luxSelectedDetailChange = new EventEmitter<T | null>();
+  @Output() luxScrolled = new EventEmitter<void>();
 
-  @ContentChild(LuxMasterSimpleComponent) masterSimple;
-  @ContentChild(LuxDetailViewComponent) detailView;
-  @ContentChild(LuxMasterFooterComponent, { read: ElementRef }) masterFooter: ElementRef;
+  @ContentChild(LuxMasterSimpleComponent) masterSimple?: LuxMasterSimpleComponent;
+  @ContentChild(LuxDetailViewComponent) detailView!: LuxDetailViewComponent;
+  @ContentChild(LuxMasterFooterComponent, { read: ElementRef }) masterFooter?: ElementRef;
 
-  @ViewChildren(LuxListComponent, { read: ElementRef, emitDistinctChangesOnly: false }) luxMasterQueryList: QueryList<ElementRef>;
-  @ViewChildren(LuxListItemComponent) luxMasterListItemQueryList: QueryList<LuxListItemComponent>;
-  @ViewChild(LuxMasterHeaderComponent, { read: ElementRef, static: true }) masterHeader: ElementRef;
-  @ViewChild(LuxListItemComponent, { read: ElementRef }) luxMasterEntryElementRef: ElementRef;
-  @ContentChild(LuxTabsComponent) tabsComponent: LuxTabsComponent;
-  @ViewChild('masterSpinnerCard', { read: ElementRef, static: true }) masterSpinnerCard: ElementRef;
-  @ViewChild('detailContainer', { read: ElementRef }) detailFrame: ElementRef;
-  @ViewChild('detailEmpty', { read: ElementRef, static: true }) detailEmpty: ElementRef;
-  @ViewChild('detailViewContainerRef', { read: ViewContainerRef, static: true })
-  detailViewContainerRef: ViewContainerRef;
-  @ViewChild('masterContainer', { read: ElementRef, static: true }) masterContainer: ElementRef;
+  @ViewChildren(LuxListComponent, { read: ElementRef, emitDistinctChangesOnly: false }) luxMasterQueryList!: QueryList<ElementRef>;
+  @ViewChildren(LuxListItemComponent) luxMasterListItemQueryList!: QueryList<LuxListItemComponent>;
+  @ViewChild(LuxMasterHeaderComponent, { read: ElementRef, static: true }) masterHeader?: ElementRef;
+  @ViewChild(LuxListItemComponent, { read: ElementRef }) luxMasterEntryElementRef?: ElementRef;
+  @ContentChild(LuxTabsComponent) tabsComponent?: LuxTabsComponent;
+  @ViewChild('masterSpinnerCard', { read: ElementRef, static: true }) masterSpinnerCard?: ElementRef;
+  @ViewChild('detailContainer', { read: ElementRef }) detailFrame?: ElementRef;
+  @ViewChild('detailEmpty', { read: ElementRef, static: true }) detailEmpty?: ElementRef;
+  @ViewChild('detailViewContainerRef', { read: ViewContainerRef, static: true }) detailViewContainerRef!: ViewContainerRef;
+  @ViewChild('masterContainer', { read: ElementRef, static: true }) masterContainer?: ElementRef;
 
   @HostBinding('class.lux-overflow-y-auto') overflowY = true;
 
   private _luxMasterList = new BehaviorSubject<Array<any>>([]);
   private _luxOpen = true;
-  private _luxSelectedDetail: any;
+  private _luxSelectedDetail: T | null = null;
 
-  private masterListLength;
-  private maxItemsVisible;
+  private masterListLength = 0;
+  private maxItemsVisible?: number;
   private updateDetail$: ReplaySubject<any> = new ReplaySubject(1);
   private subscriptions: Subscription[] = [];
 
   detailContext = { $implicit: {} };
-  flexMaster: string;
-  flexDetail: string;
+  flexMaster?: string;
+  flexDetail?: string;
 
   // Enthält die Position des aktuell selektierten Elements
-  selectedPosition: number;
+  selectedPosition = -1;
 
-  // Flag welches bestimmt ob die Empty-Anzeigen der Masterliste anhand der Detail-Ansicht ausgerichtet werden
+  // Flag, das bestimmt, ob die Empty-Anzeigen der Masterliste anhand der Detail-Ansicht ausgerichtet werden
   alignEmptyIndicators = true;
 
-  @Input() luxEmptyIconMaster = 'fas fa-info-circle';
+  @Input() luxEmptyIconMaster = 'lux-interface-alert-information-circle';
   @Input() luxEmptyLabelMaster = $localize `:@@luxc.master-detail.master.empty_label:Keine Einträge vorhanden`;
-  @Input() luxEmptyIconDetail = 'fas fa-info-circle';
+  @Input() luxEmptyIconDetail = 'lux-interface-alert-information-circle';
   @Input() luxEmptyLabelDetail = $localize `:@@luxc.master-detail.detail.empty_label:Kein Element ausgewählt`;
   @Input() luxEmptyIconMasterSize = '5x';
   @Input() luxEmptyIconDetailSize = '5x';
   @Input() luxMasterSpinnerDelay = 1000;
-  @Input() luxTagIdMaster: string;
-  @Input() luxTagIdDetail: string;
+  @Input() luxTagIdMaster?: string;
+  @Input() luxTagIdDetail?: string;
   @Input() luxTitleLineBreak = false;
   @Input() luxMasterIsLoading = false;
-  @Input() luxCompareWith = (o1, o2) => o1 === o2;
+  @Input() luxCompareWith = (o1: T, o2: T) => o1 === o2;
 
   get luxOpen(): boolean {
     return this._luxOpen;
@@ -149,7 +150,13 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
     this.mobileHelperService.openMaster();
   }
 
+  ngAfterContentInit() {
+    LuxUtil.assertNonNull('detailView', this.detailView);
+  }
+
   ngAfterViewInit() {
+    LuxUtil.assertNonNull('detailViewContainerRef', this.detailViewContainerRef)
+
     this.handleDetailUpdate();
     this.handleMasterQueryList();
   }
@@ -166,7 +173,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
         this.announcePossibleInfiniteScrolling();
       }
 
-      // Wenn ja, das selektierte Detail neurendern
+      // Wenn ja, dass selektierte Detail neu rendern
       this.masterListLength = this.luxMasterList.length;
       this.luxSelectedDetail = this.luxMasterList[this.selectedPosition];
 
@@ -183,13 +190,13 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
    * Wenn in der LuxList ein neuer Selected-Wert gepusht wird, diesen abfangen und
    * ein neues Detail auswählen.
    *
-   * @param $event
+   * @param index
    */
-  onSelectedChange($event: number) {
-    if ($event > -1) {
-      this.selectedPosition = $event;
+  onSelectedChange(index: number) {
+    if (index > -1) {
+      this.selectedPosition = index;
 
-      this.updateDetail$.next(this.luxMasterList[$event]);
+      this.updateDetail$.next(this.luxMasterList[index]);
 
       if (this.mobileHelperService.isMobile()) {
         this.mobileHelperService.closeMaster();
@@ -198,7 +205,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   }
 
   /**
-   * Bestimmt ob die Masterliste auf- oder eingeklappt ist.
+   * Bestimmt, ob die Masterliste auf- oder eingeklappt ist.
    *
    * @param open
    */
@@ -215,7 +222,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   }
 
   /**
-   * Prueft ob die Detailansicht gerade fuer den User sichtbar ist.
+   * Prüft, ob die Detailansicht gerade für den User sichtbar ist.
    *
    * @returns boolean
    */
@@ -223,8 +230,8 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
     return this.mobileHelperService.isMobile() && this.luxOpen;
   }
 
-  onInfiniteScrollingLoad($event) {
-    this.luxScrolled.emit($event);
+  onInfiniteScrollingLoad() {
+    this.luxScrolled.emit();
   }
 
   onSwipeLeft() {
@@ -246,7 +253,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
    * @param o1
    * @param o2
    */
-  compareObjects(o1, o2) {
+  compareObjects(o1: T | null, o2: T | null) {
     if (!o1 || !o2) {
       return false;
     }
@@ -254,7 +261,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   }
 
   /**
-   * Steuert das Breitenverhaeltnis von Master und Detail je nachdem
+   * Steuert das Breitenverhältnis von Master und Detail je nachdem
    * ob der Master auf- oder eingeklappt ist und ob eine Mobilansicht aktiv ist.
    */
   private updateOpen() {
@@ -288,7 +295,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
         const { nativeElement } = masterListElements.first;
         this.maxItemsVisible = Math.floor(nativeElement.offsetHeight / nativeElement.offsetHeight);
       }
-      // Der Abschnitt hier fängt den Fall ab, dass z.B. das LuxMasterList-Array selbst angepasst wird (z.B. durch Array.reverse)
+      // Der Abschnitt hier fängt den Fall ab, dass z.B. das LuxMasterList-Array selbst angepasst wird (z.B. durch Array.reverse).
       // Das sorgt dafür, dass das visuell selektierte Element auch das passende zur Detail-View ist.
       const newSelectedPosition: number = this.luxMasterList.indexOf(this.luxSelectedDetail);
       if (newSelectedPosition !== this.selectedPosition) {
@@ -300,7 +307,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   }
 
   /**
-   * Kümmert sich um die Kollabierung der Master-Liste, wenn zwischen Mobil- und Desktopansicht gewechselt wird.
+   * Kümmert sich um das Zuklappen der Master-Liste, wenn zwischen Mobil- und Desktopansicht gewechselt wird.
    */
   private handleViewCollapse() {
     this.subscriptions.push(this.mobileHelperService.masterCollapsedObservable.subscribe((open: boolean) => {
@@ -350,7 +357,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   }
 
   /**
-   * Wird aufgerufen nachdem ein neues Detail-Template gerendert wurde und aktualisiert
+   * Wird aufgerufen, nachdem ein neues Detail-Template gerendert wurde und aktualisiert
    * luxSelectedDetail dementsprechend.
    *
    * @param detail
@@ -382,7 +389,7 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
         delay(0),
         tap(() => {
           if (!this.luxMasterList || this.luxMasterList.length === 0) {
-              this.luxSelectedDetail = undefined;
+              this.luxSelectedDetail = null;
           }
         })
       )
@@ -390,9 +397,9 @@ export class LuxMasterDetailComponent implements OnInit, AfterViewInit, DoCheck,
   }
 
   /**
-   * Prüft ob das Header- oder -Footer-Element der Masterliste ca. 50% der Master-Höhe einnehmen.
+   * Prüft, ob das Header- oder -Footer-Element der Masterliste ca. 50 % der Master-Höhe einnehmen.
    *
-   * Wenn ja, wird die Ausrichtung des Master-Empty-Labels und Master-Empty-Icons nicht mehr anhand des Detail bestimmt.
+   * Wenn ja, wird die Ausrichtung des Master-Empty-Labels und Master-Empty-Icons nicht mehr anhand des Details bestimmt.
    */
   private checkEmptyIndicatorAlignment() {
     const headerHeight = this.masterHeader ? this.masterHeader.nativeElement.offsetHeight : 0;

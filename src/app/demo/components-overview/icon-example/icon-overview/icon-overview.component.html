@@ -1,0 +1,165 @@
+<div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="12px" class="main-container">
+  
+  <div fxHide fxShow.lt-md>
+    <ng-container *ngTemplateOutlet="search"></ng-container>
+  </div>
+
+  <div fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="start start" class="left-container" fxFlex="60">
+    
+    <lux-card luxTitle="Lux-Icons" class="result-container">  
+      
+      <lux-card-content fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="start start" fxFlex="fill">
+        
+        <div class="chip-container" fxShow fxHide.lt-md>
+          <lux-chips *ngIf="chipLabels.length  >0; else emptyLabelsBlock">
+            <ng-container *ngFor="let label of chipLabels">
+              <lux-chip (luxChipRemoved)="chipRemoved($event)" *ngIf="label.length > 1">
+                {{ label }}
+              </lux-chip>
+            </ng-container>
+          </lux-chips>
+          <ng-template #emptyLabelsBlock>
+            <lux-chips>
+              <lux-chip [luxRemovable]="false">alle</lux-chip>
+            </lux-chips>
+          </ng-template>
+        </div>
+        
+        <div *ngIf="isLoading" fxLayout="column" fxLayoutAlign="start center" class="progress-container" fxFill>
+          <lux-progress
+            luxType='Spinner'
+            luxMode="indeterminate"
+            luxSize='large'
+            luxColor="blue"
+            luxTagId="loadIconsProgress"
+          ></lux-progress>
+        </div>
+        <!-- Das das Rendern aller 840 Icons eine gewisse Zeit braucht, werden sie vorab schon im "Hintergrund" unsichtbar gezeichnet-->
+        <div [ngStyle]="{ visibility: isLoading? 'hidden' : 'visible' }">
+          <div fxLayout="row wrap" fxLayoutGap="30px grid" fxLayoutAlign="start center" class="icon-list" *ngIf="iconList.length > 0; else noItems">  
+              <div style="display: flex;" *ngFor="let icon of iconList">
+                <div fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="start center" class="icon-container" (click)="onItemClicked(icon)"[ngClass]="{ 'selected-item': icon===previewItem }">
+                  <lux-icon [luxIconName]="icon.iconName.split('--')[0].toLocaleLowerCase()" class="lux-color-blue" luxIconSize="2x"></lux-icon>
+                  <p class="icon-name">{{ icon.iconName.split('--')[0].toLocaleLowerCase() }}</p>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </lux-card-content>
+    </lux-card>
+
+    <ng-template #noItems>
+      <div fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="start center">
+        <lux-icon
+          luxIconName="lux-interface-block"
+          luxIconSize="4x"
+          class="lux-color-blue"
+        ></lux-icon>
+        <h3>Sorry, keine passenden Icons gefunden!</h3>
+      </div>
+    </ng-template>
+    
+  </div>
+
+  <div 
+    fxShow fxHide.lt-md
+    fxLayout="column" 
+    fxLayoutGap="12px" 
+    fxLayoutAlign="start start" 
+    fxFlex="40"
+    class="right-container" 
+  >
+    <lux-card luxTitle="Suche">
+      <lux-card-content>
+        <ng-container *ngTemplateOutlet="search"></ng-container>
+      </lux-card-content>
+    </lux-card>
+   
+    <lux-card luxTitle="Vorschau" [luxSubTitle]="previewItem ?  previewItem.iconName.split('--')[0].toLowerCase() : '' ">
+      <lux-card-content fxLayout="column" fxLayoutGap="12px" >
+        <div class="icon-preview">
+          <ng-container *ngIf="previewItem && !isBgColor">
+            <lux-icon 
+              luxIconName="{{previewItem.iconName.split('--')[0].toLowerCase()}}" 
+              [luxIconSize]="iconSize"
+              [class]="iconClass">
+            </lux-icon>
+          
+          </ng-container>
+          <ng-container *ngIf="previewItem && isBgColor">
+            <lux-icon 
+              luxIconName="{{previewItem.iconName.split('--')[0].toLowerCase()}}" 
+              [luxIconSize]="iconSize" 
+              [luxColor]="iconColor" 
+            ></lux-icon>
+          </ng-container>
+          <ng-container *ngIf="!previewItem">
+            <p>Für die Vorschau ein Icon anklicken.</p>
+          </ng-container>
+        </div>
+
+        <lux-select-ac 
+          luxLabel="Icongröße"
+          [(luxSelected)]="iconSize" 
+          [luxOptions]="iconSizes"  
+          [luxNoBottomLabel]="true"
+        ></lux-select-ac>
+
+        <lux-select-ac 
+          luxLabel="Farbwert"
+          [luxOptions]="colorValues"
+          [luxSelected]="colorValues[0]"
+          luxOptionLabelProp="label"
+          (luxSelectedChange)="colorChanged($event)"
+          [luxNoBottomLabel]="true"
+        ></lux-select-ac>
+
+        <lux-radio-ac
+          [luxNoLabels]="false"
+          [luxOptions]="iconColorOptions"
+          luxOptionLabelProp="label"
+          [luxSelected]="iconColorOptions[0]"
+          [luxOrientationVertical]="false"
+          (luxSelectedChange)="optionChanged($event)"
+        ></lux-radio-ac>
+        
+      </lux-card-content>
+    </lux-card>
+
+    <lux-card luxTitle="Codesnippet">
+      <lux-card-info>
+        <lux-icon
+          luxIconName="lux-clone"
+          luxIconSize="1x"
+          class="lux-color-blue copy-icon"
+          luxTooltip="{{ copiedToClipboard ? 'Kopiert!': 'In die Zwischenablage kopieren.' }}"
+          (click)="copyToClipboard()"
+        ></lux-icon>
+      </lux-card-info>
+      <lux-card-content>
+        <lux-markdown [luxData]="codeSnippet" class="snippet" *ngIf="previewItem"></lux-markdown>
+      </lux-card-content>
+    </lux-card>
+      
+  </div>
+
+  <ng-template #search>
+    <lux-input-ac 
+      [luxNoTopLabel]="true"
+      luxPlaceholder="Suchbegriff eingeben" 
+      [(luxValue)]="inputValue" 
+      luxAutocomplete="off"
+      luxHint="Suchbegriffe auf Englisch eingeben. Z.B. arrow, desktop, mail..."
+      fxFlex="100"
+      ngClass.lt-md="search-input-sm"
+    >
+      <lux-input-ac-prefix class="lux-mr-3" luxTagId="searchInput">
+        <lux-icon luxIconName="lux-interface-search"></lux-icon>
+      </lux-input-ac-prefix>
+      <lux-input-ac-suffix>
+        <lux-icon luxIconName="lux-interface-delete-circle" class="reset-icon lux-color-blue" (click)="resetInput()"></lux-icon>
+      </lux-input-ac-suffix>
+    </lux-input-ac>
+  </ng-template>
+</div>

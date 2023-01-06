@@ -1,40 +1,37 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { LuxDatepickerStartViewType } from "../../../modules/lux-form/lux-datepicker/lux-datepicker.component";
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface DatepickerDummyForm {
+  datepickerExample: FormControl<string | null>;
+}
 
 @Component({
   selector: 'app-datepicker-example',
   templateUrl: './datepicker-example.component.html'
 })
 export class DatepickerExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useCustomFilter = false;
   useErrorMessage = true;
   showOutputEvents = false;
-  form: FormGroup;
+  form: FormGroup<DatepickerDummyForm>;
   log = logResult;
-
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' }
   ];
-
-  // endregion
-
-  // region Properties der Component
-
   value = '2020-05-28T14:15:00.000Z';
   controlBinding = 'datepickerExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -43,21 +40,19 @@ export class DatepickerExampleComponent {
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   showToggle = true;
   opened = false;
-  startDate: string;
-  locale = null;
-  minDate: string;
-  maxDate: string;
-  startView: LuxDatepickerStartViewType = 'month';
+  startDate: string | null = null;
+  locale = 'de-DE';
+  minDate: string | null = null;
+  maxDate: string | null = null;
+  startView: LuxStartView = 'month';
   touchUi = false;
   labelLongFormat = false;
-  
-  // endregion
-
   customFilterString = this.customFilter + '';
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
 
-  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale, private fb: FormBuilder) {
+  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale: string) {
     this.locale = matDateLocale === 'en' ? 'en-US' : matDateLocale;
     switch (matDateLocale) {
       case 'de':
@@ -73,24 +68,22 @@ export class DatepickerExampleComponent {
         this.locale = matDateLocale;
     }
 
-    this.form = this.fb.group({
-      datepickerExample: [new Date(2020, 5, 28, 14, 15)] //['2021-09-07T23:00:00.000Z']
+    this.form = new FormGroup<DatepickerDummyForm>({
+      datepickerExample: new FormControl<string | null>(new Date(2020, 5, 28, 14, 15) as any) // Das FormControl wandelt das Date-Objekt in einen String um -> ['2021-09-07T23:00:00.000Z']
     });
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
 
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
 
-  emptyCallback() {}
-
-  customFilter(d: Date) {
-    const day = d.getDay();
+  customFilter(d: Date | null) {
+    const day = d ? d.getDay() : 0;
     // Samstage und Sonntage als Auswahl unterbinden
     return day !== 0 && day !== 6;
   }

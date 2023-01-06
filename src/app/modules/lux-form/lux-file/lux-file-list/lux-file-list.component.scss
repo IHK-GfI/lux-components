@@ -12,12 +12,25 @@
           display: none;
         }
       }
+      .mat-button-wrapper {
+       line-height: 30px;
+      }
     }
   }
 
   lux-card-actions ::ng-deep,
   .lux-file-icon-hint mat-hint {
     font-size: 12px;
+  }
+
+  lux-menu ::ng-deep {
+    lux-icon.lux-button-icon mat-icon.lux-lx-icon-no-size {
+      height: 16px;
+      width: 16px;
+    }
+    .mat-button-wrapper {
+      line-height: 30px;
+    }
   }
 
   ::ng-deep mat-card-title {

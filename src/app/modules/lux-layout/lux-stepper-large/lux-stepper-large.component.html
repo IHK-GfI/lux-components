@@ -26,7 +26,7 @@
         class="lux-stepper-large-mobile-header-button"
         luxAriaLabel="Steppermenu"
         luxColor="primary"
-        luxIconName="fas fa-tasks"
+        luxIconName="lux-tasks"
         (luxClicked)="onOpenMobileOverlay()"
       ></lux-button>
     </div>
@@ -60,7 +60,7 @@
         <lux-icon
           class="lux-stepper-large-nav-item-complete"
           luxPadding="0 0 0 12px"
-          luxIconName="fas fa-check"
+          luxIconName="lux-interface-validation-check"
           *ngIf="step.luxTouched && step.luxCompleted"
         ></lux-icon>
       </div>
@@ -69,7 +69,7 @@
 </ng-template>
 
 <ng-template #content>
-  <ng-container *ngTemplateOutlet="steps.get(luxCurrentStepNumber).contentTemplate"></ng-container>
+  <ng-container *ngTemplateOutlet="steps.get(luxCurrentStepNumber)!.contentTemplate"></ng-container>
 </ng-template>
 
 <ng-template #buttons>
@@ -79,7 +79,6 @@
     [luxLabel]="luxPrevButtonConfig.label"
     [luxIconName]="luxPrevButtonConfig.iconName"
     [luxIconShowRight]="luxPrevButtonConfig.iconShowRight"
-    [luxIconAlignWithLabel]="luxPrevButtonConfig.alignIconWithLabel"
     [luxColor]="luxPrevButtonConfig.color"
     (luxClicked)="onPrevStep()"
     [luxRaised]="true"
@@ -90,10 +89,9 @@
     [luxLabel]="luxNextButtonConfig.label"
     [luxIconName]="luxNextButtonConfig.iconName"
     [luxIconShowRight]="luxNextButtonConfig.iconShowRight"
-    [luxIconAlignWithLabel]="luxNextButtonConfig.alignIconWithLabel"
     [luxColor]="luxNextButtonConfig.color"
     [luxRaised]="true"
-    [luxDisabled]="luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber).luxCompleted)"
+    [luxDisabled]="luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber)!.luxCompleted)"
     (luxClicked)="onNextStep()"
     *ngIf="!isLastStep"
   ></lux-button>
@@ -102,10 +100,9 @@
     [luxLabel]="luxFinButtonConfig.label"
     [luxIconName]="luxFinButtonConfig.iconName"
     [luxIconShowRight]="luxFinButtonConfig.iconShowRight"
-    [luxIconAlignWithLabel]="luxFinButtonConfig.alignIconWithLabel"
     [luxColor]="luxFinButtonConfig.color"
     [luxRaised]="true"
-    [luxDisabled]="luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber).luxCompleted || isFinished)"
+    [luxDisabled]="luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber)!.luxCompleted || isFinished)"
     (luxClicked)="onFinStep()"
     *ngIf="isLastStep"
   ></lux-button>

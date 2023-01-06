@@ -1,6 +1,6 @@
 import { AriaDescriber, FocusMonitor } from '@angular/cdk/a11y';
 import { Directionality } from '@angular/cdk/bidi';
-import { Overlay } from '@angular/cdk/overlay';
+import { Overlay, ScrollStrategy } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
@@ -44,7 +44,7 @@ export class LuxTooltipDirective extends MatTooltip implements OnChanges {
     private luxPlatform: Platform,
     private luxAriaDescriber: AriaDescriber,
     private luxFocusMonitor: FocusMonitor,
-    @Inject(MAT_TOOLTIP_SCROLL_STRATEGY) private luxScrollStrategy,
+    @Inject(MAT_TOOLTIP_SCROLL_STRATEGY) private luxScrollStrategy: ScrollStrategy,
     @Optional() private luxDir: Directionality,
     @Optional() @Inject(MAT_TOOLTIP_DEFAULT_OPTIONS) private luxDefaultOptions: MatTooltipDefaultOptions,
     @Optional() @Inject(DOCUMENT) private document: any
@@ -69,7 +69,7 @@ export class LuxTooltipDirective extends MatTooltip implements OnChanges {
     super.show(this.luxTooltipShowDelay);
   }
 
-  @HostListener('document:keydown.escape', ['$event']) _handleEscape(event: KeyboardEvent) {
+  @HostListener('document:keydown.escape') _handleEscape() {
     super.hide(0);
   }
 

@@ -26,7 +26,7 @@
       [luxDisplayExtended]="true"
       [luxDisplayMenuLeft]="false"
       [luxMaximumExtended]="10"
-      luxMenuIconName="fa-ellipsis-v"
+      luxMenuIconName="lux-interface-setting-menu-vertical"
       luxTagId="app_footer_menu"
       #buttonMenu
     >
@@ -40,8 +40,11 @@
           [luxAlwaysVisible]="menuItem.alwaysVisible"
           [luxDisabled]="menuItem.disabled"
           [luxRaised]="menuItem.raised"
+          [luxFlat]="menuItem.flat"
+          [luxStroked]="menuItem.stroked"
           [luxColor]="menuItem.color"
           [luxButtonTooltip]="menuItem.tooltip"
+          [luxMenuTooltip]="menuItem.tooltipMenu"
           (luxClicked)="sendButtonCommand(menuItem.cmd)"
         >
         </lux-menu-item>

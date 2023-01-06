@@ -1,0 +1,67 @@
+<div
+  class="lux-form-control-wrapper"
+  [ngClass]="{
+    'lux-form-control-error-authentic': shouldDisplayError(),
+    'lux-form-control-disabled-authentic': luxFormComponent.luxDisabled,
+    'lux-form-control-readonly-authentic': luxFormComponent.luxReadonly,
+    'lux-focused-authentic': focused
+  }"
+  fxLayout="column"
+  (focusin)="focusin()"
+  (focusout)="focusout()"
+>
+  <!-- Container für das Label -->
+  <div class="lux-form-control-label-authentic" *ngIf="!luxNoTopLabel && !luxNoLabels" [ngClass]=" {'lux-label-long-format': luxLabelLongFormat }">
+    <!-- Hier wird entweder das luxLabel oder das übergebene Tag heraus gerendert -->
+    <div class="lux-label-authentic" *ngIf="!luxIgnoreDefaultLabel">
+      <label
+        class="lux-form-label-authentic"
+        [id]="luxFormComponent.uid + '-label'"
+        [for]="luxFormComponent.uid"
+        *ngIf="luxFormComponent.formLabelComponent || luxFormComponent.luxLabel"
+      >
+        <ng-container *ngIf="luxFormComponent.luxLabel; else formLabelTemplate">
+          {{ luxFormComponent.luxLabel }}
+        </ng-container>
+        <ng-template #formLabelTemplate>
+          <ng-container *ngTemplateOutlet="luxFormComponent.formLabelComponent?.templateRef ?? null"></ng-container>
+        </ng-template>
+        {{ luxFormComponent.luxRequired ? ' *' : '' }}
+      </label>
+    </div>
+  </div>
+  <!-- Container für das FormControl -->
+  <div
+    class="lux-form-control-container-authentic"
+    [ngClass]="{ 'lux-no-input-row': luxNoInputRow}"
+    fxFlex="auto">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Container für das Hint und den Error und den Counter -->
+  <div class="lux-form-control-misc-authentic" [ngClass]="{ 'lux-no-input-row': luxNoInputRow}" *ngIf="!luxNoBottomLabel && !luxNoLabels" fxLayout="row" fxLayoutAlign="space-between start">
+    <ng-container [ngSwitch]="shouldDisplayError()">
+      <mat-error [id]="luxFormComponent.uid + '-error'" *ngSwitchCase="true">
+        {{ luxFormComponent.errorMessage }}
+      </mat-error>
+      <ng-container *ngSwitchDefault>
+        <!-- Hier wird entweder das luxHint oder das übergebene Tag heraus gerendert -->
+        <mat-hint
+          *ngIf="(luxFormComponent.formHintComponent || luxFormComponent.luxHint) && (!luxFormComponent.luxHintShowOnlyOnFocus || (luxFormComponent.luxHintShowOnlyOnFocus && focused))"
+          [id]="luxFormComponent.uid + '-hint'"
+        >
+          <ng-container *ngIf="luxFormComponent.luxHint; else formHintTemplate">
+            {{ luxFormComponent.luxHint }}
+          </ng-container>
+          <ng-template #formHintTemplate>
+            <ng-container *ngTemplateOutlet="luxFormComponent.formHintComponent?.templateRef ?? null"></ng-container>
+          </ng-template>
+        </mat-hint>
+      </ng-container>
+    </ng-container>
+    <!-- Container für Character-Counter -->
+    <div class="lux-form-control-character-counter-authentic" *ngIf="(!luxHideCounterLabel && luxCounterLabel)"><ng-container *ngIf="focused">{{ luxCounterLabel }}</ng-container></div>
+  </div>
+
+</div>
+

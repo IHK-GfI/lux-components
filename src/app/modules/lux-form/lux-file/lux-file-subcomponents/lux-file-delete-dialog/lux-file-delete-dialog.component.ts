@@ -7,5 +7,5 @@ import { LuxDialogRef } from '../../../../lux-popups/lux-dialog/lux-dialog-model
   styleUrls: ['./lux-file-delete-dialog.component.scss']
 })
 export class LuxFileDeleteDialogComponent {
-  constructor(public luxDialogRef: LuxDialogRef) {}
+  constructor(public luxDialogRef: LuxDialogRef<void>) {}
 }

@@ -10,7 +10,7 @@ import { LuxErrorStoreService } from './lux-error-services/lux-error-store.servi
   styleUrls: ['./lux-error-page.component.scss']
 })
 export class LuxErrorPageComponent {
-  get error(): ILuxError {
+  get error(): ILuxError | null {
     return this.errorStore.error;
   }
 
@@ -21,7 +21,7 @@ export class LuxErrorPageComponent {
   constructor(private router: Router, private errorStore: LuxErrorStoreService) {}
 
   /**
-   * Navigiert ueber den Router zum eingetragenen Home-Pfad
+   * Navigiert über den Router zum eingetragenen Home-Pfad
    */
   clickHomeRedirect() {
     this.router.navigate([this.errorConfig.homeRedirectUrl]);

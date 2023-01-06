@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from "rxjs";
-import { LuxTheme } from "../lux-theme/lux-theme";
+import { Subject } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LuxAppService {
-  appEl: HTMLElement;
-  appHeaderEl: HTMLElement;
-  appContentEl: HTMLElement;
-  appFooterEl: HTMLElement;
+  appEl?: HTMLElement;
+  appHeaderEl?: HTMLElement;
+  appContentEl?: HTMLElement;
+  appFooterEl?: HTMLElement;
 
   resize$ = new Subject<void>();
 

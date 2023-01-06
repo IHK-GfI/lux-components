@@ -14,7 +14,7 @@ import { ReplaySubject, Subscription } from 'rxjs';
   selector: '[luxTabIndex]'
 })
 export class LuxTabIndexDirective implements AfterViewInit, OnChanges, OnDestroy {
-  private changesSubscription: Subscription;
+  private changesSubscription?: Subscription;
   private changes$: ReplaySubject<SimpleChanges> = new ReplaySubject<SimpleChanges>(1);
 
   @Input() luxTabIndex = '0';

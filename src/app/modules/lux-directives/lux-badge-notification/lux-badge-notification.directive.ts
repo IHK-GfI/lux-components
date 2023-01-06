@@ -25,7 +25,10 @@ export declare type LuxBadgeNotificationPosition = 'above after' | 'above before
   }
 })
 export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges {
-  @Input() luxBadgeNotification: string;
+
+  static readonly WHITE_SPACE = '\u{200b}';
+
+  @Input() luxBadgeNotification = '';
   @Input() luxBadgeColor: LuxBadgeNotificationColor = 'default';
   @Input() luxBadgeSize: LuxBadgeNotificationSize = 'medium';
   @Input() luxBadgePosition: LuxBadgeNotificationPosition = 'above after';
@@ -33,7 +36,7 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
   @Input() luxBadgeHidden = false;
   @Input() luxBadgeOverlap = true;
   @Input() luxBadgeNoBorder = false;
-  @Input() luxBadgeCap: number;
+  @Input() luxBadgeCap = 0;
 
   constructor(
     private luxNgZone: NgZone,
@@ -52,7 +55,7 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
     this.size = this.luxBadgeSize;
     this.position = this.luxBadgePosition;
     this.disabled = this.luxBadgeDisabled;
-    this.hidden = !!this.luxBadgeHidden;
+    this.hidden = this.luxBadgeHidden;
     this.overlap = this.luxBadgeOverlap;
     if (this.luxBadgeNoBorder) {
       this.luxElementRef.nativeElement.classList.add('lux-badge-no-border');
@@ -81,8 +84,7 @@ export class LuxBadgeNotificationDirective extends MatBadge implements OnChanges
       // damit diese nicht angezeigt werden.
       newContent = '';
     }
-
-    this.content = newContent;
+    this.content = newContent === ' ' ? LuxBadgeNotificationDirective.WHITE_SPACE : newContent;
     this.description = newContent;
   }
 

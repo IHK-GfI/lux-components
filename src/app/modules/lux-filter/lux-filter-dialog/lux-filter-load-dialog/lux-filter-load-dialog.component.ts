@@ -9,14 +9,15 @@ import { LuxFilterFormComponent } from '../../lux-filter-form/lux-filter-form.co
   styleUrls: ['./lux-filter-load-dialog.component.scss']
 })
 export class LuxFilterLoadDialogComponent implements OnInit {
-  filterArr: LuxFilter[];
-  component: LuxFilterFormComponent;
+  filterArr: LuxFilter[] = [];
+  component!: LuxFilterFormComponent;
 
-  constructor(public luxDialogRef: LuxDialogRef) {}
+  constructor(public luxDialogRef: LuxDialogRef<LuxFilterFormComponent>) {
+  }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.component = this.luxDialogRef.data;
-    this.filterArr = this.component.luxStoredFilters;
+    this.filterArr = this.component.luxStoredFilters ?? [];
   }
 
   onDelete(index: number) {

@@ -33,7 +33,8 @@
           (click)="onClick($event)"
           fxFlex="none"
           class="lux-side-nav-item-expansion-icon"
-          [luxIconName]="luxExpanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"
+          luxIconSize="1x"
+          [luxIconName]="luxExpanded ? 'lux-interface-arrows-button-up' : 'lux-interface-arrows-button-down'"
           [ngClass]="{ 'lux-side-nav-disabled': luxDisabled }"
         >
         </lux-icon>
@@ -42,7 +43,7 @@
     <ng-container *ngIf="luxExpanded">
       <ng-container *ngFor="let sideNavItem of sideNavItems; let i = index">
         <div class="lux-side-nav-sub-item" *ngIf="i >= 0">
-          <ng-container [ngTemplateOutlet]="sideNavItem.templateRef"></ng-container>
+          <ng-container [ngTemplateOutlet]="sideNavItem.templateRef ?? null"></ng-container>
         </div>
       </ng-container>
       <div

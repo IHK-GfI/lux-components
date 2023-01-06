@@ -5,7 +5,7 @@ import { AfterViewInit, Component, EventEmitter, Output } from '@angular/core';
   templateUrl: './tabs-example-content.component.html'
 })
 export class TabsExampleContentComponent implements AfterViewInit {
-  @Output() created: EventEmitter<void> = new EventEmitter();
+  @Output() created = new EventEmitter<void>();
 
   constructor() {}
 

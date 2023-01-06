@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LuxDialogRef } from '../lux-dialog-model/lux-dialog-ref.class';
 import { ILuxDialogPresetConfig } from '../lux-dialog-model/lux-dialog-preset-config.interface';
 
 /**
- * Diese Component wird von dem LuxDialogService zur Darstellung via "open" genutzt und nimmt ein Konfig-Objekt
+ * Diese Component wird von dem LuxDialogService zur Darstellung via "open" genutzt und nimmt ein Config-Objekt
  * vom Typ LuxDialogConfig entgegen.
  */
 @Component({
@@ -12,9 +12,9 @@ import { ILuxDialogPresetConfig } from '../lux-dialog-model/lux-dialog-preset-co
   styleUrls: ['./lux-dialog-preset.component.scss']
 })
 export class LuxDialogPresetComponent implements OnInit {
-  data: ILuxDialogPresetConfig;
+  data?: ILuxDialogPresetConfig;
 
-  constructor(public dialogRef: LuxDialogRef) {}
+  constructor(public dialogRef: LuxDialogRef<ILuxDialogPresetConfig>) {}
 
   ngOnInit() {
     this.data = this.dialogRef.data;

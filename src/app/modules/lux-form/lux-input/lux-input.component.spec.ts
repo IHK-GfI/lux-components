@@ -1,9 +1,12 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
+import { ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
 import { LuxInputComponent } from './lux-input.component';
 import { LuxFormControlComponent } from '../lux-form-control/lux-form-control.component'
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -24,23 +27,20 @@ describe('LuxInputComponent', () => {
   });
 
   describe('innerhalb eines Formulars', () => {
-    let fixture: ComponentFixture<LuxInputInsideFormComponent>;
-    let testComponent: LuxInputInsideFormComponent;
+    let fixture: ComponentFixture<any>;
+    let testComponent: any;
 
-    beforeEach(fakeAsync(() => {
+    beforeEach(() => {
       fixture = TestBed.createComponent(LuxInputInsideFormComponent);
       testComponent = fixture.componentInstance;
-    }));
+    });
 
     describe('type="text"', () => {
       it('Wert über das FormControl setzen', fakeAsync(() => {
         fixture.detectChanges();
-        expect(fixture.componentInstance.formGroup.get('text').value).toEqual(
-          null,
-          `Initial sollte der Wert ein leerer String sein`
-        );
+        expect(fixture.componentInstance.formGroup.get('text')!.value).toEqual(null);
 
-        fixture.componentInstance.formGroup.get('text').setValue('abc');
+        fixture.componentInstance.formGroup.get('text')!.setValue('abc');
 
         LuxTestHelper.wait(fixture);
 
@@ -50,18 +50,9 @@ describe('LuxInputComponent', () => {
 
       it('Wert (Kommazahl) über das Textfeld setzen', fakeAsync(() => {
         fixture.detectChanges();
-        expect(fixture.componentInstance.formGroup.get('amount0').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount1').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount2').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
+        expect(fixture.componentInstance.formGroup.get('amount0')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount1')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount2')!.value).toEqual(0);
 
         const luxInput1El = fixture.debugElement.query(By.css('#amount1 input'));
         LuxTestHelper.setInputValue(luxInput1El.nativeElement, '1234.56', fixture);
@@ -71,32 +62,29 @@ describe('LuxInputComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Testen, ob der Wert stimmt und der Wert vom Typ 'number' ist.
-        expect(1234.56).toEqual(fixture.componentInstance.formGroup.get('amount1').value);
-        expect(123.456).toEqual(fixture.componentInstance.formGroup.get('amount2').value);
+        expect(1234.56).toEqual(fixture.componentInstance.formGroup.get('amount1')!.value);
+        expect(123.456).toEqual(fixture.componentInstance.formGroup.get('amount2')!.value);
       }));
 
       it('Wert über das Textfeld setzen', fakeAsync(() => {
         fixture.detectChanges();
-        expect(fixture.componentInstance.formGroup.get('text').value).toEqual(
-          null,
-          `Initial sollte der Wert ein leerer String sein`
-        );
+        expect(fixture.componentInstance.formGroup.get('text')!.value).toBeNull();
 
         const inputEl = fixture.debugElement.query(By.css('#text input'));
         LuxTestHelper.setInputValue(inputEl.nativeElement, 'def', fixture);
 
         LuxTestHelper.wait(fixture);
 
-        expect('def').toEqual(fixture.componentInstance.formGroup.get('text').value);
+        expect(fixture.componentInstance.formGroup.get('text')!.value).toEqual('def');
       }));
 
       it('Validatoren setzen und die Fehlermeldungen korrekt anzeigen', fakeAsync(() => {
         // Vorbedingungen testen
-        testComponent.formGroup.get('text').setValidators(Validators.required);
+        testComponent.formGroup.get('text')!.setValidators(Validators.required);
         fixture.detectChanges();
         const textInput = fixture.debugElement.query(By.css('#text')).componentInstance;
         let errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeFalsy(`Vorbedingung 1`);
+        expect(errorEl).toBeFalsy();
 
         // Änderungen durchführen
         LuxTestHelper.wait(fixture);
@@ -106,13 +94,13 @@ describe('LuxInputComponent', () => {
 
         // Nachbedingungen testen
         errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-        expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld', `Nachbedingung 1`);
-        expect(textInput.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+        expect(errorEl).toBeTruthy();
+        expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld');
+        expect(textInput.formControl.valid).toBeFalsy();
       }));
 
       it('Sollte einen Startwert setzen', fakeAsync(() => {
-        testComponent.formGroup.get('text').setValue('abc');
+        testComponent.formGroup.get('text')!.setValue('abc');
         fixture.detectChanges();
 
         const inputEl = fixture.debugElement.query(By.css('#text input'));
@@ -121,44 +109,41 @@ describe('LuxInputComponent', () => {
       }));
 
       it('Sollte required sein', fakeAsync(() => {
-        // Vorbedingungen prüfen
+        // Vorbedingungen testen
         fixture.detectChanges();
         const luxInput: LuxInputComponent = fixture.debugElement.query(By.css('#text')).componentInstance;
-        expect(testComponent.formGroup.get('text').valid).toBe(true);
+        expect(testComponent.formGroup.get('text')!.valid).toBe(true);
 
         // Änderungen durchführen
-        testComponent.formGroup.get('text').setValidators(Validators.required);
+        testComponent.formGroup.get('text')!.setValidators(Validators.required);
         LuxTestHelper.wait(fixture);
 
-        testComponent.formGroup.get('text').markAsTouched();
-        testComponent.formGroup.get('text').updateValueAndValidity();
+        testComponent.formGroup.get('text')!.markAsTouched();
+        testComponent.formGroup.get('text')!.updateValueAndValidity();
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
         expect(luxInput.formControl.valid).toBe(false);
-        expect(luxInput.formControl.errors).not.toBe(null);
-        expect(luxInput.formControl.errors.required).toBe(true);
+        expect(luxInput.formControl.errors).not.toBeNull();
+        expect(luxInput.formControl.errors!.required).toBe(true);
         expect(luxInput.luxRequired).toBe(true);
 
         // Änderungen durchführen
-        testComponent.formGroup.get('text').setValue('Hallo Welt!');
-        testComponent.formGroup.get('text').updateValueAndValidity();
+        testComponent.formGroup.get('text')!.setValue('Hallo Welt!');
+        testComponent.formGroup.get('text')!.updateValueAndValidity();
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
         expect(luxInput.formControl.valid).toBe(true);
-        expect(luxInput.formControl.errors).toBe(null);
+        expect(luxInput.formControl.errors).toBeNull();
       }));
     });
 
     describe('type="number"', () => {
       it('Wert über das FormControl setzen', fakeAsync(() => {
-        expect(fixture.componentInstance.formGroup.get('amount0').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
+        expect(fixture.componentInstance.formGroup.get('amount0')!.value).toEqual(0);
 
-        fixture.componentInstance.formGroup.get('amount0').setValue(5);
+        fixture.componentInstance.formGroup.get('amount0')!.setValue(5);
 
         LuxTestHelper.wait(fixture);
 
@@ -169,18 +154,9 @@ describe('LuxInputComponent', () => {
 
       it('Wert über das Textfeld setzen', fakeAsync(() => {
         fixture.detectChanges();
-        expect(fixture.componentInstance.formGroup.get('amount0').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount1').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount2').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
+        expect(fixture.componentInstance.formGroup.get('amount0')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount1')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount2')!.value).toEqual(0);
 
         const luxInput0El = fixture.debugElement.query(By.css('#amount0 input'));
         LuxTestHelper.setInputValue(luxInput0El.nativeElement, 10, fixture);
@@ -194,9 +170,9 @@ describe('LuxInputComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Testen, ob der Wert stimmt und der Wert vom Typ 'number' ist.
-        expect(10).toEqual(fixture.componentInstance.formGroup.get('amount0').value);
-        expect(20).toEqual(fixture.componentInstance.formGroup.get('amount1').value);
-        expect(30).toEqual(fixture.componentInstance.formGroup.get('amount2').value);
+        expect(10).toEqual(fixture.componentInstance.formGroup.get('amount0')!.value);
+        expect(20).toEqual(fixture.componentInstance.formGroup.get('amount1')!.value);
+        expect(30).toEqual(fixture.componentInstance.formGroup.get('amount2')!.value);
       }));
 
       it('Sollte Komma-Strings nullen und Punkt-Strings zu Zahlen konvertieren (via input.value)', fakeAsync(() => {
@@ -205,74 +181,23 @@ describe('LuxInputComponent', () => {
 
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.formGroup.get('amount01').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount02').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount03').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount04').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount05').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount06').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount07').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount08').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount09').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount10').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount11').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount12').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount13').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount14').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount15').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount16').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount17').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
+        expect(fixture.componentInstance.formGroup.get('amount01')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount02')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount03')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount04')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount05')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount06')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount07')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount08')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount09')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount10')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount11')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount12')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount13')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount14')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount15')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount16')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount17')!.value).toEqual(0);
 
         const luxInput01El = fixture.debugElement.query(By.css('#amount01 input'));
         LuxTestHelper.setInputValue(luxInput01El.nativeElement, 0, fixture);
@@ -321,26 +246,26 @@ describe('LuxInputComponent', () => {
         // Die anderen Browser wie z.B. Chrome und Edge liefern null zurück.
         // Wichtig ist, dass entweder "null" oder ein Wert vom Typ 'number' im
         // Formular steht.
-        expect(0).toEqual(fixture.componentInstance.formGroup.get('amount01').value);
-        expect(0).toEqual(fixture.componentInstance.formGroup.get('amount02').value);
-        expect(0).toEqual(fixture.componentInstance.formGroup.get('amount03').value);
-        expect([0, null]).toContain(fixture.componentInstance.formGroup.get('amount04').value);
+        expect(0).toEqual(fixture.componentInstance.formGroup.get('amount01')!.value);
+        expect(0).toEqual(fixture.componentInstance.formGroup.get('amount02')!.value);
+        expect(0).toEqual(fixture.componentInstance.formGroup.get('amount03')!.value);
+        expect([0, null]).toContain(fixture.componentInstance.formGroup.get('amount04')!.value);
 
-        expect(1).toEqual(fixture.componentInstance.formGroup.get('amount05').value);
-        expect(10).toEqual(fixture.componentInstance.formGroup.get('amount06').value);
-        expect(1234567890).toEqual(fixture.componentInstance.formGroup.get('amount07').value);
-        expect(0.3).toEqual(fixture.componentInstance.formGroup.get('amount08').value);
+        expect(1).toEqual(fixture.componentInstance.formGroup.get('amount05')!.value);
+        expect(10).toEqual(fixture.componentInstance.formGroup.get('amount06')!.value);
+        expect(1234567890).toEqual(fixture.componentInstance.formGroup.get('amount07')!.value);
+        expect(0.3).toEqual(fixture.componentInstance.formGroup.get('amount08')!.value);
 
-        expect(0.12).toEqual(fixture.componentInstance.formGroup.get('amount09').value);
-        expect([0.123, null]).toContain(fixture.componentInstance.formGroup.get('amount10').value);
-        expect(0.3).toEqual(fixture.componentInstance.formGroup.get('amount11').value);
-        expect([0.2, null]).toContain(fixture.componentInstance.formGroup.get('amount12').value);
+        expect(0.12).toEqual(fixture.componentInstance.formGroup.get('amount09')!.value);
+        expect([0.123, null]).toContain(fixture.componentInstance.formGroup.get('amount10')!.value);
+        expect(0.3).toEqual(fixture.componentInstance.formGroup.get('amount11')!.value);
+        expect([0.2, null]).toContain(fixture.componentInstance.formGroup.get('amount12')!.value);
 
-        expect(0.123).toEqual(fixture.componentInstance.formGroup.get('amount13').value);
-        expect(123).toEqual(fixture.componentInstance.formGroup.get('amount14').value);
-        expect([123.0, null]).toContain(fixture.componentInstance.formGroup.get('amount15').value);
-        expect([123.0, null]).toContain(fixture.componentInstance.formGroup.get('amount16').value);
-        expect([123.45, null]).toContain(fixture.componentInstance.formGroup.get('amount17').value);
+        expect(0.123).toEqual(fixture.componentInstance.formGroup.get('amount13')!.value);
+        expect(123).toEqual(fixture.componentInstance.formGroup.get('amount14')!.value);
+        expect([123.0, null]).toContain(fixture.componentInstance.formGroup.get('amount15')!.value);
+        expect([123.0, null]).toContain(fixture.componentInstance.formGroup.get('amount16')!.value);
+        expect([123.45, null]).toContain(fixture.componentInstance.formGroup.get('amount17')!.value);
       }));
 
       it('Sollte eingegebene Strings nicht umformatieren (via formControl)', fakeAsync(() => {
@@ -349,129 +274,69 @@ describe('LuxInputComponent', () => {
 
         fixture.detectChanges();
 
-        expect(fixture.componentInstance.formGroup.get('amount01').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount02').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount03').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount04').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount05').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount06').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount07').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount08').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount09').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount10').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount11').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount12').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount13').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount14').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount15').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount16').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount17').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
+        expect(fixture.componentInstance.formGroup.get('amount01')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount02')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount03')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount04')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount05')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount06')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount07')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount08')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount09')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount10')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount11')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount12')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount13')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount14')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount15')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount16')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount17')!.value).toEqual(0);
 
-        testComponent.formGroup.get('amount01').setValue(0);
-        testComponent.formGroup.get('amount02').setValue(0.0);
-        testComponent.formGroup.get('amount03').setValue('0.0');
-        testComponent.formGroup.get('amount04').setValue('0,0');
-        testComponent.formGroup.get('amount05').setValue(1);
-        testComponent.formGroup.get('amount06').setValue(10);
-        testComponent.formGroup.get('amount07').setValue(1234567890);
-        testComponent.formGroup.get('amount08').setValue('0,3');
-        testComponent.formGroup.get('amount09').setValue('0,12');
-        testComponent.formGroup.get('amount10').setValue('0,123');
-        testComponent.formGroup.get('amount11').setValue('0.3');
-        testComponent.formGroup.get('amount12').setValue('0.12');
-        testComponent.formGroup.get('amount13').setValue('0.123');
-        testComponent.formGroup.get('amount14').setValue('123');
-        testComponent.formGroup.get('amount15').setValue('123,0');
-        testComponent.formGroup.get('amount16').setValue('123,00');
-        testComponent.formGroup.get('amount17').setValue('123,45');
+        testComponent.formGroup.get('amount01')!.setValue(0);
+        testComponent.formGroup.get('amount02')!.setValue(0.0);
+        testComponent.formGroup.get('amount03')!.setValue('0.0');
+        testComponent.formGroup.get('amount04')!.setValue('0,0');
+        testComponent.formGroup.get('amount05')!.setValue(1);
+        testComponent.formGroup.get('amount06')!.setValue(10);
+        testComponent.formGroup.get('amount07')!.setValue(1234567890);
+        testComponent.formGroup.get('amount08')!.setValue('0,3');
+        testComponent.formGroup.get('amount09')!.setValue('0,12');
+        testComponent.formGroup.get('amount10')!.setValue('0,123');
+        testComponent.formGroup.get('amount11')!.setValue('0.3');
+        testComponent.formGroup.get('amount12')!.setValue('0.12');
+        testComponent.formGroup.get('amount13')!.setValue('0.123');
+        testComponent.formGroup.get('amount14')!.setValue('123');
+        testComponent.formGroup.get('amount15')!.setValue('123,0');
+        testComponent.formGroup.get('amount16')!.setValue('123,00');
+        testComponent.formGroup.get('amount17')!.setValue('123,45');
 
         LuxTestHelper.wait(fixture);
 
         // Testen, ob der Wert stimmt und der Wert vom Typ 'number' ist.
-        expect(0).toEqual(fixture.componentInstance.formGroup.get('amount01').value);
-        expect(0).toEqual(fixture.componentInstance.formGroup.get('amount02').value);
-        expect('0.0').toEqual(fixture.componentInstance.formGroup.get('amount03').value);
-        expect('0,0').toEqual(fixture.componentInstance.formGroup.get('amount04').value);
-        expect(1).toEqual(fixture.componentInstance.formGroup.get('amount05').value);
-        expect(10).toEqual(fixture.componentInstance.formGroup.get('amount06').value);
-        expect(1234567890).toEqual(fixture.componentInstance.formGroup.get('amount07').value);
-        expect('0,3').toEqual(fixture.componentInstance.formGroup.get('amount08').value);
-        expect('0,12').toEqual(fixture.componentInstance.formGroup.get('amount09').value);
-        expect('0,123').toEqual(fixture.componentInstance.formGroup.get('amount10').value);
-        expect('0.3').toEqual(fixture.componentInstance.formGroup.get('amount11').value);
-        expect('0.12').toEqual(fixture.componentInstance.formGroup.get('amount12').value);
-        expect('0.123').toEqual(fixture.componentInstance.formGroup.get('amount13').value);
-        expect('123').toEqual(fixture.componentInstance.formGroup.get('amount14').value);
-        expect('123,0').toEqual(fixture.componentInstance.formGroup.get('amount15').value);
-        expect('123,00').toEqual(fixture.componentInstance.formGroup.get('amount16').value);
-        expect('123,45').toEqual(fixture.componentInstance.formGroup.get('amount17').value);
+        expect(0).toEqual(fixture.componentInstance.formGroup.get('amount01')!.value);
+        expect(0).toEqual(fixture.componentInstance.formGroup.get('amount02')!.value);
+        expect('0.0').toEqual(fixture.componentInstance.formGroup.get('amount03')!.value);
+        expect('0,0').toEqual(fixture.componentInstance.formGroup.get('amount04')!.value);
+        expect(1).toEqual(fixture.componentInstance.formGroup.get('amount05')!.value);
+        expect(10).toEqual(fixture.componentInstance.formGroup.get('amount06')!.value);
+        expect(1234567890).toEqual(fixture.componentInstance.formGroup.get('amount07')!.value);
+        expect('0,3').toEqual(fixture.componentInstance.formGroup.get('amount08')!.value);
+        expect('0,12').toEqual(fixture.componentInstance.formGroup.get('amount09')!.value);
+        expect('0,123').toEqual(fixture.componentInstance.formGroup.get('amount10')!.value);
+        expect('0.3').toEqual(fixture.componentInstance.formGroup.get('amount11')!.value);
+        expect('0.12').toEqual(fixture.componentInstance.formGroup.get('amount12')!.value);
+        expect('0.123').toEqual(fixture.componentInstance.formGroup.get('amount13')!.value);
+        expect('123').toEqual(fixture.componentInstance.formGroup.get('amount14')!.value);
+        expect('123,0').toEqual(fixture.componentInstance.formGroup.get('amount15')!.value);
+        expect('123,00').toEqual(fixture.componentInstance.formGroup.get('amount16')!.value);
+        expect('123,45').toEqual(fixture.componentInstance.formGroup.get('amount17')!.value);
       }));
 
       it('Keine NaN-Werte setzen', fakeAsync(() => {
         fixture.detectChanges();
-        expect(fixture.componentInstance.formGroup.get('amount0').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount1').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
-        expect(fixture.componentInstance.formGroup.get('amount2').value).toEqual(
-          0,
-          `Initial sollte der Wert ein leerer String sein`
-        );
+        expect(fixture.componentInstance.formGroup.get('amount0')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount1')!.value).toEqual(0);
+        expect(fixture.componentInstance.formGroup.get('amount2')!.value).toEqual(0);
 
         const luxInput0El = fixture.debugElement.query(By.css('#amount0 input'));
         LuxTestHelper.setInputValue(luxInput0El.nativeElement, 'Hi', fixture);
@@ -484,35 +349,35 @@ describe('LuxInputComponent', () => {
 
         LuxTestHelper.wait(fixture);
 
-        expect(null).toEqual(fixture.componentInstance.formGroup.get('amount0').value);
-        expect(null).toEqual(fixture.componentInstance.formGroup.get('amount1').value);
-        expect(30).toEqual(fixture.componentInstance.formGroup.get('amount2').value);
+        expect(null).toEqual(fixture.componentInstance.formGroup.get('amount0')!.value);
+        expect(null).toEqual(fixture.componentInstance.formGroup.get('amount1')!.value);
+        expect(30).toEqual(fixture.componentInstance.formGroup.get('amount2')!.value);
       }));
 
       it('Validatoren setzen und die Fehlermeldungen korrekt anzeigen', fakeAsync(() => {
         // Vorbedingungen testen
-        testComponent.formGroup.get('amount1').setValidators(Validators.max(10));
+        testComponent.formGroup.get('amount1')!.setValidators(Validators.max(10));
         fixture.detectChanges();
         const numberInput = fixture.debugElement.query(By.css('#amount1')).componentInstance;
         let errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeFalsy(`Vorbedingung 1`);
+        expect(errorEl).toBeFalsy();
 
         // Änderungen durchführen
         LuxTestHelper.wait(fixture);
-        testComponent.formGroup.get('amount1').setValue(11);
+        testComponent.formGroup.get('amount1')!.setValue(11);
         numberInput.formControl.markAsTouched();
         numberInput.formControl.updateValueAndValidity();
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen testen
         errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-        expect(errorEl.nativeElement.innerText.trim()).toEqual('Der Maximalwert ist 10', `Nachbedingung 1`);
-        expect(numberInput.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+        expect(errorEl).toBeTruthy();
+        expect(errorEl.nativeElement.innerText.trim()).toEqual('Der Maximalwert ist 10');
+        expect(numberInput.formControl.valid).toBeFalsy();
       }));
 
       it('Sollte einen Startwert setzen', fakeAsync(() => {
-        testComponent.formGroup.get('amount0').setValue(100);
+        testComponent.formGroup.get('amount0')!.setValue(100);
         fixture.detectChanges();
 
         const inputEl = fixture.debugElement.query(By.css('input'));
@@ -521,34 +386,34 @@ describe('LuxInputComponent', () => {
       }));
 
       it('Sollte required sein', fakeAsync(() => {
-        // Vorbedingungen prüfen
+        // Vorbedingungen testen
         fixture.detectChanges();
         const luxInput: LuxInputComponent = fixture.debugElement.query(By.css('#amount0')).componentInstance;
-        expect(testComponent.formGroup.get('amount0').valid).toBe(true);
+        expect(testComponent.formGroup.get('amount0')!.valid).toBe(true);
 
         // Änderungen durchführen
-        testComponent.formGroup.get('amount0').setValidators(Validators.required);
-        testComponent.formGroup.get('amount0').setValue(null);
+        testComponent.formGroup.get('amount0')!.setValidators(Validators.required);
+        testComponent.formGroup.get('amount0')!.setValue(null as any);
         LuxTestHelper.wait(fixture);
 
-        testComponent.formGroup.get('amount0').markAsTouched();
-        testComponent.formGroup.get('amount0').updateValueAndValidity();
+        testComponent.formGroup.get('amount0')!.markAsTouched();
+        testComponent.formGroup.get('amount0')!.updateValueAndValidity();
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
         expect(luxInput.formControl.valid).toBe(false);
-        expect(luxInput.formControl.errors).not.toBe(null);
-        expect(luxInput.formControl.errors.required).toBe(true);
+        expect(luxInput.formControl.errors).not.toBeNull();
+        expect(luxInput.formControl.errors!.required).toBe(true);
         expect(luxInput.luxRequired).toBe(true);
 
         // Änderungen durchführen
-        testComponent.formGroup.get('amount0').setValue(100);
-        testComponent.formGroup.get('amount0').updateValueAndValidity();
+        testComponent.formGroup.get('amount0')!.setValue(100);
+        testComponent.formGroup.get('amount0')!.updateValueAndValidity();
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
         expect(luxInput.formControl.valid).toBe(true);
-        expect(luxInput.formControl.errors).toBe(null);
+        expect(luxInput.formControl.errors).toBeNull();
       }));
     });
   });
@@ -565,7 +430,7 @@ describe('LuxInputComponent', () => {
 
     describe('type="text"', () => {
       it('Wert über die Component setzen', fakeAsync(() => {
-        expect(fixture.componentInstance.myText).toEqual('', `Initial sollte der Wert ein leerer String sein`);
+        expect(fixture.componentInstance.myText).toEqual('');
 
         fixture.componentInstance.myText = 'abc';
 
@@ -577,7 +442,7 @@ describe('LuxInputComponent', () => {
       }));
 
       it('Wert über das Textfeld setzen', fakeAsync(() => {
-        expect(fixture.componentInstance.myText).toEqual('', `Initial sollte der Wert ein leerer String sein`);
+        expect(fixture.componentInstance.myText).toEqual('');
 
         const inputEl = fixture.debugElement.query(By.css('#text input'));
         LuxTestHelper.setInputValue(inputEl.nativeElement, 'def', fixture);
@@ -591,11 +456,11 @@ describe('LuxInputComponent', () => {
         // Vorbedingungen testen
         const textInput = fixture.debugElement.query(By.css('#text')).componentInstance;
         let errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeFalsy(`Vorbedingung 1`);
-        expect(textInput.formControl.valid).toBeTruthy(`Vorbedingung 2`);
+        expect(errorEl).toBeFalsy();
+        expect(textInput.formControl.valid).toBeTruthy();
 
         // Änderungen durchführen
-        testComponent.validators = Validators.compose([Validators.required]);
+        testComponent.validators = [Validators.required];
         LuxTestHelper.wait(fixture);
         textInput.formControl.markAsTouched();
         textInput.formControl.updateValueAndValidity();
@@ -603,9 +468,9 @@ describe('LuxInputComponent', () => {
 
         // Nachbedingungen testen
         errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-        expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld', `Nachbedingung 1`);
-        expect(textInput.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+        expect(errorEl).toBeTruthy();
+        expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld');
+        expect(textInput.formControl.valid).toBeFalsy();
       }));
 
       it('Sollte einen Startwert setzen', fakeAsync(() => {
@@ -620,7 +485,7 @@ describe('LuxInputComponent', () => {
 
     describe('type="number"', () => {
       it('Wert über die Component setzen', fakeAsync(() => {
-        expect(fixture.componentInstance.amount0).toEqual(0, `Initial sollte der Wert ein leerer String sein`);
+        expect(fixture.componentInstance.amount0).toEqual(0);
 
         fixture.componentInstance.amount0 = 5;
 
@@ -632,9 +497,9 @@ describe('LuxInputComponent', () => {
       }));
 
       it('Wert über das Textfeld setzen', fakeAsync(() => {
-        expect(fixture.componentInstance.amount0).toEqual(0, `Initial sollte der Wert 0 sein.`);
-        expect(fixture.componentInstance.amount1).toEqual(0, `Initial sollte der Wert 0 sein.`);
-        expect(fixture.componentInstance.amount2).toEqual(0, `Initial sollte der Wert 0 sein.`);
+        expect(fixture.componentInstance.amount0).toEqual(0);
+        expect(fixture.componentInstance.amount1).toEqual(0);
+        expect(fixture.componentInstance.amount2).toEqual(0);
 
         const luxInput0El = fixture.debugElement.query(By.css('#amount0 input'));
         LuxTestHelper.setInputValue(luxInput0El.nativeElement, 10, fixture);
@@ -657,8 +522,8 @@ describe('LuxInputComponent', () => {
         // Vorbedingungen testen
         const numberInput = fixture.debugElement.query(By.css('#amount1')).componentInstance;
         let errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeFalsy(`Vorbedingung 1`);
-        expect(numberInput.formControl.valid).toBeTruthy(`Vorbedingung 2`);
+        expect(errorEl).toBeFalsy();
+        expect(numberInput.formControl.valid).toBeTruthy();
 
         // Änderungen durchführen
         testComponent.validators = Validators.compose([Validators.max(10)]);
@@ -670,9 +535,9 @@ describe('LuxInputComponent', () => {
 
         // Nachbedingungen testen
         errorEl = fixture.debugElement.query(By.css('mat-error'));
-        expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-        expect(errorEl.nativeElement.innerText.trim()).toEqual('Der Maximalwert ist 10', `Nachbedingung 1`);
-        expect(numberInput.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+        expect(errorEl).toBeTruthy();
+        expect(errorEl.nativeElement.innerText.trim()).toEqual('Der Maximalwert ist 10');
+        expect(numberInput.formControl.valid).toBeFalsy();
       }));
 
       it('Sollte einen Startwert setzen', fakeAsync(() => {
@@ -719,12 +584,12 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte sowohl Pre- als auch Suffix darstellen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let suffix = fixture.debugElement.query(By.css('lux-input-suffix'));
       let prefix = fixture.debugElement.query(By.css('lux-input-prefix'));
 
-      expect(prefix).toBeFalsy('Vorbedingung 1');
-      expect(suffix).toBeFalsy('Vorbedingung 2');
+      expect(prefix).toBeFalsy();
+      expect(suffix).toBeFalsy();
 
       // Änderungen durchführen
       testComponent.showPrefix = true;
@@ -735,31 +600,31 @@ describe('LuxInputComponent', () => {
       suffix = fixture.debugElement.query(By.css('lux-input-suffix'));
       prefix = fixture.debugElement.query(By.css('lux-input-prefix'));
 
-      expect(prefix).toBeDefined('Nachbedingung 1');
-      expect(prefix.nativeElement.innerText.trim()).toEqual('prefix', 'Nachbedingung 2');
-      expect(suffix).toBeDefined('Nachbedingung 3');
-      expect(suffix.nativeElement.innerText.trim()).toEqual('suffix', 'Nachbedingung 4');
+      expect(prefix).toBeDefined();
+      expect(prefix.nativeElement.innerText.trim()).toEqual('prefix');
+      expect(suffix).toBeDefined();
+      expect(suffix.nativeElement.innerText.trim()).toEqual('suffix');
     }));
   });
 
   describe('LuxCounterLabel', () => {
     let fixture: ComponentFixture<LuxInputCounterLabelComponent>;
     let testComponent: LuxInputCounterLabelComponent;
-    
+
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(LuxInputCounterLabelComponent);
       testComponent = fixture.componentInstance;
       fixture.detectChanges();
     }));
 
-    it('sollte Counterlabel bei focused=true anzeigen', fakeAsync(() => {
+    it('sollte Counter-Label bei focused=true anzeigen', fakeAsync(() => {
       // Vorbedingung
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
 
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
       formControlComponent.focused = true;
       // Wert ändern
       const inputEL = fixture.debugElement.query(By.css('input'));
@@ -776,14 +641,14 @@ describe('LuxInputComponent', () => {
       expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
     }));
 
-    it('sollte Counterlabel auch bei leerem Value anzeigen', fakeAsync(() => {
+    it('sollte Counter-Label auch bei leerem Value anzeigen', fakeAsync(() => {
       // Vorbedingung
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
 
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
       formControlComponent.focused = true;
       // Wert ändern
       const inputEL = fixture.debugElement.query(By.css('input'));
@@ -798,22 +663,22 @@ describe('LuxInputComponent', () => {
       // Vorbedingungen
       const inputEl = fixture.debugElement.query(By.css('input'));
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
 
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
       formControlComponent.focused = true;
 
-      // Input-Value setzen      
+      // Input-Value setzen
       LuxTestHelper.typeInElement(inputEl.nativeElement, 'Lorem ipsum');
       LuxTestHelper.wait(fixture);
 
-      // Vorbedingung Prüfen
+      // Vorbedingungen testen
       let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
       expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
 
-      // TestComponent disablen und Focus zurücksetzen
+      // TestComponent deaktivieren und Focus zurücksetzen
       formControlComponent.focused = false;
       testComponent.disabled = true;
       fixture.detectChanges();
@@ -836,7 +701,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte im Label nicht "undefined" oder "null" anzeigen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const label = fixture.debugElement.query(By.css('.lux-label'));
       expect(label.nativeElement.textContent.trim()).not.toEqual(undefined);
       expect(label.nativeElement.textContent.trim()).not.toEqual(null);
@@ -859,7 +724,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte das Label anpassen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let label = fixture.debugElement.query(By.css('.lux-label'));
       expect(label.nativeElement.textContent.trim()).toEqual('');
 
@@ -873,7 +738,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte den Hint anpassen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       let hint = fixture.debugElement.query(By.css('mat-hint'));
       expect(hint).toBeNull();
 
@@ -887,7 +752,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte den Placeholder anpassen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const input = fixture.debugElement.query(By.css('input'));
       expect(input.attributes.placeholder).toBeFalsy();
 
@@ -900,7 +765,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte readonly sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const input = fixture.debugElement.query(By.css('input'));
       expect(input.attributes.readonly).toBeFalsy();
 
@@ -913,7 +778,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte disabled sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const input = fixture.debugElement.query(By.css('input'));
       expect(input.nativeElement.disabled).toBe(false);
 
@@ -926,7 +791,7 @@ describe('LuxInputComponent', () => {
     }));
 
     it('Sollte required sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const luxInput: LuxInputComponent = fixture.debugElement.query(By.directive(LuxInputComponent)).componentInstance;
       const input = fixture.debugElement.query(By.css('input'));
       expect(input.nativeElement.required).toEqual(false);
@@ -945,16 +810,16 @@ describe('LuxInputComponent', () => {
 
       // Nachbedingungen prüfen
       expect(luxInput.formControl.valid).toBe(false);
-      expect(luxInput.formControl.errors).not.toBe(null);
-      expect(luxInput.formControl.errors.required).toBe(true);
+      expect(luxInput.formControl.errors).not.toBeNull();
+      expect(luxInput.formControl.errors!.required).toBe(true);
     }));
 
     it('Sollte CSS-Class für linksbündige Zahlen einbauen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       testComponent.type = 'number';
       LuxTestHelper.wait(fixture);
       let inputLeftNumber = fixture.debugElement.query(By.css('input.lux-number-left'));
-      expect(inputLeftNumber).toBe(null);
+      expect(inputLeftNumber).toBeNull();
 
       // Änderungen durchführen
       testComponent.numberLeft = true;
@@ -962,11 +827,11 @@ describe('LuxInputComponent', () => {
 
       // Nachbedingungen prüfen
       inputLeftNumber = fixture.debugElement.query(By.css('input.lux-number-left'));
-      expect(inputLeftNumber).not.toBe(null);
+      expect(inputLeftNumber).not.toBeNull();
     }));
 
     it('Sollte luxValueChange angemessen oft aufrufen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const spy = spyOn(testComponent, 'valueChanged');
       LuxTestHelper.wait(fixture);
 
@@ -987,7 +852,7 @@ describe('LuxInputComponent', () => {
       expect(spy).toHaveBeenCalledTimes(2);
 
       // Änderungen durchführen
-      // Absichtlich den selben Wert nochmal, sollte nichts auslösen
+      // Absichtlich denselben Wert nochmal, sollte nichts auslösen
       testComponent.value = 'b';
       LuxTestHelper.wait(fixture);
 
@@ -1025,23 +890,23 @@ class LuxInputWerteInsideFormComponent {
   fieldType = 'number';
 
   formGroup = new FormGroup({
-    amount01: new FormControl(0),
-    amount02: new FormControl(0),
-    amount03: new FormControl(0),
-    amount04: new FormControl(0),
-    amount05: new FormControl(0),
-    amount06: new FormControl(0),
-    amount07: new FormControl(0),
-    amount08: new FormControl(0),
-    amount09: new FormControl(0),
-    amount10: new FormControl(0),
-    amount11: new FormControl(0),
-    amount12: new FormControl(0),
-    amount13: new FormControl(0),
-    amount14: new FormControl(0),
-    amount15: new FormControl(0),
-    amount16: new FormControl(0),
-    amount17: new FormControl(0)
+    amount01: new FormControl<number>(0, {nonNullable: true}),
+    amount02: new FormControl<number>(0, {nonNullable: true}),
+    amount03: new FormControl<number>(0, {nonNullable: true}),
+    amount04: new FormControl<number>(0, {nonNullable: true}),
+    amount05: new FormControl<number>(0, {nonNullable: true}),
+    amount06: new FormControl<number>(0, {nonNullable: true}),
+    amount07: new FormControl<number>(0, {nonNullable: true}),
+    amount08: new FormControl<number>(0, {nonNullable: true}),
+    amount09: new FormControl<number>(0, {nonNullable: true}),
+    amount10: new FormControl<number>(0, {nonNullable: true}),
+    amount11: new FormControl<number>(0, {nonNullable: true}),
+    amount12: new FormControl<number>(0, {nonNullable: true}),
+    amount13: new FormControl<number>(0, {nonNullable: true}),
+    amount14: new FormControl<number>(0, {nonNullable: true}),
+    amount15: new FormControl<number>(0, {nonNullable: true}),
+    amount16: new FormControl<number>(0, {nonNullable: true}),
+    amount17: new FormControl<number>(0, {nonNullable: true})
   });
 }
 
@@ -1062,10 +927,10 @@ class LuxInputInsideFormComponent {
   fieldType = 'number';
 
   formGroup = new FormGroup({
-    amount0: new FormControl(0),
-    amount1: new FormControl(0),
-    amount2: new FormControl(0),
-    text: new FormControl(null)
+    amount0: new FormControl<number>(0, {nonNullable: true}),
+    amount1: new FormControl<number>(0, {nonNullable: true}),
+    amount2: new FormControl<number>(0, {nonNullable: true}),
+    text: new FormControl<string | null>(null)
   });
 }
 
@@ -1088,7 +953,7 @@ class LuxInputInsideFormComponent {
       id="amount1"
       [luxControlValidators]="validators"
     ></lux-input>
-    <input matInput placeholder="amount2" type="number" [(ngModel)]="amount2" luxTagId="amount2" id="amount2" />
+    <input matInput placeholder="amount2" type="number" [(ngModel)]="amount2" id="amount2" />
 
     <!-- Inputs vom Typ 'text' -->
     <lux-input luxLabel="myText" [(luxValue)]="myText" id="text" [luxControlValidators]="validators"></lux-input>
@@ -1101,7 +966,7 @@ class LuxInputOutsideFormComponent {
   amount1 = 0;
   amount2 = 0;
   myText = '';
-  validators;
+  validators?: ValidatorFnType;
 }
 
 @Component({
@@ -1113,8 +978,8 @@ class LuxInputOutsideFormComponent {
   `
 })
 class LuxInputWithPrefixComponent {
-  showPrefix;
-  showSuffix;
+  showPrefix?: boolean;
+  showSuffix?: boolean;
 }
 
 @Component({
@@ -1136,14 +1001,14 @@ class LuxInputWithPrefixComponent {
 })
 class LuxInputAttributesComponent {
   type = 'text';
-  label: string;
-  hint: string;
-  placeholder: string;
-  readonly: boolean;
-  disabled: boolean;
-  required: boolean;
-  numberLeft: boolean;
-  value: string;
+  label?: string | null;
+  hint?: string;
+  placeholder?: string;
+  readonly = false;
+  disabled?: boolean;
+  required = false;
+  numberLeft?: boolean;
+  value?: string;
 
   valueChanged() {}
 }
@@ -1162,7 +1027,7 @@ class LuxInputAttributesComponent {
 })
 class LuxInputCounterLabelComponent {
   type = 'text';
-  hint: string;
-  disabled: boolean;
-  maxLength: number;
+  hint?: string;
+  disabled?: boolean;
+  maxLength?: number;
 }

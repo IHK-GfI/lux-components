@@ -1,87 +1,75 @@
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { OnInit, Directive } from '@angular/core';
 import {
   LuxBehandlungsOptionenUngueltige,
   LuxFieldValues,
   LuxLookupParameters
 } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
-import { LuxLookupService } from '../../../modules/lux-lookup/lux-lookup-service/lux-lookup.service';
 import { LuxLookupHandlerService } from '../../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupTableEntry } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-table-entry';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
 
+interface LookupDummyForm {
+  lookup: FormControl<LuxLookupTableEntry | LuxLookupTableEntry[] | null>;
+}
+
 @Directive()
 export abstract class LookupExampleComponent implements OnInit {
-  // region Helper-Properties für das Beispiel
-
   options = [
     { label: LuxBehandlungsOptionenUngueltige.ausgrauen, value: 0 },
     { label: LuxBehandlungsOptionenUngueltige.anzeigen, value: 1 },
     { label: LuxBehandlungsOptionenUngueltige.ausblenden, value: 2 }
   ];
-
-  fieldOptions = [...Object.keys(LuxFieldValues)];
-
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' },
     { value: Validators.email, label: 'Validators.email' }
   ];
-
   useErrorMessage = true;
   showOutputEvents = false;
-  useRenderFn: boolean;
+  useRenderFn = false;
   log = logResult;
-  form: FormGroup;
-  originalServices: LuxLookupService[] = [];
+  form: FormGroup<LookupDummyForm>;
   renderFnString = this.renderFn + '';
-
-  // endregion
-
-  // region Properties der Component
-
   renderProp = 'kurzText';
-  parameters: LuxLookupParameters = null;
+  parameters?: LuxLookupParameters;
   selected: any;
-  customStyle;
-  customInvalidStyle;
+  customStyle: {} | null = null;
+  customInvalidStyle: {} | null = null;
   behandlungUngueltige: LuxBehandlungsOptionenUngueltige = LuxBehandlungsOptionenUngueltige.ausgrauen;
   disabled = false;
   controlBinding = 'lookup';
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   tableNo = '1002';
-
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
   placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
-  value;
-
+  value: LuxLookupTableEntry | LuxLookupTableEntry[] | null = null;
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
 
-  // endregion
-
   protected constructor(
-    protected lookupHandler: LuxLookupHandlerService,
-    protected fb: FormBuilder
-  ) {}
+    protected lookupHandler: LuxLookupHandlerService
+  ) {
+    this.form = new FormGroup<LookupDummyForm>({
+      lookup: new FormControl<LuxLookupTableEntry | LuxLookupTableEntry[] | null>(null)
+    });
+  }
 
   ngOnInit() {
     this.parameters = new LuxLookupParameters({
       knr: 101,
       fields: [LuxFieldValues.kurz, LuxFieldValues.lang1, LuxFieldValues.lang2]
-    });
-
-    this.form = this.fb.group({
-      lookup: ['']
     });
   }
 
@@ -89,34 +77,36 @@ export abstract class LookupExampleComponent implements OnInit {
     return '[RenderFn] ' + entry.kurzText;
   }
 
-  changeCustomStyle($event) {
-    if ($event) {
+  changeCustomStyle(event: any) {
+    if (event) {
       this.customStyle = { 'text-decoration': 'underline', color: 'green' };
     } else {
       this.customStyle = null;
     }
   }
 
-  changeCustomInvalidStyle($event) {
-    if ($event) {
+  changeCustomInvalidStyle(event: any) {
+    if (event) {
       this.customInvalidStyle = { 'text-decoration': 'line-through', color: 'red' };
     } else {
       this.customInvalidStyle = null;
     }
   }
 
-  changeOptionUngueltig($event) {
-    this.behandlungUngueltige = this.options.find(option => option.value === +$event.value).label;
+  changeOptionUngueltig(event: any) {
+    const found = this.options.find(option => option.value === +event.value);
+    if (found) {
+      this.behandlungUngueltige = found.label;
+    }
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
 
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
 
-  emptyCallback() {}
 }

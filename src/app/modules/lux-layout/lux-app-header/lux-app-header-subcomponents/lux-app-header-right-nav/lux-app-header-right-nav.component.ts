@@ -1,4 +1,4 @@
-import { Component, ContentChildren } from '@angular/core';
+import { Component, ContentChildren, QueryList } from '@angular/core';
 import { LuxMenuItemComponent } from '../../../../lux-action/lux-menu/lux-menu-subcomponents/lux-menu-item.component';
 
 @Component({
@@ -6,7 +6,7 @@ import { LuxMenuItemComponent } from '../../../../lux-action/lux-menu/lux-menu-s
   template: ''
 })
 export class LuxAppHeaderRightNavComponent {
-  @ContentChildren(LuxMenuItemComponent) menuItemComponents;
+  @ContentChildren(LuxMenuItemComponent) menuItemComponents!: QueryList<LuxMenuItemComponent>;
 
   constructor() {}
 }

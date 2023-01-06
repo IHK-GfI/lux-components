@@ -1,8 +1,9 @@
 /* eslint-disable max-classes-per-file */
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
+import { LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupLabelComponent } from './lux-lookup-label.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -79,23 +80,24 @@ describe('LuxLookupLabelComponent', () => {
 });
 
 @Component({
-  template: ` <lux-lookup-label luxLookupId="meineId" [luxTableNo]="tableNo" [luxTableKey]="tableKey"> </lux-lookup-label> `
+  template: ` <lux-lookup-label luxLookupId="meineId" luxLookupKnr="101" [luxTableNo]="tableNo" [luxTableKey]="tableKey"> </lux-lookup-label> `
 })
 class LuxNoFormComponent {
   tableNo = '500211';
   tableKey = '110';
-  value;
+  value?: any;
 }
 
 @Component({
-  template: ` <lux-lookup-label luxLookupId="meineId" [luxTableNo]="tableNo" [luxTableKey]="tableKey"> </lux-lookup-label> `
+  template: ` <lux-lookup-label luxLookupId="meineId" luxLookupKnr="101" [luxTableNo]="tableNo" [luxTableKey]="tableKey"> </lux-lookup-label> `
 })
 class LuxTable500212Component {
   tableNo = '500212';
   tableKey = '110';
-  value;
+  value?: any;
 }
 
+@Injectable()
 class MockLuxLookupLabelService extends LuxLookupService {
   changeTableValue() {
     mockResult500211[0] = {
@@ -105,7 +107,7 @@ class MockLuxLookupLabelService extends LuxLookupService {
     };
   }
 
-  getLookupTable(luxTableNo, lookupParameters, url) {
+  getLookupTable(luxTableNo: string, lookupParameters: LuxLookupParameters, url: string) {
     let mockResult;
 
     if (luxTableNo === '500211') {
@@ -114,6 +116,8 @@ class MockLuxLookupLabelService extends LuxLookupService {
       mockResult = mockResult500212;
     } else if (luxTableNo === '500213') {
       mockResult = mockResult500213;
+    } else {
+      throw Error('Mock result not found!');
     }
 
     return of([mockResult.find((entry) => entry.key === lookupParameters.keys[0])]);

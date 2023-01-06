@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { waitForAsync, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -24,11 +26,11 @@ describe('LuxAriaRoleDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte role in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte role in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('role')).toBeNull();
 
       // role setzen
-      let ariaRole = 'menubar';
+      let ariaRole: string | undefined = 'menubar';
       component.ariaRole = ariaRole;
       fixture.detectChanges();
 
@@ -42,12 +44,12 @@ describe('LuxAriaRoleDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('role')).toEqual(ariaRole);
 
       // role entfernen
-      ariaRole = null;
+      ariaRole = undefined;
       component.ariaRole = ariaRole;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('role')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -60,11 +62,11 @@ describe('LuxAriaRoleDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte role in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte role in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('role')).toBeNull();
 
       // role setzen
-      let ariaRole = 'menubar';
+      let ariaRole: string | undefined = 'menubar';
       component.ariaRole = ariaRole;
       fixture.detectChanges();
 
@@ -78,12 +80,12 @@ describe('LuxAriaRoleDirective', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('role')).toEqual(ariaRole);
 
       // role entfernen
-      ariaRole = null;
+      ariaRole = undefined;
       component.ariaRole = ariaRole;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('role')).toBeNull();
-    }));
+    });
   });
 });
 
@@ -94,7 +96,7 @@ describe('LuxAriaRoleDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaRole;
+  ariaRole?: string;
 }
 
 @Component({
@@ -104,5 +106,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaRole;
+  ariaRole?: string;
 }

@@ -1,6 +1,25 @@
 import { Component, HostBinding } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+interface DummyForm {
+  checkbox1: FormControl<boolean>;
+  checkbox2: FormControl<boolean>;
+  checkbox3: FormControl<boolean>;
+}
+
+interface DummyAddressForm {
+  title: FormControl<string>;
+  firstname: FormControl<string>;
+  lastname: FormControl<string>;
+  streetAddress: FormControl<string>;
+  streetNumber: FormControl<string>;
+  addressInfo: FormControl<string>;
+  postalCode: FormControl<string>;
+  city: FormControl<string>;
+  country: FormControl<string>;
+  comment: FormControl<string>;
+}
+
 @Component({
   selector: 'lux-baseline-accordion',
   templateUrl: './baseline-accordion.component.html',
@@ -12,10 +31,6 @@ export class BaselineAccordionComponent {
 
   // Properties für die Form-Controls
   testHint = 'Hinweistext für ein Form-Control';
-  testValue = '';
-  testOption: any = null;
-  testDate = '';
-  testDate2 = '';
   options = [
     {label: 'Option 1', value: 'A'},
     {label: 'Option 2', value: 'B'},
@@ -35,40 +50,52 @@ export class BaselineAccordionComponent {
     {label: 'Griechenland', value: 'F'},
   ]
 
-  // endregion
-
   prefixOptions = [ '', 'Frau', 'Herr']
-  form: FormGroup = undefined; 
-  addressForm: FormGroup = undefined;
-  
-  constructor() { 
-    this.form = new FormGroup({
-      checkbox1: new FormControl('', Validators.requiredTrue),
-      checkbox2: new FormControl('', Validators.requiredTrue),
-      checkbox3: new FormControl('', Validators.requiredTrue),
+  form: FormGroup<DummyForm>;
+  addressForm: FormGroup<DummyAddressForm>;
+  addressForm2: FormGroup<DummyAddressForm>;
+
+  constructor() {
+    this.form = new FormGroup<DummyForm>({
+      checkbox1: new FormControl(false, { validators: Validators.requiredTrue, nonNullable: true}),
+      checkbox2: new FormControl(false, { validators: Validators.requiredTrue, nonNullable: true}),
+      checkbox3: new FormControl(false, { validators: Validators.requiredTrue, nonNullable: true})
     });
 
-    this.addressForm = new FormGroup ({
-      title: new FormControl('', Validators.required),
-      firstname: new FormControl('', Validators.required),
-      lastname: new FormControl('', Validators.required),
-      streetAddress: new FormControl('', Validators.required),
-      streetNumber: new FormControl('', Validators.required),
-      addressInfo: new FormControl('', Validators.maxLength(100)),
-      postalCode: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(5)]) ),
-      city: new FormControl('', Validators.required),
-      country: new FormControl('', Validators.required),
-      comment: new FormControl(''),
-    })
+    this.addressForm = new FormGroup<DummyAddressForm>({
+      title: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      firstname: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      lastname: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      streetAddress: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      streetNumber: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      addressInfo: new FormControl('', { validators: Validators.maxLength(100), nonNullable: true}),
+      postalCode: new FormControl('', { validators: Validators.compose([Validators.required, Validators.maxLength(5)]), nonNullable: true}),
+      city: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      country: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      comment: new FormControl('', { nonNullable: true})
+    });
+
+    this.addressForm2 = new FormGroup<DummyAddressForm>({
+      title: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      firstname: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      lastname: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      streetAddress: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      streetNumber: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      addressInfo: new FormControl('', { validators: Validators.maxLength(100), nonNullable: true}),
+      postalCode: new FormControl('', { validators: Validators.compose([Validators.required, Validators.maxLength(5)]), nonNullable: true}),
+      city: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      country: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      comment: new FormControl('', { nonNullable: true})
+    });
   }
 
-  chipRemoved($event: any) {
-    console.log($event);
+  chipRemoved(index: number) {
+    console.log(index);
   }
-  chipAdded($event: string) {
-      console.log($event);
+  chipAdded(newChip: string) {
+      console.log(newChip);
   }
-  chipItemClicked($event: any) {
-      console.log($event);
+  chipItemClicked(index: number) {
+      console.log(index);
   }
 }

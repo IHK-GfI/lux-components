@@ -1,4 +1,4 @@
-<div class="lux-chips" fxLayout="column" #chipscontainerdiv>
+<div class="lux-chips" fxLayout="column" #chipsContainerDiv>
   <lux-form-control
     [luxScalableHeight]="true"
     [luxFormComponent]="this"
@@ -32,13 +32,12 @@
         >
           <ng-template *ngTemplateOutlet="chip.templateRef"></ng-template>
           <lux-icon
-            class="lux-chip-icon"
+            class="lux-chip-icon lux-cursor"
             [ngClass]="{'lux-chip-icon-selected': chip.luxSelected, 'lux-chip-icon-disabled': chip.luxDisabled}"
             matChipRemove
             luxIconName="cancel"
             luxMargin="0 0 0 6px"
             luxPadding="2px"
-            class="lux-chip-icon lux-cursor"
             (click)="chip.remove(i)"
             *ngIf="chip.luxRemovable"
           ></lux-icon>
@@ -64,13 +63,12 @@
               *ngTemplateOutlet="chipGroup.tempRef ? chipGroup.tempRef : noTemplateRef; context: { $implicit: label }"
             ></ng-container>
             <lux-icon
-              class="lux-chip-icon"
+              class="lux-chip-icon lux-cursor"
               [ngClass]="{'lux-chip-icon-selected': chipGroup.luxSelected, 'lux-chip-icon-disabled': chipGroup.luxDisabled}"
               matChipRemove
               luxIconName="cancel"
               luxMargin="0 0 0 6px"
               luxPadding="2px"
-              class="lux-chip-icon lux-cursor"
               (click)="onChipGroupRemove(chipGroup, i)"
               *ngIf="chipGroup.luxRemovable"
             ></lux-icon>

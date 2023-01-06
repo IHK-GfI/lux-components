@@ -4,7 +4,7 @@
   [formGroup]="formGroup"
   [luxIgnoreDefaultLabel]="true"
   [luxScalableHeight]="true"
-  [luxNoLabels]="luxNoLabels" 
+  [luxNoLabels]="luxNoLabels"
   [luxNoBottomLabel]="luxNoBottomLabel"
   [luxNoTopLabel]="luxNoTopLabel"
   (click)="formControl.markAsTouched()"
@@ -32,7 +32,7 @@
         {{ luxLabel }}
       </ng-container>
       <ng-template #formLabelTemplate>
-        <ng-container *ngTemplateOutlet="formLabelComponent.templateRef"></ng-container>
+        <ng-container *ngTemplateOutlet="formLabelComponent?.templateRef ?? null"></ng-container>
       </ng-template>
       {{ luxRequired ? ' *' : '' }}
     </label>

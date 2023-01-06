@@ -5,13 +5,14 @@ import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MockLuxLookupService } from "./demo/components-overview/lookup-examples/mock-lookup-service";
+import { MockLuxLookupService } from './demo/components-overview/lookup-examples/mock-lookup-service';
 import { HomeModule } from './demo/home/home.module';
 import { LuxActionModule } from './modules/lux-action/lux-action.module';
 import { LuxDirectivesModule } from './modules/lux-directives/lux-directives.module';
 import { LuxFilePreviewModule } from './modules/lux-file-preview/lux-file-preview.module';
 import { LuxLayoutModule } from './modules/lux-layout/lux-layout.module';
-import { LuxLookupService } from "./modules/lux-lookup/lux-lookup-service/lux-lookup.service";
+import { LuxLookupService } from './modules/lux-lookup/lux-lookup-service/lux-lookup.service';
+import { LuxMarkdownModule } from './modules/lux-markdown/lux-markdown.module';
 import { LuxPopupsModule } from './modules/lux-popups/lux-popups.module';
 import { LuxConsoleService } from './modules/lux-util/lux-console.service';
 import { LuxComponentsConfigModule } from './modules/lux-components-config/lux-components-config.module';
@@ -27,13 +28,18 @@ import { LuxErrorModule } from './modules/lux-error/lux-error.module';
 import 'hammerjs';
 import { PlaceholderComponent } from './demo/abstract/placeholder/placeholder.component';
 import { RedirectComponent } from './demo/abstract/redirect/redirect.component';
+import { LicenseHintComponent } from './demo/base/license-hint/license-hint.component';
 
 const myConfiguration: LuxComponentsConfigParameters = {
-  generateLuxTagIds: environment.generateLuxTagIds
+  generateLuxTagIds: environment.generateLuxTagIds,
+  labelConfiguration: {
+    allUppercase: true,
+    notAppliedTo: ['lux-link', 'lux-menu-item', 'lux-side-nav-item', 'lux-tab', 'lux-step']
+  }
 };
 
 @NgModule({
-  declarations: [AppComponent, PlaceholderComponent, RedirectComponent],
+  declarations: [AppComponent, PlaceholderComponent, RedirectComponent, LicenseHintComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -53,11 +59,10 @@ const myConfiguration: LuxComponentsConfigParameters = {
     ConfigurationModule,
     BaselineModule,
     ExampleBaseModule,
-    LuxComponentsConfigModule.forRoot(myConfiguration)
+    LuxComponentsConfigModule.forRoot(myConfiguration),
+    LuxMarkdownModule
   ],
-  providers: [
-    { provide: LuxLookupService, useClass: MockLuxLookupService }
-  ],
+  providers: [{ provide: LuxLookupService, useClass: MockLuxLookupService }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule implements DoBootstrap {

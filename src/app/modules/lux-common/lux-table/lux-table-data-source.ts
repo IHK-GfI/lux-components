@@ -5,12 +5,12 @@ import { MatTableDataSource } from '@angular/material/table';
  * und ignoriert die Groß- und Kleinschreibung.
  */
 export class LuxTableDataSource<T> extends MatTableDataSource<T> {
-  totalElements: number;
+  totalElements = 0;
   selectedEntries: Set<any> = new Set<any>();
 
   /**
    * Diese Methode liefert eine sortierte Kopie des Datenarrays zurück.
-   * Die Sortierung berücksichtig ist nicht Case-Sensitive und berücksichtig
+   * Die Sortierung berücksichtigt ist nicht Case-Sensitive und berücksichtigt
    * Sonderzeichen (z.B. öäüßé,...)
    *
    * @param data

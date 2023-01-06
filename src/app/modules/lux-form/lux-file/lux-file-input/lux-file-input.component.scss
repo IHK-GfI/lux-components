@@ -21,21 +21,26 @@ lux-form-control {
       .lux-menu-extended {
         justify-content: end;
         overflow: unset;
-        
+
         lux-button {
-          height: 15px;
-          
+
           button {
             width: unset;
             min-width: 24px;
-            margin-bottom: $outline-width;
-            
+            margin-right: 4px;
+            margin-bottom: var(--lux-theme-outline-width);
+
             &:last-of-type {
               margin-right: 0px;
             }
+            lux-icon.lux-button-icon mat-icon.lux-lx-icon-no-size {
+              height: 14px !important;
+              width: 14px !important;
+              vertical-align: super;
+            }
           }
         }
-      }
+      } 
     }
   }
 }

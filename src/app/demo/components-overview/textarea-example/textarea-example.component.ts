@@ -1,39 +1,36 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface TextareaDummyForm {
+  textareaExample: FormControl<string | null>;
+}
 
 @Component({
   selector: 'app-textarea-example',
   templateUrl: './textarea-example.component.html'
 })
 export class TextareaExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useErrorMessage = true;
   showOutputEvents = false;
-
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' },
     { value: Validators.email, label: 'Validators.email' }
   ];
   autocompleteOptions = ['on', 'off'];
-  form: FormGroup;
+  form: FormGroup<TextareaDummyForm>;
   log = logResult;
-
-  // endregion
-
-  // region Properties der Component
-
   value: any;
   controlBinding = 'textareaExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -44,27 +41,25 @@ export class TextareaExampleComponent {
   max = -1;
   min = 1;
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
-  maxLength: number;
+  maxLength = 0;
   hideCounterLabel = false;
   labelLongFormat = false;
-  
-  // endregion
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      textareaExample: ['']
+  constructor() {
+    this.form = new FormGroup<TextareaDummyForm>({
+      textareaExample: new FormControl<string | null>(null)
     });
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
 
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
 
-  emptyCallback() {}
 }

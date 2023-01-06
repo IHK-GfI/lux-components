@@ -1,9 +1,11 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { LuxAccordionComponent } from '../../../modules/lux-layout/lux-accordion/lux-accordion.component';
-import { LuxTestHelper } from '../../../modules/lux-util/testing/lux-test-helper';
+import { LuxAccordionComponent } from './lux-accordion.component';
+import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxAccordionComponent', () => {
 
@@ -66,7 +68,7 @@ describe('LuxAccordionComponent', () => {
         fixture.componentInstance.expandedHeaderHeight = expectedExpandedHeight;
         LuxTestHelper.wait(fixture);
 
-        // Nachbedingungen testen
+        // Nachbedingungen testen.
         // Geschlossenes Panel
         expect(expectedCollapsedHeight).toEqual(panel1HeaderEl.nativeElement.style.height);
 
@@ -74,12 +76,12 @@ describe('LuxAccordionComponent', () => {
         panel1HeaderEl.nativeElement.click();
         LuxTestHelper.wait(fixture);
 
-        // Nachbedingungen testen
+        // Nachbedingungen testen.
         // Geöffnetes Panel
         expect(expectedExpandedHeight).toEqual(panel1HeaderEl.nativeElement.style.height);
       }));
 
-      it('Panel über *ngif einblenden', fakeAsync(() => {
+      it('Panel über *ngIf einblenden', fakeAsync(() => {
         // Vorbedingungen testen
         const headerElemente = fixture.debugElement.queryAll(By.css('mat-expansion-panel-header'));
         expect(1).toEqual(headerElemente.length);
@@ -134,7 +136,7 @@ describe('LuxAccordionComponent', () => {
         expect('110px').toEqual(panel1HeaderEl.nativeElement.style.height);
       }));
 
-      it('Panel über *ngif einblenden', fakeAsync(() => {
+      it('Panel über *ngIf einblenden', fakeAsync(() => {
         // Vorbedingungen testen
         const headerElemente = fixture.debugElement.queryAll(By.css('mat-expansion-panel-header'));
         expect(1).toEqual(headerElemente.length);
@@ -226,7 +228,7 @@ describe('LuxAccordionComponent', () => {
 
       it('Toggle prüfen', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(fixture.componentInstance.hide).toBeFalsy('Vorbedingung 1');
+        expect(fixture.componentInstance.hide).toBeFalsy();
         const toggleEl = fixture.debugElement.query(By.css('.mat-expansion-indicator'));
         expect(toggleEl).not.toBeNull();
 
@@ -272,7 +274,7 @@ describe('LuxAccordionComponent', () => {
 
       it('Disabled prüfen', fakeAsync(() => {
         // Vorbedingungen testen
-        expect(fixture.componentInstance.disabled).toBeFalsy('Vorbedingung 1');
+        expect(fixture.componentInstance.disabled).toBeFalsy();
         const headerEl = fixture.debugElement.query(By.css('.mat-expansion-panel-header'));
         expect(headerEl.nativeElement.attributes['aria-disabled'].value).toEqual('false');
 

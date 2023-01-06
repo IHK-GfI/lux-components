@@ -9,21 +9,21 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
  * (Input und Textarea z.B.).
  */
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
-export abstract class LuxFormInputBaseClass extends LuxFormComponentBase {
-  @Output() luxValueChange: EventEmitter<any> = new EventEmitter();
-  @Output() luxBlur: EventEmitter<any> = new EventEmitter<any>();
-  @Output() luxFocus: EventEmitter<any> = new EventEmitter<any>();
+export abstract class LuxFormInputBaseClass<T = any> extends LuxFormComponentBase<T> {
+  @Output() luxValueChange = new EventEmitter<T>();
+  @Output() luxBlur = new EventEmitter<FocusEvent>();
+  @Output() luxFocus = new EventEmitter<FocusEvent>();
 
   @Input() luxPlaceholder = '';
-  @Input() luxTagId: string;
-  @Input() luxName: string;
+  @Input() luxTagId?: string;
+  @Input() luxName?: string;
   @Input() luxAutocomplete = 'on';
 
-  get luxValue(): any {
+  get luxValue(): T {
     return this.getValue();
   }
 
-  @Input() set luxValue(value: any) {
+  @Input() set luxValue(value: T) {
     this.setValue(value);
   }
 
@@ -36,12 +36,8 @@ export abstract class LuxFormInputBaseClass extends LuxFormComponentBase {
     super(controlContainer, cdr, logger, config);
   }
 
-  // region Overridden methods
-
   notifyFormValueChanged(formValue: any) {
     // Aktualisierungen an dem FormControl-Value sollen auch via EventEmitter bekannt gemacht werden
     this.luxValueChange.emit(formValue);
   }
-
-  // endregion
 }

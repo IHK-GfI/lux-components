@@ -1,5 +1,5 @@
-import { FormControl, FormGroup } from '@angular/forms';
-import { LuxBgAllColor, LuxBgAllColors } from "./lux-colors.enum";
+import { FormArray, FormControl, FormGroup, UntypedFormArray, UntypedFormGroup } from '@angular/forms';
+import { LuxBgAllColor, LuxBgAllColors } from './lux-colors.enum';
 import {
   BACKSPACE,
   DELETE,
@@ -24,19 +24,21 @@ export class LuxUtil {
   );
 
   /**
-   * Prueft ob ein String leer ist.
+   * Diese Methode wirft einen Fehler, wenn der Wert nicht gesetzt wurde.
    *
-   * @param str
-   * @returns boolean
+   * @param name Ein Name.
+   * @param value Ein Wert.
    */
-  public static isEmpty(str): boolean {
-    return !str || 0 === str.length;
+   public static assertNonNull(name: string, value: any) {
+    if (value === undefined || value === null) {
+      throw Error(`${name} should be initialized.`);
+    }
   }
 
   /**
    * Liest aus einem Objekt ein bestimmtes Feld aus.
-   * Laesst sich auch ueber mehrere Unterobjekte verschachteln.
-   * Beispiele fuer propertyNamePath:
+   * Lässt sich auch über mehrere Unterobjekte verschachteln.
+   * Beispiele für propertyNamePath:
    * "value"
    * "unterobjekt1.unterobjekt2.value"
    *
@@ -65,12 +67,12 @@ export class LuxUtil {
 
   /**
    * Gibt eine von verschiedenen vordefinierten Fehlernachrichten passend zu den
-   * vorhandenen Fehlern der uebergebenen FormControl zurueck.
+   * vorhandenen Fehlern der übergebenen FormControl zurück.
    *
    * @param formControl
    * @returns string
    */
-  public static getErrorMessage(formControl: FormControl): string {
+  public static getErrorMessage(formControl: FormControl<any>): string {
     if (formControl) {
       if (formControl.hasError('required')) {
         return $localize `:@@luxc.util.error_message.required:* Pflichtfeld`;
@@ -105,7 +107,7 @@ export class LuxUtil {
   }
 
   /**
-   * Prueft ob der uebergebene Wert ein JS-Datum ist.
+   * Prüft, ob der übergebene Wert ein JS-Datum ist.
    *
    * @param value
    * @returns boolean
@@ -138,12 +140,20 @@ export class LuxUtil {
    *
    * @param formGroup
    */
-  public static showValidationErrors(formGroup: FormGroup) {
+  public static showValidationErrors(formGroup: FormGroup | UntypedFormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
-      if (control instanceof FormGroup) {
+      if (control instanceof FormGroup || control instanceof UntypedFormGroup) {
         this.showValidationErrors(control);
-      } else {
+      } else if (control instanceof FormArray || control instanceof UntypedFormArray) {
+        control.controls.forEach((current) => {
+          if (current instanceof FormGroup || current instanceof UntypedFormGroup) {
+            this.showValidationErrors(current);
+          } else if (current) {
+            control.markAsTouched({ onlySelf: true });
+          }
+        })
+      } else if(control) {
         control.markAsTouched({ onlySelf: true });
       }
     });
@@ -152,10 +162,10 @@ export class LuxUtil {
   /**
    * Diese Methode scrollt zu der übergebenen Id.
    *
-   * @param id Eine Elementid (z.B. <tag id="myId">...)
+   * @param id Eine Element-Id (z.B. <tag id="myId">...)
    */
   public static goTo(id: string): void {
-    const element: Element = document.querySelector('#' + id);
+    const element = document.querySelector('#' + id);
     if (element) {
       setTimeout(() => {
         element.scrollIntoView();
@@ -168,7 +178,7 @@ export class LuxUtil {
    *
    * @param event Ein beliebiges Event.
    */
-  public static stopEventPropagation(event) {
+  public static stopEventPropagation(event: Event) {
     if (event) {
       if (event.stopPropagation) {
         event.stopPropagation();
@@ -178,7 +188,7 @@ export class LuxUtil {
     }
   }
 
-  public static getColorsByBgColorsEnum(color: LuxBgAllColor): { backgroundCSSClass; fontCSSClass } {
+  public static getColorsByBgColorsEnum(color: LuxBgAllColor | undefined): { backgroundCSSClass: string; fontCSSClass: string } {
     const result = { backgroundCSSClass: 'lux-bg-color-blue', fontCSSClass: 'lux-font-color-white' };
 
     const found = LuxBgAllColors.find((entry) => entry === color);
@@ -201,7 +211,7 @@ export class LuxUtil {
     return !Number.isNaN(+toCheck);
   }
 
-  public static base64ToArrayBuffer(data) {
+  public static base64ToArrayBuffer(data: string) {
     const binaryString = window.atob(data);
     const bytes = new Uint8Array(binaryString.length);
     for (let i = 0; i < binaryString.length; i++) {
@@ -375,7 +385,7 @@ export class LuxUtil {
    * @param dateString
    */
   public static stringWithoutASCIIChars(dateString: string): string {
-    const exp = new RegExp('[^A-Za-z 0-9 \\.,\\?""!@#\\$%\\^&\\*\\(\\)-_=\\+;:<>\\/\\\\\\|\\}\\{\\[\\]`~]*', 'g');
+    const exp = new RegExp('[^A-Za-z 0-9.,?"!@#$%^&*()-_=+;:<>\\/\\\\|}{\\[\\]`~]*', 'g');
     return dateString.replace(exp, '');
   }
 
@@ -383,10 +393,10 @@ export class LuxUtil {
    * Diese Methode liefert für die akzeptierten Dateitypen einen I18N-Nachrichtenteil zurück.
    *
    * Beispiel: acceptTypes = .pdf,.txt,.png
-   *   de => PDF, TXT oder PNG
-   *   en => PDF, TXT or PNG
+   *   de = PDF, TXT oder PNG
+   *   en = PDF, TXT or PNG
    *
-   * @param acceptTypes Die akzeptierten Dateitpyen (z.b. .pdf,.txt).
+   * @param acceptTypes Die akzeptierten Dateitypen (z.b. .pdf,.txt).
    */
   public static getAcceptTypesAsMessagePart(acceptTypes: string): string {
     let message = '';

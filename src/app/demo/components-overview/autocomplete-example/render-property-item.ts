@@ -1,3 +1,9 @@
 export class RenderPropertyItem {
-  constructor(public label: string, public value: string) {}
+  label: string;
+  value: string;
+
+  constructor(label: string, value: string) {
+    this.label = label;
+    this.value = value;
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
-import { LuxActionColorType } from "../../../../../lux-action/lux-action-model/lux-action-component-base.class";
+import { LuxThemePalette } from '../../../../../lux-util/lux-colors.enum';
 import { LuxAppHeaderActionNavItemCustomComponent } from "./lux-app-header-action-nav-item-custom.component";
 
 @Component({
@@ -8,15 +8,15 @@ import { LuxAppHeaderActionNavItemCustomComponent } from "./lux-app-header-actio
   styleUrls: ['./lux-app-header-action-nav-item.component.scss']
 })
 export class LuxAppHeaderActionNavItemComponent {
-  @Input() luxLabel: string;
-  @Input() luxIconName: string;
-  @Input() luxColor: LuxActionColorType;
-  @Input() luxDisabled: boolean;
-  @Input() luxTagId: string;
+  @Input() luxLabel = '';
+  @Input() luxIconName?: string;
+  @Input() luxColor: LuxThemePalette;
+  @Input() luxDisabled = false;
+  @Input() luxTagId?: string;
 
-  @Output() luxClicked: EventEmitter<any> = new EventEmitter<any>();
+  @Output() luxClicked = new EventEmitter<Event>();
 
-  @ContentChild(LuxAppHeaderActionNavItemCustomComponent) customComponent: LuxAppHeaderActionNavItemCustomComponent;
+  @ContentChild(LuxAppHeaderActionNavItemCustomComponent) customComponent?: LuxAppHeaderActionNavItemCustomComponent;
 
   constructor() {}
 }

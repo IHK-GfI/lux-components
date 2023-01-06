@@ -44,11 +44,10 @@ $icon-shift: 42px;
 
   .box-header {
     i {
-      padding-top: 0px;
+      padding-top: 0;
     }
-    h2, h3 { 
-      margin: 0;
-      margin-left: 8px;
+    h2, h3 {
+      margin: 0 0 0 8px;
     }
     h3 {
       color: var(--lux-theme-dark-secondary-text)

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
-import {FormControl, FormGroup, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-card-example',
@@ -8,27 +8,23 @@ import {FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./card-example.component.scss']
 })
 export class CardExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   showActions = true;
   showIcon = true;
   showInfo = true;
-  useExpandableContent = true;
+  useExpandableContent = false;
   btn2Raised = true;
-
-  // endregion
-
-  // region Properties der Component
-
   disabled = false;
-  titleLineBreak = false;
-  title = `Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
+  titleLineBreak = true;
+  title = `Testkarte - Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
   subTitle = 'Sed eiusmod tempor incidunt ut labore et dolore magna aliqua.';
+  iconName ="lux-cogs"
+  iconShowRight = true;
+  raised = false;
   expanded = false;
   heading = 2;
   headingValidator = Validators.pattern('[1-6]');
-
-  // endregion
+  closeLabel = 'Weniger Inhalt Anzeigen';
+  openLabel = 'Mehr Inhalt Anzeigen';
 
   constructor(private snackbar: LuxSnackbarService) {
   }
@@ -37,30 +33,7 @@ export class CardExampleComponent {
     console.log('Card clicked');
     this.snackbar.open(3000, {
       text: 'Card clicked',
-      iconName: 'fas fa-info'
+      iconName: 'lux-info'
     });
-  }
-
-  changeInfo($event: boolean) {
-    if ($event === true) {
-      this.useExpandableContent = false;
-    }
-
-    this.showInfo = $event;
-  }
-
-  changeSwitched($event: boolean) {
-    if ($event === true) {
-      this.showInfo = false;
-      this.useExpandableContent = false;
-    }
-  }
-
-  changeExpandable($event: boolean) {
-    if ($event === true) {
-      this.showInfo = false;
-    }
-
-    this.useExpandableContent = $event;
   }
 }

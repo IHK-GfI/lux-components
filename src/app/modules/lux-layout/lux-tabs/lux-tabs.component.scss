@@ -1,11 +1,8 @@
-@import '~@ihk-gfi/lux-components-theme/src/public/global';
-
 mat-tab-group.lux-tabs-no-divider ::ng-deep mat-tab-header {
   border-bottom: none;
 }
 
 mat-tab-group ::ng-deep div[role="tab"] {
-  margin: $outline-width;
 
   &:not(.mat-tab-disabled) {
     opacity: 1;
@@ -112,7 +109,7 @@ mat-tab-group ::ng-deep div[role="tab"] {
 
 // Notificationicon neben dem Tablabel auf normalen bis großen Auflösungen
 .lux-tabs-notification-icon-position-after-label {
-  top: 0px;
+  top: 0;
   right: -18px;
 
   &.lux-counter-visible {
@@ -138,7 +135,7 @@ mat-tab-group ::ng-deep div[role="tab"] {
 
   &.lux-counter-visible {
     top: 10px;
-    right: 0px;
+    right: 0;
 
     @media (max-width: 959px) {
       top: 10px;
@@ -147,7 +144,7 @@ mat-tab-group ::ng-deep div[role="tab"] {
 
     @media (max-width: 599px) {
       top: 10px;
-      right: 0px;
+      right: 0;
     }
   }
 }

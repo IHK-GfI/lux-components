@@ -1,0 +1,23 @@
+<div 
+  fxLayout="row" 
+  fxLayoutAlign="start center" 
+  class="lux-master-header-container-ac"
+  >
+  <lux-button
+    [luxIconName]="iconName"
+    [luxRounded]="true"
+    luxTagId="master-detail.toggle"
+    luxAriaLabel="{{ getAriaLabelForOpenCloseButton(iconName) }}"
+    luxAriaLabelSelector="button"
+    [luxAriaExpanded]="iconName === 'lux-interface-arrows-button-left'"
+    luxAriaExpandedSelector="button"
+    (luxClicked)="clicked(toggleButton)"
+    class="master-ac-toggle"
+    #toggleButton
+    *ngIf="!luxToggleHidden"
+  ></lux-button>
+
+  <div fxFlex="100" #headerContentContainer>
+    <ng-content></ng-content>
+  </div>
+</div>

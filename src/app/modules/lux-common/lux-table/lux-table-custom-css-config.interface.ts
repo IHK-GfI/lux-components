@@ -1,4 +1,4 @@
 export interface ICustomCSSConfig {
   class: string;
-  check: (element) => boolean;
+  check: (element: any) => boolean;
 }

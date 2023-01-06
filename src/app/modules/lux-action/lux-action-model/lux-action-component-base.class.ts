@@ -1,6 +1,5 @@
-import {Directive, EventEmitter, Input, Output} from '@angular/core';
-
-export declare type LuxActionColorType = 'primary' | 'accent' | 'warn' | '';
+import { Directive, EventEmitter, Input, Output } from '@angular/core';
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 
 /**
  * Base-Klasse der LuxActionComponents.
@@ -9,15 +8,16 @@ export declare type LuxActionColorType = 'primary' | 'accent' | 'warn' | '';
  */
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export class LuxActionComponentBaseClass {
-  @Input() luxLabel: string;
-  @Input() luxColor: LuxActionColorType = '';
-  @Input() luxRaised: boolean;
-  @Input() luxIconName: string;
-  @Input() luxIconShowRight = false;
-  @Input() luxTagId: string;
-  @Input() luxDisabled: boolean;
-  @Input() luxRounded: boolean;
-  @Input() luxIconAlignWithLabel = false;
+  @Input() luxLabel? = '';
+  @Input() luxColor?: LuxThemePalette;
+  @Input() luxRaised? = false;
+  @Input() luxIconName? = '';
+  @Input() luxIconShowRight? = false;
+  @Input() luxTagId?: string;
+  @Input() luxDisabled? = false;
+  @Input() luxRounded? = false;
+  @Input() luxFlat? = false;
+  @Input() luxStroked? = false;
 
-  @Output() luxClicked: EventEmitter<any> = new EventEmitter();
+  @Output() luxClicked = new EventEmitter<Event>();
 }

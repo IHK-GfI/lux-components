@@ -1,17 +1,19 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
+import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
-import { ILuxFileListActionConfig } from '../lux-file-model/lux-file-list-action-config.interface';
+import { ILuxFileListActionConfig, ILuxFilesListActionConfig } from '../lux-file-model/lux-file-list-action-config.interface';
 
 import { LuxFileListComponent } from './lux-file-list.component';
 import { LuxTestHelper } from '../../../lux-util/testing/lux-test-helper';
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
-import { HttpClient } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
 import { LuxFileErrorCause } from '../lux-file-model/lux-file-error.interface';
 import { Component } from '@angular/core';
 import { ILuxFileActionConfig } from '../lux-file-model/lux-file-action-config.interface';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxFormFileBase } from '../../lux-form-model/lux-form-file-base.class';
 import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
 import { LuxStorageService } from '../../../lux-util/lux-storage.service';
@@ -22,10 +24,6 @@ describe('LuxFileListComponent', () => {
     LuxTestHelper.configureTestModule(
       [
         LuxConsoleService,
-        {
-          provide: HttpClient,
-          useClass: MockHttp
-        },
         {
           provide: LuxStorageService,
           useClass: MockStorage
@@ -46,57 +44,57 @@ describe('LuxFileListComponent', () => {
       fileComponent = fixture.debugElement.query(By.directive(LuxFileListComponent)).componentInstance;
 
       // den LiveAnnouncer abklemmen
-      fileComponent['liveAnnouncer'] = <any>{ announce: (...args) => {} };
+      fileComponent['liveAnnouncer'] = <any>{ announce: () => {} };
 
       // Wir mocken hier den FileReader weg, da er nicht mit fakeAsync kompatibel ist
       spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve('base64-dummy'));
-      // Den read-Delay für die Ladeanzeige wegmocken
+      // Den read-Delay für die Ladeanzeige mocken
       fileComponent.defaultReadFileDelay = 0;
       fixture.detectChanges();
     });
 
     it('Sollte den Startwert korrekt setzen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const localFixture = TestBed.createComponent(FileFormComponent);
       const localTestComponent = localFixture.componentInstance;
       const localFileComponent = localFixture.debugElement.query(By.directive(LuxFileListComponent)).componentInstance;
 
       expect(localFixture.debugElement.query(By.css('.lux-file-list-entry-label'))).toBeFalsy();
-      expect(localTestComponent.formControl.value).toBe(null);
-      expect(localFileComponent.luxSelectedFiles).toBe(undefined);
+      expect(localTestComponent.formControl.value).toBeNull();
+      expect(localFileComponent.luxSelected).toBeUndefined();
 
       // Änderungen durchführen
-      const fileObject = { name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' };
-      localTestComponent.formControl.setValue(fileObject);
+      const files = [{ name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' }];
+      localTestComponent.formControl.setValue(files);
       LuxTestHelper.wait(localFixture);
 
       // Nachbedingungen prüfen
       expect(
         localFixture.debugElement.query(By.css('.lux-file-list-entry-label')).nativeElement.textContent.trim()
       ).toEqual('mockfile.txt');
-      expect(localTestComponent.formControl.value).toEqual(fileObject);
-      expect(localFileComponent.luxSelectedFiles).toEqual(fileObject);
-      expect(localFileComponent.formControl.value).toEqual(fileObject);
+      expect(localTestComponent.formControl.value).toEqual(files);
+      expect(localFileComponent.luxSelected).toEqual(files);
+      expect(localFileComponent.formControl.value).toEqual(files);
     }));
 
     it('Sollte den Wert an das FormControl übergeben', fakeAsync(() => {
-      // Vorbedingungen prüfen
-      expect(testComponent.formControl.value).toBeFalsy();
-      expect(fileComponent.formControl.value).toBeFalsy();
+      // Vorbedingungen testen
+      expect(testComponent.formControl.value).toBeNull();
+      expect(fileComponent.formControl.value).toBeNull();
 
       // Änderungen durchführen
       fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')]);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(testComponent.formControl.value[0].content).toEqual('base64-dummy');
-      expect(fileComponent.formControl.value[0].content).toEqual('base64-dummy');
+      expect(testComponent.formControl.value![0].content).toEqual('base64-dummy');
+      expect(fileComponent.formControl.value![0].content).toEqual('base64-dummy');
 
       flush();
     }));
 
     it('Sollte alle Werte an das FormControl übergeben', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       testComponent.multiple = true;
       fixture.detectChanges();
 
@@ -111,19 +109,19 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(testComponent.formControl.value[0].content).toEqual('base64-dummy');
-      expect(testComponent.formControl.value[1].content).toEqual('base64-dummy');
-      expect(fileComponent.formControl.value[0].content).toEqual('base64-dummy');
-      expect(fileComponent.formControl.value[1].content).toEqual('base64-dummy');
+      expect(testComponent.formControl.value![0].content).toEqual('base64-dummy');
+      expect(testComponent.formControl.value![1].content).toEqual('base64-dummy');
+      expect(fileComponent.formControl.value![0].content).toEqual('base64-dummy');
+      expect(fileComponent.formControl.value![1].content).toEqual('base64-dummy');
 
       flush();
     }));
 
     it('Sollte required sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
-      expect(fileComponent.formControl.errors).toBe(null);
+      // Vorbedingungen testen
+      expect(fileComponent.formControl.errors).toBeNull();
       expect(fileComponent.formControl.valid).toBe(true);
-      expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
       // Änderungen durchführen
       testComponent.formControl.setValidators(Validators.required);
@@ -133,9 +131,9 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.formControl.errors).not.toBe(null);
+      expect(fileComponent.formControl.errors).not.toBeNull();
       expect(fileComponent.formControl.valid).toBe(false);
-      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
     }));
   });
 
@@ -150,21 +148,21 @@ describe('LuxFileListComponent', () => {
       fileComponent = fixture.debugElement.query(By.directive(LuxFileListComponent)).componentInstance;
 
       // den LiveAnnouncer abklemmen
-      fileComponent['liveAnnouncer'] = <any>{ announce: (...args) => {} };
+      fileComponent['liveAnnouncer'] = <any>{ announce: () => {} };
 
       // Wir mocken hier den FileReader weg, da er nicht mit fakeAsync kompatibel ist
       spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve('base64-dummy'));
-      // Den read-Delay für die Ladeanzeige wegmocken
+      // Den read-Delay für die Ladeanzeige mocken
       fileComponent.defaultReadFileDelay = 0;
       fixture.detectChanges();
     });
 
     it('wenn zusätzliche Punkt im Dateinamen sind', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       LuxTestHelper.wait(fixture);
-      expect(fileComponent.formControl.errors).toBe(null);
+      expect(fileComponent.formControl.errors).toBeNull();
       expect(fileComponent.formControl.valid).toBe(true);
-      expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
       // Änderungen durchführen,
       testComponent.accept = '.pdf,.txt';
@@ -181,17 +179,17 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.formControl.errors).toBe(null);
+      expect(fileComponent.formControl.errors).toBeNull();
       expect(fileComponent.formControl.valid).toBe(true);
-      expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
       flush();
     }));
 
     it('Sollte Label und Hint korrekt setzen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(fixture.debugElement.query(By.css('.lux-card-title-container')).nativeElement.textContent.trim()).toBe('');
-      expect(fixture.debugElement.query(By.css('mat-hint'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-hint'))).toBeNull();
 
       // Änderungen durchführen
       testComponent.label = 'Label';
@@ -206,10 +204,10 @@ describe('LuxFileListComponent', () => {
     }));
 
     it('Sollte required sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
-      expect(fileComponent.formControl.errors).toBe(null);
+      // Vorbedingungen testen
+      expect(fileComponent.formControl.errors).toBeNull();
       expect(fileComponent.formControl.valid).toBe(true);
-      expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
       // Änderungen durchführen
       testComponent.required = true;
@@ -219,13 +217,13 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.formControl.errors).not.toBe(null);
+      expect(fileComponent.formControl.errors).not.toBeNull();
       expect(fileComponent.formControl.valid).toBe(false);
-      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
     }));
 
     it('Sollte disabled sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       expect(fileComponent.formControl.disabled).toBe(false);
 
       // Änderungen durchführen
@@ -237,19 +235,19 @@ describe('LuxFileListComponent', () => {
     }));
 
     it('Sollte readonly sein', fakeAsync(() => {
-      // Vorbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).toBe(null);
+      // Vorbedingungen testen
+      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).toBeNull();
 
       // Änderungen durchführen
       testComponent.readonly = true;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).not.toBe(null);
+      expect(fixture.debugElement.query(By.css('.lux-form-control-readonly'))).not.toBeNull();
     }));
 
     it('Sollte die Dateien an die entsprechende luxUploadUrl hochladen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const httpClient = fixture.debugElement.injector.get(HttpClient);
       const spy = spyOn(httpClient, 'post').and.returnValue(of('ok'));
 
@@ -260,7 +258,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       expect(spy).toHaveBeenCalledTimes(0);
-      expect(fileComponent.luxSelectedFiles).toBeTruthy();
+      expect(fileComponent.luxSelected).toBeTruthy();
 
       // Änderungen durchführen
       testComponent.uploadUrl = '/test/api/';
@@ -270,36 +268,36 @@ describe('LuxFileListComponent', () => {
 
       // Nachbedingungen prüfen
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(fileComponent.luxSelectedFiles['length']).toBe(2);
+      expect(fileComponent.luxSelected!.length).toBe(2);
       flush();
     }));
 
     it('Sollte den Startwert korrekt setzen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const localFixture = TestBed.createComponent(FileComponent);
       const localTestComponent = localFixture.componentInstance;
       const localFileComponent = localFixture.debugElement.query(By.directive(LuxFileListComponent)).componentInstance;
 
       expect(localFixture.debugElement.query(By.css('.lux-file-list-entry-label'))).toBeFalsy();
-      expect(localTestComponent.selected).toBe(undefined);
-      expect(localFileComponent.luxSelectedFiles).toBe(undefined);
+      expect(localTestComponent.selected).toBeNull();
+      expect(localFileComponent.luxSelected).toBeUndefined();
 
       // Änderungen durchführen
-      const fileObject = { name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' };
-      localTestComponent.selected = fileObject;
+      const files = [{ name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' }];
+      localTestComponent.selected = files;
       LuxTestHelper.wait(localFixture);
 
       // Nachbedingungen prüfen
       expect(
         localFixture.debugElement.query(By.css('.lux-file-list-entry-label')).nativeElement.textContent.trim()
       ).toEqual('mockfile.txt');
-      expect(localTestComponent.selected).toEqual(fileObject);
-      expect(localFileComponent.luxSelectedFiles).toEqual(fileObject);
-      expect(localFileComponent.formControl.value).toEqual(fileObject);
+      expect(localTestComponent.selected).toEqual(files);
+      expect(localFileComponent.luxSelected).toEqual(files);
+      expect(localFileComponent.formControl.value).toEqual(files);
     }));
 
     it('Sollte beim Klick auf den Entfernen-Button die Selektion leeren', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       testComponent.multiple = true;
       LuxTestHelper.wait(fixture);
 
@@ -309,7 +307,7 @@ describe('LuxFileListComponent', () => {
       ];
       LuxTestHelper.wait(fixture);
 
-      expect(fileComponent.luxSelectedFiles).toEqual(testComponent.selected);
+      expect(fileComponent.luxSelected).toEqual(testComponent.selected);
       expect(
         fixture.debugElement.queryAll(By.css('.lux-file-list-entry-label'))[0].nativeElement.textContent.trim()
       ).toEqual('mockfile1.txt');
@@ -322,29 +320,29 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles).toEqual([]);
+      expect(fileComponent.luxSelected).toEqual([]);
       expect(fixture.debugElement.queryAll(By.css('.lux-file-list-entry-label')).length).toBe(0);
 
       discardPeriodicTasks();
     }));
 
     it('Sollte das Background-Icon + Hint darstellen, wenn keine Dateien geladen sind', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       testComponent.hint = 'Hint';
       LuxTestHelper.wait(fixture);
 
-      expect(fileComponent.luxSelectedFiles).toBeFalsy();
-      expect(fixture.debugElement.query(By.css('.lux-file-icon'))).not.toBe(null);
-      expect(fixture.debugElement.query(By.css('mat-hint'))).not.toBe(null);
+      expect(fileComponent.luxSelected).toBeFalsy();
+      expect(fixture.debugElement.query(By.css('.lux-file-icon'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('mat-hint'))).not.toBeNull();
 
       // Änderungen durchführen
       fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')]);
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles).toBeTruthy();
-      expect(fixture.debugElement.query(By.css('.lux-file-icon'))).toBe(null);
-      expect(fixture.debugElement.query(By.css('mat-hint'))).toBe(null);
+      expect(fileComponent.luxSelected).toBeTruthy();
+      expect(fixture.debugElement.query(By.css('.lux-file-icon'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('mat-hint'))).toBeNull();
 
       flush();
     }));
@@ -357,19 +355,16 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.dispatchFakeEvent(fileInputNode, 'dragover', true);
       LuxTestHelper.wait(fixture);
 
-      const mockDropEvent = LuxTestHelper.createFakeEvent('drop', true);
-      mockDropEvent['dataTransfer'] = {
-        files: [LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')]
-      };
+      let mockDropEvent = LuxTestHelper.createDropEvent([{name: 'mockfile1.txt', type: 'text/txt'}]);
       LuxTestHelper.dispatchEvent(fileInputNode, mockDropEvent);
       LuxTestHelper.wait(fixture);
 
       expect(spyDrag).toHaveBeenCalledTimes(1);
       expect(spyDrop).toHaveBeenCalledTimes(1);
-      expect(testComponent.selected[0]['name']).toEqual('mockfile1.txt');
-      expect(testComponent.selected[0]['content']).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelectedFiles[0]['content']).toEqual('base64-dummy');
+      expect(testComponent.selected![0].name).toEqual('mockfile1.txt');
+      expect(testComponent.selected![0].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
 
       flush();
     }));
@@ -383,32 +378,29 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.dispatchFakeEvent(fileInputNode, 'dragover', true);
       LuxTestHelper.wait(fixture);
 
-      const mockDropEvent = LuxTestHelper.createFakeEvent('drop', true);
-      mockDropEvent['dataTransfer'] = {
-        files: [
-          LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt'),
-          LuxTestHelper.createFileBrowserSafe('mockfile2.pdf', 'text/pdf')
-        ]
-      };
+      let mockDropEvent = LuxTestHelper.createDropEvent([
+        { name: 'mockfile1.txt', type: 'text/txt' },
+        { name: 'mockfile2.pdf', type: 'text/pdf' }
+      ]);
       LuxTestHelper.dispatchEvent(fileInputNode, mockDropEvent);
       LuxTestHelper.wait(fixture);
 
       expect(spyDrag).toHaveBeenCalledTimes(1);
       expect(spyDrop).toHaveBeenCalledTimes(1);
-      expect(testComponent.selected[0]['name']).toEqual('mockfile1.txt');
-      expect(testComponent.selected[0]['content']).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelectedFiles[0]['content']).toEqual('base64-dummy');
-      expect(testComponent.selected[1]['name']).toEqual('mockfile2.pdf');
-      expect(testComponent.selected[1]['content']).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles[1]['name']).toEqual('mockfile2.pdf');
-      expect(fileComponent.luxSelectedFiles[1]['content']).toEqual('base64-dummy');
+      expect(testComponent.selected![0].name).toEqual('mockfile1.txt');
+      expect(testComponent.selected![0].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
+      expect(testComponent.selected![1].name).toEqual('mockfile2.pdf');
+      expect(testComponent.selected![1].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![1].name).toEqual('mockfile2.pdf');
+      expect(fileComponent.luxSelected![1].content).toEqual('base64-dummy');
 
       flush();
     }));
 
     it('Sollte eine einzelne Datei updaten', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       testComponent.multiple = true;
       LuxTestHelper.wait(fixture);
 
@@ -419,10 +411,10 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       expect(spy).toHaveBeenCalledTimes(1);
-      expect(testComponent.selected[0]['name']).toEqual('mockfile1.txt');
-      expect(testComponent.selected[0]['content']).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelectedFiles[0]['content']).toEqual('base64-dummy');
+      expect(testComponent.selected![0].name).toEqual('mockfile1.txt');
+      expect(testComponent.selected![0].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
 
       // Änderungen durchführen
       fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/html')]);
@@ -431,14 +423,14 @@ describe('LuxFileListComponent', () => {
 
       // Nachbedingungen prüfen
       expect(spy).toHaveBeenCalledTimes(2);
-      expect(testComponent.selected[0]['name']).toEqual('mockfile1.txt');
-      expect(testComponent.selected[0]['content']).toEqual('base64-dummy');
-      expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelectedFiles[0]['content']).toEqual('base64-dummy');
+      expect(testComponent.selected![0].name).toEqual('mockfile1.txt');
+      expect(testComponent.selected![0].content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
     }));
 
     it('Sollte Image-Preview für Bilder anzeigen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const localFixture = TestBed.createComponent(FileComponent);
       const localTestComponent = localFixture.componentInstance;
       const localFileComponent = localFixture.debugElement.query(By.directive(LuxFileListComponent)).componentInstance;
@@ -464,19 +456,19 @@ describe('LuxFileListComponent', () => {
     }));
 
     it('Sollte den Base64-String via Base64-Callback füllen', fakeAsync(() => {
-      // Vorbedingungen prüfen
-      testComponent.selected = {
+      // Vorbedingungen testen
+      testComponent.selected = [{
         name: 'mockfile.txt',
         type: 'text/txt',
         contentCallback: () => 'callback base64-dummy'
-      };
+      }];
       LuxTestHelper.wait(fixture);
 
       expect(fixture.debugElement.query(By.css('.lux-file-list-entry-label')).nativeElement.textContent.trim()).toEqual(
         'mockfile.txt'
       );
-      expect(fileComponent.luxSelectedFiles['name']).toEqual('mockfile.txt');
-      expect(fileComponent.luxSelectedFiles['content']).toEqual(undefined);
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual(undefined);
 
       // Änderungen durchführen
       fixture.debugElement
@@ -488,18 +480,18 @@ describe('LuxFileListComponent', () => {
       expect(fixture.debugElement.query(By.css('.lux-file-list-entry-label')).nativeElement.textContent.trim()).toEqual(
         'mockfile.txt'
       );
-      expect(fileComponent.luxSelectedFiles['name']).toEqual('mockfile.txt');
-      expect(fileComponent.luxSelectedFiles['content']).toEqual('callback base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile.txt');
+      expect(fileComponent.luxSelected![0].content).toEqual('callback base64-dummy');
 
       discardPeriodicTasks();
     }));
 
     it('Sollte statt des Base64-Strings den Dateityp Blob nutzen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.png', 'image/png')]);
       LuxTestHelper.wait(fixture);
 
-      expect(typeof fileComponent.luxSelectedFiles[0]['content']).toEqual('string');
+      expect(typeof fileComponent.luxSelected![0].content).toEqual('string');
 
       // Änderungen durchführen
       testComponent.contentsAsBlob = true;
@@ -508,17 +500,17 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles[0]['content'] instanceof Blob).toBe(true);
+      expect(fileComponent.luxSelected![0].content instanceof Blob).toBe(true);
     }));
 
     it('Sollte eine Datei auswählen, löschen und erneut auswählen können', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const spy = spyOn(testComponent, 'selectedChange').and.callThrough();
       fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.png', 'image/png')]);
       LuxTestHelper.wait(fixture);
 
-      expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.png');
-      expect(fileComponent.luxSelectedFiles[0]['content']).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.png');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
       expect(spy).toHaveBeenCalledTimes(1);
 
       // Änderungen durchführen
@@ -528,7 +520,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles).toEqual([]);
+      expect(fileComponent.luxSelected).toEqual([]);
       expect(spy).toHaveBeenCalledTimes(2);
 
       // Änderungen durchführen
@@ -536,8 +528,8 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.png');
-      expect(fileComponent.luxSelectedFiles[0]['content']).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.png');
+      expect(fileComponent.luxSelected![0].content).toEqual('base64-dummy');
       expect(spy).toHaveBeenCalledTimes(3);
 
       flush();
@@ -545,7 +537,7 @@ describe('LuxFileListComponent', () => {
 
     describe('Sollte die Events mit passenden Werten emitten,', () => {
       it('wenn Dateien korrekt selektiert wurden', fakeAsync(() => {
-        // Vorbedingungen prüfen
+        // Vorbedingungen testen
         const selectedChange = spyOn(testComponent, 'selectedChange').and.callThrough();
         testComponent.multiple = true;
         LuxTestHelper.wait(fixture);
@@ -558,8 +550,8 @@ describe('LuxFileListComponent', () => {
 
         // Nachbedingungen prüfen
         expect(selectedChange).toHaveBeenCalledTimes(1);
-        expect((<any>testComponent.selected[0]).name).toEqual('mockfile1.txt');
-        expect((<any>testComponent.selected[0]).content).toEqual('base64-dummy');
+        expect((<any>testComponent.selected![0]).name).toEqual('mockfile1.txt');
+        expect((<any>testComponent.selected![0]).content).toEqual('base64-dummy');
 
         // Änderungen durchführen
         fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')]);
@@ -567,16 +559,16 @@ describe('LuxFileListComponent', () => {
 
         // Nachbedingungen prüfen
         expect(selectedChange).toHaveBeenCalledTimes(2);
-        expect(testComponent.selected[0].name).toEqual('mockfile1.txt');
-        expect(testComponent.selected[0].content).toEqual('base64-dummy');
-        expect(testComponent.selected[1].name).toEqual('mockfile2.txt');
-        expect(testComponent.selected[1].content).toEqual('base64-dummy');
+        expect(testComponent.selected![0].name).toEqual('mockfile1.txt');
+        expect(testComponent.selected![0].content).toEqual('base64-dummy');
+        expect(testComponent.selected![1].name).toEqual('mockfile2.txt');
+        expect(testComponent.selected![1].content).toEqual('base64-dummy');
 
         flush();
       }));
 
       it('wenn ein Fehler aufgetreten ist', fakeAsync(() => {
-        // Vorbedingungen prüfen
+        // Vorbedingungen testen
         const selectedChange = spyOn(testComponent, 'selectedChange');
         const files = [LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')];
 
@@ -597,55 +589,56 @@ describe('LuxFileListComponent', () => {
 
     describe('Sollte eine passende Fehlermeldung abgeben,', () => {
       it('wenn die maximale Dateigröße überschritten wird', fakeAsync(() => {
-        // Vorbedingungen prüfen
+        // Vorbedingungen testen
         testComponent.multiple = true;
         LuxTestHelper.wait(fixture);
         let files = [LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')];
-        // wir mocken erstmal 2MB Dateigröße
+        // wir mocken erstmal 2 MB Dateigröße
         spyOnProperty(files[0], 'size', 'get').and.returnValue(200000);
 
         fileComponent.selectFiles(files);
         LuxTestHelper.wait(fixture);
 
-        expect(fileComponent.formControl.errors).toBe(null);
+        expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
-        expect(fileComponent.luxSelectedFiles).toBeTruthy();
-        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+        expect(fileComponent.luxSelected).toBeTruthy();
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
         // Änderungen durchführen
         testComponent.maxSizeMb = 5;
         LuxTestHelper.wait(fixture);
 
         files = [LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')];
-        // wir mocken hier jetzt 20MB Dateigröße
+        // wir mocken hier jetzt 20 MB Dateigröße
         spyOnProperty(files[0], 'size', 'get').and.returnValue(20000000);
 
         fileComponent.selectFiles(files);
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
-        expect(fileComponent.formControl.errors).not.toBe(null);
-        expect(fileComponent.formControl.errors[LuxFileErrorCause.MaxSizeError]).toBeDefined();
+        expect(fileComponent.formControl.errors).not.toBeNull();
+        expect(fileComponent.formControl.errors![LuxFileErrorCause.MaxSizeError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
-        expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.txt');
-        expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+        expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
+        expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
         expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
           'Die Datei "mockfile2.txt" überschreitet mit 20MB die erlaubte Dateigröße von 5MB'
         );
       }));
 
       it('die luxUploadUrl nicht erreichbar ist', fakeAsync(() => {
-        // Vorbedingungen prüfen
+        // Vorbedingungen testen
         const httpClient = fixture.debugElement.injector.get(HttpClient);
         const spy = spyOn(httpClient, 'post').and.returnValue(throwError('404'));
+        const spyLog = spyOn(fileComponent, 'logError');
         testComponent.multiple = true;
         fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')]);
         LuxTestHelper.wait(fixture);
 
         expect(spy).toHaveBeenCalledTimes(0);
-        expect(fileComponent.formControl.errors).toBe(null);
+        expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
-        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
         // Änderungen durchführen
         testComponent.uploadUrl = '/test/api/';
@@ -655,22 +648,23 @@ describe('LuxFileListComponent', () => {
 
         // Nachbedingungen prüfen
         expect(spy).toHaveBeenCalledTimes(1);
-        expect(fileComponent.formControl.errors).not.toBe(null);
-        expect(fileComponent.formControl.errors[LuxFileErrorCause.UploadFileError]).toBeDefined();
+        expect(spyLog).toHaveBeenCalledTimes(1);
+        expect(fileComponent.formControl.errors).not.toBeNull();
+        expect(fileComponent.formControl.errors![LuxFileErrorCause.UploadFileError]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
-        expect(fileComponent.luxSelectedFiles[0]['name']).toEqual('mockfile1.txt');
-        expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+        expect(fileComponent.luxSelected![0].name).toEqual('mockfile1.txt');
+        expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
         expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
           'Das Hochladen der ausgewählten Datei ist fehlgeschlagen'
         );
       }));
 
       it('wenn luxMultiple false ist und n > 1 Dateien ausgewählt werden', fakeAsync(() => {
-        // Vorbedingungen prüfen
-        expect(fileComponent.formControl.errors).toBe(null);
+        // Vorbedingungen testen
+        expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
-        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
-        expect(fileComponent.luxSelectedFiles).toBeFalsy();
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
+        expect(fileComponent.luxSelected).toBeFalsy();
 
         // Änderungen durchführen
         const files = [
@@ -681,11 +675,11 @@ describe('LuxFileListComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
-        expect(fileComponent.formControl.errors).not.toBe(null);
-        expect(fileComponent.formControl.errors[LuxFileErrorCause.MultipleForbidden]).toBeDefined();
+        expect(fileComponent.formControl.errors).not.toBeNull();
+        expect(fileComponent.formControl.errors![LuxFileErrorCause.MultipleForbidden]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
-        expect(fileComponent.luxSelectedFiles).toBeFalsy();
-        expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+        expect(fileComponent.luxSelected).toBeFalsy();
+        expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
         expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
           'Es darf nur eine Datei ausgewählt werden'
         );
@@ -695,10 +689,10 @@ describe('LuxFileListComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
-        expect(fileComponent.formControl.errors).toBe(null);
+        expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
-        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
-        expect(fileComponent.luxSelectedFiles).toBeTruthy();
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
+        expect(fileComponent.luxSelected).toBeTruthy();
 
         // Änderungen durchführen
         testComponent.multiple = true;
@@ -707,20 +701,20 @@ describe('LuxFileListComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
-        expect(fileComponent.formControl.errors).toBe(null);
+        expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
-        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
-        expect(fileComponent.luxSelectedFiles).toBeTruthy();
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
+        expect(fileComponent.luxSelected).toBeTruthy();
 
         flush();
       }));
 
       it('wenn ein Dateityp sich in der Groß- und Kleinschreibung unterscheidet', fakeAsync(() => {
-        // Vorbedingungen prüfen
+        // Vorbedingungen testen
         LuxTestHelper.wait(fixture);
-        expect(fileComponent.formControl.errors).toBe(null);
+        expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
-        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
         // Änderungen durchführen,
         testComponent.accept = '.html,.pdf,image/*,.txt';
@@ -736,19 +730,19 @@ describe('LuxFileListComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
-        expect(fileComponent.formControl.errors).toBe(null);
+        expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
-        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
         flush();
       }));
 
       it('wenn ein Dateityp nicht unter luxAccept geführt wird', fakeAsync(() => {
-        // Vorbedingungen prüfen
+        // Vorbedingungen testen
         LuxTestHelper.wait(fixture);
-        expect(fileComponent.formControl.errors).toBe(null);
+        expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
-        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
         // Änderungen durchführen,
         testComponent.accept = '.html,.pdf,/image/*';
@@ -757,10 +751,10 @@ describe('LuxFileListComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
-        expect(fileComponent.formControl.errors).not.toBe(null);
-        expect(fileComponent.formControl.errors[LuxFileErrorCause.FileNotAccepted]).toBeDefined();
+        expect(fileComponent.formControl.errors).not.toBeNull();
+        expect(fileComponent.formControl.errors![LuxFileErrorCause.FileNotAccepted]).toBeDefined();
         expect(fileComponent.formControl.valid).toBe(false);
-        expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+        expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
         expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual(
           'Die Datei "mockfile.txt" hat einen nicht akzeptierten Dateityp'
         );
@@ -770,9 +764,9 @@ describe('LuxFileListComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen prüfen
-        expect(fileComponent.formControl.errors).toBe(null);
+        expect(fileComponent.formControl.errors).toBeNull();
         expect(fileComponent.formControl.valid).toBe(true);
-        expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+        expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
         flush();
       }));
@@ -786,7 +780,7 @@ describe('LuxFileListComponent', () => {
 
       describe('[uploadActionConfig]', () => {
         it('Sollte die Upload-Buttons verstecken', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           testComponent.multiple = true;
           LuxTestHelper.wait(fixture);
           const files = [
@@ -800,7 +794,7 @@ describe('LuxFileListComponent', () => {
 
           LuxTestHelper.wait(fixture);
 
-          expect(fixture.debugElement.query(By.css('.lux-file-list-header-add'))).not.toBe(null);
+          expect(fixture.debugElement.query(By.css('.lux-file-list-header-add'))).not.toBeNull();
           expect(
             fixture.debugElement.queryAll(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-list-entry-upload]')).length
           ).toBe(2);
@@ -811,7 +805,7 @@ describe('LuxFileListComponent', () => {
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(fixture.debugElement.query(By.css('.lux-file-list-header-add'))).toBe(null);
+          expect(fixture.debugElement.query(By.css('.lux-file-list-header-add'))).toBeNull();
           const debugElements = fixture.debugElement.queryAll(
             By.css('lux-button[ng-reflect-lux-tag-id=lux-file-list-entry-upload]')
           );
@@ -821,7 +815,7 @@ describe('LuxFileListComponent', () => {
         }));
 
         it('Sollte die Upload-Buttons deaktivieren', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           const files = [
             LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt'),
             LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')
@@ -865,9 +859,9 @@ describe('LuxFileListComponent', () => {
         }));
 
         it('Sollte den Callback aufrufen', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           const files = [LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')];
-          const spy = spyOn(testComponent.uploadActionConfig, 'onClick');
+          const spy = spyOn<ILuxFilesListActionConfig, any>(testComponent.uploadActionConfig, 'onClick');
           LuxTestHelper.wait(fixture);
 
           expect(spy).toHaveBeenCalledTimes(0);
@@ -878,7 +872,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(1);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected);
 
           // Änderungen durchführen
           fileComponent.selectFiles([LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')]);
@@ -886,7 +880,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(2);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected);
 
           discardPeriodicTasks();
         }));
@@ -894,7 +888,7 @@ describe('LuxFileListComponent', () => {
 
       describe('[downloadActionConfig]', () => {
         it('Sollte die Download-Buttons verstecken', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           const files = [
             LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt'),
             LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')
@@ -921,7 +915,7 @@ describe('LuxFileListComponent', () => {
         }));
 
         it('Sollte die Download-Buttons deaktivieren', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           const files = [
             LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt'),
             LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')
@@ -958,7 +952,7 @@ describe('LuxFileListComponent', () => {
         }));
 
         it('Sollte den Callback aufrufen', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           // den Download für den Test verhindern
           spyOn(fileComponent.downloadLink.nativeElement, 'click');
 
@@ -966,7 +960,7 @@ describe('LuxFileListComponent', () => {
             LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt'),
             LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')
           ];
-          const spy = spyOn(testComponent.downloadActionConfig, 'onClick');
+          const spy = spyOn<ILuxFileActionConfig, any>(testComponent.downloadActionConfig, 'onClick');
           LuxTestHelper.wait(fixture);
 
           expect(spy).toHaveBeenCalledTimes(0);
@@ -981,7 +975,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(1);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles[0]);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected![0]);
 
           // Änderungen durchführen
           fixture.debugElement
@@ -991,7 +985,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(2);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles[1]);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected![1]);
 
           discardPeriodicTasks();
         }));
@@ -999,7 +993,7 @@ describe('LuxFileListComponent', () => {
 
       describe('[deleteActionConfig]', () => {
         it('Sollte die Delete-Buttons verstecken', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           const files = [
             LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt'),
             LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')
@@ -1007,7 +1001,7 @@ describe('LuxFileListComponent', () => {
           fileComponent.selectFiles(files);
           LuxTestHelper.wait(fixture);
 
-          expect(fixture.debugElement.query(By.css('lux-button.lux-file-list-header-clear'))).not.toBe(null);
+          expect(fixture.debugElement.query(By.css('lux-button.lux-file-list-header-clear'))).not.toBeNull();
           expect(
             fixture.debugElement.queryAll(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-list-entry-remove]')).length
           ).toBe(2);
@@ -1027,7 +1021,7 @@ describe('LuxFileListComponent', () => {
         }));
 
         it('Sollte die Delete-Buttons deaktivieren', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           expect(
             fixture.debugElement.query(By.css('lux-button.lux-file-list-header-clear button')).nativeElement.disabled
           ).toBe(true);
@@ -1077,12 +1071,12 @@ describe('LuxFileListComponent', () => {
         }));
 
         it('Sollte den Callback aufrufen', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           const files = [
             LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt'),
             LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')
           ];
-          const spy = spyOn(testComponent.deleteActionConfig, 'onClick');
+          const spy = spyOn<ILuxFileActionConfig, any>(testComponent.deleteActionConfig, 'onClick');
           LuxTestHelper.wait(fixture);
           fileComponent.selectFiles(files);
           LuxTestHelper.wait(fixture);
@@ -1095,7 +1089,7 @@ describe('LuxFileListComponent', () => {
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(spy).toHaveBeenCalledTimes(1);
+          expect(spy).toHaveBeenCalledTimes(2);
           expect(fixture.debugElement.queryAll(By.css('.lux-file-list-entry')).length).toBe(0);
 
           // Änderungen durchführen
@@ -1107,7 +1101,7 @@ describe('LuxFileListComponent', () => {
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(spy).toHaveBeenCalledTimes(2);
+          expect(spy).toHaveBeenCalledTimes(3);
           expect(fixture.debugElement.queryAll(By.css('.lux-file-list-entry')).length).toBe(1);
 
           // Änderungen durchführen
@@ -1117,7 +1111,7 @@ describe('LuxFileListComponent', () => {
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(spy).toHaveBeenCalledTimes(3);
+          expect(spy).toHaveBeenCalledTimes(4);
           expect(fixture.debugElement.queryAll(By.css('.lux-file-list-entry')).length).toBe(0);
 
           discardPeriodicTasks();
@@ -1126,7 +1120,7 @@ describe('LuxFileListComponent', () => {
 
       describe('[viewActionConfig]', () => {
         it('Sollte die View-Buttons verstecken', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           const files = [
             LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt'),
             LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')
@@ -1152,7 +1146,7 @@ describe('LuxFileListComponent', () => {
         }));
 
         it('Sollte die View-Buttons deaktivieren', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           const files = [
             LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt'),
             LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')
@@ -1189,12 +1183,12 @@ describe('LuxFileListComponent', () => {
         }));
 
         it('Sollte den Callback aufrufen', fakeAsync(() => {
-          // Vorbedingungen prüfen
+          // Vorbedingungen testen
           const files = [
             LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt'),
             LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')
           ];
-          const spy = spyOn(testComponent.viewActionConfig, 'onClick');
+          const spy = spyOn<ILuxFileActionConfig, any>(testComponent.viewActionConfig, 'onClick');
           LuxTestHelper.wait(fixture);
 
           expect(spy).toHaveBeenCalledTimes(0);
@@ -1209,7 +1203,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(1);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles[0]);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected![0]);
 
           // Änderungen durchführen
           fixture.debugElement
@@ -1219,7 +1213,7 @@ describe('LuxFileListComponent', () => {
 
           // Nachbedingungen prüfen
           expect(spy).toHaveBeenCalledTimes(2);
-          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelectedFiles[1]);
+          expect(spy).toHaveBeenCalledWith(fileComponent.luxSelected![1]);
 
           discardPeriodicTasks();
         }));
@@ -1240,7 +1234,7 @@ describe('LuxFileListComponent', () => {
       [luxCapture]="capture"
       [luxMaxSizeMB]="maxSizeMb"
       [luxUploadUrl]="uploadUrl"
-      [luxSelectedFiles]="selected"
+      [luxSelected]="selected"
       [luxShowPreview]="showPreview"
       [luxMultiple]="multiple"
       [luxUploadActionConfig]="uploadActionConfig"
@@ -1248,30 +1242,29 @@ describe('LuxFileListComponent', () => {
       [luxDeleteActionConfig]="deleteActionConfig"
       [luxViewActionConfig]="viewActionConfig"
       [luxContentsAsBlob]="contentsAsBlob"
-      (luxSelectedFilesChange)="selectedChange($event)"
+      (luxSelectedChange)="selectedChange($event)"
     >
     </lux-file-list>
   `
 })
 class FileComponent {
-  label;
-  hint;
-  required;
-  readonly;
-  disabled;
-  accept;
-  capture;
-  iconName;
+  label?: string;
+  hint?: string;
+  required?: boolean;
+  readonly?: boolean;
+  disabled?: boolean;
+  accept?: string;
+  capture?: string
+  iconName?: string;
   maxSizeMb = 10;
-  uploadUrl;
-  bgIconName: string;
-  showPreview;
-  multiple;
-  contentsAsBlob;
+  uploadUrl?: string;
+  showPreview?: boolean;
+  multiple?: boolean;
+  contentsAsBlob?: boolean;
 
-  selected: ILuxFileObject | ILuxFileObject[];
+  selected: ILuxFileObject[] | null = null;
 
-  uploadActionConfig: ILuxFileListActionConfig = {
+  uploadActionConfig: ILuxFilesListActionConfig = {
     disabled: false,
     disabledHeader: false,
     hidden: false,
@@ -1280,36 +1273,36 @@ class FileComponent {
     iconNameHeader: 'fas fa-cloud-upload-alt',
     label: 'Hochladen',
     labelHeader: 'Neue Dateien hochladen',
-    onClick: $event => null
+    onClick: () => null
   };
   deleteActionConfig: ILuxFileListActionConfig = {
     disabled: false,
     disabledHeader: false,
     hidden: false,
     hiddenHeader: false,
-    iconName: 'fas fa-trash',
-    iconNameHeader: 'fas fa-trash',
+    iconName: 'lux-interface-delete-bin-5',
+    iconNameHeader: 'lux-interface-delete-bin-5',
     label: 'Löschen',
     labelHeader: 'Alle Dateien entfernen',
-    onClick: $event => null
+    onClick: () => null
   };
   viewActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-eye',
+    iconName: 'lux-interface-edit-view',
     label: 'Anzeigen',
-    onClick: $event => null
+    onClick: () => null
   };
   downloadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-download',
+    iconName: 'lux-interface-download-button-2',
     label: 'Downloaden',
-    onClick: $event => null
+    onClick: () => null
   };
 
-  selectedChange($event) {
-    this.selected = $event;
+  selectedChange(files: ILuxFileObject[] | null) {
+    this.selected = files;
   }
 }
 
@@ -1334,37 +1327,32 @@ class FileComponent {
 })
 class FileFormComponent {
   form: FormGroup;
-  formControl: AbstractControl;
+  formControl: AbstractControl<ILuxFileObject[] | null>;
 
-  label;
-  hint;
-  readonly;
-  disabled;
-  accept;
-  capture;
-  iconName;
+  label?: string;
+  hint?: string;
+  readonly?: boolean;
+  disabled?: boolean;
+  accept?: string;
+  capture?: string;
+  iconName?: string;
   maxSizeMb = 10;
-  uploadUrl;
-  multiple: boolean;
+  uploadUrl?: string;
+  multiple?: boolean;
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      file: []
+  constructor() {
+    this.form = new FormGroup({
+      file: new FormControl<ILuxFileObject[] | null>(null)
     });
-    this.formControl = this.form.get('file');
-  }
-}
-
-class MockHttp {
-  post(...any) {
-    return of(null);
+    this.formControl = this.form.get('file')!;
   }
 }
 
 class MockStorage {
-  getItem(...any): string {
+
+  getItem(key: string): string {
     return '';
   }
 
-  setItem(...any) {}
+  setItem(key: string, value: string, sensitive: boolean) {}
 }

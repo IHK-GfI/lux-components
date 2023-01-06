@@ -1,6 +1,6 @@
 <example-base-structure
   exampleTitle="Checkbox"
-  exampleIconName="fas fa-check-square"
+  exampleIconName="lux-interface-validation-check-square"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90checkbox"
 >
   <example-base-content>
@@ -39,7 +39,7 @@
       <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <span fxFlex="35px">Wert:</span>
-          <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
+          <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
         </div>
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
@@ -59,7 +59,7 @@
     </div>
     <div ngClass="message-box" ngClass.lt-md="message-box-small">
       <div fxLayout="row" fxLayoutAlign="start center" class="box-header">
-        <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+        <lux-icon luxIconName="lux-interface-favorite-like-1" luxIconSize="2x"></lux-icon>
         <h2>Anwendungsbeispiel für luxNoTopLabel</h2>
       </div>
       <div fxLayout="column" [formGroup]="agb" class="content lux-mt-4" >
@@ -68,8 +68,8 @@
         <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox2" luxLabel="{{exampleText}}"></lux-checkbox>
         <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox3" luxLabel="{{exampleText}}"></lux-checkbox>
       </div>
-      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px" >
-        <lux-button [luxRaised]="true" luxColor="" luxLabel="Formular zurücksetzen" (luxClicked)="exampleValidator(false)"></lux-button>
+      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end center" fxLayoutAlign.lt-md="start stretch" fxLayoutGap="8px" >
+        <lux-button [luxRaised]="true" luxLabel="Formular zurücksetzen" (luxClicked)="exampleValidator(false)"></lux-button>
         <lux-button [luxRaised]="true" luxColor="primary" luxLabel="Weiter" (luxClicked)="exampleValidator(true)"></lux-button>
       </div>
     </div>
@@ -91,7 +91,6 @@
       >
       </lux-input>
       <lux-toggle
-        luxName="checkbox_luxHintShowOnlyOnFocus"
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
@@ -110,14 +109,14 @@
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
-          (luxClicked)="form.get(controlBinding).enable()"
-          [luxDisabled]="!form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.enable()"
+          [luxDisabled]="!form.get(controlBinding)!.disabled"
           luxColor="primary"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
-          (luxClicked)="form.get(controlBinding).disable()"
-          [luxDisabled]="form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.disable()"
+          [luxDisabled]="form.get(controlBinding)!.disabled"
           luxColor="primary"
         ></lux-button>
       </div>

@@ -23,6 +23,8 @@ describe('LuxButtonComponent', () => {
     it('Button (normal) anklicken"', fakeAsync(() => {
       fixture.componentInstance.raised = false;
       fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = false;
       fixture.detectChanges();
 
       Checker.checkLuxClicked(fixture);
@@ -31,6 +33,8 @@ describe('LuxButtonComponent', () => {
     it('Button (raised) anklicken"', fakeAsync(() => {
       fixture.componentInstance.raised = true;
       fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = false;
       fixture.detectChanges();
 
       Checker.checkLuxClicked(fixture);
@@ -39,6 +43,28 @@ describe('LuxButtonComponent', () => {
     it('Button (round)" anklicken', fakeAsync(() => {
       fixture.componentInstance.raised = false;
       fixture.componentInstance.round = true;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = false;
+      fixture.detectChanges();
+
+      Checker.checkLuxClicked(fixture);
+    }));
+
+    it('Button (flat) anklicken"', fakeAsync(() => {
+      fixture.componentInstance.raised = false;
+      fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = true;
+      fixture.componentInstance.outlined = false;
+      fixture.detectChanges();
+
+      Checker.checkLuxClicked(fixture);
+    }));
+
+    it('Button (outlined) anklicken"', fakeAsync(() => {
+      fixture.componentInstance.raised = false;
+      fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = true;
       fixture.detectChanges();
 
       Checker.checkLuxClicked(fixture);
@@ -58,6 +84,8 @@ describe('LuxButtonComponent', () => {
     it('Button (normal) anklicken', fakeAsync(() => {
       fixture.componentInstance.raised = false;
       fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = false;
       fixture.detectChanges();
 
       Checker.checkLuxDisabled(fixture);
@@ -66,6 +94,8 @@ describe('LuxButtonComponent', () => {
     it('Button (raised) anklicken', fakeAsync(() => {
       fixture.componentInstance.raised = true;
       fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = false;
       fixture.detectChanges();
 
       Checker.checkLuxDisabled(fixture);
@@ -74,6 +104,28 @@ describe('LuxButtonComponent', () => {
     it('Button (round) anklicken', fakeAsync(() => {
       fixture.componentInstance.raised = false;
       fixture.componentInstance.round = true;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = false;
+      fixture.detectChanges();
+
+      Checker.checkLuxDisabled(fixture);
+    }));
+
+    it('Button (flat) anklicken"', fakeAsync(() => {
+      fixture.componentInstance.raised = false;
+      fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = true;
+      fixture.componentInstance.outlined = false;
+      fixture.detectChanges();
+
+      Checker.checkLuxDisabled(fixture);
+    }));
+
+    it('Button (outlined) anklicken"', fakeAsync(() => {
+      fixture.componentInstance.raised = false;
+      fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = true;
       fixture.detectChanges();
 
       Checker.checkLuxDisabled(fixture);
@@ -93,6 +145,8 @@ describe('LuxButtonComponent', () => {
     it('Button (normal)"', fakeAsync(() => {
       fixture.componentInstance.raised = false;
       fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = false;
       fixture.detectChanges();
 
       Checker.checkLuxLabel(fixture);
@@ -101,14 +155,30 @@ describe('LuxButtonComponent', () => {
     it('Button (raised)"', fakeAsync(() => {
       fixture.componentInstance.raised = true;
       fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = false;
       fixture.detectChanges();
 
       Checker.checkLuxLabel(fixture);
     }));
 
-    it('Button (round)"', fakeAsync(() => {
+    // Rounded Buttons haben keine Label mehr
+
+    it('Button (flat) anklicken"', fakeAsync(() => {
       fixture.componentInstance.raised = false;
-      fixture.componentInstance.round = true;
+      fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = true;
+      fixture.componentInstance.outlined = false;
+      fixture.detectChanges();
+
+      Checker.checkLuxLabel(fixture);
+    }));
+
+    it('Button (outlined) anklicken"', fakeAsync(() => {
+      fixture.componentInstance.raised = false;
+      fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = true;
       fixture.detectChanges();
 
       Checker.checkLuxLabel(fixture);
@@ -120,7 +190,7 @@ class Checker {
   static checkLuxLabel(fixture: ComponentFixture<LuxButtonLabelComponent>) {
     // Vorbedingungen testen
     const expectedLabel = 'Testbutton 123';
-    expect(fixture.componentInstance.label).toBeUndefined('Vorbedinung 1');
+    expect(fixture.componentInstance.label).toEqual('');
 
     // Änderungen durchführen
     fixture.componentInstance.label = expectedLabel;
@@ -137,7 +207,7 @@ class Checker {
   static checkLuxClicked(fixture: ComponentFixture<LuxButtonComponent>) {
     // Vorbedingungen testen
     const onClickSpy = spyOn(fixture.componentInstance, 'onClick');
-    expect(fixture.componentInstance.disabled).toBeUndefined(`Vorbedingung 1`);
+    expect(fixture.componentInstance.disabled).toBeFalse();
 
     // Änderungen durchführen
     fixture.componentInstance.disabled = false;
@@ -148,18 +218,17 @@ class Checker {
     fixture.detectChanges();
 
     // Nachbedingungen testen
-    expect(fixture.componentInstance.disabled).toBeFalsy('Nachbedingung 1');
-    expect(buttonEl.nativeElement.disabled).toBeFalsy('Nachbedingung 2');
-    expect(buttonEl.nativeElement.innerHTML).toContain('Lorum ipsum 4711');
+    expect(fixture.componentInstance.disabled).toBeFalsy();
+    expect(buttonEl.nativeElement.disabled).toBeFalsy();
+    expect(buttonEl.nativeElement.getAttribute('aria-label')).toContain('Lorem ipsum 4711');
     expect(onClickSpy).toHaveBeenCalled();
-
     discardPeriodicTasks();
   }
 
   static checkLuxDisabled(fixture: ComponentFixture<LuxButtonComponent>) {
     // Vorbedingungen testen
     const onClickSpy = spyOn(fixture.componentInstance, 'onClick');
-    expect(fixture.componentInstance.disabled).toBeUndefined(`Vorbedingung 1`);
+    expect(fixture.componentInstance.disabled).toBeFalse();
 
     // Änderungen durchführen
     fixture.componentInstance.disabled = true;
@@ -170,9 +239,9 @@ class Checker {
     fixture.detectChanges();
 
     // Nachbedingungen testen
-    expect(fixture.componentInstance.disabled).toBeTruthy('Nachbedingung 1');
-    expect(buttonEl.nativeElement.disabled).toBeTruthy('Nachbedingung 2');
-    expect(buttonEl.nativeElement.innerHTML).toContain('Lorum ipsum 4711');
+    expect(fixture.componentInstance.disabled).toBeTruthy();
+    expect(buttonEl.nativeElement.disabled).toBeTruthy();
+    expect(buttonEl.nativeElement.getAttribute('aria-label')).toContain('Lorem ipsum 4711');
     expect(onClickSpy).not.toHaveBeenCalled();
   }
 }
@@ -180,18 +249,22 @@ class Checker {
 @Component({
   template: `
     <lux-button
-      luxLabel="Lorum ipsum 4711"
+      luxLabel="Lorem ipsum 4711"
       [luxDisabled]="disabled"
-      (luxClicked)="onClick($event)"
+      (luxClicked)="onClick()"
       [luxRounded]="round"
       [luxRaised]="raised"
+      [luxFlat]="flat"
+      [luxStroked]="outlined"
     ></lux-button>
   `
 })
 class LuxButtonComponent {
-  disabled: boolean;
-  round: boolean;
-  raised;
+  disabled = false;
+  round = false;
+  raised = false;
+  flat = false;
+  outlined = false;
 
   onClick() {}
 }
@@ -201,14 +274,21 @@ class LuxButtonComponent {
     <lux-button
       [luxLabel]="label"
       [luxDisabled]="disabled"
-      (luxClicked)="onClick($event)"
+      (luxClicked)="onClick()"
       [luxRounded]="round"
       [luxRaised]="raised"
+      [luxFlat]="flat"
+      [luxStroked]="outlined"
     ></lux-button>
   `
 })
 class LuxButtonLabelComponent {
-  round: boolean;
-  raised;
-  label: string;
+  disabled = false;
+  round = false;
+  raised = false;
+  label = '';
+  flat = false;
+  outlined = false;
+
+  onClick() {}
 }

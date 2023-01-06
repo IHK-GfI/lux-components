@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { waitForAsync, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -25,34 +27,30 @@ describe('LuxAriaHiddenDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-hidden in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte aria-hidden in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toBeNull();
 
       // Aria-Hidden setzen
-      let ariaHidden = 'Nachrichten anzeigen';
+      let ariaHidden: boolean | undefined = true;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toEqual(
-        ariaHidden
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toEqual('true');
 
       // Aria-Hidden aktualisieren
-      ariaHidden = 'Keine Nachrichten vorhanden';
+      ariaHidden = false;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toEqual(
-        ariaHidden
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toEqual('false');
 
       // Aria-Hidden entfernen
-      ariaHidden = null;
+      ariaHidden = undefined;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-hidden')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -65,34 +63,30 @@ describe('LuxAriaHiddenDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-hidden in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte aria-hidden in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toBeNull();
 
       // Aria-Hidden setzen
-      let ariaHidden = 'Nachrichten anzeigen';
+      let ariaHidden: boolean | undefined = true;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toEqual(
-        ariaHidden
-      );
+      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toEqual('true');
 
       // Aria-Hidden aktualisieren
-      ariaHidden = 'Keine Nachrichten vorhanden';
+      ariaHidden = false;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toEqual(
-        ariaHidden
-      );
+      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toEqual('false');
 
       // Aria-Hidden entfernen
-      ariaHidden = null;
+      ariaHidden = undefined;
       component.ariaHidden = ariaHidden;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-hidden')).toBeNull();
-    }));
+    });
   });
 });
 
@@ -103,7 +97,7 @@ describe('LuxAriaHiddenDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaHidden;
+  ariaHidden?: boolean;
 }
 
 @Component({
@@ -113,5 +107,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaHidden;
+  ariaHidden?: boolean;
 }

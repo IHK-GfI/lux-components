@@ -11,7 +11,7 @@ export class LuxAlphabeticallySortedPipe implements PipeTransform {
     return this.sortAlphabetically(array);
   }
 
-  private sortAlphabetically(array) {
+  private sortAlphabetically(array: any[]) {
     return array.slice().sort((a, b) => {
       const valueA = a.label || '';
       const valueB = b.label || '';

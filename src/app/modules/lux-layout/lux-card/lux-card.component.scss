@@ -42,17 +42,27 @@ h6 {
   }
 
   lux-card-info {
-    lux-icon {
+    lux-icon:not(.lux-lx.icon) {
       > i,
       > mat-icon {
         padding: 0 !important;
       }
     }
+    lux-icon.lux-lx-icon.lux-no-size {
+      height: 1em;
+      width: 1em;
+      display: inline-block;
+    }
+  }
+  
+  lux-card-actions {
+    width: 100%;
   }
 
   mat-card-actions.lux-card-actions {
     margin-right: 0;
     margin-left: 0;
+    padding: var(--lux-theme-outline-width) 0 0 0;
   }
 
   .lux-card-content,
@@ -69,16 +79,4 @@ h6 {
 .lux-card-title-container {
   overflow-y: hidden;
   margin: 0 10px 0 0;
-}
-
-.lux-expanded-button {
-  ::ng-deep button {
-    min-width: 30px;
-    height: 30px;
-    padding: 0;
-
-    i {
-      padding: 0;
-    }
-  }
 }

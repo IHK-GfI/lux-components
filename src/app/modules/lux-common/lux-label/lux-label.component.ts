@@ -5,13 +5,13 @@ import { Component, Input, OnInit } from '@angular/core';
   template: '<span [id]="luxId"><ng-content></ng-content></span>'
 })
 export class LuxLabelComponent implements OnInit {
-  @Input() luxId;
+  @Input() luxId?: string;
 
   constructor() {}
 
   ngOnInit() {
     if (!this.luxId) {
-      console.error('lux-label -> The property "luxId" is missing.');
+      console.warn('lux-label -> The property "luxId" is missing.');
     }
   }
 }

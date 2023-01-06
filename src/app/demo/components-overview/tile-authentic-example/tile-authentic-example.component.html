@@ -1,0 +1,98 @@
+<example-base-structure
+  exampleTitle="Tile-Authentic"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tile"
+>
+  <example-base-content [exampleCentered]="true" fxLayout="column" fxLayoutGap="32px">
+    <div class="lux-tile-ac-wrapper-demo lux-mt-5">
+      <lux-tile-ac
+        [luxLabel]="label"
+        [luxSubTitle]="subTitle"
+        [luxCounter]="counter"
+        [luxNotificationColor]="badgeColor"
+        [luxNotificationSize]="badgeSize"
+        [luxCounterCap]="badgeCap"
+        [luxShowNotification]="showNotification"
+        luxTagId="example-tile"
+        (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
+      >
+        <lux-icon luxIconName="lux-interface-weather-sun-1" *ngIf="showIcon"></lux-icon>
+        <lux-image
+          luxImageSrc="assets/svg/red_power_button.svg"
+          luxImageWidth="50px"
+          luxImageHeight="50px"
+          *ngIf="!showIcon"
+        ></lux-image>
+      </lux-tile-ac>
+    </div>   
+  </example-base-content>
+  
+  <example-base-simple-options>
+    <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
+    </lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="lux-highlight-section"
+      luxLabel="luxLabel"
+      luxHint="Die Property bestimmt das Label, welches in dem unteren Kasten des Tiles dargestellt wird."
+      [(luxValue)]="label"
+    >
+    </lux-input>
+    <lux-input
+      class="lux-highlight-section"
+      luxLabel="luxSubTitle"
+      luxHint="Die Property bestimmt den Untertitel des Tiles."
+      [(luxValue)]="subTitle"
+    >
+    </lux-input>
+    <div class="lux-highlight-section" fxLayout="column">
+      <lux-toggle luxLabel="luxIcon anzeigen" [(luxChecked)]="showIcon" [luxNoTopLabel]="true">
+        <lux-form-hint>
+          Ein LuxIconComponent in dem Tile anzeigen.<br />
+          Wenn 'false' wird stattdessen in dem Beispiel ein LuxImageComponent genutzt.
+        </lux-form-hint>
+      </lux-toggle>
+    </div>
+    <div class="lux-highlight-section">
+      <lux-link-plain 
+        luxLabel="Testseite mit mehreren Kacheln" 
+        luxHref="/components-overview/example/tile-overview"
+        luxIconName="lux-interface-arrows-button-right" 
+        [luxIconShowRight]="true"
+      ></lux-link-plain>
+    </div>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <div fxLayout="column" fxLayoutGap="32px" class="lux-highlight-section">
+      <lux-input luxLabel="luxCounter" [(luxValue)]="counter" [luxDisabled]="showNotification" luxType="number" [luxNumberAlignLeft]="true" luxAutocomplete="off">
+        <lux-form-hint>
+          Die Property definiert den aktuellen Zähler für die Tile.<br />
+          Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
+        </lux-form-hint>
+      </lux-input>
+      <lux-input luxLabel="luxCounterCap" [(luxValue)]="badgeCap" [luxDisabled]="showNotification" luxType="number" [luxNumberAlignLeft]="true" luxAutocomplete="off">
+        <lux-form-hint>
+          Die Property definiert den aktuellen Zähler für die Tile.<br />
+          Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
+        </lux-form-hint>
+      </lux-input>
+      <lux-select 
+      luxLabel="BadgeColor"
+      [(luxSelected)]="badgeColor"
+      luxHint="Diese Property definiert die Farbe der Notification"
+      [luxOptions]="['primary', 'warn', 'accent', 'default']"
+    ></lux-select>
+    <lux-radio 
+      luxLabel="luxNotificationSize"
+      luxHint="Diese Property definiert die Größe der Notification"
+      [luxOptions]="['small', 'medium', 'large']"
+      [(luxSelected)]="badgeSize"  
+      [luxOrientationVertical]="false"
+      ></lux-radio>
+      <lux-toggle
+        luxLabel="luxShowNotification"
+        [(luxChecked)]="showNotification"
+        [luxNoLabels]="true"
+      ></lux-toggle>
+    </div>
+  </example-base-advanced-options>
+</example-base-structure>

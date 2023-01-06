@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
-import { LuxBadgeColor, LuxBadgeColors, LuxSnackbarColor, LuxSnackbarColors } from "../../../lux-util/lux-colors.enum";
+import { LuxSnackbarColor, LuxSnackbarColors } from "../../../lux-util/lux-colors.enum";
 import { LuxSnackbarConfig } from '../lux-snackbar-config';
 import { Observable, Subject } from 'rxjs';
 import { LuxUtil } from '../../../lux-util/lux-util';
@@ -13,9 +13,9 @@ import { LuxUtil } from '../../../lux-util/lux-util';
 export class LuxSnackbarComponent implements OnInit {
   private action$: Subject<void> = new Subject<void>();
 
-  textFontColor: string;
-  actionFontColor: string;
-  iconFontColor: string;
+  textFontColor = '';
+  actionFontColor = '';
+  iconFontColor = '';
 
   constructor(
     @Inject(MAT_SNACK_BAR_DATA) public config: LuxSnackbarConfig,
@@ -24,8 +24,8 @@ export class LuxSnackbarComponent implements OnInit {
 
   ngOnInit() {
     Object.keys(this.config).forEach((key: string) => {
-      if (this.config[key]) {
-        this.config[key] = this.config[key].trim();
+      if ((this.config as any)[key]) {
+        (this.config as any)[key] = (this.config as any)[key].trim();
       }
     });
     // stupid-cast, um den string weiterzugeben, da die fn daraus den enum-wert herleiten kann
@@ -50,12 +50,12 @@ export class LuxSnackbarComponent implements OnInit {
   }
 
   /**
-   * Prüft ob die übergebene Farbe Teil des Enums ist.
+   * Prüft, ob die übergebene Farbe Teil des Enums ist.
    * Wenn nicht, wird standardmäßig "gray" zurückgegeben.
    *
    * @param colorToCheck
    */
-  private checkColorInEnum(colorToCheck: string): LuxSnackbarColor {
+  private checkColorInEnum(colorToCheck: string | undefined): LuxSnackbarColor {
     const found = LuxSnackbarColors.find((entry) => entry === colorToCheck);
     return found ?? 'gray';
   }

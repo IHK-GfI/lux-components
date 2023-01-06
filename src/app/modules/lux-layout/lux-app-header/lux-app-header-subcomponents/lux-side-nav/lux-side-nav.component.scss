@@ -43,7 +43,7 @@ $sideNavZIndex: 11000;
         height: 40px;
         min-height: 40px;
         margin: 2px 8px;
-
+        vertical-align: middle;
         cursor: pointer;
         &.lux-side-nav-disabled {
           cursor: default;
@@ -56,6 +56,12 @@ $sideNavZIndex: 11000;
           box-sizing: border-box;
           margin: 0;
           text-align: center;
+
+          mat-icon.lux-lx-icon-no-size ::ng-deep {
+            width: 18px;
+            height: 18px;
+            vertical-align: middle;
+          }
         }
       }
 

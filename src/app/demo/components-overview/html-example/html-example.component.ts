@@ -24,7 +24,7 @@ export class HtmlExampleComponent {
   style = '';
   class = '';
 
-  sanitizeConfig: LuxSanitizeConfig;
+  sanitizeConfig?: LuxSanitizeConfig;
 
   _forbiddenTagsToggle = false;
   forbiddenTags = 'a,b';

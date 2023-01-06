@@ -1,4 +1,5 @@
-import { Component, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { LuxUtil } from '../../../../lux-util/lux-util';
 import { LuxStepperLargeClickEvent } from '../../lux-stepper-large-model/lux-stepper-large-click-event';
 import { ILuxStepperLargeStep, LuxVetoState } from '../../lux-stepper-large-model/lux-stepper-large-step.interface';
 
@@ -10,8 +11,8 @@ import { ILuxStepperLargeStep, LuxVetoState } from '../../lux-stepper-large-mode
     </ng-template>
   `
 })
-export class LuxStepperLargeStepComponent implements ILuxStepperLargeStep {
-  @ViewChild('content', { static: true }) contentTemplate: TemplateRef<any>;
+export class LuxStepperLargeStepComponent implements ILuxStepperLargeStep, AfterViewInit {
+  @ViewChild('content', { static: true }) contentTemplate!: TemplateRef<any>;
 
   @Input() luxTitle = '';
   @Input() luxTouched = false;
@@ -21,4 +22,8 @@ export class LuxStepperLargeStepComponent implements ILuxStepperLargeStep {
     Promise.resolve(LuxVetoState.navigationAccepted);
 
   constructor() {}
+
+  ngAfterViewInit() {
+    LuxUtil.assertNonNull('contentTemplate', this.contentTemplate);
+  }
 }

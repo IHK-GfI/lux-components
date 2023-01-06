@@ -4,7 +4,7 @@ import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
   selector: '[luxMaxLengthAttr]'
 })
 export class LuxMaxLengthDirective {
-  _luxMaxLengthAttr: number;
+  _luxMaxLengthAttr = 0;
 
   @Input()
   get luxMaxLengthAttr() {

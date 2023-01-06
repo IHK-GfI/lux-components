@@ -1,35 +1,32 @@
-import { AfterViewInit, Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { LuxUtil } from '../../lux-util/lux-util';
-import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
-import { LuxComponentsConfigParameters } from '../../lux-components-config/lux-components-config-parameters.interface';
+import { AfterViewInit, Directive, ElementRef, Input, OnDestroy, Renderer2 } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { LuxComponentsConfigParameters } from '../../lux-components-config/lux-components-config-parameters.interface';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { luxFormControlSelektor } from '../../lux-form/lux-form-control/lux-form-control.component';
 
 @Directive({
   selector: '[luxTagIdHandler]'
 })
-export class LuxTagIdDirective implements OnInit, AfterViewInit, OnDestroy {
+export class LuxTagIdDirective implements AfterViewInit, OnDestroy {
   public static readonly luxTagIdAttrName: string = 'data-luxtagid';
   public static readonly sepParent: string = '.';
   public static readonly sepComponent: string = '#';
 
   private configSubscription: Subscription;
 
-  @Input() luxTagId: string;
+  @Input() luxTagId?: string;
 
-  generateLuxTagIds: boolean;
+  generateLuxTagIds = false;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, public componentsConfigService: LuxComponentsConfigService) {}
-
-  ngOnInit() {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, public componentsConfigService: LuxComponentsConfigService) {
     this.configSubscription = this.componentsConfigService.config.subscribe((newConfig: LuxComponentsConfigParameters) => {
-      this.generateLuxTagIds = newConfig.generateLuxTagIds;
+      this.generateLuxTagIds = newConfig.generateLuxTagIds ?? false;
     });
   }
 
   ngAfterViewInit() {
     if (this.generateLuxTagIds) {
-      const luxComponent: Element = this.findLuxComponent(this.elementRef.nativeElement);
+      const luxComponent: Element | null = this.findLuxComponent(this.elementRef.nativeElement);
 
       if (luxComponent) {
         let newTagId = this.luxTagId ?? this.getLuxTagId(luxComponent);
@@ -64,7 +61,15 @@ export class LuxTagIdDirective implements OnInit, AfterViewInit, OnDestroy {
 
             usedLabel = true;
           } else if (luxComponent.getElementsByClassName('lux-form-label')[0]) {
-            newTagId = this.mergeTagIds(newTagId, luxComponent.getElementsByClassName('lux-form-label')[0].textContent.trim());
+            let text = luxComponent.getElementsByClassName('lux-form-label')[0].textContent;
+            newTagId = this.mergeTagIds(newTagId, text ? text.trim() : null);
+            newTagId = newTagId.toLowerCase();
+            this.renderer.setAttribute(luxComponent, LuxTagIdDirective.luxTagIdAttrName, newTagId);
+
+            usedLabel = true;
+          } else if (luxComponent.getElementsByClassName('lux-form-label-authentic')[0]) {
+            let text = luxComponent.getElementsByClassName('lux-form-label-authentic')[0].textContent;
+            newTagId = this.mergeTagIds(newTagId, text ? text.trim() : null);
             newTagId = newTagId.toLowerCase();
             this.renderer.setAttribute(luxComponent, LuxTagIdDirective.luxTagIdAttrName, newTagId);
 
@@ -99,7 +104,7 @@ export class LuxTagIdDirective implements OnInit, AfterViewInit, OnDestroy {
     this.configSubscription.unsubscribe();
   }
 
-  private getParentPath(element: Element, currentTagId: string): string {
+  private getParentPath(element: Element | null, currentTagId: string): string {
     if (element && element.parentElement) {
       return this.getParentPath(element.parentElement, currentTagId + '.' + this.getNodeName(element.parentElement));
     }
@@ -107,7 +112,7 @@ export class LuxTagIdDirective implements OnInit, AfterViewInit, OnDestroy {
     return currentTagId;
   }
 
-  private getLuxTagIdParent(element: Element, currentTagId: string): string {
+  private getLuxTagIdParent(element: Element | null, currentTagId: string): string {
     if (element) {
       let newTagId: string = currentTagId;
       if (element.hasAttribute('luxTagId')) {
@@ -126,14 +131,14 @@ export class LuxTagIdDirective implements OnInit, AfterViewInit, OnDestroy {
     return currentTagId;
   }
 
-  private mergeTagIds(tagId1: string, tagId2: string) {
+  private mergeTagIds(tagId1: string | null, tagId2: string | null) {
     let tagId: string;
 
-    if (!LuxUtil.isEmpty(tagId1) && !LuxUtil.isEmpty(tagId2)) {
+    if (tagId1 && tagId2) {
       tagId = tagId1 + LuxTagIdDirective.sepParent + tagId2;
-    } else if (!LuxUtil.isEmpty(tagId1) && LuxUtil.isEmpty(tagId2)) {
+    } else if (tagId1 && !tagId2) {
       tagId = tagId1;
-    } else if (LuxUtil.isEmpty(tagId1) && !LuxUtil.isEmpty(tagId2)) {
+    } else if (!tagId1 && tagId2) {
       tagId = tagId2;
     } else {
       tagId = '';
@@ -147,20 +152,24 @@ export class LuxTagIdDirective implements OnInit, AfterViewInit, OnDestroy {
 
     if (element) {
       if (element.hasAttribute('luxTagId')) {
-        newId = element.getAttribute('luxTagId');
+        newId = this.getAttributeValue( element, 'luxTagId');
       } else if (element.hasAttribute(LuxTagIdDirective.luxTagIdAttrName)) {
-        newId = element.getAttribute(LuxTagIdDirective.luxTagIdAttrName);
+        newId = this.getAttributeValue( element, LuxTagIdDirective.luxTagIdAttrName);
       } else if (element.hasAttribute('luxcontrolbinding')) {
-        newId = element.getAttribute('luxcontrolbinding');
+        newId = this.getAttributeValue( element, 'luxcontrolbinding');
       } else if (element.hasAttribute('formgroupname')) {
-        newId = element.getAttribute('formgroupname');
+        newId = this.getAttributeValue( element, 'formgroupname');
       }
     }
 
     return newId;
   }
 
-  private findLuxComponent(element: Element): Element {
+  private getAttributeValue(element: Element, attrName: string): string {
+    return element.getAttribute(attrName) ?? '';
+  }
+
+  private findLuxComponent(element: Element | null): Element | null {
     if (element) {
       const nodeName: string = this.getNodeName(element);
       if (nodeName && nodeName.startsWith('lux-'.toUpperCase()) && nodeName !== luxFormControlSelektor.toUpperCase()) {

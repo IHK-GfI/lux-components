@@ -4,7 +4,7 @@
   [luxScalableHeight]="true"
   [luxLabelLongFormat]="luxLabelLongFormat"
   [formGroup]="formGroup"
-  [luxNoLabels]="luxNoLabels" 
+  [luxNoLabels]="luxNoLabels"
   [luxNoBottomLabel]="luxNoBottomLabel"
   [luxNoTopLabel]="luxNoTopLabel"
   *ngIf="formGroup"
@@ -31,7 +31,7 @@
       [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
       luxAriaDescribedbySelector=".mat-radio-input"
       [luxAriaRequired]="luxRequired"
-      [disabled]="option?.hasOwnProperty('disabled') && option.disabled === true ? true : false"
+      [disabled]="option?.hasOwnProperty('disabled') && option.disabled === true"
       luxAriaRequiredSelector=".mat-radio-input"
       [luxAriaInvalid]="'' + formControl.invalid"
       luxAriaInvalidSelector=".mat-radio-input"
@@ -49,8 +49,8 @@
 </lux-form-control>
 
 <ng-template #noTemplateRefTemplate let-option>
-  <ng-container *ngIf="option && option[luxOptionLabelProp]; else showObjectTemplate">
-    {{ option | luxRenderProperty: luxOptionLabelProp }}
+  <ng-container *ngIf="option && luxOptionLabelProp && option[luxOptionLabelProp]; else showObjectTemplate">
+    {{ option | luxRenderProperty: luxOptionLabelProp}}
   </ng-container>
   <ng-template #showObjectTemplate>
     <ng-container *ngIf="!!option">

@@ -1,0 +1,8 @@
+{
+  "extends": "./node_modules/ng-packagr/lib/ts/conf/tsconfig.ngc.json",
+  "files": [], // Wird automatisch überschrieben
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  }
+}

@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { waitForAsync, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -25,11 +27,11 @@ describe('LuxAriaLabelDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-label in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte aria-label in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toBeNull();
 
       // Aria-Label setzen
-      let ariaLabel = 'Nachrichten anzeigen';
+      let ariaLabel: string | undefined = 'Nachrichten anzeigen';
       component.ariaLabel = ariaLabel;
       fixture.detectChanges();
 
@@ -43,12 +45,12 @@ describe('LuxAriaLabelDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toEqual(ariaLabel);
 
       // Aria-Label entfernen
-      ariaLabel = null;
+      ariaLabel = undefined;
       component.ariaLabel = ariaLabel;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -61,11 +63,11 @@ describe('LuxAriaLabelDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-label in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte aria-label in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toBeNull();
 
       // Aria-Label setzen
-      let ariaLabel = 'Nachrichten anzeigen';
+      let ariaLabel: string | undefined = 'Nachrichten anzeigen';
       component.ariaLabel = ariaLabel;
       fixture.detectChanges();
 
@@ -79,12 +81,12 @@ describe('LuxAriaLabelDirective', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toEqual(ariaLabel);
 
       // Aria-Label entfernen
-      ariaLabel = null;
+      ariaLabel = undefined;
       component.ariaLabel = ariaLabel;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-label')).toBeNull();
-    }));
+    });
   });
 });
 
@@ -95,7 +97,7 @@ describe('LuxAriaLabelDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaLabel;
+  ariaLabel?: string;
 }
 
 @Component({
@@ -105,5 +107,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaLabel;
+  ariaLabel?: string;
 }

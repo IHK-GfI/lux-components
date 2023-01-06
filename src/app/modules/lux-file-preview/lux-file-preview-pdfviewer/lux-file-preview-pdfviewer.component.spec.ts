@@ -56,6 +56,5 @@ describe('LuxFilePreviewPdfViewerComponent', () => {
 
 class MockLuxFilePreviewRef {
   close() {
-    console.log('Closed');
   }
 }

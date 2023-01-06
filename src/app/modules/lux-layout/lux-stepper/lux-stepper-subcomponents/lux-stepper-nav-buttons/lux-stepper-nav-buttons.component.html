@@ -1,10 +1,9 @@
 <div class="lux-mt-3" fxLayout="row" fxLayoutAlign="end center">
   <!-- Previous-Button -->
   <lux-button
-    [luxLabel]="luxStepperConfig.luxPreviousButtonConfig?.label"
-    [luxColor]="luxStepperConfig.luxPreviousButtonConfig?.color"
-    [luxIconName]="luxStepperConfig.luxPreviousButtonConfig?.iconName"
-    [luxIconAlignWithLabel]="luxStepperConfig.luxPreviousButtonConfig?.alignIconWithLabel"
+    [luxLabel]="luxStepperConfig?.luxPreviousButtonConfig?.label"
+    [luxColor]="luxStepperConfig?.luxPreviousButtonConfig?.color"
+    [luxIconName]="luxStepperConfig?.luxPreviousButtonConfig?.iconName"
     (luxClicked)="luxPrevClick.emit()"
     luxTagId="luxStepper.previousStep"
     *ngIf="luxIndex > 0"
@@ -12,26 +11,24 @@
   </lux-button>
   <!-- Next-Button -->
   <lux-button
-    [luxLabel]="luxStepperConfig.luxNextButtonConfig?.label"
-    [luxColor]="luxStepperConfig.luxNextButtonConfig?.color"
-    [luxIconName]="luxStepperConfig.luxNextButtonConfig?.iconName"
-    [luxIconAlignWithLabel]="luxStepperConfig.luxNextButtonConfig?.alignIconWithLabel"
+    [luxLabel]="luxStepperConfig?.luxNextButtonConfig?.label"
+    [luxColor]="luxStepperConfig?.luxNextButtonConfig?.color"
+    [luxIconName]="luxStepperConfig?.luxNextButtonConfig?.iconName"
     (luxClicked)="luxNextClick.emit()"
-    [luxDisabled]="!luxStep.isCompleted() && luxStepperConfig.luxLinear"
+    [luxDisabled]="!luxStep.isCompleted() && luxStepperConfig && luxStepperConfig.luxLinear"
     luxTagId="luxStepper.nextStep"
-    *ngIf="luxIndex < luxStepperConfig.luxSteps.length - 1"
+    *ngIf="luxIndex < ((luxStepperConfig?.luxSteps?.length) ?? 0) - 1"
   >
   </lux-button>
   <!-- Finish-Button -->
   <lux-button
-    [luxLabel]="luxStepperConfig.luxFinishButtonConfig?.label"
-    [luxColor]="luxStepperConfig.luxFinishButtonConfig?.color"
-    [luxIconName]="luxStepperConfig.luxFinishButtonConfig?.iconName"
-    [luxIconAlignWithLabel]="luxStepperConfig.luxFinishButtonConfig?.alignIconWithLabel"
+    [luxLabel]="luxStepperConfig?.luxFinishButtonConfig?.label"
+    [luxColor]="luxStepperConfig?.luxFinishButtonConfig?.color"
+    [luxIconName]="luxStepperConfig?.luxFinishButtonConfig?.iconName"
     (luxClicked)="luxFinClick.emit()"
-    [luxDisabled]="!luxStep.isCompleted() && luxStepperConfig.luxLinear"
+    [luxDisabled]="!luxStep.isCompleted() && luxStepperConfig && luxStepperConfig.luxLinear"
     luxTagId="luxStepper.finished"
-    *ngIf="luxIndex === luxStepperConfig.luxSteps.length - 1"
+    *ngIf="luxIndex === ((luxStepperConfig?.luxSteps?.length) ?? 0) - 1"
   >
   </lux-button>
 </div>

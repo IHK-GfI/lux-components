@@ -13,19 +13,18 @@ import { LuxFilePreviewPdfViewerComponent } from './lux-file-preview-pdfviewer/l
   styleUrls: ['./lux-file-preview.component.scss']
 })
 export class LuxFilePreviewComponent implements OnInit {
-  @ViewChild(LuxFilePreviewPdfViewerComponent) pdfViewer: LuxFilePreviewPdfViewerComponent;
-  @ViewChild(LuxFilePreviewImgViewerComponent) imgViewer: LuxFilePreviewImgViewerComponent;
-  @ViewChild(LuxFilePreviewNotSupportedViewerComponent)
-  notSupportedViewer: LuxFilePreviewNotSupportedViewerComponent;
+  @ViewChild(LuxFilePreviewPdfViewerComponent) pdfViewer?: LuxFilePreviewPdfViewerComponent;
+  @ViewChild(LuxFilePreviewImgViewerComponent) imgViewer?: LuxFilePreviewImgViewerComponent;
+  @ViewChild(LuxFilePreviewNotSupportedViewerComponent) notSupportedViewer?: LuxFilePreviewNotSupportedViewerComponent;
 
   fileType: 'img' | 'pdf' | 'notsupported' = 'notsupported';
 
   constructor(@Inject(LUX_FILE_PREVIEW_DATA) public data: LuxFilePreviewData) {}
 
   ngOnInit(): void {
-    if (this.data.fileObject.type.indexOf('image/') > -1) {
+    if (this.data && this.data.fileObject && this.data.fileObject.type.indexOf('image/') > -1) {
       this.fileType = 'img';
-    } else if (this.data.fileObject.type.indexOf('application/pdf') > -1) {
+    } else if (this.data && this.data.fileObject && this.data.fileObject.type.indexOf('application/pdf') > -1) {
       this.fileType = 'pdf';
     } else {
       this.fileType = 'notsupported';
@@ -37,7 +36,7 @@ export class LuxFilePreviewComponent implements OnInit {
       this.pdfViewer.onClose();
     } else if (this.imgViewer) {
       this.imgViewer.onClose();
-    } else {
+    } else if (this.notSupportedViewer) {
       this.notSupportedViewer.onClose();
     }
   }

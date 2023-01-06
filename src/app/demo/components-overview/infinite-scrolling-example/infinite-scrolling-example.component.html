@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Infinite-Scrolling"
-  exampleIconName="fas fa-long-arrow-alt-down"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/luxinfinitescroll"
 >
   <example-base-content>
@@ -16,7 +15,7 @@
       >
         <lux-list-item [luxTitle]="listItem" *ngFor="let listItem of listItems; trackBy: trackByFn">
           <lux-list-item-icon>
-            <lux-icon [luxIconName]="'fas fa-cog'"></lux-icon>
+            <lux-icon [luxIconName]="'lux-interface-setting-cog'"></lux-icon>
           </lux-list-item-icon>
           <lux-list-item-content>
             Content

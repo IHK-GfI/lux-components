@@ -20,11 +20,11 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-radio.component.html',
   styleUrls: ['./lux-radio.component.scss']
 })
-export class LuxRadioComponent extends LuxFormSelectableBase implements OnDestroy {
+export class LuxRadioComponent<O = any,V = any> extends LuxFormSelectableBase<O,V> implements OnDestroy {
   forceVertical = false;
 
-  // Potentiell eingebettetes Template für Darstellung der Labels
-  @ContentChild(TemplateRef) tempRef: TemplateRef<any>;
+  // Potenziell eingebettetes Template für Darstellung der Labels
+  @ContentChild(TemplateRef) tempRef?: TemplateRef<any>;
 
   @HostBinding('class.lux-pb-3') pb3 = true;
   @Input() luxGroupName = '';
@@ -57,6 +57,5 @@ export class LuxRadioComponent extends LuxFormSelectableBase implements OnDestro
   ngOnDestroy() {
     super.ngOnDestroy();
     this.mediaSubscription$.unsubscribe();
-    this.mediaSubscription$ = null;
   }
 }

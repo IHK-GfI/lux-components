@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Textarea"
-  exampleIconName="fas fa-text-height"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90textarea"
 >
   <example-base-content>
@@ -64,7 +63,7 @@
       <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <span fxFlex="35px">Wert:</span>
-          <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
+          <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
         </div>
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
@@ -131,7 +130,7 @@
       </lux-input>
       <lux-toggle
         luxLabel="luxHideCounterLabel"
-        luxHint="Mithilfe dieses Flags kann eingestellt werden, ob das Counterlabel ausgeblendet werden soll."
+        luxHint="Mithilfe dieses Flags kann eingestellt werden, ob das Counter-Label ausgeblendet werden soll."
         [(luxChecked)]="hideCounterLabel"
         *ngIf="maxLength"
         [luxNoTopLabel]="true"
@@ -150,14 +149,14 @@
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
-          (luxClicked)="form.get(controlBinding).enable()"
-          [luxDisabled]="!form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.enable()"
+          [luxDisabled]="!form.get(controlBinding)!.disabled"
           luxColor="primary"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
-          (luxClicked)="form.get(controlBinding).disable()"
-          [luxDisabled]="form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.disable()"
+          [luxDisabled]="form.get(controlBinding)!.disabled"
           luxColor="primary"
         ></lux-button>
       </div>
@@ -189,7 +188,7 @@
     <lux-select
       class="lux-highlight-section"
       luxLabel="luxAutocomplete"
-      luxHint="Dieser Flag schaltet die Einblendung früherer Eingabungen für dieses Feld durch den Browser ein."
+      luxHint="Dieser Flag schaltet die Einblendung früherer Eingaben für dieses Feld durch den Browser ein."
       [luxOptions]="autocompleteOptions"
       [(luxSelected)]="autocomplete"
     >
@@ -250,6 +249,7 @@
       class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [luxNoTopLabel]="true"
       [(luxChecked)]="labelLongFormat"
     >
     </lux-toggle>

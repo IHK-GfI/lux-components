@@ -1,7 +1,7 @@
 <lux-file-preview-toolbar>
   <lux-button
     fxFlex="none"
-    luxIconName="fas fa-search-plus"
+    luxIconName="lux-interface-edit-zoom-in"
     *ngIf="zoomActive"
     (luxClicked)="onZoomIn()"
     [luxRaised]="true"
@@ -11,7 +11,7 @@
   ></lux-button>
   <lux-button
     fxFlex="none"
-    luxIconName="fas fa-search-minus"
+    luxIconName="lux-interface-edit-zoom-out"
     (luxClicked)="onZoomOut()"
     *ngIf="zoomActive"
     [luxRaised]="true"
@@ -41,8 +41,9 @@
 <div class="overlay-content" [ngStyle]="{ 'max-width': width + 'px', 'max-height': height + 'px' }">
   <img
     [src]="this.sanitizer.bypassSecurityTrustResourceUrl(this.url)"
+    [alt]="previewData.fileObject && previewData.fileObject.name ? previewData.fileObject.name : ''"
     *ngIf="url"
-    (load)="onLoad($event)"
+    (load)="onLoad()"
     [ngStyle]="{
       'max-width': width + zoomWidth + 'px',
       'max-height': height + zoomWidth + 'px',

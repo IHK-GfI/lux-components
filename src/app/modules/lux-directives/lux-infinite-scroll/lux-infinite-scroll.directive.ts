@@ -14,25 +14,22 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
   private scroll$: Subject<void> = new Subject<void>();
   private lastPosition: LuxScrollPosition = { scrollHeight: 0, scrollTop: 0, clientHeight: 0 };
 
-  // Prozentzahl nach der ein scrollCallback ausgeloest wird
+  // Prozentzahl nach der ein scrollCallback ausgelöst wird
   @Input() luxScrollPercent = 85;
   // Direkt bei Initialisierung einen ScrollEvent emitten
   @Input() luxImmediateCallback = true;
-  // Flag ob aktuell Daten geladen werden (aus aufrufender Komponente)
+  // Flag, ob aktuell Daten geladen werden (aus aufrufender Komponente)
   @Input() luxIsLoading = false;
-  // Emitter an den sich andere Komponenten haengen koennen um auf den Scroll zu reagieren
-  @Output() luxScrolled: EventEmitter<void> = new EventEmitter<void>();
+  // Emitter an den sich andere Komponenten hängen können, um auf den Scroll zu reagieren
+  @Output() luxScrolled = new EventEmitter<void>();
 
   /**
    * Constructor
    *
    * @param elementRef Ziel-Element dieser Direktive
    */
-  constructor(private elementRef: ElementRef) {}
-
-  ngOnInit() {
-    window.addEventListener('scroll', this.onScroll.bind(this), true);
-    // Die neuen Scroll-Events bündeln und nach der Zeitspanne SCROLL_DEBOUNCE_TIME prüfen ob ein
+  constructor(private elementRef: ElementRef) {
+    // Die neuen Scroll-Events bündeln und nach der Zeitspanne SCROLL_DEBOUNCE_TIME prüfen, ob ein
     // "luxScrolled" emitten soll oder nicht.
     this.scrollSubscription = this.scroll$
       .pipe(debounceTime(LuxInfiniteScrollDirective.SCROLL_DEBOUNCE_TIME))
@@ -41,8 +38,12 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
       });
   }
 
+  ngOnInit() {
+    window.addEventListener('scroll', this.onScroll.bind(this), true);
+  }
+
   ngAfterViewInit() {
-    // Prüfen ob ein initiales Laden von Daten starten soll
+    // Prüfen, ob ein initiales Laden von Daten starten soll
     if (this.hasScrollbar() && this.luxImmediateCallback && !this.luxIsLoading) {
       this.luxScrolled.emit();
     }
@@ -54,7 +55,7 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
   }
 
   /**
-   * Prüft ob ein Scroll-Event auf dem Zielelement stattgefunden hat.
+   * Prüft, ob ein Scroll-Event auf dem Zielelement stattgefunden hat.
    * Wenn ja, wird das Subject scroll$ angestoßen.
    *
    * @param event
@@ -67,8 +68,8 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
   }
 
   /**
-   * Holt die aktuelle Position im Scroll-Bereich und fuehrt
-   * einen Event-Emit durch wenn die Bedingungen erfuellt sind.
+   * Holt die aktuelle Position im Scroll-Bereich und führt
+   * einen Event-Emit durch, wenn die Bedingungen erfüllt sind.
    */
   private performScrollCheck() {
     const position: LuxScrollPosition = {
@@ -77,7 +78,7 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
       clientHeight: this.elementRef.nativeElement.clientHeight
     };
 
-    // Wenn nach unten gescrollt wird und die angegebene Prozentzahl ueberschritten wird
+    // Wenn nach unten gescrollt wird und die angegebene Prozentzahl überschritten wird
     if (this.isUserScrollingDown(position) && this.isScrollExpectedPercent(position) && !this.luxIsLoading) {
       this.luxScrolled.emit();
     }
@@ -86,7 +87,7 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
   }
 
   /**
-   * Prueft ob der User gerade nach unten scrollt.
+   * Prüft, ob der User gerade nach unten scrollt.
    * Vergleicht dabei die scrollTop Position des Users mit der des Elements.
    *
    * @param curPos
@@ -96,17 +97,17 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
   }
 
   /**
-   * Prueft ob der Scrollbereich ueberschritten wurde.
+   * Prüft, ob der Scrollbereich überschritten wurde.
    *
    * @param position
    * @returns boolean
    */
-  private isScrollExpectedPercent(position) {
+  private isScrollExpectedPercent(position: LuxScrollPosition) {
     return (position.scrollTop + position.clientHeight) / position.scrollHeight > this.luxScrollPercent / 100;
   }
 
   /**
-   * Prüft ob das Zielelement eine Scrollbar gesetzt hat.
+   * Prüft, ob das Zielelement eine Scrollbar gesetzt hat.
    */
   private hasScrollbar() {
     return this.elementRef.nativeElement.scrollHeight > this.elementRef.nativeElement.clientHeight;

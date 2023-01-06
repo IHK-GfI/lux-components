@@ -56,6 +56,5 @@ describe('LuxFilePreviewNotSupportedViewerComponent', () => {
 
 class MockLuxFilePreviewRef {
   close() {
-    console.log('Closed');
   }
 }

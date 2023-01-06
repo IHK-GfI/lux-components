@@ -1,23 +1,25 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { SLIDER_COLORS } from '../../../modules/lux-form/lux-slider/lux-slider.component';
+import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { LuxSliderColor } from '../../../modules/lux-form/lux-slider/lux-slider.component';
 import {
+  emptyErrorCallback,
   exampleErrorCallback,
   logResult,
   setRequiredValidatorForFormControl
 } from '../../example-base/example-base-util/example-base-helper';
+
+interface SliderDummyForm {
+  sliderExample: FormControl<number | null>;
+}
 
 @Component({
   selector: 'app-slider-example',
   templateUrl: './slider-example.component.html'
 })
 export class SliderExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useErrorMessage = true;
   useDisplayFn = false;
   showOutputEvents = false;
-
   colorOptions = [
     { label: 'Primary', value: 'primary' },
     { label: 'Accent', value: 'accent' },
@@ -27,23 +29,16 @@ export class SliderExampleComponent {
     { value: Validators.max(100), label: 'Validators.max(100)' },
     { value: Validators.min(25), label: 'Validators.min(25)' }
   ];
-  form: FormGroup;
+  form: FormGroup<SliderDummyForm>;
   log = logResult;
-
-  percent: number;
-  percentReactive: number;
+  percent = 0;
+  percentReactive = 0;
   tickIntervalNumber = 0;
   tickIntervalAuto = true;
   labelLongFormat = false;
-  
-  // endregion
-
-  // region Properties der Component
-
   value = 0;
   displayWithFnString: string = this.displayFn + '';
-
-  color: SLIDER_COLORS = 'primary';
+  color: LuxSliderColor = 'primary';
   vertical = false;
   invert = false;
   showThumbLabel = true;
@@ -52,8 +47,8 @@ export class SliderExampleComponent {
   step = 1;
   controlBinding = 'sliderExample';
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -62,17 +57,16 @@ export class SliderExampleComponent {
   min = 0;
   controlValidators: ValidatorFn[] = [];
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
   errorCallbackString: string = this.errorCallback + '';
 
-  // endregion
-
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      sliderExample: new FormControl()
+  constructor() {
+    this.form = new FormGroup<SliderDummyForm>({
+      sliderExample: new FormControl<number | null>(null)
     });
   }
 
-  tickIntervalChanged(checked) {
+  tickIntervalChanged(checked: boolean) {
     this.tickIntervalAuto = checked;
     if (checked) {
       this.tickInterval = 'auto';
@@ -81,21 +75,21 @@ export class SliderExampleComponent {
     }
   }
 
-  tickIntervalNumberChanged(interval) {
+  tickIntervalNumberChanged(interval: any) {
     this.tickInterval = interval;
     this.tickIntervalNumber = interval;
   }
 
-  colorChanged(color: { label; value }) {
+  colorChanged(color: { label: string; value: LuxSliderColor }) {
     this.color = color.value;
   }
 
-  percentChanged(percent) {
+  percentChanged(percent: number) {
     this.percent = percent;
     this.log(this.showOutputEvents, 'Percent changed', percent);
   }
 
-  percentReactiveChanged(percent) {
+  percentReactiveChanged(percent: number) {
     this.percentReactive = percent;
     this.log(this.showOutputEvents, 'Percent (Reactive Example) changed', percent);
   }
@@ -104,17 +98,15 @@ export class SliderExampleComponent {
     if (value && value >= 1000) {
       return Math.round(value / 1000) + 'k';
     }
-    return value;
+    return value ?? 0;
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    setRequiredValidatorForFormControl($event, this.form, this.controlBinding);
+  changeRequired(required: boolean) {
+    this.required = required;
+    setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
   }
 
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
-
-  emptyCallback() {}
 }

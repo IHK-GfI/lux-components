@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { waitForAsync, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -24,34 +26,30 @@ describe('LuxAriaHasPopupDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-haspopup in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte aria-haspopup in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toBeNull();
 
       // Aria-HasPopup setzen
-      let ariaHasPopup = 'Nachrichten anzeigen';
+      let ariaHasPopup: boolean | undefined = true;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual(
-        ariaHasPopup
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual('true');
 
       // Aria-HasPopup aktualisieren
-      ariaHasPopup = 'Keine Nachrichten vorhanden';
+      ariaHasPopup = false;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual(
-        ariaHasPopup
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual('false' );
 
       // Aria-HasPopup entfernen
-      ariaHasPopup = null;
+      ariaHasPopup = undefined;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -64,34 +62,30 @@ describe('LuxAriaHasPopupDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-haspopup in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte aria-haspopup in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toBeNull();
 
       // Aria-HasPopup setzen
-      let ariaHasPopup = 'Nachrichten anzeigen';
+      let ariaHasPopup: boolean | undefined = true;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual(
-        ariaHasPopup
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual('true');
 
       // Aria-HasPopup aktualisieren
-      ariaHasPopup = 'Keine Nachrichten vorhanden';
+      ariaHasPopup = false;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual(
-        ariaHasPopup
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual('false');
 
       // Aria-HasPopup entfernen
-      ariaHasPopup = null;
+      ariaHasPopup = undefined;
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toBeNull();
-    }));
+    });
   });
 });
 
@@ -106,7 +100,7 @@ describe('LuxAriaHasPopupDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaHasPopup;
+  ariaHasPopup?: boolean | undefined;
 }
 
 @Component({
@@ -116,5 +110,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaHasPopup;
+  ariaHasPopup?: boolean | undefined;
 }

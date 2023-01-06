@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Tabelle (mit serverseitigen Daten)"
-  exampleIconName="fas fa-table"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90table"
 >
   <example-base-content>
@@ -101,14 +100,14 @@
   <example-base-options-actions>
     <lux-menu
       fxFlex="0 0 250px"
-      luxMenuIconName="fas fa-ellipsis-v"
+      luxMenuIconName="lux-interface-setting-menu-vertical"
       [luxDisplayExtended]="true"
       [luxMaximumExtended]="4"
       [luxDisplayMenuLeft]="false"
     >
       <lux-menu-item
         luxLabel="Neuladen"
-        luxIconName="fas fa-sync"
+        luxIconName="lux-interface-arrows-synchronize"
         [luxAlwaysVisible]="true"
         [luxRaised]="true"
         luxTagId="menu-reload"
@@ -117,7 +116,7 @@
       </lux-menu-item>
       <lux-menu-item
         luxLabel="Ersten 5 auswählen"
-        luxIconName="far fa-check-square"
+        luxIconName="far lux-interface-validation-check-square-1"
         [luxAlwaysVisible]="false"
         [luxRaised]="true"
         [luxDisabled]="!multiSelect"

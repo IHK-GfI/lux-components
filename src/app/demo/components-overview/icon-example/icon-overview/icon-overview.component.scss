@@ -1,0 +1,72 @@
+.main-container {
+  width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+.icon-container {
+  padding: 12px;
+  width: 130px;
+  min-height: 130px;
+  border: 1px solid var(--lux-theme-form-border-color);
+  border-radius: 4px;
+
+  &:hover{
+    background-color: var(--lux-theme-hover-color);
+    //background-image: var(--lux-theme-app-gradient-reverse);
+    cursor: pointer;
+  }
+  &.selected-item {
+    border-color: var(--lux-primary-color);
+    box-shadow: 0 0 0 2px var(--lux-primary-color) inset;
+    background-image: var(--lux-theme-app-gradient);
+  }
+
+  .icon-name {
+    text-align: center;
+    margin-bottom: 0;
+  } 
+}
+
+.left-container, .right-container {
+  max-height: 100%;
+  overflow: auto;
+
+  lux-card ::ng-deep {
+    width: 100%;
+  }
+}
+
+.chip-container {
+  display: flex;
+  width: 100%;
+  min-height: 116px;
+}
+
+.icon-preview {
+  width: 100%;
+  min-height: 80px;
+}
+
+.reset-icon {
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  &:hover{
+    border-radius: 50%;
+    background-color: var(--lux-theme-hover-color);
+    cursor: pointer;
+  }
+}
+
+lux-card-info lux-icon.copy-icon {
+  padding: 4px;
+  border-radius: 2px;
+  height: 24px;
+  &:hover {
+    background-color: var(--lux-theme-hover-color);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,21 @@
+input.lux-number {
+  text-align: right !important;
+}
+
+input.lux-number-left {
+  text-align: left !important;
+}
+
+input.lux-number::-webkit-outer-spin-button,
+input.lux-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input.lux-number::-ms-clear {
+  display: none;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}

@@ -1,13 +1,8 @@
-@import '~@ihk-gfi/lux-components-theme/src/public/global';
-
 :host {
   display: block;
 }
 
 .lux-panel {
-  .mat-expansion-panel-header {
-    margin: $outline-width !important;
-  }
 
   ::ng-deep .mat-expansion-panel-header:not([aria-disabled='true']) {
 
@@ -21,13 +16,12 @@
   }
 
   ::ng-deep lux-panel-content {
-    margin-bottom: $outline-width;
+    margin-bottom: var(--lux-theme-outline-width);
   }
 }
 
 .lux-panel-mobile {
   .mat-expansion-panel-header {
-    margin: $outline-width;
     padding: 0 12px !important;
   }
 

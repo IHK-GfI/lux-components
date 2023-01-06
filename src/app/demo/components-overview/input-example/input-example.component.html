@@ -1,10 +1,9 @@
 <example-base-structure
   exampleTitle="Input"
-  exampleIconName="fas fa-text-width"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90input"
 >
   <example-base-content>
-    <div fxLayout="column">
+    <div fxLayout="column" fxLayoutGap="32px">
       <h3>Beispiel ohne Reactive-Form</h3>
       <lux-input
         [(luxDisabled)]="disabled"
@@ -31,7 +30,7 @@
         luxTagId="input-non-reactive"
       >
         <lux-input-prefix *ngIf="showPrefix">
-          <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp;
+          <lux-icon [luxIconName]="'lux-cogs'"></lux-icon>&nbsp;
         </lux-input-prefix>
         <lux-input-suffix *ngIf="showSuffix"> .00 EUR </lux-input-suffix>
       </lux-input>
@@ -45,7 +44,7 @@
         <span fxFlex="auto">{{ value | json }}</span>
       </div>
     </div>
-    <div fxLayout="column" [formGroup]="form">
+    <div fxLayout="column" [formGroup]="form" fxLayoutGap="32px" class="lux-mt-5">
       <h3>Beispiel in Reactive-Form</h3>
       <lux-input
         [(luxDisabled)]="disabled"
@@ -71,14 +70,14 @@
       >
 
         <lux-input-prefix *ngIf="showPrefix">
-          <lux-icon [luxIconName]="'fas fa-cogs'"></lux-icon>&nbsp;
+          <lux-icon [luxIconName]="'lux-cogs'"></lux-icon>&nbsp;
         </lux-input-prefix>
         <lux-input-suffix *ngIf="showSuffix"> .00 EUR </lux-input-suffix>
       </lux-input>
       <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <span fxFlex="35px">Wert:</span>
-          <span fxFlex="auto">{{ form.get(controlBinding).value | json }}</span>
+          <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
         </div>
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
           <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
@@ -97,16 +96,17 @@
       </div>
     </div>
 
-    <div class="message-box">
+   <div class="message-box">
       <div fxLayout="row" fxLayoutAlign="start center" class="box-header">
-        <lux-icon luxIconName="far fa-hand-point-right" luxIconSize="2x"></lux-icon>
+        <lux-icon luxIconName="lux-interface-favorite-like-1" luxIconSize="2x"></lux-icon>
         <h2>Beispiel für luxNoLabels</h2>
       </div>
       <div class="search-row" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start center">
         <lux-input [luxNoLabels]="true" luxLabel="Suche" luxPlaceholder="Gib einen Suchbegriff ein..."></lux-input>
-        <lux-button luxIconName="fa-search" luxColor="primary" [luxRaised]="true" luxAriaLabel="Suche" luxTagId="input-search-btn"></lux-button>
+        <lux-button luxIconName="lux-interface-search" luxColor="primary" [luxRaised]="true" luxAriaLabel="Suche" luxTagId="input-search-btn"></lux-button>
       </div>
     </div>
+
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
@@ -158,14 +158,14 @@
         <lux-button
           luxLabel="Enable"
           luxColor="primary"
-          (luxClicked)="form.get(controlBinding).enable()"
-          [luxDisabled]="!form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.enable()"
+          [luxDisabled]="!form.get(controlBinding)!.disabled"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
           luxColor="primary"
-          (luxClicked)="form.get(controlBinding).disable()"
-          [luxDisabled]="form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.disable()"
+          [luxDisabled]="form.get(controlBinding)!.disabled"
         ></lux-button>
       </div>
       <div class="lux-hint lux-pt-3">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
@@ -220,7 +220,7 @@
       </lux-toggle>
       <lux-toggle
         luxLabel="luxHideCounterLabel"
-        luxHint="Mithilfe dieses Flags kann eingestellt werden, ob das Counterlabel ausgeblendet werden soll."
+        luxHint="Mithilfe dieses Flags kann eingestellt werden, ob das Counter-Label ausgeblendet werden soll."
         [(luxChecked)]="hideCounterLabel"
         [luxNoTopLabel]="true"
         *ngIf="inputType === 'text' && maxLength"
@@ -230,7 +230,7 @@
     <lux-select
       class="lux-highlight-section"
       luxLabel="luxAutocomplete"
-      luxHint="Dieser Flag schaltet die Einblendung früherer Eingabungen für dieses Feld durch den Browser ein."
+      luxHint="Dieser Flag schaltet die Einblendung früherer Eingaben für dieses Feld durch den Browser ein."
       [luxOptions]="autocompleteOptions"
       [(luxSelected)]="autocomplete"
     >
@@ -291,6 +291,7 @@
       class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [luxNoTopLabel]="true"
       [(luxChecked)]="labelLongFormat"
     >
     </lux-toggle>

@@ -1,15 +1,13 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { Injectable, OnDestroy } from '@angular/core';
 import { MatSnackBar, MatSnackBarDismiss } from '@angular/material/snack-bar';
-import { MatSnackBarRef } from '@angular/material/snack-bar/snack-bar-ref';
 import { Observable, Subscription } from 'rxjs';
-import { skip } from 'rxjs/operators';
 import { LuxAppService } from '../../lux-util/lux-app.service';
 import { LuxSnackbarComponent } from './lux-snackbar-component/lux-snackbar.component';
 import { LuxSnackbarConfig } from './lux-snackbar-config';
 
 /**
- * Über den LuxSnackbarService können einfach Snackbarinfos angezeigt werden.
+ * Über den LuxSnackbarService können einfach Snackbar-Informationen angezeigt werden.
  */
 @Injectable({
   providedIn: 'root'
@@ -18,7 +16,7 @@ export class LuxSnackbarService implements OnDestroy {
   private static readonly VERTICAL_POSITION = 'top';
   private static readonly HORIZONTAL_POSITION = 'end';
 
-  private afterOpenedSubscription: Subscription;
+  private afterOpenedSubscription?: Subscription;
   private resizeSubscription: Subscription;
 
   constructor(private snackBar: MatSnackBar, private appService: LuxAppService) {
@@ -48,7 +46,7 @@ export class LuxSnackbarService implements OnDestroy {
 
     this.afterOpenedSubscription = snackbarRef.afterOpened().subscribe(() => {
       this.updateSnackbarPosition(true);
-      this.afterOpenedSubscription.unsubscribe();
+      this.afterOpenedSubscription?.unsubscribe();
     });
   }
 
@@ -58,7 +56,7 @@ export class LuxSnackbarService implements OnDestroy {
    * @param component Die Komponente, die angezeigt werden soll.
    * @param duration Eine Dauer in Msec (z.B. 2000 = 2 Sekunden). Wenn die Snackbar permanent angezeigt werden soll,
    * muss der Wert 0 angegeben werden.
-   * @param data Ein Datenobjekt, das an die Komponente weitergereicht wird. Mit dem Code folgenden Code, können die
+   * @param data Ein Datenobjekt, das an die Komponente weitergereicht wird. Mit dem Code folgenden Code können die
    * Daten verwendet werden. constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any).
    */
   public openComponent(component: ComponentType<any>, duration = 0, data?: any) {
@@ -72,13 +70,13 @@ export class LuxSnackbarService implements OnDestroy {
 
     this.afterOpenedSubscription = snackbarRef.afterOpened().subscribe(() => {
       this.updateSnackbarPosition(true);
-      this.afterOpenedSubscription.unsubscribe();
+      this.afterOpenedSubscription?.unsubscribe();
     });
   }
 
   /**
-   * Oeffnet eine Snackbar anhand der uebergebenen Konfiguration.
-   * Ermoeglicht eine genaue Konfiguration der Snackbar.
+   * Öffnet eine Snackbar anhand der übergebenen Konfiguration.
+   * Ermöglicht eine genaue Konfiguration der Snackbar.
    *
    * @param duration
    * @param config
@@ -94,7 +92,7 @@ export class LuxSnackbarService implements OnDestroy {
 
     this.afterOpenedSubscription = snackbarRef.afterOpened().subscribe(() => {
       this.updateSnackbarPosition(true);
-      this.afterOpenedSubscription.unsubscribe();
+      this.afterOpenedSubscription?.unsubscribe();
     });
   }
 
@@ -103,6 +101,10 @@ export class LuxSnackbarService implements OnDestroy {
    * geklickt wird.
    */
   public onAction(): Observable<void> {
+    if(!this.snackBar._openedSnackBarRef) {
+      throw Error('Snackbar-Ref is not found!');
+    }
+
     if (this.snackBar._openedSnackBarRef.instance instanceof LuxSnackbarComponent) {
       return this.snackBar._openedSnackBarRef.instance.onAction();
     }
@@ -115,6 +117,10 @@ export class LuxSnackbarService implements OnDestroy {
    * geklickt wird.
    */
   public afterDismissed(): Observable<MatSnackBarDismiss> {
+    if(!this.snackBar._openedSnackBarRef) {
+      throw Error('Snackbar-Ref is not found!');
+    }
+
     return this.snackBar._openedSnackBarRef.afterDismissed();
   }
 
@@ -138,8 +144,11 @@ export class LuxSnackbarService implements OnDestroy {
 
     if (snackbarContainerArr.length > 0) {
       const snackbarEl = snackbarContainerArr[0] as HTMLElement;
-      snackbarEl.style.top = this.appService.getAppTop() + this.appService.getHeaderHeight() + 3 /* Abstand zum Header */ + 'px';
-      snackbarEl.style.right = this.appService.getAppRight() + 3 /* Abstand zum Rand */ + 'px';
+      const snackbarElParent = snackbarContainerArr[0].parentElement as HTMLElement; 
+      // Die Overlay-Paine für die Snackbar muss verschoben werden, da diese sonst den Header blockiert
+      snackbarElParent.style.top = this.appService.getAppTop() + this.appService.getHeaderHeight() + 3 /* Abstand zum Header */ + 'px';
+      snackbarElParent.style.right = this.appService.getAppRight() + 3 /* Abstand zum Rand */ + 'px';
+      snackbarElParent.style.position = 'absolute';
       snackbarEl.style.visibility = 'visible';
     } else {
       if (logError) {

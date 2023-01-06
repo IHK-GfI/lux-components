@@ -29,7 +29,7 @@ export const timeDeltasRelative = [
   name: 'luxRelativeTimestamp'
 })
 export class LuxRelativeTimestampPipe implements PipeTransform {
-  transform(timestamp: number, defaultText = '', prefix?: string): string {
+  transform(timestamp: number | null, defaultText = '', prefix?: string): string {
     if (!timestamp) {
       return defaultText;
     }
@@ -68,10 +68,10 @@ export class LuxRelativeTimestampPipe implements PipeTransform {
         }
       }
     }
-    return timeName;
+    return timeName ?? '';
   }
 
-  private calcDiff(a, b) {
+  private calcDiff(a: Date, b: Date) {
     const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
     const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
 

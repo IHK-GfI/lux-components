@@ -1,10 +1,13 @@
 /* eslint-disable max-classes-per-file */
-import { Component, OnInit } from '@angular/core';
+// noinspection DuplicatedCode
+
+import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
+import { LuxErrorCallbackFnType, ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
 import { LuxTextareaComponent } from './lux-textarea.component';
 import { By } from '@angular/platform-browser';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxFormControlComponent } from '../lux-form-control/lux-form-control.component';
 
@@ -28,7 +31,7 @@ describe('LuxTextareaComponent', () => {
     it('Sollte value über das FormControl aktualisieren', fakeAsync(() => {
       // Given
       fixture.detectChanges();
-      const formControl = component.form.get('control');
+      const formControl = component.form.get('control')!;
       const textareaEl = fixture.debugElement.query(By.css('textarea')).nativeElement;
       // When
       // Then
@@ -45,7 +48,7 @@ describe('LuxTextareaComponent', () => {
 
     it('Sollte invalid sein wenn Validators.required', fakeAsync(() => {
       // Given
-      const formControl = component.form.get('control');
+      const formControl = component.form.get('control')!;
       formControl.setValidators(Validators.required);
       component.value = 'Test';
       fixture.detectChanges();
@@ -59,18 +62,18 @@ describe('LuxTextareaComponent', () => {
       fixture.detectChanges();
       // Then
       expect(formControl.errors).toBeTruthy();
-      expect(formControl.errors.required).toBeTruthy();
+      expect(formControl.errors!.required).toBeTruthy();
       expect(formControl.valid).toBeFalsy();
     }));
 
     it('Sollte Validatoren setzen und korrekte Fehlermeldungen anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       let errorEl = fixture.debugElement.query(By.css('mat-error'));
-      expect(errorEl).toBeFalsy(`Vorbedingung 1`);
+      expect(errorEl).toBeFalsy();
 
       // Änderungen durchführen
-      component.form.get('control').setValidators(Validators.maxLength(1));
-      component.form.get('control').setValue('12');
+      component.form.get('control')!.setValidators(Validators.maxLength(1));
+      component.form.get('control')!.setValue('12');
       LuxTestHelper.wait(fixture);
       textarea.formControl.markAsTouched();
       textarea.formControl.updateValueAndValidity();
@@ -78,9 +81,9 @@ describe('LuxTextareaComponent', () => {
 
       // Nachbedingungen testen
       errorEl = fixture.debugElement.query(By.css('mat-error'));
-      expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-      expect(errorEl.nativeElement.innerText.trim()).toEqual('Die Maximallänge ist 1', `Nachbedingung 2`);
-      expect(textarea.formControl.valid).toBeFalsy(`Nachbedingung 3`);
+      expect(errorEl).toBeTruthy();
+      expect(errorEl.nativeElement.innerText.trim()).toEqual('Die Maximallänge ist 1');
+      expect(textarea.formControl.valid).toBeFalsy();
     }));
   });
 
@@ -113,16 +116,16 @@ describe('LuxTextareaComponent', () => {
 
     it('Sollte label und placeholder setzen', fakeAsync(() => {
       // Given
-      component.label = 'Testlabel';
-      component.placeholder = 'Testplaceholder';
+      component.label = 'Label';
+      component.placeholder = 'Placeholder';
       fixture.detectChanges();
 
       const labelEl = fixture.debugElement.query(By.css('.lux-label')).nativeElement;
       const textareaEl = fixture.debugElement.query(By.css('textarea')).nativeElement;
       // When
       // Then
-      expect(labelEl.innerText.trim()).toEqual('Testlabel');
-      expect(textareaEl.placeholder).toEqual('Testplaceholder');
+      expect(labelEl.innerText.trim()).toEqual('Label');
+      expect(textareaEl.placeholder).toEqual('Placeholder');
     }));
 
     it('Sollte invalid sein wenn luxRequired = true', fakeAsync(() => {
@@ -140,7 +143,7 @@ describe('LuxTextareaComponent', () => {
       fixture.detectChanges();
       // Then
       expect(textarea.formControl.errors).toBeTruthy();
-      expect(textarea.formControl.errors.required).toBeTruthy();
+      expect(textarea.formControl.errors!.required).toBeTruthy();
       expect(textarea.formControl.valid).toBeFalsy();
     }));
 
@@ -148,7 +151,7 @@ describe('LuxTextareaComponent', () => {
       // Vorbedingungen testen
       fixture.detectChanges();
       let errorEl = fixture.debugElement.query(By.css('mat-error'));
-      expect(errorEl).toBeFalsy(`Vorbedingung 1`);
+      expect(errorEl).toBeFalsy();
 
       // Änderungen durchführen
       component.validators = Validators.maxLength(1);
@@ -160,9 +163,9 @@ describe('LuxTextareaComponent', () => {
 
       // Nachbedingungen testen
       errorEl = fixture.debugElement.query(By.css('mat-error'));
-      expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-      expect(errorEl.nativeElement.innerText.trim()).toEqual('Die Maximallänge ist 1', `Nachbedingung 2`);
-      expect(textarea.formControl.valid).toBeFalsy(`Nachbedingung 3`);
+      expect(errorEl).toBeTruthy();
+      expect(errorEl.nativeElement.innerText.trim()).toEqual('Die Maximallänge ist 1');
+      expect(textarea.formControl.valid).toBeFalsy();
     }));
 
     it('Sollte einen Startwert haben', fakeAsync(() => {
@@ -203,7 +206,7 @@ describe('LuxTextareaComponent', () => {
     it('Sollte die luxErrorMessage anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
       // Änderungen durchführen
       component.validators = Validators.required;
@@ -215,19 +218,19 @@ describe('LuxTextareaComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
       expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual('Alle meine Entchen');
-      expect(textarea.formControl.errors.required).toBeDefined();
+      expect(textarea.formControl.errors!.required).toBeDefined();
     }));
 
     it('Sollte den Fehler über luxErrorCallback anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       fixture.detectChanges();
-      expect(fixture.debugElement.query(By.css('mat-error'))).toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).toBeNull();
 
       // Änderungen durchführen
       component.validators = Validators.required;
-      component.errorCb = (value, errors) => 'Alle meine Entchen';
+      component.errorCb = () => 'Alle meine Entchen';
       const spy = spyOn(component, 'errorCb').and.callThrough();
       LuxTestHelper.wait(fixture);
 
@@ -236,9 +239,9 @@ describe('LuxTextareaComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBe(null);
+      expect(fixture.debugElement.query(By.css('mat-error'))).not.toBeNull();
       expect(fixture.debugElement.query(By.css('mat-error')).nativeElement.textContent.trim()).toEqual('Alle meine Entchen');
-      expect(textarea.formControl.errors.required).toBeDefined();
+      expect(textarea.formControl.errors!.required).toBeDefined();
       expect(spy).toHaveBeenCalledTimes(1);
     }));
 
@@ -301,7 +304,7 @@ describe('LuxTextareaComponent', () => {
     }));
 
     it('Sollte luxValueChange angemessen oft aufrufen', fakeAsync(() => {
-      // Vorbedingungen prüfen
+      // Vorbedingungen testen
       const spy = spyOn(component, 'valueChanged');
       LuxTestHelper.wait(fixture);
 
@@ -322,7 +325,7 @@ describe('LuxTextareaComponent', () => {
       expect(spy).toHaveBeenCalledTimes(2);
 
       // Änderungen durchführen
-      // Absichtlich den selben Wert nochmal, sollte nichts auslösen
+      // Absichtlich denselben Wert nochmal, sollte nichts auslösen
       component.value = 'b';
       LuxTestHelper.wait(fixture);
 
@@ -334,7 +337,7 @@ describe('LuxTextareaComponent', () => {
   describe('LuxCounterLabel', () => {
     let fixture: ComponentFixture<LuxTextareaCounterLabelComponent>;
     let testComponent: LuxTextareaCounterLabelComponent;
-    
+
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(LuxTextareaCounterLabelComponent);
       testComponent = fixture.componentInstance;
@@ -342,15 +345,15 @@ describe('LuxTextareaComponent', () => {
       fixture.detectChanges();
     }));
 
-    it('sollte Counterlabel bei focused=true anzeigen', fakeAsync(() => {
-      // Vorbedingung
+    it('sollte Counter-Label bei focused=true anzeigen', fakeAsync(() => {
+      // Vorbedingungen testen
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
-  
+
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
       formControlComponent.focused = true;
       // // Wert ändern
       LuxTestHelper.typeInElement( textareaEl.nativeElement, 'Lorem ipsum');
@@ -366,15 +369,15 @@ describe('LuxTextareaComponent', () => {
       expect(labelEl.nativeElement.innerHTML.trim()).not.toContain('11/50');
     }));
 
-    it('sollte Counterlabel bei leerem Value anzeigen', fakeAsync(() => {
-      // Vorbedingung
+    it('sollte Counter-Label bei leerem Value anzeigen', fakeAsync(() => {
+      // Vorbedingungen testen
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
-  
+
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
       formControlComponent.focused = true;
       // // Wert ändern
       LuxTestHelper.typeInElement( textareaEl.nativeElement, '');
@@ -385,24 +388,24 @@ describe('LuxTextareaComponent', () => {
     }));
 
     it('bei disabled sollte kein Wert gezeigt werden', fakeAsync(() => {
-      // Vorbedingung
+      // Vorbedingungen testen
       testComponent.maxLength = 50;
-+     fixture.detectChanges();
+      fixture.detectChanges();
       const textareaEl = fixture.debugElement.query(By.css('textarea'));
-  
+
       // Fokus aktivieren
       const formControlEl = fixture.debugElement.query(By.directive(LuxFormControlComponent))!;
-      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent>(LuxFormControlComponent);
+      const formControlComponent = formControlEl.injector.get<LuxFormControlComponent<any>>(LuxFormControlComponent);
       formControlComponent.focused = true;
-      
+
       // Wert ändern
       LuxTestHelper.typeInElement( textareaEl.nativeElement, 'Lorem ipsum');
       LuxTestHelper.wait(fixture);
-      
+
       // Prüfen
       let labelEl = fixture.debugElement.query(By.css('.lux-form-control-character-counter'));
       expect(labelEl.nativeElement.innerHTML.trim()).toContain('11/50');
-      
+
       // Fokus deaktivieren
       testComponent.disabled = true;
       formControlComponent.focused = false;
@@ -424,21 +427,21 @@ describe('LuxTextareaComponent', () => {
     '[luxErrorMessage]="errorMessage" [luxErrorCallback]="errorCb" (luxValueChange)="valueChanged()"></lux-textarea>'
 })
 class LuxMockTextareaComponent {
-  value: string;
-  label: string;
-  placeholder: string;
-  hint: string;
-  disabled: boolean;
-  errorMessage: string;
+  value?: string;
+  label?: string | null;
+  placeholder?: string;
+  hint?: string;
+  disabled?: boolean;
+  errorMessage?: string;
 
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
 
-  maxRows: number;
-  minRows: number;
+  maxRows?: number;
+  minRows?: number;
 
-  validators;
-  errorCb: (value, errors) => string = (value, errors) => undefined;
+  validators: ValidatorFnType;
+  errorCb: LuxErrorCallbackFnType = () => undefined;
 
   constructor() {}
 
@@ -448,25 +451,25 @@ class LuxMockTextareaComponent {
 @Component({
   selector: 'lux-mock-form-textarea',
   template:
-    '<form [formGroup]="form"><lux-textarea [(luxValue)]="value" [luxLabel]="label" [luxPlaceholder]="placeholder" ' +
-    '[luxReadonly]="readonly" [luxRequired]="required" [luxMaxRows]="maxRows" ' +
-    '[luxMinRows]="minRows" luxControlBinding="control"></lux-textarea></form>'
+    `<form [formGroup]="form"><lux-textarea [(luxValue)]="value" [luxLabel]="label" [luxPlaceholder]="placeholder"
+    [luxReadonly]="readonly" [luxRequired]="required" [luxMaxRows]="maxRows"
+    [luxMinRows]="minRows" luxControlBinding="control"></lux-textarea></form>`
 })
 class LuxMockFormTextareaComponent {
-  value: string;
-  label: string;
-  placeholder: string;
-  readonly: boolean;
-  required: boolean;
+  value?: string;
+  label?: string;
+  placeholder?: string;
+  readonly = false;
+  required = false;
 
-  maxRows: number;
-  minRows: number;
+  maxRows?: number;
+  minRows?: number;
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      control: []
+  constructor() {
+    this.form = new FormGroup<any>({
+      control: new FormControl<string | null>(null)
     });
   }
 }
@@ -484,7 +487,7 @@ class LuxMockFormTextareaComponent {
   `
 })
 class LuxTextareaCounterLabelComponent {
-  hint: string;
-  disabled: boolean;
-  maxLength: number;
+  hint?: string;
+  disabled?: boolean;
+  maxLength?: number;
 }

@@ -12,9 +12,9 @@ import { LuxSnackbarColors } from '../../../modules/lux-util/lux-colors.enum';
   styleUrls: ['./snackbar-example.component.scss']
 })
 export class SnackbarExampleComponent implements OnDestroy {
-  private dismissSubcr: Subscription;
-  private actionSubscr: Subscription;
-  colors: string[] = LuxSnackbarColors;
+  dismissSubscription: Subscription | null = null;
+  actionSubscription: Subscription | null  = null;
+  colors: string[]                         = LuxSnackbarColors;
 
   showOutputEvents = false;
 
@@ -22,7 +22,7 @@ export class SnackbarExampleComponent implements OnDestroy {
   snackbarConfig: LuxSnackbarConfig = {
     text: 'Text',
     textColor: 'gray',
-    iconName: 'fas fa-info',
+    iconName: 'lux-interface-alert-information-circle',
     iconColor: 'gray',
     iconSize: '2x',
     action: 'Action',
@@ -32,18 +32,18 @@ export class SnackbarExampleComponent implements OnDestroy {
   constructor(private snackbar: LuxSnackbarService) {}
 
   ngOnDestroy(): void {
-    if (this.dismissSubcr) {
-      this.dismissSubcr.unsubscribe();
+    if (this.dismissSubscription) {
+      this.dismissSubscription.unsubscribe();
     }
-    if (this.actionSubscr) {
-      this.actionSubscr.unsubscribe();
+    if (this.actionSubscription) {
+      this.actionSubscription.unsubscribe();
     }
   }
 
   openSnackbar() {
     this.snackbar.open(this.duration, this.snackbarConfig);
-    this.dismissSubcr = this.snackbar.afterDismissed().subscribe(this.observeDismiss.bind(this));
-    this.actionSubscr = this.snackbar.onAction().subscribe(this.observeAction.bind(this));
+    this.dismissSubscription = this.snackbar.afterDismissed().subscribe(this.observeDismiss.bind(this));
+    this.actionSubscription  = this.snackbar.onAction().subscribe(this.observeAction.bind(this));
   }
 
   dismissSnackbar() {
@@ -55,8 +55,12 @@ export class SnackbarExampleComponent implements OnDestroy {
 
     // Subscriptions auflösen, da eine neue Snackbar neue Observables bedeuten sollte
     // (siehe lux-snackbar.service.ts -> _openedSnackBarRef)
-    this.dismissSubcr.unsubscribe();
-    this.actionSubscr.unsubscribe();
+    if (this.dismissSubscription) {
+      this.dismissSubscription.unsubscribe();
+    }
+    if (this.actionSubscription) {
+      this.actionSubscription.unsubscribe();
+    }
   }
 
   private observeAction() {

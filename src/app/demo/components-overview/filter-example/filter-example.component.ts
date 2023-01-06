@@ -1,15 +1,13 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { LuxActionColorType } from '../../../modules/lux-action/lux-action-model/lux-action-component-base.class';
+import { Subscription } from 'rxjs';
 import { LuxFilter } from '../../../modules/lux-filter/lux-filter-base/lux-filter';
 import { LuxFilterItem } from '../../../modules/lux-filter/lux-filter-base/lux-filter-item';
 import { LuxFilterFormComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form.component';
+import { LuxFieldValues, LuxLookupParameters } from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
+import { LuxThemePalette } from '../../../modules/lux-util/lux-colors.enum';
+import { LuxFilterFormExtendedComponent } from '../../../modules/lux-filter/lux-filter-form/lux-filter-form-extended/lux-filter-form-extended.component';
 import { LuxMediaQueryObserverService } from '../../../modules/lux-util/lux-media-query-observer.service';
-import { Subscription } from 'rxjs';
-import {
-  LuxFieldValues,
-  LuxLookupParameters
-} from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-parameters';
-import { LuxUtil } from "../../../modules/lux-util/lux-util";
+import { LuxUtil } from '../../../modules/lux-util/lux-util';
 
 @Component({
   selector: 'lux-filter-example',
@@ -17,7 +15,9 @@ import { LuxUtil } from "../../../modules/lux-util/lux-util";
   styleUrls: ['./filter-example.component.scss']
 })
 export class FilterExampleComponent implements OnInit, OnDestroy {
-  @ViewChild(LuxFilterFormComponent) filterComponent: LuxFilterFormComponent;
+
+  @ViewChild(LuxFilterFormComponent) filterComponent!: LuxFilterFormComponent;
+  @ViewChild(LuxFilterFormExtendedComponent) filterExtendedOptionsComponent?: LuxFilterFormExtendedComponent;
 
   parameters = new LuxLookupParameters({
     knr: 101,
@@ -43,7 +43,9 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   ];
 
   initFilter: any = {};
+  initFilterAc: any = {};
   currentFilter: any = {};
+  currentFilterAc: any = {};
   replaceFilterJson = `{
   "input": "Lorem ipsum",
   "datepicker": "${LuxUtil.newDateWithoutTime().toISOString()}",
@@ -53,9 +55,9 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   expanded = false;
   showFilterChips = true;
 
-  storedFilters = [
+  storedFilters: LuxFilter[] = [
     {
-      name: 'Vollständig',
+      name: 'Demo-Test-Filter',
       data: {
         autocompleteLookup: {
           key: '1',
@@ -77,6 +79,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
           value: 'a'
         },
         datepicker: '2020-07-21T00:00:00.000Z',
+        datetimepicker: '2020-07-21T12:15:00.000Z',
         singleSelect: {
           label: 'Single 4711',
           value: '4711'
@@ -99,6 +102,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
       }
     }
   ];
+  storedFiltersAc: LuxFilter[] = JSON.parse(JSON.stringify(this.storedFilters))
 
   mediaQuerySubscription: Subscription;
 
@@ -122,55 +126,39 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   toggleSelectHidden = false;
 
   buttonColorOptions = ['default', 'primary', 'accent', 'warn'];
-  buttonRaised = false;
-  buttonFilterColor: LuxActionColorType = 'primary';
-  buttonDialogSave = 'primary';
-  buttonDialogLoad = 'primary';
-  buttonDialogDelete = 'warn';
-  buttonDialogCancel = 'default';
-  buttonDialogClose = 'default';
+  buttonFlat = false;
+  buttonFilterColor: LuxThemePalette  = 'primary';
+  buttonDialogSave: LuxThemePalette =  'primary';
+  buttonDialogLoad: LuxThemePalette =  'primary';
+  buttonDialogDelete: LuxThemePalette =  'warn';
+  buttonDialogCancel: LuxThemePalette =  'primary';
+  buttonDialogClose: LuxThemePalette =  'primary';
 
-  markdownData = `
-  Html
-  \`\`\`
-  <lux-filter-form>
-  ...
-    <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '24px', column: '8px' }" luxWrapAt="md">
-      <lux-select
-        ...
-        luxFilterItem
-        [luxNoBottomLabel]="true"
-        *luxLayoutRowItem="{}"
-      ></lux-select>
-      <lux-select
-        ...
-        luxFilterItem
-        [luxNoBottomLabel]="true"
-        *luxLayoutRowItem="{}"
-      ></lux-select>
-    </lux-layout-form-row>
-  ...
-  </lux-filter-form>
-  \`\`\`
-  `;
+  openLabel = '';
+  closeLabel = '';
 
   disableShortcut = false;
+  initRunning = false;
 
-  constructor(private mediaQuery: LuxMediaQueryObserverService) {}
+  constructor(private mediaQuery: LuxMediaQueryObserverService) {
+    this.mediaQuerySubscription = this.mediaQuery.getMediaQueryChangedAsObservable().subscribe(() => {
+      this.showFilterChips = !this.mediaQuery.isSmallerOrEqual('xs');
+    });
+  }
 
   ngOnInit(): void {
-    this.mediaQuerySubscription = this.mediaQuery.getMediaQueryChangedAsObservable().subscribe(() => {
-      if (this.mediaQuery.isSmallerOrEqual('xs')) {
-        this.showFilterChips = false;
-      } else {
-        this.showFilterChips = true;
-      }
-    });
+    this.initRunning = true;
 
     // Hier wird die setTimeout-Methode verwendet, um einen Backend-Call zu simulieren.
     setTimeout(() => {
       this.initFilter    = { input: "Lorem ipsum" };
+      this.initFilterAc    = { input: "Lorem ipsum" };
       this.currentFilter = this.initFilter;
+      this.currentFilterAc = this.initFilterAc;
+
+      setTimeout(() => {
+        this.initRunning = false;
+      });
     }, 100);
   }
 
@@ -180,17 +168,32 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   compareValueFn = (o1: any, o2: any) => o1.value === o2.value;
 
-  renderToggleFn(filterItem: LuxFilterItem, value: any) {
+  renderToggleFn(filterItem: LuxFilterItem<boolean>, value: boolean) {
     return value ? 'aktiviert' : 'deaktiviert';
   }
 
   onFilter(filter: any) {
     this.currentFilter = filter;
-    console.log('Please filter...', filter);
+
+    if (!this.initRunning) {
+      console.log('Neuer Filter:', filter);
+    }
+  }
+
+  onFilterAc(filter: any) {
+    this.currentFilterAc = filter;
+
+    if (!this.initRunning) {
+      console.log('Neuer Filter:', filter);
+    }
   }
 
   onSave(filter: LuxFilter) {
     this.saveFilter(filter);
+  }
+
+  onSaveAc(filter: LuxFilter) {
+    this.saveFilterAc(filter);
   }
 
   onDelete(filter: LuxFilter) {
@@ -205,8 +208,13 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
     this.initFilter = this.loadFilter(filterName);
   }
 
+  onLoadAc(filterName: string) {
+    this.initFilterAc = this.loadFilterAc(filterName);
+  }
+
   onSetFilter() {
     this.initFilter = JSON.parse(this.replaceFilterJson);
+    this.initFilterAc = JSON.parse(this.replaceFilterJson);
   }
 
   private saveFilter(filter: LuxFilter) {
@@ -215,8 +223,31 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
     console.log('Filter saved.', filter);
   }
 
+  private saveFilterAc(filter: LuxFilter) {
+    // Hier müssten die Filtereinstellungen (z.B. in die Datenbank) geschrieben werden.
+    this.storedFiltersAc.push(filter);
+    console.log('Filter saved.', filter);
+  }
+
   private loadFilter(filterName: string) {
     // Hier müssten die Filtereinstellungen (z.B. aus der Datenbank) gelesen und zurückgeliefert werden.
-    return JSON.parse(JSON.stringify(this.storedFilters.find((filter) => filter.name === filterName).data));
+    const luxFilter = this.storedFilters.find((filter) => filter.name === filterName);
+
+    if (!luxFilter) {
+      throw Error(`Es konnte kein Filter mit dem Namen "${filterName}" gefunden werden.`);
+    }
+
+    return JSON.parse(JSON.stringify(luxFilter.data));
+  }
+
+  private loadFilterAc(filterName: string) {
+    // Hier müssten die Filtereinstellungen (z.B. aus der Datenbank) gelesen und zurückgeliefert werden.
+    const luxFilter = this.storedFiltersAc.find((filter) => filter.name === filterName);
+
+    if (!luxFilter) {
+      throw Error(`Es konnte kein Filter mit dem Namen "${filterName}" gefunden werden.`);
+    }
+
+    return JSON.parse(JSON.stringify(luxFilter.data));
   }
 }

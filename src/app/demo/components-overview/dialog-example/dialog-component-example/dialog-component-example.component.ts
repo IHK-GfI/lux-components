@@ -23,7 +23,7 @@ export class DialogComponentExampleComponent {
     }
   };
 
-  constructor(public luxDialogRef: LuxDialogRef, private dialogService: LuxDialogService) {}
+  constructor(public luxDialogRef: LuxDialogRef<void>, private dialogService: LuxDialogService) {}
 
   openInfoDialog() {
     // Die Referenz des aktuell angezeigten Dialogs wird gespeichert.
@@ -33,7 +33,7 @@ export class DialogComponentExampleComponent {
     // Dialogs angezeigt werden.
     const dialogRef = this.dialogService.open(this.dialogConfig);
 
-    dialogRef.dialogClosed.subscribe((result: any) => {
+    dialogRef.dialogClosed.subscribe(() => {
       // Nach dem Schließen des Hilfedialogs wird die Referenz
       // des ursprünglichen Dialogs wiederhergestellt.
       this.dialogService.restoreDialogRef();

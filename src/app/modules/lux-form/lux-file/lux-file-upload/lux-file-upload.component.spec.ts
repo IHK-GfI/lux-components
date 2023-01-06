@@ -17,10 +17,6 @@ describe('LuxFileUploadComponent', () => {
       [
         LuxConsoleService,
         {
-          provide: HttpClient,
-          useClass: MockHttp
-        },
-        {
           provide: LuxStorageService,
           useClass: MockStorage
         }
@@ -40,16 +36,11 @@ describe('LuxFileUploadComponent', () => {
   });
 });
 
-class MockHttp {
-  post(...any) {
-    return of(null);
-  }
-}
-
 class MockStorage {
-  getItem(...any): string {
+
+  getItem(key: string): string {
     return '';
   }
 
-  setItem(...any) {}
+  setItem(key: string, value: string, sensitive: boolean) {}
 }

@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Storage"
-  exampleIconName="fas fa-hdd"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/util#luxstorageservice"
 >
   <example-base-content fxLayout="column">
@@ -13,33 +12,41 @@
         *ngFor="let item of [].constructor(storageLength); let i = index"
       >
         <span><b>Key:</b> {{ localStorage.key(i) }} </span>
-        <span><b>Value:</b> {{ luxStorageService.getItemAsObservable(localStorage.key(i)) | async }} </span>
+        <span><b>Value:</b> {{ luxStorageService.getItemAsObservable(localStorage.key(i)!) | async }} </span>
         <br>
         <div
-          fxLayout="row"
-          fxLayoutAlign="space-between"
-          fxFlex="1 0 auto"
-          fxLayoutGap="16px"
-          *ngIf="!localStorage.key(i).endsWith('sensitive')"
+          fxLayout.gt-sm="row" 
+          fxLayout.lt-md="column" 
+          fxLayoutAlign.gt-sm="space-between end" 
+          fxLayoutAlign.lt-md="space-between stretch" 
+          fxLayoutGap.gt-sm="16px" 
+          fxLayoutGap.lt-md="8px"
+          *ngIf="!localStorage.key(i)!.endsWith('sensitive')"
         >
-          <lux-input fxFlex="1 1 auto" luxLabel="Neuer Value" #luxInput [luxNoBottomLabel]="true"></lux-input>
-          <div fxFlex="0 0 auto" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="end">
+          <lux-input  fxFlex.gt-sm="0 1 calc(100%-114px)" luxLabel="Neuer Value" #luxInput [luxNoBottomLabel]="true"></lux-input>
+          <div 
+            fxLayout="row" 
+            fxLayoutAlign.gt-sm="end center" 
+            fxLayoutAlign.lt-md="center center" 
+            fxFlex.gt-sm="1 1 98px"
+            fxLayoutGap="8px"
+          >
             <lux-button
-              luxIconName="fas fa-sync"
+              luxIconName="lux-interface-arrows-synchronize"
               luxColor="accent"
               luxTagId="refresh-storage-entry-btn"
               [luxRounded]="true"
               [luxDisabled]="!luxInput.luxValue"
               luxAriaLabel="Wert speichern"
-              (luxClicked)="updateExisting(localStorage.key(i), luxInput)"
+              (luxClicked)="updateExisting(localStorage.key(i)!, luxInput)"
             >
             </lux-button>
             <lux-button
-              luxIconName="fas fa-times"
+              luxIconName="lux-interface-delete-1"
               luxColor="warn"
               luxTagId="remove-storage-entry-btn"
               [luxRounded]="true"
-              (luxClicked)="luxStorageService.removeItem(localStorage.key(i))"
+              (luxClicked)="luxStorageService.removeItem(localStorage.key(i)!)"
               luxAriaLabel="Wert löschen"
             >
             </lux-button>
@@ -83,8 +90,8 @@
       </lux-toggle>
       <div fxLayout="row" fxLayoutAlign="start" class="lux-mt-4">
         <lux-button
-          luxIconName="fas fa-plus"
-          luxColor="accent"
+          luxIconName="lux-interface-add-1"
+          luxColor="primary"
           [luxRounded]="true"
           (luxClicked)="submit()"
           [luxDisabled]="!key"
@@ -98,14 +105,14 @@
   <example-base-options-actions>
     <lux-menu
       fxFlex="1 1 250px"
-      luxMenuIconName="fas fa-ellipsis-v"
+      luxMenuIconName="lux-interface-setting-menu-vertical"
       [luxDisplayExtended]="true"
       [luxMaximumExtended]="2"
       [luxDisplayMenuLeft]="false"
     >
       <lux-menu-item
         luxLabel="Sensible Daten löschen"
-        [luxRaised]="true"
+        [luxStroked]="true"
         [luxDisabled]="storageLength === 0"
         luxColor="warn"
         (luxClicked)="clearSensitiveItems()"
@@ -114,7 +121,7 @@
       </lux-menu-item>
       <lux-menu-item
         luxLabel="Alle Daten löschen"
-        [luxRaised]="true"
+        [luxStroked]="true"
         [luxDisabled]="storageLength === 0"
         luxColor="warn"
         (luxClicked)="clearAll()"

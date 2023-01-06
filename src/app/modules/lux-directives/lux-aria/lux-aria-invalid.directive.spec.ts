@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { LuxAriaInvalidDirective } from './lux-aria-invalid.directive';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -25,34 +27,34 @@ describe('LuxAriaInvalidDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-invalid in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte aria-invalid in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-invalid')).toBeNull();
 
       // aria-invalid setzen
-      let ariaInvalid = true;
+      let ariaInvalid: string | undefined = 'true';
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid + ''
+        ariaInvalid
       );
 
       // aria-invalid aktualisieren
-      ariaInvalid = false;
+      ariaInvalid = 'false';
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid + ''
+        ariaInvalid
       );
 
       // aria-invalid entfernen
-      ariaInvalid = null;
+      ariaInvalid = undefined;
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -65,34 +67,34 @@ describe('LuxAriaInvalidDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-invalid in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte aria-invalid in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toBeNull();
 
       // aria-invalid setzen
-      let ariaInvalid = true;
+      let ariaInvalid: string | undefined = 'true';
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid + ''
+        ariaInvalid
       );
 
       // aria-invalid aktualisieren
-      ariaInvalid = false;
+      ariaInvalid = 'spelling';
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid + ''
+        ariaInvalid
       );
 
       // aria-invalid entfernen
-      ariaInvalid = null;
+      ariaInvalid = undefined;
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toBeNull();
-    }));
+    });
   });
 });
 
@@ -103,7 +105,7 @@ describe('LuxAriaInvalidDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaInvalid;
+  ariaInvalid?: string;
 }
 
 @Component({
@@ -113,5 +115,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaInvalid;
+  ariaInvalid?: string;
 }

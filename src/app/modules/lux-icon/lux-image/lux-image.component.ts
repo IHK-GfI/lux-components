@@ -1,18 +1,29 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'lux-image',
   templateUrl: './lux-image.component.html',
   styleUrls: ['./lux-image.component.scss']
 })
-export class LuxImageComponent implements OnChanges {
+export class LuxImageComponent implements OnChanges, OnInit {
   @Input() luxImageSrc = '';
   @Input() luxImageWidth = 'auto';
   @Input() luxImageHeight = 'auto';
   @Input() luxRawSrc = false;
+  @Input() luxAlt = '';
+
+  @Output() luxClicked: EventEmitter<Event> = new EventEmitter();
+  
+  isObserved = false;
 
   constructor() {}
 
+  ngOnInit() {
+    if (this.luxClicked.observed) {
+      this.isObserved=true;
+    }
+  }
+  
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (simpleChanges.luxImageSrc) {
       if (!this.luxRawSrc) {
@@ -25,9 +36,13 @@ export class LuxImageComponent implements OnChanges {
     }
   }
 
+  clicked(event: Event) {
+    this.luxClicked.emit(event);
+  }
+
   private updateImageSrc() {
     if (this.luxImageSrc) {
-      // Pruefen ob es sich um ein externes Bild handelt
+      // Prüfen, ob es sich um ein externes Bild handelt
       if (this.luxImageSrc.startsWith('http')) {
         this.sanitizeImageSrc();
       } else {
@@ -43,7 +58,7 @@ export class LuxImageComponent implements OnChanges {
   private sanitizeImageSrc() {
     // Doppelte Slashes entfernen
     this.luxImageSrc = this.luxImageSrc.replace(/\/\/+/g, '/');
-    // Fuehrende Slashes entfernen
+    // Führende Slashes entfernen
     if (this.luxImageSrc.startsWith('/')) {
       this.luxImageSrc = this.luxImageSrc.slice(1, this.luxImageSrc.length);
     }

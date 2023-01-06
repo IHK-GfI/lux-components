@@ -11,9 +11,9 @@ import { Subscription } from 'rxjs';
   `
 })
 export class LuxStepHeaderComponent implements OnInit, OnDestroy {
-  private configSubscription: Subscription;
+  private configSubscription?: Subscription;
 
-  labelUppercase: boolean;
+  labelUppercase?: boolean;
 
   constructor(public componentsConfigService: LuxComponentsConfigService) {}
 
@@ -24,6 +24,8 @@ export class LuxStepHeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.configSubscription.unsubscribe();
+    if (this.configSubscription) {
+      this.configSubscription.unsubscribe();
+    }
   }
 }

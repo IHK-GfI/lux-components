@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="File-Upload"
-  exampleIconName="fas fa-cloud-upload-alt"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90file%E2%80%90upload"
 >
   <example-base-content fxLayout="column">
@@ -28,12 +27,12 @@
         [luxHint]="hint"
         [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [luxDnDActive]="dndActive"
-        [luxSelectedFiles]="selected"
+        [luxSelected]="selected"
         [luxContentsAsBlob]="contentAsBlob"
         [luxUploadReportProgress]="reportProgress"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
-        (luxSelectedFilesChange)="onSelectedChange($event)"
+        (luxSelectedChange)="onSelectedChange($event)"
         #fileBaseWithoutComponent
       >
       </lux-file-upload>
@@ -127,13 +126,13 @@
       <div fxLayout="row wrap">
         <lux-button
           luxLabel="Enable"
-          (luxClicked)="form.get(controlBinding).enable()"
-          [luxDisabled]="!form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.enable()"
+          [luxDisabled]="!form.get(controlBinding)!.disabled"
         ></lux-button>
         <lux-button
           luxLabel="Disable"
-          (luxClicked)="form.get(controlBinding).disable()"
-          [luxDisabled]="form.get(controlBinding).disabled"
+          (luxClicked)="form.get(controlBinding)!.disable()"
+          [luxDisabled]="form.get(controlBinding)!.disabled"
         ></lux-button>
       </div>
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>

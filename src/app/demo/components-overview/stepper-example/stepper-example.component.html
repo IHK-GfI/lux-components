@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="Stepper"
-  exampleIconName="fas fa-chevron-circle-right"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90stepper"
 >
   <example-base-content>
@@ -17,7 +16,7 @@
       [luxEditedIconName]="editedIconName"
       [luxHorizontalStepAnimationActive]="horizontalAnimation"
       [luxVerticalStepper]="verticalStepper"
-      (luxFinishButtonClicked)="finishClicked($event)"
+      (luxFinishButtonClicked)="finishClicked()"
       (luxCurrentStepNumberChange)="stepNumberChanged($event)"
       (luxCheckValidation)="checkValidation($event)"
       (luxStepChanged)="stepChanged($event)"
@@ -27,6 +26,7 @@
       <ng-container *ngFor="let step of steps; let i = index">
         <lux-step
           [luxIconName]="step.iconName"
+          [luxIconSize]="step.iconSize"
           [luxOptional]="step.optional"
           [luxEditable]="step.editable"
           [luxCompleted]="step.completed"
@@ -44,7 +44,7 @@
         </lux-step>
       </ng-container>
 
-      <lux-step luxIconName="far fa-address-book" [luxStepControl]="newStepsForm1" *ngIf="newStepsVisible">
+      <lux-step luxIconName="lux-card" [luxStepControl]="newStepsForm1" *ngIf="newStepsVisible">
         <lux-step-header> Step #3 </lux-step-header>
         <lux-step-content [formGroup]="newStepsForm1">
           <h3>Adresse</h3>
@@ -66,7 +66,7 @@
         </lux-step-content>
       </lux-step>
 
-      <lux-step luxIconName="fas fa-money-check-alt" [luxStepControl]="newStepsForm2" *ngIf="newStepsVisible">
+      <lux-step luxIconName="lux-money-atm-card-1" [luxStepControl]="newStepsForm2" *ngIf="newStepsVisible">
         <lux-step-header> Step #4 </lux-step-header>
         <lux-step-content [formGroup]="newStepsForm2">
           <h3>Bankverbindung</h3>
@@ -84,7 +84,7 @@
       </lux-step>
 
       <!-- Abschluss-Step des Steppers -->
-      <lux-step luxIconName="fas fa-check">
+      <lux-step luxIconName="lux-interface-validation-check">
         <lux-step-header>
           Fin
         </lux-step-header>
@@ -228,9 +228,9 @@
           </lux-panel-content>
         </lux-panel>
       </lux-accordion>
-    
+
     <!-- Mögliche Konfigurationen für die Navigation-Buttons -->
-    
+
       <lux-toggle
         class="lux-highlight-section"
         luxLabel="luxShowNavigationButtons"
@@ -293,7 +293,7 @@
   </example-base-advanced-options>
 </example-base-structure>
 
-<!-- Template für die Wiederverwendung in der Navigaton-Button Konfiguration -->
+<!-- Template für die Wiederverwendung in der Navigation-Button Konfiguration -->
 <ng-template let-configurationObject #buttonConfigTemplate>
   <div class="lux-simple-form column">
     <lux-input
@@ -315,12 +315,5 @@
       [luxOptions]="['primary', 'accent', 'warn', 'none']"
     >
     </lux-select>
-    <lux-toggle
-      luxLabel="alignIconWithLabel"
-      luxHint="Dieser Flag ordnet Icon und Label auf einer Basislinie an."
-      [(luxChecked)]="configurationObject.alignIconWithLabel"
-      [luxNoTopLabel]="true"
-    >
-    </lux-toggle>
   </div>
 </ng-template>

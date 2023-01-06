@@ -1,7 +1,7 @@
 .baseline-row > * {
   box-sizing: border-box;
   display: flex;
-  min-width: 125px !important;
+  min-width: 150px !important;
 }
 
 .message-box {
@@ -11,6 +11,17 @@
   padding: 12px 24px;
   margin: 32px 0;
   max-width: fit-content;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px;
+  max-width: 1400px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 lux-card-content-expanded h4 {
@@ -23,17 +34,17 @@ lux-card-content-expanded h4 {
     ::ng-deep {
       .baseline lux-card-content, .baseline lux-card-content-expanded {
         
-        .lux-form-control {
-          background: yellow !important;
+        .lux-form-control-wrapper {
+          background: lightslategray !important;
         }
-        .lux-form-control-label {
-          background: green !important;
+        .lux-form-control-label-authentic {
+          background: lightgreen !important;
         }
-        .lux-form-control-container, .lux-form-control-borderless .lux-form-control-container {
-          background: blue !important;
+        .lux-form-control-container-authentic, .lux-form-control-borderless .lux-form-control-container-authentic {
+          background: skyblue !important;
         }
-        .lux-form-control-misc {
-          background: red !important;
+        .lux-form-control-misc-authentic {
+          background: pink !important;
         }
       }
     }

@@ -1,7 +1,8 @@
 import { SPACE } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
-import { DebugElement, Provider } from '@angular/core';
-import { ComponentFixture, getTestBed, TestBed, tick } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, NO_ERRORS_SCHEMA, Provider } from '@angular/core';
+import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -28,20 +29,20 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BrowserModule, By } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { LuxActionModule } from '../../lux-action/lux-action.module';
+import { LuxCommonModule } from '../../lux-common/lux-common.module';
+import { LuxComponentsConfigModule } from '../../lux-components-config/lux-components-config.module';
 import { LuxDirectivesModule } from '../../lux-directives/lux-directives.module';
+import { LuxErrorModule } from '../../lux-error/lux-error.module';
 import { LuxFormModule } from '../../lux-form/lux-form.module';
 import { LuxIconModule } from '../../lux-icon/lux-icon.module';
 import { LuxLayoutModule } from '../../lux-layout/lux-layout.module';
-import { LuxPipesModule } from '../../lux-pipes/lux-pipes.module';
 import { LuxLookupModule } from '../../lux-lookup/lux-lookup.module';
-import { RouterTestingModule } from '@angular/router/testing';
-import { LuxComponentsConfigModule } from '../../lux-components-config/lux-components-config.module';
-import { LuxErrorModule } from '../../lux-error/lux-error.module';
-import { LuxCommonModule } from '../../lux-common/lux-common.module';
+import { LuxPipesModule } from '../../lux-pipes/lux-pipes.module';
 import { LuxPopupsModule } from '../../lux-popups/lux-popups.module';
 
 export class LuxTestHelper {
@@ -98,7 +99,7 @@ export class LuxTestHelper {
     LuxPopupsModule,
     LuxComponentsConfigModule.forRoot({
       generateLuxTagIds: false,
-      displayLuxConsoleLogs: true,
+      displayLuxConsoleLogs: false,
       labelConfiguration: {
         allUppercase: true,
         notAppliedTo: []
@@ -142,7 +143,6 @@ export class LuxTestHelper {
    * Sendet ein Klick-Event ab und wartet dann.
    *
    * @param fixture
-   * @param DebugElement
    * @param debugElement
    */
   public static click(fixture: any, debugElement: DebugElement) {
@@ -151,20 +151,7 @@ export class LuxTestHelper {
   }
 
   /**
-   * Wichtig: aus fakeAsync-Block heraus aufrufen, da hier tick() genutzt wird.
-   * Sendet ein Change-Event ab und wartet dann.
-   *
-   * @param fixture
-   * @param DebugElement
-   * @param radioButton
-   */
-  public static radioButtonChange(fixture: any, radioButton: DebugElement) {
-    radioButton.nativeElement.dispatchEvent(LuxTestHelper.createFakeEvent('change'));
-    LuxTestHelper.wait(fixture);
-  }
-
-  /**
-   * Erstellt eine ComponentFixture fuer die mitgegebene Komponente, optional ist es moeglich
+   * Erstellt eine ComponentFixture für die mitgegebene Komponente, optional ist es möglich
    * weitere Provider und Declarations einzutragen. Diese werden dann im Testmodul eingetragen.
    *
    * @param component
@@ -226,7 +213,7 @@ export class LuxTestHelper {
   }
 
   /**
-   * Focuses an input and sets its value. Dispatches an fake input event afterwards.
+   * Focuses an input and sets its value. Dispatches a fake input event afterwards.
    *
    * @param element
    * @param value
@@ -243,7 +230,7 @@ export class LuxTestHelper {
   /** Steuerung und triggern von Overlays implementieren */
 
   /**
-   * Inserts data into an input field, that has to update asynchrounos before calling a callback-function
+   * Inserts data into an input field, that has to update asynchronous before calling a callback-function
    * Allows to use RxJs Interval-Timers within the Target-Components.
    *
    * @param text
@@ -251,7 +238,7 @@ export class LuxTestHelper {
    * @param element
    * @param callback
    */
-  public static typeInElementAsynch(text: string, fixture: ComponentFixture<any>, element: HTMLInputElement, callback) {
+  public static typeInElementAsync(text: string, fixture: ComponentFixture<any>, element: HTMLInputElement, callback: () => void) {
     fixture.whenStable().then(() => {
       LuxTestHelper.typeInElement(element, text);
       fixture.detectChanges();
@@ -291,7 +278,7 @@ export class LuxTestHelper {
       target: { get: () => target }
     });
 
-    // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
+    // IE won't set `defaultPrevented` on synthetic events, so we need to do it manually.
     event.preventDefault = function() {
       Object.defineProperty(event, 'defaultPrevented', { get: () => true });
       return originalPreventDefault.apply(this, arguments);
@@ -307,7 +294,7 @@ export class LuxTestHelper {
    * @param canBubble
    * @param cancelable
    */
-  public static createFakeEvent(type: string, canBubble = false, cancelable = true) {
+  public static createFakeEvent(type: string, canBubble = false, cancelable = true): Event {
     let event;
     if (typeof Event === 'function') {
       event = new Event(type);
@@ -319,24 +306,13 @@ export class LuxTestHelper {
     return event;
   }
 
-  /**
-   * Selektiert ein Element anhand der Query von dem Fixture
-   *
-   * @param fixture
-   * @param query
-   */
-  public static selectOneFromFixture(fixture: ComponentFixture<any>, query: string): DebugElement {
-    return fixture.debugElement.query(By.css(query));
-  }
+  public static createDropEvent(files: { name: string; type: string }[]): DragEvent {
+    const dataTransfer = new DataTransfer();
+    files.forEach((file) => {
+      dataTransfer.items.add(LuxTestHelper.createFileBrowserSafe(file.name, file.type));
+    })
 
-  /**
-   * Selektiert ein Array von Elementen anhand der Query von dem Fixture
-   *
-   * @param fixture
-   * @param query
-   */
-  public static selectAllFromFixture(fixture: ComponentFixture<any>, query: string): DebugElement[] {
-    return fixture.debugElement.queryAll(By.css(query));
+    return new DragEvent('drop', { dataTransfer })
   }
 
   /**
@@ -349,13 +325,18 @@ export class LuxTestHelper {
   public static configureTestModule(providers: Provider[] = [], declarations: any[] = [], imports: any[] = []) {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         ...LuxTestHelper.COMMON_ANGULAR_MODULES,
         ...LuxTestHelper.MATERIAL_MODULES,
         ...LuxTestHelper.LUX_MODULES,
         ...imports
       ],
       declarations: [...declarations],
-      providers: [...providers]
+      providers: [...providers],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+        NO_ERRORS_SCHEMA
+      ]
     });
 
     TestBed.compileComponents();
@@ -367,10 +348,7 @@ export class LuxTestHelper {
    * @param name
    * @param type
    */
-  public static createFileBrowserSafe(name, type) {
-    const file = new Blob([''], { type });
-    file['name'] = name;
-
-    return file as File;
+  public static createFileBrowserSafe(name: string, type: string) {
+    return new File([''], name, { type: type });
   }
 }

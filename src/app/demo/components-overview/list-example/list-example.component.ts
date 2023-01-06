@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LuxBadgeColors } from "../../../modules/lux-util/lux-colors.enum";
+import { LuxBadgeColors } from '../../../modules/lux-util/lux-colors.enum';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -8,23 +8,14 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
   styleUrls: ['./list-example.component.scss']
 })
 export class ListExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   showOutputEvents = false;
   log = logResult;
   items: any[] = [];
   colors = LuxBadgeColors;
-
-  // endregion
-
-  // region Properties der Component
-
   emptyLabel = 'Keine Daten!';
-  emptyIconName = 'fas fa-exclamation';
+  emptyIconName = 'lux-exclamation-mark';
   emptyIconSize = '5x';
   selectedPosition = 0;
-
-  // endregion
 
   constructor() {
     this.clear();
@@ -43,14 +34,14 @@ export class ListExampleComponent {
         subTitle: `Untertitel Item #${i + 1}`,
         lineBreak: false,
         selected: false,
-        iconName: 'fas fa-user'
+        iconName: 'lux-interface-user-single'
       });
     }
 
     this.items[0].selected = true;
   }
 
-  click($event) {
-    this.log(this.showOutputEvents, 'luxClicked', $event);
+  click(event: any) {
+    this.log(this.showOutputEvents, 'luxClicked', event);
   }
 }

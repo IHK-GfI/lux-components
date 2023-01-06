@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { LuxErrorService } from '../../../modules/lux-error/lux-error-page/lux-error-services/lux-error-service';
 import { LuxConsoleService } from '../../../modules/lux-util/lux-console.service';
 import { ILuxErrorPageConfig } from '../../../modules/lux-error/lux-error-page/lux-error-interfaces/lux-error-page-config.interface';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup} from '@angular/forms';
 import { ILuxError } from '../../../modules/lux-error/lux-error-page/lux-error-interfaces/lux-error.interface';
 import { LuxErrorStoreService } from '../../../modules/lux-error/lux-error-page/lux-error-services/lux-error-store.service';
 import { Subscription } from 'rxjs';
@@ -17,13 +17,13 @@ export class ErrorpageExampleComponent implements AfterViewInit, OnDestroy {
   errorPageConfig: ILuxErrorPageConfig;
   updateButtonDisabled = true;
   configForm: FormGroup;
-  subscription: Subscription;
+  subscription!: Subscription;
 
   constructor(private errorService: LuxErrorService, private errorStore: LuxErrorStoreService, private logger: LuxConsoleService) {
     this.errorPageConfig = this.errorStore.config;
     this.configForm = new FormGroup({});
     Object.keys(this.errorPageConfig).forEach((key: string) => {
-      this.configForm.setControl(key, new FormControl(this.errorPageConfig[key]));
+      this.configForm.setControl(key, new FormControl((this.errorPageConfig as any)[key]));
     });
   }
 

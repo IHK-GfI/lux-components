@@ -1,6 +1,5 @@
 <example-base-structure
   exampleTitle="HTTP-Error"
-  exampleIconName="fas fa-server"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90http%E2%80%90error"
 >
   <example-base-content>
@@ -12,7 +11,6 @@
         luxLabel="Fehler ausblenden"
         [luxRaised]="true"
         [luxDisabled]="(getErrorsObservable() | async) === null"
-        luxColor=""
         (luxClicked)="clearErrors()"
       >
       </lux-button>

@@ -1,6 +1,16 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { emptyErrorCallback, exampleErrorCallback } from '../../example-base/example-base-util/example-base-helper';
+
+interface CheckboxDummyForm {
+  checkboxExample: FormControl<boolean | null>;
+}
+
+interface CheckboxAgbDummyForm {
+  checkbox1: FormControl<boolean>;
+  checkbox2: FormControl<boolean>;
+  checkbox3: FormControl<boolean>;
+}
 
 @Component({
   selector: 'lux-checkbox-example',
@@ -8,60 +18,51 @@ import { exampleErrorCallback } from '../../example-base/example-base-util/examp
   styleUrls: ['./checkbox-example.component.scss']
 })
 export class CheckboxExampleComponent {
-  // region Helper-Properties für das Beispiel
-
   useErrorMessage = true;
-  form: FormGroup;
-  agb: FormGroup;
+  form: FormGroup<CheckboxDummyForm>;
+  agb: FormGroup<CheckboxAgbDummyForm>;
   exampleText = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-  // endregion
-
-  // region Properties der Component
-
-  value;
+  value = false;
   controlBinding = 'checkboxExample';
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
   disabled = false;
-  readonly: boolean;
-  required: boolean;
+  readonly = false;
+  required = false;
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
+  emptyCallback = emptyErrorCallback;
 
-  // endregion
-
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      checkboxExample: []
+  constructor() {
+    this.form = new FormGroup<CheckboxDummyForm>({
+      checkboxExample: new FormControl<boolean | null>(null)
     });
-    this.agb = this.fb.group({
-      checkbox1: [ '', Validators.requiredTrue ],
-      checkbox2: [ '', Validators.requiredTrue ],
-      checkbox3: [ '', Validators.requiredTrue ]
+    this.agb = new FormGroup<CheckboxAgbDummyForm>({
+      checkbox1: new FormControl<boolean>(false, {validators: Validators.required, nonNullable: true}),
+      checkbox2: new FormControl<boolean>(false, {validators: Validators.required, nonNullable: true}),
+      checkbox3: new FormControl<boolean>(false, {validators: Validators.required, nonNullable: true}),
     });
   }
 
-  changeRequired($event: boolean) {
-    this.required = $event;
-    if ($event) {
-      this.form.get(this.controlBinding).setValidators(Validators.requiredTrue);
+  changeRequired(required: boolean) {
+    this.required = required;
+    if (required) {
+      this.form.get(this.controlBinding)!.setValidators(Validators.requiredTrue);
     } else {
-      this.form.get(this.controlBinding).setValidators(null);
+      this.form.get(this.controlBinding)!.setValidators(null);
     }
-    this.form.get(this.controlBinding).updateValueAndValidity();
+    this.form.get(this.controlBinding)!.updateValueAndValidity();
   }
 
-  emptyCallback() {}
-
-  exampleValidator($event: boolean) {
+  exampleValidator(showError: boolean) {
     Object.keys(this.agb.controls).forEach((key) => {
-      if ($event) {
-        this.agb.get(key).markAsTouched();
+      if (showError) {
+        this.agb.get(key)!.markAsTouched();
       } else {
-        this.agb.get(key).markAsUntouched();
+        this.agb.get(key)!.markAsUntouched();
       }
-      this.agb.get(key).updateValueAndValidity();
+      this.agb.get(key)!.updateValueAndValidity();
     });
   }
 }

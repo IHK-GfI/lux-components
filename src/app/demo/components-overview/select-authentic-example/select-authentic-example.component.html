@@ -1,0 +1,298 @@
+<example-base-structure
+  exampleTitle="Select-Authentic"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90select"
+>
+  <example-base-content>
+    <div fxLayout="column">
+      <h3>Beispiel ohne Reactive-Form</h3>
+      <lux-select-ac
+        [luxOptionLabelProp]="useTemplatesForLabels ? undefined : 'label'"
+        [luxOptions]="useSimpleArray ? optionsPrimitive : options"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
+        [(luxDisabled)]="disabled"
+        [luxRequired]="required"
+        [luxReadonly]="readonly"
+        [luxPlaceholder]="placeholder"
+        [luxMultiple]="false"
+        [luxPickValue]="useValueFn ? pickValueFn : undefined"
+        [(luxSelected)]="value"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxCompareWith]="useCompareWithFn ? compareWithFn : defaultCompareWith"
+        [luxLabelLongFormat]="labelLongFormat"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxSelectedChange)="log(showOutputEvents, 'luxSelectedChange', $event)"
+        #defaultSelectComp
+      >
+        <ng-template let-item>via Template {{ item | json }}</ng-template>
+      </lux-select-ac>
+      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px">
+        <span fxFlex="0 0 auto">Wert:</span>
+        <span fxFlex="auto">{{ value | json }}</span>
+      </div>
+    </div>
+    <div fxLayout="column">
+      <h3>Beispiel mit Multiselect (ohne Reactive-Form)</h3>
+      <lux-select-ac
+        [luxOptionLabelProp]="useTemplatesForLabels ? undefined : 'label'"
+        [luxOptions]="useSimpleArray ? optionsPrimitive : options"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
+        [(luxDisabled)]="disabled"
+        [luxRequired]="required"
+        [luxReadonly]="readonly"
+        [luxPlaceholder]="placeholder"
+        [luxMultiple]="true"
+        [luxPickValue]="useValueFn ? pickValueFn : undefined"
+        [(luxSelected)]="multiselectValue"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxCompareWith]="useCompareWithFn ? compareWithFn : defaultCompareWith"
+        [luxLabelLongFormat]="labelLongFormat"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        #multiselectComp
+      >
+        <ng-template let-item>via Template {{ item | json }}</ng-template>
+      </lux-select-ac>
+
+      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px">
+        <span fxFlex="0 0 auto">Wert:</span>
+        <span fxFlex="auto">{{ multiselectValue | json }}</span>
+      </div>
+    </div>
+    <div fxLayout="column" [formGroup]="form">
+      <h3>Beispiel in Reactive-Form</h3>
+      <lux-select-ac
+        [luxOptionLabelProp]="useTemplatesForLabels ? undefined : 'label'"
+        [luxOptions]="useSimpleArray ? optionsPrimitive : options"
+        [luxControlBinding]="controlBinding"
+        [luxLabel]="label"
+        [luxHint]="hint"
+        [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
+        [(luxDisabled)]="disabled"
+        [luxReadonly]="readonly"
+        [luxPlaceholder]="placeholder"
+        [luxMultiple]="false"
+        [luxPickValue]="useValueFn ? pickValueFn : undefined"
+        [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
+        [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
+        [luxCompareWith]="useCompareWithFn ? compareWithFn : defaultCompareWith"
+        [luxLabelLongFormat]="labelLongFormat"
+        (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
+        (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
+        (luxSelectedChange)="log(showOutputEvents, 'luxSelectedChange', $event)"
+        #reactiveSelectComp
+      >
+        <ng-template let-item>via Template {{ item | json }}</ng-template>
+      </lux-select-ac>
+      <div fxLayout="column" class="lux-highlight-section">
+        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+          <span fxFlex="35px">Wert:</span>
+          <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
+          <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
+            <span fxFlex="35px">Valid:</span>
+            <span fxFlex="30px">{{ form.valid }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Dirty:</span>
+            <span fxFlex="30px">{{ form.dirty }}</span>
+          </div>
+          <div fxFlex="30" fxLayout="row">
+            <span fxFlex="0 0 auto">Touched:</span>
+            <span fxFlex="30px">{{ form.touched }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
+    </lux-toggle>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <lux-input
+      class="lux-highlight-section"
+      luxName="select_luxLabel"
+      luxLabel="luxLabel"
+      luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
+      [(luxValue)]="label"
+    >
+    </lux-input>
+    <div class="lux-highlight-section column">
+      <lux-input
+        luxName="select_luxHint"
+        luxLabel="luxHint"
+        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+        [(luxValue)]="hint"
+      >
+      </lux-input>
+      <lux-toggle
+        luxLabel="luxHintShowOnlyOnFocus"
+        luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+        [(luxChecked)]="hintShowOnlyOnFocus"
+        [luxNoTopLabel]="true"
+      ></lux-toggle>
+    </div>
+    <lux-input
+      class="lux-highlight-section"
+      luxName="select_luxPlaceholder"
+      luxLabel="luxPlaceholder"
+      luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
+      [(luxValue)]="placeholder"
+    >
+    </lux-input>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="disabled"
+      luxLabel="luxDisabled"
+      luxHint="Erlaubt es, die Component zu deaktivieren."
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle>
+    <div class="lux-highlight-section column">
+      <div fxLayout="row wrap" fxLayoutGap="16px">
+        <lux-button
+          luxLabel="Enable"
+          luxColor="primary"
+          (luxClicked)="form.get(controlBinding)!.enable()"
+          [luxDisabled]="!form.get(controlBinding)!.disabled"
+        ></lux-button>
+        <lux-button
+          luxLabel="Disable"
+          luxColor="primary"
+          (luxClicked)="form.get(controlBinding)!.disable()"
+          [luxDisabled]="form.get(controlBinding)!.disabled"
+        ></lux-button>
+      </div>
+      <div class="lux-hint lux-mt-3">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
+    </div>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="readonly"
+      luxLabel="luxReadonly"
+      luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="luxRequired"
+      (luxCheckedChange)="changeRequired($event)"
+      [luxNoTopLabel]="true"
+    >
+      <lux-form-hint>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
+        Reactive-Form sind.<br />
+        <b
+          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
+          Form-Control gesetzt.</b
+        >
+      </lux-form-hint>
+    </lux-toggle>
+  </example-base-simple-options>
+  <example-base-advanced-options>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="useSimpleArray"
+      luxLabel="String-Array nutzen"
+      (luxCheckedChange)="changeUseSimpleArray($event)"
+      [luxNoTopLabel]="true"
+    >
+      <lux-form-hint>
+        Für die Beispiele einfache String-Arrays anstelle von Arrays mit Objekten nutzen.
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="useValueFn"
+      luxLabel="pickValue-Funktion nutzen"
+      (luxCheckedChange)="changeUseValueFn($event)"
+      [luxNoTopLabel]="true"
+    >
+      <lux-form-hint>
+        Anstelle der Objekte ist es über eine pickValue-Funktion auch möglich, nur mit einzelnen Properties zu arbeiten.
+        <div class="lux-mt-2">
+          <b>{{ pickValueFn }}</b>
+        </div>
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="useCompareWithFn"
+      luxLabel="compareWith-Funktion nutzen"
+      (luxCheckedChange)="changeCompareWithFn($event)"
+      [luxNoTopLabel]="true"
+    >
+      <lux-form-hint>
+        Mithilfe der compareWith-Funktion ist es möglich ganze Objekte an die Radio-Component zu übergeben, aber dennoch
+        gezielt einzelne Properties zum Vergleichen heranzuziehen.
+        <div class="lux-mt-2">
+          <b>{{ compareWithFnString }}</b>
+        </div>
+      </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="useTemplatesForLabels"
+      luxLabel="Labels via Templates"
+      [luxNoTopLabel]="true"
+    >
+      <lux-form-hint>
+        Die Labels können über in die Component eingereichte Template-Tags erstellt werden.
+      </lux-form-hint>
+    </lux-toggle>
+    <div class="lux-highlight-section column">
+      <lux-toggle
+        luxLabel="luxErrorMessage verwenden"
+        luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
+        [(luxChecked)]="useErrorMessage"
+        [luxNoTopLabel]="true"
+      >
+      </lux-toggle>
+      <lux-input
+        luxName="select_luxErrorMessage"
+        luxLabel="luxErrorMessage"
+        luxHint="Über diese Property lässt sich eine feste Fehlermeldung
+                 (unabhängig vom speziellen Validierungsfehler) einstellen."
+        [(luxValue)]="errorMessage"
+        [luxNoTopLabel]="true"
+        *ngIf="useErrorMessage"
+      >
+      </lux-input>
+      <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
+    </div>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
+      luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
+      [luxNoTopLabel]="true"
+      [(luxChecked)]="labelLongFormat"
+    >
+    </lux-toggle>
+  </example-base-advanced-options>
+  <example-base-options-actions>
+    <div fxLayout="row wrap" fxLayoutGap="16px">
+      <lux-button
+        [luxRaised]="true"
+        luxLabel="Werte resetten"
+        (luxClicked)="reset(defaultSelectComp, multiselectComp, reactiveSelectComp)"
+        fxFlex="0 0 auto"
+      >
+      </lux-button>
+      <lux-button
+        [luxRaised]="true"
+        luxLabel="Fehler anzeigen"
+        luxColor="primary"
+        (luxClicked)="showErrors(defaultSelectComp, multiselectComp, reactiveSelectComp)"
+        fxFlex="0 0 auto"
+      >
+      </lux-button>
+    </div>
+  </example-base-options-actions>
+</example-base-structure>

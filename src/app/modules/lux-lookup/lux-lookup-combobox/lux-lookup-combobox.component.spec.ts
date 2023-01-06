@@ -2,6 +2,7 @@
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed } from '@angular/core/testing';
 
 import { Component } from '@angular/core';
+import { ValidatorFnType } from '../../lux-form/lux-form-model/lux-form-component-base.class';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { Validators } from '@angular/forms';
@@ -9,7 +10,7 @@ import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handle
 import { LuxLookupComboboxComponent } from './lux-lookup-combobox.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
-import { LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
+import { LuxFieldValues, LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
 import { Observable, of } from 'rxjs';
 import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
 
@@ -36,8 +37,8 @@ describe('LuxLookupComboboxComponent', () => {
     it('Validatoren setzen und korrekte Fehlermeldung anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
       let errorEl = fixture.debugElement.query(By.css('mat-error'));
-      expect(errorEl).toBeNull(`Vorbedingung 1`);
-      expect(combobox.formControl.valid).toBeTruthy(`Vorbedingung 2`);
+      expect(errorEl).toBeNull();
+      expect(combobox.formControl.valid).toBeTruthy();
 
       // Änderungen durchführen
       component.validators = Validators.compose([Validators.required]);
@@ -48,9 +49,9 @@ describe('LuxLookupComboboxComponent', () => {
 
       // Nachbedingungen testen
       errorEl = fixture.debugElement.query(By.css('mat-error'));
-      expect(errorEl).toBeTruthy(`Nachbedingung 1`);
-      expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld', `Nachbedingung 1`);
-      expect(combobox.formControl.valid).toBeFalsy(`Nachbedingung 2`);
+      expect(errorEl).toBeTruthy();
+      expect(errorEl.nativeElement.innerText.trim()).toEqual('* Pflichtfeld');
+      expect(combobox.formControl.valid).toBeFalsy();
 
       discardPeriodicTasks();
     }));
@@ -67,8 +68,8 @@ describe('LuxLookupComboboxComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      expect(combobox.luxValue).not.toEqual(null);
-      expect(component.value).not.toEqual(null);
+      expect(combobox.luxValue).not.toBeNull();
+      expect(component.value).not.toBeNull();
     }));
   });
 });
@@ -79,15 +80,20 @@ describe('LuxLookupComboboxComponent', () => {
       [luxControlValidators]="validators"
       [(luxValue)]="value"
       luxLookupId="test"
+      [luxParameters]="params"
       [luxLabel]="'Label'"
       [luxRequired]="required"
     ></lux-lookup-combobox>
   `
 })
 class LuxNoFormComponent {
-  validators;
-  value;
-  required;
+  params = new LuxLookupParameters({
+    knr: 101,
+    fields: [LuxFieldValues.kurz, LuxFieldValues.lang1, LuxFieldValues.lang2]
+  });
+  validators?: ValidatorFnType;
+  value?: any;
+  required?: boolean;
 }
 
 class MockLookupService {

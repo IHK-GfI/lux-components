@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from "@angular/router";
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
 import { LuxAppFooterButtonService } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { ILuxStepperButtonConfig } from '../../../modules/lux-layout/lux-stepper/lux-stepper-model/lux-stepper-button-config.interface';
@@ -9,104 +10,102 @@ import { LuxStepperComponent } from '../../../modules/lux-layout/lux-stepper/lux
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
+interface StepperDummyForm {
+  control1: FormControl<string>;
+  control2: FormControl<string>;
+}
+
+interface StepperForm1DummyForm {
+  street: FormControl<string>;
+  number: FormControl<string>;
+  city: FormControl<string>;
+}
+
+interface StepperForm2DummyForm {
+  iban: FormControl<string>;
+  bic: FormControl<string | null>;
+}
+
 @Component({
   selector: 'app-stepper-example',
   templateUrl: './stepper-example.component.html',
   styleUrls: ['./stepper-example.component.scss']
 })
-export class StepperExampleComponent implements OnInit, OnDestroy {
-  @ViewChild(LuxStepperComponent, { static: true }) stepperComponent: LuxStepperComponent;
-
-  // region Helper-Properties für das Beispiel
-
+export class StepperExampleComponent implements OnDestroy {
+  @ViewChild(LuxStepperComponent, { static: true }) stepperComponent!: LuxStepperComponent;
   newStepsVisible = false;
-  newStepsForm1: FormGroup;
-  newStepsForm2: FormGroup;
-
+  newStepsForm1: FormGroup<StepperForm1DummyForm>
+  newStepsForm2: FormGroup<StepperForm2DummyForm>
   showOutputEvents = false;
   useCustomButtonConfig = false;
   log = logResult;
-
   steps: any[] = [
     {
-      iconName: 'fas fa-bookmark',
-      iconSize: '2x',
+      iconName: 'lux-interface-bookmark',
+      iconSize: '1x',
       optional: false,
       editable: true,
       completed: false,
       useStepControl: true,
-      stepControl: new FormGroup({
-        control1: new FormControl('', Validators.required),
-        control2: new FormControl('', Validators.compose([Validators.minLength(5), Validators.required]))
+      stepControl: new FormGroup<StepperDummyForm>({
+        control1: new FormControl<string>('', { validators: Validators.required, nonNullable: true}),
+        control2: new FormControl<string>('', { validators: Validators.compose([Validators.minLength(5), Validators.required]), nonNullable: true}),
       }),
       hide: false
     },
     {
-      iconName: 'fas fa-user',
-      iconSize: '2x',
+      iconName: 'lux-interface-user-single',
+      iconSize: '1x',
       optional: false,
       editable: true,
       completed: false,
       useStepControl: true,
-      stepControl: new FormGroup({
-        control1: new FormControl('', Validators.required),
-        control2: new FormControl('', Validators.compose([Validators.minLength(5), Validators.required]))
+      stepControl: new FormGroup<StepperDummyForm>({
+        control1: new FormControl<string>('', { validators: Validators.required, nonNullable: true}),
+        control2: new FormControl<string>('', { validators: Validators.compose([Validators.minLength(5), Validators.required]), nonNullable: true}),
       }),
       hide: false
     }
   ];
-
-  // endregion
-
-  // region Properties der Component
-
   previousButtonConfig: ILuxStepperButtonConfig = {
     label: '',
-    iconName: 'fa-arrow-left',
+    iconName: 'lux-interface-arrows-left',
     color: 'primary'
   };
-
   nextButtonConfig: ILuxStepperButtonConfig = {
     label: '',
-    iconName: 'fa-arrow-right',
+    iconName: 'lux-interface-arrows-right',
     color: 'primary'
   };
-
   finishButtonConfig: ILuxStepperButtonConfig = {
     label: '',
-    iconName: 'fa-check',
+    iconName: 'lux-interface-validation-check',
     color: 'primary'
   };
-
   disabled = false;
   showNavigationButtons = true;
   linear = true;
   useCustomIcons = false;
   currentStepNumber = 0;
-  editedIconName = 'fas fa-pencil-alt';
+  editedIconName = 'lux-interface-edit-pencil';
   horizontalAnimation = false;
   verticalStepper = false;
-
-  // endregion
 
   constructor(
     private stepperService: LuxStepperHelperService,
     private buttonService: LuxAppFooterButtonService,
     private snackbar: LuxSnackbarService,
-    private fb: FormBuilder,
     private router: Router
-  ) {}
-
-  ngOnInit() {
-    this.newStepsForm1 = this.fb.group({
-      street: ['', Validators.required],
-      number: ['', Validators.required],
-      city: ['', Validators.required]
+  ) {
+    this.newStepsForm1 = new FormGroup<StepperForm1DummyForm>({
+      street: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
+      number: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
+      city: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
     });
 
-    this.newStepsForm2 = this.fb.group({
-      iban: ['', Validators.required],
-      bic: ['']
+    this.newStepsForm2 = new FormGroup<StepperForm2DummyForm>({
+      iban: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
+      bic: new FormControl<string | null>(null)
     });
   }
 
@@ -118,16 +117,14 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
   /**
    * Loggt das luxFinishButtonClicked-Event und gibt eine Snackbar-Mitteilung aus.
    * Anschließend wird der aktuelle Step wieder auf 0 gesetzt und die Forms resettet.
-   *
-   * @param $event
    */
-  finishClicked($event) {
-    this.log(this.showOutputEvents, 'luxFinishButtonClicked', $event);
+  finishClicked() {
+    this.log(this.showOutputEvents, 'luxFinishButtonClicked');
 
     const snackbarDuration = 5000;
 
     this.snackbar.open(snackbarDuration, {
-      iconName: 'fas fa-info',
+      iconName: 'lux-info',
       iconSize: '2x',
       iconColor: 'green',
       text: 'Stepper erfolgreich abgeschlossen!'
@@ -144,31 +141,31 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
   /**
    * Loggt das luxCurrentStepNumberChange-Event.
    *
-   * @param $event
+   * @param event
    */
-  stepNumberChanged($event) {
-    this.log(this.showOutputEvents, 'luxCurrentStepNumberChange', $event);
+  stepNumberChanged(event: number) {
+    this.log(this.showOutputEvents, 'luxCurrentStepNumberChange', event);
   }
 
   /**
-   * Loggt das luxStepChanged-Event und aktualisiert die CurrentStepNumber sowie die Footer-Button Zustände.
+   * Loggt das luxStepChanged-Event und aktualisiert die CurrentStepNumber sowie die Footer-Button-Zustände.
    *
-   * @param $event
+   * @param event
    */
-  stepChanged($event) {
-    this.log(this.showOutputEvents, 'luxStepChanged', $event);
-    if (this.currentStepNumber !== $event.selectedIndex) {
-      this.currentStepNumber = $event.selectedIndex;
+  stepChanged(event: StepperSelectionEvent) {
+    this.log(this.showOutputEvents, 'luxStepChanged', event);
+    if (this.currentStepNumber !== event.selectedIndex) {
+      this.currentStepNumber = event.selectedIndex;
     }
     this.updateFooterButtonStates();
   }
 
-  stepClicked($event) {
-    this.log(this.showOutputEvents, `luxStepClicked`, $event);
+  stepClicked(index: number) {
+    this.log(this.showOutputEvents, `luxStepClicked`, index);
   }
 
-  checkValidation($event) {
-    this.log(this.showOutputEvents, `luxCheckValidation`, $event);
+  checkValidation(index: number) {
+    this.log(this.showOutputEvents, `luxCheckValidation`, index);
   }
 
   /**
@@ -179,32 +176,31 @@ export class StepperExampleComponent implements OnInit, OnDestroy {
       return;
     }
     if (this.currentStepNumber === 0) {
-      this.buttonService.getButtonInfoByCMD('previous').disabled = true;
-      this.buttonService.getButtonInfoByCMD('next').disabled = false;
-      this.buttonService.getButtonInfoByCMD('finish').disabled = true;
+      this.buttonService.getButtonInfoByCMD('previous')!.disabled = true;
+      this.buttonService.getButtonInfoByCMD('next')!.disabled = false;
+      this.buttonService.getButtonInfoByCMD('finish')!.disabled = true;
     } else if (this.currentStepNumber === this.steps.length) {
-      this.buttonService.getButtonInfoByCMD('previous').disabled = false;
-      this.buttonService.getButtonInfoByCMD('next').disabled = true;
-      this.buttonService.getButtonInfoByCMD('finish').disabled = false;
+      this.buttonService.getButtonInfoByCMD('previous')!.disabled = false;
+      this.buttonService.getButtonInfoByCMD('next')!.disabled = true;
+      this.buttonService.getButtonInfoByCMD('finish')!.disabled = false;
     } else {
-      this.buttonService.getButtonInfoByCMD('previous').disabled = false;
-      this.buttonService.getButtonInfoByCMD('next').disabled = false;
-      this.buttonService.getButtonInfoByCMD('finish').disabled = true;
+      this.buttonService.getButtonInfoByCMD('previous')!.disabled = false;
+      this.buttonService.getButtonInfoByCMD('next')!.disabled = false;
+      this.buttonService.getButtonInfoByCMD('finish')!.disabled = true;
     }
   }
 
   /**
    * Aktualisiert die Footer-Buttons passend zum aktuellen Step (wenn Footer-Buttons überhaupt dargestellt werden sollen).
    *
-   * @param $event
+   * @param showNavigationButtons
    */
-  updateNavigationButtons($event: boolean) {
+  updateNavigationButtons(showNavigationButtons: boolean) {
     this.clearButtonInfos();
-    if (!$event) {
+    if (!showNavigationButtons) {
       this.buttonService.pushButtonInfos(
         LuxAppFooterButtonInfo.generateInfo({
           cmd: 'previous',
-          color: '',
           label: 'Vorheriger Step',
           raised: true,
           alwaysVisible: false,

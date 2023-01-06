@@ -1,5 +1,3 @@
-@import '~@ihk-gfi/lux-components-theme/src/public/global';
-
 .lux-dialog {
   // Das Element kann fokussiert werden, das muss aber nicht zwingend mit der Outline gezeigt werden
   outline-width: 0;
@@ -15,6 +13,20 @@
   .lux-dialog-actions {
     margin: 20px 0 0 0;
   }
+
+  .lux-icon-close {
+    margin: -15px -15px 0 0;
+    width: 24px;
+    height: 24px;
+    font-size: 1em;
+  }
+
+  .lux-dialog-icon ::ng-deep {
+    mat-icon.mat-icon.lux-material-icon {
+      height: unset;
+      width: unset;
+    }
+  }
 }
 
 @mixin small-dialog {
@@ -26,8 +38,13 @@
     margin-bottom: 8px;
   }
 
-  .lux-dialog .lux-dialog-actions {
-    margin: 8px 0 0 0;
+  .lux-dialog {
+    .lux-dialog-actions {
+      margin: 8px 0 0 0;
+    }
+    .lux-icon-close {
+      margin: -5px -5px 0 0
+    }
   }
 }
 

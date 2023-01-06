@@ -9,12 +9,12 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-toggle.component.html',
   styleUrls: ['./lux-toggle.component.scss']
 })
-export class LuxToggleComponent extends LuxFormCheckableBaseClass implements OnInit {
-  
+export class LuxToggleComponent<T = boolean> extends LuxFormCheckableBaseClass<T> implements OnInit {
+
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
-  
+
   constructor(
     @Optional() controlContainer: ControlContainer,
     cdr: ChangeDetectorRef,

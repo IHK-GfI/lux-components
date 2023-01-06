@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+// noinspection DuplicatedCode
+
 import { Component } from '@angular/core';
 import { waitForAsync, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -25,34 +27,30 @@ describe('LuxAriaExpandedDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-expanded in den HTML-Button rendern', fakeAsync(() => {
+    it('Sollte aria-expanded in den HTML-Button rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toBeNull();
 
       // Aria-expanded setzen
-      let ariaExpanded = true;
+      let ariaExpanded: boolean | undefined = true;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual(
-        ariaExpanded.toString()
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual('true');
 
       // Aria-expanded aktualisieren
       ariaExpanded = false;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual(
-        ariaExpanded.toString()
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual('false');
 
       // Aria-expanded entfernen
-      ariaExpanded = null;
+      ariaExpanded = undefined;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toBeNull();
-    }));
+    });
   });
 
   describe('ohne Selector', () => {
@@ -65,34 +63,30 @@ describe('LuxAriaExpandedDirective', () => {
       fixture.detectChanges();
     }));
 
-    it('Sollte aria-expanded in den LUX-BUTTON rendern', fakeAsync(() => {
+    it('Sollte aria-expanded in den LUX-BUTTON rendern', () => {
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toBeNull();
 
       // Aria-expanded setzen
-      let ariaExpanded = true;
+      let ariaExpanded: boolean | undefined = true;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual(
-        ariaExpanded.toString()
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual('true');
 
       // Aria-expanded aktualisieren
       ariaExpanded = false;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual(
-        ariaExpanded.toString()
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toEqual('false');
 
       // Aria-expanded entfernen
-      ariaExpanded = null;
+      ariaExpanded = undefined;
       component.ariaExpanded = ariaExpanded;
       fixture.detectChanges();
 
       expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-expanded')).toBeNull();
-    }));
+    });
   });
 });
 
@@ -107,7 +101,7 @@ describe('LuxAriaExpandedDirective', () => {
   `
 })
 class LuxWithSelectorComponent {
-  ariaExpanded;
+  ariaExpanded?: boolean | undefined;
 }
 
 @Component({
@@ -117,5 +111,5 @@ class LuxWithSelectorComponent {
   `
 })
 class LuxWithoutSelectorComponent {
-  ariaExpanded;
+  ariaExpanded?: boolean | undefined;
 }

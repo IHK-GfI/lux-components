@@ -5,16 +5,16 @@ import { LuxAriaBase } from './lux-aria-base';
   selector: '[luxAriaHasPopup]'
 })
 export class LuxAriaHaspopupDirective extends LuxAriaBase<boolean> {
-  _luxAriaHasPopup: boolean;
+  _luxAriaHasPopup?: boolean | undefined;
 
-  @Input() luxAriaHasPopupSelector: string;
+  @Input() luxAriaHasPopupSelector?: string;
 
   @Input()
   get luxAriaHasPopup() {
     return this._luxAriaHasPopup;
   }
 
-  set luxAriaHasPopup(hasPopup: boolean) {
+  set luxAriaHasPopup(hasPopup: boolean | undefined) {
     this._luxAriaHasPopup = hasPopup;
 
     this.renderAria();
@@ -33,11 +33,11 @@ export class LuxAriaHaspopupDirective extends LuxAriaBase<boolean> {
     }
   }
 
-  getSelector(): string {
+  getSelector(): string | undefined {
     return this.luxAriaHasPopupSelector;
   }
 
-  getValue(): boolean {
+  getValue(): boolean | undefined {
     return this._luxAriaHasPopup;
   }
 }

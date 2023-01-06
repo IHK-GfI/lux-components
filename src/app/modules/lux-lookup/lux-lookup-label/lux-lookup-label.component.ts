@@ -14,16 +14,16 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
   lookupService: LuxLookupService;
   lookupHandler: LuxLookupHandlerService;
   logger: LuxConsoleService;
-  lookupParameters: LuxLookupParameters;
-  entry: LuxLookupTableEntry;
+  lookupParameters?: LuxLookupParameters;
+  entry?: LuxLookupTableEntry;
   subscriptions: Subscription[] = [];
 
   init = false;
-  _luxTableKey: string;
-  _luxTableNo: string;
+  _luxTableKey!: string;
+  _luxTableNo!: string;
 
-  @Input() luxLookupKnr: number;
-  @Input() luxLookupId: string;
+  @Input() luxLookupKnr!: number;
+  @Input() luxLookupId!: string;
   @Input() luxLookupUrl = '/lookup/';
   @Input() luxBezeichnung = 'kurz';
 
@@ -68,20 +68,26 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if (!this.luxLookupKnr) {
+      throw Error(
+        `The lookup label with the table number ${this.luxLookupKnr} has no LookupKnr.`
+      );
+    }
+
     if (!this.luxLookupId) {
-      console.error(
+      throw Error(
         `The lookup label with the table number ${this.luxTableNo} has no LookupId.`
       );
     }
 
     if (!this.luxTableNo) {
-      console.error(
+      throw Error(
         `The lookup label with the LookupId ${this.luxLookupId} has no table number`
       );
     }
 
     if (!this.luxTableKey) {
-      console.error(
+      throw Error(
         `The lookup label with the table number ${this.luxTableNo} has no table key`
       );
     }
@@ -89,7 +95,13 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
     this.fetchLookupData();
 
     this.lookupHandler.addLookupElement(this.luxLookupId);
-    this.subscriptions.push(this.lookupHandler.getLookupElementObsv(this.luxLookupId).subscribe(() => {
+
+    const lookupElementObs = this.lookupHandler.getLookupElementObsv(this.luxLookupId);
+    if (!lookupElementObs) {
+      throw Error(`Observable "${this.luxLookupId}" not found."`);
+    }
+
+    this.subscriptions.push(lookupElementObs.subscribe(() => {
       this.fetchLookupData();
     }));
 
@@ -120,7 +132,7 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
    * @returns string
    */
   getBezeichnung(): string {
-    let bezeichnung = '';
+    let bezeichnung;
 
     if (this.entry) {
       if ('kurz' === this.luxBezeichnung) {
@@ -134,6 +146,6 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
       }
     }
 
-    return bezeichnung;
+    return bezeichnung ?? '';
   }
 }

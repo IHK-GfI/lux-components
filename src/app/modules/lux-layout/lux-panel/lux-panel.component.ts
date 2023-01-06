@@ -2,10 +2,8 @@ import {
   AfterViewInit,
   Component,
   EventEmitter,
-  forwardRef,
   Host,
   HostBinding,
-  Inject,
   Input,
   OnDestroy,
   OnInit,
@@ -15,6 +13,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
+import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxAccordionComponent } from '../lux-accordion/lux-accordion.component';
 import { Subscription } from 'rxjs';
 
@@ -24,23 +23,20 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./lux-panel.component.scss']
 })
 export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input() luxDisabled: boolean;
+  @Input() luxDisabled = false;
   @Input() luxExpanded = false;
-  @Input() luxHideToggle: boolean;
+  @Input() luxHideToggle = false;
 
-  @Input() luxCollapsedHeaderHeight: string;
-  @Input() luxExpandedHeaderHeight: string;
+  @Input() luxCollapsedHeaderHeight?: string;
+  @Input() luxExpandedHeaderHeight?: string;
 
-  @Output() luxOpened = new EventEmitter<any>();
-  @Output() luxClosed = new EventEmitter<any>();
-  @Output() luxExpandedChange: EventEmitter<boolean> = new EventEmitter();
+  @Output() luxOpened = new EventEmitter<void>();
+  @Output() luxClosed = new EventEmitter<void>();
+  @Output() luxExpandedChange = new EventEmitter<boolean>();
 
-  @ViewChild(MatExpansionPanel, { static: true }) matExpansionPanel: MatExpansionPanel;
+  @ViewChild(MatExpansionPanel, { static: true }) matExpansionPanel!: MatExpansionPanel;
 
-  @HostBinding('class.lux-pr-1') pr1 = true;
-  @HostBinding('class.lux-pl-1') pl1 = true;
-
-  subscription: Subscription;
+  subscription?: Subscription;
 
   constructor(@Optional() @Host() @SkipSelf() private parent: LuxAccordionComponent) {}
 
@@ -76,6 +72,8 @@ export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    LuxUtil.assertNonNull('matExpansionPanel', this.matExpansionPanel);
+
     if (this.parent) {
       // Diese Zeile wird benötigt, damit der Multi-Mode (nur ein Abschnitt darf geöffnet sein)
       // des Accordions funktioniert. Die Zuweisung des übergeordneten Accordions an dieses Panel
@@ -88,19 +86,19 @@ export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.parent) {
+    if (this.parent && this.subscription) {
       this.subscription.unsubscribe();
     }
   }
 
-  onOpened(eventValue) {
-    this.luxOpened.emit(eventValue);
+  onOpened() {
+    this.luxOpened.emit();
     this.luxExpanded = true;
     this.luxExpandedChange.emit(this.luxExpanded);
   }
 
-  onClosed(eventValue) {
-    this.luxClosed.emit(eventValue);
+  onClosed() {
+    this.luxClosed.emit();
     this.luxExpanded = false;
     this.luxExpandedChange.emit(this.luxExpanded);
   }

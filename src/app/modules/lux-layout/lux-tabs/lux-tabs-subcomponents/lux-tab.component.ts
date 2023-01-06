@@ -1,24 +1,29 @@
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { LuxUtil } from '../../../lux-util/lux-util';
 
 @Component({
   selector: 'lux-tab',
   template: ''
 })
-export class LuxTabComponent {
-  @Input() luxTitle: string;
-  @Input() luxIconName: string;
-  @Input() luxCounter: number;
+export class LuxTabComponent implements AfterContentInit {
+  @Input() luxTitle = '';
+  @Input() luxIconName?: string;
+  @Input() luxCounter?: number;
   @Input() luxCounterCap = 10;
-  @Input() luxShowNotification;
+  @Input() luxShowNotification?: boolean;
   @Input() luxDisabled = false;
-  @Input() luxTagIdHeader: string;
-  @Input() luxTagIdContent: string;
-  @Input() luxImageSrc: string;
+  @Input() luxTagIdHeader?: string;
+  @Input() luxTagIdContent?: string;
+  @Input() luxImageSrc?: string;
   @Input() luxImageAlign : 'left' | 'center' | 'right' = 'center';
   @Input() luxImageWidth = '36px';
   @Input() luxImageHeight = '36px';
 
-  @ContentChild(TemplateRef) contentTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef) contentTemplate!: TemplateRef<any>;
 
   constructor() {}
+
+  ngAfterContentInit() {
+    LuxUtil.assertNonNull('contentTemplate', this.contentTemplate);
+  }
 }

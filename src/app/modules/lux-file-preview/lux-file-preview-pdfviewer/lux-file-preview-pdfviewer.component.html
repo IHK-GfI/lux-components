@@ -12,7 +12,7 @@
   ></lux-select>
   <lux-button
     fxFlex="none"
-    luxIconName="fas fa-arrow-left"
+    luxIconName="lux-interface-arrows-left"
     *ngIf="!showAll"
     (luxClicked)="onPrevPage()"
     [luxDisabled]="page === 1"
@@ -24,7 +24,7 @@
   ></lux-button>
   <lux-button
     fxFlex="none"
-    luxIconName="fas fa-arrow-right"
+    luxIconName="lux-interface-arrows-right"
     (luxClicked)="onNextPage()"
     [luxDisabled]="page === numPages"
     [ngClass]="{ 'lux-button-disabled': page === numPages }"
@@ -79,7 +79,7 @@
     (page-rendered)="pageRendered($event)"
     (after-load-complete)="callBackFn($event)"
     (error)="onError($event)"
-    (on-progress)="onProgress($event)"
+    (on-progress)="onProgress()"
     style="display: block;"
   ></pdf-viewer>
 </div>
