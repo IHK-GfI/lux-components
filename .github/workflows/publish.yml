@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16
-      - run: npm ci
+      - run: npm install
       - run: npm run packagr
 
   publish-npm:
@@ -26,7 +26,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Publish NPM
         run: |
-          npm ci
+          npm install
           npm run packagr
           cd dist
           ls -l
@@ -46,7 +46,7 @@ jobs:
           scope: '@ihk-gfi'
       - name: Publish Github
         run: |
-          npm ci
+          npm install
           npm run packagr
           cd dist
           ls -l
