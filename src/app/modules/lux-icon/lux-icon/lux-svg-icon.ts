@@ -1,4 +1,4 @@
-export interface LuxSvgIcon{
+export interface LuxSvgIcon {
   iconName: string;
   iconPath: string;
 }

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from "@angular/material/icon";
 import { LuxSvgIcon } from "./lux-svg-icon";
-import iconFilesJson from './../../../../assets/svg/lux-icons/lux-icons.json';
+import iconFilesJson from '@ihk-gfi/lux-components-icons-and-fonts/assets/icons/lux-icons.json';
 
 @Injectable({
   providedIn: "root"

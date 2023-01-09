@@ -8,12 +8,23 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
 export class TileExampleComponent {
   showIcon = true;
   showOutputEvents = false;
-  showNotification = false;
   counter = undefined;
   counterCap = 20;
   label = 'Tile Example';
-  subTitle = 'Kurzer erklärender Text'
   log = logResult;
+  _showNotification = false;
+
+  get showNotification(){
+    return this._showNotification;
+  }
+
+  set showNotification(show: boolean) {
+    this._showNotification = show;
+
+    if (show && this.counter) {
+      this.counter = undefined;
+    }
+  }
 
   constructor() {}
 }

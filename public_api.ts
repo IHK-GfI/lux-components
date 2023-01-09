@@ -214,6 +214,10 @@ export * from './src/app/modules/lux-filter/lux-filter-base/lux-filter-item';
 export * from './src/app/modules/lux-icon/lux-icon.module';
 export * from './src/app/modules/lux-icon/lux-icon/lux-icon.component';
 export * from './src/app/modules/lux-icon/lux-image/lux-image.component';
+// Services
+export * from './src/app/modules/lux-icon/lux-icon/lux-icon-registry.service';
+// Classes
+export * from './src/app/modules/lux-icon/lux-icon/lux-svg-icon';
 
 /**
  * LUX-Layout

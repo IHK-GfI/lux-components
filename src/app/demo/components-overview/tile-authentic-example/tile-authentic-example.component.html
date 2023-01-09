@@ -63,13 +63,13 @@
   </example-base-simple-options>
   <example-base-advanced-options>
     <div fxLayout="column" fxLayoutGap="32px" class="lux-highlight-section">
-      <lux-input luxLabel="luxCounter" [(luxValue)]="counter" luxType="number" [luxNumberAlignLeft]="true" luxAutocomplete="off">
+      <lux-input luxLabel="luxCounter" [(luxValue)]="counter" [luxDisabled]="showNotification" luxType="number" [luxNumberAlignLeft]="true" luxAutocomplete="off">
         <lux-form-hint>
           Die Property definiert den aktuellen Zähler für die Tile.<br />
           Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
         </lux-form-hint>
       </lux-input>
-      <lux-input luxLabel="luxCounterCap" [(luxValue)]="badgeCap" luxType="number" [luxNumberAlignLeft]="true" luxAutocomplete="off">
+      <lux-input luxLabel="luxCounterCap" [(luxValue)]="badgeCap" [luxDisabled]="showNotification" luxType="number" [luxNumberAlignLeft]="true" luxAutocomplete="off">
         <lux-form-hint>
           Die Property definiert den aktuellen Zähler für die Tile.<br />
           Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
