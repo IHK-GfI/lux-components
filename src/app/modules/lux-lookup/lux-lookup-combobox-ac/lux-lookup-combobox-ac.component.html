@@ -6,6 +6,7 @@
   [luxNoTopLabel]="luxNoTopLabel"
   [formGroup]="formGroup"
   [luxLabelLongFormat]="luxLabelLongFormat"
+  [ngClass]="matSelect?.panelOpen ? 'lux-panel-opened' : ''"
   luxTagId="luxLookupComboboxWrapper"
 >
   <mat-select
@@ -16,8 +17,9 @@
     [formControl]="formControl"
     luxTagIdHandler
     [luxTagId]="luxTagId"
-    [panelClass]="'lux-select-panel-ac'"
+    [panelClass]="luxMultiple ? 'lux-select-panel-ac-multiple': 'lux-select-panel-ac'"
     [disableRipple]="true"
+    disableOptionCentering
     [errorStateMatcher]="stateMatcher"
     [compareWith]="compareByKey"
     (focusin)="luxFocusIn.emit($event)"
