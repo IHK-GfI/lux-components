@@ -97,8 +97,14 @@
             fxFlex="1 1 auto"
             #input
           >
-          <i aria-hidden="true" class="fas fa-caret-down lux-chips-autocomplete-icon"
-             [ngClass]="{'lux-disabled': luxDisabled}" (click)="onArrowIcon()"></i>
+          <lux-icon
+            luxIconName="lux-interface-arrows-button-down"
+            luxIconSize="1x"
+            [ngClass]="{'lux-disabled': luxDisabled}"
+            class="lux-color-blue lux-chips-autocomplete-icon"
+            aria-hidden="true"
+            (click)="onArrowIcon()"
+          ></lux-icon>
         </div>
         <mat-autocomplete
           [class]="'lux-chips-ac-autocomplete-panel'"
