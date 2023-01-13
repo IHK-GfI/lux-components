@@ -1,3 +1,9 @@
+# Version 14.x.x
+
+## New
+
+- **allgemein**: Update auf LUX-Components-Icons-And-Fonts [1.1.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.1.0).
+
 # Version 14.0.0
 ## New
 - **allgemein**: Update auf Angular 14 [Issue 223](https://github.com/IHK-GfI/lux-components/issues/223)
