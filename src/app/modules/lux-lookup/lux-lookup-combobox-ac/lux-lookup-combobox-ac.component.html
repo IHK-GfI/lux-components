@@ -6,7 +6,7 @@
   [luxNoTopLabel]="luxNoTopLabel"
   [formGroup]="formGroup"
   [luxLabelLongFormat]="luxLabelLongFormat"
-  [ngClass]="matSelect?.panelOpen ? 'lux-panel-opened' : ''"
+  [ngClass]="matSelect && matSelect.panelOpen ? 'lux-panel-opened' : ''"
   luxTagId="luxLookupComboboxWrapper"
 >
   <mat-select
