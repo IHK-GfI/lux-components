@@ -302,7 +302,7 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
         this.flexMaster = '0';
         this.flexDetail = '100';
       } else {
-        this.flexMaster = '20px';
+        this.flexMaster = '25px';
         this.flexDetail = 'grow';
       }
     }
