@@ -2,7 +2,8 @@
 
 ## New
 
-- **allgemein**: Update auf LUX-Components-Icons-And-Fonts [1.1.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.1.0).
+- **allgemein**: Update auf LUX-Components-Icons-And-Fonts. [1.1.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.1.0)
+- **lux-table**: Button zum Zurücksetzen des Filters hinzugefügt. [Issue 245](https://github.com/IHK-GfI/lux-components/issues/245)
 
 ## Bug Fixes
 
