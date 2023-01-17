@@ -4,6 +4,10 @@
 
 - **allgemein**: Update auf LUX-Components-Icons-And-Fonts [1.1.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.1.0).
 
+## Bug Fixes
+
+- **lux-app-header-ac**: Das User-Menu wird immer angezeigt. [Issue 248](https://github.com/IHK-GfI/lux-components/issues/248)
+
 # Version 14.0.0
 ## New
 - **allgemein**: Update auf Angular 14 [Issue 223](https://github.com/IHK-GfI/lux-components/issues/223)
