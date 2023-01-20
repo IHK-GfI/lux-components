@@ -610,7 +610,7 @@ describe('LuxFileListComponent', () => {
 
         files = [LuxTestHelper.createFileBrowserSafe('mockfile2.txt', 'text/txt')];
         // wir mocken hier jetzt 20 MB Dateigröße
-        spyOnProperty(files[0], 'size', 'get').and.returnValue(20000000);
+        spyOnProperty(files[0], 'size', 'get').and.returnValue(20_971_520);
 
         fileComponent.selectFiles(files);
         LuxTestHelper.wait(fixture);

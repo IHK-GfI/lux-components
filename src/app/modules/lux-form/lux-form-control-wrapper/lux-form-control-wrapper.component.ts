@@ -27,6 +27,7 @@ export class LuxFormControlWrapperComponent {
   @Input() luxHideCounterLabel = false;
   @Input() luxLabelLongFormat = false;
   @Input() luxNoInputRow = false;
+  @Input() luxDisplayClearErrorButton = false;
 
   /**
    * Dient dazu, bei einer Component den Label-Container auszublenden.
@@ -102,5 +103,10 @@ export class LuxFormControlWrapperComponent {
   focusout() {
     this.focused = false;
     this.cdr.detectChanges();
+  }
+
+  onCloseErrorMessage() {
+    this.luxFormComponent.errorMessage = undefined;
+    this.luxFormComponent.formControl.updateValueAndValidity();
   }
 }

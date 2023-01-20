@@ -34,6 +34,7 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   progress = -1;
   forceProgressIndeterminate = false;
+  displayClearErrorButton = false;
 
   @ViewChild('downloadLink', { read: ElementRef, static: true }) downloadLink!: ElementRef;
   @ViewChild('fileUpload', { read: ElementRef, static: true }) fileUploadInput!: ElementRef;
@@ -79,7 +80,7 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
     }
   }
 
-  get luxSelected(): T  {
+  get luxSelected(): T {
     return this.getValue();
   }
 
@@ -231,7 +232,7 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
     });
 
     await new Promise<void>((resolve, reject) => {
-      const options: any = { responseType: 'blob'};
+      const options: any = { responseType: 'blob' };
 
       if (this.luxUploadReportProgress) {
         options.reportProgress = true;
@@ -483,7 +484,7 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
    * @param file
    */
   protected getFileSizeInMB(file: File) {
-    return file.size / 1000000;
+    return file.size / 1_048_576;
   }
 
   /**
@@ -626,4 +627,25 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
     }
   }
 
+  protected fetchErrorMessage(): string | undefined {
+    const result = super.fetchErrorMessage();
+
+    this.updateClearErrorButton();
+
+    return result;
+  }
+
+  private updateClearErrorButton() {
+    if (this.formControl.errors) {
+      const errorKeys: string[] = Object.keys(this.formControl.errors);
+      const controlKeys: string[] = Object.values(LuxFileErrorCause);
+
+      this.displayClearErrorButton = errorKeys.filter((value) => controlKeys.includes(value)).length > 0;
+    }
+  }
+
+  onCloseErrorMessage() {
+    this.errorMessage = undefined;
+    this.formControl.updateValueAndValidity();
+  }
 }

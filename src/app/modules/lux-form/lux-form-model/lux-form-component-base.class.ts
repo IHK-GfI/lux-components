@@ -367,7 +367,7 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
    * @param validators
    */
   protected checkValidatorsContainRequired(validators: ValidatorFnType) {
-    if (!this.luxRequired === null && !this.luxRequired === undefined) {
+    if (this.luxRequired !== null && this.luxRequired !== undefined) {
       if (this.luxRequired) {
         // Fall: required = true, aber neue Validatoren werden gesetzt.
         // Sind es mehrere Validatoren, aber kein "required"? Dann wird er ergänzt
