@@ -341,11 +341,6 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
     }
   }
 
-  onCloseErrorMessage() {
-    this.errorMessage = undefined;
-    this.formControl.updateValueAndValidity();
-  }
-
   onRemoveFile(index: number) {
     this.formControl.markAsTouched();
     this.formControl.markAsDirty();

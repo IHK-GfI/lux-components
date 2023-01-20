@@ -1,4 +1,4 @@
-# Version 14.x.x
+# Version 14.1.0
 
 ## New
 
@@ -7,6 +7,11 @@
 ## Bug Fixes
 
 - **lux-app-header-ac**: Das User-Menu wird immer angezeigt. [Issue 248](https://github.com/IHK-GfI/lux-components/issues/248)
+- **lux-file-upload**: MB-Limits werden nicht korrekt berechnet. [Issue 247](https://github.com/IHK-GfI/lux-components/issues/247)
+- **lux-file-input**: MB-Limits werden nicht korrekt berechnet. [Issue 247](https://github.com/IHK-GfI/lux-components/issues/247)
+- **lux-file-input**: Dateifehlermeldungen (z.B. Überschreitung der erlaubten Dateigröße) können über einen Button entfernt werden. [Issue 247](https://github.com/IHK-GfI/lux-components/issues/247)
+- **lux-file-list**: MB-Limits werden nicht korrekt berechnet. [Issue 247](https://github.com/IHK-GfI/lux-components/issues/247)
+- **lux-file-list**: Dateifehlermeldungen (z.B. Überschreitung der erlaubten Dateigröße) können über einen Button entfernt werden. [Issue 247](https://github.com/IHK-GfI/lux-components/issues/247)
 
 # Version 14.0.0
 ## New
