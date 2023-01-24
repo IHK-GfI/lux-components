@@ -13,6 +13,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LuxComponentsConfigService {
 
   public static readonly DEFAULT_CONFIG = {
+    iconBasePath: '/',
     displayLuxConsoleLogs: false,
     generateLuxTagIds: false,
     lookupServiceUrl: '/lookup/',

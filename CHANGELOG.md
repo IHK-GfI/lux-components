@@ -3,6 +3,7 @@
 ## New
 
 - **allgemein**: Update auf LUX-Components-Icons-And-Fonts [1.1.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.1.0).
+- **lux-icon**: Icon-Pfad der neuen LUX-Icons in die Konfiguration aufnehmen. [Issue 254](https://github.com/IHK-GfI/lux-components/issues/254)
 
 ## Bug Fixes
 
