@@ -71,10 +71,18 @@
       </div>
     </div>
   </lux-card-content>
-  <lux-card-actions fxLayout="column" fxFlexFill *ngIf="errorMessage && formControl?.touched">
+  <lux-card-actions fxLayout="row" fxFlexFill *ngIf="errorMessage && formControl?.touched">
     <mat-error [id]="uid + '-misc'">
       {{ errorMessage }}
     </mat-error>
+    <lux-icon *ngIf="displayClearErrorButton"
+              luxIconName="lux-interface-delete-1"
+              luxAriaLabel="Fehlermeldung löschen"
+              i18n-luxAriaLabel="@@luxc.form.delete.error.button"
+              class="lux-error-icon"
+              [tabIndex]="0"
+              (keydown.enter)="onCloseErrorMessage()"
+              (click)="onCloseErrorMessage()"></lux-icon>
   </lux-card-actions>
 </lux-card>
 <!-- Template für eine File-Entry -->
