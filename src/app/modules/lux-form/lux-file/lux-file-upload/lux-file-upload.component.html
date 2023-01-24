@@ -32,7 +32,7 @@
     </ng-template>
   </mat-hint>
 
-  <mat-error [id]="uid + '-misc'" class="lux-file-upload-error-message" *ngIf="formControl?.getError('required') && !forceProgressIndeterminate">
+  <mat-error [id]="uid + '-misc'" class="lux-file-upload-error-message" *ngIf="!displayClearErrorButton && !forceProgressIndeterminate">
     {{ errorMessage }}
   </mat-error>
 
@@ -40,7 +40,7 @@
     <div class="lux-hint lux-file-upload-no-hint-container"></div>
   </ng-template>
 
-  <div class="lux-file-upload-error-container" *ngIf="errorMessage && !formControl?.getError('required') && formControl?.touched">
+  <div class="lux-file-upload-error-container" *ngIf="errorMessage && displayClearErrorButton && formControl?.touched">
     <lux-icon class="lux-file-upload-error-icon" luxIconName="lux-interface-alert-warning-triangle" luxIconSize="2x" luxPadding="0" luxMargin="0"></lux-icon>
     <mat-error [id]="uid + '-misc'" class="lux-file-upload-error-message">
       {{ errorMessage }}
