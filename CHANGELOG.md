@@ -13,6 +13,7 @@
 - **lux-file-input**: Dateifehlermeldungen (z.B. Überschreitung der erlaubten Dateigröße) können über einen Button entfernt werden. [Issue 247](https://github.com/IHK-GfI/lux-components/issues/247)
 - **lux-file-list**: MB-Limits werden nicht korrekt berechnet. [Issue 247](https://github.com/IHK-GfI/lux-components/issues/247)
 - **lux-file-list**: Dateifehlermeldungen (z.B. Überschreitung der erlaubten Dateigröße) können über einen Button entfernt werden. [Issue 247](https://github.com/IHK-GfI/lux-components/issues/247)
+- **lux-lookup-combobox**: Doppelte Einträge verhindert. [Issue 246](https://github.com/IHK-GfI/lux-components/issues/246)
 
 # Version 14.0.0
 ## New
