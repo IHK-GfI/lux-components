@@ -641,6 +641,9 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
       const controlKeys: string[] = Object.values(LuxFileErrorCause);
 
       this.displayClearErrorButton = errorKeys.filter((value) => controlKeys.includes(value)).length > 0;
+      if (this.displayClearErrorButton) {
+        this.fileUploadInput.nativeElement.value = null;
+      }
     }
   }
 
