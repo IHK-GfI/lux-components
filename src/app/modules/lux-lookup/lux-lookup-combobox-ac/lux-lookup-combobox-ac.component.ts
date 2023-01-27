@@ -72,11 +72,8 @@ export class LuxLookupComboboxAcComponent<T = LuxLookupTableEntry> extends LuxLo
 
   setLookupData(entries: LuxLookupTableEntry[]) {
     super.setLookupData(entries);
-    if (this.entries.length > this.luxEntryBlockSize) {
-      this.displayedEntries = this.entries.splice(0, this.luxEntryBlockSize);
-    } else {
-      this.displayedEntries = [...this.entries.splice(0, this.entries.length)];
-    }
+
+    this.updateDisplayedEntries();
   }
 
   /**
@@ -105,14 +102,14 @@ export class LuxLookupComboboxAcComponent<T = LuxLookupTableEntry> extends LuxLo
   private loadOnScroll(event: Event) {
     const position = event.target as any;
     if (position && (position.scrollTop + position.clientHeight) / position.scrollHeight > 85 / 100) {
-      this.reloadNextDataBlock();
+      this.updateDisplayedEntries();
     }
   }
 
   /**
    * Läd den nächsten Block Daten aus den Entries nach.
    */
-  private reloadNextDataBlock() {
+  private updateDisplayedEntries() {
     if (this.entries.length > 0) {
       const start = 0;
       const end = Math.min(this.luxEntryBlockSize, this.entries.length);
