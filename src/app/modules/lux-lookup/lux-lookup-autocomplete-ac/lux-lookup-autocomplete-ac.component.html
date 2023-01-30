@@ -35,6 +35,7 @@
       #auto="matAutocomplete"
       [class]="'lux-autocomplete-panel-ac'"
       [displayWith]="displayFn.bind(this)"
+      [disableRipple]="true"
       (optionSelected)="selected($event)"
     >
       <mat-option

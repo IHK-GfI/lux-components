@@ -6,6 +6,7 @@
   [luxNoBottomLabel]="luxNoBottomLabel"
   [luxNoTopLabel]="luxNoTopLabel"
   [luxLabelLongFormat]="luxLabelLongFormat"
+  [ngClass]="matSelect && matSelect.panelOpen ? 'lux-panel-opened' : ''"
   luxTagId="luxSelectWrapper"
 >
   <mat-select
@@ -15,11 +16,13 @@
     [multiple]="luxMultiple"
     [compareWith]="compareObjects"
     [required]="luxRequired"
+    disableOptionCentering
+    [disableRipple]="true"
     [formControl]="formControl"
     [attr.aria-invalid]="formControl.invalid"
     [attr.aria-required]="luxRequired"
     [id]="uid"
-    [panelClass]="'lux-select-panel-ac'"
+    [panelClass]="luxMultiple ? 'lux-select-panel-ac-multiple': 'lux-select-panel-ac'"
     [luxAriaLabelledby]="uid + '-label'"
     [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
     (focusin)="luxFocusIn.emit($event)"

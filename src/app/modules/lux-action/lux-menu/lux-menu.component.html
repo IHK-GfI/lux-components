@@ -40,6 +40,7 @@
   <ng-container *ngFor="let menuItem of menuItems">
     <button
       mat-menu-item
+      [disableRipple]="true"
       class="lux-menu-item"
       fxLayout="row"
       fxLayoutAlign="space-between center"

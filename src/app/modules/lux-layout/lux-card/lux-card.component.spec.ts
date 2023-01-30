@@ -273,7 +273,7 @@ describe('LuxCardComponent', () => {
       // Vorbedingungen testen
       component.title = 'Hallo';
       LuxTestHelper.wait(fixture);
-      expect(fixture.debugElement.query(By.css('.mat-card-title.lux-display-none'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-card-title.lux-display-none-important'))).toBeNull();
       expect(fixture.debugElement.query(By.css('.lux-card-title-container')).nativeElement.textContent.trim()).toEqual(
         'Hallo'
       );
@@ -283,7 +283,7 @@ describe('LuxCardComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.mat-card-title.lux-display-none'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-card-title.lux-display-none-important'))).not.toBeNull();
       expect(fixture.debugElement.query(By.css('.lux-card-title-container')).nativeElement.textContent.trim()).toEqual(
         ''
       );
@@ -293,7 +293,7 @@ describe('LuxCardComponent', () => {
       // Vorbedingungen testen
       component.title = 'Hallo';
       LuxTestHelper.wait(fixture);
-      expect(fixture.debugElement.query(By.css('.mat-card-title.lux-display-none'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-card-title.lux-display-none-important'))).toBeNull();
       expect(fixture.debugElement.query(By.css('.lux-card-title-container')).nativeElement.textContent.trim()).toEqual(
         'Hallo'
       );
@@ -304,7 +304,7 @@ describe('LuxCardComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.mat-card-title.lux-display-none'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-card-title.lux-display-none-important'))).toBeNull();
       expect(fixture.debugElement.query(By.css('.lux-card-title-container')).nativeElement.textContent.trim()).toEqual(
         ''
       );
@@ -314,14 +314,14 @@ describe('LuxCardComponent', () => {
       // Vorbedingungen testen
       component.subTitle = 'Hallo';
       LuxTestHelper.wait(fixture);
-      expect(fixture.debugElement.query(By.css('.mat-card-subtitle.lux-display-none'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-card-subtitle.lux-display-none-important'))).toBeNull();
 
       // Änderungen durchführen
       component.subTitle = undefined;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.mat-card-subtitle.lux-display-none'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-card-subtitle.lux-display-none-important'))).not.toBeNull();
     }));
 
     it('Sollte mat-card-actions ausblenden, wenn keine Actions gesetzt sind', fakeAsync(() => {
