@@ -5,6 +5,12 @@ import { LuxLayoutRowGapConfig } from '../lux-layout/lux-layout/base/lux-layout-
 import { LuxLayoutRowMarginConfig } from '../lux-layout/lux-layout/base/lux-layout-row-margin-config';
 
 export interface LuxComponentsConfigParameters {
+
+  /**
+   * Bestimmt den Basepfad der Icons.
+   */
+  iconBasePath?: string;
+
   /**
    * Bestimmt, ob die LuxTagIds (und dazugehörende) Warnungen generiert werden.
    */
