@@ -81,14 +81,14 @@
         <source>Reihe <x id="INTERPOLATION" equiv-text="{{ i }}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.html</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.multiselect.all.chk.arialabel" datatype="html">
         <source>Alle Einträge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.html</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.sort.descending" datatype="html">
@@ -843,7 +843,7 @@
         <source>Spracheinstellungen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-lang-select-ac/lux-lang-select-ac.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.app-header.aria.usermenu.btn" datatype="html">
