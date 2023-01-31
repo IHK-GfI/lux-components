@@ -1,14 +1,14 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy, Optional, ViewChild } from '@angular/core';
-import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
-import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
-import { LuxLookupComponent } from '../lux-lookup-model/lux-lookup-component';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
-import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
-import { LuxLookupErrorStateMatcher } from '../lux-lookup-model/lux-lookup-error-state-matcher';
-import { LuxConsoleService } from '../../lux-util/lux-console.service';
-import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { Subscription } from 'rxjs';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { LuxConsoleService } from '../../lux-util/lux-console.service';
+import { LuxLookupComponent } from '../lux-lookup-model/lux-lookup-component';
+import { LuxLookupErrorStateMatcher } from '../lux-lookup-model/lux-lookup-error-state-matcher';
+import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
+import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
+import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 
 @Component({
   selector: 'lux-lookup-combobox-ac',
@@ -72,11 +72,8 @@ export class LuxLookupComboboxAcComponent<T = LuxLookupTableEntry> extends LuxLo
 
   setLookupData(entries: LuxLookupTableEntry[]) {
     super.setLookupData(entries);
-    if (this.entries.length > this.luxEntryBlockSize) {
-      this.displayedEntries = this.entries.splice(0, this.luxEntryBlockSize);
-    } else {
-      this.displayedEntries = [...this.entries];
-    }
+
+    this.updateDisplayedEntries();
   }
 
   /**
@@ -105,19 +102,18 @@ export class LuxLookupComboboxAcComponent<T = LuxLookupTableEntry> extends LuxLo
   private loadOnScroll(event: Event) {
     const position = event.target as any;
     if (position && (position.scrollTop + position.clientHeight) / position.scrollHeight > 85 / 100) {
-      this.reloadNextDataBlock();
+      this.updateDisplayedEntries();
     }
   }
 
   /**
    * Läd den nächsten Block Daten aus den Entries nach.
    */
-  private reloadNextDataBlock() {
-    const start = this.displayedEntries.length - 1;
-    const end =
-      start + this.luxEntryBlockSize > this.entries.length
-        ? this.entries.length - start
-        : start + this.luxEntryBlockSize;
-    this.displayedEntries.push(...this.entries.splice(start, end));
+  private updateDisplayedEntries() {
+    if (this.entries.length > 0) {
+      const start = 0;
+      const end = Math.min(this.luxEntryBlockSize, this.entries.length);
+      this.displayedEntries.push(...this.entries.splice(start, end));
+    }
   }
 }

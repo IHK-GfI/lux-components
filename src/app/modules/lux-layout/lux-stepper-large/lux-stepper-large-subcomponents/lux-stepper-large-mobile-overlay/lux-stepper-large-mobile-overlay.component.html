@@ -29,12 +29,6 @@
           </div>
           <div class="lux-stepper-large-nav-item-label-container lux-stepper-large-mobile-nav-item-label-container">
             <ng-container *ngTemplateOutlet="step.luxTouched && !step.luxDisabled ? link : nolink; context: { step: step, i: i}"></ng-container>
-            <lux-icon
-              class="lux-stepper-large-nav-item-complete lux-stepper-large-mobile-nav-item-complete"
-              luxPadding="0 0 0 12px"
-              luxIconName="lux-interface-validation-check"
-              *ngIf="step.luxTouched && step.luxCompleted"
-            ></lux-icon>
           </div>
         </div>
       </ng-container>

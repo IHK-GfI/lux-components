@@ -149,7 +149,7 @@
       <lux-menu-item [luxLabel]="demoLoginBtn" (luxClicked)="toggleLogin()" luxTagId="abmelden-menu-item"></lux-menu-item>
       <lux-menu-item luxLabel="Theme - blue" luxTagId="theme-blue-menu-item-ac" (luxClicked)="onChangeTheme('blue')"></lux-menu-item>
       <lux-menu-item luxLabel="Theme - green" luxTagId="theme-green-menu-item-ac" (luxClicked)="onChangeTheme('green')"></lux-menu-item>
-      <lux-menu-item luxLabel="Theme - authentic" luxClass="lux-selected-item-ac" luxTagId="theme-authentic-menu-item-ac" (luxClicked)="onChangeTheme('authentic')"></lux-menu-item>
+      <lux-menu-item luxLabel="Theme - authentic" [luxDisabled]="true" luxClass="lux-selected-item-ac" luxTagId="theme-authentic-menu-item-ac" (luxClicked)="onChangeTheme('authentic')"></lux-menu-item>
     </lux-app-header-ac-user-menu>
 
     <lux-app-header-ac-nav-menu [luxNavMenuMaximumExtended]="5">
@@ -219,5 +219,5 @@
 
   </lux-app-header-ac>
   <lux-app-content luxAriaRoleMainLabel=""></lux-app-content>
-  <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="14.0.0"></lux-app-footer>
+  <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="14.1.0"></lux-app-footer>
 </div>

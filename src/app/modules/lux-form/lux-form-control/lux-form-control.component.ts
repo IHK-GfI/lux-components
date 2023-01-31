@@ -31,6 +31,7 @@ export class LuxFormControlComponent<T> {
   @Input() luxCounterLabel = '';
   @Input() luxHideCounterLabel = false;
   @Input() luxLabelLongFormat = false;
+  @Input() luxDisplayClearErrorButton = false;
 
   /**
    * Dient dazu, eine Component beliebig Hoch werden zu lassen (z.B. Textarea oder Radio).
@@ -120,5 +121,10 @@ export class LuxFormControlComponent<T> {
   focusout() {
     this.focused = false;
     this.cdr.detectChanges();
+  }
+
+  onCloseErrorMessage() {
+    this.luxFormComponent.errorMessage = undefined;
+    this.luxFormComponent.formControl.updateValueAndValidity();
   }
 }

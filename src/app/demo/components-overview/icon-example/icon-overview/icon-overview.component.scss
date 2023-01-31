@@ -14,13 +14,13 @@
   border-radius: 4px;
 
   &:hover{
-    background-color: var(--lux-theme-hover-color);
-    //background-image: var(--lux-theme-app-gradient-reverse);
     cursor: pointer;
+    border: 1px solid #000;
+    box-shadow: 0 0 0 1px #000 inset;
   }
   &.selected-item {
-    border-color: var(--lux-primary-color);
-    box-shadow: 0 0 0 2px var(--lux-primary-color) inset;
+    border-color: var(--lux-theme-primary-color);
+    box-shadow: 0 0 0 1px var(--lux-theme-primary-color) inset;
     background-image: var(--lux-theme-app-gradient);
   }
 

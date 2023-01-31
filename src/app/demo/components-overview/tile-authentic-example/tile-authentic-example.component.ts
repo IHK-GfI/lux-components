@@ -4,7 +4,8 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
 
 @Component({
   selector: 'app-tile-authentic-example',
-  templateUrl: './tile-authentic-example.component.html'
+  templateUrl: './tile-authentic-example.component.html',
+  styleUrls: ['./tile-authentic-example.component.scss']
 })
 export class TileAuthenticExampleComponent {
   showIcon = true;

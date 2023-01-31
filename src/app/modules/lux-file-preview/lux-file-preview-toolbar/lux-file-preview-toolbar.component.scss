@@ -8,14 +8,6 @@
   padding: 8px;
 }
 
-:host ::ng-deep lux-button button {
-  padding: 5px !important;
-  min-width: 45px !important;
-  lux-icon.lux-button-icon {
-    vertical-align: super;
-  }
-}
-
 :host ::ng-deep lux-select lux-form-control div {
   background-color: white;
   outline-width: 0 !important;

@@ -38,9 +38,19 @@
   <!-- Container für das Hint und den Error und den Counter -->
   <div class="lux-form-control-misc" *ngIf="!luxNoBottomLabel && !luxNoLabels" fxLayout="row" fxLayoutAlign="space-between start">
     <ng-container [ngSwitch]="shouldDisplayError()">
-      <mat-error [id]="luxFormComponent.uid + '-error'" *ngSwitchCase="true">
-        {{ luxFormComponent.errorMessage }}
-      </mat-error>
+      <div fxLayout="row" *ngSwitchCase="true">
+        <mat-error [id]="luxFormComponent.uid + '-error'">
+          {{ luxFormComponent.errorMessage }}
+        </mat-error>
+        <lux-icon *ngIf="luxDisplayClearErrorButton"
+                    luxIconName="lux-interface-delete-1"
+                    luxAriaLabel="Fehlermeldung löschen"
+                    i18n-luxAriaLabel="@@luxc.form.delete.error.button"
+                    class="lux-error-icon"
+                    [tabIndex]="0"
+                    (keydown.enter)="onCloseErrorMessage()"
+                    (click)="onCloseErrorMessage()"></lux-icon>
+      </div>
       <ng-container *ngSwitchDefault>
         <!-- Hier wird entweder das luxHint oder das übergebene Tag heraus gerendert -->
         <mat-hint

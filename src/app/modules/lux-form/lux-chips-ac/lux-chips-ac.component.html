@@ -25,6 +25,7 @@
           [selectable]="!chip.luxDisabled"
           [selected]="chip.luxSelected"
           [color]="chip.luxColor"
+          [disableRipple]="true"
           (keydown.delete)="chip.remove(i)"
           (selectionChange)="chip.select($event.selected, i)"
           (click)="chip.click(i)"
@@ -54,6 +55,7 @@
             [disabled]="chipGroup.luxDisabled"
             [selectable]="!chipGroup.luxDisabled"
             [selected]="chipGroup.luxSelected"
+            [disableRipple]="true"
             [color]="chipGroup.luxColor"
             (keydown.delete)="onChipGroupRemove(chipGroup, i)"
             (selectionChange)="chipGroup.select($event.selected, i)"
@@ -95,11 +97,18 @@
             fxFlex="1 1 auto"
             #input
           >
-          <i aria-hidden="true" class="fas fa-caret-down lux-chips-autocomplete-icon"
-             [ngClass]="{'lux-disabled': luxDisabled}" (click)="onArrowIcon()"></i>
+          <lux-icon
+            luxIconName="lux-interface-arrows-button-down"
+            luxIconSize="1x"
+            [ngClass]="{'lux-disabled': luxDisabled}"
+            class="lux-color-blue lux-chips-autocomplete-icon"
+            aria-hidden="true"
+            (click)="onArrowIcon()"
+          ></lux-icon>
         </div>
         <mat-autocomplete
           [class]="'lux-chips-ac-autocomplete-panel'"
+          [disableRipple]="true"
           (optionSelected)="autoCompleteAdd(input, $event.option.value)"
           (opened)="onAutoCompleteOpened()"
           #auto="matAutocomplete"
