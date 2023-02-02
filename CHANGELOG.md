@@ -1,3 +1,9 @@
+# Version 14.2.0
+
+## New
+
+- **allgemein**: Update auf LUX-Components-Icons-And-Fonts [1.2.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.2.0).
+
 # Version 14.1.0
 
 ## New
