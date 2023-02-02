@@ -20,6 +20,7 @@
         [luxRequired]="required"
         [luxReadonly]="readonly"
         [(luxValue)]="value"
+        [luxCompareFn]="compareFn"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxControlValidators]="controlValidators"
@@ -63,6 +64,7 @@
         [luxControlBinding]="controlBinding"
         [luxLabelLongFormat]="labelLongFormat"
         [luxOptionMultiline]="optionMultiline"
+        [luxCompareFn]="compareFn"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
@@ -198,7 +200,7 @@
       luxName="lookup_autocomplete_luxMaximumDisplay"
       luxLabel="luxMaximumDisplayed"
       luxHint="Hier kann eingestellt werden, wie viele Suchergebnisse im ausgeklappten Menu dargestellt werden."
-      (luxBlur)="start()"
+      (luxBlur)="reloadData()"
       [(luxValue)]="maximumDisplayed"
     >
     </lux-input>
@@ -219,6 +221,13 @@
         *ngIf="!useRenderFn"
       >
       </lux-input>
+      <lux-toggle
+        luxLabel="luxCompareFn"
+        luxHint="Sortiert die Optionen entweder nach dem Kurztext (aktiviert) oder Schlüssel (deaktiviert)."
+        (luxCheckedChange)="toggleCompareFn($event)"
+        [luxNoTopLabel]="true"
+      >
+      </lux-toggle>
       <lux-toggle
         luxLabel="luxOptionMultiline"
         luxHint="Wenn 'true' wird der Option-Text mehrzeilig angezeigt"

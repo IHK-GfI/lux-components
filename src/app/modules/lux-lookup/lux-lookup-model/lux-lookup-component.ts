@@ -14,11 +14,70 @@ import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
 import { LuxFormComponentBase, LuxValidationErrors } from "../../lux-form/lux-form-model/lux-form-component-base.class";
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
-import { LuxLookupErrorStateMatcher } from './lux-lookup-error-state-matcher';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { Subscription } from 'rxjs';
 import { LuxComponentsConfigParameters } from '../../lux-components-config/lux-components-config-parameters.interface';
+
+/**
+ * Der Typ für die Lookup-Vergleichsfunktionen.
+ */
+export type LuxLookupCompareFn<T = LuxLookupTableEntry> = (a: T, b: T) => number;
+
+/**
+ * Diese Vergleichsfunktion sortiert die Schlüsseltabelleneinträge nach ihrem Schlüssel.
+ *
+ * @param a Erster Schlüsseltabelleneintrag.
+ * @param b Zweiter Schlüsseltabelleneintrag.
+ */
+export const luxLookupCompareKeyFn: LuxLookupCompareFn = (a: LuxLookupTableEntry, b: LuxLookupTableEntry) => {
+  let aText = a?.key ?? '';
+  let bText = b?.key ?? '';
+
+  aText = aText.padStart(20, '0');
+  bText = bText.padStart(20, '0');
+
+  return aText.localeCompare(bText);
+};
+
+/**
+ * Diese Vergleichsfunktion sortiert die Schlüsseltabelleneinträge nach ihrem Kurztext.
+ *
+ * @param a Erster Schlüsseltabelleneintrag.
+ * @param b Zweiter Schlüsseltabelleneintrag.
+ */
+export const luxLookupCompareKurzTextFn: LuxLookupCompareFn = (a: LuxLookupTableEntry, b: LuxLookupTableEntry) => {
+  const aText = a?.kurzText ?? '';
+  const bText = b?.kurzText ?? '';
+
+  return aText.localeCompare(bText);
+};
+
+/**
+ * Diese Vergleichsfunktion sortiert die Schlüsseltabelleneinträge nach ihrem Langtext1.
+ *
+ * @param a Erster Schlüsseltabelleneintrag.
+ * @param b Zweiter Schlüsseltabelleneintrag.
+ */
+export const luxLookupCompareLangText1Fn: LuxLookupCompareFn = (a: LuxLookupTableEntry, b: LuxLookupTableEntry) => {
+  const aText = a?.langText1 ?? '';
+  const bText = b?.langText1 ?? '';
+
+  return aText.localeCompare(bText);
+};
+
+/**
+ * Diese Vergleichsfunktion sortiert die Schlüsseltabelleneinträge nach ihrem Langtext2.
+ *
+ * @param a Erster Schlüsseltabelleneintrag.
+ * @param b Zweiter Schlüsseltabelleneintrag.
+ */
+export const luxLookupCompareLangText2Fn: LuxLookupCompareFn = (a: LuxLookupTableEntry, b: LuxLookupTableEntry) => {
+  const aText = a?.langText2 ?? '';
+  const bText = b?.langText2 ?? '';
+
+  return aText.localeCompare(bText);
+};
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> implements OnInit, OnDestroy {
@@ -27,7 +86,7 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
   lookupService: LuxLookupService;
   lookupHandler: LuxLookupHandlerService;
   componentsConfigService: LuxComponentsConfigService;
-
+  entries: LuxLookupTableEntry[] = [];
   apiPath = LuxComponentsConfigService.DEFAULT_CONFIG.lookupServiceUrl;
 
   @Input() luxPlaceholder = '';
@@ -38,13 +97,13 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
   @Input() luxParameters?: LuxLookupParameters;
   @Input() luxCustomStyles?: {} | null;
   @Input() luxCustomInvalidStyles?: {} | null;
+  @Input() luxCompareFn?: LuxLookupCompareFn;
   @Input() luxTagId?: string;
   @Output() luxDataLoaded = new EventEmitter<boolean>();
   @Output() luxDataLoadedAsArray: EventEmitter<T[]> = new EventEmitter<T[]>();
   @Output() luxValueChange = new EventEmitter<T>();
-  entries: LuxLookupTableEntry[] = [];
 
-  private subscriptions: Subscription[] = [];
+  subscriptions: Subscription[] = [];
 
   protected constructor(
     lookupService: LuxLookupService,
@@ -226,8 +285,13 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
    */
   protected setLookupData(entries: LuxLookupTableEntry[]) {
     this.entries = entries;
+
+    if (this.entries && this.luxCompareFn) {
+      this.entries.sort(this.luxCompareFn);
+    }
+
     if (this.entries) {
-      // Merken welche Eintraege ungueltig sind, um bei vielen Informationen
+      // Merken welche Einträge ungültig sind, um bei vielen Informationen
       // nicht die ganzen Funktionsaufrufe zu haben
       this.entries.forEach((entry: LuxLookupTableEntry) => {
         entry.isUngueltig = this.isUngueltig(entry);

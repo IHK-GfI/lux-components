@@ -20,6 +20,7 @@
         [luxRequired]="required"
         [luxReadonly]="readonly"
         [(luxValue)]="value"
+        [luxCompareFn]="compareFn"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxControlValidators]="controlValidators"
@@ -59,6 +60,7 @@
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxControlValidators]="controlValidators"
         [(luxValue)]="multiValue"
+        [luxCompareFn]="compareFn"
         [luxMultiple]="true"
         [luxWithEmptyEntry]="bLuxWithEmptyEntry"
         [luxLabelLongFormat]="labelLongFormat"
@@ -95,6 +97,7 @@
         [luxControlBinding]="controlBinding"
         [luxWithEmptyEntry]="bLuxWithEmptyEntry"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxCompareFn]="compareFn"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -214,7 +217,7 @@
       class="lux-highlight-section"
       luxName="lookup-combobox_luxEntryBlockSize"
       luxLabel="luxEntryBlockSize"
-      (luxBlur)="start()"
+      (luxBlur)="reloadData()"
       [(luxValue)]="entryBlockSize"
       luxType="number"
     >
@@ -240,6 +243,13 @@
         *ngIf="!useRenderFn"
       >
       </lux-input>
+      <lux-toggle
+        luxLabel="luxCompareFn"
+        luxHint="Sortiert die Optionen entweder nach dem Kurztext (aktiviert) oder Schlüssel (deaktiviert)."
+        [luxNoTopLabel]="true"
+        (luxCheckedChange)="toggleCompareFn($event)"
+      >
+      </lux-toggle>
     </div>
     <div class="lux-highlight-section column">
       <lux-toggle

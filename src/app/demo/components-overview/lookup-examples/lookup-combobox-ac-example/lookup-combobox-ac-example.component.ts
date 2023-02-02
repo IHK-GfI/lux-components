@@ -26,7 +26,7 @@ export class LookupComboboxAcExampleComponent extends LookupExampleComponent imp
     super.ngOnInit();
   }
 
-  start() {
+  reloadDataIntern() {
     this.lookupHandler.reloadData('normalcombobox');
     this.lookupHandler.reloadData('multicombobox');
     this.lookupHandler.reloadData('reactivecombobox');
