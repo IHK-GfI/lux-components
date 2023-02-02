@@ -50,7 +50,7 @@
           </div>
         </div>
       </mat-option>
-      <ng-container *ngFor="let entry of filteredEntries | async">
+      <ng-container *ngFor="let entry of filtered">
         <mat-option
           [value]="entry"
           [ngClass]="{ invalid: entry.isUngueltig, 'lux-option-multiline': luxOptionMultiline }"

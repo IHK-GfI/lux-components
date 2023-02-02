@@ -25,7 +25,7 @@ export class LookupAutocompleteAcExampleComponent  extends LookupExampleComponen
     super.ngOnInit();
   }
 
-  start() {
+  reloadDataIntern() {
     this.lookupHandler.reloadData('normalautocomplete');
     this.lookupHandler.reloadData('reactiveautocomplete');
   }

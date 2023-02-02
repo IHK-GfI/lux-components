@@ -1,6 +1,11 @@
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { OnInit, Directive } from '@angular/core';
 import {
+  LuxLookupCompareFn,
+  luxLookupCompareKeyFn,
+  luxLookupCompareKurzTextFn
+} from "../../../modules/lux-lookup/lux-lookup-model/lux-lookup-component";
+import {
   LuxBehandlungsOptionenUngueltige,
   LuxFieldValues,
   LuxLookupParameters
@@ -57,20 +62,33 @@ export abstract class LookupExampleComponent implements OnInit {
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
+  compareFn?: LuxLookupCompareFn;
 
-  protected constructor(
-    protected lookupHandler: LuxLookupHandlerService
-  ) {
+  protected constructor(protected lookupHandler: LuxLookupHandlerService) {
     this.form = new FormGroup<LookupDummyForm>({
       lookup: new FormControl<LuxLookupTableEntry | LuxLookupTableEntry[] | null>(null)
     });
   }
+
+  abstract reloadDataIntern(): void;
 
   ngOnInit() {
     this.parameters = new LuxLookupParameters({
       knr: 101,
       fields: [LuxFieldValues.kurz, LuxFieldValues.lang1, LuxFieldValues.lang2]
     });
+  }
+
+  reloadData() {
+    setTimeout(() => {
+      this.reloadDataIntern();
+    });
+  }
+
+  toggleCompareFn(toggle: boolean) {
+    this.compareFn = toggle ? luxLookupCompareKurzTextFn : luxLookupCompareKeyFn;
+
+    this.reloadData();
   }
 
   renderFn(entry: LuxLookupTableEntry) {
@@ -94,7 +112,7 @@ export abstract class LookupExampleComponent implements OnInit {
   }
 
   changeOptionUngueltig(event: any) {
-    const found = this.options.find(option => option.value === +event.value);
+    const found = this.options.find((option) => option.value === +event.value);
     if (found) {
       this.behandlungUngueltige = found.label;
     }
@@ -108,5 +126,4 @@ export abstract class LookupExampleComponent implements OnInit {
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
-
 }

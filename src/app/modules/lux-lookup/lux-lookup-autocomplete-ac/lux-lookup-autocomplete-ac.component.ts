@@ -1,10 +1,20 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Optional, Output, ViewChild } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Optional,
+  Output,
+  ViewChild
+} from "@angular/core";
 import { LuxValidationErrors } from '../../lux-form/lux-form-model/lux-form-component-base.class';
 import { LuxLookupComponent } from '../lux-lookup-model/lux-lookup-component';
 import { LuxLookupErrorStateMatcher } from '../lux-lookup-model/lux-lookup-error-state-matcher';
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 import { MatAutocomplete, MatAutocompleteSelectedEvent, MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
@@ -18,7 +28,7 @@ import { LuxAutocompleteErrorStateMatcherAc } from './lux-autocomplete-error-sta
   styleUrls: ['./lux-lookup-autocomplete-ac.component.scss']
 })
 export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null> extends LuxLookupComponent<T> implements OnInit, AfterViewInit {
-  filteredEntries?: Observable<LuxLookupTableEntry[]>;
+  filtered: LuxLookupTableEntry[] = [];
   entriesCount = 0;
   latestSearchValue?: string;
   stateMatcher: LuxLookupErrorStateMatcher;
@@ -33,6 +43,7 @@ export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null> ex
   @Output() luxBlur = new EventEmitter<FocusEvent>();
   @Output() luxFocus = new EventEmitter<FocusEvent>();
 
+  @ViewChild('autoCompleteInput', { read: ElementRef }) matInput!: ElementRef;
   @ViewChild(MatAutocomplete) matAutocomplete?: MatAutocomplete;
   @ViewChild(MatAutocompleteTrigger) matAutocompleteTrigger?: MatAutocompleteTrigger;
 
@@ -55,21 +66,25 @@ export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null> ex
 
   ngOnInit() {
     super.ngOnInit();
-    this.filteredEntries = this.formControl.valueChanges.pipe(
+
+    this.subscriptions.push(this.formControl.valueChanges.pipe(
       debounceTime(this.luxDebounceTime),
       distinctUntilChanged(),
       startWith<any>(''),
       map((value: any) => {
         const searchValue = typeof value === 'string' ? value : this.displayFn(value);
-        this.latestSearchValue = searchValue;
-        let filteredValues = searchValue ? this.filter(searchValue) : this.entries ? this.entries.slice() : [];
-        this.entriesCount = filteredValues.length;
-        if (this.entriesCount > this.luxMaximumDisplayed) {
-          filteredValues = filteredValues.splice(0, this.luxMaximumDisplayed);
-        }
-        return filteredValues;
+        return this.findFilteredOptions(searchValue);
       })
-    );
+    ).subscribe((filtered: LuxLookupTableEntry[]) => {
+      this.filtered = filtered;
+    }));
+  }
+
+  protected setLookupData(entries: LuxLookupTableEntry[]) {
+    super.setLookupData(entries);
+
+    const searchValue = typeof this.formControl.value === 'string' ? this.formControl.value : this.displayFn(this.formControl.value as any);
+    this.filtered = this.findFilteredOptions(searchValue);
   }
 
   /**
@@ -147,5 +162,15 @@ export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null> ex
       return $localize`:@@luxc.lookup-autocomplete.error_message.not_available:Der eingegebene Eintrag ist nicht Teil der Schlüsseltabelle.`;
     }
     return undefined;
+  }
+
+  private findFilteredOptions(searchValue: string): LuxLookupTableEntry[] {
+    this.latestSearchValue = searchValue;
+    let filteredValues = searchValue ? this.filter(searchValue) : this.entries ? this.entries.slice() : [];
+    this.entriesCount = filteredValues.length;
+    if (this.entriesCount > this.luxMaximumDisplayed) {
+      filteredValues = filteredValues.splice(0, this.luxMaximumDisplayed);
+    }
+    return filteredValues;
   }
 }

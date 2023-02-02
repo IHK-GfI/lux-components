@@ -73,6 +73,7 @@ export class LuxLookupComboboxAcComponent<T = LuxLookupTableEntry> extends LuxLo
   setLookupData(entries: LuxLookupTableEntry[]) {
     super.setLookupData(entries);
 
+    this.displayedEntries = [];
     this.updateDisplayedEntries();
   }
 
