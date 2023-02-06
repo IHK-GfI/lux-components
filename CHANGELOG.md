@@ -7,6 +7,8 @@
 ## Bug Fixes
 
 - **lux-tabs**: Fehler bei Aufruf von Custom Tabs. [Issue 268](https://github.com/IHK-GfI/lux-components/issues/268)
+- **lux-dialog**: Die Property "disableClose" ist wirkungslos. [Issue 264](https://github.com/IHK-GfI/lux-components/issues/264)
+- **lux-dialog**: Der Inhalt nimmt nicht die gesamte Breite und Höhe ein. [Issue 264](https://github.com/IHK-GfI/lux-components/issues/264)
 
 # Version 14.1.0
 

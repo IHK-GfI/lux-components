@@ -1,21 +1,28 @@
 <div class="lux-dialog" fxLayout="column" fxFlex="1 1 auto" #dialogBase>
-  <div 
-    mat-dialog-close
+  <!--
+  Hier wird explizit auf die Direktive [mat-dialog-close] verzichtet,
+  da diese aktuell NICHT das dialogClosed-Event wirft. Dieses Event wird
+  jedoch benötigt, damit geschachtelte Dialoge (z.B. Löschbestätigung der
+  lux-file-upload-Komponente) funktionieren.
+  -->
+  <div
+    (click)="onClose()"
     aria-label="Schließen"
     class="lux-icon-close" 
     fxFlexAlign="end" 
     tabindex="0"
+    *ngIf="!disableClose"
   >
     <lux-icon luxIconName="lux-interface-delete-1" luxIconSize="1x"></lux-icon>
   </div>
   <lux-icon *ngIf="luxDialogIcon" [luxIconName]="luxDialogIcon" fxFlexAlign="center" luxIconSize="3x" luxMargin="16px" class="lux-color-blue lux-dialog-icon"></lux-icon>
-  <div mat-dialog-title class="lux-dialog-title" fxFlex="1 1 auto" fxFlexAlign="start">
+  <div mat-dialog-title class="lux-dialog-title" fxFlex="0 1 auto" fxFlexAlign="start">
     <ng-content select="lux-dialog-title"></ng-content>
   </div>
-  <div mat-dialog-content fxFlexAlign="start" class="lux-dialog-content" fxFlex="1 1 auto">
+  <div mat-dialog-content class="lux-dialog-content" fxFlex="1 1 100%">
     <ng-content select="lux-dialog-content"></ng-content>
   </div>
-  <div mat-dialog-actions  class="lux-dialog-actions" fxFlex="auto" fxLayout="row wrap" fxLayoutAlign="center">
+  <div mat-dialog-actions class="lux-dialog-actions" fxFlex="0 1 auto" fxLayout="row wrap" fxLayoutAlign="center">
     <ng-content select="lux-dialog-actions"></ng-content>
   </div>
 </div>
