@@ -41,6 +41,7 @@ import { StepperLargeExternStepExampleComponent } from './stepper-large-example/
 import { StorageExampleComponent } from './storage-example/storage-example.component';
 import { TableExampleComponent } from './table-example/table-example.component';
 import { TableServerExampleComponent } from './table-server-example/table-server-example.component';
+import { CustomTabComponent } from "./tabs-example/custom-tab/custom-tab.component";
 import { TextareaExampleComponent } from './textarea-example/textarea-example.component';
 import { TooltipExampleComponent } from './tooltip-example/tooltip-example.component';
 import { LookupComboboxExampleComponent } from './lookup-examples/lookup-combobox-example/lookup-combobox-example.component';
@@ -240,7 +241,8 @@ import { ComponentsOverviewAuthenticComponent } from './components-overview-auth
     IconOverviewComponent,
     ComponentsOverviewBlueComponent,
     ComponentsOverviewAuthenticComponent,
-    MasterDetailAuthenticExampleComponent
+    MasterDetailAuthenticExampleComponent,
+    CustomTabComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]

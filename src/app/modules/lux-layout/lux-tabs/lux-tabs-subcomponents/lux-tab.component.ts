@@ -1,11 +1,11 @@
-import { AfterContentInit, Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, Input, TemplateRef } from "@angular/core";
 import { LuxUtil } from '../../../lux-util/lux-util';
 
 @Component({
   selector: 'lux-tab',
   template: ''
 })
-export class LuxTabComponent implements AfterContentInit {
+export class LuxTabComponent implements AfterViewInit {
   @Input() luxTitle = '';
   @Input() luxIconName?: string;
   @Input() luxCounter?: number;
@@ -23,7 +23,7 @@ export class LuxTabComponent implements AfterContentInit {
 
   constructor() {}
 
-  ngAfterContentInit() {
+  ngAfterViewInit() {
     LuxUtil.assertNonNull('contentTemplate', this.contentTemplate);
   }
 }
