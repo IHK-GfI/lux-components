@@ -4,6 +4,10 @@
 
 - **allgemein**: Update auf LUX-Components-Icons-And-Fonts [1.2.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.2.0).
 
+## Bug Fixes
+
+- **lux-tabs**: Fehler bei Aufruf von Custom Tabs. [Issue 268](https://github.com/IHK-GfI/lux-components/issues/268)
+
 # Version 14.1.0
 
 ## New
