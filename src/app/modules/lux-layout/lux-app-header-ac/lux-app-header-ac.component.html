@@ -12,21 +12,21 @@
     <div fxFlex.gt-sm="0 0 45" fxFlex.lt-md="30" fxLayoutAlign="start center" class="lux-brand-logo-container">
       <lux-image
         [luxImageSrc]="luxBrandLogoSrc"
-        [luxImageHeight]="mobileView ? '24px': '36px'"
+        [luxImageHeight]="mobileView ? '24px': '40px'"
         class="lux-brand-logo"
         [ngClass]="{ 'lux-brand-logo-mobile': mobileView }"
         luxAlt="Lux-Brand-Logo"
         luxTagId="lux-brand-logo-button"
         (luxClicked)="onBrandLogoClicked($event)"
         *ngIf="luxBrandLogoSrc"
-        [ngStyle]="{display: 'flex'}"
+        [ngStyle]="{ display: 'flex' }"
       ></lux-image>
     </div>
     <!-- App-Logo -->
-    <div fxFlex="0 0 10" fxLayoutAlign="center center" class="lux-app-logo-container" *ngIf="!mobileView">
+    <div fxFlex="0 0 40px" class="lux-app-logo-container" *ngIf="!mobileView">
       <lux-image
         [luxImageSrc]="luxAppLogoSrc"
-        luxImageHeight="36px"
+        luxImageHeight="40px"
         class="lux-app-logo"
         luxAlt="Lux-App-Logo"
         (luxClicked)="onAppLogoClicked($event)"
@@ -71,7 +71,6 @@
         fxFlex="0 0 auto"
       >
         <!-- Anzeige des Usernames falls dieser vorhanden und eingeloggt ist -->
-
         <lux-menu-item *ngIf="luxUserName"
           [luxLabel]="luxUserName"
           [luxDisabled]="true"
@@ -111,8 +110,7 @@
           </lux-button>
         </lux-menu-trigger>
       </lux-menu>
-  </div>
-
+    </div>
   </div>
   <!-- Nav-Bar -->
   <div
@@ -134,10 +132,8 @@
       ></lux-image>
       <div class="lux-app-title" [ngClass]="{ 'lux-mobile': mobileView }">{{ mobileView ? luxAppTitleShort : luxAppTitle }}</div>
     </div>
-
     <div fxFlex="fill"  class="lux-app-nav-menu">
       <ng-content select="lux-app-header-ac-nav-menu" *ngIf="navMenu"></ng-content>
     </div>
-
   </div>
 </div>
