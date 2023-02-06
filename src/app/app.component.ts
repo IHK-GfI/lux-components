@@ -69,6 +69,7 @@ export class AppComponent implements OnInit {
   onChangeTheme(themeName: string) {
     this.themeService.setTheme(themeName);
     this.themeName = themeName;
+    this.router.navigate(['/home']);
   }
 
   toggleLogin(){
