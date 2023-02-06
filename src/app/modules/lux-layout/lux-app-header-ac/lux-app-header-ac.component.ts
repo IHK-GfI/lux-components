@@ -1,7 +1,6 @@
 import { Component, ContentChild, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxAppService } from '../../lux-util/lux-app.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
@@ -44,23 +43,36 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
 
   menuOpened = false;
 
+  private iconBasePath = '';
+  
   constructor(
     private logger: LuxConsoleService,
     private queryService: LuxMediaQueryObserverService,
     private elementRef: ElementRef, 
-    private appService: LuxAppService
+    private appService: LuxAppService,
+    private configService: LuxComponentsConfigService
     ) {
-      this.mobileView = this.queryService.activeMediaQuery === 'xs' || this.queryService.activeMediaQuery === 'sm'
-      this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe(query => {
-        this.mobileView = query === 'xs' ||  query === 'sm';
-      });
-      this.appService.appHeaderEl = elementRef.nativeElement;
+    this.mobileView = this.queryService.activeMediaQuery === 'xs' || this.queryService.activeMediaQuery === 'sm'
+    this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe(query => {
+      this.mobileView = query === 'xs' ||  query === 'sm';
+    });
+    this.appService.appHeaderEl = elementRef.nativeElement;
+    this.iconBasePath = this.configService.currentConfig.iconBasePath ?? '';
+    if (this.iconBasePath.endsWith('/')) {
+      this.iconBasePath = this.iconBasePath.substring(0, this.iconBasePath.length - 1);
     }
+  }
 
   ngOnInit(): void {
     //für die lux-images für das Brandlogo und Applogo
     if (this.luxClicked.observed) {
       this.hasOnClickedListener = true;
+    }
+    if(!this.luxAppLogoSrc) {
+      this.luxAppLogoSrc = this.iconBasePath + '/assets/logos/app_logo_platzhalter.svg';
+    }
+    if(!this.luxBrandLogoSrc) {
+      this.luxBrandLogoSrc = this.iconBasePath + '/assets/logos/ihk_logo_platzhalter.svg';
     }
   }
 
