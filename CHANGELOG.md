@@ -12,6 +12,7 @@
 - **lux-dialog**: Die Property "disableClose" ist wirkungslos. [Issue 264](https://github.com/IHK-GfI/lux-components/issues/264)
 - **lux-dialog**: Der Inhalt nimmt nicht die gesamte Breite und Höhe ein. [Issue 264](https://github.com/IHK-GfI/lux-components/issues/264)
 - **lux-lookup-combobox**: Das Array des Output-Events "luxDataLoadedAsArray" wird nachträglich verändert. [Issue 274](https://github.com/IHK-GfI/lux-components/issues/274)
+- **lux-select-ac**, **lux-lookup-combobox-ac**: Auswahlbox bei lux-select-ac im Theme authentic ungünstig positioniert. [Issue 271](https://github.com/IHK-GfI/lux-components/issues/271)
 
 # Version 14.1.0
 
