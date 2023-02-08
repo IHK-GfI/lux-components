@@ -26,6 +26,7 @@ export class SelectExampleComponent {
   useSimpleArray = false;
   showOutputEvents = false;
   options: { label: string; value: number }[] = [
+    { label: 'Argentinien, Bolivien, Chile, Costa Rica, Dominikanische Republik, Ecuador, El Salvador, Guatemala, Honduras, Kolumbien, Kuba, Mexiko', value: 0 },
     { label: 'Afghanistan', value: 1 },
     { label: 'Albanien', value: 2 },
     { label: 'Algerien', value: 3 },
