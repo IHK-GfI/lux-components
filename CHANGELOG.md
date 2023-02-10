@@ -11,6 +11,7 @@
 - **lux-tabs**: Fehler bei Aufruf von Custom Tabs. [Issue 268](https://github.com/IHK-GfI/lux-components/issues/268)
 - **lux-dialog**: Die Property "disableClose" ist wirkungslos. [Issue 264](https://github.com/IHK-GfI/lux-components/issues/264)
 - **lux-dialog**: Der Inhalt nimmt nicht die gesamte Breite und Höhe ein. [Issue 264](https://github.com/IHK-GfI/lux-components/issues/264)
+- **lux-lookup-combobox**: Das Array des Output-Events "luxDataLoadedAsArray" wird nachträglich verändert. [Issue 274](https://github.com/IHK-GfI/lux-components/issues/274)
 
 # Version 14.1.0
 

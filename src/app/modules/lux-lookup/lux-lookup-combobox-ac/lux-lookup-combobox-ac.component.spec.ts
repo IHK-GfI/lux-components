@@ -22,7 +22,7 @@ describe('LuxLookupComboboxAcComponent', () => {
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [LuxLookupHandlerService, LuxConsoleService, { provide: LuxLookupService, useClass: MockLookupService }],
-      [LuxNoFormComponent]
+      [LuxNoFormComponent, LuxScrollComponent]
     );
   });
 
@@ -141,11 +141,59 @@ describe('LuxLookupComboboxAcComponent', () => {
       discardPeriodicTasks();
     }));
   });
+
+  describe('Nachladen', () => {
+    let fixture: ComponentFixture<LuxScrollComponent>;
+    let component: LuxScrollComponent;
+    let combobox: LuxLookupComboboxAcComponent;
+    let overlayHelper: LuxOverlayHelper;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(LuxScrollComponent);
+      component = fixture.componentInstance;
+      combobox = fixture.debugElement.query(By.directive(LuxLookupComboboxAcComponent)).componentInstance;
+      fixture.detectChanges();
+      overlayHelper = new LuxOverlayHelper();
+    });
+
+    it('Sollte die Optionen nachladen', fakeAsync(() => {
+      fixture.detectChanges();
+      const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+
+      const spy = spyOn(combobox, 'updateDisplayedEntries').and.callThrough();
+
+      trigger.click();
+      fixture.detectChanges();
+      flush();
+
+      let options = overlayHelper.selectAllFromOverlay('mat-option');
+      expect(options?.length).toEqual(9); // 8 + Leereintrag
+      expect(component.myEntries.length).toBe(mockResultTest.length);
+      expect(combobox.entries.length).toEqual(mockResultTest.length);
+      expect(combobox.displayedEntries.length).toEqual(8);
+      expect(combobox.invisibleEntries.length).toEqual(2);
+
+      const panel = fixture.debugElement.query(By.css('div.mat-select-panel'));
+      expect(panel).toBeDefined();
+      panel.nativeElement.scrollTop = 200;
+      LuxTestHelper.dispatchFakeEvent(panel.nativeElement, 'scroll');
+      LuxTestHelper.wait(fixture);
+
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(component.myEntries.length).toBe(mockResultTest.length);
+      expect(combobox.entries.length).toEqual(mockResultTest.length);
+      expect(combobox.displayedEntries.length).toEqual(10);
+      expect(combobox.invisibleEntries.length).toEqual(0);
+
+      discardPeriodicTasks();
+    }));
+  });
 });
 
 @Component({
   template: `
     <lux-lookup-combobox-ac
+      luxTableNo="5"
       [luxControlValidators]="validators"
       [(luxValue)]="value"
       [luxCompareFn]="compareFn"
@@ -168,37 +216,90 @@ class LuxNoFormComponent {
   compareFn?: LuxLookupCompareFn;
 }
 
+@Component({
+  template: `
+    <lux-lookup-combobox-ac
+      luxTableNo="11"
+      [luxEntryBlockSize]="8"
+      luxLookupId="test"
+      luxRenderProp="kurzText"
+      [luxParameters]="params"
+      [luxLabel]="'Label'"
+      (luxDataLoadedAsArray)="updateEntries($event)"
+    ></lux-lookup-combobox-ac>
+  `
+})
+class LuxScrollComponent {
+  params = new LuxLookupParameters({
+    knr: 101,
+    fields: [LuxFieldValues.kurz, LuxFieldValues.lang1, LuxFieldValues.lang2]
+  });
+
+  myEntries: LuxLookupTableEntry[] = [];
+
+  updateEntries(entries: LuxLookupTableEntry[]) {
+    this.myEntries = entries;
+  }
+}
+
+const mockResultTest = [
+  {
+    key: '1',
+    kurzText: 'Afghanistan',
+    langText1:
+      'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?'
+  },
+  {
+    key: '10',
+    kurzText: 'Bellux',
+    langText1: 'Belgien und Luxemburg',
+    gueltigkeitVon: '19900101',
+    gueltigkeitBis: '20090101'
+  },
+  {
+    key: '11',
+    kurzText: 'Ägypten',
+    langText1: 'Ägypten'
+  },
+  {
+    key: '100',
+    kurzText: 'Deutschland',
+    langText1: 'Deutschland'
+  },
+  {
+    key: '1100',
+    kurzText: 'Algerien',
+    langText1: 'Algerien'
+  },
+  {
+    key: '1111',
+    kurzText: 'Finnland',
+    langText1: 'Finnland'
+  },
+  {
+    key: '1112',
+    kurzText: 'Liechtenstein',
+    langText1: 'Liechtenstein'
+  },
+  {
+    key: '1113',
+    kurzText: 'Österreich',
+    langText1: 'Österreich'
+  },
+  {
+    key: '1114',
+    kurzText: 'Schweiz',
+    langText1: 'Schweiz'
+  },
+  {
+    key: '1115',
+    kurzText: 'Färöer',
+    langText1: 'Färöer'
+  },
+];
+
 class MockLookupService {
-  getLookupTable(_tableNo: string, _parameters: LuxLookupParameters, _url: string): Observable<LuxLookupTableEntry[]> {
-    return of([
-      {
-        key: '1',
-        kurzText: 'Afghanistan',
-        langText1:
-          'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?'
-      },
-      {
-        key: '10',
-        kurzText: 'Bellux',
-        langText1: 'Belgien und Luxemburg',
-        gueltigkeitVon: '19900101',
-        gueltigkeitBis: '20090101'
-      },
-      {
-        key: '11',
-        kurzText: 'Ägypten',
-        langText1: 'Ägypten'
-      },
-      {
-        key: '100',
-        kurzText: 'Deutschland',
-        langText1: 'Deutschland'
-      },
-      {
-        key: '1100',
-        kurzText: 'Algerien',
-        langText1: 'Algerien'
-      },
-    ]);
+  getLookupTable(tableNo: string, _parameters: LuxLookupParameters, _url: string): Observable<LuxLookupTableEntry[]> {
+    return of(mockResultTest.slice(0, +tableNo));
   }
 }
