@@ -27,6 +27,7 @@ export class LuxLookupComboboxComponent<T = LuxLookupTableEntry> extends LuxLook
 
   stateMatcher: LuxLookupErrorStateMatcher;
   displayedEntries: LuxLookupTableEntry[] = [];
+  invisibleEntries: LuxLookupTableEntry[] = [];
   subscription?: Subscription;
 
   constructor(
@@ -74,6 +75,7 @@ export class LuxLookupComboboxComponent<T = LuxLookupTableEntry> extends LuxLook
     super.setLookupData(entries);
 
     this.displayedEntries = [];
+    this.invisibleEntries = [...entries];
     this.updateDisplayedEntries();
   }
 
@@ -110,11 +112,11 @@ export class LuxLookupComboboxComponent<T = LuxLookupTableEntry> extends LuxLook
   /**
    * Läd den nächsten Block Daten aus den Entries nach.
    */
-  private updateDisplayedEntries() {
-    if (this.entries.length > 0) {
+  updateDisplayedEntries() {
+    if (this.invisibleEntries.length > 0) {
       const start = 0;
-      const end = Math.min(this.luxEntryBlockSize, this.entries.length);
-      this.displayedEntries.push(...this.entries.splice(start, end));
+      const end = Math.min(this.luxEntryBlockSize, this.invisibleEntries.length);
+      this.displayedEntries.push(...this.invisibleEntries.splice(start, end));
     }
   }
 }
