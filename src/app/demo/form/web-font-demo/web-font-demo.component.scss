@@ -1,0 +1,38 @@
+.container {
+  margin: 2em auto;
+  padding: 1em 2em;
+  max-width: 1150px;
+  border: 1px solid rgba(black, 0.12);
+  border-radius: 4px;
+  background-color: #fff;
+
+  display: flex;
+  gap: 2em;
+  justify-content: space-around;
+
+  p {
+    color: var(--lux-theme-dark-primary-text);
+    font-size: 1.2em;
+    margin: 1em 0;
+  }
+
+  &.source-test {
+    h2 {
+      font-family: 'Source Sans Pro';
+    }
+  }
+  &.blogger-test {
+    p {
+      font-family: 'Blogger Sans';
+    }
+  }
+}
+
+@media (max-width: 1149px) {
+  .container {
+    max-width: 90vw;
+    margin: 1em 0.5em;
+    flex-direction: column;
+    gap: 1em;
+  }
+}

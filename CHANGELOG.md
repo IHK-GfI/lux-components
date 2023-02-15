@@ -1,3 +1,10 @@
+# Version 14.3.0
+
+## New
+
+- **allgemein**: Update auf LUX-Components-Icons-And-Fonts [1.4.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.4.0).
+- **styles**: Webfonts werden über das Theme geladen. [Issue 277](https://github.com/IHK-GfI/lux-components/issues/277)
+
 # Version 14.2.0
 
 ## New
