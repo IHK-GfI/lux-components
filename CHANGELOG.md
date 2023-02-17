@@ -2,6 +2,7 @@
 
 ## New
 
+- **allgemein**: Update auf LUX-Components-Theme [14.2.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/14.2.0).
 - **allgemein**: Update auf LUX-Components-Icons-And-Fonts [1.3.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.3.0).
 - **lux-lookup-autocomplete**: Sortiermöglichkeit ergänzt. [Issue 263](https://github.com/IHK-GfI/lux-components/issues/263)
 - **lux-lookup-combobox**: Sortiermöglichkeit ergänzt. [Issue 263](https://github.com/IHK-GfI/lux-components/issues/263)

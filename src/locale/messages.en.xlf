@@ -698,14 +698,6 @@
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="luxc.file.upload.dialog.close.btn.arialabel" datatype="html">
-        <source>Schließen</source>
-        <target>Close</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-subcomponents/lux-file-replace-dialog/lux-file-replace-dialog.component.html</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="luxc.file.replace.dialog.title.multiple" datatype="html">
         <source> Wollen Sie fortfahren und die Dateien mit gleichen Namen ersetzen? </source>
         <target>Do you want to continue and replace the files with the same names?</target>
@@ -929,7 +921,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.html</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">102</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.html</context>
@@ -961,7 +953,7 @@
         <target>User menu / Navigation</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">22</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -1137,11 +1129,11 @@
         <target>The entered Value is not part of the key table.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-lookup/lux-lookup-autocomplete-ac/lux-lookup-autocomplete-ac.component.ts</context>
-          <context context-type="linenumber">147</context>
+          <context context-type="linenumber">162</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-lookup/lux-lookup-autocomplete/lux-lookup-autocomplete.component.ts</context>
-          <context context-type="linenumber">148</context>
+          <context context-type="linenumber">163</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.lookup.error_message.invalid" datatype="html">
@@ -1149,7 +1141,7 @@
         <target>The selected value is invalid.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-lookup/lux-lookup-model/lux-lookup-component.ts</context>
-          <context context-type="linenumber">186</context>
+          <context context-type="linenumber">245</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.lookup.error_message.unknown_property" datatype="html">
@@ -1157,7 +1149,7 @@
         <target>Read error (Property unknown)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-lookup/lux-lookup-model/lux-lookup-component.ts</context>
-          <context context-type="linenumber">198</context>
+          <context context-type="linenumber">257</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.relative-timestamp.days" datatype="html">
