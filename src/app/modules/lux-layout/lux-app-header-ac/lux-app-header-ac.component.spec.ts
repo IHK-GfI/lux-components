@@ -9,7 +9,6 @@ import { LuxAppHeaderAcComponent } from './lux-app-header-ac.component';
 declare const viewport: Viewport;
 
 describe('LuxAppHeaderAcComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [LuxAppHeaderAcComponent, MockIconsClickedAppHeaderAcComponent]);
   });
@@ -27,17 +26,13 @@ describe('LuxAppHeaderAcComponent', () => {
       expect(element).toBeDefined();
 
       discardPeriodicTasks();
-    }))
-  })
+    }));
+  });
 });
 
 @Component({
   template: `
-    <lux-app-header-ac
-      luxAppTitle="MyClickTitle"
-      luxAppIconSrc="/assets/svg/demoAppLogo.svg"
-      (luxAppLogoClicked)="onClicked()"
-      >
+    <lux-app-header-ac luxAppTitle="MyClickTitle" luxAppIconSrc="assets/svg/demoAppLogo.svg" (luxAppLogoClicked)="onClicked()">
     </lux-app-header-ac>
   `
 })

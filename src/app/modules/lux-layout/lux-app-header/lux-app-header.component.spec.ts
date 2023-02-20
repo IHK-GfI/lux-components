@@ -2,15 +2,7 @@
 // noinspection DuplicatedCode
 
 import { Component } from '@angular/core';
-import {
-  ComponentFixture,
-  discardPeriodicTasks,
-  fakeAsync,
-  flush,
-  flushMicrotasks,
-  inject,
-  TestBed
-} from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, flushMicrotasks, inject, TestBed } from '@angular/core/testing';
 import { Viewport } from 'karma-viewport/dist/adapter/viewport';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxMasterDetailMobileHelperService } from '../lux-master-detail/lux-master-detail-mobile-helper.service';
@@ -34,12 +26,7 @@ describe('LuxAppHeaderComponent', () => {
           useClass: MockMasterDetailHelperService
         }
       ],
-      [
-        MockAppHeaderComponent,
-        MockLabelClickedAppHeaderComponent,
-        MockIconClickedAppHeaderComponent,
-        MockImageClickedAppHeaderComponent
-      ]
+      [MockAppHeaderComponent, MockLabelClickedAppHeaderComponent, MockIconClickedAppHeaderComponent, MockImageClickedAppHeaderComponent]
     );
   });
 
@@ -179,12 +166,8 @@ describe('LuxAppHeaderComponent', () => {
     }));
 
     it('Sollte den lux-side-nav-header und lux-side-nav-footer darstellen', fakeAsync(() => {
-      expect(fixture.debugElement.query(By.css('.test-side-nav-header')).nativeElement.textContent.trim()).toEqual(
-        'SideNav-Header'
-      );
-      expect(fixture.debugElement.query(By.css('.test-side-nav-footer')).nativeElement.textContent.trim()).toEqual(
-        'SideNav-Footer'
-      );
+      expect(fixture.debugElement.query(By.css('.test-side-nav-header')).nativeElement.textContent.trim()).toEqual('SideNav-Header');
+      expect(fixture.debugElement.query(By.css('.test-side-nav-footer')).nativeElement.textContent.trim()).toEqual('SideNav-Footer');
     }));
 
     it('Sollte lux-side-nav-items via *ngIf ausblenden können', fakeAsync(() => {
@@ -225,10 +208,18 @@ describe('LuxAppHeaderComponent', () => {
       expect(luxSideNavItems[2].query(By.css('.lux-button-label')).nativeElement.textContent.trim()).toEqual('Label 2');
       expect(luxSideNavItems[3].query(By.css('.lux-button-label')).nativeElement.textContent.trim()).toEqual('Label 3');
 
-      expect(luxSideNavItems[0].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()).not.toBeNull();
-      expect(luxSideNavItems[1].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()).not.toBeNull();
-      expect(luxSideNavItems[2].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()).not.toBeNull();
-      expect(luxSideNavItems[3].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()).not.toBeNull();
+      expect(
+        luxSideNavItems[0].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()
+      ).not.toBeNull();
+      expect(
+        luxSideNavItems[1].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()
+      ).not.toBeNull();
+      expect(
+        luxSideNavItems[2].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()
+      ).not.toBeNull();
+      expect(
+        luxSideNavItems[3].query(By.css('[data-mat-icon-name="lux-interface-validation-check"]')).nativeElement.textContent.trim()
+      ).not.toBeNull();
     }));
 
     it('Sollte lux-side-nav-items deaktivieren', fakeAsync(() => {
@@ -391,9 +382,7 @@ describe('LuxAppHeaderComponent', () => {
 
       // Nachbedingungen prüfen
       expect(
-        fixture.debugElement
-          .query(By.css('.lux-side-nav-content lux-link .lux-button-label'))
-          .nativeElement.textContent.trim()
+        fixture.debugElement.query(By.css('.lux-side-nav-content lux-link .lux-button-label')).nativeElement.textContent.trim()
       ).toEqual('Dashboard');
 
       // Änderungen durchführen
@@ -417,9 +406,7 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       expect(
-        fixture.debugElement
-          .query(By.css('.lux-side-nav-content lux-link .lux-button-label'))
-          .nativeElement.textContent.trim()
+        fixture.debugElement.query(By.css('.lux-side-nav-content lux-link .lux-button-label')).nativeElement.textContent.trim()
       ).toEqual('Dashboard');
 
       fixture.debugElement.query(By.css('.lux-side-nav-content lux-link button')).nativeElement.click();
@@ -452,9 +439,7 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       expect(
-        fixture.debugElement
-          .query(By.css('.lux-side-nav-content lux-link .lux-button-label'))
-          .nativeElement.textContent.trim()
+        fixture.debugElement.query(By.css('.lux-side-nav-content lux-link .lux-button-label')).nativeElement.textContent.trim()
       ).toEqual('Dashboard');
 
       fixture.debugElement.query(By.css('.lux-side-nav-content lux-link button')).nativeElement.click();
@@ -526,9 +511,7 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-header-username')).nativeElement.textContent.trim()).toEqual(
-        'Gollum Smeagol'
-      );
+      expect(fixture.debugElement.query(By.css('.lux-header-username')).nativeElement.textContent.trim()).toEqual('Gollum Smeagol');
     }));
 
     it('Sollte luxUserNameShort korrekt generieren', fakeAsync(() => {
@@ -540,9 +523,7 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-header-user-short > span')).nativeElement.textContent).toEqual(
-        'G'
-      );
+      expect(fixture.debugElement.query(By.css('.lux-header-user-short > span')).nativeElement.textContent).toEqual('G');
     }));
 
     it('Sollte das Menu ausklappen und die lux-menu-items darstellen', fakeAsync(() => {
@@ -572,12 +553,8 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .lux-button-label')[0].textContent!.trim()).toEqual(
-        'Label 0'
-      );
-      expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .lux-button-label')[1].textContent!.trim()).toEqual(
-        'Label 1'
-      );
+      expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .lux-button-label')[0].textContent!.trim()).toEqual('Label 0');
+      expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .lux-button-label')[1].textContent!.trim()).toEqual('Label 1');
       expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .fas.fa-check')[0]).not.toBeNull();
       expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .fas.fa-check')[1]).not.toBeNull();
 
@@ -642,9 +619,7 @@ describe('LuxAppHeaderComponent', () => {
 });
 
 @Component({
-  template: `
-    <lux-app-header (luxClicked)="onClicked()" luxAppTitle="MyClickTitle" luxAppTitleShort="MyClick"></lux-app-header>
-  `
+  template: ` <lux-app-header (luxClicked)="onClicked()" luxAppTitle="MyClickTitle" luxAppTitleShort="MyClick"></lux-app-header> `
 })
 class MockLabelClickedAppHeaderComponent {
   onClicked() {}
@@ -654,7 +629,7 @@ class MockLabelClickedAppHeaderComponent {
   template: `
     <lux-app-header
       (luxClicked)="onClicked()"
-      luxImageSrc="/assets/png/example.png"
+      luxImageSrc="assets/png/example.png"
       luxAppTitle="MyClickTitle"
       luxAppTitleShort="MyClick"
     ></lux-app-header>
