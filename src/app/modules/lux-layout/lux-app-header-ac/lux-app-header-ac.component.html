@@ -1,4 +1,9 @@
-<div fxLayout="column" class="lux-app-header-ac-container">
+<div
+  fxLayout="column"
+  class="lux-app-header-ac-container"
+  [luxAriaRole]="luxAriaRoleHeaderLabel ? 'banner' : undefined"
+  [luxAriaLabel]="luxAriaRoleHeaderLabel"
+>
   <!-- Top-Bar -->
   <div
     *ngIf="!luxHideTopBar"
@@ -12,10 +17,11 @@
     <div fxFlex.gt-sm="0 0 45" fxFlex.lt-md="30" fxLayoutAlign="start center" class="lux-brand-logo-container">
       <lux-image
         [luxImageSrc]="luxBrandLogoSrc"
-        [luxImageHeight]="mobileView ? '24px': '40px'"
+        [luxImageHeight]="mobileView ? '24px' : '40px'"
         class="lux-brand-logo"
         [ngClass]="{ 'lux-brand-logo-mobile': mobileView }"
         luxAlt="Lux-Brand-Logo"
+        [luxAriaLabel]="luxAriaTitleImageLabel"
         luxTagId="lux-brand-logo-button"
         (luxClicked)="onBrandLogoClicked($event)"
         *ngIf="luxBrandLogoSrc"
@@ -29,6 +35,7 @@
         luxImageHeight="40px"
         class="lux-app-logo"
         luxAlt="Lux-App-Logo"
+        [luxAriaLabel]="luxAriaTitleIconLabel"
         (luxClicked)="onAppLogoClicked($event)"
         *ngIf="luxAppLogoSrc"
       ></lux-image>
@@ -45,7 +52,7 @@
       [luxAriaLabel]="luxAriaUserMenuButtonLabel"
     >
       <div fxflex="0 0 auto" *ngIf="actionNav" class="lux-action-nav-ac-container">
-         <ng-container [ngTemplateOutlet]="actionNav.templateRef" *ngIf="actionNav"></ng-container>
+        <ng-container [ngTemplateOutlet]="actionNav.templateRef" *ngIf="actionNav"></ng-container>
       </div>
 
       <lux-lang-select-ac
@@ -71,11 +78,7 @@
         fxFlex="0 0 auto"
       >
         <!-- Anzeige des Usernames falls dieser vorhanden und eingeloggt ist -->
-        <lux-menu-item *ngIf="luxUserName"
-          [luxLabel]="luxUserName"
-          [luxDisabled]="true"
-          luxClass="lux-user-name-label"
-        ></lux-menu-item>
+        <lux-menu-item *ngIf="luxUserName" [luxLabel]="luxUserName" [luxDisabled]="true" luxClass="lux-user-name-label"></lux-menu-item>
 
         <ng-container *ngFor="let menuItem of userMenu?.menuItemComponents">
           <lux-menu-item
@@ -95,7 +98,7 @@
         <lux-menu-trigger>
           <lux-button
             [luxRounded]="true"
-            [luxIconName]="luxUserName ? 'lux-interface-user-check' : 'lux-interface-user-single' "
+            [luxIconName]="luxUserName ? 'lux-interface-user-check' : 'lux-interface-user-single'"
             luxColor="primary"
             class="user-menu-trigger-ac"
             ngClass.lt-md="user-menu-trigger-mobile"
@@ -132,7 +135,7 @@
       ></lux-image>
       <div class="lux-app-title" [ngClass]="{ 'lux-mobile': mobileView }">{{ mobileView ? luxAppTitleShort : luxAppTitle }}</div>
     </div>
-    <div fxFlex="fill"  class="lux-app-nav-menu">
+    <div fxFlex="fill" class="lux-app-nav-menu">
       <ng-content select="lux-app-header-ac-nav-menu" *ngIf="navMenu"></ng-content>
     </div>
   </div>
