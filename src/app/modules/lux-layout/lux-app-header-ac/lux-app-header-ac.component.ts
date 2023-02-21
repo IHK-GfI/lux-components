@@ -1,4 +1,15 @@
-import { Component, ContentChild, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxAppService } from '../../lux-util/lux-app.service';
@@ -19,11 +30,14 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   @Input() luxAppTitleShort?: string;
   @Input() luxBrandLogoSrc?: string;
   @Input() luxAppLogoSrc?: string;
-  @Input() luxAriaUserMenuButtonLabel = $localize `:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
   @Input() luxLocaleSupported = ['de'];
-  @Input() luxLocaleBaseHref  = '';
+  @Input() luxLocaleBaseHref = '';
   @Input() luxHideTopBar = false;
   @Input() luxHideNavBar = false;
+  @Input() luxAriaRoleHeaderLabel = $localize`:@@luxc.app-header.aria.role_header.lbl:Kopfbereich / Menübereich`;
+  @Input() luxAriaUserMenuButtonLabel = $localize`:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
+  @Input() luxAriaTitleIconLabel = $localize`:@@luxc.app-header.aria.title_icon.lbl:Titelicon`;
+  @Input() luxAriaTitleImageLabel = $localize`:@@luxc.app-header.aria.title.image.lbl:Titelbild`;
 
   @Output() luxClicked: EventEmitter<Event> = new EventEmitter();
   @Output() luxAppLogoClicked: EventEmitter<Event> = new EventEmitter();
@@ -35,7 +49,6 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   @ContentChild(LuxAppHeaderAcUserMenuComponent) userMenu?: LuxAppHeaderAcUserMenuComponent;
   @ContentChild(LuxAppHeaderAcActionNavComponent) actionNav?: LuxAppHeaderAcActionNavComponent;
 
-  hasOnClickedListener?: boolean;
   userNameShort?: string;
 
   mobileView: boolean;
@@ -44,17 +57,17 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   menuOpened = false;
 
   private iconBasePath = '';
-  
+
   constructor(
     private logger: LuxConsoleService,
     private queryService: LuxMediaQueryObserverService,
-    private elementRef: ElementRef, 
+    private elementRef: ElementRef,
     private appService: LuxAppService,
     private configService: LuxComponentsConfigService
-    ) {
-    this.mobileView = this.queryService.activeMediaQuery === 'xs' || this.queryService.activeMediaQuery === 'sm'
-    this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe(query => {
-      this.mobileView = query === 'xs' ||  query === 'sm';
+  ) {
+    this.mobileView = this.queryService.activeMediaQuery === 'xs' || this.queryService.activeMediaQuery === 'sm';
+    this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe((query) => {
+      this.mobileView = query === 'xs' || query === 'sm';
     });
     this.appService.appHeaderEl = elementRef.nativeElement;
     this.iconBasePath = this.configService.currentConfig.iconBasePath ?? '';
@@ -64,14 +77,10 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    //für die lux-images für das Brandlogo und Applogo
-    if (this.luxClicked.observed) {
-      this.hasOnClickedListener = true;
-    }
-    if(!this.luxAppLogoSrc) {
+    if (!this.luxAppLogoSrc) {
       this.luxAppLogoSrc = this.iconBasePath + '/assets/logos/app_logo_platzhalter.svg';
     }
-    if(!this.luxBrandLogoSrc) {
+    if (!this.luxBrandLogoSrc) {
       this.luxBrandLogoSrc = this.iconBasePath + '/assets/logos/ihk_logo_platzhalter.svg';
     }
   }
@@ -91,10 +100,6 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
     if (this.customTrigger) {
       this.customTrigger.nativeElement.children[0].focus();
     }
-  }
-
-  onClicked(event: any) {
-    this.luxClicked.emit(event);
   }
 
   onAppLogoClicked(event: any) {
