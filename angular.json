@@ -181,6 +181,21 @@
                 "glob": "**/*",
                 "input": "./node_modules/@ihk-gfi/lux-components-icons-and-fonts/assets/icons/",
                 "output": "./assets/icons"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ihk-gfi/lux-components-icons-and-fonts/assets/logos/",
+                "output": "./assets/logos"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ihk-gfi/lux-components-icons-and-fonts/assets/fonts/",
+                "output": "./assets/fonts"
+              },
+              {
+                "glob": "*(*min.css|*min.css.map)",
+                "input": "./node_modules/@ihk-gfi/lux-components-theme/prebuilt-themes",
+                "output": "./assets/themes"
               }
             ]
           }
