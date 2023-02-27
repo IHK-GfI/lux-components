@@ -1,108 +1,111 @@
 <example-base-structure
   exampleTitle="Link-Plain"
-  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90link"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90link%E2%80%90plain"
 >
   <example-base-content [exampleCentered]="false">
     <div fxLayout="column" fxLayoutGap="32px">
-    <span class="lux-mt-5">Dies ist ein
-      <lux-link-plain
-        [luxLabel]="label"
-        [luxDisabled]="disabled"
-        luxTagId="demo-link"
-        [luxHref]="href"
-        [luxBlank]="blank"
-      ></lux-link-plain>
-      im normalen Fließtext.
-    </span>
-    <br>
-    <h2>Dies ist ein
-      <lux-link-plain
-        [luxLabel]="label"
-        [luxIconName]="iconName"
-        [luxDisabled]="disabled"
-        [luxIconShowRight]="iconShowRight"
-        luxTagId="demo-link"
-        [luxHref]="href"
-        [luxBlank]="blank"
-      ></lux-link-plain>
-      in einer H2 mit einem Icon!
-    </h2>
-    <div>
-      Und hier ist eine Liste mit mehreren Links
-      <ul>
-        <li>
-          <lux-link-plain
-            luxLabel="Formulare"
-            luxIconName="lux-interface-arrows-right"
-            [luxIconShowRight]="true"
-            luxTagId="demo-link"
-            [luxBlank]="false"
-            (luxClicked)="goTo('Form')"
-          ></lux-link-plain>
-        </li>
-        <li>
-          <lux-link-plain
-            luxLabel="Komponenten"
-            luxIconName="lux-interface-arrows-right"
-            [luxIconShowRight]="true"
-            luxTagId="demo-link"
-            [luxBlank]="false"
-            (luxClicked)="goTo('Components')"
-          ></lux-link-plain>
-        </li>
-        <li>
-          <lux-link-plain
-            luxLabel="Baseline"
-            luxIconName="lux-interface-arrows-right"
-            [luxIconShowRight]="true"
-            luxTagId="demo-link"
-            [luxBlank]="false"
-            (luxClicked)="goTo('Baseline')"
-          ></lux-link-plain>
-        </li>
-        <li>
-          <lux-link-plain
-            luxLabel="Konfiguration"
-            luxIconName="lux-interface-arrows-right"
-            [luxIconShowRight]="true"
-            luxTagId="demo-link"
-            [luxBlank]="false"
-            (luxClicked)="goTo('configuration')"
-          ></lux-link-plain>
-        </li>
-      </ul>
-    </div>
-    <h2>Beispiel für eine Breadcrump-Komponente</h2>
-    <div fxLayout="row" class="breadcrump" fxLayoutAlign="start end">
-      <span>
+      <span class="lux-mt-5"
+        >Dies ist ein
         <lux-link-plain
-          luxLabel="Home"
-          luxIconName="lux-interface-arrows-button-right"
-          [luxIconShowRight]="true"
-          luxTagId="breadcrump-item"
-          luxHref="/home"
-          class="lux-mr-3 breadcrump-item"
+          [luxLabel]="label"
+          [luxDisabled]="disabled"
+          luxTagId="demo-link"
+          [luxHref]="href"
+          [luxBlank]="blank"
         ></lux-link-plain>
+        im normalen Fließtext.
       </span>
-      <span>
+      <br />
+      <h2>
+        Dies ist ein
         <lux-link-plain
-          luxLabel="Components"
-          luxIconName="lux-interface-arrows-button-right"
-          [luxIconShowRight]="true"
-          luxTagId="breadcrump-item"
-          luxHref="/components-overview"
-          class="lux-mr-3 breadcrump-item"
-        ></lux-link-plain></span>
-      <span>
-        <lux-link-plain
-          luxLabel="Link-Plain"
-          luxTagId="breadcrump-item"
-          [luxDisabled]="true"
-          class="lux-mr-3 breadcrump-item"
+          [luxLabel]="label"
+          [luxIconName]="iconName"
+          [luxDisabled]="disabled"
+          [luxIconShowRight]="iconShowRight"
+          luxTagId="demo-link"
+          [luxHref]="href"
+          [luxBlank]="blank"
         ></lux-link-plain>
-      </span>
+        in einer H2 mit einem Icon!
+      </h2>
+      <div>
+        Und hier ist eine Liste mit mehreren Links
+        <ul>
+          <li>
+            <lux-link-plain
+              luxLabel="Formulare"
+              luxIconName="lux-interface-arrows-right"
+              [luxIconShowRight]="true"
+              luxTagId="demo-link"
+              [luxBlank]="false"
+              (luxClicked)="goTo('Form')"
+            ></lux-link-plain>
+          </li>
+          <li>
+            <lux-link-plain
+              luxLabel="Komponenten"
+              luxIconName="lux-interface-arrows-right"
+              [luxIconShowRight]="true"
+              luxTagId="demo-link"
+              [luxBlank]="false"
+              (luxClicked)="goTo('Components')"
+            ></lux-link-plain>
+          </li>
+          <li>
+            <lux-link-plain
+              luxLabel="Baseline"
+              luxIconName="lux-interface-arrows-right"
+              [luxIconShowRight]="true"
+              luxTagId="demo-link"
+              [luxBlank]="false"
+              (luxClicked)="goTo('Baseline')"
+            ></lux-link-plain>
+          </li>
+          <li>
+            <lux-link-plain
+              luxLabel="Konfiguration"
+              luxIconName="lux-interface-arrows-right"
+              [luxIconShowRight]="true"
+              luxTagId="demo-link"
+              [luxBlank]="false"
+              (luxClicked)="goTo('configuration')"
+            ></lux-link-plain>
+          </li>
+        </ul>
+      </div>
+      <h2>Beispiel für eine Breadcrump-Komponente</h2>
+      <div fxLayout="row" class="breadcrump" fxLayoutAlign="start end">
+        <span>
+          <lux-link-plain
+            luxLabel="Home"
+            luxIconName="lux-interface-arrows-button-right"
+            [luxIconShowRight]="true"
+            luxTagId="breadcrump-item"
+            luxHref="/home"
+            class="lux-mr-3 breadcrump-item"
+          ></lux-link-plain>
+        </span>
+        <span>
+          <lux-link-plain
+            luxLabel="Components"
+            luxIconName="lux-interface-arrows-button-right"
+            [luxIconShowRight]="true"
+            luxTagId="breadcrump-item"
+            luxHref="/components-overview"
+            class="lux-mr-3 breadcrump-item"
+          ></lux-link-plain
+        ></span>
+        <span>
+          <lux-link-plain
+            luxLabel="Link-Plain"
+            luxTagId="breadcrump-item"
+            [luxDisabled]="true"
+            class="lux-mr-3 breadcrump-item"
+          ></lux-link-plain>
+        </span>
+      </div>
     </div>
-  </div>
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
@@ -116,8 +119,7 @@
     <lux-input luxName="link_luxHref" class="lux-highlight-section" [(luxValue)]="href" luxLabel="luxHref">
       <lux-form-hint>
         Bestimmt die URL, zu der der Link routet.<br />
-        Wenn die URL nicht mit <i>http</i> beginnt, wird automatisch der Angular-Router für Routing innerhalb der
-        Applikation genommen.
+        Wenn die URL nicht mit <i>http</i> beginnt, wird automatisch der Angular-Router für Routing innerhalb der Applikation genommen.
       </lux-form-hint>
     </lux-input>
     <lux-toggle
@@ -136,11 +138,7 @@
       luxHint="Bestimmt den Text, der für den Link angezeigt wird."
     ></lux-input>
     <div fxLayout="column" class="lux-highlight-section">
-      <lux-input
-        luxName="button_luxIconName"
-        [(luxValue)]="iconName"
-        luxLabel="luxIconName"
-      >
+      <lux-input luxName="button_luxIconName" [(luxValue)]="iconName" luxLabel="luxIconName">
         <lux-form-hint>
           Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
           <i>luxLabel</i> gesetzt ist).<br />
@@ -148,9 +146,7 @@
         </lux-form-hint>
       </lux-input>
       <lux-toggle luxLabel="luxIconShowRight" luxName="button_luxIconShowRight" [(luxChecked)]="iconShowRight">
-        <lux-form-hint>
-          Diese Property definiert, ob das Icon links oder rechts vom Label-Text angezeigt wird.
-        </lux-form-hint>
+        <lux-form-hint> Diese Property definiert, ob das Icon links oder rechts vom Label-Text angezeigt wird. </lux-form-hint>
       </lux-toggle>
     </div>
 
@@ -164,4 +160,3 @@
     </lux-toggle>
   </example-base-simple-options>
 </example-base-structure>
-
