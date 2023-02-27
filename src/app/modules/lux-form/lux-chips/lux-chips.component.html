@@ -20,7 +20,7 @@
       <ng-container *ngFor="let chip of chipComponents; let i = index">
         <mat-chip
           class="lux-chip"
-          [ngClass]="{'lux-chip-selected': chip.luxSelected, 'lux-chip-disabled': chip.luxDisabled}"
+          [ngClass]="{ 'lux-chip-selected': chip.luxSelected, 'lux-chip-disabled': chip.luxDisabled }"
           [removable]="chip.luxRemovable"
           [disabled]="chip.luxDisabled"
           [selectable]="!chip.luxDisabled"
@@ -33,7 +33,7 @@
           <ng-template *ngTemplateOutlet="chip.templateRef"></ng-template>
           <lux-icon
             class="lux-chip-icon lux-cursor"
-            [ngClass]="{'lux-chip-icon-selected': chip.luxSelected, 'lux-chip-icon-disabled': chip.luxDisabled}"
+            [ngClass]="{ 'lux-chip-icon-selected': chip.luxSelected, 'lux-chip-icon-disabled': chip.luxDisabled }"
             matChipRemove
             luxIconName="cancel"
             luxMargin="0 0 0 6px"
@@ -49,7 +49,7 @@
         <ng-container *ngFor="let label of chipGroup.luxLabels; let i = index">
           <mat-chip
             class="lux-chip"
-            [ngClass]="{'lux-chip-selected': chipGroup.luxSelected, 'lux-chip-disabled': chipGroup.luxDisabled}"
+            [ngClass]="{ 'lux-chip-selected': chipGroup.luxSelected, 'lux-chip-disabled': chipGroup.luxDisabled }"
             [removable]="chipGroup.luxRemovable"
             [disabled]="chipGroup.luxDisabled"
             [selectable]="!chipGroup.luxDisabled"
@@ -64,7 +64,7 @@
             ></ng-container>
             <lux-icon
               class="lux-chip-icon lux-cursor"
-              [ngClass]="{'lux-chip-icon-selected': chipGroup.luxSelected, 'lux-chip-icon-disabled': chipGroup.luxDisabled}"
+              [ngClass]="{ 'lux-chip-icon-selected': chipGroup.luxSelected, 'lux-chip-icon-disabled': chipGroup.luxDisabled }"
               matChipRemove
               luxIconName="cancel"
               luxMargin="0 0 0 6px"
@@ -93,9 +93,13 @@
             type="text"
             fxFlex="1 1 auto"
             #input
-          >
-          <i aria-hidden="true" class="fas fa-caret-down lux-chips-autocomplete-icon"
-             [ngClass]="{'lux-disabled': luxDisabled}" (click)="onArrowIcon()"></i>
+          />
+          <i
+            aria-hidden="true"
+            class="fas fa-caret-down lux-chips-autocomplete-icon"
+            [ngClass]="{ 'lux-disabled': luxDisabled }"
+            (click)="onArrowIcon()"
+          ></i>
         </div>
         <mat-autocomplete
           [class]="'lux-chips-autocomplete-panel'"
@@ -103,7 +107,7 @@
           (opened)="onAutoCompleteOpened()"
           #auto="matAutocomplete"
         >
-          <mat-option *ngFor="let option of filteredOptions" [value]="option" [ngClass]="{ 'lux-option-multiline': luxOptionMultiline }">
+          <mat-option *ngFor="let option of displayedOptions" [value]="option" [ngClass]="{ 'lux-option-multiline': luxOptionMultiline }">
             {{ option }}
           </mat-option>
         </mat-autocomplete>

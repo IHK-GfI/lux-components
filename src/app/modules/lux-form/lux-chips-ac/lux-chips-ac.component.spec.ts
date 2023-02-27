@@ -13,11 +13,17 @@ import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper
 import { LuxChipAcGroupComponent } from './lux-chips-subcomponents/lux-chip-ac-group.component';
 
 describe('LuxChipComponent-Authentic', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [],
-      [ChipsComponent, LuxStrictFormComponent, LuxStrictNoFormComponent, LuxFormInitValueComponent, LuxFormRequiredValueComponent]
+      [
+        ChipsComponent,
+        LuxStrictFormComponent,
+        LuxStrictNoFormComponent,
+        LuxFormInitValueComponent,
+        LuxFormRequiredValueComponent,
+        LuxScrollComponent
+      ]
     );
   });
 
@@ -348,7 +354,6 @@ describe('LuxChipComponent-Authentic', () => {
   });
 
   describe('Formular', () => {
-
     it('Sollte die Werte aus dem initialen Array anzeigen', fakeAsync(() => {
       const localFixture = TestBed.createComponent(LuxFormInitValueComponent);
       const testComponent = localFixture.componentInstance;
@@ -416,11 +421,9 @@ describe('LuxChipComponent-Authentic', () => {
 
       expect(chipElements.length).toEqual(0);
     }));
-
   });
 
   describe('luxStrict', () => {
-
     describe('außerhalb eines Formulars', () => {
       let fixture: ComponentFixture<LuxStrictNoFormComponent>;
       let testComponent: LuxStrictNoFormComponent;
@@ -514,9 +517,82 @@ describe('LuxChipComponent-Authentic', () => {
         expect(testComponent.form.get('names')!.value[1]).toContain('Martha');
       }));
     });
+  });
 
+  describe('Nachladen', () => {
+    let fixture: ComponentFixture<LuxScrollComponent>;
+    let component: LuxScrollComponent;
+    let autocomplete: LuxChipsAcComponent;
+    let overlayHelper: LuxOverlayHelper;
+    let delay = 500;
+
+    beforeEach(fakeAsync(() => {
+      fixture = TestBed.createComponent(LuxScrollComponent);
+      component = fixture.componentInstance;
+      autocomplete = fixture.debugElement.query(By.directive(LuxChipsAcComponent)).componentInstance;
+      overlayHelper = new LuxOverlayHelper();
+      fixture.detectChanges();
+      tick(delay);
+    }));
+
+    it('Sollte die Optionen nachladen', fakeAsync(() => {
+      LuxTestHelper.typeInElement(autocomplete.matInput.nativeElement, 'Lorem');
+      LuxTestHelper.wait(fixture, delay);
+
+      let options = overlayHelper.selectAllFromOverlay('mat-option');
+      expect(options?.length).toEqual(8);
+      expect(autocomplete.luxAutocompleteOptions.length).toEqual(10);
+      expect(autocomplete.displayedOptions.length).toEqual(8);
+      expect(autocomplete.filteredOptions.length).toEqual(2);
+
+      const spy = spyOn(autocomplete, 'updateDisplayedEntries').and.callThrough();
+      const panel = fixture.debugElement.query(By.css('div.mat-autocomplete-panel'));
+      expect(panel).toBeDefined();
+      panel.nativeElement.scrollTop = 200;
+      LuxTestHelper.dispatchFakeEvent(panel.nativeElement, 'scroll');
+      LuxTestHelper.wait(fixture);
+
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(autocomplete.luxAutocompleteOptions.length).toEqual(10);
+      expect(autocomplete.displayedOptions.length).toEqual(10);
+      expect(autocomplete.filteredOptions.length).toEqual(0);
+
+      autocomplete.luxAutocompleteOptions = [...autocomplete.luxAutocompleteOptions];
+      LuxTestHelper.wait(fixture);
+
+      LuxTestHelper.typeInElement(autocomplete.matInput.nativeElement, 'Lorem ');
+      LuxTestHelper.wait(fixture, delay);
+
+      options = overlayHelper.selectAllFromOverlay('mat-option');
+      expect(options?.length).toEqual(8);
+      expect(autocomplete.luxAutocompleteOptions.length).toEqual(10);
+      expect(autocomplete.displayedOptions.length).toEqual(8);
+      expect(autocomplete.filteredOptions.length).toEqual(2);
+
+      discardPeriodicTasks();
+    }));
   });
 });
+
+@Component({
+  template: `
+    <lux-chips-ac luxLabel="Label" [luxInputAllowed]="true" [luxAutocompleteOptions]="options" [luxOptionBlockSize]="8"></lux-chips-ac>
+  `
+})
+class LuxScrollComponent {
+  options: string[] = [
+    'Lorem ipsum A',
+    'Lorem ipsum B',
+    'Lorem ipsum C',
+    'Lorem ipsum D',
+    'Lorem ipsum E',
+    'Lorem ipsum F',
+    'Lorem ipsum G',
+    'Lorem ipsum H',
+    'Lorem ipsum I',
+    'Lorem ipsum J'
+  ];
+}
 
 @Component({
   template: `
@@ -527,21 +603,13 @@ describe('LuxChipComponent-Authentic', () => {
       [luxStrict]="strict"
       [luxAutocompleteOptions]="[]"
     >
-      <lux-chip-ac-group
-        [luxRemovable]="true"
-        luxColor="primary"
-        [luxLabels]="chips"
-        #myChipGroup
-      >
-      </lux-chip-ac-group>
+      <lux-chip-ac-group [luxRemovable]="true" luxColor="primary" [luxLabels]="chips" #myChipGroup> </lux-chip-ac-group>
     </lux-chips-ac>
   `
 })
 class LuxStrictNoFormComponent {
-
   strict = false;
   chips: string[] = [];
-
 }
 
 @Component({
@@ -554,23 +622,16 @@ class LuxStrictNoFormComponent {
         [luxInputAllowed]="true"
         [luxStrict]="strict"
       >
-        <lux-chip-ac-group
-          [luxRemovable]="true"
-          luxColor="primary"
-          #myChipGroup
-        >
-        </lux-chip-ac-group>
+        <lux-chip-ac-group [luxRemovable]="true" luxColor="primary" #myChipGroup> </lux-chip-ac-group>
       </lux-chips-ac>
     </div>
   `
 })
 class LuxStrictFormComponent {
-
   strict = false;
   form = new FormGroup({
     names: new FormControl()
   });
-
 }
 
 @Component({
@@ -583,23 +644,16 @@ class LuxStrictFormComponent {
         [luxInputAllowed]="true"
         [luxStrict]="strict"
       >
-        <lux-chip-ac-group
-          [luxRemovable]="true"
-          luxColor="primary"
-          #myChipGroup
-        >
-        </lux-chip-ac-group>
+        <lux-chip-ac-group [luxRemovable]="true" luxColor="primary" #myChipGroup> </lux-chip-ac-group>
       </lux-chips-ac>
     </div>
   `
 })
 class LuxFormInitValueComponent {
-
   strict = false;
   form = new FormGroup({
     names: new FormControl(['Emma', 'Marie'])
   });
-
 }
 
 @Component({
@@ -612,23 +666,16 @@ class LuxFormInitValueComponent {
         [luxInputAllowed]="true"
         [luxStrict]="strict"
       >
-        <lux-chip-ac-group
-          [luxRemovable]="true"
-          luxColor="primary"
-          #myChipGroup
-        >
-        </lux-chip-ac-group>
+        <lux-chip-ac-group [luxRemovable]="true" luxColor="primary" #myChipGroup> </lux-chip-ac-group>
       </lux-chips-ac>
     </div>
   `
 })
 class LuxFormRequiredValueComponent {
-
   strict = false;
   form = new FormGroup({
     names: new FormControl<string[] | null>(null, Validators.required)
   });
-
 }
 
 @Component({
@@ -699,14 +746,11 @@ class ChipsComponent {
     this.chips = this.chips.filter((value: any, index: number) => index !== chipIndex);
   }
 
-  groupChipRemoved(_index: number) {
-  }
+  groupChipRemoved(_index: number) {}
 
-  groupChipAdded(_newChip: string) {
-  }
+  groupChipAdded(_newChip: string) {}
 
-  groupChipClicked(_index: number) {
-  }
+  groupChipClicked(_index: number) {}
 
   addMockChips() {
     this.chips = [

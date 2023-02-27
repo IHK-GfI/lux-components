@@ -27,11 +27,12 @@ export class ChipExampleComponent {
   placeholder = 'eingeben oder auswählen';
   chipOrientation: LuxChipsOrientation = 'horizontal';
   autocomplete = true;
-  autocompleteOptions = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3', this.longOptionLabel];
+  autocompleteOptions = this.createOptions();
   autocompleteNoGroupAllOptions = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3'];
   autocompleteNoGroupOptions = [...this.autocompleteNoGroupAllOptions];
   multiple = true;
   optionMultiline = false;
+  optionBlockSize = 500;
   strict = false;
   required = false;
   form: FormGroup;
@@ -104,5 +105,15 @@ export class ChipExampleComponent {
   private updateChipOptions() {
     const selectedChips = this.chips.map((chip) => chip.label);
     this.autocompleteNoGroupOptions = this.autocompleteNoGroupAllOptions.filter((option) => !selectedChips.includes(option));
+  }
+
+  private createOptions() {
+    const options = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3', this.longOptionLabel];
+
+    for (let i = 0; i < 20000; i++) {
+      options.push('Chip #' + `${i}`.padStart(5, '0'));
+    }
+
+    return options;
   }
 }
