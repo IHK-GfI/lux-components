@@ -24,19 +24,13 @@ export class AutocompleteExampleComponent {
   showOutputEvents = false;
   showPrefix = false;
   showSuffix = false;
-  longOptionLabel='Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
+  longOptionLabel =
+    'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
   toggleOptions = true;
   optionMultiline = false;
-  options: AutocompleteExampleOption[] = [
-    { label: 'Meine Aufgaben', short: 'MA', value: 'A' },
-    { label: 'Gruppenaufgaben', short: 'GA', value: 'B' },
-    { label: 'Zurückgestellte Aufgaben', short: 'ZA', value: 'C' },
-    { label: this.longOptionLabel, short: 'LI', value: 'D' },
-    { label: 'Vertretungsaufgaben', short: 'VA', value: 'F' },
-    { label: 'Neue Aufgaben', short: 'NA', value: 'G' },
-    { label: 'Extraaufgaben', short: 'EA', value: 'H' },
-    { label: 'Optionale Aufgaben', short: 'ZA', value: 'I' }
-  ];
+  optionBlockSize = 500;
+  options: AutocompleteExampleOption[] = this.createOption();
+
   options2: AutocompleteExampleOption[] = [
     { label: 'Meine Aufgaben 2', short: 'MA2', value: 'A2' },
     { label: 'Gruppenaufgaben 2', short: 'GA2', value: 'B2' },
@@ -44,9 +38,9 @@ export class AutocompleteExampleComponent {
     { label: 'Vertretungsaufgaben 2', short: 'VA2', value: 'D2' }
   ];
   renderProperties: RenderPropertyItem[] = [
-    { label: 'Bezeichnung (normal)', value: 'label'},
-    { label: 'Bezeichnung (kurz)', value: 'short'},
-    { label: 'Wert', value: 'value'}
+    { label: 'Bezeichnung (normal)', value: 'label' },
+    { label: 'Bezeichnung (kurz)', value: 'short' },
+    { label: 'Wert', value: 'value' }
   ];
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
@@ -110,5 +104,25 @@ export class AutocompleteExampleComponent {
   changeRequired(required: boolean) {
     this.required = required;
     setRequiredValidatorForFormControl(required, this.form, this.controlBinding);
+  }
+
+  private createOption() {
+    const options = [
+      { label: 'Meine Aufgaben', short: 'MA', value: 'A' },
+      { label: 'Gruppenaufgaben', short: 'GA', value: 'B' },
+      { label: 'Zurückgestellte Aufgaben', short: 'ZA', value: 'C' },
+      { label: this.longOptionLabel, short: 'LI', value: 'D' },
+      { label: 'Vertretungsaufgaben', short: 'VA', value: 'F' },
+      { label: 'Neue Aufgaben', short: 'NA', value: 'G' },
+      { label: 'Extraaufgaben', short: 'EA', value: 'H' },
+      { label: 'Optionale Aufgaben', short: 'ZA', value: 'I' }
+    ];
+
+    for (let i = 0; i < 20000; i++) {
+      const number = `${i}`.padStart(5, '0');
+      options.push({ label: 'Lorem ipsum ' + number, short: 'LI_' + number, value: 'Li_' + number });
+    }
+
+    return options;
   }
 }

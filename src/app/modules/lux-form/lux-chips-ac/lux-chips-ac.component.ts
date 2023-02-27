@@ -7,7 +7,9 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnDestroy, Optional,
+  OnDestroy,
+  OnInit,
+  Optional,
   Output,
   QueryList,
   ViewChild,
@@ -33,15 +35,17 @@ let luxChipControlUID = 0;
   templateUrl: './lux-chips-ac.component.html',
   styleUrls: ['./lux-chips-ac.component.scss']
 })
-export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implements AfterContentInit, AfterViewInit, OnDestroy {
-  private readonly inputValueSubscription = new Subscription();
-  private readonly newChipSubscription = new Subscription();
-
+export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implements OnInit, AfterContentInit, AfterViewInit, OnDestroy {
+  private subscriptions: Subscription[] = [];
   private _luxAutocompleteOptions: string[] = [];
 
   uid: string = 'lux-chip-control-ac-' + luxChipControlUID++;
 
   _filteredOptions: string[] = [];
+  displayedOptions: string[] = [];
+  loadingRunning = false;
+  activeIndex = -1;
+  onInitFinished = false;
 
   get filteredOptions() {
     return this._filteredOptions;
@@ -53,6 +57,11 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
       this._filteredOptions = newOptions.filter((option) => !selectedChips.includes(option));
     } else {
       this._filteredOptions = [];
+    }
+
+    if (this.onInitFinished) {
+      this.displayedOptions = [];
+      this.updateDisplayedEntries();
     }
   }
 
@@ -70,6 +79,7 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
   @Input() luxLabelLongFormat = false;
   @Input() luxPlaceholder = $localize`:@@luxc.chips.input.placeholder.lbl:eingeben oder auswählen`;
   @Input() luxOptionMultiline = false;
+  @Input() luxOptionBlockSize = 500;
 
   @Output() luxChipAdded = new EventEmitter<string>();
 
@@ -77,8 +87,10 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
   @ContentChildren(LuxChipAcGroupComponent) luxChipGroupComponents!: QueryList<LuxChipAcGroupComponent>;
   @ViewChildren(MatChip) matChips!: QueryList<MatChip>;
 
+  @ViewChild('input', { read: ElementRef }) matInput!: ElementRef;
   @ViewChild('input', { read: MatAutocompleteTrigger }) matAutocompleteTrigger?: MatAutocompleteTrigger;
   @ViewChild('auto', { read: MatAutocomplete }) matAutocomplete?: MatAutocomplete;
+  @ViewChild(MatAutocomplete) matAutocompleteComponent?: MatAutocomplete;
   @ViewChild('chipsContainerDiv') chipContainerDivRef!: ElementRef;
 
   get luxDisabled(): boolean {
@@ -101,7 +113,7 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
   }
 
   @Input() set luxAutocompleteOptions(options: string[]) {
-    this._luxAutocompleteOptions = options ? options : [];
+    this._luxAutocompleteOptions = options ? [...options] : [];
     this.filteredOptions = this.luxAutocompleteOptions;
   }
 
@@ -129,27 +141,39 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
   ) {
     super(controlContainer, cdr, logger, config);
 
-    this.newChipSubscription = this.newChip$.subscribe((value: string) => {
-      this.add(value);
-      this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];
-    });
+    this.subscriptions.push(
+      this.newChip$.subscribe((value: string) => {
+        this.add(value);
+        this.filteredOptions = this.luxAutocompleteOptions ? this.luxAutocompleteOptions : [];
+      })
+    );
 
-    this.inputValueSubscription = this.inputValue$
-      .asObservable()
-      .pipe(
-        startWith(''),
-        distinctUntilChanged(),
-        map((value: string) => {
-          if (!value) {
-            this.filteredOptions = [...this.luxAutocompleteOptions];
-          } else {
-            this.filteredOptions = this.luxAutocompleteOptions.filter(
-              (compareValue: string) => compareValue.trim().toLowerCase().indexOf(value.trim().toLowerCase()) > -1
-            );
-          }
-        })
-      )
-      .subscribe();
+    this.subscriptions.push(
+      this.inputValue$
+        .asObservable()
+        .pipe(
+          startWith(''),
+          distinctUntilChanged(),
+          map((value: string) => {
+            if (!value) {
+              this.filteredOptions = [...this.luxAutocompleteOptions];
+            } else {
+              this.filteredOptions = this.luxAutocompleteOptions.filter(
+                (compareValue: string) => compareValue.trim().toLowerCase().indexOf(value.trim().toLowerCase()) > -1
+              );
+            }
+          })
+        )
+        .subscribe()
+    );
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
+
+    this.displayedOptions = [];
+    this.updateDisplayedEntries();
+    this.onInitFinished = true;
   }
 
   ngAfterContentInit() {
@@ -171,15 +195,85 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
       this.matAutocompleteTrigger.connectedTo = { elementRef: this.chipContainerDivRef };
       this.cdr.detectChanges();
     }
+
+    if (this.matAutocompleteComponent) {
+      this.subscriptions.push(
+        this.matAutocompleteComponent._keyManager.change.subscribe((index) => {
+          if (this.loadingRunning && index === -1) {
+            // Workaround: Bei Änderungen an den Optionen wird der Aktivindex zurückgesetzt!
+            //
+            // Beim Nachladen werden die Optionen verändert und der Aktivindex
+            // im KeyManager wird zurückgesetzt. D.h. der nächste Klick auf die
+            // Pfeiltaste (nach unten) aktiviert nicht die nächste Option, sondern
+            // die erste Option am Anfang der Liste. Aus diesem Grund wird hier
+            // der letzte Aktivindex wiederhergestellt, damit der Benutzer dort
+            // weitermachen kann, wo er aufgehört hat.
+            //
+            // Siehe: _MatAutocompleteTriggerBase._subscribeToClosingActions
+            // this._resetActiveItem();
+            setTimeout(() => {
+              if (this.matAutocompleteComponent) {
+                this.matAutocompleteComponent._keyManager.setActiveItem(this.activeIndex!);
+                this.loadingRunning = false;
+              }
+            });
+          }
+        })
+      );
+
+      this.subscriptions.push(
+        this.matAutocompleteComponent.opened.subscribe(() => {
+          setTimeout(() => {
+            if (this.matAutocompleteComponent) {
+              if (this.matAutocompleteComponent.panel) {
+                this.matAutocompleteComponent.panel.nativeElement.addEventListener('scroll', this.loadOnScroll.bind(this));
+              }
+            }
+          });
+        })
+      );
+
+      this.subscriptions.push(
+        this.matAutocompleteComponent.closed.subscribe(() => {
+          if (this.matAutocompleteComponent) {
+            this.matAutocompleteComponent.panel.nativeElement.removeEventListener('scroll', this.loadOnScroll);
+          }
+        })
+      );
+    }
+  }
+
+  /**
+   * Stößt das Nachladen von Elementen an, wenn ein bestimmter Scrollwert erreicht wurde.
+   *
+   * @param event - ScrollEvent
+   */
+  private loadOnScroll(event: Event) {
+    const position = event.target as any;
+    if (position && (position.scrollTop + position.clientHeight) / position.scrollHeight > 85 / 100) {
+      this.updateDisplayedEntries();
+    }
+  }
+
+  /**
+   * Läd den nächsten Block Daten aus den Entries nach.
+   */
+  updateDisplayedEntries() {
+    if (this.filteredOptions.length > 0) {
+      if (this.matAutocompleteComponent) {
+        this.loadingRunning = true;
+        this.activeIndex = this.matAutocompleteComponent._keyManager.activeItemIndex ?? -1;
+      }
+      const start = 0;
+      const end = Math.min(this.luxOptionBlockSize, this.filteredOptions.length);
+      this.displayedOptions.push(...this.filteredOptions.splice(start, end));
+    }
   }
 
   ngOnDestroy() {
-    if (this.newChipSubscription) {
-      this.newChipSubscription.unsubscribe();
-    }
-    if (this.inputValueSubscription) {
-      this.inputValueSubscription.unsubscribe();
-    }
+    super.ngOnDestroy();
+
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   /**
@@ -190,21 +284,25 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
    * @param value
    */
   add(value: string) {
-    try{
+    try {
       this.actionRunning = true;
 
       if (value && value.trim().length > 0) {
         if (this.luxNewChipGroup) {
           const found =
-                  this.luxAutocompleteOptions && this.luxAutocompleteOptions.length > 0
-                    ? !!this.luxAutocompleteOptions.find((option) => option === value)
-                    : true;
+            this.luxAutocompleteOptions && this.luxAutocompleteOptions.length > 0
+              ? !!this.luxAutocompleteOptions.find((option) => option === value)
+              : true;
           const foundLabel = this.luxNewChipGroup.luxLabels ? !!this.luxNewChipGroup.luxLabels.find((label) => label === value) : false;
 
           if (!this.luxStrict || (found && !foundLabel)) {
             this.luxNewChipGroup.add(value);
 
-            if (this.luxNewChipGroup.luxLabels && Array.isArray(this.luxNewChipGroup.luxLabels) && this.luxNewChipGroup.luxLabels.length > 0) {
+            if (
+              this.luxNewChipGroup.luxLabels &&
+              Array.isArray(this.luxNewChipGroup.luxLabels) &&
+              this.luxNewChipGroup.luxLabels.length > 0
+            ) {
               this.formControl.setValue([...this.luxNewChipGroup.luxLabels]);
             } else {
               this.formControl.setValue([]);
@@ -314,10 +412,10 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
         input.value.length > 0 &&
         this.luxAutocompleteOptions &&
         this.luxAutocompleteOptions.length > 1 &&
-        this.filteredOptions &&
-        this.filteredOptions.length === 1
+        this.displayedOptions &&
+        this.displayedOptions.length === 1
       ) {
-        this.newChip$.next(this.filteredOptions[0]);
+        this.newChip$.next(this.displayedOptions[0]);
         input.value = '';
       } else {
         this.newChip$.next(input.value);

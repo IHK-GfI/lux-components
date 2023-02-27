@@ -15,6 +15,7 @@
         [luxOrientation]="chipOrientation"
         [luxMultiple]="multiple"
         [luxAutocompleteOptions]="autocomplete ? autocompleteNoGroupOptions : []"
+        [luxOptionBlockSize]="optionBlockSize"
         [luxLabelLongFormat]="labelLongFormat"
         [luxOptionMultiline]="optionMultiline"
         (luxChipAdded)="chipAdded($event)"
@@ -49,6 +50,7 @@
         [luxOptionMultiline]="optionMultiline"
         (luxChipAdded)="chipAdded($event)"
         [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
+        [luxOptionBlockSize]="optionBlockSize"
         [luxLabelLongFormat]="labelLongFormat"
       >
         <lux-chip-ac-group
@@ -80,6 +82,7 @@
           [luxNewChipGroup]="chipGroupForm"
           [luxOptionMultiline]="optionMultiline"
           [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
+          [luxOptionBlockSize]="optionBlockSize"
           [luxLabelLongFormat]="labelLongFormat"
         >
           <lux-chip-ac-group
@@ -98,14 +101,6 @@
         </lux-chips-ac>
       </ng-container>
     </div>
-    <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="autocomplete && inputAllowed">
-      <span fxFlex="0 0 auto">Autocomplete-Optionen:</span>
-      <span fxFlex="auto" fxLayout="column" fxLayoutGap="5px">
-        <span *ngFor="let option of autocompleteOptions">
-          {{ option | json }}
-        </span>
-      </span>
-    </div>
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
@@ -121,8 +116,8 @@
       <lux-toggle luxLabel="luxInputAllowed" [(luxChecked)]="inputAllowed" [luxNoTopLabel]="true">
         <lux-form-hint>
           Aktiviert das Eingabefeld für die Chips, darüber lassen sich dann neue Chips hinzufügen.<br />
-          Bei Chip-Groups werden diese automatisch hinzugefügt, bei einzelnen Chips muss der Aufrufer über den Callback
-          "luxChipAdded" selbstständig den neuen Chip ergänzen.
+          Bei Chip-Groups werden diese automatisch hinzugefügt, bei einzelnen Chips muss der Aufrufer über den Callback "luxChipAdded"
+          selbstständig den neuen Chip ergänzen.
         </lux-form-hint>
       </lux-toggle>
       <lux-input
@@ -146,8 +141,8 @@
         [luxNoTopLabel]="true"
       >
         <lux-form-hint>
-          Wenn der LuxChipComponent Autocomplete-Options übergeben werden, wird automatisch die
-          Autocomplete-Funktionalität freigeschaltet.<br />
+          Wenn der LuxChipComponent Autocomplete-Options übergeben werden, wird automatisch die Autocomplete-Funktionalität
+          freigeschaltet.<br />
           Voraussetzung: luxInputAllowed = true
         </lux-form-hint>
       </lux-toggle>
@@ -159,6 +154,23 @@
         [luxNoTopLabel]="true"
       >
       </lux-toggle>
+      <lux-toggle
+        [(luxChecked)]="optionMultiline"
+        [luxNoTopLabel]="true"
+        [luxDisabled]="!inputAllowed"
+        luxLabel="luxOptionMultiline"
+        luxHint="Erlaubt es, mehrzeilige Texte in der Auswahlliste des Select-Panels anzuzeigen."
+      >
+      </lux-toggle>
+      <lux-input
+        luxLabel="luxOptionBlockSize"
+        [luxDisabled]="!inputAllowed"
+        [(luxValue)]="optionBlockSize"
+        luxType="number"
+        [luxNumberAlignLeft]="true"
+      >
+        <lux-form-hint> Lädt die Optionen in der eingestellten Blockgröße nach, wenn gescrollt wird. </lux-form-hint>
+      </lux-input>
     </div>
 
     <lux-select
@@ -177,18 +189,11 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <lux-toggle
-      class="lux-highlight-section"
-      luxLabel="luxRequired"
-      (luxCheckedChange)="changeRequired($event)"
-      [luxNoTopLabel]="true"
-    >
+    <lux-toggle class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
       <lux-form-hint>
-        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components mit Groups,
-        die nicht in einer Reactive-Form sind. D.h. das luxRequired funktioniert nicht für das erste
-        Beispiel "Chips (ohne Group)".<br />
-        <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
-          Form-Control gesetzt.</b>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components mit Groups, die nicht in einer Reactive-Form
+        sind. D.h. das luxRequired funktioniert nicht für das erste Beispiel "Chips (ohne Group)".<br />
+        <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
     </lux-toggle>
     <lux-toggle
@@ -197,14 +202,6 @@
       luxLabel="luxMultiple"
       luxHint="Erlaubt es, mehrere Chips zu selektieren (mithilfe der Leertaste)."
       [luxNoTopLabel]="true"
-    >
-    </lux-toggle>
-    <lux-toggle
-      class="lux-highlight-section"
-      [(luxChecked)]="optionMultiline"
-      [luxNoTopLabel]="true"
-      luxLabel="luxOptionMultiline"
-      luxHint="Erlaubt es, mehrzeilige Texte in der Auswahlliste des Select-Panels anzuzeigen."
     >
     </lux-toggle>
   </example-base-simple-options>

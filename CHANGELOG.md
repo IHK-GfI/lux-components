@@ -2,8 +2,10 @@
 
 ## New
 
-- **allgemein**: Update auf LUX-Components-Icons-And-Fonts [1.4.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.4.0).
+- **allgemein**: Update auf LUX-Components-Icons-And-Fonts. [1.4.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.4.0).
 - **styles**: Webfonts werden über das Theme geladen. [Issue 277](https://github.com/IHK-GfI/lux-components/issues/277)
+- **lux-autocomplete**: Performance mit großen Datenmengen verbessern. [Issue 278](https://github.com/IHK-GfI/lux-components/issues/278)
+- **lux-chips**: Performance mit großen Datenmengen verbessern. [Issue 278](https://github.com/IHK-GfI/lux-components/issues/278)
 
 # Version 14.2.0
 

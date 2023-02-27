@@ -1,14 +1,19 @@
 /* eslint-disable max-classes-per-file */
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+// noinspection DuplicatedCode
+
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormControl, FormGroup } from '@angular/forms';
-import { By } from "@angular/platform-browser";
+import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
 import { LuxAutocompleteAcComponent } from './lux-autocomplete-ac.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 
-interface TestOption { label: string; value: string }
+interface TestOption {
+  label: string;
+  value: string;
+}
 
 describe('LuxAutocompleteAcComponent', () => {
   beforeEach(async () => {
@@ -20,7 +25,8 @@ describe('LuxAutocompleteAcComponent', () => {
         LuxOptionSelectedComponent,
         LuxAutoCompleteNotAnOptionComponent,
         MockAutocompleteComponent,
-        MockPickValueComponent
+        MockPickValueComponent,
+        LuxScrollComponent
       ]
     );
   });
@@ -176,7 +182,6 @@ describe('LuxAutocompleteAcComponent', () => {
         expect(component.formGroup.valid).toBeFalse();
         discardPeriodicTasks();
       }));
-
     });
   });
 
@@ -480,7 +485,66 @@ describe('LuxAutocompleteAcComponent', () => {
       discardPeriodicTasks();
     }));
   });
+
+  describe('Nachladen', () => {
+    let fixture: ComponentFixture<LuxScrollComponent>;
+    let component: LuxScrollComponent;
+    let autocomplete: LuxAutocompleteAcComponent;
+    let overlayHelper: LuxOverlayHelper;
+
+    beforeEach(fakeAsync(() => {
+      fixture = TestBed.createComponent(LuxScrollComponent);
+      component = fixture.componentInstance;
+      autocomplete = fixture.debugElement.query(By.directive(LuxAutocompleteAcComponent)).componentInstance;
+      overlayHelper = new LuxOverlayHelper();
+      fixture.detectChanges();
+      tick(autocomplete.luxLookupDelay);
+    }));
+
+    it('Sollte die Optionen nachladen', fakeAsync(() => {
+      LuxTestHelper.typeInElement(autocomplete.matInput.nativeElement, 'Lorem');
+      LuxTestHelper.wait(fixture, autocomplete.luxLookupDelay);
+
+      const options = overlayHelper.selectAllFromOverlay('mat-option');
+      expect(options?.length).toEqual(8);
+      expect(autocomplete.luxOptions.length).toEqual(10);
+      expect(autocomplete.displayedOptions.length).toEqual(8);
+      expect(autocomplete.filteredOptions.length).toEqual(2);
+
+      const spy = spyOn(autocomplete, 'updateDisplayedEntries').and.callThrough();
+      const panel = fixture.debugElement.query(By.css('div.mat-autocomplete-panel'));
+      expect(panel).toBeDefined();
+      panel.nativeElement.scrollTop = 200;
+      LuxTestHelper.dispatchFakeEvent(panel.nativeElement, 'scroll');
+      LuxTestHelper.wait(fixture);
+
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(autocomplete.luxOptions.length).toEqual(10);
+      expect(autocomplete.displayedOptions.length).toEqual(10);
+      expect(autocomplete.filteredOptions.length).toEqual(0);
+
+      discardPeriodicTasks();
+    }));
+  });
 });
+
+@Component({
+  template: ` <lux-autocomplete-ac luxLabel="Label" [luxOptions]="options" [luxOptionBlockSize]="8"></lux-autocomplete-ac> `
+})
+class LuxScrollComponent {
+  options: { label: string; value: string }[] = [
+    { label: 'Lorem ipsum A', value: 'A' },
+    { label: 'Lorem ipsum B', value: 'B' },
+    { label: 'Lorem ipsum C', value: 'C' },
+    { label: 'Lorem ipsum D', value: 'D' },
+    { label: 'Lorem ipsum E', value: 'E' },
+    { label: 'Lorem ipsum F', value: 'F' },
+    { label: 'Lorem ipsum G', value: 'G' },
+    { label: 'Lorem ipsum H', value: 'H' },
+    { label: 'Lorem ipsum I', value: 'I' },
+    { label: 'Lorem ipsum J', value: 'J' }
+  ];
+}
 
 @Component({
   template: `
@@ -643,7 +707,6 @@ class LuxAutoCompleteNotAnOptionComponent {
  * @param delay Ein Delay.
  */
 function removeFocus(fixture: ComponentFixture<any>, inputElement: ElementRef, delay: number) {
-
   LuxTestHelper.dispatchFakeEvent(inputElement.nativeElement, 'focusout');
   LuxTestHelper.wait(fixture, delay);
 }
