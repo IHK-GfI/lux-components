@@ -1,19 +1,9 @@
 <div fxLayout="column" id="Home" luxAriaRole="main">
   <div fxLayout="row wrap" fxLayoutAlign="center" fxFlex="0 1 auto">
     <ng-container *ngFor="let component of navigationService.filteredComponents | luxAlphabeticallySorted">
-      <lux-tile
-        [luxLabel]="component.label"
-        (luxClicked)="component.onclick()"
-        [luxTagId]="component.label"
-        fxFlex="0 0 auto"
-      >
-        <lux-icon [luxIconName]="component.icon" luxIconSize="5x" *ngIf="!component.useImage"></lux-icon>
-        <lux-image
-          [luxImageSrc]="component.icon"
-          luxImageWidth="100%"
-          luxImageHeight="100%"
-          *ngIf="component.useImage"
-        ></lux-image>
+      <lux-tile [luxLabel]="component.label" (luxClicked)="component.onclick()" [luxTagId]="component.label" fxFlex="0 0 auto">
+        <lux-icon [luxIconName]="component.icon" luxIconSize="1x" *ngIf="!component.useImage"></lux-icon>
+        <lux-image [luxImageSrc]="component.icon" luxImageWidth="100%" luxImageHeight="100%" *ngIf="component.useImage"></lux-image>
       </lux-tile>
     </ng-container>
   </div>

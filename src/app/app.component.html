@@ -22,7 +22,7 @@
       </lux-side-nav-header>
       <lux-side-nav-item
         luxLabel="Home"
-        luxIconName="fas fa-home"
+        luxIconName="lux-interface-home-3"
         (luxClicked)="goToHome()"
         luxTagId="home-side-nav-item"
         [luxSelected]="url.endsWith('home')"
@@ -30,7 +30,7 @@
       </lux-side-nav-item>
       <lux-side-nav-item
         luxLabel="Formulare"
-        luxIconName="fas fa-file-alt"
+        luxIconName="lux-interface-file-text"
         (luxClicked)="goToForm()"
         luxTagId="form-side-nav-item"
         [luxSelected]="url.endsWith('form')"
@@ -38,7 +38,7 @@
       </lux-side-nav-item>
       <lux-side-nav-item
         luxLabel="Baseline"
-        luxIconName="fas fa-align-left"
+        luxIconName="lux-interface-text-formatting-left-align"
         (luxClicked)="goToBaseline()"
         luxTagId="baseline-side-nav-item"
         [luxSelected]="url.endsWith('baseline')"
@@ -46,7 +46,7 @@
       </lux-side-nav-item>
       <lux-side-nav-item
         luxLabel="Konfiguration"
-        luxIconName="fas fa-sliders-h"
+        luxIconName="lux-interface-setting-slider-horizontal"
         (luxClicked)="goToConfig()"
         luxTagId="config-side-nav-item"
         [luxSelected]="url.endsWith('configuration')"
@@ -54,7 +54,7 @@
       </lux-side-nav-item>
       <lux-side-nav-item
         luxLabel="Komponenten"
-        luxIconName="fas fa-toolbox"
+        luxIconName="lux-interface-setting-tool-box"
         (luxClicked)="goToComponents()"
         luxTagId="cmp-side-nav-item"
         [luxSelected]="url.includes('components-overview')"
@@ -64,7 +64,7 @@
           [luxExpandable]="true"
           [luxExpanded]="navigationService.currentModules.get(moduleName)!"
           [luxCloseOnClick]="false"
-          luxIconName="fas fa-puzzle-piece"
+          luxIconName="lux-programming-module-puzzle"
           [luxTagId]="'lux-' + moduleName + '-module'"
           (luxClicked)="onModuleClicked(moduleName)"
           *ngFor="let moduleName of navigationService.currentModuleNames"
@@ -73,7 +73,7 @@
             <lux-side-nav-item
               [luxLabel]="component.label"
               [luxTagId]="component.label + '-side-nav-item'"
-              luxIconName="fas fa-circle"
+              luxIconName="lux-interface-geometric-circle"
               [luxSelected]="url.endsWith('/' + component.label.toLowerCase())"
               (luxClicked)="component.onclick()"
             >
@@ -96,7 +96,7 @@
       <lux-app-header-action-nav-item
         fxShow="true"
         fxShow.xs="false"
-        luxIconName="fas fa-bell"
+        luxIconName="lux-interface-alert-alarm-bell-2"
         luxColor="accent"
         luxAriaLabel="Nachrichten anzeigen"
         luxTagId="action0"
@@ -106,7 +106,7 @@
       <lux-app-header-action-nav-item
         fxShow="true"
         fxShow.xs="false"
-        luxIconName="fas fa-trash"
+        luxIconName="lux-interface-delete-bin-2"
         luxColor="warn"
         luxAriaLabel="Nachrichten löschen"
         luxTagId="action1"
@@ -124,17 +124,17 @@
           >
             <lux-menu-item
               luxLabel="IHK 101"
-              luxIconName="far fa-building"
+              luxIconName="lux-factory"
               (luxClicked)="actionClicked('IHK 101-Action clicked!')"
             ></lux-menu-item>
             <lux-menu-item
               luxLabel="IHK 106"
-              luxIconName="far fa-building"
+              luxIconName="lux-factory"
               (luxClicked)="actionClicked('IHK 106-Action clicked!')"
             ></lux-menu-item>
             <lux-menu-item
               luxLabel="IHK 189"
-              luxIconName="far fa-building"
+              luxIconName="lux-factory"
               (luxClicked)="actionClicked('IHK 189-Action clicked!')"
             ></lux-menu-item>
           </lux-menu>
@@ -142,7 +142,7 @@
       </lux-app-header-action-nav-item>
     </lux-app-header-action-nav>
     <lux-app-header-right-nav *ngIf="luxMode === 'stand-alone'">
-      <lux-menu-item luxLabel="Abmelden" luxIconName="fa-power-off" luxTagId="abmelden-menu-item"></lux-menu-item>
+      <lux-menu-item luxLabel="Abmelden" luxIconName="lux-control-button-power-1" luxTagId="abmelden-menu-item"></lux-menu-item>
       <lux-menu-item
         luxLabel="Theme - blue"
         [luxDisabled]="themeName === 'blue'"
