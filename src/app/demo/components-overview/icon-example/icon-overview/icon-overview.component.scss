@@ -13,7 +13,7 @@
   border: 1px solid var(--lux-theme-form-border-color);
   border-radius: 4px;
 
-  &:hover{
+  &:hover {
     cursor: pointer;
     border: 1px solid #000;
     box-shadow: 0 0 0 1px #000 inset;
@@ -27,10 +27,11 @@
   .icon-name {
     text-align: center;
     margin-bottom: 0;
-  } 
+  }
 }
 
-.left-container, .right-container {
+.left-container,
+.right-container {
   max-height: 100%;
   overflow: auto;
 
@@ -54,9 +55,9 @@
   height: 24px;
   width: 24px;
   display: inline-block;
-  &:hover{
+  &:hover {
     border-radius: 50%;
-    background-color: var(--lux-theme-hover-color);
+    color: var(--lux-theme-hover-color);
     cursor: pointer;
   }
 }
@@ -66,7 +67,16 @@ lux-card-info lux-icon.copy-icon {
   border-radius: 2px;
   height: 24px;
   &:hover {
-    background-color: var(--lux-theme-hover-color);
+    color: var(--lux-theme-hover-color);
     cursor: pointer;
   }
+}
+
+.snippet {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+lux-chips {
+  margin-bottom: 0;
 }
