@@ -179,9 +179,12 @@ export class IconOverviewComponent implements OnInit, OnDestroy {
         }
       } else {
         values.forEach((value) => {
-          const valueResult = this.allIcons.filter((icon) => icon.iconName.toLowerCase().includes(value.toLowerCase()));
+          const valueResult = this.allIcons.filter((icon) => icon.iconName.includes(value));
           if (valueResult) {
-            resultIcons.push(...valueResult);
+            const newIcons = valueResult.filter((icon) => !resultIcons.includes(icon));
+            if (newIcons) {
+              resultIcons.push(...newIcons);
+            }
           }
         });
       }
