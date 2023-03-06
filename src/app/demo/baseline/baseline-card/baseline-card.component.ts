@@ -37,20 +37,17 @@ export class BaselineCardComponent {
     { label: 'Option 4', value: 'D' }
   ];
   options2 = [
-    { label: 'Option 1', value: 'A' },
-    { label: 'Option 2', value: 'B' },
-    { label: 'Option 3', value: 'C' },
-    { label: 'Option 4', value: 'D' },
-    { label: 'Option 5', value: 'A' },
-    { label: 'Option 6', value: 'B' },
-    { label: 'Option 7', value: 'C' },
-    { label: 'Option 8', value: 'D' },
-    { label: 'Option 9', value: 'A' },
-    { label: 'Option 10', value: 'B' },
-    { label: 'Option 11', value: 'C' },
-    { label: 'Option 12', value: 'D' }
+    { label: '1: Lorem ipsum', value: 'A' },
+    { label: '2: Dolor sit amet', value: 'B' },
+    { label: '3: Consectetur', value: 'C' },
+    { label: '4: Adipisicing elit', value: 'D' },
+    { label: '5: Vitae consectetur distinctio', value: 'A' },
+    { label: '6: Fugiat non', value: 'B' },
+    { label: '7: Consequuntur', value: 'C' },
+    { label: '8: Eveniet illo', value: 'D' },
+    { label: '9: Dolores maiores', value: 'A' },
+    { label: '10: Corporis officia', value: 'B' }
   ];
-
   stateOptions = [
     { label: 'Default', value: 'defaultState' },
     { label: 'Disabled', value: 'disabledState' },
@@ -59,22 +56,23 @@ export class BaselineCardComponent {
   selectedState: any = this.stateOptions[0];
 
   chipItems: string[] = ['Chip 0', 'Chip 1', 'Chip 2'];
+  chipOptions: string[] = ['Neuer Chip 1', 'Neuer Chip 2', 'Neuer Chip 3'];
   form: FormGroup;
 
   constructor() {
     this.form = new FormGroup<DummyForm>({
-      input: new FormControl(null, { validators: Validators.required, nonNullable: false}),
-      textarea: new FormControl('', { validators: Validators.required, nonNullable: true}),
-      datepicker: new FormControl('', { validators: Validators.required, nonNullable: true}),
-      datetimepicker: new FormControl('', { validators: Validators.required, nonNullable: true}),
-      autocomplete: new FormControl('', { validators: Validators.required, nonNullable: true}),
-      select: new FormControl('', { validators: Validators.required, nonNullable: true}),
-      radio: new FormControl('', { validators: Validators.required, nonNullable: true}),
-      checkbox: new FormControl(false, { validators: Validators.required, nonNullable: true}),
-      toggle: new FormControl(false, { validators: Validators.required, nonNullable: true}),
-      slider: new FormControl(4, { validators: Validators.min(10), nonNullable: true}),
+      input: new FormControl(null, { validators: Validators.required, nonNullable: false }),
+      textarea: new FormControl('', { validators: Validators.required, nonNullable: true }),
+      datepicker: new FormControl('', { validators: Validators.required, nonNullable: true }),
+      datetimepicker: new FormControl('', { validators: Validators.required, nonNullable: true }),
+      autocomplete: new FormControl('', { validators: Validators.required, nonNullable: true }),
+      select: new FormControl('', { validators: Validators.required, nonNullable: true }),
+      radio: new FormControl('', { validators: Validators.required, nonNullable: true }),
+      checkbox: new FormControl(false, { validators: Validators.required, nonNullable: true }),
+      toggle: new FormControl(false, { validators: Validators.required, nonNullable: true }),
+      slider: new FormControl(4, { validators: Validators.min(10), nonNullable: true }),
       file: new FormControl<ILuxFileObject | null>(null, Validators.required),
-      password: new FormControl('', { validators: Validators.required, nonNullable: true}),
+      password: new FormControl('', { validators: Validators.required, nonNullable: true })
     });
   }
 

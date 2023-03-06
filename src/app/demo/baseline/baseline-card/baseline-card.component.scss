@@ -14,3 +14,23 @@
   padding: 12px 24px;
   margin: 32px 0;
 }
+
+.form-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 3em;
+  row-gap: 2em;
+}
+.grid-col-span-2 {
+  grid-column: span 2;
+}
+
+@media (max-width: 599px) {
+  .form-grid-container {
+    grid-template-columns: 1fr;
+    row-gap: 1em;
+  }
+  .grid-col-span-2 {
+    grid-column: 1/-1;
+  }
+}
