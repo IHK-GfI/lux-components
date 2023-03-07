@@ -29,7 +29,9 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   @Input() luxAppTitle?: string;
   @Input() luxAppTitleShort?: string;
   @Input() luxBrandLogoSrc?: string;
+  @Input() luxHideBrandLogo = false;
   @Input() luxAppLogoSrc?: string;
+  @Input() luxHideAppLogo = false;
   @Input() luxLocaleSupported = ['de'];
   @Input() luxLocaleBaseHref = '';
   @Input() luxHideTopBar = false;
@@ -77,11 +79,20 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    if (!this.luxAppLogoSrc) {
+    if (!this.luxAppLogoSrc && !this.luxHideAppLogo) {
       this.luxAppLogoSrc = this.iconBasePath + '/assets/logos/app_logo_platzhalter.svg';
     }
-    if (!this.luxBrandLogoSrc) {
+
+    if (this.luxHideAppLogo) {
+      this.luxAppLogoSrc = undefined;
+    }
+
+    if (!this.luxBrandLogoSrc && !this.luxHideBrandLogo) {
       this.luxBrandLogoSrc = this.iconBasePath + '/assets/logos/ihk_logo_platzhalter.svg';
+    }
+
+    if (this.luxHideBrandLogo) {
+      this.luxBrandLogoSrc = undefined;
     }
   }
 

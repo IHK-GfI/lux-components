@@ -6,6 +6,7 @@
 - **styles**: Webfonts werden über das Theme geladen. [Issue 277](https://github.com/IHK-GfI/lux-components/issues/277)
 - **lux-autocomplete**: Performance mit großen Datenmengen verbessern. [Issue 278](https://github.com/IHK-GfI/lux-components/issues/278)
 - **lux-chips**: Performance mit großen Datenmengen verbessern. [Issue 278](https://github.com/IHK-GfI/lux-components/issues/278)
+- **lux-app-header-ac**: Die neuen Properties "luxHideAppLogo" und "luxHideBrandLogo" einführen. [Issue 285](https://github.com/IHK-GfI/lux-components/issues/285)
 
 # Version 14.2.0
 
