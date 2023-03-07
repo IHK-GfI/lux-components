@@ -1,6 +1,6 @@
-
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { LuxDateFilterAcFn } from '../../../modules/lux-form/lux-datepicker-ac/lux-datepicker-ac.component';
 import { LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
@@ -48,12 +48,13 @@ export class DatepickerAuthenticExampleComponent {
   startView: LuxStartView = 'month';
   touchUi = false;
   labelLongFormat = false;
-  customFilterString = this.customFilter + '';
+  customFilterString = this.weekendFilterFn + '';
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;
   errorCallbackString = this.errorCallback + '';
+  customFilter?: LuxDateFilterAcFn;
 
-  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale: string) {
+  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale: string, private cdr: ChangeDetectorRef) {
     this.locale = matDateLocale === 'en' ? 'en-US' : matDateLocale;
     switch (matDateLocale) {
       case 'de':
@@ -83,9 +84,14 @@ export class DatepickerAuthenticExampleComponent {
     return selected.value;
   }
 
-  customFilter(d: Date | null) {
+  weekendFilterFn(d: Date | null) {
     const day = d ? d.getDay() : 0;
     // Samstage und Sonntage als Auswahl unterbinden
     return day !== 0 && day !== 6;
+  }
+
+  toggleCustomFilter() {
+    this.customFilter = this.customFilter ? undefined : this.weekendFilterFn;
+    this.cdr.detectChanges();
   }
 }
