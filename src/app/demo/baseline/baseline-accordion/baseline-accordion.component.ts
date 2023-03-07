@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxThemeService } from '../../../modules/lux-theme/lux-theme.service';
 import { Subscription } from 'rxjs';
@@ -36,7 +36,7 @@ interface DummyStateForm {
   templateUrl: './baseline-accordion.component.html',
   styleUrls: ['./baseline-accordion.component.scss']
 })
-export class BaselineAccordionComponent {
+export class BaselineAccordionComponent implements OnInit {
   // Properties für die Form-Controls
   testHint = 'Hinweistext für ein Form-Control';
   options = [

@@ -19,7 +19,7 @@
     "build-prod": "ng build --configuration production --localize --single-bundle && npm run move-de-files",
     "test": "ng test",
     "test-headless": "ng test --watch=false --browsers=ChromeHeadless --code-coverage=true",
-    "lint": "ng lint --fix",
+    "lint": "ng lint --fix --max-warnings=0",
     "packagr": "ng-packagr -p ng-package.json --config tsconfig.lib.json",
     "security": "npm audit --registry=https://registry.npmjs.org --audit-level high",
     "smoketest": "npm run build-prod && npm run lint && npm run test-headless && npm run xi18n && npm run packagr",
