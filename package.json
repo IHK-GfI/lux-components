@@ -1,6 +1,6 @@
 {
   "name": "@ihk-gfi/lux-components",
-  "version": "14.2.0",
+  "version": "14.3.0",
   "license": "IHK-GfI Open-Source-Lizenz",
   "private": false,
   "repository": {
@@ -53,7 +53,7 @@
     "@chiragrupani/karma-chromium-edge-launcher": "2.2.1",
     "@fortawesome/fontawesome-free": "5.15.4",
     "@ihk-gfi/lux-components-icons-and-fonts": "1.4.0",
-    "@ihk-gfi/lux-components-theme": "14.3.0",
+    "@ihk-gfi/lux-components-theme": "14.4.0",
     "@types/jasmine": "4.0.3",
     "@types/marked": "4.0.3",
     "@types/node": "16.11.34",
