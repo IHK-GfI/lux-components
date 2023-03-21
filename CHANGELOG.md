@@ -3,6 +3,7 @@
 ## New
 
 - **lux-autocomplete**: Einfaches String-Arrays kann als Optionen genutzt werden. [Issue 289](https://github.com/IHK-GfI/lux-components/issues/289)
+- **lux-link-plain**: Neue Property "luxCustomClass" hinzugefügt, hover-color für blue- und green-Theme angepasst. [Issue 284](https://github.com/IHK-GfI/lux-components/issues/284)
 
 # Version 14.3.0
 

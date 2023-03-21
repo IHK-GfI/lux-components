@@ -22,7 +22,7 @@ export class LinkPlainExampleComponent implements OnDestroy {
   // region Properties der Component
 
   label = 'Beispiel-Link';
-  iconName = 'lux-interface-favorite-like-1';
+  iconName = 'lux-interface-link';
   iconShowRight = true;
   disabled = false;
   blank = true;
@@ -35,7 +35,7 @@ export class LinkPlainExampleComponent implements OnDestroy {
   constructor(private configService: LuxComponentsConfigService, private router: Router) {
     this.config = this.configService.currentConfig;
 
-    this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
+    this.subscription = this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
       this.config = config;
     });
   }
