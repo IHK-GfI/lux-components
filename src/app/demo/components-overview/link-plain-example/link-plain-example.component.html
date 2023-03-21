@@ -9,14 +9,15 @@
         <lux-link-plain
           [luxLabel]="label"
           [luxDisabled]="disabled"
+          [luxIconShowRight]="iconShowRight"
+          luxIconName="lux-interface-arrows-bend-down-right-2"
           luxTagId="demo-link"
           [luxHref]="href"
           [luxBlank]="blank"
         ></lux-link-plain>
-        im normalen Fließtext.
+        mit Icon im normalen Fließtext.
       </span>
-      <br />
-      <h2>
+      <h3>
         Dies ist ein
         <lux-link-plain
           [luxLabel]="label"
@@ -27,8 +28,8 @@
           [luxHref]="href"
           [luxBlank]="blank"
         ></lux-link-plain>
-        in einer H2 mit einem Icon!
-      </h2>
+        in einer H3 mit einem Icon!
+      </h3>
       <div>
         Und hier ist eine Liste mit mehreren Links
         <ul>
@@ -74,36 +75,55 @@
           </li>
         </ul>
       </div>
+      <h2>Beispiel für einen Link-Plain mit einer Custom-Class</h2>
+      <span
+        >Das folgende Beispiel zeigt einen Link-Plain mit einer Custom-Style-Class. Mit dieser Klasse wurden color, font-size, font-family,
+        font-weight und font-style überschrieben. Hover-Effekt und Disabled-Zustand bleiben, wenn sie nicht expliziet überschrieben werden,
+        erhalten.</span
+      >
+      <span
+        >Dies ist ein
+        <lux-link-plain
+          [luxLabel]="label"
+          [luxDisabled]="disabled"
+          luxTagId="demo-link"
+          [luxHref]="href"
+          [luxBlank]="blank"
+          luxCustomClass="demo-extra-class"
+          [luxIconShowRight]="true"
+          luxIconName="lux-programming-web"
+        ></lux-link-plain>
+        im Fließtext mit einer Custom-Style-Class.
+      </span>
+
       <h2>Beispiel für eine Breadcrump-Komponente</h2>
-      <div fxLayout="row" class="breadcrump" fxLayoutAlign="start end">
-        <span>
-          <lux-link-plain
-            luxLabel="Home"
-            luxIconName="lux-interface-arrows-button-right"
-            [luxIconShowRight]="true"
-            luxTagId="breadcrump-item"
-            luxHref="/home"
-            class="lux-mr-3 breadcrump-item"
-          ></lux-link-plain>
-        </span>
-        <span>
-          <lux-link-plain
-            luxLabel="Components"
-            luxIconName="lux-interface-arrows-button-right"
-            [luxIconShowRight]="true"
-            luxTagId="breadcrump-item"
-            luxHref="/components-overview"
-            class="lux-mr-3 breadcrump-item"
-          ></lux-link-plain
-        ></span>
-        <span>
-          <lux-link-plain
-            luxLabel="Link-Plain"
-            luxTagId="breadcrump-item"
-            [luxDisabled]="true"
-            class="lux-mr-3 breadcrump-item"
-          ></lux-link-plain>
-        </span>
+      <span
+        >Dieses Beispiel wurde mit Link-Plain-Komponenten mit einem Custom-Styling gebaut. Es ist ein Prototyp für eine
+        Bread-Crump-Komponente, die als zweite Navigationsebene unterhalb des Lux-App-Headers platziert werden kann.</span
+      >
+      <div class="breadcrump">
+        <lux-link-plain
+          luxLabel="Startseite"
+          luxIconName="lux-interface-arrows-button-right"
+          [luxIconShowRight]="true"
+          luxTagId="breadcrump-item"
+          luxHref="/home"
+          luxCustomClass="breadcrump-item"
+        ></lux-link-plain>
+        <lux-link-plain
+          luxLabel="Komponenten"
+          luxIconName="lux-interface-arrows-button-right"
+          [luxIconShowRight]="true"
+          luxTagId="breadcrump-item"
+          luxHref="/components-overview"
+          luxCustomClass="breadcrump-item"
+        ></lux-link-plain>
+        <lux-link-plain
+          luxLabel="Lux-Link-Plain"
+          luxTagId="breadcrump-item"
+          [luxDisabled]="true"
+          luxCustomClass="breadcrump-item"
+        ></lux-link-plain>
       </div>
     </div>
   </example-base-content>

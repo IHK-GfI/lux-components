@@ -1,12 +1,30 @@
 .breadcrump {
-  font-family: "Blogger Sans", "Source Sans Pro", "Helvetica", "Arial", "sans-serif";
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--lux-theme-primary-text);
-  span:first-of-type {
-    color: var(--lux-theme-primary-500);
-    font-size: 24px;
-    font-weight: 600;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+}
 
+.breadcrump-item {
+  font-family: 'Blogger Sans', 'Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif';
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--lux-theme-primary-color);
+
+  &.lux-disabled {
+    font-weight: 400;
+    text-decoration: none;
+  }
+  ::ng-deep .lux-disabled {
+    color: var(--lux-theme-dark-primary-text) !important;
+  }
+}
+
+.demo-extra-class {
+  color: var(--lux-theme-accent-color);
+  font-weight: 600;
+  font-size: larger;
+  font-style: italic;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin: 0 0.5em;
 }

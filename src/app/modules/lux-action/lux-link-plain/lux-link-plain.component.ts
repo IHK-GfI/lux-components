@@ -1,20 +1,43 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, HostBinding, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LuxActionComponentBaseClass } from '../lux-action-model/lux-action-component-base.class';
-
 
 @Component({
   selector: 'lux-link-plain',
   templateUrl: './lux-link-plain.component.html',
   styleUrls: ['./lux-link-plain.component.scss']
 })
-export class LuxLinkPlainComponent extends LuxActionComponentBaseClass {
-
+export class LuxLinkPlainComponent extends LuxActionComponentBaseClass implements OnInit {
+  @HostBinding('class') classes = '';
+  @HostBinding('class.lux-disabled') luxDisabled?: boolean | undefined;
   @Input() luxHref = '';
   @Input() luxBlank = false;
 
+  private _customClass = '';
+  get luxCustomClass() {
+    return this._customClass;
+  }
+  @Input() set luxCustomClass(customClass: string) {
+    if (customClass) {
+      this._customClass = customClass;
+      this.updateHostClasses();
+    }
+  }
+
   constructor(private router: Router, public cdr: ChangeDetectorRef) {
     super();
+  }
+
+  ngOnInit() {
+    this.updateHostClasses();
+  }
+
+  private updateHostClasses() {
+    if (this.luxCustomClass) {
+      this.classes = this.luxCustomClass;
+    } else {
+      this.classes = 'default-style';
+    }
   }
 
   auxClicked(event: MouseEvent) {
