@@ -38,7 +38,7 @@
     </span>
     <mat-autocomplete
       #auto="matAutocomplete"
-      [class]="'lux-autocomplete-panel-ac'"
+      [class]="!luxDense ? 'lux-autocomplete-panel-ac' : 'lux-autocomplete-panel-dense-ac'"
       [panelWidth]="luxPanelWidth"
       [disableRipple]="true"
       [displayWith]="displayFn.bind(this)"

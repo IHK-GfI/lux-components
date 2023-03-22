@@ -1,7 +1,4 @@
-<example-base-structure
-  exampleTitle="Tabelle"
-  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90table"
->
+<example-base-structure exampleTitle="Tabelle" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90table">
   <example-base-content>
     <div [ngStyle]="{ height: calculateProportions ? tableHeightPx + 'px' : 'unset' }" class="lux-table-example">
       <lux-table
@@ -75,7 +72,6 @@
                   *ngIf="element.editable"
                   luxAriaLabel="Symbol"
                   luxTagId="table.row.control.symbol"
-                  fxFlex="1 1 30%"
                   class="lux-table-no-label"
                   [(luxValue)]="element.symbol"
                   [luxNoLabels]="true"
@@ -148,7 +144,7 @@
         </lux-table-column>
       </lux-table>
     </div>
-    <!-- <div ngClass="message-box" ngClass.lt-md="message-box-small">
+    <div ngClass="message-box" ngClass.lt-md="message-box-small">
       <div fxLayout="row" fxLayoutAlign="start start" class="box-header">
         <lux-icon luxIconName="lux-interface-favorite-like-1" luxIconSize="2x"></lux-icon>
         <div fxLayout="column">
@@ -157,14 +153,15 @@
         </div>
       </div>
       <p>
-        Die Lux-Form-Controls haben standardmäßig einen Label- und einen Hint/Error-Container. In editierbaren Tabellen werden diese jedoch nicht benötigt. <br>
-        Für diesen Anwendungsfall kann ab Version 13.0.0 das Attribut <strong>luxNoLabels</strong> bei den Form-Controls genutzt werden. Dabei werden die unnötigen Container ausgeblendet
-        und das Formcontrol in der Zelle zentriert angezeigt.
+        Die Lux-Form-Controls haben standardmäßig einen Label- und einen Hint/Error-Container. In editierbaren Tabellen werden diese jedoch
+        nicht benötigt. <br />
+        Für diesen Anwendungsfall kann ab Version 13.0.0 das Attribut <strong>luxNoLabels</strong> bei den Form-Controls genutzt werden.
+        Zusätzlich wird für Theme-Authentic das Padding innerhalb der Form-Controls automatisch verringert.
       </p>
       <div class="code-section">
         <lux-markdown [luxData]="markdownData"></lux-markdown>
       </div>
-    </div> -->
+    </div>
   </example-base-content>
   <example-base-simple-options>
     <table-example-simple-options [tableExample]="this"></table-example-simple-options>

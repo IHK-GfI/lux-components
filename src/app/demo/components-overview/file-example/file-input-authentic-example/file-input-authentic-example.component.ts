@@ -14,7 +14,8 @@ import { ILuxFileObject } from '../../../../modules/lux-form/lux-file/lux-file-m
 })
 export class FileInputAuthenticExampleComponent extends FileExampleComponent implements AfterViewInit {
   @ViewChildren(LuxFileInputAcComponent) fileInputs!: QueryList<LuxFileInputAcComponent>;
-  @ViewChild('fileinputexamplewithoutform', { read: LuxFileInputAcComponent, static: true }) fileBaseWithoutComponent!: LuxFileInputAcComponent;
+  @ViewChild('fileinputexamplewithoutform', { read: LuxFileInputAcComponent, static: true })
+  fileBaseWithoutComponent!: LuxFileInputAcComponent;
   @ViewChild('fileinputexamplewithform', { read: LuxFileInputAcComponent, static: true }) fileBaseWithComponent!: LuxFileInputAcComponent;
 
   placeholder = 'Placeholder';
@@ -30,6 +31,7 @@ export class FileInputAuthenticExampleComponent extends FileExampleComponent imp
   customActionsConfigsForm: ILuxFileActionConfig[] = this.createCustomConfigs();
 
   labelLongFormat = false;
+  denseFormat = false;
 
   constructor(http: HttpClient, snackbar: LuxSnackbarService, filePreviewService: LuxFilePreviewService) {
     super(http, snackbar, filePreviewService);
@@ -45,7 +47,7 @@ export class FileInputAuthenticExampleComponent extends FileExampleComponent imp
         this.log(this.showOutputEvents, 'uploadActionConfig onClick', file);
         this.onUpload(file);
       }
-    }
+    };
   }
 
   initSelected() {
@@ -54,11 +56,11 @@ export class FileInputAuthenticExampleComponent extends FileExampleComponent imp
       .pipe(
         take(1),
         map((response: Blob) => {
-          const file            = response as any;
-          file.name             = 'example.png';
+          const file = response as any;
+          file.name = 'example.png';
           file.lastModifiedDate = new Date();
-          const fileObject      = { name: 'example.png', content: file, type: file.type, size: file.size };
-          this.selected         = fileObject;
+          const fileObject = { name: 'example.png', content: file, type: file.type, size: file.size };
+          this.selected = fileObject;
           this.form.get(this.controlBinding)!.setValue(fileObject);
         })
       )
@@ -89,12 +91,12 @@ export class FileInputAuthenticExampleComponent extends FileExampleComponent imp
     this.fileComponents = this.fileInputs.toArray();
   }
 
-  onDelete(event: any){
-    this.customActionConfigs.forEach(config => config.disabled = true);
+  onDelete(event: any) {
+    this.customActionConfigs.forEach((config) => (config.disabled = true));
   }
 
   onUpload(event: any) {
-    this.customActionConfigs.forEach(config => config.disabled = false);
+    this.customActionConfigs.forEach((config) => (config.disabled = false));
   }
 
   private createCustomConfigs(): ILuxFileActionConfig[] {

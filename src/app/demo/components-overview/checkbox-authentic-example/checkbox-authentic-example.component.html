@@ -13,6 +13,7 @@
         [(luxDisabled)]="disabled"
         [luxRequired]="required"
         [luxReadonly]="readonly"
+        [luxDense]="denseFormat"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxNoTopLabel]="true"
@@ -36,6 +37,7 @@
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxNoTopLabel]="true"
+        [luxDense]="denseFormat"
       >
       </lux-checkbox-ac>
       <div fxLayout="column" class="lux-highlight-section">
@@ -59,20 +61,44 @@
         </div>
       </div>
     </div>
-
     <div ngClass="message-box" ngClass.lt-md="message-box-small">
       <div fxLayout="row" fxLayoutAlign="start center" class="box-header">
         <lux-icon luxIconName="lux-interface-favorite-like-1" luxIconSize="2x"></lux-icon>
-        <h2>Anwendungsbeispiel für <lux-badge luxColor="green" luxId="exampleProp" [luxUppercase]="false"><lux-label luxId="exampleBadgeLabel">luxNoTopLabel</lux-label></lux-badge></h2>
+        <h2>
+          Anwendungsbeispiel für
+          <lux-badge luxColor="green" luxId="exampleProp" [luxUppercase]="false"
+            ><lux-label luxId="exampleBadgeLabel">luxNoTopLabel</lux-label></lux-badge
+          >
+        </h2>
       </div>
-      <div fxLayout="column" [formGroup]="agb" class="content lux-mt-4" >
+      <div fxLayout="column" [formGroup]="agb" class="content lux-mt-4">
         <h3>Bitte bestätigen Sie, dass Sie die folgenden Bedingungen gelesen haben:</h3>
-        <lux-checkbox-ac [luxNoTopLabel]="true" luxControlBinding="checkbox1" luxLabel="{{exampleText}}"></lux-checkbox-ac>
-        <lux-checkbox-ac [luxNoTopLabel]="true" luxControlBinding="checkbox2" luxLabel="{{exampleText}}"></lux-checkbox-ac>
-        <lux-checkbox-ac [luxNoTopLabel]="true" luxControlBinding="checkbox3" luxLabel="{{exampleText}}"></lux-checkbox-ac>
+        <lux-checkbox-ac
+          [luxNoTopLabel]="true"
+          luxControlBinding="checkbox1"
+          luxLabel="{{ exampleText }}"
+          [luxDense]="denseFormat"
+        ></lux-checkbox-ac>
+        <lux-checkbox-ac
+          [luxNoTopLabel]="true"
+          luxControlBinding="checkbox2"
+          luxLabel="{{ exampleText }}"
+          [luxDense]="denseFormat"
+        ></lux-checkbox-ac>
+        <lux-checkbox-ac
+          [luxNoTopLabel]="true"
+          luxControlBinding="checkbox3"
+          luxLabel="{{ exampleText }}"
+          [luxDense]="denseFormat"
+        ></lux-checkbox-ac>
       </div>
       <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end center" fxLayoutAlign.lt-md="start stretch" fxLayoutGap="8px">
-        <lux-button [luxStroked]="true" luxColor="primary" luxLabel="Formular zurücksetzen" (luxClicked)="exampleValidator(false)"></lux-button>
+        <lux-button
+          [luxStroked]="true"
+          luxColor="primary"
+          luxLabel="Formular zurücksetzen"
+          (luxClicked)="exampleValidator(false)"
+        ></lux-button>
         <lux-button [luxFlat]="true" luxColor="primary" luxLabel="Weiter" (luxClicked)="exampleValidator(true)"></lux-button>
       </div>
     </div>
@@ -134,21 +160,19 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle>
+    <lux-toggle class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
+      <lux-form-hint>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
+        <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
+      </lux-form-hint>
+    </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
-      luxLabel="luxRequired"
-      (luxCheckedChange)="changeRequired($event)"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
       [luxNoTopLabel]="true"
     >
-      <lux-form-hint>
-        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
-        Reactive-Form sind.<br />
-        <b
-          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
-          Form-Control gesetzt.</b
-        >
-      </lux-form-hint>
     </lux-toggle>
   </example-base-simple-options>
 </example-base-structure>
-

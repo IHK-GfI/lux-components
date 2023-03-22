@@ -22,6 +22,7 @@
         [luxRequired]="required"
         [luxReadonly]="readonly"
         [luxStrict]="strict"
+        [luxDense]="denseFormat"
         [luxLookupDelay]="delay"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
@@ -62,6 +63,7 @@
         [(luxDisabled)]="disabled"
         [luxReadonly]="readonly"
         [luxStrict]="strict"
+        [luxDense]="denseFormat"
         [luxLookupDelay]="delay"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
@@ -200,6 +202,14 @@
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
         <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
+      [luxNoTopLabel]="true"
+    >
     </lux-toggle>
     <lux-toggle class="lux-highlight-section" [(luxChecked)]="strict" luxLabel="luxStrict" [luxNoTopLabel]="true">
       <lux-form-hint>

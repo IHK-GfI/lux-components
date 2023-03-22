@@ -27,6 +27,7 @@
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxControlValidators]="controlValidators"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxDense]="denseFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
@@ -60,6 +61,7 @@
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxDense]="denseFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -166,6 +168,14 @@
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
         <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
+      [luxNoTopLabel]="true"
+    >
     </lux-toggle>
   </example-base-simple-options>
   <example-base-advanced-options>

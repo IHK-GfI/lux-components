@@ -24,6 +24,7 @@
         [luxMaxRows]="max"
         [luxHideCounterLabel]="hideCounterLabel"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxDense]="denseFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -54,6 +55,7 @@
         [luxMaxRows]="max"
         [luxHideCounterLabel]="hideCounterLabel"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxDense]="denseFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -99,11 +101,7 @@
     >
     </lux-input>
     <div class="lux-highlight-section column">
-      <lux-input
-        luxLabel="luxHint"
-        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-        [(luxValue)]="hint"
-      >
+      <lux-input luxLabel="luxHint" luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen." [(luxValue)]="hint">
       </lux-input>
       <lux-toggle
         luxLabel="luxHintShowOnlyOnFocus"
@@ -170,20 +168,19 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle>
+    <lux-toggle class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
+      <lux-form-hint>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
+        <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
+      </lux-form-hint>
+    </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
-      luxLabel="luxRequired"
-      (luxCheckedChange)="changeRequired($event)"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
       [luxNoTopLabel]="true"
     >
-      <lux-form-hint>
-        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
-        Reactive-Form sind.<br />
-        <b
-          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
-          Form-Control gesetzt.</b
-        >
-      </lux-form-hint>
     </lux-toggle>
     <lux-select
       class="lux-highlight-section"
@@ -239,10 +236,10 @@
       [(luxSelected)]="controlValidators"
     >
       <lux-form-hint>
-        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und
-        Weise trotzdem Validatoren zu übergeben.<br />
-        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die
-        entsprechende FormControl setzen.
+        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und Weise trotzdem
+        Validatoren zu übergeben.<br />
+        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die entsprechende FormControl
+        setzen.
       </lux-form-hint>
     </lux-select>
     <lux-toggle

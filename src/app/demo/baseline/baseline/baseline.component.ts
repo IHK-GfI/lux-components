@@ -24,19 +24,20 @@ export class BaselineComponent {
   @HostBinding('class.show-frames') showFrames = false;
   showAsColumn = false;
   disabled = false;
+  denseFormat = false;
   form: FormGroup<DummyForm>;
 
   constructor() {
     this.form = new FormGroup<DummyForm>({
-      input: new FormControl(null, { validators: Validators.required, nonNullable: false}),
-      textarea: new FormControl('', { validators: Validators.required, nonNullable: true}),
-      datepicker: new FormControl('', { validators: Validators.required, nonNullable: true}),
-      autocomplete: new FormControl('', { validators: Validators.required, nonNullable: true}),
-      select: new FormControl('', { validators: Validators.required, nonNullable: true}),
-      radio: new FormControl('', { validators: Validators.required, nonNullable: true}),
-      checkbox: new FormControl(false, { validators: Validators.required, nonNullable: true}),
-      toggle: new FormControl(false, { validators: Validators.required, nonNullable: true}),
-      slider: new FormControl(4, { validators: Validators.min(10), nonNullable: true}),
+      input: new FormControl(null, { validators: Validators.required, nonNullable: false }),
+      textarea: new FormControl('', { validators: Validators.required, nonNullable: true }),
+      datepicker: new FormControl('', { validators: Validators.required, nonNullable: true }),
+      autocomplete: new FormControl('', { validators: Validators.required, nonNullable: true }),
+      select: new FormControl('', { validators: Validators.required, nonNullable: true }),
+      radio: new FormControl('', { validators: Validators.required, nonNullable: true }),
+      checkbox: new FormControl(false, { validators: Validators.required, nonNullable: true }),
+      toggle: new FormControl(false, { validators: Validators.required, nonNullable: true }),
+      slider: new FormControl(4, { validators: Validators.min(10), nonNullable: true }),
       file: new FormControl<ILuxFileObject | null>(null, Validators.required)
     });
   }

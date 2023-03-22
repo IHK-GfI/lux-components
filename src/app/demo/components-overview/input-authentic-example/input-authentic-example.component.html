@@ -23,6 +23,7 @@
         [luxNumberAlignLeft]="numberLeft"
         [luxHideCounterLabel]="hideCounterLabel"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxDense]="denseFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -65,6 +66,7 @@
         [luxNumberAlignLeft]="numberLeft"
         [luxHideCounterLabel]="hideCounterLabel"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxDense]="denseFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -107,48 +109,49 @@
       <h3>Beispiel-Formular</h3>
       <lux-card luxTitle="Suche nach Anschrift" class="example-form">
         <lux-card-content fxLayout="column" fxLayoutGap="20px">
-          <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
+          <div class="form-grid">
             <lux-input-ac
               luxLabel="Firma"
               luxPlaceholder="IHK-GfI"
+              [luxDense]="denseFormat"
               [luxValue]="exampleCompany"
-              fxFlex="50"
               [luxRequired]="true"
             ></lux-input-ac>
             <lux-datepicker-ac
               luxLabel="Geburtsdatum"
               luxPlaceholder="01.05.2022"
+              [luxDense]="denseFormat"
               [luxValue]="exampleDate"
-              fxFlex="50"
               luxHint="Diese Angabe ist optional."
             >
             </lux-datepicker-ac>
-          </div>
-          <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
-            <lux-input-ac luxLabel="Straße" luxPlaceholder="Hörder Hafenstr." [luxValue]="exampleStreet" fxFlex="50"></lux-input-ac>
+            <lux-input-ac
+              luxLabel="Straße"
+              luxPlaceholder="Hörder Hafenstr."
+              [luxDense]="denseFormat"
+              [luxValue]="exampleStreet"
+            ></lux-input-ac>
             <lux-input-ac
               luxLabel="Hausnummer"
               luxPlaceholder="5"
               [luxValue]="exampleNumber"
-              fxFlex="50"
+              [luxDense]="denseFormat"
               luxHint="Dieser Hinweis erscheint nur onFocus"
               [luxHintShowOnlyOnFocus]="true"
               [luxAutocomplete]="autocomplete"
             >
             </lux-input-ac>
-          </div>
-          <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
             <lux-input-ac
               luxLabel="Postleitzahl"
               luxPlaceholder="44263"
               [luxValue]="exampleCompany"
-              fxFlex="50"
+              [luxDense]="denseFormat"
               luxHint="Die Postleitzahl besteht aus 5 Ziffern."
             ></lux-input-ac>
-            <lux-input-ac luxLabel="Ort" luxPlaceholder="Dortmund" [luxValue]="exampleDate" fxFlex="50"></lux-input-ac>
+            <lux-input-ac luxLabel="Ort" luxPlaceholder="Dortmund" [luxDense]="denseFormat" [luxValue]="exampleDate"></lux-input-ac>
           </div>
         </lux-card-content>
-        <lux-card-actions>
+        <lux-card-actions class="lux-mt-4">
           <lux-button [luxStroked]="true" luxLabel="ZURÜCKSETZEN" luxColor="primary"></lux-button>
           <lux-button [luxFlat]="true" luxLabel="SUCHEN" luxColor="primary"></lux-button>
         </lux-card-actions>
@@ -232,6 +235,14 @@
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
         <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
+      [luxNoTopLabel]="true"
+    >
     </lux-toggle>
     <div class="lux-highlight-section column">
       <lux-select

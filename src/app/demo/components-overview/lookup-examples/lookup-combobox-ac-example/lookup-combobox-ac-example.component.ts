@@ -15,6 +15,7 @@ export class LookupComboboxAcExampleComponent extends LookupExampleComponent imp
   entryBlockSize = 25;
   bLuxWithEmptyEntry = true;
   labelLongFormat = false;
+  denseFormat = false;
 
   @ViewChildren(LuxLookupComboboxAcComponent) lookupComboboxCmp!: QueryList<LuxLookupComboboxAcComponent>;
 

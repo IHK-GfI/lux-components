@@ -14,6 +14,7 @@
         [(luxDisabled)]="disabled"
         [luxRequired]="required"
         [luxReadonly]="readonly"
+        [luxDense]="denseFormat"
         [luxPlaceholder]="placeholder"
         [luxMultiple]="false"
         [luxPickValue]="useValueFn ? pickValueFn : undefined"
@@ -45,6 +46,7 @@
         [(luxDisabled)]="disabled"
         [luxRequired]="required"
         [luxReadonly]="readonly"
+        [luxDense]="denseFormat"
         [luxPlaceholder]="placeholder"
         [luxMultiple]="true"
         [luxPickValue]="useValueFn ? pickValueFn : undefined"
@@ -76,6 +78,7 @@
         [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
         [(luxDisabled)]="disabled"
         [luxReadonly]="readonly"
+        [luxDense]="denseFormat"
         [luxPlaceholder]="placeholder"
         [luxMultiple]="false"
         [luxPickValue]="useValueFn ? pickValueFn : undefined"
@@ -113,7 +116,13 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
+    >
     </lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
@@ -180,20 +189,19 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle>
+    <lux-toggle class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
+      <lux-form-hint>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
+        <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
+      </lux-form-hint>
+    </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
-      luxLabel="luxRequired"
-      (luxCheckedChange)="changeRequired($event)"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
       [luxNoTopLabel]="true"
     >
-      <lux-form-hint>
-        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
-        Reactive-Form sind.<br />
-        <b
-          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
-          Form-Control gesetzt.</b
-        >
-      </lux-form-hint>
     </lux-toggle>
   </example-base-simple-options>
   <example-base-advanced-options>
@@ -204,9 +212,7 @@
       (luxCheckedChange)="changeUseSimpleArray($event)"
       [luxNoTopLabel]="true"
     >
-      <lux-form-hint>
-        Für die Beispiele einfache String-Arrays anstelle von Arrays mit Objekten nutzen.
-      </lux-form-hint>
+      <lux-form-hint> Für die Beispiele einfache String-Arrays anstelle von Arrays mit Objekten nutzen. </lux-form-hint>
     </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
@@ -230,22 +236,15 @@
       [luxNoTopLabel]="true"
     >
       <lux-form-hint>
-        Mithilfe der compareWith-Funktion ist es möglich ganze Objekte an die Radio-Component zu übergeben, aber dennoch
-        gezielt einzelne Properties zum Vergleichen heranzuziehen.
+        Mithilfe der compareWith-Funktion ist es möglich ganze Objekte an die Radio-Component zu übergeben, aber dennoch gezielt einzelne
+        Properties zum Vergleichen heranzuziehen.
         <div class="lux-mt-2">
           <b>{{ compareWithFnString }}</b>
         </div>
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle
-      class="lux-highlight-section"
-      [(luxChecked)]="useTemplatesForLabels"
-      luxLabel="Labels via Templates"
-      [luxNoTopLabel]="true"
-    >
-      <lux-form-hint>
-        Die Labels können über in die Component eingereichte Template-Tags erstellt werden.
-      </lux-form-hint>
+    <lux-toggle class="lux-highlight-section" [(luxChecked)]="useTemplatesForLabels" luxLabel="Labels via Templates" [luxNoTopLabel]="true">
+      <lux-form-hint> Die Labels können über in die Component eingereichte Template-Tags erstellt werden. </lux-form-hint>
     </lux-toggle>
     <div class="lux-highlight-section column">
       <lux-toggle

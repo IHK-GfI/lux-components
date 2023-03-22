@@ -16,6 +16,7 @@
         [luxRequired]="required"
         [luxReadonly]="readonly"
         [luxOrientationVertical]="isVertical"
+        [luxDense]="denseFormat"
         [luxPickValue]="useValueFn ? pickValueFn : undefined"
         [(luxSelected)]="value"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
@@ -48,6 +49,7 @@
         [(luxDisabled)]="disabled"
         [luxReadonly]="readonly"
         [luxOrientationVertical]="isVertical"
+        [luxDense]="denseFormat"
         [luxPickValue]="useValueFn ? pickValueFn : undefined"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
@@ -82,7 +84,13 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
+    >
     </lux-toggle>
     <lux-divider [luxInset]="true"></lux-divider>
     <lux-input
@@ -94,9 +102,30 @@
     >
     </lux-input>
     <div class="lux-highlight-section column">
-      <lux-input luxName="Option 1" luxLabel="Option 1" [(luxValue)]="options[0].label" (luxValueChange)="onRefresh()" [luxDisabled]="useSimpleArray" [luxNoBottomLabel]="true"></lux-input>
-      <lux-input luxName="Option 2" luxLabel="Option 2" [(luxValue)]="options[1].label" (luxValueChange)="onRefresh()" [luxDisabled]="useSimpleArray" [luxNoBottomLabel]="true"></lux-input>
-      <lux-input luxName="Option 3" luxLabel="Option 3" [(luxValue)]="options[2].label" (luxValueChange)="onRefresh()" [luxDisabled]="useSimpleArray" [luxNoBottomLabel]="true"></lux-input>
+      <lux-input
+        luxName="Option 1"
+        luxLabel="Option 1"
+        [(luxValue)]="options[0].label"
+        (luxValueChange)="onRefresh()"
+        [luxDisabled]="useSimpleArray"
+        [luxNoBottomLabel]="true"
+      ></lux-input>
+      <lux-input
+        luxName="Option 2"
+        luxLabel="Option 2"
+        [(luxValue)]="options[1].label"
+        (luxValueChange)="onRefresh()"
+        [luxDisabled]="useSimpleArray"
+        [luxNoBottomLabel]="true"
+      ></lux-input>
+      <lux-input
+        luxName="Option 3"
+        luxLabel="Option 3"
+        [(luxValue)]="options[2].label"
+        (luxValueChange)="onRefresh()"
+        [luxDisabled]="useSimpleArray"
+        [luxNoBottomLabel]="true"
+      ></lux-input>
     </div>
     <div class="lux-highlight-section column">
       <lux-input
@@ -114,14 +143,14 @@
       ></lux-toggle>
     </div>
 
-    <lux-layout-form-row class="lux-highlight-section" [luxGap]="{ rowItem:'32px' }">
+    <lux-layout-form-row class="lux-highlight-section" [luxGap]="{ rowItem: '32px' }">
       <lux-toggle
         [(luxChecked)]="disabled"
         luxLabel="luxDisabled"
         luxHint="Erlaubt es, die Component zu deaktivieren."
         [luxNoTopLabel]="true"
         *luxLayoutRowItem="{}"
-        >
+      >
       </lux-toggle>
       <lux-toggle
         [(luxChecked)]="disabledFirst"
@@ -130,7 +159,7 @@
         [luxDisabled]="useSimpleArray"
         [luxNoTopLabel]="true"
         *luxLayoutRowItem="{}"
-        >
+      >
       </lux-toggle>
     </lux-layout-form-row>
 
@@ -159,19 +188,10 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <lux-toggle
-      class="lux-highlight-section"
-      luxLabel="luxRequired"
-      (luxCheckedChange)="changeRequired($event)"
-      [luxNoTopLabel]="true"
-    >
+    <lux-toggle class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
       <lux-form-hint>
-        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
-        Reactive-Form sind.<br />
-        <b
-          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
-          Form-Control gesetzt.</b
-        >
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
+        <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
     </lux-toggle>
     <lux-toggle
@@ -179,6 +199,14 @@
       [(luxChecked)]="isVertical"
       luxLabel="luxOrientationVertical"
       luxHint="Über dieses Flag kann gesteuert werden, ob die Radio-Buttons horizontal oder vertikal dargestellt werden."
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
       [luxNoTopLabel]="true"
     >
     </lux-toggle>
@@ -191,9 +219,7 @@
       (luxCheckedChange)="changeUseSimpleArray($event)"
       [luxNoTopLabel]="true"
     >
-      <lux-form-hint>
-        Für die Beispiele einfache String-Arrays anstelle von Arrays mit Objekten nutzen.
-      </lux-form-hint>
+      <lux-form-hint> Für die Beispiele einfache String-Arrays anstelle von Arrays mit Objekten nutzen. </lux-form-hint>
     </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
@@ -217,22 +243,15 @@
       [luxNoTopLabel]="true"
     >
       <lux-form-hint>
-        Mithilfe der compareWith-Funktion ist es möglich ganze Objekte an die Radio-Component zu übergeben, aber dennoch
-        gezielt einzelne Properties zum Vergleichen heranzuziehen.
+        Mithilfe der compareWith-Funktion ist es möglich ganze Objekte an die Radio-Component zu übergeben, aber dennoch gezielt einzelne
+        Properties zum Vergleichen heranzuziehen.
         <div class="lux-mt-2">
           <b>{{ compareWithFnString }}</b>
         </div>
       </lux-form-hint>
     </lux-toggle>
-    <lux-toggle
-      class="lux-highlight-section"
-      [(luxChecked)]="useTemplatesForLabels"
-      luxLabel="Labels via Templates"
-      [luxNoTopLabel]="true"
-    >
-      <lux-form-hint>
-        Die Labels können über in die Component eingereichte Template-Tags erstellt werden.
-      </lux-form-hint>
+    <lux-toggle class="lux-highlight-section" [(luxChecked)]="useTemplatesForLabels" luxLabel="Labels via Templates" [luxNoTopLabel]="true">
+      <lux-form-hint> Die Labels können über in die Component eingereichte Template-Tags erstellt werden. </lux-form-hint>
     </lux-toggle>
     <div class="lux-highlight-section column">
       <lux-input luxName="radio_luxGroupName" luxLabel="luxGroupName - normales Beispiel" [(luxValue)]="groupNameNormal">

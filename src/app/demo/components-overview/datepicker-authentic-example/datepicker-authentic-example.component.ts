@@ -48,6 +48,7 @@ export class DatepickerAuthenticExampleComponent {
   startView: LuxStartView = 'month';
   touchUi = false;
   labelLongFormat = false;
+  denseFormat = false;
   customFilterString = this.weekendFilterFn + '';
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;

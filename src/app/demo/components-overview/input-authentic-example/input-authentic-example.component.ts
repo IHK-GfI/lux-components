@@ -13,7 +13,8 @@ interface InputDummyForm {
 
 @Component({
   selector: 'lux-input-ac-example',
-  templateUrl: './input-authentic-example.component.html'
+  templateUrl: './input-authentic-example.component.html',
+  styleUrls: ['./input-authentic-example.component.scss']
 })
 export class InputAuthenticExampleComponent {
   longLabel =
@@ -54,6 +55,7 @@ export class InputAuthenticExampleComponent {
   maxLength = 0;
   hideCounterLabel = false;
   labelLongFormat = false;
+  denseFormat = false;
   exampleCompany = '';
   exampleDate = '';
   exampleStreet = '';
