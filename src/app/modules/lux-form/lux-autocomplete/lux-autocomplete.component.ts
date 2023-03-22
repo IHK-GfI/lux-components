@@ -348,8 +348,12 @@ export class LuxAutocompleteComponent<V = any, O = any> extends LuxFormComponent
 
     this.selected$.next(newValue);
 
-    if (this.matInput && this.matInput.nativeElement && newValue && newValue[this.luxOptionLabelProp]) {
-      this.matInput.nativeElement.value = newValue[this.luxOptionLabelProp];
+    if (this.matInput && this.matInput.nativeElement && newValue) {
+      if ((typeof(newValue) === 'string' || newValue instanceof String) && newValue) {
+        this.matInput.nativeElement.value = newValue;
+      } else if (newValue[this.luxOptionLabelProp]) {
+        this.matInput.nativeElement.value = newValue[this.luxOptionLabelProp];
+      }
     }
   }
 
