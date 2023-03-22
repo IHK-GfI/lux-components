@@ -24,19 +24,22 @@ export class AutocompleteAuthenticExampleComponent {
   showOutputEvents = false;
   showPrefix = false;
   showSuffix = false;
+  useStringValues = false;
   longOptionLabel =
     'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
   toggleOptions = true;
   optionMultiline = false;
   optionBlockSize = 500;
   options: AutocompleteAcExampleOption[] = this.createOption();
-
   options2: AutocompleteAcExampleOption[] = [
     { label: 'Meine Aufgaben 2', short: 'MA2', value: 'A2' },
     { label: 'Gruppenaufgaben 2', short: 'GA2', value: 'B2' },
     { label: 'Zurückgestellte Aufgaben 2', short: 'ZA2', value: 'C2' },
     { label: 'Vertretungsaufgaben 2', short: 'VA2', value: 'D2' }
   ];
+  stringOptions = this.options.map(o => o.label);
+  stringOptions2 = this.options2.map(o => o.label);
+
   renderProperties: RenderPropertyItem[] = [
     { label: 'Bezeichnung (normal)', value: 'label' },
     { label: 'Bezeichnung (kurz)', value: 'short' },
@@ -124,5 +127,12 @@ export class AutocompleteAuthenticExampleComponent {
     }
 
     return options;
+  }
+
+  getOptions(): any[] {
+    if (this.useStringValues)
+      return this.toggleOptions ? this.stringOptions : this.stringOptions2;
+    else 
+      return this.toggleOptions ? this.options : this.options2;
   }
 }

@@ -18,6 +18,8 @@ describe('LuxAutocompleteComponent', () => {
     LuxTestHelper.configureTestModule(
       [LuxConsoleService],
       [
+        LuxAutoCompleteTwoWayBindingWithStringValuesComponent,
+        LuxAutoCompleteInFormWithStringValuesComponent,
         LuxAutoCompleteInFormAttributeComponent,
         LuxValueAttributeComponent,
         LuxOptionSelectedComponent,
@@ -137,6 +139,59 @@ describe('LuxAutocompleteComponent', () => {
         expect(component.autocomplete.luxValue).toEqual(testOptions[1]);
         expect(component.formGroup.get('aufgaben')!.value).toEqual(testOptions[1]);
         expect(component.autocomplete.matInput.nativeElement.value).toEqual('Gruppenaufgaben 2');
+        discardPeriodicTasks();
+      }));
+    });
+
+    describe('FormGroup mit String-Werten', () => {
+      let fixture: ComponentFixture<LuxAutoCompleteInFormWithStringValuesComponent>;
+      let component: LuxAutoCompleteInFormWithStringValuesComponent;
+      let overlayHelper: LuxOverlayHelper;
+
+      beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(LuxAutoCompleteInFormWithStringValuesComponent);
+        fixture.detectChanges();
+        overlayHelper = new LuxOverlayHelper();
+        component = fixture.componentInstance;
+        tick(fixture.componentInstance.autocomplete.luxLookupDelay);
+      }));
+
+      it('Wert über das Textfeld setzen', fakeAsync(() => {
+        // Vorbedingungen testen
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual('');
+        expect(component.formGroup.get('aufgaben')!.value).toBeNull();
+
+        // Änderungen durchführen
+        LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Vertretungsaufgaben');
+        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
+
+        // Nachbedingungen testen
+        expect(component.autocomplete.luxValue).toEqual(component.options[3]);
+        expect(component.formGroup.get('aufgaben')!.value).toEqual(component.options[3]);
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual('Vertretungsaufgaben');
+        expect(component.autocomplete.matInput.nativeElement.required).toBeFalsy();
+        discardPeriodicTasks();
+      }));
+
+      it('Wert über Popup auswählen', fakeAsync(() => {
+        // Vorbedingungen testen
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual('');
+        expect(component.formGroup.get('aufgaben')!.value).toBeNull();
+
+        // Änderungen durchführen
+        LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'meine');
+        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+
+        const options = overlayHelper.selectAllFromOverlay('mat-option');
+        options[0].click();
+        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+
+        // Nachbedingungen testen
+        expect(component.autocomplete.luxValue).toEqual(component.options[0]);
+        expect(component.formGroup.get('aufgaben')!.value).toEqual(component.options[0]);
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual('Meine Aufgaben');
         discardPeriodicTasks();
       }));
     });
@@ -282,6 +337,70 @@ describe('LuxAutocompleteComponent', () => {
         expect(component.autocomplete.matInput.nativeElement.value).toEqual('Meine Aufgaben');
         discardPeriodicTasks();
       }));
+    });
+
+    describe('Two-Way-Binding mit String-Werten', () => {
+      let fixture: ComponentFixture<LuxAutoCompleteTwoWayBindingWithStringValuesComponent>;
+      let component: LuxAutoCompleteTwoWayBindingWithStringValuesComponent;
+      let overlayHelper: LuxOverlayHelper;
+
+      beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(LuxAutoCompleteTwoWayBindingWithStringValuesComponent);
+        fixture.detectChanges();
+        overlayHelper = new LuxOverlayHelper();
+        component = fixture.componentInstance;
+        tick(fixture.componentInstance.autocomplete.luxLookupDelay);
+      }));
+
+      it('Wert über die Component setzen', fakeAsync(() => {
+        // Vorbedingungen testen
+        expect(component.selected).toEqual('');
+
+        // Änderungen durchführen
+        component.selected = component.options[2];
+        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+
+        // Nachbedingungen testen
+        expect(component.selected).toEqual(component.options[2]);
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual(component.options[2]);
+      }));
+
+      it('Wert über das Textfeld setzen', fakeAsync(() => {
+        // Vorbedingungen testen
+        expect(component.selected).toEqual('');
+
+        // Änderungen durchführen
+        LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'Vertretungsaufgaben');
+        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+
+        removeFocus(fixture, component.autocomplete.matInput, component.autocomplete.luxLookupDelay);
+
+        // Nachbedingungen testen
+        expect(component.selected).toEqual(component.options[3]);
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual(component.options[3]);
+        discardPeriodicTasks();
+      }));
+
+      it('Wert über Popup auswählen', fakeAsync(() => {
+        // Vorbedingungen testen
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual('');
+        expect(component.selected).toEqual('');
+
+        // Änderungen durchführen
+        LuxTestHelper.typeInElement(component.autocomplete.matInput.nativeElement, 'meine');
+        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+
+        const options = overlayHelper.selectAllFromOverlay('mat-option');
+        options[0].click();
+        LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
+
+        // Nachbedingungen testen
+        expect(component.autocomplete.luxValue).toEqual(component.options[0]);
+        expect(component.selected).toEqual(component.options[0]);
+        expect(component.autocomplete.matInput.nativeElement.value).toEqual('Meine Aufgaben');
+        discardPeriodicTasks();
+      }));
+
     });
 
     describe('Attribut "luxOptionSelected"', () => {
@@ -634,6 +753,51 @@ class LuxAutoCompleteNotAnOptionComponent {
   }
 
   onSave() {}
+}
+
+@Component({
+  template: `
+    <form [formGroup]="formGroup">
+      <lux-autocomplete luxLabel="Autocomplete" [luxOptions]="options" luxControlBinding="aufgaben"> </lux-autocomplete>
+    </form>
+  `
+})
+class LuxAutoCompleteInFormWithStringValuesComponent {
+  options: string[] = [
+    'Meine Aufgaben',
+    'Gruppenaufgaben',
+    'Zurückgestellte Aufgaben',
+    'Vertretungsaufgaben'
+  ];
+
+  @ViewChild(LuxAutocompleteComponent) autocomplete!: LuxAutocompleteComponent<string, string>;
+
+  formGroup: FormGroup;
+
+  constructor() {
+    this.formGroup = new FormGroup({
+      aufgaben: new FormControl<string | null>(null)
+    });
+  }
+}
+
+@Component({
+  template: `
+    <lux-autocomplete luxLabel="Autocomplete" [luxOptions]="options" [(luxValue)]="selected" [luxStrict]="strict"> </lux-autocomplete>
+  `
+})
+class LuxAutoCompleteTwoWayBindingWithStringValuesComponent {
+  selected = '';
+  strict = true;
+
+  options = [
+    'Meine Aufgaben',
+    'Gruppenaufgaben',
+    'Zurückgestellte Aufgaben',
+    'Vertretungsaufgaben'
+  ];
+
+  @ViewChild(LuxAutocompleteComponent) autocomplete!: LuxAutocompleteComponent<string, string>;
 }
 
 /**
