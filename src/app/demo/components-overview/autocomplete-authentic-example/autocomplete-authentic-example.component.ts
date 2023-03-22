@@ -25,6 +25,7 @@ export class AutocompleteAuthenticExampleComponent {
   showPrefix = false;
   showSuffix = false;
   useStringValues = false;
+  denseFormat = false;
   longOptionLabel =
     'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
   toggleOptions = true;
@@ -132,7 +133,7 @@ export class AutocompleteAuthenticExampleComponent {
   getOptions(): any[] {
     if (this.useStringValues)
       return this.toggleOptions ? this.stringOptions : this.stringOptions2;
-    else 
+    else
       return this.toggleOptions ? this.options : this.options2;
   }
 }

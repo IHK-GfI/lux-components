@@ -22,6 +22,7 @@ export class ToggleAuthenticExampleComponent {
   disabled = false;
   readonly = false;
   required = false;
+  denseFormat = false;
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;
@@ -41,5 +42,4 @@ export class ToggleAuthenticExampleComponent {
     }
     this.form.get(this.controlBinding)!.updateValueAndValidity();
   }
-
 }

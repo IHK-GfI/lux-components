@@ -17,11 +17,12 @@ interface CheckboxAgbDummyForm {
   templateUrl: './checkbox-authentic-example.component.html',
   styleUrls: ['./checkbox-authentic-example.component.scss']
 })
-export class CheckboxAuthenticExampleComponent  {
+export class CheckboxAuthenticExampleComponent {
   useErrorMessage = true;
   form: FormGroup<CheckboxDummyForm>;
   agb: FormGroup<CheckboxAgbDummyForm>;
-  exampleText = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+  exampleText =
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.';
   value = false;
   controlBinding = 'checkboxExample';
   label = 'Labeltext';
@@ -30,6 +31,7 @@ export class CheckboxAuthenticExampleComponent  {
   disabled = false;
   readonly = false;
   required = false;
+  denseFormat = false;
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   errorCallback = exampleErrorCallback;
   emptyCallback = emptyErrorCallback;
@@ -39,9 +41,9 @@ export class CheckboxAuthenticExampleComponent  {
       checkboxExample: new FormControl<boolean | null>(null)
     });
     this.agb = new FormGroup<CheckboxAgbDummyForm>({
-      checkbox1: new FormControl<boolean>(false, {validators: Validators.required, nonNullable: true}),
-      checkbox2: new FormControl<boolean>(false, {validators: Validators.required, nonNullable: true}),
-      checkbox3: new FormControl<boolean>(false, {validators: Validators.required, nonNullable: true}),
+      checkbox1: new FormControl<boolean>(false, { validators: Validators.required, nonNullable: true }),
+      checkbox2: new FormControl<boolean>(false, { validators: Validators.required, nonNullable: true }),
+      checkbox3: new FormControl<boolean>(false, { validators: Validators.required, nonNullable: true })
     });
   }
 

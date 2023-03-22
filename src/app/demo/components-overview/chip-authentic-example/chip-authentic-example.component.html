@@ -18,6 +18,7 @@
         [luxOptionBlockSize]="optionBlockSize"
         [luxLabelLongFormat]="labelLongFormat"
         [luxOptionMultiline]="optionMultiline"
+        [luxDense]="denseFormat"
         (luxChipAdded)="chipAdded($event)"
       >
         <lux-chip-ac
@@ -52,6 +53,7 @@
         [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
         [luxOptionBlockSize]="optionBlockSize"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxDense]="denseFormat"
       >
         <lux-chip-ac-group
           [luxRemovable]="groupRemovable"
@@ -84,6 +86,7 @@
           [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
           [luxOptionBlockSize]="optionBlockSize"
           [luxLabelLongFormat]="labelLongFormat"
+          [luxDense]="denseFormat"
         >
           <lux-chip-ac-group
             [luxRemovable]="groupRemovable"
@@ -201,6 +204,14 @@
       [(luxChecked)]="multiple"
       luxLabel="luxMultiple"
       luxHint="Erlaubt es, mehrere Chips zu selektieren (mithilfe der Leertaste)."
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
       [luxNoTopLabel]="true"
     >
     </lux-toggle>

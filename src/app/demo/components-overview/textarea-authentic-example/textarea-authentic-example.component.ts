@@ -16,7 +16,7 @@ interface TextareaDummyForm {
   templateUrl: './textarea-authentic-example.component.html'
 })
 export class TextareaAuthenticExampleComponent {
-   useErrorMessage = true;
+  useErrorMessage = true;
   showOutputEvents = false;
   validatorOptions = [
     { value: Validators.minLength(3), label: 'Validators.minLength(3)' },
@@ -46,6 +46,7 @@ export class TextareaAuthenticExampleComponent {
   maxLength = 0;
   hideCounterLabel = false;
   labelLongFormat = false;
+  denseFormat = false;
 
   constructor() {
     this.form = new FormGroup<TextareaDummyForm>({
@@ -61,5 +62,4 @@ export class TextareaAuthenticExampleComponent {
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
-
 }

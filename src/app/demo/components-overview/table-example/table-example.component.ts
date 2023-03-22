@@ -17,7 +17,6 @@ export class TableExampleComponent extends TableExampleBaseClass {
         <lux-input
           ...
           *ngIf="element.editable"
-          fxFlex="1 1 30%"
           [luxNoLabels]="true"
           ...
         ></lux-input>
@@ -56,7 +55,7 @@ export class TableExampleComponent extends TableExampleBaseClass {
       { name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22), disabled: false },
       { name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21), disabled: false },
       { name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18), disabled: false },
-      { name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24) , disabled: false},
+      { name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24), disabled: false },
       { name: 'carbon', symbol: 'C', date: new Date(2018, 11, 24), disabled: false },
       { name: 'Nitrogen', symbol: 'N', date: new Date(2018, 10, 24), disabled: false },
       { name: 'Öxygen', symbol: 'O', date: new Date(2018, 11, 24), disabled: false },

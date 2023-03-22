@@ -44,6 +44,7 @@ export class ChipAuthenticExampleComponent {
   groupColor?: LuxThemePalette;
   groupLabels = ['Group Chip #1', 'Group Chip #2', 'Group Chip #3'];
   labelLongFormat = false;
+  denseFormat = false;
 
   constructor() {
     this.form = new FormGroup({

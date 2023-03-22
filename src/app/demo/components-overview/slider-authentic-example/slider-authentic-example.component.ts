@@ -14,7 +14,7 @@ interface SliderDummyForm {
 
 @Component({
   selector: 'lux-slider-authentic-example',
-  templateUrl: './slider-authentic-example.component.html',
+  templateUrl: './slider-authentic-example.component.html'
 })
 export class SliderAuthenticExampleComponent {
   useErrorMessage = true;
@@ -49,6 +49,7 @@ export class SliderAuthenticExampleComponent {
   disabled = false;
   readonly = false;
   required = false;
+  denseFormat = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;

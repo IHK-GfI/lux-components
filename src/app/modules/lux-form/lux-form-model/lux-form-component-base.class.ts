@@ -11,13 +11,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {
-  AbstractControl,
-  ControlContainer, FormControl, FormGroup,
-  ValidationErrors,
-  ValidatorFn,
-  Validators
-} from '@angular/forms';
+import { AbstractControl, ControlContainer, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -79,6 +73,7 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
   @Input() luxControlBinding?: string;
   @Input() luxErrorMessage?: string;
   @Input() luxErrorCallback: LuxErrorCallbackFnType = () => undefined;
+  @Input() luxDense = false;
 
   get luxControlValidators(): ValidatorFnType {
     return this._luxControlValidators;

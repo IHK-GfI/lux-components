@@ -22,7 +22,7 @@ lux-button.lux-table-example {
 
     lux-icon {
       i,
-      mat-icon {
+      mat-icon:not(.lux-lx-icon-no-size) {
         font-size: 1.5em;
       }
     }
@@ -46,11 +46,12 @@ $icon-shift: 42px;
     i {
       padding-top: 0;
     }
-    h2, h3 {
+    h2,
+    h3 {
       margin: 0 0 0 8px;
     }
     h3 {
-      color: var(--lux-theme-dark-secondary-text)
+      color: var(--lux-theme-dark-secondary-text);
     }
   }
   p {
@@ -71,7 +72,8 @@ $icon-shift: 42px;
   @include messagebox();
   padding: 24px 12px;
 
-  p, .code-section {
+  p,
+  .code-section {
     margin-left: 4px;
   }
 }
