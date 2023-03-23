@@ -1,3 +1,9 @@
+# Version 14.4.0
+
+## New
+
+- **lux-autocomplete**: Einfaches String-Arrays kann als Optionen genutzt werden. [Issue 289](https://github.com/IHK-GfI/lux-components/issues/289)
+
 # Version 14.3.0
 
 ## New
