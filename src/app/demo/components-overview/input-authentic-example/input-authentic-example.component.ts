@@ -15,10 +15,11 @@ interface InputDummyForm {
   selector: 'lux-input-ac-example',
   templateUrl: './input-authentic-example.component.html'
 })
-export class InputAuthenticExampleComponent  {
-  longLabel="Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, laudantium sequi quo mollitia id magnam voluptatum suscipit assumenda perspiciatis ab! Sit voluptas qui sed quas, sapiente ea officia nesciunt eveniet obcaecati dolorem nostrum commodi temporibus esse minus, corrupti repellat hic consequatur pariatur!";
-  longHint="Sit voluptas qui sed quas, sapiente ea officia nesciunt eveniet obcaecati dolorem nostrum commodi temporibus esse minus, corrupti repellat hic consequatur pariatur! Ducimus adipisci qui officia. Sit voluptas qui sed quas, sapiente ea officia nesciunt eveniet obcaecati dolorem nostrum commodi temporibus esse minus, corrupti repellat hic consequatur pariatur! Ducimus adipisci qui officia.";
-
+export class InputAuthenticExampleComponent {
+  longLabel =
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, laudantium sequi quo mollitia id magnam voluptatum suscipit assumenda perspiciatis ab! Sit voluptas qui sed quas, sapiente ea officia nesciunt eveniet obcaecati dolorem nostrum commodi temporibus esse minus, corrupti repellat hic consequatur pariatur!';
+  longHint =
+    'Sit voluptas qui sed quas, sapiente ea officia nesciunt eveniet obcaecati dolorem nostrum commodi temporibus esse minus, corrupti repellat hic consequatur pariatur! Ducimus adipisci qui officia. Sit voluptas qui sed quas, sapiente ea officia nesciunt eveniet obcaecati dolorem nostrum commodi temporibus esse minus, corrupti repellat hic consequatur pariatur! Ducimus adipisci qui officia.';
 
   showSuffix = false;
   showPrefix = false;
@@ -40,7 +41,7 @@ export class InputAuthenticExampleComponent  {
   required = false;
   numberLeft = false;
   label = 'Label';
-  hint = 'Hint';
+  hint = '';
   hintShowOnlyOnFocus = false;
   placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
@@ -53,10 +54,10 @@ export class InputAuthenticExampleComponent  {
   maxLength = 0;
   hideCounterLabel = false;
   labelLongFormat = false;
-  exampleCompany='';
-  exampleDate='';
-  exampleStreet='';
-  exampleNumber='';
+  exampleCompany = '';
+  exampleDate = '';
+  exampleStreet = '';
+  exampleNumber = '';
 
   constructor() {
     this.form = new FormGroup<InputDummyForm>({
@@ -72,5 +73,4 @@ export class InputAuthenticExampleComponent  {
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
-
 }

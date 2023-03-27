@@ -29,17 +29,20 @@
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         luxTagId="input-non-reactive"
       >
-        <lux-input-ac-prefix *ngIf="showPrefix">
-          <lux-icon [luxIconName]="'info'"></lux-icon>&nbsp;
-        </lux-input-ac-prefix>
+        <lux-input-ac-prefix *ngIf="showPrefix"> <lux-icon [luxIconName]="'info'"></lux-icon>&nbsp; </lux-input-ac-prefix>
         <lux-input-ac-suffix *ngIf="showSuffix"> .00 EUR </lux-input-ac-suffix>
+        <lux-form-hint
+          >Lorem ipsum
+          <lux-link-plain
+            luxLabel="Link"
+            luxHref="https://www.ihk-gfi.de"
+            luxIconName="lux-interface-link"
+            [luxIconShowRight]="true"
+          ></lux-link-plain>
+          dolor sit amet.</lux-form-hint
+        >
       </lux-input-ac>
-      <div
-        class="lux-highlight-section"
-        fxLayout="row"
-        fxLayoutGap="5px"
-        *ngIf="value !== null && value !== undefined"
-      >
+      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="value !== null && value !== undefined">
         <span fxFlex="0 0 auto">Wert:</span>
         <span fxFlex="auto">{{ value | json }}</span>
       </div>
@@ -68,10 +71,18 @@
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         luxTagId="input-reactive"
       >
-        <lux-input-ac-prefix *ngIf="showPrefix">
-          <lux-icon [luxIconName]="'lux-cogs'"></lux-icon>&nbsp;
-        </lux-input-ac-prefix>
+        <lux-input-ac-prefix *ngIf="showPrefix"> <lux-icon [luxIconName]="'lux-cogs'"></lux-icon>&nbsp; </lux-input-ac-prefix>
         <lux-input-ac-suffix *ngIf="showSuffix"> .00 EUR </lux-input-ac-suffix>
+        <lux-form-hint
+          >Lorem ipsum
+          <lux-link-plain
+            luxLabel="Link"
+            luxHref="https://www.ihk-gfi.de"
+            luxIconName="lux-interface-link"
+            [luxIconShowRight]="true"
+          ></lux-link-plain>
+          dolor sit amet.</lux-form-hint
+        >
       </lux-input-ac>
       <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
@@ -94,68 +105,54 @@
         </div>
       </div>
       <h3>Beispiel-Formular</h3>
-      <lux-card
-        luxTitle="Suche nach Anschrift"
-        class="example-form"
-      >
-      <lux-card-content fxLayout="column" fxLayoutGap="20px">
-        <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
-          <lux-input-ac
-            luxLabel="Firma"
-            luxPlaceholder="IHK-GfI"
-            [luxValue]="exampleCompany"
-            fxFlex="50"
-            [luxRequired]="true"
-          ></lux-input-ac>
-          <lux-datepicker-ac
-            luxLabel="Geburtsdatum"
-            luxPlaceholder="01.05.2022"
-            [luxValue]="exampleDate"
-            fxFlex="50"
-            luxHint="Diese Angabe ist optional."
-          >
-        </lux-datepicker-ac>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
-          <lux-input-ac
-            luxLabel="Straße"
-            luxPlaceholder="Hörder Hafenstr."
-            [luxValue]="exampleStreet"
-            fxFlex="50"
-          ></lux-input-ac>
-          <lux-input-ac
-            luxLabel="Hausnummer"
-            luxPlaceholder="5"
-            [luxValue]="exampleNumber"
-            fxFlex="50"
-            luxHint="Dieser Hinweis erscheint nur onFocus"
-            [luxHintShowOnlyOnFocus]="true"
-            [luxAutocomplete]="autocomplete"
-          >
-        </lux-input-ac>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
-          <lux-input-ac
-            luxLabel="Postleitzahl"
-            luxPlaceholder="44263"
-            [luxValue]="exampleCompany"
-            fxFlex="50"
-            luxHint="Die Postleitzahl besteht aus 5 Ziffern."
-          ></lux-input-ac>
-          <lux-input-ac
-            luxLabel="Ort"
-            luxPlaceholder="Dortmund"
-            [luxValue]="exampleDate"
-            fxFlex="50"
-          ></lux-input-ac>
-        </div>
-      </lux-card-content>
-      <lux-card-actions>
-        <lux-button [luxStroked]="true" luxLabel="ZURÜCKSETZEN" luxColor="primary"></lux-button>
-        <lux-button [luxFlat]="true" luxLabel="SUCHEN" luxColor="primary"></lux-button>
-      </lux-card-actions>
-    </lux-card>
-
+      <lux-card luxTitle="Suche nach Anschrift" class="example-form">
+        <lux-card-content fxLayout="column" fxLayoutGap="20px">
+          <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
+            <lux-input-ac
+              luxLabel="Firma"
+              luxPlaceholder="IHK-GfI"
+              [luxValue]="exampleCompany"
+              fxFlex="50"
+              [luxRequired]="true"
+            ></lux-input-ac>
+            <lux-datepicker-ac
+              luxLabel="Geburtsdatum"
+              luxPlaceholder="01.05.2022"
+              [luxValue]="exampleDate"
+              fxFlex="50"
+              luxHint="Diese Angabe ist optional."
+            >
+            </lux-datepicker-ac>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
+            <lux-input-ac luxLabel="Straße" luxPlaceholder="Hörder Hafenstr." [luxValue]="exampleStreet" fxFlex="50"></lux-input-ac>
+            <lux-input-ac
+              luxLabel="Hausnummer"
+              luxPlaceholder="5"
+              [luxValue]="exampleNumber"
+              fxFlex="50"
+              luxHint="Dieser Hinweis erscheint nur onFocus"
+              [luxHintShowOnlyOnFocus]="true"
+              [luxAutocomplete]="autocomplete"
+            >
+            </lux-input-ac>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="start space-between" class="form-row" fxLayoutGap="20px" fxFlex="1 1 auto">
+            <lux-input-ac
+              luxLabel="Postleitzahl"
+              luxPlaceholder="44263"
+              [luxValue]="exampleCompany"
+              fxFlex="50"
+              luxHint="Die Postleitzahl besteht aus 5 Ziffern."
+            ></lux-input-ac>
+            <lux-input-ac luxLabel="Ort" luxPlaceholder="Dortmund" [luxValue]="exampleDate" fxFlex="50"></lux-input-ac>
+          </div>
+        </lux-card-content>
+        <lux-card-actions>
+          <lux-button [luxStroked]="true" luxLabel="ZURÜCKSETZEN" luxColor="primary"></lux-button>
+          <lux-button [luxFlat]="true" luxLabel="SUCHEN" luxColor="primary"></lux-button>
+        </lux-card-actions>
+      </lux-card>
     </div>
   </example-base-content>
   <example-base-simple-options>
@@ -175,16 +172,18 @@
     >
     </lux-input>
     <div class="lux-highlight-section column">
-      <lux-input
-        luxLabel="luxHint"
-        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-        [(luxValue)]="hint"
-      >
+      <lux-input luxLabel="luxHint" luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen." [(luxValue)]="hint">
       </lux-input>
       <lux-toggle
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
+        [luxNoTopLabel]="true"
+      ></lux-toggle>
+      <lux-toggle
+        luxLabel="Zeige eine Hint-Komponente"
+        [luxChecked]="true"
+        (luxCheckedChange)="hint = $event === true ? '' : 'hint'"
         [luxNoTopLabel]="true"
       ></lux-toggle>
     </div>
@@ -228,19 +227,10 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <lux-toggle
-      class="lux-highlight-section"
-      luxLabel="luxRequired"
-      (luxCheckedChange)="changeRequired($event)"
-      [luxNoTopLabel]="true"
-    >
+    <lux-toggle class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
       <lux-form-hint>
-        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
-        Reactive-Form sind.<br />
-        <b
-          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
-          Form-Control gesetzt.</b
-        >
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
+        <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
     </lux-toggle>
     <div class="lux-highlight-section column">
@@ -331,10 +321,10 @@
       [(luxSelected)]="controlValidators"
     >
       <lux-form-hint>
-        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und
-        Weise trotzdem Validatoren zu übergeben.<br />
-        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die
-        entsprechende FormControl setzen.
+        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und Weise trotzdem
+        Validatoren zu übergeben.<br />
+        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die entsprechende FormControl
+        setzen.
       </lux-form-hint>
     </lux-select>
     <lux-toggle

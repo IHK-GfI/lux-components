@@ -1,7 +1,4 @@
-<example-base-structure
-  exampleTitle="Input"
-  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90input"
->
+<example-base-structure exampleTitle="Input" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90input">
   <example-base-content>
     <div fxLayout="column" fxLayoutGap="32px">
       <h3>Beispiel ohne Reactive-Form</h3>
@@ -29,17 +26,20 @@
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         luxTagId="input-non-reactive"
       >
-        <lux-input-prefix *ngIf="showPrefix">
-          <lux-icon [luxIconName]="'lux-cogs'"></lux-icon>&nbsp;
-        </lux-input-prefix>
+        <lux-input-prefix *ngIf="showPrefix"> <lux-icon [luxIconName]="'lux-cogs'"></lux-icon>&nbsp; </lux-input-prefix>
         <lux-input-suffix *ngIf="showSuffix"> .00 EUR </lux-input-suffix>
+        <lux-form-hint
+          >Lorem ipsum
+          <lux-link-plain
+            luxLabel="Link"
+            luxHref="https://www.ihk-gfi.de"
+            luxIconName="lux-interface-link"
+            [luxIconShowRight]="true"
+          ></lux-link-plain>
+          dolor sit amet.</lux-form-hint
+        >
       </lux-input>
-      <div
-        class="lux-highlight-section"
-        fxLayout="row"
-        fxLayoutGap="5px"
-        *ngIf="value !== null && value !== undefined"
-      >
+      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="value !== null && value !== undefined">
         <span fxFlex="0 0 auto">Wert:</span>
         <span fxFlex="auto">{{ value | json }}</span>
       </div>
@@ -68,11 +68,18 @@
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         luxTagId="input-reactive"
       >
-
-        <lux-input-prefix *ngIf="showPrefix">
-          <lux-icon [luxIconName]="'lux-cogs'"></lux-icon>&nbsp;
-        </lux-input-prefix>
+        <lux-input-prefix *ngIf="showPrefix"> <lux-icon [luxIconName]="'lux-cogs'"></lux-icon>&nbsp; </lux-input-prefix>
         <lux-input-suffix *ngIf="showSuffix"> .00 EUR </lux-input-suffix>
+        <lux-form-hint
+          >Lorem ipsum
+          <lux-link-plain
+            luxLabel="Link"
+            luxHref="https://www.ihk-gfi.de"
+            luxIconName="lux-interface-link"
+            [luxIconShowRight]="true"
+          ></lux-link-plain>
+          dolor sit amet.</lux-form-hint
+        >
       </lux-input>
       <div fxLayout="column" class="lux-highlight-section">
         <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
@@ -96,17 +103,22 @@
       </div>
     </div>
 
-   <div class="message-box">
+    <div class="message-box">
       <div fxLayout="row" fxLayoutAlign="start center" class="box-header">
         <lux-icon luxIconName="lux-interface-favorite-like-1" luxIconSize="2x"></lux-icon>
         <h2>Beispiel für luxNoLabels</h2>
       </div>
       <div class="search-row" fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="start center">
         <lux-input [luxNoLabels]="true" luxLabel="Suche" luxPlaceholder="Gib einen Suchbegriff ein..."></lux-input>
-        <lux-button luxIconName="lux-interface-search" luxColor="primary" [luxRaised]="true" luxAriaLabel="Suche" luxTagId="input-search-btn"></lux-button>
+        <lux-button
+          luxIconName="lux-interface-search"
+          luxColor="primary"
+          [luxRaised]="true"
+          luxAriaLabel="Suche"
+          luxTagId="input-search-btn"
+        ></lux-button>
       </div>
     </div>
-
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
@@ -125,16 +137,18 @@
     >
     </lux-input>
     <div class="lux-highlight-section column">
-      <lux-input
-        luxLabel="luxHint"
-        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-        [(luxValue)]="hint"
-      >
+      <lux-input luxLabel="luxHint" luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen." [(luxValue)]="hint">
       </lux-input>
       <lux-toggle
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
+        [luxNoTopLabel]="true"
+      ></lux-toggle>
+      <lux-toggle
+        luxLabel="Zeige eine Hint-Komponente"
+        [luxChecked]="true"
+        (luxCheckedChange)="hint = $event === true ? '' : 'hint'"
         [luxNoTopLabel]="true"
       ></lux-toggle>
     </div>
@@ -178,19 +192,10 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <lux-toggle
-      class="lux-highlight-section"
-      luxLabel="luxRequired"
-      (luxCheckedChange)="changeRequired($event)"
-      [luxNoTopLabel]="true"
-    >
+    <lux-toggle class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
       <lux-form-hint>
-        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
-        Reactive-Form sind.<br />
-        <b
-          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
-          Form-Control gesetzt.</b
-        >
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
+        <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
     </lux-toggle>
     <div class="lux-highlight-section column">
@@ -281,10 +286,10 @@
       [(luxSelected)]="controlValidators"
     >
       <lux-form-hint>
-        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und
-        Weise trotzdem Validatoren zu übergeben.<br />
-        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die
-        entsprechende FormControl setzen.
+        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und Weise trotzdem
+        Validatoren zu übergeben.<br />
+        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die entsprechende FormControl
+        setzen.
       </lux-form-hint>
     </lux-select>
     <lux-toggle

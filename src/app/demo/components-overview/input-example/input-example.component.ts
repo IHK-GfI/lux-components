@@ -37,7 +37,7 @@ export class InputExampleComponent {
   required = false;
   numberLeft = false;
   label = 'Label';
-  hint = 'Hint';
+  hint = '';
   hintShowOnlyOnFocus = false;
   placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
@@ -65,5 +65,4 @@ export class InputExampleComponent {
   pickValidatorValueFn(selected: any) {
     return selected.value;
   }
-
 }
