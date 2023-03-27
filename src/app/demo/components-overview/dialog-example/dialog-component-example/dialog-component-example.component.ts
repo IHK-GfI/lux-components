@@ -31,6 +31,7 @@ export class DialogComponentExampleComponent {
 
     // Jetzt kann der Hilfedialog innerhalb des bereits geöffneten
     // Dialogs angezeigt werden.
+    this.dialogConfig.disableClose = this.luxDialogRef._matDialogRef.disableClose;
     const dialogRef = this.dialogService.open(this.dialogConfig);
 
     dialogRef.dialogClosed.subscribe(() => {
