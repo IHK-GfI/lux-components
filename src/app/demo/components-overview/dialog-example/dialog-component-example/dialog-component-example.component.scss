@@ -1,5 +1,5 @@
 .toggle-agb-container {
-  height: 75px
+  height: 75px;
 }
 
 .content {
@@ -8,4 +8,9 @@
   gap: 16px;
 
   flex: 1 1 100%;
+}
+
+lux-button.info-btn ::ng-deep mat-icon {
+  width: 30px !important;
+  height: 30px !important;
 }
