@@ -1,0 +1,57 @@
+<example-base-structure
+  exampleTitle="Checkbox-Container Authentic"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90checkbox"
+>
+  <example-base-content fxFlex="column" fxLayoutGap="20px">
+    <h2>Testkomponente</h2>
+    <lux-checkbox-container-ac [luxLabel]="label" [luxVertical]="isVertical">
+      <lux-checkbox-ac luxLabel="Lorem ipsum"></lux-checkbox-ac>
+      <lux-checkbox-ac luxLabel="dolor"></lux-checkbox-ac>
+      <lux-checkbox-ac luxLabel="sit amet consectetur"></lux-checkbox-ac>
+      <lux-checkbox-ac luxLabel="adipisicing"></lux-checkbox-ac>
+      <lux-checkbox-ac luxLabel="adipisiQuo, necessitatibus earum dolorcing"></lux-checkbox-ac>
+    </lux-checkbox-container-ac>
+
+    <div class="checkbox-grid lux-mt-5" [ngClass]="{ isSmall: isSmall }">
+      <h2>Beispiel für eine responsive Gestaltung</h2>
+      <lux-checkbox-container-ac luxLabel="Stufe" [luxVertical]="!isSmall">
+        <lux-checkbox-ac luxLabel="Stufe 1"></lux-checkbox-ac>
+        <lux-checkbox-ac luxLabel="Stufe 2"></lux-checkbox-ac>
+        <lux-checkbox-ac luxLabel="Stufe 2+" class="col1"></lux-checkbox-ac>
+      </lux-checkbox-container-ac>
+      <lux-checkbox-container-ac luxLabel="Antragsart" [luxVertical]="!isSmall">
+        <lux-checkbox-ac luxLabel="eUZ"></lux-checkbox-ac>
+        <lux-checkbox-ac luxLabel="eBS"></lux-checkbox-ac>
+        <lux-checkbox-ac luxLabel="mUZ"></lux-checkbox-ac>
+        <lux-checkbox-ac luxLabel="mBS"></lux-checkbox-ac>
+      </lux-checkbox-container-ac>
+      <lux-checkbox-container-ac luxLabel="Status" [luxVertical]="!isSmall">
+        <lux-checkbox-ac luxLabel="Bewilligt"></lux-checkbox-ac>
+        <lux-checkbox-ac luxLabel="Abgelehnt"></lux-checkbox-ac>
+        <lux-checkbox-ac luxLabel="Kommentiert"></lux-checkbox-ac>
+        <lux-checkbox-ac luxLabel="Ungültig erklärt"></lux-checkbox-ac>
+      </lux-checkbox-container-ac>
+      <p>
+        In diesem Beispiel werden die Checkbox-Container in einem css-Grid angeordnet. Dieses zeigt die Container in der Desktop-Ansicht in
+        Spalten und in der mobilen Ansicht in Zeilen an.
+      </p>
+    </div>
+  </example-base-content>
+  <example-base-simple-options>
+    <lux-input
+      class="lux-highlight-section"
+      luxLabel="luxLabel"
+      luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
+      [(luxValue)]="label"
+    >
+    </lux-input>
+    <lux-toggle
+      luxLabel="luxVertical"
+      luxHint="Erlaubt es, zwischen vertikaler oder horizontaler Ausrichtung zu wechseln"
+      [(luxChecked)]="isVertical"
+      [luxNoTopLabel]="true"
+      class="lux-highlight-section"
+    >
+    </lux-toggle>
+  </example-base-simple-options>
+</example-base-structure>
