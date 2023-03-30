@@ -1,0 +1,21 @@
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 0.5em;
+  row-gap: 2em;
+
+  :first-child,
+  :last-child {
+    grid-column: span 3;
+  }
+
+  &.isSmall {
+    > * {
+      grid-column: 1 / -1;
+    }
+  }
+
+  h2 ::ng-deep {
+    margin: 0;
+  }
+}

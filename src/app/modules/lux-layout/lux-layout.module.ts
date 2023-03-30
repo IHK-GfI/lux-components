@@ -17,7 +17,7 @@ import { LuxIconModule } from '../lux-icon/lux-icon.module';
 import { LuxPipesModule } from '../lux-pipes/lux-pipes.module';
 import { LuxAccordionComponent } from './lux-accordion/lux-accordion.component';
 import { LuxAppFooterComponent } from './lux-app-footer/lux-app-footer.component';
-import { LuxAppHeaderActionNavItemCustomComponent } from "./lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item-custom.component";
+import { LuxAppHeaderActionNavItemCustomComponent } from './lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item-custom.component';
 import { LuxAppHeaderRightNavComponent } from './lux-app-header/lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
 import { LuxAppHeaderAcUserMenuComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-user-menu.component';
 import { LuxLangSelectComponent } from './lux-app-header/lux-app-header-subcomponents/lux-lang-select/lux-lang-select.component';
@@ -36,9 +36,7 @@ import { LuxDetailViewAcComponent } from './lux-master-detail-ac/lux-detail-view
 import { LuxDetailWrapperAcComponent } from './lux-master-detail-ac/lux-detail-view-ac/lux-detail-wrapper-ac.component';
 import { LuxMasterDetailAcComponent } from './lux-master-detail-ac/lux-master-detail-ac.component';
 import { LuxMasterFooterAcComponent } from './lux-master-detail-ac/lux-master-footer-ac/lux-master-footer-ac.component';
-import {
-  LuxMasterHeaderContentAcComponent
-} from './lux-master-detail-ac/lux-master-header-ac/lux-master-header-content-ac.component';
+import { LuxMasterHeaderContentAcComponent } from './lux-master-detail-ac/lux-master-header-ac/lux-master-header-content-ac.component';
 import { LuxMasterHeaderAcComponent } from './lux-master-detail-ac/lux-master-header-ac/lux-master-header-ac.component';
 import { LuxMasterListAcComponent } from './lux-master-detail-ac/lux-master-list-ac/lux-master-list-ac.component';
 import { LuxDetailViewComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-detail-view/lux-detail-view.component';
@@ -90,6 +88,7 @@ import { LuxAppHeaderAcActionNavComponent } from './lux-app-header-ac/lux-app-he
 import { LuxAppHeaderAcActionNavItemComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item.component';
 import { LuxAppHeaderAcActionNavItemCustomComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item-custom.component';
 import { LuxDetailHeaderAcComponent } from './lux-master-detail-ac/lux-detail-header-ac/lux-detail-header-ac.component';
+import { LuxCheckboxContainerAcComponent } from './lux-checkbox-container-ac/lux-checkbox-container-ac.component';
 
 @NgModule({
   imports: [
@@ -182,7 +181,8 @@ import { LuxDetailHeaderAcComponent } from './lux-master-detail-ac/lux-detail-he
     LuxMasterHeaderAcComponent,
     LuxMasterDetailAcComponent,
     LuxMasterListAcComponent,
-    LuxDetailHeaderAcComponent
+    LuxDetailHeaderAcComponent,
+    LuxCheckboxContainerAcComponent
   ],
   exports: [
     LuxAppHeaderComponent,
@@ -255,7 +255,8 @@ import { LuxDetailHeaderAcComponent } from './lux-master-detail-ac/lux-detail-he
     LuxMasterHeaderAcComponent,
     LuxMasterDetailAcComponent,
     LuxMasterListAcComponent,
-    LuxDetailHeaderAcComponent
+    LuxDetailHeaderAcComponent,
+    LuxCheckboxContainerAcComponent
   ],
   providers: []
 })

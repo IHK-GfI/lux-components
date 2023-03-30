@@ -41,7 +41,7 @@ import { StepperLargeExternStepExampleComponent } from './stepper-large-example/
 import { StorageExampleComponent } from './storage-example/storage-example.component';
 import { TableExampleComponent } from './table-example/table-example.component';
 import { TableServerExampleComponent } from './table-server-example/table-server-example.component';
-import { CustomTabComponent } from "./tabs-example/custom-tab/custom-tab.component";
+import { CustomTabComponent } from './tabs-example/custom-tab/custom-tab.component';
 import { TextareaExampleComponent } from './textarea-example/textarea-example.component';
 import { TooltipExampleComponent } from './tooltip-example/tooltip-example.component';
 import { LookupComboboxExampleComponent } from './lookup-examples/lookup-combobox-example/lookup-combobox-example.component';
@@ -118,6 +118,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
 import { ComponentsOverviewBlueComponent } from './components-overview-blue.component';
 import { ComponentsOverviewAuthenticComponent } from './components-overview-authentic.component';
+import { CheckboxContainerAcExampleComponent } from './checkbox-container-ac-example/checkbox-container-ac-example.component';
 
 @NgModule({
   imports: [
@@ -242,7 +243,8 @@ import { ComponentsOverviewAuthenticComponent } from './components-overview-auth
     ComponentsOverviewBlueComponent,
     ComponentsOverviewAuthenticComponent,
     MasterDetailAuthenticExampleComponent,
-    CustomTabComponent
+    CustomTabComponent,
+    CheckboxContainerAcExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]

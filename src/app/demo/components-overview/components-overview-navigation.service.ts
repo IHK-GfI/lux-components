@@ -287,6 +287,14 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
         moduleName: 'layout',
         news: true,
         themes: this.themeArrAC
+      },
+      {
+        onclick: () => this.goTo('checkbox-container-ac'),
+        icon: '',
+        label: 'Checkbox-Container-Ac',
+        moduleName: 'layout',
+        news: true,
+        themes: this.themeArrAC
       }
     ];
 

@@ -7,6 +7,7 @@
 - **lux-dialog**: Immer _dialogClosed_-Event auslösen, wenn Dialog geschlossen wird. [Issue 293](https://github.com/IHK-GfI/lux-components/issues/293)
 - **lux-form-controls-ac**: Neue Property "luxDense" für alle AC-Formular-Komponenten eingeführt. [Issue 288](https://github.com/IHK-GfI/lux-components/issues/288).
 - **lux-table**: AC-Formular-Komponenten werden innerhalb der Tabelle mit der geringeren Höhe angezeigt. (Nur im Theme Authentic) [Issue 288](https://github.com/IHK-GfI/lux-components/issues/288).
+- **lux-checkbox-container**: Neue Komponente lux-checkbox-container erstellt. [Issue 297](https:/github.com/IHK-GfI/lux-components/issues/297)
 
 # Version 14.3.0
 
