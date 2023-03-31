@@ -9,6 +9,10 @@
 - **lux-table**: AC-Formular-Komponenten werden innerhalb der Tabelle mit der geringeren Höhe angezeigt. (Nur im Theme Authentic) [Issue 288](https://github.com/IHK-GfI/lux-components/issues/288).
 - **lux-checkbox-container**: Neue Komponente lux-checkbox-container erstellt. [Issue 297](https:/github.com/IHK-GfI/lux-components/issues/297)
 
+## Bug Fixes
+
+- **lux-stepper-large**: Gleiche Ids für die Nav-Item-Labels. [Issue 299](https://github.com/IHK-GfI/lux-components/issues/299)
+
 # Version 14.3.0
 
 ## New
