@@ -28,7 +28,7 @@ describe('LuxControlDisable', () => {
     const autocompleteEl = fixture.debugElement.query(By.css('#autocomplete input')).nativeElement as HTMLInputElement;
     const checkboxEl = fixture.debugElement.query(By.css('#checkbox input')).nativeElement as HTMLInputElement;
     const datepickerEl = fixture.debugElement.query(By.css('#datepicker input')).nativeElement as HTMLInputElement;
-    const fileInputEl = fixture.debugElement.query(By.css('#fileInput div.lux-form-control')).nativeElement as HTMLInputElement;
+    const fileInputEl = fixture.debugElement.query(By.css('#fileInput div.lux-form-control-wrapper')).nativeElement as HTMLInputElement;
     const fileListEl = fixture.debugElement.query(By.css('#fileList lux-card')).nativeElement as HTMLInputElement;
     let radioEl = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
     const selectEl = fixture.debugElement.query(By.css('#select mat-select')).nativeElement as HTMLInputElement;
@@ -40,7 +40,7 @@ describe('LuxControlDisable', () => {
     expect(autocompleteEl.disabled).toBe(false);
     expect(checkboxEl.disabled).toBe(false);
     expect(datepickerEl.disabled).toBe(false);
-    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled-authentic');
     expect(fileListEl.classList).not.toContain('lux-file-list-disabled');
     expect(radioEl.length).toBe(0);
     expect(selectEl.classList).not.toContain('mat-select-disabled');
@@ -61,7 +61,7 @@ describe('LuxControlDisable', () => {
     expect(testComponent.myForm.get('checkbox')!.disabled).toBe(true);
     expect(datepickerEl.disabled).toBe(true);
     expect(testComponent.myForm.get('datepicker')!.disabled).toBe(true);
-    expect(fileInputEl.classList).toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).toContain('lux-form-control-disabled-authentic');
     expect(testComponent.myForm.get('fileInput')!.disabled).toBe(true);
     expect(fileListEl.classList).toContain('lux-file-list-disabled');
     expect(testComponent.myForm.get('fileList')!.disabled).toBe(true);
@@ -115,7 +115,7 @@ describe('LuxControlDisable', () => {
     const autocompleteEl = fixture.debugElement.query(By.css('#autocomplete input')).nativeElement as HTMLInputElement;
     const checkboxEl = fixture.debugElement.query(By.css('#checkbox input')).nativeElement as HTMLInputElement;
     const datepickerEl = fixture.debugElement.query(By.css('#datepicker input')).nativeElement as HTMLInputElement;
-    const fileInputEl = fixture.debugElement.query(By.css('#fileInput div.lux-form-control')).nativeElement as HTMLInputElement;
+    const fileInputEl = fixture.debugElement.query(By.css('#fileInput div.lux-form-control-wrapper')).nativeElement as HTMLInputElement;
     const fileListEl = fixture.debugElement.query(By.css('#fileList lux-card')).nativeElement as HTMLInputElement;
     let radioEl = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
     const selectEl = fixture.debugElement.query(By.css('#select mat-select')).nativeElement as HTMLInputElement;
@@ -127,7 +127,7 @@ describe('LuxControlDisable', () => {
     expect(autocompleteEl.disabled).toBe(false);
     expect(checkboxEl.disabled).toBe(false);
     expect(datepickerEl.disabled).toBe(false);
-    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled-authentic');
     expect(fileListEl.classList).not.toContain('lux-file-list-disabled');
     expect(radioEl.length).toBe(0);
     expect(selectEl.classList).not.toContain('mat-select-disabled');
@@ -158,7 +158,7 @@ describe('LuxControlDisable', () => {
     expect(testComponent.myForm.get('checkbox')!.disabled).toBe(true);
     expect(datepickerEl.disabled).toBe(true);
     expect(testComponent.myForm.get('datepicker')!.disabled).toBe(true);
-    expect(fileInputEl.classList).toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).toContain('lux-form-control-disabled-authentic');
     expect(testComponent.myForm.get('fileInput')!.disabled).toBe(true);
     expect(fileListEl.classList).toContain('lux-file-list-disabled');
     expect(testComponent.myForm.get('fileList')!.disabled).toBe(true);
@@ -196,7 +196,7 @@ describe('LuxControlDisable', () => {
     expect(testComponent.myForm.get('checkbox')!.disabled).toBe(false);
     expect(datepickerEl.disabled).toBe(false);
     expect(testComponent.myForm.get('datepicker')!.disabled).toBe(false);
-    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled-authentic');
     expect(testComponent.myForm.get('fileInput')!.disabled).toBe(false);
     expect(fileListEl.classList).not.toContain('lux-file-list-disabled');
     expect(testComponent.myForm.get('fileList')!.disabled).toBe(false);
@@ -220,7 +220,7 @@ describe('LuxControlDisable', () => {
     const autocompleteEl = fixture.debugElement.query(By.css('#autocomplete input')).nativeElement as HTMLInputElement;
     const checkboxEl = fixture.debugElement.query(By.css('#checkbox input')).nativeElement as HTMLInputElement;
     const datepickerEl = fixture.debugElement.query(By.css('#datepicker input')).nativeElement as HTMLInputElement;
-    const fileInputEl = fixture.debugElement.query(By.css('#fileInput div.lux-form-control')).nativeElement as HTMLInputElement;
+    const fileInputEl = fixture.debugElement.query(By.css('#fileInput div.lux-form-control-wrapper')).nativeElement as HTMLInputElement;
     const fileListEl = fixture.debugElement.query(By.css('#fileList lux-card')).nativeElement as HTMLInputElement;
     let radioEl = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
     const selectEl = fixture.debugElement.query(By.css('#select mat-select')).nativeElement as HTMLInputElement;
@@ -232,7 +232,7 @@ describe('LuxControlDisable', () => {
     expect(autocompleteEl.disabled).toBe(false);
     expect(checkboxEl.disabled).toBe(false);
     expect(datepickerEl.disabled).toBe(false);
-    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled-authentic');
     expect(fileListEl.classList).not.toContain('lux-file-list-disabled');
     expect(radioEl.length).toBe(0);
     expect(selectEl.classList).not.toContain('mat-select-disabled');
@@ -263,7 +263,7 @@ describe('LuxControlDisable', () => {
     expect(testComponent.myForm.get('checkbox')!.disabled).toBe(true);
     expect(datepickerEl.disabled).toBe(true);
     expect(testComponent.myForm.get('datepicker')!.disabled).toBe(true);
-    expect(fileInputEl.classList).toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).toContain('lux-form-control-disabled-authentic');
     expect(testComponent.myForm.get('fileInput')!.disabled).toBe(true);
     expect(fileListEl.classList).toContain('lux-file-list-disabled');
     expect(testComponent.myForm.get('fileList')!.disabled).toBe(true);
@@ -291,7 +291,7 @@ describe('LuxControlDisable', () => {
     expect(testComponent.myForm.get('checkbox')!.disabled).toBe(false);
     expect(datepickerEl.disabled).toBe(false);
     expect(testComponent.myForm.get('datepicker')!.disabled).toBe(false);
-    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled-authentic');
     expect(testComponent.myForm.get('fileInput')!.disabled).toBe(false);
     expect(fileListEl.classList).not.toContain('lux-file-list-disabled');
     expect(testComponent.myForm.get('fileList')!.disabled).toBe(false);
@@ -315,7 +315,7 @@ describe('LuxControlDisable', () => {
     const autocompleteEl = fixture.debugElement.query(By.css('#autocomplete input')).nativeElement as HTMLInputElement;
     const checkboxEl = fixture.debugElement.query(By.css('#checkbox input')).nativeElement as HTMLInputElement;
     const datepickerEl = fixture.debugElement.query(By.css('#datepicker input')).nativeElement as HTMLInputElement;
-    const fileInputEl = fixture.debugElement.query(By.css('#fileInput div.lux-form-control')).nativeElement as HTMLInputElement;
+    const fileInputEl = fixture.debugElement.query(By.css('#fileInput div.lux-form-control-wrapper')).nativeElement as HTMLInputElement;
     const fileListEl = fixture.debugElement.query(By.css('#fileList lux-card')).nativeElement as HTMLInputElement;
     let radioEl = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
     const selectEl = fixture.debugElement.query(By.css('#select mat-select')).nativeElement as HTMLInputElement;
@@ -327,7 +327,7 @@ describe('LuxControlDisable', () => {
     expect(autocompleteEl.disabled).toBe(false);
     expect(checkboxEl.disabled).toBe(false);
     expect(datepickerEl.disabled).toBe(false);
-    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled-authentic');
     expect(fileListEl.classList).not.toContain('lux-file-list-disabled');
     expect(radioEl.length).toBe(0);
     expect(selectEl.classList).not.toContain('mat-select-disabled');
@@ -348,7 +348,7 @@ describe('LuxControlDisable', () => {
     expect(testComponent.myForm.get('checkbox')!.disabled).toBe(true);
     expect(datepickerEl.disabled).toBe(true);
     expect(testComponent.myForm.get('datepicker')!.disabled).toBe(true);
-    expect(fileInputEl.classList).toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).toContain('lux-form-control-disabled-authentic');
     expect(testComponent.myForm.get('fileInput')!.disabled).toBe(true);
     expect(fileListEl.classList).toContain('lux-file-list-disabled');
     expect(testComponent.myForm.get('fileList')!.disabled).toBe(true);
@@ -387,7 +387,7 @@ describe('LuxControlDisable', () => {
     expect(testComponent.myForm.get('checkbox')!.disabled).toBe(false);
     expect(datepickerEl.disabled).toBe(false);
     expect(testComponent.myForm.get('datepicker')!.disabled).toBe(false);
-    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled-authentic');
     expect(testComponent.myForm.get('fileInput')!.disabled).toBe(false);
     expect(fileListEl.classList).not.toContain('lux-file-list-disabled');
     expect(testComponent.myForm.get('fileList')!.disabled).toBe(false);
@@ -410,60 +410,60 @@ describe('LuxControlDisable', () => {
 @Component({
   template: `
     <form [formGroup]="myForm">
-      <lux-input luxLabel="Input" luxControlBinding="input" [(luxDisabled)]="disabledState" id="input"></lux-input>
-      <lux-autocomplete
+      <lux-input-ac luxLabel="Input" luxControlBinding="input" [(luxDisabled)]="disabledState" id="input"></lux-input-ac>
+      <lux-autocomplete-ac
         luxLabel="Autocomplete"
         [luxOptions]="options"
         luxControlBinding="autocomplete"
         [(luxDisabled)]="disabledState"
         id="autocomplete"
-      ></lux-autocomplete>
-      <lux-checkbox
+      ></lux-autocomplete-ac>
+      <lux-checkbox-ac
         luxLabel="checkbox"
         luxControlBinding="checkbox"
         [(luxDisabled)]="disabledState"
         id="checkbox"
-      ></lux-checkbox>
-      <lux-datepicker
+      ></lux-checkbox-ac>
+      <lux-datepicker-ac
         luxLabel="datepicker"
         luxControlBinding="datepicker"
         [(luxDisabled)]="disabledState"
         id="datepicker"
-      ></lux-datepicker>
-      <lux-file-input
+      ></lux-datepicker-ac>
+      <lux-file-input-ac
         luxLabel="fileInput"
         luxControlBinding="fileInput"
         [(luxDisabled)]="disabledState"
         id="fileInput"
-      ></lux-file-input>
+      ></lux-file-input-ac>
       <lux-file-list
         luxLabel="fileList"
         luxControlBinding="fileList"
         [(luxDisabled)]="disabledState"
         id="fileList"
       ></lux-file-list>
-      <lux-radio
+      <lux-radio-ac
         luxLabel="radio"
         [luxOptions]="options"
         luxControlBinding="radio"
         [(luxDisabled)]="disabledState"
         id="radio"
-      ></lux-radio>
-      <lux-select
+      ></lux-radio-ac>
+      <lux-select-ac
         luxLabel="select"
         [luxOptions]="options"
         luxControlBinding="select"
         [(luxDisabled)]="disabledState"
         id="select"
-      ></lux-select>
-      <lux-slider luxLabel="slider" luxControlBinding="slider" [(luxDisabled)]="disabledState" id="slider"></lux-slider>
-      <lux-textarea
+      ></lux-select-ac>
+      <lux-slider-ac luxLabel="slider" luxControlBinding="slider" [(luxDisabled)]="disabledState" id="slider"></lux-slider-ac>
+      <lux-textarea-ac
         luxLabel="textarea"
         luxControlBinding="textarea"
         [(luxDisabled)]="disabledState"
         id="textarea"
-      ></lux-textarea>
-      <lux-toggle luxLabel="toggle" luxControlBinding="toggle" [(luxDisabled)]="disabledState" id="toggle"></lux-toggle>
+      ></lux-textarea-ac>
+      <lux-toggle-ac luxLabel="toggle" luxControlBinding="toggle" [(luxDisabled)]="disabledState" id="toggle"></lux-toggle-ac>
     </form>
   `
 })

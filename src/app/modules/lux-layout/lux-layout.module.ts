@@ -2,15 +2,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatTabsModule } from '@angular/material/tabs';
+import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
 import { LuxActionModule } from '../lux-action/lux-action.module';
 import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';
@@ -39,13 +39,6 @@ import { LuxMasterFooterAcComponent } from './lux-master-detail-ac/lux-master-fo
 import { LuxMasterHeaderContentAcComponent } from './lux-master-detail-ac/lux-master-header-ac/lux-master-header-content-ac.component';
 import { LuxMasterHeaderAcComponent } from './lux-master-detail-ac/lux-master-header-ac/lux-master-header-ac.component';
 import { LuxMasterListAcComponent } from './lux-master-detail-ac/lux-master-list-ac/lux-master-list-ac.component';
-import { LuxDetailViewComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-detail-view/lux-detail-view.component';
-import { LuxMasterFooterComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-master-footer/lux-master-footer.component';
-import { LuxMasterHeaderContentComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-master-header/lux-master-header-content.component';
-import { LuxMasterHeaderComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-master-header/lux-master-header.component';
-import { LuxMasterSimpleComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-master-simple/lux-master-simple.component';
-import { LuxMasterViewComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-master-view/lux-master-view.component';
-import { LuxMasterDetailComponent } from './lux-master-detail/lux-master-detail.component';
 import { LuxPanelActionComponent } from './lux-panel/lux-panel-subcomponents/lux-panel-action.component';
 import { LuxPanelContentComponent } from './lux-panel/lux-panel-subcomponents/lux-panel-content.component';
 import { LuxPanelHeaderDescriptionComponent } from './lux-panel/lux-panel-subcomponents/lux-panel-header-description.component';
@@ -57,8 +50,6 @@ import { LuxStepComponent } from './lux-stepper/lux-stepper-subcomponents/lux-st
 import { LuxStepperComponent } from './lux-stepper/lux-stepper.component';
 import { LuxTabComponent } from './lux-tabs/lux-tabs-subcomponents/lux-tab.component';
 import { LuxTabsComponent } from './lux-tabs/lux-tabs.component';
-import { LuxTileComponent } from './lux-tile/lux-tile.component';
-import { LuxDetailWrapperComponent } from './lux-master-detail/lux-master-detail-subcomponents/lux-detail-view/lux-detail-wrapper.component';
 import { LuxSideNavComponent } from './lux-app-header/lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component';
 import { LuxSideNavFooterComponent } from './lux-app-header/lux-app-header-subcomponents/lux-side-nav/lux-side-nav-subcomponents/lux-side-nav-footer.component';
 import { LuxSideNavHeaderComponent } from './lux-app-header/lux-app-header-subcomponents/lux-side-nav/lux-side-nav-subcomponents/lux-side-nav-header.component';
@@ -118,13 +109,6 @@ import { LuxCheckboxContainerAcComponent } from './lux-checkbox-container-ac/lux
     LuxListItemIconComponent,
     LuxListItemContentComponent,
     LuxListComponent,
-    LuxMasterDetailComponent,
-    LuxMasterViewComponent,
-    LuxDetailViewComponent,
-    LuxMasterSimpleComponent,
-    LuxMasterFooterComponent,
-    LuxMasterHeaderComponent,
-    LuxMasterHeaderContentComponent,
     LuxTabComponent,
     LuxTabsComponent,
     LuxCardComponent,
@@ -144,8 +128,6 @@ import { LuxCheckboxContainerAcComponent } from './lux-checkbox-container-ac/lux
     LuxStepContentComponent,
     LuxDividerComponent,
     LuxAppHeaderRightNavComponent,
-    LuxTileComponent,
-    LuxDetailWrapperComponent,
     LuxSideNavComponent,
     LuxSideNavFooterComponent,
     LuxSideNavHeaderComponent,
@@ -191,13 +173,6 @@ import { LuxCheckboxContainerAcComponent } from './lux-checkbox-container-ac/lux
     LuxListItemIconComponent,
     LuxListItemContentComponent,
     LuxListComponent,
-    LuxMasterDetailComponent,
-    LuxMasterViewComponent,
-    LuxDetailViewComponent,
-    LuxMasterSimpleComponent,
-    LuxMasterFooterComponent,
-    LuxMasterHeaderComponent,
-    LuxMasterHeaderContentComponent,
     LuxTabComponent,
     LuxTabsComponent,
     LuxCardComponent,
@@ -217,8 +192,6 @@ import { LuxCheckboxContainerAcComponent } from './lux-checkbox-container-ac/lux
     LuxStepContentComponent,
     LuxDividerComponent,
     LuxAppHeaderRightNavComponent,
-    LuxTileComponent,
-    LuxDetailWrapperComponent,
     LuxSideNavComponent,
     LuxSideNavFooterComponent,
     LuxSideNavHeaderComponent,

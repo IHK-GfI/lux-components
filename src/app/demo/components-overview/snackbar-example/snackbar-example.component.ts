@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { LuxSnackbarConfig } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar-config';
-import { MatSnackBarDismiss } from '@angular/material/snack-bar';
+import { MatLegacySnackBarDismiss as MatSnackBarDismiss } from '@angular/material/legacy-snack-bar';
 import { Subscription } from 'rxjs';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 import { LuxSnackbarColors } from '../../../modules/lux-util/lux-colors.enum';

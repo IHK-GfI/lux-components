@@ -1,31 +1,25 @@
 /* eslint-disable max-classes-per-file */
 // noinspection DuplicatedCode
 
-import { Component } from '@angular/core';
-import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, flushMicrotasks, inject, TestBed } from '@angular/core/testing';
+import { Component, ViewChild } from '@angular/core';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, flushMicrotasks, TestBed } from '@angular/core/testing';
 import { Viewport } from 'karma-viewport/dist/adapter/viewport';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
-import { LuxMasterDetailMobileHelperService } from '../lux-master-detail/lux-master-detail-mobile-helper.service';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
 import { Router } from '@angular/router';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { LuxAppHeaderComponent } from './lux-app-header.component';
 
 declare const viewport: Viewport;
 
 describe('LuxAppHeaderComponent', () => {
   beforeEach(async () => {
+    viewport.set('desktop');
+
     LuxTestHelper.configureTestModule(
-      [
-        LuxMasterDetailMobileHelperService,
-        LuxConsoleService,
-        {
-          provide: LuxMasterDetailMobileHelperService,
-          useClass: MockMasterDetailHelperService
-        }
-      ],
+      [LuxConsoleService],
       [MockAppHeaderComponent, MockLabelClickedAppHeaderComponent, MockIconClickedAppHeaderComponent, MockImageClickedAppHeaderComponent]
     );
   });
@@ -80,7 +74,6 @@ describe('LuxAppHeaderComponent', () => {
   describe('ohne lux-side-nav und lux-app-header-right-nav', () => {
     let fixture: ComponentFixture<MockAppHeaderComponent>;
     let testComponent: MockAppHeaderComponent;
-    let testService: MockMasterDetailHelperService;
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(MockAppHeaderComponent);
@@ -88,10 +81,6 @@ describe('LuxAppHeaderComponent', () => {
       testComponent.testUseRightNav = false;
       testComponent.testUseSideNav = false;
       LuxTestHelper.wait(fixture);
-    }));
-
-    beforeEach(inject([LuxMasterDetailMobileHelperService], (service: MockMasterDetailHelperService) => {
-      testService = service;
     }));
 
     it('Sollte erstellt werden', fakeAsync(() => {
@@ -112,32 +101,30 @@ describe('LuxAppHeaderComponent', () => {
 
     it('Sollte in kleiner Auflösung den luxAppTitleShort darstellen', fakeAsync(() => {
       // Vorbedingungen testen
-      testService.isMobileView = true;
       expect(fixture.debugElement.query(By.css('.lux-header-title')).nativeElement.textContent.trim()).toEqual('');
 
       // Änderungen durchführen
       testComponent.titleShort = 'T';
+      testComponent.appHeaderComponent.mobileView = true;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
       expect(fixture.debugElement.query(By.css('.lux-header-title')).nativeElement.textContent.trim()).toEqual('T');
+
+      testComponent.appHeaderComponent.mobileView = false;
+      LuxTestHelper.wait(fixture);
     }));
   });
 
   describe('mit lux-side-nav', () => {
     let fixture: ComponentFixture<MockAppHeaderComponent>;
     let testComponent: MockAppHeaderComponent;
-    let testService: MockMasterDetailHelperService;
 
     beforeEach(fakeAsync(() => {
       fixture = TestBed.createComponent(MockAppHeaderComponent);
       testComponent = fixture.componentInstance;
       testComponent.testUseSideNav = true;
       LuxTestHelper.wait(fixture);
-    }));
-
-    beforeEach(inject([LuxMasterDetailMobileHelperService], (service: MockMasterDetailHelperService) => {
-      testService = service;
     }));
 
     it('Sollte erstellt werden', fakeAsync(() => {
@@ -329,43 +316,6 @@ describe('LuxAppHeaderComponent', () => {
       discardPeriodicTasks();
     }));
 
-    it('Sollte bei einem lux-master-detail in Mobilansicht zuerst den Master-Toggle anzeigen', fakeAsync(() => {
-      // Vorbedingungen testen
-      expect(fixture.debugElement.query(By.css('.lux-master-toggle'))).toBeNull();
-      expect(fixture.debugElement.query(By.css('.lux-side-nav-trigger'))).not.toBeNull();
-
-      // Änderungen durchführen
-      testService.isMobileView = true;
-      testService.masterIsRegistered.next(true);
-      testService.masterHasValue.next(true);
-      testService.masterIsOpen.next(false);
-      LuxTestHelper.wait(fixture);
-
-      // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-master-toggle'))).not.toBeNull();
-      expect(fixture.debugElement.query(By.css('.lux-side-nav-trigger'))).toBeNull();
-    }));
-
-    it('Sollte nach dem Klick auf den master-toggle den side-nav-trigger wieder anzeigen', fakeAsync(() => {
-      // Vorbedingungen testen
-      testService.isMobileView = true;
-      testService.masterIsRegistered.next(true);
-      testService.masterHasValue.next(true);
-      testService.masterIsOpen.next(false);
-      LuxTestHelper.wait(fixture);
-
-      expect(fixture.debugElement.query(By.css('.lux-master-toggle'))).not.toBeNull();
-      expect(fixture.debugElement.query(By.css('.lux-side-nav-trigger'))).toBeNull();
-
-      // Änderungen durchführen
-      fixture.debugElement.query(By.css('.lux-master-toggle button')).nativeElement.click();
-      LuxTestHelper.wait(fixture);
-
-      // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-master-toggle'))).toBeNull();
-      expect(fixture.debugElement.query(By.css('.lux-side-nav-trigger'))).not.toBeNull();
-    }));
-
     it('Sollte den Dashboard-Link darstellen und öffnen', fakeAsync(() => {
       // Vorbedingungen testen
       const spy = spyOn(window, 'open');
@@ -455,7 +405,6 @@ describe('LuxAppHeaderComponent', () => {
   describe('mit lux-app-header-right-nav', () => {
     let fixture: ComponentFixture<MockAppHeaderComponent>;
     let testComponent: MockAppHeaderComponent;
-    let testService: MockMasterDetailHelperService;
     let overlayHelper: LuxOverlayHelper;
 
     beforeEach(fakeAsync(() => {
@@ -465,10 +414,6 @@ describe('LuxAppHeaderComponent', () => {
       LuxTestHelper.wait(fixture);
 
       overlayHelper = new LuxOverlayHelper();
-    }));
-
-    beforeEach(inject([LuxMasterDetailMobileHelperService], (service: MockMasterDetailHelperService) => {
-      testService = service;
     }));
 
     it('Sollte das User-Icon anzeigen', () => {
@@ -703,6 +648,8 @@ class MockIconClickedAppHeaderComponent {
   `
 })
 class MockAppHeaderComponent {
+  @ViewChild(LuxAppHeaderComponent) appHeaderComponent!: LuxAppHeaderComponent;
+
   username?: string;
   title?: string;
   titleShort?: string;
@@ -766,25 +713,4 @@ class MockAppHeaderComponent {
   }
 
   onClick(navItem: any) {}
-}
-
-class MockMasterDetailHelperService {
-  masterIsOpen: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  masterCollapsedObservable: Observable<boolean> = this.masterIsOpen.asObservable();
-
-  masterIsRegistered: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  isRegisteredObservable: Observable<boolean> = this.masterIsRegistered.asObservable();
-
-  masterHasValue: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  hasValueObservable: Observable<boolean> = this.masterHasValue.asObservable();
-
-  isMobileView = false;
-
-  openMaster() {
-    this.masterIsOpen.next(true);
-  }
-
-  isMobile() {
-    return this.isMobileView;
-  }
 }

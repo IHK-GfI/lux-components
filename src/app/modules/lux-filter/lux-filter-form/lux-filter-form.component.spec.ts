@@ -103,7 +103,7 @@ describe('LuxFilterFormComponent', () => {
       class="lux-ml-1 lux-mr-1 lux-mb-3"
     >
       <div fxLayout="row wrap" fxLayoutGap="12px grid" fxLayout.xs="column" fxLayoutGap.xs="0px" fxLayout.md="column" fxLayoutGap.md="0px">
-        <lux-input
+        <lux-input-ac
           fxFlex="1 1 calc(33% - 12px)"
           fxFlex.xs="1 1 auto"
           fxFlex.md="1 1 auto"
@@ -115,8 +115,8 @@ describe('LuxFilterFormComponent', () => {
           [luxFilterDisabled]="inputDisabled"
           [luxFilterHidden]="inputHidden"
           luxFilterItem
-        ></lux-input>
-        <lux-autocomplete
+        ></lux-input-ac>
+        <lux-autocomplete-ac
           fxFlex="1 1 calc(33% - 12px)"
           fxFlex.xs="1 1 auto"
           fxFlex.md="1 1 auto"
@@ -126,8 +126,8 @@ describe('LuxFilterFormComponent', () => {
           [luxFilterDisabled]="autoCompleteDisabled"
           [luxFilterHidden]="autoCompleteHidden"
           luxFilterItem
-        ></lux-autocomplete>
-        <lux-datepicker
+        ></lux-autocomplete-ac>
+        <lux-datepicker-ac
           fxFlex="1 1 calc(33% - 12px)"
           fxFlex.xs="1 1 auto"
           fxFlex.md="1 1 auto"
@@ -137,8 +137,8 @@ describe('LuxFilterFormComponent', () => {
           [luxFilterDisabled]="datepickerDisabled"
           [luxFilterHidden]="datepickerHidden"
           luxFilterItem
-        ></lux-datepicker>
-        <lux-select
+        ></lux-datepicker-ac>
+        <lux-select-ac
           fxFlex="1 1 calc(33% - 12px)"
           fxFlex.xs="1 1 auto"
           fxFlex.md="1 1 auto"
@@ -152,8 +152,8 @@ describe('LuxFilterFormComponent', () => {
           [luxFilterHidden]="singleSelectHidden"
           luxFilterColor="accent"
           luxFilterItem
-        ></lux-select>
-        <lux-select
+        ></lux-select-ac>
+        <lux-select-ac
           fxFlex="1 1 calc(33% - 12px)"
           fxFlex.xs="1 1 auto"
           fxFlex.md="1 1 auto"
@@ -167,8 +167,8 @@ describe('LuxFilterFormComponent', () => {
           [luxFilterHidden]="multiSelectHidden"
           luxFilterColor="accent"
           luxFilterItem
-        ></lux-select>
-        <lux-toggle
+        ></lux-select-ac>
+        <lux-toggle-ac
           fxFlex="1 1 calc(33% - 12px)"
           fxFlex.xs="1 1 auto"
           fxFlex.md="1 1 auto"
@@ -179,7 +179,7 @@ describe('LuxFilterFormComponent', () => {
           [luxFilterHidden]="toggleSelectHidden"
           luxFilterColor="warn"
           luxFilterItem
-        ></lux-toggle>
+        ></lux-toggle-ac>
       </div>
     </lux-filter-form>
   `

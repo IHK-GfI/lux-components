@@ -10,28 +10,28 @@
 
   <div [formGroup]="form">
     <lux-layout-form-row>
-      <lux-input luxLabel="Bezeichnung" luxName="stepper-large.example.label" luxControlBinding="label" *luxLayoutRowItem="{}"></lux-input>
-      <lux-input
+      <lux-input-ac luxLabel="Bezeichnung" luxName="stepper-large.example.label" luxControlBinding="label" *luxLayoutRowItem="{}"></lux-input-ac>
+      <lux-input-ac
         luxLabel="Farbe"
         luxName="stepper-large.example.color"
         luxControlBinding="color"
         luxHint="(primary, accent, warn)"
         *luxLayoutRowItem="{}"
-      ></lux-input>
+      ></lux-input-ac>
     </lux-layout-form-row>
     <lux-layout-form-row>
-      <lux-input
+      <lux-input-ac
         luxLabel="Iconname"
         luxName="stepper-large.example.iconname"
         luxControlBinding="iconName"
         *luxLayoutRowItem="{}"
-      ></lux-input>
-      <lux-toggle
+      ></lux-input-ac>
+      <lux-toggle-ac
         luxLabel="Icon rechts anzeigen"
         luxName="stepper-large.example.iconShowRight"
         luxControlBinding="iconShowRight"
         *luxLayoutRowItem="{}"
-      ></lux-toggle>
+      ></lux-toggle-ac>
     </lux-layout-form-row>
   </div>
 

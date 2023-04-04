@@ -1,11 +1,10 @@
 <div class="container">
-  <lux-card luxTitle="Übersicht aller Form-Controls" luxSubTitle="Ausrichtung in einer Lux-Card">
+  <lux-card luxTitle="Übersicht aller Form-Controls" luxSubTitle="Ausrichtung in einer LUX-Card">
     <lux-card-content fxLayout="column">
       <lux-textbox luxTitle="Hinweis" luxColor="blue" class="lux-mt-3 lux-mb-5">
         <p>
-          Dieses Beispiel dient für Testzwecke bei der Weiterentwicklung der Lux-Components. In der linken Spalte sind die bisherigen
-          Formcontrols angeordnet, rechts daneben jeweils das neue AC-Element. Zum Vergleich können die unterschiedlichen States der
-          Formcontrols ausgewählt werden.
+          Dieses Beispiel dient für Testzwecke bei der Weiterentwicklung der LUX-Components.
+          Zum Vergleich können die unterschiedlichen States der Formcontrols ausgewählt werden.
         </p>
       </lux-textbox>
 
@@ -30,16 +29,8 @@
       </div>
 
       <lux-divider [luxInset]="true"></lux-divider>
+
       <div [formGroup]="form" class="form-grid-container lux-mt-5 lux-mb-5">
-        <lux-input
-          luxLabel="Lux-Input"
-          luxPlaceholder="Platzhalter"
-          [luxHint]="testHint"
-          luxControlBinding="input"
-          luxAutocomplete="off"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-        ></lux-input>
         <lux-input-ac
           luxLabel="Lux-Input-ac"
           luxPlaceholder="Platzhalter"
@@ -49,19 +40,6 @@
           [luxDisabled]="disabledForm"
           [luxReadonly]="readonly"
         ></lux-input-ac>
-        <lux-input
-          luxType="number"
-          luxLabel="Lux-Input mit Pre-/Suffix"
-          luxPlaceholder="0"
-          [luxHint]="testHint"
-          luxControlBinding="input"
-          luxAutocomplete="off"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-        >
-          <lux-input-prefix> EUR </lux-input-prefix>
-          <lux-input-suffix> .00 <lux-icon luxIconName="fas lux-money-currency-euro-sign"></lux-icon></lux-input-suffix>
-        </lux-input>
         <lux-input-ac
           luxType="number"
           luxLabel="Lux-Input-ac mit Pre-/Suffix"
@@ -75,16 +53,6 @@
           <lux-input-ac-prefix> EUR </lux-input-ac-prefix>
           <lux-input-ac-suffix> .00 <lux-icon luxIconName="fas lux-money-currency-euro-sign"></lux-icon></lux-input-ac-suffix>
         </lux-input-ac>
-        <lux-autocomplete
-          luxLabel="Lux-Autocomplete"
-          luxPlaceholder="Platzhalter"
-          [luxHint]="testHint"
-          luxControlBinding="autocomplete"
-          luxOptionLabelProp="label"
-          [luxOptions]="options"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-        ></lux-autocomplete>
         <lux-autocomplete-ac
           luxLabel="Lux-Autocomplete-ac"
           luxPlaceholder="Platzhalter"
@@ -95,15 +63,6 @@
           [luxDisabled]="disabledForm"
           [luxReadonly]="readonly"
         ></lux-autocomplete-ac>
-        <lux-datepicker
-          luxLabel="Lux-Datepicker"
-          luxLocale="de-DE"
-          luxPlaceholder="Platzhalter"
-          luxControlBinding="datepicker"
-          [luxHint]="testHint"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-        ></lux-datepicker>
         <lux-datepicker-ac
           luxLabel="Lux-Datepicker-ac"
           luxLocale="de-DE"
@@ -113,15 +72,6 @@
           [luxDisabled]="disabledForm"
           [luxReadonly]="readonly"
         ></lux-datepicker-ac>
-        <lux-datetimepicker
-          luxLabel="Lux-Datetimepicker"
-          luxLocale="de-DE"
-          luxPlaceholder="Platzhalter"
-          luxControlBinding="datetimepicker"
-          [luxHint]="testHint"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-        ></lux-datetimepicker>
         <lux-datetimepicker-ac
           luxLabel="Lux-Datetimepicker-ac"
           luxLocale="de-DE"
@@ -131,17 +81,6 @@
           [luxDisabled]="disabledForm"
           [luxReadonly]="readonly"
         ></lux-datetimepicker-ac>
-        <lux-select
-          luxLabel="Lux-Select"
-          luxPlaceholder="Platzhalter"
-          [luxHint]="testHint"
-          luxControlBinding="select"
-          [luxSelected]="testOption"
-          luxOptionLabelProp="label"
-          [luxOptions]="options"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-        ></lux-select>
         <lux-select-ac
           luxLabel="Lux-Select-ac"
           luxPlaceholder="Platzhalter"
@@ -153,14 +92,6 @@
           [luxDisabled]="disabledForm"
           [luxReadonly]="readonly"
         ></lux-select-ac>
-        <lux-file-input
-          luxLabel="Lux-File-Input"
-          luxPlaceholder="Platzhalter"
-          [luxHint]="testHint"
-          luxControlBinding="file"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-        ></lux-file-input>
         <lux-file-input-ac
           luxLabel="Lux-File-Input-ac"
           luxPlaceholder="Platzhalter"
@@ -169,17 +100,6 @@
           [luxDisabled]="disabledForm"
           [luxReadonly]="readonly"
         ></lux-file-input-ac>
-        <lux-textarea
-          luxLabel="Lux-Textarea"
-          luxPlaceholder="Platzhalter"
-          [luxHint]="testHint"
-          luxControlBinding="textarea"
-          [luxMinRows]="1"
-          [luxMaxRows]="-1"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-          [luxMaxLength]="100"
-        ></lux-textarea>
         <lux-textarea-ac
           luxLabel="Lux-Textarea-ac"
           luxPlaceholder="Platzhalter"
@@ -191,15 +111,6 @@
           [luxReadonly]="readonly"
           [luxMaxLength]="100"
         ></lux-textarea-ac>
-        <lux-toggle
-          luxLabel="Lux-Toggle"
-          [luxChecked]="false"
-          luxHint="Hinweis"
-          luxControlBinding="toggle"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-          [luxNoTopLabel]="true"
-        ></lux-toggle>
         <lux-toggle-ac
           luxLabel="Lux-Toggle-ac"
           [luxChecked]="false"
@@ -209,15 +120,6 @@
           [luxReadonly]="readonly"
           [luxNoTopLabel]="true"
         ></lux-toggle-ac>
-        <lux-checkbox
-          luxLabel="Lux-Checkbox"
-          [luxChecked]="false"
-          luxHint="Hinweis"
-          luxControlBinding="checkbox"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-          [luxNoTopLabel]="true"
-        ></lux-checkbox>
         <lux-checkbox-ac
           luxLabel="Lux-Checkbox-ac"
           [luxChecked]="false"
@@ -227,21 +129,6 @@
           [luxReadonly]="readonly"
           [luxNoTopLabel]="true"
         ></lux-checkbox-ac>
-        <lux-radio
-          luxGroupName="radio0"
-          [luxOptions]="options"
-          [luxOrientationVertical]="true"
-          [luxSelected]="options[0]"
-          luxLabel="Lux-Radio - vertikal"
-          luxHint="Hinweis"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-          luxControlBinding="radio"
-        >
-          <ng-template let-option>
-            {{ option.label }}
-          </ng-template>
-        </lux-radio>
         <lux-radio-ac
           luxGroupName="radio1"
           [luxOptions]="options"
@@ -257,21 +144,6 @@
             {{ option.label }}
           </ng-template>
         </lux-radio-ac>
-        <lux-radio
-          luxGroupName="radio2"
-          [luxOptions]="options2"
-          [luxOrientationVertical]="false"
-          [luxSelected]="options[0]"
-          luxLabel="Lux-Radio - horizontal"
-          luxHint="Dieses ist eine Testkomponents! Normalerweise sollte eine Radio-Komponente höchstens 5 Optionen besitzen."
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-          luxControlBinding="radio"
-        >
-          <ng-template let-option>
-            {{ option.label }}
-          </ng-template>
-        </lux-radio>
         <lux-radio-ac
           luxGroupName="radio3"
           [luxOptions]="options2"
@@ -287,14 +159,6 @@
             {{ option.label }}
           </ng-template>
         </lux-radio-ac>
-        <lux-slider
-          luxLabel="Lux-Slider"
-          luxControlBinding="slider"
-          [luxShowThumbLabelAlways]="true"
-          luxHint="testHint"
-          [luxDisabled]="disabledForm"
-          [luxReadonly]="readonly"
-        ></lux-slider>
         <lux-slider-ac
           luxLabel="Lux-Slider-ac"
           luxControlBinding="slider"
@@ -303,26 +167,6 @@
           [luxDisabled]="disabledForm"
           [luxReadonly]="readonly"
         ></lux-slider-ac>
-        <lux-chips
-          [luxInputAllowed]="true"
-          luxInputLabel="Lux-Chips im Input-Element"
-          luxHint="Hinweis"
-          [luxAutocompleteOptions]="chipOptions"
-          [luxNewChipGroup]="group"
-          [luxDisabled]="disabledForm"
-          class="grid-col-span-2"
-        >
-          <lux-chip-group
-            [luxLabels]="chipItems"
-            luxColor="accent"
-            [luxRemovable]="true"
-            (luxChipAdded)="chipAdded($event)"
-            (luxChipRemoved)="chipRemoved($event)"
-            (luxChipClicked)="chipItemClicked($event)"
-            #group
-          >
-          </lux-chip-group>
-        </lux-chips>
         <lux-chips-ac
           [luxInputAllowed]="true"
           luxInputLabel="Lux-Chips-ac im Input-Element"

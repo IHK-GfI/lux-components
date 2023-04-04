@@ -15,20 +15,20 @@
               <div fxLayout="column" fxLayoutAlign="space-between start" fxFlex="40" fxFlex.lt-md="90" class="dont lux-pt-4">
                 <lux-layout fxLayoutAlign="center center" fxFlex="100" fxFill>
                   <lux-layout-form-row>
-                    <lux-input
+                    <lux-input-ac
                       luxLabel="Lorem ipsum 1"
                       luxName="Lorem_ipsum_1.3"
                       luxHint="Consetetur sadipscing elitr."
                       *luxLayoutRowItem="{}"
-                    ></lux-input>
+                    ></lux-input-ac>
                   </lux-layout-form-row>
                   <lux-layout-form-row>
-                    <lux-input
+                    <lux-input-ac
                       luxLabel="Lorem ipsum 2"
                       luxName="Lorem_ipsum_1.4"
                       luxHint="Consetetur sadipscing elitr."
                       *luxLayoutRowItem="{}"
-                    ></lux-input>
+                    ></lux-input-ac>
                   </lux-layout-form-row>
                 </lux-layout>
                 <p class="text">Dont´t</p>
@@ -37,20 +37,20 @@
               <div fxLayout="column" fxLayoutAlign="space-between end" fxFlex="40" fxFlex.lt-md="90" class="do lux-pt-4">
                 <lux-layout fxLayoutAlign="center center" fxFlex="100" fxFill>
                   <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '24px', column: '16px' }">
-                    <lux-input
+                    <lux-input-ac
                       luxLabel="Lorem ipsum 1"
                       luxName="Lorem_ipsum_1.5"
                       luxHint="Consetetur sadipscing elitr."
                       *luxLayoutRowItem="{}"
-                    ></lux-input>
+                    ></lux-input-ac>
                   </lux-layout-form-row>
                   <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '24px', column: '16px' }">
-                    <lux-input
+                    <lux-input-ac
                       luxLabel="Lorem ipsum 2"
                       luxName="Lorem_ipsum_1.6"
                       luxHint="Consetetur sadipscing elitr."
                       *luxLayoutRowItem="{}"
-                    ></lux-input>
+                    ></lux-input-ac>
                   </lux-layout-form-row>
                 </lux-layout>
                 <p class="text">Do</p>
@@ -69,14 +69,14 @@
       <lux-card luxTitle="Formular (1 Spalte)" *luxLayoutRowItem="{}">
         <lux-card-content>
           <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '18px' }">
-            <lux-input luxLabel="Lorem ipsum 1.1" luxName="Lorem_ipsum_1.1" *luxLayoutRowItem="{}"></lux-input>
+            <lux-input-ac luxLabel="Lorem ipsum 1.1" luxName="Lorem_ipsum_1.1" *luxLayoutRowItem="{}"></lux-input-ac>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px' }">
-            <lux-select luxLabel="Lorem ipsum 1.2" luxName="Lorem_ipsum_1.2" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-select>
+            <lux-select-ac luxLabel="Lorem ipsum 1.2" luxName="Lorem_ipsum_1.2" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-select-ac>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '16px', column: '18px' }">
             <div fxLayout="row" fxLayoutGap="10" *luxLayoutRowItem="{}">
-              <lux-input luxLabel="Lorem ipsum 1.1" luxName="Lorem_ipsum_1.1"></lux-input>
+              <lux-input-ac luxLabel="Lorem ipsum 1.1" luxName="Lorem_ipsum_1.1"></lux-input-ac>
               <lux-button luxIconName="lux-info" luxTagId="btnEdit" [luxRounded]="true" luxColor="primary"> </lux-button>
             </div>
           </lux-layout-form-row>
@@ -85,18 +85,18 @@
       <lux-card luxTitle="Formular (2 Spalten)" *luxLayoutRowItem="{ colSpan: 2 }">
         <lux-card-content>
           <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px' }">
-            <lux-input luxLabel="Lorem ipsum 2.1" luxName="Lorem_ipsum_2.1" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input>
+            <lux-input-ac luxLabel="Lorem ipsum 2.1" luxName="Lorem_ipsum_2.1" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input-ac>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px' }">
-            <lux-input luxLabel="Lorem ipsum 2.2" luxName="Lorem_ipsum_2.2" *luxLayoutRowItem="{}"></lux-input>
-            <lux-select luxLabel="Lorem ipsum 2.3" luxName="Lorem_ipsum_2.3" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-select>
+            <lux-input-ac luxLabel="Lorem ipsum 2.2" luxName="Lorem_ipsum_2.2" *luxLayoutRowItem="{}"></lux-input-ac>
+            <lux-select-ac luxLabel="Lorem ipsum 2.3" luxName="Lorem_ipsum_2.3" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-select-ac>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px' }">
-            <lux-input luxLabel="Lorem ipsum 2.4" luxName="Lorem_ipsum_2.4" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input>
+            <lux-input-ac luxLabel="Lorem ipsum 2.4" luxName="Lorem_ipsum_2.4" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input-ac>
           </lux-layout-form-row>
           <lux-layout-form-row luxTitle="Lorem ipsum dolor sit" [luxGap]="{ row: '16px', rowItem: '32px', column: '8px' }">
-            <lux-toggle luxLabel="Lorem ipsum 2.5" luxName="Lorem_ipsum_2.5" *luxLayoutRowItem="{}"></lux-toggle>
-            <lux-toggle luxLabel="Lorem ipsum 2.6" luxName="Lorem_ipsum_2.6" *luxLayoutRowItem="{}"></lux-toggle>
+            <lux-toggle-ac luxLabel="Lorem ipsum 2.5" luxName="Lorem_ipsum_2.5" *luxLayoutRowItem="{}"></lux-toggle-ac>
+            <lux-toggle-ac luxLabel="Lorem ipsum 2.6" luxName="Lorem_ipsum_2.6" *luxLayoutRowItem="{}"></lux-toggle-ac>
           </lux-layout-form-row>
         </lux-card-content>
       </lux-card>
@@ -111,18 +111,18 @@
             Wichtig ist es auch den Abstand zwischen zwei Reihen zu definieren, damit die Lesbarkeit der Formulare erhalten bleibt.
           </p>
           <lux-layout-form-row luxTitle="Lorem ipsum 1" [luxGap]="{ row: '16px', rowItem: '32px', column: '8px' }">
-            <lux-input luxLabel="Lorem ipsum 3.1" luxName="Lorem_ipsum_3.1" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input>
+            <lux-input-ac luxLabel="Lorem ipsum 3.1" luxName="Lorem_ipsum_3.1" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input-ac>
             <div *luxLayoutRowItem="{ empty: true }"></div>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px' }">
-            <lux-input luxLabel="Lorem ipsum 3.2" luxName="Lorem_ipsum_3.2" *luxLayoutRowItem="{}"></lux-input>
-            <lux-input luxLabel="Lorem ipsum 3.3" luxName="Lorem_ipsum_3.3" *luxLayoutRowItem="{}"></lux-input>
-            <lux-input luxLabel="Lorem ipsum 3.4" luxName="Lorem_ipsum_3.4" *luxLayoutRowItem="{}"></lux-input>
+            <lux-input-ac luxLabel="Lorem ipsum 3.2" luxName="Lorem_ipsum_3.2" *luxLayoutRowItem="{}"></lux-input-ac>
+            <lux-input-ac luxLabel="Lorem ipsum 3.3" luxName="Lorem_ipsum_3.3" *luxLayoutRowItem="{}"></lux-input-ac>
+            <lux-input-ac luxLabel="Lorem ipsum 3.4" luxName="Lorem_ipsum_3.4" *luxLayoutRowItem="{}"></lux-input-ac>
           </lux-layout-form-row>
           <lux-layout-form-row luxTitle="Lorem ipsum 2" [luxGap]="{ row: '16px', rowItem: '32px', column: '8px' }">
-            <lux-radio luxLabel="Lorem ipsum 3.5" luxName="Lorem_ipsum_3.5" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-radio>
-            <lux-radio luxLabel="Lorem ipsum 3.6" luxName="Lorem_ipsum_3.6" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-radio>
-            <lux-radio luxLabel="Lorem ipsum 3.7" luxName="Lorem_ipsum_3.7" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-radio>
+            <lux-radio-ac luxLabel="Lorem ipsum 3.5" luxName="Lorem_ipsum_3.5" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-radio-ac>
+            <lux-radio-ac luxLabel="Lorem ipsum 3.6" luxName="Lorem_ipsum_3.6" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-radio-ac>
+            <lux-radio-ac luxLabel="Lorem ipsum 3.7" luxName="Lorem_ipsum_3.7" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-radio-ac>
           </lux-layout-form-row>
         </lux-card-content>
       </lux-card>

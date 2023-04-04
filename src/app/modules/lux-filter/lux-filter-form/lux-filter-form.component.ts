@@ -4,19 +4,18 @@ import {
   Component,
   ContentChild,
   ContentChildren,
-  ElementRef,
   EventEmitter,
   HostListener,
   Input,
   OnDestroy,
   OnInit,
   Output,
-  QueryList,
-  ViewChild
+  QueryList
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { LuxSelectComponent } from '../../lux-form/lux-select/lux-select.component';
+import { LuxSelectAcComponent } from '../../lux-form/lux-select-ac/lux-select-ac.component';
+import { LuxLookupComboboxAcComponent } from '../../lux-lookup/lux-lookup-combobox-ac/lux-lookup-combobox-ac.component';
 import { LuxDialogService } from '../../lux-popups/lux-dialog/lux-dialog.service';
 import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 import { LuxUtil } from '../../lux-util/lux-util';
@@ -26,7 +25,6 @@ import { LuxFilter } from '../lux-filter-base/lux-filter';
 import { LuxFilterLoadDialogComponent } from '../lux-filter-dialog/lux-filter-load-dialog/lux-filter-load-dialog.component';
 import { LuxFilterItemDirective } from '../lux-filter-base/lux-filter-item.directive';
 import { LuxFilterItem } from '../lux-filter-base/lux-filter-item';
-import { LuxLookupComboboxComponent } from '../../lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
 import { LuxFilterFormExtendedComponent } from './lux-filter-form-extended/lux-filter-form-extended.component';
 
 @Component({
@@ -264,7 +262,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     const removedFilterItem: LuxFilterItem<any> = this.filterItems.splice(indexRemoved, 1)[0];
 
     if (
-      (removedFilterItem.component instanceof LuxSelectComponent || removedFilterItem.component instanceof LuxLookupComboboxComponent) &&
+      (removedFilterItem.component instanceof LuxSelectAcComponent || removedFilterItem.component instanceof LuxLookupComboboxAcComponent) &&
       removedFilterItem.component.luxMultiple
     ) {
       // Fall: Multiselect
@@ -300,18 +298,18 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     if (!this.luxDisableShortcut) {
       this.formElementes.forEach((formComponent) => {
         if (formComponent) {
-          if (formComponent.datepicker && formComponent.datepicker.matDatepicker) {
-            formComponent.datepicker.matDatepicker.close();
-          } else if (formComponent.datetimepicker && formComponent.datetimepicker.dateTimeOverlayComponent) {
-            formComponent.datetimepicker.dateTimeOverlayComponent.close();
-          } else if (formComponent.select && formComponent.select.matSelect) {
-            formComponent.select.matSelect.close();
-          } else if (formComponent.autoComplete) {
-            formComponent.autoComplete.matAutoComplete.closePanel();
-          } else if (formComponent.autoCompleteLookup && formComponent.autoCompleteLookup.matAutocompleteTrigger) {
-            formComponent.autoCompleteLookup.matAutocompleteTrigger.closePanel();
-          } else if (formComponent.selectLookup) {
-            formComponent.selectLookup.matSelect.close();
+          if (formComponent.datepickerAuthentic && formComponent.datepickerAuthentic.matDatepicker) {
+            formComponent.datepickerAuthentic.matDatepicker.close();
+          } else if (formComponent.datetimepickerAuthentic && formComponent.datetimepickerAuthentic.dateTimeOverlayComponent) {
+            formComponent.datetimepickerAuthentic.dateTimeOverlayComponent.close();
+          } else if (formComponent.selectAuthentic && formComponent.selectAuthentic.matSelect) {
+            formComponent.selectAuthentic.matSelect.close();
+          } else if (formComponent.autoCompleteAuthentic) {
+            formComponent.autoCompleteAuthentic.matAutoComplete.closePanel();
+          } else if (formComponent.autoCompleteLookupAuthentic && formComponent.autoCompleteLookupAuthentic.matAutocompleteTrigger) {
+            formComponent.autoCompleteLookupAuthentic.matAutocompleteTrigger.closePanel();
+          } else if (formComponent.selectLookupAuthentic) {
+            formComponent.selectLookupAuthentic.matSelect.close();
           }
         }
       });

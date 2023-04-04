@@ -17,46 +17,46 @@
     </lux-link>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
-    ></lux-toggle>
+    ></lux-toggle-ac>
     <lux-divider [luxInset]="true"></lux-divider>
-    <lux-input luxName="link_luxHref" class="lux-highlight-section" [(luxValue)]="href" luxLabel="luxHref">
+    <lux-input-ac luxName="link_luxHref" class="lux-highlight-section" [(luxValue)]="href" luxLabel="luxHref">
       <lux-form-hint>
         Bestimmt die URL, zu der der Link routet.<br />
         Wenn die URL nicht mit <i>http</i> beginnt, wird automatisch der Angular-Router für Routing innerhalb der Applikation genommen.
       </lux-form-hint>
-    </lux-input>
-    <lux-toggle
+    </lux-input-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="blank"
       luxLabel="luxBlank"
       luxHint="Diese Property bestimmt ob (externe) Links in einem neuen Tab geöffnet werden."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
+    </lux-toggle-ac>
 
-    <lux-input
+    <lux-input-ac
       class="lux-highlight-section"
       [(luxValue)]="label"
       luxLabel="luxLabel"
       luxHint="Bestimmt den Text, der für den Link angezeigt wird."
-    ></lux-input>
+    ></lux-input-ac>
     <div fxLayout="column" class="lux-highlight-section">
-      <lux-input luxName="button_luxIconName" [(luxValue)]="iconName" luxLabel="luxIconName">
+      <lux-input-ac luxName="button_luxIconName" [(luxValue)]="iconName" luxLabel="luxIconName">
         <lux-form-hint>
           Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
           <i>luxLabel</i> gesetzt ist).<br />
           Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
         </lux-form-hint>
-      </lux-input>
-      <lux-toggle luxLabel="luxIconShowRight" [(luxChecked)]="iconShowRight"></lux-toggle>
+      </lux-input-ac>
+      <lux-toggle-ac luxLabel="luxIconShowRight" [(luxChecked)]="iconShowRight"></lux-toggle-ac>
     </div>
-    <lux-select
+    <lux-select-ac
       class="lux-highlight-section"
       [(luxSelected)]="color"
       [luxOptions]="colors"
@@ -68,8 +68,8 @@
         Bestimmt die Farbe des Buttons.<br />
         Die möglichen Werte sind 'primary', 'warn', 'accent', 'default' / undefined.
       </lux-form-hint>
-    </lux-select>
-    <lux-toggle
+    </lux-select-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="flat"
       (luxCheckedChange)="onFlat($event)"
@@ -77,8 +77,8 @@
       luxHint="Über diese Property kann der Link flach und ohne Schatten dargestellt werden."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="raised"
       (luxCheckedChange)="onRaised($event)"
@@ -86,8 +86,8 @@
       luxHint="Über diese Property kann der Link hervorgehoben dargestellt werden."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="round"
       (luxCheckedChange)="onRounded($event)"
@@ -95,18 +95,18 @@
       luxHint="Diese Property aktiviert eine runde Darstellung des Links."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Diese Property deaktiviert den Link."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
+    </lux-toggle-ac>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="Label Uppercase"
       [(luxChecked)]="config.labelConfiguration!.allUppercase"
@@ -116,6 +116,6 @@
       <lux-form-hint>
         Über den <i>LuxComponentsConfigService</i> kann für alle LuxLinks applikationsweit eine Uppercase-Darstellung forciert werden.
       </lux-form-hint>
-    </lux-toggle>
+    </lux-toggle-ac>
   </example-base-advanced-options>
 </example-base-structure>

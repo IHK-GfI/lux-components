@@ -10,11 +10,11 @@
           <ng-template>
           <h3>Ein einfaches Tab-Beispiel</h3>
             <div>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque iste dolorum neque fugiat modi ipsam eos dicta 
-              fuga aliquam, praesentium provident dignissimos, dolorem aliqu incidunt atque repellendus et? 
-              Minima repudiandae dolores, saepe maxime facilis nisi recusandae nesciunt voluptatibus, quod nemo 
-              rerum eos labore cum itaque fugit? Suscipit ipsum adipisci molestiae quae, tempora quisquam beatae id 
-              repudiandae eos vero architecto et delectus. 
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque iste dolorum neque fugiat modi ipsam eos dicta
+              fuga aliquam, praesentium provident dignissimos, dolorem aliqu incidunt atque repellendus et?
+              Minima repudiandae dolores, saepe maxime facilis nisi recusandae nesciunt voluptatibus, quod nemo
+              rerum eos labore cum itaque fugit? Suscipit ipsum adipisci molestiae quae, tempora quisquam beatae id
+              repudiandae eos vero architecto et delectus.
             </div>
           </ng-template>
         </lux-tab>
@@ -61,24 +61,24 @@
         >
           <ng-template>
             <div class="lux-highlight-section column">
-              <lux-input
+              <lux-input-ac
                 luxLabel="Beispiel Eingabefeld #{{ 1 + i * 3 }}"
                 luxTagId="BE_{{ 1 + i * 3 }}"
                 luxAutocomplete="off"
                 [luxNoBottomLabel]="true"
-              ></lux-input>
-              <lux-input
+              ></lux-input-ac>
+              <lux-input-ac
                 luxLabel="Beispiel Eingabefeld #{{ 2 + i * 3 }}"
                 luxTagId="BE_{{ 1 + i * 3 }}"
                 luxAutocomplete="off"
                 [luxNoBottomLabel]="true"
-              ></lux-input>
-              <lux-textarea
+              ></lux-input-ac>
+              <lux-textarea-ac
                 luxLabel="Beispiel Eingabefeld #{{ 3 + i * 3 }}"
                 luxTagId="BE_{{ 1 + i * 3 }}"
                 luxAutocomplete="off"
                 [luxNoBottomLabel]="true"
-              ></lux-textarea>
+              ></lux-textarea-ac>
               <br>
               <app-tabs-content (created)="tabContentCreated(tab)"></app-tabs-content>
             </div>
@@ -88,15 +88,15 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
-    ></lux-toggle>
+    ></lux-toggle-ac>
     <lux-divider [luxInset]="true"></lux-divider>
-    <lux-input
+    <lux-input-ac
       class="lux-highlight-section"
       luxLabel="luxActiveTab"
       luxHint="Diese Property ermöglicht es, das aktuell aktive Tab zu setzen."
@@ -104,112 +104,112 @@
       [luxNumberAlignLeft]="true"
       [(luxValue)]="activeTab"
     >
-    </lux-input>
-    <lux-select
+    </lux-input-ac>
+    <lux-select-ac
       class="lux-highlight-section"
       luxLabel="luxIconSize"
       luxHint="Die Property setzt die (relative) Icon-Größe für alle Tabs."
       [(luxSelected)]="iconSize"
       [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
     >
-    </lux-select>
-    <lux-toggle
+    </lux-select-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxTabAnimationActive"
       luxHint="Dieser Flag aktiviert die horizontale Animation des Tab-Contents."
       [(luxChecked)]="animationActive"
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxDisplayDivider"
       luxHint="Dieser Flag schaltet die Trennlinie zwischen Tab-Header und Tab-Content ein."
       [(luxChecked)]="displayDivider"
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxLazyLoading"
       luxHint="Wenn dieser Flag den Wert 'true' besitzt, werden die Inhalte der einzelnen Tabs erst zum Aktivierungszeitpunkt erzeugt."
       [(luxChecked)]="lazyLoading"
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-input
+    </lux-toggle-ac>
+    <lux-input-ac
       luxName="button_background_Color"
       class="lux-highlight-section"
       [(luxValue)]="backgroundColor"
       luxLabel="Hintergrundfarbe"
     >
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
-    </lux-input>
-    <lux-toggle
+    </lux-input-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxShowBorder"
       luxHint="Wenn dieser Flag den Wert 'true' besitzt, wird eine Border um den Tab-header und den Tab-Content gesetzt."
       [(luxChecked)]="showBorder"
       [luxNoTopLabel]="true"
     >
-  </lux-toggle>
+  </lux-toggle-ac>
   </example-base-simple-options>
   <example-base-advanced-options>
     <lux-accordion [luxMulti]="false" luxMode="flat">
       <lux-panel *ngFor="let tab of tabs; let i = index">
         <lux-panel-header-title> Tab #{{ i + 1 }} </lux-panel-header-title>
         <lux-panel-content fxLayout="column" fxLayoutGap="0">
-          <lux-input
+          <lux-input-ac
             class="lux-highlight-section"
             luxLabel="luxTitle"
             luxHint="Diese Property ermöglicht es, den Titel des Tabs festzulegen."
             [(luxValue)]="tab.title"
           >
-          </lux-input>
+          </lux-input-ac>
           <div class="lux-highlight-section column">
-            <lux-input
+            <lux-input-ac
               luxLabel="luxIconName"
               luxHint="Diese Property legt das Icon für den Tab fest."
               [(luxValue)]="tab.iconName"
             >
-            </lux-input>
-            <lux-input
+            </lux-input-ac>
+            <lux-input-ac
               luxLabel="luxImageSrc"
               [luxDisabled]="!!tab.iconName"
               luxHint="Diese Property greift nur, wenn es kein luxIconName gibt."
               [(luxValue)]="tab.imageSrc"
             >
-            </lux-input>
-            <lux-input
+            </lux-input-ac>
+            <lux-input-ac
               luxLabel="luxImageAlign"
               luxHint="Werte: left, center oder right"
               [(luxValue)]="tab.imageAlign"
             >
-            </lux-input>
+            </lux-input-ac>
             <lux-layout-form-row>
-              <lux-input
+              <lux-input-ac
                 luxLabel="luxImageWidth"
                 [(luxValue)]="tab.imageWidth"
                 *luxLayoutRowItem="{}"
               >
-              </lux-input>
-              <lux-input
+              </lux-input-ac>
+              <lux-input-ac
                 luxLabel="luxImageHeight"
                 [(luxValue)]="tab.imageHeight"
                 *luxLayoutRowItem="{}"
               >
-              </lux-input>
+              </lux-input-ac>
             </lux-layout-form-row>
           </div>
-          <lux-toggle
+          <lux-toggle-ac
             class="lux-highlight-section"
             luxLabel="luxDisabled"
             luxHint="Dieses Flag ermöglicht es, den Tab zu deaktivieren."
             [(luxChecked)]="tab.disabled"
             [luxNoTopLabel]="true"
           >
-          </lux-toggle>
-          <lux-toggle
+          </lux-toggle-ac>
+          <lux-toggle-ac
             class="lux-highlight-section"
             luxLabel="luxShowNotification"
             [(luxChecked)]="tab.showNotification"
@@ -220,9 +220,9 @@
               Wenn 'undefined', wird nichts angezeigt. Bei 'true' wird ein blauer Kreis dargestellt und bei 'false' ein
               ausgegrauter Kreis.
             </lux-form-hint>
-          </lux-toggle>
+          </lux-toggle-ac>
           <div class="lux-highlight-section column">
-            <lux-toggle
+            <lux-toggle-ac
               luxLabel="luxCounter aktiv"
               (luxCheckedChange)="$event ? (tab.counter = 0) : (tab.counter = undefined)"
               [luxNoTopLabel]="true"
@@ -231,8 +231,8 @@
                 Wenn der luxCounter einen Zahlenwert besitzt, wird dieser auch an dem Tab angezeigt.<br />
                 Erhält er den Wert null/undefined, wird kein Counter dargestellt.
               </lux-form-hint>
-            </lux-toggle>
-            <lux-input
+            </lux-toggle-ac>
+            <lux-input-ac
               luxLabel="luxCounter"
               [(luxValue)]="tab.counter"
               luxType="number"
@@ -243,15 +243,15 @@
                 Die Property definiert den aktuellen Zähler für den Tab.<br />
                 Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
               </lux-form-hint>
-            </lux-input>
-            <lux-input
+            </lux-input-ac>
+            <lux-input-ac
               luxLabel="luxCounterCap"
               luxHint="Diese Property bestimmt die Obergrenze für luxCounter."
               luxType="number"
               [luxNumberAlignLeft]="true"
               [(luxValue)]="tab.counterCap"
             >
-            </lux-input>
+            </lux-input-ac>
           </div>
         </lux-panel-content>
       </lux-panel>

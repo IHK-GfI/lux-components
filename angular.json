@@ -23,8 +23,9 @@
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "polyfills": ["zone.js"],
             "localize": ["de"],
             "i18nMissingTranslation": "error",
             "assets": [
@@ -163,15 +164,39 @@
         "test": {
           "builder": "ngx-build-plus:karma",
           "options": {
-            "main": "src/test.ts",
             "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
+            "polyfills": ["zone.js", "zone.js/testing", "src/test.ts"],
+            "tsConfig": "tsconfig.spec.json",
             "scripts": [],
             "styles": ["src/styles.scss"],
             "assets": [
               "src/assets",
               "src/favicon.ico",
+              {
+                "glob": "all.css",
+                "input": "./node_modules/@fortawesome/fontawesome-free/css",
+                "output": "./assets/icons/fontawesome/css"
+              },
+              {
+                "glob": "*(*.eot|*.ttf|*.woff|*.woff2)",
+                "input": "./node_modules/@fortawesome/fontawesome-free/webfonts",
+                "output": "./assets/icons/fontawesome/webfonts"
+              },
+              {
+                "glob": "material-design-icons.css*",
+                "input": "./node_modules/material-design-icons-iconfont/dist",
+                "output": "./assets/icons/material-icons"
+              },
+              {
+                "glob": "*(*.eot|*.ttf|*.woff|*.woff2)",
+                "input": "./node_modules/material-design-icons-iconfont/dist/fonts",
+                "output": "./assets/icons/material-icons/fonts"
+              },
+              {
+                "glob": "pdf.worker.min.js",
+                "input": "./node_modules/ng2-pdf-viewer/node_modules/pdfjs-dist/build",
+                "output": "./assets/pdf"
+              },
               {
                 "glob": "**/*",
                 "input": "./node_modules/pdfjs-dist/cmaps/",
@@ -197,6 +222,13 @@
                 "input": "./node_modules/@ihk-gfi/lux-components-theme/prebuilt-themes",
                 "output": "./assets/themes"
               }
+            ],
+            "styles": ["src/styles.scss"],
+            "scripts": [
+              {
+                "bundleName": "polyfill-webcomp",
+                "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
+              }
             ]
           }
         },
@@ -216,6 +248,12 @@
     },
     "@schematics/angular:directive": {
       "prefix": "lux"
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
     }
   }
 }

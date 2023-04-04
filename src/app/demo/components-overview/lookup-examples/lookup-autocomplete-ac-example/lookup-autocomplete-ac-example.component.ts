@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { LuxLookupAutocompleteComponent } from '../../../../modules/lux-lookup/lux-lookup-autocomplete/lux-lookup-autocomplete.component';
+import {
+  LuxLookupAutocompleteAcComponent
+} from '../../../../modules/lux-lookup/lux-lookup-autocomplete-ac/lux-lookup-autocomplete-ac.component';
 import { LuxLookupHandlerService } from '../../../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
 import { LookupExampleComponent } from '../lookup-example.component';
 import { LuxSnackbarService } from '../../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
@@ -10,7 +12,7 @@ import { LuxSnackbarService } from '../../../../modules/lux-popups/lux-snackbar/
   templateUrl: './lookup-autocomplete-ac-example.component.html'
 })
 export class LookupAutocompleteAcExampleComponent extends LookupExampleComponent implements OnInit {
-  @ViewChildren(LuxLookupAutocompleteComponent) lookupAutocompleteCmp!: QueryList<LuxLookupAutocompleteComponent>;
+  @ViewChildren(LuxLookupAutocompleteAcComponent) lookupAutocompleteCmp!: QueryList<LuxLookupAutocompleteAcComponent>;
 
   debounceTime = 250;
   maximumDisplayed = 50;

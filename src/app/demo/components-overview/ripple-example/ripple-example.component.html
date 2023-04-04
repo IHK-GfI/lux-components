@@ -20,15 +20,15 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-input
+    <lux-input-ac
       class="lux-highlight-section"
       luxName="ripple_luxRippleColor"
       luxLabel="luxRippleColor"
       luxHint="Diese Property ermöglicht es, die Farbe der Component zu setzen."
       [(luxValue)]="color"
     >
-    </lux-input>
-    <lux-input
+    </lux-input-ac>
+    <lux-input-ac
       class="lux-highlight-section"
       luxName="ripple_luxRippleRadius"
       luxLabel="luxRippleRadius"
@@ -36,8 +36,8 @@
       luxType="number"
       [(luxValue)]="radius"
     >
-    </lux-input>
-    <lux-input
+    </lux-input-ac>
+    <lux-input-ac
       class="lux-highlight-section"
       luxName="ripple_luxRippleEnterDuration"
       luxLabel="luxRippleEnterDuration"
@@ -45,8 +45,8 @@
       luxType="number"
       [(luxValue)]="enterDuration"
     >
-    </lux-input>
-    <lux-input
+    </lux-input-ac>
+    <lux-input-ac
       class="lux-highlight-section"
       luxName="ripple_luxRippleExitDuration"
       luxLabel="luxRippleExitDuration"
@@ -54,30 +54,30 @@
       luxType="number"
       [(luxValue)]="exitDuration"
     >
-    </lux-input>
-    <lux-toggle
+    </lux-input-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxRippleDisabled"
       luxHint="Dieser Flag deaktiviert das Auslösen der Ripple-Animationen über Maus-Klicks."
       [(luxChecked)]="disabled"
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxRippleCentered"
       luxHint="Dieser Flag stellt ein ob die Animation aus dem Zentrum der Zielcomponent läuft oder vom jeweiligen Klick."
       [(luxChecked)]="centered"
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxRippleUnbounded"
       luxHint="Dieser Flag stellt ein ob die Animation über die Zielcomponent hinauslaufen kann."
       [(luxChecked)]="unbounded"
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
+    </lux-toggle-ac>
   </example-base-simple-options>
 </example-base-structure>

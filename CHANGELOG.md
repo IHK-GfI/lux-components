@@ -1,3 +1,10 @@
+
+# Version 15.0.0
+
+## New
+
+- **allgemein**: Update auf Angular 15 [Issue 302](https://github.com/IHK-GfI/lux-components/issues/302)
+
 # Version 14.8.0
 
 ## New

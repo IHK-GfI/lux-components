@@ -2,7 +2,7 @@ import { Component, DebugElement } from '@angular/core';
 import { waitForAsync, ComponentFixture, fakeAsync, flushMicrotasks, inject, TestBed, tick } from '@angular/core/testing';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxTooltipDirective } from './lux-tooltip.directive';
-import { TooltipPosition } from '@angular/material/tooltip';
+import { LegacyTooltipPosition as TooltipPosition } from '@angular/material/legacy-tooltip';
 import { By } from '@angular/platform-browser';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { FocusMonitor } from '@angular/cdk/a11y';

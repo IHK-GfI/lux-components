@@ -88,47 +88,47 @@
   </example-base-content>
   <example-base-simple-options>
     <div class="lux-highlight-section column">
-      <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true"> </lux-toggle>
-      <lux-toggle luxLabel="Backend mocken" [luxChecked]="mockBackend" (luxCheckedChange)="changeMockBackend($event)" [luxNoTopLabel]="true">
+      <lux-toggle-ac luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true"> </lux-toggle-ac>
+      <lux-toggle-ac luxLabel="Backend mocken" [luxChecked]="mockBackend" (luxCheckedChange)="changeMockBackend($event)" [luxNoTopLabel]="true">
         <lux-form-hint>
           Mockt den Http-Client um das Uploaden der Dateien zu simulieren.<br />
           Dafür muss aber auch "luxUploadUrl" gesetzt sein (beliebiger Wert).
         </lux-form-hint>
-      </lux-toggle>
+      </lux-toggle-ac>
     </div>
     <lux-divider [luxInset]="true"></lux-divider>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="showPreview"
       luxLabel="luxShowPreview"
       luxHint="Diese Eigenschaft definiert, ob einzelne Bilder in einer Vorschau angezeigt werden sollen."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-input
+    </lux-toggle-ac>
+    <lux-input-ac
       class="lux-highlight-section"
       luxLabel="luxHeading"
       luxHint="Gültige Werte sind 1-6"
       [(luxValue)]="heading"
       [luxControlValidators]="headingValidator"
-    ></lux-input>
+    ></lux-input-ac>
     <app-file-example-simple-options [fileExample]="this"></app-file-example-simple-options>
   </example-base-simple-options>
   <example-base-advanced-options>
     <app-file-example-advanced-options [fileExample]="this" [showHeaderConfigProperties]="true"></app-file-example-advanced-options>
     <div class="lux-highlight-section column">
       <div class="lux-highlight-section-label">Dialogaktion "Akzeptieren"</div>
-      <lux-input luxLabel="Präfix" luxName="filelist_prefix_accept" [(luxValue)]="namePrefixAccept" [luxNoBottomLabel]="true"></lux-input>
-      <lux-input luxLabel="Präfixfarbe" luxName="filelist_prefix_color_accept" [(luxValue)]="namePrefixColorAccept" [luxNoBottomLabel]="true"></lux-input>
-      <lux-input luxLabel="Suffix" luxName="filelist_suffix_accept" [(luxValue)]="nameSuffixAccept" [luxNoBottomLabel]="true"></lux-input>
-      <lux-input luxLabel="Suffixfarbe" luxName="filelist_suffix_color_accept" [(luxValue)]="nameSuffixColorAccept" [luxNoBottomLabel]="true"></lux-input>
+      <lux-input-ac luxLabel="Präfix" luxName="filelist_prefix_accept" [(luxValue)]="namePrefixAccept" [luxNoBottomLabel]="true"></lux-input-ac>
+      <lux-input-ac luxLabel="Präfixfarbe" luxName="filelist_prefix_color_accept" [(luxValue)]="namePrefixColorAccept" [luxNoBottomLabel]="true"></lux-input-ac>
+      <lux-input-ac luxLabel="Suffix" luxName="filelist_suffix_accept" [(luxValue)]="nameSuffixAccept" [luxNoBottomLabel]="true"></lux-input-ac>
+      <lux-input-ac luxLabel="Suffixfarbe" luxName="filelist_suffix_color_accept" [(luxValue)]="nameSuffixColorAccept" [luxNoBottomLabel]="true"></lux-input-ac>
     </div>
     <div class="lux-highlight-section column">
       <div class="lux-highlight-section-label">Dialogaktion "Ablehnen"</div>
-      <lux-input luxLabel="Präfix" luxName="filelist_prefix_decline" [(luxValue)]="namePrefixDecline" [luxNoBottomLabel]="true"></lux-input>
-      <lux-input luxLabel="Präfixfarbe" luxName="filelist_prefix_color_decline" [(luxValue)]="namePrefixColorDecline" [luxNoBottomLabel]="true"></lux-input>
-      <lux-input luxLabel="Suffix" luxName="filelist_suffix_decline" [(luxValue)]="nameSuffixDecline" [luxNoBottomLabel]="true"></lux-input>
-      <lux-input luxLabel="Suffixfarbe" luxName="filelist_suffix_color_decline" [(luxValue)]="nameSuffixColorDecline" [luxNoBottomLabel]="true"></lux-input>
+      <lux-input-ac luxLabel="Präfix" luxName="filelist_prefix_decline" [(luxValue)]="namePrefixDecline" [luxNoBottomLabel]="true"></lux-input-ac>
+      <lux-input-ac luxLabel="Präfixfarbe" luxName="filelist_prefix_color_decline" [(luxValue)]="namePrefixColorDecline" [luxNoBottomLabel]="true"></lux-input-ac>
+      <lux-input-ac luxLabel="Suffix" luxName="filelist_suffix_decline" [(luxValue)]="nameSuffixDecline" [luxNoBottomLabel]="true"></lux-input-ac>
+      <lux-input-ac luxLabel="Suffixfarbe" luxName="filelist_suffix_color_decline" [(luxValue)]="nameSuffixColorDecline" [luxNoBottomLabel]="true"></lux-input-ac>
     </div>
   </example-base-advanced-options>
 </example-base-structure>

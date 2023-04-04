@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { LuxDateFilterAcFn } from '../../../modules/lux-form/lux-datepicker-ac/lux-datepicker-ac.component';
-import { LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
+import { LuxDateFilterAcFn, LuxStartAcView } from '../../../modules/lux-form/lux-datepicker-ac/lux-datepicker-ac.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   emptyErrorCallback,
@@ -45,7 +44,7 @@ export class DatepickerAuthenticExampleComponent {
   locale = 'de-DE';
   minDate: string | null = null;
   maxDate: string | null = null;
-  startView: LuxStartView = 'month';
+  startView: LuxStartAcView = 'month';
   touchUi = false;
   labelLongFormat = false;
   denseFormat = false;

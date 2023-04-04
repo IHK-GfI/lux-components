@@ -20,11 +20,10 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxUtil } from '../../lux-util/lux-util';
-import { LuxDatepickerCustomHeaderComponent } from '../lux-datepicker/lux-datepicker-custom-header/lux-datepicker-custom-header.component';
-import { APP_DATE_FORMATS } from '../lux-datepicker/lux-datepicker.component';
 import { LuxValidationErrors } from '../lux-form-model/lux-form-component-base.class';
 import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
 import { LuxDatepickerAcAdapter } from './lux-datepicker-ac-adapter';
+import { LuxDatepickerAcCustomHeaderComponent } from './lux-datepicker-ac-custom-header/lux-datepicker-ac-custom-header.component';
 
 export const APP_DATE_FORMATS_AC = {
   parse: {
@@ -226,7 +225,7 @@ export class LuxDatepickerAcComponent<T = any> extends LuxFormInputBaseClass<T> 
       if (this.datepickerInput && !this.datepickerInput.nativeElement.value && isoValue) {
         this.datepickerInput.nativeElement.value = this.dateAdapter.format(
           isoValue as any,
-          APP_DATE_FORMATS.display.dateInput
+          APP_DATE_FORMATS_AC.display.dateInput
         );
       }
     });
@@ -283,7 +282,7 @@ export class LuxDatepickerAcComponent<T = any> extends LuxFormInputBaseClass<T> 
 
   // für dem Customheader für das "Green"-Theme
   getHeaderByTheme(): any {
-    const customHeader = LuxDatepickerCustomHeaderComponent;
+    const customHeader = LuxDatepickerAcCustomHeaderComponent;
     return this.themeService.getTheme().name === 'green' ? customHeader : null;
   }
 }

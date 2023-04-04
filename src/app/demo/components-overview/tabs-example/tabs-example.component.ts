@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({

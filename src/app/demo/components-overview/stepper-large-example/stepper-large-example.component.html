@@ -16,7 +16,7 @@
         Über das folgende Toggle kann die Validierung der Schritte (de-)aktiviert werden. Wenn die Validierung deaktiviert wird,
         dann ist er Weiter-Button immer aktiv und nur die Veto-Funktionen können das Navigieren zum nächsten Schritt verhindern.
       </p>
-      <lux-toggle luxLabel="Validierung der Schritte aktivieren" [(luxChecked)]="stepValidationActive"></lux-toggle>
+      <lux-toggle-ac luxLabel="Validierung der Schritte aktivieren" [(luxChecked)]="stepValidationActive"></lux-toggle-ac>
 
       <h3>Füllschritte 1 bis 5</h3>
       <p style="margin-bottom: 0">
@@ -25,7 +25,7 @@
         reicht es bei den Füllschritten 1 bis 5 aus, auf den Weiter-Button zu klicken. Wenn das Toggle deaktiviert ist, muss zusätzlich noch
         das Toggle im Füllschritt aktiviert werden.
       </p>
-      <lux-toggle luxLabel="Füllschritte 1...5 auf erledigt setzen." [(luxChecked)]="completed"></lux-toggle>
+      <lux-toggle-ac luxLabel="Füllschritte 1...5 auf erledigt setzen." [(luxChecked)]="completed"></lux-toggle-ac>
 
       <h3>Einwilligung</h3>
       <p>
@@ -35,18 +35,18 @@
         facilisi.
       </p>
       <lux-layout-form-row>
-        <lux-select
+        <lux-select-ac
           [luxOptions]="options"
           [(luxSelected)]="maxWidth"
           luxLabel="Stepperbreite (max)"
           luxName="stepper-large.example.stepperwidth"
           [luxRequired]="true"
           *luxLayoutRowItem="{}"
-        ></lux-select>
+        ></lux-select-ac>
         <div fxShow="true" fxShow.lt-md="false" *luxLayoutRowItem="{ empty: true }"></div>
       </lux-layout-form-row>
 
-      <lux-toggle luxLabel="Ich habe verstanden und möchte fortfahren" [(luxChecked)]="allowed" [luxRequired]="true"></lux-toggle>
+      <lux-toggle-ac luxLabel="Ich habe verstanden und möchte fortfahren" [(luxChecked)]="allowed" [luxRequired]="true"></lux-toggle-ac>
     </lux-stepper-large-step>
 
     <app-stepper-large-example-step-prev-button></app-stepper-large-example-step-prev-button>

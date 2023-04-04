@@ -2,7 +2,7 @@ import { ComponentType } from '@angular/cdk/portal';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { LuxThemeService } from '../../../lux-theme/lux-theme.service';
 import { LuxDatepickerAcCustomHeaderComponent } from '../../lux-datepicker-ac/lux-datepicker-ac-custom-header/lux-datepicker-ac-custom-header.component';
-import { LuxInputComponent } from '../../lux-input/lux-input.component';
+import { LuxInputAcComponent } from '../../lux-input-ac/lux-input-ac.component';
 import { LuxDatetimeOverlayAcComponent } from './lux-datetime-overlay-ac.component';
 
 @Component({
@@ -12,8 +12,8 @@ import { LuxDatetimeOverlayAcComponent } from './lux-datetime-overlay-ac.compone
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LuxDatetimeOverlayContentAcComponent implements OnInit, AfterViewInit {
-  @ViewChild('hoursInput') hoursInputComponent!: LuxInputComponent;
-  @ViewChild('minutesInput') minutesInputComponent!: LuxInputComponent;
+  @ViewChild('hoursInput') hoursInputComponent!: LuxInputAcComponent;
+  @ViewChild('minutesInput') minutesInputComponent!: LuxInputAcComponent;
 
   dateTimePicker!: LuxDatetimeOverlayAcComponent;
   selected: Date | null = null;

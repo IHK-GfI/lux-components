@@ -14,11 +14,11 @@ import {
   QueryList,
   ViewChild
 } from '@angular/core';
-import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatLegacyPaginator as MatPaginator, MatLegacyPaginatorIntl as MatPaginatorIntl } from '@angular/material/legacy-paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { of, Subject, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
-import { LuxInputComponent } from '../../lux-form/lux-input/lux-input.component';
+import { LuxInputAcComponent } from '../../lux-form/lux-input-ac/lux-input-ac.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxPaginatorIntl } from '../../lux-util/lux-paginator-intl';
@@ -94,7 +94,7 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
   @ViewChild(MatSort, { static: true }) sort?: MatSort;
   @ViewChild('paginator', { read: ElementRef, static: true }) paginatorElement?: ElementRef;
   @ViewChild('filter', { read: ElementRef, static: true }) filterElement?: ElementRef;
-  @ViewChild('filter', { static: true }) filterComponent?: LuxInputComponent;
+  @ViewChild('filter', { static: true }) filterComponent?: LuxInputAcComponent;
   @ViewChild('tableContainer', { read: ElementRef, static: true }) tableContainerElement!: ElementRef;
   @ContentChildren(LuxTableColumnComponent) tableColumns!: QueryList<LuxTableColumnComponent>;
 

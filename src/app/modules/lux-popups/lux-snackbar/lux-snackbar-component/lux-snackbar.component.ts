@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
+import { MAT_LEGACY_SNACK_BAR_DATA as MAT_SNACK_BAR_DATA, MatLegacySnackBarRef as MatSnackBarRef } from '@angular/material/legacy-snack-bar';
 import { LuxSnackbarColor, LuxSnackbarColors } from "../../../lux-util/lux-colors.enum";
 import { LuxSnackbarConfig } from '../lux-snackbar-config';
 import { Observable, Subject } from 'rxjs';

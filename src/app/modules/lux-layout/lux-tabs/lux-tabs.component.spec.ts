@@ -10,7 +10,7 @@ import { LuxTabsComponent } from './lux-tabs.component';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxTabComponent } from './lux-tabs-subcomponents/lux-tab.component';
-import { MatTabChangeEvent } from '@angular/material/tabs';
+import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
 
 describe('LuxTabsComponent', () => {
 

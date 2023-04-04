@@ -27,15 +27,15 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <div 
-      class="lux-highlight-section" 
-      fxLayout.gt-sm="row" 
-      fxLayout.lt-md="column" 
-      fxLayoutAlign.gt-sm="space-between start" 
-      fxLayoutAlign.lt-md="space-between stretch" 
-      fxLayoutGap.gt-sm="16px" 
+    <div
+      class="lux-highlight-section"
+      fxLayout.gt-sm="row"
+      fxLayout.lt-md="column"
+      fxLayoutAlign.gt-sm="space-between start"
+      fxLayoutAlign.lt-md="space-between stretch"
+      fxLayoutGap.gt-sm="16px"
       fxLayoutGap.lt-md="8px" >
-      <lux-datepicker
+      <lux-datepicker-ac
         luxLabel="timestamp"
         [(luxValue)]="nowISO"
         (luxValueChange)="updateNow($event)"
@@ -45,13 +45,13 @@
           Hier kann ein Datum für das Beispiel eingetragen werden.<br />
           Das Beispiel nimmt dann den Timestamp aus dem Date-Objekt.
         </lux-form-hint>
-      </lux-datepicker>
-      <div 
-        fxLayout="row" 
-        fxLayoutAlign.gt-sm="end center" 
-        fxLayoutAlign.lt-md="center center" 
+      </lux-datepicker-ac>
+      <div
+        fxLayout="row"
+        fxLayoutAlign.gt-sm="end center"
+        fxLayoutAlign.lt-md="center center"
         fxFlex.gt-sm="1 1 98px"
-        fxLayoutGap="8px" 
+        fxLayoutGap="8px"
         class="lux-mt-4">
         <lux-button
           luxIconName="lux-interface-delete-1"
@@ -69,7 +69,7 @@
         ></lux-button>
       </div>
     </div>
-    <lux-input
+    <lux-input-ac
       class="lux-highlight-section"
       luxAutocomplete="off"
       luxName="timestamp_defaultText"
@@ -77,12 +77,12 @@
       luxHint="Dieser Parameter bestimmt den Standard-Text welcher wiedergegeben wird wenn der Timestamp nicht gegeben ist."
       [(luxValue)]="defaultText"
     >
-    </lux-input>
-    <lux-input luxName="timestamp_prefix" class="lux-highlight-section" luxAutocomplete="off" luxLabel="prefix" [(luxValue)]="prefix">
+    </lux-input-ac>
+    <lux-input-ac luxName="timestamp_prefix" class="lux-highlight-section" luxAutocomplete="off" luxLabel="prefix" [(luxValue)]="prefix">
       <lux-form-hint>
         Dieser Parameter legt den Präfix für die relativen Zeitangaben fest.<br />
         Standardmäßig werden die Präfixe 'in' und 'vor' benutzt.
       </lux-form-hint>
-    </lux-input>
+    </lux-input-ac>
   </example-base-simple-options>
 </example-base-structure>

@@ -2,8 +2,6 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { LuxLookupComboboxAcComponent } from '../../../../modules/lux-lookup/lux-lookup-combobox-ac/lux-lookup-combobox-ac.component';
 import { LuxLookupTableEntry } from '../../../../modules/lux-lookup/lux-lookup-model/lux-lookup-table-entry';
 import { LuxLookupHandlerService } from '../../../../modules/lux-lookup/lux-lookup-service/lux-lookup-handler.service';
-import { LuxLookupComboboxComponent } from '../../../../modules/lux-lookup/lux-lookup-combobox/lux-lookup-combobox.component';
-import { FormBuilder } from '@angular/forms';
 import { LookupExampleComponent } from '../lookup-example.component';
 
 @Component({

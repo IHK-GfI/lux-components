@@ -5,6 +5,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
+  forwardRef,
   Input,
   OnChanges,
   Output,
@@ -32,7 +33,8 @@ export class LuxSideNavItemComponent implements AfterViewInit, OnChanges {
 
   @Output() luxClicked = new EventEmitter<Event>();
 
-  @ContentChildren(LuxSideNavItemComponent) sideNavItems!: QueryList<LuxSideNavItemComponent>;
+  /* eslint-disable-next-line @angular-eslint/no-forward-ref */
+  @ContentChildren(forwardRef(() => LuxSideNavItemComponent)) sideNavItems!: QueryList<LuxSideNavItemComponent>;
 
   constructor(private cdr: ChangeDetectorRef) {}
 

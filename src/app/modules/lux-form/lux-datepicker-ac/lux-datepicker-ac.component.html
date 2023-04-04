@@ -32,14 +32,7 @@
       [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
       #datepickerInput
     />
-    <mat-datepicker-toggle
-      [disabled]="luxDisabled || luxReadonly"
-      [for]="datepicker"
-      [disableRipple]="true"
-      *ngIf="luxShowToggle"
-      fxFlex="auto"
-      matSuffix
-    >
+    <mat-datepicker-toggle [disabled]="luxDisabled || luxReadonly" [for]="datepicker" [disableRipple]="true" *ngIf="luxShowToggle">
       <lux-icon matDatepickerToggleIcon luxIconName="lux-interface-calendar" class="lux-datepicker-toggle-icon lux-color-blue"></lux-icon>
     </mat-datepicker-toggle>
     <mat-datepicker

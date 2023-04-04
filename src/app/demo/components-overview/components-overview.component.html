@@ -1,2 +1,30 @@
-<lux-components-overview-blue *ngIf="themeName !== 'authentic'"></lux-components-overview-blue>
-<lux-components-overview-authentic *ngIf="themeName === 'authentic'"></lux-components-overview-authentic>
+<div fxLayout="column" id="Home" luxAriaRole="main" class="page-content">
+  <h4 class="page-title" style="font-size: 34px">Die Komponenten von A-Z</h4>
+  <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px grid">
+    <lux-input-ac [luxNoTopLabel]="true" luxPlaceholder="Suchbegriff eingeben" [(luxValue)]="filterValue" luxAutocomplete="off">
+      <lux-input-ac-prefix class="lux-mr-3" luxTagId="searchInput">
+        <lux-icon luxIconName="lux-interface-search"></lux-icon>
+      </lux-input-ac-prefix>
+      <lux-input-ac-suffix>
+        <lux-icon luxIconName="lux-interface-delete-circle" class="reset-icon lux-color-blue" (click)="filterValue = ''"></lux-icon>
+      </lux-input-ac-suffix>
+    </lux-input-ac>
+  </div>
+  <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px grid">
+    <div *ngFor="let component of navigationService.getFilteredComponents(filterValue) | luxAlphabeticallySorted" class="lux-tile-ac-wrapper-demo">
+      <lux-tile-ac
+        [luxLabel]="component.label"
+        luxSubTitle="Modul: LUX-{{ component.moduleName | uppercase }}"
+        (luxClicked)="component.onclick()"
+        [luxTagId]="component.label"
+        fxFlex="1 1 100"
+        [luxBadgeNotification]="component.news ? 'neu' : ''"
+        luxBadgeColor="accent"
+        luxBadgeSize="large"
+      >
+        <lux-icon [luxIconName]="navigationService.moduleIcons.get(component.moduleName)" *ngIf="!component.useImage"></lux-icon>
+        <lux-image [luxImageSrc]="component.icon" luxImageWidth="100%" luxImageHeight="100%" *ngIf="component.useImage"></lux-image>
+      </lux-tile-ac>
+    </div>
+  </div>
+</div>

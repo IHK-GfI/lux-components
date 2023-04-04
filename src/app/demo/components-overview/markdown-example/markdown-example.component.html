@@ -14,35 +14,35 @@
   </example-base-content>
   <example-base-simple-options>
     <div class="lux-highlight-section" fxLayout="column" style="min-height: 700px">
-      <lux-textarea luxLabel="Markdown-Daten" [(luxValue)]="markdownData" luxName="markdown_data">
+      <lux-textarea-ac luxLabel="Markdown-Daten" [(luxValue)]="markdownData" luxName="markdown_data">
         <lux-form-hint>
           Hier kann man beliebige Markdown-Daten einfügen und ausprobieren.
         </lux-form-hint>
-      </lux-textarea>
+      </lux-textarea-ac>
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
     <div class="lux-highlight-section column">
-      <lux-input luxLabel="luxFlex" luxName="markdown_luxFlex" [(luxValue)]="flex">
+      <lux-input-ac luxLabel="luxFlex" luxName="markdown_luxFlex" [(luxValue)]="flex">
            <lux-form-hint>
           Werte aus dem Flexlayout
         </lux-form-hint>
-      </lux-input>
-      <lux-input luxLabel="luxStyle" luxName="markdown_luxStyle" [(luxValue)]="style">
+      </lux-input-ac>
+      <lux-input-ac luxLabel="luxStyle" luxName="markdown_luxStyle" [(luxValue)]="style">
         <lux-form-hint>
           Beliebige Styles (z.B. color: red; background-color: blue)
         </lux-form-hint>
-      </lux-input>
-      <lux-input luxLabel="luxClass" luxName="markdown_luxClass" [(luxValue)]="class">
+      </lux-input-ac>
+      <lux-input-ac luxLabel="luxClass" luxName="markdown_luxClass" [(luxValue)]="class">
         <lux-form-hint>
           Beliebige CSS-Classen (z.B. lux-mt-3)
         </lux-form-hint>
-      </lux-input>
+      </lux-input-ac>
     </div>
 
     <div class="lux-highlight-section column">
-      <lux-toggle luxLabel="Folgendes verbieten" [(luxChecked)]="forbiddenTagsToggle" [luxNoLabels]="true"></lux-toggle>
-      <lux-input
+      <lux-toggle-ac luxLabel="Folgendes verbieten" [(luxChecked)]="forbiddenTagsToggle" [luxNoLabels]="true"></lux-toggle-ac>
+      <lux-input-ac
         luxLabel="Verbotene Tags"
         luxName="markdown_forbiddenTags"
         [luxDisabled]="!forbiddenTagsToggle"
@@ -52,8 +52,8 @@
         <lux-form-hint>
           Kommaseparierte Liste von Tags (z.B. a,h1,p)
         </lux-form-hint>
-      </lux-input>
-      <lux-input
+      </lux-input-ac>
+      <lux-input-ac
         luxLabel="Verbotene Attriubte"
         luxName="markdown_forbiddenAttributes"
         [luxDisabled]="!forbiddenTagsToggle"
@@ -63,9 +63,9 @@
         <lux-form-hint>
           Kommaseparierte Liste von Attributen (z.B. href,target)
         </lux-form-hint>
-      </lux-input>
-      <lux-toggle class="lux-pt-3" luxLabel="Nur folgendes erlauben" [(luxChecked)]="allowedTagsToggle" [luxNoLabels]="true"></lux-toggle>
-      <lux-input
+      </lux-input-ac>
+      <lux-toggle-ac class="lux-pt-3" luxLabel="Nur folgendes erlauben" [(luxChecked)]="allowedTagsToggle" [luxNoLabels]="true"></lux-toggle-ac>
+      <lux-input-ac
         luxLabel="Erlaubte Tags"
         luxName="markdown_allowedTags"
         [luxDisabled]="!allowedTagsToggle"
@@ -75,8 +75,8 @@
         <lux-form-hint>
           Kommaseparierte Liste von Tags (z.B. a,h1,p)
         </lux-form-hint>
-      </lux-input>
-      <lux-input
+      </lux-input-ac>
+      <lux-input-ac
         luxLabel="Erlaubte Attribute"
         luxName="markdown_allowedAttributes"
         [luxDisabled]="!allowedTagsToggle"
@@ -86,10 +86,10 @@
         <lux-form-hint>
           Kommaseparierte Liste von Attributen (z.B. href,target)
         </lux-form-hint>
-      </lux-input>
+      </lux-input-ac>
 
-      <lux-toggle class="lux-pt-3" luxLabel="Zusätzlich erlauben" [(luxChecked)]="addAllowedTagsToggle" [luxNoLabels]="true"></lux-toggle>
-      <lux-input
+      <lux-toggle-ac class="lux-pt-3" luxLabel="Zusätzlich erlauben" [(luxChecked)]="addAllowedTagsToggle" [luxNoLabels]="true"></lux-toggle-ac>
+      <lux-input-ac
         luxLabel="Zusätzlich erlaubte Tags"
         luxName="markdown_addAllowedTags"
         [luxDisabled]="!addAllowedTagsToggle"
@@ -99,8 +99,8 @@
         <lux-form-hint>
           Kommaseparierte Liste von Tags (z.B. a,h1,p)
         </lux-form-hint>
-      </lux-input>
-      <lux-input
+      </lux-input-ac>
+      <lux-input-ac
         luxLabel="Zusätzlich erlaubte Attribute"
         luxName="markdown_addAllowedAttributes"
         [luxDisabled]="!addAllowedTagsToggle"
@@ -110,7 +110,7 @@
         <lux-form-hint>
           Kommaseparierte Liste von Attributen (z.B. href,target)
         </lux-form-hint>
-      </lux-input>
+      </lux-input-ac>
     </div>
   </example-base-advanced-options>
 </example-base-structure>

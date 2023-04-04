@@ -111,7 +111,7 @@
           </lux-icon>
         </div>
       </div>
-    </div> 
+    </div>
   </example-base-content>
   <example-base-simple-options>
     <div class="lux-highlight-section">
@@ -123,57 +123,57 @@
     </div>
     <lux-divider [luxInset]="true"></lux-divider>
     <div class="lux-highlight-section column">
-      <lux-input [(luxValue)]="iconName" luxLabel="luxIconName">
+      <lux-input-ac [(luxValue)]="iconName" luxLabel="luxIconName">
         <lux-form-hint>
           Diese Property bestimmt das Icon selbst (z.B. 'fab fa-android' für FontAwesome oder 'android' für
           Material).<br />
           Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
         </lux-form-hint>
-      </lux-input>
-      <lux-select [(luxSelected)]="iconSize" [luxOptions]="iconSizes" luxLabel="luxIconSize">
+      </lux-input-ac>
+      <lux-select-ac [(luxSelected)]="iconSize" [luxOptions]="iconSizes" luxLabel="luxIconSize">
         <lux-form-hint>
           Über diese Property kann die Größe des Icons festgelegt werden.<br />
           Die Größen sind relative 'em'-Werte.
         </lux-form-hint>
-      </lux-select>
-      <lux-checkbox [(luxChecked)]="rounded" luxLabel="luxRounded" [luxNoTopLabel]="true">
+      </lux-select-ac>
+      <lux-checkbox-ac [(luxChecked)]="rounded" luxLabel="luxRounded" [luxNoTopLabel]="true">
         <lux-form-hint>
           Diese Property aktiviert eine abgerundete Darstellung des Icons<br />
           Ist nur in Kombination mit einer 'luxColor' sichtbar.
         </lux-form-hint>
-      </lux-checkbox>
+      </lux-checkbox-ac>
     </div>
-    <lux-input
+    <lux-input-ac
       luxName="button_background_Color"
       class="lux-highlight-section"
       [(luxValue)]="backgroundColor"
       luxLabel="Hintergrundfarbe"
     >
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen. <br/> Z.B. #f0f0f2 oder </lux-form-hint>
-    </lux-input>
+    </lux-input-ac>
     <div class="lux-highlight-section">
-      <lux-link-plain 
-        luxLabel="Zur Iconsuche" 
-        luxHref="/components-overview/example/icon-overview" 
-        luxIconName="lux-interface-arrows-button-right" 
+      <lux-link-plain
+        luxLabel="Zur Iconsuche"
+        luxHref="/components-overview/example/icon-overview"
+        luxIconName="lux-interface-arrows-button-right"
         [luxIconShowRight]="true"
       ></lux-link-plain>
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
     <div class="lux-highlight-section column">
-      <lux-input [(luxValue)]="margin" luxLabel="luxMargin">
+      <lux-input-ac [(luxValue)]="margin" luxLabel="luxMargin">
         <lux-form-hint>
           Die Property ermöglicht es, die Margins für das Icon festzulegen<br />
           (z.B. '4px', '10px, 5em' oder '1px, 2px, 3px, 4px').
         </lux-form-hint>
-      </lux-input>
-      <lux-input [(luxValue)]="padding" luxLabel="luxPadding">
+      </lux-input-ac>
+      <lux-input-ac [(luxValue)]="padding" luxLabel="luxPadding">
         <lux-form-hint>
           Die Property ermöglicht es, die Paddings für das Icon festzulegen<br />
           (z.B. '4px', '10px, 5em' oder '1px, 2px, 3px, 4px').
         </lux-form-hint>
-      </lux-input>
+      </lux-input-ac>
     </div>
   </example-base-advanced-options>
 </example-base-structure>

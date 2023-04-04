@@ -7,17 +7,17 @@
       </lux-card>
       <span>Ihre Daten werden im Anschluss an diesen Dialog gespeichert.</span>
       <b>Zusatzinformationen</b>
-      <lux-textarea luxName="dialog_Anmerkung" luxLabel="Anmerkung" luxPlaceholder="Anmerkungen" [luxMinRows]="1"> </lux-textarea>
+      <lux-textarea-ac luxName="dialog_Anmerkung" luxLabel="Anmerkung" luxPlaceholder="Anmerkungen" [luxMinRows]="1"> </lux-textarea-ac>
       <lux-file-upload></lux-file-upload>
       <div fxLayout="row" fxLayoutAlign="start center" class="toggle-agb-container">
-        <lux-toggle
+        <lux-toggle-ac
           luxLabel="AGB gelesen"
           luxHint="Ich habe die AGB und Datenschutzvereinbarungen gelesen und akzeptiere diese."
           [luxRequired]="true"
           [luxNoTopLabel]="true"
           #agbAcceptedToggle
         >
-        </lux-toggle>
+        </lux-toggle-ac>
         <lux-button
           class="info-btn"
           luxIconName="lux-interface-alert-information-circle"

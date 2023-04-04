@@ -5,7 +5,7 @@ import { delay, take, tap } from 'rxjs/operators';
 import { LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
 import { LuxAppFooterButtonService } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxConsoleService } from '../../../modules/lux-util/lux-console.service';
-import { MasterDetailExampleDataService } from '../master-detail-example/master-detail-example-data.service';
+import { MasterDetailExampleDataService } from './master-detail-example-data.service';
 
 @Component({
   selector: 'lux-master-detail-ac-example',

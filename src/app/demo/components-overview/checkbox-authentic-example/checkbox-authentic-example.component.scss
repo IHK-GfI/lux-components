@@ -1,0 +1,22 @@
+.demo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.demo-button-row {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+@media (max-width: 1279px) {
+  .demo-button-row {
+    flex-direction: column;
+    justify-content: flex-start;
+
+    lux-button ::ng-deep button.lux-button {
+      width: 100%;
+    }
+  }
+}

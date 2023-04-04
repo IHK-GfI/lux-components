@@ -15,19 +15,19 @@
         <span><b>Value:</b> {{ luxStorageService.getItemAsObservable(localStorage.key(i)!) | async }} </span>
         <br>
         <div
-          fxLayout.gt-sm="row" 
-          fxLayout.lt-md="column" 
-          fxLayoutAlign.gt-sm="space-between end" 
-          fxLayoutAlign.lt-md="space-between stretch" 
-          fxLayoutGap.gt-sm="16px" 
+          fxLayout.gt-sm="row"
+          fxLayout.lt-md="column"
+          fxLayoutAlign.gt-sm="space-between end"
+          fxLayoutAlign.lt-md="space-between stretch"
+          fxLayoutGap.gt-sm="16px"
           fxLayoutGap.lt-md="8px"
           *ngIf="!localStorage.key(i)!.endsWith('sensitive')"
         >
-          <lux-input  fxFlex.gt-sm="0 1 calc(100%-114px)" luxLabel="Neuer Value" #luxInput [luxNoBottomLabel]="true"></lux-input>
-          <div 
-            fxLayout="row" 
-            fxLayoutAlign.gt-sm="end center" 
-            fxLayoutAlign.lt-md="center center" 
+          <lux-input-ac  fxFlex.gt-sm="0 1 calc(100%-114px)" luxLabel="Neuer Value" #luxInput [luxNoBottomLabel]="true"></lux-input-ac>
+          <div
+            fxLayout="row"
+            fxLayoutAlign.gt-sm="end center"
+            fxLayoutAlign.lt-md="center center"
             fxFlex.gt-sm="1 1 98px"
             fxLayoutGap="8px"
           >
@@ -68,26 +68,26 @@
       </ol>
     </div>
     <div class="lux-highlight-section column">
-      <lux-input
+      <lux-input-ac
         luxLabel="key"
         luxHint="Hier kann ein Key für einen Storage-Eintrag gesetzt werden."
         luxAutocomplete="off"
         [(luxValue)]="key"
       >
-      </lux-input>
-      <lux-input
+      </lux-input-ac>
+      <lux-input-ac
         luxLabel="value"
         luxHint="Hier kann der Wert für den Key {{ key }} eingetragen werden."
         luxAutocomplete="off"
         [(luxValue)]="value"
       >
-      </lux-input>
-      <lux-toggle luxLabel="sensitive" [(luxChecked)]="sensitive" [luxNoTopLabel]="true">
+      </lux-input-ac>
+      <lux-toggle-ac luxLabel="sensitive" [(luxChecked)]="sensitive" [luxNoTopLabel]="true">
         <lux-form-hint>
           Dieser Wert bestimmt, ob der eingetragene Schlüssel als 'empfindlicher' Datensatz gilt.<br />
           Sensible Datensätze können über den <i>LuxStorageService</i> gezielt entfernt werden.
         </lux-form-hint>
-      </lux-toggle>
+      </lux-toggle-ac>
       <div fxLayout="row" fxLayoutAlign="start" class="lux-mt-4">
         <lux-button
           luxIconName="lux-interface-add-1"

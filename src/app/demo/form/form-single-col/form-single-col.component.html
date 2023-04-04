@@ -6,28 +6,28 @@
           <div formGroupName="user">
             <lux-layout>
               <lux-layout-form-row luxTitle="Benutzer">
-                <lux-input
+                <lux-input-ac
                   luxName="user"
                   luxLabel="Name"
                   luxControlBinding="name"
                   *luxLayoutRowItem="{}"
-                ></lux-input>
+                ></lux-input-ac>
               </lux-layout-form-row>
               <lux-layout-form-row>
-                <lux-input
+                <lux-input-ac
                   luxName="current-password"
                   luxLabel="Passwort"
                   luxType="password"
                   luxControlBinding="password"
                   *luxLayoutRowItem="{}"
                 >
-                  <lux-input-suffix>
+                  <lux-input-ac-suffix>
                     <lux-icon luxIconName="lux-interface-lock"></lux-icon>
-                  </lux-input-suffix>
-                </lux-input>
+                  </lux-input-ac-suffix>
+                </lux-input-ac>
               </lux-layout-form-row>
               <lux-layout-form-row>
-                <lux-autocomplete
+                <lux-autocomplete-ac
                   [luxOptions]="salutations"
                   luxLabel="Anrede"
                   [luxLookupDelay]="100"
@@ -36,27 +36,27 @@
                   luxControlBinding="salutation"
                   *luxLayoutRowItem="{}"
                 >
-                </lux-autocomplete>
+                </lux-autocomplete-ac>
               </lux-layout-form-row>
               <lux-layout-form-row>
-                <lux-input luxName="email" luxLabel="E-Mail" luxControlBinding="email" *luxLayoutRowItem="{}">
-                  <lux-input-suffix>
+                <lux-input-ac luxName="email" luxLabel="E-Mail" luxControlBinding="email" *luxLayoutRowItem="{}">
+                  <lux-input-ac-suffix>
                     <lux-icon luxIconName="lux-mail-sign-at"></lux-icon>
-                  </lux-input-suffix>
-                </lux-input>
+                  </lux-input-ac-suffix>
+                </lux-input-ac>
               </lux-layout-form-row>
               <lux-layout-form-row>
-                <lux-input
+                <lux-input-ac
                   luxName="form-single_DeaktiviertesElement"
                   luxLabel="Deaktiviertes Element"
                   luxControlBinding="deactivated"
                   [luxDisabled]="true"
                   *luxLayoutRowItem="{}"
                 >
-                </lux-input>
+                </lux-input-ac>
               </lux-layout-form-row>
               <lux-layout-form-row>
-                <lux-radio
+                <lux-radio-ac
                   [luxOrientationVertical]="false"
                   [luxOptions]="genders"
                   luxControlBinding="gender"
@@ -66,10 +66,10 @@
                   <ng-template let-option>
                     {{ option.name }}
                   </ng-template>
-                </lux-radio>
+                </lux-radio-ac>
               </lux-layout-form-row>
               <lux-layout-form-row>
-                <lux-input
+                <lux-input-ac
                   luxName="form-single_Alter"
                   luxLabel="Alter"
                   luxControlBinding="age"
@@ -77,10 +77,10 @@
                   [luxNumberAlignLeft]="true"
                   *luxLayoutRowItem="{}"
                 >
-                </lux-input>
+                </lux-input-ac>
               </lux-layout-form-row>
               <lux-layout-form-row>
-                <lux-autocomplete
+                <lux-autocomplete-ac
                   [luxOptions]="countries"
                   luxOptionLabelProp="name"
                   luxLabel="Land"
@@ -90,14 +90,14 @@
                   luxControlBinding="country"
                   *luxLayoutRowItem="{}"
                 >
-                </lux-autocomplete>
+                </lux-autocomplete-ac>
               </lux-layout-form-row>
             </lux-layout>
           </div>
 
           <lux-layout>
             <lux-layout-form-row luxTitle="Sonstiges" class="lux-mt-4">
-              <lux-select
+              <lux-select-ac
                 luxLabel="Rollen auswählen"
                 [luxOptions]="roles"
                 luxOptionLabelProp="name"
@@ -105,26 +105,26 @@
                 [luxMultiple]="true"
                 luxControlBinding="roles"
                 *luxLayoutRowItem="{}"
-              ></lux-select>
+              ></lux-select-ac>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-chips
+              <lux-chips-ac
                 [luxInputAllowed]="true"
                 luxInputLabel="Neue Rolle..."
                 luxOrientation="horizontal"
                 (luxChipAdded)="addRole($event)"
                 *luxLayoutRowItem="{}"
               >
-                <lux-chip (luxChipRemoved)="removeRole(i)" *ngFor="let role of roles; let i = index">
+                <lux-chip-ac (luxChipRemoved)="removeRole(i)" *ngFor="let role of roles; let i = index">
                   {{ role.name }}
-                </lux-chip>
-              </lux-chips>
+                </lux-chip-ac>
+              </lux-chips-ac>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-toggle luxLabel="EULA zugestimmt" luxControlBinding="eula" *luxLayoutRowItem="{}"></lux-toggle>
+              <lux-toggle-ac luxLabel="EULA zugestimmt" luxControlBinding="eula" *luxLayoutRowItem="{}"></lux-toggle-ac>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-datepicker luxControlBinding="date" luxLabel="Läuft ab am" *luxLayoutRowItem="{}"></lux-datepicker>
+              <lux-datepicker-ac luxControlBinding="date" luxLabel="Läuft ab am" *luxLayoutRowItem="{}"></lux-datepicker-ac>
             </lux-layout-form-row>
           </lux-layout>
         </form>
