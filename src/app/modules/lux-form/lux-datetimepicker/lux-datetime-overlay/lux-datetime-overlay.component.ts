@@ -16,7 +16,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { MAT_DATEPICKER_SCROLL_STRATEGY, MatDateSelectionModel } from "@angular/material/datepicker";
-import { MatFormField } from '@angular/material/form-field';
+import { MatLegacyFormField as MatFormField } from '@angular/material/legacy-form-field';
 import { merge, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LuxThemePalette } from '../../../lux-util/lux-colors.enum';

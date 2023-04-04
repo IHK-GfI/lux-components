@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, HostBinding, Input, Output, ViewCh
 import { visibilityTrigger } from './lux-message-box-model/lux-message-box.animations';
 import { ILuxMessageChangeEvent, ILuxMessageCloseEvent } from './lux-message-box-model/lux-message-events.interface';
 import { ILuxMessage } from './lux-message-box-model/lux-message.interface';
-import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { MatLegacyPaginatorIntl as MatPaginatorIntl, LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 import { LuxPaginatorIntl } from '../../lux-util/lux-paginator-intl';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 

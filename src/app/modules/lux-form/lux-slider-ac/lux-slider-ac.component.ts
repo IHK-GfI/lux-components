@@ -13,7 +13,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { MatSlider, MatSliderChange } from '@angular/material/slider';
+import { MatLegacySlider as MatSlider, MatLegacySliderChange as MatSliderChange } from '@angular/material/legacy-slider';
 import { LuxFormComponentBase } from '../lux-form-model/lux-form-component-base.class';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';

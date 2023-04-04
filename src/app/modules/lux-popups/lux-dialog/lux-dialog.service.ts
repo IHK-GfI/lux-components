@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
 import { ComponentType } from '@angular/cdk/portal';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxDialogRef } from './lux-dialog-model/lux-dialog-ref.class';

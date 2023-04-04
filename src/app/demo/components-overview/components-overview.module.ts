@@ -56,7 +56,7 @@ import { CheckboxExampleComponent } from './checkbox-example/checkbox-example.co
 import { MenuExampleComponent } from './menu-example/menu-example.component';
 import { AppFooterExampleComponent } from './app-footer-example/app-footer-example.component';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
 import { TableExampleSimpleOptionsComponent } from './table-example/table-example-simple-options/table-example-simple-options.component';
 import { TableExampleAdvancedOptionsComponent } from './table-example/table-example-advanced-options/table-example-advanced-options.component';
 import { ToggleExampleComponent } from './toggle-example/toggle-example.component';
@@ -98,7 +98,7 @@ import { LinkPlainExampleComponent } from './link-plain-example/link-plain-examp
 import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-authentic-example.component';
 import { FileUploadExampleComponent } from './file-example/file-upload-example/file-upload-example.component';
 import { InputAuthenticExampleComponent } from './input-authentic-example/input-authentic-example.component';
-import { MatListModule } from '@angular/material/list';
+import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
 import { OverviewExampleComponent } from './tile-authentic-example/overview-example/overview-example.component';
 import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/checkbox-authentic-example.component';
 import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
@@ -113,7 +113,7 @@ import { ChipAuthenticExampleComponent } from './chip-authentic-example/chip-aut
 import { SliderAuthenticExampleComponent } from './slider-authentic-example/slider-authentic-example.component';
 import { LookupAutocompleteAcExampleComponent } from './lookup-examples/lookup-autocomplete-ac-example/lookup-autocomplete-ac-example.component';
 import { LookupComboboxAcExampleComponent } from './lookup-examples/lookup-combobox-ac-example/lookup-combobox-ac-example.component';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatIconModule } from '@angular/material/icon';
 import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
 import { ComponentsOverviewBlueComponent } from './components-overview-blue.component';

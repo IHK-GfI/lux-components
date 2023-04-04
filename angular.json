@@ -25,7 +25,9 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "localize": ["de"],
+            "localize": [
+              "de"
+            ],
             "i18nMissingTranslation": "error",
             "assets": [
               "src/assets",
@@ -81,14 +83,21 @@
                 "output": "./assets/themes"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": [
               {
                 "bundleName": "polyfill-webcomp",
                 "input": "node_modules/@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf.js"
               }
             ],
-            "allowedCommonJsDependencies": ["hammerjs", "ng2-pdf-viewer", "pdfjs-dist", "dompurify"]
+            "allowedCommonJsDependencies": [
+              "hammerjs",
+              "ng2-pdf-viewer",
+              "pdfjs-dist",
+              "dompurify"
+            ]
           },
           "configurations": {
             "production": {
@@ -129,7 +138,9 @@
               "namedChunks": true
             },
             "en": {
-              "localize": ["en"],
+              "localize": [
+                "en"
+              ],
               "aot": true,
               "outputPath": "dist/en",
               "i18nMissingTranslation": "error"
@@ -168,7 +179,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "assets": [
               "src/assets",
               "src/favicon.ico",
@@ -203,7 +216,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
@@ -216,6 +232,12 @@
     },
     "@schematics/angular:directive": {
       "prefix": "lux"
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
     }
   }
 }
