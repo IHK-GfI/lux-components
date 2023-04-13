@@ -232,6 +232,22 @@
         (luxClicked)="goToConfig()"
       >
       </lux-app-header-ac-nav-menu-item>
+      <lux-app-header-ac-nav-menu-item
+        *ngIf="mobileView"
+        luxLabel="Impressum"
+        luxAriaLabel="Impressum"
+        [luxSelected]="url.endsWith('impressum')"
+        (luxClicked)="router.navigate(['impressum'])"
+      >
+      </lux-app-header-ac-nav-menu-item>
+      <lux-app-header-ac-nav-menu-item
+        *ngIf="mobileView"
+        luxLabel="Lizenzhinweis"
+        luxAriaLabel="Lizenzhinweis"
+        [luxSelected]="url.endsWith('license-hint')"
+        (luxClicked)="router.navigate(['license-hint'])"
+      >
+      </lux-app-header-ac-nav-menu-item>
     </lux-app-header-ac-nav-menu>
 
     <lux-app-header-ac-action-nav>
