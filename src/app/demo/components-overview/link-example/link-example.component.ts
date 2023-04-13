@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
   templateUrl: './link-example.component.html'
 })
 export class LinkExampleComponent implements OnDestroy {
-
   showOutputEvents = false;
   colors: any[] = [
     { value: '', label: 'default' },
@@ -24,17 +23,19 @@ export class LinkExampleComponent implements OnDestroy {
   color: LuxThemePalette = 'primary';
   iconName = 'lux-interface-login-circle';
   iconShowRight = false;
-  raised = true;
+  flat = true;
+  raised = false;
   round = false;
   disabled = false;
   blank = true;
   href = 'https://www.ihk-gfi.de/';
   subscription: Subscription;
+  modeChangeRunning = false;
 
   constructor(private configService: LuxComponentsConfigService) {
     this.config = this.configService.currentConfig;
 
-    this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
+    this.subscription = this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
       if (this.config !== config) {
         this.config = config;
       }
@@ -58,5 +59,38 @@ export class LinkExampleComponent implements OnDestroy {
 
   click(event: Event) {
     this.log(this.showOutputEvents, 'luxClicked', event);
+  }
+
+  onFlat(toggle: boolean) {
+    if (!this.modeChangeRunning) {
+      this.modeChangeRunning = true;
+      if (toggle) {
+        this.raised = false;
+        this.round = false;
+      }
+      this.modeChangeRunning = false;
+    }
+  }
+
+  onRaised(toggle: boolean) {
+    if (!this.modeChangeRunning) {
+      this.modeChangeRunning = true;
+      if (toggle) {
+        this.flat = false;
+        this.round = false;
+      }
+      this.modeChangeRunning = false;
+    }
+  }
+
+  onRounded(toggle: boolean) {
+    if (!this.modeChangeRunning) {
+      this.modeChangeRunning = true;
+      if (toggle) {
+        this.flat = false;
+        this.raised = false;
+      }
+      this.modeChangeRunning = false;
+    }
   }
 }
