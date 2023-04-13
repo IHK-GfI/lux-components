@@ -8,6 +8,7 @@
 - **lux-form-controls-ac**: Neue Property "luxDense" für alle AC-Formular-Komponenten eingeführt. [Issue 288](https://github.com/IHK-GfI/lux-components/issues/288).
 - **lux-table**: AC-Formular-Komponenten werden innerhalb der Tabelle mit der geringeren Höhe angezeigt. (Nur im Theme Authentic) [Issue 288](https://github.com/IHK-GfI/lux-components/issues/288).
 - **lux-checkbox-container**: Neue Komponente lux-checkbox-container erstellt. [Issue 297](https:/github.com/IHK-GfI/lux-components/issues/297)
+- **lux-link**: Property "luxFlat" ergänzt. [Issue 307](https:/github.com/IHK-GfI/lux-components/issues/307)
 
 ## Bug Fixes
 

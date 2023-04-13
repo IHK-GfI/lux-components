@@ -1,13 +1,11 @@
-<example-base-structure
-  exampleTitle="Link"
-  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90link"
->
+<example-base-structure exampleTitle="Link" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90link">
   <example-base-content [exampleCentered]="true">
     <lux-link
       [luxLabel]="label"
       [luxColor]="color"
       [luxIconName]="iconName"
       [luxIconShowRight]="iconShowRight"
+      [luxFlat]="flat"
       [luxRaised]="raised"
       [luxRounded]="round"
       [luxDisabled]="disabled"
@@ -16,11 +14,11 @@
       [luxBlank]="blank"
       (luxClicked)="click($event)"
     >
-    </lux-link>  
+    </lux-link>
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
-    class="lux-highlight-section"
+      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
@@ -30,8 +28,7 @@
     <lux-input luxName="link_luxHref" class="lux-highlight-section" [(luxValue)]="href" luxLabel="luxHref">
       <lux-form-hint>
         Bestimmt die URL, zu der der Link routet.<br />
-        Wenn die URL nicht mit <i>http</i> beginnt, wird automatisch der Angular-Router für Routing innerhalb der
-        Applikation genommen.
+        Wenn die URL nicht mit <i>http</i> beginnt, wird automatisch der Angular-Router für Routing innerhalb der Applikation genommen.
       </lux-form-hint>
     </lux-input>
     <lux-toggle
@@ -50,11 +47,7 @@
       luxHint="Bestimmt den Text, der für den Link angezeigt wird."
     ></lux-input>
     <div fxLayout="column" class="lux-highlight-section">
-      <lux-input
-        luxName="button_luxIconName"
-        [(luxValue)]="iconName"
-        luxLabel="luxIconName"
-      >
+      <lux-input luxName="button_luxIconName" [(luxValue)]="iconName" luxLabel="luxIconName">
         <lux-form-hint>
           Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
           <i>luxLabel</i> gesetzt ist).<br />
@@ -78,7 +71,17 @@
     </lux-select>
     <lux-toggle
       class="lux-highlight-section"
+      [(luxChecked)]="flat"
+      (luxCheckedChange)="onFlat($event)"
+      luxLabel="luxFlat"
+      luxHint="Über diese Property kann der Link flach und ohne Schatten dargestellt werden."
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
       [(luxChecked)]="raised"
+      (luxCheckedChange)="onRaised($event)"
       luxLabel="luxRaised"
       luxHint="Über diese Property kann der Link hervorgehoben dargestellt werden."
       [luxNoTopLabel]="true"
@@ -87,6 +90,7 @@
     <lux-toggle
       class="lux-highlight-section"
       [(luxChecked)]="round"
+      (luxCheckedChange)="onRounded($event)"
       luxLabel="luxRounded"
       luxHint="Diese Property aktiviert eine runde Darstellung des Links."
       [luxNoTopLabel]="true"
@@ -110,8 +114,7 @@
       [luxNoTopLabel]="true"
     >
       <lux-form-hint>
-        Über den <i>LuxComponentsConfigService</i> kann für alle LuxLinks applikationsweit eine Uppercase-Darstellung
-        forciert werden.
+        Über den <i>LuxComponentsConfigService</i> kann für alle LuxLinks applikationsweit eine Uppercase-Darstellung forciert werden.
       </lux-form-hint>
     </lux-toggle>
   </example-base-advanced-options>
