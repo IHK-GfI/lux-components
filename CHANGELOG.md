@@ -12,6 +12,7 @@
 ## Bug Fixes
 
 - **lux-stepper-large**: Gleiche Ids für die Nav-Item-Labels. [Issue 299](https://github.com/IHK-GfI/lux-components/issues/299)
+- **lux-http-error**: Zeigt keine Fehler mehr an. [Issue 309](https://github.com/IHK-GfI/lux-components/issues/309)
 
 # Version 14.3.0
 

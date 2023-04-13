@@ -16,17 +16,20 @@ export class LuxHttpErrorInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const isAssetRequest = req.url.includes('/assets/');
     return next.handle(req).pipe(
-      tap(
-        () => {
-          LuxHttpErrorInterceptor.dataStream.next([]);
+      tap({
+        next: () => {
+          if (!isAssetRequest) {
+            LuxHttpErrorInterceptor.dataStream.next([]);
+          }
         },
-        (errorResponse) => {
-          if (errorResponse instanceof HttpErrorResponse && errorResponse.status === 400) {
+        error: (errorResponse) => {
+          if (!isAssetRequest && errorResponse instanceof HttpErrorResponse && errorResponse.status === 400) {
             LuxHttpErrorInterceptor.dataStream.next(LuxHttpErrorInterceptor.extractErrors(errorResponse.error));
           }
         }
-      )
+      })
     );
   }
 
