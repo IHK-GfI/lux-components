@@ -2,6 +2,8 @@
 
 ## New
 
+- **allgemein**: Update auf LUX-Components-Theme [14.5.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/14.5.0).
+- **allgemein**: Update auf LUX-Components-Icons-And-Fonts. [1.5.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.5.0).
 - **lux-autocomplete**: Einfaches String-Arrays kann als Optionen genutzt werden. [Issue 289](https://github.com/IHK-GfI/lux-components/issues/289)
 - **lux-link-plain**: Neue Property "luxCustomClass" hinzugefügt, hover-color für blue- und green-Theme angepasst. [Issue 284](https://github.com/IHK-GfI/lux-components/issues/284)
 - **lux-dialog**: Immer _dialogClosed_-Event auslösen, wenn Dialog geschlossen wird. [Issue 293](https://github.com/IHK-GfI/lux-components/issues/293)
