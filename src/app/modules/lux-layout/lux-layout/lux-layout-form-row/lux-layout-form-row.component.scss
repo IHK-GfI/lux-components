@@ -11,6 +11,13 @@
   min-width: 0;
 }
 
+.row-items-container {
+  align-items: center;
+  &.mobile {
+    align-items: stretch;
+  }
+}
+
 :host ::ng-deep {
   .row-item-container {
     & lux-input,
@@ -47,9 +54,37 @@
     & lux-datepicker input {
       width: calc(100% - 18px);
     }
+
+    > div {
+      display: flex;
+      width: 100%;
+      align-items: center;
+    }
+
+    &.row-item-no-top-label {
+      lux-button {
+        margin-bottom: 17px;
+      }
+
+      .lux-form-control .lux-form-control-label,
+      .lux-form-control-wrapper .lux-form-control-label-authentic {
+        display: none !important;
+      }
+    }
+
+    &.row-item-no-bottom-label {
+      lux-button {
+        margin-top: 17px;
+      }
+      .lux-form-control .lux-form-control-misc,
+      lux-form-control-wrapper .lux-form-control-wrapper .lux-form-control-misc-authentic {
+        display: none !important;
+      }
+    }
   }
 
-  & lux-chips, lux-chips-ac {
+  & lux-chips,
+  lux-chips-ac {
     box-sizing: border-box;
     flex-grow: 1;
     flex-shrink: 1;

@@ -7,11 +7,21 @@
 </div>
 <div fxLayout="row" [ngStyle]="{ 'margin-bottom': rowGap }">
   <div *ngIf="margin && luxMargin.marginLeft" [fxFlex]="margin"></div>
-  <div fxFlex="flex" [fxLayout]="layoutOrientation" [fxLayoutGap]="rowItemGap">
+  <div
+    fxFlex="flex"
+    [fxLayout]="layoutOrientation"
+    [fxLayoutGap]="rowItemGap"
+    class="row-items-container"
+    [ngClass]="{ mobile: !greaterWrapAt }"
+  >
     <ng-container *ngFor="let rowItem of rowItems">
       <div
         [fxFlex]="rowItem.luxLayoutRowItem.flex ? rowItem.luxLayoutRowItem.flex : calculateWidth(rowItem)"
         class="row-item-container"
+        [ngClass]="{
+          'row-item-no-top-label': rowItem.luxLayoutRowItem.formNoTopLabel,
+          'row-item-no-bottom-label': rowItem.luxLayoutRowItem.formNoBottomLabel
+        }"
         *ngIf="!rowItem.luxLayoutRowItem.empty || (rowItem.luxLayoutRowItem.empty && greaterWrapAt)"
       >
         <ng-container [ngTemplateOutlet]="rowItem.templateRef"></ng-container>
