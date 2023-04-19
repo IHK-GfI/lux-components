@@ -1,6 +1,10 @@
+.btn-container {
+  display: flex;
+  gap: 10px;
+}
+
 @media only screen and (max-width: 599px) {
-  lux-accordion.tip-panel lux-panel ::ng-deep{
-    //margin: 0 4px;
+  lux-accordion.tip-panel lux-panel ::ng-deep {
     padding-right: 0;
     padding-left: 0;
   }
@@ -8,42 +12,51 @@
     margin: 0 0;
   }
 }
-@media only screen and (min-width: 600px) and (max-width: 1279px) {
-  lux-accordion.tip-panel lux-panel ::ng-deep{
+@media only screen and (min-width: 600px) and (max-width: 959px) {
+  lux-accordion.tip-panel lux-panel ::ng-deep {
     padding-right: 0;
     padding-left: 0;
   }
   .accordion-wrapper {
-    margin: 0 2.5%
+    margin: 0 2.5%;
+  }
+}
+@media only screen and (min-width: 960px) and (max-width: 1279px) {
+  lux-accordion.tip-panel lux-panel ::ng-deep {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .accordion-wrapper {
+    margin: 0 5%;
   }
 }
 @media only screen and (min-width: 1280px) and (max-width: 1919px) {
-  lux-accordion.tip-panel lux-panel ::ng-deep{
+  lux-accordion.tip-panel lux-panel ::ng-deep {
     padding-right: 0;
     padding-left: 0;
   }
   .accordion-wrapper {
-    margin: 0 10%
+    margin: 0 10%;
   }
 }
 @media only screen and (min-width: 1920px) {
-  lux-accordion.tip-panel lux-panel ::ng-deep{
+  lux-accordion.tip-panel lux-panel ::ng-deep {
     padding-right: 0;
     padding-left: 0;
   }
   .accordion-wrapper {
-    margin: 0 15%
+    margin: 0 15%;
   }
 }
 
 lux-accordion.tip-panel lux-panel ::ng-deep {
-  .mat-expansion-panel-body{
+  .mat-expansion-panel-body {
     padding: 0 54px 40px 78px;
   }
 }
 
 .dont {
-  border:  1px solid var(--lux-theme-primary-300);
+  border: 1px solid var(--lux-theme-primary-300);
   border-bottom: 0px;
   padding-top: 24px;
   .bottom {
@@ -59,7 +72,7 @@ lux-accordion.tip-panel lux-panel ::ng-deep {
   }
 }
 .do {
-  border:  1px solid var(--lux-theme-primary-300);
+  border: 1px solid var(--lux-theme-primary-300);
   border-bottom: 0px;
   padding-top: 32px;
   .bottom {
@@ -76,10 +89,22 @@ lux-accordion.tip-panel lux-panel ::ng-deep {
 }
 
 .code-section {
+  display: flex;
   padding: 4px 24px;
   border-radius: 4px;
   background-color: var(--lux-theme-primary-50);
-  overflow: auto;
+  &:not(:last-child) {
+    margin-bottom: 32px;
+  }
+
+  ::ng-deep pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+  }
 }
 
 a {
