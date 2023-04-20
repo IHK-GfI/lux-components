@@ -25,10 +25,6 @@ lux-progress ::ng-deep mat-progress-bar {
       width: 100%;
       border-spacing: 0 var(--lux-theme-outline-width);
 
-      ::ng-deep .mat-table tfoot, .mat-table-sticky {
-        background: unset;
-      }
-
       th {
         vertical-align: top;
         height: 30px;
@@ -50,12 +46,12 @@ lux-progress ::ng-deep mat-progress-bar {
         padding-bottom: 16px;
       }
 
-
       ::ng-deep tr.mat-header-row {
         height: auto;
       }
 
-      .lux-header-title, .lux-moved-header-title {
+      .lux-header-title,
+      .lux-moved-header-title {
         font-size: 12px;
         margin-top: 4px;
 
@@ -118,8 +114,6 @@ lux-progress ::ng-deep mat-progress-bar {
   min-width: 70px;
   width: 70px;
 
-
-
   lux-checkbox {
     pointer-events: none;
 
@@ -181,7 +175,6 @@ lux-progress ::ng-deep mat-progress-bar {
     margin: 0;
   }
 }
-
 
 .lux-aria-visible {
   position: absolute;

@@ -1,3 +1,9 @@
+# Version 14.5.0
+
+## Bug Fixes
+
+- **lux-table**: Feststehender Header hat einen transparenten Hintergrund. [Issue 303](https://github.com/IHK-GfI/lux-components/issues/303)
+
 # Version 14.4.0
 
 ## New
