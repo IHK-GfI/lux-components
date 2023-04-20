@@ -48,7 +48,7 @@ export class FormRowExampleComponent implements OnInit, OnDestroy {
 
   selected: any;
 
-  markdownData3 = `
+  htmlData1 = `
 <pre>
 Html
 
@@ -69,7 +69,7 @@ SCSS
 }
 </pre>
 `;
-  markdownData4 = `
+  htmlData2 = `
 <pre>
 Html
 
