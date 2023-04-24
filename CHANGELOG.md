@@ -5,6 +5,7 @@
 - **lux-table**: Feststehender Header hat einen transparenten Hintergrund. [Issue 303](https://github.com/IHK-GfI/lux-components/issues/303)
 - **lux-layout-form-row**: Buttons werden in der Formrow zentriert angezeigt. [Issue 304](https://github.com/IHK-GfI/lux-components/issues/304)
 - **lux-app-header-nav-menu**: Unerwünschte Consolenausgabe entfernen. [Issue 306](https://github.com/IHK-GfI/lux-components/issues/306)
+- **lux-menu**: Lange Labels im Menu-Panel werden automatisch mit "Text-overflow: ellipsis" gekürzt. [Issue 312](https://github.com/IHK-GfI/lux-components/issues/312)
 
 # Version 14.4.0
 
