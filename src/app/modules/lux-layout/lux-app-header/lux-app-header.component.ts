@@ -12,7 +12,7 @@ import {
 } from "@angular/core";
 import { LuxAppService } from "../../lux-util/lux-app.service";
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
-import { LuxMasterDetailMobileHelperService } from '../lux-master-detail/lux-master-detail-mobile-helper.service';
+import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxSideNavComponent } from './lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component';
 import { LuxAppHeaderRightNavComponent } from './lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
 import { LuxAppHeaderActionNavComponent } from './lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav.component';
@@ -41,10 +41,7 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output() luxClicked = new EventEmitter<Event>();
 
-  isMasterOpen?: boolean;
-  isMasterDetailAvailable?: boolean;
-  masterHasValue?: boolean;
-
+  mobileView: boolean;
   userNameShort?: string;
   hasOnClickedListener?: boolean;
   subscriptions: Subscription[] = [];
@@ -55,28 +52,12 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   @ContentChild(LuxAppHeaderRightNavComponent) rightNav?: LuxAppHeaderRightNavComponent;
   @ContentChild(LuxSideNavComponent) sideNav?: LuxSideNavComponent;
 
-  constructor(public mobileHelperService: LuxMasterDetailMobileHelperService, private logger: LuxConsoleService, private elementRef: ElementRef, private appService: LuxAppService) {
+  constructor(private queryService: LuxMediaQueryObserverService, private logger: LuxConsoleService, private elementRef: ElementRef, private appService: LuxAppService) {
     this.appService.appHeaderEl = elementRef.nativeElement;
 
-    // Wenn die Master-Ansicht der MD-Komponente ändert, muss ein anderer Navigations-Button angezeigt werden
-    this.subscriptions.push(this.mobileHelperService.masterCollapsedObservable.subscribe((isOpen: boolean) => {
-      setTimeout(() => {
-        this.isMasterOpen = isOpen;
-      });
-    }));
-
-    // Prüfen, ob ein Master-Detail aktuell vorhanden ist
-    this.subscriptions.push(this.mobileHelperService.isRegisteredObservable.subscribe((isRegistered: boolean) => {
-      setTimeout(() => {
-        this.isMasterDetailAvailable = isRegistered;
-      });
-    }));
-
-    // Prüfen, ob das Master-Detail einen Wert hat
-    this.subscriptions.push(this.mobileHelperService.hasValueObservable.subscribe((hasValue: boolean) => {
-      setTimeout(() => {
-        this.masterHasValue = hasValue;
-      });
+    this.mobileView = this.queryService.activeMediaQuery === 'xs' || this.queryService.activeMediaQuery === 'sm';
+    this.subscriptions.push(this.queryService.getMediaQueryChangedAsObservable().subscribe((query) => {
+      this.mobileView = query === 'xs' || query === 'sm';
     }));
   }
 
@@ -98,16 +79,6 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
     if (!this.luxAppTitleShort || this.luxAppTitleShort.length === 0) {
       this.logger.warn('No title is set for the mobile view.');
     }
-  }
-
-  showMasterClick() {
-    this.mobileHelperService.openMaster();
-  }
-
-  isMasterToggleVisible() {
-    return (
-      this.isMasterDetailAvailable && this.mobileHelperService.isMobile() && !this.isMasterOpen && this.masterHasValue
-    );
   }
 
   onMenuClosed() {

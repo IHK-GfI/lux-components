@@ -20,7 +20,7 @@ import { MatLegacyFormField as MatFormField } from '@angular/material/legacy-for
 import { merge, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { LuxThemePalette } from '../../../lux-util/lux-colors.enum';
-import { LuxDateFilterFn } from '../../lux-datepicker/lux-datepicker.component';
+import { LuxDateFilterAcFn } from '../../lux-datepicker-ac/lux-datepicker-ac.component';
 import { LuxDatetimeOverlayContentAcComponent } from './lux-datetime-overlay-content-ac.component';
 
 @Component({
@@ -44,7 +44,7 @@ export class LuxDatetimeOverlayAcComponent {
   opened = false;
   scrollStrategy: () => ScrollStrategy;
   _selectedDate?: string;
-  _luxCustomFilter: LuxDateFilterFn = () => true;
+  _luxCustomFilter: LuxDateFilterAcFn = () => true;
 
   // Code des Interfaces "MatDatepickerPanel<MatDatepickerControl<any>, any, any>" - Start
   id = '';
@@ -60,7 +60,7 @@ export class LuxDatetimeOverlayAcComponent {
   }
 
   @Input()
-  set luxCustomFilter(customFilterFn: LuxDateFilterFn | undefined){
+  set luxCustomFilter(customFilterFn: LuxDateFilterAcFn | undefined){
     this._luxCustomFilter = customFilterFn ?? (() => true);
   }
 

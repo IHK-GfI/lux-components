@@ -5,10 +5,8 @@ import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestB
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { of } from 'rxjs';
 import { LuxActionModule } from '../../../lux-action/lux-action.module';
 import { LuxLayoutModule } from '../../../lux-layout/lux-layout.module';
-import { LuxMasterDetailMobileHelperService } from '../../../lux-layout/lux-master-detail/lux-master-detail-mobile-helper.service';
 import { LuxStorageService } from '../../../lux-util/lux-storage.service';
 import { LuxTestHelper } from '../../../lux-util/testing/lux-test-helper';
 import { LuxPopupsModule } from '../../lux-popups.module';
@@ -100,17 +98,6 @@ const findToggleElement = (toggleElement: any) => {
 class MockSnackbarComponent {}
 
 @Injectable()
-class MockMobileHelperService {
-  masterCollapsedObservable = of({});
-  isRegisteredObservable = of({});
-  hasValueObservable = of({});
-
-  isMobile() {
-    return false;
-  }
-}
-
-@Injectable()
 class MockStorageService {
   getItem() {
     return 1;
@@ -121,7 +108,6 @@ class MockStorageService {
     imports: [MatSnackBarModule, LuxPopupsModule, LuxLayoutModule, LuxActionModule, NoopAnimationsModule],
     exports: [],
     providers: [
-        { provide: LuxMasterDetailMobileHelperService, useClass: MockMobileHelperService },
         { provide: LuxStorageService, useClass: MockStorageService }
     ],
     declarations: [MockSnackbarComponent]

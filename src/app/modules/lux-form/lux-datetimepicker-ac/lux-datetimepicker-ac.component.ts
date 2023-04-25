@@ -21,7 +21,6 @@ import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxDateFilterAcFn, LuxStartAcView } from '../lux-datepicker-ac/lux-datepicker-ac.component';
-import { APP_DATE_TIME_FORMATS } from '../lux-datetimepicker/lux-datetimepicker.component';
 import { LuxValidationErrors, ValidatorFnType } from '../lux-form-model/lux-form-component-base.class';
 import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
 import { LuxDatetimeOverlayAcComponent } from '../lux-datetimepicker-ac/lux-datetime-overlay-ac/lux-datetime-overlay-ac.component';
@@ -307,11 +306,11 @@ export class LuxDatetimepickerAcComponent<T = any>
   }
 
   private formatDateTime(date: any) {
-    return this.dateTimeAdapter.format(date, APP_DATE_TIME_FORMATS.display.dateInput);
+    return this.dateTimeAdapter.format(date, APP_DATE_TIME_FORMATS_AC.display.dateInput);
   }
 
   private parseDateTime(date: string) {
-    return this.dateTimeAdapter.parse(date, APP_DATE_TIME_FORMATS.parse.dateInput);
+    return this.dateTimeAdapter.parse(date, APP_DATE_TIME_FORMATS_AC.parse.dateInput);
   }
 
   private updateDateValue(value: any) {

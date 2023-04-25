@@ -14,12 +14,12 @@ export class TableExampleComponent extends TableExampleBaseClass {
   \`\`\`html
   <lux-table-column-content>
     ...
-      <lux-input
+      <lux-input-ac
         ...
         *ngIf="element.editable"
         [luxNoLabels]="true"
         ...
-      ></lux-input>
+      ></lux-input-ac>
     ...
   </lux-table-column-content>
   \`\`\`

@@ -25,15 +25,15 @@
     </ng-container>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
-    ></lux-toggle>
+    ></lux-toggle-ac>
     <lux-divider [luxInset]="true"></lux-divider>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxImmediateCallback"
       [(luxChecked)]="immediateCallback"
@@ -43,16 +43,16 @@
         Bestimmt ob bei Initiierung ein luxScrolled-Event abgegeben wird.<br />
         Damit diese Property greift, bitte in den Optionen den Buttpn "Neu generieren" anklicken.
       </lux-form-hint>
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxIsLoading"
       luxHint="Teilt der Component mit, ob gerade Daten geladen werden. Wenn true, werden keine luxScrolled-Events emittet."
       [(luxChecked)]="isLoading"
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-input
+    </lux-toggle-ac>
+    <lux-input-ac
       class="lux-highlight-section"
       luxType="number"
       [luxNumberAlignLeft]="true"
@@ -61,7 +61,7 @@
       luxHint="Bestimmt die Prozentzahl in der Scrollbar, ab der das luxScrolled-Event emitted wird."
       [(luxValue)]="scrollPercent"
     >
-    </lux-input>
+    </lux-input-ac>
   </example-base-simple-options>
   <example-base-options-actions>
     <div class="lux-simple-form row">

@@ -9,28 +9,16 @@
   <!-- ausklappbares Side-Nav (linksbündig) -->
   <div fxLayout="row" fxFlex="0 0 auto" class="lux-header-side-nav">
     <div fxLayout="row" fxLayoutAlign="start center">
-      <ng-container *ngIf="isMasterToggleVisible(); else sideNavTriggerTemplate">
-        <lux-button
-          (luxClicked)="showMasterClick()"
-          luxIconName="lux-interface-arrows-button-left"
-          class="lux-master-toggle"
-          luxTagId="btnMasterToggle"
-          fxFlex="auto"
-        >
-        </lux-button>
-      </ng-container>
-      <ng-template #sideNavTriggerTemplate>
-        <lux-button
-          class="lux-side-nav-trigger"
-          [ngClass]="{ 'lux-side-nav-trigger-active': sideNav.sideNavExpanded }"
-          (luxClicked)="sideNav.toggle()"
-          luxIconName="lux-interface-setting-menu-1"
-          luxTagId="lux-side-nav-trigger"
-          [luxAriaExpanded]="sideNav.sideNavExpanded"
-          [luxAriaLabel]="luxAriaAppMenuButtonLabel"
-          *ngIf="sideNav"
-        ></lux-button>
-      </ng-template>
+      <lux-button
+        class="lux-side-nav-trigger"
+        [ngClass]="{ 'lux-side-nav-trigger-active': sideNav.sideNavExpanded }"
+        (luxClicked)="sideNav.toggle()"
+        luxIconName="lux-interface-setting-menu-1"
+        luxTagId="lux-side-nav-trigger"
+        [luxAriaExpanded]="sideNav.sideNavExpanded"
+        [luxAriaLabel]="luxAriaAppMenuButtonLabel"
+        *ngIf="sideNav"
+      ></lux-button>
 
       <span fxLayout="row" fxLayoutAlign="center center" class="lux-nowrap lux-header-title" fxFlex="auto">
         <lux-icon
@@ -43,7 +31,7 @@
           (keydown.space)="onClicked($event)"
           [attr.role]="hasOnClickedListener ? 'link' : null"
           [attr.tabindex]="hasOnClickedListener ? '0' : null"
-          *ngIf="luxIconName && !sideNav && !mobileHelperService.isMobile()"
+          *ngIf="luxIconName && !sideNav && !mobileView"
         ></lux-icon>
         <lux-image
           style="padding: 0 5px"
@@ -57,7 +45,7 @@
           (keydown.space)="onClicked($event)"
           [attr.role]="hasOnClickedListener ? 'link' : null"
           [attr.tabindex]="hasOnClickedListener ? '0' : null"
-          *ngIf="luxImageSrc && !sideNav && !mobileHelperService.isMobile()"
+          *ngIf="luxImageSrc && !sideNav && !mobileView"
         ></lux-image
         ><span
           fxFlex="auto"
@@ -70,7 +58,7 @@
           [attr.role]="hasOnClickedListener ? 'link' : null"
           [attr.tabindex]="hasOnClickedListener ? '0' : null"
           [ngClass]="{ 'lux-cursor': hasOnClickedListener, focused: hasOnClickedListener }"
-          >{{ mobileHelperService.isMobile() ? luxAppTitleShort : luxAppTitle }}</span
+          >{{ mobileView ? luxAppTitleShort : luxAppTitle }}</span
         >
       </span>
     </div>

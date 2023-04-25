@@ -15,23 +15,23 @@ export class FormRowExampleComponent implements OnInit, OnDestroy {
   Html
   \`\`\`
   <lux-layout>
-    <lux-layout-form-row 
+    <lux-layout-form-row
       [luxGap]="{row: '16px', rowItem: '24px', column: '8px'}"
     >
-      <lux-input 
-        luxLabel="Labeltext" 
-        luxHint="Hinweistext" 
+      <lux-input-ac
+        luxLabel="Labeltext"
+        luxHint="Hinweistext"
         *luxLayoutRowItem="{}"
-      ></lux-input>
+      ></lux-input-ac>
     </lux-layout-form-row>
-    <lux-layout-form-row 
+    <lux-layout-form-row
       [luxGap]="{row: '16px', rowItem: '24px', column: '8px'}"
     >
-      <lux-input 
-        luxLabel="Labeltext" 
-        luxHint="Hinweistext" 
+      <lux-input-ac
+        luxLabel="Labeltext"
+        luxHint="Hinweistext"
         *luxLayoutRowItem="{}"
-      ></lux-input>
+      ></lux-input-ac>
     </lux-layout-form-row>
   </lux-layout>
   \`\`\`

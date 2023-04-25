@@ -14,15 +14,15 @@
   </example-base-content>
   <example-base-simple-options>
     <div fxLayout="column">
-      <lux-input
+      <lux-input-ac
         luxName="lookup-label_knr"
         luxLabel="Knr"
         class="lux-highlight-section"
         [(luxValue)]="knr"
         luxType="number"
         [luxNumberAlignLeft]="true"
-      ></lux-input>
-      <lux-input
+      ></lux-input-ac>
+      <lux-input-ac
         luxName="lookup-label_luxTableNo"
         class="lux-highlight-section"
         luxLabel="luxTableNo"
@@ -33,8 +33,8 @@
         <lux-form-hint>
           Die Property bestimmt die Schlüsseltabelle aus der die Daten geladen werden sollen.
         </lux-form-hint>
-      </lux-input>
-      <lux-input
+      </lux-input-ac>
+      <lux-input-ac
         class="lux-highlight-section"
         luxName="lookup-label_luxTableKey"
         luxLabel="luxTableKey"
@@ -44,15 +44,15 @@
         <lux-form-hint>
           Diese Property legt den einzelnen Key des gesuchten Schlüsseltabelleneintrags fest (z.B. 4, 5, 6).
         </lux-form-hint>
-      </lux-input>
-      <lux-select
+      </lux-input-ac>
+      <lux-select-ac
         class="lux-highlight-section"
         luxLabel="luxBezeichnung"
         [(luxSelected)]="bezeichnung"
         [luxOptions]="['kurz', 'lang']"
         luxHint="Diese Property bestimmt welche Bezeichnung benutzt wird, um den Schlüsseltabelleneintrag darzustellen."
       >
-      </lux-select>
+      </lux-select-ac>
     </div>
   </example-base-simple-options>
 </example-base-structure>

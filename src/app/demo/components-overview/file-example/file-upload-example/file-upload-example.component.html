@@ -91,37 +91,37 @@
   <example-base-simple-options>
     <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="12px">
       <div class="lux-highlight-section-label">Labels</div>
-      <lux-input luxLabel="luxLabel" [(luxValue)]="label"></lux-input>
-      <lux-input luxLabel="luxLabelLink" [(luxValue)]="labelLink"></lux-input>
-      <lux-input
+      <lux-input-ac luxLabel="luxLabel" [(luxValue)]="label"></lux-input-ac>
+      <lux-input-ac luxLabel="luxLabelLink" [(luxValue)]="labelLink"></lux-input-ac>
+      <lux-input-ac
         luxLabel="luxLabelLinkShort"
         luxHint="Dieses Label wird nur auf kleinen Auflösungen angezeigt und ersetzt den Wert aus luxLabelLink"
         [(luxValue)]="labelLinkShort"
-      ></lux-input>
-      <lux-input luxLabel="luxHint" [(luxValue)]="hint"></lux-input>
+      ></lux-input-ac>
+      <lux-input-ac luxLabel="luxHint" [(luxValue)]="hint"></lux-input-ac>
     </div>
 
     <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="12px">
       <div class="lux-highlight-section-label">Icons</div>
-      <lux-input luxLabel="luxUploadIcon" [(luxValue)]="uploadIcon"></lux-input>
-      <lux-input luxLabel="luxDeleteIcon" [(luxValue)]="deleteIcon"></lux-input>
+      <lux-input-ac luxLabel="luxUploadIcon" [(luxValue)]="uploadIcon"></lux-input-ac>
+      <lux-input-ac luxLabel="luxDeleteIcon" [(luxValue)]="deleteIcon"></lux-input-ac>
     </div>
 
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="multiple"
       luxLabel="luxMultiple"
       luxHint="Dieses Flag legt fest, ob nur eine oder mehrere Dateien selektiert werden können."
     >
-    </lux-toggle>
+    </lux-toggle-ac>
 
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
     >
-    </lux-toggle>
+    </lux-toggle-ac>
     <div class="lux-highlight-section" fxLayout="column">
       <div fxLayout="row wrap">
         <lux-button
@@ -138,14 +138,14 @@
       <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
     </div>
 
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxRequired"
       (luxCheckedChange)="changeRequired($event)"
@@ -158,44 +158,44 @@
           gesetzt.</b
         >
       </lux-form-hint>
-    </lux-toggle>
+    </lux-toggle-ac>
   </example-base-simple-options>
   <example-base-advanced-options>
     <div class="lux-highlight-section" fxLayout="column">
-      <lux-toggle luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents"> </lux-toggle>
+      <lux-toggle-ac luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents"> </lux-toggle-ac>
     </div>
 
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="contentAsBlob"
       luxLabel="luxContentAsBlob"
       luxHint="Diese Eigenschaft bestimmt ob die Dateien als Blob gespeichert werden sollen oder als Base64-String."
     >
-    </lux-toggle>
+    </lux-toggle-ac>
 
-    <lux-input
+    <lux-input-ac
       class="lux-highlight-section"
       luxLabel="luxMaxSizeMB"
       luxHint="Die Property bestimmt die maximale erlaubte Dateigröße in MB."
       [(luxValue)]="maxSize"
       luxType="number"
     >
-      <lux-input-suffix> MB</lux-input-suffix>
-    </lux-input>
-    <lux-select
+      <lux-input-ac-suffix> MB</lux-input-ac-suffix>
+    </lux-input-ac>
+    <lux-select-ac
       class="lux-highlight-section"
       luxLabel="luxCapture"
       luxHint="Diese Property stellt ein ob für Mobilgeräte die Front- oder Rück-Kamera und Mikrophone verwendet werden sollen."
       [luxOptions]="['', 'user', 'environment']"
       [(luxSelected)]="capture"
     >
-    </lux-select>
-    <lux-input
+    </lux-select-ac>
+    <lux-input-ac
       class="lux-highlight-section"
       luxLabel="luxAccept"
       luxHint="Über diese Eigenschaft lässt sich einstellen, welche Dateiarten erlaubt sind (z.B. image/*,.pdf)."
       [(luxValue)]="accept"
     >
-    </lux-input>
+    </lux-input-ac>
   </example-base-advanced-options>
 </example-base-structure>

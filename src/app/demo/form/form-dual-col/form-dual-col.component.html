@@ -5,27 +5,27 @@
         <form [formGroup]="myGroup">
           <lux-layout formGroupName="customerDetails">
             <lux-layout-form-row>
-              <lux-input luxName="name" luxLabel="Name" luxControlBinding="name" *luxLayoutRowItem="{ colSpan: 3 }"></lux-input>
+              <lux-input-ac luxName="name" luxLabel="Name" luxControlBinding="name" *luxLayoutRowItem="{ colSpan: 3 }"></lux-input-ac>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-input
+              <lux-input-ac
                 luxName="postal-code"
                 luxLabel="PLZ"
                 luxType="number"
                 [luxNumberAlignLeft]="true"
                 luxControlBinding="zip"
                 *luxLayoutRowItem="{ colSpan: 1 }"
-              ></lux-input>
-              <lux-input
+              ></lux-input-ac>
+              <lux-input-ac
                 luxName="form-dual-Stadt"
                 luxLabel="Stadt"
                 luxType="text"
                 luxControlBinding="town"
                 *luxLayoutRowItem="{ colSpan: 2 }"
-              ></lux-input>
+              ></lux-input-ac>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-autocomplete
+              <lux-autocomplete-ac
                 [luxOptions]="countries"
                 luxOptionLabelProp="name"
                 luxLabel="Land"
@@ -35,25 +35,25 @@
                 luxControlBinding="country"
                 *luxLayoutRowItem="{ colSpan: 3 }"
               >
-              </lux-autocomplete>
+              </lux-autocomplete-ac>
             </lux-layout-form-row>
             <div fxFlex="1 1 auto" formArrayName="streets" class="lux-mt-4">
               <lux-layout-form-row luxWrapAt="none" *ngFor="let street of streetsFormArray.controls; let i = index" [formGroupName]="i">
-                <lux-input
+                <lux-input-ac
                   luxName="street-address"
                   luxLabel="Straße"
                   luxType="text"
                   luxControlBinding="streetName"
                   *luxLayoutRowItem="{ colSpan: 2 }"
-                ></lux-input>
-                <lux-input
+                ></lux-input-ac>
+                <lux-input-ac
                   luxName="form-dual-Nr"
                   luxLabel="Nr"
                   luxType="number"
                   [luxNumberAlignLeft]="true"
                   luxControlBinding="nr"
                   *luxLayoutRowItem="{}"
-                ></lux-input>
+                ></lux-input-ac>
                 <lux-button
                   luxIconName="lux-interface-delete-bin-5"
                   (luxClicked)="removeStreet(i)"
@@ -89,24 +89,24 @@
         <form [formGroup]="myGroup">
           <lux-layout formGroupName="orderDetails">
             <lux-layout-form-row>
-              <lux-input luxName="form-dual-Bestellnr" luxLabel="Bestellnr." luxControlBinding="orderNo" *luxLayoutRowItem="{}"></lux-input>
-              <lux-input
+              <lux-input-ac luxName="form-dual-Bestellnr" luxLabel="Bestellnr." luxControlBinding="orderNo" *luxLayoutRowItem="{}"></lux-input-ac>
+              <lux-input-ac
                 luxName="form-dual-Bestellwert"
                 luxLabel="Bestellwert"
                 luxType="text"
                 luxControlBinding="value"
                 *luxLayoutRowItem="{}"
-              ></lux-input>
+              ></lux-input-ac>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-datepicker luxLabel="Gültig ab" luxControlBinding="validDate" *luxLayoutRowItem="{}"></lux-datepicker>
-              <lux-input
+              <lux-datepicker-ac luxLabel="Gültig ab" luxControlBinding="validDate" *luxLayoutRowItem="{}"></lux-datepicker-ac>
+              <lux-input-ac
                 luxLabel="Uhrzeit"
                 luxType="time"
                 luxControlBinding="validTime"
                 luxAutocomplete="off"
                 *luxLayoutRowItem="{}"
-              ></lux-input>
+              ></lux-input-ac>
             </lux-layout-form-row>
           </lux-layout>
         </form>

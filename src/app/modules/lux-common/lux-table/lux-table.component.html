@@ -67,7 +67,7 @@
                 (click)="changeSelectedEntry(element, true)"
                 (keydown.space)="changeSelectedEntry(element, true)"
                 (keydown.enter)="changeSelectedEntry(element, true)">
-              <lux-checkbox
+              <lux-checkbox-ac
                 luxTagId="lux-table-multiselect-content-{{ i }}"
                 class="lux-multiselect-toggle"
                 [luxDisabled]="element[luxMultiSelectDisabledProperty!] === true"
@@ -79,7 +79,7 @@
                 [luxChecked]="luxSelected.has(element)"
                 [luxNoLabels]="true"
               >
-              </lux-checkbox>
+              </lux-checkbox-ac>
             </td>
             <td
               class="lux-multiselect-tf"
@@ -94,7 +94,7 @@
                 class="lux-multiselect-toggle-all-wrapper"
                 *ngIf="!luxHttpDAO"
               >
-                <lux-checkbox
+                <lux-checkbox-ac
                   luxTagId="lux-table-multiselect-header"
                   class="lux-multiselect-toggle-all"
                   luxAriaLabel="Alle Einträge"
@@ -105,7 +105,7 @@
                   [luxChecked]="allSelected"
                   [luxNoLabels]="true"
                 >
-                </lux-checkbox>
+                </lux-checkbox-ac>
               </div>
             </td>
           </ng-container>

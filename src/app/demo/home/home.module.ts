@@ -8,8 +8,6 @@ import { LuxIconModule } from '../../modules/lux-icon/lux-icon.module';
 import { LuxLayoutModule } from '../../modules/lux-layout/lux-layout.module';
 import { HomeComponent } from './home.component';
 import { LuxDirectivesModule } from '../../modules/lux-directives/lux-directives.module';
-import { HomeBlueComponent } from './home-blue.component';
-import { HomeAuthenticComponent } from './home-authentic.component';
 
 @NgModule({
   imports: [
@@ -24,7 +22,7 @@ import { HomeAuthenticComponent } from './home-authentic.component';
     ReactiveFormsModule,
     FlexLayoutModule
   ],
-  declarations: [HomeComponent, HomeBlueComponent, HomeAuthenticComponent],
+  declarations: [HomeComponent],
   exports: [HomeComponent]
 })
 export class HomeModule {}

@@ -2,7 +2,7 @@
   <lux-dialog-title i18n="@@luxc.file-preview.filter-save-dialog.title">Filter speichern</lux-dialog-title>
   <lux-dialog-content>
     <div fxLayout="column" fxLayoutGap="8px" class="lux-filter-save-dialog-form-container">
-      <lux-input
+      <lux-input-ac
         luxLabel="Name"
         i18n-luxLabel="@@luxc.file-preview.filter-save-dialog.name.lbl"
         [(luxValue)]="filterName"
@@ -11,7 +11,7 @@
         [luxErrorCallback]="filterErrorCallback"
         luxAutocomplete="off"
         (keydown.enter)="onSave()"
-      ></lux-input>
+      ></lux-input-ac>
     </div>
   </lux-dialog-content>
   <lux-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxFlex="100" fxLayoutGap="12px grid">

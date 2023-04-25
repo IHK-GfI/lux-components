@@ -5,17 +5,6 @@
   max-width: 1200px;
   box-sizing: border-box;
 }
-.message-box {
-  border: 2px solid var(--lux-theme-primary-color);
-  border-radius: 4px;
-  background-color: var(--lux-theme-primary-50);
-  background: var(--lux-theme-app-gradient);
-  padding: 12px 24px;
-  margin: 32px 0;
-  h5 {
-    margin-block-start: 0.5em;
-  }
-}
 
 .panel-frame {
   display: flex;
@@ -28,18 +17,32 @@ lux-layout-form-row {
 
 .test-box {
   ::ng-deep {
-    lux-checkbox {
-      .lux-form-control {
+    lux-checkbox-ac {
+      .lux-form-control-wrapper {
         background-color: var(--lux-theme-accent-50) !important;
         border: 1px dashed var(--lux-theme-accent-300);
-      }
-      .lux-form-control-no-top-label .lux-form-control-container {
-        border-bottom: 1px dashed var(--lux-theme-accent-300);
+
+        .lux-form-control-label-authentic {
+          margin-left: 0;
+          margin-right: 0;
+          border-bottom: 1px dashed var(--lux-theme-accent-300);
+        }
+
+        .lux-form-control-misc-authentic {
+          margin-left: 0;
+          margin-right: 0;
+          border-top: 1px dashed var(--lux-theme-accent-300);
+        }
       }
     }
-    lux-textbox.demo-warnbox {
-      margin: 32px 0 !important;
-      max-width: 600px;
+
+    lux-divider {
+      margin-top: 2em;
+    }
+
+    h4 {
+      margin-block-start: 0.3em;
+      margin-block-end: 2em;
     }
   }
 }

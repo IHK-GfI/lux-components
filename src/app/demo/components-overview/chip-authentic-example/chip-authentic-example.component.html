@@ -106,38 +106,38 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
-    ></lux-toggle>
+    ></lux-toggle-ac>
     <lux-divider [luxInset]="true"></lux-divider>
 
     <div fxLayout="column" fxLayoutGap="12px" class="lux-highlight-section">
-      <lux-toggle luxLabel="luxInputAllowed" [(luxChecked)]="inputAllowed" [luxNoTopLabel]="true">
+      <lux-toggle-ac luxLabel="luxInputAllowed" [(luxChecked)]="inputAllowed" [luxNoTopLabel]="true">
         <lux-form-hint>
           Aktiviert das Eingabefeld für die Chips, darüber lassen sich dann neue Chips hinzufügen.<br />
           Bei Chip-Groups werden diese automatisch hinzugefügt, bei einzelnen Chips muss der Aufrufer über den Callback "luxChipAdded"
           selbstständig den neuen Chip ergänzen.
         </lux-form-hint>
-      </lux-toggle>
-      <lux-input
+      </lux-toggle-ac>
+      <lux-input-ac
         luxLabel="luxInputLabel"
         [(luxValue)]="inputLabel"
         luxHint="Über diese Property kann das Label für das Eingabefeld dieser Component gesetzt werden."
       >
-      </lux-input>
+      </lux-input-ac>
 
-      <lux-input
+      <lux-input-ac
         luxLabel="luxPlaceholder"
         luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
         [(luxValue)]="placeholder"
       >
-      </lux-input>
+      </lux-input-ac>
 
-      <lux-toggle
+      <lux-toggle-ac
         luxLabel="luxAutocompleteOptions übergeben"
         [(luxChecked)]="autocomplete"
         [luxDisabled]="!inputAllowed"
@@ -148,24 +148,24 @@
           freigeschaltet.<br />
           Voraussetzung: luxInputAllowed = true
         </lux-form-hint>
-      </lux-toggle>
-      <lux-toggle
+      </lux-toggle-ac>
+      <lux-toggle-ac
         luxLabel="luxStrict"
         [luxDisabled]="!inputAllowed"
         luxHint="Gibt an, ob nur Werte aus den vorhandenen Optionen ausgewählt werden dürfen."
         [(luxChecked)]="strict"
         [luxNoTopLabel]="true"
       >
-      </lux-toggle>
-      <lux-toggle
+      </lux-toggle-ac>
+      <lux-toggle-ac
         [(luxChecked)]="optionMultiline"
         [luxNoTopLabel]="true"
         [luxDisabled]="!inputAllowed"
         luxLabel="luxOptionMultiline"
         luxHint="Erlaubt es, mehrzeilige Texte in der Auswahlliste des Select-Panels anzuzeigen."
       >
-      </lux-toggle>
-      <lux-input
+      </lux-toggle-ac>
+      <lux-input-ac
         luxLabel="luxOptionBlockSize"
         [luxDisabled]="!inputAllowed"
         [(luxValue)]="optionBlockSize"
@@ -173,48 +173,48 @@
         [luxNumberAlignLeft]="true"
       >
         <lux-form-hint> Lädt die Optionen in der eingestellten Blockgröße nach, wenn gescrollt wird. </lux-form-hint>
-      </lux-input>
+      </lux-input-ac>
     </div>
 
-    <lux-select
+    <lux-select-ac
       class="lux-highlight-section"
       luxLabel="luxOrientation"
       [(luxSelected)]="chipOrientation"
       luxHint="Über diese Property kann eine horizontale oder vertikale Darstellung gewählt werden."
       [luxOptions]="['horizontal', 'vertical']"
     >
-    </lux-select>
-    <lux-toggle
+    </lux-select-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
+    </lux-toggle-ac>
+    <lux-toggle-ac class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components mit Groups, die nicht in einer Reactive-Form
         sind. D.h. das luxRequired funktioniert nicht für das erste Beispiel "Chips (ohne Group)".<br />
         <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="multiple"
       luxLabel="luxMultiple"
       luxHint="Erlaubt es, mehrere Chips zu selektieren (mithilfe der Leertaste)."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="denseFormat"
       luxLabel="luxDense"
       luxHint="Diese Property veringert das Padding innerhalb des Controls."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
+    </lux-toggle-ac>
   </example-base-simple-options>
   <example-base-advanced-options>
     <div fxLayout="column">
@@ -223,92 +223,92 @@
         <lux-panel (luxOpened)="openedPanel = i" *ngFor="let chip of chips; let i = index">
           <lux-panel-header-title> Chip #{{ i + 1 }} </lux-panel-header-title>
           <lux-panel-content *ngIf="openedPanel === i">
-            <lux-input
+            <lux-input-ac
               class="lux-highlight-section"
               luxLabel="luxLabel"
               luxHint="Bestimmt das Label des einzelnen Chips"
               [luxValue]="chip.label"
               (luxValueChange)="chip.label = $event"
             >
-            </lux-input>
-            <lux-select
+            </lux-input-ac>
+            <lux-select-ac
               class="lux-highlight-section"
               luxLabel="luxColor"
               luxHint="Bestimmt die Farbe der Chips für eine LuxChipGroup."
               [(luxSelected)]="chip.color"
               [luxOptions]="colors"
             >
-            </lux-select>
-            <lux-toggle
+            </lux-select-ac>
+            <lux-toggle-ac
               class="lux-highlight-section"
               luxLabel="luxDisabled"
               luxHint="Mit dieser Property können die Chips einer Group deaktiviert werden."
               [(luxChecked)]="chip.disabled"
               [luxNoTopLabel]="true"
             >
-            </lux-toggle>
-            <lux-toggle
+            </lux-toggle-ac>
+            <lux-toggle-ac
               class="lux-highlight-section"
               luxLabel="luxRemovable"
               luxHint="Diese Property markiert die Chips in einer Group als entfernbar."
               [(luxChecked)]="chip.removable"
               [luxNoTopLabel]="true"
             >
-            </lux-toggle>
-            <lux-toggle
+            </lux-toggle-ac>
+            <lux-toggle-ac
               class="lux-highlight-section"
               luxLabel="luxSelected"
               luxHint="Diese Property selektiert die Chip."
               [(luxChecked)]="chip.selected"
               [luxNoTopLabel]="true"
             >
-            </lux-toggle>
+            </lux-toggle-ac>
           </lux-panel-content>
         </lux-panel>
       </lux-accordion>
     </div>
     <div fxLayout="column" fxLayoutGap="0px">
       <h3>Chip-Group</h3>
-      <lux-select
+      <lux-select-ac
         class="lux-highlight-section"
         luxLabel="luxColor"
         luxHint="Bestimmt die Farbe der Chips für eine LuxChipGroup."
         [(luxSelected)]="groupColor"
         [luxOptions]="colors"
       >
-      </lux-select>
-      <lux-toggle
+      </lux-select-ac>
+      <lux-toggle-ac
         class="lux-highlight-section"
         luxLabel="luxDisabled"
         luxHint="Mit dieser Property können die Chips einer Group deaktiviert werden."
         [(luxChecked)]="groupDisabled"
         [luxNoTopLabel]="true"
       >
-      </lux-toggle>
-      <lux-toggle
+      </lux-toggle-ac>
+      <lux-toggle-ac
         class="lux-highlight-section"
         luxLabel="luxRemovable"
         luxHint="Diese Property markiert die Chips in einer Group als entfernbar."
         [(luxChecked)]="groupRemovable"
         [luxNoTopLabel]="true"
       >
-      </lux-toggle>
-      <lux-toggle
+      </lux-toggle-ac>
+      <lux-toggle-ac
         class="lux-highlight-section"
         luxLabel="luxSelected"
         luxHint="Diese Property selektiert die Chips in dieser Group."
         [(luxChecked)]="groupSelected"
         [luxNoTopLabel]="true"
       >
-      </lux-toggle>
+      </lux-toggle-ac>
     </div>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="(Gilt hier für das luxInputLabel) Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
       [luxNoTopLabel]="true"
       [(luxChecked)]="labelLongFormat"
     >
-    </lux-toggle>
+    </lux-toggle-ac>
   </example-base-advanced-options>
 </example-base-structure>

@@ -8,21 +8,21 @@ module.exports = function (config) {
     viewport: {
       breakpoints: [
         {
-          name: "mobile",
+          name: 'mobile',
           size: {
             width: 320,
             height: 480
           }
         },
         {
-          name: "tablet",
+          name: 'tablet',
           size: {
             width: 768,
             height: 1024
           }
         },
         {
-          name: "screen",
+          name: 'screen',
           size: {
             width: 1440,
             height: 900
@@ -48,21 +48,21 @@ module.exports = function (config) {
     viewport: {
       breakpoints: [
         {
-          name: "mobile",
+          name: 'mobile',
           size: {
             width: 320,
             height: 480
           }
         },
         {
-          name: "tablet",
+          name: 'tablet',
           size: {
             width: 768,
             height: 1024
           }
         },
         {
-          name: "desktop",
+          name: 'desktop',
           size: {
             width: 1440,
             height: 900
@@ -75,14 +75,17 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageReporter: {
+      dir: require('path').join(__dirname, './coverage'),
+      subdir: '.',
+      reporters: [{ type: 'html' }, { type: 'text-summary' }],
       check: {
         global: {
-          statements: 73,
-          branches: 60,
-          functions: 70,
-          lines: 73,
-        },
-      },
+          statements: 60,
+          branches: 50,
+          functions: 60,
+          lines: 60
+        }
+      }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,

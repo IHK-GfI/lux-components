@@ -16,33 +16,33 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-input
+    <lux-input-ac
       class="lux-highlight-section"
       luxAutocomplete="off"
       luxLabel="luxTooltip"
       luxHint="Diese Property bestimmt den Text innerhalb des Tooltips."
       [(luxValue)]="message"
     >
-    </lux-input>
-    <lux-toggle
+    </lux-input-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxTooltipDisabled"
       luxHint="Mit diesem Flag lässt sich der Tooltip deaktivieren."
       [(luxChecked)]="disabled"
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-select
+    </lux-toggle-ac>
+    <lux-select-ac
       class="lux-highlight-section"
       luxLabel="luxTooltipPosition"
       luxHint="Diese Property ändert die Position des Tooltips relativ zum Zielelement."
       [(luxSelected)]="position"
       [luxOptions]="positionOptions"
     >
-    </lux-select>
+    </lux-select-ac>
 
     <div class="lux-highlight-section column">
-      <lux-input
+      <lux-input-ac
         luxType="number"
         [luxNumberAlignLeft]="true"
         luxAutocomplete="off"
@@ -50,8 +50,8 @@
         luxHint="Mit dieser Property wird die zeitliche Verzögerung (in ms) zum Ausblenden des Tooltips eingerichtet."
         [(luxValue)]="hideDelay"
       >
-      </lux-input>
-      <lux-input
+      </lux-input-ac>
+      <lux-input-ac
         luxType="number"
         [luxNumberAlignLeft]="true"
         luxAutocomplete="off"
@@ -59,7 +59,7 @@
         luxHint="Mit dieser Property wird die zeitliche Verzögerung (in ms) zum Einblenden des Tooltips eingerichtet."
         [(luxValue)]="showDelay"
       >
-      </lux-input>
+      </lux-input-ac>
     </div>
   </example-base-simple-options>
 </example-base-structure>

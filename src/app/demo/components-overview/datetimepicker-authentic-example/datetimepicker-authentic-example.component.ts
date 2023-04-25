@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
+import { LuxStartAcView } from '../../../modules/lux-form/lux-datepicker-ac/lux-datepicker-ac.component';
 import { LuxDatetimepickerAcComponent } from '../../../modules/lux-form/lux-datetimepicker-ac/lux-datetimepicker-ac.component';
 import { emptyErrorCallback, exampleErrorCallback, logResult } from '../../example-base/example-base-util/example-base-helper';
 
@@ -40,7 +40,7 @@ export class DatetimepickerAuthenticExampleComponent {
   labelLongFormat = false;
   minDate = '01.01.2000, 00:00';
   maxDate = '31.12.2100, 23:59';
-  startView: LuxStartView = 'month';
+  startView: LuxStartAcView = 'month';
   startDate = '';
   startTime: number[] = [];
   _startTimeAsString?: string;

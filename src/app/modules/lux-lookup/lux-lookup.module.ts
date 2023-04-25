@@ -6,9 +6,7 @@ import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/m
 import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
 import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy-input';
 import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
-import { LuxLookupComboboxComponent } from './lux-lookup-combobox/lux-lookup-combobox.component';
 import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
-import { LuxLookupAutocompleteComponent } from './lux-lookup-autocomplete/lux-lookup-autocomplete.component';
 import { LuxFormModule } from '../lux-form/lux-form.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LuxLookupLabelComponent } from './lux-lookup-label/lux-lookup-label.component';
@@ -31,8 +29,8 @@ import { LuxLookupComboboxAcComponent } from './lux-lookup-combobox-ac/lux-looku
     FlexLayoutModule,
     LuxComponentsConfigModule
   ],
-  declarations: [LuxLookupComboboxComponent, LuxLookupAutocompleteComponent, LuxLookupLabelComponent, LuxLookupAutocompleteAcComponent, LuxLookupComboboxAcComponent],
+  declarations: [LuxLookupLabelComponent, LuxLookupAutocompleteAcComponent, LuxLookupComboboxAcComponent],
   providers: [HttpClient],
-  exports: [LuxLookupComboboxComponent, LuxLookupAutocompleteComponent, LuxLookupLabelComponent, LuxLookupAutocompleteAcComponent, LuxLookupComboboxAcComponent]
+  exports: [LuxLookupLabelComponent, LuxLookupAutocompleteAcComponent, LuxLookupComboboxAcComponent]
 })
 export class LuxLookupModule {}

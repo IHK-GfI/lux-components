@@ -57,42 +57,42 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-select class="lux-highlight-section" [luxOptions]="sizes" [(luxSelected)]="size" luxLabel="luxSize">
+    <lux-select-ac class="lux-highlight-section" [luxOptions]="sizes" [(luxSelected)]="size" luxLabel="luxSize">
       <lux-form-hint>
         Diese Property legt die Größe der Component fest.<br />
         Dabei sind die Eingaben 'small', 'medium' und 'large' erlaubt.
       </lux-form-hint>
-    </lux-select>
+    </lux-select-ac>
     <div class="lux-highlight-section column">
-      <lux-select
+      <lux-select-ac
         [luxOptions]="modes"
         [(luxSelected)]="mode"
         luxLabel="luxMode"
         luxHint="Die Property bestimmt ob der Spinner im Modus 'determinate' (= endlich) oder 'indeterminate' (= endlos) ist."
       >
-      </lux-select>
+      </lux-select-ac>
       <ng-container *ngIf="mode === 'determinate'">
-        <lux-input
+        <lux-input-ac
           luxLabel="luxValue"
           luxHint="Diese Property setzt den Wert in dem Spinner, vorausgesetzt es ist im Modus 'determinate'"
           luxType="number"
           [luxNumberAlignLeft]="true"
           [(luxValue)]="value"
         >
-        </lux-input>
+        </lux-input-ac>
         <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px" class="lux-mt-3">
           <lux-button luxLabel="+10" (luxClicked)="addSpinnerProgress()" [luxRaised]="true" luxColor="primary"></lux-button>
           <lux-button luxLabel="-10" (luxClicked)="subtractSpinnerProgress()" [luxRaised]="true" luxColor="primary"></lux-button>
         </div>
       </ng-container>
     </div>
-    <lux-input
+    <lux-input-ac
       luxName="button_background_Color"
       class="lux-highlight-section"
       [(luxValue)]="backgroundColor"
       luxLabel="Hintergrundfarbe"
     >
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
-    </lux-input>
+    </lux-input-ac>
   </example-base-simple-options>
 </example-base-structure>

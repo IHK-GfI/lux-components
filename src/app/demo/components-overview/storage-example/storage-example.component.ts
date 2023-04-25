@@ -1,7 +1,7 @@
 import { Component, DoCheck, OnDestroy } from '@angular/core';
+import { LuxInputAcComponent } from '../../../modules/lux-form/lux-input-ac/lux-input-ac.component';
 import { LuxStorageService } from '../../../modules/lux-util/lux-storage.service';
 import { Observable, Subscription } from 'rxjs';
-import { LuxInputComponent } from '../../../modules/lux-form/lux-input/lux-input.component';
 
 @Component({
   selector: 'app-storage-example',
@@ -37,7 +37,7 @@ export class StorageExampleComponent implements OnDestroy, DoCheck {
     this.valueSubscription.unsubscribe();
   }
 
-  updateExisting(key: string, luxInput: LuxInputComponent) {
+  updateExisting(key: string, luxInput: LuxInputAcComponent) {
     if(!luxInput.luxValue) {
       throw Error('Null is not allowed!');
     }

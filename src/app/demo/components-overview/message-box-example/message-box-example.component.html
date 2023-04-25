@@ -14,10 +14,10 @@
     </lux-message-box>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
-    </lux-toggle>
+    <lux-toggle-ac class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
+    </lux-toggle-ac>
     <lux-divider [luxInset]="true"></lux-divider>
-    <lux-input
+    <lux-input-ac
       class="lux-highlight-section"
       luxName="message-box_luxIndex"
       luxLabel="luxIndex"
@@ -25,8 +25,8 @@
       luxType="number"
       [(luxValue)]="messageIndex"
     >
-    </lux-input>
-    <lux-input
+    </lux-input-ac>
+    <lux-input-ac
       class="lux-highlight-section"
       luxName="message-box_luxMaximumDisplayed"
       luxLabel="luxMaximumDisplayed"
@@ -37,36 +37,36 @@
         Die Property legt fest wie viele Nachrichten gleichzeitig dargestellt werden können.<br />
         Wenn mehr Nachrichten vorhanden sind, sind diese über eine Pagination erreichbar.
       </lux-form-hint>
-    </lux-input>
+    </lux-input-ac>
   </example-base-simple-options>
   <example-base-advanced-options>
     <div fxLayout="column">
       <h3>Neue Message</h3>
       <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="16px">
-        <lux-textarea
+        <lux-textarea-ac
           luxName="message-box_text"
           luxLabel="text"
           luxHint="Die Property bestimmt den Text für die neue Nachricht."
           [(luxValue)]="newMessage.text"
           fxFlex="auto"
         >
-        </lux-textarea>
-        <lux-input
+        </lux-textarea-ac>
+        <lux-input-ac
           luxName="message-box_iconName"
           luxLabel="iconName"
           luxHint="Über diese Property wird optional ein Icon festgelegt."
           [(luxValue)]="newMessage.iconName"
           fxFlex="auto"
         >
-        </lux-input>
-        <lux-select
+        </lux-input-ac>
+        <lux-select-ac
           luxLabel="color"
           [luxOptions]="colors"
           luxHint="Hier kann eine Farbe aus der Farbpalette aus luxstyles.scss ausgewählt werden."
           [(luxSelected)]="newMessage.color"
           fxFlex="auto"
         >
-        </lux-select>
+        </lux-select-ac>
         <lux-button
           luxIconName="lux-interface-add-1"
           luxColor="primary"
@@ -100,7 +100,7 @@
         </lux-panel-header-description>
         <lux-panel-content>
           <div fxLayout="column" fxLayoutGap="0px">
-            <lux-textarea
+            <lux-textarea-ac
               class="lux-highlight-section"
               luxName="message-box_text"
               luxLabel="text"
@@ -108,8 +108,8 @@
               [(luxValue)]="message.text"
               fxFlex="auto"
             >
-            </lux-textarea>
-            <lux-input
+            </lux-textarea-ac>
+            <lux-input-ac
               class="lux-highlight-section"
               luxName="message-box_iconName"
               luxLabel="iconName"
@@ -117,8 +117,8 @@
               [(luxValue)]="message.iconName"
               fxFlex="auto"
             >
-            </lux-input>
-            <lux-select
+            </lux-input-ac>
+            <lux-select-ac
               class="lux-highlight-section"
               luxLabel="color"
               [luxOptions]="colors"
@@ -126,7 +126,7 @@
               [(luxSelected)]="message.color"
               fxFlex="auto"
             >
-            </lux-select>
+            </lux-select-ac>
           </div>
         </lux-panel-content>
       </lux-panel>

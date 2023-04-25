@@ -144,12 +144,6 @@
     <lux-app-header-right-nav *ngIf="luxMode === 'stand-alone'">
       <lux-menu-item luxLabel="Abmelden" luxIconName="lux-control-button-power-1" luxTagId="abmelden-menu-item"></lux-menu-item>
       <lux-menu-item
-        luxLabel="Theme - blue"
-        [luxDisabled]="themeName === 'blue'"
-        luxTagId="theme-blue-menu-item-ac"
-        (luxClicked)="onChangeTheme('blue')"
-      ></lux-menu-item>
-      <lux-menu-item
         luxLabel="Theme - green"
         [luxDisabled]="themeName === 'green'"
         luxTagId="theme-green-menu-item-ac"
@@ -181,7 +175,6 @@
   >
     <lux-app-header-ac-user-menu *ngIf="luxMode === 'stand-alone'" luxTooltip="Usermenü">
       <lux-menu-item [luxLabel]="demoLoginBtn" (luxClicked)="toggleLogin()" luxTagId="abmelden-menu-item"></lux-menu-item>
-      <lux-menu-item luxLabel="Theme - blue" luxTagId="theme-blue-menu-item-ac" (luxClicked)="onChangeTheme('blue')"></lux-menu-item>
       <lux-menu-item luxLabel="Theme - green" luxTagId="theme-green-menu-item-ac" (luxClicked)="onChangeTheme('green')"></lux-menu-item>
       <lux-menu-item
         luxLabel="Theme - authentic"

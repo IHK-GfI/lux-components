@@ -14,44 +14,44 @@
   </example-base-content>
   <example-base-simple-options>
     <div class="lux-highlight-section column">
-      <lux-toggle luxLabel="Frame anzeigen" [(luxChecked)]="showImageFrame" [luxNoTopLabel]="true">
+      <lux-toggle-ac luxLabel="Frame anzeigen" [(luxChecked)]="showImageFrame" [luxNoTopLabel]="true">
         <lux-form-hint>
           Frame für das HTML-Element des Bildes anzeigen.<br />
           Kann veranschaulichen, ob das Bild selbst komplett mit dem umgebenden Element skaliert.
         </lux-form-hint>
-      </lux-toggle>
+      </lux-toggle-ac>
     </div>
 
     <div class="lux-highlight-section column">
-      <lux-select
+      <lux-select-ac
         [(luxSelected)]="imgSrc"
         [luxOptions]="imgSrcArr"
         luxLabel="luxImageSrc"
         luxHint="Diese Property bestimmt den Pfad zum Bild."
       >
-      </lux-select>
-      <lux-toggle luxLabel="luxRawSrc" [(luxChecked)]="imgRawSrc" [luxNoTopLabel]="true">
+      </lux-select-ac>
+      <lux-toggle-ac luxLabel="luxRawSrc" [(luxChecked)]="imgRawSrc" [luxNoTopLabel]="true">
         <lux-form-hint>
           Mithilfe dieses Flags kann die Bearbeitung/Prüfung des übergebenen <i>luxImgSrc</i> deaktiviert werden.<br />
           Dadurch ist es z.B. möglich, relative Links (siehe letzte Option in dem Select-Feld) darzustellen.<br />
           Hinweis: Weil es kein Backend gibt, wird das Bild hier nicht korrekt dargestellt.Ein Blick in die
           Developer-Tools zeigt aber eine theoretisch korrekte Image-Source an.
         </lux-form-hint>
-      </lux-toggle>
+      </lux-toggle-ac>
     </div>
     <div class="lux-highlight-section column">
-      <lux-input
+      <lux-input-ac
         [(luxValue)]="imgWidth"
         luxLabel="luxImageWidth"
         luxHint="Bestimmt die Breite des Bildes, kann dabei einen beliebigen Wert enthalten (z.B. 100px oder 20%)."
       >
-      </lux-input>
-      <lux-input
+      </lux-input-ac>
+      <lux-input-ac
         [(luxValue)]="imgHeight"
         luxLabel="luxImageHeight"
         luxHint="Bestimmt die Höhe des Bildes, kann dabei einen beliebigen Wert enthalten (z.B. 100px oder 20%)."
       >
-      </lux-input>
+      </lux-input-ac>
     </div>
   </example-base-simple-options>
 </example-base-structure>

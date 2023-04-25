@@ -14,35 +14,35 @@
   </example-base-content>
   <example-base-simple-options>
     <div class="lux-highlight-section" fxLayout="column">
-      <lux-textarea luxLabel="Html-Daten" [(luxValue)]="htmlData">
+      <lux-textarea-ac luxLabel="Html-Daten" [(luxValue)]="htmlData">
         <lux-form-hint>
           Hier kann man beliebige HTML-Daten einfügen und ausprobieren.
         </lux-form-hint>
-      </lux-textarea>
+      </lux-textarea-ac>
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
     <div class="lux-highlight-section column">
-      <lux-input luxLabel="luxFlex" luxName="html_luxFlex" [(luxValue)]="flex">
+      <lux-input-ac luxLabel="luxFlex" luxName="html_luxFlex" [(luxValue)]="flex">
         <lux-form-hint>
           Werte aus dem Flexlayout
         </lux-form-hint>
-      </lux-input>
-      <lux-input luxLabel="luxStyle" luxName="html_luxStyle" [(luxValue)]="style">
+      </lux-input-ac>
+      <lux-input-ac luxLabel="luxStyle" luxName="html_luxStyle" [(luxValue)]="style">
         <lux-form-hint>
           Beliebige Styles (z.B. color: red; background-color: blue)
         </lux-form-hint>
-      </lux-input>
-      <lux-input luxLabel="luxClass" luxName="html_luxClass" [(luxValue)]="class">
+      </lux-input-ac>
+      <lux-input-ac luxLabel="luxClass" luxName="html_luxClass" [(luxValue)]="class">
         <lux-form-hint>
           Beliebige CSS-Classen (z.B. lux-mt-3)
         </lux-form-hint>
-      </lux-input>
+      </lux-input-ac>
     </div>
 
     <div class="lux-highlight-section column">
-      <lux-toggle luxLabel="Folgendes verbieten" [(luxChecked)]="forbiddenTagsToggle" [luxNoLabels]="true"></lux-toggle>
-      <lux-input
+      <lux-toggle-ac luxLabel="Folgendes verbieten" [(luxChecked)]="forbiddenTagsToggle" [luxNoLabels]="true"></lux-toggle-ac>
+      <lux-input-ac
         luxLabel="Verbotene Tags"
         luxName="htmls_forbiddenTags"
         [luxDisabled]="!forbiddenTagsToggle"
@@ -50,9 +50,8 @@
         (luxValueChange)="updateTags()"
         ><lux-form-hint>
           Kommaseparierte Liste von Tags (z.B. a,h1,p)
-        </lux-form-hint></lux-input
-      >
-      <lux-input
+        </lux-form-hint></lux-input-ac>
+      <lux-input-ac
         luxLabel="Verbotene Attriubte"
         luxName="htmls_forbiddenAttributes"
         [luxDisabled]="!forbiddenTagsToggle"
@@ -60,10 +59,9 @@
         (luxValueChange)="updateTags()"
         ><lux-form-hint>
           Kommaseparierte Liste von Attributen (z.B. href,target)
-        </lux-form-hint></lux-input
-      >
-      <lux-toggle luxLabel="Nur folgendes erlauben" [(luxChecked)]="allowedTagsToggle" [luxNoLabels]="true"></lux-toggle>
-      <lux-input
+        </lux-form-hint></lux-input-ac>
+      <lux-toggle-ac luxLabel="Nur folgendes erlauben" [(luxChecked)]="allowedTagsToggle" [luxNoLabels]="true"></lux-toggle-ac>
+      <lux-input-ac
         luxLabel="Erlaubte Tags"
         luxName="htmls_allowedTags"
         [luxDisabled]="!allowedTagsToggle"
@@ -71,9 +69,8 @@
         (luxValueChange)="updateTags()"
         ><lux-form-hint>
           Kommaseparierte Liste von Tags (z.B. a,h1,p)
-        </lux-form-hint></lux-input
-      >
-      <lux-input
+        </lux-form-hint></lux-input-ac>
+      <lux-input-ac
         luxLabel="Erlaubte Attribute"
         luxName="htmls_allowedAttributes"
         [luxDisabled]="!allowedTagsToggle"
@@ -81,10 +78,9 @@
         (luxValueChange)="updateTags()"
         ><lux-form-hint>
           Kommaseparierte Liste von Attributen (z.B. href,target)
-        </lux-form-hint></lux-input
-      >
-      <lux-toggle luxLabel="Zusätzlich erlauben" [(luxChecked)]="addAllowedTagsToggle" [luxNoLabels]="true"></lux-toggle>
-      <lux-input
+        </lux-form-hint></lux-input-ac>
+      <lux-toggle-ac luxLabel="Zusätzlich erlauben" [(luxChecked)]="addAllowedTagsToggle" [luxNoLabels]="true"></lux-toggle-ac>
+      <lux-input-ac
         luxLabel="Zusätzlich erlaubte Tags"
         luxName="htmls_addAllowedTags"
         [luxDisabled]="!addAllowedTagsToggle"
@@ -92,9 +88,8 @@
         (luxValueChange)="updateTags()"
         ><lux-form-hint>
           Kommaseparierte Liste von Tags (z.B. a,h1,p)
-        </lux-form-hint></lux-input
-      >
-      <lux-input
+        </lux-form-hint></lux-input-ac>
+      <lux-input-ac
         luxLabel="Zusätzlich erlaubte Attribute"
         luxName="htmls_addAllowedAttributes"
         [luxDisabled]="!addAllowedTagsToggle"
@@ -102,8 +97,7 @@
         (luxValueChange)="updateTags()"
         ><lux-form-hint>
           Kommaseparierte Liste von Attributen (z.B. href,target)
-        </lux-form-hint></lux-input
-      >
+        </lux-form-hint></lux-input-ac>
     </div>
   </example-base-advanced-options>
 </example-base-structure>

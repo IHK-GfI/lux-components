@@ -5,18 +5,18 @@
         <lux-card-content>
           <lux-layout formGroupName="customer">
             <lux-layout-form-row>
-              <lux-input luxName="first-name" luxLabel="Vorname" luxControlBinding="name" *luxLayoutRowItem="{}"></lux-input>
+              <lux-input-ac luxName="first-name" luxLabel="Vorname" luxControlBinding="name" *luxLayoutRowItem="{}"></lux-input-ac>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-input
+              <lux-input-ac
                 luxName="given-name"
                 luxLabel="Nachname"
                 luxControlBinding="surname"
                 *luxLayoutRowItem="{}"
-              ></lux-input>
+              ></lux-input-ac>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-radio
+              <lux-radio-ac
                 [luxOrientationVertical]="false"
                 [luxOptions]="genders"
                 luxControlBinding="gender"
@@ -26,7 +26,7 @@
                 <ng-template let-option>
                   {{ option.name }}
                 </ng-template>
-              </lux-radio>
+              </lux-radio-ac>
             </lux-layout-form-row>
           </lux-layout>
         </lux-card-content>
@@ -35,33 +35,33 @@
         <lux-card-content>
           <lux-layout formGroupName="address">
             <lux-layout-form-row luxWrapAt="none">
-              <lux-input
+              <lux-input-ac
                 luxName="postal-code"
                 luxLabel="PLZ"
                 luxType="number"
                 [luxNumberAlignLeft]="true"
                 luxControlBinding="zip"
                 *luxLayoutRowItem="{}"
-              ></lux-input>
-              <lux-input
+              ></lux-input-ac>
+              <lux-input-ac
                 luxName="form-three_Stadt"
                 luxLabel="Stadt"
                 luxType="text"
                 luxControlBinding="town"
                 *luxLayoutRowItem="{ colSpan: 3 }"
-              ></lux-input>
+              ></lux-input-ac>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-input
+              <lux-input-ac
                 luxName="street-address"
                 luxLabel="Straße"
                 luxType="text"
                 luxControlBinding="street"
                 *luxLayoutRowItem="{ colSpan: 4 }"
-              ></lux-input>
+              ></lux-input-ac>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-autocomplete
+              <lux-autocomplete-ac
                 [luxOptions]="countries"
                 luxOptionLabelProp="name"
                 luxLabel="Land"
@@ -71,7 +71,7 @@
                 luxControlBinding="country"
                 *luxLayoutRowItem="{ colSpan: 4 }"
               >
-              </lux-autocomplete>
+              </lux-autocomplete-ac>
             </lux-layout-form-row>
           </lux-layout>
         </lux-card-content>
@@ -80,19 +80,19 @@
         <lux-card-content>
           <lux-layout formGroupName="feedback">
             <lux-layout-form-row luxWrapAt="none">
-              <lux-input
+              <lux-input-ac
                 luxName="form-three_Bewertung"
                 luxLabel="Bewertung"
                 luxControlBinding="rating"
                 luxType="text"
                 *luxLayoutRowItem="{}"
-              ></lux-input>
+              ></lux-input-ac>
             </lux-layout-form-row>
             <lux-layout-form-row>
-              <lux-checkbox luxLabel="Anonymisieren" luxControlBinding="anonymous" *luxLayoutRowItem="{}"></lux-checkbox>
+              <lux-checkbox-ac luxLabel="Anonymisieren" luxControlBinding="anonymous" *luxLayoutRowItem="{}"></lux-checkbox-ac>
             </lux-layout-form-row>
             <lux-layout-form-row luxWrapAt="none">
-              <lux-textarea
+              <lux-textarea-ac
                 luxName="form-three_Kommentar"
                 luxLabel="Kommentar"
                 luxHint="Hier ist Platz für Ihre Nachricht."
@@ -101,7 +101,7 @@
                 [luxMinRows]="1"
                 [luxMaxRows]="-1"
                 *luxLayoutRowItem="{}"
-              ></lux-textarea>
+              ></lux-textarea-ac>
             </lux-layout-form-row>
           </lux-layout>
         </lux-card-content>

@@ -112,43 +112,43 @@
     </lux-menu>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle
+    <lux-toggle-ac
     class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
-    ></lux-toggle>
+    ></lux-toggle-ac>
     <lux-divider [luxInset]="true"></lux-divider>
     <div class="lux-highlight-section column">
-      <lux-input
+      <lux-input-ac
         luxLabel="luxMenuLabel"
         luxHint="Diese Property ermöglicht es, das Label für das Menu zu ändern."
         [(luxValue)]="menuLabel"
       >
-      </lux-input>
-      <lux-input
+      </lux-input-ac>
+      <lux-input-ac
         luxLabel="luxMenuIconName"
         luxHint="Diese Property ermöglicht es, das Icon für das Menu zu ändern."
         [(luxValue)]="iconName"
       >
-      </lux-input>
-      <lux-toggle
+      </lux-input-ac>
+      <lux-toggle-ac
         luxLabel="luxMenuTriggerIconShowRight"
         luxHint="Die Property ermöglicht es, das Triggericon des Menüs rechts vom Label (siehe luxMenuLabel) darzustellen."
         [(luxChecked)]="menuTriggerIconShowRight"
       >
-      </lux-toggle>
+      </lux-toggle-ac>
     </div>
-    <lux-input class="lux-highlight-section" luxLabel="luxClassName" [(luxValue)]="className">
+    <lux-input-ac class="lux-highlight-section" luxLabel="luxClassName" [(luxValue)]="className">
       <lux-form-hint>
         Über diese Property lassen sich CSS-Klassen für das ausgeklappte Menu setzen.
         <br />
         Um die Klassen zu beobachten, das Menu aufklappen und über die Developer-Tools (F12/CMD+ALT+I) das Menu
         auswählen.
       </lux-form-hint>
-    </lux-input>
-    <lux-toggle
+    </lux-input-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="luxDisplayMenuLeft"
       luxHint="Die Property ermöglicht es, den Trigger-Button für das Menu links von den
@@ -156,17 +156,17 @@
       [(luxChecked)]="displayMenuLeft"
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
+    </lux-toggle-ac>
     <div class="lux-highlight-section column">
-      <lux-toggle
+      <lux-toggle-ac
         luxLabel="luxDisplayExtended"
         luxHint="Diese Property bestimmt, ob Menu-Einträge bei ausreichend Platz außerhalb des
                   Menus dargestellt werden können."
         [(luxChecked)]="displayExtended"
         [luxNoTopLabel]="true"
       >
-      </lux-toggle>
-      <lux-input
+      </lux-toggle-ac>
+      <lux-input-ac
         luxLabel="luxMaximumExtended"
         luxHint="Die Property stellt ein wie viele Menu-Einträge maximal außerhalb des Menus dargestellt werden dürfen."
         [(luxValue)]="maximumExtended"
@@ -174,7 +174,7 @@
         [luxNumberAlignLeft]="true"
         [luxDisabled]="!displayExtended"
       >
-      </lux-input>
+      </lux-input-ac>
     </div>
   </example-base-simple-options>
   <example-base-advanced-options>
@@ -187,80 +187,80 @@
           <h4>Optionen - MenuItem #{{ i }}</h4>
         </lux-panel-header-description>
         <lux-panel-content>
-          <lux-input
+          <lux-input-ac
             class="lux-highlight-section"
             luxLabel="luxLabel"
             luxHint="Diese Property ermöglicht es, das Label eines Menu-Eintrags zu ändern."
             [(luxValue)]="item.label"
           >
-          </lux-input>
-          <lux-input
+          </lux-input-ac>
+          <lux-input-ac
             class="lux-highlight-section"
             luxLabel="luxPrio"
             luxHint="Diese Property ermöglicht es, die Anzeigereihenfolge zu beeinflussen."
             [(luxValue)]="item.prio"
           >
-          </lux-input>
+          </lux-input-ac>
           <div fxLayout="column" fxLayoutGap="24px" class="lux-highlight-section">
-            <lux-input
+            <lux-input-ac
               luxLabel="luxButtonTooltip"
               luxHint="Wenn als Button dargestellt"
               [(luxValue)]="item.tooltip"
             >
-            </lux-input>
-            <lux-input
+            </lux-input-ac>
+            <lux-input-ac
               luxLabel="luxMenuTooltip"
               luxHint="Wenn im Menü dargestellt"
               [(luxValue)]="item.tooltipMenu"
             >
-            </lux-input>
+            </lux-input-ac>
           </div>
-          <lux-input
+          <lux-input-ac
             class="lux-highlight-section"
             luxLabel="luxIconName"
             luxHint="Über diese Property kann ein Icon für den Menu-Eintrag eingerichtet werden."
             [(luxValue)]="item.iconName"
           >
-          </lux-input>
-          <lux-select
+          </lux-input-ac>
+          <lux-select-ac
             class="lux-highlight-section"
             luxLabel="luxColor"
             luxHint="Die Property ermöglicht die Einstellung der Farbe für diesen Eintrag."
             [(luxSelected)]="item.color"
             [luxOptions]="['primary', 'warn', 'accent']"
-          ></lux-select>
-          <lux-toggle
+          ></lux-select-ac>
+          <lux-toggle-ac
             class="lux-highlight-section"
             luxLabel="luxRaised"
             luxHint="Dieses Flag schaltet die hervorgehobene Darstellung des Menu-Eintrags ein."
             [(luxChecked)]="item.raised"
             [luxNoTopLabel]="true"
           >
-          </lux-toggle>
-          <lux-toggle
+          </lux-toggle-ac>
+          <lux-toggle-ac
             class="lux-highlight-section"
             luxLabel="luxDisabled"
             luxHint="Über dieses Flag wird der Eintrag deaktiviert."
             [(luxChecked)]="item.disabled"
             [luxNoTopLabel]="true"
           >
-          </lux-toggle>
-          <lux-toggle
+          </lux-toggle-ac>
+          <lux-toggle-ac
             class="lux-highlight-section"
             luxLabel="luxHidden"
             luxHint="Über dieses Flag wird der Eintrag ausgeblendet."
             [(luxChecked)]="item.hidden"
             [luxNoTopLabel]="true"
           >
-          </lux-toggle>
-          <lux-toggle class="lux-highlight-section" luxLabel="luxRounded" [(luxChecked)]="item.round" [luxNoTopLabel]="true">
+          </lux-toggle-ac>
+          <lux-toggle-ac class="lux-highlight-section" luxLabel="luxRounded" [(luxChecked)]="item.round" [luxNoTopLabel]="true">
             <lux-form-hint>
               Über dieses Flag kann der Eintrag als Kreis dargestellt werden.
               <br />
               Sollte nur in Zusammenhang mit einem Icon ohne Text genutzt werden, da dieser sonst das Layout sprengt.
             </lux-form-hint>
-          </lux-toggle>
-          <lux-toggle
+          </lux-toggle-ac>
+          <lux-toggle-ac
             class="lux-highlight-section"
             luxLabel="luxAlwaysVisible"
             [(luxChecked)]="item.alwaysVisible"
@@ -272,8 +272,8 @@
               Platz noch ausreicht.<br />Andere Einträge, die dieses Flag nicht gesetzt haben, werden dann zuerst
               ausgeblendet.
             </lux-form-hint>
-          </lux-toggle>
-          <lux-toggle
+          </lux-toggle-ac>
+          <lux-toggle-ac
             class="lux-highlight-section"
             luxLabel="luxHideLabelIfExtended"
             [(luxChecked)]="item.hideLabelIfExtended"
@@ -283,7 +283,7 @@
               Dieses Flag stellt ein ob das Label des MenuItems in der ausgeklappten Ansicht dargestellt werden soll
               oder nicht.
             </lux-form-hint>
-          </lux-toggle>
+          </lux-toggle-ac>
         </lux-panel-content>
       </lux-panel>
     </lux-accordion>

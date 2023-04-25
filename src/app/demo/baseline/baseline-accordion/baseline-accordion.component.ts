@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LuxThemeService } from '../../../modules/lux-theme/lux-theme.service';
 import { Subscription } from 'rxjs';
 
@@ -68,7 +69,10 @@ export class BaselineAccordionComponent implements OnInit {
   themeName: string;
   subscription: Subscription;
 
-  constructor(private themeService: LuxThemeService) {
+  loremIpsum =
+    'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi distinctio libero, ratione animi dolore esse porro mollitia nulla magnam et, modi doloribus. Distinctio repellat quaerat eveniet iste, error molestiae adipisci culpa et, officia maiores, repudiandae tempora quae veniam fuga odit. At officia reiciendis libero magni architecto, odio dolorum laborum commodi.';
+
+  constructor(private themeService: LuxThemeService, public router: Router) {
     this.form = new FormGroup<DummyForm>({
       checkbox1: new FormControl(false, { validators: Validators.requiredTrue, nonNullable: true }),
       checkbox2: new FormControl(false, { validators: Validators.requiredTrue, nonNullable: true }),

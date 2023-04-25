@@ -60,38 +60,38 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-input
+    <lux-input-ac
       class="lux-highlight-section"
       luxName="toggle_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
     >
-    </lux-input>
+    </lux-input-ac>
     <div class="lux-highlight-section column">
-      <lux-input
+      <lux-input-ac
         luxName="toggle_luxHint"
         luxLabel="luxHint"
         luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
         [(luxValue)]="hint"
       >
-      </lux-input>
-      <lux-toggle
+      </lux-input-ac>
+      <lux-toggle-ac
         luxName="toggle_luxHintShowOnlyOnFocus"
         luxLabel="luxHintShowOnlyOnFocus"
         luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
         [(luxChecked)]="hintShowOnlyOnFocus"
         [luxNoTopLabel]="true"
-      ></lux-toggle>
+      ></lux-toggle-ac>
     </div>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
+    </lux-toggle-ac>
     <div class="lux-highlight-section" fxLayout="column">
       <div fxLayout="row wrap">
         <lux-button
@@ -109,27 +109,27 @@
       </div>
       <div class="lux-hint lux-p-3">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
     </div>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
+    </lux-toggle-ac>
+    <lux-toggle-ac class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
         <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="denseFormat"
       luxLabel="luxDense"
       luxHint="Diese Property veringert das Padding innerhalb des Controls."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
+    </lux-toggle-ac>
   </example-base-simple-options>
 </example-base-structure>

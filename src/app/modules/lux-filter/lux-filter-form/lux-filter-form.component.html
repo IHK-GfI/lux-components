@@ -7,8 +7,8 @@
     luxExpandedHeaderHeight="48px"
     [luxHideToggle]="true"
   >
-    <lux-panel-header-title class="lux-filter-panel-header"> 
-      {{ luxTitle }} 
+    <lux-panel-header-title class="lux-filter-panel-header">
+      {{ luxTitle }}
       <ng-container *ngIf="luxFilterExpanded">
         <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container>
       </ng-container>
@@ -23,11 +23,11 @@
 </lux-accordion>
 
 <!-- Template für die Darstellung des Lux-Filter-Forms in einer Lux-Card -->
-<lux-card 
+<lux-card
   *ngIf="luxShowAsCard"
-  luxTitle="{{luxTitle}}" 
+  luxTitle="{{luxTitle}}"
   [luxExpandedLabelOpen]="luxExpandedLabelOpen"
-  [luxExpandedLabelClose]="luxExpandedLabelClose"  
+  [luxExpandedLabelClose]="luxExpandedLabelClose"
   class="lux-filter-card"
   luxTagId="luxFilterCard"
 >
@@ -55,10 +55,10 @@
 
 <!-- Filter-Button ist jetzt vom Menü getrennt -->
 <ng-template #filterButtonTemplate>
-  <lux-button 
+  <lux-button
     [luxLabel]="luxButtonFilterLabel"
     [luxColor]="luxButtonFilterColor"
-    [luxStroked]="!luxButtonFlat" 
+    [luxStroked]="!luxButtonFlat"
     [luxFlat]="luxButtonFlat"
     luxIconName="lux-interface-text-formatting-filter-1"
     luxTooltip="{{ luxDisableShortcut ? '' : '(Shift + Enter)' }}"
@@ -69,9 +69,9 @@
 </ng-template>
 <!-- die Menü-Leiste mit den Filterfunktionen ist in beiden Darstellungen gleich -->
 <ng-template #filterActionTemplate>
-  <lux-menu 
-    [luxDisplayExtended]="false" 
-    class="filter-menu" 
+  <lux-menu
+    [luxDisplayExtended]="false"
+    class="filter-menu"
   >
     <lux-menu-item
       [luxLabel]="luxButtonResetLabel"
@@ -97,7 +97,7 @@
     <lux-menu-trigger>
       <lux-button
         [luxRounded]="true"
-        luxIconName="lux-interface-setting-menu-vertical"        
+        luxIconName="lux-interface-setting-menu-vertical"
         class="lux-filter-menu-trigger"
         luxTagId="filter-menu-trigger"
       >
@@ -114,12 +114,12 @@
 >
   {{ luxDefaultFilterMessage }}
 </div>
-<lux-chips
+<lux-chips-ac
   *ngIf="this.filterItems.length > 0 && !luxFilterExpanded && luxShowChips && initComplete"
   ngClass.lt-md="filterItem-sm"
   class="filterItem"
 >
-  <lux-chip [luxColor]="item.color" *ngFor="let item of filterItems" (luxChipRemoved)="filterChipRemoved($event)"
-    >{{ item.label }}: {{ item.value }}</lux-chip
+  <lux-chip-ac [luxColor]="item.color" *ngFor="let item of filterItems" (luxChipRemoved)="filterChipRemoved($event)"
+    >{{ item.label }}: {{ item.value }}</lux-chip-ac
   >
-</lux-chips>
+</lux-chips-ac>

@@ -93,77 +93,77 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-input
+    <lux-input-ac
       class="lux-highlight-section"
       [(luxValue)]="notification"
       luxName="badge-notification_luxBadgeNotification"
       luxLabel="luxBadgeNotification"
       luxHint="Diese Property definiert den Text-Inhalt der Badge-Notification"
     >
-    </lux-input>
-    <lux-select
+    </lux-input-ac>
+    <lux-select-ac
       class="lux-highlight-section"
       [(luxSelected)]="color"
       luxLabel="luxBadgeColor"
       luxHint="Diese Property definiert die Farbe der Notification"
       [luxOptions]="['primary', 'warn', 'accent', 'default']"
     >
-    </lux-select>
-    <lux-select
+    </lux-select-ac>
+    <lux-select-ac
       class="lux-highlight-section"
       [(luxSelected)]="position"
       luxLabel="luxBadgePosition"
       luxHint="Diese Property definiert die Position der Notification"
       [luxOptions]="['above after', 'above before', 'below before', 'below after']"
     >
-    </lux-select>
-    <lux-select
+    </lux-select-ac>
+    <lux-select-ac
       class="lux-highlight-section"
       [(luxSelected)]="size"
       luxLabel="luxBadgeSize"
       luxHint="Diese Property definiert die Größe der Notification"
       [luxOptions]="['small', 'medium', 'large']"
     >
-    </lux-select>
-    <lux-input
+    </lux-select-ac>
+    <lux-input-ac
       class="lux-highlight-section"
       [(luxValue)]="cap"
       luxName="badge-notification_luxBadgeCap"
       luxLabel="luxBadgeCap"
       luxHint="Diese Property legt fest, ob eine Maximalzahl nicht überschritten werden darf (Vorausgesetzt das der Inhalt eine Zahl ist)."
     >
-    </lux-input>
-    <lux-toggle
+    </lux-input-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="noBorder"
       luxLabel="luxBadgeNoBorder"
       luxHint="Dieses Flag bestimmt, ob die Border transparent ist."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Dieses Flag bestimmt ob die Notification deaktiviert ist oder nicht."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="hidden"
       luxLabel="luxHidden"
       luxHint="Dieses Flag bestimmt ob die Notification versteckt ist oder nicht."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="overlap"
       luxLabel="luxOverlap"
       luxHint="Dieses Flag bestimmt ob die Notification hinter dem Quellelement liegt oder nicht."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
+    </lux-toggle-ac>
   </example-base-simple-options>
 </example-base-structure>

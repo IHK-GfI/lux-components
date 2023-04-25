@@ -18,17 +18,17 @@
     <lux-card luxTitle="LUX-Icons" class="result-container">
       <lux-card-content fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="start start" fxFlex="fill">
         <div class="chip-container" fxShow fxHide.lt-md fxLayout="column">
-          <lux-chips *ngIf="chipLabels.length > 0; else emptyLabelsBlock">
+          <lux-chips-ac *ngIf="chipLabels.length > 0; else emptyLabelsBlock">
             <ng-container *ngFor="let label of chipLabels">
-              <lux-chip (luxChipRemoved)="onChipRemoved($event)" *ngIf="label.length > 0">
+              <lux-chip-ac (luxChipRemoved)="onChipRemoved($event)" *ngIf="label.length > 0">
                 {{ label }}
-              </lux-chip>
+              </lux-chip-ac>
             </ng-container>
-          </lux-chips>
+          </lux-chips-ac>
           <ng-template #emptyLabelsBlock>
-            <lux-chips>
-              <lux-chip [luxRemovable]="false">alle</lux-chip>
-            </lux-chips>
+            <lux-chips-ac>
+              <lux-chip-ac [luxRemovable]="false">alle</lux-chip-ac>
+            </lux-chips-ac>
           </ng-template>
           <div>Icons (gefiltert / gesamt): {{ filteredIcons.length + displayedIcons.length }} / {{ allIcons.length }}</div>
         </div>

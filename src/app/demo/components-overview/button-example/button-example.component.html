@@ -87,7 +87,7 @@
         </div>
       </div>
 
-      <div 
+      <div
         fxLayout="column"
         fxLayoutGap="24px"
         class="lux-hover-bg lux-highlight-section"
@@ -168,7 +168,7 @@
           </lux-button>
         </div>
       </div>
-      <div 
+      <div
         fxLayout="column"
         fxLayoutGap="24px"
         class="lux-selected-bg lux-highlight-section"
@@ -249,7 +249,7 @@
           </lux-button>
         </div>
       </div>
-      <div 
+      <div
         fxLayout="column"
         fxLayoutGap="24px"
         class="lux-gradient-bg lux-highlight-section"
@@ -334,24 +334,24 @@
 
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
-    ></lux-toggle>
+    ></lux-toggle-ac>
     <lux-divider [luxInset]="true"></lux-divider>
-    <lux-input
+    <lux-input-ac
       class="lux-highlight-section"
       [(luxValue)]="label"
       luxName="button_luxLabel"
       luxLabel="luxLabel"
       luxHint="Bestimmt den Text, der in dem Button angezeigt wird."
       [luxNoTopLabel]="true"
-    ></lux-input>
+    ></lux-input-ac>
     <div class="lux-highlight-section column">
-      <lux-input
+      <lux-input-ac
         luxName="button_luxIconName"
         [(luxValue)]="iconName"
         luxLabel="luxIconName"
@@ -361,18 +361,18 @@
           <i>luxLabel</i> gesetzt ist).<br />
           Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
         </lux-form-hint>
-      </lux-input>
-      <lux-toggle luxLabel="luxIconShowRight" [(luxChecked)]="iconShowRight" [luxNoLabels]="true"></lux-toggle>
+      </lux-input-ac>
+      <lux-toggle-ac luxLabel="luxIconShowRight" [(luxChecked)]="iconShowRight" [luxNoLabels]="true"></lux-toggle-ac>
     </div>
-    <lux-toggle
+    <lux-toggle-ac
       class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxDisabled"
       luxHint="Diese Property deaktiviert den Button."
       [luxNoTopLabel]="true"
     >
-    </lux-toggle>
-    <lux-toggle
+    </lux-toggle-ac>
+    <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="Label Uppercase"
       [(luxChecked)]="allUpperCase"
@@ -382,14 +382,14 @@
         Über den <i>LuxComponentsConfigService</i> kann für alle LuxButtons applikationsweit eine Uppercase-Darstellung
         forciert werden.
       </lux-form-hint>
-    </lux-toggle>
-    <lux-input
+    </lux-toggle-ac>
+    <lux-input-ac
       luxName="button_background_Color"
       class="lux-highlight-section"
       [(luxValue)]="backgroundColor"
       luxLabel="Hintergrundfarbe"
     >
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
-    </lux-input>
+    </lux-input-ac>
   </example-base-simple-options>
 </example-base-structure>
