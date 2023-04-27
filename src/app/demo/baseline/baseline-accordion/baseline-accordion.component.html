@@ -76,11 +76,13 @@
       <lux-panel-header-title>Vergleich der bisherigen Formcontrols mit den neuen AC-Controls</lux-panel-header-title>
       <lux-panel-content>
         <div class="panel-frame">
-          <p class="message-box">
-            In diesem Panel werden die beiden Formcontrols miteinander verglichen. Links stehen die bisherigen Formular-Elemente und rechts
-            die neuen AC-Controls. Für das Greentheme wurden die neuen AC-Controls angepasst, so dass sie gleichwertig genutzt werden
-            können.
-          </p>
+          <lux-textbox luxColor="blue" class="lux-mt-5 lux-mb-5">
+            <p>
+              In diesem Panel werden die beiden Formcontrols miteinander verglichen. Links stehen die bisherigen Formular-Elemente und
+              rechts die neuen AC-Controls. Für das Greentheme wurden die neuen AC-Controls angepasst, so dass sie gleichwertig genutzt
+              werden können.
+            </p>
+          </lux-textbox>
 
           <div class="demo-grid">
             <lux-input luxLabel="Lux-Input" luxPlaceholder="Platzhalter" [luxHint]="testHint" luxAutocomplete="off"></lux-input>
@@ -201,11 +203,20 @@
     <lux-panel>
       <lux-panel-header-title>Formularbeispiel</lux-panel-header-title>
       <lux-panel-header-description>Mit Lux-Layout-Form-Row ausgerichtet</lux-panel-header-description>
-      <lux-panel-content>
-        <p class="message-box">
-          In dem unteren Beispiel ist das Formular mit der luxLayoutRow gestaltet worden. Die gestrichelten Linien zeigen die einzelnen Rows
-          an. Der Abstand der Rows zu einander ist dabei individuell gesetzt, bei den Row-Items wurde er gleich gewählt.
-        </p>
+      <lux-panel-content fxLayout="column">
+        <lux-textbox
+          luxTitle="Hinweis"
+          luxIcon="lux-interface-alert-information-circle"
+          luxColor="blue"
+          class="lux-mt-5 lux-mb-5"
+          style="max-width: 600px"
+        >
+          <p>
+            In dem unteren Beispiel ist das Formular mit der luxLayoutRow gestaltet worden. Die gestrichelten Linien zeigen die einzelnen
+            Rows an. Der Abstand der Rows zu einander ist dabei individuell gesetzt, bei den Row-Items wurde er gleich gewählt.
+          </p>
+        </lux-textbox>
+
         <lux-layout [formGroup]="addressForm" fxFill="100">
           <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px' }" luxWrapAt="sm">
             <lux-select
@@ -408,12 +419,14 @@
     <lux-panel>
       <lux-panel-header-title>Lux-Check-Box</lux-panel-header-title>
       <lux-panel-header-description>Die neuen Höhen-Varianten</lux-panel-header-description>
-      <lux-panel-content>
-        <p class="message-box">
-          In diesem Panel werden die neuen Varianten der Check-Boxen vorgestellt. Zur Visualisierung der unterschiedlichen Höhen, wurde eine
-          andere Hintergrundfarbe für die Komponenten gewählt.<br />
-          Diese Form der Gestaltung ist ausschließlich für Testzwecke und nicht für die weitere Verwendung gedacht.
-        </p>
+      <lux-panel-content fxLayout="column" fxLayoutGap="32px">
+        <lux-textbox luxColor="blue" class="lux-mt-5 lux-mb-5" style="max-width: 600px">
+          <p>
+            In diesem Panel werden die neuen Varianten der Check-Boxen vorgestellt. Zur Visualisierung der unterschiedlichen Höhen, wurde
+            eine andere Hintergrundfarbe für die Komponenten gewählt.<br />
+            Diese Form der Gestaltung ist ausschließlich für Testzwecke und nicht für die weitere Verwendung gedacht.
+          </p>
+        </lux-textbox>
         <div [formGroup]="form" fxLayout="column" fxLayoutGap="4px" class="test-box">
           <lux-checkbox [luxNoLabels]="true" luxLabel="luxNoLabels."></lux-checkbox>
           <lux-checkbox
@@ -425,13 +438,12 @@
             luxControlBinding="checkbox1"
             luxLabel="luxNoLabels: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi distinctio libero, ratione animi dolore esse porro mollitia nulla magnam et, modi doloribus. Distinctio repellat quaerat eveniet iste, error molestiae adipisci culpa et, officia maiores, repudiandae tempora quae veniam fuga odit. At officia reiciendis libero magni architecto, odio dolorum laborum commodi."
           ></lux-checkbox>
-          <div class="message-box" fxLayout="column">
-            <h5>Achtung!</h5>
+          <lux-textbox luxTitle="Achtung" luxIcon="lux-interface-alert-warning-diamond" luxColor="red" class="demo-warnbox">
             <p>
               Die neuen Varianten blenden die jeweiligen Labels komplett aus, selbst wenn die Validierung einen Fehler meldet! <br />
               Ist eine Errormessage notwendig, muss daher die Variante <strong>"luxNoTopLabel"</strong> gewählt werden.
             </p>
-          </div>
+          </lux-textbox>
           <lux-checkbox [luxNoTopLabel]="true" luxControlBinding="checkbox2" luxLabel="luxNoTopLabel: Lorem ipsum."></lux-checkbox>
           <lux-checkbox
             [luxNoTopLabel]="true"

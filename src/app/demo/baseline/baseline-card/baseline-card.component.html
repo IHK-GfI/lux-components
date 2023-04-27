@@ -1,11 +1,14 @@
 <div class="container">
   <lux-card luxTitle="Übersicht aller Form-Controls" luxSubTitle="Ausrichtung in einer Lux-Card">
-    <lux-card-content>
-      <p class="message-box">
-        Dieses Beispiel dient für Testzwecke bei der Weiterentwicklung der Lux-Components. In der linken Spalte sind die bisherigen
-        Formcontrols angeordnet, rechts daneben jeweils das neue AC-Element. Zum Vergleich können die unterschiedlichen States der
-        Formcontrols ausgewählt werden.
-      </p>
+    <lux-card-content fxLayout="column">
+      <lux-textbox luxTitle="Hinweis" luxColor="blue" class="lux-mt-3 lux-mb-5">
+        <p>
+          Dieses Beispiel dient für Testzwecke bei der Weiterentwicklung der Lux-Components. In der linken Spalte sind die bisherigen
+          Formcontrols angeordnet, rechts daneben jeweils das neue AC-Element. Zum Vergleich können die unterschiedlichen States der
+          Formcontrols ausgewählt werden.
+        </p>
+      </lux-textbox>
+
       <div class="form-grid-container">
         <lux-radio-ac
           luxGroupName="radio1"

@@ -119,6 +119,7 @@ import { IconOverviewComponent } from './icon-example/icon-overview/icon-overvie
 import { ComponentsOverviewBlueComponent } from './components-overview-blue.component';
 import { ComponentsOverviewAuthenticComponent } from './components-overview-authentic.component';
 import { CheckboxContainerAcExampleComponent } from './checkbox-container-ac-example/checkbox-container-ac-example.component';
+import { TextboxExampleComponent } from './textbox-example/textbox-example.component';
 
 @NgModule({
   imports: [
@@ -244,7 +245,8 @@ import { CheckboxContainerAcExampleComponent } from './checkbox-container-ac-exa
     ComponentsOverviewAuthenticComponent,
     MasterDetailAuthenticExampleComponent,
     CustomTabComponent,
-    CheckboxContainerAcExampleComponent
+    CheckboxContainerAcExampleComponent,
+    TextboxExampleComponent
   ],
   providers: [HttpClient],
   entryComponents: [DialogComponentExampleComponent]

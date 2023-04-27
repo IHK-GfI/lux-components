@@ -1,5 +1,9 @@
 # Version 14.5.0
 
+## New
+
+- **lux-textbox**: Neue Komponente "lux-textbox" hinzugefügt. [Issue 292](https://github.com/IHK-GfI/lux-components/issues/292)
+
 ## Bug Fixes
 
 - **lux-table**: Feststehender Header hat einen transparenten Hintergrund. [Issue 303](https://github.com/IHK-GfI/lux-components/issues/303)

@@ -105,11 +105,14 @@
     </lux-card-content>
 
     <lux-card-content-expanded fxLayout="column">
-      <p class="message-box">
-        Im folgenden Abschnitt werden die neuen Varianten der Formularkomponenten getestet. <br />
-        Die "Baseline" bleibt erhalten, wenn die Komponenten einer Reihe die selben Attribute haben. <br />
-        Komponenten mit unterschiedlichen Attributen/Höhen sollten daher in einer Spalte angeordnet werden! <br />
-      </p>
+      <lux-textbox luxTitle="Information" luxIcon="lux-interface-alert-information-circle" luxColor="blue" style="max-width: 800px">
+        <p>
+          Im folgenden Abschnitt werden die neuen Varianten der Formularkomponenten getestet. <br />
+          Die "Baseline" bleibt erhalten, wenn die Komponenten einer Reihe die selben Attribute haben. <br />
+          Komponenten mit unterschiedlichen Attributen/Höhen sollten daher in einer Spalte angeordnet werden! <br />
+        </p>
+      </lux-textbox>
+
       <h3>Komponenten ohne Top- und Bottom-Label</h3>
       <h4>[luxNoLabels]="true"</h4>
       <div [fxLayout]="showAsColumn ? 'column' : 'row wrap'" fxLayoutGap="16px grid" [formGroup]="form" class="baseline-row">

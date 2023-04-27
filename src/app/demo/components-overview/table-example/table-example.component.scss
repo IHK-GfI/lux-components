@@ -35,45 +35,8 @@ lux-button.lux-table-example {
 
 $icon-shift: 42px;
 
-@mixin messagebox {
-  border-left: 8px solid var(--lux-theme-primary-400);
-  border-radius: 4px;
-  background-color: var(--lux-theme-primary-50);
-  padding: 24px 24px;
-  margin: 32px 0;
-
-  .box-header {
-    i {
-      padding-top: 0;
-    }
-    h2,
-    h3 {
-      margin: 0 0 0 8px;
-    }
-    h3 {
-      color: var(--lux-theme-dark-secondary-text);
-    }
-  }
-  p {
-    margin-top: 32px;
-    margin-left: $icon-shift;
-  }
-  .code-section {
-    margin-left: $icon-shift;
-    overflow: auto;
-  }
-}
-
-.message-box {
-  @include messagebox();
-}
-
-.message-box-small {
-  @include messagebox();
-  padding: 24px 12px;
-
-  p,
-  .code-section {
-    margin-left: 4px;
-  }
+.example-base-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }

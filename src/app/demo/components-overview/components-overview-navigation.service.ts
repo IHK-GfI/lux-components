@@ -295,6 +295,13 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
         moduleName: 'layout',
         news: true,
         themes: this.themeArrAC
+      },
+      {
+        onclick: () => this.goTo('textbox'),
+        icon: 'lux-interface-content-note-pad-text',
+        label: 'Textbox',
+        moduleName: 'common',
+        news: true
       }
     ];
 
