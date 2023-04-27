@@ -1,0 +1,16 @@
+<div
+  class="lux-textbox-container"
+  [ngClass]="{
+    'lux-no-icon': !luxIcon,
+    'lux-red': luxColor === 'red',
+    'lux-yellow': luxColor === 'yellow',
+    'lux-green': luxColor === 'green',
+    'lux-blue': luxColor === 'blue'
+  }"
+>
+  <lux-icon luxIconName="{{ luxIcon }}" class="lux-textbox-icon" *ngIf="luxIcon"></lux-icon>
+  <h3 class="lux-textbox-title" *ngIf="luxTitle">{{ luxTitle }}</h3>
+  <div class="lux-textbox-content">
+    <ng-content></ng-content>
+  </div>
+</div>

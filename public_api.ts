@@ -71,6 +71,7 @@ export * from './src/app/modules/lux-common/lux-table/lux-table-subcomponents/lu
 export * from './src/app/modules/lux-common/lux-table/lux-table-subcomponents/lux-table-column-header.component';
 export * from './src/app/modules/lux-common/lux-table/lux-table-subcomponents/lux-table-column-footer.component';
 export * from './src/app/modules/lux-common/lux-table/lux-table-subcomponents/lux-table-column.component';
+export * from './src/app/modules/lux-common/lux-textbox/lux-textbox.component';
 // Services
 // Classes
 export * from './src/app/modules/lux-common/lux-table/lux-table-http/lux-table-http-dao-structure.interface';

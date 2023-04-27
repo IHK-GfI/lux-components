@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 20px;
+  ::ng-deep {
+    lux-textbox {
+      max-width: 500px;
+    }
+  }
+}
+.code-example {
+  font-family: monospace;
+
+  ::ng-deep lux-icon {
+    width: 19px;
+    height: 19px;
+    mat-icon.mat-icon {
+      padding: 0 !important;
+    }
+  }
+}
+span + span {
+  margin-left: 16px;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 30px;
+}
+
+.demo-subgrid {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 10px;
+
+  ::ng-deep lux-icon {
+    width: 24px;
+    height: 24px;
+    mat-icon.mat-icon {
+      padding: 0 !important;
+    }
+  }
+}

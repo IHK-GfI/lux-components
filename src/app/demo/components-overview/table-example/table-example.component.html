@@ -1,5 +1,5 @@
 <example-base-structure exampleTitle="Tabelle" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90table">
-  <example-base-content>
+  <example-base-content class="example-base-content">
     <div [ngStyle]="{ height: calculateProportions ? tableHeightPx + 'px' : 'unset' }" class="lux-table-example">
       <lux-table
         [luxMinWidthPx]="minWidthPx"
@@ -144,14 +144,7 @@
         </lux-table-column>
       </lux-table>
     </div>
-    <div ngClass="message-box" ngClass.lt-md="message-box-small">
-      <div fxLayout="row" fxLayoutAlign="start start" class="box-header">
-        <lux-icon luxIconName="lux-interface-favorite-like-1" luxIconSize="2x"></lux-icon>
-        <div fxLayout="column">
-          <h2>Tipp</h2>
-          <h3>Formcontrols in editierbaren Tabellen anpassen</h3>
-        </div>
-      </div>
+    <lux-textbox luxColor="blue" luxIcon="lux-interface-favorite-like-1" luxTitle="Formcontrols in editierbaren Tabellen anpassen">
       <p>
         Die Lux-Form-Controls haben standardmäßig einen Label- und einen Hint/Error-Container. In editierbaren Tabellen werden diese jedoch
         nicht benötigt. <br />
@@ -161,7 +154,7 @@
       <div class="code-section">
         <lux-markdown [luxData]="markdownData"></lux-markdown>
       </div>
-    </div>
+    </lux-textbox>
   </example-base-content>
   <example-base-simple-options>
     <table-example-simple-options [tableExample]="this"></table-example-simple-options>

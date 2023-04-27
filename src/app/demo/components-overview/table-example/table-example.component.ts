@@ -10,16 +10,16 @@ export class TableExampleComponent extends TableExampleBaseClass {
   dataSource: any[] = [];
   markdownData = `
   Html
-  \`\`\`
-  ...
+
+  \`\`\`html
   <lux-table-column-content>
     ...
-        <lux-input
-          ...
-          *ngIf="element.editable"
-          [luxNoLabels]="true"
-          ...
-        ></lux-input>
+      <lux-input
+        ...
+        *ngIf="element.editable"
+        [luxNoLabels]="true"
+        ...
+      ></lux-input>
     ...
   </lux-table-column-content>
   \`\`\`

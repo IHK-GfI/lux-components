@@ -61,18 +61,9 @@
         </div>
       </div>
     </div>
-    <div ngClass="message-box" ngClass.lt-md="message-box-small">
-      <div fxLayout="row" fxLayoutAlign="start center" class="box-header">
-        <lux-icon luxIconName="lux-interface-favorite-like-1" luxIconSize="2x"></lux-icon>
-        <h2>
-          Anwendungsbeispiel für
-          <lux-badge luxColor="green" luxId="exampleProp" [luxUppercase]="false"
-            ><lux-label luxId="exampleBadgeLabel">luxNoTopLabel</lux-label></lux-badge
-          >
-        </h2>
-      </div>
+    <lux-textbox luxTitle="Anwendungsbeispiel für luxNoTopLabel" luxIcon="lux-interface-favorite-like-1" luxColor="blue">
       <div fxLayout="column" [formGroup]="agb" class="content lux-mt-4">
-        <h3>Bitte bestätigen Sie, dass Sie die folgenden Bedingungen gelesen haben:</h3>
+        <h4>Bitte bestätigen Sie, dass Sie die folgenden Bedingungen gelesen haben:</h4>
         <lux-checkbox-ac
           [luxNoTopLabel]="true"
           luxControlBinding="checkbox1"
@@ -101,7 +92,7 @@
         ></lux-button>
         <lux-button [luxFlat]="true" luxColor="primary" luxLabel="Weiter" (luxClicked)="exampleValidator(true)"></lux-button>
       </div>
-    </div>
+    </lux-textbox>
   </example-base-content>
   <example-base-simple-options>
     <lux-input

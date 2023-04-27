@@ -13,6 +13,7 @@ import { BaselineExampleComponent } from './baseline-example.component';
 import { BaselineComponent } from './baseline/baseline.component';
 import { BaselineCardComponent } from './baseline-card/baseline-card.component';
 import { BaselineAccordionComponent } from './baseline-accordion/baseline-accordion.component';
+import { LuxCommonModule } from '../../modules/lux-common/lux-common.module';
 
 const routes: Routes = [{ path: '', component: BaselineExampleComponent }];
 
@@ -30,9 +31,10 @@ const routes: Routes = [{ path: '', component: BaselineExampleComponent }];
     FlexLayoutModule,
     LuxFormModule,
     LuxActionModule,
+    LuxCommonModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ BaselineExampleComponent, BaselineComponent, BaselineCardComponent, BaselineAccordionComponent],
+  declarations: [BaselineExampleComponent, BaselineComponent, BaselineCardComponent, BaselineAccordionComponent],
   providers: [HttpClient]
 })
 export class BaselineModule {}
