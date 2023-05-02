@@ -376,6 +376,10 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     );
   }
 
+  getFilteredComponents(filterValue: string) {
+    return this.filteredComponents.filter((component: any) => component.label.toLowerCase().includes(filterValue.toLowerCase()));
+  }
+
   goTo(id: string): void {
     this.router.navigate([`components-overview/example/${id}`]);
   }

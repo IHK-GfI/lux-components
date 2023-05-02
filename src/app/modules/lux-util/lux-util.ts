@@ -18,10 +18,7 @@ import {
 } from '@angular/cdk/keycodes';
 
 export class LuxUtil {
-  public static readonly ISO_8601_FULL = new RegExp(
-    '^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?$',
-    'i'
-  );
+  public static readonly ISO_8601_FULL = new RegExp('^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?$', 'i');
 
   /**
    * Diese Methode wirft einen Fehler, wenn der Wert nicht gesetzt wurde.
@@ -29,7 +26,7 @@ export class LuxUtil {
    * @param name Ein Name.
    * @param value Ein Wert.
    */
-   public static assertNonNull(name: string, value: any) {
+  public static assertNonNull(name: string, value: any) {
     if (value === undefined || value === null) {
       throw Error(`${name} should be initialized.`);
     }
@@ -75,32 +72,32 @@ export class LuxUtil {
   public static getErrorMessage(formControl: FormControl<any>): string {
     if (formControl) {
       if (formControl.hasError('required')) {
-        return $localize `:@@luxc.util.error_message.required:* Pflichtfeld`;
+        return $localize`:@@luxc.util.error_message.required:* Pflichtfeld`;
       }
 
       if (formControl.hasError('minlength')) {
-        return $localize `:@@luxc.util.error_message.minlength:Die Mindestlänge ist ${formControl.getError('minlength').requiredLength}`;
+        return $localize`:@@luxc.util.error_message.minlength:Die Mindestlänge ist ${formControl.getError('minlength').requiredLength}`;
       }
 
       if (formControl.hasError('maxlength')) {
-        return $localize `:@@luxc.util.error_message.maxlength:Die Maximallänge ist ${formControl.getError('maxlength').requiredLength}`;
+        return $localize`:@@luxc.util.error_message.maxlength:Die Maximallänge ist ${formControl.getError('maxlength').requiredLength}`;
       }
 
       if (formControl.hasError('email')) {
-        return $localize `:@@luxc.util.error_message.email:Dies ist keine gültige E-Mailadresse`;
+        return $localize`:@@luxc.util.error_message.email:Dies ist keine gültige E-Mailadresse`;
       }
 
       if (formControl.hasError('min')) {
-        return $localize `:@@luxc.util.error_message.min:Der Minimalwert ist ${formControl.getError('min').min}`;
+        return $localize`:@@luxc.util.error_message.min:Der Minimalwert ist ${formControl.getError('min').min}`;
       }
 
       if (formControl.hasError('max')) {
-        return $localize `:@@luxc.util.error_message.max:Der Maximalwert ist ${formControl.getError('max').max}`;
+        return $localize`:@@luxc.util.error_message.max:Der Maximalwert ist ${formControl.getError('max').max}`;
       }
 
       if (formControl.hasError('pattern')) {
         const pattern = formControl.getError('pattern').requiredPattern;
-        return $localize `:@@luxc.util.error_message.pattern:Entspricht nicht dem Muster "${pattern.substring(1, pattern.length - 1)}"`;
+        return $localize`:@@luxc.util.error_message.pattern:Entspricht nicht dem Muster "${pattern.substring(1, pattern.length - 1)}"`;
       }
     }
     return '';
@@ -141,7 +138,7 @@ export class LuxUtil {
    * @param formGroup
    */
   public static showValidationErrors(formGroup: FormGroup | UntypedFormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
+    Object.keys(formGroup.controls).forEach((field) => {
       const control = formGroup.get(field);
       if (control instanceof FormGroup || control instanceof UntypedFormGroup) {
         this.showValidationErrors(control);
@@ -152,8 +149,8 @@ export class LuxUtil {
           } else if (current) {
             control.markAsTouched({ onlySelf: true });
           }
-        })
-      } else if(control) {
+        });
+      } else if (control) {
         control.markAsTouched({ onlySelf: true });
       }
     });
@@ -166,6 +163,20 @@ export class LuxUtil {
    */
   public static goTo(id: string): void {
     const element = document.querySelector('#' + id);
+    if (element) {
+      setTimeout(() => {
+        element.scrollIntoView();
+      });
+    }
+  }
+
+  /**
+   * Diese Methode scrollt zum übergebenen Selector.
+   *
+   * @param selector Ein Selector. Sollte kein Selector übergeben werden, wird nach oben vom Inhaltsbereich gescrollt.
+   */
+  public static goToTop(selector = 'div.lux-app-content-container') {
+    const element = document.querySelector(selector);
     if (element) {
       setTimeout(() => {
         element.scrollIntoView();
