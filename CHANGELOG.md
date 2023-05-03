@@ -3,6 +3,7 @@
 ## New
 
 - **lux-textbox**: Neue Komponente "lux-textbox" hinzugefügt. [Issue 292](https://github.com/IHK-GfI/lux-components/issues/292)
+- **lux-file-list**: Dateien mit demselben Dateinamen werden ungefragt ersetzt. [Issue 318](https://github.com/IHK-GfI/lux-components/issues/318)
 
 ## Bug Fixes
 
