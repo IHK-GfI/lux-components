@@ -1,7 +1,7 @@
 import { SPACE } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, NO_ERRORS_SCHEMA, Provider } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, Injectable, NO_ERRORS_SCHEMA, OnDestroy, Provider } from '@angular/core';
 import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,6 +34,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LuxActionModule } from '../../lux-action/lux-action.module';
 import { LuxCommonModule } from '../../lux-common/lux-common.module';
 import { LuxComponentsConfigModule } from '../../lux-components-config/lux-components-config.module';
@@ -159,17 +160,9 @@ export class LuxTestHelper {
    * @param providers
    * @param declarations
    */
-  public static createComponent(
-    component: any,
-    providers: Provider[] = [],
-    declarations: any[] = []
-  ): ComponentFixture<any> {
+  public static createComponent(component: any, providers: Provider[] = [], declarations: any[] = []): ComponentFixture<any> {
     TestBed.configureTestingModule({
-      imports: [
-        ...LuxTestHelper.COMMON_ANGULAR_MODULES,
-        ...LuxTestHelper.MATERIAL_MODULES,
-        ...LuxTestHelper.LUX_MODULES
-      ],
+      imports: [...LuxTestHelper.COMMON_ANGULAR_MODULES, ...LuxTestHelper.MATERIAL_MODULES, ...LuxTestHelper.LUX_MODULES],
       declarations: [...declarations, component],
       providers: [...providers]
     });
@@ -280,7 +273,7 @@ export class LuxTestHelper {
     });
 
     // IE won't set `defaultPrevented` on synthetic events, so we need to do it manually.
-    event.preventDefault = function() {
+    event.preventDefault = function () {
       Object.defineProperty(event, 'defaultPrevented', { get: () => true });
       return originalPreventDefault.apply(this, arguments);
     };
@@ -311,9 +304,9 @@ export class LuxTestHelper {
     const dataTransfer = new DataTransfer();
     files.forEach((file) => {
       dataTransfer.items.add(LuxTestHelper.createFileBrowserSafe(file.name, file.type));
-    })
+    });
 
-    return new DragEvent('drop', { dataTransfer })
+    return new DragEvent('drop', { dataTransfer });
   }
 
   /**
@@ -334,10 +327,7 @@ export class LuxTestHelper {
       ],
       declarations: [...declarations],
       providers: [...providers],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-        NO_ERRORS_SCHEMA
-      ]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     });
 
     TestBed.compileComponents();

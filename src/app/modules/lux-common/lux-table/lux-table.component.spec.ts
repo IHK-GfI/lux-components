@@ -1,17 +1,21 @@
 /* eslint-disable max-classes-per-file */
 // noinspection DuplicatedCode
 
-declare interface TableItem {c1: number; c2: any}
+declare interface TableItem {
+  c1: number;
+  c2: any;
+}
 
+import { Component } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
+import { MockMediaObserverService } from '../../lux-util/testing/mock-media-observer.service';
 import { ICustomCSSConfig } from './lux-table-custom-css-config.interface';
 
 import { LuxTableComponent } from './lux-table.component';
-import { Component, Injectable, OnDestroy } from "@angular/core";
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { ILuxTableHttpDao } from './lux-table-http/lux-table-http-dao.interface';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { delay } from 'rxjs/operators';
@@ -598,7 +602,7 @@ describe('LuxTableComponent', () => {
       for (let i = 0; i <= 101; i++) {
         data.push({ c1: i, c2: 'Demo ' + i });
       }
-      component.dataSource   = data;
+      component.dataSource = data;
       component.autoPaginate = true;
       LuxTestHelper.wait(fixture);
 
@@ -1132,7 +1136,7 @@ describe('LuxTableComponent', () => {
           </lux-table-column-header>
           <lux-table-column-content>
             <ng-template let-element
-            ><span class="c2-content">{{ element.c2 }}</span></ng-template
+              ><span class="c2-content">{{ element.c2 }}</span></ng-template
             >
           </lux-table-column-content>
           <lux-table-column-footer>
@@ -1156,7 +1160,7 @@ class TableComponent {
   containerHeight?: number;
   containerWidth?: number;
   autoPaginate = false;
-  hideBorders  = false;
+  hideBorders = false;
   hideHeaders = false;
   c1Sortable?: boolean;
   c1Sticky?: boolean;
@@ -1172,7 +1176,14 @@ class TableComponent {
 
 @Component({
   template: `
-    <lux-table [luxHttpDAO]="httpDao" [luxShowPagination]="true" [luxShowFilter]="true" [luxPageSize]="5" [(luxSelected)]="selected" [luxMultiSelect]="true">
+    <lux-table
+      [luxHttpDAO]="httpDao"
+      [luxShowPagination]="true"
+      [luxShowFilter]="true"
+      [luxPageSize]="5"
+      [(luxSelected)]="selected"
+      [luxMultiSelect]="true"
+    >
       <lux-table-column luxColumnDef="c1" [luxSortable]="true">
         <lux-table-column-header>
           <ng-template> C1 </ng-template>
@@ -1274,21 +1285,6 @@ class TestHttpDao implements ILuxTableHttpDao {
   loadData(conf: { page: number; pageSize: number; filter?: string; sort?: string; order?: string }): Observable<any> {
     // Beispiel; bis zum return würde das alles hier serverseitig stattfinden
     return of({ items: this.dataSourceFix, totalCount: this.dataSourceFix.length });
-  }
-}
-
-@Injectable()
-class MockMediaObserverService implements OnDestroy {
-  mediaQueryChanged: BehaviorSubject<string> = new BehaviorSubject<string>('');
-
-  constructor() {}
-
-  ngOnDestroy() {
-    this.mediaQueryChanged.complete();
-  }
-
-  public getMediaQueryChangedAsObservable(): Observable<string> {
-    return this.mediaQueryChanged.asObservable();
   }
 }
 

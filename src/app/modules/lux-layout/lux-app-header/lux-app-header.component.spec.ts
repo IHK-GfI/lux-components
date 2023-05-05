@@ -2,14 +2,16 @@
 // noinspection DuplicatedCode
 
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, flushMicrotasks, TestBed } from '@angular/core/testing';
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, flushMicrotasks, inject, TestBed } from '@angular/core/testing';
 import { Viewport } from 'karma-viewport/dist/adapter/viewport';
+import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
 import { Router } from '@angular/router';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { MockMediaObserverService } from '../../lux-util/testing/mock-media-observer.service';
 import { LuxAppHeaderComponent } from './lux-app-header.component';
 
 declare const viewport: Viewport;
@@ -17,9 +19,7 @@ declare const viewport: Viewport;
 describe('LuxAppHeaderComponent', () => {
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
-      [
-        LuxConsoleService
-      ],
+      [LuxConsoleService, { provide: LuxMediaQueryObserverService, useClass: MockMediaObserverService }],
       [MockAppHeaderComponent, MockLabelClickedAppHeaderComponent, MockIconClickedAppHeaderComponent, MockImageClickedAppHeaderComponent]
     );
   });
@@ -99,21 +99,23 @@ describe('LuxAppHeaderComponent', () => {
       expect(fixture.debugElement.query(By.css('.lux-header-title')).nativeElement.textContent.trim()).toEqual('Titel');
     }));
 
-    it('Sollte in kleiner Auflösung den luxAppTitleShort darstellen', fakeAsync(() => {
-      // Vorbedingungen testen
-      expect(fixture.debugElement.query(By.css('.lux-header-title')).nativeElement.textContent.trim()).toEqual('');
+    it('Sollte in kleiner Auflösung den luxAppTitleShort darstellen', fakeAsync(
+      inject([LuxMediaQueryObserverService], (mediaObserver: MockMediaObserverService) => {
+        mediaObserver.mediaQueryChanged.next('xs');
+        LuxTestHelper.wait(fixture);
+        expect(fixture.componentInstance.appHeaderComponent.mobileView).toBeTrue();
 
-      // Änderungen durchführen
-      testComponent.titleShort = 'T';
-      testComponent.appHeaderComponent.mobileView = true;
-      LuxTestHelper.wait(fixture);
+        // Vorbedingungen testen
+        expect(fixture.debugElement.query(By.css('.lux-header-title')).nativeElement.textContent.trim()).toEqual('');
 
-      // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-header-title')).nativeElement.textContent.trim()).toEqual('T');
+        // Änderungen durchführen
+        testComponent.titleShort = 'T';
+        LuxTestHelper.wait(fixture);
 
-      testComponent.appHeaderComponent.mobileView = false;
-      LuxTestHelper.wait(fixture);
-    }));
+        // Nachbedingungen prüfen
+        expect(fixture.debugElement.query(By.css('.lux-header-title')).nativeElement.textContent.trim()).toEqual('T');
+      })
+    ));
   });
 
   describe('mit lux-side-nav', () => {
@@ -648,7 +650,6 @@ class MockIconClickedAppHeaderComponent {
   `
 })
 class MockAppHeaderComponent {
-
   @ViewChild(LuxAppHeaderComponent) appHeaderComponent!: LuxAppHeaderComponent;
 
   username?: string;
