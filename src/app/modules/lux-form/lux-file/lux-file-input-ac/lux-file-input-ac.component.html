@@ -22,11 +22,7 @@
       [required]="luxRequired"
       [readonly]="true"
       [id]="uid"
-      [value]="
-        (luxSelected?.namePrefix ?? '') +
-        (luxSelected?.name ?? '') +
-        (luxSelected?.nameSuffix ?? '')
-      "
+      [value]="(luxSelected?.namePrefix ?? '') + (luxSelected?.name ?? '') + (luxSelected?.nameSuffix ?? '')"
       (blur)="luxBlur.emit($event)"
       (focus)="luxFocus.emit($event)"
       (focusin)="onFocusIn($event)"
@@ -39,6 +35,7 @@
       <lux-menu
         luxMenuIconName="lux-interface-setting-menu-vertical"
         luxTagId="{{ 'lux-file-input-actions' }}"
+        [luxMenuItemFixWidth]="32"
         [luxMaximumExtended]="luxMaximumExtended"
         [luxToggleDisabled]="luxDisabled || luxReadonly"
         [luxDisplayExtended]="true"
@@ -99,7 +96,7 @@
           *ngFor="let customConfig of luxCustomActionConfigs; let i = index"
           luxTagId="lux-file-list-entry-custom{{ i }}"
           [luxIconName]="customConfig.iconName"
-          [luxDisabled]="customConfig.disabled || luxDisabled || luxReadonly || !luxSelected "
+          [luxDisabled]="customConfig.disabled || luxDisabled || luxReadonly || !luxSelected"
           [luxLabel]="customConfig.label"
           [luxHideLabelIfExtended]="true"
           [luxPrio]="customConfig.prio ? customConfig.prio : 50 + i"
