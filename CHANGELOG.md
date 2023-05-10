@@ -4,6 +4,13 @@
 
 - **allgemein**: Update auf Angular 15 [Issue 302](https://github.com/IHK-GfI/lux-components/issues/302)
 
+# Version 14.6.0
+
+## Bug Fixes
+
+- **lux-file-list**: Einzelne Action wird im Kontextmenü angezeigt. [Issue 320](https://github.com/IHK-GfI/lux-components/issues/320)
+- **lux-file-input**: Einzelne Action wird im Kontextmenü angezeigt. [Issue 320](https://github.com/IHK-GfI/lux-components/issues/320)
+
 # Version 14.5.0
 
 ## New

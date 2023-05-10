@@ -13,12 +13,12 @@ import {
   Output,
   QueryList,
   ViewChild
-} from "@angular/core";
-import { LuxUtil } from "../../lux-util/lux-util";
+} from '@angular/core';
+import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxThemeService } from '../../lux-theme/lux-theme.service';
-import { Subscription } from "rxjs";
-import { LuxMenuItemComponent } from "./lux-menu-subcomponents/lux-menu-item.component";
-import { LuxMenuTriggerComponent } from "./lux-menu-subcomponents/lux-menu-trigger.component";
+import { Subscription } from 'rxjs';
+import { LuxMenuItemComponent } from './lux-menu-subcomponents/lux-menu-item.component';
+import { LuxMenuTriggerComponent } from './lux-menu-subcomponents/lux-menu-trigger.component';
 
 // @dynamic Erklärung steht in der Datei "lux-decorators.ts".
 @Component({
@@ -58,6 +58,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   @Input() luxMenuLabel = '';
   @Input() luxMenuIconName = 'menu';
   @Input() luxMenuTriggerIconShowRight = false;
+  @Input() luxMenuItemFixWidth = 0;
   @Input() luxClassName = '';
   @Input() luxTagId?: string;
   @Input() luxToggleDisabled = false;
@@ -123,7 +124,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     // aktuell wird für die Klasse ".lux-extended-menu" die Breite der Icons auf 15px gesetzt.
     // bei Änderungen es Icon-Sets muss dieser Wert eventuell angepasst werden
 
-    switch(this.themeService.getTheme().name) {
+    switch (this.themeService.getTheme().name) {
       case 'green':
         this.PADDING_PX = 32;
         this.MARGIN_PX = 8;
@@ -142,10 +143,10 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
         this.FONT_FAMILY = '"Blogger Sans", "Source Sans Pro","Helvetica","Arial","sans-serif"';
         break;
 
-      default:
+      default: // 28px Breite plus 8px Gap zwischen Icon - Button-Label
         this.PADDING_PX = 16;
         this.MARGIN_PX = 12;
-        this.ICON_PX = 36; // 28px Breite plus 8px Gap zwischen Icon - Button-Label
+        this.ICON_PX = 36;
         this.FONT_SIZE = 14;
         this.FONT_WEIGHT = 700;
         this.FONT_FAMILY = 'Roboto, "Helvetica Neue", sans-serif';
@@ -211,7 +212,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
    *
    * @param event
    */
-  menuTriggerStopPropagation(event: Event){
+  menuTriggerStopPropagation(event: Event) {
     LuxUtil.stopEventPropagation(event);
   }
   /**
@@ -241,7 +242,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       for (let i = 0; i < this.menuItems.length; i++) {
         const menuItem = this.menuItems[i];
         if (menuItem.luxAlwaysVisible === condition && !menuItem.luxHidden) {
-          this.visibleMenuItems.push(menuItem)
+          this.visibleMenuItems.push(menuItem);
         }
       }
     }
@@ -249,10 +250,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       const menuItem = this.visibleMenuItems[i];
       // Wenn es das letzte sichtbare Menüitem ist, wird geprüft, ob es anstelle des
       // Menüitemtriggers dargestellt werden kann.
-      if (
-        menuItem === this.visibleMenuItems[this.visibleMenuItems.length - 1] &&
-        availableWidth + menuTriggerWidth >= menuItem.width
-      ) {
+      if (menuItem === this.visibleMenuItems[this.visibleMenuItems.length - 1] && availableWidth + menuTriggerWidth >= menuItem.width) {
         availableWidth += menuTriggerWidth;
       }
 
@@ -292,7 +290,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   private calculateMenuItemWidths() {
     this.menuItems.forEach((menuItem: LuxMenuItemComponent) => {
       menuItem.extended = false;
-      menuItem.width = this.getMenuItemWidth(menuItem);
+      menuItem.width = this.luxMenuItemFixWidth > 0 ? this.luxMenuItemFixWidth : this.getMenuItemWidth(menuItem);
     });
   }
 
@@ -312,8 +310,8 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       this.PADDING_PX +
       (menuItem.luxIconName ? this.ICON_PX : 0) +
       (!menuItem.luxHideLabelIfExtended ? this.getTextWidth(menuItem.luxLabel) : 0) +
-      this.MARGIN_PX
-      + 15
+      this.MARGIN_PX +
+      15
     );
   }
 

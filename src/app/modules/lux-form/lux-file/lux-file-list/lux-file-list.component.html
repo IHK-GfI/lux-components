@@ -1,6 +1,6 @@
 <lux-card
   class="lux-file-list"
-  [ngClass]="{ 'lux-file-list-disabled': luxDisabled, 'lux-file-list-error': (errorMessage && formControl && formControl.touched) }"
+  [ngClass]="{ 'lux-file-list-disabled': luxDisabled, 'lux-file-list-error': errorMessage && formControl && formControl.touched }"
   [luxTitle]="(luxLabel ? luxLabel : '') + (luxRequired ? ' *' : '')"
   [luxAriaInvalid]="formControl ? '' + formControl.invalid : ''"
   tabindex="0"
@@ -12,9 +12,7 @@
       [luxIconName]="luxDeleteActionConfig.iconNameHeader"
       luxTagId="lux-file-clear"
       luxColor="primary"
-      [luxDisabled]="
-        !luxSelected || luxSelected.length === 0 || luxDeleteActionConfig.disabledHeader || luxDisabled || luxReadonly
-      "
+      [luxDisabled]="!luxSelected || luxSelected.length === 0 || luxDeleteActionConfig.disabledHeader || luxDisabled || luxReadonly"
       (luxClicked)="clearFiles($event)"
       fxFlex="0 0 auto"
       [luxAriaLabel]="luxDeleteActionConfig.labelHeader"
@@ -75,14 +73,16 @@
     <mat-error [id]="uid + '-misc'">
       {{ errorMessage }}
     </mat-error>
-    <lux-icon *ngIf="displayClearErrorButton"
-              luxIconName="lux-interface-delete-1"
-              luxAriaLabel="Fehlermeldung löschen"
-              i18n-luxAriaLabel="@@luxc.form.delete.error.button"
-              class="lux-error-icon"
-              [tabIndex]="0"
-              (keydown.enter)="onCloseErrorMessage()"
-              (click)="onCloseErrorMessage()"></lux-icon>
+    <lux-icon
+      *ngIf="displayClearErrorButton"
+      luxIconName="lux-interface-delete-1"
+      luxAriaLabel="Fehlermeldung löschen"
+      i18n-luxAriaLabel="@@luxc.form.delete.error.button"
+      class="lux-error-icon"
+      [tabIndex]="0"
+      (keydown.enter)="onCloseErrorMessage()"
+      (click)="onCloseErrorMessage()"
+    ></lux-icon>
   </lux-card-actions>
 </lux-card>
 <!-- Template für eine File-Entry -->
@@ -139,6 +139,7 @@
       <lux-menu
         luxMenuIconName="lux-interface-setting-menu-vertical"
         luxTagId="{{ 'lux-file-list-entry-' + index + '-actions' }}"
+        [luxMenuItemFixWidth]="45"
         (luxMenuClosed)="fileEntry.focus()"
         [luxToggleDisabled]="luxDisabled || luxReadonly"
         [luxDisplayExtended]="true"
