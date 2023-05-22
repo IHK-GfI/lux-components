@@ -62,7 +62,7 @@
       </div>
     </div>
     <lux-textbox luxTitle="Anwendungsbeispiel für luxNoTopLabel" luxIcon="lux-interface-favorite-like-1" luxColor="blue">
-      <div fxLayout="column" [formGroup]="agb" class="content lux-mt-4">
+      <div [formGroup]="agb" class="lux-mt-4 demo-form">
         <h4>Bitte bestätigen Sie, dass Sie die folgenden Bedingungen gelesen haben:</h4>
         <lux-checkbox-ac
           [luxNoTopLabel]="true"
@@ -83,7 +83,7 @@
           [luxDense]="denseFormat"
         ></lux-checkbox-ac>
       </div>
-      <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="end center" fxLayoutAlign.lt-md="start stretch" fxLayoutGap="8px">
+      <div class="demo-button-row">
         <lux-button
           [luxStroked]="true"
           luxColor="primary"
