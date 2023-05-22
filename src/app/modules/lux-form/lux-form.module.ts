@@ -22,12 +22,11 @@ import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';
 import { LuxLayoutModule } from '../lux-layout/lux-layout.module';
 import { LuxPipesModule } from '../lux-pipes/lux-pipes.module';
-import { LuxPopupsModule } from "../lux-popups/lux-popups.module";
+import { LuxPopupsModule } from '../lux-popups/lux-popups.module';
 import { LuxFileListComponent } from './lux-file/lux-file-list/lux-file-list.component';
 import { LuxFileProgressComponent } from './lux-file/lux-file-subcomponents/lux-file-progress/lux-file-progress.component';
 import { LuxFormHintComponent } from './lux-form-control/lux-form-control-subcomponents/lux-form-hint.component';
 import { LuxFormLabelComponent } from './lux-form-control/lux-form-control-subcomponents/lux-form-label.component';
-import { LuxFormControlComponent } from './lux-form-control/lux-form-control.component';
 import { LuxFileCaptureDirective } from './lux-file/lux-file-model/lux-file-capture.directive';
 import { LuxMaxLengthDirective } from './lux-form-control/lux-form-directives/lux-maxlength/lux-max-length.directive';
 import { LuxNameDirectiveDirective } from './lux-form-control/lux-form-directives/lux-name/lux-name-directive.directive';
@@ -57,7 +56,6 @@ import { LuxSliderAcComponent } from './lux-slider-ac/lux-slider-ac.component';
 
 @NgModule({
   declarations: [
-    LuxFormControlComponent,
     LuxFormHintComponent,
     LuxFormLabelComponent,
     LuxFileListComponent,
@@ -117,7 +115,6 @@ import { LuxSliderAcComponent } from './lux-slider-ac/lux-slider-ac.component';
     OverlayModule
   ],
   exports: [
-    LuxFormControlComponent,
     LuxFormHintComponent,
     LuxFormLabelComponent,
     LuxFileListComponent,

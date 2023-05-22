@@ -22,6 +22,7 @@ import { StepperLargeExampleComponent } from './stepper-large-example/stepper-la
 import { StorageExampleComponent } from './storage-example/storage-example.component';
 import { TableExampleComponent } from './table-example/table-example.component';
 import { TableServerExampleComponent } from './table-server-example/table-server-example.component';
+import { TileExampleComponent } from './tile-example/tile-example.component';
 import { TooltipExampleComponent } from './tooltip-example/tooltip-example.component';
 import { LookupComboboxAcExampleComponent } from './lookup-examples/lookup-combobox-ac-example/lookup-combobox-ac-example.component';
 import { LookupAutocompleteAcExampleComponent } from './lookup-examples/lookup-autocomplete-ac-example/lookup-autocomplete-ac-example.component';
@@ -121,6 +122,7 @@ const routes: Routes = [
       { path: 'card-row', component: CardRowExampleComponent },
       { path: 'filter', component: FilterExampleComponent },
       { path: 'link-plain', component: LinkPlainExampleComponent },
+      { path: 'tile', component: TileExampleComponent },
       { path: 'tile-ac', component: TileAuthenticExampleComponent },
       { path: 'input-ac', component: InputAuthenticExampleComponent },
       { path: 'checkbox-ac', component: CheckboxAuthenticExampleComponent },

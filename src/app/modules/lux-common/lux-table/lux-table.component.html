@@ -1,12 +1,7 @@
 <div fxLayout="column" fxFlex="0 0 100%" class="lux-table">
   <!-- Progress für das Laden/Filtern von Daten -->
   <div fxFlex="0 0 15px">
-    <lux-progress
-      luxTagId="tableProgress"
-      luxType="Progressbar"
-      class="lux-mb-3"
-      *ngIf="isLoadingResults"
-    ></lux-progress>
+    <lux-progress luxTagId="tableProgress" luxType="Progressbar" class="lux-mb-3" *ngIf="isLoadingResults"></lux-progress>
   </div>
   <!-- Input-Feld für das Filtern der Datensätze dieser Tabelle -->
   <div class="lux-table-filter" fxLayout="row" fxFlexAlign="start center" fxLayoutGap="16px" [ngClass]="{ 'lux-hide': !luxShowFilter }">
@@ -50,23 +45,20 @@
         <ng-container *ngIf="tableColumns">
           <!-- Zellen, welche nur bei Multiselect-Tabellen dargestellt werden und die Checkboxen + Counter beinhalten -->
           <ng-container matColumnDef="multiSelect" *ngIf="luxMultiSelect">
-            <th
-              class="lux-multiselect-th"
-              mat-header-cell
-              *matHeaderCellDef
-              mat-sort-header="multiSelect"
-            >
+            <th class="lux-multiselect-th" mat-header-cell *matHeaderCellDef mat-sort-header="multiSelect">
               <div fxLayout="column">
-                <span class="lux-selected-count"
-                  >{{ luxSelected.size }} {{ !luxHttpDAO ? '/ ' + dataSource.totalElements : '' }}</span
-                >
+                <span class="lux-selected-count">{{ luxSelected.size }} {{ !luxHttpDAO ? '/ ' + dataSource.totalElements : '' }}</span>
               </div>
             </th>
-            <td class="lux-multiselect-td" mat-cell *matCellDef="let element; let i = index"
-                [tabindex]="luxMultiSelectOnlyCheckboxClick ? 0 : -1"
-                (click)="changeSelectedEntry(element, true)"
-                (keydown.space)="changeSelectedEntry(element, true)"
-                (keydown.enter)="changeSelectedEntry(element, true)">
+            <td
+              class="lux-multiselect-td"
+              mat-cell
+              *matCellDef="let element; let i = index"
+              [tabindex]="luxMultiSelectOnlyCheckboxClick ? 0 : -1"
+              (click)="changeSelectedEntry(element, true)"
+              (keydown.space)="changeSelectedEntry(element, true)"
+              (keydown.enter)="changeSelectedEntry(element, true)"
+            >
               <lux-checkbox-ac
                 luxTagId="lux-table-multiselect-content-{{ i }}"
                 class="lux-multiselect-toggle"
@@ -76,24 +68,14 @@
                 luxAriaLabel="Reihe {{ i }}"
                 i18n-luxAriaLabel="@@luxc.table.multiselect.chk.arialabel"
                 luxAriaLabelSelector="input"
+                [luxReadonly]="true"
                 [luxChecked]="luxSelected.has(element)"
                 [luxNoLabels]="true"
               >
               </lux-checkbox-ac>
             </td>
-            <td
-              class="lux-multiselect-tf"
-              [ngClass]="{ 'lux-ignore-multiselect-tf': !!luxHttpDAO }"
-              mat-footer-cell
-              *matFooterCellDef
-            >
-              <div
-                fxLayout="column"
-                fxLayoutAlign="center"
-                fxFill
-                class="lux-multiselect-toggle-all-wrapper"
-                *ngIf="!luxHttpDAO"
-              >
+            <td class="lux-multiselect-tf" [ngClass]="{ 'lux-ignore-multiselect-tf': !!luxHttpDAO }" mat-footer-cell *matFooterCellDef>
+              <div fxLayout="column" fxLayoutAlign="center" fxFill class="lux-multiselect-toggle-all-wrapper" *ngIf="!luxHttpDAO">
                 <lux-checkbox-ac
                   luxTagId="lux-table-multiselect-header"
                   class="lux-multiselect-toggle-all"
@@ -151,9 +133,7 @@
                 <div class="lux-header-title lux-label" *ngIf="hasMovedColumnsMap.has(tableColumn.luxColumnDef)">
                   <ng-container *ngTemplateOutlet="tableColumn.header?.tempRef ?? null"></ng-container>
                 </div>
-                <ng-container
-                  *ngTemplateOutlet="tableColumn.content?.tempRef ?? null; context: { $implicit: element }"
-                ></ng-container>
+                <ng-container *ngTemplateOutlet="tableColumn.content?.tempRef ?? null; context: { $implicit: element }"></ng-container>
                 <div class="lux-mb-3" *ngIf="hasMovedColumnsMap.has(tableColumn.luxColumnDef)"></div>
 
                 <!-- Hier werden die aufgrund von Responsive-Verhalten verschobenen Spalten innerhalb dieser Spalte dargestellt -->

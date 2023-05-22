@@ -1,8 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, HostBinding, Input } from '@angular/core';
 import { LuxFormComponentBase } from '../lux-form-model/lux-form-component-base.class';
 
-
-export const luxFormControlWrapperSelektor = 'lux-form-control-wrapper';
+export const luxFormControlSelektor = 'lux-form-control-wrapper';
 
 @Component({
   selector: 'lux-form-control-wrapper',
@@ -10,7 +9,6 @@ export const luxFormControlWrapperSelektor = 'lux-form-control-wrapper';
   styleUrls: ['./lux-form-control-wrapper.component.scss']
 })
 export class LuxFormControlWrapperComponent {
-
   focused = false;
 
   @HostBinding('class.lux-form-control-no-top-label') _luxNoTopLabel = false;
@@ -78,7 +76,7 @@ export class LuxFormControlWrapperComponent {
   }
 
   shouldDisplayMisc() {
-    return (!this.luxNoBottomLabel && !this.luxNoLabels)
+    return !this.luxNoBottomLabel && !this.luxNoLabels;
   }
 
   shouldDisplayLabelByProperty() {

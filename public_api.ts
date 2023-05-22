@@ -133,7 +133,6 @@ export * from './src/app/modules/lux-form/lux-file/lux-file-subcomponents/lux-fi
 export * from './src/app/modules/lux-form/lux-file/lux-file-upload/lux-file-upload.component';
 export * from './src/app/modules/lux-form/lux-file/lux-file-subcomponents/lux-file-delete-dialog/lux-file-delete-dialog.component';
 export * from './src/app/modules/lux-form/lux-file/lux-file-subcomponents/lux-file-replace-dialog/lux-file-replace-dialog.component';
-export * from './src/app/modules/lux-form/lux-form-control/lux-form-control.component';
 export * from './src/app/modules/lux-form/lux-form-control/lux-form-control-subcomponents/lux-form-hint.component';
 export * from './src/app/modules/lux-form/lux-form-control/lux-form-control-subcomponents/lux-form-label.component';
 export * from './src/app/modules/lux-form/lux-form-control-wrapper/lux-form-control-wrapper.component';
@@ -227,6 +226,7 @@ export * from './src/app/modules/lux-layout/lux-card/lux-card-subcomponents/lux-
 export * from './src/app/modules/lux-layout/lux-card/lux-card-subcomponents/lux-card-content.component';
 export * from './src/app/modules/lux-layout/lux-card/lux-card-subcomponents/lux-card-actions.component';
 export * from './src/app/modules/lux-layout/lux-divider/lux-divider.component';
+export * from './src/app/modules/lux-layout/lux-tile/lux-tile.component';
 export * from './src/app/modules/lux-layout/lux-tile-ac/lux-tile-ac.component';
 export * from './src/app/modules/lux-layout/lux-list/lux-list.component';
 export * from './src/app/modules/lux-layout/lux-list/lux-list-subcomponents/lux-list-item.component';
