@@ -7,7 +7,6 @@ import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxControlDisable', () => {
-
   let fixture: ComponentFixture<LuxControlDisableComponent>;
   let testComponent: LuxControlDisableComponent;
 
@@ -90,7 +89,7 @@ describe('LuxControlDisable', () => {
     expect(testComponent.myForm.get('checkbox')!.disabled).toBe(false);
     expect(datepickerEl.disabled).toBe(false);
     expect(testComponent.myForm.get('datepicker')!.disabled).toBe(false);
-    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled');
+    expect(fileInputEl.classList).not.toContain('lux-form-control-disabled-authentic');
     expect(testComponent.myForm.get('fileInput')!.disabled).toBe(false);
     expect(fileListEl.classList).not.toContain('lux-file-list-disabled');
     expect(testComponent.myForm.get('fileList')!.disabled).toBe(false);
@@ -418,12 +417,7 @@ describe('LuxControlDisable', () => {
         [(luxDisabled)]="disabledState"
         id="autocomplete"
       ></lux-autocomplete-ac>
-      <lux-checkbox-ac
-        luxLabel="checkbox"
-        luxControlBinding="checkbox"
-        [(luxDisabled)]="disabledState"
-        id="checkbox"
-      ></lux-checkbox-ac>
+      <lux-checkbox-ac luxLabel="checkbox" luxControlBinding="checkbox" [(luxDisabled)]="disabledState" id="checkbox"></lux-checkbox-ac>
       <lux-datepicker-ac
         luxLabel="datepicker"
         luxControlBinding="datepicker"
@@ -436,12 +430,7 @@ describe('LuxControlDisable', () => {
         [(luxDisabled)]="disabledState"
         id="fileInput"
       ></lux-file-input-ac>
-      <lux-file-list
-        luxLabel="fileList"
-        luxControlBinding="fileList"
-        [(luxDisabled)]="disabledState"
-        id="fileList"
-      ></lux-file-list>
+      <lux-file-list luxLabel="fileList" luxControlBinding="fileList" [(luxDisabled)]="disabledState" id="fileList"></lux-file-list>
       <lux-radio-ac
         luxLabel="radio"
         [luxOptions]="options"
@@ -457,12 +446,7 @@ describe('LuxControlDisable', () => {
         id="select"
       ></lux-select-ac>
       <lux-slider-ac luxLabel="slider" luxControlBinding="slider" [(luxDisabled)]="disabledState" id="slider"></lux-slider-ac>
-      <lux-textarea-ac
-        luxLabel="textarea"
-        luxControlBinding="textarea"
-        [(luxDisabled)]="disabledState"
-        id="textarea"
-      ></lux-textarea-ac>
+      <lux-textarea-ac luxLabel="textarea" luxControlBinding="textarea" [(luxDisabled)]="disabledState" id="textarea"></lux-textarea-ac>
       <lux-toggle-ac luxLabel="toggle" luxControlBinding="toggle" [(luxDisabled)]="disabledState" id="toggle"></lux-toggle-ac>
     </form>
   `
@@ -490,8 +474,7 @@ class LuxControlDisableComponent {
       select: new FormControl<any>(null),
       slider: new FormControl<any>(null),
       textarea: new FormControl<any>(null),
-      toggle: new FormControl<any>(null),
+      toggle: new FormControl<any>(null)
     });
   }
-
 }

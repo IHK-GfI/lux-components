@@ -80,6 +80,7 @@ import { LuxAppHeaderAcActionNavItemComponent } from './lux-app-header-ac/lux-ap
 import { LuxAppHeaderAcActionNavItemCustomComponent } from './lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item-custom.component';
 import { LuxDetailHeaderAcComponent } from './lux-master-detail-ac/lux-detail-header-ac/lux-detail-header-ac.component';
 import { LuxCheckboxContainerAcComponent } from './lux-checkbox-container-ac/lux-checkbox-container-ac.component';
+import { LuxTileComponent } from './lux-tile/lux-tile.component';
 
 @NgModule({
   imports: [
@@ -150,6 +151,7 @@ import { LuxCheckboxContainerAcComponent } from './lux-checkbox-container-ac/lux
     LuxAppHeaderAcComponent,
     LuxAppHeaderAcUserMenuComponent,
     LuxAppHeaderAcNavMenuComponent,
+    LuxTileComponent,
     LuxTileAcComponent,
     LuxLangSelectAcComponent,
     LuxAppHeaderAcNavMenuItemComponent,
@@ -215,6 +217,7 @@ import { LuxCheckboxContainerAcComponent } from './lux-checkbox-container-ac/lux
     LuxAppHeaderAcComponent,
     LuxAppHeaderAcUserMenuComponent,
     LuxAppHeaderAcNavMenuComponent,
+    LuxTileComponent,
     LuxTileAcComponent,
     LuxAppHeaderActionNavItemCustomComponent,
     LuxAppHeaderAcNavMenuItemComponent,

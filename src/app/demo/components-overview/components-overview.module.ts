@@ -38,6 +38,7 @@ import { StorageExampleComponent } from './storage-example/storage-example.compo
 import { TableExampleComponent } from './table-example/table-example.component';
 import { TableServerExampleComponent } from './table-server-example/table-server-example.component';
 import { CustomTabComponent } from './tabs-example/custom-tab/custom-tab.component';
+import { TileExampleComponent } from './tile-example/tile-example.component';
 import { TooltipExampleComponent } from './tooltip-example/tooltip-example.component';
 import { TabindexExampleComponent } from './tabindex-example/tabindex-example.component';
 import { CardExampleComponent } from './card-example/card-example.component';
@@ -189,6 +190,7 @@ import { TextboxExampleComponent } from './textbox-example/textbox-example.compo
     StepperLargeExampleStepFinButtonComponent,
     StepperLargeExampleStepVetoComponent,
     LinkPlainExampleComponent,
+    TileExampleComponent,
     TileAuthenticExampleComponent,
     FileUploadExampleComponent,
     InputAuthenticExampleComponent,

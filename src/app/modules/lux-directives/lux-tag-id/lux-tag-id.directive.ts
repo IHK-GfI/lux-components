@@ -2,7 +2,7 @@ import { AfterViewInit, Directive, ElementRef, Input, OnDestroy, Renderer2 } fro
 import { Subscription } from 'rxjs';
 import { LuxComponentsConfigParameters } from '../../lux-components-config/lux-components-config-parameters.interface';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
-import { luxFormControlSelektor } from '../../lux-form/lux-form-control/lux-form-control.component';
+import { luxFormControlSelektor } from '../../lux-form/lux-form-control-wrapper/lux-form-control-wrapper.component';
 
 @Directive({
   selector: '[luxTagIdHandler]'
@@ -152,13 +152,13 @@ export class LuxTagIdDirective implements AfterViewInit, OnDestroy {
 
     if (element) {
       if (element.hasAttribute('luxTagId')) {
-        newId = this.getAttributeValue( element, 'luxTagId');
+        newId = this.getAttributeValue(element, 'luxTagId');
       } else if (element.hasAttribute(LuxTagIdDirective.luxTagIdAttrName)) {
-        newId = this.getAttributeValue( element, LuxTagIdDirective.luxTagIdAttrName);
+        newId = this.getAttributeValue(element, LuxTagIdDirective.luxTagIdAttrName);
       } else if (element.hasAttribute('luxcontrolbinding')) {
-        newId = this.getAttributeValue( element, 'luxcontrolbinding');
+        newId = this.getAttributeValue(element, 'luxcontrolbinding');
       } else if (element.hasAttribute('formgroupname')) {
-        newId = this.getAttributeValue( element, 'formgroupname');
+        newId = this.getAttributeValue(element, 'formgroupname');
       }
     }
 
