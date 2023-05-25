@@ -2,12 +2,15 @@ import { ILuxDialogAction } from './lux-dialog-action.interface';
 import { TemplateRef } from '@angular/core';
 import { ILuxDialogConfig } from './lux-dialog-config.interface';
 
+export declare type LuxDialogDefaultButton = 'confirm' | 'decline' | undefined;
+
 /**
  * Config-Interface für die LuxDialogPresetComponent.
  */
 export interface ILuxDialogPresetConfig extends ILuxDialogConfig {
   confirmAction?: ILuxDialogAction;
   declineAction?: ILuxDialogAction;
+  defaultButton?: LuxDialogDefaultButton;
   title?: string;
   iconName?: string;
   content?: string;
@@ -23,13 +26,14 @@ export const DEFAULT_DIALOG_PRESET_CONF: ILuxDialogPresetConfig = {
   disableClose: true,
   contentTemplate: undefined,
   confirmAction: {
-    label: $localize `:@@luxc.dialog-preset.ok:Bestätigen`,
+    label: $localize`:@@luxc.dialog-preset.ok:Bestätigen`,
     flat: true,
     color: 'primary'
   },
   declineAction: {
-    label: $localize `:@@luxc.dialog-preset.cancel:Ablehnen`,
+    label: $localize`:@@luxc.dialog-preset.cancel:Ablehnen`,
     outlined: true,
     color: 'primary'
-  }
+  },
+  defaultButton: undefined
 };

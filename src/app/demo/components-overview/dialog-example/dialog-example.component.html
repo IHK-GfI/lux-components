@@ -1,14 +1,12 @@
-<example-base-structure
-  exampleTitle="Dialog"
-  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90dialog"
->
+<example-base-structure exampleTitle="Dialog" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90dialog">
   <example-base-simple-options>
     <lux-toggle-ac
       class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
-      [luxNoTopLabel]="true">
+      [luxNoTopLabel]="true"
+    >
     </lux-toggle-ac>
     <lux-divider [luxInset]="true"></lux-divider>
     <h3>Allgemeine Properties</h3>
@@ -51,6 +49,16 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
+    <lux-radio-ac
+      class="lux-highlight-section"
+      luxLabel="defaultButton"
+      luxHint="Legt fest, welcher Button verwendet wird, wenn man den Dialog direkt mit Return schließt."
+      [luxOptions]="defaultButtonOptions"
+      luxOptionLabelProp="label"
+      [luxPickValue]="pickValueFn"
+      [(luxSelected)]="defaultButton"
+      [luxOrientationVertical]="false"
+    ></lux-radio-ac>
   </example-base-simple-options>
   <example-base-advanced-options>
     <h3>Properties für Preset-Dialoge</h3>
@@ -69,7 +77,7 @@
       luxHint="Diese Property enthält den Iconnamen des Dialogs."
       [(luxValue)]="dialogConfig.iconName"
     >
-  </lux-input-ac>
+    </lux-input-ac>
     <div class="lux-highlight-section column">
       <lux-toggle-ac
         luxLabel="Content-Template nutzen"
@@ -91,40 +99,28 @@
     </div>
     <lux-accordion luxMode="flat" [luxMulti]="true">
       <lux-panel>
-        <lux-panel-header-title>
-          confirmAction - Optionen
-        </lux-panel-header-title>
+        <lux-panel-header-title> confirmAction - Optionen </lux-panel-header-title>
         <lux-panel-content class="lux-highlight-section column">
-          <ng-container *ngTemplateOutlet="dialogActionTemplate; context: { $implicit: dialogConfig.confirmAction }">
-          </ng-container>
+          <ng-container *ngTemplateOutlet="dialogActionTemplate; context: { $implicit: dialogConfig.confirmAction }"> </ng-container>
         </lux-panel-content>
       </lux-panel>
       <lux-panel>
-        <lux-panel-header-title>
-          declineAction - Optionen
-        </lux-panel-header-title>
+        <lux-panel-header-title> declineAction - Optionen </lux-panel-header-title>
         <lux-panel-content class="lux-highlight-section column">
-          <ng-container *ngTemplateOutlet="dialogActionTemplate; context: { $implicit: dialogConfig.declineAction }">
-          </ng-container>
+          <ng-container *ngTemplateOutlet="dialogActionTemplate; context: { $implicit: dialogConfig.declineAction }"> </ng-container>
         </lux-panel-content>
       </lux-panel>
     </lux-accordion>
     <h3>Beispiel für "data" für eigene Dialoge</h3>
     <lux-input-ac luxName="dialog_data" class="lux-highlight-section" luxLabel="data" [(luxValue)]="exampleData">
       <lux-form-hint>
-        Dieses Objekt wird einem eigenen Dialog während 'openComponent' mitgegeben und enthält Daten, die für die
-        Dialog-Componente wichtig sein könnten.
+        Dieses Objekt wird einem eigenen Dialog während 'openComponent' mitgegeben und enthält Daten, die für die Dialog-Componente wichtig
+        sein könnten.
       </lux-form-hint>
     </lux-input-ac>
   </example-base-advanced-options>
   <example-base-options-actions fxFlex="0 0 100%" fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="8px grid">
-    <lux-button
-      luxLabel="Öffnen [Preset]"
-      [luxRaised]="true"
-      luxColor="primary"
-      (luxClicked)="openDialog()"
-      fxFlex="0 0 auto"
-    >
+    <lux-button luxLabel="Öffnen [Preset]" [luxRaised]="true" luxColor="primary" (luxClicked)="openDialog()" fxFlex="0 0 auto">
     </lux-button>
     <lux-button
       luxLabel="Öffnen [Eigene Component]"
@@ -143,7 +139,12 @@
 </ng-template>
 
 <ng-template let-actionConfig #dialogActionTemplate>
-  <lux-input-ac luxName="dialog_label" luxLabel="label" luxHint="Diese Property enthält das Label der Aktion." [(luxValue)]="actionConfig.label">
+  <lux-input-ac
+    luxName="dialog_label"
+    luxLabel="label"
+    luxHint="Diese Property enthält das Label der Aktion."
+    [(luxValue)]="actionConfig.label"
+  >
   </lux-input-ac>
   <lux-input-ac
     luxName="dialog_iconName"
