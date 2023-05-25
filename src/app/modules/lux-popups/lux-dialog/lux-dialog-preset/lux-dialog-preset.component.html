@@ -26,6 +26,7 @@
       [luxRounded]="data.confirmAction.rounded"
       (luxClicked)="onConfirmClick()"
       *ngIf="data.confirmAction"
+      #confirmButton
     >
     </lux-button>
     <lux-button
@@ -43,6 +44,7 @@
       [luxRounded]="data.declineAction.rounded"
       (luxClicked)="onDeclineClick()"
       *ngIf="data.declineAction"
+      #declineButton
     >
     </lux-button>
   </lux-dialog-actions>
