@@ -73,6 +73,11 @@ export class LuxDialogRef<T = any> {
 
     if (!this._matDialogRef.disableClose) {
       this._matDialogRef.backdropClick().subscribe(this.backdropFn(this._dialogClosed));
+      this._matDialogRef.keydownEvents().subscribe((event) => {
+        if (event.key === 'Escape') {
+          this.closeDialog();
+        }
+      });
     }
   }
 
