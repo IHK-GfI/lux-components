@@ -10,6 +10,7 @@
 
 - **lux-file-list**: Einzelne Action wird im Kontextmenü angezeigt. [Issue 320](https://github.com/IHK-GfI/lux-components/issues/320)
 - **lux-file-input**: Einzelne Action wird im Kontextmenü angezeigt. [Issue 320](https://github.com/IHK-GfI/lux-components/issues/320)
+- **lux-dialog**: ESC-Taste löst kein dialogClosed-Event aus. [Issue 328](https://github.com/IHK-GfI/lux-components/issues/328)
 
 # Version 14.5.0
 
