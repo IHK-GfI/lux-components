@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
 describe('LuxLinkComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockLinkComponent]);
   });
@@ -50,7 +49,7 @@ describe('LuxLinkComponent', () => {
     expect(icon).toBeNull();
 
     // Änderungen durchführen
-    component.iconName = 'fas fa-jedi';
+    component.iconName = 'lux-programming-bug';
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen

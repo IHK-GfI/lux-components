@@ -9,12 +9,8 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxAriaHiddenDirective } from './lux-aria-hidden.directive';
 
 describe('LuxAriaHiddenDirective', () => {
-
   beforeEach(async () => {
-    LuxTestHelper.configureTestModule(
-      [LuxComponentsConfigService],
-      [LuxWithSelectorComponent, LuxWithoutSelectorComponent]
-    );
+    LuxTestHelper.configureTestModule([LuxComponentsConfigService], [LuxWithSelectorComponent, LuxWithoutSelectorComponent]);
   });
 
   describe('mit Selector', () => {
@@ -93,7 +89,7 @@ describe('LuxAriaHiddenDirective', () => {
 @Component({
   selector: 'lux-with-selector',
   template: `
-    <lux-button luxIconName="fas fa-bell" [luxAriaHidden]="ariaHidden" luxAriaHiddenSelector="button"></lux-button>
+    <lux-button luxIconName="lux-interface-alert-alarm-bell-2" [luxAriaHidden]="ariaHidden" luxAriaHiddenSelector="button"></lux-button>
   `
 })
 class LuxWithSelectorComponent {
@@ -102,9 +98,7 @@ class LuxWithSelectorComponent {
 
 @Component({
   selector: 'lux-without-selector',
-  template: `
-    <lux-button luxIconName="fas fa-bell" [luxAriaHidden]="ariaHidden"></lux-button>
-  `
+  template: ` <lux-button luxIconName="lux-interface-alert-alarm-bell-2" [luxAriaHidden]="ariaHidden"></lux-button> `
 })
 class LuxWithoutSelectorComponent {
   ariaHidden?: boolean;

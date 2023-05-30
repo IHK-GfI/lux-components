@@ -1,6 +1,5 @@
 <example-base-structure exampleTitle="Menu" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90menu">
   <example-base-content fxLayout="column" fxLayoutGap="20px">
-    <h3>Beispiel mit lux-Icons</h3>
     <lux-menu
       [luxMenuLabel]="menuLabel"
       [luxMenuIconName]="iconName"
@@ -14,82 +13,6 @@
       #menu
     >
       <ng-container *ngFor="let item of menuItems">
-        <lux-menu-item
-          [luxIconName]="item.iconName"
-          [luxRaised]="item.raised"
-          [luxColor]="item.color"
-          [luxDisabled]="item.disabled"
-          [luxLabel]="item.label"
-          [luxButtonTooltip]="item.tooltip"
-          [luxMenuTooltip]="item.tooltipMenu"
-          [luxAlwaysVisible]="item.alwaysVisible"
-          [luxTagId]="item.label"
-          (luxClicked)="log(showOutputEvents, 'Item clicked', $event)"
-          [luxRounded]="item.round"
-          [luxHideLabelIfExtended]="item.hideLabelIfExtended"
-          [luxHidden]="item.hidden"
-          [luxPrio]="item.prio"
-          [luxClass]="item.class"
-          [luxButtonBadge]="item.buttonBadge"
-          [luxButtonBadgeColor]="item.buttonBadgeColor"
-          *ngIf="item"
-        >
-        </lux-menu-item>
-      </ng-container>
-    </lux-menu>
-    <lux-divider [luxInset]="true"></lux-divider>
-    <h3>Beispiel mit FA-Icons</h3>
-    <lux-menu
-      [luxMenuLabel]="menuLabel"
-      [luxMenuIconName]="iconName"
-      [luxMenuTriggerIconShowRight]="menuTriggerIconShowRight"
-      [luxDisplayExtended]="displayExtended"
-      [luxClassName]="className"
-      [luxDisplayMenuLeft]="displayMenuLeft"
-      [luxMaximumExtended]="maximumExtended"
-      (luxMenuClosed)="log(showOutputEvents, 'Menu closed', $event)"
-      luxTagId="demo-menu"
-      #menu
-    >
-      <ng-container *ngFor="let item of menuItemsFa">
-        <lux-menu-item
-          [luxIconName]="item.iconName"
-          [luxRaised]="item.raised"
-          [luxColor]="item.color"
-          [luxDisabled]="item.disabled"
-          [luxLabel]="item.label"
-          [luxButtonTooltip]="item.tooltip"
-          [luxMenuTooltip]="item.tooltipMenu"
-          [luxAlwaysVisible]="item.alwaysVisible"
-          [luxTagId]="item.label"
-          (luxClicked)="log(showOutputEvents, 'Item clicked', $event)"
-          [luxRounded]="item.round"
-          [luxHideLabelIfExtended]="item.hideLabelIfExtended"
-          [luxHidden]="item.hidden"
-          [luxPrio]="item.prio"
-          [luxClass]="item.class"
-          [luxButtonBadge]="item.buttonBadge"
-          [luxButtonBadgeColor]="item.buttonBadgeColor"
-          *ngIf="item"
-        >
-        </lux-menu-item>
-      </ng-container>
-    </lux-menu>
-    <lux-divider [luxInset]="true"></lux-divider>
-    <h3>Beispiel mit Material-Icons</h3>
-    <lux-menu
-      [luxMenuLabel]="menuLabel"
-      [luxMenuIconName]="iconName"
-      [luxMenuTriggerIconShowRight]="menuTriggerIconShowRight"
-      [luxDisplayExtended]="displayExtended"
-      [luxClassName]="className"
-      [luxDisplayMenuLeft]="displayMenuLeft"
-      [luxMaximumExtended]="maximumExtended"
-      (luxMenuClosed)="log(showOutputEvents, 'Menu closed', $event)"
-      luxTagId="demo-menu"
-      #menu
-    >
-      <ng-container *ngFor="let item of menuItemsMat">
         <lux-menu-item
           [luxIconName]="item.iconName"
           [luxRaised]="item.raised"

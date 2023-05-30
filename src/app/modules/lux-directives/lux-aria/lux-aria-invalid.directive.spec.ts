@@ -9,12 +9,8 @@ import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 
 describe('LuxAriaInvalidDirective', () => {
-
   beforeEach(async () => {
-    LuxTestHelper.configureTestModule(
-      [LuxComponentsConfigService],
-      [LuxWithSelectorComponent, LuxWithoutSelectorComponent]
-    );
+    LuxTestHelper.configureTestModule([LuxComponentsConfigService], [LuxWithSelectorComponent, LuxWithoutSelectorComponent]);
   });
 
   describe('mit Selector', () => {
@@ -35,18 +31,14 @@ describe('LuxAriaInvalidDirective', () => {
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-invalid')).toEqual(ariaInvalid);
 
       // aria-invalid aktualisieren
       ariaInvalid = 'false';
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-invalid')).toEqual(ariaInvalid);
 
       // aria-invalid entfernen
       ariaInvalid = undefined;
@@ -75,18 +67,14 @@ describe('LuxAriaInvalidDirective', () => {
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid
-      );
+      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toEqual(ariaInvalid);
 
       // aria-invalid aktualisieren
       ariaInvalid = 'spelling';
       component.ariaInvalid = ariaInvalid;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toEqual(
-        ariaInvalid
-      );
+      expect(fixture.debugElement.query(By.css('lux-button')).nativeElement.getAttribute('aria-invalid')).toEqual(ariaInvalid);
 
       // aria-invalid entfernen
       ariaInvalid = undefined;
@@ -101,7 +89,7 @@ describe('LuxAriaInvalidDirective', () => {
 @Component({
   selector: 'lux-with-selector',
   template: `
-    <lux-button luxIconName="fas fa-bell" [luxAriaInvalid]="ariaInvalid" luxAriaInvalidSelector="button"></lux-button>
+    <lux-button luxIconName="lux-interface-alert-alarm-bell-2" [luxAriaInvalid]="ariaInvalid" luxAriaInvalidSelector="button"></lux-button>
   `
 })
 class LuxWithSelectorComponent {
@@ -110,9 +98,7 @@ class LuxWithSelectorComponent {
 
 @Component({
   selector: 'lux-without-selector',
-  template: `
-    <lux-button luxIconName="fas fa-bell" [luxAriaInvalid]="ariaInvalid"></lux-button>
-  `
+  template: ` <lux-button luxIconName="lux-interface-alert-alarm-bell-2" [luxAriaInvalid]="ariaInvalid"></lux-button> `
 })
 class LuxWithoutSelectorComponent {
   ariaInvalid?: string;

@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 // noinspection DuplicatedCode
 
-import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from "@angular/core/testing";
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { LuxIconComponent } from '../../lux-icon/lux-icon/lux-icon.component';
 import { LuxLabelComponent } from '../../lux-common/lux-label/lux-label.component';
@@ -13,7 +13,6 @@ import { LuxTabComponent } from './lux-tabs-subcomponents/lux-tab.component';
 import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
 
 describe('LuxTabsComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [],
@@ -390,7 +389,7 @@ describe('LuxTabsComponent', () => {
 
     it('Attribut "tabCounter" nicht gesetzt.', fakeAsync(() => {
       // Nachbedingungen testen
-      expect(getBadgeElement(fixture)).toBeNull( );
+      expect(getBadgeElement(fixture)).toBeNull();
     }));
   });
 });
@@ -403,10 +402,10 @@ describe('LuxTabsComponent', () => {
       luxTagId="tabsID"
       (luxActiveTabChanged)="tabChanged($event)"
     >
-      <lux-tab luxIconName="fa-user" luxTitle="Tabname 1">
+      <lux-tab luxIconName="lux-interface-user-single" luxTitle="Tabname 1">
         <ng-template> Tab-Content 0 </ng-template>
       </lux-tab>
-      <lux-tab luxIconName="fa-user" luxTitle="Tabname 2">
+      <lux-tab luxIconName="lux-interface-user-single" luxTitle="Tabname 2">
         <ng-template> Tab-Content 1 </ng-template>
       </lux-tab>
     </lux-tabs>
@@ -436,13 +435,13 @@ class LuxActiveTabChangedTabsComponent {
     luxTagId="tabsID"
     (luxActiveTabChanged)="tabChanged($event)"
   >
-    <lux-tab luxIconName="fa-user" luxTitle="Tab-Text 0">
+    <lux-tab luxIconName="lux-interface-user-single" luxTitle="Tab-Text 0">
       <ng-template> Tab-Content 0 </ng-template>
     </lux-tab>
-    <lux-tab luxIconName="fa-user" luxTitle="Tab-Text 1">
+    <lux-tab luxIconName="lux-interface-user-single" luxTitle="Tab-Text 1">
       <ng-template> Tab-Content 1 </ng-template>
     </lux-tab>
-    <lux-tab luxIconName="fa-user" luxTitle="Tab-Text 2">
+    <lux-tab luxIconName="lux-interface-user-single" luxTitle="Tab-Text 2">
       <ng-template> Tab-Content 2 </ng-template>
     </lux-tab>
   </lux-tabs>`
@@ -464,7 +463,7 @@ class LuxMockTabsComponent {
 @Component({
   template: `
     <lux-tabs [luxTabAnimationActive]="false" luxTagId="LuxTabNumberComponent123">
-      <lux-tab luxIconName="fa-comments" luxTitle="Tabtest" [luxCounter]="tabCounter" [luxCounterCap]="tabCounterCap">
+      <lux-tab luxIconName="lux-ovals" luxTitle="Tabtest" [luxCounter]="tabCounter" [luxCounterCap]="tabCounterCap">
         <ng-template>
           <span>---</span>
         </ng-template>
@@ -480,7 +479,7 @@ class LuxTabNumberComponent {
 @Component({
   template: `
     <lux-tabs [luxTabAnimationActive]="false" luxTagId="LuxTabNumberComponent234">
-      <lux-tab luxIconName="fa-comments" luxTitle="Tabtest">
+      <lux-tab luxIconName="lux-ovals" luxTitle="Tabtest">
         <ng-template>
           <span>---</span>
         </ng-template>

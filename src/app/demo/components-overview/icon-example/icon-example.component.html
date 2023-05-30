@@ -1,7 +1,4 @@
-<example-base-structure
-  exampleTitle="Icon"
-  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90icon"
->
+<example-base-structure exampleTitle="Icon" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90icon">
   <example-base-content>
     <div fxLayout="column" fxLayoutGap="24px">
       <div fxLayout="column" class="lux-app-data-bg lux-highlight-section column" [ngStyle]="{ backgroundColor: backgroundColor }">
@@ -19,13 +16,14 @@
           </lux-icon>
         </div>
         <div fxLayout="row wrap" fxLayoutGap="12px grid">
-          <lux-icon *ngFor="let color of colors; let i = index"
+          <lux-icon
+            *ngFor="let color of colors; let i = index"
             [luxIconName]="iconName"
             [luxIconSize]="iconSize"
             [luxPadding]="padding"
             [luxMargin]="margin"
             [luxRounded]="rounded"
-            class="{{ 'lux-color-' + (colors[i % colors.length]) }}"
+            class="{{ 'lux-color-' + colors[i % colors.length] }}"
           >
           </lux-icon>
         </div>
@@ -52,7 +50,7 @@
             [luxPadding]="padding"
             [luxMargin]="margin"
             [luxRounded]="rounded"
-            class="{{ 'lux-color-' + (colors[i % colors.length]) }}"
+            class="{{ 'lux-color-' + colors[i % colors.length] }}"
           >
           </lux-icon>
         </div>
@@ -79,7 +77,7 @@
             [luxPadding]="padding"
             [luxMargin]="margin"
             [luxRounded]="rounded"
-            class="{{ 'lux-color-' + (colors[i % colors.length]) }}"
+            class="{{ 'lux-color-' + colors[i % colors.length] }}"
           >
           </lux-icon>
         </div>
@@ -106,7 +104,7 @@
             [luxPadding]="padding"
             [luxMargin]="margin"
             [luxRounded]="rounded"
-            class="{{ 'lux-color-' + (colors[i % colors.length]) }}"
+            class="{{ 'lux-color-' + colors[i % colors.length] }}"
           >
           </lux-icon>
         </div>
@@ -114,22 +112,8 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <div class="lux-highlight-section">
-      <i>
-        Wichtig: In FontAwesome ab <b>v.5</b> gibt es 4 Icon-Typen: <br />
-        <b>'fab'</b> (Brand-Icons, kostenlos), <b>'fas'</b> (Solid-Icons, kostenlos), <br />
-        <b>'far'</b> (Regular-Icons, kostenpflichtig), <b>'fal'</b> (Light-Icons, kostenpflichtig)
-      </i>
-    </div>
-    <lux-divider [luxInset]="true"></lux-divider>
     <div class="lux-highlight-section column">
-      <lux-input-ac [(luxValue)]="iconName" luxLabel="luxIconName">
-        <lux-form-hint>
-          Diese Property bestimmt das Icon selbst (z.B. 'fab fa-android' für FontAwesome oder 'android' für
-          Material).<br />
-          Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
-        </lux-form-hint>
-      </lux-input-ac>
+      <lux-input-ac [(luxValue)]="iconName" luxLabel="luxIconName"> </lux-input-ac>
       <lux-select-ac [(luxSelected)]="iconSize" [luxOptions]="iconSizes" luxLabel="luxIconSize">
         <lux-form-hint>
           Über diese Property kann die Größe des Icons festgelegt werden.<br />
@@ -149,7 +133,10 @@
       [(luxValue)]="backgroundColor"
       luxLabel="Hintergrundfarbe"
     >
-      <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen. <br/> Z.B. #f0f0f2 oder </lux-form-hint>
+      <lux-form-hint
+        >Kontrast zwischen Element und Hintergrund prüfen. <br />
+        Z.B. #f0f0f2 oder
+      </lux-form-hint>
     </lux-input-ac>
     <div class="lux-highlight-section">
       <lux-link-plain

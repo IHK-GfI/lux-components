@@ -500,8 +500,6 @@ describe('LuxAppHeaderComponent', () => {
       // Nachbedingungen prüfen
       expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .lux-button-label')[0].textContent!.trim()).toEqual('Label 0');
       expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .lux-button-label')[1].textContent!.trim()).toEqual('Label 1');
-      expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .fas.fa-check')[0]).not.toBeNull();
-      expect(overlayHelper.selectAllFromOverlay('.lux-menu-item .fas.fa-check')[1]).not.toBeNull();
 
       flush();
     }));

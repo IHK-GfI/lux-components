@@ -1,51 +1,16 @@
-<!-- Wenn Font-Awesome-Icon -->
-<ng-container *ngIf="isIconFA">
-  <i
-    aria-hidden="true"
-    [ngStyle]="{ padding: luxPadding }"
-    [ngClass]="[
-      'lux-fa-icon',
-      luxIconName,
-      'fa-' + currentIconSize + 'x',
-      backgroundCSSClass,
-      fontCSSClass,
-      luxRounded ? 'lux-icon-rounded' : ''
-    ]"
-  >
-  </i>
-</ng-container>
-
-<!-- Wenn lux-Streamline-Icon -->
-<ng-container *ngIf="isIconLX && luxIconSize">
+<ng-container *ngIf="luxIconName && luxIconSize">
   <mat-icon
-    [svgIcon]="luxIconName ?? ''"
-    [ngStyle]="{ padding: luxPadding, 'width': currentIconSize + 'em', 'height': currentIconSize + 'em' }"
-    [ngClass]="[
-      backgroundCSSClass,
-      fontCSSClass,
-      luxRounded ? 'lux-lx-icon-rounded-'+ currentIconSize + 'em' : '' ]"
+    [svgIcon]="luxIconName"
+    [ngStyle]="{ padding: luxPadding, width: currentIconSize + 'em', height: currentIconSize + 'em' }"
+    [ngClass]="[backgroundCSSClass, fontCSSClass, luxRounded ? 'lux-lx-icon-rounded-' + currentIconSize + 'em' : '']"
     class="lux-lx-icon"
   ></mat-icon>
 </ng-container>
-<ng-container *ngIf="isIconLX && !luxIconSize">
+<ng-container *ngIf="luxIconName && !luxIconSize">
   <mat-icon
-    [svgIcon]="luxIconName ?? ''"
+    [svgIcon]="luxIconName"
     [ngStyle]="{ padding: luxPadding }"
-    [ngClass]="[
-      backgroundCSSClass,
-      fontCSSClass,
-      luxRounded ? 'lux-lx-icon-rounded-'+ currentIconSize + 'em' : '' ]"
+    [ngClass]="[backgroundCSSClass, fontCSSClass, luxRounded ? 'lux-lx-icon-rounded-' + currentIconSize + 'em' : '']"
     class="lux-lx-icon-no-size"
   ></mat-icon>
 </ng-container>
-
-<!-- Wenn Material-Icon -->
-<ng-container *ngIf="!isIconFA && !isIconLX">
-  <mat-icon
-    [ngStyle]="{ 'font-size': currentIconSize + 'em', padding: luxPadding }"
-    [ngClass]="['lux-material-icon', backgroundCSSClass, fontCSSClass, luxRounded ? 'lux-icon-rounded' : '']"
-  >
-    {{ luxIconName }}
-  </mat-icon>
-</ng-container>
-

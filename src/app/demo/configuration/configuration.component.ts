@@ -30,6 +30,7 @@ export class ConfigurationComponent implements OnDestroy {
         cmd: 'documentation-btn',
         color: 'primary',
         flat: true,
+        raised: false,
         alwaysVisible: false,
         onClick: () => {
           window.open('https://github.com/IHK-GfI/lux-components/wiki/config', '_blank');
@@ -41,6 +42,7 @@ export class ConfigurationComponent implements OnDestroy {
         cmd: 'back-btn',
         color: 'primary',
         flat: true,
+        raised: false,
         alwaysVisible: true,
         onClick: () => {
           this.router.navigate(['/']);

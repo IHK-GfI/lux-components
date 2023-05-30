@@ -1,7 +1,14 @@
 <div fxLayout="column" id="Home" luxAriaRole="main" class="page-content">
   <h4 class="page-title" style="font-size: 34px">Die Komponenten von A-Z</h4>
   <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px grid">
-    <lux-input-ac [luxNoTopLabel]="true" luxPlaceholder="Suchbegriff eingeben" [(luxValue)]="filterValue" luxAutocomplete="off">
+    <lux-input-ac
+      luxAriaLabel="Suchbegriff"
+      luxTagId="Suchbegriff"
+      [luxNoTopLabel]="true"
+      luxPlaceholder="Suchbegriff eingeben"
+      [(luxValue)]="filterValue"
+      luxAutocomplete="off"
+    >
       <lux-input-ac-prefix class="lux-mr-3" luxTagId="searchInput">
         <lux-icon luxIconName="lux-interface-search"></lux-icon>
       </lux-input-ac-prefix>
@@ -11,7 +18,10 @@
     </lux-input-ac>
   </div>
   <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px grid">
-    <div *ngFor="let component of navigationService.getFilteredComponents(filterValue) | luxAlphabeticallySorted" class="lux-tile-ac-wrapper-demo">
+    <div
+      *ngFor="let component of navigationService.getFilteredComponents(filterValue) | luxAlphabeticallySorted"
+      class="lux-tile-ac-wrapper-demo"
+    >
       <lux-tile-ac
         [luxLabel]="component.label"
         luxSubTitle="Modul: LUX-{{ component.moduleName | uppercase }}"

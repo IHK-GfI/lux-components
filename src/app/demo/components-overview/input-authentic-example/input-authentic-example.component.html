@@ -30,7 +30,9 @@
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         luxTagId="input-non-reactive"
       >
-        <lux-input-ac-prefix *ngIf="showPrefix"> <lux-icon [luxIconName]="'info'"></lux-icon>&nbsp; </lux-input-ac-prefix>
+        <lux-input-ac-prefix *ngIf="showPrefix">
+          <lux-icon luxIconName="lux-interface-alert-information-circle"></lux-icon>&nbsp;
+        </lux-input-ac-prefix>
         <lux-input-ac-suffix *ngIf="showSuffix"> .00 EUR </lux-input-ac-suffix>
         <lux-form-hint
           >Lorem ipsum

@@ -9,12 +9,8 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxAriaExpandedDirective } from './lux-aria-expanded.directive';
 
 describe('LuxAriaExpandedDirective', () => {
-
   beforeEach(async () => {
-    LuxTestHelper.configureTestModule(
-      [LuxComponentsConfigService],
-      [LuxWithSelectorComponent, LuxWithoutSelectorComponent]
-    );
+    LuxTestHelper.configureTestModule([LuxComponentsConfigService], [LuxWithSelectorComponent, LuxWithoutSelectorComponent]);
   });
 
   describe('mit Selector', () => {
@@ -94,7 +90,7 @@ describe('LuxAriaExpandedDirective', () => {
   selector: 'lux-with-selector',
   template: `
     <lux-button
-      luxIconName="fas fa-bell"
+      luxIconName="lux-interface-alert-alarm-bell-2"
       [luxAriaExpanded]="ariaExpanded"
       luxAriaExpandedSelector="button"
     ></lux-button>
@@ -106,9 +102,7 @@ class LuxWithSelectorComponent {
 
 @Component({
   selector: 'lux-without-selector',
-  template: `
-    <lux-button luxIconName="fas fa-bell" [luxAriaExpanded]="ariaExpanded"></lux-button>
-  `
+  template: ` <lux-button luxIconName="lux-interface-alert-alarm-bell-2" [luxAriaExpanded]="ariaExpanded"></lux-button> `
 })
 class LuxWithoutSelectorComponent {
   ariaExpanded?: boolean | undefined;
