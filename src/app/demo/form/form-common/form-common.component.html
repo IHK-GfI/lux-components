@@ -6,18 +6,8 @@
           <div formGroupName="user">
             <lux-layout>
               <lux-layout-form-row>
-                <lux-input-ac
-                  luxName="first-name"
-                  luxLabel="Vorname"
-                  luxControlBinding="firstname"
-                  *luxLayoutRowItem="{}"
-                ></lux-input-ac>
-                <lux-input-ac
-                  luxName="given-name"
-                  luxLabel="Nachname"
-                  luxControlBinding="lastname"
-                  *luxLayoutRowItem="{}"
-                ></lux-input-ac>
+                <lux-input-ac luxName="first-name" luxLabel="Vorname" luxControlBinding="firstname" *luxLayoutRowItem="{}"></lux-input-ac>
+                <lux-input-ac luxName="given-name" luxLabel="Nachname" luxControlBinding="lastname" *luxLayoutRowItem="{}"></lux-input-ac>
               </lux-layout-form-row>
               <lux-layout-form-row>
                 <lux-input-ac luxName="email" luxLabel="E-Mail" luxControlBinding="email" *luxLayoutRowItem="{}">
@@ -58,11 +48,9 @@
                 *luxLayoutRowItem="{}"
               >
                 <lux-input-ac-prefix>
-                  <lux-icon luxIconName="fa-money"></lux-icon>
+                  <lux-icon luxIconName="lux-money-atm-card-1"></lux-icon>
                 </lux-input-ac-prefix>
-                <lux-input-ac-suffix>
-                  €
-                </lux-input-ac-suffix>
+                <lux-input-ac-suffix> € </lux-input-ac-suffix>
               </lux-input-ac>
             </lux-layout-form-row>
 
@@ -88,9 +76,7 @@
                 [luxNewChipGroup]="chipGroup2"
                 *luxLayoutRowItem="{}"
               >
-                <lux-chip-ac [luxRemovable]="false" luxColor="warn">
-                  Chip ohne Group
-                </lux-chip-ac>
+                <lux-chip-ac [luxRemovable]="false" luxColor="warn"> Chip ohne Group </lux-chip-ac>
                 <lux-chip-ac-group
                   [luxRemovable]="false"
                   luxColor="primary"
@@ -133,12 +119,7 @@
           </lux-layout-form-row>
 
           <lux-layout-form-row>
-            <lux-datepicker-ac
-              [luxTouchUi]="true"
-              luxControlBinding="datepicker"
-              luxLabel="Datepicker"
-              *luxLayoutRowItem="{}"
-            >
+            <lux-datepicker-ac [luxTouchUi]="true" luxControlBinding="datepicker" luxLabel="Datepicker" *luxLayoutRowItem="{}">
             </lux-datepicker-ac>
 
             <lux-autocomplete-ac

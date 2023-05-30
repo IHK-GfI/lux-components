@@ -12,7 +12,7 @@ describe('LuxErrorStoreService', () => {
   let fixture: ComponentFixture<MockComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({imports: [LuxErrorModule]});
+    TestBed.configureTestingModule({ imports: [LuxErrorModule] });
     service = TestBed.inject(LuxErrorStoreService);
     service.init();
     fixture = TestBed.createComponent(MockComponent);
@@ -60,7 +60,7 @@ describe('LuxErrorStoreService', () => {
 
   it('Sollte alle Defaultwerte überschreiben', () => {
     service.safeNewConfig({
-      iconName: 'fas fa-user',
+      iconName: 'lux-interface-user-single',
       iconSize: '2x',
       errorText: 'Lorem ipsum',
       homeRedirectText: 'Link',
@@ -69,7 +69,7 @@ describe('LuxErrorStoreService', () => {
     });
     fixture.detectChanges();
 
-    expect(service.config.iconName).toEqual('fas fa-user');
+    expect(service.config.iconName).toEqual('lux-interface-user-single');
     expect(service.config.iconSize).toEqual('2x');
     expect(service.config.errorText).toEqual('Lorem ipsum');
     expect(service.config.homeRedirectText).toEqual('Link');

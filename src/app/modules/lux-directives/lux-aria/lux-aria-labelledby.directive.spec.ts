@@ -9,12 +9,8 @@ import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 
 describe('LuxAriaLabelledbyDirective', () => {
-
   beforeEach(async () => {
-    LuxTestHelper.configureTestModule(
-      [LuxComponentsConfigService],
-      [LuxWithSelectorComponent, LuxWithoutSelectorComponent]
-    );
+    LuxTestHelper.configureTestModule([LuxComponentsConfigService], [LuxWithSelectorComponent, LuxWithoutSelectorComponent]);
   });
 
   describe('mit Selector', () => {
@@ -35,18 +31,14 @@ describe('LuxAriaLabelledbyDirective', () => {
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toEqual(
-        ariaLabelledBy
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toEqual(ariaLabelledBy);
 
       // labelledby aktualisieren
       ariaLabelledBy = 'menuitem';
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toEqual(
-        ariaLabelledBy
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toEqual(ariaLabelledBy);
 
       // labelledby entfernen
       ariaLabelledBy = undefined;
@@ -75,18 +67,14 @@ describe('LuxAriaLabelledbyDirective', () => {
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toEqual(
-        ariaLabelledBy
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toEqual(ariaLabelledBy);
 
       // labelledby aktualisieren
       ariaLabelledBy = 'menuitem';
       component.ariaLabelledby = ariaLabelledBy;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toEqual(
-        ariaLabelledBy
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-labelledby')).toEqual(ariaLabelledBy);
 
       // labelledby entfernen
       ariaLabelledBy = undefined;
@@ -102,7 +90,7 @@ describe('LuxAriaLabelledbyDirective', () => {
   selector: 'lux-with-selector',
   template: `
     <lux-button
-      luxIconName="fas fa-bell"
+      luxIconName="lux-interface-alert-alarm-bell-2"
       [luxAriaLabelledby]="ariaLabelledby"
       luxAriaLabelledbySelector="button"
     ></lux-button>
@@ -114,9 +102,7 @@ class LuxWithSelectorComponent {
 
 @Component({
   selector: 'lux-without-selector',
-  template: `
-    <lux-button luxIconName="fas fa-bell" [luxAriaLabelledby]="ariaLabelledby"></lux-button>
-  `
+  template: ` <lux-button luxIconName="lux-interface-alert-alarm-bell-2" [luxAriaLabelledby]="ariaLabelledby"></lux-button> `
 })
 class LuxWithoutSelectorComponent {
   ariaLabelledby?: string;

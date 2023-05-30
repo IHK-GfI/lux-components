@@ -3,6 +3,7 @@
 ## New
 
 - **allgemein**: Update auf Angular 15 [Issue 302](https://github.com/IHK-GfI/lux-components/issues/302)
+- **lux-icon**: Material- und FA-Icons entfernt. [Issue 322](https://github.com/IHK-GfI/lux-components/issues/322)
 
 # Version 14.6.0
 

@@ -8,11 +8,11 @@ lux-button {
       display: inline-flex;
       height: 100%;
       lux-icon.lux-button-icon {
-        i.lux-fa-icon, mat-icon.mat-icon {
+        mat-icon.mat-icon {
           font-size: 18px !important;
         }
       }
-    } 
+    }
   }
 
   &.lux-button-with-label ::ng-deep button {
@@ -22,7 +22,7 @@ lux-button {
 
     lux-icon.lux-button-icon {
       display: inline-block;
-      mat-icon.mat-icon.lux-lx-icon{
+      mat-icon.mat-icon.lux-lx-icon {
         font-size: 16px !important;
       }
     }

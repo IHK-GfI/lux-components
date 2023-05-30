@@ -5,7 +5,6 @@ import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxBadgeComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [LuxBadgeComponent, LuxBadgeIconNameComponent]);
   });
@@ -49,7 +48,7 @@ describe('LuxBadgeComponent', () => {
 
     it('Wert über die Component setzen', fakeAsync(() => {
       // Vorbedingungen testen
-      expect(fixture.componentInstance.iconName).toEqual('fa-gear');
+      expect(fixture.componentInstance.iconName).toEqual('lux-programming-bug');
 
       // Änderungen durchführen
       fixture.componentInstance.iconName = '';
@@ -61,7 +60,7 @@ describe('LuxBadgeComponent', () => {
       expect(iconEl).toBeNull();
 
       // Änderungen durchführen
-      const expectedIcon = 'fa-user';
+      const expectedIcon = 'lux-interface-user-single';
       fixture.componentInstance.iconName = expectedIcon;
       fixture.detectChanges();
 
@@ -121,18 +120,16 @@ describe('LuxBadgeComponent', () => {
 class LuxBadgeComponent {
   label = 'Test 4711';
   uppercase = true;
-  iconName = 'fa-gear';
+  iconName = 'lux-interface-setting-cog';
 }
 
 @Component({
   template: `
     <lux-badge [luxIconName]="iconName">
-      <lux-label luxId="badgeLabel">
-        BVB
-      </lux-label>
+      <lux-label luxId="badgeLabel"> BVB </lux-label>
     </lux-badge>
   `
 })
 class LuxBadgeIconNameComponent {
-  iconName = 'fa-gear';
+  iconName = 'lux-programming-bug';
 }

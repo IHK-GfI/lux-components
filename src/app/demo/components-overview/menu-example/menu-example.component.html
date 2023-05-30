@@ -1,9 +1,5 @@
-<example-base-structure
-  exampleTitle="Menu"
-  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90menu"
->
+<example-base-structure exampleTitle="Menu" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90menu">
   <example-base-content fxLayout="column" fxLayoutGap="20px">
-    <h3>Beispiel mit lux-Icons</h3>
     <lux-menu
       [luxMenuLabel]="menuLabel"
       [luxMenuIconName]="iconName"
@@ -38,82 +34,10 @@
         </lux-menu-item>
       </ng-container>
     </lux-menu>
-    <lux-divider [luxInset]="true"></lux-divider>
-    <h3>Beispiel mit FA-Icons</h3>
-    <lux-menu
-        [luxMenuLabel]="menuLabel"
-        [luxMenuIconName]="iconName"
-        [luxMenuTriggerIconShowRight]="menuTriggerIconShowRight"
-        [luxDisplayExtended]="displayExtended"
-        [luxClassName]="className"
-        [luxDisplayMenuLeft]="displayMenuLeft"
-        [luxMaximumExtended]="maximumExtended"
-        (luxMenuClosed)="log(showOutputEvents, 'Menu closed', $event)"
-        luxTagId="demo-menu"
-        #menu
-    >
-      <ng-container *ngFor="let item of menuItemsFa">
-        <lux-menu-item
-          [luxIconName]="item.iconName"
-          [luxRaised]="item.raised"
-          [luxColor]="item.color"
-          [luxDisabled]="item.disabled"
-          [luxLabel]="item.label"
-          [luxButtonTooltip]="item.tooltip"
-          [luxMenuTooltip]="item.tooltipMenu"
-          [luxAlwaysVisible]="item.alwaysVisible"
-          [luxTagId]="item.label"
-          (luxClicked)="log(showOutputEvents, 'Item clicked', $event)"
-          [luxRounded]="item.round"
-          [luxHideLabelIfExtended]="item.hideLabelIfExtended"
-          [luxHidden]="item.hidden"
-          [luxPrio]="item.prio"
-          [luxClass]="item.class"
-          *ngIf="item"
-        >
-        </lux-menu-item>
-      </ng-container>
-    </lux-menu>
-    <lux-divider [luxInset]="true"></lux-divider>
-    <h3>Beispiel mit Material-Icons</h3>
-    <lux-menu
-      [luxMenuLabel]="menuLabel"
-      [luxMenuIconName]="iconName"
-      [luxMenuTriggerIconShowRight]="menuTriggerIconShowRight"
-      [luxDisplayExtended]="displayExtended"
-      [luxClassName]="className"
-      [luxDisplayMenuLeft]="displayMenuLeft"
-      [luxMaximumExtended]="maximumExtended"
-      (luxMenuClosed)="log(showOutputEvents, 'Menu closed', $event)"
-      luxTagId="demo-menu"
-      #menu
-    >
-      <ng-container *ngFor="let item of menuItemsMat">
-        <lux-menu-item
-          [luxIconName]="item.iconName"
-          [luxRaised]="item.raised"
-          [luxColor]="item.color"
-          [luxDisabled]="item.disabled"
-          [luxLabel]="item.label"
-          [luxButtonTooltip]="item.tooltip"
-          [luxMenuTooltip]="item.tooltipMenu"
-          [luxAlwaysVisible]="item.alwaysVisible"
-          [luxTagId]="item.label"
-          (luxClicked)="log(showOutputEvents, 'Item clicked', $event)"
-          [luxRounded]="item.round"
-          [luxHideLabelIfExtended]="item.hideLabelIfExtended"
-          [luxHidden]="item.hidden"
-          [luxPrio]="item.prio"
-          [luxClass]="item.class"
-          *ngIf="item"
-        >
-        </lux-menu-item>
-      </ng-container>
-    </lux-menu>
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle-ac
-    class="lux-highlight-section"
+      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
@@ -144,8 +68,7 @@
       <lux-form-hint>
         Über diese Property lassen sich CSS-Klassen für das ausgeklappte Menu setzen.
         <br />
-        Um die Klassen zu beobachten, das Menu aufklappen und über die Developer-Tools (F12/CMD+ALT+I) das Menu
-        auswählen.
+        Um die Klassen zu beobachten, das Menu aufklappen und über die Developer-Tools (F12/CMD+ALT+I) das Menu auswählen.
       </lux-form-hint>
     </lux-input-ac>
     <lux-toggle-ac
@@ -202,18 +125,8 @@
           >
           </lux-input-ac>
           <div fxLayout="column" fxLayoutGap="24px" class="lux-highlight-section">
-            <lux-input-ac
-              luxLabel="luxButtonTooltip"
-              luxHint="Wenn als Button dargestellt"
-              [(luxValue)]="item.tooltip"
-            >
-            </lux-input-ac>
-            <lux-input-ac
-              luxLabel="luxMenuTooltip"
-              luxHint="Wenn im Menü dargestellt"
-              [(luxValue)]="item.tooltipMenu"
-            >
-            </lux-input-ac>
+            <lux-input-ac luxLabel="luxButtonTooltip" luxHint="Wenn als Button dargestellt" [(luxValue)]="item.tooltip"> </lux-input-ac>
+            <lux-input-ac luxLabel="luxMenuTooltip" luxHint="Wenn im Menü dargestellt" [(luxValue)]="item.tooltipMenu"> </lux-input-ac>
           </div>
           <lux-input-ac
             class="lux-highlight-section"
@@ -268,9 +181,8 @@
             [luxNoTopLabel]="true"
           >
             <lux-form-hint>
-              Dieses Flag stellt sicher, das dieser Eintrag immer außerhalb des Menus dargestellt wird, solange der
-              Platz noch ausreicht.<br />Andere Einträge, die dieses Flag nicht gesetzt haben, werden dann zuerst
-              ausgeblendet.
+              Dieses Flag stellt sicher, das dieser Eintrag immer außerhalb des Menus dargestellt wird, solange der Platz noch ausreicht.<br />Andere
+              Einträge, die dieses Flag nicht gesetzt haben, werden dann zuerst ausgeblendet.
             </lux-form-hint>
           </lux-toggle-ac>
           <lux-toggle-ac
@@ -280,8 +192,7 @@
             [luxNoTopLabel]="true"
           >
             <lux-form-hint>
-              Dieses Flag stellt ein ob das Label des MenuItems in der ausgeklappten Ansicht dargestellt werden soll
-              oder nicht.
+              Dieses Flag stellt ein ob das Label des MenuItems in der ausgeklappten Ansicht dargestellt werden soll oder nicht.
             </lux-form-hint>
           </lux-toggle-ac>
         </lux-panel-content>

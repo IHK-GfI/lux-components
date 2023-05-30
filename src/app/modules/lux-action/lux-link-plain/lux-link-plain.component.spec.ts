@@ -7,10 +7,7 @@ import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxLinkPlainComponent } from './lux-link-plain.component';
 
-
-
 describe('LuxLinkPlainComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockLinkPlainComponent]);
   });
@@ -52,7 +49,7 @@ describe('LuxLinkPlainComponent', () => {
     expect(icon).toBeNull();
 
     // Änderungen durchführen
-    component.iconName = 'fas fa-jedi';
+    component.iconName = 'lux-programming-bug';
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
@@ -145,7 +142,6 @@ describe('LuxLinkPlainComponent', () => {
 
     discardPeriodicTasks();
   }));
-
 });
 
 @Component({
@@ -170,4 +166,3 @@ class MockLinkPlainComponent {
   href = '';
   color?: LuxThemePalette;
 }
-

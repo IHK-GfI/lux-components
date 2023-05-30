@@ -8,12 +8,8 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxAriaHasPopupDirective', () => {
-
   beforeEach(async () => {
-    LuxTestHelper.configureTestModule(
-      [LuxComponentsConfigService],
-      [LuxWithSelectorComponent, LuxWithoutSelectorComponent]
-    );
+    LuxTestHelper.configureTestModule([LuxComponentsConfigService], [LuxWithSelectorComponent, LuxWithoutSelectorComponent]);
   });
 
   describe('mit Selector', () => {
@@ -41,7 +37,7 @@ describe('LuxAriaHasPopupDirective', () => {
       component.ariaHasPopup = ariaHasPopup;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual('false' );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-haspopup')).toEqual('false');
 
       // Aria-HasPopup entfernen
       ariaHasPopup = undefined;
@@ -93,7 +89,7 @@ describe('LuxAriaHasPopupDirective', () => {
   selector: 'lux-with-selector',
   template: `
     <lux-button
-      luxIconName="fas fa-bell"
+      luxIconName="lux-interface-alert-alarm-bell-2"
       [luxAriaHasPopup]="ariaHasPopup"
       luxAriaHasPopupSelector="button"
     ></lux-button>
@@ -105,9 +101,7 @@ class LuxWithSelectorComponent {
 
 @Component({
   selector: 'lux-without-selector',
-  template: `
-    <lux-button luxIconName="fas fa-bell" [luxAriaHasPopup]="ariaHasPopup"></lux-button>
-  `
+  template: ` <lux-button luxIconName="lux-interface-alert-alarm-bell-2" [luxAriaHasPopup]="ariaHasPopup"></lux-button> `
 })
 class LuxWithoutSelectorComponent {
   ariaHasPopup?: boolean | undefined;

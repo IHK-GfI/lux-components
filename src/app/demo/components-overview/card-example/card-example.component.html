@@ -1,7 +1,4 @@
- <example-base-structure
-  exampleTitle="Card"
-  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90card"
->
+<example-base-structure exampleTitle="Card" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90card">
   <example-base-content fxLayout="column" fxLayoutGap="32px">
     <lux-card
       [luxTitle]="title"
@@ -16,30 +13,30 @@
     >
       <lux-icon luxIconName="lux-cogs" *ngIf="showIcon"></lux-icon>
       <lux-card-info *ngIf="showInfo">
-        <lux-icon luxIconName="lux-interface-home-3"></lux-icon>
+        <lux-icon luxIconName="lux-interface-home-3" luxIconSize="1x"></lux-icon>
       </lux-card-info>
       <lux-card-content>
         <h3>H3 - Lorem ipsum</h3>
         <p>
-          Diese Karte enthält für Testzwecke alle möglichen Konfigurationen auf einmal. Auch wenn dieses technisch möglich ist, soll es nicht zur Nachahmung annimieren.
-          Bitte entscheidet euch, je nach Anwendungsfall, wie ihr eure Karte gestaltet. Weniger ist Besser!
+          Diese Karte enthält für Testzwecke alle möglichen Konfigurationen auf einmal. Auch wenn dieses technisch möglich ist, soll es
+          nicht zur Nachahmung annimieren. Bitte entscheidet euch, je nach Anwendungsfall, wie ihr eure Karte gestaltet. Weniger ist Besser!
         </p>
       </lux-card-content>
       <lux-card-content-expanded *ngIf="useExpandableContent">
         <h4>H4 - Lorem ipsum</h4>
         <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+          erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </p>
         <h5>H5 - Lorem ipsum</h5>
         <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+          erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </p>
         <h6>H6 - Lorem ipsum</h6>
         <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+          erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
         </p>
       </lux-card-content-expanded>
       <lux-card-actions *ngIf="showActions">
@@ -48,26 +45,19 @@
       </lux-card-actions>
     </lux-card>
     <h3>Einfaches Anwendungsbeispiel</h3>
-    <lux-card
-      luxTitle="Suche nach Identnummer"
-    >
-    <lux-card-content>
-      <lux-input-ac luxLabel="Identnummer" luxPlaceholder="ID123456"></lux-input-ac>
-    </lux-card-content>
-    <lux-card-actions>
-      <lux-button [luxStroked]="true" luxColor="primary" luxLabel="ZURÜCKSETZEN"></lux-button>
-      <lux-button [luxFlat]="true" luxColor="primary" luxLabel="SUCHEN"></lux-button>
-    </lux-card-actions>
+    <lux-card luxTitle="Suche nach Identnummer">
+      <lux-card-content>
+        <lux-input-ac luxLabel="Identnummer" luxPlaceholder="ID123456"></lux-input-ac>
+      </lux-card-content>
+      <lux-card-actions>
+        <lux-button [luxStroked]="true" luxColor="primary" luxLabel="ZURÜCKSETZEN"></lux-button>
+        <lux-button [luxFlat]="true" luxColor="primary" luxLabel="SUCHEN"></lux-button>
+      </lux-card-actions>
     </lux-card>
-
   </example-base-content>
   <example-base-simple-options>
     <div class="lux-highlight-section column">
-      <lux-input-ac
-        luxLabel="luxTitle"
-        luxHint="Diese Property enthält den Textinhalt für den Titel der Card."
-        [(luxValue)]="title"
-      >
+      <lux-input-ac luxLabel="luxTitle" luxHint="Diese Property enthält den Textinhalt für den Titel der Card." [(luxValue)]="title">
       </lux-input-ac>
 
       <lux-input-ac
@@ -130,15 +120,9 @@
     </lux-toggle-ac>
     <div class="lux-highlight-section column">
       <lux-toggle-ac luxLabel="luxCardInfo anzeigen" [(luxChecked)]="showInfo" [luxNoTopLabel]="true">
-        <lux-form-hint>
-          Die Component für die Darstellung von Zusatzinfos rechts vom Titel anzeigen.
-        </lux-form-hint>
+        <lux-form-hint> Die Component für die Darstellung von Zusatzinfos rechts vom Titel anzeigen. </lux-form-hint>
       </lux-toggle-ac>
-      <lux-toggle-ac
-        luxLabel="luxCardContentExpanded aktivieren"
-        [(luxChecked)]="useExpandableContent"
-        [luxNoTopLabel]="true"
-      >
+      <lux-toggle-ac luxLabel="luxCardContentExpanded aktivieren" [(luxChecked)]="useExpandableContent" [luxNoTopLabel]="true">
         <lux-form-hint>
           Den ausklappbaren Inhalt für die Card aktivieren.<br />
           Dieser wird dann unterhalb des eigentlichen Inhalts dargestellt.
@@ -155,7 +139,7 @@
         luxLabel="luxExpandedLabelClose"
         luxHint="Diese Property steuert den Labeltext auf dem Button zum Einklappen des erweiterten Card-Contents."
         [(luxValue)]="closeLabel"
-    ></lux-input-ac>
+      ></lux-input-ac>
     </div>
   </example-base-advanced-options>
 </example-base-structure>

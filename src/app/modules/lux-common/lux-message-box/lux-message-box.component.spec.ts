@@ -10,7 +10,6 @@ import { LuxMessageComponent } from './lux-message-box-subcomponents/lux-message
 import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
 
 describe('LuxMessageBoxComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [LuxMockMessageBoxComponent]);
   });
@@ -192,8 +191,8 @@ describe('LuxMessageBoxComponent', () => {
 })
 class LuxMockMessageBoxComponent {
   messages: ILuxMessage[] = [
-    { text: 'Msg 0', iconName: 'fa-android', color: 'green' },
-    { text: 'Msg 1', iconName: 'fa-apple', color: 'blue' }
+    { text: 'Msg 0', iconName: 'lux-programming-bug', color: 'green' },
+    { text: 'Msg 1', iconName: 'lux-programming-bug', color: 'blue' }
   ];
 
   eventObject?: ILuxMessageChangeEvent;
