@@ -11,196 +11,91 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
   private currentUrl: string | null = null;
   private themeName: string;
 
-  components: { onclick: any; label: string; icon: string; useImage?: boolean; moduleName?: string; news?: boolean }[] = [
-    { onclick: () => this.goTo('accordion'), icon: 'lux-interface-layout-2', label: 'Accordion', moduleName: 'layout', news: false },
-    {
-      onclick: () => this.goTo('autocomplete-ac'),
-      icon: 'fas fa-font',
-      label: 'Autocomplete-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    { onclick: () => this.goTo('badge'), icon: 'lux-atom', label: 'Badge', moduleName: 'common' },
-    { onclick: () => this.goTo('button'), icon: 'lux-running', label: 'Button', moduleName: 'action', news: false },
-    { onclick: () => this.goTo('card'), icon: 'lux-interface-layout-2', label: 'Card', moduleName: 'layout' },
-    {
-      onclick: () => this.goTo('chips-ac'),
-      icon: 'fas fa-ship',
-      label: 'Chips-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    {
-      onclick: () => this.goTo('datepicker-ac'),
-      icon: 'fas fa-calendar-day',
-      label: 'Datepicker-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    {
-      onclick: () => this.goTo('datetimepicker-ac'),
-      icon: 'fas fa-calendar-day',
-      label: 'Datetimepicker-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    { onclick: () => this.goTo('divider'), icon: 'lux-interface-layout-2', label: 'Divider', moduleName: 'layout' },
-    { onclick: () => this.goTo('error-page'), icon: 'lux-interface-alert-warning-circle', label: 'Error-Page', moduleName: 'error' },
-    { onclick: () => this.goTo('http-error'), icon: 'lux-interface-alert-radio-active-1', label: 'HTTP-Error', moduleName: 'error' },
-    { onclick: () => this.goTo('icon'), icon: 'lux-image-picture-landscape-2', label: 'Icon', moduleName: 'icon' },
-    { onclick: () => this.goTo('image'), icon: 'lux-image-picture-landscape-1', label: 'Image', moduleName: 'icon' },
-    { onclick: () => this.goTo('link'), icon: 'lux-interface-link', label: 'Link', moduleName: 'action' },
-    { onclick: () => this.goTo('progress'), icon: 'lux-atom', label: 'Progress', moduleName: 'common' },
-    {
-      onclick: () => this.goTo('radio-button-ac'),
-      icon: 'fas fa-circle',
-      label: 'Radio-Button-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    {
-      onclick: () => this.goTo('select-ac'),
-      icon: 'fab fa-get-pocket',
-      label: 'Select-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    {
-      onclick: () => this.goTo('slider-ac'),
-      icon: 'fas fa-sliders-h',
-      label: 'Slider-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    { onclick: () => this.goTo('snackbar'), icon: 'lux-interface-edit-view', label: 'Snackbar', moduleName: 'popup' },
-    { onclick: () => this.goTo('spinner'), icon: 'lux-spinner', label: 'Spinner', moduleName: 'common' },
-    { onclick: () => this.goTo('storage'), icon: 'lux-interface-layout-2', label: 'Storage', moduleName: 'layout' },
-    { onclick: () => this.goTo('table'), icon: 'lux-interface-layout-7', label: 'Table', moduleName: 'common', news: false },
-    { onclick: () => this.goTo('table-server'), icon: 'lux-atom', label: 'Table-Server', moduleName: 'common' },
-    {
-      onclick: () => this.goTo('textarea-ac'),
-      icon: 'fas fa-text-height',
-      label: 'Textarea-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    { onclick: () => this.goTo('tooltip'), icon: 'lux-interface-cursor-arrow-1', label: 'Tooltip', moduleName: 'directive' },
-    {
-      onclick: () => this.goTo('lookup-combobox-ac'),
-      icon: 'fas fa-binoculars',
-      label: 'Lookup-Combobox-Ac',
-      moduleName: 'lookup',
-      news: false
-    },
-    {
-      onclick: () => this.goTo('lookup-autocomplete-ac'),
-      icon: 'fas fa-binoculars',
-      label: 'Lookup-Autocomplete-Ac',
-      moduleName: 'lookup',
-      news: false
-    },
-    { onclick: () => this.goTo('lookup-label'), icon: 'lux-interface-edit-binocular', label: 'Lookup-Label', moduleName: 'lookup' },
-    {
-      onclick: () => this.goTo('input-ac'),
-      icon: 'fas fa-water',
-      label: 'Input-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    { onclick: () => this.goTo('tabindex'), icon: 'lux-interface-alert-warning-circle', label: 'Tabindex', moduleName: 'directive' },
-    { onclick: () => this.goTo('tile'), icon: 'lux-interface-layout-2', label: 'Tile', moduleName: 'layout' },
-    {
-      onclick: () => this.goTo('tile-ac'),
-      icon: 'fas fa-dove',
-      label: 'Tile-Ac',
-      moduleName: 'layout',
-      news: false
-    },
-    { onclick: () => this.goTo('message-box'), icon: 'lux-ovals', label: 'Message-Box', moduleName: 'common', news: false },
-    {
-      onclick: () => this.goTo('checkbox-ac'),
-      icon: 'fas fa-check-square',
-      label: 'Checkbox-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    { onclick: () => this.goTo('menu'), icon: 'lux-interface-setting-menu-vertical', label: 'Menu', moduleName: 'action' },
-    { onclick: () => this.goTo('app-footer'), icon: 'lux-interface-layout-2', label: 'App-Footer', moduleName: 'layout' },
-    {
-      onclick: () => this.goTo('toggle-ac'),
-      icon: 'fas fa-toggle-on',
-      label: 'Toggle-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    { onclick: () => this.goTo('list'), icon: 'lux-interface-text-formatting-list-bullets', label: 'List', moduleName: 'layout' },
-    { onclick: () => this.goToTabs(), icon: 'lux-interface-layout-three-columns', label: 'Tabs', moduleName: 'layout', news: false },
-    { onclick: () => this.goToStepper(), icon: 'lux-interface-layout-2', label: 'Stepper', moduleName: 'layout', news: false },
-    {
-      onclick: () => this.goTo('stepper-large'),
-      icon: 'lux-interface-layout-2',
-      label: 'Stepper-Large',
-      moduleName: 'layout',
-      news: false
-    },
-    { onclick: () => this.goTo('timestamp'), icon: 'lux-interface-time-clock-circle', label: 'Timestamp', moduleName: 'pipes' },
-    {
-      onclick: () => this.goTo('infinite-scrolling'),
-      icon: 'lux-interface-alert-warning-circle',
-      label: 'Infinite-Scrolling',
-      moduleName: 'directive'
-    },
-    { onclick: () => this.goTo('dialog'), icon: 'lux-interface-help-question-circle', label: 'Dialog', moduleName: 'popup', news: false },
-    {
-      onclick: () => this.goTo('file-input-ac'),
-      icon: 'fas fa-cloud-upload-alt',
-      label: 'File-Input-Ac',
-      moduleName: 'form',
-      news: false
-    },
-    { onclick: () => this.goTo('file-list'), icon: 'lux-programming-cloud-upload', label: 'File-List', moduleName: 'form' },
-    { onclick: () => this.goTo('file-upload'), icon: 'lux-programming-cloud-upload', label: 'File-Upload', moduleName: 'form' },
-    { onclick: () => this.goTo('ripple'), icon: 'lux-interface-alert-warning-circle', label: 'Ripple', moduleName: 'directive' },
-    {
-      onclick: () => this.goTo('badge-notification'),
-      icon: 'lux-interface-alert-alarm-bell-2',
-      label: 'Badge-Notification',
-      moduleName: 'directive',
-      news: false
-    },
-    { onclick: () => this.goTo('html'), icon: 'lux-interface-security-shield-4', label: 'Html', moduleName: 'html' },
-    { onclick: () => this.goTo('markdown'), icon: 'lux-interface-edit-pencil', label: 'Markdown', moduleName: 'markdown' },
-    { onclick: () => this.goTo('form-row'), icon: 'lux-dial-pad-6-digits', label: 'Form-Row', moduleName: 'layout' },
-    { onclick: () => this.goTo('card-row'), icon: 'lux-dial-pad-6-digits', label: 'Card-Row', moduleName: 'layout' },
-    {
-      onclick: () => this.goTo('filter'),
-      icon: 'lux-interface-text-formatting-filter-1',
-      label: 'Filter',
-      moduleName: 'filter',
-      news: false
-    },
-    { onclick: () => this.goTo('link-plain'), icon: 'lux-programming-web', label: 'Link-Plain', moduleName: 'action', news: false },
-    {
-      onclick: () => this.goTo('master-detail-ac'),
-      icon: 'fas fa-globe',
-      label: 'Master-Detail-Ac',
-      moduleName: 'layout',
-      news: false
-    },
-    {
-      onclick: () => this.goTo('checkbox-container-ac'),
-      icon: '',
-      label: 'Checkbox-Container-Ac',
-      moduleName: 'layout',
-      news: false
-    },
-    {
-      onclick: () => this.goTo('textbox'),
-      icon: 'lux-interface-content-note-pad-text',
-      label: 'Textbox',
-      moduleName: 'common',
-      news: true
-    }
+  moduleIcons: Map<string, string> = new Map<string, string>([
+    ['action', 'lux-interface-cursor-arrow-1'],
+    ['common', 'lux-image-photo-composition-oval'],
+    ['directive', 'lux-interface-setting-tool-box'],
+    ['error', 'lux-interface-alert-warning-triangle'],
+    ['filter', 'lux-interface-text-formatting-filter-1'],
+    ['form', 'lux-interface-edit-write-1'],
+    ['html', 'lux-interface-file-text'],
+    ['icon', 'lux-image-picture-landscape-1'],
+    ['layout', 'lux-interface-layout-1'],
+    ['lookup', 'lux-interface-edit-binocular'],
+    ['markdown', 'lux-interface-file-text'],
+    ['pipes', 'lux-interface-dashboard-layout-circle'],
+    ['popup', 'lux-programming-browser-window']
+  ]);
+
+  private create(moduleName: string, label: string, news = false) {
+    return {
+      onclick: () => this.goTo(label.toLowerCase()),
+      icon: this.moduleIcons.get(moduleName)!,
+      label: label,
+      moduleName: moduleName,
+      news: news
+    };
+  }
+
+  components: { onclick: any; label: string; icon: string; moduleName?: string; news: boolean }[] = [
+    this.create('action', 'Button'),
+    this.create('action', 'Link'),
+    this.create('action', 'Link-Plain'),
+    this.create('action', 'Menu'),
+    this.create('common', 'Badge'),
+    this.create('common', 'Message-Box'),
+    this.create('common', 'Progress'),
+    this.create('common', 'Spinner'),
+    this.create('common', 'Table'),
+    this.create('common', 'Table-Server'),
+    this.create('common', 'Textbox'),
+    this.create('directive', 'Badge-Notification'),
+    this.create('directive', 'Infinite-Scrolling'),
+    this.create('directive', 'Ripple'),
+    this.create('directive', 'Tabindex'),
+    this.create('directive', 'Tooltip'),
+    this.create('error', 'Error-Page'),
+    this.create('error', 'HTTP-Error'),
+    this.create('filter', 'Filter'),
+    this.create('form', 'Autocomplete-Ac'),
+    this.create('form', 'Checkbox-Ac'),
+    this.create('form', 'Chips-Ac'),
+    this.create('form', 'Datepicker-Ac'),
+    this.create('form', 'Datetimepicker-Ac'),
+    this.create('form', 'File-Input-Ac'),
+    this.create('form', 'File-List'),
+    this.create('form', 'File-Upload'),
+    this.create('form', 'Input-Ac'),
+    this.create('form', 'Radio-Button-Ac'),
+    this.create('form', 'Select-Ac'),
+    this.create('form', 'Slider-Ac'),
+    this.create('form', 'Textarea-Ac'),
+    this.create('form', 'Toggle-Ac'),
+    this.create('html', 'Html'),
+    this.create('icon', 'Icon'),
+    this.create('icon', 'Image'),
+    this.create('layout', 'Accordion'),
+    this.create('layout', 'App-Footer'),
+    this.create('layout', 'Card'),
+    this.create('layout', 'Card-Row'),
+    this.create('layout', 'Checkbox-Container-Ac'),
+    this.create('layout', 'Divider'),
+    this.create('layout', 'Form-Row'),
+    this.create('layout', 'List'),
+    this.create('layout', 'Master-Detail-Ac'),
+    this.create('layout', 'Stepper'),
+    this.create('layout', 'Stepper-Large'),
+    this.create('layout', 'Storage'),
+    this.create('layout', 'Tabs'),
+    this.create('layout', 'Tile'),
+    this.create('layout', 'Tile-Ac'),
+    this.create('lookup', 'Lookup-Autocomplete-Ac'),
+    this.create('lookup', 'Lookup-Combobox-Ac'),
+    this.create('lookup', 'Lookup-Label'),
+    this.create('markdown', 'Markdown'),
+    this.create('pipes', 'Timestamp'),
+    this.create('popup', 'Dialog'),
+    this.create('popup', 'Snackbar')
   ];
 
   sortedComponentEntries: Map<string, any[]> = new Map<string, any[]>();
@@ -222,21 +117,6 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
   currentModuleNames: string[] = [];
   selectedComponent: any;
   subscriptions: Subscription[] = [];
-  moduleIcons: Map<string, string> = new Map<string, string>([
-    ['action', 'lux-running'],
-    ['common', 'lux-atom'],
-    ['directive', 'lux-interface-alert-warning-circle'],
-    ['error', 'lux-interface-alert-radio-active-1'],
-    ['filter', 'lux-interface-text-formatting-filter-1'],
-    ['form', 'lux-interface-file-text'],
-    ['html', 'lux-interface-security-shield-4'],
-    ['icon', 'lux-image-picture-landscape-1'],
-    ['layout', 'lux-interface-layout-2'],
-    ['lookup', 'lux-interface-edit-binocular'],
-    ['markdown', 'lux-interface-edit-pencil'],
-    ['pipes', 'lux-recording-tape-2'],
-    ['popup', 'lux-interface-align-layers-2']
-  ]);
 
   constructor(private themeService: LuxThemeService, private router: Router) {
     this.themeName = this.themeService.getTheme().name;
@@ -287,14 +167,6 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
 
   goTo(id: string): void {
     this.router.navigate([`components-overview/example/${id}`]);
-  }
-
-  goToTabs() {
-    this.router.navigate(['components-overview/example/tabs']);
-  }
-
-  goToStepper() {
-    this.router.navigate(['components-overview/example/stepper']);
   }
 
   onExpandAll() {

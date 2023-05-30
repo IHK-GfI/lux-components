@@ -107,6 +107,8 @@
         ></lux-select-ac>
 
         <lux-radio-ac
+          luxTagId="Farbe"
+          luxAriaLabel="Farbe"
           [luxNoLabels]="false"
           [luxOptions]="fgBgOptions"
           luxOptionLabelProp="label"
@@ -137,6 +139,8 @@
 <ng-template #search>
   <div fxLayout="column" fxLayoutGap="4px">
     <lux-input-ac
+      luxTagId="Suchbegriff"
+      luxAriaLabel="Suchbegriff"
       [luxNoTopLabel]="true"
       luxPlaceholder="Suchbegriff eingeben"
       [(luxValue)]="inputValue"
@@ -154,6 +158,7 @@
     </lux-input-ac>
     <lux-radio-ac
       [luxNoTopLabel]="true"
+      luxTagId="Suchbegriffverknüpfung"
       luxAriaLabel="Suchbegriffverknüpfung"
       luxOptionLabelProp="label"
       luxHint="Suchbegriffverknüpfung"

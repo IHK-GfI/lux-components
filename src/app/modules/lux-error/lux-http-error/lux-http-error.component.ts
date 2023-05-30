@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { LuxMessageBoxComponent } from "../../lux-common/lux-message-box/lux-message-box.component";
+import { LuxMessageBoxComponent } from '../../lux-common/lux-message-box/lux-message-box.component';
 import { LuxHttpErrorInterceptor } from './lux-http-error-interceptor';
 import { Subscription } from 'rxjs';
 import { ILuxMessage } from '../../lux-common/lux-message-box/lux-message-box-model/lux-message.interface';
@@ -19,11 +19,13 @@ export class LuxHttpErrorComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(router: Router) {
     // Beim Ansteuern einer neuen Route, die aktuellen Fehler resetten.
-    this.subs.push(router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        LuxHttpErrorInterceptor.dataStream.next([]);
-      }
-    }));
+    this.subs.push(
+      router.events.subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          LuxHttpErrorInterceptor.dataStream.next([]);
+        }
+      })
+    );
   }
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class LuxHttpErrorComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     // Alle bekannten Subscriptions auflösen.
-    this.subs.forEach(sub => {
+    this.subs.forEach((sub) => {
       sub.unsubscribe();
     });
   }
@@ -59,7 +61,7 @@ export class LuxHttpErrorComponent implements OnInit, OnDestroy, AfterViewInit {
         errorMessages.push({
           text: LuxHttpErrorComponent.readErrorMessage(error),
           color: 'red',
-          iconName: 'fa-bug'
+          iconName: 'lux-programming-bug'
         });
       });
     }

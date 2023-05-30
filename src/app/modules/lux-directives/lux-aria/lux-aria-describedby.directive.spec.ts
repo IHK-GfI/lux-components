@@ -8,12 +8,8 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxAriaDescribedbyDirective', () => {
-
   beforeEach(async () => {
-    LuxTestHelper.configureTestModule(
-      [LuxComponentsConfigService],
-      [LuxWithSelectorComponent, LuxWithoutSelectorComponent]
-    );
+    LuxTestHelper.configureTestModule([LuxComponentsConfigService], [LuxWithSelectorComponent, LuxWithoutSelectorComponent]);
   });
 
   describe('mit Selector', () => {
@@ -34,18 +30,14 @@ describe('LuxAriaDescribedbyDirective', () => {
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toEqual(
-        ariaDescribedby
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toEqual(ariaDescribedby);
 
       // describedby aktualisieren
       ariaDescribedby = 'menuitem';
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toEqual(
-        ariaDescribedby
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toEqual(ariaDescribedby);
 
       // describedby entfernen
       ariaDescribedby = undefined;
@@ -74,18 +66,14 @@ describe('LuxAriaDescribedbyDirective', () => {
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toEqual(
-        ariaDescribedby
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toEqual(ariaDescribedby);
 
       // describedby aktualisieren
       ariaDescribedby = 'menuitem';
       component.ariaDescribedby = ariaDescribedby;
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toEqual(
-        ariaDescribedby
-      );
+      expect(fixture.debugElement.query(By.css('button')).nativeElement.getAttribute('aria-describedby')).toEqual(ariaDescribedby);
 
       // describedby entfernen
       ariaDescribedby = undefined;
@@ -101,7 +89,7 @@ describe('LuxAriaDescribedbyDirective', () => {
   selector: 'lux-with-selector',
   template: `
     <lux-button
-      luxIconName="fas fa-bell"
+      luxIconName="lux-interface-alert-alarm-bell-2"
       [luxAriaDescribedby]="ariaDescribedby"
       luxAriaDescribedbySelector="button"
     ></lux-button>
@@ -113,9 +101,7 @@ class LuxWithSelectorComponent {
 
 @Component({
   selector: 'lux-without-selector',
-  template: `
-    <lux-button luxIconName="fas fa-bell" [luxAriaDescribedby]="ariaDescribedby"></lux-button>
-  `
+  template: ` <lux-button luxIconName="lux-interface-alert-alarm-bell-2" [luxAriaDescribedby]="ariaDescribedby"></lux-button> `
 })
 class LuxWithoutSelectorComponent {
   ariaDescribedby?: string | undefined;

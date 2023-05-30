@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
-import { LuxBadgeColors, LuxIconColor, LuxIconColors } from "../../lux-util/lux-colors.enum";
+import { LuxIconColor, LuxIconColors } from '../../lux-util/lux-colors.enum';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxIconRegistryService } from './lux-icon-registry.service';
 
@@ -9,25 +9,18 @@ import { LuxIconRegistryService } from './lux-icon-registry.service';
   styleUrls: ['./lux-icon.component.scss']
 })
 export class LuxIconComponent {
-  public static readonly FA_BRAND = 'fab ';
-  public static readonly FA_SOLID = 'fas ';
-  public static readonly FA_REGULAR = 'far ';
-  public static readonly FA_LIGHT = 'fal ';
-
   private _luxIconSize: string | undefined = '';
   private _luxIconName = '';
   private _luxPadding = '4px';
   private _backgroundCSSClass = '';
   private _fontCSSClass = 'blue';
 
+  notFoundIconName = 'lux-interface-alert-warning-diamond';
   currentIconSize = 1;
 
-
   @HostBinding('style.margin') styleMargin = '0';
-  @HostBinding('class.lux-lx-icon') isIconLX = false;
-  @HostBinding('class.lux-fa-icon') isIconFA = false;
   @HostBinding('class.lux-no-size') noSize = true;
- 
+
   @Input() luxRounded = false;
 
   get luxMargin(): string {
@@ -70,7 +63,8 @@ export class LuxIconComponent {
   @Input()
   set luxIconName(iconNameValue: string | undefined) {
     if (iconNameValue) {
-      this._luxIconName = this.modifyIconName(iconNameValue);
+      this._luxIconName = iconNameValue;
+      this.registerIcon(iconNameValue);
     } else {
       this._luxIconName = '';
     }
@@ -96,56 +90,18 @@ export class LuxIconComponent {
     }
   }
 
-  @Output() luxLoad = new EventEmitter<Event>()
+  @Output() luxLoad = new EventEmitter<Event>();
 
-  constructor(private iconReg: LuxIconRegistryService) {  }
+  constructor(private iconReg: LuxIconRegistryService) {}
 
-  /**
-   * Generiert aus dem mitgegebenen Wert einen String-Wert
-   * der entweder als Font-Awesome Icon oder als Material-Icon
-   * interpretiert werden kann.
-   *
-   * @param iconName z.B. fas fa-cogs
-   * @param iconName
-   * @returns string
-   */
-  private modifyIconName(iconName: string): string {
-    // Handelt es sich hier um ein Font-Awesome Icon?
-    if (iconName.startsWith('fa')) {
-      // feststellen, ob ein FA-Präfix vorliegt
-      if (
-        iconName.indexOf(LuxIconComponent.FA_BRAND) === -1 &&
-        iconName.indexOf(LuxIconComponent.FA_SOLID) === -1 &&
-        iconName.indexOf(LuxIconComponent.FA_REGULAR) === -1 &&
-        iconName.indexOf(LuxIconComponent.FA_LIGHT) === -1
-      ) {
-        // Wenn nicht, dann
-        iconName = 'fas ' + iconName;
-      }
-      this.isIconFA = true;
-      this.isIconLX = false;
-      return iconName;
-    }
-    if (iconName.startsWith('lux')) {
-      this.isIconLX = true;
-      this.isIconFA = false;
-      this.registerIcon(iconName);
-      return iconName;
-    }
-
-    this.isIconFA = false;
-    this.isIconLX = false;
-    return iconName;
-  }
-
-  private registerIcon(iconName:string) {
-    if (this.isIconLX) {
-      try {
-        this.iconReg.registerIcon(iconName);
-      } catch (error) {
-        console.log(error);
-        this._luxIconName = 'lux-interface-alert-warning-diamond';
-      }
+  private registerIcon(iconName: string) {
+    try {
+      this.iconReg.registerIcon(iconName);
+    } catch (error) {
+      console.warn(
+        `Das Icon "${iconName}" konnte nicht gefunden werden. Stattdessen wird das Icon "${this.notFoundIconName}" verwendet. Bitte anpassen!`
+      );
+      this.luxIconName = this.notFoundIconName;
     }
   }
 }

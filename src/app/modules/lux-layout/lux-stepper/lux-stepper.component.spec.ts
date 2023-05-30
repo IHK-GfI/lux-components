@@ -13,7 +13,6 @@ import { LuxStepperHelperService } from './lux-stepper-helper.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
 describe('LuxStepperComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([LuxStepperHelperService], [MockStepperComponent]);
   });
@@ -388,13 +387,13 @@ class MockStepperComponent {
   step0Editable = true;
   step0Completed = false;
   step0Form?: FormGroup;
-  step0Icon = 'fa-user';
+  step0Icon = 'lux-interface-user-single';
 
   step1Optional = false;
   step1Editable = true;
   step1Completed = false;
   step1Form?: FormGroup;
-  step1Icon = 'fa-file-signature';
+  step1Icon = 'lux-file-signature';
 
   form;
 
@@ -405,10 +404,10 @@ class MockStepperComponent {
   constructor() {
     this.form = new FormGroup<any>({
       step0: new FormGroup<any>({
-        input: new FormControl<string>('', { validators: Validators.required, nonNullable: true})
+        input: new FormControl<string>('', { validators: Validators.required, nonNullable: true })
       }),
       step1: new FormGroup<any>({
-        input: new FormControl<string>('', { validators: Validators.required, nonNullable: true})
+        input: new FormControl<string>('', { validators: Validators.required, nonNullable: true })
       })
     });
   }

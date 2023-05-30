@@ -17,7 +17,6 @@ import { ILuxFileObject } from '../lux-file-model/lux-file-object.interface';
 import { LuxStorageService } from '../../../lux-util/lux-storage.service';
 
 describe('LuxFileInputAcComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [
@@ -69,9 +68,7 @@ describe('LuxFileInputAcComponent', () => {
       LuxTestHelper.wait(localFixture);
 
       // Nachbedingungen prüfen
-      expect(localFixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value).toEqual(
-        'mockfile.txt'
-      );
+      expect(localFixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value).toEqual('mockfile.txt');
       expect(localTestComponent.formControl.value).toEqual(fileObject);
       expect(localFileComponent.luxSelected).toEqual(fileObject);
       expect(localFileComponent.formControl.value).toEqual(fileObject);
@@ -147,9 +144,7 @@ describe('LuxFileInputAcComponent', () => {
 
       // // Nachbedingungen prüfen
       expect(fixture.debugElement.query(By.css('.lux-form-label-authentic')).nativeElement.textContent.trim()).toEqual('Label');
-      expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.placeholder).toEqual(
-        'Placeholder'
-      );
+      expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.placeholder).toEqual('Placeholder');
       expect(fixture.debugElement.query(By.css('mat-hint')).nativeElement.textContent.trim()).toEqual('Hint');
     }));
 
@@ -205,7 +200,7 @@ describe('LuxFileInputAcComponent', () => {
       LuxTestHelper.dispatchFakeEvent(fileInputNode, 'dragover', true);
       LuxTestHelper.wait(fixture);
 
-      let mockDropEvent = LuxTestHelper.createDropEvent([{name: 'mockfile1.txt', type: 'text/txt'}]);
+      let mockDropEvent = LuxTestHelper.createDropEvent([{ name: 'mockfile1.txt', type: 'text/txt' }]);
       LuxTestHelper.dispatchEvent(fileInputNode, mockDropEvent);
       LuxTestHelper.wait(fixture);
 
@@ -219,7 +214,7 @@ describe('LuxFileInputAcComponent', () => {
 
       LuxTestHelper.dispatchFakeEvent(fileInputNode, 'dragover', true);
       LuxTestHelper.wait(fixture);
-      mockDropEvent = LuxTestHelper.createDropEvent([{ name: 'mockfile1.txt', type: 'text/txt'}]);
+      mockDropEvent = LuxTestHelper.createDropEvent([{ name: 'mockfile1.txt', type: 'text/txt' }]);
       LuxTestHelper.dispatchEvent(fileInputNode, mockDropEvent);
       LuxTestHelper.wait(fixture);
 
@@ -252,9 +247,7 @@ describe('LuxFileInputAcComponent', () => {
       // Nachbedingungen prüfen
       expect(spy).toHaveBeenCalledTimes(1);
       expect(fileComponent.luxSelected).toBeTruthy();
-      expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value.trim()).toEqual(
-        'mockfile1.txt'
-      );
+      expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value.trim()).toEqual('mockfile1.txt');
     }));
 
     it('Sollte den Startwert korrekt setzen', fakeAsync(() => {
@@ -273,9 +266,7 @@ describe('LuxFileInputAcComponent', () => {
       LuxTestHelper.wait(localFixture);
 
       // Nachbedingungen prüfen
-      expect(localFixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value.trim()).toEqual(
-        'mockfile.txt'
-      );
+      expect(localFixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value.trim()).toEqual('mockfile.txt');
       expect(localTestComponent.selected).toEqual(fileObject);
       expect(localFileComponent.luxSelected).toEqual(fileObject);
       expect(localFileComponent.formControl.value).toEqual(fileObject);
@@ -287,14 +278,10 @@ describe('LuxFileInputAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       expect(fileComponent.luxSelected).toEqual(testComponent.selected);
-      expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value.trim()).toEqual(
-        'mockfile.txt'
-      );
+      expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value.trim()).toEqual('mockfile.txt');
 
       // Änderungen durchführen
-      fixture.debugElement
-        .query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button'))
-        .nativeElement.click();
+      fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button')).nativeElement.click();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -313,22 +300,16 @@ describe('LuxFileInputAcComponent', () => {
       };
       LuxTestHelper.wait(fixture);
 
-      expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value.trim()).toEqual(
-        'mockfile.txt'
-      );
+      expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value.trim()).toEqual('mockfile.txt');
       expect(fileComponent.luxSelected!.name).toEqual('mockfile.txt');
       expect(fileComponent.luxSelected!.content).toEqual(undefined);
 
       // Änderungen durchführen
-      fixture.debugElement
-        .query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view] button'))
-        .nativeElement.click();
+      fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view] button')).nativeElement.click();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value.trim()).toEqual(
-        'mockfile.txt'
-      );
+      expect(fixture.debugElement.query(By.css('.lux-file-visible-input')).nativeElement.value.trim()).toEqual('mockfile.txt');
       expect(fileComponent.luxSelected!.name).toEqual('mockfile.txt');
       expect(fileComponent.luxSelected!.content).toEqual('callback base64-dummy');
 
@@ -365,9 +346,7 @@ describe('LuxFileInputAcComponent', () => {
       expect(spy).toHaveBeenCalledTimes(1);
 
       // Änderungen durchführen
-      fixture.debugElement
-        .query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button'))
-        .nativeElement.click();
+      fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button')).nativeElement.click();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
@@ -591,8 +570,7 @@ describe('LuxFileInputAcComponent', () => {
         it('Sollte den Upload-Button deaktivieren', fakeAsync(() => {
           // Vorbedingungen testen
           expect(
-            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-upload] button')).nativeElement
-              .disabled
+            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-upload] button')).nativeElement.disabled
           ).toBe(false);
 
           // Änderungen durchführen
@@ -601,8 +579,7 @@ describe('LuxFileInputAcComponent', () => {
 
           // Nachbedingungen prüfen
           expect(
-            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-upload] button')).nativeElement
-              .disabled
+            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-upload] button')).nativeElement.disabled
           ).toBe(true);
         }));
 
@@ -642,8 +619,7 @@ describe('LuxFileInputAcComponent', () => {
         it('Sollte den Download-Button deaktivieren', fakeAsync(() => {
           // Vorbedingungen testen
           expect(
-            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download] button'))
-              .nativeElement.disabled
+            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download] button')).nativeElement.disabled
           ).toBe(true);
 
           // Änderungen durchführen
@@ -653,8 +629,7 @@ describe('LuxFileInputAcComponent', () => {
 
           // Nachbedingungen prüfen
           expect(
-            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download] button'))
-              .nativeElement.disabled
+            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download] button')).nativeElement.disabled
           ).toBe(false);
 
           // Änderungen durchführen
@@ -663,8 +638,7 @@ describe('LuxFileInputAcComponent', () => {
 
           // Nachbedingungen prüfen
           expect(
-            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download] button'))
-              .nativeElement.disabled
+            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download] button')).nativeElement.disabled
           ).toBe(true);
         }));
 
@@ -682,9 +656,7 @@ describe('LuxFileInputAcComponent', () => {
           // Änderungen durchführen
           fileComponent.selectFiles(files);
           LuxTestHelper.wait(fixture);
-          fixture.debugElement
-            .query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download] button'))
-            .nativeElement.click();
+          fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-download] button')).nativeElement.click();
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
@@ -711,8 +683,7 @@ describe('LuxFileInputAcComponent', () => {
         it('Sollte den Delete-Button deaktivieren', fakeAsync(() => {
           // Vorbedingungen testen
           expect(
-            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button')).nativeElement
-              .disabled
+            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button')).nativeElement.disabled
           ).toBe(true);
 
           // Änderungen durchführen
@@ -722,8 +693,7 @@ describe('LuxFileInputAcComponent', () => {
 
           // Nachbedingungen prüfen
           expect(
-            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button')).nativeElement
-              .disabled
+            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button')).nativeElement.disabled
           ).toBe(false);
 
           // Änderungen durchführen
@@ -732,8 +702,7 @@ describe('LuxFileInputAcComponent', () => {
 
           // Nachbedingungen prüfen
           expect(
-            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button')).nativeElement
-              .disabled
+            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button')).nativeElement.disabled
           ).toBe(true);
         }));
 
@@ -748,9 +717,7 @@ describe('LuxFileInputAcComponent', () => {
           // Änderungen durchführen
           fileComponent.selectFiles(files);
           LuxTestHelper.wait(fixture);
-          fixture.debugElement
-            .query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button'))
-            .nativeElement.click();
+          fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-remove] button')).nativeElement.click();
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
@@ -775,10 +742,9 @@ describe('LuxFileInputAcComponent', () => {
 
         it('Sollte den View-Button deaktivieren', fakeAsync(() => {
           // Vorbedingungen testen
-          expect(
-            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view] button')).nativeElement
-              .disabled
-          ).toBe(true);
+          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view] button')).nativeElement.disabled).toBe(
+            true
+          );
 
           // Änderungen durchführen
           const files = [LuxTestHelper.createFileBrowserSafe('mockfile1.txt', 'text/txt')];
@@ -786,20 +752,18 @@ describe('LuxFileInputAcComponent', () => {
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(
-            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view] button')).nativeElement
-              .disabled
-          ).toBe(false);
+          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view] button')).nativeElement.disabled).toBe(
+            false
+          );
 
           // Änderungen durchführen
           testComponent.viewActionConfig.disabled = true;
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
-          expect(
-            fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view] button')).nativeElement
-              .disabled
-          ).toBe(true);
+          expect(fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view] button')).nativeElement.disabled).toBe(
+            true
+          );
         }));
 
         it('Sollte den Callback aufrufen', fakeAsync(() => {
@@ -813,9 +777,7 @@ describe('LuxFileInputAcComponent', () => {
           // Änderungen durchführen
           fileComponent.selectFiles(files);
           LuxTestHelper.wait(fixture);
-          fixture.debugElement
-            .query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view] button'))
-            .nativeElement.click();
+          fixture.debugElement.query(By.css('lux-button[ng-reflect-lux-tag-id=lux-file-view] button')).nativeElement.click();
           LuxTestHelper.wait(fixture);
 
           // Nachbedingungen prüfen
@@ -874,7 +836,7 @@ class FileComponent {
   uploadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
-    iconName: 'fas fa-cloud-upload-alt',
+    iconName: 'lux-programming-cloud-upload',
     label: 'Hochladen',
     onClick: () => null
   };
@@ -952,7 +914,6 @@ class FileFormComponent {
 }
 
 class MockStorage {
-
   getItem(key: string): string {
     return '';
   }

@@ -8,12 +8,8 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxAriaRoleDirective', () => {
-
   beforeEach(async () => {
-    LuxTestHelper.configureTestModule(
-      [LuxComponentsConfigService],
-      [LuxWithSelectorComponent, LuxWithoutSelectorComponent]
-    );
+    LuxTestHelper.configureTestModule([LuxComponentsConfigService], [LuxWithSelectorComponent, LuxWithoutSelectorComponent]);
   });
 
   describe('mit Selector', () => {
@@ -92,7 +88,7 @@ describe('LuxAriaRoleDirective', () => {
 @Component({
   selector: 'lux-with-selector',
   template: `
-    <lux-button luxIconName="fas fa-bell" [luxAriaRole]="ariaRole" luxAriaRoleSelector="button"></lux-button>
+    <lux-button luxIconName="lux-interface-alert-alarm-bell-2" [luxAriaRole]="ariaRole" luxAriaRoleSelector="button"></lux-button>
   `
 })
 class LuxWithSelectorComponent {
@@ -101,9 +97,7 @@ class LuxWithSelectorComponent {
 
 @Component({
   selector: 'lux-without-selector',
-  template: `
-    <lux-button luxIconName="fas fa-bell" [luxAriaRole]="ariaRole"></lux-button>
-  `
+  template: ` <lux-button luxIconName="lux-interface-alert-alarm-bell-2" [luxAriaRole]="ariaRole"></lux-button> `
 })
 class LuxWithoutSelectorComponent {
   ariaRole?: string;
