@@ -14,8 +14,24 @@
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
   <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
-  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
+  <span
+    class="lux-button-label"
+    [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight && !luxButtonBadge }"
+    *ngIf="luxLabel"
+  >
     {{ luxLabel }}
+  </span>
+  <span
+    class="lux-button-badge lux-bg-color-primary-500"
+    [ngClass]="{
+      'lux-bg-color-primary-500': luxButtonBadgeColor === 'primary',
+      'lux-bg-color-warn-500': luxButtonBadgeColor === 'warn',
+      'lux-bg-color-accent-500': luxButtonBadgeColor === 'accent',
+      'lux-mr-3': !!luxIconName && luxIconShowRight
+    }"
+    *ngIf="luxButtonBadge && !luxDisabled"
+  >
+    {{ luxButtonBadge }}
   </span>
   <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
 </button>
@@ -36,9 +52,24 @@
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
   <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
-  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
+  <span
+    class="lux-button-label"
+    [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight && !luxButtonBadge }"
+    *ngIf="luxLabel"
+  >
     {{ luxLabel }}
   </span>
+  <span
+    class="lux-button-badge lux-bg-color-primary-500"
+    [ngClass]="{
+      'lux-bg-color-primary-500': luxButtonBadgeColor === 'primary',
+      'lux-bg-color-warn-500': luxButtonBadgeColor === 'warn',
+      'lux-bg-color-accent-500': luxButtonBadgeColor === 'accent',
+      'lux-mr-3': !!luxIconName && luxIconShowRight
+    }"
+    *ngIf="luxButtonBadge && !luxDisabled"
+    >{{ luxButtonBadge }}</span
+  >
   <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
 </button>
 <button
@@ -57,9 +88,24 @@
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
   <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
-  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
+  <span
+    class="lux-button-label"
+    [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight && !luxButtonBadge }"
+    *ngIf="luxLabel"
+  >
     {{ luxLabel }}
   </span>
+  <span
+    class="lux-button-badge"
+    [ngClass]="{
+      'lux-bg-color-primary-500': luxButtonBadgeColor === 'primary',
+      'lux-bg-color-warn-500': luxButtonBadgeColor === 'warn',
+      'lux-bg-color-accent-500': luxButtonBadgeColor === 'accent',
+      'lux-mr-3': !!luxIconName && luxIconShowRight
+    }"
+    *ngIf="luxButtonBadge && !luxDisabled"
+    >{{ luxButtonBadge }}</span
+  >
   <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
 </button>
 
@@ -79,9 +125,24 @@
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
   <ng-container *ngTemplateOutlet="luxIconName && !luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
-  <span class="lux-button-label" [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight }" *ngIf="luxLabel">
+  <span
+    class="lux-button-label"
+    [ngClass]="{ 'lux-ml-3': !!luxIconName && !luxIconShowRight, 'lux-mr-3': !!luxIconName && luxIconShowRight && !luxButtonBadge }"
+    *ngIf="luxLabel"
+  >
     {{ luxLabel }}
   </span>
+  <span
+    class="lux-button-badge lux-bg-color-primary-500"
+    [ngClass]="{
+      'lux-bg-color-primary-500': luxButtonBadgeColor === 'primary',
+      'lux-bg-color-warn-500': luxButtonBadgeColor === 'warn',
+      'lux-bg-color-accent-500': luxButtonBadgeColor === 'accent',
+      'lux-mr-3': !!luxIconName && luxIconShowRight
+    }"
+    *ngIf="luxButtonBadge && !luxDisabled"
+    >{{ luxButtonBadge }}</span
+  >
   <ng-container *ngTemplateOutlet="luxIconName && luxIconShowRight ? iconTemplate : noIconTemplate"></ng-container>
 </button>
 
@@ -100,7 +161,7 @@
   [ngClass]="{ 'lux-icon-button': !!luxIconName }"
   [attr.aria-label]="luxLabel ? luxLabel : ''"
 >
-  <ng-container  *ngTemplateOutlet="iconTemplateRoundButton"></ng-container>
+  <ng-container *ngTemplateOutlet="iconTemplateRoundButton"></ng-container>
 </button>
 
 <ng-template #iconTemplate>

@@ -33,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
   demoLoginBtn = 'Abmelden';
   themeName: string;
   url = '/';
+  components: number;
 
   constructor(
     public router: Router,
@@ -44,7 +45,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private themeService: LuxThemeService,
     private elementRef: ElementRef,
     private appService: LuxAppService,
-    private mediaQueryService: LuxMediaQueryObserverService
+    private mediaQueryService: LuxMediaQueryObserverService,
+    public componentsOverviewService: ComponentsOverviewNavigationService
   ) {
     themeService.loadTheme();
     this.themeName = themeService.getTheme().name;
@@ -56,6 +58,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscription = this.mediaQueryService.getMediaQueryChangedAsObservable().subscribe((query) => {
       this.mobileView = query === 'xs' || query === 'sd';
     });
+
+    this.components = componentsOverviewService.filteredComponents.length;
 
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

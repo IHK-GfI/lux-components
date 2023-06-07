@@ -16,6 +16,8 @@
         [luxDisabled]="menuItem.luxDisabled"
         [luxTagId]="menuItem.luxTagId"
         [luxRounded]="menuItem.luxRounded"
+        [luxButtonBadge]="menuItem.luxButtonBadge"
+        [luxButtonBadgeColor]="menuItem.luxButtonBadgeColor"
         (luxClicked)="menuItemClicked(menuItem, $event)"
         luxAriaLabel="{{ menuItem.luxLabel }}"
         luxAriaLabelSelector="button"
@@ -42,6 +44,7 @@
       mat-menu-item
       [disableRipple]="true"
       class="lux-menu-item"
+      [class.with-badge]="menuItem.luxButtonBadge"
       [luxTooltip]="menuItem.luxMenuTooltip"
       [disabled]="menuItem.luxDisabled"
       luxTagIdHandler
@@ -57,8 +60,19 @@
         class="lux-menu-item-icon"
         *ngIf="menuItem.luxIconName"
       ></lux-icon>
-      <span class="lux-button-label">
+      <span class="lux-button-label" [ngClass]="{ 'with-badge': menuItem.luxButtonBadge }">
         {{ menuItem.luxLabel }}
+      </span>
+      <span
+        class="lux-button-badge lux-bg-color-primary-500 lux-m-2"
+        [ngClass]="{
+          'lux-bg-color-primary-500': menuItem.luxButtonBadgeColor === 'primary',
+          'lux-bg-color-warn-500': menuItem.luxButtonBadgeColor === 'warn',
+          'lux-bg-color-accent-500': menuItem.luxButtonBadgeColor === 'accent'
+        }"
+        *ngIf="menuItem.luxButtonBadge && !menuItem.luxDisabled"
+      >
+        {{ menuItem.luxButtonBadge }}
       </span>
     </button>
   </ng-container>

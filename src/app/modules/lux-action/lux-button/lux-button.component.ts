@@ -3,6 +3,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 import { Subject, Subscription } from 'rxjs';
 import { LuxActionComponentBaseClass } from '../lux-action-model/lux-action-component-base.class';
 import { throttleTime } from 'rxjs/operators';
+import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 
 @Component({
   selector: 'lux-button',
@@ -10,7 +11,6 @@ import { throttleTime } from 'rxjs/operators';
   styleUrls: ['./lux-button.component.scss']
 })
 export class LuxButtonComponent extends LuxActionComponentBaseClass implements OnInit, OnDestroy {
-
   private configSubscription!: Subscription;
 
   private clickSubject = new Subject<MouseEvent>();
@@ -21,6 +21,9 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
 
   @Input() luxType: 'button' | 'reset' | 'submit' = 'button';
   @Input() luxThrottleTime!: number;
+  @Input() luxButtonBadge?: string;
+  @Input() luxButtonBadgeColor?: LuxThemePalette = 'primary';
+
   @Output() luxAuxClicked = new EventEmitter<Event>();
 
   @HostBinding('class.lux-uppercase') labelUppercase!: boolean;
@@ -36,8 +39,16 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
         : LuxComponentsConfigService.DEFAULT_CONFIG.buttonConfiguration.throttleTimeMs;
     }
 
-    if((this.luxRaised && this.luxFlat) || (this.luxRaised && this.luxStroked) || (this.luxStroked && this.luxFlat)) {
-      console.log('Es kann nur eine Property gesetzt werden!', 'luxRaised: ', this.luxRaised, 'luxFlat: ', this.luxFlat, 'luxStroked: ', this.luxStroked)
+    if ((this.luxRaised && this.luxFlat) || (this.luxRaised && this.luxStroked) || (this.luxStroked && this.luxFlat)) {
+      console.log(
+        'Es kann nur eine Property gesetzt werden!',
+        'luxRaised: ',
+        this.luxRaised,
+        'luxFlat: ',
+        this.luxFlat,
+        'luxStroked: ',
+        this.luxStroked
+      );
     }
 
     this.configSubscription = this.componentsConfigService.config.subscribe(() => {
@@ -48,13 +59,9 @@ export class LuxButtonComponent extends LuxActionComponentBaseClass implements O
       this.detectParent();
     });
 
-    this.clickSubscription = this.clickSubject
-      .pipe(throttleTime(this.luxThrottleTime))
-      .subscribe((e) => this.luxClicked.emit(e));
+    this.clickSubscription = this.clickSubject.pipe(throttleTime(this.luxThrottleTime)).subscribe((e) => this.luxClicked.emit(e));
 
-    this.auxClickSubscription = this.auxClickSubject
-      .pipe(throttleTime(this.luxThrottleTime))
-      .subscribe((e) => this.luxAuxClicked.emit(e));
+    this.auxClickSubscription = this.auxClickSubject.pipe(throttleTime(this.luxThrottleTime)).subscribe((e) => this.luxAuxClicked.emit(e));
   }
 
   ngOnDestroy() {

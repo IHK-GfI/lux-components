@@ -1,7 +1,4 @@
-<example-base-structure
-  exampleTitle="Button"
-  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90button"
->
+<example-base-structure exampleTitle="Button" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90button">
   <example-base-content>
     <div fxLayout="column" fxLayoutGap="24px">
       <div
@@ -20,6 +17,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxRaised]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -35,6 +34,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxFlat]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -50,6 +51,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxStroked]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -64,6 +67,8 @@
             [luxIconName]="iconName"
             [luxIconShowRight]="iconShowRight"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-hover{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -87,11 +92,7 @@
         </div>
       </div>
 
-      <div 
-        fxLayout="column"
-        fxLayoutGap="24px"
-        class="lux-hover-bg lux-highlight-section"
-      >
+      <div fxLayout="column" fxLayoutGap="24px" class="lux-hover-bg lux-highlight-section">
         <h3 class="lux-highlight-section-label">Hover</h3>
         <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px" class="lux-mt-4">
           <lux-button
@@ -102,6 +103,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxRaised]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -117,6 +120,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxFlat]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -132,6 +137,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxStroked]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -146,6 +153,8 @@
             [luxIconName]="iconName"
             [luxIconShowRight]="iconShowRight"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-hover{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -168,11 +177,7 @@
           </lux-button>
         </div>
       </div>
-      <div 
-        fxLayout="column"
-        fxLayoutGap="24px"
-        class="lux-selected-bg lux-highlight-section"
-      >
+      <div fxLayout="column" fxLayoutGap="24px" class="lux-selected-bg lux-highlight-section">
         <h3 class="lux-highlight-section-label">Focus</h3>
         <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px" class="lux-mt-4">
           <lux-button
@@ -183,6 +188,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxRaised]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -198,6 +205,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxFlat]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -213,6 +222,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxStroked]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -227,6 +238,8 @@
             [luxIconName]="iconName"
             [luxIconShowRight]="iconShowRight"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-hover{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -249,11 +262,7 @@
           </lux-button>
         </div>
       </div>
-      <div 
-        fxLayout="column"
-        fxLayoutGap="24px"
-        class="lux-gradient-bg lux-highlight-section"
-      >
+      <div fxLayout="column" fxLayoutGap="24px" class="lux-gradient-bg lux-highlight-section">
         <h3 class="lux-highlight-section-label">Gradient</h3>
         <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px" class="lux-mt-4">
           <lux-button
@@ -264,6 +273,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxRaised]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -279,6 +290,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxFlat]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -294,6 +307,8 @@
             [luxIconShowRight]="iconShowRight"
             [luxStroked]="true"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-default{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -308,6 +323,8 @@
             [luxIconName]="iconName"
             [luxIconShowRight]="iconShowRight"
             [luxDisabled]="disabled"
+            [luxButtonBadge]="buttonBadge"
+            [luxButtonBadgeColor]="buttonBadgeColor"
             luxTagId="demo-button-hover{{ i }}"
             (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
@@ -331,7 +348,6 @@
         </div>
       </div>
     </div>
-
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle
@@ -351,11 +367,7 @@
       [luxNoTopLabel]="true"
     ></lux-input>
     <div class="lux-highlight-section column">
-      <lux-input
-        luxName="button_luxIconName"
-        [(luxValue)]="iconName"
-        luxLabel="luxIconName"
-      >
+      <lux-input luxName="button_luxIconName" [(luxValue)]="iconName" luxLabel="luxIconName">
         <lux-form-hint>
           Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
           <i>luxLabel</i> gesetzt ist).<br />
@@ -372,23 +384,30 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle>
-    <lux-toggle
-      class="lux-highlight-section"
-      luxLabel="Label Uppercase"
-      [(luxChecked)]="allUpperCase"
-      [luxNoTopLabel]="true"
-    >
+    <lux-toggle class="lux-highlight-section" luxLabel="Label Uppercase" [(luxChecked)]="allUpperCase" [luxNoTopLabel]="true">
       <lux-form-hint>
-        Über den <i>LuxComponentsConfigService</i> kann für alle LuxButtons applikationsweit eine Uppercase-Darstellung
-        forciert werden.
+        Über den <i>LuxComponentsConfigService</i> kann für alle LuxButtons applikationsweit eine Uppercase-Darstellung forciert werden.
       </lux-form-hint>
     </lux-toggle>
+    <div class="lux-highlight-section column">
     <lux-input
-      luxName="button_background_Color"
-      class="lux-highlight-section"
-      [(luxValue)]="backgroundColor"
-      luxLabel="Hintergrundfarbe"
+      luxLabel="luxButtonBadge"
+      luxHint="Diese Prooerty setzt das Label für eine Badge innerhalb des Buttons"
+      luxAutocomplete="off"
+      [(luxValue)]="buttonBadge"
     >
+    </lux-input>
+    <lux-select
+      [luxOptions]="badgeColors"
+      [luxSelected]="badgeColors[0]"
+      luxOptionLabelProp="label"
+      (luxSelectedChange)="onBadgeColorChanged($event)"
+      luxLabel="luxButtonBadgeColor"
+      luxHint="Property mit der die Farbe der Button-Badge bestimmt wird"
+    >
+    </lux-select>
+  </div>
+    <lux-input luxName="button_background_Color" class="lux-highlight-section" [(luxValue)]="backgroundColor" luxLabel="Hintergrundfarbe">
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
     </lux-input>
   </example-base-simple-options>

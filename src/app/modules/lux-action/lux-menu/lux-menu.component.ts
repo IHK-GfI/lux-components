@@ -34,6 +34,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   private readonly FONT_SIZE: number;
   private readonly FONT_WEIGHT: number;
   private readonly FONT_FAMILY: String;
+  private readonly BADGE_SIZE: number;
 
   // Alle verfügbaren MenuItems als Array
   private _menuItems: LuxMenuItemComponent[] = [];
@@ -132,6 +133,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
         this.FONT_SIZE = 14; //im Theming wird die Fontsize der Buttons auf 14px gesetzt
         this.FONT_WEIGHT = 400;
         this.FONT_FAMILY = '"Korb", "Source Sans Pro","Helvetica","Arial","sans-serif"';
+        this.BADGE_SIZE = 48; //max-width der Button-Badge
         break;
 
       case 'authentic':
@@ -141,6 +143,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
         this.FONT_SIZE = 16;
         this.FONT_WEIGHT = 400;
         this.FONT_FAMILY = '"Blogger Sans", "Source Sans Pro","Helvetica","Arial","sans-serif"';
+        this.BADGE_SIZE = 38;
         break;
 
       default: // 28px Breite plus 8px Gap zwischen Icon - Button-Label
@@ -150,6 +153,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
         this.FONT_SIZE = 14;
         this.FONT_WEIGHT = 700;
         this.FONT_FAMILY = 'Roboto, "Helvetica Neue", sans-serif';
+        this.BADGE_SIZE = 38;
     }
   }
 
@@ -311,6 +315,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       (menuItem.luxIconName ? this.ICON_PX : 0) +
       (!menuItem.luxHideLabelIfExtended ? this.getTextWidth(menuItem.luxLabel) : 0) +
       this.MARGIN_PX +
+      (menuItem.luxButtonBadge ? this.BADGE_SIZE : 0) +
       15
     );
   }

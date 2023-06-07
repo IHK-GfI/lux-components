@@ -3,6 +3,7 @@ import { LuxComponentsConfigService } from '../../../modules/lux-components-conf
 import { LuxComponentsConfigParameters } from '../../../modules/lux-components-config/lux-components-config-parameters.interface';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 import { Subscription } from 'rxjs';
+import { LuxThemePalette } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-button-example',
@@ -21,12 +22,19 @@ export class ButtonExampleComponent implements OnDestroy {
     { value: 'accent', label: 'accent' }
   ];
 
+  badgeColors: any[] = [
+    { value: 'primary', label: 'primary' },
+    { value: 'warn', label: 'warn' },
+    { value: 'accent', label: 'accent' }
+  ];
+
   label = 'Button';
   iconName = 'lux-interface-delete-1';
   iconShowRight = false;
   disabled = false;
   backgroundColor = '';
-
+  buttonBadge = '';
+  buttonBadgeColor: LuxThemePalette = 'primary';
   subscription: Subscription;
 
   get allUpperCase() {
@@ -56,5 +64,9 @@ export class ButtonExampleComponent implements OnDestroy {
     // Beim Zerstören der Component wird die Konfiguration sowieso wieder resettet (siehe example-base-structure.component.ts).
     this.config.labelConfiguration!.notAppliedTo = [];
     this.configService.updateConfiguration(this.config);
+  }
+
+  onBadgeColorChanged(badgeColor: { label: string; value: LuxThemePalette }) {
+    this.buttonBadgeColor = badgeColor.value;
   }
 }

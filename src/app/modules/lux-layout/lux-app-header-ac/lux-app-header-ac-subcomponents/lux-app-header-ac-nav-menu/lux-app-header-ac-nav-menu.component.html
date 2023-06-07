@@ -3,11 +3,11 @@
   [luxDisplayExtended]="!mobileView"
   [luxMaximumExtended]="luxNavMenuMaximumExtended"
   class="lux-header-ac-nav-menu"
-  [ngClass]="{'lux-mobile': mobileView}"
+  [ngClass]="{ 'lux-mobile': mobileView }"
   luxClassName="lux-header-ac-nav"
   luxTagId="app_header_nav_menu"
-  (luxMenuClosed)=" onNavMenuClosed()"
-  (luxMenuOpened)=" onNavMenuOpend()"
+  (luxMenuClosed)="onNavMenuClosed()"
+  (luxMenuOpened)="onNavMenuOpend()"
 >
   <ng-container *ngFor="let navMenuItem of menuItemComponents; let navIndex = index">
     <lux-menu-item
@@ -23,10 +23,13 @@
       luxColor="primary"
       [luxClass]="navMenuItem.luxSelected ? 'nav-item-selected' : ''"
       [luxPrio]="navMenuItem.luxPrio"
+      [luxButtonBadge]="navMenuItem.luxButtonBadge"
+      [luxButtonBadgeColor]="navMenuItem.luxButtonBadgeColor"
       class="nav-item"
       (luxClicked)="navMenuItemClicked(navMenuItem, $event)"
     >
-    </lux-menu-item>>
+    </lux-menu-item
+    >>
   </ng-container>
   <lux-menu-trigger>
     <lux-button
@@ -34,7 +37,7 @@
       luxIconName="lux-interface-setting-menu-1"
       luxColor="primary"
       class="nav-menu-trigger-ac"
-      [ngClass]="{'lux-mobile': mobileView, 'menu-opened': navMenuOpened}"
+      [ngClass]="{ 'lux-mobile': mobileView, 'menu-opened': navMenuOpened }"
       luxAriaLabel="Benutzermenü"
       i18n-luxAriaLabel="@@luxc.app-header.user.menu.trigger"
       aria-haspopup="true"

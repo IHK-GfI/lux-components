@@ -197,6 +197,8 @@
         luxLabel="Komponenten"
         luxAriaLabel="Komponenten Übersicht"
         luxTagId="navItem0"
+        luxButtonBadge="{{ components }}"
+        luxButtonBadgeColor="primary"
         [luxSelected]="url.includes('components-overview') && !url.includes('icon-overview')"
         (luxClicked)="goToComponents()"
       >
