@@ -3,6 +3,7 @@
 ## New
 
 - **allgemein**: Update auf Angular [v14.3.0](https://github.com/angular/angular/releases/tag/14.3.0). [Issue 324](https://github.com/IHK-GfI/lux-components/issues/324)
+- **lux-dialog**: Festlegung des Fokus auf einen Button im Standarddialog. [Issue 325](https://github.com/IHK-GfI/lux-components/issues/325)
 
 ## Bug Fixes
 
