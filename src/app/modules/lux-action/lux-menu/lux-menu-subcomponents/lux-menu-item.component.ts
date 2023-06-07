@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { LuxActionComponentBaseClass } from "../../lux-action-model/lux-action-component-base.class";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { LuxActionComponentBaseClass } from '../../lux-action-model/lux-action-component-base.class';
+import { LuxThemePalette } from '../../../lux-util/lux-colors.enum';
 
 // @dynamic Erklärung steht in der Datei "lux-decorators.ts".
 @Component({
@@ -7,10 +8,11 @@ import { LuxActionComponentBaseClass } from "../../lux-action-model/lux-action-c
   template: ''
 })
 export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
-
   @Input() luxButtonTooltip = '';
   @Input() luxMenuTooltip = '';
   @Input() luxPrio = 0;
+  @Input() luxButtonBadge?: string;
+  @Input() luxButtonBadgeColor: LuxThemePalette = 'primary';
 
   @Output() luxHiddenChange = new EventEmitter<boolean>();
   @Output() luxHideLabelIfExtendedChange = new EventEmitter<boolean>();
@@ -55,7 +57,7 @@ export class LuxMenuItemComponent extends LuxActionComponentBaseClass {
     this.luxHiddenChange.emit(value);
   }
 
- @Input() luxClass?: string | string[] | Set<string> | { [klass: string]: any}; //vgl. ngClass
+  @Input() luxClass?: string | string[] | Set<string> | { [klass: string]: any }; //vgl. ngClass
 
   constructor() {
     super();

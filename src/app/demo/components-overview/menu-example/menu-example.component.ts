@@ -23,7 +23,9 @@ export class MenuExampleComponent {
       round: false,
       hideLabelIfExtended: false,
       prio: 1,
-      class: 'lux-test-class'
+      class: 'lux-test-class',
+      buttonBadge: '',
+      buttonBadgeColor: 'primary'
     },
     {
       iconName: 'lux-interface-help-question-message',
@@ -37,7 +39,9 @@ export class MenuExampleComponent {
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
-      prio: 2
+      prio: 2,
+      buttonBadge: '',
+      buttonBadgeColor: 'primary'
     },
     {
       iconName: 'lux-interface-download-button-2',
@@ -51,7 +55,9 @@ export class MenuExampleComponent {
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
-      prio: 3
+      prio: 3,
+      buttonBadge: '',
+      buttonBadgeColor: 'primary'
     },
     {
       iconName: 'lux-programming-bug',
@@ -65,6 +71,8 @@ export class MenuExampleComponent {
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
+      buttonBadge: '+99999',
+      buttonBadgeColor: 'warn',
       prio: 4
     }
   ];
@@ -83,7 +91,9 @@ export class MenuExampleComponent {
       round: false,
       hideLabelIfExtended: false,
       prio: 1,
-      class: 'lux-test-class'
+      class: 'lux-test-class',
+      buttonBadge: '',
+      buttonBadgeColor: 'primary'
     },
     {
       iconName: 'fas fa-question',
@@ -97,7 +107,9 @@ export class MenuExampleComponent {
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
-      prio: 2
+      prio: 2,
+      buttonBadge: '',
+      buttonBadgeColor: 'primary'
     },
     {
       iconName: 'fa-download',
@@ -111,6 +123,8 @@ export class MenuExampleComponent {
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
+      buttonBadge: '',
+      buttonBadgeColor: 'primary',
       prio: 3
     },
     {
@@ -125,7 +139,9 @@ export class MenuExampleComponent {
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
-      prio: 4
+      prio: 4,
+      buttonBadge: '',
+      buttonBadgeColor: 'primary'
     }
   ];
 
@@ -143,7 +159,9 @@ export class MenuExampleComponent {
       round: false,
       hideLabelIfExtended: false,
       prio: 1,
-      class: 'lux-test-class'
+      class: 'lux-test-class',
+      buttonBadge: '',
+      buttonBadgeColor: 'primary'
     },
     {
       iconName: 'live_help',
@@ -157,7 +175,9 @@ export class MenuExampleComponent {
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
-      prio: 2
+      prio: 2,
+      buttonBadge: '',
+      buttonBadgeColor: 'primary'
     },
     {
       iconName: 'download',
@@ -171,6 +191,8 @@ export class MenuExampleComponent {
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
+      buttonBadge: '',
+      buttonBadgeColor: 'primary',
       prio: 3
     },
     {
@@ -185,7 +207,9 @@ export class MenuExampleComponent {
       alwaysVisible: false,
       round: false,
       hideLabelIfExtended: false,
-      prio: 4
+      prio: 4,
+      buttonBadge: '',
+      buttonBadgeColor: 'primary'
     }
   ];
 
@@ -196,6 +220,12 @@ export class MenuExampleComponent {
   menuTriggerIconShowRight = false;
   menuLabel = '';
   className = '';
+
+  badgeColors: any[] = [
+    { value: 'primary', label: 'primary' },
+    { value: 'warn', label: 'warn' },
+    { value: 'accent', label: 'accent' }
+  ];
 
   constructor() {}
 }
@@ -213,5 +243,7 @@ interface ExampleMenuItem {
   round: boolean;
   hideLabelIfExtended: boolean;
   prio: number;
-  class?: string;
+  class?: string | string[] | Set<string> | { [klass: string]: any };
+  buttonBadge?: string;
+  buttonBadgeColor?: LuxThemePalette;
 }

@@ -1,5 +1,9 @@
 # Version 14.7.0
 
+## New
+
+-**lux-button, lux-menu-item, lux-app-header-ac-nav-menu-item**: Neue Properties luxButtonBadge, luxButtonBadgeColor eingeführt. [Issue 305](https://github.com/IHK-GfI/lux-components/issues/305)
+
 ## Bug Fixes
 
 - **lux-file-upload**: Beim Zurückgehen im lux-stepper konnte es dazu kommen, dass die File-Icons nicht mehr angezeigt wurden. [Issue 336](https://github.com/IHK-GfI/lux-components/issues/336)
