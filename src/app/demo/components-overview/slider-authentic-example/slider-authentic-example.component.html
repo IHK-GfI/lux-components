@@ -22,6 +22,7 @@
         [luxStep]="step"
         [luxShowThumbLabelAlways]="alwaysVisible"
         [luxReadonly]="readonly"
+        [luxDense]="denseFormat"
         [luxDisplayWith]="useDisplayFn ? displayFn : undefined"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
@@ -62,6 +63,7 @@
         [luxStep]="step"
         [luxShowThumbLabelAlways]="alwaysVisible"
         [luxReadonly]="readonly"
+        [luxDense]="denseFormat"
         [luxDisplayWith]="useDisplayFn ? displayFn : undefined"
         [luxErrorMessage]="useErrorMessage ? errorMessage : undefined"
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
@@ -169,6 +171,14 @@
       [(luxChecked)]="vertical"
       luxLabel="luxVertical"
       luxHint="Diese Property schaltet die vertikale Darstellung des Sliders ein."
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
       [luxNoTopLabel]="true"
     >
     </lux-toggle>
@@ -297,10 +307,10 @@
       [(luxSelected)]="controlValidators"
     >
       <lux-form-hint>
-        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und
-        Weise trotzdem Validatoren zu übergeben.<br />
-        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die
-        entsprechende FormControl setzen.
+        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und Weise trotzdem
+        Validatoren zu übergeben.<br />
+        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die entsprechende FormControl
+        setzen.
       </lux-form-hint>
     </lux-select>
     <lux-toggle

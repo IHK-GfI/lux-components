@@ -22,6 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LuxActionModule } from '../lux-action/lux-action.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';
 import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
+import { LuxTextboxComponent } from './lux-textbox/lux-textbox.component';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
     LuxTableColumnHeaderComponent,
     LuxTableColumnContentComponent,
     LuxMessageBoxComponent,
-    LuxMessageComponent
+    LuxMessageComponent,
+    LuxTextboxComponent
   ],
   exports: [
     LuxSpinnerComponent,
@@ -62,7 +64,8 @@ import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
     LuxTableColumnHeaderComponent,
     LuxTableColumnContentComponent,
     LuxMessageBoxComponent,
-    LuxMessageComponent
+    LuxMessageComponent,
+    LuxTextboxComponent
   ]
 })
 export class LuxCommonModule {}

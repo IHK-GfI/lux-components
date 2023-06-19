@@ -9,13 +9,14 @@ import { LuxSnackbarService } from '../../../../modules/lux-popups/lux-snackbar/
   selector: 'app-lookup-autocomplete-ac-example',
   templateUrl: './lookup-autocomplete-ac-example.component.html'
 })
-export class LookupAutocompleteAcExampleComponent  extends LookupExampleComponent implements OnInit {
+export class LookupAutocompleteAcExampleComponent extends LookupExampleComponent implements OnInit {
   @ViewChildren(LuxLookupAutocompleteComponent) lookupAutocompleteCmp!: QueryList<LuxLookupAutocompleteComponent>;
 
   debounceTime = 250;
   maximumDisplayed = 50;
   labelLongFormat = false;
   optionMultiline = false;
+  denseFormat = false;
 
   constructor(lookupHandler: LuxLookupHandlerService, snackbar: LuxSnackbarService) {
     super(lookupHandler);

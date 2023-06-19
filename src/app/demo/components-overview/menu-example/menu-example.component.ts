@@ -52,6 +52,20 @@ export class MenuExampleComponent {
       round: false,
       hideLabelIfExtended: false,
       prio: 3
+    },
+    {
+      iconName: 'lux-programming-bug',
+      raised: false,
+      color: 'primary',
+      disabled: false,
+      hidden: false,
+      label: 'Extralanges Beispiellabel zum Testen',
+      tooltip: '',
+      tooltipMenu: '',
+      alwaysVisible: false,
+      round: false,
+      hideLabelIfExtended: false,
+      prio: 4
     }
   ];
 
@@ -98,6 +112,20 @@ export class MenuExampleComponent {
       round: false,
       hideLabelIfExtended: false,
       prio: 3
+    },
+    {
+      iconName: 'fa-bug',
+      raised: false,
+      color: 'primary',
+      disabled: false,
+      hidden: false,
+      label: 'Extralanges Beispiellabel zum Testen',
+      tooltip: '',
+      tooltipMenu: '',
+      alwaysVisible: false,
+      round: false,
+      hideLabelIfExtended: false,
+      prio: 4
     }
   ];
 
@@ -144,6 +172,20 @@ export class MenuExampleComponent {
       round: false,
       hideLabelIfExtended: false,
       prio: 3
+    },
+    {
+      iconName: 'bug_report',
+      raised: false,
+      color: 'primary',
+      disabled: false,
+      hidden: false,
+      label: 'Extralanges Beispiellabel zum Testen',
+      tooltip: '',
+      tooltipMenu: '',
+      alwaysVisible: false,
+      round: false,
+      hideLabelIfExtended: false,
+      prio: 4
     }
   ];
 
@@ -156,7 +198,6 @@ export class MenuExampleComponent {
   className = '';
 
   constructor() {}
-
 }
 
 interface ExampleMenuItem {

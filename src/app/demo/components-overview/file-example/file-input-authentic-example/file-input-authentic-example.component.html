@@ -29,6 +29,7 @@
         [luxSelected]="selected"
         [luxClearOnError]="clearOnError"
         [luxLabelLongFormat]="labelLongFormat"
+        [luxDense]="denseFormat"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
         (luxFocusOut)="log(showOutputEvents, 'luxFocusOut', $event)"
@@ -56,6 +57,7 @@
           [luxHintShowOnlyOnFocus]="hintShowOnlyOnFocus"
           [luxPlaceholder]="placeholder"
           [luxReadonly]="readonly"
+          [luxDense]="denseFormat"
           [(luxDisabled)]="disabled"
           [luxUploadUrl]="uploadUrl"
           [luxMaxSizeMB]="maxSize"
@@ -109,8 +111,21 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <lux-toggle class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true"> </lux-toggle>
-    <lux-toggle class="lux-highlight-section" luxLabel="Backend mocken" [luxChecked]="mockBackend" (luxCheckedChange)="changeMockBackend($event)" [luxNoTopLabel]="true">
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      luxLabel="Backend mocken"
+      [luxChecked]="mockBackend"
+      (luxCheckedChange)="changeMockBackend($event)"
+      [luxNoTopLabel]="true"
+    >
       <lux-form-hint>
         Mockt den Http-Client um das Uploaden der Dateien zu simulieren.<br />
         Dafür muss aber auch "luxUploadUrl" gesetzt sein (beliebiger Wert).
@@ -124,6 +139,14 @@
       [(luxValue)]="placeholder"
     >
     </lux-input>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
       luxLabel="luxClearOnError"

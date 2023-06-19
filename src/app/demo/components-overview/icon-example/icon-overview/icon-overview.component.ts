@@ -162,7 +162,7 @@ export class IconOverviewComponent implements OnInit, OnDestroy {
 
       if (this.selectedSearchBinding.value === 'and') {
         for (let value of values) {
-          const valueResult = this.allIcons.filter((icon) => icon.iconName.includes(value));
+          const valueResult = this.allIcons.filter((icon) => icon.iconName.toLowerCase().includes(value));
 
           if (resultIcons.length > 0) {
             const intersection = resultIcons.filter((icon) => valueResult.includes(icon));
@@ -179,7 +179,7 @@ export class IconOverviewComponent implements OnInit, OnDestroy {
         }
       } else {
         values.forEach((value) => {
-          const valueResult = this.allIcons.filter((icon) => icon.iconName.includes(value));
+          const valueResult = this.allIcons.filter((icon) => icon.iconName.toLowerCase().includes(value));
           if (valueResult) {
             const newIcons = valueResult.filter((icon) => !resultIcons.includes(icon));
             if (newIcons) {

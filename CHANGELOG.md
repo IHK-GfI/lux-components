@@ -1,9 +1,48 @@
+# Version 14.6.0
+
+## New
+
+- **allgemein**: Update auf Angular [v14.3.0](https://github.com/angular/angular/releases/tag/14.3.0). [Issue 324](https://github.com/IHK-GfI/lux-components/issues/324)
+- **lux-dialog**: Festlegung des Fokus auf einen Button im Standarddialog. [Issue 325](https://github.com/IHK-GfI/lux-components/issues/325)
+
+## Bug Fixes
+
+- **lux-file-list**: Einzelne Action wird im Kontextmenü angezeigt. [Issue 320](https://github.com/IHK-GfI/lux-components/issues/320)
+- **lux-file-input**: Einzelne Action wird im Kontextmenü angezeigt. [Issue 320](https://github.com/IHK-GfI/lux-components/issues/320)
+- **lux-dialog**: ESC-Taste löst kein dialogClosed-Event aus. [Issue 328](https://github.com/IHK-GfI/lux-components/issues/328)
+
+# Version 14.5.0
+
+## New
+
+- **lux-textbox**: Neue Komponente "lux-textbox" hinzugefügt. [Issue 292](https://github.com/IHK-GfI/lux-components/issues/292)
+- **lux-file-list**: Dateien mit demselben Dateinamen werden ungefragt ersetzt. [Issue 318](https://github.com/IHK-GfI/lux-components/issues/318)
+
+## Bug Fixes
+
+- **lux-table**: Feststehender Header hat einen transparenten Hintergrund. [Issue 303](https://github.com/IHK-GfI/lux-components/issues/303)
+- **lux-layout-form-row**: Buttons werden in der Formrow zentriert angezeigt. [Issue 304](https://github.com/IHK-GfI/lux-components/issues/304)
+- **lux-app-header-nav-menu**: Unerwünschte Consolenausgabe entfernen. [Issue 306](https://github.com/IHK-GfI/lux-components/issues/306)
+- **lux-menu**: Lange Labels im Menu-Panel werden automatisch mit "Text-overflow: ellipsis" gekürzt. [Issue 312](https://github.com/IHK-GfI/lux-components/issues/312)
+
 # Version 14.4.0
 
 ## New
 
+- **allgemein**: Update auf LUX-Components-Theme [14.5.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/14.5.0).
+- **allgemein**: Update auf LUX-Components-Icons-And-Fonts. [1.5.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.5.0).
 - **lux-autocomplete**: Einfaches String-Arrays kann als Optionen genutzt werden. [Issue 289](https://github.com/IHK-GfI/lux-components/issues/289)
 - **lux-link-plain**: Neue Property "luxCustomClass" hinzugefügt, hover-color für blue- und green-Theme angepasst. [Issue 284](https://github.com/IHK-GfI/lux-components/issues/284)
+- **lux-dialog**: Immer _dialogClosed_-Event auslösen, wenn Dialog geschlossen wird. [Issue 293](https://github.com/IHK-GfI/lux-components/issues/293)
+- **lux-form-controls-ac**: Neue Property "luxDense" für alle AC-Formular-Komponenten eingeführt. [Issue 288](https://github.com/IHK-GfI/lux-components/issues/288).
+- **lux-table**: AC-Formular-Komponenten werden innerhalb der Tabelle mit der geringeren Höhe angezeigt. (Nur im Theme Authentic) [Issue 288](https://github.com/IHK-GfI/lux-components/issues/288).
+- **lux-checkbox-container**: Neue Komponente lux-checkbox-container erstellt. [Issue 297](https:/github.com/IHK-GfI/lux-components/issues/297)
+- **lux-link**: Property "luxFlat" ergänzt. [Issue 307](https:/github.com/IHK-GfI/lux-components/issues/307)
+
+## Bug Fixes
+
+- **lux-stepper-large**: Gleiche Ids für die Nav-Item-Labels. [Issue 299](https://github.com/IHK-GfI/lux-components/issues/299)
+- **lux-http-error**: Zeigt keine Fehler mehr an. [Issue 309](https://github.com/IHK-GfI/lux-components/issues/309)
 
 # Version 14.3.0
 

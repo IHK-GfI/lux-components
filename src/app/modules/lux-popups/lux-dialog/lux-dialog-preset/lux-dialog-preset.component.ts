@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { LuxButtonComponent } from '../../../lux-action/lux-button/lux-button.component';
 import { LuxDialogRef } from '../lux-dialog-model/lux-dialog-ref.class';
 import { ILuxDialogPresetConfig } from '../lux-dialog-model/lux-dialog-preset-config.interface';
 
@@ -11,13 +12,25 @@ import { ILuxDialogPresetConfig } from '../lux-dialog-model/lux-dialog-preset-co
   templateUrl: './lux-dialog-preset.component.html',
   styleUrls: ['./lux-dialog-preset.component.scss']
 })
-export class LuxDialogPresetComponent implements OnInit {
+export class LuxDialogPresetComponent implements OnInit, AfterViewInit {
+  @ViewChild('confirmButton') confirmButton?: LuxButtonComponent;
+  @ViewChild('declineButton') declineButton?: LuxButtonComponent;
+
   data?: ILuxDialogPresetConfig;
+  defaultButton?: LuxButtonComponent;
 
   constructor(public dialogRef: LuxDialogRef<ILuxDialogPresetConfig>) {}
 
   ngOnInit() {
     this.data = this.dialogRef.data;
+  }
+
+  ngAfterViewInit() {
+    this.initDefaultButton();
+
+    setTimeout(() => {
+      (this.defaultButton?.elementRef?.nativeElement as HTMLElement)?.querySelector('button')?.focus();
+    });
   }
 
   /**
@@ -32,5 +45,18 @@ export class LuxDialogPresetComponent implements OnInit {
    */
   onDeclineClick() {
     this.dialogRef.closeDialog(false);
+  }
+
+  private initDefaultButton() {
+    switch (this.data?.defaultButton) {
+      case 'confirm':
+        this.defaultButton = this.confirmButton;
+        break;
+      case 'decline':
+        this.defaultButton = this.declineButton;
+        break;
+      default:
+        this.defaultButton = undefined;
+    }
   }
 }

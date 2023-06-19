@@ -107,7 +107,7 @@
           ></lux-icon>
         </div>
         <mat-autocomplete
-          [class]="'lux-chips-ac-autocomplete-panel'"
+          [class]="!luxDense ? 'lux-chips-ac-autocomplete-panel' : 'lux-chips-ac-autocomplete-panel-dense'"
           [disableRipple]="true"
           (optionSelected)="autoCompleteAdd(input, $event.option.value)"
           (opened)="onAutoCompleteOpened()"

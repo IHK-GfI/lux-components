@@ -1,14 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { LuxStartView } from '../../../modules/lux-form/lux-datepicker/lux-datepicker.component';
-import {
-  LuxDatetimepickerAcComponent,
-} from '../../../modules/lux-form/lux-datetimepicker-ac/lux-datetimepicker-ac.component';
-import {
-  emptyErrorCallback,
-  exampleErrorCallback,
-  logResult,
-} from '../../example-base/example-base-util/example-base-helper';
+import { LuxDatetimepickerAcComponent } from '../../../modules/lux-form/lux-datetimepicker-ac/lux-datetimepicker-ac.component';
+import { emptyErrorCallback, exampleErrorCallback, logResult } from '../../example-base/example-base-util/example-base-helper';
 
 interface DatetimeDummyForm {
   datepickerExample: FormControl<string | null>;
@@ -34,6 +28,7 @@ export class DatetimepickerAuthenticExampleComponent {
   disabled = false;
   readonly = false;
   required = false;
+  denseFormat = false;
   label = 'Label';
   hint = 'Hint';
   hintShowOnlyOnFocus = false;
@@ -100,7 +95,7 @@ export class DatetimepickerAuthenticExampleComponent {
       // Samstage und Sonntage als Auswahl unterbinden
       result = day !== 0 && day !== 6;
     } else {
-        result = false;
+      result = false;
     }
 
     return result;

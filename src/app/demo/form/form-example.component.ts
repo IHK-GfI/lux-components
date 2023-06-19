@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   selector: 'app-form-example',
   templateUrl: './form-example.component.html'
 })
-export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestroy {
+export class FormExampleComponent implements IUnsavedDataCheck, OnInit, AfterViewInit, OnDestroy {
   @ViewChild(FormCommonComponent) formCommon!: FormCommonComponent;
   @ViewChild(FormSingleColComponent) formSingle!: FormSingleColComponent;
   @ViewChild(FormDualColComponent) formDuo!: FormDualColComponent;
@@ -45,17 +45,20 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
   constructor(private router: Router, private buttonService: LuxAppFooterButtonService, private snackbar: LuxSnackbarService) {}
 
   ngOnInit(): void {
-    this.buttonService.buttonInfos = [this.btnShowErrors, this.btnSave, LuxAppFooterButtonInfo.generateInfo({
-      label: 'Dokumentation',
-      iconName: 'lux-interface-arrows-expand-5',
-      cmd: 'documentation-btn',
-      color: 'primary',
-      raised: true,
-      alwaysVisible: true,
-      onClick: () => {
-        window.open('https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90layout%E2%80%90form%E2%80%90row', '_blank');
-      }
-    }),
+    this.buttonService.buttonInfos = [
+      this.btnShowErrors,
+      this.btnSave,
+      LuxAppFooterButtonInfo.generateInfo({
+        label: 'Dokumentation',
+        iconName: 'lux-interface-arrows-expand-5',
+        cmd: 'documentation-btn',
+        color: 'primary',
+        raised: true,
+        alwaysVisible: true,
+        onClick: () => {
+          window.open('https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90layout%E2%80%90form%E2%80%90row', '_blank');
+        }
+      }),
       LuxAppFooterButtonInfo.generateInfo({
         label: 'Overview',
         iconName: 'lux-interface-arrows-button-left',
@@ -66,7 +69,12 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
         onClick: () => {
           this.router.navigate(['/']);
         }
-      })];
+      })
+    ];
+  }
+
+  ngAfterViewInit() {
+    LuxUtil.goToTop();
   }
 
   ngOnDestroy(): void {
@@ -74,12 +82,7 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, OnDestro
   }
 
   hasUnsavedData(): boolean {
-    return (
-      this.formCommon.myGroup.dirty ||
-      this.formSingle.myGroup.dirty ||
-      this.formDuo.myGroup.dirty ||
-      this.formThree.myGroup.dirty
-    );
+    return this.formCommon.myGroup.dirty || this.formSingle.myGroup.dirty || this.formDuo.myGroup.dirty || this.formThree.myGroup.dirty;
   }
 
   handleSaveClicked() {

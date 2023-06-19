@@ -1,0 +1,116 @@
+<example-base-structure
+  exampleTitle="Textbox"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90textbox"
+>
+  <example-base-content fxLayout="column" fxLayoutGap="32px">
+    <div class="container">
+      <lux-textbox [luxTitle]="title" [luxIcon]="icon" [luxColor]="color" class="lux-pt-5">
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo itaque accusamus facere labore mollitia at aut nesciunt
+          fugiat, sequi quos, quo quibusdam tempora provident veniam sunt distinctio. Aliquid, magnam dolore.
+        </p>
+      </lux-textbox>
+    </div>
+    <h3>Anwendungsbeispiele für die Farbthemen</h3>
+    <div class="container">
+      <lux-textbox luxTitle="Tipp" luxIcon="lux-interface-validation-check-circle" luxColor="green">
+        <p>
+          Beispiel für Hinweise vom Typ "Success". Dazu folgende Propertys angeben: <br /><br />
+          <span class="code-example"
+            >luxTitle="Tipp"<br />
+            luxIcon="lux-interface-validation-check-circle"<br />
+            luxColor="green"<br
+          /></span>
+        </p>
+      </lux-textbox>
+      <lux-textbox luxTitle="Hinweis" luxIcon="lux-interface-alert-warning-triangle" luxColor="yellow">
+        <p>
+          Beispiel für Hinweise vom Typ "Alert". Dazu folgende Propertys angeben: <br /><br />
+          <span class="code-example"
+            >luxTitle="Hinweis"<br />
+            luxIcon="lux-interface-alert-warning-triangle"<br />
+            luxColor="yellow"<br
+          /></span>
+        </p>
+      </lux-textbox>
+      <lux-textbox luxTitle="WARNUNG" luxIcon="lux-interface-alert-warning-diamond" luxColor="red">
+        <p>
+          Beispiel für Hinweise vom Typ "Warning". Dazu folgende Propertys angeben: <br /><br />
+          <span class="code-example"
+            >luxTitle="WARNUNG"<br />
+            luxIcon="lux-interface-alert-warning-triangle"<br />
+            luxColor="red"<br
+          /></span>
+        </p>
+      </lux-textbox>
+    </div>
+    <h3>Vorschläge für alternative Icons</h3>
+    <lux-textbox>
+      <div class="demo-grid">
+        <p><strong>Thema der Textbox</strong></p>
+        <p><strong>Mögliche Icons</strong></p>
+
+        <p>Information ('blue'):</p>
+        <div class="demo-subgrid">
+          <lux-icon luxIconName="lux-info" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-info'</span>
+          <lux-icon luxIconName="lux-oval" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-oval'</span>
+        </div>
+
+        <p>Success ('green'):</p>
+        <div class="demo-subgrid">
+          <lux-icon luxIconName="lux-interface-favorite-like-1" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-interface-favorite-like-1'</span>
+          <lux-icon luxIconName="lux-interface-share-mega-phone-1" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-interface-share-mega-phone-1'</span>
+        </div>
+
+        <p>Alert ('yellow'):</p>
+        <div class="demo-subgrid">
+          <lux-icon luxIconName="lux-desktop-warning" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-desktop-warning'</span>
+          <lux-icon luxIconName="lux-interface-alert-alarm-bell-1" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-interface-alert-alarm-bell-1'</span>
+        </div>
+
+        <p>Warning ('red'):</p>
+        <div class="demo-subgrid">
+          <lux-icon luxIconName="lux-interface-alert-radio-active-1" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-interface-alert-radio-active-1'</span>
+          <lux-icon luxIconName="lux-image-flash-1" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-image-flash-1'</span>
+        </div>
+
+        <p>Allgemein (default):</p>
+        <div class="demo-subgrid">
+          <lux-icon luxIconName="lux-interface-edit-pin-2" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-interface-edit-pin-2'</span>
+          <lux-icon luxIconName="lux-mail-chat-bubble-typing-oval" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-mail-chat-bubble-typing-oval'</span>
+          <lux-icon luxIconName="lux-mail-chat-bubble-warning" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-mail-chat-bubble-warning'</span>
+          <lux-icon luxIconName="lux-book-readme" luxIconSize="1x" class="lux-color-blue"></lux-icon>
+          <span class="code-example">'lux-book-readme</span>
+        </div>
+      </div>
+    </lux-textbox>
+  </example-base-content>
+  <example-base-simple-options fxLayout="column" fxLayoutGap="24px">
+    <lux-input-ac
+      class="lux-pt-4"
+      luxLabel="luxTitle"
+      [(luxValue)]="title"
+      luxHint="Property um den Titel einer Textbox zu setzen."
+    ></lux-input-ac>
+    <lux-input-ac luxLabel="luxIcon" [(luxValue)]="icon" luxHint="Property um das Icon einer Textbox zu setzen."></lux-input-ac>
+    <lux-select-ac
+      luxLabel="luxColor"
+      luxHint="Setzt die Farbe einer Textbox."
+      luxOptionLabelProp="label"
+      [luxOptions]="colorOptions"
+      [luxSelected]="colorOptions[1]"
+      (luxSelectedChange)="onColorChanged($event)"
+    ></lux-select-ac>
+  </example-base-simple-options>
+</example-base-structure>

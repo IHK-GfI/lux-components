@@ -10,7 +10,6 @@ import { LuxPopupsModule } from '../lux-popups.module';
 import { LuxActionModule } from '../../lux-action/lux-action.module';
 
 describe('LuxDialogService', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([LuxDialogService], [MockDialogComponent], [TestModule]);
   });
@@ -108,9 +107,7 @@ describe('LuxDialogService', () => {
       // Nachbedingungen prüfen
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm')).not.toBeNull();
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .mat-raised-button')).not.toBeNull();
-      expect(
-        overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .lux-button-label').textContent!.trim()
-      ).toEqual('Hallo Welt');
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .lux-button-label').textContent!.trim()).toEqual('Hallo Welt');
     }));
 
     it('Sollte die DeclineAction beachten', fakeAsync(() => {
@@ -137,9 +134,33 @@ describe('LuxDialogService', () => {
       // Nachbedingungen prüfen
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline')).not.toBeNull();
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .mat-raised-button')).not.toBeNull();
-      expect(
-        overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .lux-button-label').textContent!.trim()
-      ).toEqual('Hallo Welt');
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .lux-button-label').textContent!.trim()).toEqual('Hallo Welt');
+    }));
+
+    it('Sollte die Buttons in der korrekten Reihenfolge darstellen', fakeAsync(() => {
+      // Vorbedingungen testen
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog')).toBeNull();
+
+      // Änderungen durchführen
+      dialogRef = testComponent.dialogService.open({
+        confirmAction: {
+          label: 'Löschen'
+        },
+        declineAction: {
+          label: 'Abbrechen'
+        }
+      });
+      LuxTestHelper.wait(fixture);
+
+      // Nachbedingungen prüfen
+      const buttonNodeList = overlayHelper.selectAllFromOverlay('lux-button');
+      expect(buttonNodeList).not.toBeNull();
+
+      const buttonArray = Array.from(buttonNodeList);
+      expect(buttonArray.length).toEqual(2);
+
+      expect(buttonArray[0].innerText).toContain('Löschen');
+      expect(buttonArray[1].innerText).toContain('Abbrechen');
     }));
 
     it('Sollte den Dialog schließen', fakeAsync(() => {
@@ -320,9 +341,7 @@ describe('LuxDialogService', () => {
 });
 
 @Component({
-  template: `
-    <ng-template #testContentTemplate><span>Hallo Welt</span></ng-template>
-  `
+  template: ` <ng-template #testContentTemplate><span>Hallo Welt</span></ng-template> `
 })
 class MockDialogComponent {
   @ViewChild('testContentTemplate') templateRef!: TemplateRef<any>;
@@ -358,7 +377,7 @@ class MockCustomDialogComponent {
 }
 
 @NgModule({
-    declarations: [MockCustomDialogComponent],
-    imports: [LuxPopupsModule, LuxActionModule]
+  declarations: [MockCustomDialogComponent],
+  imports: [LuxPopupsModule, LuxActionModule]
 })
 class TestModule {}

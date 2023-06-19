@@ -28,6 +28,7 @@
         [luxMaximumDisplayed]="maximumDisplayed"
         [luxLabelLongFormat]="labelLongFormat"
         [luxOptionMultiline]="optionMultiline"
+        [luxDense]="denseFormat"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
@@ -64,6 +65,7 @@
         [luxControlBinding]="controlBinding"
         [luxLabelLongFormat]="labelLongFormat"
         [luxOptionMultiline]="optionMultiline"
+        [luxDense]="denseFormat"
         [luxCompareFn]="compareFn"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
@@ -170,20 +172,19 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle>
+    <lux-toggle class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
+      <lux-form-hint>
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
+        <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
+      </lux-form-hint>
+    </lux-toggle>
     <lux-toggle
       class="lux-highlight-section"
-      luxLabel="luxRequired"
-      (luxCheckedChange)="changeRequired($event)"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
       [luxNoTopLabel]="true"
     >
-      <lux-form-hint>
-        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
-        Reactive-Form sind.<br />
-        <b
-          >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das
-          Form-Control gesetzt.</b
-        >
-      </lux-form-hint>
     </lux-toggle>
   </example-base-simple-options>
   <example-base-advanced-options>
@@ -234,7 +235,7 @@
         [luxNoTopLabel]="true"
         [(luxChecked)]="optionMultiline"
       >
-    </lux-toggle>
+      </lux-toggle>
     </div>
     <div class="lux-highlight-section column">
       <lux-toggle
@@ -252,10 +253,7 @@
         [luxNoTopLabel]="true"
       >
       </lux-toggle>
-      <pre
-        class="lux-label"
-        *ngIf="customInvalidStyle"
-      ><b>customInvalidStyles</b> = {{ customInvalidStyle | json }}</pre>
+      <pre class="lux-label" *ngIf="customInvalidStyle"><b>customInvalidStyles</b> = {{ customInvalidStyle | json }}</pre>
     </div>
 
     <lux-select
@@ -301,10 +299,10 @@
       [(luxSelected)]="controlValidators"
     >
       <lux-form-hint>
-        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und
-        Weise trotzdem Validatoren zu übergeben.<br />
-        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die
-        entsprechende FormControl setzen.
+        Diese Property ermöglicht es einer Component die <b>nicht in einer Reactive-Form</b> ist, auf einfache Art und Weise trotzdem
+        Validatoren zu übergeben.<br />
+        Diese Property funktioniert nicht für Components in Reactive-Forms, da diese ihre Validatoren über die entsprechende FormControl
+        setzen.
       </lux-form-hint>
     </lux-select>
     <lux-toggle

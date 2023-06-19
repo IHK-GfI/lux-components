@@ -23,7 +23,7 @@
         [luxTooltip]="menuItem.luxButtonTooltip"
         [luxApplyToChildren]="true"
         [ngClass]="menuItem.luxClass ?? ''"
-        [ngStyle]="{display:  !menuItem.extended || menuItem.luxHidden ? 'none' : 'inline-block'}"
+        [ngStyle]="{ display: !menuItem.extended || menuItem.luxHidden ? 'none' : 'inline-block' }"
       >
       </lux-button>
     </ng-container>
@@ -42,8 +42,6 @@
       mat-menu-item
       [disableRipple]="true"
       class="lux-menu-item"
-      fxLayout="row"
-      fxLayoutAlign="space-between center"
       [luxTooltip]="menuItem.luxMenuTooltip"
       [disabled]="menuItem.luxDisabled"
       luxTagIdHandler
@@ -59,7 +57,7 @@
         class="lux-menu-item-icon"
         *ngIf="menuItem.luxIconName"
       ></lux-icon>
-      <span class="lux-button-label" fxFlex="auto">
+      <span class="lux-button-label">
         {{ menuItem.luxLabel }}
       </span>
     </button>

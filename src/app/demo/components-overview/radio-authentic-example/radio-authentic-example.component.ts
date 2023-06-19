@@ -61,6 +61,7 @@ export class RadioAuthenticExampleComponent {
   compareWithFnString: string;
   errorCallbackString: string;
   labelLongFormat = false;
+  denseFormat = false;
 
   constructor() {
     this.form = new FormGroup<RadioDummyForm>({
@@ -128,6 +129,6 @@ export class RadioAuthenticExampleComponent {
   }
 
   onRefresh() {
-   this.options = JSON.parse(JSON.stringify(this.options));
+    this.options = JSON.parse(JSON.stringify(this.options));
   }
 }

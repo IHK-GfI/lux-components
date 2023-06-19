@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { MatDialogRef } from "@angular/material/dialog";
-import { Observable, ReplaySubject } from "rxjs";
-import { take } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Observable, ReplaySubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +70,15 @@ export class LuxDialogRef<T = any> {
     this._dialogDeclined = new ReplaySubject(1);
     this._dialogClosed = new ReplaySubject(1);
     this._data = data;
+
+    if (!this._matDialogRef.disableClose) {
+      this._matDialogRef.backdropClick().subscribe(this.backdropFn(this._dialogClosed));
+      this._matDialogRef.keydownEvents().subscribe((event) => {
+        if (event.key === 'Escape') {
+          this.closeDialog();
+        }
+      });
+    }
   }
 
   /**
@@ -96,11 +105,11 @@ export class LuxDialogRef<T = any> {
     let last = this.refs.pop();
 
     if (last) {
-      this._matDialogRef    = last.matDialogRef;
+      this._matDialogRef = last.matDialogRef;
       this._dialogConfirmed = last.dialogConfirmed;
-      this._dialogDeclined  = last.dialogDeclined;
-      this._dialogClosed    = last.dialogClosed;
-      this._data            = last.data;
+      this._dialogDeclined = last.dialogDeclined;
+      this._dialogClosed = last.dialogClosed;
+      this._data = last.data;
     }
   }
 
@@ -111,13 +120,23 @@ export class LuxDialogRef<T = any> {
    */
   closeDialog(result?: any) {
     this._matDialogRef.close(result);
-    this._matDialogRef.afterClosed().pipe(take(1)).subscribe((dialogResult: any) => {
-      if (dialogResult === true) {
-        this._dialogConfirmed.next();
-      } else if (dialogResult === false) {
-        this._dialogDeclined.next();
-      }
-      this._dialogClosed.next(result);
-    });
+    this._matDialogRef
+      .afterClosed()
+      .pipe(take(1))
+      .subscribe((dialogResult: any) => {
+        if (dialogResult === true) {
+          this._dialogConfirmed.next();
+        } else if (dialogResult === false) {
+          this._dialogDeclined.next();
+        }
+        this._dialogClosed.next(result);
+      });
+  }
+
+  private backdropFn(dialogClosed: ReplaySubject<void>) {
+    const myDialogClosed = dialogClosed;
+    return () => {
+      myDialogClosed.next(undefined);
+    };
   }
 }

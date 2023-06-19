@@ -17,6 +17,7 @@
         [(luxDisabled)]="disabled"
         [luxRequired]="required"
         [luxReadonly]="readonly"
+        [luxDense]="denseFormat"
         [(luxValue)]="value"
         [luxPlaceholder]="placeholder"
         [luxLabel]="label"
@@ -49,6 +50,7 @@
         [luxStartView]="startView"
         [(luxDisabled)]="disabled"
         [luxReadonly]="readonly"
+        [luxDense]="denseFormat"
         [luxPlaceholder]="placeholder"
         [luxLabel]="label"
         [luxHint]="hint"
@@ -132,7 +134,7 @@
       luxLabel="luxDisabled"
       luxHint="Erlaubt es, die Component zu deaktivieren."
       [luxNoTopLabel]="true"
-      >
+    >
     </lux-toggle>
     <div class="lux-highlight-section column">
       <div fxLayout="row wrap">
@@ -157,13 +159,21 @@
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
       [luxNoTopLabel]="true"
-      >
+    >
     </lux-toggle>
     <lux-toggle class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
         <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
+    </lux-toggle>
+    <lux-toggle
+      class="lux-highlight-section"
+      [(luxChecked)]="denseFormat"
+      luxLabel="luxDense"
+      luxHint="Diese Property veringert das Padding innerhalb des Controls."
+      [luxNoTopLabel]="true"
+    >
     </lux-toggle>
   </example-base-simple-options>
   <example-base-advanced-options>
@@ -195,7 +205,11 @@
       <lux-input luxName="datepicker_luxStartDate" luxLabel="luxStartDate" [(luxValue)]="startDate">
         <lux-form-hint>Das Startdatum (z.B. 01.12.2021) im Popup, wenn kein Wert gesetzt ist.</lux-form-hint>
       </lux-input>
-      <lux-input luxLabel="luxStartTime" luxHint="Die Startzeit (z.B. 12:15) im Popup, wenn kein Wert gesetzt ist." [(luxValue)]="startTimeAsString">
+      <lux-input
+        luxLabel="luxStartTime"
+        luxHint="Die Startzeit (z.B. 12:15) im Popup, wenn kein Wert gesetzt ist."
+        [(luxValue)]="startTimeAsString"
+      >
       </lux-input>
       <lux-input luxName="datepicker_luxMinDate" luxLabel="luxMinDate" [(luxValue)]="minDate">
         <lux-form-hint>

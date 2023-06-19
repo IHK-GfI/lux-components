@@ -33,7 +33,7 @@
 
     <mat-autocomplete
       #auto="matAutocomplete"
-      [class]="'lux-autocomplete-panel-ac'"
+      [class]="!luxDense ? 'lux-autocomplete-panel-ac' : 'lux-autocomplete-panel-dense-ac'"
       [displayWith]="displayFn.bind(this)"
       [disableRipple]="true"
       (optionSelected)="selected($event)"
@@ -44,10 +44,7 @@
         class="information-option"
       >
         <div fxLayout="row">
-          <div>
-            {{ entriesCount - luxMaximumDisplayed }} Treffer werden nicht angezeigt. <br />Bitte verfeinern Sie Ihre
-            Suche.
-          </div>
+          <div>{{ entriesCount - luxMaximumDisplayed }} Treffer werden nicht angezeigt. <br />Bitte verfeinern Sie Ihre Suche.</div>
         </div>
       </mat-option>
       <ng-container *ngFor="let entry of filtered">

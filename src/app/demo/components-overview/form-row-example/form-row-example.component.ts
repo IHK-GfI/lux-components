@@ -2,8 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LuxAppFooterButtonService } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 import { LuxAppFooterButtonInfo } from '../../../modules/lux-layout/lux-app-footer/lux-app-footer-button-info';
-import { LuxThemeService } from '../../../modules/lux-theme/lux-theme.service';
-import { ThemePalette } from "@angular/material/core";
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-layout-row-example',
@@ -12,7 +11,7 @@ import { ThemePalette } from "@angular/material/core";
 })
 export class FormRowExampleComponent implements OnInit, OnDestroy {
   options: any[] = ['Lorem ipsum A', 'Lorem ipsum B', 'Lorem ipsum C'];
-  markdownData=`
+  markdownData = `
   Html
   \`\`\`
   <lux-layout>
@@ -38,28 +37,7 @@ export class FormRowExampleComponent implements OnInit, OnDestroy {
   \`\`\`
   `;
 
-  rowHeight: string;
-  dataSource= [
-    { name: 'ohne (default)', blueHeight: '70px', greenHeight: '84px', example: 'Standard-Fall', link: 'baseline', linkName: 'Baseline' },
-    { name: 'luxNoLabels', blueHeight: '30px', greenHeight: '40px', example: 'Form-Controls in editierbaren Tabellen', link: 'components-overview/example/table', linkName: 'Lux-Table' },
-    { name: 'luxNoTopLabel', blueHeight: '53px', greenHeight: '63px', example: 'Checkboxen oder Toggle-Buttons in Spalten', link: 'components-overview/example/checkbox', linkName: 'Lux-Checkbox' },
-    { name: 'luxNoBottomLabel', blueHeight: '47px', greenHeight: '61px', example: 'Form-Controls im Filterformular (ohne Validierung)', link: 'components-overview/example/filter', linkName: 'Lux-Filter'}
-  ];
-  
-  markdownData2=`
-  Html (Beipiel-Wert für das Blue-Theme)
-  \`\`\`
-  <lux-layout>
-  ...
-    <lux-layout-form-row [luxGap]="{ row: '63px', rowItem: '32px', column: '0px' }">
-      <div *luxLayoutRowItem="{ empty: true }"></div>
-    </lux-layout-form-row>
-  ...
-  </lux-layout>
-  \`\`\`
-  `;
-
-  chips: {label: string; color: ThemePalette; removable: boolean; disabled: boolean; selected: boolean}[] = [
+  chips: { label: string; color: ThemePalette; removable: boolean; disabled: boolean; selected: boolean }[] = [
     { label: 'Chip #1', color: undefined, removable: true, disabled: false, selected: true },
     { label: 'Chip #2', color: 'primary', removable: true, disabled: false, selected: true },
     { label: 'Chip #3', color: 'warn', removable: true, disabled: false, selected: true },
@@ -67,13 +45,48 @@ export class FormRowExampleComponent implements OnInit, OnDestroy {
   ];
 
   chipsOptions: string[] = ['Hallo', 'Ciao', 'Privet'];
- 
+
   selected: any;
 
-  
-  constructor(private router: Router, private buttonService: LuxAppFooterButtonService, private themeService: LuxThemeService) {
-    themeService.getTheme().name === 'blue' ? this.rowHeight = '63px' : this.rowHeight = '77px';
-  }
+  htmlData1 = `
+<pre>
+Html
+
+&lt;lux-layout-form-row [luxGap]="{ rowItem: '16px'}"&gt;
+...
+  &lt;div class="btn-container" *luxLayoutRowItem="{ flex: 'none'}"&gt;
+    &lt;lux-button luxIconName="lux-info" luxTagId="btnInfo" [luxRounded]="true" luxColor="primary"&gt;&lt;/lux-button&gt;
+    &lt;lux-button luxIconName="lux-interface-delete-bin-5" luxTagId="btnRemove" [luxRounded]="true" luxColor="warn"&gt;&lt;/lux-button&gt;
+  &lt;/div&gt;
+&lt;/lux-layout-form-row&gt;
+
+
+SCSS
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+}
+</pre>
+`;
+  htmlData2 = `
+<pre>
+Html
+
+&lt;lux-layout-form-row [luxGap]="{ rowItem: '16px' }"&gt;
+  ...
+  &lt;div class="btn-container" *luxLayoutRowItem="{ flex: 'none', formNoBottomLabel: true }"&gt;
+    ...
+  &lt;/div&gt;
+&lt;/lux-layout-form-row&gt;
+
+
+SCSS
+
+.btn-container { display: flex; gap: 10px; }
+</pre>`;
+
+  constructor(private router: Router, private buttonService: LuxAppFooterButtonService) {}
 
   ngOnInit(): void {
     this.buttonService.buttonInfos = [

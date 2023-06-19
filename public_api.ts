@@ -71,12 +71,16 @@ export * from './src/app/modules/lux-common/lux-table/lux-table-subcomponents/lu
 export * from './src/app/modules/lux-common/lux-table/lux-table-subcomponents/lux-table-column-header.component';
 export * from './src/app/modules/lux-common/lux-table/lux-table-subcomponents/lux-table-column-footer.component';
 export * from './src/app/modules/lux-common/lux-table/lux-table-subcomponents/lux-table-column.component';
+export * from './src/app/modules/lux-common/lux-textbox/lux-textbox.component';
 // Services
 // Classes
 export * from './src/app/modules/lux-common/lux-table/lux-table-http/lux-table-http-dao-structure.interface';
 export * from './src/app/modules/lux-common/lux-table/lux-table-http/lux-table-http-dao.interface';
 export * from './src/app/modules/lux-common/lux-table/lux-table-custom-css-config.interface';
-export { ILuxMessageChangeEvent, ILuxMessageCloseEvent } from './src/app/modules/lux-common/lux-message-box/lux-message-box-model/lux-message-events.interface';
+export {
+  ILuxMessageChangeEvent,
+  ILuxMessageCloseEvent
+} from './src/app/modules/lux-common/lux-message-box/lux-message-box-model/lux-message-events.interface';
 export { ILuxMessage } from './src/app/modules/lux-common/lux-message-box/lux-message-box-model/lux-message.interface';
 
 /**
@@ -151,10 +155,10 @@ export * from './src/app/modules/lux-form/lux-file/lux-file-subcomponents/lux-fi
 export * from './src/app/modules/lux-form/lux-form-control/lux-form-control.component';
 export * from './src/app/modules/lux-form/lux-form-control/lux-form-control-subcomponents/lux-form-hint.component';
 export * from './src/app/modules/lux-form/lux-form-control/lux-form-control-subcomponents/lux-form-label.component';
-export * from './src/app/modules/lux-form/lux-form-control-wrapper/lux-form-control-wrapper.component'
-export * from './src/app/modules/lux-form/lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-prefix.component'
-export * from './src/app/modules/lux-form/lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-suffix.component'
-export * from './src/app/modules/lux-form/lux-input-ac/lux-input-ac.component'
+export * from './src/app/modules/lux-form/lux-form-control-wrapper/lux-form-control-wrapper.component';
+export * from './src/app/modules/lux-form/lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-prefix.component';
+export * from './src/app/modules/lux-form/lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-suffix.component';
+export * from './src/app/modules/lux-form/lux-input-ac/lux-input-ac.component';
 // Classes
 export * from './src/app/modules/lux-form/lux-datepicker/lux-datepicker-adapter';
 export * from './src/app/modules/lux-form/lux-datepicker-ac/lux-datepicker-ac-adapter';
@@ -235,9 +239,9 @@ export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcom
 export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-app-header-right-nav/lux-app-header-right-nav.component';
 export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu.component';
 export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu-item/lux-app-header-ac-nav-menu-item.component';
-export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item.component'
-export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav.component'
-export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item-custom.component'
+export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item.component';
+export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav.component';
+export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav-item/lux-app-header-ac-action-nav-item-custom.component';
 export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-app-header-ac-user-menu.component';
 export * from './src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component';
 export * from './src/app/modules/lux-layout/lux-card/lux-card.component';
@@ -260,7 +264,7 @@ export * from './src/app/modules/lux-layout/lux-master-detail/lux-master-detail-
 export * from './src/app/modules/lux-layout/lux-master-detail/lux-master-detail-subcomponents/lux-master-view/lux-master-view.component';
 export * from './src/app/modules/lux-layout/lux-master-detail-ac/lux-detail-view-ac/lux-detail-view-ac.component';
 export * from './src/app/modules/lux-layout/lux-master-detail-ac/lux-detail-view-ac/lux-detail-wrapper-ac.component';
-export * from './src/app/modules/lux-layout/lux-master-detail-ac/lux-detail-header-ac/lux-detail-header-ac.component'
+export * from './src/app/modules/lux-layout/lux-master-detail-ac/lux-detail-header-ac/lux-detail-header-ac.component';
 export * from './src/app/modules/lux-layout/lux-master-detail-ac/lux-master-header-ac/lux-master-header-ac.component';
 export * from './src/app/modules/lux-layout/lux-master-detail-ac/lux-master-header-ac/lux-master-header-content-ac.component';
 export * from './src/app/modules/lux-layout/lux-master-detail-ac/lux-master-footer-ac/lux-master-footer-ac.component';
@@ -294,6 +298,7 @@ export * from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcom
 export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large.component';
 export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-step/lux-stepper-large-step.component';
 export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay.component';
+export * from './src/app/modules/lux-layout/lux-checkbox-container-ac/lux-checkbox-container-ac.component';
 // Directives
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-item.directive';
 // Services
@@ -307,7 +312,10 @@ export * from './src/app/modules/lux-layout/lux-app-footer/lux-app-footer-button
 export * from './src/app/modules/lux-layout/lux-app-footer/lux-app-footer-link-info';
 export * from './src/app/modules/lux-layout/lux-stepper/lux-stepper-model/lux-stepper-button-config.interface';
 export { visibilityTrigger } from './src/app/modules/lux-common/lux-message-box/lux-message-box-model/lux-message-box.animations';
-export { sideNavAnimation, sideNavOverlayAnimation } from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-side-nav/lux-side-nav-model/lux-side-nav-animations';
+export {
+  sideNavAnimation,
+  sideNavOverlayAnimation
+} from './src/app/modules/lux-layout/lux-app-header/lux-app-header-subcomponents/lux-side-nav/lux-side-nav-model/lux-side-nav-animations';
 export { expansionAnim } from './src/app/modules/lux-layout/lux-card/lux-card-model/lux-card-animations';
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-item-config';
 export * from './src/app/modules/lux-layout/lux-layout/base/lux-layout-row-gap-config';

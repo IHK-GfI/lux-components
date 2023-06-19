@@ -77,6 +77,8 @@ import { FileInputAuthenticExampleComponent } from './file-example/file-input-au
 import { ChipAuthenticExampleComponent } from './chip-authentic-example/chip-authentic-example.component';
 import { SliderAuthenticExampleComponent } from './slider-authentic-example/slider-authentic-example.component';
 import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
+import { CheckboxContainerAcExampleComponent } from './checkbox-container-ac-example/checkbox-container-ac-example.component';
+import { TextboxExampleComponent } from './textbox-example/textbox-example.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -157,6 +159,8 @@ const routes: Routes = [
       { path: 'tile-overview', component: OverviewExampleComponent },
       { path: 'icon-overview', component: IconOverviewComponent },
       { path: 'master-detail-ac', component: MasterDetailAuthenticExampleComponent },
+      { path: 'checkbox-container-ac', component: CheckboxContainerAcExampleComponent },
+      { path: 'textbox', component: TextboxExampleComponent }
     ]
   }
 ];

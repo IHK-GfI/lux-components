@@ -287,6 +287,21 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
         moduleName: 'layout',
         news: true,
         themes: this.themeArrAC
+      },
+      {
+        onclick: () => this.goTo('checkbox-container-ac'),
+        icon: '',
+        label: 'Checkbox-Container-Ac',
+        moduleName: 'layout',
+        news: true,
+        themes: this.themeArrAC
+      },
+      {
+        onclick: () => this.goTo('textbox'),
+        icon: 'lux-interface-content-note-pad-text',
+        label: 'Textbox',
+        moduleName: 'common',
+        news: true
       }
     ];
 
@@ -366,6 +381,10 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     return this.components.filter(
       (component: any) => !component.themes || !!component.themes.find((theme: string) => theme === this.themeName)
     );
+  }
+
+  getFilteredComponents(filterValue: string) {
+    return this.filteredComponents.filter((component: any) => component.label.toLowerCase().includes(filterValue.toLowerCase()));
   }
 
   goTo(id: string): void {
