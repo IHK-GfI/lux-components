@@ -1,3 +1,9 @@
+# Version 14.7.0
+
+## Bug Fixes
+
+- **lux-file-upload**: Beim Zurückgehen im lux-stepper konnte es dazu kommen, dass die File-Icons nicht mehr angezeigt wurden. [Issue 336](https://github.com/IHK-GfI/lux-components/issues/336)
+
 # Version 14.6.0
 
 ## New
