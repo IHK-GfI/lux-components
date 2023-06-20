@@ -153,6 +153,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
   }
 
   ngAfterViewInit() {
+    this.setFileIcons(this.formControl.value);
     this.subscriptions.push(
       this.fileEntries.changes.subscribe(() => {
         this.setFileIcons(this.formControl.value);
