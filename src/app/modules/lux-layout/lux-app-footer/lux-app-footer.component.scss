@@ -15,15 +15,6 @@
   min-width: 0;
 }
 
-.lux-app-footer-buttons,
-.lux-app-footer-links {
-  ::ng-deep {
-    button {
-      height: 45px;
-    }
-  }
-}
-
 .footerFont {
   font-size: 14px;
   font-weight: 500;

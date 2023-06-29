@@ -1,12 +1,8 @@
 <div
   class="lux-badge lux-mt-1 lux-mb-1 lux-ml-1 lux-mr-1 lux-pt-1 lux-pb-1 lux-pl-3 lux-pr-3"
-  [ngClass]="[
-    backgroundCSSClass,
-    fontCSSClass,
-    luxUppercase ? 'lux-badge-uppercase' : ''
-  ]"
+  [ngClass]="[backgroundCSSClass, fontCSSClass, luxUppercase ? 'lux-badge-uppercase' : '']"
   *ngIf="backgroundCSSClass"
 >
-  <lux-icon [luxIconName]="luxIconName" [luxIconSize]="ICON_SIZE" luxMargin="0 8px 0 0" *ngIf="luxIconName"></lux-icon>
+  <lux-icon [luxIconName]="luxIconName" luxPadding="0" [luxIconSize]="ICON_SIZE" luxMargin="0 8px 0 0" *ngIf="luxIconName"></lux-icon>
   <ng-content select="lux-label"></ng-content>
 </div>

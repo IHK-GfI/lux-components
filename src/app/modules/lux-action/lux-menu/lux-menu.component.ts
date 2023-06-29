@@ -137,19 +137,19 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       case 'authentic':
         this.PADDING_PX = 16;
         this.MARGIN_PX = 8;
-        this.ICON_PX = 24; // 16px Breite plus 8px Gap zwischen Icon - Label
-        this.FONT_SIZE = 16;
+        this.ICON_PX = 22; // 14px Breite plus 8px Gap zwischen Icon - Label
+        this.FONT_SIZE = 14;
         this.FONT_WEIGHT = 400;
         this.FONT_FAMILY = '"Blogger Sans", "Source Sans Pro","Helvetica","Arial","sans-serif"';
         break;
 
       default: // 28px Breite plus 8px Gap zwischen Icon - Button-Label
         this.PADDING_PX = 16;
-        this.MARGIN_PX = 12;
-        this.ICON_PX = 36;
+        this.MARGIN_PX = 8;
+        this.ICON_PX = 22;
         this.FONT_SIZE = 14;
-        this.FONT_WEIGHT = 700;
-        this.FONT_FAMILY = 'Roboto, "Helvetica Neue", sans-serif';
+        this.FONT_WEIGHT = 400;
+        this.FONT_FAMILY = '"Blogger Sans", "Source Sans Pro","Helvetica","Arial","sans-serif"';
     }
   }
 

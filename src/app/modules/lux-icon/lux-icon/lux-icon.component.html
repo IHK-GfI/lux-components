@@ -1,16 +1,7 @@
-<ng-container *ngIf="luxIconName && luxIconSize">
-  <mat-icon
-    [svgIcon]="luxIconName"
-    [ngStyle]="{ padding: luxPadding, width: currentIconSize + 'em', height: currentIconSize + 'em' }"
-    [ngClass]="[backgroundCSSClass, fontCSSClass, luxRounded ? 'lux-lx-icon-rounded-' + currentIconSize + 'em' : '']"
-    class="lux-lx-icon"
-  ></mat-icon>
-</ng-container>
-<ng-container *ngIf="luxIconName && !luxIconSize">
-  <mat-icon
-    [svgIcon]="luxIconName"
-    [ngStyle]="{ padding: luxPadding }"
-    [ngClass]="[backgroundCSSClass, fontCSSClass, luxRounded ? 'lux-lx-icon-rounded-' + currentIconSize + 'em' : '']"
-    class="lux-lx-icon-no-size"
-  ></mat-icon>
-</ng-container>
+<mat-icon
+  [svgIcon]="luxIconName"
+  [ngStyle]="{ padding: luxPadding, width: luxIconSize, height: luxIconSize }"
+  [ngClass]="[backgroundCSSClass, fontCSSClass, luxRounded ? 'lux-icon-rounded-' + luxIconSize : '']"
+  class="lux-icon"
+  *ngIf="luxIconName"
+></mat-icon>

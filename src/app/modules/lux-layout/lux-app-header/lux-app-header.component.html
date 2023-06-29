@@ -73,20 +73,16 @@
     fxFlex="0 0 auto"
     fxLayoutAlign="end center"
     class="lux-lang-select-menu lux-header-action"
-    *ngIf="luxLocaleSupported && (luxLocaleSupported?.length ?? 0)  > 1"
+    *ngIf="luxLocaleSupported && (luxLocaleSupported?.length ?? 0) > 1"
   >
-    <lux-lang-select
-      [luxLocaleSupported]="luxLocaleSupported"
-      [luxLocaleBaseHref]="luxLocaleBaseHref"
-      fxFlex="0 0 auto"
-    ></lux-lang-select>
+    <lux-lang-select [luxLocaleSupported]="luxLocaleSupported" [luxLocaleBaseHref]="luxLocaleBaseHref" fxFlex="0 0 auto"></lux-lang-select>
   </div>
   <!-- User-Menu (rechtsbündig) -->
   <div
     fxLayout="row"
     fxFlex="0 0 auto"
     fxLayoutAlign="end center"
-    class="lux-header-user"
+    class="lux-header-user lux-pr-2 lux-pl-2"
     [luxAriaLabel]="luxAriaUserMenuButtonLabel"
     [ngClass]="{ 'lux-show-border': !!actionNav }"
     *ngIf="rightNav"
@@ -149,13 +145,7 @@
             [fxShow.sm]="!luxUserName"
           >
           </lux-icon>
-          <lux-icon
-            class="lux-icon-menu-1"
-            luxIconSize="1x"
-            luxIconName="lux-interface-arrows-button-down"
-            luxPadding="0"
-            luxMargin="0"
-          >
+          <lux-icon class="lux-icon-menu-1" luxIconSize="1x" luxIconName="lux-interface-arrows-button-down" luxPadding="0" luxMargin="0">
           </lux-icon>
         </button>
       </lux-menu-trigger>

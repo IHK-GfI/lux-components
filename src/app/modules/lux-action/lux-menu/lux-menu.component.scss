@@ -20,37 +20,9 @@
   }
 }
 
-.lux-menu-trigger {
-  ::ng-deep button {
-    height: 45px;
-    min-width: 45px;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-    margin-top: var(--lux-theme-outline-width);
-    margin-bottom: var(--lux-theme-outline-width);
-    margin-left: var(--lux-theme-outline-width) !important;
-    margin-right: var(--lux-theme-outline-width) !important;
-
-    .mat-button-wrapper {
-      font-weight: normal;
-      i,
-      mat-icon {
-        padding: 0;
-        font-size: 18px !important;
-      }
-    }
-  }
-}
-
 ::ng-deep {
   .lux-menu-item {
     margin-top: var(--lux-theme-outline-width);
     margin-bottom: var(--lux-theme-outline-width);
-    lux-icon {
-      i,
-      mat-icon:not(.lux-lx-icon) {
-        font-size: 18px;
-      }
-    }
   }
 }
