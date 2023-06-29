@@ -5,6 +5,16 @@
 
 - **allgemein**: Update auf Angular 15 [Issue 302](https://github.com/IHK-GfI/lux-components/issues/302)
 - **lux-icon**: Material- und FA-Icons entfernt. [Issue 322](https://github.com/IHK-GfI/lux-components/issues/322)
+- **lux-icon**: luxIconSize nimmt jetzt auch px oder em-Werte an. [Issue 323](https://github.com/IHK-GfI/lux-components/issues/323)
+- **lux-button**: luxIconSize und fontsize im Label angepasst, Focus-Indicator mit 1px Offset versehen (Theme-authentic). [Issue 323](https://github.com/IHK-GfI/lux-components/issues/323)
+- **lux-menu**: luxIconSize in lux-menu-items und lux-menu-trigger angepasst. lux-menu-trigger default-height angepasst [Issue 323](https://github.com/IHK-GfI/lux-components/issues/323)
+- **lux-tile-ac**: luxIconSize angepasst. [Issue 323](https://github.com/IHK-GfI/lux-components/issues/323)
+- **lux-input-ac**: luxIconSize in lux-input-ac-prefix/-suffix angepasst. [Issue 323](https://github.com/IHK-GfI/lux-components/issues/323)
+- **lux-file-input**, **lux-file-list**, **lux-file-upload**: luxIconSize angepasst.[Issue 323](https://github.com/IHK-GfI/lux-components/issues/323)
+- **lux-app-header**: luxIconSize und Button-Height für Theme Green angepasst. [Issue 323](https://github.com/IHK-GfI/lux-components/issues/323)
+- **lux-app-footer**: Default-Height für Buttons auf die Werte von Theme-Authentic gesetzt. [Issue 323](https://github.com/IHK-GfI/lux-components/issues/323)
+- **lux-tab**: luxIconSize in lux-tab-item angepasst (Theme Authentic). [Issue 323](https://github.com/IHK-GfI/lux-components/issues/323)
+- **lux-card**: luxIconSize in lux-card angepasst. [Issue 323](https://github.com/IHK-GfI/lux-components/issues/323)
 
 # Version 14.8.0
 

@@ -1,8 +1,4 @@
 .lux-icon {
-  width: 24px;
-  height: 24px;
-  font-size: 24px;
-  font-weight: 400;
   padding: 0 8px 0 0;
 }
 
@@ -18,16 +14,14 @@ h5,
 h6 {
   font-size: 24px;
   font-weight: 500;
+  line-height: 1;
   margin-block-start: 1.2em;
   margin-block-end: 14px;
 }
 
-::ng-deep .lux-icon lux-icon > i,
 ::ng-deep .lux-icon lux-icon > mat-icon,
 .lux-card-title {
-  padding-bottom: 0 !important;
-  padding-top: 0 !important;
-  padding-left: 0 !important;
+  padding: 0 !important;
 }
 
 ::ng-deep {
@@ -42,16 +36,10 @@ h6 {
   }
 
   lux-card-info {
-    lux-icon:not(.lux-lx.icon) {
-      > i,
+    lux-icon {
       > mat-icon {
         padding: 0 !important;
       }
-    }
-    lux-icon.lux-lx-icon.lux-no-size {
-      height: 1em;
-      width: 1em;
-      display: inline-block;
     }
   }
 

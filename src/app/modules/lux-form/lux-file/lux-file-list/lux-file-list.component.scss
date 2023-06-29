@@ -13,7 +13,7 @@
         }
       }
       .mat-button-wrapper {
-       line-height: 30px;
+        line-height: 30px;
       }
     }
   }
@@ -24,7 +24,7 @@
   }
 
   lux-menu ::ng-deep {
-    lux-icon.lux-button-icon mat-icon.lux-lx-icon-no-size {
+    lux-icon.lux-button-icon mat-icon.lux-icon {
       height: 16px;
       width: 16px;
     }
@@ -34,10 +34,9 @@
   }
 
   ::ng-deep mat-card-title {
-    @include minified-button;
-
-    > div {
-      min-height: 45px;
+    button.lux-icon-button mat-icon.lux-icon {
+      height: 22px !important;
+      width: 22px !important;
     }
   }
 

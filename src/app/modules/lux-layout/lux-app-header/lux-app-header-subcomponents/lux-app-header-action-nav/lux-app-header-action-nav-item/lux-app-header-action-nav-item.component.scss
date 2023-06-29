@@ -1,9 +1,9 @@
 lux-button {
   ::ng-deep button {
     padding: 0;
-    min-width: 30px;
-    max-height: 30px !important;
-    min-height: 30px !important;
+    min-width: 45px;
+    max-height: 45px !important;
+    min-height: 45px !important;
     .mat-button-wrapper {
       display: inline-flex;
       height: 100%;
@@ -22,7 +22,7 @@ lux-button {
 
     lux-icon.lux-button-icon {
       display: inline-block;
-      mat-icon.mat-icon.lux-lx-icon {
+      mat-icon.mat-icon.lux-icon {
         font-size: 16px !important;
       }
     }

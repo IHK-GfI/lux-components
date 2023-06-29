@@ -76,7 +76,7 @@ export class MenuExampleComponent {
       prio: 4
     }
   ];
-  
+
   displayExtended = true;
   displayMenuLeft = true;
   maximumExtended = 5;

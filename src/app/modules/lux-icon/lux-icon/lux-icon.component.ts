@@ -16,12 +16,16 @@ export class LuxIconComponent {
   private _fontCSSClass = 'blue';
 
   notFoundIconName = 'lux-interface-alert-warning-diamond';
-  currentIconSize = 1;
 
   @HostBinding('style.margin') styleMargin = '0';
-  @HostBinding('class.lux-no-size') noSize = true;
+  @HostBinding('class.lux-icon-rounded') _luxRounded = false;
 
-  @Input() luxRounded = false;
+  @Input() set luxRounded(rounded: boolean) {
+    this._luxRounded = rounded;
+  }
+  get luxRounded(): boolean {
+    return this._luxRounded;
+  }
 
   get luxMargin(): string {
     return this.styleMargin;
@@ -47,12 +51,13 @@ export class LuxIconComponent {
 
   @Input() set luxIconSize(iconSizeValue: string | undefined) {
     this._luxIconSize = iconSizeValue;
-    if (this.luxIconSize && this.luxIconSize.length === 2) {
-      this.currentIconSize = +this.luxIconSize.slice(0, 1);
-      this.noSize = false;
+    if (this.luxIconSize && this.luxIconSize.length === 2 && this.luxIconSize.endsWith('x')) {
+      const size = this.luxIconSize.slice(0, 1);
+      this._luxIconSize = size + 'em';
+    } else if (this.luxIconSize) {
+      this._luxIconSize = iconSizeValue;
     } else {
-      this.currentIconSize = 1;
-      this.noSize = true;
+      this._luxIconSize = '24px'; //default-Size für mat-icon
     }
   }
 

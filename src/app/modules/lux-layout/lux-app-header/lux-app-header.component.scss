@@ -17,20 +17,6 @@
     margin-left: 5px;
   }
 
-  ::ng-deep button,
-  > div {
-    height: 45px !important;
-  }
-
-  ::ng-deep button {
-    display: inline-flex;
-    justify-content: center;
-
-    .mat-button-wrapper {
-      align-items: center;
-    }
-  }
-
   // Einheitliche Schrift und Icon-Größe sowie Farbe sicherstellen
   & {
     ::ng-deep {
@@ -39,10 +25,6 @@
       }
       lux-icon {
         line-height: 1;
-      }
-      i,
-      mat-icon:not(.lux-lx-icon) {
-        font-size: 18px !important;
       }
     }
   }
@@ -64,6 +46,11 @@
         border-radius: 50%;
         padding: 0 4px;
       }
+    }
+
+    ::ng-deep .lux-menu-extended {
+      padding: 0;
+      overflow: visible;
     }
   }
 
@@ -97,20 +84,6 @@
   }
 
   .lux-header-side-nav {
-    .lux-side-nav-trigger {
-      ::ng-deep {
-        lux-icon {
-          height: 45px !important;
-          i {
-            font-size: 1.5em;
-          }
-          mat-icon {
-            display: inline;
-          }
-        }
-      }
-    }
-
     .lux-side-nav-trigger,
     .lux-master-toggle {
       min-width: 45px;
@@ -123,10 +96,6 @@
         max-width: 45px;
         padding: 0;
       }
-    }
-
-    .lux-side-nav-trigger-active {
-      //background: $dark-focused;
     }
 
     .lux-right-nav-trigger {
@@ -177,8 +146,11 @@
     padding: 0 4px;
     margin: 0;
 
-    .mat-button-wrapper{
+    .mat-button-wrapper {
       display: inherit;
+      lux-icon {
+        align-items: center;
+      }
     }
 
     button {

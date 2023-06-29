@@ -3,13 +3,13 @@
     <lux-icon
       [luxIconName]="errorConfig.iconName"
       [luxIconSize]="errorConfig.iconSize"
-      class="lux-semi-transparent lux-black-semi-transparent"
+      class="lux-color-gray"
       fxFlex="0 0 auto"
       ngClass.gt-sm="lux-error-icon"
       ngClass.sm="lux-error-icon-sm"
       ngClass.xs="lux-error-icon-xs"
     ></lux-icon>
-    <h2 class="lux-ml-3 lux-mr-3" style="text-align: center;">{{ errorConfig.errorText }}</h2>
+    <h2 class="lux-ml-3 lux-mr-3" style="text-align: center">{{ errorConfig.errorText }}</h2>
     <lux-button
       luxColor="primary"
       [luxLabel]="errorConfig.homeRedirectText"
@@ -19,7 +19,12 @@
     >
     </lux-button>
     <ng-container *ngIf="error">
-      <p i18n="@@luxc.errorpage.error_number" class="lux-semi-transparent lux-black-semi-transparent" fxFlex="0 0 auto" *ngIf="error.errorId">
+      <p
+        i18n="@@luxc.errorpage.error_number"
+        class="lux-semi-transparent lux-black-semi-transparent"
+        fxFlex="0 0 auto"
+        *ngIf="error.errorId"
+      >
         Fehlernummer: {{ error.errorId }}
       </p>
       <lux-panel *ngIf="error.errorMessage">
