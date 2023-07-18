@@ -8,7 +8,7 @@
   [luxTagId]="luxTagId"
   [class]="'lux-card'"
   [ngClass]="{ 'lux-cursor': !showButtons && hasCardAction && !luxDisabled }"
-  [ngClass.gt-sm]="{ 'lux-cursor': !showButtons && hasCardAction && !luxDisabled  }"
+  [ngClass.gt-sm]="{ 'lux-cursor': !showButtons && hasCardAction && !luxDisabled }"
 >
   <div fxFlex="flex" fxLayout="column" class="lux-overflow-y-hidden lux-card-content-container">
     <mat-card-title
@@ -122,12 +122,7 @@
         ></lux-button>
       </div>
       <!-- Der expanded Card-Content ist nur sichtbar, wenn der Ausklapp-Button geklickt wurde. -->
-      <div
-        class="lux-card-content-expanded lux-mt-4"
-        *ngIf="luxExpanded && contentExpandedComponent"
-        [@expansionAnim]="{ value: getAnimState(), params: { duration: getAnimDuration() } }"
-        (@expansionAnim.done)="expansionDone()"
-      >
+      <div class="lux-card-content-expanded lux-mt-4" *ngIf="luxExpanded && contentExpandedComponent">
         <ng-content select="lux-card-content-expanded"></ng-content>
       </div>
     </mat-card-content>
