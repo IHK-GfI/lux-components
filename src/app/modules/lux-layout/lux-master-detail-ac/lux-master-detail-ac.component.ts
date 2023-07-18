@@ -81,6 +81,7 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
 
   isMobile: boolean;
   isMedium: boolean;
+
   detailContext = { $implicit: {} };
   flexMaster?: string;
   flexDetail?: string;
@@ -110,7 +111,7 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
   }
 
   @Input()
-  set luxOpen(open){
+  set luxOpen(open) {
     this._luxOpen = open;
     this.updateOpen();
   }
@@ -122,7 +123,9 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
 
   @Input()
   set luxSelectedDetail(value) {
-    this.updateDetail$.next(value);
+    if (value !== this._luxSelectedDetail) {
+      this.updateDetail$.next(value);
+    }
   }
 
   /* Master List Get/Set */
@@ -149,11 +152,11 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
     this.isMedium = this.mediaObserver.isMD();
     this.subscriptions.push(
       this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(() => {
-          this.isMobile = this.mediaObserver.isXS() || this.mediaObserver.isSM();
-          this.isMedium = this.mediaObserver.isMD();
-          if (this.isMobile || this.isMedium) {
-            this.updateOpen();
-          }
+        this.isMobile = this.mediaObserver.isXS() || this.mediaObserver.isSM();
+        this.isMedium = this.mediaObserver.isMD();
+        if (this.isMobile || this.isMedium) {
+          this.updateOpen();
+        }
       })
     );
   }
@@ -290,7 +293,7 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
       if (this.isMobile) {
         this.flexMaster = '100';
         this.flexDetail = '0';
-      } else if (this.isMedium){
+      } else if (this.isMedium) {
         this.flexMaster = 'calc(50% - 30px)'; /** 30px = Gap zwischen Master und Detail */
         this.flexDetail = '50';
       } else {
@@ -333,20 +336,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
   }
 
   /**
-   * Kümmert sich um das Zuklappen der Master-Liste, wenn zwischen Mobil- und Desktopansicht gewechselt wird.
-   */
-  // private handleViewCollapse() {
-  //   this.subscriptions.push(this.mobileHelperService.masterCollapsedObservable.subscribe((open: boolean) => {
-  //     // Falls nichts selektiert ist, sollte die Darstellung beim Wechsel in kleine Media Queries die Masterliste zeigen
-  //     if (this.isMobile && !this.luxSelectedDetail && !open) {
-  //       open = true;
-  //     }
-  //     this.luxOpen = open;
-  //     this.updateOpen();
-  //   }));
-  // }
-
-  /**
    * Kümmert sich um Änderungen an dem selektierten Detail.
    * Dabei werden mehrere Zuweisungen an das Detail über throttleTime gebündelt und nur das Aktuellste genommen.
    * Anschließend wird die Komponente angewiesen das neue Detail-Objekt zu rendern.
@@ -360,7 +349,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
         } else {
           if (!this.compareObjects(this.luxSelectedDetail, detail)) {
             this.detailViewContainerRef.clear();
-
             if (detail) {
               this.detailContext = { $implicit: detail };
 
@@ -377,7 +365,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
               );
               // Die Detailansicht nach dem Wechsel wieder nach oben scrollen lassen
               this.detailViewContainerRef.element.nativeElement.parentNode.scrollTop = 0;
-
               this.cdr.detectChanges();
             }
           }

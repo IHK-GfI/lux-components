@@ -17,13 +17,8 @@
   (luxSelectedDetailChange)="loadDetail($event)"
   fxFill
 >
-<lux-master-header-content-ac>
-    <lux-filter-form
-      fxFlex="1 1 auto"
-      [luxShowAsCard]="true"
-      [luxShowChips]="false"
-      [luxButtonFlat]="false"
-    >
+  <lux-master-header-content-ac>
+    <lux-filter-form fxFlex="1 1 auto" [luxShowAsCard]="true" [luxShowChips]="false" [luxButtonFlat]="false">
       <lux-select-ac
         luxLabel="Fälligkeit"
         [luxOptions]="options"
@@ -32,6 +27,12 @@
         (luxSelectedChange)="changeFilter($event)"
       >
       </lux-select-ac>
+      <lux-filter-form-extended>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. A suscipit cumque explicabo debitis, sint culpa quia quis odio excepturi
+          asperiores.
+        </p>
+      </lux-filter-form-extended>
     </lux-filter-form>
   </lux-master-header-content-ac>
 
@@ -61,7 +62,11 @@
           <ng-template>
             <detail-example [masterDetailConfig]="configuration" [selectedDetail]="detail"></detail-example>
             <div class="example-tab-content">
-              <lux-toggle [(luxChecked)]="showCustomDetailHeader" luxLabel="Custom Detail-Header anzeigen" [luxNoLabels]="true"></lux-toggle>
+              <lux-toggle
+                [(luxChecked)]="showCustomDetailHeader"
+                luxLabel="Custom Detail-Header anzeigen"
+                [luxNoLabels]="true"
+              ></lux-toggle>
             </div>
           </ng-template>
         </lux-tab>
@@ -71,8 +76,7 @@
           </ng-template>
         </lux-tab>
         <lux-tab luxTitle="Deaktiviert" luxIconName="lux-interface-block" [luxDisabled]="true" class="example-tab-content">
-          <ng-template>
-          </ng-template>
+          <ng-template> </ng-template>
         </lux-tab>
       </lux-tabs>
     </ng-template>
@@ -81,20 +85,8 @@
   <lux-master-footer-ac>
     <div fxLayout="column">
       <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="end center">
-        <lux-button
-          luxLabel="#1"
-          [luxFlat]="true"
-          luxColor="primary"
-          (luxClicked)="selectedDetail = masterEntries[0]"
-        >
-        </lux-button>
-        <lux-button
-          luxLabel="#5"
-          [luxFlat]="true"
-          luxColor="primary"
-          (luxClicked)="selectedDetail = masterEntries[4]"
-        >
-        </lux-button>
+        <lux-button luxLabel="#1" [luxFlat]="true" luxColor="primary" (luxClicked)="selectedDetail = masterEntries[0]"> </lux-button>
+        <lux-button luxLabel="#5" [luxFlat]="true" luxColor="primary" (luxClicked)="selectedDetail = masterEntries[4]"> </lux-button>
         <lux-menu luxMenuIconName="lux-interface-setting-menu-1" luxTagId="master_footer_menu">
           <lux-menu-item
             luxLabel="Liste umkehren"
