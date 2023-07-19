@@ -2,11 +2,15 @@
 
 ## New
 
--**lux-button, lux-menu-item, lux-app-header-ac-nav-menu-item**: Neue Properties luxButtonBadge, luxButtonBadgeColor eingeführt. [Issue 305](https://github.com/IHK-GfI/lux-components/issues/305)
+- **allgemein**: Update auf LUX-Components-Icons-And-Fonts. [1.6.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.6.0).
+  - Schriften werden nicht korrekt angezeigt. [Issue 334](https://github.com/IHK-GfI/lux-components/issues/334)
+- **allgemein**: Update auf LUX-Components-Theme [14.7.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/14.7.0).
+- **lux-button, lux-menu-item, lux-app-header-ac-nav-menu-item**: Neue Properties luxButtonBadge, luxButtonBadgeColor eingeführt. [Issue 305](https://github.com/IHK-GfI/lux-components/issues/305)
 
 ## Bug Fixes
 
 - **lux-file-upload**: Beim Zurückgehen im lux-stepper konnte es dazu kommen, dass die File-Icons nicht mehr angezeigt wurden. [Issue 336](https://github.com/IHK-GfI/lux-components/issues/336)
+- **lux-master-detail-ac**: In der mobilen Ansicht wird initial die Detailansicht anstatt der Liste angezeigt. [Issue 338](https://github.com/IHK-GfI/lux-components/issues/338)
 
 # Version 14.6.0
 
