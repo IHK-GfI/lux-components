@@ -3,6 +3,7 @@
 ## New
 
 - **lux-table**: Fehlermeldung bei fehlenden ng-template verbessern. [Issue 345](https://github.com/IHK-GfI/lux-components/issues/345)
+- **allgemein**: Sicherheitsupdates eingespielt.
 
 # Version 14.7.0
 
