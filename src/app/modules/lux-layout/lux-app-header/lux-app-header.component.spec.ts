@@ -586,7 +586,7 @@ class MockImageClickedAppHeaderComponent {
   template: `
     <lux-app-header
       (luxClicked)="onClicked()"
-      luxIconName="fa fas-user"
+      luxIconName="lux-interface-user-single"
       luxAppTitle="MyClickTitle"
       luxAppTitleShort="MyClick"
     ></lux-app-header>

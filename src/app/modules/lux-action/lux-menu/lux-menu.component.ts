@@ -57,7 +57,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   @Output() luxMenuOpened = new EventEmitter<void>();
 
   @Input() luxMenuLabel = '';
-  @Input() luxMenuIconName = 'menu';
+  @Input() luxMenuIconName = 'lux-interface-setting-menu-1';
   @Input() luxMenuTriggerIconShowRight = false;
   @Input() luxMenuItemFixWidth = 0;
   @Input() luxClassName = '';
