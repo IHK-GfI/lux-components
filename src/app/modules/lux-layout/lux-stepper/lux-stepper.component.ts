@@ -18,7 +18,7 @@ import { ILuxStepperButtonConfig } from './lux-stepper-model/lux-stepper-button-
 import { LuxStepperHelperService } from './lux-stepper-helper.service';
 import { LuxStepComponent } from './lux-stepper-subcomponents/lux-step.component';
 import { ILuxStepperConfiguration } from './lux-stepper-model/lux-stepper-configuration.interface';
-import { MatStepper} from '@angular/material/stepper';
+import { MatStepper } from '@angular/material/stepper';
 import { LuxIconComponent } from '../../lux-icon/lux-icon/lux-icon.component';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { CdkStepHeader, StepperSelectionEvent } from '@angular/cdk/stepper';
@@ -32,13 +32,13 @@ import { Subscription } from 'rxjs';
 })
 export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   private readonly _DEFAULT_PREV_BTN_CONF: ILuxStepperButtonConfig = {
-    label: $localize `:@@luxc.stepper.back.btn:Zurück`
+    label: $localize`:@@luxc.stepper.back.btn:Zurück`
   };
   private readonly _DEFAULT_NEXT_BTN_CONF: ILuxStepperButtonConfig = {
-    label: $localize `:@@luxc.stepper.next.btn:Weiter`
+    label: $localize`:@@luxc.stepper.next.btn:Weiter`
   };
   private readonly _DEFAULT_FIN_BTN_CONF: ILuxStepperButtonConfig = {
-    label: $localize `:@@luxc.stepper.finish.btn:Abschließen`,
+    label: $localize`:@@luxc.stepper.finish.btn:Abschließen`,
     color: 'primary'
   };
 
@@ -79,11 +79,13 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     // Änderungen an den steps sollten auch dem Konfigurationsobjekt bekannt gemacht werden
-    this.subscriptions.push(this.luxSteps.changes.subscribe(() => {
-      this.stepperConfiguration.luxSteps = this.luxSteps.toArray();
-      this.cdr.detectChanges();
-      this.updateIcons();
-    }));
+    this.subscriptions.push(
+      this.luxSteps.changes.subscribe(() => {
+        this.stepperConfiguration.luxSteps = this.luxSteps.toArray();
+        this.cdr.detectChanges();
+        this.updateIcons();
+      })
+    );
     // Initial die aktuellen steps in die Konfiguration schreiben
     this.stepperConfiguration.luxSteps = this.luxSteps.toArray();
     this.cdr.detectChanges();
@@ -100,41 +102,47 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
     // zwischengespeichert.
     this.matStepHeaders = this.matStepper._stepHeader.toArray();
 
-    this.subscriptions.push(this.matStepper._stepHeader.changes.subscribe(newStepHeaders => {
-      this.matStepHeaders = newStepHeaders.toArray();
-    }));
+    this.subscriptions.push(
+      this.matStepper._stepHeader.changes.subscribe((newStepHeaders) => {
+        this.matStepHeaders = newStepHeaders.toArray();
+      })
+    );
 
     // Auf next/previous Aufrufe aus dem Service horchen und entsprechend reagieren
-    this.subscriptions.push(this.stepperService
-      .getObservable(this)
-      .pipe(skip(1))
-      .subscribe((next: boolean | null) => {
-        // Voraussetzung: Stepper nicht deaktiviert
-        if (!this.stepperConfiguration.luxDisabled) {
-          if (next === true) {
-            this.checkValidation();
-            this.matStepper.next();
-            if (this.matStepper.selectedIndex < this.matStepHeaders.length) {
-              this.matStepHeaders[this.matStepper.selectedIndex].focus();
-            }
-          } else if (next === false) {
-            this.matStepper.previous();
-            if (this.matStepper.selectedIndex < this.matStepHeaders.length) {
-              this.matStepHeaders[this.matStepper.selectedIndex].focus();
+    this.subscriptions.push(
+      this.stepperService
+        .getObservable(this)
+        .pipe(skip(1))
+        .subscribe((next: boolean | null) => {
+          // Voraussetzung: Stepper nicht deaktiviert
+          if (!this.stepperConfiguration.luxDisabled) {
+            if (next === true) {
+              this.checkValidation();
+              this.matStepper.next();
+              if (this.matStepper.selectedIndex < this.matStepHeaders.length) {
+                this.matStepHeaders[this.matStepper.selectedIndex].focus();
+              }
+            } else if (next === false) {
+              this.matStepper.previous();
+              if (this.matStepper.selectedIndex < this.matStepHeaders.length) {
+                this.matStepHeaders[this.matStepper.selectedIndex].focus();
+              }
             }
           }
-        }
-      }));
+        })
+    );
 
     // Änderungen an den Icons jedes einzelnen Steps führt zu Neugenerierung aller individuellen Icons
     // ==> Material erlaubt leider nur alle Icons identisch zu ändern, nicht für jeden Step einzeln, deshalb
     // generieren wir selbst die Icons.
     this.luxSteps.toArray().forEach((luxStep: LuxStepComponent) => {
-      this.subscriptions.push(luxStep.getIconChangeObsv().subscribe((iconChange: boolean) => {
-        if (this.stepperConfiguration.luxUseCustomIcons && iconChange) {
-          this.updateIcons();
-        }
-      }));
+      this.subscriptions.push(
+        luxStep.getIconChangeObsv().subscribe((iconChange: boolean) => {
+          if (this.stepperConfiguration.luxUseCustomIcons && iconChange) {
+            this.updateIcons();
+          }
+        })
+      );
     });
 
     this.setFocusedCSS(this.luxCurrentStepNumber);
@@ -208,28 +216,26 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
    * @param luxStep
    * @param factory
    */
-  private generateCustomIconForStep(
-    stepLabel: ViewContainerRef,
-    luxStep: LuxStepComponent,
-    factory: ComponentFactory<LuxIconComponent>
-  ) {
+  private generateCustomIconForStep(stepLabel: ViewContainerRef, luxStep: LuxStepComponent, factory: ComponentFactory<LuxIconComponent>) {
     if (luxStep && luxStep.luxIconName) {
       // Das edited und normal Icon generieren
       const componentIconEdited: ComponentRef<LuxIconComponent> = stepLabel.createComponent(factory);
       const instanceIconEdited: LuxIconComponent = componentIconEdited.instance;
 
       instanceIconEdited.luxIconName = this.luxEditedIconName;
-      instanceIconEdited.luxIconSize = '2x';
+      instanceIconEdited.luxIconSize = '20px';
       instanceIconEdited.luxRounded = true;
       instanceIconEdited.luxMargin = '0 8px 0 0';
+      instanceIconEdited.luxPadding = '10px';
       componentIconEdited.location.nativeElement.className += ' lux-stepper-edited-icon';
 
       const componentIconNormal: ComponentRef<LuxIconComponent> = stepLabel.createComponent(factory);
       const instanceIconNormal: LuxIconComponent = componentIconNormal.instance;
       instanceIconNormal.luxIconName = luxStep.luxIconName;
-      instanceIconNormal.luxIconSize = '2x';
+      instanceIconNormal.luxIconSize = '20px';
       instanceIconNormal.luxRounded = true;
       instanceIconNormal.luxMargin = '0 8px 0 0';
+      instanceIconNormal.luxPadding = '10px';
       componentIconNormal.location.nativeElement.className += ' lux-stepper-normal-icon';
     }
   }
