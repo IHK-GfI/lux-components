@@ -1,3 +1,8 @@
+# Version 15.1.0
+
+## Bug Fixes
+
+- **lux-stepper**: Die (default) Material-Icons gegen Lux-Icons ausgetauscht. [Issue 331](https://github.com/IHK-GfI/lux-components/issues/331)
 
 # Version 15.0.0
 

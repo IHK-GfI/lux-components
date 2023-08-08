@@ -29,12 +29,6 @@
         box-sizing: border-box;
       }
 
-      .mat-step-icon .mat-icon {
-        font-size: 32px;
-        width: 32px;
-        height: 32px;
-      }
-
       .mat-step-label {
         height: 100%;
         display: flex;
@@ -58,21 +52,6 @@
             overflow: unset;
           }
 
-          lux-icon {
-            margin-right: 8px !important;
-            > i,
-            > .lux-material-icon {
-              font-size: 25px;
-              width: 32px;
-              height: 32px;
-              text-align: center;
-            }
-
-            > i:before {
-              padding-top: 2px;
-            }
-          }
-
           // Immer die normalen Icons darstellen
           lux-icon.lux-stepper-edited-icon {
             display: none;
@@ -80,13 +59,6 @@
 
           lux-icon.lux-stepper-normal-icon {
             display: block;
-          }
-
-          lux-icon {
-            > i:before {
-              padding-top: 2px;
-              display: block;
-            }
           }
 
           // Wenn der Step erfolgreich editiert wurde, das Edited-Icon darstellen
