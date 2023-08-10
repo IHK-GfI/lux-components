@@ -16,7 +16,10 @@ import {
   ViewChildren
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { MatLegacyAutocomplete as MatAutocomplete, MatLegacyAutocompleteTrigger as MatAutocompleteTrigger } from '@angular/material/legacy-autocomplete';
+import {
+  MatLegacyAutocomplete as MatAutocomplete,
+  MatLegacyAutocompleteTrigger as MatAutocompleteTrigger
+} from '@angular/material/legacy-autocomplete';
 import { MatLegacyChip as MatChip } from '@angular/material/legacy-chips';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -80,6 +83,7 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
   @Input() luxPlaceholder = $localize`:@@luxc.chips.input.placeholder.lbl:eingeben oder auswählen`;
   @Input() luxOptionMultiline = false;
   @Input() luxOptionBlockSize = 500;
+  @Input() luxHideBorder = false;
 
   @Output() luxChipAdded = new EventEmitter<string>();
 

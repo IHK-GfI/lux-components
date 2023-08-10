@@ -4,6 +4,10 @@
 
 - **lux-stepper**: Die (default) Material-Icons gegen Lux-Icons ausgetauscht. [Issue 331](https://github.com/IHK-GfI/lux-components/issues/331)
 
+## New
+
+- **lux-chips-ac**: Neue Property luxHideBorder eingeführt. [Issue 351](https://github.com/IHK-GfI/lux-components/issues/351)
+
 # Version 15.0.0
 
 ## New

@@ -19,6 +19,7 @@
         [luxLabelLongFormat]="labelLongFormat"
         [luxOptionMultiline]="optionMultiline"
         [luxDense]="denseFormat"
+        [luxHideBorder]="hideBorder"
         (luxChipAdded)="chipAdded($event)"
       >
         <lux-chip-ac
@@ -54,6 +55,7 @@
         [luxOptionBlockSize]="optionBlockSize"
         [luxLabelLongFormat]="labelLongFormat"
         [luxDense]="denseFormat"
+        [luxHideBorder]="hideBorder"
       >
         <lux-chip-ac-group
           [luxRemovable]="groupRemovable"
@@ -87,6 +89,7 @@
           [luxOptionBlockSize]="optionBlockSize"
           [luxLabelLongFormat]="labelLongFormat"
           [luxDense]="denseFormat"
+          [luxHideBorder]="hideBorder"
         >
           <lux-chip-ac-group
             [luxRemovable]="groupRemovable"
@@ -154,6 +157,14 @@
         [luxDisabled]="!inputAllowed"
         luxHint="Gibt an, ob nur Werte aus den vorhandenen Optionen ausgewählt werden dürfen."
         [(luxChecked)]="strict"
+        [luxNoTopLabel]="true"
+      >
+      </lux-toggle-ac>
+      <lux-toggle-ac
+        luxLabel="luxHideBorder"
+        [luxDisabled]="inputAllowed"
+        luxHint="Mit dieser Property kann die Border um die Chip-Elemente ausgeblendet werden, wenn kein Input vorhanden ist."
+        [(luxChecked)]="hideBorder"
         [luxNoTopLabel]="true"
       >
       </lux-toggle-ac>

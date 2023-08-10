@@ -4,6 +4,7 @@
     [luxIgnoreDefaultLabel]="!luxInputAllowed"
     [luxLabelLongFormat]="luxLabelLongFormat"
     luxTagId="luxChipsWrapper"
+    [ngClass]="{ 'lux-hide-input-border': luxHideBorder && !luxInputAllowed }"
   >
     <mat-chip-list
       [ngClass]="[
