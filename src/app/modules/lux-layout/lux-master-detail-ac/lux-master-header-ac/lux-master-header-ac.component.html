@@ -1,8 +1,4 @@
-<div 
-  fxLayout="row" 
-  fxLayoutAlign="start center" 
-  class="lux-master-header-container-ac"
-  >
+<div class="lux-master-header-container-ac">
   <lux-button
     [luxIconName]="iconName"
     [luxRounded]="true"
@@ -17,7 +13,7 @@
     *ngIf="!luxToggleHidden"
   ></lux-button>
 
-  <div fxFlex="100" #headerContentContainer>
+  <div class="lux-master-header-content-container-ac" #headerContentContainer>
     <ng-content></ng-content>
   </div>
 </div>

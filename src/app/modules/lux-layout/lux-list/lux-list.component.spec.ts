@@ -145,8 +145,6 @@ describe('LuxListComponent', () => {
 
     listNativeElement.focus();
     fixture.detectChanges();
-    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
-    LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
     expect(selectedSpy).toHaveBeenCalledTimes(0);
@@ -156,15 +154,26 @@ describe('LuxListComponent', () => {
     expect(focusedItemSpy).toHaveBeenCalledWith(listItems[0].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(0);
 
-    // Änderungen durchführen
     LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
     expect(selectedSpy).toHaveBeenCalledTimes(0);
     expect(focusedSpy).toHaveBeenCalledTimes(2);
-    expect(focusedSpy).toHaveBeenCalledWith(1);
+    expect(focusedSpy).toHaveBeenCalledWith(0);
     expect(focusedItemSpy).toHaveBeenCalledTimes(2);
+    expect(focusedItemSpy).toHaveBeenCalledWith(listItems[0].componentInstance as LuxListItemComponent);
+    expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(0);
+
+    // Änderungen durchführen
+    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
+    LuxTestHelper.wait(fixture);
+
+    // // Nachbedingungen prüfen
+    expect(selectedSpy).toHaveBeenCalledTimes(0);
+    expect(focusedSpy).toHaveBeenCalledTimes(3);
+    expect(focusedSpy).toHaveBeenCalledWith(1);
+    expect(focusedItemSpy).toHaveBeenCalledTimes(3);
     expect(focusedItemSpy).toHaveBeenCalledWith(listItems[1].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(0);
 
@@ -172,11 +181,11 @@ describe('LuxListComponent', () => {
     LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', UP_ARROW);
     LuxTestHelper.wait(fixture);
 
-    // Nachbedingungen prüfen
+    // // Nachbedingungen prüfen
     expect(selectedSpy).toHaveBeenCalledTimes(0);
-    expect(focusedSpy).toHaveBeenCalledTimes(3);
+    expect(focusedSpy).toHaveBeenCalledTimes(4);
     expect(focusedSpy).toHaveBeenCalledWith(0);
-    expect(focusedItemSpy).toHaveBeenCalledTimes(3);
+    expect(focusedItemSpy).toHaveBeenCalledTimes(4);
     expect(focusedItemSpy).toHaveBeenCalledWith(listItems[0].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(0);
   }));
@@ -198,8 +207,6 @@ describe('LuxListComponent', () => {
 
     listNativeElement.focus();
     fixture.detectChanges();
-    LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
-    LuxTestHelper.wait(fixture);
     LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', SPACE);
     LuxTestHelper.wait(fixture);
 

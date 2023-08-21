@@ -11,9 +11,7 @@ import { MasterDetailExampleDataService } from './master-detail-example-data.ser
   selector: 'lux-master-detail-ac-example',
   templateUrl: './master-detail-authentic-example.component.html',
   styleUrls: ['./master-detail-authentic-example.component.scss'],
-  providers: [
-    MasterDetailExampleDataService,
-  ]
+  providers: [MasterDetailExampleDataService]
 })
 export class MasterDetailAuthenticExampleComponent implements OnInit, OnDestroy {
   options = [
@@ -105,7 +103,7 @@ export class MasterDetailAuthenticExampleComponent implements OnInit, OnDestroy 
 
     of(this.masterEntries[1])
       .pipe(take(1), delay(2000))
-      .subscribe(v => (this.selectedDetail = v));
+      .subscribe((v) => (this.selectedDetail = v));
   }
 
   ngOnDestroy(): void {
@@ -157,7 +155,7 @@ export class MasterDetailAuthenticExampleComponent implements OnInit, OnDestroy 
       this.masterEntries = this.allMasterEntries;
       this.configuration.ignoreScrollLoading = false;
     } else {
-      this.masterEntries = this.allMasterEntries.filter(entry => entry.timestamp < event.value);
+      this.masterEntries = this.allMasterEntries.filter((entry) => entry.timestamp < event.value);
       this.configuration.ignoreScrollLoading = true;
     }
   }
@@ -174,6 +172,7 @@ export class MasterDetailAuthenticExampleComponent implements OnInit, OnDestroy 
 
   clearList() {
     this.masterEntries = [];
+    this.selectedDetail = -1;
   }
 
   fillList() {

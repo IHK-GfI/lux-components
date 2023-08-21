@@ -24,6 +24,7 @@ export class ListExampleComponent {
 
   clear() {
     this.items = [];
+    this.selectedPosition = -1;
   }
 
   fill(amount: number) {
@@ -37,8 +38,6 @@ export class ListExampleComponent {
         iconName: 'lux-interface-user-single'
       });
     }
-
-    this.items[0].selected = true;
   }
 
   click(event: any) {
