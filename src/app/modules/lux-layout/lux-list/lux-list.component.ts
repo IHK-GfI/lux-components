@@ -36,11 +36,22 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
 
   @Input() luxEmptyIconName = 'lux-interface-alert-information-circle';
   @Input() luxEmptyIconSize = '5x';
-  @Input() luxEmptyLabel =  $localize `:@@luxc.list.empty_label:Keine Einträge vorhanden`;
+  @Input() luxEmptyLabel = $localize`:@@luxc.list.empty_label:Keine Einträge vorhanden`;
 
   @HostBinding('attr.role') role = 'listbox';
   @HostBinding('attr.tabindex') tabindex = '0';
   @HostBinding('attr.aria-multiselectable') ariaMulti = 'true';
+
+  @HostListener('focus') onFocus() {
+    // Wenn die Liste den Focus erhält, soll direkt das selektierte Element (bzw. das erste Element) focussiert werden.
+    if (this.luxItems.length > 0) {
+      if (this.luxSelectedPosition >= 0) {
+        this.focus(this.luxSelectedPosition);
+      } else {
+        this.focus(0);
+      }
+    }
+  }
 
   @HostListener('keydown', ['$event']) onKeydown(keyboardEvent: KeyboardEvent) {
     this.keydown(keyboardEvent);

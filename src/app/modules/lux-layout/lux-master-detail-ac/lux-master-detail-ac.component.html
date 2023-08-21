@@ -1,35 +1,29 @@
 <div
   class="lux-master-detail-ac"
-  fxLayout="row"
-  fxFlex="grow"
-  fxLayoutGap.gt-sm="30px"
+  [ngClass]="{ 'lux-master-detail-ac-mobile': isMobile }"
   (swipeleft)="onSwipeLeft()"
   (swiperight)="onSwipeRight()"
-  fxFill
 >
   <div
-    [fxFlex]="flexMaster"
-    fxLayout="column"
     class="lux-master-ac-container"
     tabindex="1"
     luxTagIdHandler
     [luxTagId]="luxTagIdMaster"
     [ngClass]="{
-      'lux-hidden': !luxOpen && isMobile,
-      'lux-0-width': !luxOpen && isMobile,
       'lux-master-ac-container-mobile': isMobile,
+      'lux-master-ac-container-medium': isMedium,
       'lux-empty-elements-aligned': alignEmptyIndicators,
-      'lux-master-closed': !luxOpen && !isMobile
+      'lux-master-closed': !luxOpen && !isMobile,
+      'lux-display-none': !luxOpen && isMobile
     }"
     #masterContainer
   >
     <!-- Header Element über der Master-Liste -->
+    <!-- Wird keine Header übergeben, wird eine leere Card erzeugt, andem der Button hängt -->
     <lux-master-header-ac
       (luxOpened)="toggleList($event)"
       [luxToggleHidden]="(isMobile && !this.luxSelectedDetail && !luxOpen) || isMobile"
       [ngClass]="{
-        'lux-not-open': !luxOpen,
-        'lux-hidden': !luxOpen && isMobile,
         'lux-empty-master-header': !showMasterHeader && !isMobile && luxOpen
       }"
     >
@@ -37,10 +31,9 @@
     </lux-master-header-ac>
 
     <!-- Master Simple Component gesetzt? -> Standard Lux Liste als Master nutzen  (window:keydown)="handleMasterKeyInput($event)" -->
-    <lux-master-view fxFlex="grow" [ngClass]="{ 'lux-hidden': !luxOpen && !isMobile }" class="lux-master-view-ac">
+    <div [ngClass]="{ 'lux-display-none': !luxOpen && !isMobile }" class="lux-master-view-ac">
       <lux-list
-        fxFlex="grow"
-        class="lux-overflow-y-auto lux-overflow-wrap-break-word"
+        class="lux-overflow-wrap-break-word"
         luxInfiniteScroll
         [luxScrollPercent]="85"
         [luxImmediateCallback]="true"
@@ -67,42 +60,36 @@
         </lux-list-item>
 
         <div
-          fxLayout="row"
-          fxLayoutAlign="center"
           #masterSpinnerCard
           [@masterIsLoadingChanged]="luxMasterIsLoading"
+          class="lux-master-progress-container"
           [ngClass]="{ 'lux-spinner-hidden': !luxMasterIsLoading }"
         >
           <br *ngIf="luxMasterIsLoading" />
-          <mat-progress-spinner class="lux-m-3" color="primary" mode="indeterminate" diameter="48" fxFlex="0 0 auto">
-          </mat-progress-spinner>
+          <mat-progress-spinner class="lux-m-3" color="primary" mode="indeterminate" diameter="48"> </mat-progress-spinner>
           <br *ngIf="luxMasterIsLoading" />
         </div>
       </lux-list>
-    </lux-master-view>
+    </div>
 
     <!-- Footer Element unter der Master-Liste -->
     <ng-content select="lux-master-footer-ac" *ngIf="luxOpen"></ng-content>
   </div>
   <!-- Detail - Container -->
   <div
-    [fxFlex]="flexDetail"
-    fxFill
     luxTagIdHandler
     class="lux-detail-ac-container lux-overflow-y-auto"
-    [ngClass]="{ 'lux-display-none': isDetailInvisible(), 'lux-detail-ac-container-mobile': isMobile }"
+    [ngClass]="{
+      'lux-display-none': isDetailInvisible(),
+      'lux-detail-ac-container-mobile': isMobile,
+      'lux-detail-ac-container-medium': isMedium,
+      'lux-empty-detail': selectedPosition < 0
+    }"
     [luxTagId]="luxTagIdDetail"
     tabindex="2"
   >
     <!-- Button für die Mobile Ansicht -->
-    <div
-      class="back-to-master-button-container lux-mb-3"
-      fxLayout="row"
-      fxLayoutAlign="start center"
-      fxLayoutGap="10px"
-      (click)="onOpenMaster()"
-      *ngIf="!luxOpen && isMobile"
-    >
+    <div class="back-to-master-button-container lux-mb-3" (click)="onOpenMaster()" *ngIf="!luxOpen && isMobile">
       <lux-button
         [luxRounded]="true"
         class="back-to-master-button"
@@ -112,13 +99,12 @@
       <span class="back-to-master-label" i18n="@@luxc.master-detail.back-to-master-label">Zurück zur Liste</span>
     </div>
     <!-- Detail-Header -->
-    <div class="detail-header-container" fxLayout="row" fxLayoutAlign="start center">
+    <div class="detail-header-container" [ngClass]="{ 'lux-display-none': selectedPosition < 0 }">
       <lux-card
-        *ngIf="!detailHeader && luxDefaultDetailHeader && isDetailInvisible()"
+        *ngIf="!detailHeader && luxDefaultDetailHeader"
         luxTitle="{{ luxMasterList[selectedPosition] | luxPropertyFromObject: masterSimple?.luxTitleProp ?? '' }}"
         luxSubTitle="{{ luxMasterList[selectedPosition] | luxPropertyFromObject: masterSimple?.luxSubTitleProp ?? '' }}"
         [luxTitleLineBreak]="luxTitleLineBreak"
-        fxFlex="1 1 100"
         class="lux-detail-header-ac lux-mb-4"
         luxTagId="defaultDetailHeader"
       >
@@ -130,18 +116,22 @@
       </lux-card>
       <ng-content select="lux-detail-header-ac" *ngIf="detailHeader"></ng-content>
     </div>
-    <div class="lux-detail-view-container">
+    <div class="lux-detail-view-container" [ngClass]="{ 'lux-display-none': selectedPosition < 0 }">
       <ng-template #detailViewContainerRef></ng-template>
     </div>
     <!-- Das Empty-Icon und Empty-Label, wenn kein Detail gegeben ist -->
     <div
-      class="lux-detail-empty"
-      [ngClass]="{ 'lux-display-none': isDetailInvisible() || selectedPosition > -1, 'lux-mobile': isMobile }"
-      fxLayout="column"
-      fxLayoutAlign="center center"
+      class="lux-detail-empty-container lux-mt-4"
+      [ngClass]="{ 'lux-display-none': (isMobile && luxOpen) || selectedPosition > -1 }"
       #detailEmpty
     >
-      <lux-icon class="lux-detail-empty-icon" [luxIconName]="luxEmptyIconDetail" [luxIconSize]="luxEmptyIconDetailSize"> </lux-icon>
+      <lux-icon
+        class="lux-detail-empty-icon"
+        luxMargin="0 0 8px 0"
+        [luxIconName]="luxEmptyIconDetail"
+        [luxIconSize]="luxEmptyIconDetailSize"
+      >
+      </lux-icon>
       <span class="lux-detail-empty-icon-text">
         <strong>{{ luxEmptyLabelDetail }}</strong>
       </span>

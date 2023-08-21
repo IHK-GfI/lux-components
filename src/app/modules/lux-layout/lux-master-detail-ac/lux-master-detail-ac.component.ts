@@ -68,8 +68,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
   @ViewChild('detailViewContainerRef', { read: ViewContainerRef, static: true }) detailViewContainerRef!: ViewContainerRef;
   @ViewChild('masterContainer', { read: ElementRef, static: true }) masterContainer?: ElementRef;
 
-  @HostBinding('class.lux-overflow-y-auto') overflowY = true;
-
   private _luxOpen = true;
   private _luxMasterList = new BehaviorSubject<Array<any>>([]);
   private _luxSelectedDetail: T | null = null;
@@ -81,10 +79,7 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
 
   isMobile: boolean;
   isMedium: boolean;
-
   detailContext = { $implicit: {} };
-  flexMaster?: string;
-  flexDetail?: string;
   showMasterHeader?: boolean;
   // Enthält die Position des aktuell selektierten Elements
   selectedPosition = -1;
@@ -113,7 +108,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
   @Input()
   set luxOpen(open) {
     this._luxOpen = open;
-    this.updateOpen();
   }
 
   /* Selected Detail Get/Set */
@@ -123,9 +117,7 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
 
   @Input()
   set luxSelectedDetail(value) {
-    if (value !== this._luxSelectedDetail) {
-      this.updateDetail$.next(value);
-    }
+    this.updateDetail$.next(value);
   }
 
   /* Master List Get/Set */
@@ -154,16 +146,12 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
       this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(() => {
         this.isMobile = this.mediaObserver.isXS() || this.mediaObserver.isSM();
         this.isMedium = this.mediaObserver.isMD();
-        if (this.isMobile || this.isMedium) {
-          this.updateOpen();
-        }
       })
     );
   }
 
   ngOnInit() {
     this.handleMasterListUpdate();
-    this.updateOpen();
   }
 
   ngAfterContentInit() {
@@ -285,33 +273,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
   }
 
   /**
-   * Steuert das Breitenverhältnis von Master und Detail je nachdem
-   * ob der Master auf- oder eingeklappt ist und ob eine Mobilansicht aktiv ist.
-   */
-  private updateOpen() {
-    if (this.luxOpen) {
-      if (this.isMobile) {
-        this.flexMaster = '100';
-        this.flexDetail = '0';
-      } else if (this.isMedium) {
-        this.flexMaster = 'calc(50% - 30px)'; /** 30px = Gap zwischen Master und Detail */
-        this.flexDetail = '50';
-      } else {
-        this.flexMaster = '30';
-        this.flexDetail = '70';
-      }
-    } else {
-      if (this.isMobile) {
-        this.flexMaster = '0';
-        this.flexDetail = '100';
-      } else {
-        this.flexMaster = '25px';
-        this.flexDetail = 'grow';
-      }
-    }
-  }
-
-  /**
    * Kümmert sich um Änderungen an der HTML-Node der Master-Liste.
    * Rückt dabei das selektierte Element in den Fokus und berechnet wie viele Elemente
    * gerade in der Liste sichtbar sein können (für das Durchschalten mit Pfeiltasten benötigt).
@@ -349,6 +310,7 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
         } else {
           if (!this.compareObjects(this.luxSelectedDetail, detail)) {
             this.detailViewContainerRef.clear();
+
             if (detail) {
               this.detailContext = { $implicit: detail };
 
@@ -365,6 +327,7 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
               );
               // Die Detailansicht nach dem Wechsel wieder nach oben scrollen lassen
               this.detailViewContainerRef.element.nativeElement.parentNode.scrollTop = 0;
+
               this.cdr.detectChanges();
             }
           }
@@ -387,10 +350,9 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
       // Die Master-Liste fokussieren (die Liste gibt es nur einmal, weil wir auf Changes hören, ist sie aber in einer QueryList)
       this.luxMasterQueryList.first.nativeElement.focus();
 
-      if (this.isMobile) {
+      if (this.isMobile && this.luxMasterList.length !== 0) {
         this.luxOpen = false;
       }
-      // this.mobileHelperService.hasValue = !!this._luxSelectedDetail;
       this.cdr.detectChanges();
     }
   }
