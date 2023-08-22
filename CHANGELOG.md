@@ -1,14 +1,15 @@
 # Version 15.1.0
 
+## New
+
+- **allgemein**: Falsche Schriftart in der lux-table korrigiert. [Issue 354](https://github.com/IHK-GfI/lux-components/issues/354)
+- **lux-chips-ac**: Neue Property luxHideBorder eingeführt. [Issue 351](https://github.com/IHK-GfI/lux-components/issues/351)
+
 ## Bug Fixes
 
 - **lux-stepper**: Die (default) Material-Icons gegen Lux-Icons ausgetauscht. [Issue 331](https://github.com/IHK-GfI/lux-components/issues/331)
 - **lux-master-detail-ac**: FxLayout wurde durch css ersetzt. [Issue 350](https://github.com/IHK-GfI/lux-components/issues/350)
 - **lux-list-ac**: Der Keyboard-Focus wurde überarbeitet. [Issue 350](https://github.com/IHK-GfI/lux-components/issues/350)
-
-## New
-
-- **lux-chips-ac**: Neue Property luxHideBorder eingeführt. [Issue 351](https://github.com/IHK-GfI/lux-components/issues/351)
 
 # Version 15.0.0
 

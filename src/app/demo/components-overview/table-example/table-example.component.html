@@ -155,6 +155,59 @@
         <lux-markdown [luxData]="markdownData"></lux-markdown>
       </div>
     </lux-textbox>
+    <h3 style="margin-bottom: 0">Test-Tabelle zum Prüfen der eingesetzten Schriftarten</h3>
+    <p style="margin: 0">
+      Innerhalb einer Tabelle soll nur eine Schriftart verwendet werden. Unabhängig von der Art der Formatierung des Tabellen-Eintrags. Die
+      Schriftart wird dabei durch das jeweilige Theme bestimmt. Bei den Themes Authentic und Green ist es die Schrift "Source Sans Pro".
+    </p>
+    <lux-table [luxData]="fontExample">
+      <lux-table-column luxColumnDef="example1">
+        <lux-table-column-header><ng-template>ohne &lt;...&gt;</ng-template></lux-table-column-header>
+        <lux-table-column-content
+          ><ng-template let-element>{{ element.content }}</ng-template></lux-table-column-content
+        >
+        <lux-table-column-footer><ng-template>Footertext</ng-template></lux-table-column-footer>
+      </lux-table-column>
+      <lux-table-column luxColumnDef="example2">
+        <lux-table-column-header
+          ><ng-template><span>Mit &lt;span&gt;</span></ng-template></lux-table-column-header
+        >
+        <lux-table-column-content
+          ><ng-template let-element
+            ><span>{{ element.content }}</span></ng-template
+          ></lux-table-column-content
+        >
+        <lux-table-column-footer
+          ><ng-template><span>Footertext</span></ng-template></lux-table-column-footer
+        >
+      </lux-table-column>
+      <lux-table-column luxColumnDef="example3">
+        <lux-table-column-header
+          ><ng-template><div>Mit &lt;div&gt;</div></ng-template></lux-table-column-header
+        >
+        <lux-table-column-content
+          ><ng-template let-element
+            ><div>{{ element.content }}</div></ng-template
+          ></lux-table-column-content
+        >
+        <lux-table-column-footer
+          ><ng-template><div>Footertext</div></ng-template></lux-table-column-footer
+        >
+      </lux-table-column>
+      <lux-table-column luxColumnDef="example4">
+        <lux-table-column-header
+          ><ng-template><p style="margin: 0">Mit &lt;p&gt;</p></ng-template></lux-table-column-header
+        >
+        <lux-table-column-content
+          ><ng-template let-element
+            ><p>{{ element.content }}</p></ng-template
+          ></lux-table-column-content
+        >
+        <lux-table-column-footer
+          ><ng-template><p>Footertext</p></ng-template></lux-table-column-footer
+        >
+      </lux-table-column>
+    </lux-table>
   </example-base-content>
   <example-base-simple-options>
     <table-example-simple-options [tableExample]="this"></table-example-simple-options>

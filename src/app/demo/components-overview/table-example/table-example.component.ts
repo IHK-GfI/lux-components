@@ -25,6 +25,10 @@ export class TableExampleComponent extends TableExampleBaseClass {
   \`\`\`
   `;
 
+  fontExample: { example1: string; example2: string; example3: string; example4: string; content: string }[] = [
+    { example1: 'unformated', example2: 'span', example3: 'div', example4: 'p', content: 'Lorem ipsum' }
+  ];
+
   constructor() {
     super();
 
