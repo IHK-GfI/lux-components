@@ -333,7 +333,7 @@
         <source>eingeben oder auswählen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-chips-ac/lux-chips-ac.component.ts</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">83</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datepicker.error_message.min" datatype="html">
@@ -856,21 +856,21 @@
         <source>Zurück zur Liste</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-ac/lux-master-detail-ac.component.html</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.master-detail.master.empty_label" datatype="html">
         <source>Keine Einträge vorhanden</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-ac/lux-master-detail-ac.component.ts</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.master-detail.detail.empty_label" datatype="html">
         <source>Kein Element ausgewählt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-master-detail-ac/lux-master-detail-ac.component.ts</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.master-detail.header.close.btn" datatype="html">
