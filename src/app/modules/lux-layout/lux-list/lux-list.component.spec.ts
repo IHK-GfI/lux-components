@@ -143,7 +143,7 @@ describe('LuxListComponent', () => {
     const listItems = fixture.debugElement.queryAll(By.directive(LuxListItemComponent));
     const listNativeElement = fixture.debugElement.query(By.css('lux-list')).nativeElement;
 
-    listNativeElement.focus();
+    LuxTestHelper.dispatchFakeEvent(listNativeElement, 'focus', true);
     fixture.detectChanges();
 
     // Nachbedingungen prüfen
@@ -205,7 +205,7 @@ describe('LuxListComponent', () => {
     const listItems = fixture.debugElement.queryAll(By.directive(LuxListItemComponent));
     const listNativeElement = fixture.debugElement.query(By.css('lux-list')).nativeElement;
 
-    listNativeElement.focus();
+    LuxTestHelper.dispatchFakeEvent(listNativeElement, 'focus', true);
     fixture.detectChanges();
     LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', SPACE);
     LuxTestHelper.wait(fixture);
