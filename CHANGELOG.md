@@ -1,3 +1,9 @@
+# Version 15.2.0
+
+## Bug Fixes
+
+-**lux-form-control-wrapper**: Bei Pflichtfeldern wird der "\*" im Label nicht mehr von Screenreadern vorgelesen. [Issue 359](https://github.com/IHK-GfI/lux-components/issues/359)
+
 # Version 15.1.0
 
 ## New

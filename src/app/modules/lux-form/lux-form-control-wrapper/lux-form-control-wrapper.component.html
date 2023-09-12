@@ -31,7 +31,7 @@
         <ng-template #formLabelTemplate>
           <ng-container *ngTemplateOutlet="luxFormComponent.formLabelComponent?.templateRef ?? null"></ng-container>
         </ng-template>
-        {{ luxFormComponent.luxRequired ? ' *' : '' }}
+        <span *ngIf="luxFormComponent.luxRequired" aria-hidden="true">&nbsp;*</span>
       </label>
     </div>
   </div>
