@@ -9,7 +9,26 @@
   }"
 >
   <lux-icon luxIconName="{{ luxIcon }}" class="lux-textbox-icon" *ngIf="luxIcon"></lux-icon>
-  <h3 class="lux-textbox-title" *ngIf="luxTitle">{{ luxTitle }}</h3>
+  <ng-container [ngSwitch]="luxHeading">
+    <h1 *ngSwitchCase="1" class="lux-textbox-title" title="{{ luxTitle }}">
+      {{ luxTitle }}
+    </h1>
+    <h2 *ngSwitchCase="2" class="lux-textbox-title" title="{{ luxTitle }}">
+      {{ luxTitle }}
+    </h2>
+    <h3 *ngSwitchDefault class="lux-textbox-title" title="{{ luxTitle }}">
+      {{ luxTitle }}
+    </h3>
+    <h4 *ngSwitchCase="4" class="lux-textbox-title" title="{{ luxTitle }}">
+      {{ luxTitle }}
+    </h4>
+    <h5 *ngSwitchCase="5" class="lux-textbox-title" title="{{ luxTitle }}">
+      {{ luxTitle }}
+    </h5>
+    <h6 *ngSwitchCase="6" class="lux-textbox-title" title="{{ luxTitle }}">
+      {{ luxTitle }}
+    </h6>
+  </ng-container>
   <div class="lux-textbox-content">
     <ng-content></ng-content>
   </div>
