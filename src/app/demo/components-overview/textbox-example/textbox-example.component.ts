@@ -10,6 +10,8 @@ export class TextboxExampleComponent {
   title = 'Information';
   color: LuxTextboxColor | undefined;
   icon = 'lux-interface-alert-information-circle';
+  heading = 2;
+
   colorOptions = [
     { label: 'default', value: '' },
     { label: 'blue', value: 'blue' },

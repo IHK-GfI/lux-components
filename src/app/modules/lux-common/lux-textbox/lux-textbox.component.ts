@@ -19,6 +19,6 @@ export class LuxTextboxComponent {
   get luxColor(): LuxTextboxColor | undefined {
     return this._luxColor;
   }
-
+  @Input() luxHeading = 3;
   constructor() {}
 }

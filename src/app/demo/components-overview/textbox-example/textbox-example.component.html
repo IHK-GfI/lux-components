@@ -4,7 +4,7 @@
 >
   <example-base-content fxLayout="column" fxLayoutGap="32px">
     <div class="container">
-      <lux-textbox [luxTitle]="title" [luxIcon]="icon" [luxColor]="color" class="lux-pt-5">
+      <lux-textbox [luxTitle]="title" [luxIcon]="icon" [luxColor]="color" [luxHeading]="heading" class="lux-pt-5">
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo itaque accusamus facere labore mollitia at aut nesciunt
           fugiat, sequi quos, quo quibusdam tempora provident veniam sunt distinctio. Aliquid, magnam dolore.
@@ -112,5 +112,13 @@
       [luxSelected]="colorOptions[1]"
       (luxSelectedChange)="onColorChanged($event)"
     ></lux-select-ac>
+    <lux-input-ac
+      luxLabel="luxHeading"
+      luxHint="Diese Property erlaubt es die Heading für die Textbox anzupassen."
+      luxType="number"
+      [luxNumberAlignLeft]="true"
+      [(luxValue)]="heading"
+    >
+    </lux-input-ac>
   </example-base-simple-options>
 </example-base-structure>
