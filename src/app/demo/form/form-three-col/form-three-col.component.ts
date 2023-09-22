@@ -34,7 +34,8 @@ interface FormThreeColDummyForm {
 
 @Component({
   selector: 'app-form-three-col',
-  templateUrl: './form-three-col.component.html'
+  templateUrl: './form-three-col.component.html',
+  styleUrls: ['./form-three-col.component.scss']
 })
 export class FormThreeColComponent extends FormBase {
   myGroup: FormGroup<FormThreeColDummyForm>;
