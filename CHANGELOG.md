@@ -8,6 +8,7 @@
 
 - **lux-form-control-wrapper**: Bei Pflichtfeldern wird der "\*" im Label nicht mehr von Screenreadern vorgelesen. [Issue 359](https://github.com/IHK-GfI/lux-components/issues/359)
 - **lux-form-control-wrapper**: Der Farbcontrast der Fehlermeldungen wurde gemäß WCAG2.1 Level AA überarbeitet. Die Fehlermeldung wurde durch ein zusätzliches Icon ergänzt. [Issue 361](https://github.com/IHK-GfI/lux-components/issues/361)
+- **lux-tile-ac**: Fehlende Aria-Attribute wurden ergänzt. [Issue 358](https://github.com/IHK-GfI/lux-components/issues/358)
 
 # Version 15.1.0
 
