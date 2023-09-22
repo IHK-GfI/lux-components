@@ -49,7 +49,14 @@
     fxLayoutAlign="space-between start"
   >
     <ng-container [ngSwitch]="shouldDisplayError()">
-      <div fxLayout="row" *ngSwitchCase="true">
+      <div fxLayout="row" *ngSwitchCase="true" class="lux-form-control-error-container">
+        <lux-icon
+          class="lux-color-red lux-alert-icon"
+          luxIconName="lux-interface-alert-warning-triangle"
+          luxIconSize="14px"
+          luxPadding="1px"
+          luxMargin="0px 2px 0px 0px"
+        ></lux-icon>
         <mat-error [id]="luxFormComponent.uid + '-error'">
           {{ luxFormComponent.errorMessage }}
         </mat-error>
