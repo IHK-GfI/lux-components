@@ -1,3 +1,4 @@
+<h1 class="sr-only">Testseite für Formulare</h1>
 <div class="example-container">
   <lux-layout>
     <lux-layout-card-row>
@@ -7,18 +8,8 @@
             <div formGroupName="user">
               <div fxLayout="column" fxLayoutGap="12px" class="lux-mb-4">
                 <div fxLayout="row" fxLayoutGap="20px">
-                  <lux-input-ac
-                    luxName="first-name"
-                    luxLabel="Vorname"
-                    luxControlBinding="firstname"
-                    fxFlex="50"
-                  ></lux-input-ac>
-                  <lux-input-ac
-                    luxName="given-name"
-                    luxLabel="Nachname"
-                    luxControlBinding="lastname"
-                    fxFlex="50"
-                  ></lux-input-ac>
+                  <lux-input-ac luxName="first-name" luxLabel="Vorname" luxControlBinding="firstname" fxFlex="50"></lux-input-ac>
+                  <lux-input-ac luxName="given-name" luxLabel="Nachname" luxControlBinding="lastname" fxFlex="50"></lux-input-ac>
                 </div>
                 <div fxLayout="row" fxLayoutGap="20px">
                   <lux-input-ac luxName="email" luxLabel="E-Mail" luxControlBinding="email" fxFlex="50">
@@ -42,7 +33,7 @@
                 </div>
               </div>
             </div>
-  
+
             <div fxLayout="column" fxLayoutGap="12px">
               <div fxLayout="row" fxLayoutGap="20px">
                 <lux-select-ac
@@ -53,13 +44,7 @@
                   [luxMultiple]="true"
                   fxFlex="50"
                 ></lux-select-ac>
-                <lux-input-ac
-                  luxName="form-common_Spende"
-                  luxLabel="Spende"
-                  luxControlBinding="donation"
-                  luxType="number"
-                  fxFlex="50"
-                >
+                <lux-input-ac luxName="form-common_Spende" luxLabel="Spende" luxControlBinding="donation" luxType="number" fxFlex="50">
                   <lux-input-ac-prefix>
                     <lux-icon luxIconName="lux-interface-favorite-give-heart"></lux-icon>
                   </lux-input-ac-prefix>
@@ -68,12 +53,12 @@
                   </lux-input-ac-suffix>
                 </lux-input-ac>
               </div>
-  
+
               <div fxLayout="row" fxLayoutGap="20px">
                 <lux-toggle-ac luxLabel="Newsletter" luxControlBinding="newsletter" fxFlex="50"></lux-toggle-ac>
                 <lux-checkbox-ac luxControlBinding="hungry" luxLabel="Hungrig" fxFlex="50"></lux-checkbox-ac>
               </div>
-  
+
               <div fxLayout="row" fxLayoutGap="20px">
                 <lux-input-ac
                   luxName="form-common_Beschreibung"
@@ -82,7 +67,7 @@
                   fxFlex="100"
                 ></lux-input-ac>
               </div>
-  
+
               <div fxLayout="row" fxLayoutGap="20px">
                 <lux-chips-ac
                   [luxInputAllowed]="true"
@@ -92,9 +77,7 @@
                   [luxNewChipGroup]="chipGroup2"
                   fxFlex="100"
                 >
-                  <lux-chip-ac [luxRemovable]="false" luxColor="warn">
-                    Chip ohne Group
-                  </lux-chip-ac>
+                  <lux-chip-ac [luxRemovable]="false" luxColor="warn"> Chip ohne Group </lux-chip-ac>
                   <lux-chip-ac-group
                     [luxRemovable]="false"
                     luxColor="primary"
@@ -120,7 +103,7 @@
                 </lux-chips-ac>
               </div>
             </div>
-  
+
             <div fxLayout="row" fxLayoutGap="20px">
               <lux-radio-ac
                 [luxOptions]="hobbies"
@@ -135,16 +118,10 @@
                 </ng-template>
               </lux-radio-ac>
             </div>
-  
+
             <div fxLayout="row" fxLayoutGap="20px">
-              <lux-datepicker-ac
-                [luxTouchUi]="true"
-                luxControlBinding="datepicker"
-                luxLabel="Datepicker"
-                fxFlex="50"
-              >
-              </lux-datepicker-ac>
-  
+              <lux-datepicker-ac [luxTouchUi]="true" luxControlBinding="datepicker" luxLabel="Datepicker" fxFlex="50"> </lux-datepicker-ac>
+
               <lux-autocomplete-ac
                 [luxOptions]="chipItems2"
                 luxLabel="Autocomplete"
@@ -156,13 +133,13 @@
               </lux-autocomplete-ac>
             </div>
             <div fxLayout="row" fxLayoutGap="20px">
-              <lux-textarea-ac 
-                luxLabel="Textarea" 
-                luxPlaceholder="Bitte hinterlasse hier einen Kommentar..." 
-                [luxMaxLength]="300" 
+              <lux-textarea-ac
+                luxLabel="Textarea"
+                luxPlaceholder="Bitte hinterlasse hier einen Kommentar..."
+                [luxMaxLength]="300"
                 [luxMinRows]="2"
                 [luxMaxRows]="3"
-                fxFlex="100"  
+                fxFlex="100"
               >
               </lux-textarea-ac>
             </div>
@@ -184,5 +161,4 @@
       </lux-card>
     </lux-layout-card-row>
   </lux-layout>
-  
 </div>

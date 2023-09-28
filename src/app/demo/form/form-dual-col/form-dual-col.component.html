@@ -89,7 +89,12 @@
         <form [formGroup]="myGroup">
           <lux-layout formGroupName="orderDetails">
             <lux-layout-form-row>
-              <lux-input-ac luxName="form-dual-Bestellnr" luxLabel="Bestellnr." luxControlBinding="orderNo" *luxLayoutRowItem="{}"></lux-input-ac>
+              <lux-input-ac
+                luxName="form-dual-Bestellnr"
+                luxLabel="Bestellnr."
+                luxControlBinding="orderNo"
+                *luxLayoutRowItem="{}"
+              ></lux-input-ac>
               <lux-input-ac
                 luxName="form-dual-Bestellwert"
                 luxLabel="Bestellwert"

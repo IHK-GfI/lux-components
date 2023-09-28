@@ -15,7 +15,7 @@
     (luxScrolled)="onScroll()"
     #scrollContainer
   >
-    <lux-card luxTitle="LUX-Icons" class="result-container">
+    <lux-card luxTitle="LUX-Icons" [luxHeading]="1" class="result-container">
       <lux-card-content fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="start start" fxFlex="fill">
         <div class="chip-container" fxShow fxHide.lt-md fxLayout="column">
           <lux-chips-ac [luxInputAllowed]="false" [luxHideBorder]="true" *ngIf="chipLabels.length > 0; else emptyLabelsBlock">

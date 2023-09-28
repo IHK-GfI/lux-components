@@ -4,3 +4,13 @@
 $basepath: '/';
 
 @include web-fonts($basepath);
+
+.sr-only {
+  // sr=screen-reader vgl. https://webaim.org/techniques/css/invisiblecontent/
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

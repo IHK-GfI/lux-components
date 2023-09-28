@@ -64,10 +64,15 @@
         luxControlBinding="homeRedirectUrl"
       >
       </lux-input-ac>
-      <lux-input-ac luxName="error-page_errorPageUrl" class="lux-highlight-section" luxLabel="errorPageUrl" luxControlBinding="errorPageUrl">
+      <lux-input-ac
+        luxName="error-page_errorPageUrl"
+        class="lux-highlight-section"
+        luxLabel="errorPageUrl"
+        luxControlBinding="errorPageUrl"
+      >
         <lux-form-hint>
-          Diese Property definiert die eigentliche URL der Fehlerseite innerhalb der Angular-Applikation. Die URL muss
-          in den bekannten Routen hinterlegt sein (das Beispiel macht das in diesem Fall selbst).<br />
+          Diese Property definiert die eigentliche URL der Fehlerseite innerhalb der Angular-Applikation. Die URL muss in den bekannten
+          Routen hinterlegt sein (das Beispiel macht das in diesem Fall selbst).<br />
           Die Navigation über den "LuxErrorService" erfolgt "still", i.e. die URL wird nicht sichtbar geändert.
         </lux-form-hint>
       </lux-input-ac>
@@ -92,12 +97,7 @@
         [luxDisabled]="updateButtonDisabled"
       >
       </lux-button>
-      <lux-button
-        luxLabel="Fehlerseite öffnen"
-        [luxRaised]="true"
-        (luxClicked)="openErrorpage()"
-      >
-      </lux-button>
+      <lux-button luxLabel="Fehlerseite öffnen" [luxRaised]="true" (luxClicked)="openErrorpage()"> </lux-button>
     </div>
   </example-base-options-actions>
 </example-base-structure>

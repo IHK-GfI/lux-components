@@ -1,6 +1,7 @@
 <div style="overflow: auto; height: 100%">
   <lux-layout>
     <div class="accordion-wrapper">
+      <h1>Beispiele für die Nutzung der Form-Row</h1>
       <lux-accordion luxMode="flat" [luxMulti]="false" class="tip-panel">
         <lux-panel [luxHideToggle]="true">
           <lux-panel-header-title> Abstand zwischen zwei Formrows definieren. </lux-panel-header-title>
@@ -72,7 +73,12 @@
             <lux-input-ac luxLabel="Lorem ipsum 1.1" luxName="Lorem_ipsum_1.1" *luxLayoutRowItem="{}"></lux-input-ac>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px' }">
-            <lux-select-ac luxLabel="Lorem ipsum 1.2" luxName="Lorem_ipsum_1.2" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-select-ac>
+            <lux-select-ac
+              luxLabel="Lorem ipsum 1.2"
+              luxName="Lorem_ipsum_1.2"
+              [luxOptions]="options"
+              *luxLayoutRowItem="{}"
+            ></lux-select-ac>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '16px', column: '18px' }">
             <div fxLayout="row" fxLayoutGap="10" *luxLayoutRowItem="{}">
@@ -89,7 +95,12 @@
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px' }">
             <lux-input-ac luxLabel="Lorem ipsum 2.2" luxName="Lorem_ipsum_2.2" *luxLayoutRowItem="{}"></lux-input-ac>
-            <lux-select-ac luxLabel="Lorem ipsum 2.3" luxName="Lorem_ipsum_2.3" [luxOptions]="options" *luxLayoutRowItem="{}"></lux-select-ac>
+            <lux-select-ac
+              luxLabel="Lorem ipsum 2.3"
+              luxName="Lorem_ipsum_2.3"
+              [luxOptions]="options"
+              *luxLayoutRowItem="{}"
+            ></lux-select-ac>
           </lux-layout-form-row>
           <lux-layout-form-row [luxGap]="{ row: '16px', rowItem: '32px', column: '8px' }">
             <lux-input-ac luxLabel="Lorem ipsum 2.4" luxName="Lorem_ipsum_2.4" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input-ac>

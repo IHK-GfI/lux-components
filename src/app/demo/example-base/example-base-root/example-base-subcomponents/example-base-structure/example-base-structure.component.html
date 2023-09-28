@@ -1,17 +1,6 @@
-<div
-  fxFlex="1 1 100%"
-  fxLayout="column"
-  fxLayout.gt-sm="row"
-  fxLayoutGap="4px"
-  fxLayoutGap.gt-sm="8px"
->
-  <lux-card
-    [luxTitle]="exampleTitle"
-    class="example-base-container"
-    fxFlex="auto"
-    fxFlex.gt-sm="1 0 50%"
-    *ngIf="contentComponent"
-  >
+<div fxFlex="1 1 100%" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="4px" fxLayoutGap.gt-sm="8px">
+  <h1 class="sr-only">Beispielseite für {{ exampleTitle }}</h1>
+  <lux-card [luxTitle]="exampleTitle" class="example-base-container" fxFlex="auto" fxFlex.gt-sm="1 0 50%" *ngIf="contentComponent">
     <lux-card-content>
       <ng-content select="example-base-content"></ng-content>
     </lux-card-content>

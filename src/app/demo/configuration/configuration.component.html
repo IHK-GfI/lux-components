@@ -1,5 +1,5 @@
-<div fxLayout="row wrap" luxAriaRole="main">
-  <lux-card luxTitle="Konfiguration" class="lux-card-grow" ngClass.gt-sm="lux-min-height">
+<div fxLayout="row wrap" fxLayoutGap="10px" luxAriaRole="main">
+  <lux-card luxTitle="Konfiguration" [luxHeading]="1" class="lux-card-grow" ngClass.gt-sm="lux-min-height">
     <lux-icon luxIconName="lux-info"></lux-icon>
     <lux-card-content>
       <pre>{{ currentConfig | json }}</pre>
@@ -29,17 +29,22 @@
           (luxCheckedChange)="updateConfig()"
           [luxNoLabels]="true"
         ></lux-checkbox-ac>
-          <lux-select-ac
-            luxLabel="Ausnahmen"
-            [luxMultiple]="true"
-            [luxOptions]="notAppliedToOptions"
-            [(luxSelected)]="currentConfig.labelConfiguration!.notAppliedTo"
-            (luxSelectedChange)="updateConfig()"
-            [luxDisabled]="!currentConfig.labelConfiguration!.allUppercase"
-            [luxNoBottomLabel]="true"
-          ></lux-select-ac>
+        <lux-select-ac
+          luxLabel="Ausnahmen"
+          [luxMultiple]="true"
+          [luxOptions]="notAppliedToOptions"
+          [(luxSelected)]="currentConfig.labelConfiguration!.notAppliedTo"
+          (luxSelectedChange)="updateConfig()"
+          [luxDisabled]="!currentConfig.labelConfiguration!.allUppercase"
+          [luxNoBottomLabel]="true"
+        ></lux-select-ac>
       </div>
-      <lux-input-ac class="lux-highlight-section" luxLabel="Lookup URL" [(luxValue)]="currentConfig.lookupServiceUrl" [luxNoBottomLabel]="true"></lux-input-ac>
+      <lux-input-ac
+        class="lux-highlight-section"
+        luxLabel="Lookup URL"
+        [(luxValue)]="currentConfig.lookupServiceUrl"
+        [luxNoBottomLabel]="true"
+      ></lux-input-ac>
       <lux-checkbox-ac
         class="lux-highlight-section"
         luxLabel="Lux-Card Animationen aktiv"
@@ -79,7 +84,7 @@
           (luxValueChange)="updateConfig()"
           [luxNoBottomLabel]="true"
         ></lux-input-ac>
-        <br>
+        <br />
         <lux-toggle-ac
           luxLabel="centered-State der Lux-Ripples"
           [(luxChecked)]="currentConfig.rippleConfiguration!.centered"
