@@ -20,11 +20,11 @@ Die Änderungen werden in der Datei [CHANGELOG.md](https://github.com/IHK-GfI/lu
 
 Live-Demo vom Zweig (develop):
 
-- https://lux-components-develop.gfi.ihk.de
+- [https://lux-components-develop.gfi.ihk.de](https://lux-components-develop.gfi.ihk.de)
 
 Live-Demo vom Zweig (master):
 
-- https://lux-components-master.gfi.ihk.de
+- [https://lux-components-master.gfi.ihk.de](https://lux-components-master.gfi.ihk.de)
 
 Die Demo kann auch lokal ausgeführt werden:
 
@@ -32,7 +32,7 @@ Die Demo kann auch lokal ausgeführt werden:
 - In das entsprechende Verzeichnis wechseln.
 - _npm install_ ausführen.
 - _npm run start_ ausführen.
-- http://localhost:4200/ öffnen.
+- [http://localhost:4200/](http://localhost:4200/) öffnen.
 - Ausprobieren!
 
 ## Eine App auf Basis der LUX-Components erstellen
@@ -50,7 +50,7 @@ npm install -g @angular-devkit/schematics-cli
 
 Zuerst erzeugt man über die Angular CLI eine neue App.
 
-```
+```bash
 npx @angular/cli@14 new my-new-app
 ? Would you like to add Angular routing? Yes
 ? Which stylesheet format would you like to use? SCSS
@@ -84,9 +84,9 @@ Die Dokumentation der LUX-Components befindet sich [hier](https://github.com/IHK
 
 Wie man seine LUX-Components aktualisiert, steht im [Update Guide](https://github.com/IHK-GfI/lux-components/wiki/update-guide).
 
-# Lizenzhinweis - Icons
+## Lizenzhinweis - Icons
 
-Über das Github-Projekt https://github.com/IHK-GfI/lux-components-icons-and-fonts können statt der bisherigen Material- oder Font Awesome-Icons nun auch die "neuen" Streamline-Icons mit eingebunden werden, welche speziell für die Nutzung mit dem Theme-Authentic ausgewählt wurden.
+Über das Github-Projekt [https://github.com/IHK-GfI/lux-components-icons-and-fonts](https://github.com/IHK-GfI/lux-components-icons-and-fonts) können statt der bisherigen Material- oder Font Awesome-Icons nun auch die "neuen" Streamline-Icons mit eingebunden werden, welche speziell für die Nutzung mit dem Theme-Authentic ausgewählt wurden.
 Ab der Version 15.0.0 werden ausschließlich nur noch die Streamline-Icons verwendet, die über das o.g. Projekt eingebunden werden.
 Die Streamline Icons laufen unter der Lizenz CC-BY 4.0 und der Urheber ist „streamlinehq.com“ ("Streamline Icons Core Line free Copyright © by streamlinehq.com“).
 Bezugsquelle: „[Free Core Line – Free Icons Set - 1000 customizable PNGs, SVGs, PDFs (streamlinehq.com)](https://www.streamlinehq.com/icons/streamline-mini-line)“.
@@ -95,8 +95,8 @@ Die Icons aus dem o.a. Iconset wurden durch die IHK-GfI mbH nicht verändert. Zu
 
 > **Note:** Bei der Entwicklung einer Applikation auf Basis der LUX-Components sind die verwendeten Icon-Sets entsprechend zu erwähnen und der Lizenztext ist individuell anzupasen.
 
-# Lizenzhinweis - Fonts
+## Lizenzhinweis - Fonts
 
-Über das Github-Projekt https://github.com/IHK-GfI/lux-components-icons-and-fonts werden statt der bisher vorgeschlagenen Fontfamilien wie z.B. Korb, Roboo, etc.) nun auch die Schriftarten "Source Sans Pro" designed by Paul D. Hunt (Lizensiert unter SIL 1.1 Open Font License) sowie "BloggerSans" created by Sergiy Tkachenko (Lizensiert unter Creative Commons 4.0) verwendet werden, welche speziell für die Nutzung mit dem Theme-authentic ausgewählt wurden.
+Über das Github-Projekt [https://github.com/IHK-GfI/lux-components-icons-and-fonts](https://github.com/IHK-GfI/lux-components-icons-and-fonts) werden statt der bisher vorgeschlagenen Fontfamilien wie z.B. Korb, Roboo, etc.) nun auch die Schriftarten "Source Sans Pro" designed by Paul D. Hunt (Lizensiert unter SIL 1.1 Open Font License) sowie "BloggerSans" created by Sergiy Tkachenko (Lizensiert unter Creative Commons 4.0) verwendet werden, welche speziell für die Nutzung mit dem Theme-authentic ausgewählt wurden.
 
-> **Note:** Bei der Entwicklung einer Applikation auf Basis der LUX-Components sowie unter Nutzung der Schriftart "Source Sans Pro" ist zwingend die Lizenzdatei "SIL Open Font License V1.1.md" in die GUI der Applikation einzubinden. Bei Nutzung der Schriftart "BloggerSans" ist ein Verweis auf die Lizenz unter https://www.fontsquirrel.com/license/blogger-sans erforderlich. Bei jeder Anwendung ist der Lizenzhinweis zu den tatsächlich verwendeten Schriften und Icons individuell anzupassen!
+> **Note:** Bei der Entwicklung einer Applikation auf Basis der LUX-Components sowie unter Nutzung der Schriftart "Source Sans Pro" ist zwingend die Lizenzdatei "SIL Open Font License V1.1.md" in die GUI der Applikation einzubinden. Bei Nutzung der Schriftart "BloggerSans" ist ein Verweis auf die Lizenz unter [https://www.fontsquirrel.com/license/blogger-sans](https://www.fontsquirrel.com/license/blogger-sans) erforderlich. Bei jeder Anwendung ist der Lizenzhinweis zu den tatsächlich verwendeten Schriften und Icons individuell anzupassen!
