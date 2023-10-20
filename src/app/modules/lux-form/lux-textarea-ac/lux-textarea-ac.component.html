@@ -23,6 +23,7 @@
     [cdkAutosizeMaxRows]="luxMaxRows"
     [required]="luxRequired"
     [readonly]="luxReadonly"
+    [autocomplete]="luxAutocomplete"
     (blur)="luxBlur.emit($event)"
     (focus)="luxFocus.emit($event)"
     (focusin)="luxFocusIn.emit($event)"
@@ -31,4 +32,3 @@
     [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
   ></textarea>
 </lux-form-control-wrapper>
-
