@@ -13,6 +13,7 @@
 - **lux-form-control-wrapper**: Der Farbcontrast der Fehlermeldungen wurde gemäß WCAG2.1 Level AA überarbeitet. Die Fehlermeldung wurde durch ein zusätzliches Icon ergänzt. [Issue 361](https://github.com/IHK-GfI/lux-components/issues/361)
 - **lux-tile-ac**: Fehlende Aria-Attribute wurden ergänzt. [Issue 358](https://github.com/IHK-GfI/lux-components/issues/358)
 - **lux-textarea-ac**: Autocomplete in der lux-textarea-ac gefixt. [Issue 375](https://github.com/IHK-GfI/lux-components/issues/375)
+- **lux-card**: Die Property "luxTitleLineBreak" wirkt sich initial nicht aus. [Issue 384](https://github.com/IHK-GfI/lux-components/issues/384)
 
 ## Version 15.1.0
 

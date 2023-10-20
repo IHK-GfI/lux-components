@@ -27,8 +27,7 @@
             *ngSwitchCase="1"
             fxFlex="grow"
             class="lux-card-title-container"
-            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
-            [ngClass]="{ 'lux-pb-2': !!luxTitle }"
+            [ngClass]="{ 'lux-pb-2': !!luxTitle, 'lux-hyphenate': luxTitleLineBreak, 'lux-crop': !luxTitleLineBreak }"
             title="{{ luxTitle }}"
           >
             {{ luxTitle }}
@@ -37,8 +36,7 @@
             *ngSwitchDefault
             fxFlex="grow"
             class="lux-card-title-container"
-            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
-            [ngClass]="{ 'lux-pb-2': !!luxTitle }"
+            [ngClass]="{ 'lux-pb-2': !!luxTitle, 'lux-hyphenate': luxTitleLineBreak, 'lux-crop': !luxTitleLineBreak }"
             title="{{ luxTitle }}"
           >
             {{ luxTitle }}
@@ -47,8 +45,7 @@
             *ngSwitchCase="3"
             fxFlex="grow"
             class="lux-card-title-container"
-            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
-            [ngClass]="{ 'lux-pb-2': !!luxTitle }"
+            [ngClass]="{ 'lux-pb-2': !!luxTitle, 'lux-hyphenate': luxTitleLineBreak, 'lux-crop': !luxTitleLineBreak }"
             title="{{ luxTitle }}"
           >
             {{ luxTitle }}
@@ -57,8 +54,7 @@
             *ngSwitchCase="4"
             fxFlex="grow"
             class="lux-card-title-container"
-            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
-            [ngClass]="{ 'lux-pb-2': !!luxTitle }"
+            [ngClass]="{ 'lux-pb-2': !!luxTitle, 'lux-hyphenate': luxTitleLineBreak, 'lux-crop': !luxTitleLineBreak }"
             title="{{ luxTitle }}"
           >
             {{ luxTitle }}
@@ -67,8 +63,7 @@
             *ngSwitchCase="5"
             fxFlex="grow"
             class="lux-card-title-container"
-            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
-            [ngClass]="{ 'lux-pb-2': !!luxTitle }"
+            [ngClass]="{ 'lux-pb-2': !!luxTitle, 'lux-hyphenate': luxTitleLineBreak, 'lux-crop': !luxTitleLineBreak }"
             title="{{ luxTitle }}"
           >
             {{ luxTitle }}
