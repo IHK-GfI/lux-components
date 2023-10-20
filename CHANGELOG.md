@@ -1,3 +1,9 @@
+# Version 15.3.0
+
+## Bug Fixes
+
+- **lux-dialog**: Der Dialog-Title wird jetzt in einer h2 angezeigt. [Issue 370](https://github.com/IHK-GfI/lux-components/issues/370)
+
 # Version 15.2.0
 
 ## New
