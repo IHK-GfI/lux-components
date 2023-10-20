@@ -23,7 +23,7 @@ export class TextareaAuthenticExampleComponent {
     { value: Validators.maxLength(10), label: 'Validators.maxLength(10)' },
     { value: Validators.email, label: 'Validators.email' }
   ];
-  autocompleteOptions = ['on', 'off'];
+  autocompleteOptions = ['on', 'off', 'name'];
   form: FormGroup<TextareaDummyForm>;
   log = logResult;
   value: any;
