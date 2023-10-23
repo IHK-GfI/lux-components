@@ -10,10 +10,25 @@
   >
     <lux-form-hint>Deaktiviert die erste und dritte Checkbox in der Tabelle.</lux-form-hint>
   </lux-toggle-ac>
-  <lux-toggle-ac luxLabel="luxMultiSelectOnlyCheckboxClick"
-              [(luxChecked)]="tableExample.multiSelectOnlyCheckboxClick"
-              [luxNoTopLabel]="true">
-    <lux-form-hint>Dieses Flag steuert, ob auch ein Klick auf die Zeile die Checkbox aktiviert oder ausschließlich ein Klick auf die Checkbox selbst.</lux-form-hint>
+  <lux-toggle-ac
+    luxLabel="luxMultiSelectOnlyCheckboxClick"
+    [(luxChecked)]="tableExample.multiSelectOnlyCheckboxClick"
+    [luxNoTopLabel]="true"
+  >
+    <lux-form-hint
+      >Dieses Flag steuert, ob auch ein Klick auf die Zeile die Checkbox aktiviert oder ausschließlich ein Klick auf die Checkbox
+      selbst.</lux-form-hint
+    >
+  </lux-toggle-ac>
+</div>
+<div class="lux-highlight-section column">
+  <lux-toggle-ac
+    luxLabel="luxDoubleClicked"
+    [(luxChecked)]="tableExample.doubleClickActive"
+    [luxDisabled]="tableExample.multiSelect"
+    [luxNoTopLabel]="true"
+  >
+    <lux-form-hint>Diese Property kann nur verwendet werden, wenn <i>luxMultiSelect</i> deaktiviert ist.</lux-form-hint>
   </lux-toggle-ac>
 </div>
 <lux-input-ac luxLabel="luxNoDataText" class="lux-highlight-section" [(luxValue)]="tableExample.noDataText">
@@ -34,7 +49,13 @@
   <lux-toggle-ac luxLabel="luxShowPagination" [(luxChecked)]="tableExample.pagination" [luxNoTopLabel]="true">
     <lux-form-hint>Diese Property aktiviert/deaktiviert die Pagination für die Tabelle.</lux-form-hint>
   </lux-toggle-ac>
-  <lux-input-ac luxLabel="luxPageSize" [(luxValue)]="tableExample.pageSize" luxType="number" [luxNumberAlignLeft]="true" [luxDisabled]="!tableExample.pagination">
+  <lux-input-ac
+    luxLabel="luxPageSize"
+    [(luxValue)]="tableExample.pageSize"
+    luxType="number"
+    [luxNumberAlignLeft]="true"
+    [luxDisabled]="!tableExample.pagination"
+  >
     <lux-form-hint>Hiermit kann die aktuelle Anzahl an Einträgen für die Pagination eingestellt werden. </lux-form-hint>
   </lux-input-ac>
   <lux-select-ac

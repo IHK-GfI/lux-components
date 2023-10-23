@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { LuxConsoleService } from '../../../modules/lux-util/lux-console.service';
 import { TestHttpDao } from './test-http-dao';
 import { TableExampleBaseClass } from '../table-example/table-example-base.class';
+import { LuxTableComponent } from '../../../modules/lux-common/lux-table/lux-table.component';
 
 @Component({
   selector: 'app-table-server-example',
   templateUrl: './table-server-example.component.html'
 })
 export class TableServerExampleComponent extends TableExampleBaseClass {
+  @ViewChild('myTable') tableComponent!: LuxTableComponent;
+
   httpDAO: TestHttpDao;
   reloadCount = 0;
 
@@ -19,6 +22,10 @@ export class TableServerExampleComponent extends TableExampleBaseClass {
 
   getDataArr() {
     return this.httpDAO.data;
+  }
+
+  getTableComponent(): LuxTableComponent<any> {
+    return this.tableComponent;
   }
 
   onSelectedChange(selected: Set<any>) {

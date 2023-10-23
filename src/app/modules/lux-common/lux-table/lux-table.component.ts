@@ -29,6 +29,11 @@ import { ILuxTableHttpDaoStructure } from './lux-table-http/lux-table-http-dao-s
 import { ILuxTableHttpDao } from './lux-table-http/lux-table-http-dao.interface';
 import { LuxTableColumnComponent } from './lux-table-subcomponents/lux-table-column.component';
 
+export declare interface LuxTableDoubleClickEventType<T> {
+  event: MouseEvent;
+  rowItem: T;
+}
+
 @Component({
   selector: 'lux-table',
   templateUrl: './lux-table.component.html',
@@ -89,6 +94,7 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
 
   @Output() luxSelectedChange = new EventEmitter<Set<T>>();
   @Output() luxSelectedAsArrayChange = new EventEmitter<T[]>();
+  @Output() luxDoubleClicked = new EventEmitter<{ event: MouseEvent; rowItem: T }>();
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;
@@ -214,7 +220,7 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
     } else if (!selected && this.luxSelected) {
       this.luxSelectedIntern(selected);
     } else if (selected && this.luxSelected) {
-      if (this.luxSelected.size !== selected.size || !Array.from(selected).every(value => this.luxSelected.has(value))) {
+      if (this.luxSelected.size !== selected.size || !Array.from(selected).every((value) => this.luxSelected.has(value))) {
         this.luxSelectedIntern(selected);
       }
     }
@@ -239,7 +245,7 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
 
   // Funktion, um den zu vergleichenden Wert aus den einzelnen Objekten zu ziehen.
   // Standardmäßig einfach das Objekt zurückgeben.
-  @Input() set luxPickValue(pickFn: ((o: any) => any)){
+  @Input() set luxPickValue(pickFn: (o: any) => any) {
     LuxUtil.assertNonNull('luxPickValue', pickFn);
     this._luxPickValue = pickFn;
   }
@@ -249,7 +255,7 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
   }
 
   // Vergleichsfunktion; vergleicht standardmäßig einfach die Referenzen der beiden Objekte.
-  @Input() set luxCompareWith(compareFn: ((o1: any, o2: any) => boolean)) {
+  @Input() set luxCompareWith(compareFn: (o1: any, o2: any) => boolean) {
     LuxUtil.assertNonNull('luxCompareWith', compareFn);
     this._luxCompareWith = compareFn;
   }
@@ -391,6 +397,12 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
     return index;
   }
 
+  onDoubleClick(event: MouseEvent, rowItem: T) {
+    if (!this.luxMultiSelect) {
+      this.luxDoubleClicked.emit({ event, rowItem });
+    }
+  }
+
   /**
    * Wird beim Klick auf eine Row aufgerufen und handelt das Sichern und Entfernen von
    * selektierten Einträgen.
@@ -399,7 +411,7 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
    * @param checkboxEvent
    */
   changeSelectedEntry(entry: any, checkboxEvent = false) {
-    if (this.luxMultiSelectDisabledProperty && entry[this.luxMultiSelectDisabledProperty] === true) {
+    if ((this.luxMultiSelectDisabledProperty && entry[this.luxMultiSelectDisabledProperty] === true) || this.luxDoubleClicked.observed) {
       return;
     }
 
@@ -529,9 +541,7 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
    * @param sort
    */
   announceSortChange(sort: Sort) {
-    const index = this.tableColumns
-      .toArray()
-      .findIndex((tableColumn: LuxTableColumnComponent) => sort.active === tableColumn.luxColumnDef);
+    const index = this.tableColumns.toArray().findIndex((tableColumn: LuxTableColumnComponent) => sort.active === tableColumn.luxColumnDef);
     let columnDef = index > -1 ? this.tableColumns.toArray()[index].luxColumnDef : null;
     if (columnDef === null) {
       columnDef = sort.active === 'multiSelect' ? 'multiSelect' : null;
@@ -584,7 +594,7 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
       ) {
         this.luxConsole.error(
           `Achtung! Die Column '${tableColumn.luxColumnDef}' hat entweder keine Media-Queries ` +
-          `oder kein Responsive-Verhalten zugewiesen bekommen.`
+            `oder kein Responsive-Verhalten zugewiesen bekommen.`
         );
       } else if (this.doesResponsiveAtApply(tableColumn.luxResponsiveAt)) {
         // Schauen, ob eine Spalte angegeben wurde, in welche sich diese hier verschieben kann
@@ -662,14 +672,14 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
 
             if (data) {
               this.dataSource.totalElements = data.totalCount;
-              this.luxData                  = data.items;
+              this.luxData = data.items;
 
               if (this.luxAutoPaginate && data.totalCount > LuxTableComponent.AUTO_PAGINATION_START) {
                 this.luxShowPagination = true;
               }
             } else {
               this.dataSource.totalElements = 0;
-              this.luxData                  = [];
+              this.luxData = [];
             }
           }),
           catchError((error) => {

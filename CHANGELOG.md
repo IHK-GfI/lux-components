@@ -5,6 +5,7 @@
 ### New
 
 - **lux-textbox**: Die Textbox hat eine neue Property luxHeading erhalten. [Issue 360](https://github.com/IHK-GfI/lux-components/issues/360)
+- **lux-table**: Property luxDoubleClicked hinzugefügt. [Issue 377](https://github.com/IHK-GfI/lux-components/issues/377)
 
 ### Bug Fixes
 

@@ -172,7 +172,14 @@
             *matRowDef="let rowData; columns: dataColumnDefs; let i = index"
             class="lux-row {{ getCustomClassesForIndex(rowData) }}"
             [tabindex]="luxMultiSelectOnlyCheckboxClick ? '-1' : '0'"
-            [ngClass]="{ 'lux-multiselect-field': luxMultiSelect, 'lux-row-selected': luxSelected.has(rowData) }"
+            [ngClass]="{
+              'lux-row-selected': luxSelected.has(rowData),
+              'lux-cursor':
+                luxDoubleClicked.observed ||
+                (luxSelectedChange.observed && !luxMultiSelectOnlyCheckboxClick) ||
+                (luxSelectedAsArrayChange.observed && !luxMultiSelectOnlyCheckboxClick)
+            }"
+            (dblclick)="onDoubleClick($event, rowData)"
             (click)="changeSelectedEntry(rowData)"
             (keydown.space)="changeSelectedEntry(rowData)"
             (keydown.enter)="changeSelectedEntry(rowData)"
@@ -181,10 +188,10 @@
           <tr
             mat-footer-row
             *matFooterRowDef="dataColumnDefs; sticky: true"
-            ngClass="lux-footer-row"
+            class="lux-footer-row"
             [ngClass]="{
               'lux-display-none': !anyFootersAvailable(),
-              'lux-multiselect-field': luxMultiSelect && !luxHttpDAO
+              'lux-cursor': luxMultiSelect && !luxHttpDAO
             }"
             tabindex="0"
             (click)="changeSelectedEntries()"

@@ -1,7 +1,11 @@
+import { LuxTableComponent } from 'public_api';
 import { ICustomCSSConfig } from '../../../modules/lux-common/lux-table/lux-table-custom-css-config.interface';
 import { ColumnConfig } from './column-config';
+import { Subscription } from 'rxjs';
+import { Directive, OnDestroy } from '@angular/core';
 
-export abstract class TableExampleBaseClass {
+@Directive()
+export abstract class TableExampleBaseClass implements OnDestroy {
   pageSizeOptions = [
     { label: '[5, 10, 25, 50]', value: [5, 10, 25, 50] },
     { label: '[10, 20, 30, 40]', value: [10, 20, 30, 40] },
@@ -35,7 +39,6 @@ export abstract class TableExampleBaseClass {
   pagerTooltip = '';
   pagerFirstLastButton = true;
   columnWidthOption = this.columnWidthOptions[1].value;
-  multiSelect = true;
   multiSelectOnlyCheckboxClick = true;
   multiSelectDisabledPropertyActive = false;
   multiSelectDisabledProperty = 'disabled';
@@ -48,8 +51,45 @@ export abstract class TableExampleBaseClass {
   symbolConfig: ColumnConfig = new ColumnConfig({ label: 'Symbol' });
   dateConfig: ColumnConfig = new ColumnConfig({ label: 'Datum', sticky: false });
   columnConfigs = [this.nameConfig, this.symbolConfig, this.dateConfig];
+  dblClickSub?: Subscription;
+  _multiSelect = true;
+  _doubleClickActive = false;
+
+  get doubleClickActive() {
+    return this._doubleClickActive;
+  }
+
+  set doubleClickActive(active: boolean) {
+    this._doubleClickActive = active;
+
+    if (active) {
+      this.dblClickSub = this.getTableComponent().luxDoubleClicked.subscribe((rowItem) => {
+        console.log('luxDoubleClicked fired ->', rowItem);
+      });
+    } else {
+      this.dblClickSub?.unsubscribe();
+    }
+  }
+
+  get multiSelect() {
+    return this._multiSelect;
+  }
+
+  set multiSelect(multiSelect: boolean) {
+    this._multiSelect = multiSelect;
+
+    if (multiSelect) {
+      this._doubleClickActive = false;
+    }
+  }
+
+  abstract getTableComponent(): LuxTableComponent;
 
   abstract getDataArr(): any[];
+
+  ngOnDestroy(): void {
+    this.dblClickSub?.unsubscribe();
+  }
 
   compareFn(o1: any, o2: any) {
     return o1.name === o2.name;
@@ -65,11 +105,11 @@ export abstract class TableExampleBaseClass {
 
   preselect() {
     const newSelected = new Set();
-    newSelected.add({ name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24), disabled: false  });
-    newSelected.add({ name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22), disabled: false  });
-    newSelected.add({ name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21), disabled: false  });
-    newSelected.add({ name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18), disabled: false  });
-    newSelected.add({ name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24), disabled: false  });
+    newSelected.add({ name: 'Hydrogen', symbol: 'H', date: new Date(2017, 11, 24), disabled: false });
+    newSelected.add({ name: 'Helium', symbol: 'He', date: new Date(2017, 11, 22), disabled: false });
+    newSelected.add({ name: 'Lithium', symbol: 'Li', date: new Date(2018, 11, 21), disabled: false });
+    newSelected.add({ name: 'Beryllium', symbol: 'Be', date: new Date(2018, 11, 18), disabled: false });
+    newSelected.add({ name: 'Boron', symbol: 'B', date: new Date(2018, 10, 24), disabled: false });
 
     this.selected = newSelected;
   }
