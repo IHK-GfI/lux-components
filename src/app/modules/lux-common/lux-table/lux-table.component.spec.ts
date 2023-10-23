@@ -796,7 +796,7 @@ describe('LuxTableComponent', () => {
       component.showMultiSelect = true;
       LuxTestHelper.wait(fixture);
 
-      const multiselectRow = document.querySelectorAll('.mat-row.lux-multiselect-field');
+      const multiselectRow = document.querySelectorAll('.lux-row');
 
       (multiselectRow[0] as HTMLElement).click();
       LuxTestHelper.wait(fixture);
@@ -825,7 +825,7 @@ describe('LuxTableComponent', () => {
       component.showMultiSelect = true;
       LuxTestHelper.wait(fixture);
 
-      const multiselectTriggerAll = document.querySelector('.mat-footer-row.lux-multiselect-field');
+      const multiselectTriggerAll = document.querySelector('.lux-footer-row');
 
       (multiselectTriggerAll as HTMLElement).click();
       LuxTestHelper.wait(fixture);
@@ -858,7 +858,7 @@ describe('LuxTableComponent', () => {
       luxTableComponent.filtered$.next('he');
       LuxTestHelper.wait(fixture, 550);
 
-      const multiselectTriggerAll = document.querySelector('.mat-footer-row.lux-multiselect-field');
+      const multiselectTriggerAll = document.querySelector('.lux-footer-row');
 
       (multiselectTriggerAll as HTMLElement).click();
       LuxTestHelper.wait(fixture);
@@ -1028,7 +1028,7 @@ describe('LuxTableComponent', () => {
       // Änderungen durchführen
       component.showMultiSelect = true;
       LuxTestHelper.wait(fixture);
-      const multiselectRow = document.querySelectorAll('.mat-row.lux-multiselect-field');
+      const multiselectRow = document.querySelectorAll('.lux-row');
 
       (multiselectRow[1] as HTMLElement).click();
       LuxTestHelper.wait(fixture);
@@ -1070,7 +1070,7 @@ describe('LuxTableComponent', () => {
       expect(selectedCount).toEqual('0 / 2');
 
       // Änderungen durchführen
-      const multiselectRow = document.querySelectorAll('.mat-row.lux-multiselect-field');
+      const multiselectRow = document.querySelectorAll('.lux-row');
 
       (multiselectRow[0] as HTMLElement).click();
       LuxTestHelper.wait(fixture);

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { TableExampleBaseClass } from './table-example-base.class';
+import { LuxTableComponent } from '../../../modules/lux-common/lux-table/lux-table.component';
 
 @Component({
   selector: 'app-table-example',
@@ -7,6 +8,8 @@ import { TableExampleBaseClass } from './table-example-base.class';
   styleUrls: ['./table-example.component.scss']
 })
 export class TableExampleComponent extends TableExampleBaseClass {
+  @ViewChild('myTable') tableComponent!: LuxTableComponent;
+
   dataSource: any[] = [];
   markdownData = `
   Html
@@ -35,6 +38,10 @@ export class TableExampleComponent extends TableExampleBaseClass {
     setTimeout(() => {
       this.loadData(false);
     });
+  }
+
+  getTableComponent(): LuxTableComponent<any> {
+    return this.tableComponent;
   }
 
   getDataArr() {

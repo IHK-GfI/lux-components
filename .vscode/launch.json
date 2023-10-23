@@ -1,0 +1,10 @@
+{
+  "configurations": [
+    {
+      "type": "chrome",
+      "name": "LUX-Components",
+      "request": "launch",
+      "url": "http://localhost:4200"
+    }
+  ]
+}
