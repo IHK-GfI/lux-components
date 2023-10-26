@@ -15,7 +15,6 @@ import { LuxUtil } from '../../../modules/lux-util/lux-util';
   styleUrls: ['./filter-example.component.scss']
 })
 export class FilterExampleComponent implements OnInit, OnDestroy {
-
   @ViewChild(LuxFilterFormComponent) filterComponent!: LuxFilterFormComponent;
   @ViewChild(LuxFilterFormExtendedComponent) filterExtendedOptionsComponent?: LuxFilterFormExtendedComponent;
 
@@ -28,6 +27,12 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
     { label: 'Auto A', value: 'a' },
     { label: 'Auto B', value: 'b' },
     { label: 'Auto C', value: 'c' }
+  ];
+
+  radioOptions: any[] = [
+    { label: 'A', value: 'a' },
+    { label: 'B', value: 'b' },
+    { label: 'C', value: 'c' }
   ];
 
   singleSelectOptions: any[] = [
@@ -98,11 +103,12 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
             value: 3
           }
         ],
-        toggle: true
+        toggle: true,
+        radio: 'b'
       }
     }
   ];
-  storedFiltersAc: LuxFilter[] = JSON.parse(JSON.stringify(this.storedFilters))
+  storedFiltersAc: LuxFilter[] = JSON.parse(JSON.stringify(this.storedFilters));
 
   mediaQuerySubscription: Subscription;
 
@@ -124,21 +130,24 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   selectLookupHidden = false;
   toggleSelectDisabled = false;
   toggleSelectHidden = false;
+  radioSelectDisabled = false;
+  radioSelectHidden = false;
 
   buttonColorOptions = ['default', 'primary', 'accent', 'warn'];
   buttonFlat = false;
-  buttonFilterColor: LuxThemePalette  = 'primary';
-  buttonDialogSave: LuxThemePalette =  'primary';
-  buttonDialogLoad: LuxThemePalette =  'primary';
-  buttonDialogDelete: LuxThemePalette =  'warn';
-  buttonDialogCancel: LuxThemePalette =  'primary';
-  buttonDialogClose: LuxThemePalette =  'primary';
+  buttonFilterColor: LuxThemePalette = 'primary';
+  buttonDialogSave: LuxThemePalette = 'primary';
+  buttonDialogLoad: LuxThemePalette = 'primary';
+  buttonDialogDelete: LuxThemePalette = 'warn';
+  buttonDialogCancel: LuxThemePalette = 'primary';
+  buttonDialogClose: LuxThemePalette = 'primary';
 
   openLabel = '';
   closeLabel = '';
 
   disableShortcut = false;
   initRunning = false;
+  radioPickValueFn = (o: { label: string; value: string }) => o.value;
 
   constructor(private mediaQuery: LuxMediaQueryObserverService) {
     this.mediaQuerySubscription = this.mediaQuery.getMediaQueryChangedAsObservable().subscribe(() => {
@@ -151,8 +160,8 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
     // Hier wird die setTimeout-Methode verwendet, um einen Backend-Call zu simulieren.
     setTimeout(() => {
-      this.initFilter    = { input: "Lorem ipsum" };
-      this.initFilterAc    = { input: "Lorem ipsum" };
+      this.initFilter = { input: 'Lorem ipsum' };
+      this.initFilterAc = { input: 'Lorem ipsum' };
       this.currentFilter = this.initFilter;
       this.currentFilterAc = this.initFilterAc;
 
