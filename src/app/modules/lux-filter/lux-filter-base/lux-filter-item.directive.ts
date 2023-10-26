@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, OnChanges, OnInit, Optional, Renderer2, SimpleChanges } from '@angular/core';
-import { LuxFormSelectableBase } from "../../lux-form/lux-form-model/lux-form-selectable-base.class";
-import { LuxLookupComponent } from "../../lux-lookup/lux-lookup-model/lux-lookup-component";
+import { LuxFormSelectableBase } from '../../lux-form/lux-form-model/lux-form-selectable-base.class';
+import { LuxLookupComponent } from '../../lux-lookup/lux-lookup-model/lux-lookup-component';
 import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 import { LuxDatetimepickerAcComponent } from '../../lux-form/lux-datetimepicker-ac/lux-datetimepicker-ac.component';
 import { LuxFilterItem } from './lux-filter-item';
@@ -13,6 +13,7 @@ import { LuxAutocompleteAcComponent } from '../../lux-form/lux-autocomplete-ac/l
 import { LuxCheckboxAcComponent } from '../../lux-form/lux-checkbox-ac/lux-checkbox-ac.component';
 import { LuxLookupComboboxAcComponent } from '../../lux-lookup/lux-lookup-combobox-ac/lux-lookup-combobox-ac.component';
 import { LuxLookupAutocompleteAcComponent } from '../../lux-lookup/lux-lookup-autocomplete-ac/lux-lookup-autocomplete-ac.component';
+import { LuxRadioAcComponent } from '../../lux-form/lux-radio-ac/lux-radio-ac.component';
 
 export declare type LuxFilterRenderFnType<T = any> = (filter: LuxFilterItem<T>, value: T) => string;
 
@@ -20,8 +21,10 @@ export declare type LuxFilterRenderFnType<T = any> = (filter: LuxFilterItem<T>, 
   selector: '[luxFilterItem]'
 })
 export class LuxFilterItemDirective implements OnInit, OnChanges {
-  filterItem: LuxFilterItem<any>;
+  formComponent!: LuxFormComponentBase;
+  filterItem!: LuxFilterItem<any>;
 
+  @Input() luxFilterLabel = '';
   @Input() luxFilterColor: LuxThemePalette = undefined;
   @Input() luxFilterDefaultValues = [...LuxFilterItem.DEFAULT_VALUES];
   @Input() luxFilterRenderFn?: LuxFilterRenderFnType;
@@ -38,40 +41,45 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
     @Optional() public checkboxAuthentic: LuxCheckboxAcComponent,
     @Optional() public selectAuthentic: LuxSelectAcComponent,
     @Optional() public selectLookupAuthentic: LuxLookupComboboxAcComponent,
+    @Optional() public radioAuthentic: LuxRadioAcComponent,
     private elRef: ElementRef,
     private renderer: Renderer2
   ) {
-    let formComponent: LuxFormComponentBase;
     if (this.inputAuthentic) {
-      formComponent = this.inputAuthentic;
+      this.formComponent = this.inputAuthentic;
     } else if (this.datepickerAuthentic) {
-      formComponent = this.datepickerAuthentic;
+      this.formComponent = this.datepickerAuthentic;
     } else if (this.datetimepickerAuthentic) {
-      formComponent = this.datetimepickerAuthentic;
+      this.formComponent = this.datetimepickerAuthentic;
     } else if (this.toggleAuthentic) {
-      formComponent = this.toggleAuthentic;
+      this.formComponent = this.toggleAuthentic;
     } else if (this.checkboxAuthentic) {
-      formComponent = this.checkboxAuthentic;
+      this.formComponent = this.checkboxAuthentic;
     } else if (this.selectAuthentic) {
-      formComponent = this.selectAuthentic;
+      this.formComponent = this.selectAuthentic;
     } else if (this.autoCompleteAuthentic) {
-      formComponent = this.autoCompleteAuthentic;
+      this.formComponent = this.autoCompleteAuthentic;
     } else if (this.autoCompleteLookupAuthentic) {
-      formComponent = this.autoCompleteLookupAuthentic;
+      this.formComponent = this.autoCompleteLookupAuthentic;
     } else if (this.selectLookupAuthentic) {
-      formComponent = this.selectLookupAuthentic;
-    }   else {
+      this.formComponent = this.selectLookupAuthentic;
+    } else if (this.radioAuthentic) {
+      this.formComponent = this.radioAuthentic;
+    } else {
       throw Error(`Die Formularkomponente ist unbekannt!`);
     }
-
-    if (!formComponent.luxControlBinding) {
-      throw Error(`Die Formularkomponente "${formComponent.luxLabel}" hat kein Binding!`);
-    }
-
-    this.filterItem = new LuxFilterItem<any>(formComponent.luxLabel, formComponent.luxControlBinding, formComponent);
   }
 
   ngOnInit(): void {
+    if (!this.formComponent.luxControlBinding) {
+      throw Error(`Die Formularkomponente "${this.formComponent.luxLabel}" hat kein Binding!`);
+    }
+
+    this.filterItem = new LuxFilterItem<any>(
+      this.luxFilterLabel ? this.luxFilterLabel : this.formComponent.luxLabel,
+      this.formComponent.luxControlBinding,
+      this.formComponent
+    );
     this.filterItem.color = this.luxFilterColor;
     this.filterItem.defaultValues = this.luxFilterDefaultValues;
     this.filterItem.value = this.luxFilterDefaultValues[0];
@@ -82,20 +90,18 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
     if (this.luxFilterRenderFn) {
       this.filterItem.renderFn = this.luxFilterRenderFn;
     } else {
-      if (
-        this.filterItem.component instanceof LuxToggleAcComponent ||
-        this.filterItem.component instanceof LuxCheckboxAcComponent
-      ) {
+      if (this.filterItem.component instanceof LuxToggleAcComponent || this.filterItem.component instanceof LuxCheckboxAcComponent) {
         this.filterItem.renderFn = this.renderToggleFn;
-      } else if ( this.filterItem.component instanceof LuxDatepickerAcComponent ) {
+      } else if (this.filterItem.component instanceof LuxDatepickerAcComponent) {
         this.filterItem.renderFn = this.renderDateAcFn;
-      } else if ( this.filterItem.component instanceof LuxDatetimepickerAcComponent ) {
+      } else if (this.filterItem.component instanceof LuxDatetimepickerAcComponent) {
         this.filterItem.renderFn = this.renderDateTimeAcFn;
       } else if (
         this.filterItem.component instanceof LuxSelectAcComponent ||
         this.filterItem.component instanceof LuxAutocompleteAcComponent ||
         this.filterItem.component instanceof LuxLookupComboboxAcComponent ||
-        this.filterItem.component instanceof LuxLookupAutocompleteAcComponent
+        this.filterItem.component instanceof LuxLookupAutocompleteAcComponent ||
+        this.filterItem.component instanceof LuxRadioAcComponent
       ) {
         this.filterItem.renderFn = this.renderLabelFn;
       } else {
@@ -135,9 +141,9 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.filterItem) {
       if (this.filterItem.component && changes && changes.luxFilterHidden) {
-        this.updateHiddenState(changes[ 'luxFilterHidden' ].currentValue);
+        this.updateHiddenState(changes['luxFilterHidden'].currentValue);
       } else if (this.filterItem.component && changes && changes.luxFilterDisabled) {
-        this.updateDisabledState(changes[ 'luxFilterDisabled' ].currentValue);
+        this.updateDisabledState(changes['luxFilterDisabled'].currentValue);
       }
     }
   }
@@ -145,10 +151,14 @@ export class LuxFilterItemDirective implements OnInit, OnChanges {
   renderLabelFn<T>(filterItem: LuxFilterItem<T>, value: T) {
     if (typeof value === 'string') {
       return value;
-    } else if (typeof value === "object" &&
-               (filterItem.component instanceof LuxFormSelectableBase || filterItem.component instanceof LuxAutocompleteAcComponent)) {
+    } else if (
+      typeof value === 'object' &&
+      (filterItem.component instanceof LuxFormSelectableBase ||
+        filterItem.component instanceof LuxAutocompleteAcComponent ||
+        filterItem.component instanceof LuxRadioAcComponent)
+    ) {
       return (value as any)[filterItem.component.luxOptionLabelProp!];
-    } else if (filterItem.component instanceof  LuxLookupComponent) {
+    } else if (filterItem.component instanceof LuxLookupComponent) {
       return filterItem.component.getLabel(value);
     } else {
       return value;

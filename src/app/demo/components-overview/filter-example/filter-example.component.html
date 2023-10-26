@@ -137,6 +137,20 @@
             [luxNoTopLabel]="true"
             *luxLayoutRowItem="{}"
           ></lux-toggle-ac>
+          <lux-radio-ac
+            [luxNoTopLabel]="true"
+            [luxOrientationVertical]="false"
+            [luxOptions]="radioOptions"
+            luxControlBinding="radio"
+            *luxLayoutRowItem="{}"
+            luxOptionLabelProp="label"
+            [luxPickValue]="radioPickValueFn"
+            luxFilterItem
+            luxFilterLabel="Radio"
+            [luxFilterDisabled]="radioSelectDisabled"
+            [luxFilterHidden]="radioSelectHidden"
+          >
+          </lux-radio-ac>
         </lux-layout-form-row>
       </lux-filter-form>
       <div class="lux-highlight-section column lux-ml-2 lux-mr-2">
@@ -279,6 +293,20 @@
               [luxNoTopLabel]="true"
               *luxLayoutRowItem="{}"
             ></lux-toggle-ac>
+            <lux-radio-ac
+              [luxNoTopLabel]="true"
+              [luxOrientationVertical]="false"
+              [luxOptions]="radioOptions"
+              luxControlBinding="radio"
+              *luxLayoutRowItem="{}"
+              luxOptionLabelProp="label"
+              [luxPickValue]="radioPickValueFn"
+              luxFilterItem
+              luxFilterLabel="Radio"
+              [luxFilterDisabled]="radioSelectDisabled"
+              [luxFilterHidden]="radioSelectHidden"
+            >
+            </lux-radio-ac>
           </lux-layout-form-row> </lux-filter-form-extended
       ></lux-filter-form>
     </div>
@@ -494,6 +522,23 @@
         <lux-toggle-ac
           luxLabel="luxFilterHidden"
           [(luxChecked)]="toggleSelectHidden"
+          [luxNoLabels]="true"
+          *luxLayoutRowItem="{}"
+        ></lux-toggle-ac>
+      </lux-layout-form-row>
+    </div>
+    <div class="lux-highlight-section" fxLayout="column">
+      <div fxFlex="1 1 auto" class="lux-pb-3">Radio</div>
+      <lux-layout-form-row luxWrapAt="md">
+        <lux-toggle-ac
+          luxLabel="luxFilterDisabled"
+          [(luxChecked)]="radioSelectDisabled"
+          [luxNoLabels]="true"
+          *luxLayoutRowItem="{}"
+        ></lux-toggle-ac>
+        <lux-toggle-ac
+          luxLabel="luxFilterHidden"
+          [(luxChecked)]="radioSelectHidden"
           [luxNoLabels]="true"
           *luxLayoutRowItem="{}"
         ></lux-toggle-ac>
