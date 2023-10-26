@@ -4,6 +4,7 @@
 
 ### New
 
+- **allgemein**: Update auf LUX-Components-Icons-And-Fonts. [1.8.0](https://github.com/IHK-GfI/lux-components-icons-and-fonts/releases/tag/1.8.0).
 - **lux-textbox**: Die Textbox hat eine neue Property luxHeading erhalten. [Issue 360](https://github.com/IHK-GfI/lux-components/issues/360)
 - **lux-table**: Property luxDoubleClicked hinzugefügt. [Issue 377](https://github.com/IHK-GfI/lux-components/issues/377)
 - **lux-filter-form**: Verwendung von LUX-Radio ermöglichen. [Issue 382](https://github.com/IHK-GfI/lux-components/issues/382)
