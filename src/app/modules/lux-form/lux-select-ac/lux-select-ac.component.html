@@ -15,26 +15,26 @@
     [placeholder]="luxPlaceholder"
     [multiple]="luxMultiple"
     [compareWith]="compareObjects"
-    [required]="luxRequired"  
+    [required]="luxRequired"
     [disableRipple]="true"
     [formControl]="formControl"
     [attr.aria-invalid]="formControl.invalid"
     [attr.aria-required]="luxRequired"
+    [attr.aria-readonly]="luxReadonly"
     [id]="uid"
-    [panelClass]="luxMultiple ? 'lux-select-panel-ac-multiple': 'lux-select-panel-ac'"
+    [panelClass]="[luxMultiple ? 'lux-select-panel-ac-multiple' : 'lux-select-panel-ac', luxReadonly ? 'lux-display-none' : '']"
     [luxAriaLabelledby]="uid + '-label'"
     [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
     (focusin)="luxFocusIn.emit($event)"
     (focusout)="luxFocusOut.emit($event)"
     #select
   >
-    <mat-option *ngFor="let item of luxOptions; let i = index" [value]="luxPickValue ? _luxOptionsPickValue[i] : item" class="option-height">
-      <ng-container
-        *ngTemplateOutlet="
-          tempRef && !luxOptionLabelProp ? tempRef : noTemplateRefTemplate;
-          context: { $implicit: item }
-        "
-      >
+    <mat-option
+      *ngFor="let item of luxOptions; let i = index"
+      [value]="luxPickValue ? _luxOptionsPickValue[i] : item"
+      class="option-height"
+    >
+      <ng-container *ngTemplateOutlet="tempRef && !luxOptionLabelProp ? tempRef : noTemplateRefTemplate; context: { $implicit: item }">
       </ng-container>
     </mat-option>
   </mat-select>
@@ -50,4 +50,3 @@
     </ng-container>
   </ng-template>
 </ng-template>
-
