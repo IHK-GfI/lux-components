@@ -5,6 +5,7 @@
 ### Bug Fixes
 
 - **lux-form**: Readonly mit Kopiermöglichkeit für alle Formularcontrols. [Issue 389](https://github.com/IHK-GfI/lux-components/issues/389)
+- **lux-file-upload**: Dateiauswahl in iOS / Safari auf Iphone unmöglich. [Issue 390](https://github.com/IHK-GfI/lux-components/issues/390)
 
 ## Version 15.2.0
 
