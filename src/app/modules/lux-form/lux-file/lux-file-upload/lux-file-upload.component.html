@@ -6,12 +6,12 @@
     [ngClass]="{ 'lux-file-upload-drag-active': isDragActive, 'lux-file-upload-drop-container-disabled': luxDisabled }"
   >
     <div class="lux-file-upload-drop-label-container">
-    <lux-icon class="lux-file-upload-icon" [luxIconName]="luxUploadIcon" luxIconSize="2x" luxPadding="0" luxMargin="0"></lux-icon>
-    <div class="lux-file-upload-label-container">
-      <div class="lux-file-upload-label">
-        <ng-container *ngTemplateOutlet="isMobile ? mobileLabelTemplate : desktopLabelTemplate"></ng-container>
+      <lux-icon class="lux-file-upload-icon" [luxIconName]="luxUploadIcon" luxIconSize="2x" luxPadding="0" luxMargin="0"></lux-icon>
+      <div class="lux-file-upload-label-container">
+        <div class="lux-file-upload-label">
+          <ng-container *ngTemplateOutlet="isMobile ? mobileLabelTemplate : desktopLabelTemplate"></ng-container>
+        </div>
       </div>
-    </div>
     </div>
     <mat-progress-bar
       class="lux-file-upload-drop-container-progress"
@@ -23,7 +23,11 @@
     <div class="lux-file-upload-drop-container-no-progress" *ngIf="!forceProgressIndeterminate"></div>
   </div>
 
-  <mat-hint class="lux-hint lux-file-upload-hint-container" [id]="uid + '-misc'" *ngIf="(formHintComponent || luxHint) && !(formControl?.getError('required') && formControl?.touched); else noHint">
+  <mat-hint
+    class="lux-hint lux-file-upload-hint-container"
+    [id]="uid + '-misc'"
+    *ngIf="(formHintComponent || luxHint) && !(formControl?.getError('required') && formControl?.touched); else noHint"
+  >
     <ng-container *ngIf="luxHint; else formHintTemplate">
       {{ luxHint }}
     </ng-container>
@@ -41,11 +45,22 @@
   </ng-template>
 
   <div class="lux-file-upload-error-container" *ngIf="errorMessage && displayClearErrorButton && formControl?.touched">
-    <lux-icon class="lux-file-upload-error-icon" luxIconName="lux-interface-alert-warning-triangle" luxIconSize="2x" luxPadding="0" luxMargin="0"></lux-icon>
+    <lux-icon
+      class="lux-file-upload-error-icon"
+      luxIconName="lux-interface-alert-warning-triangle"
+      luxIconSize="2x"
+      luxPadding="0"
+      luxMargin="0"
+    ></lux-icon>
     <mat-error [id]="uid + '-misc'" class="lux-file-upload-error-message">
       {{ errorMessage }}
     </mat-error>
-    <lux-button [luxTagId]="uid + '-delete-error-message-button'" class="lux-file-upload-error-button" luxIconName="close" (luxClicked)="onCloseErrorMessage()"></lux-button>
+    <lux-button
+      [luxTagId]="uid + '-delete-error-message-button'"
+      class="lux-file-upload-error-button"
+      luxIconName="close"
+      (luxClicked)="onCloseErrorMessage()"
+    ></lux-button>
   </div>
 
   <div
@@ -70,13 +85,13 @@
           <span
             *ngIf="file.namePrefix"
             [ngStyle]="{ color: !luxDisabled ? file.namePrefixColor : '', fontSize: '0.8em', fontStyle: 'italic' }"
-          >{{ file.namePrefix }}</span
+            >{{ file.namePrefix }}</span
           ><span class="lux-file-upload-label-text">{{ file.name }}</span>
           <span
-          *ngIf="file.nameSuffix"
-          [ngStyle]="{ color: !luxDisabled ? file.nameSuffixColor : '', fontSize: '0.8em', fontStyle: 'italic' }"
-        >{{ file.nameSuffix }}</span
-        >
+            *ngIf="file.nameSuffix"
+            [ngStyle]="{ color: !luxDisabled ? file.nameSuffixColor : '', fontSize: '0.8em', fontStyle: 'italic' }"
+            >{{ file.nameSuffix }}</span
+          >
         </div>
       </div>
       <span class="lux-file-upload-label-file-size" *ngIf="file.size">{{ Math.ceil(file.size / 1024) + ' KB' }}</span>
@@ -98,7 +113,7 @@
     type="file"
     [multiple]="luxMultiple"
     [accept]="luxAccept"
-    [luxFileCapture]="luxCapture ? luxCapture : 'environment'"
+    [luxFileCapture]="luxCapture"
     (change)="onSelectFiles($event.target)"
     #fileUpload
   />
@@ -106,9 +121,11 @@
 
 <ng-template #desktopLabelTemplate>
   <span class="lux-file-upload-label-text">{{ luxLabel }}</span
-  ><a class="lux-file-upload-link" (click)="onUpload()">{{ luxLabelLink }}</a><span *ngIf="luxRequired"> *</span>
+  ><a class="lux-file-upload-link" (click)="onUpload()">{{ luxLabelLink }}</a
+  ><span *ngIf="luxRequired"> *</span>
 </ng-template>
 
 <ng-template #mobileLabelTemplate>
-  <a class="lux-file-upload-link" (click)="onUpload()">{{ luxLabelLinkShort }}</a><span *ngIf="luxRequired"> *</span>
+  <a class="lux-file-upload-link" (click)="onUpload()">{{ luxLabelLinkShort }}</a
+  ><span *ngIf="luxRequired"> *</span>
 </ng-template>
