@@ -5,6 +5,19 @@ lux-progress ::ng-deep mat-progress-bar {
 :host {
   display: block;
   height: 100%;
+
+  ::ng-deep {
+    .lux-multiselect-table {
+      .lux-multiselect-toggle,
+      .lux-multiselect-toggle-all {
+        .lux-form-control-readonly-authentic {
+          // Die Pointer-Events müssen deaktiviert werden, weil sonst die Anzahl der ausgewählten Checkboxen
+          // nicht mit der Anzahl der selektierten Zeilen übereinstimmt.
+          pointer-events: none;
+        }
+      }
+    }
+  }
 }
 
 .lux-table {
