@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 15.4.0
+
+### Bug Fixes
+
+- **lux-table**: Checkboxen in Multiselect-Tabellen sind nicht synchron mit den ausgewählten Zeilen. [Issue 404](https://github.com/IHK-GfI/lux-components/issues/404)
+
 ## Version 15.3.0
 
 ### Bug Fixes
