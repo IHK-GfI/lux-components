@@ -40,7 +40,7 @@ Die Demo kann auch lokal ausgeführt werden:
 Stellen Sie zunächst sicher, dass Sie die Node-Version 16.x.x oder höher installiert haben.
 Installieren Sie anschließend die folgenden zwei NPM-Pakte global:
 
-Die aktuellste Version unterstützt die @angular/cli@14. Deswegen wird @angular/cli nicht über npm installiert, sondern on-demand via npx aufgerufen. So wird eure bestehende Version nicht verändert.
+Die aktuellste Version unterstützt die @angular/cli@15. Deswegen wird @angular/cli nicht über npm installiert, sondern on-demand via npx aufgerufen. So wird eure bestehende Version nicht verändert.
 
 Die Schematics-CLI installieren.
 
@@ -51,7 +51,7 @@ npm install -g @angular-devkit/schematics-cli
 Zuerst erzeugt man über die Angular CLI eine neue App.
 
 ```bash
-npx @angular/cli@14 new my-new-app
+npx @angular/cli@15 new my-new-app
 ? Would you like to add Angular routing? Yes
 ? Which stylesheet format would you like to use? SCSS
 
@@ -63,7 +63,7 @@ cd my-new-app
 Im Anschluss installiert man sich den [LUX-Componentsupdater](https://github.com/IHK-GfI/lux-components-update).
 
 ```bash
-npm install @ihk-gfi/lux-components-update@14 --save-dev
+npm install @ihk-gfi/lux-components-update@15 --save-dev
 ```
 
 Dann kann man über den LUX-Componentsupdater die LUX-Components seiner App hinzufügen:

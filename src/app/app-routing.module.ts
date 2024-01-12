@@ -4,23 +4,36 @@ import { LicenseHintComponent } from './demo/base/license-hint/license-hint.comp
 import { HomeComponent } from './demo/home/home.component';
 import { LuxConsoleService } from './modules/lux-util/lux-console.service';
 import { ConfigurationComponent } from './demo/configuration/configuration.component';
-import { PlaceholderComponent } from './demo/abstract/placeholder/placeholder.component';
-import { RedirectComponent } from './demo/abstract/redirect/redirect.component';
+import { DseComponent } from './demo/abstract/dse/dse.component';
+import { DseResolver } from './demo/abstract/dse/dse.resolver';
+import { ImpressumComponent } from './demo/abstract/impressum/impressum.component';
+import { ImpressumResolver } from './demo/abstract/impressum/impressum.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'datenschutz', component: PlaceholderComponent },
-  { path: 'impressum', component: RedirectComponent },
+  {
+    path: 'datenschutz',
+    component: DseComponent,
+    resolve: {
+      content: DseResolver
+    }
+  },
   { path: 'license-hint', component: LicenseHintComponent },
   {
-    path: 'components-overview',
-    loadChildren: () =>
-      import('./demo/components-overview/components-overview.module').then(m => m.ComponentsOverviewModule)
+    path: 'impressum',
+    component: ImpressumComponent,
+    resolve: {
+      content: ImpressumResolver
+    }
   },
-  { path: 'form', loadChildren: () => import('./demo/form/form-example.module').then(m => m.FormExampleModule) },
+  {
+    path: 'components-overview',
+    loadChildren: () => import('./demo/components-overview/components-overview.module').then((m) => m.ComponentsOverviewModule)
+  },
+  { path: 'form', loadChildren: () => import('./demo/form/form-example.module').then((m) => m.FormExampleModule) },
   { path: 'configuration', component: ConfigurationComponent },
-  { path: 'baseline', loadChildren: () => import('./demo/baseline/baseline.module').then(m => m.BaselineModule) },
+  { path: 'baseline', loadChildren: () => import('./demo/baseline/baseline.module').then((m) => m.BaselineModule) }
 ];
 
 @NgModule({

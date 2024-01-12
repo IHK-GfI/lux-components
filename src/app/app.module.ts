@@ -26,9 +26,9 @@ import { ExampleBaseModule } from './demo/example-base/example-base.module';
 import { LuxCommonModule } from './modules/lux-common/lux-common.module';
 import { LuxErrorModule } from './modules/lux-error/lux-error.module';
 import 'hammerjs';
-import { PlaceholderComponent } from './demo/abstract/placeholder/placeholder.component';
-import { RedirectComponent } from './demo/abstract/redirect/redirect.component';
+import { DseComponent } from './demo/abstract/dse/dse.component';
 import { LicenseHintComponent } from './demo/base/license-hint/license-hint.component';
+import { ImpressumComponent } from './demo/abstract/impressum/impressum.component';
 
 const myConfiguration: LuxComponentsConfigParameters = {
   generateLuxTagIds: environment.generateLuxTagIds,
@@ -39,7 +39,7 @@ const myConfiguration: LuxComponentsConfigParameters = {
 };
 
 @NgModule({
-  declarations: [AppComponent, PlaceholderComponent, RedirectComponent, LicenseHintComponent],
+  declarations: [AppComponent, DseComponent, ImpressumComponent, LicenseHintComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
