@@ -2,7 +2,7 @@ FROM node:16.20.0 as node
 LABEL MAINTAINER thomas.dickhut@gfi.ihk.de
 
 USER root
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli@15
 
 WORKDIR /tmp
 COPY . .
