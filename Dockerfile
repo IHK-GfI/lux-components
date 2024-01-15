@@ -27,7 +27,10 @@ COPY nginx.conf /etc/nginx/
 COPY --from=node /tmp/dist /var/www/html
 
 RUN find /var/www/html/ -type f -regex ".*\.\(html\|js\|css\)" -exec sh -c "gzip < {} > {}.gz" \;
-RUN ls -al /var/www/* -R && \
+RUN chown -R nginx:nginx /var/log/nginx && \
+    chown -R nginx:nginx /var/www/ && \
+    chown -R nginx:nginx /run && \
+    ls -al /var/www/* -R && \
     cat /etc/nginx/nginx.conf
 
 USER $USERNAME
