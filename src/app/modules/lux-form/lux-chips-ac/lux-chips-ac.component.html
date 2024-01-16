@@ -1,4 +1,4 @@
-<div class="lux-chips" fxLayout="column" #chipsContainerDiv>
+<div class="lux-chips" #chipsContainerDiv>
   <lux-form-control-wrapper
     [luxFormComponent]="this"
     [luxIgnoreDefaultLabel]="!luxInputAllowed"
@@ -95,7 +95,7 @@
             (keyup)="inputChanged(input.value)"
             (click)="onAutocompleteClick()"
             type="text"
-            fxFlex="1 1 auto"
+            class="lux-flex lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-auto"
             #input
           />
           <lux-icon

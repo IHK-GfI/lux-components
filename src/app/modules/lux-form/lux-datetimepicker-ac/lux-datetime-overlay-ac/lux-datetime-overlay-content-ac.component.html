@@ -1,6 +1,6 @@
 <div class="lux-datetime-overlay-content">
   <lux-card luxTagId="lux-datetimepicker-overlay-card-content">
-    <lux-card-content fxLayout="column">
+    <lux-card-content class="lux-flex lux-flex-col">
       <mat-calendar
         class="lux-datetime-overlay-calendar"
         [dateFilter]="dateTimePicker._luxCustomFilter"
@@ -12,9 +12,9 @@
         [headerComponent]="getHeaderByTheme()"
       ></mat-calendar>
       <lux-divider [luxInset]="true"></lux-divider>
-      <div fxLayout="row" fxLayoutAlign="start center" class="lux-mt-3">
+      <div class="lux-datetime-time-container lux-mt-3">
         <lux-icon luxIconName="lux-interface-time-clock-circle" luxIconSize="2x" class="lux-datetime-icon lux-color-blue"></lux-icon>
-        <div fxLayout="row" fxLayoutAlign="center center">
+        <div class="lux-flex lux-place-content-center lux-items-center">
           <lux-input-ac
             luxLabel=""
             class="lux-datetime-hour"
@@ -29,7 +29,7 @@
             [luxNoLabels]="true"
             #hoursInput
           ></lux-input-ac>
-          <div fxFlex="15px" style="text-align: center">:</div>
+          <div style="text-align: center; flex: 1 1 15px; box-sizing: border-box; max-width: 15px; min-width: 15px">:</div>
           <lux-input-ac
             luxLabel=""
             class="lux-datetime-minute"
@@ -46,15 +46,15 @@
           ></lux-input-ac>
         </div>
       </div>
-      <div fxFlexAlign="center" class="lux-datetime-error-message-container lux-pt-2">
+      <div class="lux-datetime-error-message-container lux-pt-2">
         <mat-error *ngIf="!selected && touched" i18n="@@luxc.datetimepicker.invalid.date">Bitte wählen Sie ein Datum aus</mat-error>
         <mat-error *ngIf="(!this.hours || !this.minutes) && selected && touched" i18n="@@luxc.datetimepicker.invalid.time"
           >Bitte geben Sie eine Zeit ein</mat-error
         >
       </div>
     </lux-card-content>
-    <lux-card-actions class="lux-mb-3">
-      <lux-button luxLabel="Ok" luxColor="primary" [luxFlat]="true" (luxClicked)="onOk()"></lux-button>
+    <lux-card-actions>
+      <lux-button luxLabel="OK" luxColor="primary" [luxFlat]="true" (luxClicked)="onOk()" class="lux-mb-3"></lux-button>
     </lux-card-actions>
   </lux-card>
 </div>

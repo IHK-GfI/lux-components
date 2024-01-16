@@ -2,15 +2,17 @@
 import {
   Component,
   ContentChild,
-  ElementRef, EventEmitter,
+  ElementRef,
+  EventEmitter,
   Input,
-  OnChanges, OnDestroy,
+  OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
   ViewChild
-} from "@angular/core";
-import { LuxAppService } from "../../lux-util/lux-app.service";
+} from '@angular/core';
+import { LuxAppService } from '../../lux-util/lux-app.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxSideNavComponent } from './lux-app-header-subcomponents/lux-side-nav/lux-side-nav.component';
@@ -20,24 +22,23 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'lux-app-header',
-  templateUrl: './lux-app-header.component.html',
-  styleUrls: ['./lux-app-header.component.scss']
+  templateUrl: './lux-app-header.component.html'
 })
 export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   @Input() luxLocaleSupported = ['de'];
-  @Input() luxLocaleBaseHref  = '';
+  @Input() luxLocaleBaseHref = '';
   @Input() luxUserName?: string;
   @Input() luxAppTitle?: string;
   @Input() luxAppTitleShort?: string;
   @Input() luxIconName?: string;
   @Input() luxImageSrc?: string;
   @Input() luxImageHeight = '55px';
-  @Input() luxAriaAppMenuButtonLabel = $localize `:@@luxc.app-header.aria.appmenu.btn:Anwendungsmenü / Navigation`;
-  @Input() luxAriaUserMenuButtonLabel = $localize `:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
-  @Input() luxAriaTitleIconLabel = $localize `:@@luxc.app-header.aria.title_icon.lbl:Titelicon`;
-  @Input() luxAriaTitleImageLabel = $localize `:@@luxc.app-header.aria.title.image.lbl:Titelbild`;
-  @Input() luxAriaTitleLinkLabel = $localize `:@@luxc.app-header.aria.title.link.lbl:`;
-  @Input() luxAriaRoleHeaderLabel = $localize `:@@luxc.app-header.aria.role_header.lbl:Kopfbereich / Menübereich`;
+  @Input() luxAriaAppMenuButtonLabel = $localize`:@@luxc.app-header.aria.appmenu.btn:Anwendungsmenü / Navigation`;
+  @Input() luxAriaUserMenuButtonLabel = $localize`:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
+  @Input() luxAriaTitleIconLabel = $localize`:@@luxc.app-header.aria.title_icon.lbl:Titelicon`;
+  @Input() luxAriaTitleImageLabel = $localize`:@@luxc.app-header.aria.title.image.lbl:Titelbild`;
+  @Input() luxAriaTitleLinkLabel = $localize`:@@luxc.app-header.aria.title.link.lbl:`;
+  @Input() luxAriaRoleHeaderLabel = $localize`:@@luxc.app-header.aria.role_header.lbl:Kopfbereich / Menübereich`;
 
   @Output() luxClicked = new EventEmitter<Event>();
 
@@ -52,13 +53,20 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   @ContentChild(LuxAppHeaderRightNavComponent) rightNav?: LuxAppHeaderRightNavComponent;
   @ContentChild(LuxSideNavComponent) sideNav?: LuxSideNavComponent;
 
-  constructor(private queryService: LuxMediaQueryObserverService, private logger: LuxConsoleService, private elementRef: ElementRef, private appService: LuxAppService) {
+  constructor(
+    private queryService: LuxMediaQueryObserverService,
+    private logger: LuxConsoleService,
+    private elementRef: ElementRef,
+    private appService: LuxAppService
+  ) {
     this.appService.appHeaderEl = elementRef.nativeElement;
 
     this.mobileView = this.queryService.activeMediaQuery === 'xs' || this.queryService.activeMediaQuery === 'sm';
-    this.subscriptions.push(this.queryService.getMediaQueryChangedAsObservable().subscribe((query) => {
-      this.mobileView = query === 'xs' || query === 'sm';
-    }));
+    this.subscriptions.push(
+      this.queryService.getMediaQueryChangedAsObservable().subscribe((query) => {
+        this.mobileView = query === 'xs' || query === 'sm';
+      })
+    );
   }
 
   ngOnInit() {
@@ -68,7 +76,7 @@ export class LuxAppHeaderComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {

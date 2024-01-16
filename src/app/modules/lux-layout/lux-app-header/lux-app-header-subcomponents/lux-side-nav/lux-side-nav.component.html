@@ -5,23 +5,26 @@
     (@expandHide.done)="updateSideNavAfterAnimationIsFinished()"
     [luxAriaRole]="luxAriaRoleNavigationLabel ? 'navigation' : undefined"
     [luxAriaLabel]="luxAriaRoleNavigationLabel"
-    [ngStyle]="{'top': top, 'left': left, 'bottom': bottom}"
+    [ngStyle]="{ top: top, left: left, bottom: bottom }"
     #sideNav
   >
     <div class="lux-side-nav-header" #sideNavHeader>
       <ng-content select="lux-side-nav-header"></ng-content>
     </div>
-    <div class="lux-side-nav-content" fxLayout="column" [ngStyle]="{ height: height + 'px', visibility: visibility }">
+    <div class="lux-side-nav-content lux-flex lux-flex-col" [ngStyle]="{ height: height + 'px', visibility: visibility }">
       <ng-container *ngIf="luxDashboardLink">
-        <div
-          fxLayout="row"
-          fxLayoutAlign="center center"
-          class="lux-side-nav-item lux-nowrap lux-side-nav-dashboard-link"
-        >
-          <lux-icon luxIconName="lux-interface-edit-grid" class="lux-side-nav-item-icon"> </lux-icon>
+        <div class="lux-side-nav-item lux-nowrap lux-side-nav-dashboard-link lux-flex lux-place-content-center">
+          <lux-icon
+            luxIconName="lux-interface-edit-grid"
+            luxIconSize="40px"
+            luxPadding="9px"
+            luxMargin="0 0 0 4px"
+            class="lux-side-nav-item-icon"
+          >
+          </lux-icon>
 
           <lux-link
-            fxFlex="1 1 auto"
+            class="lux-flex lux-flex-grow-1 lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-auto"
             [luxLabel]="luxDashboardLinkTitle"
             [luxBlank]="luxOpenLinkBlank"
             [luxHref]="luxDashboardLink"
@@ -40,7 +43,7 @@
   </div>
   <div
     class="lux-side-nav-overlay lux-side-nav-overlay-z-index"
-    [ngStyle]="{'top': top, 'left': left, 'bottom': bottom, 'right': right}"
+    [ngStyle]="{ top: top, left: left, bottom: bottom, right: right }"
     *ngIf="sideNavExpanded"
     [@expandHideOverlay]="sideNavExpanded ? 'expanded' : 'void'"
     (click)="close()"

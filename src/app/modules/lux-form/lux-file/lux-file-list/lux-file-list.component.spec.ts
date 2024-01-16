@@ -190,7 +190,7 @@ describe('LuxFileListComponent', () => {
 
     it('Sollte Label und Hint korrekt setzen', fakeAsync(() => {
       // Vorbedingungen testen
-      expect(fixture.debugElement.query(By.css('.lux-card-title-container')).nativeElement.textContent.trim()).toBe('');
+      expect(fixture.debugElement.query(By.css('.lux-card-title')).nativeElement.textContent.trim()).toBe('');
       expect(fixture.debugElement.query(By.css('mat-hint'))).toBeNull();
 
       // Änderungen durchführen
@@ -199,7 +199,7 @@ describe('LuxFileListComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.lux-card-title-container')).nativeElement.textContent.trim()).toBe('Label');
+      expect(fixture.debugElement.query(By.css('.lux-card-title')).nativeElement.textContent.trim()).toBe('Label');
       expect(fixture.debugElement.query(By.css('mat-hint')).nativeElement.textContent.trim()).toEqual('Hint');
     }));
 
@@ -423,7 +423,9 @@ describe('LuxFileListComponent', () => {
 
       const replaceButton = overlayHelper.selectAllFromOverlay('button')[1];
       expect(replaceButton).not.toBeNull();
-      expect(replaceButton.innerText).toEqual('Ersetzen');
+      // Hier wird toContain verwendet, da im Safari ein Zeilenumbruch im String entsteht, der zu einem Fehler führt
+      expect(replaceButton.innerText).toContain('ERSETZEN');
+      expect(replaceButton.innerText).withContext;
 
       replaceButton.click();
       LuxTestHelper.wait(fixture);
@@ -507,7 +509,8 @@ describe('LuxFileListComponent', () => {
 
       const replaceButton = overlayHelper.selectAllFromOverlay('button')[1];
       expect(replaceButton).not.toBeNull();
-      expect(replaceButton.innerText).toEqual('Ersetzen');
+      // Hier wird toContain verwendet, da im Safari ein Zeilenumbruch im String entsteht, der zu einem Fehler führt
+      expect(replaceButton.innerText).toContain('ERSETZEN');
 
       replaceButton.click();
       LuxTestHelper.wait(fixture);
@@ -882,7 +885,8 @@ describe('LuxFileListComponent', () => {
 
           const replaceButton = overlayHelper.selectAllFromOverlay('button')[1];
           expect(replaceButton).not.toBeNull();
-          expect(replaceButton.innerText).toEqual('Ersetzen');
+          // Hier wird toContain verwendet, da im Safari ein Zeilenumbruch im String entsteht, der zu einem Fehler führt
+          expect(replaceButton.innerText).toContain('ERSETZEN');
 
           replaceButton.click();
           LuxTestHelper.wait(fixture);
@@ -917,7 +921,8 @@ describe('LuxFileListComponent', () => {
 
           const replaceButton = overlayHelper.selectAllFromOverlay('button')[0];
           expect(replaceButton).not.toBeNull();
-          expect(replaceButton.innerText).toEqual('Abbrechen');
+          // Hier wird toContain verwendet, da im Safari ein Zeilenumbruch im String entsteht, der zu einem Fehler führt
+          expect(replaceButton.innerText).toContain('ABBRECHEN');
 
           replaceButton.click();
           LuxTestHelper.wait(fixture);

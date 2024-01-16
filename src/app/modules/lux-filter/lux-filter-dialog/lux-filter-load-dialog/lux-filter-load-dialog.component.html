@@ -1,6 +1,6 @@
 <lux-dialog-structure>
   <lux-dialog-title i18n="@@luxc.file-preview.filter-load-dialog.title">Filter</lux-dialog-title>
-  <lux-dialog-content fxLayout="column" class="filter-content">
+  <lux-dialog-content class="filter-content lux-flex lux-flex-col">
     <lux-card *ngFor="let filter of filterArr; let i = index">
       <lux-card-content>
         {{ filter.name }}
@@ -25,7 +25,7 @@
 
     <div *ngIf="filterArr.length === 0">Keine Filter vorhanden.</div>
   </lux-dialog-content>
-  <lux-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="12px grid" fxFlex="100">
+  <lux-dialog-actions class="lux-filter-dialog-action">
     <lux-button
       luxLabel="Schließen"
       i18n-luxLabel="@@luxc.file-preview.filter-load-dialog.close.lbl"

@@ -6,10 +6,19 @@ lux-form-control-wrapper {
 
 .lux-file-container {
   max-height: 24px;
-  input {
-    width: auto !important;
-  }
+  display: flex;
+  box-sizing: border-box;
 
+  ::ng-deep input.lux-file-visible-input {
+    width: auto !important;
+    flex: 1 0 100px;
+  }
+  .lux-file-menu-container {
+    display: flex;
+    place-content: center flex-start;
+    align-items: center;
+    flex: 1 0 65px;
+  }
   lux-menu {
     ::ng-deep {
       .lux-menu-extended {

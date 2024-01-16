@@ -11,8 +11,7 @@ import { LuxMenuComponent } from '../../lux-action/lux-menu/lux-menu.component';
 
 @Component({
   selector: 'lux-app-footer',
-  templateUrl: './lux-app-footer.component.html',
-  styleUrls: ['./lux-app-footer.component.scss']
+  templateUrl: './lux-app-footer.component.html'
 })
 export class LuxAppFooterComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('buttonMenu', { static: true }) buttonMenu!: LuxMenuComponent;

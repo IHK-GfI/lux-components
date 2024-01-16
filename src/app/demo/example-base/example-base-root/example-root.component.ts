@@ -35,7 +35,7 @@ export class ExampleRootComponent implements AfterViewInit, OnDestroy {
 
     this.desktopView = !this.mediaQueryService.isXS() && !this.mediaQueryService.isSM();
 
-    this.subscription = this.mediaQueryService.getMediaQueryChangedAsObservable().subscribe(query => {
+    this.subscription = this.mediaQueryService.getMediaQueryChangedAsObservable().subscribe((query) => {
       this.desktopView = !this.mediaQueryService.isXS() && !this.mediaQueryService.isSM();
     });
   }

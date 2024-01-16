@@ -37,8 +37,18 @@
           <lux-step-content>
             <h3>Bitte tragen Sie alle Werte ein</h3>
             <form [formGroup]="step.stepControl">
-              <lux-input-ac luxLabel="Benutzername" luxType="text" luxName="stepper.username.{{ i }}" luxControlBinding="control1"></lux-input-ac>
-              <lux-input-ac luxLabel="Passwort" luxType="password" luxName="stepper.password.{{ i }}" luxControlBinding="control2"></lux-input-ac>
+              <lux-input-ac
+                luxLabel="Benutzername"
+                luxType="text"
+                luxName="stepper.username.{{ i }}"
+                luxControlBinding="control1"
+              ></lux-input-ac>
+              <lux-input-ac
+                luxLabel="Passwort"
+                luxType="password"
+                luxName="stepper.password.{{ i }}"
+                luxControlBinding="control2"
+              ></lux-input-ac>
             </form>
           </lux-step-content>
         </lux-step>
@@ -56,11 +66,21 @@
             rebum.
           </p>
           <lux-layout-form-row>
-            <lux-input-ac luxLabel="Straße" luxName="stepper.street" luxControlBinding="street" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input-ac>
+            <lux-input-ac
+              luxLabel="Straße"
+              luxName="stepper.street"
+              luxControlBinding="street"
+              *luxLayoutRowItem="{ colSpan: 2 }"
+            ></lux-input-ac>
             <lux-input-ac luxLabel="Hausnummer" luxName="stepper.number" luxControlBinding="number" *luxLayoutRowItem="{}"></lux-input-ac>
           </lux-layout-form-row>
           <lux-layout-form-row>
-            <lux-input-ac luxLabel="Stadt" luxName="stepper.city" luxControlBinding="city" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input-ac>
+            <lux-input-ac
+              luxLabel="Stadt"
+              luxName="stepper.city"
+              luxControlBinding="city"
+              *luxLayoutRowItem="{ colSpan: 2 }"
+            ></lux-input-ac>
             <div *luxLayoutRowItem="{ empty: true }"></div>
           </lux-layout-form-row>
         </lux-step-content>
@@ -84,19 +104,32 @@
       </lux-step>
 
       <!-- Abschluss-Step des Steppers -->
-      <lux-step luxIconName="lux-interface-validation-check">
-        <lux-step-header>
-          Fin
-        </lux-step-header>
+      <lux-step luxIconName="lux-interface-validation-check" [luxCompleted]="steps[0].stepControl.valid && steps[1].stepControl.valid">
+        <lux-step-header> Fin </lux-step-header>
         <lux-step-content>
-          <h3>Alle Steps erfolgreich abgeschlossen.</h3>
+          <h3 *ngIf="steps[0].stepControl.valid && steps[1].stepControl.valid; else invalidTemplate">
+            Alle Steps erfolgreich abgeschlossen.
+          </h3>
+
+          <ng-template #invalidTemplate>
+            <lux-textbox
+              luxTitle="In Folgenden Steps sind Fehler aufgetreten"
+              luxIcon="lux-interface-alert-warning-triangle"
+              luxColor="red"
+            >
+              <ng-container *ngFor="let step of steps; let i = index">
+                <p *ngIf="!step.stepControl.valid">Step #{{ i }}</p>
+              </ng-container>
+              <p>Bitte Prüfen Sie Ihre Angaben auf Vollständigkeit und Korrektheit.</p>
+            </lux-textbox>
+          </ng-template>
         </lux-step-content>
       </lux-step>
     </lux-stepper>
   </example-base-content>
   <example-base-simple-options>
     <lux-toggle-ac
-    class="lux-highlight-section"
+      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
@@ -211,14 +244,23 @@
                 [luxNoTopLabel]="true"
               >
               </lux-toggle-ac>
-              <lux-toggle-ac luxLabel="luxCompleted" [(luxChecked)]="step.completed" [luxDisabled]="step.useStepControl" [luxNoTopLabel]="true">
+              <lux-toggle-ac
+                luxLabel="luxCompleted"
+                [(luxChecked)]="step.completed"
+                [luxDisabled]="step.useStepControl"
+                [luxNoTopLabel]="true"
+              >
                 <lux-form-hint>
                   Alternative zum StepControl um festzulegen, ob der Step als abgeschlossen gilt oder nicht.<br />
-                  Wenn dem Step ein StepControl und ein completed-Wert übergeben werden, wird das StepControl zur
-                  Validierung genutzt.
+                  Wenn dem Step ein StepControl und ein completed-Wert übergeben werden, wird das StepControl zur Validierung genutzt.
                 </lux-form-hint>
               </lux-toggle-ac>
-              <lux-toggle-ac luxLabel="luxOptional" [(luxChecked)]="step.optional" [luxDisabled]="step.useStepControl" [luxNoTopLabel]="true">
+              <lux-toggle-ac
+                luxLabel="luxOptional"
+                [(luxChecked)]="step.optional"
+                [luxDisabled]="step.useStepControl"
+                [luxNoTopLabel]="true"
+              >
                 <lux-form-hint>
                   Dieser Flag bestimmt ob der Step validiert werden soll oder als optional übersprungen werden kann.<br />
                   Das greift allerdings nur, wenn kein StepControl übergeben worden ist.
@@ -229,7 +271,7 @@
         </lux-panel>
       </lux-accordion>
 
-    <!-- Mögliche Konfigurationen für die Navigation-Buttons -->
+      <!-- Mögliche Konfigurationen für die Navigation-Buttons -->
 
       <lux-toggle-ac
         class="lux-highlight-section"
@@ -252,40 +294,23 @@
         [luxNoTopLabel]="true"
       >
       </lux-toggle-ac>
-      <lux-accordion
-        class="lux-mb-3"
-        luxMode="flat"
-        [luxMulti]="false"
-        [luxDisabled]="!useCustomButtonConfig"
-      >
+      <lux-accordion class="lux-mb-3" luxMode="flat" [luxMulti]="false" [luxDisabled]="!useCustomButtonConfig">
         <lux-panel>
-          <lux-panel-header-title>
-            previousButtonConfig
-          </lux-panel-header-title>
+          <lux-panel-header-title> previousButtonConfig </lux-panel-header-title>
           <lux-panel-content>
-            <ng-container
-              *ngTemplateOutlet="buttonConfigTemplate; context: { $implicit: previousButtonConfig }"
-            ></ng-container>
+            <ng-container *ngTemplateOutlet="buttonConfigTemplate; context: { $implicit: previousButtonConfig }"></ng-container>
           </lux-panel-content>
         </lux-panel>
         <lux-panel>
-          <lux-panel-header-title>
-            nextButtonConfig
-          </lux-panel-header-title>
+          <lux-panel-header-title> nextButtonConfig </lux-panel-header-title>
           <lux-panel-content>
-            <ng-container
-              *ngTemplateOutlet="buttonConfigTemplate; context: { $implicit: nextButtonConfig }"
-            ></ng-container>
+            <ng-container *ngTemplateOutlet="buttonConfigTemplate; context: { $implicit: nextButtonConfig }"></ng-container>
           </lux-panel-content>
         </lux-panel>
         <lux-panel>
-          <lux-panel-header-title>
-            finishButtonConfig
-          </lux-panel-header-title>
+          <lux-panel-header-title> finishButtonConfig </lux-panel-header-title>
           <lux-panel-content>
-            <ng-container
-              *ngTemplateOutlet="buttonConfigTemplate; context: { $implicit: finishButtonConfig }"
-            ></ng-container>
+            <ng-container *ngTemplateOutlet="buttonConfigTemplate; context: { $implicit: finishButtonConfig }"></ng-container>
           </lux-panel-content>
         </lux-panel>
       </lux-accordion>
@@ -302,11 +327,7 @@
       [(luxValue)]="configurationObject.label"
     >
     </lux-input-ac>
-    <lux-input-ac
-      luxLabel="iconName"
-      luxHint="Diese Property bestimmt das Icon in dem Button."
-      [(luxValue)]="configurationObject.iconName"
-    >
+    <lux-input-ac luxLabel="iconName" luxHint="Diese Property bestimmt das Icon in dem Button." [(luxValue)]="configurationObject.iconName">
     </lux-input-ac>
     <lux-select-ac
       luxLabel="color"

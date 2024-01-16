@@ -10,6 +10,7 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
+  OnInit,
   Output,
   QueryList,
   ViewContainerRef
@@ -24,13 +25,14 @@ import { LuxUtil } from '../../lux-util/lux-util';
 import { CdkStepHeader, StepperSelectionEvent } from '@angular/cdk/stepper';
 import { skip } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 
 @Component({
   selector: 'lux-stepper',
   templateUrl: './lux-stepper.component.html',
   styleUrls: ['./lux-stepper.component.scss']
 })
-export class LuxStepperComponent implements AfterViewInit, OnDestroy {
+export class LuxStepperComponent implements AfterViewInit, OnDestroy, OnInit {
   private readonly _DEFAULT_PREV_BTN_CONF: ILuxStepperButtonConfig = {
     label: $localize`:@@luxc.stepper.back.btn:Zurück`
   };
@@ -62,12 +64,14 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
   };
 
   private subscriptions: Subscription[] = [];
-
+  mobileView?: boolean;
+  subscription?: Subscription;
   constructor(
     public stepperService: LuxStepperHelperService,
     private cdr: ChangeDetectorRef,
     private cfr: ComponentFactoryResolver,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private queryService: LuxMediaQueryObserverService
   ) {
     // Die Default-Konfiguration präventiv als Startwert setzen
     this.luxPreviousButtonConfig = this._DEFAULT_PREV_BTN_CONF;
@@ -75,6 +79,11 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
     this.luxFinishButtonConfig = this._DEFAULT_FIN_BTN_CONF;
     // Den Stepper im Helper-Service bekannt machen
     this.stepperService.registerStepper(this);
+  }
+  ngOnInit() {
+    this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe((query) => {
+      this.mobileView = query === 'xs' || query === 'sm';
+    });
   }
 
   ngAfterViewInit() {
@@ -151,6 +160,9 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   /**

@@ -1,15 +1,14 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, ValidatorFn } from "@angular/forms";
-import { LuxValidationErrors } from "../../../lux-form/lux-form-model/lux-form-component-base.class";
+import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { LuxValidationErrors } from '../../../lux-form/lux-form-model/lux-form-component-base.class';
 import { LuxInputAcComponent } from '../../../lux-form/lux-input-ac/lux-input-ac.component';
 import { LuxDialogRef } from '../../../lux-popups/lux-dialog/lux-dialog-model/lux-dialog-ref.class';
 import { LuxFilter } from '../../lux-filter-base/lux-filter';
-import { LuxFilterFormComponent } from "../../lux-filter-form/lux-filter-form.component";
+import { LuxFilterFormComponent } from '../../lux-filter-form/lux-filter-form.component';
 
 @Component({
   selector: 'lux-filter-save-dialog',
-  templateUrl: './lux-filter-save-dialog.component.html',
-  styleUrls: ['./lux-filter-save-dialog.component.scss']
+  templateUrl: './lux-filter-save-dialog.component.html'
 })
 export class LuxFilterSaveDialogComponent implements OnInit, AfterViewInit {
   @ViewChild(LuxInputAcComponent) filterNameComponent!: LuxInputAcComponent;

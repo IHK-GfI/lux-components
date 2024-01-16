@@ -8,6 +8,7 @@ import { LuxComponentsConfigService } from '../../../../../modules/lux-component
 import { LuxComponentsConfigParameters } from '../../../../../modules/lux-components-config/lux-components-config-parameters.interface';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { LuxMediaQueryObserverService } from 'src/app/modules/lux-util/lux-media-query-observer.service';
 
 @Component({
   selector: 'example-base-structure',
@@ -27,17 +28,26 @@ export class ExampleBaseStructureComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
+  isGtSm: boolean;
+
   constructor(
     private router: Router,
     private footerService: LuxAppFooterButtonService,
-    private configService: LuxComponentsConfigService
+    private configService: LuxComponentsConfigService,
+    private mediaQueryService: LuxMediaQueryObserverService
   ) {
     this.initialConfig = configService.currentConfig;
 
-    this.subscription =  this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
+    this.subscription = this.configService.config.subscribe((config: LuxComponentsConfigParameters) => {
       if (this.initialConfig !== config) {
         this.initialConfig = config;
       }
+    });
+
+    this.isGtSm = !this.mediaQueryService.isXS() && !this.mediaQueryService.isSM();
+
+    this.subscription = this.mediaQueryService.getMediaQueryChangedAsObservable().subscribe((query) => {
+      this.isGtSm = !this.mediaQueryService.isXS() && !this.mediaQueryService.isSM();
     });
   }
 

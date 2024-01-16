@@ -17,8 +17,7 @@ import { LuxUtil } from '../../lux-util/lux-util';
 
 @Component({
   selector: 'lux-list',
-  templateUrl: './lux-list.component.html',
-  styleUrls: ['./lux-list.component.scss']
+  templateUrl: './lux-list.component.html'
 })
 export class LuxListComponent implements AfterViewInit, OnDestroy {
   private _luxSelectedPosition = 0;

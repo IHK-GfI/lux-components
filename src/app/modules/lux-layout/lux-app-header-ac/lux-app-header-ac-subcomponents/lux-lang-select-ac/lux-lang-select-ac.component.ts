@@ -9,6 +9,7 @@ import { LuxLocaleAc } from './lux-locale-ac';
 export class LuxLangSelectAcComponent implements OnInit {
   @Input() luxLocaleSupported = ['de'];
   @Input() luxLocaleBaseHref = '';
+  @Input() mobileView = false;
 
   @ViewChild('customTrigger', { read: ElementRef }) customTrigger?: ElementRef;
 
@@ -99,7 +100,7 @@ export class LuxLangSelectAcComponent implements OnInit {
     return result.join('/');
   }
 
-  onMenuOpened(){
+  onMenuOpened() {
     this.menuOpened = true;
   }
   onMenuClosed() {
