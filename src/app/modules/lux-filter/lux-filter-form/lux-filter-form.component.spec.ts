@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ViewChild } from "@angular/core";
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Subscription } from 'rxjs';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
@@ -90,7 +90,6 @@ describe('LuxFilterFormComponent', () => {
 @Component({
   template: `
     <lux-filter-form
-      fxFlex="1 1 auto"
       (luxOnFilter)="onFilter($event)"
       [(luxFilterExpanded)]="expanded"
       [luxFilterValues]="initFilter"
@@ -102,85 +101,65 @@ describe('LuxFilterFormComponent', () => {
       [luxStoredFilters]="storedFilters"
       class="lux-ml-1 lux-mr-1 lux-mb-3"
     >
-      <div fxLayout="row wrap" fxLayoutGap="12px grid" fxLayout.xs="column" fxLayoutGap.xs="0px" fxLayout.md="column" fxLayoutGap.md="0px">
-        <lux-input-ac
-          fxFlex="1 1 calc(33% - 12px)"
-          fxFlex.xs="1 1 auto"
-          fxFlex.md="1 1 auto"
-          luxLabel="Input"
-          luxName="filter_input"
-          luxAutocomplete="off"
-          luxControlBinding="input"
-          [luxRequired]="true"
-          [luxFilterDisabled]="inputDisabled"
-          [luxFilterHidden]="inputHidden"
-          luxFilterItem
-        ></lux-input-ac>
-        <lux-autocomplete-ac
-          fxFlex="1 1 calc(33% - 12px)"
-          fxFlex.xs="1 1 auto"
-          fxFlex.md="1 1 auto"
-          luxLabel="Autocomplete"
-          [luxOptions]="autoCompleteOptions"
-          luxControlBinding="autocomplete"
-          [luxFilterDisabled]="autoCompleteDisabled"
-          [luxFilterHidden]="autoCompleteHidden"
-          luxFilterItem
-        ></lux-autocomplete-ac>
-        <lux-datepicker-ac
-          fxFlex="1 1 calc(33% - 12px)"
-          fxFlex.xs="1 1 auto"
-          fxFlex.md="1 1 auto"
-          luxLabel="Datepicker"
-          luxName="filter_datepicker"
-          luxControlBinding="datepicker"
-          [luxFilterDisabled]="datepickerDisabled"
-          [luxFilterHidden]="datepickerHidden"
-          luxFilterItem
-        ></lux-datepicker-ac>
-        <lux-select-ac
-          fxFlex="1 1 calc(33% - 12px)"
-          fxFlex.xs="1 1 auto"
-          fxFlex.md="1 1 auto"
-          luxLabel="Single-Select"
-          luxControlBinding="singleSelect"
-          luxOptionLabelProp="label"
-          [luxMultiple]="false"
-          [luxOptions]="singleSelectOptions"
-          [luxCompareWith]="compareValueFn"
-          [luxFilterDisabled]="singleSelectDisabled"
-          [luxFilterHidden]="singleSelectHidden"
-          luxFilterColor="accent"
-          luxFilterItem
-        ></lux-select-ac>
-        <lux-select-ac
-          fxFlex="1 1 calc(33% - 12px)"
-          fxFlex.xs="1 1 auto"
-          fxFlex.md="1 1 auto"
-          luxLabel="Multi-Select"
-          luxControlBinding="multiSelect"
-          luxOptionLabelProp="label"
-          [luxMultiple]="true"
-          [luxOptions]="multiSelectOptions"
-          [luxCompareWith]="compareValueFn"
-          [luxFilterDisabled]="multiSelectDisabled"
-          [luxFilterHidden]="multiSelectHidden"
-          luxFilterColor="accent"
-          luxFilterItem
-        ></lux-select-ac>
-        <lux-toggle-ac
-          fxFlex="1 1 calc(33% - 12px)"
-          fxFlex.xs="1 1 auto"
-          fxFlex.md="1 1 auto"
-          luxLabel="Toggle"
-          luxControlBinding="toggle"
-          [luxFilterRenderFn]="renderToggleFn"
-          [luxFilterDisabled]="toggleSelectDisabled"
-          [luxFilterHidden]="toggleSelectHidden"
-          luxFilterColor="warn"
-          luxFilterItem
-        ></lux-toggle-ac>
-      </div>
+      <lux-input-ac
+        luxLabel="Input"
+        luxName="filter_input"
+        luxAutocomplete="off"
+        luxControlBinding="input"
+        [luxRequired]="true"
+        [luxFilterDisabled]="inputDisabled"
+        [luxFilterHidden]="inputHidden"
+        luxFilterItem
+      ></lux-input-ac>
+      <lux-autocomplete-ac
+        luxLabel="Autocomplete"
+        [luxOptions]="autoCompleteOptions"
+        luxControlBinding="autocomplete"
+        [luxFilterDisabled]="autoCompleteDisabled"
+        [luxFilterHidden]="autoCompleteHidden"
+        luxFilterItem
+      ></lux-autocomplete-ac>
+      <lux-datepicker-ac
+        luxLabel="Datepicker"
+        luxName="filter_datepicker"
+        luxControlBinding="datepicker"
+        [luxFilterDisabled]="datepickerDisabled"
+        [luxFilterHidden]="datepickerHidden"
+        luxFilterItem
+      ></lux-datepicker-ac>
+      <lux-select-ac
+        luxLabel="Single-Select"
+        luxControlBinding="singleSelect"
+        luxOptionLabelProp="label"
+        [luxMultiple]="false"
+        [luxOptions]="singleSelectOptions"
+        [luxCompareWith]="compareValueFn"
+        [luxFilterDisabled]="singleSelectDisabled"
+        [luxFilterHidden]="singleSelectHidden"
+        luxFilterColor="accent"
+        luxFilterItem
+      ></lux-select-ac>
+      <lux-select-ac
+        luxLabel="Multi-Select"
+        luxControlBinding="multiSelect"
+        luxOptionLabelProp="label"
+        [luxMultiple]="true"
+        [luxOptions]="multiSelectOptions"
+        [luxCompareWith]="compareValueFn"
+        [luxFilterDisabled]="multiSelectDisabled"
+        [luxFilterHidden]="multiSelectHidden"
+        luxFilterColor="accent"
+        luxFilterItem
+      ></lux-select-ac>
+      <lux-toggle-ac
+        luxLabel="Toggle"
+        luxControlBinding="toggle"
+        [luxFilterRenderFn]="renderToggleFn"
+        [luxFilterDisabled]="toggleSelectDisabled"
+        [luxFilterHidden]="toggleSelectHidden"
+        luxFilterColor="warn"
+        luxFilterItem
+      ></lux-toggle-ac>
     </lux-filter-form>
   `
 })

@@ -3,8 +3,7 @@ import { LuxStepperParent } from '../../lux-stepper-model/lux-stepper-parent.cla
 
 @Component({
   selector: 'lux-stepper-horizontal',
-  templateUrl: './lux-stepper-horizontal.component.html',
-  styleUrls: ['./lux-stepper-horizontal.component.scss']
+  templateUrl: './lux-stepper-horizontal.component.html'
 })
 export class LuxStepperHorizontalComponent extends LuxStepperParent {
   constructor() {

@@ -1,50 +1,50 @@
-<lux-layout>
-  <lux-layout-card-row luxTitle="2 Karten pro Zeile">
-    <lux-card luxTitle="Kunde" *luxLayoutRowItem="{}">
+<div class="lux-container">
+  <h2>2 Karten pro Zeile</h2>
+  <div class="lux-grid lux-grid-cols-2 lt-md:lux-grid-cols-1 lux-col-gap-8 lux-row-gap-4">
+    <lux-card luxTitle="Kunde">
       <lux-card-content>
         <form [formGroup]="myGroup">
-          <lux-layout formGroupName="customerDetails">
-            <lux-layout-form-row>
-              <lux-input-ac luxName="name" luxLabel="Name" luxControlBinding="name" *luxLayoutRowItem="{ colSpan: 3 }"></lux-input-ac>
-            </lux-layout-form-row>
-            <lux-layout-form-row>
-              <lux-input-ac
-                luxName="postal-code"
-                luxLabel="PLZ"
-                luxType="number"
-                [luxNumberAlignLeft]="true"
-                luxControlBinding="zip"
-                *luxLayoutRowItem="{ colSpan: 1 }"
-              ></lux-input-ac>
-              <lux-input-ac
-                luxName="form-dual-Stadt"
-                luxLabel="Stadt"
-                luxType="text"
-                luxControlBinding="town"
-                *luxLayoutRowItem="{ colSpan: 2 }"
-              ></lux-input-ac>
-            </lux-layout-form-row>
-            <lux-layout-form-row>
-              <lux-autocomplete-ac
-                [luxOptions]="countries"
-                luxOptionLabelProp="name"
-                luxLabel="Land"
-                [luxLookupDelay]="100"
-                luxHint="Wählen Sie ein Land aus"
-                [luxSelectAllOnClick]="false"
-                luxControlBinding="country"
-                *luxLayoutRowItem="{ colSpan: 3 }"
+          <div formGroupName="customerDetails" class="lux-grid lux-cols-3 lt-md:lux-cols-1 lux-gap-4">
+            <lux-input-ac luxName="name" luxLabel="Name" luxControlBinding="name" class="lux-col-span-3"></lux-input-ac>
+            <lux-input-ac
+              luxName="postal-code"
+              luxLabel="PLZ"
+              luxType="number"
+              [luxNumberAlignLeft]="true"
+              luxControlBinding="zip"
+            ></lux-input-ac>
+            <lux-input-ac
+              luxName="form-dual-Stadt"
+              luxLabel="Stadt"
+              luxType="text"
+              luxControlBinding="town"
+              class="lux-col-span-2"
+            ></lux-input-ac>
+
+            <lux-autocomplete-ac
+              [luxOptions]="countries"
+              luxOptionLabelProp="name"
+              luxLabel="Land"
+              [luxLookupDelay]="100"
+              luxHint="Wählen Sie ein Land aus"
+              [luxSelectAllOnClick]="false"
+              luxControlBinding="country"
+              class="lux-col-span-3"
+            >
+            </lux-autocomplete-ac>
+
+            <div formArrayName="streets" class="lux-mt-4 lux-col-span-3">
+              <div
+                class="lux-grid lux-grid-cols-5 lux-gap-4"
+                *ngFor="let street of streetsFormArray.controls; let i = index"
+                [formGroupName]="i"
               >
-              </lux-autocomplete-ac>
-            </lux-layout-form-row>
-            <div fxFlex="1 1 auto" formArrayName="streets" class="lux-mt-4">
-              <lux-layout-form-row luxWrapAt="none" *ngFor="let street of streetsFormArray.controls; let i = index" [formGroupName]="i">
                 <lux-input-ac
                   luxName="street-address"
                   luxLabel="Straße"
                   luxType="text"
                   luxControlBinding="streetName"
-                  *luxLayoutRowItem="{ colSpan: 2 }"
+                  class="lux-col-span-3"
                 ></lux-input-ac>
                 <lux-input-ac
                   luxName="form-dual-Nr"
@@ -52,7 +52,6 @@
                   luxType="number"
                   [luxNumberAlignLeft]="true"
                   luxControlBinding="nr"
-                  *luxLayoutRowItem="{}"
                 ></lux-input-ac>
                 <lux-button
                   luxIconName="lux-interface-delete-bin-5"
@@ -61,74 +60,43 @@
                   [luxDisabled]="!myGroup.enabled"
                   [luxRounded]="true"
                   luxColor="warn"
-                  *luxLayoutRowItem="{ flex: 'none' }"
+                  class="lux-justify-self-end lux-align-self-center"
                 >
                 </lux-button>
-              </lux-layout-form-row>
-              <lux-layout-form-row luxWrapAt="none">
-                <div *luxLayoutRowItem="{ empty: true, colSpan: 3 }"></div>
+              </div>
+              <div class="lux-grid lux-grid-cols-5 lux-gap-4">
                 <lux-button
                   luxIconName="lux-interface-add-1"
                   (luxClicked)="addStreet()"
                   [luxRounded]="true"
                   [luxDisabled]="!latestStreetGroupValid()"
                   luxColor="primary"
-                  style="min-height: 70px"
                   luxTagId="btnAddStreet"
-                  *luxLayoutRowItem="{ flex: 'none' }"
+                  class="lux-col-start-5 lux-justify-self-end lux-align-self-center"
                 >
                 </lux-button>
-              </lux-layout-form-row>
+              </div>
             </div>
-          </lux-layout>
+          </div>
         </form>
       </lux-card-content>
     </lux-card>
-    <lux-card luxTitle="Bestellung" *luxLayoutRowItem="{}">
+    <lux-card luxTitle="Bestellung" class="lux-flex">
       <lux-card-content>
         <form [formGroup]="myGroup">
-          <lux-layout formGroupName="orderDetails">
-            <lux-layout-form-row>
-              <lux-input-ac
-                luxName="form-dual-Bestellnr"
-                luxLabel="Bestellnr."
-                luxControlBinding="orderNo"
-                *luxLayoutRowItem="{}"
-              ></lux-input-ac>
-              <lux-input-ac
-                luxName="form-dual-Bestellwert"
-                luxLabel="Bestellwert"
-                luxType="text"
-                luxControlBinding="value"
-                *luxLayoutRowItem="{}"
-              ></lux-input-ac>
-            </lux-layout-form-row>
-            <lux-layout-form-row>
-              <lux-datepicker-ac luxLabel="Gültig ab" luxControlBinding="validDate" *luxLayoutRowItem="{}"></lux-datepicker-ac>
-              <lux-input-ac
-                luxLabel="Uhrzeit"
-                luxType="time"
-                luxControlBinding="validTime"
-                luxAutocomplete="off"
-                *luxLayoutRowItem="{}"
-              ></lux-input-ac>
-            </lux-layout-form-row>
-          </lux-layout>
+          <div class="lux-grid lux-grid-cols-2 lux-gap-4" formGroupName="orderDetails">
+            <lux-input-ac luxName="form-dual-Bestellnr" luxLabel="Bestellnr." luxControlBinding="orderNo"></lux-input-ac>
+            <lux-input-ac luxName="form-dual-Bestellwert" luxLabel="Bestellwert" luxType="text" luxControlBinding="value"></lux-input-ac>
+            <lux-datepicker-ac luxLabel="Gültig ab" luxControlBinding="validDate"></lux-datepicker-ac>
+            <lux-input-ac luxLabel="Uhrzeit" luxType="time" luxControlBinding="validTime" luxAutocomplete="off"></lux-input-ac>
+          </div>
         </form>
       </lux-card-content>
     </lux-card>
-  </lux-layout-card-row>
-  <lux-layout-card-row>
-    <lux-card luxTitle="Formulardaten" *luxLayoutRowItem="{}">
+    <lux-card luxTitle="Formulardaten" class="lux-col-span-full">
       <lux-card-content>
-        <lux-layout>
-          <lux-layout-form-row>
-            <div *luxLayoutRowItem="{}">
-              <pre>{{ myGroup.value | json }}</pre>
-            </div>
-          </lux-layout-form-row>
-        </lux-layout>
+        <pre>{{ myGroup.value | json }}</pre>
       </lux-card-content>
     </lux-card>
-  </lux-layout-card-row>
-</lux-layout>
+  </div>
+</div>

@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { LuxBadgeNotificationColor, LuxBadgeNotificationSize } from '../../lux-directives/lux-badge-notification/lux-badge-notification.directive';
+import {
+  LuxBadgeNotificationColor,
+  LuxBadgeNotificationSize
+} from '../../lux-directives/lux-badge-notification/lux-badge-notification.directive';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 
 @Component({
   selector: 'lux-tile-ac',
-  templateUrl: './lux-tile-ac.component.html',
-  styleUrls: ['./lux-tile-ac.component.scss']
+  templateUrl: './lux-tile-ac.component.html'
 })
 export class LuxTileAcComponent implements OnInit, OnChanges, OnDestroy {
   @Input() luxLabel?: string;
@@ -16,14 +18,14 @@ export class LuxTileAcComponent implements OnInit, OnChanges, OnDestroy {
   @Input() set luxShowNotification(value: boolean) {
     this._showNotification = value;
     this.updateBadgeContent();
-  };
+  }
   get luxShowNotification() {
     return this._showNotification;
   }
 
-  @Input() set luxCounter(counter: number | undefined){
+  @Input() set luxCounter(counter: number | undefined) {
     this._counter = counter;
-    this.updateBadgeContent()
+    this.updateBadgeContent();
   }
   get luxCounter() {
     return this._counter;
@@ -35,9 +37,9 @@ export class LuxTileAcComponent implements OnInit, OnChanges, OnDestroy {
 
   private _showNotification = false;
   private _counter?: number;
- 
+
   luxBadgeContent = '';
-  
+
   @Output() luxClicked = new EventEmitter<Event>();
 
   mobileView?: boolean;
@@ -46,8 +48,8 @@ export class LuxTileAcComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private queryService: LuxMediaQueryObserverService) {}
 
   ngOnInit() {
-    this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe(query => {
-      this.mobileView = query === 'xs' ||  query === 'sm';
+    this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe((query) => {
+      this.mobileView = query === 'xs' || query === 'sm';
     });
     this.updateBadgeContent();
   }
@@ -66,20 +68,20 @@ export class LuxTileAcComponent implements OnInit, OnChanges, OnDestroy {
     this.luxClicked.emit();
   }
 
-  getBadgeContent(){
+  getBadgeContent() {
     this.updateBadgeContent();
     return this.luxBadgeContent;
   }
 
-  private updateBadgeContent(){
-    if(!this.luxCounter){
-      if(this.luxShowNotification) {
+  private updateBadgeContent() {
+    if (!this.luxCounter) {
+      if (this.luxShowNotification) {
         this.luxBadgeContent = ' ';
       } else {
         this.luxBadgeContent = '';
       }
     } else {
       this.luxBadgeContent = '' + this.luxCounter;
-    }    
+    }
   }
 }

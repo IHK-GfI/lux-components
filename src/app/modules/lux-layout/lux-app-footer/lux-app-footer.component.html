@@ -1,15 +1,11 @@
 <div
-  fxLayout="row"
-  class="lux-app-footer lux-p-footer footerFont"
-  fxFlexFill
+  class="lux-app-footer lux-p-3 lt-md:lux-p-2"
   [luxAriaRole]="luxAriaRoleFooterLabel ? 'contentinfo' : undefined"
   [luxAriaLabel]="luxAriaRoleFooterLabel"
 >
-  <div *ngIf="luxVersion" fxFlex="none" fxLayoutAlign="left center" fxShow="false" fxShow.gt-lg="true" class="version" i18n="@@luxc.app-footer.version">
-    Version {{ luxVersion }}
-  </div>
+  <div *ngIf="luxVersion" class="version lt-lg:lux-display-none" i18n="@@luxc.app-footer.version">Version {{ luxVersion }}</div>
 
-  <div *ngIf="linkInfos" fxFlex="none" fxLayoutAlign="left center" fxLayout="row" class="lux-app-footer-links">
+  <div *ngIf="linkInfos" class="lux-app-footer-links">
     <ng-container *ngFor="let linkItem of linkInfos">
       <lux-link
         [luxLabel]="linkItem.label"
@@ -21,7 +17,7 @@
     </ng-container>
   </div>
 
-  <div fxFlex="auto" fxLayoutAlign="right center" class="lux-app-footer-buttons">
+  <div class="lux-app-footer-buttons">
     <lux-menu
       [luxDisplayExtended]="true"
       [luxDisplayMenuLeft]="false"

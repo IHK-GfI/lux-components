@@ -1,14 +1,9 @@
 <example-base-structure exampleTitle="Button" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90button">
   <example-base-content>
-    <div fxLayout="column" fxLayoutGap="24px">
-      <div
-        fxLayout="column"
-        fxLayoutGap="24px"
-        class="lux-app-data-bg lux-highlight-section"
-        [ngStyle]="{ backgroundColor: backgroundColor }"
-      >
-        <h3 class="lux-highlight-section-label lux-mb-4">Alle Button-Variationen</h3>
-        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px" class="lux-mt-4">
+    <div>
+      <div class="lux-app-data-bg lux-highlight-section lux-flex lux-flex-col lux-gap-3" [ngStyle]="{ backgroundColor: backgroundColor }">
+        <h3 class="lux-highlight-section-label">Alle Button-Variationen</h3>
+        <div class="lux-grid lux-grid-cols-4 lux-place-items-center lux-gap-1 lux-row-gap-3">
           <lux-button
             *ngFor="let color of colors; let i = index"
             [luxLabel]="label"
@@ -24,8 +19,6 @@
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
           >
           </lux-button>
-        </div>
-        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
           <lux-button
             *ngFor="let color of colors; let i = index"
             [luxLabel]="label"
@@ -41,8 +34,6 @@
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
           >
           </lux-button>
-        </div>
-        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
           <lux-button
             *ngFor="let color of colors; let i = index"
             [luxLabel]="label"
@@ -58,8 +49,6 @@
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
           >
           </lux-button>
-        </div>
-        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
           <lux-button
             *ngFor="let color of colors; let i = index"
             [luxLabel]="label"
@@ -74,8 +63,6 @@
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
           >
           </lux-button>
-        </div>
-        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
           <lux-button
             *ngFor="let color of colors; let i = index"
             [luxLabel]="iconName ? '' : '??'"
@@ -91,9 +78,9 @@
           </lux-button>
         </div>
       </div>
-      <div fxLayout="column" fxLayoutGap="24px" class="lux-gradient-bg lux-highlight-section">
+      <div class="lux-gradient-bg lux-highlight-section lux-flex lux-flex-col lux-gap-3" [ngStyle]="{ backgroundColor: backgroundColor }">
         <h3 class="lux-highlight-section-label">Gradient</h3>
-        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px" class="lux-mt-4">
+        <div class="lux-grid lux-grid-cols-4 lux-place-items-center lux-gap-1 lux-row-gap-3">
           <lux-button
             *ngFor="let color of colors; let i = index"
             [luxLabel]="label"
@@ -109,8 +96,6 @@
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
           >
           </lux-button>
-        </div>
-        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
           <lux-button
             *ngFor="let color of colors; let i = index"
             [luxLabel]="label"
@@ -126,8 +111,6 @@
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
           >
           </lux-button>
-        </div>
-        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
           <lux-button
             *ngFor="let color of colors; let i = index"
             [luxLabel]="label"
@@ -143,8 +126,6 @@
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
           >
           </lux-button>
-        </div>
-        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
           <lux-button
             *ngFor="let color of colors; let i = index"
             [luxLabel]="label"
@@ -159,8 +140,6 @@
             (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
           >
           </lux-button>
-        </div>
-        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
           <lux-button
             *ngFor="let color of colors; let i = index"
             [luxLabel]="iconName ? '' : '??'"
@@ -218,24 +197,29 @@
       </lux-form-hint>
     </lux-toggle-ac>
     <div class="lux-highlight-section column">
+      <lux-input-ac
+        luxLabel="luxButtonBadge"
+        luxHint="Diese Prooerty setzt das Label für eine Badge innerhalb des Buttons"
+        luxAutocomplete="off"
+        [(luxValue)]="buttonBadge"
+      >
+      </lux-input-ac>
+      <lux-select-ac
+        [luxOptions]="badgeColors"
+        [luxSelected]="badgeColors[0]"
+        luxOptionLabelProp="label"
+        (luxSelectedChange)="onBadgeColorChanged($event)"
+        luxLabel="luxButtonBadgeColor"
+        luxHint="Property mit der die Farbe der Button-Badge bestimmt wird"
+      >
+      </lux-select-ac>
+    </div>
     <lux-input-ac
-      luxLabel="luxButtonBadge"
-      luxHint="Diese Prooerty setzt das Label für eine Badge innerhalb des Buttons"
-      luxAutocomplete="off"
-      [(luxValue)]="buttonBadge"
+      luxName="button_background_Color"
+      class="lux-highlight-section"
+      [(luxValue)]="backgroundColor"
+      luxLabel="Hintergrundfarbe"
     >
-    </lux-input-ac>
-    <lux-select-ac
-      [luxOptions]="badgeColors"
-      [luxSelected]="badgeColors[0]"
-      luxOptionLabelProp="label"
-      (luxSelectedChange)="onBadgeColorChanged($event)"
-      luxLabel="luxButtonBadgeColor"
-      luxHint="Property mit der die Farbe der Button-Badge bestimmt wird"
-    >
-    </lux-select-ac>
-  </div>
-    <lux-input-ac luxName="button_background_Color" class="lux-highlight-section" [(luxValue)]="backgroundColor" luxLabel="Hintergrundfarbe">
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
     </lux-input-ac>
   </example-base-simple-options>

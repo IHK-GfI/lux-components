@@ -116,7 +116,8 @@ describe('LuxAutocompleteAcComponent', () => {
         // Nachbedingungen testen
         let options = overlayHelper.selectAllFromOverlay('mat-option');
         expect(options.length).toEqual(4);
-        expect(options[1].innerText).toEqual('Gruppenaufgaben');
+        // Hier wird toContain verwendet, da im Safari ein Zeilenumbruch im String entsteht, der zu einem Fehler führt
+        expect(options[1].innerText).toContain('Gruppenaufgaben');
 
         // Änderungen durchführen
         const testOptions = [
@@ -132,7 +133,8 @@ describe('LuxAutocompleteAcComponent', () => {
         LuxTestHelper.wait(fixture, component.autocomplete.luxLookupDelay);
         options = overlayHelper.selectAllFromOverlay('mat-option');
         expect(options.length).toEqual(3);
-        expect(options[1].innerText).toEqual('Gruppenaufgaben 2');
+        // Hier wird toContain verwendet, da im Safari ein Zeilenumbruch im String entsteht, der zu einem Fehler führt
+        expect(options[1].innerText).toContain('Gruppenaufgaben 2');
 
         // Änderungen durchführen
         options[1].click();
@@ -402,9 +404,7 @@ describe('LuxAutocompleteAcComponent', () => {
         expect(component.autocomplete.matInput.nativeElement.value).toEqual('Meine Aufgaben');
         discardPeriodicTasks();
       }));
-
     });
-
 
     describe('Attribut "luxOptionSelected"', () => {
       let fixture: ComponentFixture<LuxOptionSelectedComponent>;
@@ -656,12 +656,7 @@ describe('LuxAutocompleteAcComponent', () => {
   `
 })
 class LuxAutoCompleteInFormWithStringValuesComponent {
-  options: string[] = [
-    'Meine Aufgaben',
-    'Gruppenaufgaben',
-    'Zurückgestellte Aufgaben',
-    'Vertretungsaufgaben'
-  ];
+  options: string[] = ['Meine Aufgaben', 'Gruppenaufgaben', 'Zurückgestellte Aufgaben', 'Vertretungsaufgaben'];
 
   @ViewChild(LuxAutocompleteAcComponent) autocomplete!: LuxAutocompleteAcComponent<string, string>;
 
@@ -683,12 +678,7 @@ class LuxAutoCompleteTwoWayBindingWithStringValuesComponent {
   selected = '';
   strict = true;
 
-  options = [
-    'Meine Aufgaben',
-    'Gruppenaufgaben',
-    'Zurückgestellte Aufgaben',
-    'Vertretungsaufgaben'
-  ];
+  options = ['Meine Aufgaben', 'Gruppenaufgaben', 'Zurückgestellte Aufgaben', 'Vertretungsaufgaben'];
 
   @ViewChild(LuxAutocompleteAcComponent) autocomplete!: LuxAutocompleteAcComponent<string, string>;
 }

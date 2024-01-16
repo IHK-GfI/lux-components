@@ -4,8 +4,7 @@ import { LuxLocale } from './lux-locale';
 
 @Component({
   selector: 'lux-lang-select',
-  templateUrl: './lux-lang-select.component.html',
-  styleUrls: ['./lux-lang-select.component.scss']
+  templateUrl: './lux-lang-select.component.html'
 })
 export class LuxLangSelectComponent implements OnInit {
   @Input() luxLocaleSupported = ['de'];

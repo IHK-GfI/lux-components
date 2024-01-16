@@ -6,8 +6,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
 
 @Component({
   selector: 'lux-checkbox-ac',
-  templateUrl: './lux-checkbox-ac.component.html',
-  styleUrls: ['./lux-checkbox-ac.component.scss']
+  templateUrl: './lux-checkbox-ac.component.html'
 })
 export class LuxCheckboxAcComponent<T = boolean> extends LuxFormCheckableBaseClass<T> implements OnInit {
   @Input() luxNoLabels = false;

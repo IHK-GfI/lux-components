@@ -1,11 +1,10 @@
 import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
 import { LuxThemePalette } from '../../../../../lux-util/lux-colors.enum';
-import { LuxAppHeaderAcActionNavItemCustomComponent } from "./lux-app-header-ac-action-nav-item-custom.component";
+import { LuxAppHeaderAcActionNavItemCustomComponent } from './lux-app-header-ac-action-nav-item-custom.component';
 
 @Component({
   selector: 'lux-app-header-ac-action-nav-item',
-  templateUrl: './lux-app-header-ac-action-nav-item.component.html',
-  styleUrls: ['./lux-app-header-ac-action-nav-item.component.scss']
+  templateUrl: './lux-app-header-ac-action-nav-item.component.html'
 })
 export class LuxAppHeaderAcActionNavItemComponent {
   @Input() luxLabel = '';

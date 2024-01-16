@@ -9,12 +9,13 @@
       Wenn Sie die Datei löschen, wird diese unwiderruflich gelöscht.
     </p>
   </lux-dialog-content>
-  <lux-dialog-actions fxLayout="row wrap" fxLayoutGap="20px">
+  <lux-dialog-actions class="lux-flex lux-flex-wrap">
     <lux-button
       luxLabel="Abbrechen"
       i18n-luxLabel="@@luxc.file.delete.dialog.cancel.lbl"
       [luxRaised]="true"
       (luxClicked)="luxDialogRef.closeDialog(false)"
+      class="lux-mr-4"
     ></lux-button>
     <lux-button
       luxLabel="Löschen"
