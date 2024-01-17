@@ -20,11 +20,11 @@ Die Änderungen werden in der Datei [CHANGELOG.md](https://github.com/IHK-GfI/lu
 
 Live-Demo vom Zweig (develop):
 
-- [https://lux-demo-entw.k8snonprod.gfi.ihk.de](https://lux-demo-entw.k8snonprod.gfi.ihk.de)
+- [https://lux-demo-dev.applicationplatform.gfi.ihk.de](https://lux-demo-dev.applicationplatform.gfi.ihk.de)
 
 Live-Demo vom Zweig (master):
 
-- [https://lux-demo.k8snonprod.gfi.ihk.de](https://lux-demo.k8snonprod.gfi.ihk.de)
+- [https://lux-demo.applicationplatform.gfi.ihk.de](https://lux-demo.applicationplatform.gfi.ihk.de)
 
 Die Demo kann auch lokal ausgeführt werden:
 
