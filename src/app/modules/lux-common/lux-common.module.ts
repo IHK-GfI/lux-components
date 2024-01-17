@@ -7,7 +7,6 @@ import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@ang
 import { MatSortModule } from '@angular/material/sort';
 import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy-table';
 import { LuxComponentsConfigModule } from '../lux-components-config/lux-components-config.module';
-import { LuxSpinnerComponent } from './lux-spinner/lux-spinner.component';
 import { LuxLabelComponent } from './lux-label/lux-label.component';
 import { LuxBadgeComponent } from './lux-badge/lux-badge.component';
 import { LuxProgressComponent } from './lux-progress/lux-progress.component';
@@ -40,7 +39,6 @@ import { LuxTextboxComponent } from './lux-textbox/lux-textbox.component';
     LuxComponentsConfigModule
   ],
   declarations: [
-    LuxSpinnerComponent,
     LuxLabelComponent,
     LuxBadgeComponent,
     LuxProgressComponent,
@@ -54,7 +52,6 @@ import { LuxTextboxComponent } from './lux-textbox/lux-textbox.component';
     LuxTextboxComponent
   ],
   exports: [
-    LuxSpinnerComponent,
     LuxLabelComponent,
     LuxBadgeComponent,
     LuxProgressComponent,
