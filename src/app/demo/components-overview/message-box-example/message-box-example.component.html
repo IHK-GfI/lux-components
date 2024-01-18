@@ -85,14 +85,14 @@
     <lux-accordion [luxMulti]="false" luxMode="flat" luxExpandedHeaderHeight="65px" luxCollapsedHeaderHeight="65px">
       <lux-panel [luxHideToggle]="true" *ngFor="let message of messages; let i = index">
         <lux-panel-header-title>
-          <div class="lux-flex lux-flex-basis-full lux-justify-between lux-items-center">
+          <div class="lux-flex lux-flex-basis-full lux-justify-between lux-items-center lux-pt-2">
             <span>{{ message.text }}</span>
             <lux-button luxLabel="ENTFERNEN" (luxClicked)="remove(i)" luxColor="warn" luxTagId="example-msg-remove-{{ i }}"></lux-button>
           </div>
         </lux-panel-header-title>
         <lux-panel-header-description> </lux-panel-header-description>
         <lux-panel-content>
-          <div class="lux-flex lux-flex-col lux-pt-3">
+          <div class="lux-flex lux-flex-col lux-pt-3 lux-gap-2">
             <lux-textarea-ac
               luxName="message-box_text"
               luxLabel="text"
