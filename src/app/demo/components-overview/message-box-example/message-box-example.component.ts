@@ -9,8 +9,7 @@ import { logResult } from '../../example-base/example-base-util/example-base-hel
 
 @Component({
   selector: 'app-message-box-example',
-  templateUrl: './message-box-example.component.html',
-  styleUrls: ['./message-box-example.component.scss']
+  templateUrl: './message-box-example.component.html'
 })
 export class MessageBoxExampleComponent implements OnInit {
   showOutputEvents = false;
