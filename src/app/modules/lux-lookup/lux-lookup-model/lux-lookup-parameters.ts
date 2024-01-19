@@ -8,7 +8,13 @@ export enum LuxFieldValues {
   lang1 = 'lang1',
   lang2 = 'lang2',
   gueltig_von = 'gueltig_von',
-  gueltig_bis = 'gueltig_bis'
+  gueltig_bis = 'gueltig_bis',
+  ableitungsText1 = 'ableitungsText1',
+  ableitungsText2 = 'ableitungsText2',
+  ableitungsText3 = 'ableitungsText3',
+  ableitungsText4 = 'ableitungsText4',
+  ableitungsText5 = 'ableitungsText5',
+  ableitungsText6 = 'ableitungsText6'
 }
 
 export enum LuxBehandlungsOptionenUngueltige {
@@ -37,7 +43,13 @@ export class LuxLookupParameters {
           LuxFieldValues.lang1,
           LuxFieldValues.lang2,
           LuxFieldValues.gueltig_bis,
-          LuxFieldValues.gueltig_von
+          LuxFieldValues.gueltig_von,
+          LuxFieldValues.ableitungsText1,
+          LuxFieldValues.ableitungsText2,
+          LuxFieldValues.ableitungsText3,
+          LuxFieldValues.ableitungsText4,
+          LuxFieldValues.ableitungsText5,
+          LuxFieldValues.ableitungsText6
         ];
     this.raw = !!data.raw ? data.raw : false;
   }

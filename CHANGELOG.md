@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 15.5.0
+
+- **lux-lookup**: Ableitungsfelder werden unterstützt. [Issue 407](https://github.com/IHK-GfI/lux-components/issues/407)
+
+### New
+
 ## Version 15.4.0
 
 ### Bug Fixes

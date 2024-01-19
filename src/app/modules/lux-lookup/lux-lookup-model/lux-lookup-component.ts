@@ -1,18 +1,11 @@
 /* eslint-disable max-len */
 
-import {
-  ChangeDetectorRef, Directive,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { LuxBehandlungsOptionenUngueltige, LuxLookupParameters } from './lux-lookup-parameters';
 import { LuxLookupTableEntry } from './lux-lookup-table-entry';
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
-import { LuxFormComponentBase, LuxValidationErrors } from "../../lux-form/lux-form-model/lux-form-component-base.class";
+import { LuxFormComponentBase, LuxValidationErrors } from '../../lux-form/lux-form-model/lux-form-component-base.class';
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -93,6 +86,7 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
   @Input() luxLookupId!: string;
   @Input() luxTableNo!: string;
   @Input() luxRenderProp: any;
+  @Input() luxRenderPropNoPropertyLabel = '---';
   @Input() luxBehandlungUngueltige: LuxBehandlungsOptionenUngueltige = LuxBehandlungsOptionenUngueltige.ausgrauen;
   @Input() luxParameters?: LuxLookupParameters;
   @Input() luxCustomStyles?: {} | null;
@@ -146,23 +140,25 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
       throw Error(`Observable "${this.luxLookupId}" not found."`);
     }
 
-    this.subscriptions.push(lookupElementObs.subscribe(() => {
-      this.fetchLookupData();
-    }));
+    this.subscriptions.push(
+      lookupElementObs.subscribe(() => {
+        this.fetchLookupData();
+      })
+    );
 
-    this.subscriptions.push(this.componentsConfigService.config.subscribe(
-      (newConfig: LuxComponentsConfigParameters) => {
+    this.subscriptions.push(
+      this.componentsConfigService.config.subscribe((newConfig: LuxComponentsConfigParameters) => {
         this.apiPath = newConfig.lookupServiceUrl ?? LuxComponentsConfigService.DEFAULT_CONFIG.lookupServiceUrl;
 
         this.lookupHandler.reloadData(this.luxLookupId);
-      }
-    ));
+      })
+    );
   }
 
   ngOnDestroy() {
     super.ngOnDestroy();
 
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   /**
@@ -189,7 +185,7 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
           isUngueltig = Date.now() > +entry.gueltigkeitBis;
         }
       } else {
-        entry.forEach(element => {
+        entry.forEach((element) => {
           if (element.gueltigkeitBis && !isUngueltig) {
             isUngueltig = Date.now() > +element.gueltigkeitBis;
           }
@@ -242,7 +238,7 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
    */
   errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     if (errors['ungueltig']) {
-      return $localize `:@@luxc.lookup.error_message.invalid:Der ausgewählte Wert ist ungültig.`;
+      return $localize`:@@luxc.lookup.error_message.invalid:Der ausgewählte Wert ist ungültig.`;
     }
     return undefined;
   }
@@ -251,10 +247,12 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
     if (this.isRenderPropAFunction()) {
       return this.luxRenderProp(entry);
     }
-    if (entry[this.luxRenderProp as string]) {
+
+    if (entry.hasOwnProperty(this.luxRenderProp as string) && entry[this.luxRenderProp as string]) {
       return entry[this.luxRenderProp as string];
+    } else {
+      return this.luxRenderPropNoPropertyLabel;
     }
-    return $localize `:@@luxc.lookup.error_message.unknown_property:Fehler beim Auslesen (Property unbekannt)`;
   }
 
   /**
@@ -266,16 +264,18 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
     }
 
     const backendRequest = this.lookupService.getLookupTable(this.luxTableNo, this.luxParameters, this.apiPath);
-    this.subscriptions.push(backendRequest.subscribe(
-      (entries: LuxLookupTableEntry[]) => {
-        this.setLookupData(entries);
-        this.luxDataLoaded.emit(true);
-        this.luxDataLoadedAsArray.emit(entries as any);
-      },
-      () => {
-        this.luxDataLoaded.emit(false);
-      }
-    ));
+    this.subscriptions.push(
+      backendRequest.subscribe(
+        (entries: LuxLookupTableEntry[]) => {
+          this.setLookupData(entries);
+          this.luxDataLoaded.emit(true);
+          this.luxDataLoadedAsArray.emit(entries as any);
+        },
+        () => {
+          this.luxDataLoaded.emit(false);
+        }
+      )
+    );
   }
 
   /**

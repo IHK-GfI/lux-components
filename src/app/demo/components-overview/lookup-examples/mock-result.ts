@@ -2,7 +2,14 @@ export const mockResult: any[] = [
   {
     key: '1',
     kurzText: 'Frankreich',
-    langText1: 'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?'
+    langText1:
+      'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?',
+    ableitungsText1: 'Frankreich AT1',
+    ableitungsText2: 'Frankreich AT2',
+    ableitungsText3: 'Frankreich AT3',
+    ableitungsText4: 'Frankreich AT4',
+    ableitungsText5: 'Frankreich AT5',
+    ableitungsText6: 'Frankreich AT6'
   },
   {
     key: '2',
@@ -14,7 +21,13 @@ export const mockResult: any[] = [
   {
     key: '3',
     kurzText: 'Niederlande',
-    langText1: 'Niederlande'
+    langText1: 'Niederlande',
+    ableitungsText1: 'Niederlande AT1',
+    ableitungsText2: 'Niederlande AT2',
+    ableitungsText3: 'Niederlande AT3',
+    ableitungsText4: 'Niederlande AT4',
+    ableitungsText5: 'Niederlande AT5',
+    ableitungsText6: 'Niederlande AT6'
   },
   {
     key: '4',
@@ -433,7 +446,7 @@ export const mockResult: any[] = [
   {
     key: '272',
     kurzText: 'Elfenbeinküste',
-    langText1: 'Cote d\'Ivoire'
+    langText1: "Cote d'Ivoire"
   },
   {
     key: '276',
