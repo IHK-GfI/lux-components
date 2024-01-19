@@ -13,6 +13,7 @@
         [luxCustomStyles]="customStyle"
         [luxCustomInvalidStyles]="customInvalidStyle"
         [luxRenderProp]="useRenderFn ? renderFn : renderProp"
+        [luxRenderPropNoPropertyLabel]="renderPropNoPropertyLabel"
         [luxParameters]="parameters"
         [luxBehandlungUngueltige]="behandlungUngueltige"
         [luxTableNo]="tableNo"
@@ -53,6 +54,7 @@
         [luxCustomStyles]="customStyle"
         [luxCustomInvalidStyles]="customInvalidStyle"
         [luxRenderProp]="useRenderFn ? renderFn : renderProp"
+        [luxRenderPropNoPropertyLabel]="renderPropNoPropertyLabel"
         [luxParameters]="parameters"
         [luxBehandlungUngueltige]="behandlungUngueltige"
         [luxTableNo]="tableNo"
@@ -219,6 +221,14 @@
         luxName="lookup_autocomplete_luxRenderProp"
         luxLabel="luxRenderProp"
         luxHint="Hier kann die Property festgelegt werden, welche zur Darstellung der einzelnen Einträge genutzt wird."
+        *ngIf="!useRenderFn"
+      >
+      </lux-input-ac>
+      <lux-input-ac
+        [(luxValue)]="renderPropNoPropertyLabel"
+        luxName="lookup_autocomplete_luxRenderPropNoPropertyLabel"
+        luxLabel="luxRenderPropNoPropertyLabel"
+        luxHint="Dieser Text wird angezeigt, wenn das Property aus luxRenderProp bei dem Eintrag nicht existiert."
         *ngIf="!useRenderFn"
       >
       </lux-input-ac>

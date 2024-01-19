@@ -4,7 +4,7 @@ import {
   LuxLookupCompareFn,
   luxLookupCompareKeyFn,
   luxLookupCompareKurzTextFn
-} from "../../../modules/lux-lookup/lux-lookup-model/lux-lookup-component";
+} from '../../../modules/lux-lookup/lux-lookup-model/lux-lookup-component';
 import {
   LuxBehandlungsOptionenUngueltige,
   LuxFieldValues,
@@ -42,6 +42,7 @@ export abstract class LookupExampleComponent implements OnInit {
   form: FormGroup<LookupDummyForm>;
   renderFnString = this.renderFn + '';
   renderProp = 'kurzText';
+  renderPropNoPropertyLabel = '---';
   parameters?: LuxLookupParameters;
   selected: any;
   customStyle: {} | null = null;
