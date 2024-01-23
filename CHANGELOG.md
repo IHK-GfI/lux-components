@@ -11,6 +11,7 @@
 - **lux-filter**: Aus der Komponente lux-filter wurde Flex-Layout entfernt. [Issue 396](https://github.com/IHK-GfI/lux-components/issues/396)
 - **lux-form-controls, lux-form-control-wrapper**: Aus den Komponenten wurde Flex-Layout entfernt. [Issue 397](https://github.com/IHK-GfI/lux-components/issues/397)
 - **lux-app-footer**: Aus der Komponente wurde Flex-Layout entfernt. [Issue 400](https://github.com/IHK-GfI/lux-components/issues/400)
+- **lux-popup**: Aus den Komponenten lux-snackbar und lux-dialog wurde Flex-Layout entfernt. [Issue 399](https://github.com/IHK-GfI/lux-components/issues/399)
 
 ## Version 15.4.0
 

@@ -8,13 +8,12 @@ import { LuxSnackbarColors } from '../../../modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-snackbar-example',
-  templateUrl: './snackbar-example.component.html',
-  styleUrls: ['./snackbar-example.component.scss']
+  templateUrl: './snackbar-example.component.html'
 })
 export class SnackbarExampleComponent implements OnDestroy {
   dismissSubscription: Subscription | null = null;
-  actionSubscription: Subscription | null  = null;
-  colors: string[]                         = LuxSnackbarColors;
+  actionSubscription: Subscription | null = null;
+  colors: string[] = LuxSnackbarColors;
 
   showOutputEvents = false;
 
@@ -43,7 +42,7 @@ export class SnackbarExampleComponent implements OnDestroy {
   openSnackbar() {
     this.snackbar.open(this.duration, this.snackbarConfig);
     this.dismissSubscription = this.snackbar.afterDismissed().subscribe(this.observeDismiss.bind(this));
-    this.actionSubscription  = this.snackbar.onAction().subscribe(this.observeAction.bind(this));
+    this.actionSubscription = this.snackbar.onAction().subscribe(this.observeAction.bind(this));
   }
 
   dismissSnackbar() {

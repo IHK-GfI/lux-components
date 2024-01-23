@@ -4,16 +4,18 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90snackbar"
 >
   <example-base-simple-options>
-    <lux-toggle-ac class="lux-highlight-section" luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents" [luxNoTopLabel]="true">
+    <lux-toggle-ac
+      class="lux-highlight-section"
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
+    >
     </lux-toggle-ac>
     <lux-divider [luxInset]="true"></lux-divider>
-    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutGap.xs="4px">
-      <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="16px" fxFlex="1 0 250px" fxFlex.xs="auto">
-        <lux-input-ac
-          luxLabel="text"
-          luxHint="Diese Property definiert den Text der Snackbar."
-          [(luxValue)]="snackbarConfig.text"
-        >
+    <div class="lux-grid lux-grid-cols-2 lux-gap-3 xs:lux-grid-cols-1 xs:lux-gap-1">
+      <div class="lux-highlight-section lux-flex lux-flex-col lux-gap-3">
+        <lux-input-ac luxLabel="text" luxHint="Diese Property definiert den Text der Snackbar." [(luxValue)]="snackbarConfig.text">
         </lux-input-ac>
         <lux-select-ac
           luxLabel="textColor"
@@ -23,12 +25,8 @@
         >
         </lux-select-ac>
       </div>
-      <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="16px" fxFlex="1 0 250px" fxFlex.xs="auto">
-        <lux-input-ac
-          luxLabel="iconName"
-          luxHint="Diese Property definiert das Icon der Snackbar."
-          [(luxValue)]="snackbarConfig.iconName"
-        >
+      <div class="lux-highlight-section lux-flex lux-flex-col lux-gap-3">
+        <lux-input-ac luxLabel="iconName" luxHint="Diese Property definiert das Icon der Snackbar." [(luxValue)]="snackbarConfig.iconName">
         </lux-input-ac>
         <lux-select-ac
           luxLabel="iconSize"
@@ -45,12 +43,8 @@
         >
         </lux-select-ac>
       </div>
-      <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="16px" fxFlex="1 0 250px" fxFlex.xs="auto">
-        <lux-input-ac
-          luxLabel="action"
-          luxHint="Diese Property definiert die Action der Snackbar."
-          [(luxValue)]="snackbarConfig.action"
-        >
+      <div class="lux-highlight-section lux-flex lux-flex-col lux-gap-3 lux-col-span-full">
+        <lux-input-ac luxLabel="action" luxHint="Diese Property definiert die Action der Snackbar." [(luxValue)]="snackbarConfig.action">
         </lux-input-ac>
         <lux-select-ac
           luxLabel="actionColor"
@@ -63,19 +57,20 @@
     </div>
   </example-base-simple-options>
   <example-base-options-actions>
-    <div fxLayout="row wrap">
+    <div class="lux-flex lux-flex-wrap">
       <lux-button
         class="lux-mr-4 lux-mb-3"
         luxLabel="Snackbar einblenden"
         luxColor="primary"
-        [luxRaised]="true"
+        [luxFlat]="true"
         (luxClicked)="openSnackbar()"
       >
       </lux-button>
       <lux-button
         class="lux-mr-4 lux-mb-3"
         luxLabel="Snackbar ausblenden"
-        [luxRaised]="true"
+        luxColor="primary"
+        [luxStroked]="true"
         (luxClicked)="dismissSnackbar()"
       >
       </lux-button>
