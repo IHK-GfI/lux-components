@@ -1,28 +1,36 @@
-<div class="lux-dialog" fxLayout="column" fxFlex="1 1 auto" #dialogBase>
+<div class="lux-dialog lux-flex lux-flex-col lux-flex-auto lux-border-box" #dialogBase>
   <!--
   Hier wird explizit auf die Direktive [mat-dialog-close] verzichtet,
   da diese aktuell NICHT das dialogClosed-Event wirft. Dieses Event wird
   jedoch benötigt, damit geschachtelte Dialoge (z.B. Löschbestätigung der
   lux-file-upload-Komponente) funktionieren.
   -->
-  <div (click)="onClose()" aria-label="Schließen" class="lux-icon-close" fxFlexAlign="end" tabindex="0" *ngIf="!disableClose">
+  <div
+    (click)="onClose()"
+    (keydown.enter)="onClose()"
+    aria-label=""
+    class="lux-icon-close lux-flex lux-align-self-end"
+    tabindex="0"
+    *ngIf="!disableClose"
+    i18n-luxAriaLabel="@@luxc.dialog.btn.close.arialabel"
+    luxAriaLabel="Dialog schließen"
+  >
     <lux-icon luxIconName="lux-interface-delete-1" luxIconSize="1x"></lux-icon>
   </div>
   <lux-icon
     *ngIf="luxDialogIcon"
     [luxIconName]="luxDialogIcon"
-    fxFlexAlign="center"
     luxIconSize="3x"
     luxMargin="16px"
-    class="lux-color-blue lux-dialog-icon"
+    class="lux-color-blue lux-dialog-icon lux-flex lux-align-self-center"
   ></lux-icon>
-  <h2 mat-dialog-title class="lux-dialog-title" fxFlex="0 1 auto" fxFlexAlign="start">
+  <h2 mat-dialog-title class="lux-dialog-title lux-flex lux-flex-initial lux-place-content-start lux-items-start">
     <ng-content select="lux-dialog-title"></ng-content>
   </h2>
-  <div mat-dialog-content class="lux-dialog-content" fxFlex="1 1 100%">
+  <div mat-dialog-content class="lux-dialog-content lux-flex lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-full">
     <ng-content select="lux-dialog-content"></ng-content>
   </div>
-  <div mat-dialog-actions class="lux-dialog-actions" fxFlex="0 1 auto" fxLayout="row wrap" fxLayoutAlign="center">
+  <div mat-dialog-actions class="lux-dialog-actions lux-flex lux-flex-auto lux-flex-wrap lux-place-content-center lux-items-center">
     <ng-content select="lux-dialog-actions"></ng-content>
   </div>
 </div>

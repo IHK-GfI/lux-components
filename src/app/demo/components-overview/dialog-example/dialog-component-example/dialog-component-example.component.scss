@@ -1,12 +1,14 @@
 .toggle-agb-container {
   height: 75px;
+  display: flex;
+  place-content: center start;
+  align-items: center;
 }
 
 .content {
   display: flex;
   flex-flow: column;
   gap: 16px;
-
   flex: 1 1 100%;
 }
 

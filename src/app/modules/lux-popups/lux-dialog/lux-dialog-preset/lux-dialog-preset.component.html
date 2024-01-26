@@ -10,9 +10,9 @@
       {{ data.content }}
     </ng-container>
   </lux-dialog-content>
-  <lux-dialog-actions fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="8px grid">
+  <lux-dialog-actions>
     <lux-button
-      class="lux-mr-3 lux-dialog-preset-confirm"
+      class="lux-mr-4 lux-dialog-preset-confirm"
       luxTabIndex="0"
       [luxPotentialChildren]="['button']"
       [luxLabel]="data.confirmAction.label"
@@ -30,7 +30,7 @@
     >
     </lux-button>
     <lux-button
-      class="lux-mr-3 lux-dialog-preset-decline"
+      class="lux-dialog-preset-decline"
       luxTabIndex="0"
       [luxPotentialChildren]="['button']"
       [luxLabel]="data.declineAction.label"

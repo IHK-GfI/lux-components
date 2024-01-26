@@ -9,8 +9,7 @@ import { ILuxDialogPresetConfig } from '../lux-dialog-model/lux-dialog-preset-co
  */
 @Component({
   selector: 'lux-dialog-preset',
-  templateUrl: './lux-dialog-preset.component.html',
-  styleUrls: ['./lux-dialog-preset.component.scss']
+  templateUrl: './lux-dialog-preset.component.html'
 })
 export class LuxDialogPresetComponent implements OnInit, AfterViewInit {
   @ViewChild('confirmButton') confirmButton?: LuxButtonComponent;
