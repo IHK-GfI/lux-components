@@ -1,16 +1,9 @@
 <div
-  class="example-base-structure"
-  fxLayout="row"
-  fxLayout.sm="column"
-  fxLayout.xs="column"
-  ngClass.sm="example-mobile"
-  ngClass.xs="example-mobile"
-  fxFlexFill
+  class="example-base-structure lux-flex lux-flex-col-lt-md"
+  [ngClass]="{ 'lux-flex-col': !desktopView, 'example-mobile': !desktopView }"
 >
   <div
-    class="example-base-components-list lux-color-dark-divider"
-    fxLayout="column"
-    fxFlex="auto"
+    class="example-base-components-list lux-color-dark-divider lux-flex lux-flex-auto lux-flex-grow-0 lux-flex-col"
     luxAriaRole="navigation"
     luxAriaLabel="Komponentenbeispiele"
     #exampleListElement
@@ -18,11 +11,11 @@
   >
     <ng-container *ngFor="let moduleName of navigationService.currentModuleNames">
       <lux-panel luxCollapsedHeaderHeight="35px" luxExpandedHeaderHeight="35px" [luxExpanded]="true">
-        <lux-panel-header-title><span class="lux-color-primary-500">lux-{{ moduleName }}</span></lux-panel-header-title>
+        <lux-panel-header-title
+          ><span class="lux-color-primary-500">lux-{{ moduleName }}</span></lux-panel-header-title
+        >
         <lux-panel-content>
-          <ng-container
-            *ngFor="let component of navigationService.sortedComponentEntries.get(moduleName)! | luxAlphabeticallySorted"
-          >
+          <ng-container *ngFor="let component of navigationService.sortedComponentEntries.get(moduleName)! | luxAlphabeticallySorted">
             <div
               class="example-component-list-item lux-color-primary-500"
               tabindex="0"
@@ -42,7 +35,7 @@
       </lux-panel>
     </ng-container>
   </div>
-  <div class="example-base-content" fxFlex="0 0 calc(100% - 270px)" fxFlex.sm="0 0 auto" fxFlex.xs="0 0 auto" luxAriaRole="main">
+  <div class="example-base-content" [ngClass]="{ 'lux-flex-auto': !desktopView, 'lux-flex-shrink-0': !desktopView }" luxAriaRole="main">
     <router-outlet></router-outlet>
   </div>
 </div>

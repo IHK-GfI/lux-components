@@ -31,6 +31,9 @@ mat-chip-list {
 }
 
 .lux-chips {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
   input {
     width: auto;
   }
@@ -45,7 +48,6 @@ mat-chip-list {
 }
 
 ::ng-deep .lux-chips-ac-autocomplete-panel {
-
   mat-option.lux-option-multiline {
     padding: 16px;
     height: unset;

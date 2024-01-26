@@ -21,8 +21,7 @@ import { LuxAppHeaderAcUserMenuComponent } from './lux-app-header-ac-subcomponen
 
 @Component({
   selector: 'lux-app-header-ac',
-  templateUrl: './lux-app-header-ac.component.html',
-  styleUrls: ['./lux-app-header-ac.component.scss']
+  templateUrl: './lux-app-header-ac.component.html'
 })
 export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   @Input() luxUserName?: string;

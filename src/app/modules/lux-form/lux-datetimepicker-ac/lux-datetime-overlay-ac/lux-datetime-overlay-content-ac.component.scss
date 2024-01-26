@@ -11,8 +11,10 @@
       }
     }
   }
-  
-  .mat-calendar-previous-button, .mat-calendar-next-button, .mat-calendar-period-button {
+
+  .mat-calendar-previous-button,
+  .mat-calendar-next-button,
+  .mat-calendar-period-button {
     color: #036 !important;
   }
 }
@@ -20,17 +22,23 @@
 .lux-datetime-overlay-calendar {
   min-height: 350px;
 }
-
+.lux-datetime-time-container {
+  display: flex;
+  box-sizing: border-box;
+  place-content: center flex-start;
+  align-items: center;
+}
 .lux-datetime-error-message-container {
   min-height: 18px;
   padding-left: 20px;
+  align-self: center;
 }
 
-.lux-datetime-icon{
-  margin-left: 20px!important;
-  margin-right: 45px!important;
+.lux-datetime-icon {
+  margin-left: 20px !important;
+  margin-right: 45px !important;
 }
-lux-input-ac.lux-datetime-hour ::ng-deep, 
+lux-input-ac.lux-datetime-hour ::ng-deep,
 lux-input-ac.lux-datetime-minute ::ng-deep {
   width: 40px;
   .lux-form-control-container-authentic {

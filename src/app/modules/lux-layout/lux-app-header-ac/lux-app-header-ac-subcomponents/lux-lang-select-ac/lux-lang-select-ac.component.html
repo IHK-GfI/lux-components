@@ -5,7 +5,7 @@
   [luxDisplayExtended]="false"
   (luxMenuOpened)="onMenuOpened()"
   (luxMenuClosed)="onMenuClosed()"
-  >
+>
   <lux-menu-item
     class="lux-lang-select-menu-item"
     *ngFor="let item of localeOptions"
@@ -20,12 +20,11 @@
       luxColor="primary"
       luxIconName="lux-programming-web"
       class="lang-select-trigger-ac"
-      ngClass.lt-md="lang-select-trigger-mobile"
       luxAriaLabel="Spracheinstellungen"
       i18n-luxAriaLabel="@@luxc.app-header.lang.select.trigger"
       aria-haspopup="true"
       luxTagId="lang-select-trigger-btn"
-      [ngClass]="menuOpened ? 'menu-opened' : ''"
+      [ngClass]="{ 'menu-opened': menuOpened, 'lang-select-trigger-mobile': mobileView }"
       luxTagId="lang-select-trigger-btn"
       luxTooltip="Sprache wechseln"
       [luxTooltipShowDelay]="1500"

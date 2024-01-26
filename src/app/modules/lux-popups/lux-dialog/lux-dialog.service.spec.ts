@@ -159,8 +159,8 @@ describe('LuxDialogService', () => {
       const buttonArray = Array.from(buttonNodeList);
       expect(buttonArray.length).toEqual(2);
 
-      expect(buttonArray[0].innerText).toContain('Löschen');
-      expect(buttonArray[1].innerText).toContain('Abbrechen');
+      expect(buttonArray[0].innerText).toContain('LÖSCHEN');
+      expect(buttonArray[1].innerText).toContain('ABBRECHEN');
     }));
 
     it('Sollte den Dialog schließen', fakeAsync(() => {

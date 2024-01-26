@@ -4,8 +4,7 @@ import { LuxAppHeaderAcActionNavItemComponent } from './lux-app-header-ac-action
 
 @Component({
   selector: 'lux-app-header-ac-action-nav',
-  templateUrl: './lux-app-header-ac-action-nav.component.html',
-  styleUrls: ['./lux-app-header-ac-action-nav.component.scss']
+  templateUrl: './lux-app-header-ac-action-nav.component.html'
 })
 export class LuxAppHeaderAcActionNavComponent implements AfterViewInit {
   @ViewChild(TemplateRef, { static: true }) templateRef!: TemplateRef<any>;
@@ -16,5 +15,4 @@ export class LuxAppHeaderAcActionNavComponent implements AfterViewInit {
   ngAfterViewInit() {
     LuxUtil.assertNonNull('templateRef', this.templateRef);
   }
-
 }

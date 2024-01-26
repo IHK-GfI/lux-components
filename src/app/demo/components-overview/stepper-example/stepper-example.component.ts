@@ -34,8 +34,8 @@ interface StepperForm2DummyForm {
 export class StepperExampleComponent implements OnDestroy {
   @ViewChild(LuxStepperComponent, { static: true }) stepperComponent!: LuxStepperComponent;
   newStepsVisible = false;
-  newStepsForm1: FormGroup<StepperForm1DummyForm>
-  newStepsForm2: FormGroup<StepperForm2DummyForm>
+  newStepsForm1: FormGroup<StepperForm1DummyForm>;
+  newStepsForm2: FormGroup<StepperForm2DummyForm>;
   showOutputEvents = false;
   useCustomButtonConfig = false;
   log = logResult;
@@ -48,8 +48,11 @@ export class StepperExampleComponent implements OnDestroy {
       completed: false,
       useStepControl: true,
       stepControl: new FormGroup<StepperDummyForm>({
-        control1: new FormControl<string>('', { validators: Validators.required, nonNullable: true}),
-        control2: new FormControl<string>('', { validators: Validators.compose([Validators.minLength(5), Validators.required]), nonNullable: true}),
+        control1: new FormControl<string>('', { validators: Validators.required, nonNullable: true }),
+        control2: new FormControl<string>('', {
+          validators: Validators.compose([Validators.minLength(5), Validators.required]),
+          nonNullable: true
+        })
       }),
       hide: false
     },
@@ -61,8 +64,11 @@ export class StepperExampleComponent implements OnDestroy {
       completed: false,
       useStepControl: true,
       stepControl: new FormGroup<StepperDummyForm>({
-        control1: new FormControl<string>('', { validators: Validators.required, nonNullable: true}),
-        control2: new FormControl<string>('', { validators: Validators.compose([Validators.minLength(5), Validators.required]), nonNullable: true}),
+        control1: new FormControl<string>('', { validators: Validators.required, nonNullable: true }),
+        control2: new FormControl<string>('', {
+          validators: Validators.compose([Validators.minLength(5), Validators.required]),
+          nonNullable: true
+        })
       }),
       hide: false
     }
@@ -98,13 +104,13 @@ export class StepperExampleComponent implements OnDestroy {
     private router: Router
   ) {
     this.newStepsForm1 = new FormGroup<StepperForm1DummyForm>({
-      street: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
-      number: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
-      city: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
+      street: new FormControl<string>('', { validators: Validators.required, nonNullable: true }),
+      number: new FormControl<string>('', { validators: Validators.required, nonNullable: true }),
+      city: new FormControl<string>('', { validators: Validators.required, nonNullable: true })
     });
 
     this.newStepsForm2 = new FormGroup<StepperForm2DummyForm>({
-      iban: new FormControl<string>('', {validators: Validators.required, nonNullable: true}),
+      iban: new FormControl<string>('', { validators: Validators.required, nonNullable: true }),
       bic: new FormControl<string | null>(null)
     });
   }
@@ -122,13 +128,21 @@ export class StepperExampleComponent implements OnDestroy {
     this.log(this.showOutputEvents, 'luxFinishButtonClicked');
 
     const snackbarDuration = 5000;
-
-    this.snackbar.open(snackbarDuration, {
-      iconName: 'lux-info',
-      iconSize: '2x',
-      iconColor: 'green',
-      text: 'Stepper erfolgreich abgeschlossen!'
-    });
+    if (this.steps[0].stepControl.valid && this.steps[1].stepControl.valid) {
+      this.snackbar.open(snackbarDuration, {
+        iconName: 'lux-info',
+        iconSize: '2x',
+        iconColor: 'green',
+        text: 'Stepper erfolgreich abgeschlossen!'
+      });
+    } else {
+      this.snackbar.open(snackbarDuration, {
+        iconName: 'lux-interface-alert-warning-triangle',
+        iconSize: '2x',
+        iconColor: 'red',
+        text: 'Daten wurden NICHT übermittelt! Formular wird zurück gesetzt.'
+      });
+    }
 
     setTimeout(() => {
       let currentUrl = this.router.url;

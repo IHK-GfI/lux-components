@@ -25,21 +25,21 @@
 <!-- Template für die Darstellung des Lux-Filter-Forms in einer Lux-Card -->
 <lux-card
   *ngIf="luxShowAsCard"
-  luxTitle="{{luxTitle}}"
+  luxTitle="{{ luxTitle }}"
   [luxExpandedLabelOpen]="luxExpandedLabelOpen"
   [luxExpandedLabelClose]="luxExpandedLabelClose"
   class="lux-filter-card"
   luxTagId="luxFilterCard"
 >
-<lux-card-info>
-  <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container>
-</lux-card-info>
+  <lux-card-info>
+    <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container>
+  </lux-card-info>
   <lux-card-content>
     <ng-container *ngTemplateOutlet="filterFormTemplate"></ng-container>
   </lux-card-content>
   <!-- Optional können bei der Darstellung in einer Card erweiterte Optionen als Expanded-Content der Card angezeigt werden -->
   <lux-card-content-expanded *ngIf="extendedOptions" luxTagId="luxFilterFormExtendedContent">
-    <ng-content select='lux-filter-form-extended'></ng-content>
+    <ng-content select="lux-filter-form-extended"></ng-content>
   </lux-card-content-expanded>
   <lux-card-actions>
     <ng-container *ngTemplateOutlet="filterButtonTemplate"></ng-container>
@@ -69,10 +69,7 @@
 </ng-template>
 <!-- die Menü-Leiste mit den Filterfunktionen ist in beiden Darstellungen gleich -->
 <ng-template #filterActionTemplate>
-  <lux-menu
-    [luxDisplayExtended]="false"
-    class="filter-menu"
-  >
+  <lux-menu [luxDisplayExtended]="false" class="filter-menu">
     <lux-menu-item
       [luxLabel]="luxButtonResetLabel"
       [luxAlwaysVisible]="false"
@@ -109,16 +106,12 @@
 <!-- Chips mit den Filterfunktionen unterhalb des Filter-Formulars (optional) -->
 <div
   class="lux-label"
-  ngClass.gt-sm="no-filter-active" ngClass.lt-md="no-filter-active-sm"
+  [ngClass]="{ 'no-filter-active': !isMobile, 'no-filter-active-sm': isMobile }"
   *ngIf="this.filterItems.length === 0 && !luxFilterExpanded && luxShowChips && initComplete"
 >
   {{ luxDefaultFilterMessage }}
 </div>
-<lux-chips-ac
-  *ngIf="this.filterItems.length > 0 && !luxFilterExpanded && luxShowChips && initComplete"
-  ngClass.lt-md="filterItem-sm"
-  class="filterItem"
->
+<lux-chips-ac *ngIf="this.filterItems.length > 0 && !luxFilterExpanded && luxShowChips && initComplete" class="filter-item">
   <lux-chip-ac [luxColor]="item.color" *ngFor="let item of filterItems" (luxChipRemoved)="filterChipRemoved($event)"
     >{{ item.label }}: {{ item.value }}</lux-chip-ac
   >

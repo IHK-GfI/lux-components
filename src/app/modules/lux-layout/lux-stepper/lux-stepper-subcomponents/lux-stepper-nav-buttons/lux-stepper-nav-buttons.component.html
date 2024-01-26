@@ -1,4 +1,4 @@
-<div class="lux-mt-3" fxLayout="row" fxLayoutAlign="end center">
+<div class="lux-mt-3 lux-flex lux-place-content-end lux-items-center">
   <!-- Previous-Button -->
   <lux-button
     [luxLabel]="luxStepperConfig?.luxPreviousButtonConfig?.label"
@@ -17,7 +17,7 @@
     (luxClicked)="luxNextClick.emit()"
     [luxDisabled]="!luxStep.isCompleted() && luxStepperConfig && luxStepperConfig.luxLinear"
     luxTagId="luxStepper.nextStep"
-    *ngIf="luxIndex < ((luxStepperConfig?.luxSteps?.length) ?? 0) - 1"
+    *ngIf="luxIndex < (luxStepperConfig?.luxSteps?.length ?? 0) - 1"
   >
   </lux-button>
   <!-- Finish-Button -->
@@ -28,7 +28,7 @@
     (luxClicked)="luxFinClick.emit()"
     [luxDisabled]="!luxStep.isCompleted() && luxStepperConfig && luxStepperConfig.luxLinear"
     luxTagId="luxStepper.finished"
-    *ngIf="luxIndex === ((luxStepperConfig?.luxSteps?.length) ?? 0) - 1"
+    *ngIf="luxIndex === (luxStepperConfig?.luxSteps?.length ?? 0) - 1"
   >
   </lux-button>
 </div>

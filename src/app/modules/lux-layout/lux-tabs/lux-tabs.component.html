@@ -1,6 +1,4 @@
-<div
-  [ngClass]="{ 'lux-tabs-show-border': luxShowBorder }"
->
+<div [ngClass]="{ 'lux-tabs-show-border': luxShowBorder }">
   <mat-tab-group
     [dynamicHeight]="false"
     [selectedIndex]="luxActiveTab"
@@ -25,12 +23,22 @@
           Testen der Nachbedingung noch nicht zur Verfügung stand.
       -->
       <ng-container *ngIf="luxLazyLoading">
-        <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []" [disabled]="luxTab.luxDisabled">
+        <mat-tab
+          *ngFor="let luxTab of luxTabs"
+          [label]="luxTab.luxTitle"
+          [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []"
+          [disabled]="luxTab.luxDisabled"
+        >
           <ng-template matTabLabel>
             <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
           </ng-template>
           <ng-template matTabContent>
-            <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdContent" class="lux-mt-3 lux-tab-content" [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }">
+            <div
+              luxTagIdHandler
+              [luxTagId]="luxTab.luxTagIdContent"
+              class="lux-mt-3 lux-tab-content"
+              [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }"
+            >
               <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
               <span>&nbsp;</span>
             </div>
@@ -38,11 +46,21 @@
         </mat-tab>
       </ng-container>
       <ng-container *ngIf="!luxLazyLoading">
-        <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []" [disabled]="luxTab.luxDisabled">
+        <mat-tab
+          *ngFor="let luxTab of luxTabs"
+          [label]="luxTab.luxTitle"
+          [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []"
+          [disabled]="luxTab.luxDisabled"
+        >
           <ng-template matTabLabel>
             <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
           </ng-template>
-          <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdContent" class="lux-mt-3 lux-tab-content" [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }">
+          <div
+            luxTagIdHandler
+            [luxTagId]="luxTab.luxTagIdContent"
+            class="lux-mt-3 lux-tab-content"
+            [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }"
+          >
             <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
             <span>&nbsp;</span>
           </div>
@@ -50,7 +68,12 @@
       </ng-container>
     </ng-container>
     <ng-container *ngIf="!luxTabAnimationActive">
-      <mat-tab *ngFor="let luxTab of luxTabs" [label]="luxTab.luxTitle" [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []" [disabled]="luxTab.luxDisabled">
+      <mat-tab
+        *ngFor="let luxTab of luxTabs"
+        [label]="luxTab.luxTitle"
+        [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []"
+        [disabled]="luxTab.luxDisabled"
+      >
         <ng-template matTabLabel>
           <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
         </ng-template>
@@ -86,34 +109,30 @@
 </div>
 <ng-template #tabLabelTemplate let-luxTab>
   <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdHeader" class="lux-mt-3 lux-mb-3">
-    <div fxFlex="auto" fxLayout.gt-sm="column" fxLayout.xs="row">
-      <div fxLayout="row" fxLayoutAlign="center center" fxFlex="0 0 auto">
-        <div fxFlex="1 1 100%" class="lux-tab-header-image-container" fxLayout="row" *ngIf="luxTab.luxImageSrc && !luxTab.luxIconName">
-          <div
-            fxFlex="1 1 auto"
-            class="lux-tab-header-image-left"
-            *ngIf="luxTab.luxImageAlign === 'right' || luxTab.luxImageAlign === 'center'"
-          ></div>
-          <lux-image class="lux-tab-header-image" fxFlex="none"
-                     [luxBadgeNotification]="smallDevice || (!smallDevice && !luxTab.luxTitle) ? luxTab.luxCounter : ''"
-                     [luxBadgeNoBorder]="true"
-                     luxBadgeColor="primary"
-                     [luxBadgeDisabled]="luxTab.luxDisabled"
-                     [luxBadgeCap]="luxTab.luxCounterCap"
-                     [luxBadgeOverlap]="false"
-                     [luxImageSrc]="luxTab.luxImageSrc"
-                     [luxImageWidth]="luxTab.luxImageWidth"
-                     [luxImageHeight]="luxTab.luxImageHeight">
+    <div class="lux-flex lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-auto gt-sm:lux-flex-col xs:lux-flex-row">
+      <div class="lux-flex lux-place-content-center lux-items-center lux-flex-grow-0 lux-flex-shrink-0">
+        <div
+          class="lux-tab-header-image-container lux-flex lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-full"
+          *ngIf="luxTab.luxImageSrc && !luxTab.luxIconName"
+        >
+          <div class="lux-tab-header-image-left" *ngIf="luxTab.luxImageAlign === 'right' || luxTab.luxImageAlign === 'center'"></div>
+          <lux-image
+            class="lux-tab-header-image lux-flex-grow-0 lux-flex-shrink-0"
+            [luxBadgeNotification]="smallDevice || (!smallDevice && !luxTab.luxTitle) ? luxTab.luxCounter : ''"
+            [luxBadgeNoBorder]="true"
+            luxBadgeColor="primary"
+            [luxBadgeDisabled]="luxTab.luxDisabled"
+            [luxBadgeCap]="luxTab.luxCounterCap"
+            [luxBadgeOverlap]="false"
+            [luxImageSrc]="luxTab.luxImageSrc"
+            [luxImageWidth]="luxTab.luxImageWidth"
+            [luxImageHeight]="luxTab.luxImageHeight"
+          >
           </lux-image>
-          <div
-            fxFlex="1 1 auto"
-            class="lux-tab-header-image-right"
-            *ngIf="luxTab.luxImageAlign === 'left' || luxTab.luxImageAlign === 'center'"
-          ></div>
+          <div class="lux-tab-header-image-right" *ngIf="luxTab.luxImageAlign === 'left' || luxTab.luxImageAlign === 'center'"></div>
         </div>
         <lux-icon
           class="lux-tab-icon"
-          fxFlex="none"
           [luxIconName]="luxTab.luxIconName"
           [luxIconSize]="luxIconSize"
           [luxBadgeNotification]="smallDevice || (!smallDevice && !luxTab.luxTitle) ? luxTab.luxCounter : ''"
@@ -125,7 +144,6 @@
           *ngIf="luxTab.luxIconName"
         ></lux-icon>
         <span
-          fxFlex="none"
           [ngClass]="[
             'lux-tabs-notification-icon',
             'lux-tabs-notification-icon-position-after-icon',
@@ -135,13 +153,10 @@
           *ngIf="smallDevice || (!smallDevice && !luxTab.luxTitle)"
         ></span>
       </div>
-      <div fxLayout="row" ngClass.gt-md="lux-label-lower">
+      <div class="lux-flex" [ngClass]="{ 'lux-label-lower': !smallDevice }">
         <div
           class="lux-tab-title"
-          [ngClass]="{ 'lux-uppercase': labelUppercase }"
-          fxShow.sm="false"
-          fxShow.xs="false"
-          fxShow="true"
+          [ngClass]="{ 'lux-uppercase': labelUppercase, 'lux-display-none': smallDevice }"
           [luxBadgeNotification]="!smallDevice && luxTab.luxTitle ? luxTab.luxCounter : ''"
           [luxBadgeNoBorder]="true"
           luxBadgeColor="primary"
@@ -152,7 +167,6 @@
         >
           {{ luxTab.luxTitle }}
           <span
-            fxFlex="none"
             [ngClass]="[
               'lux-tabs-notification-icon',
               'lux-tabs-notification-icon-position-after-label',
@@ -166,7 +180,6 @@
         <div
           class="lux-tab-title"
           [ngClass]="{ 'lux-uppercase': labelUppercase }"
-          fxShow="true"
           [luxBadgeNotification]="!luxTab.luxIconName ? luxTab.luxCounter : ''"
           [luxBadgeNoBorder]="true"
           luxBadgeColor="primary"
@@ -177,7 +190,6 @@
         >
           {{ luxTab.luxTitle }}
           <span
-            fxFlex="none"
             [ngClass]="[
               'lux-tabs-notification-icon',
               'lux-tabs-notification-icon-position-after-label',

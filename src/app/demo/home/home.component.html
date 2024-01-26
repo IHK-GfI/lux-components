@@ -1,13 +1,13 @@
-<div fxLayout="column" fxLayoutAlign="start start" class="page-content" luxAriaRole="main">
+<div class="page-content lux-flex lux-flex-col" luxAriaRole="main">
   <h1 class="page-title">Willkommen</h1>
-  <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px grid">
+  <div class="lux-flex lux-flex-wrap lux-justify-start lux-align-start lux-gap-6">
     <div class="lux-tile-ac-wrapper-demo">
       <lux-tile-ac
         (luxClicked)="goTo('Components')"
         luxLabel="Komponenten"
         luxSubTitle="Alle Komponenten auf einem Blick"
         luxIconName="lux-interface-setting-tool-box"
-        fxFlex="1 1 100"
+        class="lux-flex-auto"
       >
         <lux-icon luxIconName="lux-interface-setting-tool-box"></lux-icon>
       </lux-tile-ac>
@@ -18,7 +18,7 @@
         luxLabel="Iconsuche"
         luxSubTitle="Das neue Iconset für die Lux-Components"
         luxIconName="lux-interface-help-customer-support-2"
-        fxFlex="1 1 100"
+        class="lux-flex-auto"
       >
         <lux-icon luxIconName="lux-interface-help-customer-support-2"></lux-icon>
       </lux-tile-ac>
@@ -29,7 +29,7 @@
         luxLabel="Formulare"
         luxSubTitle="Layoutbeispiele für Formulare"
         luxIconName="lux-interface-file-text"
-        fxFlex="1 1 100"
+        class="lux-flex-auto"
       >
         <lux-icon luxIconName="lux-interface-file-text"></lux-icon>
       </lux-tile-ac>
@@ -40,7 +40,7 @@
         luxLabel="Baseline"
         luxSubTitle="Vergleich der Form-Controls"
         luxIconName="lux-interface-remove-1"
-        fxFlex="1 1 100"
+        class="lux-flex-auto"
       >
         <lux-icon luxIconName="lux-interface-remove-1"></lux-icon>
       </lux-tile-ac>
@@ -51,7 +51,7 @@
         luxLabel="Konfiguration"
         luxSubTitle="Einstellungen in der Konfiguration live testen"
         luxIconName="lux-interface-setting-slider-horizontal"
-        fxFlex="1 1 100"
+        class="lux-flex-auto"
       >
         <lux-icon luxIconName="lux-interface-setting-slider-horizontal"></lux-icon>
       </lux-tile-ac>

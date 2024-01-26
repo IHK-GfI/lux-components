@@ -49,8 +49,8 @@ describe('LuxListComponent', () => {
     expect(fixture.debugElement.query(By.css('lux-icon.lux-list-empty-icon'))).toBeNull();
     expect(fixture.debugElement.query(By.css('span.lux-list-empty-label'))).toBeNull();
     expect(fixture.debugElement.queryAll(By.directive(LuxListItemComponent)).length).toBe(5);
-    expect(fixture.debugElement.query(By.css('.lux-card-title-container')).nativeElement.textContent.trim()).toEqual('Title 0');
-    expect(fixture.debugElement.query(By.css('.mat-card-subtitle')).nativeElement.textContent.trim()).toEqual('SubTitle 0');
+    expect(fixture.debugElement.query(By.css('.lux-card-title')).nativeElement.textContent.trim()).toEqual('Title 0');
+    expect(fixture.debugElement.query(By.css('.lux-card-subtitle')).nativeElement.textContent.trim()).toEqual('SubTitle 0');
   }));
 
   it('Sollte ein selektiertes LuxListItem haben (max. 1, via LuxListItem)', fakeAsync(() => {
@@ -67,9 +67,9 @@ describe('LuxListComponent', () => {
 
     // Nachbedingungen prüfen
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(1);
-    expect(
-      fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title-container')).nativeElement.textContent.trim()
-    ).toEqual('Title 0');
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title')).nativeElement.textContent.trim()).toEqual(
+      'Title 0'
+    );
 
     // Änderungen durchführen
     (listItems[0].componentInstance as LuxListItemComponent).luxSelected = false;
@@ -79,9 +79,9 @@ describe('LuxListComponent', () => {
 
     // Nachbedingungen prüfen
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(1);
-    expect(
-      fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title-container')).nativeElement.textContent.trim()
-    ).toEqual('Title 1');
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title')).nativeElement.textContent.trim()).toEqual(
+      'Title 1'
+    );
   }));
 
   it('Sollte ein selektiertes LuxListItem haben (max. 1, via LuxList)', fakeAsync(() => {
@@ -107,9 +107,9 @@ describe('LuxListComponent', () => {
     expect(focusedItemSpy).toHaveBeenCalledTimes(1);
     expect(focusedItemSpy).toHaveBeenCalledWith(listItems[0].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(1);
-    expect(
-      fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title-container')).nativeElement.textContent.trim()
-    ).toEqual('Title 0');
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title')).nativeElement.textContent.trim()).toEqual(
+      'Title 0'
+    );
 
     // Änderungen durchführen
     testComponent.selectedPosition = 1;
@@ -123,9 +123,9 @@ describe('LuxListComponent', () => {
     expect(focusedItemSpy).toHaveBeenCalledTimes(2);
     expect(focusedItemSpy).toHaveBeenCalledWith(listItems[1].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(1);
-    expect(
-      fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title-container')).nativeElement.textContent.trim()
-    ).toEqual('Title 1');
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title')).nativeElement.textContent.trim()).toEqual(
+      'Title 1'
+    );
   }));
 
   it('Sollte über die Pfeiltasten LuxListItems fokussieren können', fakeAsync(() => {
@@ -218,9 +218,9 @@ describe('LuxListComponent', () => {
     expect(focusedItemSpy).toHaveBeenCalledTimes(1);
     expect(focusedItemSpy).toHaveBeenCalledWith(listItems[0].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(1);
-    expect(
-      fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title-container')).nativeElement.textContent.trim()
-    ).toEqual('Title 0');
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title')).nativeElement.textContent.trim()).toEqual(
+      'Title 0'
+    );
 
     // Änderungen durchführen
     LuxTestHelper.dispatchKeyboardEvent(listNativeElement, 'keydown', DOWN_ARROW);
@@ -236,9 +236,9 @@ describe('LuxListComponent', () => {
     expect(focusedItemSpy).toHaveBeenCalledTimes(2);
     expect(focusedItemSpy).toHaveBeenCalledWith(listItems[1].componentInstance as LuxListItemComponent);
     expect(fixture.debugElement.queryAll(By.css('.lux-list-item-selected')).length).toBe(1);
-    expect(
-      fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title-container')).nativeElement.textContent.trim()
-    ).toEqual('Title 1');
+    expect(fixture.debugElement.query(By.css('.lux-list-item-selected .lux-card-title')).nativeElement.textContent.trim()).toEqual(
+      'Title 1'
+    );
   }));
 });
 

@@ -9,9 +9,8 @@
   luxTagId="luxDateTimeWrapper"
   #datepickerFormControl
 >
-  <div class="lux-input-row" fxLayout="row">
+  <div class="lux-input-row-authentic">
     <input
-      fxFlex="auto"
       matInput
       luxTagIdHandler
       [luxTagId]="luxTagId"
@@ -28,15 +27,13 @@
       [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
       #dateTimePickerInput
     />
-    <mat-datepicker-toggle
-      [disabled]="luxDisabled || luxReadonly"
-      [for]="datepicker"
-      [disableRipple]="true"
-      *ngIf="luxShowToggle"
-      fxFlex="auto"
-      matSuffix
-    >
-      <lux-icon matDatepickerToggleIcon luxIconName="lux-interface-calendar" luxPadding="0px" class="lux-datepicker-toggle-icon lux-color-blue"></lux-icon>
+    <mat-datepicker-toggle [disabled]="luxDisabled || luxReadonly" [for]="datepicker" [disableRipple]="true" *ngIf="luxShowToggle">
+      <lux-icon
+        matDatepickerToggleIcon
+        luxIconName="lux-interface-calendar"
+        luxPadding="0px"
+        class="lux-datepicker-toggle-icon lux-color-blue"
+      ></lux-icon>
     </mat-datepicker-toggle>
     <lux-datetime-overlay-ac
       [luxPickerInput]="dateTimePickerInput"

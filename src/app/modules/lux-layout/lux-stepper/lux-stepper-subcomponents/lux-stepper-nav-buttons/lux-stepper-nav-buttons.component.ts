@@ -4,8 +4,7 @@ import { ILuxStepperConfiguration } from '../../lux-stepper-model/lux-stepper-co
 
 @Component({
   selector: 'lux-stepper-nav-buttons',
-  templateUrl: './lux-stepper-nav-buttons.component.html',
-  styleUrls: ['./lux-stepper-nav-buttons.component.scss']
+  templateUrl: './lux-stepper-nav-buttons.component.html'
 })
 export class LuxStepperNavButtonsComponent {
   @Output() luxPrevClick = new EventEmitter<void>();
