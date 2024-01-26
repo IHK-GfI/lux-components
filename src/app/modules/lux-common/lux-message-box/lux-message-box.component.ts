@@ -9,7 +9,6 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 @Component({
   selector: 'lux-message-box',
   templateUrl: './lux-message-box.component.html',
-  styleUrls: ['./lux-message-box.component.scss'],
   animations: [visibilityTrigger],
   providers: [{ provide: MatPaginatorIntl, useClass: LuxPaginatorIntl }]
 })
@@ -22,7 +21,7 @@ export class LuxMessageBoxComponent {
 
   @HostBinding('class.mat-elevation-z4') boxShadow = true;
 
-  @ViewChild('messagebox',{static: false}) messageBoxElRef?: ElementRef;
+  @ViewChild('messagebox', { static: false }) messageBoxElRef?: ElementRef;
 
   @Output() luxMessageChanged = new EventEmitter<ILuxMessageChangeEvent>();
   @Output() luxMessageClosed = new EventEmitter<ILuxMessageCloseEvent>();
@@ -71,11 +70,11 @@ export class LuxMessageBoxComponent {
         } else {
           let messageText = '';
           if (messages.length === 1) {
-            messageText += $localize `:@@luxc.message.announce.1_message:Es gibt eine Meldung.`;
+            messageText += $localize`:@@luxc.message.announce.1_message:Es gibt eine Meldung.`;
           } else {
-            messageText += $localize `:@@luxc.message.announce.x_messages:Es gibt ${messages.length}:messageCount: Meldungen.`;
+            messageText += $localize`:@@luxc.message.announce.x_messages:Es gibt ${messages.length}:messageCount: Meldungen.`;
           }
-          messages.forEach((message) => messageText += message.text + '\n');
+          messages.forEach((message) => (messageText += message.text + '\n'));
           this.liveAnnouncer.announce(messageText);
         }
       });
@@ -85,7 +84,7 @@ export class LuxMessageBoxComponent {
         this.luxMessageBoxClosed.emit();
       }
       this._luxMessages = [];
-      this.liveAnnouncer.announce($localize `:@@luxc.message.announce.0_messages:Es gibt keine Meldungen.`);
+      this.liveAnnouncer.announce($localize`:@@luxc.message.announce.0_messages:Es gibt keine Meldungen.`);
     }
   }
 
