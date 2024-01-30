@@ -1,6 +1,5 @@
 <lux-file-preview-toolbar>
   <lux-button
-    fxFlex="none"
     luxIconName="lux-interface-edit-zoom-in"
     *ngIf="zoomActive"
     (luxClicked)="onZoomIn()"
@@ -10,7 +9,6 @@
     i18n-luxAriaLabel="@@luxc.file-preview.imgviewer.zoomin.arialabel"
   ></lux-button>
   <lux-button
-    fxFlex="none"
     luxIconName="lux-interface-edit-zoom-out"
     (luxClicked)="onZoomOut()"
     *ngIf="zoomActive"
@@ -20,7 +18,6 @@
     i18n-luxAriaLabel="@@luxc.file-preview.imgviewer.zoomout.arialabel"
   ></lux-button>
   <lux-button
-    fxFlex="none"
     [luxIconName]="downloadIconName"
     (luxClicked)="onDownload()"
     luxColor="accent"
@@ -51,7 +48,5 @@
     }"
     #previewImg
   />
-  <div *ngIf="loading && !startPhase" class="message-box">
-    Lade...
-  </div>
+  <div *ngIf="loading && !startPhase" class="message-box">Lade...</div>
 </div>
