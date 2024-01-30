@@ -87,7 +87,7 @@ export class LuxFilePreviewPdfViewerComponent extends LuxFilePreviewBase impleme
             scale: this.zoom.value
           }).width * PdfViewerComponent.CSS_UNITS;
 
-        currentIndex = this.options.findIndex(currentZoom => currentZoom === this.zoom);
+        currentIndex = this.options.findIndex((currentZoom) => currentZoom === this.zoom);
 
         if (currentIndex === 0) {
           break;
