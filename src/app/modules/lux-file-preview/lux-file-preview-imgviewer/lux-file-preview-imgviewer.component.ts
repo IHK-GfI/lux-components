@@ -7,8 +7,7 @@ import { LuxFilePreviewRef } from '../lux-file-preview-ref';
 
 @Component({
   selector: 'lux-file-preview-imgviewer',
-  templateUrl: './lux-file-preview-imgviewer.component.html',
-  styleUrls: ['./lux-file-preview-imgviewer.component.scss']
+  templateUrl: './lux-file-preview-imgviewer.component.html'
 })
 export class LuxFilePreviewImgViewerComponent extends LuxFilePreviewBase implements OnInit, AfterViewInit {
   @ViewChild('previewImg') previewImg?: ElementRef;
