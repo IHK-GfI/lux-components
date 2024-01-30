@@ -1,11 +1,8 @@
-<div class="lux-flex lux-justify-between lux-items-center">
-  <div class="file-name lux-flex">
-    <div
-      class="lux-flex lux-justify-start lux-items-center lux-flex-basis-1/9 lux-flex-grow-1 lux-flex-shrink-1 lux-border-box"
-      *ngIf="!mobileView"
-    >
-      <lux-icon class="lux-flex lux-flex-none lux-flex-border-box" luxIconName="lux-interface-content-file" luxIconSize="1x"></lux-icon>
-      <div class="lux-crop lux-flex lux-flex-auto lux-flex-border-box">{{ data.fileObject?.name }}</div>
+<div class="lux-flex lux-justify-between lux-items-center lux-border-box">
+  <div class="lux-file-name">
+    <div *ngIf="!mobileView">
+      <lux-icon class="lux-flex lux-flex-none lux-border-box" luxIconName="lux-interface-content-file" luxIconSize="1x"></lux-icon>
+      <div class="lux-crop lux-flex-auto lux-border-box">{{ data.fileObject?.name }}</div>
     </div>
   </div>
   <div class="lux-flex lux-gap-4 lux-justify-end lux-items-center lux-flex-none">
