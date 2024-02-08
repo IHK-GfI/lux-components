@@ -70,7 +70,7 @@
 </button>
 
 <button
-  *ngIf="luxRounded"
+  *ngIf="luxRounded && !luxStroked"
   mat-fab
   [disableRipple]="true"
   [color]="luxColor"
@@ -79,6 +79,24 @@
   [disabled]="luxDisabled"
   [type]="luxType"
   class="lux-button lux-button-rounded"
+  luxTagIdHandler
+  [luxTagId]="luxTagId"
+  [ngClass]="{ 'lux-icon-button': !!luxIconName }"
+  [attr.aria-label]="luxLabel ? luxLabel : luxIconName"
+>
+  <lux-icon [luxIconName]="luxIconName" luxPadding="0px" luxMargin="0px" luxIconSize="18px" class="lux-button-icon-round"></lux-icon>
+</button>
+
+<button
+  *ngIf="luxRounded && luxStroked"
+  mat-fab
+  [disableRipple]="true"
+  [color]="luxColor"
+  (click)="clicked($event)"
+  (auxclick)="auxClicked($event)"
+  [disabled]="luxDisabled"
+  [type]="luxType"
+  class="lux-button lux-button-rounded lux-stroked"
   luxTagIdHandler
   [luxTagId]="luxTagId"
   [ngClass]="{ 'lux-icon-button': !!luxIconName }"

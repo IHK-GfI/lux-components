@@ -90,6 +90,22 @@
           >
           </lux-button>
         </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="iconName ? '' : '??'"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxRounded]="true"
+            [luxStroked]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-rounded-stroked{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
       </div>
       <div fxLayout="column" fxLayoutGap="24px" class="lux-gradient-bg lux-highlight-section">
         <h3 class="lux-highlight-section-label">Gradient</h3>
@@ -175,6 +191,22 @@
           >
           </lux-button>
         </div>
+        <div fxFlex="0 1 calc(33% - 12px)" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="32px">
+          <lux-button
+            *ngFor="let color of colors; let i = index"
+            [luxLabel]="iconName ? '' : '??'"
+            [luxColor]="color.value"
+            [luxIconName]="iconName"
+            [luxIconShowRight]="iconShowRight"
+            [luxRounded]="true"
+            [luxStroked]="true"
+            [luxDisabled]="disabled"
+            luxTagId="demo-button-rounded-stroked{{ i }}"
+            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+          >
+          </lux-button>
+        </div>
       </div>
     </div>
   </example-base-content>
@@ -218,24 +250,29 @@
       </lux-form-hint>
     </lux-toggle-ac>
     <div class="lux-highlight-section column">
+      <lux-input-ac
+        luxLabel="luxButtonBadge"
+        luxHint="Diese Prooerty setzt das Label für eine Badge innerhalb des Buttons"
+        luxAutocomplete="off"
+        [(luxValue)]="buttonBadge"
+      >
+      </lux-input-ac>
+      <lux-select-ac
+        [luxOptions]="badgeColors"
+        [luxSelected]="badgeColors[0]"
+        luxOptionLabelProp="label"
+        (luxSelectedChange)="onBadgeColorChanged($event)"
+        luxLabel="luxButtonBadgeColor"
+        luxHint="Property mit der die Farbe der Button-Badge bestimmt wird"
+      >
+      </lux-select-ac>
+    </div>
     <lux-input-ac
-      luxLabel="luxButtonBadge"
-      luxHint="Diese Prooerty setzt das Label für eine Badge innerhalb des Buttons"
-      luxAutocomplete="off"
-      [(luxValue)]="buttonBadge"
+      luxName="button_background_Color"
+      class="lux-highlight-section"
+      [(luxValue)]="backgroundColor"
+      luxLabel="Hintergrundfarbe"
     >
-    </lux-input-ac>
-    <lux-select-ac
-      [luxOptions]="badgeColors"
-      [luxSelected]="badgeColors[0]"
-      luxOptionLabelProp="label"
-      (luxSelectedChange)="onBadgeColorChanged($event)"
-      luxLabel="luxButtonBadgeColor"
-      luxHint="Property mit der die Farbe der Button-Badge bestimmt wird"
-    >
-    </lux-select-ac>
-  </div>
-    <lux-input-ac luxName="button_background_Color" class="lux-highlight-section" [(luxValue)]="backgroundColor" luxLabel="Hintergrundfarbe">
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
     </lux-input-ac>
   </example-base-simple-options>
