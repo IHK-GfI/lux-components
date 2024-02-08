@@ -5,7 +5,6 @@ import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxButtonComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [LuxButtonComponent, LuxButtonLabelComponent]);
   });
@@ -60,9 +59,19 @@ describe('LuxButtonComponent', () => {
       Checker.checkLuxClicked(fixture);
     }));
 
-    it('Button (outlined) anklicken"', fakeAsync(() => {
+    it('Button (stroked) anklicken"', fakeAsync(() => {
       fixture.componentInstance.raised = false;
       fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = true;
+      fixture.detectChanges();
+
+      Checker.checkLuxClicked(fixture);
+    }));
+
+    it('Button (stroked & rounded) anklicken"', fakeAsync(() => {
+      fixture.componentInstance.raised = false;
+      fixture.componentInstance.round = true;
       fixture.componentInstance.flat = false;
       fixture.componentInstance.outlined = true;
       fixture.detectChanges();
@@ -124,6 +133,16 @@ describe('LuxButtonComponent', () => {
     it('Button (outlined) anklicken"', fakeAsync(() => {
       fixture.componentInstance.raised = false;
       fixture.componentInstance.round = false;
+      fixture.componentInstance.flat = false;
+      fixture.componentInstance.outlined = true;
+      fixture.detectChanges();
+
+      Checker.checkLuxDisabled(fixture);
+    }));
+
+    it('Button (outlined + rounded) anklicken"', fakeAsync(() => {
+      fixture.componentInstance.raised = false;
+      fixture.componentInstance.round = true;
       fixture.componentInstance.flat = false;
       fixture.componentInstance.outlined = true;
       fixture.detectChanges();
