@@ -46,7 +46,7 @@
         <source>Meldung schließen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-message-box/lux-message-box-subcomponents/lux-message.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.message.container.arialabel" datatype="html">
@@ -123,14 +123,14 @@
         <source> Fehlernummer: <x id="INTERPOLATION" equiv-text="{{ error.errorId }}"/> </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-error/lux-error-page/lux-error-page.component.html</context>
-          <context context-type="linenumber">27,29</context>
+          <context context-type="linenumber">14,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.errorpage.error_title" datatype="html">
         <source>Fehlermeldung</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-error/lux-error-page/lux-error-page.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file-preview.download.arialabel" datatype="html">
@@ -298,14 +298,14 @@
         <source>Mehr Optionen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-form/lux-filter-form.component.ts</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.filter.expandedLabel.close" datatype="html">
         <source>Weniger Optionen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-form/lux-filter-form.component.ts</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.autocomplete.error_message.not_an_option" datatype="html">
@@ -579,7 +579,7 @@
         <source>Button zum Löschen der Datei <x id="INTERPOLATION" equiv-text="{{ file.name }}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-upload/lux-file-upload.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file.upload.error_message.max_file_size" datatype="html">

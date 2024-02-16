@@ -1,11 +1,7 @@
 <ng-container *ngIf="stepperComponent && stepperComponent.steps && stepperComponent.steps.length > 0">
   <div class="lux-stepper-large-mobile-nav-container">
     <div class="lux-stepper-large-mobile-nav-close-button-container">
-      <lux-button
-        class="lux-stepper-large-mobile-nav-close-button"
-        luxIconName="close"
-        (luxClicked)="overlayRef.close()"
-      ></lux-button>
+      <lux-button class="lux-stepper-large-mobile-nav-close-button" luxIconName="lux-close" (luxClicked)="overlayRef.close()"></lux-button>
     </div>
 
     <div class="lux-stepper-large-mobile-nav-header">
@@ -25,10 +21,14 @@
           }"
         >
           <div class="lux-stepper-large-nav-item-number-container lux-stepper-large-mobile-nav-item-number-container">
-            <div class="lux-stepper-large-nav-item-number lux-stepper-large-mobile-nav-item-number">{{ i + 1 < 10 ? '0' : '' }}{{ i + 1 }}</div>
+            <div class="lux-stepper-large-nav-item-number lux-stepper-large-mobile-nav-item-number">
+              {{ i + 1 < 10 ? '0' : '' }}{{ i + 1 }}
+            </div>
           </div>
           <div class="lux-stepper-large-nav-item-label-container lux-stepper-large-mobile-nav-item-label-container">
-            <ng-container *ngTemplateOutlet="step.luxTouched && !step.luxDisabled ? link : nolink; context: { step: step, i: i}"></ng-container>
+            <ng-container
+              *ngTemplateOutlet="step.luxTouched && !step.luxDisabled ? link : nolink; context: { step: step, i: i }"
+            ></ng-container>
           </div>
         </div>
       </ng-container>
@@ -40,14 +40,13 @@
   <a
     class="lux-stepper-large-nav-item-label-link lux-stepper-large-mobile-nav-item-label-link"
     tabindex="0"
-    [ngClass]="{'active-link': i === stepperComponent.luxCurrentStepNumber}"
+    [ngClass]="{ 'active-link': i === stepperComponent.luxCurrentStepNumber }"
     [attr.aria-label]="'Schritt' + (i + 1) + ' ' + step.luxTitle"
     (click)="onNavLink(i)"
     (keydown.enter)="onNavLink(i)"
     #links
-  >{{ step.luxTitle }}</a
+    >{{ step.luxTitle }}</a
   >
-
 </ng-template>
 
 <ng-template let-step="step" let-i="i" #nolink>

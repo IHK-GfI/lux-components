@@ -3,7 +3,7 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90toggle"
 >
   <example-base-content>
-    <div fxLayout="column">
+    <div class="lux-flex lux-flex-col">
       <h3>Beispiel ohne Reactive-Form</h3>
       <lux-toggle-ac
         [(luxChecked)]="value"
@@ -18,12 +18,9 @@
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
       >
       </lux-toggle-ac>
-      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="value !== undefined">
-        <span fxFlex="0 0 auto">Wert:</span>
-        <span fxFlex="auto">{{ value | json }}</span>
-      </div>
+      <example-value [value]="value"></example-value>
     </div>
-    <div fxLayout="column" [formGroup]="form">
+    <div class="lux-flex lux-flex-col" [formGroup]="form">
       <h3>Beispiel in Reactive-Form</h3>
       <lux-toggle-ac
         [luxLabel]="label"
@@ -37,94 +34,46 @@
         [luxErrorCallback]="useErrorMessage ? emptyCallback : errorCallback"
       >
       </lux-toggle-ac>
-      <div fxLayout="column" class="lux-highlight-section">
-        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
-          <span fxFlex="35px">Wert:</span>
-          <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
-        </div>
-        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
-          <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
-            <span fxFlex="35px">Valid:</span>
-            <span fxFlex="30px">{{ form.valid }}</span>
-          </div>
-          <div fxFlex="30" fxLayout="row">
-            <span fxFlex="0 0 auto">Dirty:</span>
-            <span fxFlex="30px">{{ form.dirty }}</span>
-          </div>
-          <div fxFlex="30" fxLayout="row">
-            <span fxFlex="0 0 auto">Touched:</span>
-            <span fxFlex="30px">{{ form.touched }}</span>
-          </div>
-        </div>
-      </div>
+      <example-form-value [form]="form" [controlBinding]="controlBinding"></example-form-value>
     </div>
   </example-base-content>
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-input-ac
-      class="lux-highlight-section"
       luxName="toggle_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
     >
     </lux-input-ac>
-    <div class="lux-highlight-section column">
-      <lux-input-ac
-        luxName="toggle_luxHint"
-        luxLabel="luxHint"
-        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-        [(luxValue)]="hint"
-      >
-      </lux-input-ac>
-      <lux-toggle-ac
-        luxName="toggle_luxHintShowOnlyOnFocus"
-        luxLabel="luxHintShowOnlyOnFocus"
-        luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
-        [(luxChecked)]="hintShowOnlyOnFocus"
-        [luxNoTopLabel]="true"
-      ></lux-toggle-ac>
-    </div>
-    <lux-toggle-ac
-      class="lux-highlight-section"
-      [(luxChecked)]="disabled"
-      luxLabel="luxDisabled"
-      luxHint="Erlaubt es, die Component zu deaktivieren."
-      [luxNoTopLabel]="true"
+    <lux-input-ac
+      luxName="toggle_luxHint"
+      luxLabel="luxHint"
+      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+      [(luxValue)]="hint"
     >
-    </lux-toggle-ac>
-    <div class="lux-highlight-section" fxLayout="column">
-      <div fxLayout="row wrap">
-        <lux-button
-          luxLabel="Enable"
-          (luxClicked)="form.get(controlBinding)!.enable()"
-          [luxDisabled]="!form.get(controlBinding)!.disabled"
-          luxColor="primary"
-        ></lux-button>
-        <lux-button
-          luxLabel="Disable"
-          (luxClicked)="form.get(controlBinding)!.disable()"
-          [luxDisabled]="form.get(controlBinding)!.disabled"
-          luxColor="primary"
-        ></lux-button>
-      </div>
-      <div class="lux-hint lux-p-3">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
-    </div>
+    </lux-input-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
+      luxName="toggle_luxHintShowOnlyOnFocus"
+      luxLabel="luxHintShowOnlyOnFocus"
+      luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+      [(luxChecked)]="hintShowOnlyOnFocus"
+      [luxNoTopLabel]="true"
+    ></lux-toggle-ac>
+    <example-form-disable [form]="form" [controlBinding]="controlBinding" [(disabled)]="disabled"></example-form-disable>
+    <lux-toggle-ac
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-toggle-ac class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
+    <lux-toggle-ac luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
         <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="denseFormat"
       luxLabel="luxDense"
       luxHint="Diese Property veringert das Padding innerhalb des Controls."

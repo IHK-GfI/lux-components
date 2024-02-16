@@ -6,30 +6,18 @@
     <lux-http-error></lux-http-error>
   </example-base-content>
   <example-base-simple-options>
-    <div fxLayout="column" fxLayoutGap="5px">
+    <div class="lux-flex lux-flex-col lux-gap-4">
       <lux-button
         luxLabel="Fehler ausblenden"
-        [luxRaised]="true"
+        [luxStroked]="true"
         [luxDisabled]="(getErrorsObservable() | async) === null"
         (luxClicked)="clearErrors()"
       >
       </lux-button>
       <h3>Fehler einblenden</h3>
-      <lux-button luxColor="primary" luxLabel="Als Map" [luxRaised]="true" (luxClicked)="createErrors()"> </lux-button>
-      <lux-button
-        luxColor="primary"
-        luxLabel="Als String-Array"
-        [luxRaised]="true"
-        (luxClicked)="createErrorMessageStrings()"
-      >
-      </lux-button>
-      <lux-button
-        luxColor="primary"
-        luxLabel="Als Objekte"
-        [luxRaised]="true"
-        (luxClicked)="createErrorToStringObjects()"
-      >
-      </lux-button>
+      <lux-button luxLabel="Als Map" [luxStroked]="true" (luxClicked)="createErrors()"> </lux-button>
+      <lux-button luxLabel="Als String-Array" [luxStroked]="true" (luxClicked)="createErrorMessageStrings()"> </lux-button>
+      <lux-button luxLabel="Als Objekte" [luxStroked]="true" (luxClicked)="createErrorToStringObjects()"> </lux-button>
     </div>
   </example-base-simple-options>
 </example-base-structure>

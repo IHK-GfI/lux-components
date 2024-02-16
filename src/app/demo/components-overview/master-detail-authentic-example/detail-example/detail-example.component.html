@@ -1,16 +1,12 @@
-<lux-card
-  [luxTitle]="selectedDetail.title"
-  luxSubTitle="Hier finden sich die Einstellungen für die Master-Detail Component."
->
+<lux-card [luxTitle]="selectedDetail.title" luxSubTitle="Hier finden sich die Einstellungen für die Master-Detail Component.">
   <lux-card-content>
-    <div fxLayout="column" fxLayoutGap="32px">
-      <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px" fxLayout="column" fxLayoutGap="0">
+    <div class="lux-flex lux-flex-col">
+      <div class="lux-grid lux-grid-cols-2 lt-lg:lux-grid-cols-1 lux-gap-8">
         <lux-input-ac
           luxName="master-detail_luxEmptyLabelDetail"
           luxLabel="luxEmptyLabelDetail"
           luxHint="Diese Property bestimmt das Label welches angezeigt wird, wenn kein Detail selektiert ist."
           [(luxValue)]="masterDetailConfig!.emptyLabelDetail"
-          fxFlex.gt-sm="0 0 calc(50% - 32px)"
         >
         </lux-input-ac>
         <lux-input-ac
@@ -18,17 +14,13 @@
           luxLabel="luxEmptyLabelMaster"
           luxHint="Diese Property bestimmt das Label welches angezeigt wird, wenn keine Master-Elemente vorhanden sind."
           [(luxValue)]="masterDetailConfig!.emptyLabelMaster"
-          fxFlex.gt-sm="0 0 50%"
         >
         </lux-input-ac>
-      </div>
-      <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px" fxLayout="column" fxLayoutGap="0">
         <lux-input-ac
           luxName="master-detail_luxEmptyIconDetail"
           luxLabel="luxEmptyIconDetail"
           luxHint="Die Property legt das Icon fest, das angezeigt wird wenn kein Detail ausgewählt ist."
           [(luxValue)]="masterDetailConfig!.emptyIconDetail"
-          fxFlex.gt-sm="0 0 calc(50% - 32px)"
         >
         </lux-input-ac>
         <lux-input-ac
@@ -36,17 +28,13 @@
           luxLabel="luxEmptyIconMaster"
           luxHint="Die Property legt das Icon fest, das angezeigt wird wenn keine Master-Elemente vorhanden sind."
           [(luxValue)]="masterDetailConfig!.emptyIconMaster"
-          fxFlex.gt-sm="0 0 50%"
         >
         </lux-input-ac>
-      </div>
-      <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="32px" fxLayout="column" fxLayoutGap="0">
         <lux-select-ac
           luxLabel="luxEmptyIconDetailSize"
           luxHint="Über diese Eigenschaft wird die (relative) Größe des EmptyDetail-Icons festgelegt."
           [(luxSelected)]="masterDetailConfig!.emptyIconDetailSize"
           [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
-          fxFlex.gt-sm="0 0 calc(50% - 32px)"
         >
         </lux-select-ac>
         <lux-select-ac
@@ -54,7 +42,6 @@
           luxHint="Über diese Eigenschaft wird die (relative) Größe des EmptyMaster-Icons festgelegt."
           [(luxSelected)]="masterDetailConfig!.emptyIconMasterSize"
           [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
-          fxFlex.gt-sm="0 0 50%"
         >
         </lux-select-ac>
       </div>
@@ -89,6 +76,7 @@
           [luxNoTopLabel]="true"
         >
         </lux-toggle-ac>
+        <ng-content></ng-content>
       </div>
     </div>
   </lux-card-content>

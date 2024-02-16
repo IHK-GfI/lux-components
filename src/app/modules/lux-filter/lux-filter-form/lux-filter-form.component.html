@@ -111,7 +111,11 @@
 >
   {{ luxDefaultFilterMessage }}
 </div>
-<lux-chips-ac *ngIf="this.filterItems.length > 0 && !luxFilterExpanded && luxShowChips && initComplete" class="filter-item">
+<lux-chips-ac
+  *ngIf="this.filterItems.length > 0 && !luxFilterExpanded && luxShowChips && initComplete"
+  [luxHideBorder]="luxHideChipsBorder"
+  class="filter-item"
+>
   <lux-chip-ac [luxColor]="item.color" *ngFor="let item of filterItems" (luxChipRemoved)="filterChipRemoved($event)"
     >{{ item.label }}: {{ item.value }}</lux-chip-ac
   >

@@ -2,58 +2,34 @@
   exampleTitle="Timestamp"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/luxRelativeTimestamp"
 >
-  <example-base-content [exampleCentered]="true">
-    <div fxLayout="column" class="lux-highlight-section" fxLayoutGap="4px" fxFlex="100">
-      <div fxLayout="row" fxLayoutGap="4px">
-        <span fxFlex="0 0 175px">
-          mit luxRelativeTimestamp:
-        </span>
-        <span fxFlex="auto">
-          <b>
-            {{ now | luxRelativeTimestamp: defaultText:prefix }}
-          </b>
-        </span>
+  <example-base-content class="lux-flex lux-flex-col lux-gap-3">
+    <div class="lux-highlight-section lux-flex lux-flex-col lux-gap-2">
+      <div class="lux-flex gt-md:lux-gap-2 lt-lg:lux-flex-col">
+        <div class="gt-md:lux-flex-basis-40">Timestamp:</div>
+        <div>
+          <b> {{ now }}&nbsp; </b>
+        </div>
       </div>
-      <div fxLayout="row" fxLayoutGap="4px">
-        <span fxFlex="0 0 175px">
-          nur Timestamp:
-        </span>
-        <span fxFlex="auto" *ngIf="now">
-          <b>
-            {{ now }}
-          </b>
-        </span>
+      <div class="lux-flex gt-md:lux-gap-2 lt-lg:lux-flex-col">
+        <div class="gt-md:lux-flex-basis-40">Pipe <i>luxRelativeTimestamp</i>:</div>
+        <div>
+          <b> {{ now | luxRelativeTimestamp: defaultText:prefix }}&nbsp; </b>
+        </div>
       </div>
     </div>
   </example-base-content>
-  <example-base-simple-options>
-    <div
-      class="lux-highlight-section"
-      fxLayout.gt-sm="row"
-      fxLayout.lt-md="column"
-      fxLayoutAlign.gt-sm="space-between start"
-      fxLayoutAlign.lt-md="space-between stretch"
-      fxLayoutGap.gt-sm="16px"
-      fxLayoutGap.lt-md="8px" >
-      <lux-datepicker-ac
-        luxLabel="timestamp"
-        [(luxValue)]="nowISO"
-        (luxValueChange)="updateNow($event)"
-        fxFlex.gt-sm="0 1 calc(100%-114px)"
-      >
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
+    <div class="lux-flex lux-gap-2 lt-sm:lux-flex-col lt-sm:lux-gap-0">
+      <lux-datepicker-ac class="lux-flex-auto" luxLabel="timestamp" [(luxValue)]="nowISO" (luxValueChange)="updateNow($event)">
         <lux-form-hint>
           Hier kann ein Datum für das Beispiel eingetragen werden.<br />
           Das Beispiel nimmt dann den Timestamp aus dem Date-Objekt.
         </lux-form-hint>
       </lux-datepicker-ac>
-      <div
-        fxLayout="row"
-        fxLayoutAlign.gt-sm="end center"
-        fxLayoutAlign.lt-md="center center"
-        fxFlex.gt-sm="1 1 98px"
-        fxLayoutGap="8px"
-        class="lux-mt-4">
+
+      <div class="lux-flex lux-flex-none lux-gap-2">
         <lux-button
+          class="lux-flex lux-flex-none round-btn"
           luxIconName="lux-interface-delete-1"
           luxColor="warn"
           luxTagId="timestamp.btn.clear"
@@ -61,6 +37,7 @@
           (luxClicked)="clearNow()"
         ></lux-button>
         <lux-button
+          class="lux-flex lux-flex-none round-btn"
           luxIconName="lux-interface-arrows-turn-backward"
           luxColor="primary"
           luxTagId="timestamp.btn.undo"
@@ -70,7 +47,6 @@
       </div>
     </div>
     <lux-input-ac
-      class="lux-highlight-section"
       luxAutocomplete="off"
       luxName="timestamp_defaultText"
       luxLabel="defaultText"
@@ -78,7 +54,7 @@
       [(luxValue)]="defaultText"
     >
     </lux-input-ac>
-    <lux-input-ac luxName="timestamp_prefix" class="lux-highlight-section" luxAutocomplete="off" luxLabel="prefix" [(luxValue)]="prefix">
+    <lux-input-ac luxName="timestamp_prefix" luxAutocomplete="off" luxLabel="prefix" [(luxValue)]="prefix">
       <lux-form-hint>
         Dieser Parameter legt den Präfix für die relativen Zeitangaben fest.<br />
         Standardmäßig werden die Präfixe 'in' und 'vor' benutzt.

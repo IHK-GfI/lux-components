@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { LuxLayoutModule } from '../../modules/lux-layout/lux-layout.module';
 import { LuxIconModule } from '../../modules/lux-icon/lux-icon.module';
 import { LuxActionModule } from '../../modules/lux-action/lux-action.module';
@@ -27,7 +26,6 @@ const routes: Routes = [{ path: '', component: FormExampleComponent, canDeactiva
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
     LuxLayoutModule,
     LuxIconModule,
     LuxActionModule,

@@ -59,6 +59,7 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
 
   expanded = false;
   showFilterChips = true;
+  hideChipsBorder = false;
 
   storedFilters: LuxFilter[] = [
     {

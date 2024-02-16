@@ -17,7 +17,6 @@ import { LuxMessageBoxComponent } from './lux-message-box/lux-message-box.compon
 import { LuxMessageComponent } from './lux-message-box/lux-message-box-subcomponents/lux-message.component';
 import { LuxTableColumnHeaderComponent } from './lux-table/lux-table-subcomponents/lux-table-column-header.component';
 import { LuxTableColumnContentComponent } from './lux-table/lux-table-subcomponents/lux-table-column-content.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { LuxActionModule } from '../lux-action/lux-action.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';
 import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
@@ -26,7 +25,6 @@ import { LuxTextboxComponent } from './lux-textbox/lux-textbox.component';
 @NgModule({
   imports: [
     CommonModule,
-    FlexLayoutModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatTableModule,

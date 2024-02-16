@@ -2,8 +2,8 @@
   exampleTitle="File-Upload"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90file%E2%80%90upload"
 >
-  <example-base-content fxLayout="column">
-    <div fxFlex="auto" fxLayout="column">
+  <example-base-content>
+    <div class="lux-flex lux-flex-col">
       <h3>Beispiel ohne Reactive-Form</h3>
       <lux-file-upload
         [luxLabel]="label"
@@ -37,7 +37,7 @@
       >
       </lux-file-upload>
     </div>
-    <div fxFlex="auto" fxLayout="column">
+    <div class="lux-flex lux-flex-col">
       <h3>Beispiel in Reactive-Form</h3>
       <div [formGroup]="form">
         <lux-file-upload
@@ -69,104 +69,49 @@
           #fileBaseWithComponent
         >
         </lux-file-upload>
-        <div fxLayout="column" class="lux-highlight-section">
-          <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
-            <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
-              <span fxFlex="35px">Valid:</span>
-              <span fxFlex="30px">{{ form.valid }}</span>
-            </div>
-            <div fxFlex="30" fxLayout="row">
-              <span fxFlex="0 0 auto">Dirty:</span>
-              <span fxFlex="30px">{{ form.dirty }}</span>
-            </div>
-            <div fxFlex="30" fxLayout="row">
-              <span fxFlex="0 0 auto">Touched:</span>
-              <span fxFlex="30px">{{ form.touched }}</span>
-            </div>
-          </div>
-        </div>
+        <example-form-value [form]="form" [controlBinding]="controlBinding" [showValue]="false"></example-form-value>
       </div>
     </div>
   </example-base-content>
-  <example-base-simple-options>
-    <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="12px">
-      <div class="lux-highlight-section-label">Labels</div>
-      <lux-input-ac luxLabel="luxLabel" [(luxValue)]="label"></lux-input-ac>
-      <lux-input-ac luxLabel="luxLabelLink" [(luxValue)]="labelLink"></lux-input-ac>
-      <lux-input-ac
-        luxLabel="luxLabelLinkShort"
-        luxHint="Dieses Label wird nur auf kleinen Auflösungen angezeigt und ersetzt den Wert aus luxLabelLink"
-        [(luxValue)]="labelLinkShort"
-      ></lux-input-ac>
-      <lux-input-ac luxLabel="luxHint" [(luxValue)]="hint"></lux-input-ac>
-    </div>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
+    <lux-input-ac luxLabel="luxLabel" [(luxValue)]="label"></lux-input-ac>
+    <lux-input-ac luxLabel="luxLabelLink" [(luxValue)]="labelLink"></lux-input-ac>
+    <lux-input-ac
+      luxLabel="luxLabelLinkShort"
+      luxHint="Dieses Label wird nur auf kleinen Auflösungen angezeigt und ersetzt den Wert aus luxLabelLink"
+      [(luxValue)]="labelLinkShort"
+    ></lux-input-ac>
+    <lux-input-ac luxLabel="luxHint" [(luxValue)]="hint"></lux-input-ac>
 
-    <div class="lux-highlight-section" fxLayout="column" fxLayoutGap="12px">
-      <div class="lux-highlight-section-label">Icons</div>
-      <lux-input-ac luxLabel="luxUploadIcon" [(luxValue)]="uploadIcon"></lux-input-ac>
-      <lux-input-ac luxLabel="luxDeleteIcon" [(luxValue)]="deleteIcon"></lux-input-ac>
-    </div>
+    <lux-input-ac luxLabel="luxUploadIcon" [(luxValue)]="uploadIcon"></lux-input-ac>
+    <lux-input-ac luxLabel="luxDeleteIcon" [(luxValue)]="deleteIcon"></lux-input-ac>
 
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="multiple"
       luxLabel="luxMultiple"
       luxHint="Dieses Flag legt fest, ob nur eine oder mehrere Dateien selektiert werden können."
     >
     </lux-toggle-ac>
 
-    <lux-toggle-ac
-      class="lux-highlight-section"
-      [(luxChecked)]="disabled"
-      luxLabel="luxDisabled"
-      luxHint="Erlaubt es, die Component zu deaktivieren."
-    >
-    </lux-toggle-ac>
-    <div class="lux-highlight-section" fxLayout="column">
-      <div fxLayout="row wrap">
-        <lux-button
-          luxLabel="Enable"
-          (luxClicked)="form.get(controlBinding)!.enable()"
-          [luxDisabled]="!form.get(controlBinding)!.disabled"
-        ></lux-button>
-        <lux-button
-          luxLabel="Disable"
-          (luxClicked)="form.get(controlBinding)!.disable()"
-          [luxDisabled]="form.get(controlBinding)!.disabled"
-        ></lux-button>
-      </div>
-      <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
-    </div>
+    <example-form-disable [form]="form" [controlBinding]="controlBinding" [(disabled)]="disabled"></example-form-disable>
 
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
     >
     </lux-toggle-ac>
-    <lux-toggle-ac
-      class="lux-highlight-section"
-      luxLabel="luxRequired"
-      (luxCheckedChange)="changeRequired($event)"
-    >
+    <lux-toggle-ac luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)">
       <lux-form-hint>
-        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer
-        Reactive-Form sind.<br />
-        <b
-        >In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control
-          gesetzt.</b
-        >
+        Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
+        <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
     </lux-toggle-ac>
   </example-base-simple-options>
-  <example-base-advanced-options>
-    <div class="lux-highlight-section" fxLayout="column">
-      <lux-toggle-ac luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents"> </lux-toggle-ac>
-    </div>
+  <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
+    <lux-toggle-ac luxLabel="Output-Events loggen" luxHint="(Console --> F12/CMD+ALT+I)" [(luxChecked)]="showOutputEvents"> </lux-toggle-ac>
 
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="contentAsBlob"
       luxLabel="luxContentAsBlob"
       luxHint="Diese Eigenschaft bestimmt ob die Dateien als Blob gespeichert werden sollen oder als Base64-String."
@@ -174,7 +119,6 @@
     </lux-toggle-ac>
 
     <lux-input-ac
-      class="lux-highlight-section"
       luxLabel="luxMaxSizeMB"
       luxHint="Die Property bestimmt die maximale erlaubte Dateigröße in MB."
       [(luxValue)]="maxSize"
@@ -183,7 +127,6 @@
       <lux-input-ac-suffix> MB</lux-input-ac-suffix>
     </lux-input-ac>
     <lux-select-ac
-      class="lux-highlight-section"
       luxLabel="luxCapture"
       luxHint="Diese Property stellt ein ob für Mobilgeräte die Front- oder Rück-Kamera und Mikrophone verwendet werden sollen."
       [luxOptions]="['', 'user', 'environment']"
@@ -191,7 +134,6 @@
     >
     </lux-select-ac>
     <lux-input-ac
-      class="lux-highlight-section"
       luxLabel="luxAccept"
       luxHint="Über diese Eigenschaft lässt sich einstellen, welche Dateiarten erlaubt sind (z.B. image/*,.pdf)."
       [(luxValue)]="accept"

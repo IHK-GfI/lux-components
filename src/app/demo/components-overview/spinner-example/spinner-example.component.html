@@ -2,76 +2,72 @@
   exampleTitle="Spinner"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90progress"
 >
-  <example-base-content>
-    <div fxLayout="column" fxLayoutGap="24px">
-      <div
-        fxLayout="column"
-        fxLayoutGap="12px"
-        class="lux-app-data-bg lux-highlight-section"
-        [ngStyle]="{ backgroundColor: backgroundColor }"
-      >
-        <h3 class="lux-highlight-section-label">Default</h3>
-        <div fxLayout="row wrap" fxLayoutGap="12px">
-          <lux-progress
-            *ngFor="let color of colors; let i = index"
-            luxType="Spinner"
-            luxTagId="sp-example-default{{ i }}"
-            [luxColor]="color"
-            [luxValue]="value"
-            [luxMode]="mode"
-            [luxSize]="size"
-          >
-          </lux-progress>
-        </div>
+  <example-base-content class="lux-flex lux-flex-col lux-gap-4">
+    <div class="lux-app-data-bg lux-highlight-section lux-flex lux-flex-col lux-gap-4" [ngStyle]="{ backgroundColor: backgroundColor }">
+      <h3 class="lux-highlight-section-label">Default</h3>
+      <div class="lux-flex lux-flex-wrap lux-gap-3">
+        <lux-progress
+          *ngFor="let color of colors; let i = index"
+          luxType="Spinner"
+          luxTagId="sp-example-default{{ i }}"
+          [luxColor]="color"
+          [luxValue]="value"
+          [luxMode]="mode"
+          [luxSize]="size"
+        >
+        </lux-progress>
       </div>
-      <div fxLayout="column" fxLayoutGap="12px" class="lux-hover-bg lux-highlight-section">
-        <h3 class="lux-highlight-section-label">Hover</h3>
-        <div fxLayout="row wrap" fxLayoutGap="12px">
-          <lux-progress
-            *ngFor="let color of colors; let i = index"
-            luxType="Spinner"
-            luxTagId="sp-example-hover{{ i }}"
-            [luxColor]="color"
-            [luxValue]="value"
-            [luxMode]="mode"
-            [luxSize]="size"
-          >
-          </lux-progress>
-        </div>
+    </div>
+    <div class="lux-hover-bg lux-highlight-section lux-flex lux-flex-col lux-gap-4">
+      <h3 class="lux-highlight-section-label">Hover</h3>
+      <div class="lux-flex lux-flex-wrap lux-gap-3">
+        <lux-progress
+          *ngFor="let color of colors; let i = index"
+          luxType="Spinner"
+          luxTagId="sp-example-hover{{ i }}"
+          [luxColor]="color"
+          [luxValue]="value"
+          [luxMode]="mode"
+          [luxSize]="size"
+        >
+        </lux-progress>
       </div>
-      <div fxLayout="column" fxLayoutGap="12px" class="lux-selected-bg lux-highlight-section">
-        <h3 class="lux-highlight-section-label">Focus</h3>
-        <div fxLayout="row wrap" fxLayoutGap="12px">
-          <lux-progress
-            *ngFor="let color of colors; let i = index"
-            luxType="Spinner"
-            luxTagId="sp-example-focus{{ i }}"
-            [luxColor]="color"
-            [luxValue]="value"
-            [luxMode]="mode"
-            [luxSize]="size"
-          >
-          </lux-progress>
-        </div>
+    </div>
+    <div class="lux-selected-bg lux-highlight-section lux-flex lux-flex-col lux-gap-4">
+      <h3 class="lux-highlight-section-label">Focus</h3>
+      <div class="lux-flex lux-flex-wrap lux-gap-3">
+        <lux-progress
+          *ngFor="let color of colors; let i = index"
+          luxType="Spinner"
+          luxTagId="sp-example-focus{{ i }}"
+          [luxColor]="color"
+          [luxValue]="value"
+          [luxMode]="mode"
+          [luxSize]="size"
+        >
+        </lux-progress>
       </div>
     </div>
   </example-base-content>
-  <example-base-simple-options>
-    <lux-select-ac class="lux-highlight-section" [luxOptions]="sizes" [(luxSelected)]="size" luxLabel="luxSize">
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
+    <lux-select-ac [luxOptions]="sizes" [(luxSelected)]="size" luxLabel="luxSize">
       <lux-form-hint>
         Diese Property legt die Größe der Component fest.<br />
         Dabei sind die Eingaben 'small', 'medium' und 'large' erlaubt.
       </lux-form-hint>
     </lux-select-ac>
-    <div class="lux-highlight-section column">
-      <lux-select-ac
-        [luxOptions]="modes"
-        [(luxSelected)]="mode"
-        luxLabel="luxMode"
-        luxHint="Die Property bestimmt ob der Spinner im Modus 'determinate' (= endlich) oder 'indeterminate' (= endlos) ist."
-      >
-      </lux-select-ac>
-      <ng-container *ngIf="mode === 'determinate'">
+    <lux-select-ac
+      [luxOptions]="modes"
+      [(luxSelected)]="mode"
+      luxLabel="luxMode"
+      luxHint="Die Property bestimmt ob der Spinner im Modus 'determinate' (= endlich) oder 'indeterminate' (= endlos) ist."
+    >
+    </lux-select-ac>
+    <lux-input-ac luxName="button_background_Color" [(luxValue)]="backgroundColor" luxLabel="Hintergrundfarbe">
+      <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
+    </lux-input-ac>
+    <ng-container *ngIf="mode === 'determinate'">
+      <div class="lux-flex lux-flex-col lux-gap-2">
         <lux-input-ac
           luxLabel="luxValue"
           luxHint="Diese Property setzt den Wert in dem Spinner, vorausgesetzt es ist im Modus 'determinate'"
@@ -80,19 +76,11 @@
           [(luxValue)]="value"
         >
         </lux-input-ac>
-        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px" class="lux-mt-3">
+        <div class="lux-flex lux-flex-warp lux-gap-2">
           <lux-button luxLabel="+10" (luxClicked)="addSpinnerProgress()" [luxRaised]="true" luxColor="primary"></lux-button>
           <lux-button luxLabel="-10" (luxClicked)="subtractSpinnerProgress()" [luxRaised]="true" luxColor="primary"></lux-button>
         </div>
-      </ng-container>
-    </div>
-    <lux-input-ac
-      luxName="button_background_Color"
-      class="lux-highlight-section"
-      [(luxValue)]="backgroundColor"
-      luxLabel="Hintergrundfarbe"
-    >
-      <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
-    </lux-input-ac>
+      </div>
+    </ng-container>
   </example-base-simple-options>
 </example-base-structure>

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LuxIconModule } from '../../modules/lux-icon/lux-icon.module';
@@ -19,8 +18,7 @@ import { LuxDirectivesModule } from '../../modules/lux-directives/lux-directives
     CommonModule,
     FormsModule,
     RouterModule,
-    ReactiveFormsModule,
-    FlexLayoutModule
+    ReactiveFormsModule
   ],
   declarations: [HomeComponent],
   exports: [HomeComponent]

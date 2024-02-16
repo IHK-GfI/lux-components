@@ -2,36 +2,26 @@
   exampleTitle="Storage"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/util#luxstorageservice"
 >
-  <example-base-content fxLayout="column">
+  <example-base-content class="lux-flex lux-flex-col">
     <div class="example-storage-list">
       <h3>Aktuelle LocalStorage-Einträge</h3>
-      <div
-        class="lux-highlight-section"
-        fxLayout="column"
-        fxLayoutGap="8px"
-        *ngFor="let item of [].constructor(storageLength); let i = index"
-      >
-        <span><b>Key:</b> {{ localStorage.key(i) }} </span>
-        <span><b>Value:</b> {{ luxStorageService.getItemAsObservable(localStorage.key(i)!) | async }} </span>
-        <br>
-        <div
-          fxLayout.gt-sm="row"
-          fxLayout.lt-md="column"
-          fxLayoutAlign.gt-sm="space-between end"
-          fxLayoutAlign.lt-md="space-between stretch"
-          fxLayoutGap.gt-sm="16px"
-          fxLayoutGap.lt-md="8px"
-          *ngIf="!localStorage.key(i)!.endsWith('sensitive')"
-        >
-          <lux-input-ac  fxFlex.gt-sm="0 1 calc(100%-114px)" luxLabel="Neuer Value" #luxInput [luxNoBottomLabel]="true"></lux-input-ac>
-          <div
-            fxLayout="row"
-            fxLayoutAlign.gt-sm="end center"
-            fxLayoutAlign.lt-md="center center"
-            fxFlex.gt-sm="1 1 98px"
-            fxLayoutGap="8px"
-          >
+      <div class="lux-highlight-section lux-flex lux-flex-col lux-gap-4" *ngFor="let item of [].constructor(storageLength); let i = index">
+        <div class="lux-flex lux-flex-col lux-gap-2">
+          <div class="lux-flex">
+            <div class="lux-flex lux-flex-basis-12 lux-flex-shrink-0 lux-flex-grow-0"><b>Key:</b></div>
+            <div class="lux-flex-auto">{{ localStorage.key(i) }}</div>
+          </div>
+          <div class="lux-flex">
+            <div class="lux-flex lux-flex-basis-12 lux-flex-shrink-0 lux-flex-grow-0"><b>Value:</b></div>
+            <div class="lux-flex-auto">{{ luxStorageService.getItemAsObservable(localStorage.key(i)!) | async }}</div>
+          </div>
+        </div>
+
+        <div class="lux-flex lux-gap-2 lt-md:lux-flex-col lt-md:lux-gap-0" *ngIf="!localStorage.key(i)!.endsWith('sensitive')">
+          <lux-input-ac class="lux-flex-auto" luxLabel="Neuer Value" #luxInput [luxNoBottomLabel]="true"></lux-input-ac>
+          <div class="lux-flex lux-flex-none lux-gap-2">
             <lux-button
+              class="lux-flex lux-flex-none round-btn"
               luxIconName="lux-interface-arrows-synchronize"
               luxColor="accent"
               luxTagId="refresh-storage-entry-btn"
@@ -42,6 +32,7 @@
             >
             </lux-button>
             <lux-button
+              class="lux-flex lux-flex-none round-btn"
               luxIconName="lux-interface-delete-1"
               luxColor="warn"
               luxTagId="remove-storage-entry-btn"
@@ -56,8 +47,8 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <div class="lux-highlight-section" fxLayout="column">
-      Im Chrome kann der Storage wie folgt geändert werden: <br>
+    <div class="lux-flex lux-flex-col lux-highlight-section">
+      Im Chrome kann der Storage wie folgt geändert werden: <br />
       <ol>
         <li>mit F12 die Developer Tools öffnen</li>
         <li>auf den Reiter 'Application' wechseln</li>
@@ -69,14 +60,14 @@
     </div>
     <div class="lux-highlight-section column">
       <lux-input-ac
-        luxLabel="key"
+        luxLabel="Key"
         luxHint="Hier kann ein Key für einen Storage-Eintrag gesetzt werden."
         luxAutocomplete="off"
         [(luxValue)]="key"
       >
       </lux-input-ac>
       <lux-input-ac
-        luxLabel="value"
+        luxLabel="Value"
         luxHint="Hier kann der Wert für den Key {{ key }} eingetragen werden."
         luxAutocomplete="off"
         [(luxValue)]="value"
@@ -88,23 +79,22 @@
           Sensible Datensätze können über den <i>LuxStorageService</i> gezielt entfernt werden.
         </lux-form-hint>
       </lux-toggle-ac>
-      <div fxLayout="row" fxLayoutAlign="start" class="lux-mt-4">
-        <lux-button
-          luxIconName="lux-interface-add-1"
-          luxColor="primary"
-          [luxRounded]="true"
-          (luxClicked)="submit()"
-          [luxDisabled]="!key"
-          luxTagId="add-new-storage-entry-btn"
-          luxAriaLabel="Wert hinzufügen"
-        >
-        </lux-button>
-      </div>
+      <lux-button
+        class="lux-flex lux-max-width-40"
+        luxLabel="Hinzufügen"
+        luxColor="primary"
+        [luxStroked]="true"
+        (luxClicked)="submit()"
+        [luxDisabled]="!key"
+        luxTagId="add-new-storage-entry-btn"
+        luxAriaLabel="Wert hinzufügen"
+      >
+      </lux-button>
     </div>
   </example-base-simple-options>
-  <example-base-options-actions>
+  <example-base-options-actions class="lux-flex">
     <lux-menu
-      fxFlex="1 1 250px"
+      class="lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-64 lux-min-width-64 lux-max-width-64"
       luxMenuIconName="lux-interface-setting-menu-vertical"
       [luxDisplayExtended]="true"
       [luxMaximumExtended]="2"

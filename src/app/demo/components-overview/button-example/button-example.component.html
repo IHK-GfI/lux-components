@@ -3,223 +3,233 @@
     <div>
       <div class="lux-app-data-bg lux-highlight-section lux-flex lux-flex-col lux-gap-3" [ngStyle]="{ backgroundColor: backgroundColor }">
         <h3 class="lux-highlight-section-label">Alle Button-Variationen</h3>
-        <div class="lux-grid lux-grid-cols-4 lux-place-items-center lux-gap-1 lux-row-gap-3">
-          <lux-button
-            *ngFor="let color of colors; let i = index"
-            [luxLabel]="label"
-            [luxColor]="color.value"
-            [luxIconName]="iconName"
-            [luxIconShowRight]="iconShowRight"
-            [luxRaised]="true"
-            [luxDisabled]="disabled"
-            [luxButtonBadge]="buttonBadge"
-            [luxButtonBadgeColor]="buttonBadgeColor"
-            luxTagId="demo-button-default{{ i }}"
-            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-          >
-          </lux-button>
-          <lux-button
-            *ngFor="let color of colors; let i = index"
-            [luxLabel]="label"
-            [luxColor]="color.value"
-            [luxIconName]="iconName"
-            [luxIconShowRight]="iconShowRight"
-            [luxFlat]="true"
-            [luxDisabled]="disabled"
-            [luxButtonBadge]="buttonBadge"
-            [luxButtonBadgeColor]="buttonBadgeColor"
-            luxTagId="demo-button-default{{ i }}"
-            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-          >
-          </lux-button>
-          <lux-button
-            *ngFor="let color of colors; let i = index"
-            [luxLabel]="label"
-            [luxColor]="color.value"
-            [luxIconName]="iconName"
-            [luxIconShowRight]="iconShowRight"
-            [luxStroked]="true"
-            [luxDisabled]="disabled"
-            [luxButtonBadge]="buttonBadge"
-            [luxButtonBadgeColor]="buttonBadgeColor"
-            luxTagId="demo-button-default{{ i }}"
-            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-          >
-          </lux-button>
-          <lux-button
-            *ngFor="let color of colors; let i = index"
-            [luxLabel]="label"
-            [luxColor]="color.value"
-            [luxIconName]="iconName"
-            [luxIconShowRight]="iconShowRight"
-            [luxDisabled]="disabled"
-            [luxButtonBadge]="buttonBadge"
-            [luxButtonBadgeColor]="buttonBadgeColor"
-            luxTagId="demo-button-hover{{ i }}"
-            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-          >
-          </lux-button>
-          <lux-button
-            *ngFor="let color of colors; let i = index"
-            [luxLabel]="iconName ? '' : '??'"
-            [luxColor]="color.value"
-            [luxIconName]="iconName"
-            [luxIconShowRight]="iconShowRight"
-            [luxRounded]="true"
-            [luxDisabled]="disabled"
-            luxTagId="demo-button-focus{{ i }}"
-            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-          >
-          </lux-button>
+        <div class="lux-flex lux-flex-wrap lux-gap-4">
+          <div class="lux-flex lux-flex-wrap lux-gap-4">
+            <div class="lux-flex lux-flex-col lux-gap-4">
+              <lux-button
+                *ngFor="let color of colors; let i = index"
+                [luxLabel]="label"
+                [luxColor]="color.value"
+                [luxIconName]="iconName"
+                [luxIconShowRight]="iconShowRight"
+                [luxRaised]="true"
+                [luxDisabled]="disabled"
+                [luxButtonBadge]="buttonBadge"
+                [luxButtonBadgeColor]="buttonBadgeColor"
+                luxTagId="demo-button-default{{ i }}"
+                (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+                (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+              >
+              </lux-button>
+            </div>
+            <div class="lux-flex lux-flex-col lux-gap-4">
+              <lux-button
+                *ngFor="let color of colors; let i = index"
+                [luxLabel]="label"
+                [luxColor]="color.value"
+                [luxIconName]="iconName"
+                [luxIconShowRight]="iconShowRight"
+                [luxFlat]="true"
+                [luxDisabled]="disabled"
+                [luxButtonBadge]="buttonBadge"
+                [luxButtonBadgeColor]="buttonBadgeColor"
+                luxTagId="demo-button-default{{ i }}"
+                (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+                (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+              >
+              </lux-button>
+            </div>
+          </div>
+          <div class="lux-flex lux-flex-wrap lux-gap-4">
+            <div class="lux-flex lux-flex-col lux-gap-4">
+              <lux-button
+                *ngFor="let color of colors; let i = index"
+                [luxLabel]="label"
+                [luxColor]="color.value"
+                [luxIconName]="iconName"
+                [luxIconShowRight]="iconShowRight"
+                [luxStroked]="true"
+                [luxDisabled]="disabled"
+                [luxButtonBadge]="buttonBadge"
+                [luxButtonBadgeColor]="buttonBadgeColor"
+                luxTagId="demo-button-default{{ i }}"
+                (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+                (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+              >
+              </lux-button>
+            </div>
+            <div class="lux-flex lux-flex-col lux-gap-4">
+              <lux-button
+                *ngFor="let color of colors; let i = index"
+                [luxLabel]="label"
+                [luxColor]="color.value"
+                [luxIconName]="iconName"
+                [luxIconShowRight]="iconShowRight"
+                [luxDisabled]="disabled"
+                [luxButtonBadge]="buttonBadge"
+                [luxButtonBadgeColor]="buttonBadgeColor"
+                luxTagId="demo-button-hover{{ i }}"
+                (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+                (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+              >
+              </lux-button>
+            </div>
+          </div>
+          <div class="lux-flex lux-flex-col lux-gap-4 lux-min-width-48">
+            <lux-button
+              *ngFor="let color of colors; let i = index"
+              [luxLabel]="iconName ? '' : '??'"
+              [luxColor]="color.value"
+              [luxIconName]="iconName"
+              [luxIconShowRight]="iconShowRight"
+              [luxRounded]="true"
+              [luxDisabled]="disabled"
+              luxTagId="demo-button-focus{{ i }}"
+              (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+              (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+            >
+            </lux-button>
+          </div>
         </div>
       </div>
       <div class="lux-gradient-bg lux-highlight-section lux-flex lux-flex-col lux-gap-3" [ngStyle]="{ backgroundColor: backgroundColor }">
         <h3 class="lux-highlight-section-label">Gradient</h3>
-        <div class="lux-grid lux-grid-cols-4 lux-place-items-center lux-gap-1 lux-row-gap-3">
-          <lux-button
-            *ngFor="let color of colors; let i = index"
-            [luxLabel]="label"
-            [luxColor]="color.value"
-            [luxIconName]="iconName"
-            [luxIconShowRight]="iconShowRight"
-            [luxRaised]="true"
-            [luxDisabled]="disabled"
-            [luxButtonBadge]="buttonBadge"
-            [luxButtonBadgeColor]="buttonBadgeColor"
-            luxTagId="demo-button-default{{ i }}"
-            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-          >
-          </lux-button>
-          <lux-button
-            *ngFor="let color of colors; let i = index"
-            [luxLabel]="label"
-            [luxColor]="color.value"
-            [luxIconName]="iconName"
-            [luxIconShowRight]="iconShowRight"
-            [luxFlat]="true"
-            [luxDisabled]="disabled"
-            [luxButtonBadge]="buttonBadge"
-            [luxButtonBadgeColor]="buttonBadgeColor"
-            luxTagId="demo-button-default{{ i }}"
-            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-          >
-          </lux-button>
-          <lux-button
-            *ngFor="let color of colors; let i = index"
-            [luxLabel]="label"
-            [luxColor]="color.value"
-            [luxIconName]="iconName"
-            [luxIconShowRight]="iconShowRight"
-            [luxStroked]="true"
-            [luxDisabled]="disabled"
-            [luxButtonBadge]="buttonBadge"
-            [luxButtonBadgeColor]="buttonBadgeColor"
-            luxTagId="demo-button-default{{ i }}"
-            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-          >
-          </lux-button>
-          <lux-button
-            *ngFor="let color of colors; let i = index"
-            [luxLabel]="label"
-            [luxColor]="color.value"
-            [luxIconName]="iconName"
-            [luxIconShowRight]="iconShowRight"
-            [luxDisabled]="disabled"
-            [luxButtonBadge]="buttonBadge"
-            [luxButtonBadgeColor]="buttonBadgeColor"
-            luxTagId="demo-button-hover{{ i }}"
-            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-          >
-          </lux-button>
-          <lux-button
-            *ngFor="let color of colors; let i = index"
-            [luxLabel]="iconName ? '' : '??'"
-            [luxColor]="color.value"
-            [luxIconName]="iconName"
-            [luxIconShowRight]="iconShowRight"
-            [luxRounded]="true"
-            [luxDisabled]="disabled"
-            luxTagId="demo-button-focus{{ i }}"
-            (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
-            (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
-          >
-          </lux-button>
+        <div class="lux-flex lux-flex-wrap lux-gap-4">
+          <div class="lux-flex lux-flex-wrap lux-gap-4">
+            <div class="lux-flex lux-flex-col lux-gap-4">
+              <lux-button
+                *ngFor="let color of colors; let i = index"
+                [luxLabel]="label"
+                [luxColor]="color.value"
+                [luxIconName]="iconName"
+                [luxIconShowRight]="iconShowRight"
+                [luxRaised]="true"
+                [luxDisabled]="disabled"
+                [luxButtonBadge]="buttonBadge"
+                [luxButtonBadgeColor]="buttonBadgeColor"
+                luxTagId="demo-button-default{{ i }}"
+                (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+                (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+              >
+              </lux-button>
+            </div>
+            <div class="lux-flex lux-flex-col lux-gap-4">
+              <lux-button
+                *ngFor="let color of colors; let i = index"
+                [luxLabel]="label"
+                [luxColor]="color.value"
+                [luxIconName]="iconName"
+                [luxIconShowRight]="iconShowRight"
+                [luxFlat]="true"
+                [luxDisabled]="disabled"
+                [luxButtonBadge]="buttonBadge"
+                [luxButtonBadgeColor]="buttonBadgeColor"
+                luxTagId="demo-button-default{{ i }}"
+                (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+                (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+              >
+              </lux-button>
+            </div>
+          </div>
+          <div class="lux-flex lux-flex-wrap lux-gap-4">
+            <div class="lux-flex lux-flex-col lux-gap-4">
+              <lux-button
+                *ngFor="let color of colors; let i = index"
+                [luxLabel]="label"
+                [luxColor]="color.value"
+                [luxIconName]="iconName"
+                [luxIconShowRight]="iconShowRight"
+                [luxStroked]="true"
+                [luxDisabled]="disabled"
+                [luxButtonBadge]="buttonBadge"
+                [luxButtonBadgeColor]="buttonBadgeColor"
+                luxTagId="demo-button-default{{ i }}"
+                (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+                (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+              >
+              </lux-button>
+            </div>
+            <div class="lux-flex lux-flex-col lux-gap-4">
+              <lux-button
+                *ngFor="let color of colors; let i = index"
+                [luxLabel]="label"
+                [luxColor]="color.value"
+                [luxIconName]="iconName"
+                [luxIconShowRight]="iconShowRight"
+                [luxDisabled]="disabled"
+                [luxButtonBadge]="buttonBadge"
+                [luxButtonBadgeColor]="buttonBadgeColor"
+                luxTagId="demo-button-hover{{ i }}"
+                (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+                (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+              >
+              </lux-button>
+            </div>
+          </div>
+          <div class="lux-flex lux-flex-col lux-gap-4 lux-min-width-48">
+            <lux-button
+              *ngFor="let color of colors; let i = index"
+              [luxLabel]="iconName ? '' : '??'"
+              [luxColor]="color.value"
+              [luxIconName]="iconName"
+              [luxIconShowRight]="iconShowRight"
+              [luxRounded]="true"
+              [luxDisabled]="disabled"
+              luxTagId="demo-button-focus{{ i }}"
+              (luxClicked)="log(showOutputEvents, 'Button clicked', $event)"
+              (luxAuxClicked)="log(showOutputEvents, 'Aux-Button clicked', $event)"
+            >
+            </lux-button>
+          </div>
         </div>
       </div>
     </div>
   </example-base-content>
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
     ></lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
     <lux-input-ac
-      class="lux-highlight-section"
       [(luxValue)]="label"
       luxName="button_luxLabel"
       luxLabel="luxLabel"
       luxHint="Bestimmt den Text, der in dem Button angezeigt wird."
     ></lux-input-ac>
-    <div class="lux-highlight-section column">
-      <lux-input-ac luxName="button_luxIconName" [(luxValue)]="iconName" luxLabel="luxIconName">
-        <lux-form-hint>
-          Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
-          <i>luxLabel</i> gesetzt ist).<br />
-          Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
-        </lux-form-hint>
-      </lux-input-ac>
-      <lux-toggle-ac luxLabel="luxIconShowRight" [(luxChecked)]="iconShowRight" [luxNoLabels]="true"></lux-toggle-ac>
-    </div>
-    <lux-toggle-ac
-      class="lux-highlight-section"
-      [(luxChecked)]="disabled"
-      luxLabel="luxDisabled"
-      luxHint="Diese Property deaktiviert den Button."
-      [luxNoTopLabel]="true"
-    >
+    <lux-input-ac luxName="button_luxIconName" [(luxValue)]="iconName" luxLabel="luxIconName">
+      <lux-form-hint>
+        Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
+        <i>luxLabel</i> gesetzt ist).<br />
+        Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
+      </lux-form-hint>
+    </lux-input-ac>
+    <lux-toggle-ac luxLabel="luxIconShowRight" [(luxChecked)]="iconShowRight" [luxNoLabels]="true"></lux-toggle-ac>
+    <lux-toggle-ac [(luxChecked)]="disabled" luxLabel="luxDisabled" luxHint="Diese Property deaktiviert den Button." [luxNoTopLabel]="true">
     </lux-toggle-ac>
-    <lux-toggle-ac class="lux-highlight-section" luxLabel="Label Uppercase" [(luxChecked)]="allUpperCase" [luxNoTopLabel]="true">
+    <lux-toggle-ac luxLabel="Label Uppercase" [(luxChecked)]="allUpperCase" [luxNoTopLabel]="true">
       <lux-form-hint>
         Über den <i>LuxComponentsConfigService</i> kann für alle LuxButtons applikationsweit eine Uppercase-Darstellung forciert werden.
       </lux-form-hint>
     </lux-toggle-ac>
-    <div class="lux-highlight-section column">
-      <lux-input-ac
-        luxLabel="luxButtonBadge"
-        luxHint="Diese Prooerty setzt das Label für eine Badge innerhalb des Buttons"
-        luxAutocomplete="off"
-        [(luxValue)]="buttonBadge"
-      >
-      </lux-input-ac>
-      <lux-select-ac
-        [luxOptions]="badgeColors"
-        [luxSelected]="badgeColors[0]"
-        luxOptionLabelProp="label"
-        (luxSelectedChange)="onBadgeColorChanged($event)"
-        luxLabel="luxButtonBadgeColor"
-        luxHint="Property mit der die Farbe der Button-Badge bestimmt wird"
-      >
-      </lux-select-ac>
-    </div>
     <lux-input-ac
-      luxName="button_background_Color"
-      class="lux-highlight-section"
-      [(luxValue)]="backgroundColor"
-      luxLabel="Hintergrundfarbe"
+      luxLabel="luxButtonBadge"
+      luxHint="Diese Prooerty setzt das Label für eine Badge innerhalb des Buttons"
+      luxAutocomplete="off"
+      [(luxValue)]="buttonBadge"
     >
+    </lux-input-ac>
+    <lux-select-ac
+      [luxOptions]="badgeColors"
+      [luxSelected]="badgeColors[0]"
+      luxOptionLabelProp="label"
+      (luxSelectedChange)="onBadgeColorChanged($event)"
+      luxLabel="luxButtonBadgeColor"
+      luxHint="Property mit der die Farbe der Button-Badge bestimmt wird"
+    >
+    </lux-select-ac>
+    <lux-input-ac luxName="button_background_Color" [(luxValue)]="backgroundColor" luxLabel="Hintergrundfarbe">
       <lux-form-hint>Kontrast zwischen Element und Hintergrund prüfen.</lux-form-hint>
     </lux-input-ac>
   </example-base-simple-options>

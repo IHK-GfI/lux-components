@@ -1,8 +1,6 @@
-<div class="main-container">
-  <lux-card class="lux-mt-3" luxTagId="Zusätzliche Lizenzhinweise" luxTitle="Lizenzhinweise" [luxHeading]="1">
-    <lux-card-content>
-      <lux-markdown [luxData]="licenceHintIcons"></lux-markdown>
-      <lux-markdown [luxData]="licenceHintFonts"></lux-markdown>
-    </lux-card-content>
-  </lux-card>
-</div>
+<lux-card class="lux-flex lux-m-4 gt-sm:lux-min-width-1/2 gt-sm:lux-max-width-1/2 lux-min-height-96" luxTagId="datenschutz-card">
+  <lux-card-content>
+    <lux-markdown [luxData]="licenceHintIcons"></lux-markdown>
+    <lux-markdown [luxData]="licenceHintFonts"></lux-markdown>
+  </lux-card-content>
+</lux-card>

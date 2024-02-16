@@ -9,7 +9,6 @@ import { LuxSanitizeConfig } from '../../../modules/lux-html/lux-sanitize/lux-sa
 export class MarkdownExampleComponent {
   @ViewChild(LuxMarkdownComponent) markdownComponent!: LuxMarkdownComponent;
 
-  flex = 'flex';
   style = '';
   class = '';
 

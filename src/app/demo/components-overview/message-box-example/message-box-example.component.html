@@ -13,18 +13,15 @@
     >
     </lux-message-box>
   </example-base-content>
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
     <lux-input-ac
-      class="lux-highlight-section"
       luxName="message-box_luxIndex"
       luxLabel="luxIndex"
       luxHint="Diese Property bestimmt die aktuell angezeigte Page aus dem Paginator (maximal die letzte mögliche Seite)."
@@ -32,22 +29,16 @@
       [(luxValue)]="messageIndex"
     >
     </lux-input-ac>
-    <lux-input-ac
-      class="lux-highlight-section"
-      luxName="message-box_luxMaximumDisplayed"
-      luxLabel="luxMaximumDisplayed"
-      luxType="number"
-      [(luxValue)]="maximumDisplayed"
-    >
+    <lux-input-ac luxName="message-box_luxMaximumDisplayed" luxLabel="luxMaximumDisplayed" luxType="number" [(luxValue)]="maximumDisplayed">
       <lux-form-hint>
         Die Property legt fest wie viele Nachrichten gleichzeitig dargestellt werden können.<br />
         Wenn mehr Nachrichten vorhanden sind, sind diese über eine Pagination erreichbar.
       </lux-form-hint>
     </lux-input-ac>
   </example-base-simple-options>
-  <example-base-advanced-options>
+  <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
     <h3>Neue Message</h3>
-    <div class="lux-highlight-section lux-flex lux-flex-col lux-gap-4">
+    <div class="lux-flex lux-flex-col lux-gap-4">
       <lux-textarea-ac
         luxName="message-box_text"
         luxLabel="text"

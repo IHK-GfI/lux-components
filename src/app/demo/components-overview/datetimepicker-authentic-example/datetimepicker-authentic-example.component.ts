@@ -30,7 +30,7 @@ export class DatetimepickerAuthenticExampleComponent {
   required = false;
   denseFormat = false;
   label = 'Label';
-  hint = 'Hint';
+  hint = 'Optionaler Zusatztext';
   hintShowOnlyOnFocus = false;
   placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
