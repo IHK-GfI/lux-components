@@ -1,4 +1,4 @@
-FROM node:16.20.0 as node
+FROM node:18.19.1 as node
 LABEL MAINTAINER thomas.dickhut@gfi.ihk.de
 
 USER root
