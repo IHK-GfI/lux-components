@@ -19,17 +19,32 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   init = false;
+  _luxLookupKnr!: number;
   _luxTableKey!: string;
   _luxTableNo!: string;
 
-  @Input() luxLookupKnr!: number;
   @Input() luxLookupId!: string;
   @Input() luxLookupUrl = '/lookup/';
   @Input() luxBezeichnung = 'kurz';
 
   @Input()
+  get luxLookupKnr(): number {
+    return this._luxLookupKnr;
+  }
+
+  set luxLookupKnr(knr: number) {
+    const changed = knr !== this._luxLookupKnr;
+
+    this._luxLookupKnr = knr;
+
+    if (this.init && changed) {
+      this.fetchLookupData();
+    }
+  }
+
+  @Input()
   get luxTableNo(): string {
-    return this._luxTableNo
+    return this._luxTableNo;
   }
 
   set luxTableNo(tableNo: string) {
@@ -43,7 +58,7 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
   }
 
   @Input()
-  get luxTableKey(): string{
+  get luxTableKey(): string {
     return this._luxTableKey;
   }
 
@@ -57,11 +72,7 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
     }
   }
 
-  constructor(
-    lookupService: LuxLookupService,
-    lookupHandler: LuxLookupHandlerService,
-    luxConsoleLogger: LuxConsoleService
-  ) {
+  constructor(lookupService: LuxLookupService, lookupHandler: LuxLookupHandlerService, luxConsoleLogger: LuxConsoleService) {
     this.lookupService = lookupService;
     this.lookupHandler = lookupHandler;
     this.logger = luxConsoleLogger;
@@ -69,27 +80,19 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (!this.luxLookupKnr) {
-      throw Error(
-        `The lookup label with the table number ${this.luxLookupKnr} has no LookupKnr.`
-      );
+      console.warn(`The lookup label with the table number ${this.luxLookupKnr} has no LookupKnr.`);
     }
 
     if (!this.luxLookupId) {
-      throw Error(
-        `The lookup label with the table number ${this.luxTableNo} has no LookupId.`
-      );
+      console.warn(`The lookup label with the table number ${this.luxTableNo} has no LookupId.`);
     }
 
     if (!this.luxTableNo) {
-      throw Error(
-        `The lookup label with the LookupId ${this.luxLookupId} has no table number`
-      );
+      console.warn(`The lookup label with the LookupId ${this.luxLookupId} has no table number`);
     }
 
     if (!this.luxTableKey) {
-      throw Error(
-        `The lookup label with the table number ${this.luxTableNo} has no table key`
-      );
+      console.warn(`The lookup label with the table number ${this.luxTableNo} has no table key`);
     }
 
     this.fetchLookupData();
@@ -101,29 +104,35 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
       throw Error(`Observable "${this.luxLookupId}" not found."`);
     }
 
-    this.subscriptions.push(lookupElementObs.subscribe(() => {
-      this.fetchLookupData();
-    }));
+    this.subscriptions.push(
+      lookupElementObs.subscribe(() => {
+        this.fetchLookupData();
+      })
+    );
 
     this.init = true;
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   protected fetchLookupData() {
-    const keys: string[] = [this.luxTableKey];
+    if (this.isReadyToFetch()) {
+      const keys: string[] = [this.luxTableKey];
 
-    this.lookupParameters = new LuxLookupParameters({ knr: this.luxLookupKnr, keys });
+      this.lookupParameters = new LuxLookupParameters({ knr: this.luxLookupKnr, keys });
 
-    this.subscriptions.push(this.lookupService
-      .getLookupTable(this.luxTableNo, this.lookupParameters, this.luxLookupUrl)
-      .subscribe((entries: LuxLookupTableEntry[]) => {
-        if (typeof entries !== 'undefined' && entries.length === 1) {
-          this.entry = entries[0];
-        }
-      }));
+      this.subscriptions.push(
+        this.lookupService
+          .getLookupTable(this.luxTableNo, this.lookupParameters, this.luxLookupUrl)
+          .subscribe((entries: LuxLookupTableEntry[]) => {
+            if (typeof entries !== 'undefined' && entries.length === 1) {
+              this.entry = entries[0];
+            }
+          })
+      );
+    }
   }
 
   /**
@@ -147,5 +156,9 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
     }
 
     return bezeichnung ?? '';
+  }
+
+  private isReadyToFetch(): boolean {
+    return !!this.luxLookupKnr && !!this.luxLookupId && !!this.luxTableNo && !!this.luxTableKey;
   }
 }
