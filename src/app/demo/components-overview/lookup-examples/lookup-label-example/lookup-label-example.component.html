@@ -17,33 +17,35 @@
       <lux-input-ac
         luxName="lookup-label_knr"
         luxLabel="Knr"
+        [luxDisabled]="disabled"
         class="lux-highlight-section"
         [(luxValue)]="knr"
         luxType="number"
         [luxNumberAlignLeft]="true"
-      ></lux-input-ac>
+        ><lux-input-ac-suffix *ngIf="disabled"
+          ><lux-progress luxType="Spinner" luxMode="indeterminate" luxSize="small"></lux-progress
+        ></lux-input-ac-suffix>
+      </lux-input-ac>
       <lux-input-ac
         luxName="lookup-label_luxTableNo"
         class="lux-highlight-section"
         luxLabel="luxTableNo"
         [(luxValue)]="tableNo"
         luxType="number"
+        [luxNumberAlignLeft]="true"
         [luxDisabled]="true"
       >
-        <lux-form-hint>
-          Die Property bestimmt die Schlüsseltabelle aus der die Daten geladen werden sollen.
-        </lux-form-hint>
+        <lux-form-hint> Die Property bestimmt die Schlüsseltabelle aus der die Daten geladen werden sollen. </lux-form-hint>
       </lux-input-ac>
       <lux-input-ac
         class="lux-highlight-section"
         luxName="lookup-label_luxTableKey"
         luxLabel="luxTableKey"
         [(luxValue)]="tableKey"
+        [luxNumberAlignLeft]="true"
         luxType="number"
       >
-        <lux-form-hint>
-          Diese Property legt den einzelnen Key des gesuchten Schlüsseltabelleneintrags fest (z.B. 4, 5, 6).
-        </lux-form-hint>
+        <lux-form-hint> Diese Property legt den einzelnen Key des gesuchten Schlüsseltabelleneintrags fest (z.B. 4, 5, 6). </lux-form-hint>
       </lux-input-ac>
       <lux-select-ac
         class="lux-highlight-section"
