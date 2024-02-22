@@ -2,10 +2,14 @@
 
 ## Version 15.5.0
 
+### New
+
 - **lux-lookup**: Ableitungsfelder werden unterstützt. [Issue 407](https://github.com/IHK-GfI/lux-components/issues/407)
 - **lux-button**: Neue Variante "Rounded+Stroked" eingeführt. [Issue 415](https://github.com/IHK-GfI/lux-components/issues/415)
 
-### New
+### Bug Fixes
+
+- **lux-lookup-label**: Label geht kaputt wenn Null-Werte abgefragt werden. [Issue 424](https://github.com/IHK-GfI/lux-components/issues/424)
 
 ## Version 15.4.0
 
