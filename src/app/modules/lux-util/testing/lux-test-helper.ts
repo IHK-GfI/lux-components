@@ -46,6 +46,7 @@ import { LuxLayoutModule } from '../../lux-layout/lux-layout.module';
 import { LuxLookupModule } from '../../lux-lookup/lux-lookup.module';
 import { LuxPipesModule } from '../../lux-pipes/lux-pipes.module';
 import { LuxPopupsModule } from '../../lux-popups/lux-popups.module';
+import {LuxTenantLogoModule} from "../../lux-tenant-logo/lux-tenant-logo.module";
 
 export class LuxTestHelper {
   public static COMMON_ANGULAR_MODULES: any[] = [
@@ -95,6 +96,7 @@ export class LuxTestHelper {
     LuxDirectivesModule,
     LuxPipesModule,
     LuxIconModule,
+    LuxTenantLogoModule,
     LuxLookupModule,
     LuxErrorModule,
     LuxCommonModule,

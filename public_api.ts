@@ -201,6 +201,12 @@ export * from './src/app/modules/lux-icon/lux-icon/lux-icon-registry.service';
 export * from './src/app/modules/lux-icon/lux-icon/lux-svg-icon';
 
 /**
+ * LUX-Tenant-Logo
+ */
+export * from './src/app/modules/lux-tenant-logo/lux-tenant-logo.module';
+export * from './src/app/modules/lux-tenant-logo/lux-tenant-logo.component';
+
+/**
  * LUX-Layout
  */
 export * from './src/app/modules/lux-layout/lux-layout.module';

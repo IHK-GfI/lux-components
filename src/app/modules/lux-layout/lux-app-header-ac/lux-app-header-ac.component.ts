@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ContentChild,
   ElementRef,
@@ -18,13 +19,14 @@ import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-obs
 import { LuxAppHeaderAcActionNavComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav.component';
 import { LuxAppHeaderAcNavMenuComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu.component';
 import { LuxAppHeaderAcUserMenuComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-user-menu.component';
+import { LuxTenantLogoComponent } from "../../lux-tenant-logo/lux-tenant-logo.component";
 
 @Component({
   selector: 'lux-app-header-ac',
   templateUrl: './lux-app-header-ac.component.html',
   styleUrls: ['./lux-app-header-ac.component.scss']
 })
-export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
+export class LuxAppHeaderAcComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() luxUserName?: string;
   @Input() luxAppTitle?: string;
   @Input() luxAppTitleShort?: string;
@@ -47,6 +49,7 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
 
   @ViewChild('customTrigger', { read: ElementRef }) customTrigger?: ElementRef;
 
+  @ContentChild(LuxTenantLogoComponent) tenantLogo?: LuxTenantLogoComponent;
   @ContentChild(LuxAppHeaderAcNavMenuComponent) navMenu?: LuxAppHeaderAcNavMenuComponent;
   @ContentChild(LuxAppHeaderAcUserMenuComponent) userMenu?: LuxAppHeaderAcUserMenuComponent;
   @ContentChild(LuxAppHeaderAcActionNavComponent) actionNav?: LuxAppHeaderAcActionNavComponent;
@@ -94,7 +97,18 @@ export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
     if (this.luxHideBrandLogo) {
       this.luxBrandLogoSrc = undefined;
     }
+
   }
+
+  ngAfterViewInit(): void {
+    if(this.tenantLogo){
+      this.tenantLogo.luxTenantLogoHeight = this.mobileView ? "24px" : "40px";
+    }
+  }
+
+
+
+
 
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (!this.luxAppTitleShort || this.luxAppTitleShort.length === 0) {

@@ -27,6 +27,11 @@ export interface LuxComponentsConfigParameters {
   lookupServiceUrl?: string;
 
   /**
+   * Bestimmt die URL des Lookup-Services für die TenantLogoComponents.
+   */
+  tenantLogoLookupServiceUrl?: string;
+
+  /**
    * Bestimmt, ob die Labels für LuxButtons, LuxLinks, LuxMenuItems, LuxStepper, LuxSideNavItem und LuxTabs
    * immer Uppercase dargestellt werden.
    */

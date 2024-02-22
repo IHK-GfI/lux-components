@@ -1,0 +1,59 @@
+<lux-accordion>
+  <lux-panel>
+    <lux-panel-header-title>
+      <h3>{{title}}</h3>
+    </lux-panel-header-title>
+    <lux-panel-content>
+      <lux-toggle-ac
+        class="lux-highlight-section"
+        luxLabel="Logo-Clicked loggen"
+        luxHint="(Console --> F12/CMD+ALT+I)"
+        (luxCheckedChange)="onShowLogoClickedEvents($event)"
+        [luxNoTopLabel]="true"
+      ></lux-toggle-ac>
+
+      <lux-select-ac
+        class="lux-highlight-section"
+        [(luxSelected)]="tenantLogoConfig.luxTenantKey"
+        [luxOptions]="tenantKeyArr"
+        luxLabel="luxTenantKey"
+        luxHint="Diese Property legt den Schlüssel für den Tenant fest, dessen Image gezeigt werden soll."
+      ></lux-select-ac>
+
+      <lux-select-ac
+        class="lux-highlight-section"
+        [(luxSelected)]="tenantLogoConfig.luxTenantVariant"
+        [luxOptions]="tenantVariantArr"
+        luxLabel="luxTenantVariant"
+      >
+        <ng-template let-option>{{option}}</ng-template>
+        <lux-form-hint>
+          Diese Property legt die Variante für den Tenant fest.<br>
+          Wenn der Variant leer gelassen wird, wechselt die Komponente je nach Media Query die Variante automatisch.
+          <div *ngIf="!tenantLogoConfig.luxTenantVariant">
+            <br>
+            Automatisch ausgewählt: <b>{{actualTenantVariant}}</b>
+          </div>
+        </lux-form-hint>
+      </lux-select-ac>
+
+      <lux-input-ac
+        class="lux-highlight-section"
+        luxName="luxTenantLogoHeight"
+        luxLabel="luxTenantLogoHeight"
+        luxHint="Diese Property legt die Höhe des Tenant Logos fest."
+        [(luxValue)]="tenantLogoConfig.luxTenantLogoHeight"
+      ></lux-input-ac>
+
+      <lux-input-ac
+        class="lux-highlight-section"
+        luxName="luxTenantLogoSrc"
+        luxLabel="Tenant Logo Url"
+        [luxDisabled]="true"
+        [luxValue]="logoTenantSrc"
+      ></lux-input-ac>
+    </lux-panel-content>
+  </lux-panel>
+</lux-accordion>
+
+
