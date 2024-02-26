@@ -6,6 +6,7 @@
 
 - **lux-lookup**: Ableitungsfelder werden unterstützt. [Issue 407](https://github.com/IHK-GfI/lux-components/issues/407)
 - **lux-button**: Neue Variante "Rounded+Stroked" eingeführt. [Issue 415](https://github.com/IHK-GfI/lux-components/issues/415)
+- **lux-tenant-logo**: Dynamische Anzeige des Kundenlogos oben links. [Issue 413](https://github.com/IHK-GfI/lux-components/issues/413)
 
 ### Bug Fixes
 

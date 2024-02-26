@@ -163,7 +163,7 @@
     luxAppTitleShort="Components"
     [luxUserName]="demoUserName"
     luxAppIconName="dashboard_customize"
-    luxBrandLogoSrc="assets/svg/IHK_GfI.svg"
+    [luxBrandLogoSrc]="tenantLogoConfig === undefined ? 'assets/svg/IHK_GfI.svg' : undefined"
     luxAppLogoSrc="assets/favicons/favicon.svg"
     luxAriaTitleIconLabel="Appicon / Zur Startseite"
     luxAriaTitleImageLabel="Brandlogo / Zur Homepage"
@@ -173,6 +173,15 @@
     (luxBrandLogoClicked)="goToHomepage()"
     *ngIf="this.luxAppHeader !== 'none' && themeName === 'authentic'"
   >
+    <!-- Diese Komponente wechselt sich mit dem Attribut "luxBrandLogoSrc" von "lux-app-header-ac" ab, um die Komponente "lux-tenant-logo" anzuzeigen. -->
+    <lux-tenant-logo
+      [luxTenantKey]="tenantLogoConfig.luxTenantKey"
+      [luxTenantVariant]="tenantLogoConfig.luxTenantVariant"
+      [luxTenantLogoHeight]="tenantLogoConfig.luxTenantLogoHeight"
+      (luxTenantLogoClicked)="onTenantLogoClicked()"
+      *ngIf="tenantLogoConfig"
+    ></lux-tenant-logo>
+
     <lux-app-header-ac-user-menu *ngIf="luxMode === 'stand-alone'" luxTooltip="Usermenü">
       <lux-menu-item [luxLabel]="demoLoginBtn" (luxClicked)="toggleLogin()" luxTagId="abmelden-menu-item"></lux-menu-item>
       <lux-menu-item luxLabel="Theme - green" luxTagId="theme-green-menu-item-ac" (luxClicked)="onChangeTheme('green')"></lux-menu-item>

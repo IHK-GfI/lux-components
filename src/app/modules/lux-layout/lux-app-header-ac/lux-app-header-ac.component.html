@@ -15,6 +15,11 @@
   >
     <!-- Brand-Logo -->
     <div fxFlex.gt-sm="0 0 45" fxFlex.lt-md="30" fxLayoutAlign="start center" class="lux-brand-logo-container">
+
+      <!-- Zeige lux-tenant-logo falls vorhanden UND Attribut luxBrandLogoSrc nicht gesetzt ist, also das Attribut hat hier vorrang -->
+      <ng-content select="lux-tenant-logo" *ngIf="!luxBrandLogoSrc"></ng-content>
+
+      <!-- Das Brand Logo Bild -->
       <lux-image
         [luxImageSrc]="luxBrandLogoSrc"
         [luxImageHeight]="mobileView ? '24px' : '40px'"
