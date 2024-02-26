@@ -64,6 +64,7 @@ import { SliderAuthenticExampleComponent } from './slider-authentic-example/slid
 import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
 import { CheckboxContainerAcExampleComponent } from './checkbox-container-ac-example/checkbox-container-ac-example.component';
 import { TextboxExampleComponent } from './textbox-example/textbox-example.component';
+import {TenantLogoExampleComponent} from "./tenant-logo-example/tenant-logo-example.component";
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -130,7 +131,8 @@ const routes: Routes = [
       { path: 'icon-overview', component: IconOverviewComponent },
       { path: 'master-detail-ac', component: MasterDetailAuthenticExampleComponent },
       { path: 'checkbox-container-ac', component: CheckboxContainerAcExampleComponent },
-      { path: 'textbox', component: TextboxExampleComponent }
+      { path: 'textbox', component: TextboxExampleComponent },
+      { path: 'tenant-logo', component: TenantLogoExampleComponent }
     ]
   }
 ];

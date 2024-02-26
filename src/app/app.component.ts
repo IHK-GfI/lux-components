@@ -12,6 +12,8 @@ import { LuxThemeService } from './modules/lux-theme/lux-theme.service';
 import { LuxAppService } from './modules/lux-util/lux-app.service';
 import { LuxConsoleService } from './modules/lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from './modules/lux-util/lux-media-query-observer.service';
+import {TenantLogoExampleHeaderService} from "./demo/components-overview/tenant-logo-example/tenant-logo-example-header.service";
+import {TenantLogoExampleConfigData} from "./demo/components-overview/tenant-logo-example/tenant-logo-example-config/tenant-logo-example-config-data";
 
 @Component({
   selector: 'app-root',
@@ -26,7 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
   @Input() luxMode: 'stand-alone' | 'portal' = 'stand-alone';
 
   mobileView: boolean;
-  subscription: Subscription;
+  subscriptions: Subscription[] = [];
   window = window;
   jsonDataResult: any;
   demoUserName = 'Susanne Sonnenschein';
@@ -34,6 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
   themeName: string;
   url = '/';
   components: number;
+  public tenantLogoConfig?: TenantLogoExampleConfigData;
 
   constructor(
     public router: Router,
@@ -46,7 +49,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private elementRef: ElementRef,
     private appService: LuxAppService,
     private mediaQueryService: LuxMediaQueryObserverService,
-    public componentsOverviewService: ComponentsOverviewNavigationService
+    public componentsOverviewService: ComponentsOverviewNavigationService,
+    public tenantLogoHeaderService: TenantLogoExampleHeaderService
   ) {
     themeService.loadTheme();
     this.themeName = themeService.getTheme().name;
@@ -55,9 +59,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.mobileView = mediaQueryService.activeMediaQuery === 'xs' || mediaQueryService.activeMediaQuery === 'sd';
 
-    this.subscription = this.mediaQueryService.getMediaQueryChangedAsObservable().subscribe((query) => {
+    this.subscriptions.push(this.mediaQueryService.getMediaQueryChangedAsObservable().subscribe((query) => {
       this.mobileView = query === 'xs' || query === 'sd';
-    });
+    }));
 
     this.components = componentsOverviewService.filteredComponents.length;
 
@@ -66,6 +70,10 @@ export class AppComponent implements OnInit, OnDestroy {
         this.url = event.url;
       }
     });
+
+    this.subscriptions.push(this.tenantLogoHeaderService.tenantConfigChange.subscribe((config) => {
+      this.tenantLogoConfig = config;
+    }));
   }
 
   ngOnInit() {
@@ -77,7 +85,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscriptions.forEach(sub => {
+      sub.unsubscribe();
+    });
   }
 
   onSideNavExpandedChange(expanded: boolean) {
@@ -150,5 +160,11 @@ export class AppComponent implements OnInit, OnDestroy {
   onModuleClicked(moduleName: string) {
     // den expanded zustand im service merken
     this.navigationService.currentModules.set(moduleName, !this.navigationService.currentModules.get(moduleName));
+  }
+
+  public onTenantLogoClicked() {
+    if(this.tenantLogoConfig?.luxTenantLogoClicked){
+      this.tenantLogoConfig.luxTenantLogoClicked();
+    }
   }
 }

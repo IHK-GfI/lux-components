@@ -17,6 +17,7 @@ export class LuxComponentsConfigService {
     displayLuxConsoleLogs: false,
     generateLuxTagIds: false,
     lookupServiceUrl: '/lookup/',
+    tenantLogoLookupServiceUrl: '/assets/ihk-logos/',
     labelConfiguration: {
       allUppercase: false,
       notAppliedTo: []

@@ -1,0 +1,10 @@
+<lux-image
+  [luxImageSrc]="tenantLogoSrc"
+  [luxImageHeight]="actualLuxTenantLogoHeight"
+  class="lux-tenant-logo"
+  [luxAlt]="luxTenantLogoAlt"
+  [luxAriaLabel]="luxTenantLogoAriaLabel"
+  luxTagId="lux-tenant-logo-image"
+  (luxClicked)="onImageClicked($event)"
+  *ngIf="tenantLogoSrc"
+></lux-image>
