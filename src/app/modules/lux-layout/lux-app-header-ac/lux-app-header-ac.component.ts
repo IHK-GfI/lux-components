@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterContentInit,
   Component,
   ContentChild,
   ElementRef,
@@ -19,14 +19,14 @@ import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-obs
 import { LuxAppHeaderAcActionNavComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-action-nav/lux-app-header-ac-action-nav.component';
 import { LuxAppHeaderAcNavMenuComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu.component';
 import { LuxAppHeaderAcUserMenuComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-user-menu.component';
-import { LuxTenantLogoComponent } from "../../lux-tenant-logo/lux-tenant-logo.component";
+import { LuxTenantLogoComponent } from '../../lux-tenant-logo/lux-tenant-logo.component';
 
 @Component({
   selector: 'lux-app-header-ac',
   templateUrl: './lux-app-header-ac.component.html',
   styleUrls: ['./lux-app-header-ac.component.scss']
 })
-export class LuxAppHeaderAcComponent implements OnInit, AfterViewInit, OnChanges {
+export class LuxAppHeaderAcComponent implements OnInit, AfterContentInit, OnChanges {
   @Input() luxUserName?: string;
   @Input() luxAppTitle?: string;
   @Input() luxAppTitleShort?: string;
@@ -97,18 +97,13 @@ export class LuxAppHeaderAcComponent implements OnInit, AfterViewInit, OnChanges
     if (this.luxHideBrandLogo) {
       this.luxBrandLogoSrc = undefined;
     }
-
   }
 
-  ngAfterViewInit(): void {
-    if(this.tenantLogo){
-      this.tenantLogo.luxTenantLogoHeight = this.mobileView ? "24px" : "40px";
+  ngAfterContentInit(): void {
+    if (this.tenantLogo) {
+      this.tenantLogo.luxTenantLogoHeight = this.mobileView ? '24px' : '40px';
     }
   }
-
-
-
-
 
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (!this.luxAppTitleShort || this.luxAppTitleShort.length === 0) {

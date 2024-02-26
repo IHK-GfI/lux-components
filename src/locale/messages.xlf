@@ -770,7 +770,7 @@
         <source>Kopfbereich / Menübereich</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -781,7 +781,7 @@
         <source>Benutzermenü / Navigation</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">43</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -792,7 +792,7 @@
         <source>Titelicon</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">44</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -803,7 +803,7 @@
         <source>Titelbild</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">45</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
