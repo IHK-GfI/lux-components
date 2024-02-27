@@ -23,11 +23,11 @@ export class LuxFilePreviewBase implements OnInit, OnDestroy {
 
   downloadIconName = 'lux-interface-download-button-2';
   downloadTagId = 'file-preview-download-btn';
-  downloadAriaLabel = $localize `:@@luxc.file-preview.download.arialabel:Datei herunterladen`;
+  downloadAriaLabel = $localize`:@@luxc.file-preview.download.arialabel:Datei herunterladen`;
 
-  closeIconName = 'lux-close';
+  closeIconName = 'lux-interface-delete-1';
   closeTagId = 'file-preview-close-btn';
-  closeAriaLabel = $localize `:@@luxc.file-preview.close.arialabel:Dateivorschau schließen`;
+  closeAriaLabel = $localize`:@@luxc.file-preview.close.arialabel:Dateivorschau schließen`;
 
   @HostListener('document:keydown', ['$event'])
   handleKeydown(keyboardEvent: KeyboardEvent) {
@@ -58,7 +58,7 @@ export class LuxFilePreviewBase implements OnInit, OnDestroy {
       if (this.previewData.fileObject) {
         let myBlob: Blob | undefined;
         if ('string' === typeof this.previewData.fileObject.content) {
-          myBlob = new Blob([LuxUtil.base64ToArrayBuffer(this.previewData.fileObject.content.split(',')[ 1 ])], {
+          myBlob = new Blob([LuxUtil.base64ToArrayBuffer(this.previewData.fileObject.content.split(',')[1])], {
             type: this.previewData.fileObject.type
           });
         } else {
@@ -74,7 +74,7 @@ export class LuxFilePreviewBase implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.urls.forEach(url => {
+    this.urls.forEach((url) => {
       window.URL.revokeObjectURL(url);
     });
   }
