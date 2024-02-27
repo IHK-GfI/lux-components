@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 16.0.0
+
+### New
+
+- **Theme**: Es wurden neue Layout-Klassen und Mediaquerries ergänzt, um Flex-Layout abzulösen. [Issue 348](https://github.com/IHK-GfI/lux-components/issues/348)
+- **Module lux-layout**: Aus den Komponenten des Layout-Moduls wurde Flex-Layout entfernt. [Issue 388](https://github.com/IHK-GfI/lux-components/issues/388)
+- **lux-menu**: Aus der Komponente lux-menu wurde Flex-Layout entfernt. [Issue 394](https://github.com/IHK-GfI/lux-components/issues/394)
+- **lux-table**: Aus der Komponente lux-table wurde Flex-Layout entfernt. [Issue 395](https://github.com/IHK-GfI/lux-components/issues/395)
+- **lux-filter**: Aus der Komponente lux-filter wurde Flex-Layout entfernt. [Issue 396](https://github.com/IHK-GfI/lux-components/issues/396)
+- **lux-form-controls, lux-form-control-wrapper**: Aus den Komponenten wurde Flex-Layout entfernt. [Issue 397](https://github.com/IHK-GfI/lux-components/issues/397)
+- **lux-app-footer**: Aus der Komponente wurde Flex-Layout entfernt. [Issue 400](https://github.com/IHK-GfI/lux-components/issues/400)
+
 ## Version 15.5.0
 
 ### New

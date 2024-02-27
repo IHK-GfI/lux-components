@@ -1,262 +1,219 @@
-<div style="overflow: auto; height: 100%;">
-  <lux-layout>
-    <lux-layout-card-row [luxTitle]="row1_title" [luxWrapAt]="row1_wrapAt" [luxMargin]="margin" [luxGap]="gap">
-      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{}">
-        <lux-card-content>
-          <p>Die aktuelle Auflösung ist "{{ query }}".</p>
-          <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
-        </lux-card-content>
-        <lux-card-content-expanded>
-          <lux-layout>
-            <lux-layout-form-row luxWrapAt="xs">
-              <lux-input-ac luxLabel="luxTitle" [(luxValue)]="row1_title" *luxLayoutRowItem="{ colSpan: 2 }"></lux-input-ac>
-              <div *luxLayoutRowItem="{ empty: true }"></div>
-            </lux-layout-form-row>
-            <lux-layout-form-row luxTitle="Margins" luxWrapAt="xs">
-              <lux-input-ac
-                *luxLayoutRowItem="{}"
-                luxName="margin_all"
-                luxLabel="luxMargin"
-                [(luxValue)]="marginAll"
-                luxHint="Setzt alle Margins gleichzeitig"
-                (luxValueChange)="updateMargin()"
-              ></lux-input-ac>
-              <lux-input-ac
-                *luxLayoutRowItem="{}"
-                luxName="margin"
-                luxLabel="luxMargin (xs)"
-                [(luxValue)]="marginXs"
-                luxHint="Z.B. 5%, 10% oder 20%"
-                (luxValueChange)="updateMargin()"
-              ></lux-input-ac>
-              <lux-input-ac
-                *luxLayoutRowItem="{}"
-                luxName="margin_sm"
-                luxLabel="luxMargin (sm)"
-                [(luxValue)]="marginSm"
-                luxHint="Z.B. 5%, 10% oder 20%"
-                (luxValueChange)="updateMargin()"
-              ></lux-input-ac>
-            </lux-layout-form-row>
-            <lux-layout-form-row luxWrapAt="xs">
-              <lux-input-ac
-                *luxLayoutRowItem="{}"
-                luxName="margin_md"
-                luxLabel="luxMargin (md)"
-                [(luxValue)]="marginMd"
-                luxHint="Z.B. 5%, 10% oder 20%"
-                (luxValueChange)="updateMargin()"
-              ></lux-input-ac>
-              <lux-input-ac
-                *luxLayoutRowItem="{}"
-                luxName="luxMargin_lg"
-                luxLabel="luxMargin (lg)"
-                [(luxValue)]="marginLg"
-                luxHint="Z.B. 5%, 10% oder 20%"
-                (luxValueChange)="updateMargin()"
-              ></lux-input-ac>
-              <lux-input-ac
-                *luxLayoutRowItem="{}"
-                luxName="luxMargin_xl"
-                luxLabel="luxMargin (xl)"
-                [(luxValue)]="marginXl"
-                luxHint="Z.B. 5%, 10% oder 20%"
-                (luxValueChange)="updateMargin()"
-              ></lux-input-ac>
-            </lux-layout-form-row>
-            <lux-layout-form-row luxWrapAt="xs">
-              <lux-toggle-ac
-                luxName="luxMarginLeft"
-                luxLabel="luxMarginLeft"
-                (luxCheckedChange)="updateMargin()"
-                [(luxChecked)]="marginLeft"
-                *luxLayoutRowItem="{}"
-              ></lux-toggle-ac>
-              <lux-toggle-ac
-                luxName="luxMarginRight"
-                luxLabel="luxMarginRight"
-                (luxCheckedChange)="updateMargin()"
-                [(luxChecked)]="marginRight"
-                *luxLayoutRowItem="{}"
-              ></lux-toggle-ac>
-              <div *luxLayoutRowItem="{ empty: true }"></div>
-            </lux-layout-form-row>
-            <lux-layout-form-row luxTitle="Gaps" luxWrapAt="xs">
-              <lux-input-ac
-                *luxLayoutRowItem="{}"
-                luxName="gap_all"
-                luxLabel="luxGap"
-                [(luxValue)]="gapAll"
-                luxHint="Setzt alle Gaps gleichzeitig"
-                (luxValueChange)="updateGap()"
-              ></lux-input-ac>
-              <lux-input-ac
-                *luxLayoutRowItem="{}"
-                luxName="gap"
-                luxLabel="luxGap (row)"
-                [(luxValue)]="gapRow"
-                luxHint="Z.B. 5%, 10% oder 20%"
-                (luxValueChange)="updateGap()"
-              ></lux-input-ac>
-              <lux-input-ac
-                *luxLayoutRowItem="{}"
-                luxName="gap_sm"
-                luxLabel="luxGap (rowItem)"
-                [(luxValue)]="gapRowItem"
-                luxHint="Z.B. 5%, 10% oder 20%"
-                (luxValueChange)="updateGap()"
-              ></lux-input-ac>
-            </lux-layout-form-row>
-            <lux-layout-form-row luxWrapAt="xs">
-              <lux-input-ac
-                *luxLayoutRowItem="{}"
-                luxName="gap_md"
-                luxLabel="luxGap (column)"
-                [(luxValue)]="gapColumn"
-                luxHint="Z.B. 5%, 10% oder 20%"
-                (luxValueChange)="updateGap()"
-              ></lux-input-ac>
-              <div *luxLayoutRowItem="{ empty: true }"></div>
-              <div *luxLayoutRowItem="{ empty: true }"></div>
-            </lux-layout-form-row>
-          </lux-layout>
-        </lux-card-content-expanded>
-      </lux-card>
-    </lux-layout-card-row>
-    <lux-layout-card-row [luxTitle]="row2_title" [luxWrapAt]="row2_wrapAt" [luxMargin]="margin" [luxGap]="gap">
-      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{}">
-        <lux-card-content>
-          <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
-        </lux-card-content>
-        <lux-card-content-expanded>
-          <lux-input-ac luxName="luxTitle" luxLabel="luxTitle" [(luxValue)]="row2_title"></lux-input-ac>
-          <lux-input-ac
-            luxName="luxWrapAt"
-            luxLabel="luxWrapAt"
-            [(luxValue)]="row2_wrapAt"
-            luxHint="Z.B. xs, sm, md, lg, xl"
-          ></lux-input-ac>
-        </lux-card-content-expanded>
-      </lux-card>
-      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem="{}">
-        <lux-card-content>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content>
-        <lux-card-content-expanded>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-          clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-          takimata sanctus est Lorem ipsum dolor sit amet.
-        </lux-card-content-expanded>
-      </lux-card>
-    </lux-layout-card-row>
-
-    <lux-layout-card-row [luxTitle]="row3_title" [luxWrapAt]="row3_wrapAt" [luxMargin]="margin" [luxGap]="gap">
-      <lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{}">
-        <lux-card-content>
-          <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
-        </lux-card-content>
-        <lux-card-content-expanded>
-          <lux-input-ac luxName="luxTitle" luxLabel="luxTitle" [(luxValue)]="row3_title"></lux-input-ac>
-          <lux-input-ac
-            luxName="luxWrapAt"
-            luxLabel="luxWrapAt"
-            [(luxValue)]="row3_wrapAt"
-            luxHint="Z.B. xs, sm, md, lg, xl"
-          ></lux-input-ac>
-        </lux-card-content-expanded>
-      </lux-card>
-      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem="{}">
-        <lux-card-content>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content>
-        <lux-card-content-expanded>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content-expanded>
-      </lux-card>
-      <lux-card luxTitle="Item 3" luxSubTitle="Item 3" *luxLayoutRowItem="{}">
-        <lux-card-content>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content>
-        <lux-card-content-expanded>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content-expanded>
-      </lux-card>
-    </lux-layout-card-row>
-    <lux-layout-card-row [luxTitle]="row4_title" [luxWrapAt]="row4_wrapAt" [luxMargin]="margin" [luxGap]="gap"
-      ><lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{ colSpan: 2 }">
-        <lux-card-content>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content>
-        <lux-card-content-expanded>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content-expanded>
-      </lux-card>
-      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem="{}">
-        <lux-card-content>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content>
-        <lux-card-content-expanded>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content-expanded>
-      </lux-card>
-    </lux-layout-card-row>
-    <lux-layout-card-row [luxTitle]="row5_title" [luxWrapAt]="row5_wrapAt" [luxMargin]="margin" [luxGap]="gap"
-      ><lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{}">
-        <lux-card-content>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content>
-        <lux-card-content-expanded>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content-expanded>
-      </lux-card>
-      <lux-card luxTitle="Item 2" luxSubTitle="Item 2" *luxLayoutRowItem="{}">
-        <lux-card-content>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content>
-        <lux-card-content-expanded>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content-expanded>
-      </lux-card>
-      <div *luxLayoutRowItem="{ empty: true }"></div>
-    </lux-layout-card-row>
-    <lux-layout-card-row [luxTitle]="row6_title" [luxWrapAt]="row6_wrapAt" [luxMargin]="margin" [luxGap]="gap"
-      ><lux-card luxTitle="Item 1" luxSubTitle="Item 1" *luxLayoutRowItem="{}">
-        <lux-card-content>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content>
-        <lux-card-content-expanded>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content-expanded>
-      </lux-card>
-      <div *luxLayoutRowItem="{ empty: true }"></div>
-      <lux-card luxTitle="Item 3" luxSubTitle="Item 3" *luxLayoutRowItem="{}">
-        <lux-card-content>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content>
-        <lux-card-content-expanded>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-        </lux-card-content-expanded>
-      </lux-card>
-    </lux-layout-card-row>
-  </lux-layout>
+<div class="lux-container lux-grid lux-grid-cols-3 lt-md:lux-grid-cols-1 lux-gap-4" style="overflow: auto; height: 100%">
+  <lux-textbox luxTitle="lux-cards mit Hilfe von lux-grid anordnen" luxIcon="lux-info" class="lux-col-span-full">
+    <p>So kannst du mit Hilfe der neuen Layout-Klassen die lux-card-row austauschen.</p>
+  </lux-textbox>
+  <h2 class="lux-col-span-full">{{ row1_title }}</h2>
+  <lux-card luxTitle="Item 1" luxSubTitle="Item 1" class="lux-col-span-full">
+    <lux-card-content>
+      <p>Die aktuelle Auflösung ist "{{ query }}".</p>
+      <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
+    </lux-card-content>
+    <lux-card-content-expanded>
+      <div class="lux-grid lux-grid-cols-3 lt-md:lux-grid-cols-1 lux-gap-4">
+        <lux-input-ac luxLabel="luxTitle" [(luxValue)]="row1_title" class="lux-col-span-2 lt-md:lux-col-span-1"></lux-input-ac>
+        <h3 class="lux-col-span-full">Margins</h3>
+        <lux-input-ac
+          luxName="margin_all"
+          luxLabel="luxMargin"
+          [(luxValue)]="marginAll"
+          luxHint="Setzt alle Margins gleichzeitig"
+          (luxValueChange)="updateMargin()"
+        ></lux-input-ac>
+        <lux-input-ac
+          luxName="margin"
+          luxLabel="luxMargin (xs)"
+          [(luxValue)]="marginXs"
+          luxHint="Z.B. 5%, 10% oder 20%"
+          (luxValueChange)="updateMargin()"
+        ></lux-input-ac>
+        <lux-input-ac
+          luxName="margin_sm"
+          luxLabel="luxMargin (sm)"
+          [(luxValue)]="marginSm"
+          luxHint="Z.B. 5%, 10% oder 20%"
+          (luxValueChange)="updateMargin()"
+        ></lux-input-ac>
+        <lux-input-ac
+          luxName="margin_md"
+          luxLabel="luxMargin (md)"
+          [(luxValue)]="marginMd"
+          luxHint="Z.B. 5%, 10% oder 20%"
+          (luxValueChange)="updateMargin()"
+        ></lux-input-ac>
+        <lux-input-ac
+          luxName="luxMargin_lg"
+          luxLabel="luxMargin (lg)"
+          [(luxValue)]="marginLg"
+          luxHint="Z.B. 5%, 10% oder 20%"
+          (luxValueChange)="updateMargin()"
+        ></lux-input-ac>
+        <lux-input-ac
+          luxName="luxMargin_xl"
+          luxLabel="luxMargin (xl)"
+          [(luxValue)]="marginXl"
+          luxHint="Z.B. 5%, 10% oder 20%"
+          (luxValueChange)="updateMargin()"
+        ></lux-input-ac>
+        <lux-toggle-ac
+          luxName="luxMarginLeft"
+          luxLabel="luxMarginLeft"
+          (luxCheckedChange)="updateMargin()"
+          [(luxChecked)]="marginLeft"
+        ></lux-toggle-ac>
+        <lux-toggle-ac
+          luxName="luxMarginRight"
+          luxLabel="luxMarginRight"
+          (luxCheckedChange)="updateMargin()"
+          [(luxChecked)]="marginRight"
+        ></lux-toggle-ac>
+        <h3 class="lux-col-span-full">Gaps</h3>
+        <lux-input-ac
+          luxName="gap_all"
+          luxLabel="luxGap"
+          [(luxValue)]="gapAll"
+          luxHint="Setzt alle Gaps gleichzeitig"
+          (luxValueChange)="updateGap()"
+        ></lux-input-ac>
+        <lux-input-ac
+          luxName="gap"
+          luxLabel="luxGap (row)"
+          [(luxValue)]="gapRow"
+          luxHint="Z.B. 5%, 10% oder 20%"
+          (luxValueChange)="updateGap()"
+        ></lux-input-ac>
+        <lux-input-ac
+          luxName="gap_sm"
+          luxLabel="luxGap (rowItem)"
+          [(luxValue)]="gapRowItem"
+          luxHint="Z.B. 5%, 10% oder 20%"
+          (luxValueChange)="updateGap()"
+        ></lux-input-ac>
+        <lux-input-ac
+          luxName="gap_md"
+          luxLabel="luxGap (column)"
+          [(luxValue)]="gapColumn"
+          luxHint="Z.B. 5%, 10% oder 20%"
+          (luxValueChange)="updateGap()"
+        ></lux-input-ac>
+      </div>
+    </lux-card-content-expanded>
+  </lux-card>
+  <h2 class="lux-col-span-full">{{ row2_title }}</h2>
+  <div class="lux-col-span-full lux-grid lux-grid-cols-2 lux-gap-4">
+    <lux-card luxTitle="Item 1" luxSubTitle="Item 1" class="lux-flex">
+      <lux-card-content>
+        <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
+      </lux-card-content>
+      <lux-card-content-expanded>
+        <lux-input-ac luxName="luxTitle" luxLabel="luxTitle" [(luxValue)]="row2_title"></lux-input-ac>
+        <lux-input-ac luxName="luxWrapAt" luxLabel="luxWrapAt" [(luxValue)]="row2_wrapAt" luxHint="Z.B. xs, sm, md, lg, xl"></lux-input-ac>
+      </lux-card-content-expanded>
+    </lux-card>
+    <lux-card luxTitle="Item 2" luxSubTitle="Item 2" class="lux-flex">
+      <lux-card-content>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+        erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+      </lux-card-content>
+      <lux-card-content-expanded>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+        erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
+        est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+        labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      </lux-card-content-expanded>
+    </lux-card>
+  </div>
+  <h2 class="lux-col-span-full">{{ row3_title }}</h2>
+  <lux-card luxTitle="Item 1" luxSubTitle="Item 1" class="lux-flex">
+    <lux-card-content>
+      <p>Bitte die Karte aufklappen, um die Konfiguration anzupassen.</p>
+    </lux-card-content>
+    <lux-card-content-expanded>
+      <lux-input-ac luxName="luxTitle" luxLabel="luxTitle" [(luxValue)]="row3_title"></lux-input-ac>
+      <lux-input-ac luxName="luxWrapAt" luxLabel="luxWrapAt" [(luxValue)]="row3_wrapAt" luxHint="Z.B. xs, sm, md, lg, xl"></lux-input-ac>
+    </lux-card-content-expanded>
+  </lux-card>
+  <lux-card luxTitle="Item 2" luxSubTitle="Item 2" class="lux-flex">
+    <lux-card-content>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content>
+    <lux-card-content-expanded>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content-expanded>
+  </lux-card>
+  <lux-card luxTitle="Item 3" luxSubTitle="Item 3" class="lux-flex">
+    <lux-card-content>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content>
+    <lux-card-content-expanded>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content-expanded>
+  </lux-card>
+  <h2 class="lux-col-span-full">{{ row4_title }}</h2>
+  <lux-card luxTitle="Item 1" luxSubTitle="Item 1" class="lux-flex lux-col-span-2">
+    <lux-card-content>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content>
+    <lux-card-content-expanded>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content-expanded>
+  </lux-card>
+  <lux-card luxTitle="Item 2" luxSubTitle="Item 2" class="lux-flex">
+    <lux-card-content>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content>
+    <lux-card-content-expanded>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content-expanded>
+  </lux-card>
+  <h2 class="lux-col-span-full">{{ row5_title }}</h2>
+  <lux-card luxTitle="Item 1" luxSubTitle="Item 1" class="lux-flex">
+    <lux-card-content>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content>
+    <lux-card-content-expanded>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content-expanded>
+  </lux-card>
+  <lux-card luxTitle="Item 2" luxSubTitle="Item 2" class="lux-flex">
+    <lux-card-content>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content>
+    <lux-card-content-expanded>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content-expanded>
+  </lux-card>
+  <h2 class="lux-col-span-full">{{ row6_title }}</h2>
+  <lux-card luxTitle="Item 1" luxSubTitle="Item 1" class="lux-flex">
+    <lux-card-content>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content>
+    <lux-card-content-expanded>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content-expanded>
+  </lux-card>
+  <lux-card luxTitle="Item 3" luxSubTitle="Item 3" class="lux-flex lux-col-start-3">
+    <lux-card-content>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content>
+    <lux-card-content-expanded>
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+      erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    </lux-card-content-expanded>
+  </lux-card>
 </div>

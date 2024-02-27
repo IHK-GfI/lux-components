@@ -17,7 +17,6 @@ import { FormCommonComponent } from './form-common/form-common.component';
 import { TableExampleDataProviderService } from './table-example-data-provider.service';
 import { ExampleBaseModule } from '../example-base/example-base.module';
 import { UnsavedDataGuard } from './unsaved-data-guard/unsaved-data.guard';
-import { FormAuthenticComponent } from './form-authentic/form-authentic.component';
 import { WebFontDemoComponent } from './web-font-demo/web-font-demo.component';
 
 const routes: Routes = [{ path: '', component: FormExampleComponent, canDeactivate: [UnsavedDataGuard] }];
@@ -44,7 +43,6 @@ const routes: Routes = [{ path: '', component: FormExampleComponent, canDeactiva
     FormDualColComponent,
     FormThreeColComponent,
     FormCommonComponent,
-    FormAuthenticComponent,
     WebFontDemoComponent
   ],
   providers: [TableExampleDataProviderService]

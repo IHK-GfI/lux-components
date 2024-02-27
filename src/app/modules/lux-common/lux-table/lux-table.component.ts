@@ -37,7 +37,6 @@ export declare interface LuxTableDoubleClickEventType<T> {
 @Component({
   selector: 'lux-table',
   templateUrl: './lux-table.component.html',
-  styleUrls: ['./lux-table.component.scss'],
   providers: [{ provide: MatPaginatorIntl, useClass: LuxPaginatorIntl }]
 })
 export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoCheck, OnDestroy {
@@ -795,8 +794,8 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
     setTimeout(() => {
       const filter = this.filterElement ? this.filterElement.nativeElement.offsetHeight : 0;
       const pagination = this.paginatorElement ? this.paginatorElement.nativeElement.scrollHeight : 0;
-      const temp = 'calc(100% - ' + pagination + 'px' + ' - ' + filter + 'px)';
-
+      const progress = 15;
+      const temp = 'calc(100% - ' + progress + 'px' + ' - ' + pagination + 'px' + ' - ' + filter + 'px)';
       if (temp !== this.tableHeightCSSCalc) {
         this.tableHeightCSSCalc = temp;
       }

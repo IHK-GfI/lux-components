@@ -1,30 +1,34 @@
-<div fxLayout="column" fxFlex="0 0 100%" class="lux-table">
+<div class="lux-table lux-flex lux-flex-col">
   <!-- Progress für das Laden/Filtern von Daten -->
-  <div fxFlex="0 0 15px">
-    <lux-progress luxTagId="tableProgress" luxType="Progressbar" class="lux-mb-3" *ngIf="isLoadingResults"></lux-progress>
+  <div class="lux-table-progress-container">
+    <lux-progress luxTagId="tableProgress" luxColor="blue" luxType="Progressbar" class="lux-mb-3" *ngIf="isLoadingResults"></lux-progress>
   </div>
   <!-- Input-Feld für das Filtern der Datensätze dieser Tabelle -->
-  <div class="lux-table-filter" fxLayout="row" fxFlexAlign="start center" fxLayoutGap="16px" [ngClass]="{ 'lux-hide': !luxShowFilter }">
+  <div class="lux-table-filter lux-flex lux-gap-4" [ngClass]="{ 'lux-hide': !luxShowFilter }">
     <lux-input-ac
       class="lux-table-filter"
       luxAutocomplete="off"
       [luxTagId]="luxFilterText"
       [luxLabel]="luxFilterText"
       (luxValueChange)="filtered$.next($event)"
-      fxFill
       #filter
     >
       <lux-input-ac-prefix class="lux-mr-2">
         <lux-icon luxIconName="lux-interface-search"></lux-icon>
       </lux-input-ac-prefix>
       <lux-input-ac-suffix>
-        <lux-icon luxIconName="lux-interface-delete-circle" class="reset-icon lux-color-blue" (click)="filter.luxValue = ''"></lux-icon>
+        <lux-icon
+          luxIconName="lux-interface-delete-circle"
+          luxIconSize="24px"
+          class="reset-icon lux-color-blue"
+          (click)="filter.luxValue = ''"
+        ></lux-icon>
       </lux-input-ac-suffix>
     </lux-input-ac>
   </div>
   <!-- Die eigentliche Struktur der Tabelle -->
   <div
-    [ngStyle]="{ height: tableHeightCSSCalc }"
+    [ngStyle]="{ 'max-height': tableHeightCSSCalc }"
     class="lux-table"
     [ngClass]="{ 'lux-block-pointer-events': isLoadingResults, 'lux-hide-borders': luxHideBorders }"
     #tableContainer
@@ -46,7 +50,7 @@
           <!-- Zellen, welche nur bei Multiselect-Tabellen dargestellt werden und die Checkboxen + Counter beinhalten -->
           <ng-container matColumnDef="multiSelect" *ngIf="luxMultiSelect">
             <th class="lux-multiselect-th" mat-header-cell *matHeaderCellDef mat-sort-header="multiSelect">
-              <div fxLayout="column">
+              <div class="lux-flex lux-flex-col">
                 <span class="lux-selected-count">{{ luxSelected.size }} {{ !luxHttpDAO ? '/ ' + dataSource.totalElements : '' }}</span>
               </div>
             </th>
@@ -75,7 +79,7 @@
               </lux-checkbox-ac>
             </td>
             <td class="lux-multiselect-tf" [ngClass]="{ 'lux-ignore-multiselect-tf': !!luxHttpDAO }" mat-footer-cell *matFooterCellDef>
-              <div fxLayout="column" fxLayoutAlign="center" fxFill class="lux-multiselect-toggle-all-wrapper" *ngIf="!luxHttpDAO">
+              <div class="lux-multiselect-toggle-all-wrapper lux-flex lux-flex-col lux-place-content-center" *ngIf="!luxHttpDAO">
                 <lux-checkbox-ac
                   luxTagId="lux-table-multiselect-header"
                   class="lux-multiselect-toggle-all"
@@ -212,8 +216,6 @@
     [pageSizeOptions]="luxPageSizeOptions"
     [showFirstLastButtons]="luxPagerFirstLastButton"
     [ngClass]="{ 'lux-hide': !luxShowPagination }"
-    [ngClass.xs]="{ 'lux-paginator-xs': true, 'lux-hide': !luxShowPagination }"
-    fxFlex="auto"
   >
   </mat-paginator>
 </div>

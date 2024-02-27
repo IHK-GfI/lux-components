@@ -3,7 +3,7 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90autocomplete"
 >
   <example-base-content>
-    <div fxLayout="column">
+    <div class="lux-flex lux-flex-col">
       <h3>Beispiel ohne Reactive-Form</h3>
       <lux-autocomplete-ac
         [luxLabel]="label"
@@ -41,12 +41,12 @@
         <lux-input-ac-prefix *ngIf="showPrefix"> <lux-icon luxIconName="lux-tasks"></lux-icon>&nbsp; </lux-input-ac-prefix>
         <lux-input-ac-suffix *ngIf="showSuffix">ABC</lux-input-ac-suffix>
       </lux-autocomplete-ac>
-      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="value">
-        <span fxFlex="0 0 auto">Auswahl:</span>
-        <span fxFlex="auto">{{ value | json }}</span>
+      <div class="lux-highlight-section lux-flex lux-gap-2 lux-mt-3" *ngIf="value">
+        <span class="lux-flex lux-flex-initial lux-flex-shrink-0">Auswahl:</span>
+        <span class="lux-flex-auto">{{ value | json }}</span>
       </div>
     </div>
-    <div fxLayout="column" [formGroup]="form">
+    <div class="lux-flex lux-flex-col" [formGroup]="form">
       <h3>Beispiel in Reactive-Form</h3>
       <lux-autocomplete-ac
         [luxLabel]="label"
@@ -82,24 +82,24 @@
         <lux-input-ac-prefix *ngIf="showPrefix"> <lux-icon [luxIconName]="'lux-tasks'"></lux-icon>&nbsp; </lux-input-ac-prefix>
         <lux-input-ac-suffix *ngIf="showSuffix">ABC</lux-input-ac-suffix>
       </lux-autocomplete-ac>
-      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="form.get(controlBinding)!.value">
-        <span fxFlex="0 0 auto">Auswahl:</span>
-        <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
+      <div class="lux-highlight-section lux-flex lux-gap-2" *ngIf="form.get(controlBinding)!.value">
+        <span class="lux-flex-initial lux-flex-shrink-0">Auswahl:</span>
+        <span class="lux-flex-auto">{{ form.get(controlBinding)!.value | json }}</span>
       </div>
     </div>
-    <div fxLayout="column" class="lux-highlight-section">
-      <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
-        <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
-          <span fxFlex="35px">Valid:</span>
-          <span fxFlex="30px">{{ form.valid }}</span>
+    <div class="lux-highlight-section lux-flex lux-flex-col">
+      <div class="lux-p-2 lux-flex lux-gap-2">
+        <div class="lux-flex lux-flex-wrap lux-flex-basis-1/3 lux-gap-2">
+          <span class="lux-flex">Valid:</span>
+          <span class="lux-flex lux-flex-basis-1/3">{{ form.valid }}</span>
         </div>
-        <div fxFlex="30" fxLayout="row">
-          <span fxFlex="0 0 auto">Dirty:</span>
-          <span fxFlex="30px">{{ form.dirty }}</span>
+        <div class="lux-flex lux-flex-basis-1/3 lux-gap-2">
+          <span class="lux-flex">Dirty:</span>
+          <span class="lux-flex lux-flex-basis-1/3">{{ form.dirty }}</span>
         </div>
-        <div fxFlex="30" fxLayout="row">
-          <span fxFlex="0 0 auto">Touched:</span>
-          <span fxFlex="30px">{{ form.touched }}</span>
+        <div class="lux-flex lux-flex-basis-1/3 lux-gap-2">
+          <span class="lux-flex">Touched:</span>
+          <span class="lux-flex lux-flex-basis-1/3">{{ form.touched }}</span>
         </div>
       </div>
     </div>
@@ -173,7 +173,7 @@
     >
     </lux-toggle-ac>
     <div class="lux-highlight-section column">
-      <div fxLayout="row wrap">
+      <div class="lux-flex lux-row-wrap">
         <lux-button
           luxLabel="Enable"
           (luxClicked)="form.get(controlBinding)!.enable()"
@@ -285,7 +285,7 @@
       [(luxValue)]="luxPanelWidth"
     >
     </lux-input-ac>
-    <div fxLayout="column" fxLayoutGap="24px" class="lux-highlight-section">
+    <div class="lux-highlight-section lux-flex lux-flex-col lux-gap-2">
       <lux-toggle-ac
         [(luxChecked)]="optionMultiline"
         [luxNoTopLabel]="true"
@@ -296,7 +296,7 @@
         <lux-form-hint> Lädt die Optionen in der eingestellten Blockgröße nach, wenn gescrollt wird. </lux-form-hint>
       </lux-input-ac>
     </div>
-    <div fxLayout="column" class="lux-highlight-section column">
+    <div class="lux-highlight-section column lux-flex lux-flex-col">
       <lux-input-ac
         luxName="autocomplete_luxErrorMessageNotAnOption"
         luxLabel="luxErrorMessageNotAnOption"

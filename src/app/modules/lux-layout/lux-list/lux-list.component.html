@@ -2,8 +2,17 @@
 <ng-content *ngIf="!isEmpty()"></ng-content>
 <!-- wenn keine gefunden werden konnten, Empty-Icon und Empty-Label anzeigen -->
 <div *ngIf="isEmpty()">
-  <div fxLayout="column" fxLayoutAlign="center center" class="lux-list-empty-container" luxAriaLabelledby="{{ luxEmptyLabel }}">
-    <lux-icon class="lux-list-empty-icon" [luxIconName]="luxEmptyIconName" [luxIconSize]="luxEmptyIconSize" luxMargin="0 0 8 0"> </lux-icon>
+  <div
+    class="lux-list-empty-container lux-flex lux-flex-col lux-place-content-center lux-items-center lux-p-2"
+    luxAriaLabelledby="{{ luxEmptyLabel }}"
+  >
+    <lux-icon
+      class="lux-list-empty-icon lux-color-gray"
+      [luxIconName]="luxEmptyIconName"
+      [luxIconSize]="luxEmptyIconSize"
+      luxMargin="0 0 8 0"
+    >
+    </lux-icon>
     <span class="lux-list-empty-icon-text">
       <strong>{{ luxEmptyLabel }}</strong>
     </span>

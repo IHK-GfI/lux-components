@@ -1,14 +1,7 @@
-<div
-  fxLayout="row"
-  fxLayoutAlign="start center"
-  class="lux-app-header lux-p-header"
-  fxFlex="100%"
-  [luxAriaRole]="luxAriaRoleHeaderLabel ? 'banner' : undefined"
-  [luxAriaLabel]="luxAriaRoleHeaderLabel"
->
+<div class="lux-app-header" [luxAriaRole]="luxAriaRoleHeaderLabel ? 'banner' : undefined" [luxAriaLabel]="luxAriaRoleHeaderLabel">
   <!-- ausklappbares Side-Nav (linksbündig) -->
-  <div fxLayout="row" fxFlex="0 0 auto" class="lux-header-side-nav">
-    <div fxLayout="row" fxLayoutAlign="start center">
+  <div class="lux-header-side-nav lux-flex lux-flex-grow-0 lux-flex-shrink-0 lux-flex-basis-auto">
+    <div>
       <lux-button
         class="lux-side-nav-trigger"
         [ngClass]="{ 'lux-side-nav-trigger-active': sideNav.sideNavExpanded }"
@@ -20,7 +13,7 @@
         *ngIf="sideNav"
       ></lux-button>
 
-      <span fxLayout="row" fxLayoutAlign="center center" class="lux-nowrap lux-header-title" fxFlex="auto">
+      <span class="lux-nowrap lux-header-title lux-flex lux-place-content-center lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-auto">
         <lux-icon
           style="padding: 6px 5px"
           [luxAriaLabel]="luxAriaTitleIconLabel"
@@ -48,8 +41,6 @@
           *ngIf="luxImageSrc && !sideNav && !mobileView"
         ></lux-image
         ><span
-          fxFlex="auto"
-          style="padding: 10px 5px"
           class="lux-app-header-title-label"
           [luxAriaLabel]="luxAriaTitleLinkLabel ? luxAriaTitleLinkLabel : luxAppTitle"
           (click)="onClicked($event)"
@@ -64,38 +55,31 @@
     </div>
   </div>
   <!-- Action-Menu (mittig) -->
-  <div fxFlex="auto" fxLayoutAlign="end center" class="lux-header-action">
+  <div class="lux-header-action">
     <ng-container [ngTemplateOutlet]="actionNav.templateRef" *ngIf="actionNav"></ng-container>
   </div>
   <!-- Lang-Menu (rechtsbündig) -->
-  <div
-    fxLayout="row"
-    fxFlex="0 0 auto"
-    fxLayoutAlign="end center"
-    class="lux-lang-select-menu lux-header-action"
-    *ngIf="luxLocaleSupported && (luxLocaleSupported?.length ?? 0) > 1"
-  >
-    <lux-lang-select [luxLocaleSupported]="luxLocaleSupported" [luxLocaleBaseHref]="luxLocaleBaseHref" fxFlex="0 0 auto"></lux-lang-select>
+  <div class="lux-lang-select-menu lux-header-action" *ngIf="luxLocaleSupported && (luxLocaleSupported?.length ?? 0) > 1">
+    <lux-lang-select
+      [luxLocaleSupported]="luxLocaleSupported"
+      [luxLocaleBaseHref]="luxLocaleBaseHref"
+      class="lux-flex-grow-0 lux-flex-shrink-0 lux-flex-basis-auto"
+    ></lux-lang-select>
   </div>
   <!-- User-Menu (rechtsbündig) -->
   <div
-    fxLayout="row"
-    fxFlex="0 0 auto"
-    fxLayoutAlign="end center"
-    class="lux-header-user lux-pr-2 lux-pl-2"
     [luxAriaLabel]="luxAriaUserMenuButtonLabel"
+    class="lux-header-user lux-pr-2 lux-pl-2"
     [ngClass]="{ 'lux-show-border': !!actionNav }"
     *ngIf="rightNav"
   >
     <lux-menu
       class="lux-header-menu"
-      ngClass.sm="lux-header-menu-mobile"
-      ngClass.xs="lux-header-menu-mobile"
+      [ngClass]="{ 'lux-header-menu-mobile': mobileView }"
       [luxDisplayExtended]="false"
       (luxMenuClosed)="onMenuClosed()"
       luxClassName="lux-right-nav-menu"
       luxTagId="app_header_menu"
-      fxFlex="0 0 auto"
     >
       <ng-container *ngFor="let menuItem of rightNav.menuItemComponents">
         <lux-menu-item
@@ -114,24 +98,17 @@
       <lux-menu-trigger>
         <button
           mat-button
-          fxLayout="row"
-          fxLayoutAlign="end center"
-          class="lux-right-nav-trigger"
+          class="lux-right-nav-trigger lux-flex lux-justify-end lux-items-center"
           luxAriaLabel="Benutzermenü"
           i18n-luxAriaLabel="@@luxc.app-header.user.menu.trigger"
           aria-haspopup="true"
           #customTrigger
         >
           <span *ngIf="luxUserName">
-            <span class="lux-nowrap lux-header-username" [fxShow.xs]="false" [fxShow.sm]="false">
+            <span class="lux-nowrap lux-header-username" [ngClass]="{ 'lux-display-none': mobileView }">
               {{ luxUserName }}
             </span>
-            <span
-              class="lux-nowrap lux-header-user-short"
-              ngClass.gt-sm="lux-display-none"
-              ngClass.sm="lux-display-block"
-              ngClass.xs="lux-display-block"
-            >
+            <span class="lux-nowrap lux-header-user-short" [ngClass]="{ 'lux-block': mobileView, 'lux-display-none': !mobileView }">
               <span>{{ userNameShort }}</span>
             </span>
           </span>
@@ -141,8 +118,7 @@
             luxIconSize="1x"
             luxIconName="lux-interface-user-single"
             luxMargin="0 0 0 8px"
-            [fxShow.xs]="!luxUserName"
-            [fxShow.sm]="!luxUserName"
+            [ngClass]="{ 'lux-display-none': luxUserName && mobileView }"
           >
           </lux-icon>
           <lux-icon class="lux-icon-menu-1" luxIconSize="1x" luxIconName="lux-interface-arrows-button-down" luxPadding="0" luxMargin="0">

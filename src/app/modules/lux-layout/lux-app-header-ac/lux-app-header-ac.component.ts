@@ -23,8 +23,7 @@ import { LuxTenantLogoComponent } from '../../lux-tenant-logo/lux-tenant-logo.co
 
 @Component({
   selector: 'lux-app-header-ac',
-  templateUrl: './lux-app-header-ac.component.html',
-  styleUrls: ['./lux-app-header-ac.component.scss']
+  templateUrl: './lux-app-header-ac.component.html'
 })
 export class LuxAppHeaderAcComponent implements OnInit, AfterContentInit, OnChanges {
   @Input() luxUserName?: string;

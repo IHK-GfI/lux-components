@@ -14,10 +14,7 @@
     [luxTagId]="luxTagId"
     [name]="luxGroupName"
     [formControl]="formControl"
-    fxLayoutGap="10px"
     [ngClass]="{ 'lux-vertical': isVertical, 'lux-horizontal': !isVertical }"
-    fxLayout="{{ isVertical ? 'column' : 'row wrap' }}"
-    fxLayoutAlign="start stretch"
     [required]="luxRequired"
     (focusin)="luxFocusIn.emit($event)"
     (focusout)="luxFocusOut.emit($event)"
@@ -28,7 +25,6 @@
       [value]="luxPickValue ? _luxOptionsPickValue[i] : option"
       [disableRipple]="true"
       color="primary"
-      fxFlex="0 0 auto"
       [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
       luxAriaDescribedbySelector=".mat-radio-input"
       [luxAriaRequired]="luxRequired"
@@ -39,10 +35,7 @@
       *ngFor="let option of luxOptions; let i = index"
     >
       <ng-container
-        *ngTemplateOutlet="
-          tempRef && !luxOptionLabelProp ? tempRef : noTemplateRefTemplate;
-          context: { $implicit: option }
-        "
+        *ngTemplateOutlet="tempRef && !luxOptionLabelProp ? tempRef : noTemplateRefTemplate; context: { $implicit: option }"
       ></ng-container>
     </mat-radio-button>
   </mat-radio-group>
@@ -51,7 +44,7 @@
 
 <ng-template #noTemplateRefTemplate let-option>
   <ng-container *ngIf="option && luxOptionLabelProp && option[luxOptionLabelProp]; else showObjectTemplate">
-    {{ option | luxRenderProperty: luxOptionLabelProp}}
+    {{ option | luxRenderProperty: luxOptionLabelProp }}
   </ng-container>
   <ng-template #showObjectTemplate>
     <ng-container *ngIf="!!option">
@@ -59,4 +52,3 @@
     </ng-container>
   </ng-template>
 </ng-template>
-

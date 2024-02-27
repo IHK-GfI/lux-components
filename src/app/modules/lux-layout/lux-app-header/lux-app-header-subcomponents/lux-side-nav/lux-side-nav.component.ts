@@ -2,14 +2,15 @@ import {
   AfterViewInit,
   Component,
   ContentChildren,
-  ElementRef, EventEmitter,
+  ElementRef,
+  EventEmitter,
   HostListener,
   Input,
   OnDestroy,
   Output,
   QueryList,
   ViewChild
-} from "@angular/core";
+} from '@angular/core';
 import { LuxAppService } from '../../../../lux-util/lux-app.service';
 import { LuxSideNavItemComponent } from './lux-side-nav-subcomponents/lux-side-nav-item.component';
 import { Subscription } from 'rxjs';
@@ -19,7 +20,6 @@ import { LuxUtil } from '../../../../lux-util/lux-util';
 @Component({
   selector: 'lux-side-nav',
   templateUrl: './lux-side-nav.component.html',
-  styleUrls: ['./lux-side-nav.component.scss'],
   animations: [sideNavAnimation, sideNavOverlayAnimation]
 })
 export class LuxSideNavComponent implements AfterViewInit, OnDestroy {

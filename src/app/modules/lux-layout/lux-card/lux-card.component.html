@@ -3,106 +3,111 @@
   (keydown.enter)="clicked($event)"
   (keydown.space)="clicked($event)"
   [attr.tabindex]="!showButtons && hasCardAction && !luxDisabled && luxUseTabIndex ? '0' : null"
-  fxLayout="row"
   luxTagIdHandler
   [luxTagId]="luxTagId"
-  [class]="'lux-card'"
+  class="lux-card"
   [ngClass]="{ 'lux-cursor': !showButtons && hasCardAction && !luxDisabled }"
-  [ngClass.gt-sm]="{ 'lux-cursor': !showButtons && hasCardAction && !luxDisabled }"
 >
-  <div fxFlex="flex" fxLayout="column" class="lux-overflow-y-hidden lux-card-content-container">
-    <mat-card-title
-      class="lux-highlight lux-card-title"
-      [ngClass]="{ 'lux-display-none-important': (!luxTitle || luxTitle.length === 0) && !infoComponent }"
-    >
-      <div fxLayout="row" fxLayoutAlign="{{ getTitleAlignment() }}" class="lux-flex-layout-gap-10">
-        <div fxFlex="none" *ngIf="showIcon">
-          <div class="lux-icon lux-highlight">
-            <ng-content select="lux-icon"></ng-content>
-          </div>
-        </div>
-
-        <ng-container [ngSwitch]="luxHeading">
-          <h1
-            *ngSwitchCase="1"
-            fxFlex="grow"
-            class="lux-card-title-container"
-            [ngClass]="{ 'lux-pb-2': !!luxTitle, 'lux-hyphenate': luxTitleLineBreak, 'lux-crop': !luxTitleLineBreak }"
-            title="{{ luxTitle }}"
-          >
-            {{ luxTitle }}
-          </h1>
-          <h2
-            *ngSwitchDefault
-            fxFlex="grow"
-            class="lux-card-title-container"
-            [ngClass]="{ 'lux-pb-2': !!luxTitle, 'lux-hyphenate': luxTitleLineBreak, 'lux-crop': !luxTitleLineBreak }"
-            title="{{ luxTitle }}"
-          >
-            {{ luxTitle }}
-          </h2>
-          <h3
-            *ngSwitchCase="3"
-            fxFlex="grow"
-            class="lux-card-title-container"
-            [ngClass]="{ 'lux-pb-2': !!luxTitle, 'lux-hyphenate': luxTitleLineBreak, 'lux-crop': !luxTitleLineBreak }"
-            title="{{ luxTitle }}"
-          >
-            {{ luxTitle }}
-          </h3>
-          <h4
-            *ngSwitchCase="4"
-            fxFlex="grow"
-            class="lux-card-title-container"
-            [ngClass]="{ 'lux-pb-2': !!luxTitle, 'lux-hyphenate': luxTitleLineBreak, 'lux-crop': !luxTitleLineBreak }"
-            title="{{ luxTitle }}"
-          >
-            {{ luxTitle }}
-          </h4>
-          <h5
-            *ngSwitchCase="5"
-            fxFlex="grow"
-            class="lux-card-title-container"
-            [ngClass]="{ 'lux-pb-2': !!luxTitle, 'lux-hyphenate': luxTitleLineBreak, 'lux-crop': !luxTitleLineBreak }"
-            title="{{ luxTitle }}"
-          >
-            {{ luxTitle }}
-          </h5>
-          <h6
-            *ngSwitchCase="6"
-            fxFlex="grow"
-            class="lux-card-title-container"
-            ngClass="{{ luxTitleLineBreak ? 'lux-hyphenate' : 'lux-crop' }}"
-            [ngClass]="{ 'lux-pb-2': !!luxTitle }"
-            title="{{ luxTitle }}"
-          >
-            {{ luxTitle }}
-          </h6>
-        </ng-container>
-
-        <div fxFlex="none" fxLayoutAlign="end">
-          <ng-content *ngIf="infoComponent" select="lux-card-info"></ng-content>
-        </div>
+  <div class="lux-overflow-y-hidden lux-card-content-container lux-flex lux-flex-col">
+    <div class="lux-card-header">
+      <div class="lux-card-icon-container" *ngIf="showIcon">
+        <ng-content select="lux-icon"></ng-content>
       </div>
-    </mat-card-title>
 
-    <mat-card-subtitle
-      title="{{ luxSubTitle }}"
-      [ngClass]="{
-        'lux-hyphenate': luxTitleLineBreak,
-        'lux-crop': !luxTitleLineBreak,
-        'lux-display-none-important': !luxSubTitle || luxSubTitle.length === 0,
-        'lux-pb-2': !!luxSubTitle,
-        'lux-pt-2': !!luxSubTitle,
-        'lux-icon-padding': showIcon
-      }"
-    >
-      {{ luxSubTitle }}
-    </mat-card-subtitle>
+      <ng-container [ngSwitch]="luxHeading">
+        <h1
+          *ngSwitchCase="1"
+          class="lux-card-title"
+          [ngClass]="{
+            'lux-hyphenate': luxTitleLineBreak,
+            'lux-crop': !luxTitleLineBreak,
+            'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
+          }"
+          title="{{ luxTitle }}"
+        >
+          {{ luxTitle }}
+        </h1>
+        <h2
+          *ngSwitchDefault
+          class="lux-card-title"
+          [ngClass]="{
+            'lux-hyphenate': luxTitleLineBreak,
+            'lux-crop': !luxTitleLineBreak,
+            'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
+          }"
+          title="{{ luxTitle }}"
+        >
+          {{ luxTitle }}
+        </h2>
+        <h3
+          *ngSwitchCase="3"
+          class="lux-card-title"
+          [ngClass]="{
+            'lux-hyphenate': luxTitleLineBreak,
+            'lux-crop': !luxTitleLineBreak,
+            'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
+          }"
+          title="{{ luxTitle }}"
+        >
+          {{ luxTitle }}
+        </h3>
+        <h4
+          *ngSwitchCase="4"
+          class="lux-card-title"
+          [ngClass]="{
+            'lux-hyphenate': luxTitleLineBreak,
+            'lux-crop': !luxTitleLineBreak,
+            'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
+          }"
+          title="{{ luxTitle }}"
+        >
+          {{ luxTitle }}
+        </h4>
+        <h5
+          *ngSwitchCase="5"
+          class="lux-card-title"
+          [ngClass]="{
+            'lux-hyphenate': luxTitleLineBreak,
+            'lux-crop': !luxTitleLineBreak,
+            'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
+          }"
+          title="{{ luxTitle }}"
+        >
+          {{ luxTitle }}
+        </h5>
+        <h6
+          *ngSwitchCase="6"
+          class="lux-card-title"
+          [ngClass]="{
+            'lux-hyphenate': luxTitleLineBreak,
+            'lux-crop': !luxTitleLineBreak,
+            'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
+          }"
+          title="{{ luxTitle }}"
+        >
+          {{ luxTitle }}
+        </h6>
+      </ng-container>
 
-    <mat-card-content fxLayout="column" [ngClass]="{ 'lux-pt-4': contentComponent }">
+      <div class="lux-card-info-container lux-justify-self-end" *ngIf="infoComponent">
+        <ng-content select="lux-card-info"></ng-content>
+      </div>
+      <div
+        title="{{ luxSubTitle }}"
+        class="lux-card-subtitle"
+        [ngClass]="{
+          'lux-hyphenate': luxTitleLineBreak,
+          'lux-crop': !luxTitleLineBreak,
+          'lux-display-none': !luxSubTitle || luxSubTitle.length === 0
+        }"
+      >
+        {{ luxSubTitle }}
+      </div>
+    </div>
+    <!--Ende Card-header-->
+    <mat-card-content class="lux-flex lux-flex-col" [ngClass]="{ 'lux-pt-4': contentComponent }">
       <!-- Der normale Card-Content ist immer sichtbar. -->
-      <div class="lux-card-content" fxLayout="column" fxLayoutGap="16px">
+      <div class="lux-card-content lux-flex lux-flex-col lux-gap-3">
         <ng-content select="lux-card-content"></ng-content>
         <lux-button
           *ngIf="showExpandedToggle"
@@ -122,10 +127,8 @@
       </div>
     </mat-card-content>
 
-    <mat-card-actions class="lux-card-actions" [ngClass]="{ 'lux-display-none-important': !showButtons }" #luxActionButtons>
-      <div fxLayout="row" fxLayoutAlign="end center">
-        <ng-content select="lux-card-actions"></ng-content>
-      </div>
+    <mat-card-actions class="lux-card-actions lux-mt-4" [ngClass]="{ 'lux-display-none-important': !showButtons }" #luxActionButtons>
+      <ng-content select="lux-card-actions"></ng-content>
     </mat-card-actions>
   </div>
 </mat-card>

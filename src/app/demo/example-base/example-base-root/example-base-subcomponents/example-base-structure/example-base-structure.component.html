@@ -1,6 +1,20 @@
-<div fxFlex="1 1 100%" fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="4px" fxLayoutGap.gt-sm="8px">
-  <h1 class="sr-only">Beispielseite für {{ exampleTitle }}</h1>
-  <lux-card [luxTitle]="exampleTitle" class="example-base-container" fxFlex="auto" fxFlex.gt-sm="1 0 50%" *ngIf="contentComponent">
+<div
+  class="lux-flex lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-full lux-justify-between"
+  [ngClass]="{ 'lux-flex-col': !isGtSm, 'lux-gap-3': !isGtSm }"
+>
+  <h1 class="lux-sr-only">Beispielseite für {{ exampleTitle }}</h1>
+  <lux-card
+    [luxTitle]="exampleTitle"
+    class="example-base-container lux-flex lux-flex-auto"
+    [ngClass]="{
+      'lux-flex-grow-1': isGtSm,
+      'lux-flex-shrink-0': isGtSm,
+      'lux-flex-basis-1/2': isGtSm,
+      'lux-mr-4': isGtSm,
+      'example-base-container-mobile': !isGtSm
+    }"
+    *ngIf="contentComponent"
+  >
     <lux-card-content>
       <ng-content select="example-base-content"></ng-content>
     </lux-card-content>
@@ -10,9 +24,14 @@
   </lux-card>
   <lux-card
     luxTitle="Konfiguration"
-    class="example-base-options"
-    fxFlex="auto"
-    fxFlex.gt-sm="1 0 50%"
+    class="example-base-options lux-flex lux-flex-auto"
+    [ngClass]="{
+      'lux-flex-grow-1': isGtSm,
+      'lux-flex-shrink-0': isGtSm,
+      'lux-flex-basis-1/2': isGtSm,
+      'lux-mr-2': isGtSm,
+      'example-base-options-mobile': !isGtSm
+    }"
     *ngIf="simpleOptionsComponent || advancedOptionsComponent"
   >
     <lux-card-content>

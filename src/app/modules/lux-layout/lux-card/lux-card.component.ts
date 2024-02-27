@@ -5,7 +5,6 @@ import {
   ContentChild,
   ContentChildren,
   EventEmitter,
-  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -26,7 +25,6 @@ import { LuxCardInfoComponent } from './lux-card-subcomponents/lux-card-info.com
 @Component({
   selector: 'lux-card',
   templateUrl: './lux-card.component.html',
-  styleUrls: ['./lux-card.component.scss'],
   animations: [expansionAnim]
 })
 export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -43,24 +41,24 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() luxHeading = 2;
 
   @Input() set luxExpandedLabelOpen(label: string) {
-    if(label) {
+    if (label) {
       this._luxExpandedLabelOpen = label;
     }
   }
-  get luxExpandedLabelOpen(){
+  get luxExpandedLabelOpen() {
     return this._luxExpandedLabelOpen;
   }
   @Input() set luxExpandedLabelClose(label: string) {
-    if(label) {
+    if (label) {
       this._luxExpandedLabelClose = label;
     }
   }
-  get luxExpandedLabelClose(){
+  get luxExpandedLabelClose() {
     return this._luxExpandedLabelClose;
   }
 
-  _luxExpandedLabelOpen = $localize `:@@luxc.card.expandedLabel.open:Mehr`;
-  _luxExpandedLabelClose = $localize `:@@luxc.card.expandedLabel.close:Weniger`;
+  _luxExpandedLabelOpen = $localize`:@@luxc.card.expandedLabel.open:Mehr`;
+  _luxExpandedLabelClose = $localize`:@@luxc.card.expandedLabel.close:Weniger`;
 
   @Output() luxExpandedChange: EventEmitter<boolean> = new EventEmitter();
   @Output() luxAfterExpansion: EventEmitter<void> = new EventEmitter();

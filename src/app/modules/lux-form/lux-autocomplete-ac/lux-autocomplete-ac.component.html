@@ -8,8 +8,8 @@
   [luxLabelLongFormat]="luxLabelLongFormat"
   luxTagId="luxAutocompleteWrappper"
 >
-  <div class="lux-input-row-authentic" fxLayout="row" fxLayoutAlign="start center">
-    <span class="lux-input-prefix-container" fxFlex="auto" matPrefix *ngIf="inputPrefix">
+  <div class="lux-input-row-authentic">
+    <span class="lux-input-prefix-container" matPrefix *ngIf="inputPrefix">
       <ng-content select="lux-input-ac-prefix"></ng-content>
     </span>
     <input
@@ -33,7 +33,7 @@
       [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
       #autoCompleteInput
     />
-    <span class="lux-input-suffix-container" fxFlex="auto" matSuffix *ngIf="inputSuffix">
+    <span class="lux-input-suffix-container" matSuffix *ngIf="inputSuffix">
       <ng-content select="lux-input-ac-suffix"></ng-content>
     </span>
     <mat-autocomplete

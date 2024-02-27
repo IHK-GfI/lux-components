@@ -9,7 +9,7 @@
   [luxDisplayClearErrorButton]="displayClearErrorButton"
   luxTagId="luxFileInputWrapper"
 >
-  <div class="lux-file-container lux-input-row-authentic" fxLayout="row">
+  <div class="lux-file-container lux-input-row-authentic">
     <!-- Das Input ist nur für die visuelle Darstellung der ausgewählten Dateien zuständig -->
     <input
       class="lux-file-visible-input lux-crop"
@@ -28,10 +28,9 @@
       (focusin)="onFocusIn($event)"
       (focusout)="luxFocusOut.emit($event)"
       [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
-      fxFlex="1 0 100px"
       #visibleInput
     />
-    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 65px">
+    <div class="lux-file-menu-container">
       <lux-menu
         luxMenuIconName="lux-interface-setting-menu-vertical"
         luxTagId="{{ 'lux-file-input-actions' }}"

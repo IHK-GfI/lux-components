@@ -6,85 +6,18 @@ import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-layout-row-example',
-  templateUrl: './form-row-example.component.html',
-  styleUrls: ['./form-row-example.component.scss']
+  templateUrl: './form-row-example.component.html'
 })
 export class FormRowExampleComponent implements OnInit, OnDestroy {
   options: any[] = ['Lorem ipsum A', 'Lorem ipsum B', 'Lorem ipsum C'];
-  markdownData = `
-  Html
-  \`\`\`
-  <lux-layout>
-    <lux-layout-form-row
-      [luxGap]="{row: '16px', rowItem: '24px', column: '8px'}"
-    >
-      <lux-input-ac
-        luxLabel="Labeltext"
-        luxHint="Hinweistext"
-        *luxLayoutRowItem="{}"
-      ></lux-input-ac>
-    </lux-layout-form-row>
-    <lux-layout-form-row
-      [luxGap]="{row: '16px', rowItem: '24px', column: '8px'}"
-    >
-      <lux-input-ac
-        luxLabel="Labeltext"
-        luxHint="Hinweistext"
-        *luxLayoutRowItem="{}"
-      ></lux-input-ac>
-    </lux-layout-form-row>
-  </lux-layout>
-  \`\`\`
-  `;
-
   chips: { label: string; color: ThemePalette; removable: boolean; disabled: boolean; selected: boolean }[] = [
     { label: 'Chip #1', color: undefined, removable: true, disabled: false, selected: true },
     { label: 'Chip #2', color: 'primary', removable: true, disabled: false, selected: true },
     { label: 'Chip #3', color: 'warn', removable: true, disabled: false, selected: true },
     { label: 'Chip #4', color: 'accent', removable: true, disabled: false, selected: true }
   ];
-
   chipsOptions: string[] = ['Hallo', 'Ciao', 'Privet'];
-
   selected: any;
-
-  htmlData1 = `
-<pre>
-Html
-
-&lt;lux-layout-form-row [luxGap]="{ rowItem: '16px'}"&gt;
-...
-  &lt;div class="btn-container" *luxLayoutRowItem="{ flex: 'none'}"&gt;
-    &lt;lux-button luxIconName="lux-info" luxTagId="btnInfo" [luxRounded]="true" luxColor="primary"&gt;&lt;/lux-button&gt;
-    &lt;lux-button luxIconName="lux-interface-delete-bin-5" luxTagId="btnRemove" [luxRounded]="true" luxColor="warn"&gt;&lt;/lux-button&gt;
-  &lt;/div&gt;
-&lt;/lux-layout-form-row&gt;
-
-
-SCSS
-
-.btn-container {
-  display: flex;
-  gap: 10px;
-}
-</pre>
-`;
-  htmlData2 = `
-<pre>
-Html
-
-&lt;lux-layout-form-row [luxGap]="{ rowItem: '16px' }"&gt;
-  ...
-  &lt;div class="btn-container" *luxLayoutRowItem="{ flex: 'none', formNoBottomLabel: true }"&gt;
-    ...
-  &lt;/div&gt;
-&lt;/lux-layout-form-row&gt;
-
-
-SCSS
-
-.btn-container { display: flex; gap: 10px; }
-</pre>`;
 
   constructor(private router: Router, private buttonService: LuxAppFooterButtonService) {}
 

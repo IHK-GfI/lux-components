@@ -4,8 +4,7 @@ import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-obs
 
 @Component({
   selector: 'lux-tile',
-  templateUrl: './lux-tile.component.html',
-  styleUrls: ['./lux-tile.component.scss']
+  templateUrl: './lux-tile.component.html'
 })
 export class LuxTileComponent implements OnInit, OnDestroy {
   private static _notificationNewClass = 'lux-notification-new';
