@@ -14,7 +14,6 @@ import { LuxSnackbarService } from '../lux-snackbar.service';
 import { LuxSnackbarComponent } from './lux-snackbar.component';
 
 describe('LuxSnackbarComponent', () => {
-
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [MockSnackbarModule, HttpClientTestingModule]
@@ -105,11 +104,9 @@ class MockStorageService {
 }
 
 @NgModule({
-    imports: [MatSnackBarModule, LuxPopupsModule, LuxLayoutModule, LuxActionModule, NoopAnimationsModule],
-    exports: [],
-    providers: [
-        { provide: LuxStorageService, useClass: MockStorageService }
-    ],
-    declarations: [MockSnackbarComponent]
+  imports: [MatSnackBarModule, LuxPopupsModule, LuxLayoutModule, LuxActionModule, NoopAnimationsModule],
+  exports: [],
+  providers: [{ provide: LuxStorageService, useClass: MockStorageService }],
+  declarations: [MockSnackbarComponent]
 })
 class MockSnackbarModule {}
