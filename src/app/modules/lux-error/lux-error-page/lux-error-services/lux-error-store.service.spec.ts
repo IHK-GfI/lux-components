@@ -3,7 +3,6 @@
 
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { expect } from '@angular/flex-layout/_private-utils/testing';
 import { LuxErrorModule } from '../../lux-error.module';
 import { LuxErrorStoreService } from './lux-error-store.service';
 

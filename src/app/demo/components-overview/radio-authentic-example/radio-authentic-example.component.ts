@@ -46,7 +46,7 @@ export class RadioAuthenticExampleComponent {
   required = false;
   isVertical = false;
   label = 'Label';
-  hint = 'Hint';
+  hint = 'Optionaler Zusatztext';
   hintShowOnlyOnFocus = false;
   controlValidators: ValidatorFn[] = [];
   errorMessage = 'Das Feld enthält keinen gültigen Wert';

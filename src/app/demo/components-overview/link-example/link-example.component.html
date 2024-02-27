@@ -16,23 +16,20 @@
     >
     </lux-link>
   </example-base-content>
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
     ></lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
-    <lux-input-ac luxName="link_luxHref" class="lux-highlight-section" [(luxValue)]="href" luxLabel="luxHref">
+    <lux-input-ac luxName="link_luxHref" [(luxValue)]="href" luxLabel="luxHref">
       <lux-form-hint>
         Bestimmt die URL, zu der der Link routet.<br />
         Wenn die URL nicht mit <i>http</i> beginnt, wird automatisch der Angular-Router für Routing innerhalb der Applikation genommen.
       </lux-form-hint>
     </lux-input-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="blank"
       luxLabel="luxBlank"
       luxHint="Diese Property bestimmt ob (externe) Links in einem neuen Tab geöffnet werden."
@@ -40,37 +37,22 @@
     >
     </lux-toggle-ac>
 
-    <lux-input-ac
-      class="lux-highlight-section"
-      [(luxValue)]="label"
-      luxLabel="luxLabel"
-      luxHint="Bestimmt den Text, der für den Link angezeigt wird."
-    ></lux-input-ac>
-    <div fxLayout="column" class="lux-highlight-section">
-      <lux-input-ac luxName="button_luxIconName" [(luxValue)]="iconName" luxLabel="luxIconName">
-        <lux-form-hint>
-          Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
-          <i>luxLabel</i> gesetzt ist).<br />
-          Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
-        </lux-form-hint>
-      </lux-input-ac>
-      <lux-toggle-ac luxLabel="luxIconShowRight" [(luxChecked)]="iconShowRight"></lux-toggle-ac>
-    </div>
-    <lux-select-ac
-      class="lux-highlight-section"
-      [(luxSelected)]="color"
-      [luxOptions]="colors"
-      luxLabel="luxColor"
-      [luxPickValue]="pickValue"
-      luxOptionLabelProp="label"
-    >
+    <lux-input-ac [(luxValue)]="label" luxLabel="luxLabel" luxHint="Bestimmt den Text, der für den Link angezeigt wird."></lux-input-ac>
+    <lux-input-ac luxName="button_luxIconName" [(luxValue)]="iconName" luxLabel="luxIconName">
+      <lux-form-hint>
+        Diese Property definiert das Icon, welches in dem Button (linksbündig, wenn zusätzlich auch noch
+        <i>luxLabel</i> gesetzt ist).<br />
+        Für Font-Awesome-Icons mit 'fa|fas|fab|far|fal' präfixen, Material-Icons ohne Präfix
+      </lux-form-hint>
+    </lux-input-ac>
+    <lux-toggle-ac luxLabel="luxIconShowRight" [(luxChecked)]="iconShowRight" [luxNoLabels]="true"></lux-toggle-ac>
+    <lux-select-ac [(luxSelected)]="color" [luxOptions]="colors" luxLabel="luxColor" [luxPickValue]="pickValue" luxOptionLabelProp="label">
       <lux-form-hint>
         Bestimmt die Farbe des Buttons.<br />
         Die möglichen Werte sind 'primary', 'warn', 'accent', 'default' / undefined.
       </lux-form-hint>
     </lux-select-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="flat"
       (luxCheckedChange)="onFlat($event)"
       luxLabel="luxFlat"
@@ -79,7 +61,6 @@
     >
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="raised"
       (luxCheckedChange)="onRaised($event)"
       luxLabel="luxRaised"
@@ -88,7 +69,6 @@
     >
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="round"
       (luxCheckedChange)="onRounded($event)"
       luxLabel="luxRounded"
@@ -96,18 +76,11 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-toggle-ac
-      class="lux-highlight-section"
-      [(luxChecked)]="disabled"
-      luxLabel="luxDisabled"
-      luxHint="Diese Property deaktiviert den Link."
-      [luxNoTopLabel]="true"
-    >
+    <lux-toggle-ac [(luxChecked)]="disabled" luxLabel="luxDisabled" luxHint="Diese Property deaktiviert den Link." [luxNoTopLabel]="true">
     </lux-toggle-ac>
   </example-base-simple-options>
-  <example-base-advanced-options>
+  <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Label Uppercase"
       [(luxChecked)]="config.labelConfiguration!.allUppercase"
       (luxCheckedChange)="updateConfiguration()"

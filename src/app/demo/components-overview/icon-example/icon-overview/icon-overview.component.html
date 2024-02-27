@@ -1,14 +1,10 @@
-<div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="12px" class="main-container">
-  <div fxFlex="40" *ngIf="mobileView">
+<div class="lux-flex lt-md:lux-flex-col lux-gap-4 main-container">
+  <div class="lux-flex lux-flex-basis-4/10" *ngIf="mobileView">
     <ng-container *ngTemplateOutlet="search"></ng-container>
   </div>
 
   <div
-    fxLayout="column"
-    fxLayoutGap="12px"
-    fxLayoutAlign="start start"
-    class="left-container"
-    fxFlex="60"
+    class="lux-flex lux-flex-col lux-gap-12 lux-flex-basis-6/10 gt-lg:lux-flex-basis-8/10 left-container"
     luxInfiniteScroll
     [luxScrollPercent]="75"
     [luxImmediateCallback]="false"
@@ -16,8 +12,8 @@
     #scrollContainer
   >
     <lux-card luxTitle="LUX-Icons" [luxHeading]="1" class="result-container">
-      <lux-card-content fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="start start" fxFlex="fill">
-        <div class="chip-container" fxShow fxHide.lt-md fxLayout="column">
+      <lux-card-content class="lux-flex lux-flex-col lux-gap-4 lux-flex-auto">
+        <div class="chip-container" class="lux-flex lux-flex-col lt-md:lux-display-none">
           <lux-chips-ac [luxInputAllowed]="false" [luxHideBorder]="true" *ngIf="chipLabels.length > 0; else emptyLabelsBlock">
             <ng-container *ngFor="let label of chipLabels">
               <lux-chip-ac (luxChipRemoved)="onChipRemoved($event)" *ngIf="label.length > 0">
@@ -32,19 +28,10 @@
           </ng-template>
           <div>Icons (gefiltert / gesamt): {{ filteredIcons.length + displayedIcons.length }} / {{ allIcons.length }}</div>
         </div>
-        <div
-          fxLayout="row wrap"
-          fxLayoutGap="30px grid"
-          fxLayoutAlign="start center"
-          class="icon-list"
-          *ngIf="displayedIcons.length > 0; else noItems"
-        >
-          <div style="display: flex" *ngFor="let icon of displayedIcons">
+        <div class="lux-flex lux-flex-wrap lux-gap-8 icon-list" *ngIf="displayedIcons.length > 0; else noItems">
+          <div class="lux-flex" *ngFor="let icon of displayedIcons">
             <div
-              fxLayout="column"
-              fxLayoutGap="5px"
-              fxLayoutAlign="start center"
-              class="icon-container"
+              class="lux-flex lux-flex-col lux-col-gap-3 lux-items-center icon-container"
               (click)="onIconClicked(icon)"
               [ngClass]="{ 'selected-item': icon === previewItem }"
             >
@@ -57,14 +44,14 @@
     </lux-card>
 
     <ng-template #noItems>
-      <div fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="start center">
+      <div class="lux-flex lux-flex-col lux-gap-3 lux-content-start lux-items-center">
         <lux-icon luxIconName="lux-interface-block" luxIconSize="4x" class="lux-color-blue"></lux-icon>
         <h3>Sorry, keine passenden Icons gefunden!</h3>
       </div>
     </ng-template>
   </div>
 
-  <div *ngIf="!mobileView" fxLayout="column" fxLayoutGap="12px" fxLayoutAlign="start start" fxFlex="40" class="right-container">
+  <div *ngIf="!mobileView" class="lux-flex lux-flex-col lux-gap-4 lux-flex-basis-4/10 gt-lg:lux-flex-basis-2/10 right-container">
     <lux-card luxTitle="Suche">
       <lux-card-content>
         <ng-container *ngTemplateOutlet="search"></ng-container>
@@ -72,7 +59,7 @@
     </lux-card>
 
     <lux-card luxTitle="Vorschau" *ngIf="previewItem" [luxSubTitle]="previewItem.iconName.split('--')[0].toLowerCase()">
-      <lux-card-content fxLayout="column" fxLayoutGap="12px">
+      <lux-card-content class="lux-flex lux-flex-col lux-gap-4">
         <div class="icon-preview">
           <ng-container *ngIf="previewItem && !isBgColor">
             <lux-icon luxIconName="{{ previewItem.iconName.split('--')[0].toLowerCase() }}" [luxIconSize]="iconSize" [class]="iconClass">
@@ -137,7 +124,7 @@
 </div>
 
 <ng-template #search>
-  <div fxLayout="column" fxLayoutGap="4px">
+  <div class="lux-flex lux-flex-col lux-gap-2">
     <lux-input-ac
       luxTagId="Suchbegriff"
       luxAriaLabel="Suchbegriff"
@@ -145,9 +132,7 @@
       luxPlaceholder="Suchbegriff eingeben"
       [(luxValue)]="inputValue"
       luxAutocomplete="off"
-      luxHint="Suchbegriffe auf Englisch eingeben. Z.B. arrow, desktop, mail..."
-      fxFlex="100"
-      ngClass.lt-md="search-input-sm"
+      luxHint="Suchbegriffe auf Englisch eingeben. Z.B. arrow, desktop,..."
     >
       <lux-input-ac-prefix class="lux-mr-3" luxTagId="searchInput">
         <lux-icon luxIconName="lux-interface-search"></lux-icon>

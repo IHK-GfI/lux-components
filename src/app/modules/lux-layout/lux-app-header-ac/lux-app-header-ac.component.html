@@ -5,26 +5,22 @@
 >
   <!-- Top-Bar -->
   <div *ngIf="!luxHideTopBar" class="lux-app-header-top-bar" [ngClass]="{ 'lux-mobile': mobileView }">
+    <!-- Zeige lux-tenant-logo falls vorhanden UND Attribut luxBrandLogoSrc nicht gesetzt ist, also das Attribut hat hier vorrang -->
+    <ng-content select="lux-tenant-logo" *ngIf="!luxBrandLogoSrc"></ng-content>
+
     <!-- Brand-Logo -->
-    <div fxFlex.gt-sm="0 0 45" fxFlex.lt-md="30" fxLayoutAlign="start center" class="lux-brand-logo-container">
+    <lux-image
+      [luxImageSrc]="luxBrandLogoSrc"
+      [luxImageHeight]="mobileView ? '24px' : '40px'"
+      class="lux-brand-logo"
+      [ngClass]="{ 'lux-brand-logo-mobile': mobileView }"
+      luxAlt="Lux-Brand-Logo"
+      [luxAriaLabel]="luxAriaTitleImageLabel"
+      luxTagId="lux-brand-logo-button"
+      (luxClicked)="onBrandLogoClicked($event)"
+      *ngIf="luxBrandLogoSrc"
+    ></lux-image>
 
-      <!-- Zeige lux-tenant-logo falls vorhanden UND Attribut luxBrandLogoSrc nicht gesetzt ist, also das Attribut hat hier vorrang -->
-      <ng-content select="lux-tenant-logo" *ngIf="!luxBrandLogoSrc"></ng-content>
-
-      <!-- Das Brand Logo Bild -->
-      <lux-image
-        [luxImageSrc]="luxBrandLogoSrc"
-        [luxImageHeight]="mobileView ? '32px' : '40px'"
-        class="lux-brand-logo"
-        [ngClass]="{ 'lux-brand-logo-mobile': mobileView }"
-        luxAlt="Lux-Brand-Logo"
-        [luxAriaLabel]="luxAriaTitleImageLabel"
-        luxTagId="lux-brand-logo-button"
-        (luxClicked)="onBrandLogoClicked($event)"
-        *ngIf="luxBrandLogoSrc"
-        [ngStyle]="{ display: 'flex' }"
-      ></lux-image>
-    </div>
     <!-- App-Logo -->
     <lux-image
       [luxImageSrc]="luxAppLogoSrc"

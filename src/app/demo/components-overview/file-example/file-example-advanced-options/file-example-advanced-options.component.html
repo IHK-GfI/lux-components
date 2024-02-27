@@ -1,73 +1,69 @@
 <lux-accordion luxMode="flat" [luxMulti]="false">
   <lux-panel>
-    <lux-panel-header-title>
-      luxUploadActionConfig
-    </lux-panel-header-title>
-    <lux-panel-content class="lux-simple-form column">
-        <lux-input-ac
-          luxLabel="iconName"
-          luxHint="Diese Eigenschaft legt das Icon fest, welches für das Hochladen von Dateien genutzt wird."
-          [(luxValue)]="fileExample.uploadActionConfig.iconName"
-        >
-        </lux-input-ac>
-        <lux-input-ac
-          luxLabel="iconNameHeader"
-          luxHint="Diese Eigenschaft legt das Icon fest, welches für das Hochladen von Dateien im Header genutzt wird."
-          [(luxValue)]="fileExample.uploadActionConfig.iconNameHeader"
-          *ngIf="showHeaderConfigProperties"
-        >
-        </lux-input-ac>
-        <lux-input-ac
-          luxLabel="label"
-          luxHint="Diese Eigenschaft legt das Label fest, welches für das Hochladen von Dateien genutzt wird."
-          [(luxValue)]="fileExample.uploadActionConfig.label"
-        >
-        </lux-input-ac>
-        <lux-input-ac
-          luxLabel="labelHeader"
-          luxHint="Diese Eigenschaft legt das Label fest, welches für das Hochladen von Dateien im Header genutzt wird."
-          [(luxValue)]="fileExample.uploadActionConfig.labelHeader"
-          *ngIf="showHeaderConfigProperties"
-        >
-        </lux-input-ac>
-        <lux-toggle-ac
-          luxLabel="hidden"
-          luxHint="Diese Property bestimmt ob etwaige Upload-Buttons angezeigt werden."
-          [(luxChecked)]="fileExample.uploadActionConfig.hidden"
-          [luxNoTopLabel]="true"
-        >
-        </lux-toggle-ac>
-        <lux-toggle-ac
-          luxLabel="hiddenHeader"
-          luxHint="Diese Property bestimmt ob der Upload-Button für den Header angezeigt wird."
-          [(luxChecked)]="fileExample.uploadActionConfig.hiddenHeader"
-          *ngIf="showHeaderConfigProperties"
-          [luxNoTopLabel]="true"
-        >
-        </lux-toggle-ac>
-        <lux-toggle-ac
-          luxLabel="disabled"
-          luxHint="Diese Property bestimmt ob Upload-Buttons deaktiviert sind oder nicht."
-          [(luxChecked)]="fileExample.uploadActionConfig.disabled"
-          [luxNoTopLabel]="true"
-        >
-        </lux-toggle-ac>
-        <lux-toggle-ac
-          luxLabel="disabledHeader"
-          luxHint="Diese Property bestimmt ob der Upload-Button für den Header deaktiviert ist oder nicht."
-          [(luxChecked)]="fileExample.uploadActionConfig.disabledHeader"
-          [luxNoTopLabel]="true"
-          *ngIf="showHeaderConfigProperties"
-        >
-        </lux-toggle-ac>
+    <lux-panel-header-title> luxUploadActionConfig </lux-panel-header-title>
+    <lux-panel-content class="lux-simple-form column lux-mt-4">
+      <lux-input-ac
+        luxLabel="iconName"
+        luxHint="Diese Eigenschaft legt das Icon fest, welches für das Hochladen von Dateien genutzt wird."
+        [(luxValue)]="fileExample.uploadActionConfig.iconName"
+      >
+      </lux-input-ac>
+      <lux-input-ac
+        luxLabel="iconNameHeader"
+        luxHint="Diese Eigenschaft legt das Icon fest, welches für das Hochladen von Dateien im Header genutzt wird."
+        [(luxValue)]="fileExample.uploadActionConfig.iconNameHeader"
+        *ngIf="showHeaderConfigProperties"
+      >
+      </lux-input-ac>
+      <lux-input-ac
+        luxLabel="label"
+        luxHint="Diese Eigenschaft legt das Label fest, welches für das Hochladen von Dateien genutzt wird."
+        [(luxValue)]="fileExample.uploadActionConfig.label"
+      >
+      </lux-input-ac>
+      <lux-input-ac
+        luxLabel="labelHeader"
+        luxHint="Diese Eigenschaft legt das Label fest, welches für das Hochladen von Dateien im Header genutzt wird."
+        [(luxValue)]="fileExample.uploadActionConfig.labelHeader"
+        *ngIf="showHeaderConfigProperties"
+      >
+      </lux-input-ac>
+      <lux-toggle-ac
+        luxLabel="hidden"
+        luxHint="Diese Property bestimmt ob etwaige Upload-Buttons angezeigt werden."
+        [(luxChecked)]="fileExample.uploadActionConfig.hidden"
+        [luxNoTopLabel]="true"
+      >
+      </lux-toggle-ac>
+      <lux-toggle-ac
+        luxLabel="hiddenHeader"
+        luxHint="Diese Property bestimmt ob der Upload-Button für den Header angezeigt wird."
+        [(luxChecked)]="fileExample.uploadActionConfig.hiddenHeader"
+        *ngIf="showHeaderConfigProperties"
+        [luxNoTopLabel]="true"
+      >
+      </lux-toggle-ac>
+      <lux-toggle-ac
+        luxLabel="disabled"
+        luxHint="Diese Property bestimmt ob Upload-Buttons deaktiviert sind oder nicht."
+        [(luxChecked)]="fileExample.uploadActionConfig.disabled"
+        [luxNoTopLabel]="true"
+      >
+      </lux-toggle-ac>
+      <lux-toggle-ac
+        luxLabel="disabledHeader"
+        luxHint="Diese Property bestimmt ob der Upload-Button für den Header deaktiviert ist oder nicht."
+        [(luxChecked)]="fileExample.uploadActionConfig.disabledHeader"
+        [luxNoTopLabel]="true"
+        *ngIf="showHeaderConfigProperties"
+      >
+      </lux-toggle-ac>
     </lux-panel-content>
   </lux-panel>
   <lux-panel>
-    <lux-panel-header-title>
-      luxDeleteActionConfig
-    </lux-panel-header-title>
+    <lux-panel-header-title> luxDeleteActionConfig </lux-panel-header-title>
     <lux-panel-content>
-      <div class="lux-simple-form column">
+      <div class="lux-simple-form column lux-mt-4">
         <lux-input-ac
           luxLabel="iconName"
           luxHint="Diese Eigenschaft legt das Icon fest, welches für das Löschen von Dateien genutzt wird."
@@ -128,11 +124,9 @@
     </lux-panel-content>
   </lux-panel>
   <lux-panel>
-    <lux-panel-header-title>
-      luxViewActionConfig
-    </lux-panel-header-title>
+    <lux-panel-header-title> luxViewActionConfig </lux-panel-header-title>
     <lux-panel-content>
-      <div class="lux-simple-form column">
+      <div class="lux-simple-form column lux-mt-4">
         <lux-input-ac
           luxLabel="iconName"
           luxHint="Diese Eigenschaft legt das Icon fest, welches für das Anzeigen von Dateien genutzt wird."
@@ -163,11 +157,9 @@
     </lux-panel-content>
   </lux-panel>
   <lux-panel>
-    <lux-panel-header-title>
-      luxDownloadActionConfig
-    </lux-panel-header-title>
+    <lux-panel-header-title> luxDownloadActionConfig </lux-panel-header-title>
     <lux-panel-content>
-      <div class="lux-simple-form column">
+      <div class="lux-simple-form column lux-mt-4">
         <lux-input-ac
           luxLabel="iconName"
           luxHint="Diese Eigenschaft legt das Icon fest, welches für das Downloaden von Dateien genutzt wird."

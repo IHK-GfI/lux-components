@@ -2,7 +2,7 @@
   exampleTitle="Tile-Authentic"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tile"
 >
-  <example-base-content [exampleCentered]="true" fxLayout="column" fxLayoutGap="32px">
+  <example-base-content [exampleCentered]="true" class="lux-flex lux-flex-col lux-gap-3">
     <div class="lux-tile-ac-wrapper-demo lux-mt-5">
       <lux-tile-ac
         [luxLabel]="label"
@@ -21,89 +21,74 @@
     </div>
   </example-base-content>
 
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
     <lux-input-ac
-      class="lux-highlight-section"
       luxLabel="luxLabel"
       luxHint="Die Property bestimmt das Label, welches in dem unteren Kasten des Tiles dargestellt wird."
       [(luxValue)]="label"
     >
     </lux-input-ac>
-    <lux-input-ac
-      class="lux-highlight-section"
-      luxLabel="luxSubTitle"
-      luxHint="Die Property bestimmt den Untertitel des Tiles."
-      [(luxValue)]="subTitle"
-    >
-    </lux-input-ac>
-    <div class="lux-highlight-section" fxLayout="column">
-      <lux-toggle-ac luxLabel="luxIcon anzeigen" [(luxChecked)]="showIcon" [luxNoTopLabel]="true">
-        <lux-form-hint>
-          Ein LuxIconComponent in dem Tile anzeigen.<br />
-          Wenn 'false' wird stattdessen in dem Beispiel ein LuxImageComponent genutzt.
-        </lux-form-hint>
-      </lux-toggle-ac>
-    </div>
-    <div class="lux-highlight-section">
-      <lux-link-plain
-        luxLabel="Testseite mit mehreren Kacheln"
-        luxHref="/components-overview/example/tile-overview"
-        luxIconName="lux-interface-arrows-button-right"
-        [luxIconShowRight]="true"
-      ></lux-link-plain>
-    </div>
+    <lux-input-ac luxLabel="luxSubTitle" luxHint="Die Property bestimmt den Untertitel des Tiles." [(luxValue)]="subTitle"> </lux-input-ac>
+    <lux-toggle-ac luxLabel="luxIcon anzeigen" [(luxChecked)]="showIcon" [luxNoTopLabel]="true">
+      <lux-form-hint>
+        Ein LuxIconComponent in dem Tile anzeigen.<br />
+        Wenn 'false' wird stattdessen in dem Beispiel ein LuxImageComponent genutzt.
+      </lux-form-hint>
+    </lux-toggle-ac>
+    <lux-link-plain
+      luxLabel="Testseite mit mehreren Kacheln"
+      luxHref="/components-overview/example/tile-overview"
+      luxIconName="lux-interface-arrows-button-right"
+      [luxIconShowRight]="true"
+    ></lux-link-plain>
   </example-base-simple-options>
-  <example-base-advanced-options>
-    <div fxLayout="column" fxLayoutGap="32px" class="lux-highlight-section">
-      <lux-input-ac
-        luxLabel="luxCounter"
-        [(luxValue)]="counter"
-        [luxDisabled]="showNotification"
-        luxType="number"
-        [luxNumberAlignLeft]="true"
-        luxAutocomplete="off"
-      >
-        <lux-form-hint>
-          Die Property definiert den aktuellen Zähler für die Tile.<br />
-          Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
-        </lux-form-hint>
-      </lux-input-ac>
-      <lux-input-ac
-        luxLabel="luxCounterCap"
-        [(luxValue)]="badgeCap"
-        [luxDisabled]="showNotification"
-        luxType="number"
-        [luxNumberAlignLeft]="true"
-        luxAutocomplete="off"
-      >
-        <lux-form-hint>
-          Die Property definiert den aktuellen Zähler für die Tile.<br />
-          Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
-        </lux-form-hint>
-      </lux-input-ac>
-      <lux-select-ac
-        luxLabel="BadgeColor"
-        [(luxSelected)]="badgeColor"
-        luxHint="Diese Property definiert die Farbe der Notification"
-        [luxOptions]="['primary', 'warn', 'accent', 'default']"
-      ></lux-select-ac>
-      <lux-radio-ac
-        luxLabel="luxNotificationSize"
-        luxHint="Diese Property definiert die Größe der Notification"
-        [luxOptions]="['small', 'medium', 'large']"
-        [(luxSelected)]="badgeSize"
-        [luxOrientationVertical]="false"
-      ></lux-radio-ac>
-      <lux-toggle-ac luxLabel="luxShowNotification" [(luxChecked)]="showNotification" [luxNoLabels]="true"></lux-toggle-ac>
-    </div>
+  <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
+    <lux-input-ac
+      luxLabel="luxCounter"
+      [(luxValue)]="counter"
+      [luxDisabled]="showNotification"
+      luxType="number"
+      [luxNumberAlignLeft]="true"
+      luxAutocomplete="off"
+    >
+      <lux-form-hint>
+        Die Property definiert den aktuellen Zähler für die Tile.<br />
+        Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
+      </lux-form-hint>
+    </lux-input-ac>
+    <lux-input-ac
+      luxLabel="luxCounterCap"
+      [(luxValue)]="badgeCap"
+      [luxDisabled]="showNotification"
+      luxType="number"
+      [luxNumberAlignLeft]="true"
+      luxAutocomplete="off"
+    >
+      <lux-form-hint>
+        Die Property definiert den aktuellen Zähler für die Tile.<br />
+        Wenn der Wert den luxCounterCap überschreitet, wird die Zahl abgekürzt.
+      </lux-form-hint>
+    </lux-input-ac>
+    <lux-select-ac
+      luxLabel="BadgeColor"
+      [(luxSelected)]="badgeColor"
+      luxHint="Diese Property definiert die Farbe der Notification"
+      [luxOptions]="['primary', 'warn', 'accent', 'default']"
+    ></lux-select-ac>
+    <lux-radio-ac
+      luxLabel="luxNotificationSize"
+      luxHint="Diese Property definiert die Größe der Notification"
+      [luxOptions]="['small', 'medium', 'large']"
+      [(luxSelected)]="badgeSize"
+      [luxOrientationVertical]="false"
+    ></lux-radio-ac>
+    <lux-toggle-ac luxLabel="luxShowNotification" [(luxChecked)]="showNotification" [luxNoLabels]="true"></lux-toggle-ac>
   </example-base-advanced-options>
 </example-base-structure>

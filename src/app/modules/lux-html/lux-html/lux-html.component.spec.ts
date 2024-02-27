@@ -58,15 +58,6 @@ describe('LuxHtmlComponent', () => {
     );
   });
 
-  it('luxFlex muss gesetzt sein', () => {
-    expect(component.luxFlex).toEqual('flex');
-
-    component.luxFlex = '1 1 auto';
-    fixture.detectChanges();
-
-    expect(component.luxFlex).toEqual('1 1 auto');
-  });
-
   it('luxStyle muss gesetzt sein', () => {
     expect(component.luxStyle).toEqual('');
 

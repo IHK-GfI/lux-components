@@ -26,13 +26,13 @@ export class TextareaAuthenticExampleComponent {
   autocompleteOptions = ['on', 'off', 'name'];
   form: FormGroup<TextareaDummyForm>;
   log = logResult;
-  value: any;
+  value: string | null = null;
   controlBinding = 'textareaExample';
   disabled = false;
   readonly = false;
   required = false;
   label = 'Label';
-  hint = 'Hint';
+  hint = 'Optionaler Zusatztext';
   hintShowOnlyOnFocus = false;
   placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];

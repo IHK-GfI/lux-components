@@ -27,7 +27,8 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, AfterVie
     cmd: 'btnShowErrors',
     label: 'Fehler anzeigen',
     iconName: 'lux-exclamation-mark',
-    raised: true,
+    flat: true,
+    raised: false,
     alwaysVisible: false,
     onClick: this.highlightErrors.bind(this)
   });
@@ -36,7 +37,8 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, AfterVie
     cmd: 'btnSave',
     label: 'Speichern',
     iconName: 'lux-save',
-    raised: true,
+    flat: true,
+    raised: false,
     color: 'primary',
     alwaysVisible: false,
     onClick: this.handleSaveClicked.bind(this)
@@ -53,7 +55,8 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, AfterVie
         iconName: 'lux-interface-arrows-expand-5',
         cmd: 'documentation-btn',
         color: 'primary',
-        raised: true,
+        flat: true,
+        raised: false,
         alwaysVisible: true,
         onClick: () => {
           window.open('https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90layout%E2%80%90form%E2%80%90row', '_blank');
@@ -64,7 +67,8 @@ export class FormExampleComponent implements IUnsavedDataCheck, OnInit, AfterVie
         iconName: 'lux-interface-arrows-button-left',
         cmd: 'back-btn',
         color: 'primary',
-        raised: true,
+        flat: true,
+        raised: false,
         alwaysVisible: false,
         onClick: () => {
           this.router.navigate(['/']);

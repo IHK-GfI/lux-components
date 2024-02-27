@@ -2,8 +2,8 @@
   exampleTitle="File-Input-Authentic"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90file%E2%80%90input"
 >
-  <example-base-content fxLayout="column">
-    <div fxFlex="auto" fxLayout="column">
+  <example-base-content>
+    <div class="lux-flex lux-flex-col">
       <h3>Ohne ReactiveForm</h3>
       <lux-file-input-ac
         [luxLabel]="label"
@@ -39,8 +39,7 @@
       >
       </lux-file-input-ac>
       <div
-        fxLayout="row"
-        fxLayoutGap="12px"
+        class="lux-flex lux-gap-4"
         *ngIf="!clearOnError && !fileinputexamplewithoutform.formGroup.valid && fileinputexamplewithoutform.luxSelected"
       >
         <p>Datei "{{ fileinputexamplewithoutform.luxSelected.name }}" behalten?</p>
@@ -48,7 +47,7 @@
         <lux-button luxLabel="Nein" (luxClicked)="onKeepFileWithoutForm(false)"></lux-button>
       </div>
     </div>
-    <div fxFlex="auto" fxLayout="column">
+    <div class="lux-flex lux-flex-col">
       <h3>Mit ReactiveForm</h3>
       <div [formGroup]="form">
         <lux-file-input-ac
@@ -83,36 +82,19 @@
         >
         </lux-file-input-ac>
         <div
-          fxLayout="row"
-          fxLayoutGap="12px"
+          class="lux-flex lux-gap-4"
           *ngIf="!clearOnError && !fileinputexamplewithform.formGroup.valid && fileinputexamplewithform.luxSelected"
         >
           <p>Datei "{{ fileinputexamplewithform.luxSelected.name }}" behalten?</p>
           <lux-button luxLabel="Ja" (luxClicked)="onKeepFileWithForm(true)"></lux-button>
           <lux-button luxLabel="Nein" (luxClicked)="onKeepFileWithForm(false)"></lux-button>
         </div>
-        <div fxLayout="column" class="lux-highlight-section">
-          <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
-            <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
-              <span fxFlex="35px">Valid:</span>
-              <span fxFlex="30px">{{ form.valid }}</span>
-            </div>
-            <div fxFlex="30" fxLayout="row">
-              <span fxFlex="0 0 auto">Dirty:</span>
-              <span fxFlex="30px">{{ form.dirty }}</span>
-            </div>
-            <div fxFlex="30" fxLayout="row">
-              <span fxFlex="0 0 auto">Touched:</span>
-              <span fxFlex="30px">{{ form.touched }}</span>
-            </div>
-          </div>
-        </div>
+        <example-form-value [form]="form" [controlBinding]="controlBinding" [showValue]="false"></example-form-value>
       </div>
     </div>
   </example-base-content>
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
@@ -120,7 +102,6 @@
     >
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Backend mocken"
       [luxChecked]="mockBackend"
       (luxCheckedChange)="changeMockBackend($event)"
@@ -131,16 +112,13 @@
         Dafür muss aber auch "luxUploadUrl" gesetzt sein (beliebiger Wert).
       </lux-form-hint>
     </lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
     <lux-input-ac
-      class="lux-highlight-section"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
       [(luxValue)]="placeholder"
     >
     </lux-input-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="denseFormat"
       luxLabel="luxDense"
       luxHint="Diese Property veringert das Padding innerhalb des Controls."
@@ -148,29 +126,48 @@
     >
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="luxClearOnError"
       luxHint="Gibt an, ob das Control bei einem Validierungsfehler geleert wird."
       [(luxChecked)]="clearOnError"
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <app-file-example-simple-options [fileExample]="this"></app-file-example-simple-options>
+    <app-file-example-simple-options [fileExample]="this" class="lux-flex lux-flex-col lux-gap-4"></app-file-example-simple-options>
+    <example-form-disable [form]="form" [controlBinding]="controlBinding" [(disabled)]="disabled"></example-form-disable>
   </example-base-simple-options>
-  <example-base-advanced-options>
+  <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
     <app-file-example-advanced-options [fileExample]="this" [showHeaderConfigProperties]="false"></app-file-example-advanced-options>
-    <div class="lux-highlight-section column">
-      <div class="lux-highlight-section-label">Custom Action "Akzeptieren"</div>
-      <lux-input-ac luxLabel="Präfix" luxName="filelist_prefix_accept" [(luxValue)]="namePrefixAccept" [luxNoBottomLabel]="true"></lux-input-ac>
-      <lux-input-ac luxLabel="Suffix" luxName="filelist_suffix_accept" [(luxValue)]="nameSuffixAccept" [luxNoBottomLabel]="true"></lux-input-ac>
+    <h4>Custom Action "Akzeptieren"</h4>
+    <div class="lux-flex lux-flex-col lux-gap-4">
+      <lux-input-ac
+        luxLabel="Präfix"
+        luxName="filelist_prefix_accept"
+        [(luxValue)]="namePrefixAccept"
+        [luxNoBottomLabel]="true"
+      ></lux-input-ac>
+      <lux-input-ac
+        luxLabel="Suffix"
+        luxName="filelist_suffix_accept"
+        [(luxValue)]="nameSuffixAccept"
+        [luxNoBottomLabel]="true"
+      ></lux-input-ac>
     </div>
-    <div class="lux-highlight-section column">
-      <div class="lux-highlight-section-label">Custom Action "Ablehnen"</div>
-      <lux-input-ac luxLabel="Präfix" luxName="filelist_prefix_decline" [(luxValue)]="namePrefixDecline" [luxNoBottomLabel]="true"></lux-input-ac>
-      <lux-input-ac luxLabel="Suffix" luxName="filelist_suffix_decline" [(luxValue)]="nameSuffixDecline" [luxNoBottomLabel]="true"></lux-input-ac>
+    <h4>Custom Action "Ablehnen"</h4>
+    <div class="lux-flex lux-flex-col lux-gap-4">
+      <lux-input-ac
+        luxLabel="Präfix"
+        luxName="filelist_prefix_decline"
+        [(luxValue)]="namePrefixDecline"
+        [luxNoBottomLabel]="true"
+      ></lux-input-ac>
+      <lux-input-ac
+        luxLabel="Suffix"
+        luxName="filelist_suffix_decline"
+        [(luxValue)]="nameSuffixDecline"
+        [luxNoBottomLabel]="true"
+      ></lux-input-ac>
     </div>
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
       [luxNoTopLabel]="true"

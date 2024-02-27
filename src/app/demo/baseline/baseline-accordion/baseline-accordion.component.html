@@ -76,7 +76,7 @@
     <lux-panel>
       <lux-panel-header-title>Formularbeispiel</lux-panel-header-title>
       <lux-panel-header-description>Ausrichtung über LUX-Layout-Form-Rows</lux-panel-header-description>
-      <lux-panel-content fxLayout="column">
+      <lux-panel-content class="lux-flex lux-flex-col">
         <lux-textbox
           luxTitle="Hinweis"
           luxIcon="lux-interface-alert-information-circle"
@@ -90,108 +90,92 @@
           </p>
         </lux-textbox>
 
-        <lux-layout [formGroup]="addressForm" fxFill="100">
-          <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px' }" luxWrapAt="sm">
-            <lux-select-ac
-              luxLabel="Anrede"
-              luxHint="Bitte wählen Sie die Anrede aus."
-              luxControlBinding="title"
-              [luxOptions]="prefixOptions"
-              *luxLayoutRowItem="{ colSpan: 1 }"
-            ></lux-select-ac>
-            <div *luxLayoutRowItem="{ empty: true, colSpan: 7 }"></div>
-          </lux-layout-form-row>
-          <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px' }" luxWrapAt="sm">
-            <lux-input-ac
-              luxLabel="Vorname"
-              luxHint="Bitte geben Sie Ihren Vornamen an."
-              luxPlaceholder="Lorema"
-              luxControlBinding="firstname"
-              *luxLayoutRowItem="{ colSpan: 4 }"
-            ></lux-input-ac>
-            <lux-input-ac
-              luxLabel="Nachname"
-              luxHint="Bitte geben Sie Ihren Nachnamen an."
-              luxPlaceholder="Ipsum"
-              luxControlBinding="lastname"
-              *luxLayoutRowItem="{ colSpan: 4 }"
-            ></lux-input-ac>
-          </lux-layout-form-row>
-          <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px' }" luxWrapAt="sm">
-            <lux-input-ac
-              luxLabel="Straße"
-              luxHint="Bitte geben Sie Ihre Anschrift an."
-              luxPlaceholder="Hörder Hafenstr."
-              luxControlBinding="streetAddress"
-              *luxLayoutRowItem="{ colSpan: 7 }"
-            ></lux-input-ac>
-            <lux-input-ac
-              luxLabel="Nr."
-              luxControlBinding="streetNumber"
-              luxType="number"
-              luxPlaceholder="5"
-              [luxNumberAlignLeft]="true"
-              *luxLayoutRowItem="{ colSpan: 1 }"
-            ></lux-input-ac>
-          </lux-layout-form-row>
-          <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px' }" luxWrapAt="sm">
-            <lux-input-ac
-              luxLabel="Adress-Zusatz (optional)"
-              [luxMaxLength]="100"
-              luxControlBinding="addressInfo"
-              *luxLayoutRowItem="{}"
-            ></lux-input-ac>
-          </lux-layout-form-row>
-          <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px' }" luxWrapAt="sm">
-            <lux-input-ac
-              luxLabel="PLZ"
-              luxHint="Bitte geben Sie Ihre PLZ an."
-              luxPlaceholder="44263"
-              luxControlBinding="postalCode"
-              luxType="number"
-              [luxNumberAlignLeft]="true"
-              [luxHideCounterLabel]="true"
-              *luxLayoutRowItem="{ colSpan: 2 }"
-            ></lux-input-ac>
-            <lux-input-ac
-              luxLabel="Ort"
-              luxHint="Bitte geben Sie Ihren Wohnohrt an."
-              luxPlaceholder="Dortmund"
-              luxControlBinding="city"
-              *luxLayoutRowItem="{ colSpan: 6 }"
-            ></lux-input-ac>
-          </lux-layout-form-row>
-          <lux-layout-form-row [luxGap]="{ row: '12px', rowItem: '24px', column: '8px' }" luxWrapAt="sm">
-            <lux-autocomplete-ac
-              luxLabel="Land"
-              luxHint="Bitte geben Sie Ihr Land an."
-              [luxOptions]="countries"
-              luxControlBinding="country"
-              *luxLayoutRowItem="{ colSpan: 8 }"
-            ></lux-autocomplete-ac>
-            <div *luxLayoutRowItem="{ empty: true, colSpan: 2 }"></div>
-          </lux-layout-form-row>
-          <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px' }" luxWrapAt="sm">
-            <lux-textarea-ac
-              luxName="Accordion_Kommentar"
-              luxLabel="Kommentar"
-              luxControlBinding="comment"
-              luxHint="Hier ist Platz für deine Meinung."
-              luxPlaceholder="Lorem ipsum ..."
-              [luxMaxLength]="100"
-              [luxMinRows]="1"
-              [luxMaxRows]="-1"
-              *luxLayoutRowItem="{}"
-              luxAutocomplete="false"
-            ></lux-textarea-ac>
-          </lux-layout-form-row>
-        </lux-layout>
+        <div class="lux-grid gt-sm:lux-grid-cols-8 lt-md:lux-grid-cols-1 lux-gap-6" [formGroup]="addressForm">
+          <lux-select-ac
+            luxLabel="Anrede"
+            luxHint="Bitte wählen Sie die Anrede aus."
+            luxControlBinding="title"
+            [luxOptions]="prefixOptions"
+          ></lux-select-ac>
+          <div class="lux-col-span-7 lt-md:lux-display-none"></div>
+          <lux-input-ac
+            luxLabel="Vorname"
+            luxHint="Bitte geben Sie Ihren Vornamen an."
+            luxPlaceholder="Lorema"
+            luxControlBinding="firstname"
+            class="gt-sm:lux-col-span-4"
+          ></lux-input-ac>
+          <lux-input-ac
+            luxLabel="Nachname"
+            luxHint="Bitte geben Sie Ihren Nachnamen an."
+            luxPlaceholder="Ipsum"
+            luxControlBinding="lastname"
+            class="gt-sm:lux-col-span-4"
+          ></lux-input-ac>
+          <lux-input-ac
+            luxLabel="Straße"
+            luxHint="Bitte geben Sie Ihre Anschrift an."
+            luxPlaceholder="Hörder Hafenstr."
+            luxControlBinding="streetAddress"
+            class="gt-sm:lux-col-span-7"
+          ></lux-input-ac>
+          <lux-input-ac
+            luxLabel="Nr."
+            luxControlBinding="streetNumber"
+            luxType="number"
+            luxPlaceholder="5"
+            [luxNumberAlignLeft]="true"
+          ></lux-input-ac>
+          <lux-input-ac
+            luxLabel="Adress-Zusatz (optional)"
+            [luxMaxLength]="100"
+            luxControlBinding="addressInfo"
+            class="gt-sm:lux-col-span-8"
+          ></lux-input-ac>
+          <lux-input-ac
+            luxLabel="PLZ"
+            luxHint="Bitte geben Sie Ihre PLZ an."
+            luxPlaceholder="44263"
+            luxControlBinding="postalCode"
+            luxType="number"
+            [luxNumberAlignLeft]="true"
+            [luxHideCounterLabel]="true"
+            class="gt-sm:lux-col-span-2"
+          ></lux-input-ac>
+          <lux-input-ac
+            luxLabel="Ort"
+            luxHint="Bitte geben Sie Ihren Wohnohrt an."
+            luxPlaceholder="Dortmund"
+            luxControlBinding="city"
+            class="gt-sm:lux-col-span-6"
+          ></lux-input-ac>
+          <lux-autocomplete-ac
+            luxLabel="Land"
+            luxHint="Bitte geben Sie Ihr Land an."
+            [luxOptions]="countries"
+            luxControlBinding="country"
+            class="gt-sm:lux-col-span-8"
+          ></lux-autocomplete-ac>
+          <div class="lux-col-span-2 lt-md:lux-display-none"></div>
+          <lux-textarea-ac
+            luxName="Accordion_Kommentar"
+            luxLabel="Kommentar"
+            luxControlBinding="comment"
+            luxHint="Hier ist Platz für deine Meinung."
+            luxPlaceholder="Lorem ipsum ..."
+            [luxMaxLength]="100"
+            [luxMinRows]="1"
+            [luxMaxRows]="-1"
+            luxAutocomplete="false"
+            class="gt-sm:lux-col-span-8"
+          ></lux-textarea-ac>
+        </div>
       </lux-panel-content>
     </lux-panel>
     <lux-panel>
       <lux-panel-header-title>Checkboxlabel</lux-panel-header-title>
       <lux-panel-header-description>Darstellung der unterschiedlichen Labelhöhen</lux-panel-header-description>
-      <lux-panel-content fxLayout="column" fxLayoutGap="32px">
+      <lux-panel-content class="lux-flex lux-flex-col lux-gap-2">
         <lux-textbox luxColor="blue" class="lux-mt-5 lux-mb-5" style="max-width: 600px">
           <p>
             In diesem Panel werden die neuen Varianten der Check-Boxen vorgestellt. Zur Visualisierung der unterschiedlichen Höhen, wurde
@@ -199,8 +183,15 @@
             Diese Form der Gestaltung ist ausschließlich für Testzwecke und nicht für die weitere Verwendung gedacht.
           </p>
         </lux-textbox>
-        <p>Siehe auch <lux-link-plain luxLabel="lux-checkbox-container-ac" (luxClicked)="router.navigate(['components-overview', 'example', 'checkbox-container-ac'])">.</lux-link-plain></p>
-        <div [formGroup]="form" fxLayout="column" fxLayoutGap="4px" class="test-box">
+        <p>
+          Siehe auch
+          <lux-link-plain
+            luxLabel="lux-checkbox-container-ac"
+            (luxClicked)="router.navigate(['components-overview', 'example', 'checkbox-container-ac'])"
+            >.</lux-link-plain
+          >
+        </p>
+        <div [formGroup]="form" class="test-box lux-flex lux-flex-col lux-gap-3">
           <lux-checkbox-ac luxLabel="Default: {{ loremIpsum }}" [luxRequired]="true"></lux-checkbox-ac>
           <lux-checkbox-ac luxLabel="luxNoBottomLabel: {{ loremIpsum }}" [luxNoBottomLabel]="true" [luxRequired]="true"></lux-checkbox-ac>
           <lux-checkbox-ac luxLabel="luxNoTopLabel: {{ loremIpsum }}" [luxNoTopLabel]="true" [luxRequired]="true"></lux-checkbox-ac>

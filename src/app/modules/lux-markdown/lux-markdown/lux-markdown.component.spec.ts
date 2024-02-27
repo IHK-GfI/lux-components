@@ -39,9 +39,9 @@ describe('LuxMarkdownComponent', () => {
     expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual('<p>' + htmlData + '</p>');
 
     // Gerendert werden dürfen die schädlichen Tags allerdings nicht!
-    expect(
-      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
-    ).toEqual('<p>Lorem ipsum  dolor sit amet</p>');
+    expect(LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)).toEqual(
+      '<p>Lorem ipsum  dolor sit amet</p>'
+    );
   });
 
   it('Markdown-Überschriften sollten in Html-Überschriften umgewandelt werden', () => {
@@ -52,36 +52,36 @@ describe('LuxMarkdownComponent', () => {
     fixture.detectChanges();
 
     expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual('<h1>Lorem ipsum</h1>');
-    expect(
-      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
-    ).toEqual('<h1>Lorem ipsum</h1>');
+    expect(LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)).toEqual(
+      '<h1>Lorem ipsum</h1>'
+    );
 
     // Teste h2
     component.luxData = '## Lorem ipsum';
     fixture.detectChanges();
 
     expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual('<h2>Lorem ipsum</h2>');
-    expect(
-      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
-    ).toEqual('<h2>Lorem ipsum</h2>');
+    expect(LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)).toEqual(
+      '<h2>Lorem ipsum</h2>'
+    );
 
     // Teste h3
     component.luxData = '### Lorem ipsum';
     fixture.detectChanges();
 
     expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual('<h3>Lorem ipsum</h3>');
-    expect(
-      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
-    ).toEqual('<h3>Lorem ipsum</h3>');
+    expect(LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)).toEqual(
+      '<h3>Lorem ipsum</h3>'
+    );
 
     // Teste h4
     component.luxData = '#### Lorem ipsum';
     fixture.detectChanges();
 
     expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual('<h4>Lorem ipsum</h4>');
-    expect(
-      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
-    ).toEqual('<h4>Lorem ipsum</h4>');
+    expect(LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)).toEqual(
+      '<h4>Lorem ipsum</h4>'
+    );
   });
 
   it('Markdown-Links sollten in Html-Links umgewandelt werden', () => {
@@ -90,21 +90,10 @@ describe('LuxMarkdownComponent', () => {
     component.luxData = '[IHK-GfI](https://www.ihk-gfi.de)';
     fixture.detectChanges();
 
-    expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual(
+    expect(LuxUtil.stringWithoutASCIIChars(component.luxData)).toEqual('<p><a href="https://www.ihk-gfi.de">IHK-GfI</a></p>');
+    expect(LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)).toEqual(
       '<p><a href="https://www.ihk-gfi.de">IHK-GfI</a></p>'
     );
-    expect(
-      LuxUtil.stringWithoutASCIIChars(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.innerHTML)
-    ).toEqual('<p><a href="https://www.ihk-gfi.de">IHK-GfI</a></p>');
-  });
-
-  it('luxFlex muss gesetzt sein', () => {
-    expect(component.luxFlex).toEqual('flex');
-
-    component.luxFlex = '1 1 auto';
-    fixture.detectChanges();
-
-    expect(component.luxFlex).toEqual('1 1 auto');
   });
 
   it('luxStyle muss gesetzt sein', () => {
@@ -127,8 +116,6 @@ describe('LuxMarkdownComponent', () => {
     expect(component.luxClass).toEqual('my-class-1 my-class-2');
     expect(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.classList).toContain('my-class-1');
     expect(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.classList).toContain('my-class-2');
-    expect(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.classList).not.toContain(
-      'my-class-not-found2'
-    );
+    expect(fixture.debugElement.query(By.css('lux-html > div')).nativeElement.classList).not.toContain('my-class-not-found2');
   });
 });

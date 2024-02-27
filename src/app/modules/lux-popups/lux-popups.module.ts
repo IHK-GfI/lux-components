@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyDialogModule as MatDialogModule } from '@angular/material/legacy-dialog';
 import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
@@ -19,35 +18,34 @@ import { LuxDialogContentComponent } from './lux-dialog/lux-dialog-structure/lux
 import { LuxDialogActionsComponent } from './lux-dialog/lux-dialog-structure/lux-dialog-structure-subcomponents/lux-dialog-actions.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FlexLayoutModule,
-        LuxIconModule,
-        LuxActionModule,
-        MatSnackBarModule,
-        MatButtonModule,
-        LuxComponentsConfigModule,
-        LuxLayoutModule,
-        MatDialogModule,
-        A11yModule,
-        LuxDirectivesModule
-    ],
-    declarations: [
-        LuxSnackbarComponent,
-        LuxDialogPresetComponent,
-        LuxDialogStructureComponent,
-        LuxDialogTitleComponent,
-        LuxDialogContentComponent,
-        LuxDialogActionsComponent
-    ],
-    exports: [
-        LuxSnackbarComponent,
-        LuxDialogPresetComponent,
-        LuxDialogStructureComponent,
-        LuxDialogTitleComponent,
-        LuxDialogContentComponent,
-        LuxDialogActionsComponent
-    ],
-    providers: []
+  imports: [
+    CommonModule,
+    LuxIconModule,
+    LuxActionModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    LuxComponentsConfigModule,
+    LuxLayoutModule,
+    MatDialogModule,
+    A11yModule,
+    LuxDirectivesModule
+  ],
+  declarations: [
+    LuxSnackbarComponent,
+    LuxDialogPresetComponent,
+    LuxDialogStructureComponent,
+    LuxDialogTitleComponent,
+    LuxDialogContentComponent,
+    LuxDialogActionsComponent
+  ],
+  exports: [
+    LuxSnackbarComponent,
+    LuxDialogPresetComponent,
+    LuxDialogStructureComponent,
+    LuxDialogTitleComponent,
+    LuxDialogContentComponent,
+    LuxDialogActionsComponent
+  ],
+  providers: []
 })
 export class LuxPopupsModule {}

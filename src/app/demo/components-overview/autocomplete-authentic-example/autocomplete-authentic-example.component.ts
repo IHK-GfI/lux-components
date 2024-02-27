@@ -38,8 +38,8 @@ export class AutocompleteAuthenticExampleComponent {
     { label: 'Zurückgestellte Aufgaben 2', short: 'ZA2', value: 'C2' },
     { label: 'Vertretungsaufgaben 2', short: 'VA2', value: 'D2' }
   ];
-  stringOptions = this.options.map(o => o.label);
-  stringOptions2 = this.options2.map(o => o.label);
+  stringOptions = this.options.map((o) => o.label);
+  stringOptions2 = this.options2.map((o) => o.label);
 
   renderProperties: RenderPropertyItem[] = [
     { label: 'Bezeichnung (normal)', value: 'label' },
@@ -58,7 +58,7 @@ export class AutocompleteAuthenticExampleComponent {
   controlBinding = 'autocompleteExample';
   renderProperty = 'label';
   label = 'Label';
-  hint = 'Hint';
+  hint = 'Optionaler Zusatztext';
   hintShowOnlyOnFocus = false;
   placeholder = 'Placeholder';
   disabled = false;
@@ -131,9 +131,7 @@ export class AutocompleteAuthenticExampleComponent {
   }
 
   getOptions(): any[] {
-    if (this.useStringValues)
-      return this.toggleOptions ? this.stringOptions : this.stringOptions2;
-    else
-      return this.toggleOptions ? this.options : this.options2;
+    if (this.useStringValues) return this.toggleOptions ? this.stringOptions : this.stringOptions2;
+    else return this.toggleOptions ? this.options : this.options2;
   }
 }

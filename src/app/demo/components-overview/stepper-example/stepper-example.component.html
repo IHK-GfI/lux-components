@@ -36,7 +36,7 @@
           <lux-step-header> Step #{{ i }} </lux-step-header>
           <lux-step-content>
             <h3>Bitte tragen Sie alle Werte ein</h3>
-            <form [formGroup]="step.stepControl">
+            <form [formGroup]="step.stepControl" class="lux-flex lux-flex-col lux-gap-4">
               <lux-input-ac
                 luxLabel="Benutzername"
                 luxType="text"
@@ -65,24 +65,12 @@
             tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
             rebum.
           </p>
-          <lux-layout-form-row>
-            <lux-input-ac
-              luxLabel="Straße"
-              luxName="stepper.street"
-              luxControlBinding="street"
-              *luxLayoutRowItem="{ colSpan: 2 }"
-            ></lux-input-ac>
-            <lux-input-ac luxLabel="Hausnummer" luxName="stepper.number" luxControlBinding="number" *luxLayoutRowItem="{}"></lux-input-ac>
-          </lux-layout-form-row>
-          <lux-layout-form-row>
-            <lux-input-ac
-              luxLabel="Stadt"
-              luxName="stepper.city"
-              luxControlBinding="city"
-              *luxLayoutRowItem="{ colSpan: 2 }"
-            ></lux-input-ac>
-            <div *luxLayoutRowItem="{ empty: true }"></div>
-          </lux-layout-form-row>
+          <div class="lux-grid lux-grid-cols-3 lux-gap-3">
+            <lux-input-ac luxLabel="Straße" luxName="stepper.street" luxControlBinding="street" class="lux-col-span-2"></lux-input-ac>
+            <lux-input-ac luxLabel="Hausnummer" luxName="stepper.number" luxControlBinding="number"></lux-input-ac>
+            <lux-input-ac luxLabel="Stadt" luxName="stepper.city" luxControlBinding="city" class="lux-col-span-2"></lux-input-ac>
+            <div></div>
+          </div>
         </lux-step-content>
       </lux-step>
 
@@ -96,10 +84,10 @@
             feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
             laoreet dolore magna aliquam erat volutpat.
           </p>
-          <lux-layout-form-row>
-            <lux-input-ac luxLabel="IBAN" luxName="stepper.iban" luxControlBinding="iban" *luxLayoutRowItem="{}"></lux-input-ac>
-            <lux-input-ac luxLabel="BIC" luxName="stepper.bic" luxControlBinding="bic" *luxLayoutRowItem="{}"></lux-input-ac>
-          </lux-layout-form-row>
+          <div class="lux-grid lux-grid-cols-2 lt-lg:lux-grid-cols-1 lux-gap-3">
+            <lux-input-ac luxLabel="IBAN" luxName="stepper.iban" luxControlBinding="iban"></lux-input-ac>
+            <lux-input-ac luxLabel="BIC" luxName="stepper.bic" luxControlBinding="bic"></lux-input-ac>
+          </div>
         </lux-step-content>
       </lux-step>
 
@@ -127,17 +115,14 @@
       </lux-step>
     </lux-stepper>
   </example-base-content>
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
     ></lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="luxLinear"
       luxHint="Über dieses Flag wird bestimmt ob die einzelnen Steps erst abgeschlossen werden müssen, bevor weiter gesprungen werden kann."
       [(luxChecked)]="linear"
@@ -145,31 +130,27 @@
     >
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="luxDisabled"
       luxHint="Diese Property ermöglicht es, den ganzen Stepper zu deaktivieren."
       [(luxChecked)]="disabled"
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <div class="lux-highlight-section column">
-      <lux-toggle-ac
-        luxLabel="luxUseCustomIcons"
-        luxHint="Wenn aktiv, werden nicht mehr die Standard-Icons von Material für die Steps benutzt."
-        [(luxChecked)]="useCustomIcons"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-      <lux-input-ac
-        luxLabel="luxEditedIconName"
-        luxHint="Diese Property bestimmt das Icon für abgeschlossen editierte Steps."
-        [luxDisabled]="!useCustomIcons"
-        [(luxValue)]="editedIconName"
-      >
-      </lux-input-ac>
-    </div>
+    <lux-toggle-ac
+      luxLabel="luxUseCustomIcons"
+      luxHint="Wenn aktiv, werden nicht mehr die Standard-Icons von Material für die Steps benutzt."
+      [(luxChecked)]="useCustomIcons"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
     <lux-input-ac
-      class="lux-highlight-section"
+      luxLabel="luxEditedIconName"
+      luxHint="Diese Property bestimmt das Icon für abgeschlossen editierte Steps."
+      [luxDisabled]="!useCustomIcons"
+      [(luxValue)]="editedIconName"
+    >
+    </lux-input-ac>
+    <lux-input-ac
       luxLabel="luxCurrentStepNumber"
       luxHint="Diese Property definiert den aktuell sichtbaren Step."
       luxType="number"
@@ -177,46 +158,44 @@
       [(luxValue)]="currentStepNumber"
     >
     </lux-input-ac>
-    <div class="lux-highlight-section column">
-      <lux-toggle-ac
-        luxLabel="luxVerticalStepper"
-        luxHint="Über dieses Flag wird gesteuert ob der Stepper vertikal oder horizontal ausgerichtet wird."
-        [(luxChecked)]="verticalStepper"
-        (luxCheckedChange)="redrawIcons()"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-      <lux-toggle-ac
-        luxLabel="luxHorizontalStepAnimationActive"
-        luxHint="Diese Property bestimmt ob die Animationen für horizontale Stepper aktiviert sind oder nicht."
-        [luxDisabled]="verticalStepper"
-        [(luxChecked)]="horizontalAnimation"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-      <lux-toggle-ac
-        luxLabel="2 Schritte dynamisch hinzufügen"
-        [luxDisabled]="currentStepNumber === 4"
-        (luxCheckedChange)="onNewStepsChanged($event)"
-      >
-        <lux-form-hint>
-          1) In dieser Demo ist für den Stepper wenig Platz vorhanden, da der Konfigurationsbereich bereits die Hälfte des Platzes
-          verbraucht. In einer echten Anwendung würde der Stepper i.d.R. 100 Prozent des Platzes bekommen und die Labels schöner anzeigen.
-          <br /><br />
-          2) Im Zusammenfassungsschritt können die dynamisch hinzugefügten Schritte nicht mehr ausgeblendet werden.
-        </lux-form-hint>
-      </lux-toggle-ac>
-    </div>
+    <lux-toggle-ac
+      luxLabel="luxVerticalStepper"
+      luxHint="Über dieses Flag wird gesteuert ob der Stepper vertikal oder horizontal ausgerichtet wird."
+      [(luxChecked)]="verticalStepper"
+      (luxCheckedChange)="redrawIcons()"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <lux-toggle-ac
+      luxLabel="luxHorizontalStepAnimationActive"
+      luxHint="Diese Property bestimmt ob die Animationen für horizontale Stepper aktiviert sind oder nicht."
+      [luxDisabled]="verticalStepper"
+      [(luxChecked)]="horizontalAnimation"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <lux-toggle-ac
+      luxLabel="2 Schritte dynamisch hinzufügen"
+      [luxDisabled]="currentStepNumber === 4"
+      (luxCheckedChange)="onNewStepsChanged($event)"
+    >
+      <lux-form-hint>
+        1) In dieser Demo ist für den Stepper wenig Platz vorhanden, da der Konfigurationsbereich bereits die Hälfte des Platzes verbraucht.
+        In einer echten Anwendung würde der Stepper i.d.R. 100 Prozent des Platzes bekommen und die Labels schöner anzeigen.
+        <br /><br />
+        2) Im Zusammenfassungsschritt können die dynamisch hinzugefügten Schritte nicht mehr ausgeblendet werden.
+      </lux-form-hint>
+    </lux-toggle-ac>
   </example-base-simple-options>
-  <example-base-advanced-options>
+  <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
     <!-- Mögliche Input-Properties für die einzelnen Steps -->
-    <div fxLayout="column">
+    <div class="lux-flex lux-flex-col">
       <h3>LuxStepComponents</h3>
-      <lux-accordion class="lux-mb-3" luxMode="flat" [luxMulti]="false">
+      <lux-accordion class="lux-mb-5" luxMode="flat" [luxMulti]="false">
         <lux-panel *ngFor="let step of steps; let i = index">
           <lux-panel-header-title> Step #{{ i }} </lux-panel-header-title>
           <lux-panel-content>
-            <div class="lux-simple-form column">
+            <div class="lux-simple-form column lux-mt-3">
               <lux-input-ac luxLabel="luxIconName" [(luxValue)]="step.iconName">
                 <lux-form-hint>
                   Diese Property bestimmt das (custom) Icon des Steps.<br />
@@ -274,7 +253,6 @@
       <!-- Mögliche Konfigurationen für die Navigation-Buttons -->
 
       <lux-toggle-ac
-        class="lux-highlight-section"
         luxLabel="luxShowNavigationButtons"
         [(luxChecked)]="showNavigationButtons"
         (luxCheckedChange)="updateNavigationButtons($event)"
@@ -286,7 +264,6 @@
         </lux-form-hint>
       </lux-toggle-ac>
       <lux-toggle-ac
-        class="lux-highlight-section"
         luxLabel="Custom-Configs nutzen"
         luxHint="Wenn aktiv, werden dem Stepper eigene Konfigurationen für die Navigations-Buttons übergeben."
         [luxDisabled]="!showNavigationButtons"
@@ -294,7 +271,7 @@
         [luxNoTopLabel]="true"
       >
       </lux-toggle-ac>
-      <lux-accordion class="lux-mb-3" luxMode="flat" [luxMulti]="false" [luxDisabled]="!useCustomButtonConfig">
+      <lux-accordion class="lux-mt-5 lux-mb-5" luxMode="flat" [luxMulti]="false" [luxDisabled]="!useCustomButtonConfig">
         <lux-panel>
           <lux-panel-header-title> previousButtonConfig </lux-panel-header-title>
           <lux-panel-content>
@@ -320,7 +297,7 @@
 
 <!-- Template für die Wiederverwendung in der Navigation-Button Konfiguration -->
 <ng-template let-configurationObject #buttonConfigTemplate>
-  <div class="lux-simple-form column">
+  <div class="lux-simple-form column lux-mt-3">
     <lux-input-ac
       luxLabel="label"
       luxHint="Die Property definiert das Label des Navigations-Buttons."

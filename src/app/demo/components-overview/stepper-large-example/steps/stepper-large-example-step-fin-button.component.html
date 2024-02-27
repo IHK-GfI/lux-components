@@ -8,31 +8,21 @@
     sea takimata sanctus est Lorem ipsum dolor sit amet.
   </p>
 
-  <div [formGroup]="form">
-    <lux-layout-form-row>
-      <lux-input-ac luxLabel="Bezeichnung" luxName="stepper-large.example.label" luxControlBinding="label" *luxLayoutRowItem="{}"></lux-input-ac>
-      <lux-input-ac
-        luxLabel="Farbe"
-        luxName="stepper-large.example.color"
-        luxControlBinding="color"
-        luxHint="(primary, accent, warn)"
-        *luxLayoutRowItem="{}"
-      ></lux-input-ac>
-    </lux-layout-form-row>
-    <lux-layout-form-row>
-      <lux-input-ac
-        luxLabel="Iconname"
-        luxName="stepper-large.example.iconname"
-        luxControlBinding="iconName"
-        *luxLayoutRowItem="{}"
-      ></lux-input-ac>
-      <lux-toggle-ac
-        luxLabel="Icon rechts anzeigen"
-        luxName="stepper-large.example.iconShowRight"
-        luxControlBinding="iconShowRight"
-        *luxLayoutRowItem="{}"
-      ></lux-toggle-ac>
-    </lux-layout-form-row>
+  <div [formGroup]="form" class="lux-grid lux-grid-cols-2 lt-lg:lux-grid-cols-1 lux-gap-6">
+    <lux-input-ac luxLabel="Bezeichnung" luxName="stepper-large.example.label" luxControlBinding="label"></lux-input-ac>
+    <lux-input-ac
+      luxLabel="Farbe"
+      luxName="stepper-large.example.color"
+      luxControlBinding="color"
+      luxHint="(primary, accent, warn)"
+    ></lux-input-ac>
+
+    <lux-input-ac luxLabel="Iconname" luxName="stepper-large.example.iconname" luxControlBinding="iconName"></lux-input-ac>
+    <lux-toggle-ac
+      luxLabel="Icon rechts anzeigen"
+      luxName="stepper-large.example.iconShowRight"
+      luxControlBinding="iconShowRight"
+    ></lux-toggle-ac>
   </div>
 
   <p>

@@ -51,7 +51,7 @@ export class SliderAuthenticExampleComponent {
   required = false;
   denseFormat = false;
   label = 'Label';
-  hint = 'Hint';
+  hint = 'Optionaler Zusatztext';
   hintShowOnlyOnFocus = false;
   errorMessage = 'Das Feld enthält keinen gültigen Wert';
   max = 100;
@@ -63,7 +63,7 @@ export class SliderAuthenticExampleComponent {
 
   constructor() {
     this.form = new FormGroup<SliderDummyForm>({
-      sliderExample: new FormControl<number | null>(null)
+      sliderExample: new FormControl<number | null>(0)
     });
   }
 
