@@ -51,7 +51,7 @@
     "@angular/router": "15.2.9",
     "@chiragrupani/karma-chromium-edge-launcher": "2.2.1",
     "@ihk-gfi/lux-components-icons-and-fonts": "1.8.0",
-    "@ihk-gfi/lux-components-theme": "15.4.0",
+    "@ihk-gfi/lux-components-theme": "16.0.0-build.2",
     "@types/jasmine": "4.3.1",
     "@types/marked": "4.0.3",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
