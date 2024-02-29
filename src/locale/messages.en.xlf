@@ -873,7 +873,7 @@
         <target>Head / Menu</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -885,7 +885,7 @@
         <target>User menu / Navigation</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -897,7 +897,7 @@
         <target>Title icon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">43</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -909,7 +909,7 @@
         <target>Title image</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">44</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -1053,7 +1053,7 @@
         <target>The selected value is invalid.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-lookup/lux-lookup-model/lux-lookup-component.ts</context>
-          <context context-type="linenumber">241</context>
+          <context context-type="linenumber">240</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.relative-timestamp.days" datatype="html">

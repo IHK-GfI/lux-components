@@ -1,15 +1,15 @@
 /* eslint-disable max-classes-per-file */
 // noinspection DuplicatedCode
 
-import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from "@angular/core/testing";
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
 
 import { Component } from '@angular/core';
 import { ValidatorFnType } from '../../lux-form/lux-form-model/lux-form-component-base.class';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { By } from '@angular/platform-browser';
 import { Validators } from '@angular/forms';
-import { LuxOverlayHelper } from "../../lux-util/testing/lux-test-overlay-helper";
-import { LuxLookupCompareFn, luxLookupCompareKeyFn, luxLookupCompareKurzTextFn } from "../lux-lookup-model/lux-lookup-component";
+import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
+import { LuxLookupCompareFn, luxLookupCompareKeyFn, luxLookupCompareKurzTextFn } from '../lux-lookup-model/lux-lookup-component';
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupComboboxAcComponent } from './lux-lookup-combobox-ac.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -38,6 +38,154 @@ describe('LuxLookupComboboxAcComponent', () => {
       combobox = fixture.debugElement.query(By.directive(LuxLookupComboboxAcComponent)).componentInstance;
       fixture.detectChanges();
       overlayHelper = new LuxOverlayHelper();
+    });
+
+    it('isUngueltig sollte korrekt funktionieren', () => {
+      const todayAsDate = new Date();
+
+      const yesterdayAsDate = new Date();
+      yesterdayAsDate.setDate(todayAsDate.getDate() - 1);
+
+      const tomorrowAsDate = new Date();
+      tomorrowAsDate.setDate(todayAsDate.getDate() + 1);
+
+      const yesterday = yesterdayAsDate.toISOString().slice(0, 10).replace(/\-/g, '');
+      const today = todayAsDate.toISOString().slice(0, 10).replace(/\-/g, '');
+      const tomorrow = tomorrowAsDate.toISOString().slice(0, 10).replace(/\-/g, '');
+
+      const gueltigOhne: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland'
+      };
+      expect(combobox.isUngueltig(gueltigOhne)).toBeFalse();
+
+      const gueltigMin: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitVon: '00000000'
+      };
+      expect(combobox.isUngueltig(gueltigMin)).toBeFalse();
+
+      const gueltigMax: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitBis: '99999999'
+      };
+      expect(combobox.isUngueltig(gueltigMax)).toBeFalse();
+
+      const gueltigMinMax: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitVon: '00000000',
+        gueltigkeitBis: '99999999'
+      };
+      expect(combobox.isUngueltig(gueltigMinMax)).toBeFalse();
+
+      const gueltigAbGestern: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitVon: yesterday
+      };
+      expect(combobox.isUngueltig(gueltigAbGestern)).toBeFalse();
+
+      const gueltigAbGesternMax: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitVon: yesterday,
+        gueltigkeitBis: '99999999'
+      };
+      expect(combobox.isUngueltig(gueltigAbGesternMax)).toBeFalse();
+
+      const gueltigAbHeute: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitVon: today
+      };
+      expect(combobox.isUngueltig(gueltigAbHeute)).toBeFalse();
+
+      const gueltigAbHeuteMax: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitVon: today,
+        gueltigkeitBis: '99999999'
+      };
+      expect(combobox.isUngueltig(gueltigAbHeuteMax)).toBeFalse();
+
+      const gueltigAbMorgen: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitVon: tomorrow
+      };
+      expect(combobox.isUngueltig(gueltigAbMorgen)).toBeTrue();
+
+      const gueltigAbMorgenMax: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitVon: tomorrow,
+        gueltigkeitBis: '99999999'
+      };
+      expect(combobox.isUngueltig(gueltigAbMorgenMax)).toBeTrue();
+
+      const gueltigBisGestern: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitBis: yesterday
+      };
+      expect(combobox.isUngueltig(gueltigBisGestern)).toBeTrue();
+
+      const gueltigBisGesternMin: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitVon: '00000000',
+        gueltigkeitBis: yesterday
+      };
+      expect(combobox.isUngueltig(gueltigBisGesternMin)).toBeTrue();
+
+      const gueltigBisHeute: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitBis: today
+      };
+      expect(combobox.isUngueltig(gueltigBisHeute)).toBeFalse();
+
+      const gueltigBisHeuteMin: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitVon: '00000000',
+        gueltigkeitBis: today
+      };
+      expect(combobox.isUngueltig(gueltigBisHeuteMin)).toBeFalse();
+
+      const gueltigBisMorgen: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitBis: tomorrow
+      };
+      expect(combobox.isUngueltig(gueltigBisMorgen)).toBeFalse();
+
+      const gueltigBisMorgenMin: LuxLookupTableEntry = {
+        key: '4',
+        kurzText: 'Deutschland',
+        langText1: 'Deutschland',
+        gueltigkeitVon: '00000000',
+        gueltigkeitBis: tomorrow
+      };
+      expect(combobox.isUngueltig(gueltigBisMorgenMin)).toBeFalse();
     });
 
     it('Validatoren setzen und korrekte Fehlermeldung anzeigen', fakeAsync(() => {
@@ -295,7 +443,7 @@ const mockResultTest = [
     key: '1115',
     kurzText: 'Färöer',
     langText1: 'Färöer'
-  },
+  }
 ];
 
 class MockLookupService {

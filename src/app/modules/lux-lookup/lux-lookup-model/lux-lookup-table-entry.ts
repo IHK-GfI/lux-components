@@ -2,8 +2,8 @@
  * Kennzeichnet einen einzelnen Eintrag in einer Schlüsseltabelle.
  */
 export class LuxLookupTableEntry {
-  gueltigkeitBis?: string | number;
-  gueltigkeitVon?: string | number;
+  gueltigkeitBis?: string;
+  gueltigkeitVon?: string;
   key: string;
   kurzText?: string;
   langText1?: string;
