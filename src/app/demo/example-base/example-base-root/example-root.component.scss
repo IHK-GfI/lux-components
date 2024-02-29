@@ -29,12 +29,12 @@
         }
 
         mat-expansion-panel-header {
-          font-size: 16px;
+          font-size: 1rem;
         }
 
         mat-expansion-panel-header,
         .mat-expansion-panel-body {
-          padding: 0 12px;
+          padding: 0 0.75em;
         }
 
         .mat-expansion-panel-body {
@@ -49,8 +49,8 @@
 
     .example-component-list-item {
       cursor: pointer;
-      font-size: 16px;
-      padding: 2px 0 2px 32px;
+      font-size: 1rem;
+      padding: 0.125em 0 0.125em 2em;
     }
   }
 

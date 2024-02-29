@@ -1,5 +1,4 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-
 import { LuxTestHelper } from '../lux-util/testing/lux-test-helper';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
