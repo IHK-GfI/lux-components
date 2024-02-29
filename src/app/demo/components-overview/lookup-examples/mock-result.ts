@@ -27,7 +27,9 @@ export const mockResult: any[] = [
     ableitungsText3: 'Niederlande AT3',
     ableitungsText4: 'Niederlande AT4',
     ableitungsText5: 'Niederlande AT5',
-    ableitungsText6: 'Niederlande AT6'
+    ableitungsText6: 'Niederlande AT6',
+    gueltigkeitVon: '20500101',
+    gueltigkeitBis: '99999999'
   },
   {
     key: '4',

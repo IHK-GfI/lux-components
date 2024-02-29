@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 15.5.1
+
+### Bug Fixes
+
+- **lux-lookup-combobox**: Die Combobox interpretiert noch gültige Einträge als ungültig. [Issue 431](https://github.com/IHK-GfI/lux-components/issues/431)
+
 ## Version 15.5.0
 
 ### New

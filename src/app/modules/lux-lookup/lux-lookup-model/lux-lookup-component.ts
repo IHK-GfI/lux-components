@@ -177,19 +177,18 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
    * @param entry
    * @returns boolean
    */
-  isUngueltig(entry: LuxLookupTableEntry | LuxLookupTableEntry[]) {
+  isUngueltig(entry: LuxLookupTableEntry) {
     let isUngueltig = false;
+
     if (entry) {
-      if (!Array.isArray(entry)) {
-        if (entry.gueltigkeitBis) {
-          isUngueltig = Date.now() > +entry.gueltigkeitBis;
-        }
-      } else {
-        entry.forEach((element) => {
-          if (element.gueltigkeitBis && !isUngueltig) {
-            isUngueltig = Date.now() > +element.gueltigkeitBis;
-          }
-        });
+      const nowFormatted = new Date().toISOString().slice(0, 10).replace(/\-/g, '');
+
+      if (entry.gueltigkeitVon) {
+        isUngueltig = nowFormatted < entry.gueltigkeitVon;
+      }
+
+      if (!isUngueltig && entry.gueltigkeitBis) {
+        isUngueltig = nowFormatted > entry.gueltigkeitBis;
       }
     }
 
