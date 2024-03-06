@@ -26,6 +26,9 @@
       font-family: 'Blogger Sans';
     }
   }
+  &.block {
+    display: block;
+  }
 }
 
 @media (max-width: 1149px) {
