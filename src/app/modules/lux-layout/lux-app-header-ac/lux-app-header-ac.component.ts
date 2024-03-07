@@ -20,6 +20,7 @@ import { LuxAppHeaderAcActionNavComponent } from './lux-app-header-ac-subcompone
 import { LuxAppHeaderAcNavMenuComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-nav-menu/lux-app-header-ac-nav-menu.component';
 import { LuxAppHeaderAcUserMenuComponent } from './lux-app-header-ac-subcomponents/lux-app-header-ac-user-menu.component';
 import { LuxTenantLogoComponent } from '../../lux-tenant-logo/lux-tenant-logo.component';
+import { LuxComponentsConfigParameters } from '../../lux-components-config/lux-components-config-parameters.interface';
 
 @Component({
   selector: 'lux-app-header-ac',
@@ -41,6 +42,8 @@ export class LuxAppHeaderAcComponent implements OnInit, AfterContentInit, OnChan
   @Input() luxAriaUserMenuButtonLabel = $localize`:@@luxc.app-header.aria.usermenu.btn:Benutzermenü / Navigation`;
   @Input() luxAriaTitleIconLabel = $localize`:@@luxc.app-header.aria.title_icon.lbl:Titelicon`;
   @Input() luxAriaTitleImageLabel = $localize`:@@luxc.app-header.aria.title.image.lbl:Titelbild`;
+  @Input() luxCenteredView!: boolean;
+  @Input() luxCenteredWidth!: string;
 
   @Output() luxClicked: EventEmitter<Event> = new EventEmitter();
   @Output() luxAppLogoClicked: EventEmitter<Event> = new EventEmitter();
@@ -56,7 +59,7 @@ export class LuxAppHeaderAcComponent implements OnInit, AfterContentInit, OnChan
   userNameShort?: string;
 
   mobileView: boolean;
-  subscription?: Subscription;
+  subscriptions: Subscription[] = [];
 
   menuOpened = false;
 
@@ -70,9 +73,11 @@ export class LuxAppHeaderAcComponent implements OnInit, AfterContentInit, OnChan
     private configService: LuxComponentsConfigService
   ) {
     this.mobileView = this.queryService.activeMediaQuery === 'xs' || this.queryService.activeMediaQuery === 'sm';
-    this.subscription = this.queryService.getMediaQueryChangedAsObservable().subscribe((query) => {
-      this.mobileView = query === 'xs' || query === 'sm';
-    });
+    this.subscriptions.push(
+      this.queryService.getMediaQueryChangedAsObservable().subscribe((query) => {
+        this.mobileView = query === 'xs' || query === 'sm';
+      })
+    );
     this.appService.appHeaderEl = elementRef.nativeElement;
     this.iconBasePath = this.configService.currentConfig.iconBasePath ?? '';
     if (this.iconBasePath.endsWith('/')) {
@@ -95,6 +100,18 @@ export class LuxAppHeaderAcComponent implements OnInit, AfterContentInit, OnChan
 
     if (this.luxHideBrandLogo) {
       this.luxBrandLogoSrc = undefined;
+    }
+
+    if (!this.luxCenteredView) {
+      this.luxCenteredView = this.configService.currentConfig.viewConfiguration?.centeredView
+        ? this.configService.currentConfig.viewConfiguration.centeredView
+        : LuxComponentsConfigService.DEFAULT_CONFIG.viewConfiguration.centeredView;
+    }
+
+    if (!this.luxCenteredWidth) {
+      this.luxCenteredWidth = this.configService.currentConfig.viewConfiguration?.centeredWidth
+        ? this.configService.currentConfig.viewConfiguration.centeredWidth
+        : LuxComponentsConfigService.DEFAULT_CONFIG.viewConfiguration.centeredWidth;
     }
   }
 
