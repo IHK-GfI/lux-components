@@ -2,6 +2,8 @@
   class="lux-app-footer lux-p-3 lt-md:lux-p-2"
   [luxAriaRole]="luxAriaRoleFooterLabel ? 'contentinfo' : undefined"
   [luxAriaLabel]="luxAriaRoleFooterLabel"
+  [ngClass]="{ 'lux-centered': luxCenteredView }"
+  [ngStyle]="{ 'max-width': luxCenteredView ? luxCenteredWidth : '100%' }"
 >
   <div *ngIf="luxVersion" class="version lt-lg:lux-display-none" i18n="@@luxc.app-footer.version">Version {{ luxVersion }}</div>
 

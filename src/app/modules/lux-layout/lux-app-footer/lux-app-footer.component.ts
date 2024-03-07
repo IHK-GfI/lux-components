@@ -8,6 +8,7 @@ import { LuxAppFooterButtonService } from './lux-app-footer-button.service';
 import { LuxAppFooterLinkInfo } from './lux-app-footer-link-info';
 import { LuxAppFooterLinkService } from './lux-app-footer-link.service';
 import { LuxMenuComponent } from '../../lux-action/lux-menu/lux-menu.component';
+import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 
 @Component({
   selector: 'lux-app-footer',
@@ -18,6 +19,8 @@ export class LuxAppFooterComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() luxVersion?: string;
   @Input() luxAriaRoleFooterLabel = $localize`:@@luxc.app-footer.ariarolefooter:Fußzeilenbereich / Buttonbereich`;
+  @Input() luxCenteredView!: boolean;
+  @Input() luxCenteredWidth!: string;
 
   desktopView?: boolean;
   buttonInfos: LuxAppFooterButtonInfo[] = [];
@@ -30,7 +33,8 @@ export class LuxAppFooterComponent implements OnInit, AfterViewInit, OnDestroy {
     private mediaObserver: LuxMediaQueryObserverService,
     private elementRef: ElementRef,
     private appService: LuxAppService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private configService: LuxComponentsConfigService
   ) {
     this.appService.appFooterEl = elementRef.nativeElement;
   }
@@ -55,6 +59,18 @@ export class LuxAppFooterComponent implements OnInit, AfterViewInit, OnDestroy {
         this.cdr.detectChanges();
       })
     );
+
+    if (!this.luxCenteredView) {
+      this.luxCenteredView = this.configService.currentConfig.viewConfiguration?.centeredView
+        ? this.configService.currentConfig.viewConfiguration.centeredView
+        : LuxComponentsConfigService.DEFAULT_CONFIG.viewConfiguration.centeredView;
+    }
+
+    if (!this.luxCenteredWidth) {
+      this.luxCenteredWidth = this.configService.currentConfig.viewConfiguration?.centeredWidth
+        ? this.configService.currentConfig.viewConfiguration.centeredWidth
+        : LuxComponentsConfigService.DEFAULT_CONFIG.viewConfiguration.centeredWidth;
+    }
   }
 
   ngAfterViewInit() {

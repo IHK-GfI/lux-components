@@ -11,7 +11,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LuxComponentsConfigService {
-
   public static readonly DEFAULT_CONFIG = {
     iconBasePath: '/',
     displayLuxConsoleLogs: false,
@@ -29,6 +28,10 @@ export class LuxComponentsConfigService {
     },
     buttonConfiguration: {
       throttleTimeMs: 600
+    },
+    viewConfiguration: {
+      centeredView: false,
+      centeredWidth: '1500px'
     }
   };
 
