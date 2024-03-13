@@ -26,7 +26,7 @@ import { LuxTenantLogoComponent } from '../../lux-tenant-logo/lux-tenant-logo.co
   templateUrl: './lux-app-header-ac.component.html',
   styleUrls: ['./lux-app-header-ac.component.scss']
 })
-export class LuxAppHeaderAcComponent implements OnInit, AfterContentInit, OnChanges {
+export class LuxAppHeaderAcComponent implements OnInit, OnChanges {
   @Input() luxUserName?: string;
   @Input() luxAppTitle?: string;
   @Input() luxAppTitleShort?: string;
@@ -96,12 +96,6 @@ export class LuxAppHeaderAcComponent implements OnInit, AfterContentInit, OnChan
 
     if (this.luxHideBrandLogo) {
       this.luxBrandLogoSrc = undefined;
-    }
-  }
-
-  ngAfterContentInit(): void {
-    if (this.tenantLogo) {
-      this.tenantLogo.luxTenantLogoHeight = this.mobileView ? '24px' : '40px';
     }
   }
 
