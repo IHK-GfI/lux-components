@@ -29,6 +29,6 @@
     (focusin)="luxFocusIn.emit($event)"
     (focusout)="luxFocusOut.emit($event)"
     [id]="uid"
-    [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+    [luxAriaDescribedby]="descripedBy()"
   ></textarea>
 </lux-form-control-wrapper>

@@ -1,4 +1,3 @@
-
 import {
   ChangeDetectorRef,
   Component,
@@ -177,6 +176,14 @@ export class LuxSliderAcComponent extends LuxFormComponentBase<number> implement
     this.luxInput.emit(inputEvent);
     if (!this.formControl.touched) {
       this.formControl.markAsTouched();
+    }
+  }
+
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return this.formHintComponent || this.luxHint ? this.uid + '-hint' : undefined;
     }
   }
 
