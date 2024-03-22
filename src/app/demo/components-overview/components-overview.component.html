@@ -1,6 +1,6 @@
-<div fxLayout="column" id="Home" luxAriaRole="main" class="page-content">
+<div id="Home" luxAriaRole="main" class="page-content lux-flex lux-flex-col">
   <h1 class="page-title">Die Komponenten von A-Z</h1>
-  <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px grid">
+  <div class="lux-flex lux-flex-wrap lux-justify-start lux-align-start lux-gap-6">
     <lux-input-ac
       luxAriaLabel="Suchbegriff"
       luxTagId="Suchbegriff"
@@ -17,7 +17,7 @@
       </lux-input-ac-suffix>
     </lux-input-ac>
   </div>
-  <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="24px grid">
+  <div class="lux-flex lux-flex-wrap lux-justify-start lux-align-start lux-gap-6 lux-mb-4">
     <div
       *ngFor="let component of navigationService.getFilteredComponents(filterValue) | luxAlphabeticallySorted"
       class="lux-tile-ac-wrapper-demo"
@@ -27,10 +27,10 @@
         luxSubTitle="Modul: LUX-{{ component.moduleName | uppercase }}"
         (luxClicked)="component.onclick()"
         [luxTagId]="component.label"
-        fxFlex="1 1 100"
         [luxBadgeNotification]="component.news ? 'neu' : ''"
         luxBadgeColor="accent"
         luxBadgeSize="large"
+        class="lux-flex-auto"
       >
         <lux-icon [luxIconName]="navigationService.moduleIcons.get(component.moduleName)" *ngIf="!component.useImage"></lux-icon>
         <lux-image [luxImageSrc]="component.icon" luxImageWidth="100%" luxImageHeight="100%" *ngIf="component.useImage"></lux-image>

@@ -10,12 +10,11 @@
   [luxLabelLongFormat]="luxLabelLongFormat"
   luxTagId="luxInputWrapper"
 >
-  <div class="lux-input-row-authentic" fxLayout="row" fxLayoutAlign="start center">
-    <span class="lux-input-prefix-container" fxFlex="auto" matPrefix *ngIf="inputPrefix">
+  <div class="lux-input-row-authentic">
+    <span class="lux-input-prefix-container" matPrefix *ngIf="inputPrefix">
       <ng-content select="lux-input-ac-prefix"></ng-content>
     </span>
     <input
-      fxFlex="auto"
       matInput
       luxTagIdHandler
       [luxNameAttr]="luxName"
@@ -37,7 +36,6 @@
       *ngIf="luxType !== 'number'"
     />
     <input
-      fxFlex="auto"
       matInput
       luxTagIdHandler
       [luxNameAttr]="luxName"

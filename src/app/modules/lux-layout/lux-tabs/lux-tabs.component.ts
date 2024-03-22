@@ -22,8 +22,7 @@ import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-obs
 
 @Component({
   selector: 'lux-tabs',
-  templateUrl: './lux-tabs.component.html',
-  styleUrls: ['./lux-tabs.component.scss']
+  templateUrl: './lux-tabs.component.html'
 })
 export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   private static readonly _DEBOUNCE_TIME: number = 50;
@@ -50,10 +49,7 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   @ContentChildren(LuxTabComponent) luxTabs!: QueryList<LuxTabComponent>;
   @ViewChild('matTabs', { read: ElementRef, static: true }) tabHeader!: ElementRef;
 
-  constructor(
-    public componentsConfigService: LuxComponentsConfigService,
-    private queryService: LuxMediaQueryObserverService
-  ) {}
+  constructor(public componentsConfigService: LuxComponentsConfigService, private queryService: LuxMediaQueryObserverService) {}
 
   ngOnInit() {
     this.subscriptions.push(
@@ -97,9 +93,7 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   }
 
   getNotificationIconColorClassForTab(luxTab: LuxTabComponent): string {
-    return luxTab.luxShowNotification === true
-      ? LuxTabsComponent._notificationNewClass
-      : LuxTabsComponent._notificationReadClass;
+    return luxTab.luxShowNotification === true ? LuxTabsComponent._notificationNewClass : LuxTabsComponent._notificationReadClass;
   }
 
   /**

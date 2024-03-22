@@ -3,8 +3,7 @@ import { FocusableOption } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'lux-list-item',
-  templateUrl: './lux-list-item.component.html',
-  styleUrls: ['./lux-list-item.component.scss']
+  templateUrl: './lux-list-item.component.html'
 })
 export class LuxListItemComponent implements FocusableOption {
   private _luxTitle = '';

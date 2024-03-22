@@ -5,23 +5,22 @@
   luxTagIdHandler
   [luxTagId]="luxTagId"
   tabindex="0"
-  class="lux-cursor lux-highlight"
-  ngClass="lux-tile-small-font lux-m-2"
-  ngClass.gt-sm="lux-tile-normal-font lux-m-3"
+  class="lux-cursor lux-highlight lux-tile-small-font lux-m-2 gt-sm:lux-m-3"
+  [ngClass]="{ 'lux-tile-normal-font': !mobileView }"
   [luxBadgeNotification]="luxCounter ? '' + luxCounter : ''"
   luxBadgeColor="accent"
   [luxBadgeCap]="luxCounterCap"
   [luxBadgeOverlap]="true"
 >
   <mat-card-content>
-    <div fxLayout="column" fxFill>
-      <div fxFlex="1 1 100px" fxLayoutAlign="center center" class="lux-tile-content">
+    <div class="lux-tile-content-container lux-flex lux-flex-col">
+      <div class="lux-tile-content lux-flex lux-place-content-center lux-items-center">
         <ng-content select="lux-icon"></ng-content>
         <ng-content select="lux-image"></ng-content>
       </div>
-      <lux-divider fxFlex="0 0 2px" *ngIf="luxLabel" aria-hidden="true"></lux-divider>
+      <lux-divider *ngIf="luxLabel" aria-hidden="true"></lux-divider>
 
-      <h2 fxLayoutAlign="center center" class="lux-tile-label" [attr.aria-label]="luxLabel">
+      <h2 class="lux-tile-label lux-flex lux-place-content-center lux-items-center" [attr.aria-label]="luxLabel">
         <span>{{ luxLabel }}</span>
       </h2>
     </div>
@@ -29,7 +28,7 @@
 </mat-card>
 
 <div
-  fxFlex="auto"
+  class="lux-flex lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-full"
   [ngClass]="[
     'lux-tile-notification-icon',
     getNotificationIconColorClass(),

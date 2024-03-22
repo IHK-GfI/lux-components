@@ -1,5 +1,5 @@
-<div fxLayout="row" fxLayoutAlign="end">
-  <div class="lux-menu-extended" fxFlex="auto" fxLayout="row" fxLayoutAlign="end center" #menuExtendedContainer>
+<div class="lux-flex lux-place-content-end lux-items-stretch">
+  <div class="lux-menu-extended lux-flex lux-flex-auto lux-place-content-end lux-items-center" #menuExtendedContainer>
     <!-- Trigger, wenn luxDisplayMenuLeft === false -->
     <ng-container *ngIf="!luxDisplayMenuLeft">
       <ng-container [ngTemplateOutlet]="menuTriggerTemplate"></ng-container>
@@ -83,10 +83,8 @@
 <ng-template #menuTriggerTemplate>
   <div
     [matMenuTriggerFor]="menu"
-    fxFlex="0 0 auto"
-    fxFlexAlign="center"
     class="lux-menu-trigger lux-color-primary-500"
-    [ngClass]="{ 'lux-display-none': hideToggle }"
+    [ngClass]="{ 'lux-display-none-important': hideToggle }"
     #menuTrigger
     (menuOpened)="onMenuOpened()"
     (click)="menuTriggerStopPropagation($event)"

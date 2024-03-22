@@ -23,8 +23,7 @@ import { LuxMenuTriggerComponent } from './lux-menu-subcomponents/lux-menu-trigg
 // @dynamic Erklärung steht in der Datei "lux-decorators.ts".
 @Component({
   selector: 'lux-menu',
-  templateUrl: './lux-menu.component.html',
-  styleUrls: ['./lux-menu.component.scss']
+  templateUrl: './lux-menu.component.html'
 })
 export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnDestroy {
   // Diese Werte müssen angepasst werden, sollte das Styling dieser Component entsprechend geändert worden sein
@@ -301,7 +300,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   /**
    * Gibt die berechnete Breite des MenuItems zurück.
    * Diese setzt sich aus dem Padding (links und rechts, je 16px), dem Icon (wenn vorhanden, 15px) und der berechneten
-   * Textbreite zusammen + 10px Sicherheitspuffer.
+   * Textbreite zusammen + 25px Sicherheitspuffer.
    *
    * @param menuItem
    */
@@ -316,7 +315,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
       (!menuItem.luxHideLabelIfExtended ? this.getTextWidth(menuItem.luxLabel) : 0) +
       this.MARGIN_PX +
       (menuItem.luxButtonBadge ? this.BADGE_SIZE : 0) +
-      15
+      25
     );
   }
 

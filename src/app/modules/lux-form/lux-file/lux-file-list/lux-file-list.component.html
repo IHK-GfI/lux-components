@@ -14,7 +14,6 @@
       luxColor="primary"
       [luxDisabled]="!luxSelected || luxSelected.length === 0 || luxDeleteActionConfig.disabledHeader || luxDisabled || luxReadonly"
       (luxClicked)="clearFiles($event)"
-      fxFlex="0 0 auto"
       [luxAriaLabel]="luxDeleteActionConfig.labelHeader"
       luxAriaLabelSelector="button"
       *ngIf="!luxDeleteActionConfig.hiddenHeader"
@@ -25,7 +24,6 @@
       [luxIconName]="luxUploadActionConfig.iconNameHeader"
       luxTagId="lux-file-add"
       (luxClicked)="fileUpload.click()"
-      fxFlex="0 0 auto"
       [luxDisabled]="luxUploadActionConfig.disabledHeader || luxDisabled || luxReadonly"
       luxColor="primary"
       [luxAriaLabel]="luxUploadActionConfig.labelHeader"
@@ -37,28 +35,25 @@
   <lux-card-content>
     <div
       class="lux-file-list-content"
-      fxFlex="1 0 75px"
-      fxLayout="column"
-      fxLayoutAlign="{{ !luxSelected || luxSelected.length === 0 ? 'center center' : 'start start' }}"
+      [ngClass]="
+        !luxSelected || luxSelected.length === 0 ? 'lux-place-content-center lux-items-center' : 'lux-place-content-start lux-items-start'
+      "
     >
       <div
-        class="lux-file-icon-hint"
-        fxFlexFill
-        fxLayout="column"
-        fxLayoutAlign="center center"
+        class="lux-file-icon-hint lux-place-content-center lux-items-center"
         *ngIf="!luxSelected || luxSelected.length === 0; else showFileList"
       >
         <lux-divider></lux-divider>
         <lux-icon
-          class="lux-file-icon"
+          class="lux-file-icon lux-color-blue"
           [luxIconSize]="'3x'"
           [luxIconName]="luxUploadActionConfig.iconName"
-          [luxPadding]="'0'"
+          [luxPadding]="'8px 0 0 0'"
           [luxMargin]="'0'"
           *ngIf="luxUploadActionConfig.iconName"
         >
         </lux-icon>
-        <mat-hint [id]="uid + '-misc'" fxFlexOffset="8px" *ngIf="formHintComponent || luxHint">
+        <mat-hint [id]="uid + '-misc'" class="lux-file-hint lux-flex lux-mt-3" *ngIf="formHintComponent || luxHint">
           <ng-container *ngIf="luxHint; else formHintTemplate">
             {{ luxHint }}
           </ng-container>
@@ -69,7 +64,7 @@
       </div>
     </div>
   </lux-card-content>
-  <lux-card-actions fxLayout="row" fxFlexFill *ngIf="errorMessage && formControl?.touched">
+  <lux-card-actions class="lux-file-actions" *ngIf="errorMessage && formControl?.touched">
     <mat-error [id]="uid + '-misc'">
       {{ errorMessage }}
     </mat-error>
@@ -87,15 +82,8 @@
 </lux-card>
 <!-- Template für eine File-Entry -->
 <ng-template let-selectedFile="selectedFile" let-index="index" #fileListEntryTemplate>
-  <div
-    class="lux-file-list-entry lux-mt-2 lux-mb-2"
-    fxLayout="row"
-    fxLayoutAlign="start center"
-    tabindex="0"
-    [attr.aria-label]="'Datei ' + selectedFile.name"
-    #fileEntry
-  >
-    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="0 1 100%">
+  <div class="lux-file-list-entry lux-mt-2 lux-mb-2" tabindex="0" [attr.aria-label]="'Datei ' + selectedFile.name" #fileEntry>
+    <div class="lux-file-list-entry-content">
       <!-- Icon bzw. Img der Datei -->
       <ng-container [ngSwitch]="shouldDisplayPreviewImg(index)">
         <ng-container *ngSwitchCase="false">
@@ -105,23 +93,16 @@
             luxMargin="0"
             [luxIconName]="fileIcons[index]"
             luxIconSize="2x"
-            fxFlex="0 0 30px"
             aria-hidden="true"
           >
           </lux-icon>
         </ng-container>
         <ng-container *ngSwitchCase="true">
-          <img fxFlex="0 0 30px" aria-hidden="true" />
+          <img class="lux-file-list-entry-img" aria-hidden="true" />
         </ng-container>
       </ng-container>
       <!-- Der Name der Datei -->
-      <span
-        class="lux-file-list-entry-label lux-mr-3"
-        fxFlex="0 1 auto"
-        fxFlexOffset="8px"
-        style="font-size: 16px"
-        [ngClass]="{ 'lux-file-list-entry-label-disabled': luxDisabled }"
-      >
+      <span class="lux-file-list-entry-label lux-mr-3 lux-ml-3" [ngClass]="{ 'lux-file-list-entry-label-disabled': luxDisabled }">
         <span
           *ngIf="selectedFile.namePrefix"
           [ngStyle]="{ color: !luxDisabled ? selectedFile.namePrefixColor : '', fontSize: '0.8em', fontStyle: 'italic' }"
@@ -134,7 +115,18 @@
         >
       </span>
     </div>
-    <div fxLayout="row" fxLayoutAlign="start center" [fxFlex]="'1 0 ' + iconActionBarWidth + 'px'">
+    <div
+      class="lux-file-list-entry-menu"
+      [ngClass]="{
+        'bar-width-100': iconActionBarWidth === 100,
+        'bar-width-150': iconActionBarWidth === 150,
+        'bar-width-200': iconActionBarWidth === 200,
+        'bar-width-250': iconActionBarWidth === 250,
+        'bar-width-300': iconActionBarWidth === 300,
+        'bar-width-350': iconActionBarWidth === 350,
+        'bar-width-400': iconActionBarWidth === 400
+      }"
+    >
       <!-- Buttons zum erneuten Hochladen bzw. Löschen der Datei -->
       <lux-menu
         luxMenuIconName="lux-interface-setting-menu-vertical"
@@ -220,7 +212,7 @@
 </ng-template>
 
 <ng-template #showFileList>
-  <div class="lux-file-list-entries" fxFlexFill *ngIf="luxSelected">
+  <div class="lux-file-list-entries" *ngIf="luxSelected">
     <!-- Mehrere Dateien ausgewählt -->
     <ng-container *ngIf="isArray(luxSelected)">
       <lux-divider></lux-divider>

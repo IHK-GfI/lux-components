@@ -9,8 +9,7 @@
     (luxPrevButtonClicked)="stepperService.previousStep(this)"
     (luxNextButtonClicked)="stepperService.nextStep(this)"
     (luxStepClicked)="onStepClicked($event)"
-    ngClass.sm="lux-stepper-mobile"
-    ngClass.xs="lux-stepper-mobile"
+    [ngClass]="{ 'lux-stepper-mobile': mobileView }"
     *ngSwitchCase="true"
   >
   </lux-stepper-vertical>
@@ -24,8 +23,7 @@
     (luxPrevButtonClicked)="stepperService.previousStep(this)"
     (luxNextButtonClicked)="stepperService.nextStep(this)"
     (luxStepClicked)="onStepClicked($event)"
-    ngClass.sm="lux-stepper-mobile"
-    ngClass.xs="lux-stepper-mobile"
+    [ngClass]="{ 'lux-stepper-mobile': mobileView }"
     *ngSwitchDefault
   >
   </lux-stepper-horizontal>

@@ -5,15 +5,13 @@ import { LuxFilterFormComponent } from '../../lux-filter-form/lux-filter-form.co
 
 @Component({
   selector: 'lux-filter-load-dialog',
-  templateUrl: './lux-filter-load-dialog.component.html',
-  styleUrls: ['./lux-filter-load-dialog.component.scss']
+  templateUrl: './lux-filter-load-dialog.component.html'
 })
 export class LuxFilterLoadDialogComponent implements OnInit {
   filterArr: LuxFilter[] = [];
   component!: LuxFilterFormComponent;
 
-  constructor(public luxDialogRef: LuxDialogRef<LuxFilterFormComponent>) {
-  }
+  constructor(public luxDialogRef: LuxDialogRef<LuxFilterFormComponent>) {}
 
   ngOnInit() {
     this.component = this.luxDialogRef.data;

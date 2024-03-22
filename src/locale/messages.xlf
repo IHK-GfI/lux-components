@@ -39,7 +39,7 @@
         <source>Menü</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-action/lux-menu/lux-menu.component.ts</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.message.btn.close.arialabel" datatype="html">
@@ -81,42 +81,42 @@
         <source>Reihe <x id="INTERPOLATION" equiv-text="{{ i }}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.html</context>
-          <context context-type="linenumber">68,69</context>
+          <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.multiselect.all.chk.arialabel" datatype="html">
         <source>Alle Einträge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.sort.descending" datatype="html">
         <source>absteigend</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
-          <context context-type="linenumber">553</context>
+          <context context-type="linenumber">552</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.sort.ascending" datatype="html">
         <source>aufsteigend</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
-          <context context-type="linenumber">556</context>
+          <context context-type="linenumber">555</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.sort.no_longer" datatype="html">
         <source>nicht mehr</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
-          <context context-type="linenumber">559</context>
+          <context context-type="linenumber">558</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.sort.announce" datatype="html">
         <source>Spalte <x id="column" equiv-text="columnDef"/> sortiert nun <x id="direction" equiv-text="directionDescription"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
-          <context context-type="linenumber">564</context>
+          <context context-type="linenumber">563</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.errorpage.error_number" datatype="html">
@@ -473,11 +473,11 @@
         <source>Fehlermeldung löschen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-list/lux-file-list.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">74</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-form-control-wrapper/lux-form-control-wrapper.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file-list.upload.lbl" datatype="html">
@@ -544,7 +544,7 @@
         <source>Löschen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-subcomponents/lux-file-delete-dialog/lux-file-delete-dialog.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file.replace.dialog.title.multiple" datatype="html">
@@ -586,7 +586,7 @@
         <source>Ersetzen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-subcomponents/lux-file-replace-dialog/lux-file-replace-dialog.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file.upload.delete.btn.arialabel" datatype="html">
@@ -720,17 +720,17 @@
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.app-footer.version" datatype="html">
-        <source> Version <x id="INTERPOLATION" equiv-text="{{ luxVersion }}"/> </source>
+        <source>Version <x id="INTERPOLATION" equiv-text="{{ luxVersion }}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-footer/lux-app-footer.component.html</context>
-          <context context-type="linenumber">8,10</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.app-footer.ariarolefooter" datatype="html">
         <source>Fußzeilenbereich / Buttonbereich</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-footer/lux-app-footer.component.ts</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.app-header.user.menu.trigger" datatype="html">
@@ -745,7 +745,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.lang-select.aria.langmenu.btn" datatype="html">
@@ -763,7 +763,7 @@
         <source>Spracheinstellungen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac-subcomponents/lux-lang-select-ac/lux-lang-select-ac.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.app-header.aria.role_header.lbl" datatype="html">
@@ -774,7 +774,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.app-header.aria.usermenu.btn" datatype="html">
@@ -799,8 +799,8 @@
           <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="luxc.app-header.aria.title.image.lbl" datatype="html">
-        <source>Titelbild</source>
+      <trans-unit id="luxc.app-header.aria.title_icon.lbl" datatype="html">
+        <source>Titelicon</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
           <context context-type="linenumber">44</context>
@@ -808,6 +808,17 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
           <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.app-header.aria.title.image.lbl" datatype="html">
+        <source>Titelbild</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.side-nav.ariarolenavigation" datatype="html">
@@ -821,35 +832,35 @@
         <source>Anwendungsmenü / Navigation</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.app-header.aria.title.link.lbl" datatype="html">
         <source></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.card.expandedLabel.open" datatype="html">
         <source>Mehr</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-card/lux-card.component.ts</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.card.expandedLabel.close" datatype="html">
         <source>Weniger</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-card/lux-card.component.ts</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.list.empty_label" datatype="html">
         <source>Keine Einträge vorhanden</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-list/lux-list.component.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.master-detail.back-to-master-label" datatype="html">
@@ -895,7 +906,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-stepper/lux-stepper.component.ts</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.stepper.next.btn" datatype="html">
@@ -906,7 +917,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-stepper/lux-stepper.component.ts</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.stepper.finish.btn" datatype="html">
@@ -917,7 +928,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-stepper/lux-stepper.component.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.lookup-autocomplete.error_message.not_available" datatype="html">

@@ -33,20 +33,113 @@
     }
   }
 
-  ::ng-deep mat-card-title {
+  ::ng-deep .lux-card-header {
     button.lux-icon-button mat-icon.lux-icon {
       height: 22px !important;
       width: 22px !important;
     }
+
+    .lux-card-subtitle {
+      display: unset;
+      height: 0;
+    }
+  }
+  ::ng-deep mat-card-content {
+    padding-top: 8px;
+  }
+
+  .lux-file-list-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 75px;
+  }
+
+  .lux-file-icon-hint {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    width: 100%;
+  }
+  .lux-file-actions {
+    display: flex;
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    width: 100%;
   }
 
   .lux-file-list-entries {
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    width: 100%;
     .lux-file-list-entry {
       min-height: 60px;
-
+      display: flex;
+      box-sizing: border-box;
+      place-content: center start;
+      align-items: center;
+      .lux-file-list-entry-content {
+        display: flex;
+        box-sizing: border-box;
+        place-content: center start;
+        align-items: center;
+        flex: 0 1 100%;
+      }
+      .lux-file-list-entry-icon,
+      .lux-file-list-entry-img {
+        flex: 0 0 30px;
+        box-sizing: border-box;
+        max-width: 30px;
+        min-width: 30px;
+      }
+      .lux-file-list-entry-label {
+        flex: 0 1 auto;
+        font-size: 1rem;
+      }
       .lux-file-list-entry-label:not(.lux-file-list-entry-label-disabled) {
         -ms-word-break: break-all;
         word-break: break-all;
+      }
+      .lux-file-list-entry-menu {
+        display: flex;
+        box-sizing: border-box;
+        place-content: center flex-start;
+        align-items: flex-start;
+        flex: 1 0 50px;
+        min-width: 50px;
+        &.bar-width-100 {
+          flex-basis: 100px;
+          min-width: 100px;
+        }
+        &.bar-width-150 {
+          flex-basis: 150px;
+          min-width: 150px;
+        }
+        &.bar-width-200 {
+          flex-basis: 200px;
+          min-width: 200px;
+        }
+        &.bar-width-250 {
+          flex-basis: 250px;
+          min-width: 250px;
+        }
+        &.bar-width-300 {
+          flex-basis: 300px;
+          min-width: 300px;
+        }
+        &.bar-width-350 {
+          flex-basis: 350px;
+          min-width: 350px;
+        }
+        &.bar-width-400 {
+          flex-basis: 400px;
+          min-width: 400px;
+        }
       }
     }
   }

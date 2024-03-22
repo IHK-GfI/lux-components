@@ -26,11 +26,11 @@ import { LuxFilterLoadDialogComponent } from '../lux-filter-dialog/lux-filter-lo
 import { LuxFilterItemDirective } from '../lux-filter-base/lux-filter-item.directive';
 import { LuxFilterItem } from '../lux-filter-base/lux-filter-item';
 import { LuxFilterFormExtendedComponent } from './lux-filter-form-extended/lux-filter-form-extended.component';
+import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 
 @Component({
   selector: 'lux-filter-form',
-  templateUrl: './lux-filter-form.component.html',
-  styleUrls: ['./lux-filter-form.component.scss']
+  templateUrl: './lux-filter-form.component.html'
 })
 export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy {
   dialogConfig: ILuxDialogConfig = {
@@ -45,46 +45,45 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   _luxFilterValues = {};
   _luxFilterExpanded = false;
 
-  @Input() luxTitle = $localize `:@@luxc.filter.title:Filter`;
+  @Input() luxTitle = $localize`:@@luxc.filter.title:Filter`;
   @Input() luxButtonRaised = false;
   @Input() luxButtonFlat = false;
-  @Input() luxButtonFilterLabel = $localize `:@@luxc.filter.filter.btn:Filtern`;
+  @Input() luxButtonFilterLabel = $localize`:@@luxc.filter.filter.btn:Filtern`;
   @Input() luxButtonFilterColor: LuxThemePalette = 'primary';
-  @Input() luxButtonResetLabel = $localize `:@@luxc.filter.reset.btn:Zurücksetzen`;
+  @Input() luxButtonResetLabel = $localize`:@@luxc.filter.reset.btn:Zurücksetzen`;
   @Input() luxButtonResetColor?: LuxThemePalette;
-  @Input() luxButtonSaveLabel = $localize `:@@luxc.filter.save.btn:Speichern`;
+  @Input() luxButtonSaveLabel = $localize`:@@luxc.filter.save.btn:Speichern`;
   @Input() luxButtonSaveColor?: LuxThemePalette;
-  @Input() luxButtonLoadLabel = $localize `:@@luxc.filter.load.btn:Laden`;
+  @Input() luxButtonLoadLabel = $localize`:@@luxc.filter.load.btn:Laden`;
   @Input() luxButtonLoadColor?: LuxThemePalette;
   @Input() luxButtonDialogSave: LuxThemePalette = 'primary';
   @Input() luxButtonDialogLoad: LuxThemePalette = 'primary';
   @Input() luxButtonDialogDelete: LuxThemePalette = 'warn';
   @Input() luxButtonDialogCancel?: LuxThemePalette;
   @Input() luxButtonDialogClose?: LuxThemePalette;
-  @Input() luxDefaultFilterMessage = $localize `:@@luxc.filter.defaultFilterMessage:Es wird nach den Standardeinstellungen gefiltert.`;
+  @Input() luxDefaultFilterMessage = $localize`:@@luxc.filter.defaultFilterMessage:Es wird nach den Standardeinstellungen gefiltert.`;
   @Input() luxShowChips = true;
   @Input() luxStoredFilters: LuxFilter[] = [];
   @Input() luxDisableShortcut = false;
   @Input() luxShowAsCard = false;
   @Input() set luxExpandedLabelOpen(label: string) {
-    if(label) {
+    if (label) {
       this._luxExpandedLabelOpen = label;
     }
   }
   get luxExpandedLabelOpen() {
     return this._luxExpandedLabelOpen;
   }
-  _luxExpandedLabelOpen = $localize `:@@luxc.filter.expandedLabel.open:Mehr Optionen`;
+  _luxExpandedLabelOpen = $localize`:@@luxc.filter.expandedLabel.open:Mehr Optionen`;
   @Input() set luxExpandedLabelClose(label: string) {
-    if(label){
+    if (label) {
       this._luxExpandedLabelClose = label;
     }
   }
   get luxExpandedLabelClose() {
     return this._luxExpandedLabelClose;
   }
-  _luxExpandedLabelClose = $localize `:@@luxc.filter.expandedLabel.close:Weniger Optionen`;
-
+  _luxExpandedLabelClose = $localize`:@@luxc.filter.expandedLabel.close:Weniger Optionen`;
 
   @Input()
   get luxFilterExpanded() {
@@ -116,7 +115,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
 
   @Output() luxOnFilter = new EventEmitter<string>();
   @Output() luxOnSave = new EventEmitter<LuxFilter>();
-  @Output() luxOnLoad  = new EventEmitter<string>();
+  @Output() luxOnLoad = new EventEmitter<string>();
   @Output() luxOnDelete = new EventEmitter<LuxFilter>();
   @Output() luxOnReset = new EventEmitter<void>();
   @Output() luxFilterExpandedChange = new EventEmitter<boolean>();
@@ -129,7 +128,9 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   initComplete = false;
   initFilterValue = null;
 
-  constructor(private dialogService: LuxDialogService, private cdr: ChangeDetectorRef) {
+  isMobile = false;
+
+  constructor(private dialogService: LuxDialogService, private cdr: ChangeDetectorRef, private mediaQuery: LuxMediaQueryObserverService) {
     this.filterForm = new FormGroup({});
   }
 
@@ -143,6 +144,12 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     if (this.luxOnLoad.observed) {
       this.hasLoadAction = true;
     }
+
+    this.subscriptions.push(
+      this.mediaQuery.getMediaQueryChangedAsObservable().subscribe((query) => {
+        this.isMobile = query === 'xs' || query === 'sm';
+      })
+    );
   }
 
   private updateFilterChips() {
@@ -160,7 +167,11 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
             if (Array.isArray(value)) {
               let i = 0;
               value.forEach((selected) => {
-                const newFilterItem = new LuxFilterItem(formItem.filterItem.label, formItem.filterItem.binding, formItem.filterItem.component);
+                const newFilterItem = new LuxFilterItem(
+                  formItem.filterItem.label,
+                  formItem.filterItem.binding,
+                  formItem.filterItem.component
+                );
                 Object.assign(newFilterItem, formItem.filterItem);
                 newFilterItem.value = newFilterItem.renderFn(newFilterItem, selected);
                 newFilterItem.multiValueIndex = i++;
@@ -262,7 +273,8 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
     const removedFilterItem: LuxFilterItem<any> = this.filterItems.splice(indexRemoved, 1)[0];
 
     if (
-      (removedFilterItem.component instanceof LuxSelectAcComponent || removedFilterItem.component instanceof LuxLookupComboboxAcComponent) &&
+      (removedFilterItem.component instanceof LuxSelectAcComponent ||
+        removedFilterItem.component instanceof LuxLookupComboboxAcComponent) &&
       removedFilterItem.component.luxMultiple
     ) {
       // Fall: Multiselect

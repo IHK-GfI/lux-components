@@ -5,8 +5,7 @@ export const luxFormControlSelektor = 'lux-form-control-wrapper';
 
 @Component({
   selector: 'lux-form-control-wrapper',
-  templateUrl: './lux-form-control-wrapper.component.html',
-  styleUrls: ['./lux-form-control-wrapper.component.scss']
+  templateUrl: './lux-form-control-wrapper.component.html'
 })
 export class LuxFormControlWrapperComponent {
   focused = false;

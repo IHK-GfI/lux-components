@@ -1,6 +1,5 @@
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
-
 import { LuxMenuComponent } from './lux-menu.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Component } from '@angular/core';
@@ -72,7 +71,7 @@ describe('LuxMenuComponent', () => {
     updateExtendedMenuItems();
 
     // Nachbedingungen prüfen
-    extendedMenuItems = fixture.debugElement.queryAll(By.css('.lux-menu-item:not([style*=none])'));
+    extendedMenuItems = fixture.debugElement.queryAll(By.css('lux-button.lux-menu-item:not([style*=none])'));
     expect(extendedMenuItems.length).toBeGreaterThan(0);
     expect(extendedMenuItems.length).toBeLessThan(3);
   }));
@@ -158,8 +157,7 @@ describe('LuxMenuComponent', () => {
     menuComponent.menuTriggerElRef!.nativeElement.click();
     LuxTestHelper.wait(fixture);
 
-    let disabledLength = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-hidden) button[disabled]'))
-      .length;
+    let disabledLength = fixture.debugElement.queryAll(By.css('.lux-menu-item:not(.lux-hidden) button[disabled]')).length;
     expect(disabledLength).toBe(0);
 
     // Änderungen durchführen

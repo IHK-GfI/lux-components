@@ -7,7 +7,6 @@
     'lux-focused-authentic': focused,
     'lux-dense-authentic': luxFormComponent.luxDense
   }"
-  fxLayout="column"
   (focusin)="focusin()"
   (focusout)="focusout()"
 >
@@ -36,20 +35,14 @@
     </div>
   </div>
   <!-- Container für das FormControl -->
-  <div class="lux-form-control-container-authentic" [ngClass]="{ 'lux-no-input-row': luxNoInputRow }" fxFlex="auto">
+  <div class="lux-form-control-container-authentic" [ngClass]="{ 'lux-no-input-row': luxNoInputRow }">
     <ng-content></ng-content>
   </div>
 
   <!-- Container für das Hint und den Error und den Counter -->
-  <div
-    class="lux-form-control-misc-authentic"
-    [ngClass]="{ 'lux-no-input-row': luxNoInputRow }"
-    *ngIf="!luxNoBottomLabel && !luxNoLabels"
-    fxLayout="row"
-    fxLayoutAlign="space-between start"
-  >
+  <div class="lux-form-control-misc-authentic" [ngClass]="{ 'lux-no-input-row': luxNoInputRow }" *ngIf="!luxNoBottomLabel && !luxNoLabels">
     <ng-container [ngSwitch]="shouldDisplayError()">
-      <div fxLayout="row" *ngSwitchCase="true" class="lux-form-control-error-container">
+      <div *ngSwitchCase="true" class="lux-form-control-error-container">
         <lux-icon
           class="lux-color-red lux-alert-icon"
           luxIconName="lux-interface-alert-warning-triangle"

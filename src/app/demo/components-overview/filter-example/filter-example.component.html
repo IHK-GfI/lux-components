@@ -3,9 +3,8 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90filter%E2%80%90form"
 >
   <example-base-content>
-    <div fxLayout="column">
+    <div class="lux-flex lux-flex-col">
       <lux-filter-form
-        fxFlex="1 1 auto"
         (luxOnFilter)="onFilter($event)"
         [(luxFilterExpanded)]="expanded"
         [luxFilterValues]="initFilter"
@@ -24,9 +23,9 @@
         [luxButtonDialogCancel]="buttonDialogCancel"
         [luxButtonDialogClose]="buttonDialogClose"
         [luxDisableShortcut]="disableShortcut"
-        class="lux-ml-1 lux-mr-1 lux-mb-3"
+        class="lux-ml-1 lux-mr-1 lux-mb-3 lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-auto"
       >
-        <lux-layout-form-row luxWrapAt="md">
+        <div class="lux-mt-4 lux-grid lux-grid-cols-2 lt-md:lux-grid-cols-1 lux-gap-4">
           <lux-lookup-autocomplete-ac
             luxLabel="Lookup Autocomplete"
             luxLookupId="filter_lookup_autocomplete"
@@ -37,7 +36,6 @@
             [luxFilterDisabled]="autoCompleteLookupDisabled"
             [luxFilterHidden]="autoCompleteLookupHidden"
             luxFilterItem
-            *luxLayoutRowItem="{}"
           ></lux-lookup-autocomplete-ac>
           <lux-lookup-combobox-ac
             luxLabel="Lookup Combobox"
@@ -50,10 +48,7 @@
             [luxFilterDisabled]="selectLookupDisabled"
             [luxFilterHidden]="selectLookupHidden"
             luxFilterItem
-            *luxLayoutRowItem="{}"
           ></lux-lookup-combobox-ac>
-        </lux-layout-form-row>
-        <lux-layout-form-row luxWrapAt="md">
           <lux-input-ac
             luxLabel="Input"
             luxName="filter_input"
@@ -63,7 +58,6 @@
             [luxFilterDisabled]="inputDisabled"
             [luxFilterHidden]="inputHidden"
             luxFilterItem
-            *luxLayoutRowItem="{}"
           ></lux-input-ac>
           <lux-autocomplete-ac
             luxLabel="Autocomplete"
@@ -72,10 +66,7 @@
             [luxFilterDisabled]="autoCompleteDisabled"
             [luxFilterHidden]="autoCompleteHidden"
             luxFilterItem
-            *luxLayoutRowItem="{}"
           ></lux-autocomplete-ac>
-        </lux-layout-form-row>
-        <lux-layout-form-row luxWrapAt="md">
           <lux-datepicker-ac
             luxLabel="Datepicker"
             luxName="filter_datepicker"
@@ -83,7 +74,6 @@
             [luxFilterDisabled]="datepickerDisabled"
             [luxFilterHidden]="datepickerHidden"
             luxFilterItem
-            *luxLayoutRowItem="{}"
           ></lux-datepicker-ac>
           <lux-datetimepicker-ac
             luxLabel="Datetimepicker"
@@ -92,10 +82,7 @@
             [luxFilterDisabled]="datetimepickerDisabled"
             [luxFilterHidden]="datetimepickerHidden"
             luxFilterItem
-            *luxLayoutRowItem="{}"
           ></lux-datetimepicker-ac>
-        </lux-layout-form-row>
-        <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px' }" luxWrapAt="md">
           <lux-select-ac
             luxLabel="Single-Select"
             luxControlBinding="singleSelect"
@@ -108,7 +95,6 @@
             luxFilterColor="accent"
             luxFilterItem
             [luxNoBottomLabel]="true"
-            *luxLayoutRowItem="{}"
           ></lux-select-ac>
           <lux-select-ac
             luxLabel="Multi-Select"
@@ -122,10 +108,7 @@
             luxFilterColor="accent"
             luxFilterItem
             [luxNoBottomLabel]="true"
-            *luxLayoutRowItem="{}"
           ></lux-select-ac>
-        </lux-layout-form-row>
-        <lux-layout-form-row luxWrapAt="md">
           <lux-toggle-ac
             luxLabel="Toggle"
             luxControlBinding="toggle"
@@ -135,14 +118,12 @@
             luxFilterColor="warn"
             luxFilterItem
             [luxNoTopLabel]="true"
-            *luxLayoutRowItem="{}"
           ></lux-toggle-ac>
           <lux-radio-ac
             [luxNoTopLabel]="true"
             [luxOrientationVertical]="false"
             [luxOptions]="radioOptions"
             luxControlBinding="radio"
-            *luxLayoutRowItem="{}"
             luxOptionLabelProp="label"
             [luxPickValue]="radioPickValueFn"
             luxFilterItem
@@ -151,18 +132,15 @@
             [luxFilterHidden]="radioSelectHidden"
           >
           </lux-radio-ac>
-        </lux-layout-form-row>
+        </div>
       </lux-filter-form>
       <div class="lux-highlight-section column lux-ml-2 lux-mr-2">
         <h2 class="lux-highlight-section-label">Filter</h2>
         <pre>{{ currentFilter | json }}</pre>
       </div>
       <!-- Beispiel als Card -->
-      <h2>
-        Lux-Filter-Form in einer Card <lux-badge luxColor="green"><lux-label luxId="badgeLabelNew">neu</lux-label></lux-badge>
-      </h2>
+      <h2>Lux-Filter-Form in einer Card</h2>
       <lux-filter-form
-        fxFlex="1 1 auto"
         [luxShowAsCard]="true"
         [luxExpandedLabelOpen]="openLabel"
         [luxExpandedLabelClose]="closeLabel"
@@ -183,14 +161,13 @@
         (luxOnDelete)="onDelete($event)"
         (luxOnFilter)="onFilterAc($event)"
       >
-        <lux-layout-form-row luxWrapAt="md">
+        <div class="lux-grid lux-grid-cols-2 lt-md:lux-grid-cols-1 lux-gap-4">
           <lux-input-ac
             luxLabel="Input-Ac"
             luxName="filter_input_ac"
             luxAutocomplete="off"
             luxControlBinding="input"
             luxFilterItem
-            *luxLayoutRowItem="{}"
           ></lux-input-ac>
           <lux-autocomplete-ac
             luxLabel="Autocomplete-Ac"
@@ -199,11 +176,10 @@
             [luxFilterDisabled]="autoCompleteDisabled"
             [luxFilterHidden]="autoCompleteHidden"
             luxFilterItem
-            *luxLayoutRowItem="{}"
           ></lux-autocomplete-ac>
-        </lux-layout-form-row>
+        </div>
         <lux-filter-form-extended>
-          <lux-layout-form-row luxWrapAt="md">
+          <div class="lux-grid lux-grid-cols-2 lt-md:lux-grid-cols-1 lux-gap-4">
             <lux-lookup-autocomplete-ac
               luxLabel="Lookup Autocomplete-Ac"
               luxLookupId="filter_lookup_autocomplete_ac"
@@ -214,7 +190,6 @@
               [luxFilterDisabled]="autoCompleteLookupDisabled"
               [luxFilterHidden]="autoCompleteLookupHidden"
               luxFilterItem
-              *luxLayoutRowItem="{}"
             ></lux-lookup-autocomplete-ac>
             <lux-lookup-combobox-ac
               luxLabel="Lookup Combobox-Ac"
@@ -227,10 +202,7 @@
               [luxFilterDisabled]="selectLookupDisabled"
               [luxFilterHidden]="selectLookupHidden"
               luxFilterItem
-              *luxLayoutRowItem="{}"
             ></lux-lookup-combobox-ac>
-          </lux-layout-form-row>
-          <lux-layout-form-row luxWrapAt="md">
             <lux-datepicker-ac
               luxLabel="Datepicker-Ac"
               luxName="filter_datepicker_ac"
@@ -238,7 +210,6 @@
               [luxFilterDisabled]="datepickerDisabled"
               [luxFilterHidden]="datepickerHidden"
               luxFilterItem
-              *luxLayoutRowItem="{}"
             ></lux-datepicker-ac>
             <lux-datetimepicker-ac
               luxLabel="Datetimepicker-Ac"
@@ -247,10 +218,7 @@
               [luxFilterDisabled]="datetimepickerDisabled"
               [luxFilterHidden]="datetimepickerHidden"
               luxFilterItem
-              *luxLayoutRowItem="{}"
             ></lux-datetimepicker-ac>
-          </lux-layout-form-row>
-          <lux-layout-form-row [luxGap]="{ row: '24px', rowItem: '24px', column: '8px' }" luxWrapAt="md">
             <lux-select-ac
               luxLabel="Single-Select-Ac"
               luxControlBinding="singleSelect"
@@ -263,7 +231,6 @@
               luxFilterColor="accent"
               luxFilterItem
               [luxNoBottomLabel]="true"
-              *luxLayoutRowItem="{}"
             ></lux-select-ac>
             <lux-select-ac
               luxLabel="Multi-Select-Ac"
@@ -277,10 +244,7 @@
               luxFilterColor="accent"
               luxFilterItem
               [luxNoBottomLabel]="true"
-              *luxLayoutRowItem="{}"
             ></lux-select-ac>
-          </lux-layout-form-row>
-          <lux-layout-form-row luxWrapAt="md">
             <lux-toggle-ac
               luxLabel="Toggle-Ac"
               luxName="filter_toggle_ac"
@@ -291,24 +255,22 @@
               luxFilterColor="warn"
               luxFilterItem
               [luxNoTopLabel]="true"
-              *luxLayoutRowItem="{}"
             ></lux-toggle-ac>
             <lux-radio-ac
               [luxNoTopLabel]="true"
               [luxOrientationVertical]="false"
               [luxOptions]="radioOptions"
               luxControlBinding="radio"
-              *luxLayoutRowItem="{}"
               luxOptionLabelProp="label"
               [luxPickValue]="radioPickValueFn"
               luxFilterItem
               luxFilterLabel="Radio"
               [luxFilterDisabled]="radioSelectDisabled"
               [luxFilterHidden]="radioSelectHidden"
-            >
-            </lux-radio-ac>
-          </lux-layout-form-row> </lux-filter-form-extended
-      ></lux-filter-form>
+            ></lux-radio-ac>
+          </div>
+        </lux-filter-form-extended>
+      </lux-filter-form>
     </div>
   </example-base-content>
   <example-base-simple-options>
