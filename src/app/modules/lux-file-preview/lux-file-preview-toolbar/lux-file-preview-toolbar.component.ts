@@ -6,21 +6,16 @@ import { LuxFilePreviewData } from '../lux-file-preview-data';
 
 @Component({
   selector: 'lux-file-preview-toolbar',
-  templateUrl: './lux-file-preview-toolbar.component.html',
-  styleUrls: ['./lux-file-preview-toolbar.component.scss']
+  templateUrl: './lux-file-preview-toolbar.component.html'
 })
-export class LuxFilePreviewToolbarComponent implements OnDestroy{
-
+export class LuxFilePreviewToolbarComponent implements OnDestroy {
   mobileView: boolean;
   subscription: Subscription;
 
-  constructor(
-    private mediaQueryService: LuxMediaQueryObserverService,
-    @Inject(LUX_FILE_PREVIEW_DATA) public data: LuxFilePreviewData
-  ) {
+  constructor(private mediaQueryService: LuxMediaQueryObserverService, @Inject(LUX_FILE_PREVIEW_DATA) public data: LuxFilePreviewData) {
     this.mobileView = mediaQueryService.activeMediaQuery === 'xs';
 
-    this.subscription = this.mediaQueryService.getMediaQueryChangedAsObservable().subscribe(query => {
+    this.subscription = this.mediaQueryService.getMediaQueryChangedAsObservable().subscribe((query: string) => {
       this.mobileView = query === 'xs';
     });
   }

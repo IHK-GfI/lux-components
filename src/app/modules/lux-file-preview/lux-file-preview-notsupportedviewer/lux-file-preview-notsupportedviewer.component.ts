@@ -7,14 +7,13 @@ import { LuxFilePreviewRef } from '../lux-file-preview-ref';
 
 @Component({
   selector: 'lux-file-preview-notsupportedviewer',
-  templateUrl: './lux-file-preview-notsupportedviewer.component.html',
-  styleUrls: ['./lux-file-preview-notsupportedviewer.component.scss']
+  templateUrl: './lux-file-preview-notsupportedviewer.component.html'
 })
 export class LuxFilePreviewNotSupportedViewerComponent extends LuxFilePreviewBase implements OnInit {
   counter = 5;
   timer: any;
 
-  downloadLabelDefault = $localize `:@@luxc.file-preview.notsupportedviewer.download.lbl:Download... `;
+  downloadLabelDefault = $localize`:@@luxc.file-preview.notsupportedviewer.download.lbl:Download... `;
   downloadLabel = this.downloadLabelDefault + this.counter;
 
   constructor(

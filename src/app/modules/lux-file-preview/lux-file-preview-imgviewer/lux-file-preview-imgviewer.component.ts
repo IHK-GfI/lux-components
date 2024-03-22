@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Inject,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LuxFilePreviewBase } from '../lux-file-preview-base/lux-file-preview-base';
 import { LUX_FILE_PREVIEW_DATA } from '../lux-file-preview-config';
@@ -14,8 +7,7 @@ import { LuxFilePreviewRef } from '../lux-file-preview-ref';
 
 @Component({
   selector: 'lux-file-preview-imgviewer',
-  templateUrl: './lux-file-preview-imgviewer.component.html',
-  styleUrls: ['./lux-file-preview-imgviewer.component.scss']
+  templateUrl: './lux-file-preview-imgviewer.component.html'
 })
 export class LuxFilePreviewImgViewerComponent extends LuxFilePreviewBase implements OnInit, AfterViewInit {
   @ViewChild('previewImg') previewImg?: ElementRef;
@@ -36,8 +28,7 @@ export class LuxFilePreviewImgViewerComponent extends LuxFilePreviewBase impleme
   ngAfterViewInit(): void {
     setTimeout(() => {
       if (this.previewImg) {
-        this.zoomActive =
-          this.previewImg && this.previewImg.nativeElement.naturalWidth - this.paddingWith > window.innerWidth;
+        this.zoomActive = this.previewImg && this.previewImg.nativeElement.naturalWidth - this.paddingWith > window.innerWidth;
 
         const firstButton = (this.elementRef.nativeElement as HTMLElement).querySelector('button');
         if (firstButton) {
@@ -49,8 +40,7 @@ export class LuxFilePreviewImgViewerComponent extends LuxFilePreviewBase impleme
 
   onLoad() {
     if (this.previewImg) {
-      this.zoomActive =
-        this.previewImg && this.previewImg.nativeElement.naturalWidth - this.paddingWith > window.innerWidth;
+      this.zoomActive = this.previewImg && this.previewImg.nativeElement.naturalWidth - this.paddingWith > window.innerWidth;
     }
     this.loadingFinished();
   }

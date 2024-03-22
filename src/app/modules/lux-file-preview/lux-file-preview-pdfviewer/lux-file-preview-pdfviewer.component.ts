@@ -8,12 +8,9 @@ import { LuxFilePreviewRef } from '../lux-file-preview-ref';
 
 @Component({
   selector: 'lux-file-preview-pdfviewer',
-  templateUrl: './lux-file-preview-pdfviewer.component.html',
-  styleUrls: ['./lux-file-preview-pdfviewer.component.scss']
+  templateUrl: './lux-file-preview-pdfviewer.component.html'
 })
 export class LuxFilePreviewPdfViewerComponent extends LuxFilePreviewBase implements OnInit, AfterViewInit {
-  showAll = true;
-
   page = 1;
   numPages = 0;
 
@@ -87,7 +84,7 @@ export class LuxFilePreviewPdfViewerComponent extends LuxFilePreviewBase impleme
             scale: this.zoom.value
           }).width * PdfViewerComponent.CSS_UNITS;
 
-        currentIndex = this.options.findIndex(currentZoom => currentZoom === this.zoom);
+        currentIndex = this.options.findIndex((currentZoom) => currentZoom === this.zoom);
 
         if (currentIndex === 0) {
           break;

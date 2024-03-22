@@ -1,11 +1,11 @@
-<div fxLayout="row" fxLayoutAlign="space-between center">
-  <div fxFlex="calc(100% - 350px)" fxLayout="row" fxLayoutAlign="start center">
-    <div fxFlex="1 1 90%" fxLayout="row" fxLayoutAlign="start center" *ngIf="!mobileView" >
-      <lux-icon fxFlex="0 0 none" luxIconName="lux-interface-content-file" luxIconSize="1x"></lux-icon>
-      <div fxFlex="1 1 auto" class="lux-crop">{{ data.fileObject?.name }}</div>
+<div class="lux-flex lux-justify-between lux-items-center lux-border-box">
+  <div class="lux-file-name">
+    <div *ngIf="!mobileView">
+      <lux-icon class="lux-flex lux-flex-none lux-border-box" luxIconName="lux-interface-content-file" luxIconSize="1x"></lux-icon>
+      <div class="lux-crop lux-flex-auto lux-border-box">{{ data.fileObject?.name }}</div>
     </div>
   </div>
-  <div fxFlex="none" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="end center">
+  <div class="lux-flex lux-gap-4 lux-justify-end lux-items-center lux-flex-none">
     <ng-content></ng-content>
   </div>
 </div>

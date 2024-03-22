@@ -1,6 +1,5 @@
 <lux-file-preview-toolbar>
   <lux-button
-    fxFlex="none"
     luxIconName="lux-interface-download-button-2"
     (luxClicked)="onDownload()"
     luxColor="accent"
@@ -10,7 +9,6 @@
     i18n-luxAriaLabel="@@luxc.file-preview.notsupportedviewer.download.arialabel"
   ></lux-button>
   <lux-button
-    fxFlex="none"
     luxIconName="lux-close"
     (luxClicked)="onClose()"
     [luxRaised]="true"
@@ -19,7 +17,7 @@
     i18n-luxAriaLabel="@@luxc.file-preview.notsupportedviewer.close.arialabel"
   ></lux-button>
 </lux-file-preview-toolbar>
-<div class="message-box" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+<div class="message-box lux-flex lux-flex-col lux-place-content-center lux-items-center lux-gap-5">
   <div i18n="@@luxc.file-preview.notsupportedviewer.message">Diese Datei kann nicht angezeigt werden.</div>
   <lux-button [luxLabel]="downloadLabel" (luxClicked)="onDownload()" [luxRaised]="true" luxColor="accent"></lux-button>
 </div>

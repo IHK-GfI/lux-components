@@ -2,8 +2,8 @@
   <lux-select-ac
     [luxNoTopLabel]="true"
     [luxNoBottomLabel]="true"
+    [luxDense]="true"
     class="zoom-select"
-    fxFlex="100px"
     [luxOptions]="options"
     [(luxSelected)]="zoom"
     luxOptionLabelProp="label"
@@ -11,31 +11,6 @@
     i18n-luxAriaLabel="@@luxc.file-preview.pdfviewer.zoom.arialabel"
   ></lux-select-ac>
   <lux-button
-    fxFlex="none"
-    luxIconName="lux-interface-arrows-left"
-    *ngIf="!showAll"
-    (luxClicked)="onPrevPage()"
-    [luxDisabled]="page === 1"
-    [ngClass]="{ 'lux-button-disabled': page === 1 }"
-    [luxRaised]="true"
-    luxTagId="file-preview-zoomin-btn"
-    luxAriaLabel="Hinein zoomen"
-    i18n-luxAriaLabel="@@luxc.file-preview.pdfviewer.zoomin.arialabel"
-  ></lux-button>
-  <lux-button
-    fxFlex="none"
-    luxIconName="lux-interface-arrows-right"
-    (luxClicked)="onNextPage()"
-    [luxDisabled]="page === numPages"
-    [ngClass]="{ 'lux-button-disabled': page === numPages }"
-    *ngIf="!showAll"
-    [luxRaised]="true"
-    luxTagId="file-preview-zoomout-btn"
-    luxAriaLabel="Heraus zoomen"
-    i18n-luxAriaLabel="@@luxc.file-preview.pdfviewer.zoomout.arialabel"
-  ></lux-button>
-  <lux-button
-    fxFlex="none"
     [luxIconName]="downloadIconName"
     (luxClicked)="onDownload()"
     luxColor="accent"
@@ -44,7 +19,6 @@
     [luxAriaLabel]="downloadAriaLabel"
   ></lux-button>
   <lux-button
-    fxFlex="none"
     [luxIconName]="closeIconName"
     (luxClicked)="onClose()"
     [luxRaised]="true"
@@ -55,10 +29,8 @@
 
 <div class="overlay-content" [ngStyle]="{ width: width + 'px', height: height + 'px' }">
   <div
-    fxLayout="column"
-    fxLayoutAlign="center center"
     *ngIf="loading"
-    class="message-box message-box-pdf"
+    class="message-box message-box-pdf lux-flex lux-flex-col lux-place-content-center lux-items-center"
     [ngStyle]="{
       left: this.loadingDivLeft + 'px',
       top: this.loadingDivTop + 'px',
@@ -71,7 +43,7 @@
   <pdf-viewer
     *ngIf="url"
     [src]="url"
-    [show-all]="showAll"
+    [show-all]="true"
     [page]="page"
     [zoom]="zoom.value"
     [render-text]="false"
@@ -80,6 +52,6 @@
     (after-load-complete)="callBackFn($event)"
     (error)="onError($event)"
     (on-progress)="onProgress()"
-    style="display: block;"
+    style="display: block"
   ></pdf-viewer>
 </div>
