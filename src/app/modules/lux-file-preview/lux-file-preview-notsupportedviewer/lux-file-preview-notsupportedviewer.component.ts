@@ -14,7 +14,7 @@ export class LuxFilePreviewNotSupportedViewerComponent extends LuxFilePreviewBas
   timer: any;
 
   downloadLabelDefault = $localize`:@@luxc.file-preview.notsupportedviewer.download.lbl:Download... `;
-  downloadLabel = this.downloadLabelDefault + this.counter;
+  downloadLabel = 'Zur Ansicht Downloaden';
 
   constructor(
     protected previewRef: LuxFilePreviewRef,
@@ -24,31 +24,11 @@ export class LuxFilePreviewNotSupportedViewerComponent extends LuxFilePreviewBas
     super(previewRef, previewData, sanitizer);
   }
 
-  ngOnInit() {
-    this.updateDownloadLabel();
-  }
-
   onDownload() {
-    clearTimeout(this.timer);
-
     super.onDownload();
   }
 
   onClose() {
-    clearTimeout(this.timer);
-
     super.onClose();
-  }
-
-  updateDownloadLabel() {
-    this.timer = setTimeout(() => {
-      if (this.counter > 0) {
-        this.counter--;
-        this.downloadLabel = this.downloadLabelDefault + this.counter;
-        this.updateDownloadLabel();
-      } else {
-        this.onDownload();
-      }
-    }, 1000);
   }
 }

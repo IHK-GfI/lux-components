@@ -55,6 +55,7 @@ export class LuxDatepickerAcComponent<T = any> extends LuxFormInputBaseClass<T> 
   min: Date | null = null;
   max: Date | null = null;
   start: Date | null = null;
+  focused = false;
   _luxCustomFilter: LuxDateFilterAcFn = () => true;
 
   @Input() luxStartView: LuxStartAcView = 'month';
@@ -72,12 +73,12 @@ export class LuxDatepickerAcComponent<T = any> extends LuxFormInputBaseClass<T> 
   @ViewChild(MatDatepicker) matDatepicker?: MatDatepicker<any>;
   @ViewChild('datepickerInput', { read: ElementRef }) datepickerInput?: ElementRef;
 
-  get luxCustomFilter(){
+  get luxCustomFilter() {
     return this._luxCustomFilter;
   }
 
   @Input()
-  set luxCustomFilter(customFilterFn: LuxDateFilterAcFn | undefined){
+  set luxCustomFilter(customFilterFn: LuxDateFilterAcFn | undefined) {
     this._luxCustomFilter = customFilterFn ?? (() => true);
   }
 
@@ -150,20 +151,45 @@ export class LuxDatepickerAcComponent<T = any> extends LuxFormInputBaseClass<T> 
    */
   errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     if (errors.matDatepickerMin) {
-      return $localize `:@@luxc.datepicker.error_message.min:Das Datum unterschreitet den Minimalwert`;
+      return $localize`:@@luxc.datepicker.error_message.min:Das Datum unterschreitet den Minimalwert`;
     } else if (errors.matDatepickerMax) {
-      return $localize `:@@luxc.datepicker.error_message.max:Das Datum überschreitet den Maximalwert`;
+      return $localize`:@@luxc.datepicker.error_message.max:Das Datum überschreitet den Maximalwert`;
     } else if (errors.matDatepickerParse) {
-      return $localize `:@@luxc.datepicker.error_message.invalid:Das Datum ist ungültig`;
+      return $localize`:@@luxc.datepicker.error_message.invalid:Das Datum ist ungültig`;
     } else if (errors.required) {
       if (this.datepickerInput && this.datepickerInput.nativeElement.value) {
-        return $localize `:@@luxc.datepicker.error_message.invalid:Das Datum ist ungültig`;
+        return $localize`:@@luxc.datepicker.error_message.invalid:Das Datum ist ungültig`;
       } else {
-        return $localize `:@@luxc.datepicker.error_message.empty:Das Datum darf nicht leer sein`;
+        return $localize`:@@luxc.datepicker.error_message.empty:Das Datum darf nicht leer sein`;
       }
     }
 
     return undefined;
+  }
+
+  onFocus(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocus.emit(e);
+  }
+
+  onFocusIn(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocusIn.emit(e);
+  }
+
+  onFocusOut(e: FocusEvent) {
+    this.focused = false;
+    this.luxFocusOut.emit(e);
+  }
+
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return (this.formHintComponent || this.luxHint) && (!this.luxHintShowOnlyOnFocus || (this.luxHintShowOnlyOnFocus && this.focused))
+        ? this.uid + '-hint'
+        : undefined;
+    }
   }
 
   /**
@@ -223,10 +249,7 @@ export class LuxDatepickerAcComponent<T = any> extends LuxFormInputBaseClass<T> 
 
       // Per Hand dem Input-Element einen formatierten String übergeben
       if (this.datepickerInput && !this.datepickerInput.nativeElement.value && isoValue) {
-        this.datepickerInput.nativeElement.value = this.dateAdapter.format(
-          isoValue as any,
-          APP_DATE_FORMATS_AC.display.dateInput
-        );
+        this.datepickerInput.nativeElement.value = this.dateAdapter.format(isoValue as any, APP_DATE_FORMATS_AC.display.dateInput);
       }
     });
   }

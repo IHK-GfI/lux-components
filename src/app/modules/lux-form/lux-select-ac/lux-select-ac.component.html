@@ -24,9 +24,9 @@
     [id]="uid"
     [panelClass]="[luxMultiple ? 'lux-select-panel-ac-multiple' : 'lux-select-panel-ac', luxReadonly ? 'lux-display-none' : '']"
     [luxAriaLabelledby]="uid + '-label'"
-    [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
-    (focusin)="luxFocusIn.emit($event)"
-    (focusout)="luxFocusOut.emit($event)"
+    [luxAriaDescribedby]="descripedBy()"
+    (focusin)="onFocusIn($event)"
+    (focusout)="onFocusOut($event)"
     #select
   >
     <mat-option

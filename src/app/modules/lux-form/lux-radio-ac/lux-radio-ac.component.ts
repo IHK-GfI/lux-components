@@ -1,13 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ContentChild,
-  HostBinding,
-  Input,
-  OnDestroy,
-  Optional,
-  TemplateRef
-} from '@angular/core';
+import { ChangeDetectorRef, Component, ContentChild, HostBinding, Input, OnDestroy, Optional, TemplateRef } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -20,7 +11,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-radio-ac.component.html',
   styleUrls: ['./lux-radio-ac.component.scss']
 })
-export class LuxRadioAcComponent<O = any,V = any> extends LuxFormSelectableBase<O,V> implements OnDestroy {
+export class LuxRadioAcComponent<O = any, V = any> extends LuxFormSelectableBase<O, V> implements OnDestroy {
   forceVertical = false;
 
   // Potenziell eingebettetes Template für Darstellung der Labels
@@ -32,6 +23,8 @@ export class LuxRadioAcComponent<O = any,V = any> extends LuxFormSelectableBase<
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
+
+  focused = false;
 
   private mediaSubscription$: Subscription;
 
@@ -57,5 +50,25 @@ export class LuxRadioAcComponent<O = any,V = any> extends LuxFormSelectableBase<
   ngOnDestroy() {
     super.ngOnDestroy();
     this.mediaSubscription$.unsubscribe();
+  }
+
+  onFocusIn(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocusIn.emit(e);
+  }
+
+  onFocusOut(e: FocusEvent) {
+    this.focused = false;
+    this.luxFocusOut.emit(e);
+  }
+
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return (this.formHintComponent || this.luxHint) && (!this.luxHintShowOnlyOnFocus || (this.luxHintShowOnlyOnFocus && this.focused))
+        ? this.uid + '-hint'
+        : undefined;
+    }
   }
 }

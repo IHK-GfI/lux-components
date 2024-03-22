@@ -32,7 +32,7 @@
       'lux-thumb-label-10k': luxValue >= 10000
     }"
     [id]="uid"
-    [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+    [luxAriaDescribedby]="descripedBy()"
     [luxAriaInvalid]="'' + formControl.invalid"
     [luxAriaRequired]="luxRequired"
     [luxAriaLabel]="luxLabel"
