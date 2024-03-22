@@ -4,113 +4,128 @@
   [luxAriaLabel]="luxAriaRoleHeaderLabel"
 >
   <!-- Top-Bar -->
-  <div *ngIf="!luxHideTopBar" class="lux-app-header-top-bar" [ngClass]="{ 'lux-mobile': mobileView }">
-    <!-- Zeige lux-tenant-logo falls vorhanden UND Attribut luxBrandLogoSrc nicht gesetzt ist, also das Attribut hat hier vorrang -->
-    <ng-content select="lux-tenant-logo" *ngIf="!luxBrandLogoSrc"></ng-content>
+  <div class="lux-app-header-top-bar-bg">
+    <div
+      *ngIf="!luxHideTopBar"
+      class="lux-app-header-top-bar"
+      [ngClass]="{ 'lux-mobile': mobileView, 'lux-centered': luxCenteredView }"
+      [ngStyle]="{ 'max-width': luxCenteredView ? luxCenteredWidth : '100%' }"
+    >
+      <!-- Zeige lux-tenant-logo falls vorhanden UND Attribut luxBrandLogoSrc nicht gesetzt ist, also das Attribut hat hier vorrang -->
 
-    <!-- Brand-Logo -->
-    <lux-image
-      [luxImageSrc]="luxBrandLogoSrc"
-      [luxImageHeight]="mobileView ? '24px' : '40px'"
-      class="lux-brand-logo"
-      [ngClass]="{ 'lux-brand-logo-mobile': mobileView }"
-      luxAlt="Lux-Brand-Logo"
-      [luxAriaLabel]="luxAriaTitleImageLabel"
-      luxTagId="lux-brand-logo-button"
-      (luxClicked)="onBrandLogoClicked($event)"
-      *ngIf="luxBrandLogoSrc"
-    ></lux-image>
+      <ng-content select="lux-tenant-logo" *ngIf="!luxBrandLogoSrc"></ng-content>
 
-    <!-- App-Logo -->
-    <lux-image
-      [luxImageSrc]="luxAppLogoSrc"
-      luxImageHeight="40px"
-      class="lux-app-logo"
-      luxAlt="Lux-App-Logo"
-      [luxAriaLabel]="luxAriaTitleIconLabel"
-      (luxClicked)="onAppLogoClicked($event)"
-      *ngIf="luxAppLogoSrc && !mobileView"
-    ></lux-image>
+      <!-- Brand-Logo -->
+      <lux-image
+        [luxImageSrc]="luxBrandLogoSrc"
+        [luxImageHeight]="mobileView ? '24px' : '40px'"
+        class="lux-brand-logo"
+        [ngClass]="{ 'lux-brand-logo-mobile': mobileView }"
+        luxAlt="Lux-Brand-Logo"
+        [luxAriaLabel]="luxAriaTitleImageLabel"
+        luxTagId="lux-brand-logo-button"
+        (luxClicked)="onBrandLogoClicked($event)"
+        *ngIf="luxBrandLogoSrc"
+      ></lux-image>
 
-    <!-- Action-Nav / Lang-Select / User-Menu -->
-    <div class="header-menu-container lux-flex lux-justify-end lux-items-center" [luxAriaLabel]="luxAriaUserMenuButtonLabel">
-      <div *ngIf="actionNav" class="lux-action-nav-ac-container lux-flex lux-flex-shrink-0">
-        <ng-container [ngTemplateOutlet]="actionNav.templateRef" *ngIf="actionNav"></ng-container>
+      <!-- App-Logo -->
+      <lux-image
+        [luxImageSrc]="luxAppLogoSrc"
+        luxImageHeight="40px"
+        class="lux-app-logo"
+        luxAlt="Lux-App-Logo"
+        [luxAriaLabel]="luxAriaTitleIconLabel"
+        (luxClicked)="onAppLogoClicked($event)"
+        *ngIf="luxAppLogoSrc && !mobileView"
+      ></lux-image>
+
+      <!-- Action-Nav / Lang-Select / User-Menu -->
+      <div class="header-menu-container lux-flex lux-justify-end lux-items-center" [luxAriaLabel]="luxAriaUserMenuButtonLabel">
+        <div *ngIf="actionNav" class="lux-action-nav-ac-container lux-flex lux-flex-shrink-0">
+          <ng-container [ngTemplateOutlet]="actionNav.templateRef" *ngIf="actionNav"></ng-container>
+        </div>
+
+        <lux-lang-select-ac
+          [luxLocaleSupported]="luxLocaleSupported"
+          [luxLocaleBaseHref]="luxLocaleBaseHref"
+          [mobileView]="mobileView"
+          class="lux-lang-select-ac lux-flex lux-flex-shrink-0"
+          *ngIf="luxLocaleSupported && (luxLocaleSupported?.length ?? 0) > 1"
+        ></lux-lang-select-ac>
+
+        <!-- User-Menu -->
+        <lux-menu
+          *ngIf="userMenu"
+          class="lux-user-menu lux-flex lux-flex-shrink-0"
+          [ngClass]="{ 'lux-user-menu-mobile': mobileView }"
+          [luxDisplayExtended]="false"
+          (luxMenuClosed)="onMenuClosed()"
+          (luxMenuOpened)="onMenuOpened()"
+          luxClassName="lux-header-user-menu"
+          luxTagId="app_header_user_menu"
+          luxTooltip="Benutzermenü"
+          [luxTooltipShowDelay]="1500"
+        >
+          <!-- Anzeige des Usernames falls dieser vorhanden und eingeloggt ist -->
+          <lux-menu-item *ngIf="luxUserName" [luxLabel]="luxUserName" [luxDisabled]="true" luxClass="lux-user-name-label"></lux-menu-item>
+
+          <ng-container *ngFor="let menuItem of userMenu?.menuItemComponents">
+            <lux-menu-item
+              [luxLabel]="menuItem.luxLabel"
+              [luxTagId]="menuItem.luxLabel"
+              [luxIconName]="menuItem.luxIconName"
+              [luxAlwaysVisible]="menuItem.luxAlwaysVisible"
+              [luxDisabled]="menuItem.luxDisabled"
+              [luxRaised]="menuItem.luxRaised"
+              [luxColor]="menuItem.luxColor"
+              [luxRounded]="menuItem.luxRounded"
+              [luxClass]="menuItem.luxClass"
+              (luxClicked)="menuItem.luxClicked.emit($event)"
+            >
+            </lux-menu-item>
+          </ng-container>
+          <lux-menu-trigger>
+            <lux-button
+              [luxRounded]="true"
+              [luxIconName]="luxUserName ? 'lux-interface-user-check' : 'lux-interface-user-single'"
+              luxColor="primary"
+              class="user-menu-trigger-ac"
+              luxAriaLabel="Benutzermenü"
+              i18n-luxAriaLabel="@@luxc.app-header.user.menu.trigger"
+              aria-haspopup="true"
+              luxTagId="user-menu-trigger-ac"
+              [ngClass]="{ 'menu-opened': menuOpened, 'user-menu-trigger-mobile': mobileView }"
+              #customTrigger
+              luxTagId="lux-user-menu-trigger-btn"
+            >
+            </lux-button>
+          </lux-menu-trigger>
+        </lux-menu>
       </div>
-
-      <lux-lang-select-ac
-        [luxLocaleSupported]="luxLocaleSupported"
-        [luxLocaleBaseHref]="luxLocaleBaseHref"
-        [mobileView]="mobileView"
-        class="lux-lang-select-ac lux-flex lux-flex-shrink-0"
-        *ngIf="luxLocaleSupported && (luxLocaleSupported?.length ?? 0) > 1"
-      ></lux-lang-select-ac>
-
-      <!-- User-Menu -->
-      <lux-menu
-        *ngIf="userMenu"
-        class="lux-user-menu lux-flex lux-flex-shrink-0"
-        [ngClass]="{ 'lux-user-menu-mobile': mobileView }"
-        [luxDisplayExtended]="false"
-        (luxMenuClosed)="onMenuClosed()"
-        (luxMenuOpened)="onMenuOpened()"
-        luxClassName="lux-header-user-menu"
-        luxTagId="app_header_user_menu"
-        luxTooltip="Benutzermenü"
-        [luxTooltipShowDelay]="1500"
-      >
-        <!-- Anzeige des Usernames falls dieser vorhanden und eingeloggt ist -->
-        <lux-menu-item *ngIf="luxUserName" [luxLabel]="luxUserName" [luxDisabled]="true" luxClass="lux-user-name-label"></lux-menu-item>
-
-        <ng-container *ngFor="let menuItem of userMenu?.menuItemComponents">
-          <lux-menu-item
-            [luxLabel]="menuItem.luxLabel"
-            [luxTagId]="menuItem.luxLabel"
-            [luxIconName]="menuItem.luxIconName"
-            [luxAlwaysVisible]="menuItem.luxAlwaysVisible"
-            [luxDisabled]="menuItem.luxDisabled"
-            [luxRaised]="menuItem.luxRaised"
-            [luxColor]="menuItem.luxColor"
-            [luxRounded]="menuItem.luxRounded"
-            [luxClass]="menuItem.luxClass"
-            (luxClicked)="menuItem.luxClicked.emit($event)"
-          >
-          </lux-menu-item>
-        </ng-container>
-        <lux-menu-trigger>
-          <lux-button
-            [luxRounded]="true"
-            [luxIconName]="luxUserName ? 'lux-interface-user-check' : 'lux-interface-user-single'"
-            luxColor="primary"
-            class="user-menu-trigger-ac"
-            luxAriaLabel="Benutzermenü"
-            i18n-luxAriaLabel="@@luxc.app-header.user.menu.trigger"
-            aria-haspopup="true"
-            luxTagId="user-menu-trigger-ac"
-            [ngClass]="{ 'menu-opened': menuOpened, 'user-menu-trigger-mobile': mobileView }"
-            #customTrigger
-            luxTagId="lux-user-menu-trigger-btn"
-          >
-          </lux-button>
-        </lux-menu-trigger>
-      </lux-menu>
     </div>
   </div>
   <!-- Nav-Bar -->
-  <div *ngIf="!luxHideNavBar" class="lux-app-header-nav-bar" [ngClass]="{ 'lux-mobile': mobileView }">
-    <div class="lux-app-title-container lux-flex lux-items-center lux-justify-start lux-gap-4">
-      <lux-image
-        [luxImageSrc]="luxAppLogoSrc"
-        luxImageHeight="32px"
-        class="lux-app-logo-mobile"
-        luxAlt="Lux-App-Logo"
-        (luxClicked)="onAppLogoClicked($event)"
-        *ngIf="luxAppLogoSrc && mobileView"
-      ></lux-image>
-      <div class="lux-app-title" [ngClass]="{ 'lux-mobile': mobileView }">{{ mobileView ? luxAppTitleShort : luxAppTitle }}</div>
-    </div>
-    <div class="lux-app-nav-menu">
-      <ng-content select="lux-app-header-ac-nav-menu" *ngIf="navMenu"></ng-content>
+  <div class="lux-app-header-nav-bar-bg">
+    <div
+      *ngIf="!luxHideNavBar"
+      class="lux-app-header-nav-bar"
+      [ngClass]="{ 'lux-mobile': mobileView, 'lux-centered': luxCenteredView }"
+      [ngStyle]="{ 'max-width': luxCenteredView ? luxCenteredWidth : '100%' }"
+    >
+      <div class="lux-app-title-container lux-flex lux-items-center lux-justify-start lux-gap-4">
+        <lux-image
+          [luxImageSrc]="luxAppLogoSrc"
+          luxImageHeight="32px"
+          class="lux-app-logo-mobile"
+          luxAlt="Lux-App-Logo"
+          (luxClicked)="onAppLogoClicked($event)"
+          *ngIf="luxAppLogoSrc && mobileView"
+        ></lux-image>
+        <div class="lux-app-title" [ngClass]="{ 'lux-mobile': mobileView }">{{ mobileView ? luxAppTitleShort : luxAppTitle }}</div>
+      </div>
+      <div class="lux-app-nav-menu">
+        <ng-content select="lux-app-header-ac-nav-menu" *ngIf="navMenu"></ng-content>
+      </div>
     </div>
   </div>
 </div>

@@ -67,4 +67,9 @@ export interface LuxComponentsConfigParameters {
   buttonConfiguration?: {
     throttleTimeMs?: number;
   };
+
+  viewConfiguration?: {
+    centeredView?: boolean;
+    centeredWidth?: string;
+  };
 }
