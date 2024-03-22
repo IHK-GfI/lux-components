@@ -1,15 +1,15 @@
 .main-container {
   width: 100%;
   max-height: 100%;
-  margin: 0 auto;
-  max-width: 1200px;
+  // margin: 0 auto;
+  // max-width: 1200px;
   box-sizing: border-box;
 }
 
 .icon-container {
   padding: 12px;
-  width: 130px;
-  min-height: 130px;
+  width: 100px;
+  min-height: 100px;
   border: 1px solid var(--lux-theme-form-border-color);
   border-radius: 4px;
 
@@ -48,7 +48,7 @@
 
 .icon-preview {
   width: 100%;
-  min-height: 80px;
+  min-height: 50px;
 }
 
 .reset-icon {

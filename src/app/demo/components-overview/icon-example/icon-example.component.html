@@ -1,112 +1,99 @@
 <example-base-structure exampleTitle="Icon" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90icon">
-  <example-base-content>
-    <div fxLayout="column" fxLayoutGap="24px">
-      <div fxLayout="column" class="lux-app-data-bg lux-highlight-section column" [ngStyle]="{ backgroundColor: backgroundColor }">
-        <h3 class="lux-highlight-section-label">Default</h3>
-        <div class="icon-row">
-          <lux-icon
-            *ngFor="let color of colors"
-            [luxIconName]="iconName"
-            [luxIconSize]="iconSize"
-            [luxPadding]="padding"
-            [luxMargin]="margin"
-            [luxRounded]="rounded"
-            [luxColor]="color"
-          >
-          </lux-icon>
-        </div>
-        <div class="icon-row">
-          <lux-icon
-            *ngFor="let color of colors; let i = index"
-            [luxIconName]="iconName"
-            [luxIconSize]="iconSize"
-            [luxPadding]="padding"
-            [luxMargin]="margin"
-            [luxRounded]="rounded"
-            class="{{ 'lux-color-' + colors[i % colors.length] }}"
-          >
-          </lux-icon>
-        </div>
+  <example-base-content class="lux-flex lux-flex-col lux-gap-4">
+    <div class="lux-flex lux-flex-col lux-gap-4 lux-app-data-bg lux-highlight-section" [ngStyle]="{ backgroundColor: backgroundColor }">
+      <h3 class="lux-highlight-section-label">Default</h3>
+      <div class="icon-row">
+        <lux-icon
+          *ngFor="let color of colors"
+          [luxIconName]="iconName"
+          [luxIconSize]="iconSize"
+          [luxPadding]="padding"
+          [luxMargin]="margin"
+          [luxRounded]="rounded"
+          [luxColor]="color"
+        >
+        </lux-icon>
       </div>
-      <div fxLayout="column" class="lux-gradient-bg lux-highlight-section column">
-        <h3 class="lux-highlight-section-label">Gradient</h3>
-        <div class="icon-row">
-          <lux-icon
-            *ngFor="let color of colors"
-            [luxIconName]="iconName"
-            [luxIconSize]="iconSize"
-            [luxPadding]="padding"
-            [luxMargin]="margin"
-            [luxRounded]="rounded"
-            [luxColor]="color"
-          >
-          </lux-icon>
-        </div>
-        <div class="icon-row">
-          <lux-icon
-            *ngFor="let color of colors; let i = index"
-            [luxIconName]="iconName"
-            [luxIconSize]="iconSize"
-            [luxPadding]="padding"
-            [luxMargin]="margin"
-            [luxRounded]="rounded"
-            class="{{ 'lux-color-' + colors[i % colors.length] }}"
-          >
-          </lux-icon>
-        </div>
+      <div class="icon-row">
+        <lux-icon
+          *ngFor="let color of colors; let i = index"
+          [luxIconName]="iconName"
+          [luxIconSize]="iconSize"
+          [luxPadding]="padding"
+          [luxMargin]="margin"
+          [luxRounded]="rounded"
+          class="{{ 'lux-color-' + colors[i % colors.length] }}"
+        >
+        </lux-icon>
+      </div>
+    </div>
+    <div class="lux-flex lux-flex-col lux-gap-4 lux-gradient-bg lux-highlight-section">
+      <h3 class="lux-highlight-section-label">Gradient</h3>
+      <div class="icon-row">
+        <lux-icon
+          *ngFor="let color of colors"
+          [luxIconName]="iconName"
+          [luxIconSize]="iconSize"
+          [luxPadding]="padding"
+          [luxMargin]="margin"
+          [luxRounded]="rounded"
+          [luxColor]="color"
+        >
+        </lux-icon>
+      </div>
+      <div class="icon-row">
+        <lux-icon
+          *ngFor="let color of colors; let i = index"
+          [luxIconName]="iconName"
+          [luxIconSize]="iconSize"
+          [luxPadding]="padding"
+          [luxMargin]="margin"
+          [luxRounded]="rounded"
+          class="{{ 'lux-color-' + colors[i % colors.length] }}"
+        >
+        </lux-icon>
       </div>
     </div>
   </example-base-content>
-  <example-base-simple-options>
-    <div class="lux-highlight-section column">
-      <lux-input-ac [(luxValue)]="iconName" luxLabel="luxIconName"> </lux-input-ac>
-      <lux-select-ac [(luxSelected)]="iconSize" [luxOptions]="iconSizes" luxLabel="luxIconSize">
-        <lux-form-hint>
-          Über diese Property kann die Größe des Icons festgelegt werden.<br />
-          Die Größen sind relative 'em'-Werte.
-        </lux-form-hint>
-      </lux-select-ac>
-      <lux-checkbox-ac [(luxChecked)]="rounded" luxLabel="luxRounded" [luxNoTopLabel]="true">
-        <lux-form-hint>
-          Diese Property aktiviert eine abgerundete Darstellung des Icons<br />
-          Ist nur in Kombination mit einer 'luxColor' sichtbar.
-        </lux-form-hint>
-      </lux-checkbox-ac>
-    </div>
-    <lux-input-ac
-      luxName="button_background_Color"
-      class="lux-highlight-section"
-      [(luxValue)]="backgroundColor"
-      luxLabel="Hintergrundfarbe"
-    >
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
+    <lux-input-ac [(luxValue)]="iconName" luxLabel="luxIconName"> </lux-input-ac>
+    <lux-select-ac [(luxSelected)]="iconSize" [luxOptions]="iconSizes" luxLabel="luxIconSize">
+      <lux-form-hint>
+        Über diese Property kann die Größe des Icons festgelegt werden.<br />
+        Die Größen sind relative 'em'-Werte.
+      </lux-form-hint>
+    </lux-select-ac>
+    <lux-checkbox-ac [(luxChecked)]="rounded" luxLabel="luxRounded" [luxNoTopLabel]="true">
+      <lux-form-hint>
+        Diese Property aktiviert eine abgerundete Darstellung des Icons<br />
+        Ist nur in Kombination mit einer 'luxColor' sichtbar.
+      </lux-form-hint>
+    </lux-checkbox-ac>
+    <lux-input-ac luxName="button_background_Color" [(luxValue)]="backgroundColor" luxLabel="Hintergrundfarbe">
       <lux-form-hint
         >Kontrast zwischen Element und Hintergrund prüfen. <br />
         Z.B. #f0f0f2 oder
       </lux-form-hint>
     </lux-input-ac>
-    <div class="lux-highlight-section">
-      <lux-link-plain
-        luxLabel="Zur Iconsuche"
-        luxHref="/components-overview/example/icon-overview"
-        luxIconName="lux-interface-arrows-button-right"
-        [luxIconShowRight]="true"
-      ></lux-link-plain>
-    </div>
+    <lux-link-plain
+      luxLabel="Zur Iconsuche"
+      luxHref="/components-overview/example/icon-overview"
+      luxIconName="lux-interface-arrows-button-right"
+      [luxIconShowRight]="true"
+    ></lux-link-plain>
   </example-base-simple-options>
-  <example-base-advanced-options>
-    <div class="lux-highlight-section column">
-      <lux-input-ac [(luxValue)]="margin" luxLabel="luxMargin">
-        <lux-form-hint>
-          Die Property ermöglicht es, die Margins für das Icon festzulegen<br />
-          (z.B. '4px', '10px, 5em' oder '1px, 2px, 3px, 4px').
-        </lux-form-hint>
-      </lux-input-ac>
-      <lux-input-ac [(luxValue)]="padding" luxLabel="luxPadding">
-        <lux-form-hint>
-          Die Property ermöglicht es, die Paddings für das Icon festzulegen<br />
-          (z.B. '4px', '10px, 5em' oder '1px, 2px, 3px, 4px').
-        </lux-form-hint>
-      </lux-input-ac>
-    </div>
+  <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
+    <lux-input-ac [(luxValue)]="margin" luxLabel="luxMargin">
+      <lux-form-hint>
+        Die Property ermöglicht es, die Margins für das Icon festzulegen<br />
+        (z.B. '4px', '10px, 5em' oder '1px, 2px, 3px, 4px').
+      </lux-form-hint>
+    </lux-input-ac>
+    <lux-input-ac [(luxValue)]="padding" luxLabel="luxPadding">
+      <lux-form-hint>
+        Die Property ermöglicht es, die Paddings für das Icon festzulegen<br />
+        (z.B. '4px', '10px, 5em' oder '1px, 2px, 3px, 4px').
+      </lux-form-hint>
+    </lux-input-ac>
   </example-base-advanced-options>
 </example-base-structure>

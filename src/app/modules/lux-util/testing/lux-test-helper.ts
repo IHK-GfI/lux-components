@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, Injectable, NO_ERRORS_SCHEMA, OnDestroy, Provider } from '@angular/core';
 import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -55,7 +54,6 @@ export class LuxTestHelper {
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
     BrowserModule,
     RouterTestingModule
   ];

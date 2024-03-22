@@ -82,11 +82,11 @@
         </lux-side-nav-item>
       </lux-side-nav-item>
       <lux-side-nav-footer>
-        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+        <div class="lux-flex lux-flex-wrap lux-justify-center lux-align-center lux-gap-3">
           <lux-button luxLabel="Aufklappen" [luxRaised]="true" (luxClicked)="navigationService.onExpandAll()"></lux-button>
           <lux-button luxLabel="Zuklappen" [luxRaised]="true" (luxClicked)="navigationService.onCollapseAll()"></lux-button>
         </div>
-        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px" class="lux-mt-3">
+        <div class="lux-flex lux-flex-wrap lux-justify-center lux-align-center lux-gap-3 lux-mt-3">
           <lux-link-plain luxLabel="Impressum" [luxRaised]="true" (luxClicked)="goToImpressum()"></lux-link-plain>
           <lux-link-plain luxLabel="Lizenzhinweis" [luxRaised]="true" (luxClicked)="goToLicenseHint()"></lux-link-plain>
         </div>
@@ -94,8 +94,7 @@
     </lux-side-nav>
     <lux-app-header-action-nav>
       <lux-app-header-action-nav-item
-        fxShow="true"
-        fxShow.xs="false"
+        class="xs:lux-display-none"
         luxIconName="lux-interface-alert-alarm-bell-2"
         luxColor="accent"
         luxAriaLabel="Nachrichten anzeigen"
@@ -104,8 +103,7 @@
       >
       </lux-app-header-action-nav-item>
       <lux-app-header-action-nav-item
-        fxShow="true"
-        fxShow.xs="false"
+        class="xs:lux-display-none"
         luxIconName="lux-interface-delete-bin-2"
         luxColor="warn"
         luxAriaLabel="Nachrichten löschen"

@@ -14,7 +14,6 @@ export class LuxErrorPageComponent {
   }
 
   get errorConfig(): ILuxErrorPageConfig {
-    console.log('ERROR-Config ', this.errorStore.config);
     return this.errorStore.config;
   }
 

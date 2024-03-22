@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -46,7 +45,6 @@ const myConfiguration: LuxComponentsConfigParameters = {
     BrowserAnimationsModule,
     AppRoutingModule,
     HammerModule,
-    FlexLayoutModule,
     LuxLayoutModule,
     LuxActionModule,
     LuxPopupsModule,

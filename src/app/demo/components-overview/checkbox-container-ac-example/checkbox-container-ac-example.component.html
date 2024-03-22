@@ -2,7 +2,7 @@
   exampleTitle="Checkbox-Container Authentic"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90checkbox%E2%80%90container%E2%80%90ac"
 >
-  <example-base-content fxFlex="column" fxLayoutGap="20px">
+  <example-base-content class="lux-flex lux-flex-col lux-gap-4">
     <h2>Testkomponente</h2>
     <lux-checkbox-container-ac [luxLabel]="label" [luxVertical]="isVertical">
       <lux-checkbox-ac luxLabel="Lorem ipsum"></lux-checkbox-ac>
@@ -37,20 +37,14 @@
       </p>
     </div>
   </example-base-content>
-  <example-base-simple-options>
-    <lux-input-ac
-      class="lux-highlight-section"
-      luxLabel="luxLabel"
-      luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
-      [(luxValue)]="label"
-    >
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
+    <lux-input-ac luxLabel="luxLabel" luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen." [(luxValue)]="label">
     </lux-input-ac>
     <lux-toggle-ac
       luxLabel="luxVertical"
       luxHint="Erlaubt es, zwischen vertikaler oder horizontaler Ausrichtung zu wechseln"
       [(luxChecked)]="isVertical"
       [luxNoTopLabel]="true"
-      class="lux-highlight-section"
     >
     </lux-toggle-ac>
   </example-base-simple-options>

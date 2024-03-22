@@ -5,7 +5,6 @@
   <example-base-content>
     <ng-container *ngIf="created">
       <lux-list
-        fxFlex="1 1 100%"
         style="overflow: auto"
         luxInfiniteScroll
         [luxImmediateCallback]="immediateCallback"
@@ -22,23 +21,20 @@
       </lux-list>
     </ng-container>
   </example-base-content>
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
     ></lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
-    <lux-toggle-ac class="lux-highlight-section" luxLabel="luxImmediateCallback" [(luxChecked)]="immediateCallback" [luxNoTopLabel]="true">
+    <lux-toggle-ac luxLabel="luxImmediateCallback" [(luxChecked)]="immediateCallback" [luxNoTopLabel]="true">
       <lux-form-hint>
         Bestimmt ob bei Initiierung ein luxScrolled-Event abgegeben wird.<br />
         Damit diese Property greift, bitte in den Optionen den Buttpn "Neu generieren" anklicken.
       </lux-form-hint>
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="luxIsLoading"
       luxHint="Teilt der Component mit, ob gerade Daten geladen werden. Wenn true, werden keine luxScrolled-Events emittet."
       [(luxChecked)]="isLoading"
@@ -46,7 +42,6 @@
     >
     </lux-toggle-ac>
     <lux-input-ac
-      class="lux-highlight-section"
       luxType="number"
       [luxNumberAlignLeft]="true"
       luxName="infinite-scrolling_luxScrollPercent"
@@ -58,8 +53,8 @@
   </example-base-simple-options>
   <example-base-options-actions>
     <div class="lux-simple-form row">
-      <lux-button luxLabel="Neu generieren" [luxRaised]="true" (luxClicked)="recreateList()" luxTagId="menu-item-regenerate"> </lux-button>
-      <lux-button luxLabel="Reset" [luxRaised]="true" (luxClicked)="reset()" luxTagId="menu-item-reset"> </lux-button>
+      <lux-button luxLabel="Neu generieren" [luxStroked]="true" (luxClicked)="recreateList()" luxTagId="menu-item-regenerate"> </lux-button>
+      <lux-button luxLabel="Reset" [luxStroked]="true" (luxClicked)="reset()" luxTagId="menu-item-reset"> </lux-button>
     </div>
   </example-base-options-actions>
 </example-base-structure>

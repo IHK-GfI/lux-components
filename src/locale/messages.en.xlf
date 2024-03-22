@@ -51,7 +51,7 @@
         <target>Close message</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-message-box/lux-message-box-subcomponents/lux-message.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.message.container.arialabel" datatype="html">
@@ -139,7 +139,7 @@
         <target> Error number: <x id="INTERPOLATION" equiv-text="{{ error.errorId }}"/> </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-error/lux-error-page/lux-error-page.component.html</context>
-          <context context-type="linenumber">27,29</context>
+          <context context-type="linenumber">14,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.errorpage.error_title" datatype="html">
@@ -147,7 +147,7 @@
         <target>Error message</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-error/lux-error-page/lux-error-page.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file-preview.download.arialabel" datatype="html">
@@ -171,7 +171,7 @@
         <target>Zoom in</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-imgviewer/lux-file-preview-imgviewer.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file-preview.imgviewer.zoomout.arialabel" datatype="html">
@@ -179,7 +179,7 @@
         <target>Zoom out</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-imgviewer/lux-file-preview-imgviewer.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file-preview.notsupportedviewer.download.arialabel" datatype="html">
@@ -187,7 +187,7 @@
         <target>Download file</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-notsupportedviewer/lux-file-preview-notsupportedviewer.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file-preview.notsupportedviewer.close.arialabel" datatype="html">
@@ -195,7 +195,7 @@
         <target>Close file preview</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-notsupportedviewer/lux-file-preview-notsupportedviewer.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file-preview.notsupportedviewer.message" datatype="html">
@@ -203,7 +203,7 @@
         <target>This file cannot be shown.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-notsupportedviewer/lux-file-preview-notsupportedviewer.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file-preview.notsupportedviewer.download.lbl" datatype="html">
@@ -211,7 +211,7 @@
         <target>Download...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-notsupportedviewer/lux-file-preview-notsupportedviewer.component.ts</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file-preview.pdfviewer.zoom.arialabel" datatype="html">
@@ -339,7 +339,7 @@
         <target>More Options</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-form/lux-filter-form.component.ts</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.filter.expandedLabel.close" datatype="html">
@@ -347,7 +347,7 @@
         <target>Less Options</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-filter/lux-filter-form/lux-filter-form.component.ts</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.autocomplete.error_message.not_an_option" datatype="html">
@@ -655,7 +655,7 @@
         <target>Button to delete the file <x id="INTERPOLATION" equiv-text="{{ file.name }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-upload/lux-file-upload.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file.upload.error_message.max_file_size" datatype="html">
@@ -825,7 +825,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.html</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">86</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.html</context>
@@ -857,7 +857,7 @@
         <target>Head / Menu</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">40</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -869,7 +869,7 @@
         <target>User menu / Navigation</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -881,7 +881,7 @@
         <target>Title icon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -893,7 +893,7 @@
         <target>Title image</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header-ac/lux-app-header-ac.component.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">43</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-layout/lux-app-header/lux-app-header.component.ts</context>
@@ -1144,7 +1144,7 @@
           <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
-       <trans-unit id="luxc.dialog.btn.close.arialabel" datatype="html">
+      <trans-unit id="luxc.dialog.btn.close.arialabel" datatype="html">
         <source>Dialog schließen</source>
          <target>Dialog close</target>
         <context-group purpose="location">

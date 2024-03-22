@@ -3,3 +3,11 @@ lux-button ::ng-deep {
     width: 275px;
   }
 }
+
+.round-btn {
+  margin-top: 10px;
+
+  @media only screen and (min-width: 960px) {
+    margin-top: 23px;
+  }
+}

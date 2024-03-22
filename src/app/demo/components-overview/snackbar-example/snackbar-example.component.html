@@ -3,58 +3,48 @@
   exampleIconName="lux-interface-edit-view"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90snackbar"
 >
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
-    <div class="lux-grid lux-grid-cols-2 lux-gap-3 xs:lux-grid-cols-1 xs:lux-gap-1">
-      <div class="lux-highlight-section lux-flex lux-flex-col lux-gap-3">
-        <lux-input-ac luxLabel="text" luxHint="Diese Property definiert den Text der Snackbar." [(luxValue)]="snackbarConfig.text">
-        </lux-input-ac>
-        <lux-select-ac
-          luxLabel="textColor"
-          [luxOptions]="colors"
-          luxHint="Hier kann ein Farbwert für den Text eingetragen werden (aus dem entsprechenden Enum)."
-          [(luxSelected)]="snackbarConfig.textColor"
-        >
-        </lux-select-ac>
-      </div>
-      <div class="lux-highlight-section lux-flex lux-flex-col lux-gap-3">
-        <lux-input-ac luxLabel="iconName" luxHint="Diese Property definiert das Icon der Snackbar." [(luxValue)]="snackbarConfig.iconName">
-        </lux-input-ac>
-        <lux-select-ac
-          luxLabel="iconSize"
-          luxHint="Die Property bestimmt die (relative) Größe des Icons."
-          [(luxSelected)]="snackbarConfig.iconSize"
-          [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
-        >
-        </lux-select-ac>
-        <lux-select-ac
-          luxLabel="iconColor"
-          [luxOptions]="colors"
-          luxHint="Hier kann ein Farbwert für das Icon eingetragen werden (aus dem entsprechenden Enum)."
-          [(luxSelected)]="snackbarConfig.iconColor"
-        >
-        </lux-select-ac>
-      </div>
-      <div class="lux-highlight-section lux-flex lux-flex-col lux-gap-3 lux-col-span-full">
-        <lux-input-ac luxLabel="action" luxHint="Diese Property definiert die Action der Snackbar." [(luxValue)]="snackbarConfig.action">
-        </lux-input-ac>
-        <lux-select-ac
-          luxLabel="actionColor"
-          [luxOptions]="colors"
-          luxHint="Hier kann ein Farbwert für die Action eingetragen werden (aus dem entsprechenden Enum)."
-          [(luxSelected)]="snackbarConfig.actionColor"
-        >
-        </lux-select-ac>
-      </div>
-    </div>
+    <lux-input-ac luxLabel="text" luxHint="Diese Property definiert den Text der Snackbar." [(luxValue)]="snackbarConfig.text">
+    </lux-input-ac>
+    <lux-select-ac
+      luxLabel="textColor"
+      [luxOptions]="colors"
+      luxHint="Hier kann ein Farbwert für den Text eingetragen werden (aus dem entsprechenden Enum)."
+      [(luxSelected)]="snackbarConfig.textColor"
+    >
+    </lux-select-ac>
+    <lux-input-ac luxLabel="iconName" luxHint="Diese Property definiert das Icon der Snackbar." [(luxValue)]="snackbarConfig.iconName">
+    </lux-input-ac>
+    <lux-select-ac
+      luxLabel="iconSize"
+      luxHint="Die Property bestimmt die (relative) Größe des Icons."
+      [(luxSelected)]="snackbarConfig.iconSize"
+      [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
+    >
+    </lux-select-ac>
+    <lux-select-ac
+      luxLabel="iconColor"
+      [luxOptions]="colors"
+      luxHint="Hier kann ein Farbwert für das Icon eingetragen werden (aus dem entsprechenden Enum)."
+      [(luxSelected)]="snackbarConfig.iconColor"
+    >
+    </lux-select-ac>
+    <lux-input-ac luxLabel="action" luxHint="Diese Property definiert die Action der Snackbar." [(luxValue)]="snackbarConfig.action">
+    </lux-input-ac>
+    <lux-select-ac
+      luxLabel="actionColor"
+      [luxOptions]="colors"
+      luxHint="Hier kann ein Farbwert für die Action eingetragen werden (aus dem entsprechenden Enum)."
+      [(luxSelected)]="snackbarConfig.actionColor"
+    >
+    </lux-select-ac>
   </example-base-simple-options>
   <example-base-options-actions>
     <div class="lux-flex lux-flex-wrap">

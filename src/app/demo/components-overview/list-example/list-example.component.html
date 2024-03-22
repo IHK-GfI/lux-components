@@ -29,41 +29,35 @@
       </lux-list-item>
     </lux-list>
   </example-base-content>
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
     ></lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
     <lux-input-ac
-      class="lux-highlight-section"
       [(luxValue)]="emptyLabel"
       luxName="list_luxEmptyLabel"
       luxLabel="luxEmptyLabel"
       luxHint="Diese Property stellt das Label ein, welches bei einer leeren Liste angezeigt werden soll."
     >
     </lux-input-ac>
-    <div class="lux-highlight-section column">
-      <lux-input-ac
-        [(luxValue)]="emptyIconName"
-        luxName="list_luxEmptyIconName"
-        luxLabel="luxEmptyIconName"
-        luxHint="Über diese Property wird das Icon bestimmt, das in einer leeren Liste angezeigt werden soll."
-      >
-      </lux-input-ac>
-      <lux-select-ac
-        [(luxSelected)]="emptyIconSize"
-        [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
-        luxLabel="luxEmptyIconSize"
-        luxHint="Über diese Property wird die Größe es luxEmptyIcons bestimmt."
-      >
-      </lux-select-ac>
-    </div>
     <lux-input-ac
-      class="lux-highlight-section"
+      [(luxValue)]="emptyIconName"
+      luxName="list_luxEmptyIconName"
+      luxLabel="luxEmptyIconName"
+      luxHint="Über diese Property wird das Icon bestimmt, das in einer leeren Liste angezeigt werden soll."
+    >
+    </lux-input-ac>
+    <lux-select-ac
+      [(luxSelected)]="emptyIconSize"
+      [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
+      luxLabel="luxEmptyIconSize"
+      luxHint="Über diese Property wird die Größe es luxEmptyIcons bestimmt."
+    >
+    </lux-select-ac>
+    <lux-input-ac
       [(luxValue)]="selectedPosition"
       luxName="list_luxSelectedPosition"
       luxLabel="luxSelectedPosition"
@@ -72,30 +66,28 @@
     >
     </lux-input-ac>
   </example-base-simple-options>
-  <example-base-advanced-options *ngIf="items.length > 0">
+  <example-base-advanced-options *ngIf="items.length > 0" class="lux-flex lux-flex-col lux-gap-4">
     <lux-accordion [luxMulti]="false" [luxMode]="'flat'">
       <lux-panel *ngFor="let item of items">
         <lux-panel-header-title>
           {{ item.title }}
         </lux-panel-header-title>
-        <lux-panel-content>
-          <div class="lux-highlight-section column">
-            <lux-input-ac
-              [(luxValue)]="item.title"
-              luxName="list_luxTitle"
-              luxLabel="luxTitle"
-              luxHint="Diese Property bestimmt den Titel des Items."
-            >
-            </lux-input-ac>
-            <lux-input-ac
-              [(luxValue)]="item.subTitle"
-              luxName="list_luxSubTitle"
-              luxLabel="luxSubTitle"
-              luxHint="Diese Property bestimmt den Untertitel (grau) des Items."
-            >
-            </lux-input-ac>
-          </div>
-          <lux-input-ac luxName="list_luxIconName" class="lux-highlight-section" [(luxValue)]="item.iconName" luxLabel="luxIconName">
+        <lux-panel-content class="lux-flex lux-flex-col lux-gap-4 column lux-mt-4">
+          <lux-input-ac
+            [(luxValue)]="item.title"
+            luxName="list_luxTitle"
+            luxLabel="luxTitle"
+            luxHint="Diese Property bestimmt den Titel des Items."
+          >
+          </lux-input-ac>
+          <lux-input-ac
+            [(luxValue)]="item.subTitle"
+            luxName="list_luxSubTitle"
+            luxLabel="luxSubTitle"
+            luxHint="Diese Property bestimmt den Untertitel (grau) des Items."
+          >
+          </lux-input-ac>
+          <lux-input-ac luxName="list_luxIconName" [(luxValue)]="item.iconName" luxLabel="luxIconName">
             <lux-form-hint>
               Der Name des Icons für dieses Item.<br />
               Das Icon wird über Content-Projection eingebunden, die restlichen Properties hierfür entfallen der Einfachheit halber für das
@@ -103,14 +95,13 @@
             </lux-form-hint>
           </lux-input-ac>
           <lux-toggle-ac
-            class="lux-highlight-section"
             luxLabel="luxTitleLineBreak"
             luxHint="Dieser Flag bestimmt ob die Titel-Zeilen umgebrochen oder mit '...' abgekürzt werden."
             [(luxChecked)]="item.lineBreak"
             [luxNoTopLabel]="true"
           >
           </lux-toggle-ac>
-          <lux-toggle-ac class="lux-highlight-section" luxLabel="luxSelected" [(luxChecked)]="item.selected" [luxNoTopLabel]="true">
+          <lux-toggle-ac luxLabel="luxSelected" [(luxChecked)]="item.selected" [luxNoTopLabel]="true">
             <lux-form-hint>
               Mithilfe dieses Flags kann das Item hervorgehoben dargestellt werden.<br />
               In diesem Beispiel sorgt ein Klick auf ein Item dafür, dass dieses dann als selektiert gekennzeichnet wird.
@@ -121,7 +112,7 @@
     </lux-accordion>
   </example-base-advanced-options>
   <example-base-options-actions>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="end start">
+    <div class="lux-simple-form row">
       <lux-button luxLabel="Leeren" luxColor="warn" [luxStroked]="true" [luxDisabled]="items.length === 0" (luxClicked)="clear()">
       </lux-button>
       <lux-button luxLabel="Füllen" luxColor="primary" [luxFlat]="true" (luxClicked)="fill(10)"> </lux-button>

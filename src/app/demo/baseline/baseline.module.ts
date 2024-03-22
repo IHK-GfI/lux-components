@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { LuxIconModule } from '../../modules/lux-icon/lux-icon.module';
@@ -28,7 +27,6 @@ const routes: Routes = [{ path: '', component: BaselineExampleComponent }];
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
     LuxFormModule,
     LuxActionModule,
     LuxCommonModule,

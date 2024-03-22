@@ -1,0 +1,19 @@
+<lux-toggle-ac [(luxChecked)]="disabled" luxLabel="luxDisabled" luxHint="Erlaubt es, die Component zu deaktivieren." [luxNoTopLabel]="true">
+</lux-toggle-ac>
+<div class="column">
+  <div class="lux-flex lux-row-wrap lux-mt-4">
+    <lux-button
+      luxLabel="Enable"
+      (luxClicked)="form.get(controlBinding)!.enable()"
+      [luxDisabled]="!form.get(controlBinding)!.disabled"
+      luxColor="primary"
+    ></lux-button>
+    <lux-button
+      luxLabel="Disable"
+      (luxClicked)="form.get(controlBinding)!.disable()"
+      [luxDisabled]="form.get(controlBinding)!.disabled"
+      luxColor="primary"
+    ></lux-button>
+  </div>
+  <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
+</div>

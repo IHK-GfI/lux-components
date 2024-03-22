@@ -7,6 +7,8 @@
     class="lux-message-icon"
   ></lux-icon>
 
+  <div *ngIf="!luxMessage.iconName" class="lux-message-icon"></div>
+
   <p tabindex="0" class="lux-message-text">{{ luxMessage.text }}</p>
 
   <lux-button

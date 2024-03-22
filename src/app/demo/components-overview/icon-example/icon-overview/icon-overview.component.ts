@@ -21,7 +21,7 @@ export class IconOverviewComponent implements OnInit, OnDestroy {
   @ViewChild('scrollContainer') scrollContainer?: ElementRef;
 
   allIcons: LuxSvgIcon[];
-  blockSize = 50;
+  blockSize = 100;
   codeSnippet = '';
   copiedToClipboard = false;
   displayedIcons: LuxSvgIcon[] = [];

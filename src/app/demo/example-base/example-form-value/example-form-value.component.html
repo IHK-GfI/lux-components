@@ -1,0 +1,20 @@
+<div class="lux-highlight-section lux-flex lux-flex-col">
+  <div *ngIf="showValue" class="lux-flex gt-md:lux-gap-2">
+    <div class="lt-lg:lux-flex-basis-16 lux-flex-shrink-0">Wert:</div>
+    <div>{{ form.get(controlBinding)!.value | json }} {{ suffix }}</div>
+  </div>
+  <div class="lux-grid lux-grid-cols-3 lt-lg:lux-grid-cols-1 lux-max-width-3/4 gt-lg:lux-max-width-1/2">
+    <div class="lux-flex gt-md:lux-gap-2">
+      <div class="lt-lg:lux-flex-basis-16">Valid:</div>
+      <div>{{ form.valid }}</div>
+    </div>
+    <div class="lux-flex gt-md:lux-gap-2">
+      <div class="lt-lg:lux-flex-basis-16">Dirty:</div>
+      <div>{{ form.dirty }}</div>
+    </div>
+    <div class="lux-flex gt-md:lux-gap-2">
+      <div class="lt-lg:lux-flex-basis-16">Touched:</div>
+      <div>{{ form.touched }}</div>
+    </div>
+  </div>
+</div>

@@ -87,14 +87,14 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
-    <table-example-simple-options [tableExample]="this"></table-example-simple-options>
+    <table-example-simple-options [tableExample]="this" class="lux-flex lux-flex-col lux-gap-4"></table-example-simple-options>
   </example-base-simple-options>
   <example-base-advanced-options>
-    <table-example-advanced-options [tableExample]="this"></table-example-advanced-options>
+    <table-example-advanced-options [tableExample]="this" class="lux-flex lux-flex-col lux-gap-4"></table-example-advanced-options>
   </example-base-advanced-options>
-  <example-base-options-actions>
+  <example-base-options-actions class="lux-flex">
     <lux-menu
-      fxFlex="0 0 250px"
+      class="lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-64 lux-min-width-64 lux-max-width-64"
       luxMenuIconName="lux-interface-setting-menu-vertical"
       [luxDisplayExtended]="true"
       [luxMaximumExtended]="4"

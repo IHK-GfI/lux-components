@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-license-hint',
+  styles: [':host { display: flex; justify-content: center}'],
   templateUrl: './license-hint.component.html',
-  styleUrls: ['license-hint.component.scss']
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LicenseHintComponent {
   licenceHintIcons = `

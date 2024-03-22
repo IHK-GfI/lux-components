@@ -10,7 +10,6 @@ import { LuxSanitizeConfig } from '../lux-sanitize/lux-sanitize-config';
 export class LuxHtmlComponent implements AfterViewInit {
   @Input() luxData = '';
   @Input() luxSanitizeConfig?: LuxSanitizeConfig;
-  @Input() luxFlex = 'flex';
   @Input() luxStyle = '';
   @Input() luxClass = '';
 
