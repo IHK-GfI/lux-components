@@ -11,28 +11,6 @@
     i18n-luxAriaLabel="@@luxc.file-preview.pdfviewer.zoom.arialabel"
   ></lux-select-ac>
   <lux-button
-    luxIconName="lux-interface-arrows-button-left"
-    *ngIf="!showAll"
-    (luxClicked)="onPrevPage()"
-    [luxDisabled]="page === 1"
-    [ngClass]="{ 'lux-button-disabled': page === 1 }"
-    [luxRaised]="true"
-    luxTagId="file-preview-zoomin-btn"
-    luxAriaLabel="Hinein zoomen"
-    i18n-luxAriaLabel="@@luxc.file-preview.pdfviewer.zoomin.arialabel"
-  ></lux-button>
-  <lux-button
-    luxIconName="lux-interface-arrows-button-right"
-    (luxClicked)="onNextPage()"
-    [luxDisabled]="page === numPages"
-    [ngClass]="{ 'lux-button-disabled': page === numPages }"
-    *ngIf="!showAll"
-    [luxRaised]="true"
-    luxTagId="file-preview-zoomout-btn"
-    luxAriaLabel="Heraus zoomen"
-    i18n-luxAriaLabel="@@luxc.file-preview.pdfviewer.zoomout.arialabel"
-  ></lux-button>
-  <lux-button
     [luxIconName]="downloadIconName"
     (luxClicked)="onDownload()"
     luxColor="accent"
@@ -65,7 +43,7 @@
   <pdf-viewer
     *ngIf="url"
     [src]="url"
-    [show-all]="showAll"
+    [show-all]="true"
     [page]="page"
     [zoom]="zoom.value"
     [render-text]="false"
