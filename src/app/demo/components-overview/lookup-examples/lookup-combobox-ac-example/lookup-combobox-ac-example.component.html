@@ -3,7 +3,7 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90lookup%E2%80%90combobox"
 >
   <example-base-content>
-    <div fxLayout="column">
+    <div class="lux-flex lux-flex-col">
       <h3>Beispiel ohne Reactive-Form</h3>
       <lux-lookup-combobox-ac
         [luxPlaceholder]="placeholder"
@@ -36,12 +36,9 @@
         luxTagId="lkpexample1"
       >
       </lux-lookup-combobox-ac>
-      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="value">
-        <span fxFlex="0 0 auto">Wert:</span>
-        <span fxFlex="auto">{{ value | json }}</span>
-      </div>
+      <example-value [value]="value"></example-value>
     </div>
-    <div fxLayout="column">
+    <div class="lux-flex lux-flex-col">
       <h3>Multiselect Beispiel</h3>
       <lux-lookup-combobox-ac
         [luxPlaceholder]="placeholder"
@@ -75,12 +72,9 @@
         luxTagId="lkpexample2"
       >
       </lux-lookup-combobox-ac>
-      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px" *ngIf="multiValue">
-        <span fxFlex="0 0 auto">Wert:</span>
-        <span fxFlex="auto">{{ multiValue | json }}</span>
-      </div>
+      <example-value [value]="multiValue"></example-value>
     </div>
-    <div fxLayout="column" [formGroup]="form">
+    <div class="lux-flex lux-flex-col" [formGroup]="form">
       <h3>Beispiel in Reactive-Form</h3>
       <lux-lookup-combobox-ac
         [luxPlaceholder]="placeholder"
@@ -111,111 +105,60 @@
         luxTagId="lkpexample3"
       >
       </lux-lookup-combobox-ac>
-      <div fxLayout="column" class="lux-highlight-section">
-        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
-          <span fxFlex="35px">Wert:</span>
-          <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
-        </div>
-        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
-          <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
-            <span fxFlex="35px">Valid:</span>
-            <span fxFlex="30px">{{ form.valid }}</span>
-          </div>
-          <div fxFlex="30" fxLayout="row">
-            <span fxFlex="0 0 auto">Dirty:</span>
-            <span fxFlex="30px">{{ form.dirty }}</span>
-          </div>
-          <div fxFlex="30" fxLayout="row">
-            <span fxFlex="0 0 auto">Touched:</span>
-            <span fxFlex="30px">{{ form.touched }}</span>
-          </div>
-        </div>
-      </div>
+      <example-form-value [form]="form" [controlBinding]="controlBinding"></example-form-value>
     </div>
   </example-base-content>
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Output-Events loggen"
       luxHint="(Console --> F12/CMD+ALT+I)"
       [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
     <lux-input-ac
-      class="lux-highlight-section"
       luxName="lookup-combobox_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
     >
     </lux-input-ac>
-    <div class="lux-highlight-section column">
-      <lux-input-ac
-        luxName="lookup-combobox_luxHint"
-        luxLabel="luxHint"
-        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-        [(luxValue)]="hint"
-      >
-      </lux-input-ac>
-      <lux-toggle-ac
-        luxName="lookup-combobox_luxHintShowOnlyOnFocus"
-        luxLabel="luxHintShowOnlyOnFocus"
-        luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
-        [(luxChecked)]="hintShowOnlyOnFocus"
-        [luxNoTopLabel]="true"
-      ></lux-toggle-ac>
-    </div>
     <lux-input-ac
-      class="lux-highlight-section"
+      luxName="lookup-combobox_luxHint"
+      luxLabel="luxHint"
+      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+      [(luxValue)]="hint"
+    >
+    </lux-input-ac>
+    <lux-toggle-ac
+      luxName="lookup-combobox_luxHintShowOnlyOnFocus"
+      luxLabel="luxHintShowOnlyOnFocus"
+      luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+      [(luxChecked)]="hintShowOnlyOnFocus"
+      [luxNoTopLabel]="true"
+    ></lux-toggle-ac>
+    <lux-input-ac
       luxName="lookup-combobox_luxPlaceholder"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
       [(luxValue)]="placeholder"
     >
     </lux-input-ac>
+    <example-form-disable [form]="form" [controlBinding]="controlBinding" [(disabled)]="disabled"></example-form-disable>
     <lux-toggle-ac
-      class="lux-highlight-section"
-      [(luxChecked)]="disabled"
-      luxLabel="luxDisabled"
-      luxHint="Erlaubt es, die Component zu deaktivieren."
-      [luxNoTopLabel]="true"
-    >
-    </lux-toggle-ac>
-    <div class="lux-highlight-section column">
-      <div fxLayout="row wrap" fxLayoutGap="8px">
-        <lux-button
-          luxLabel="Enable"
-          luxColor="primary"
-          (luxClicked)="form.get(controlBinding)!.enable()"
-          [luxDisabled]="!form.get(controlBinding)!.disabled"
-        ></lux-button>
-        <lux-button
-          luxLabel="Disable"
-          luxColor="primary"
-          (luxClicked)="form.get(controlBinding)!.disable()"
-          [luxDisabled]="form.get(controlBinding)!.disabled"
-        ></lux-button>
-      </div>
-      <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
-    </div>
-    <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-toggle-ac class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
+    <lux-toggle-ac luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
         <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="denseFormat"
       luxLabel="luxDense"
       luxHint="Diese Property veringert das Padding innerhalb des Controls."
@@ -223,9 +166,8 @@
     >
     </lux-toggle-ac>
   </example-base-simple-options>
-  <example-base-advanced-options>
+  <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-input-ac
-      class="lux-highlight-section"
       luxName="lookup-combobox_luxEntryBlockSize"
       luxLabel="luxEntryBlockSize"
       (luxBlur)="reloadData()"
@@ -237,69 +179,62 @@
         Wenn mehr Datensätze vorhanden sind und der User in der Liste scrollt, wird der nächste Block gerendert.
       </lux-form-hint>
     </lux-input-ac>
-    <div class="lux-highlight-section column">
-      <lux-toggle-ac
-        luxLabel="Render-Funktion nutzen"
-        luxHint="Wenn 'true' wird für 'luxRenderProp' anstelle einer Render-Property (z.B. 'label') eine Callback-Funktion übergeben."
-        [(luxChecked)]="useRenderFn"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-      <pre class="lux-label" *ngIf="useRenderFn"><b>renderFn</b> = {{ renderFnString }}</pre>
-      <lux-input-ac
-        [(luxValue)]="renderProp"
-        luxName="lookup-combobox_luxRenderProp"
-        luxLabel="luxRenderProp"
-        luxHint="Hier kann die Property festgelegt werden, welche zur Darstellung der einzelnen Einträge genutzt wird."
-        *ngIf="!useRenderFn"
-      >
-      </lux-input-ac>
-      <lux-input-ac
-        [(luxValue)]="renderPropNoPropertyLabel"
-        luxName="lookup_autocomplete_luxRenderPropNoPropertyLabel"
-        luxLabel="luxRenderPropNoPropertyLabel"
-        luxHint="Dieser Text wird angezeigt, wenn das Property aus luxRenderProp bei dem Eintrag nicht existiert."
-        *ngIf="!useRenderFn"
-      >
-      </lux-input-ac>
-      <lux-toggle-ac
-        luxLabel="luxCompareFn"
-        luxHint="Sortiert die Optionen entweder nach dem Kurztext (aktiviert) oder Schlüssel (deaktiviert)."
-        (luxCheckedChange)="toggleCompareFn($event)"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-    </div>
-    <div class="lux-highlight-section column">
-      <lux-toggle-ac
-        luxLabel="Leereintrag erlauben"
-        luxHint="Wenn 'true' wird 'luxWithEmptyEntry' auf 'true' gesetzt."
-        [(luxChecked)]="bLuxWithEmptyEntry"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-    </div>
-    <div class="lux-highlight-section column">
-      <lux-toggle-ac
-        luxLabel="luxCustomStyles übergeben"
-        luxHint="Wenn 'true', wird der Component ein Objekt mit Styles für valide Elemente übergeben."
-        (luxCheckedChange)="changeCustomStyle($event)"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-      <pre class="lux-label" *ngIf="customStyle"><b>customStyles</b> = {{ customStyle | json }}</pre>
-      <lux-toggle-ac
-        luxLabel="luxCustomInvalidStyles übergeben"
-        luxHint="Wenn 'true', wird der Component ein Objekt mit Styles für invalide Elemente übergeben."
-        (luxCheckedChange)="changeCustomInvalidStyle($event)"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-      <pre class="lux-label" *ngIf="customInvalidStyle"><b>customInvalidStyles</b> = {{ customInvalidStyle | json }}</pre>
-    </div>
+    <lux-toggle-ac
+      luxLabel="Render-Funktion nutzen"
+      luxHint="Wenn 'true' wird für 'luxRenderProp' anstelle einer Render-Property (z.B. 'label') eine Callback-Funktion übergeben."
+      [(luxChecked)]="useRenderFn"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <pre class="lux-label" *ngIf="useRenderFn"><b>renderFn</b> = {{ renderFnString }}</pre>
+    <lux-input-ac
+      [(luxValue)]="renderProp"
+      luxName="lookup-combobox_luxRenderProp"
+      luxLabel="luxRenderProp"
+      luxHint="Hier kann die Property festgelegt werden, welche zur Darstellung der einzelnen Einträge genutzt wird."
+      *ngIf="!useRenderFn"
+    >
+    </lux-input-ac>
+    <lux-input-ac
+      [(luxValue)]="renderPropNoPropertyLabel"
+      luxName="lookup_autocomplete_luxRenderPropNoPropertyLabel"
+      luxLabel="luxRenderPropNoPropertyLabel"
+      luxHint="Dieser Text wird angezeigt, wenn das Property aus luxRenderProp bei dem Eintrag nicht existiert."
+      *ngIf="!useRenderFn"
+    >
+    </lux-input-ac>
+    <lux-toggle-ac
+      luxLabel="luxCompareFn"
+      luxHint="Sortiert die Optionen entweder nach dem Kurztext (aktiviert) oder Schlüssel (deaktiviert)."
+      (luxCheckedChange)="toggleCompareFn($event)"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <lux-toggle-ac
+      luxLabel="Leereintrag erlauben"
+      luxHint="Wenn 'true' wird 'luxWithEmptyEntry' auf 'true' gesetzt."
+      [(luxChecked)]="bLuxWithEmptyEntry"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <lux-toggle-ac
+      luxLabel="luxCustomStyles übergeben"
+      luxHint="Wenn 'true', wird der Component ein Objekt mit Styles für valide Elemente übergeben."
+      (luxCheckedChange)="changeCustomStyle($event)"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <pre class="lux-label" *ngIf="customStyle"><b>customStyles</b> = {{ customStyle | json }}</pre>
+    <lux-toggle-ac
+      luxLabel="luxCustomInvalidStyles übergeben"
+      luxHint="Wenn 'true', wird der Component ein Objekt mit Styles für invalide Elemente übergeben."
+      (luxCheckedChange)="changeCustomInvalidStyle($event)"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <pre class="lux-label" *ngIf="customInvalidStyle"><b>customInvalidStyles</b> = {{ customInvalidStyle | json }}</pre>
 
     <lux-select-ac
-      class="lux-highlight-section"
       luxLabel="luxBehandlungUngueltige"
       luxOptionLabelProp="label"
       [luxOptions]="options"
@@ -312,27 +247,24 @@
       </lux-form-hint>
     </lux-select-ac>
 
-    <div class="lux-highlight-section column">
-      <lux-toggle-ac
-        luxLabel="luxErrorMessage verwenden"
-        luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
-        [(luxChecked)]="useErrorMessage"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-      <pre class="lux-label" *ngIf="!useErrorMessage"><b>luxErrorCallback</b> = {{ errorCallbackString }}</pre>
-      <lux-input-ac
-        luxName="lookup-combobox_luxErrorMessage"
-        luxLabel="luxErrorMessage"
-        luxHint="Über diese Property lässt sich eine feste Fehlermeldung
+    <lux-toggle-ac
+      luxLabel="luxErrorMessage verwenden"
+      luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
+      [(luxChecked)]="useErrorMessage"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <pre class="lux-label" *ngIf="!useErrorMessage"><b>luxErrorCallback</b> = {{ errorCallbackString }}</pre>
+    <lux-input-ac
+      luxName="lookup-combobox_luxErrorMessage"
+      luxLabel="luxErrorMessage"
+      luxHint="Über diese Property lässt sich eine feste Fehlermeldung
                  (unabhängig vom speziellen Validierungsfehler) einstellen."
-        [(luxValue)]="errorMessage"
-        *ngIf="useErrorMessage"
-      >
-      </lux-input-ac>
-    </div>
+      [(luxValue)]="errorMessage"
+      *ngIf="useErrorMessage"
+    >
+    </lux-input-ac>
     <lux-select-ac
-      class="lux-highlight-section"
       [luxOptions]="validatorOptions"
       luxOptionLabelProp="label"
       [luxMultiple]="true"
@@ -348,7 +280,6 @@
       </lux-form-hint>
     </lux-select-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
       [luxNoTopLabel]="true"

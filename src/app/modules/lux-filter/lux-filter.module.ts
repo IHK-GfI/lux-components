@@ -4,7 +4,6 @@ import { LuxFilterFormComponent } from './lux-filter-form/lux-filter-form.compon
 import { LuxActionModule } from '../lux-action/lux-action.module';
 import { LuxLayoutModule } from '../lux-layout/lux-layout.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { LuxFormModule } from '../lux-form/lux-form.module';
 import { LuxPopupsModule } from '../lux-popups/lux-popups.module';
 import { LuxFilterSaveDialogComponent } from './lux-filter-dialog/lux-filter-save-dialog/lux-filter-save-dialog.component';
@@ -23,7 +22,6 @@ import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
   ],
   imports: [
     CommonModule,
-    FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     LuxLayoutModule,
@@ -32,7 +30,13 @@ import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
     LuxPopupsModule,
     LuxDirectivesModule
   ],
-  exports: [LuxFilterFormComponent, LuxFilterItemDirective, LuxFilterSaveDialogComponent, LuxFilterLoadDialogComponent, LuxFilterFormExtendedComponent],
+  exports: [
+    LuxFilterFormComponent,
+    LuxFilterItemDirective,
+    LuxFilterSaveDialogComponent,
+    LuxFilterLoadDialogComponent,
+    LuxFilterFormExtendedComponent
+  ],
   providers: []
 })
 export class LuxFilterModule {}

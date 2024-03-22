@@ -3,7 +3,7 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90datetimepicker"
 >
   <example-base-content>
-    <div fxLayout="column">
+    <div class="lux-flex lux-flex-col">
       <h3>Beispiel ohne Reactive-Form</h3>
       <lux-datetimepicker-ac
         [luxShowToggle]="showToggle"
@@ -32,12 +32,9 @@
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
       >
       </lux-datetimepicker-ac>
-      <div class="lux-highlight-section" fxLayout="row" fxLayoutGap="5px">
-        <span fxFlex="0 0 auto">Datum (ISO):</span>
-        <span fxFlex="auto">{{ value | json }}</span>
-      </div>
+      <example-value [value]="value"></example-value>
     </div>
-    <div fxLayout="column" [formGroup]="form">
+    <div class="lux-flex lux-flex-col" [formGroup]="form">
       <h3>Beispiel in Reactive-Form</h3>
       <lux-datetimepicker-ac
         [luxShowToggle]="showToggle"
@@ -66,62 +63,31 @@
         #test2
       >
       </lux-datetimepicker-ac>
-      <div fxLayout="column" class="lux-highlight-section">
-        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
-          <span fxFlex="0 0 auto">Datum (ISO):</span>
-          <span fxFlex="auto">{{ form.get(controlBinding)!.value | json }}</span>
-        </div>
-        <div fxLayout="row" fxLayoutGap="5px" class="lux-p-2">
-          <div fxFlex="30" fxLayout="row wrap" fxLayoutGap="5px">
-            <span fxFlex="35px">Valid:</span>
-            <span fxFlex="30px">{{ form.valid }}</span>
-          </div>
-          <div fxFlex="30" fxLayout="row">
-            <span fxFlex="0 0 auto">Dirty:</span>
-            <span fxFlex="30px">{{ form.dirty }}</span>
-          </div>
-          <div fxFlex="30" fxLayout="row">
-            <span fxFlex="0 0 auto">Touched:</span>
-            <span fxFlex="30px">{{ form.touched }}</span>
-          </div>
-        </div>
-      </div>
+      <example-form-value [form]="form" [controlBinding]="controlBinding"></example-form-value>
     </div>
   </example-base-content>
-  <example-base-simple-options>
-    <lux-toggle-ac
-      class="lux-highlight-section"
-      luxLabel="Output-Events loggen"
-      luxHint="(Console --> F12/CMD+ALT+I)"
-      [(luxChecked)]="showOutputEvents"
-      [luxNoTopLabel]="true"
-    ></lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-input-ac
-      class="lux-highlight-section"
       luxName="datepicker_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
       [(luxValue)]="label"
     >
     </lux-input-ac>
-    <div class="lux-highlight-section column">
-      <lux-input-ac
-        luxName="datepicker_luxHint"
-        luxLabel="luxHint"
-        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-        [(luxValue)]="hint"
-      >
-      </lux-input-ac>
-      <lux-toggle-ac
-        luxLabel="luxHintShowOnlyOnFocus"
-        luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
-        [(luxChecked)]="hintShowOnlyOnFocus"
-        [luxNoTopLabel]="true"
-      ></lux-toggle-ac>
-    </div>
     <lux-input-ac
-      class="lux-highlight-section"
+      luxName="datepicker_luxHint"
+      luxLabel="luxHint"
+      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+      [(luxValue)]="hint"
+    >
+    </lux-input-ac>
+    <lux-toggle-ac
+      luxLabel="luxHintShowOnlyOnFocus"
+      luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+      [(luxChecked)]="hintShowOnlyOnFocus"
+      [luxNoTopLabel]="true"
+    ></lux-toggle-ac>
+    <lux-input-ac
       luxName="datepicker_luxPlaceholder"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
@@ -129,46 +95,26 @@
     >
     </lux-input-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
-      [(luxChecked)]="disabled"
-      luxLabel="luxDisabled"
-      luxHint="Erlaubt es, die Component zu deaktivieren."
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
       [luxNoTopLabel]="true"
-    >
-    </lux-toggle-ac>
-    <div class="lux-highlight-section column">
-      <div fxLayout="row wrap">
-        <lux-button
-          luxLabel="Enable"
-          (luxClicked)="form.get(controlBinding)!.enable()"
-          [luxDisabled]="!form.get(controlBinding)!.disabled"
-          luxColor="primary"
-        ></lux-button>
-        <lux-button
-          luxLabel="Disable"
-          (luxClicked)="form.get(controlBinding)!.disable()"
-          [luxDisabled]="form.get(controlBinding)!.disabled"
-          luxColor="primary"
-        ></lux-button>
-      </div>
-      <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
-    </div>
+    ></lux-toggle-ac>
+    <example-form-disable [form]="form" [controlBinding]="controlBinding" [(disabled)]="disabled"></example-form-disable>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-toggle-ac class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
+    <lux-toggle-ac luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
         <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="denseFormat"
       luxLabel="luxDense"
       luxHint="Diese Property veringert das Padding innerhalb des Controls."
@@ -176,9 +122,8 @@
     >
     </lux-toggle-ac>
   </example-base-simple-options>
-  <example-base-advanced-options>
+  <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="luxShowToggle"
       luxHint="Dieser Flag schaltet den Toggle-Button für die Datumsauswahl ein."
       [(luxChecked)]="showToggle"
@@ -186,7 +131,6 @@
     >
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="luxOpened"
       luxHint="Über diesen Flag kann die Datumsauswahl eingeblendet werden."
       [(luxChecked)]="opened"
@@ -194,67 +138,59 @@
     >
     </lux-toggle-ac>
     <lux-select-ac
-      class="lux-highlight-section"
       luxLabel="luxStartView"
       luxHint="Die Property legt fest, welche Ansicht die Datumsauswahl initial besitzt."
       [(luxSelected)]="startView"
       [luxOptions]="['month', 'year', 'multi-year']"
     >
     </lux-select-ac>
-    <div class="lux-highlight-section column">
-      <lux-input-ac luxName="datepicker_luxStartDate" luxLabel="luxStartDate" [(luxValue)]="startDate">
-        <lux-form-hint>Das Startdatum (z.B. 01.12.2021) im Popup, wenn kein Wert gesetzt ist.</lux-form-hint>
-      </lux-input-ac>
-      <lux-input-ac
-        luxLabel="luxStartTime"
-        luxHint="Die Startzeit (z.B. 12:15) im Popup, wenn kein Wert gesetzt ist."
-        [(luxValue)]="startTimeAsString"
-      >
-      </lux-input-ac>
-      <lux-input-ac luxName="datepicker_luxMinDate" luxLabel="luxMinDate" [(luxValue)]="minDate">
-        <lux-form-hint>
-          Diese Property definiert das minimal erlaubte Datum des Datepickers.<br />
-          Dazu das Datum einfach als String (z.B. 01.01.2000, 00:00) eingeben.
-        </lux-form-hint>
-      </lux-input-ac>
-      <lux-input-ac luxName="datepicker_luxMaxDate" luxLabel="luxMaxDate" [(luxValue)]="maxDate">
-        <lux-form-hint>
-          Diese Property bestimmt maximal erlaubte Datum.<br />
-          Dazu das Datum einfach als String (z.B. 31.12.2100, 23:59) eingeben.
-        </lux-form-hint>
-      </lux-input-ac>
-      <div fxLayout="column">
-        <lux-toggle-ac
-          luxLabel="luxCustomFilter benutzen"
-          luxHint="Wenn 'true' wird eine eigene Filter-Funktion an den Datepicker übergeben."
-          [(luxChecked)]="useCustomFilter"
-          [luxNoTopLabel]="true"
-        >
-        </lux-toggle-ac>
-        <pre class="lux-label" *ngIf="useCustomFilter"><b>customFilter</b> = {{ customFilterString }}</pre>
-      </div>
-    </div>
-    <div class="lux-highlight-section column">
-      <lux-toggle-ac
-        luxLabel="luxErrorMessage verwenden"
-        luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
-        [(luxChecked)]="useErrorMessage"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-      <lux-input-ac
-        luxName="datepicker_luxErrorMessage"
-        luxLabel="luxErrorMessage"
-        luxHint="Über diese Property lässt sich eine feste Fehlermeldung
+    <lux-input-ac luxName="datepicker_luxStartDate" luxLabel="luxStartDate" [(luxValue)]="startDate">
+      <lux-form-hint>Das Startdatum (z.B. 01.12.2021) im Popup, wenn kein Wert gesetzt ist.</lux-form-hint>
+    </lux-input-ac>
+    <lux-input-ac
+      luxLabel="luxStartTime"
+      luxHint="Die Startzeit (z.B. 12:15) im Popup, wenn kein Wert gesetzt ist."
+      [(luxValue)]="startTimeAsString"
+    >
+    </lux-input-ac>
+    <lux-input-ac luxName="datepicker_luxMinDate" luxLabel="luxMinDate" [(luxValue)]="minDate">
+      <lux-form-hint>
+        Diese Property definiert das minimal erlaubte Datum des Datepickers.<br />
+        Dazu das Datum einfach als String (z.B. 01.01.2000, 00:00) eingeben.
+      </lux-form-hint>
+    </lux-input-ac>
+    <lux-input-ac luxName="datepicker_luxMaxDate" luxLabel="luxMaxDate" [(luxValue)]="maxDate">
+      <lux-form-hint>
+        Diese Property bestimmt maximal erlaubte Datum.<br />
+        Dazu das Datum einfach als String (z.B. 31.12.2100, 23:59) eingeben.
+      </lux-form-hint>
+    </lux-input-ac>
+    <lux-toggle-ac
+      luxLabel="luxCustomFilter benutzen"
+      luxHint="Wenn 'true' wird eine eigene Filter-Funktion an den Datepicker übergeben."
+      [(luxChecked)]="useCustomFilter"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <pre class="lux-label" *ngIf="useCustomFilter"><b>customFilter</b> = {{ customFilterString }}</pre>
+    <lux-toggle-ac
+      luxLabel="luxErrorMessage verwenden"
+      luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
+      [(luxChecked)]="useErrorMessage"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <lux-input-ac
+      luxName="datepicker_luxErrorMessage"
+      luxLabel="luxErrorMessage"
+      luxHint="Über diese Property lässt sich eine feste Fehlermeldung
                  (unabhängig vom speziellen Validierungsfehler) einstellen."
-        [(luxValue)]="errorMessage"
-        *ngIf="useErrorMessage"
-      >
-      </lux-input-ac>
-      <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
-    </div>
+      [(luxValue)]="errorMessage"
+      *ngIf="useErrorMessage"
+    >
+    </lux-input-ac>
+    <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
     <lux-select-ac
-      class="lux-highlight-section"
       [luxOptions]="validatorOptions"
       luxOptionLabelProp="label"
       [luxMultiple]="true"
@@ -270,7 +206,6 @@
       </lux-form-hint>
     </lux-select-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
       [luxNoTopLabel]="true"

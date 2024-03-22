@@ -54,7 +54,7 @@ export abstract class LookupExampleComponent implements OnInit {
   required = false;
   tableNo = '1002';
   label = 'Label';
-  hint = 'Hint';
+  hint = 'Optionaler Zusatztext';
   hintShowOnlyOnFocus = false;
   placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];

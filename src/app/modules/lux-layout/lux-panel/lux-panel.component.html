@@ -5,8 +5,7 @@
   (opened)="onOpened()"
   (closed)="onClosed()"
   class="lux-panel"
-  ngClass.sm="lux-panel-mobile"
-  ngClass.xs="lux-panel-mobile"
+  [class.lux-panel-mobile]="mobile"
 >
   <mat-expansion-panel-header [expandedHeight]="luxExpandedHeaderHeight ?? '64px'" [collapsedHeight]="luxCollapsedHeaderHeight ?? '64px'">
     <ng-content select="lux-panel-header-title"></ng-content>

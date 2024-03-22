@@ -35,17 +35,14 @@
         vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
         facilisi.
       </p>
-      <lux-layout-form-row>
-        <lux-select-ac
-          [luxOptions]="options"
-          [(luxSelected)]="maxWidth"
-          luxLabel="Stepperbreite (max)"
-          luxName="stepper-large.example.stepperwidth"
-          [luxRequired]="true"
-          *luxLayoutRowItem="{}"
-        ></lux-select-ac>
-        <div fxShow="true" fxShow.lt-md="false" *luxLayoutRowItem="{ empty: true }"></div>
-      </lux-layout-form-row>
+      <lux-select-ac
+        [luxOptions]="options"
+        [(luxSelected)]="maxWidth"
+        luxLabel="Stepperbreite (max)"
+        luxName="stepper-large.example.stepperwidth"
+        [luxRequired]="true"
+        class="lux-max-width-96"
+      ></lux-select-ac>
 
       <lux-toggle-ac luxLabel="Ich habe verstanden und möchte fortfahren" [(luxChecked)]="allowed" [luxRequired]="true"></lux-toggle-ac>
     </lux-stepper-large-step>

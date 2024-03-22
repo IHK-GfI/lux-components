@@ -43,8 +43,6 @@ import { RippleExampleComponent } from './ripple-example/ripple-example.componen
 import { BadgeNotificationExampleComponent } from './badge-notification-example/badge-notification-example.component';
 import { HtmlExampleComponent } from './html-example/html-example.component';
 import { MarkdownExampleComponent } from './markdown-example/markdown-example.component';
-import { FormRowExampleComponent } from './form-row-example/form-row-example.component';
-import { CardRowExampleComponent } from './card-row-example/card-row-example.component';
 import { FilterExampleComponent } from './filter-example/filter-example.component';
 import { LinkPlainExampleComponent } from './link-plain-example/link-plain-example.component';
 import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-authentic-example.component';
@@ -119,8 +117,6 @@ const routes: Routes = [
       { path: 'ripple', component: RippleExampleComponent },
       { path: 'html', component: HtmlExampleComponent },
       { path: 'markdown', component: MarkdownExampleComponent },
-      { path: 'form-row', component: FormRowExampleComponent },
-      { path: 'card-row', component: CardRowExampleComponent },
       { path: 'filter', component: FilterExampleComponent },
       { path: 'link-plain', component: LinkPlainExampleComponent },
       { path: 'tile', component: TileExampleComponent },

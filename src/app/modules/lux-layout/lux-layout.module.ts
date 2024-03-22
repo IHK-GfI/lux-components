@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { MatLegacyCardModule as MatCardModule } from '@angular/material/legacy-card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -62,10 +61,6 @@ import { LuxStepperVerticalComponent } from './lux-stepper/lux-stepper-subcompon
 import { LuxAppHeaderActionNavComponent } from './lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav.component';
 import { LuxAppHeaderActionNavItemComponent } from './lux-app-header/lux-app-header-subcomponents/lux-app-header-action-nav/lux-app-header-action-nav-item/lux-app-header-action-nav-item.component';
 import { RouterModule } from '@angular/router';
-import { LuxLayoutComponent } from './lux-layout/lux-layout.component';
-import { LuxLayoutRowItemDirective } from './lux-layout/base/lux-layout-row-item.directive';
-import { LuxLayoutCardRowComponent } from './lux-layout/lux-layout-card-row/lux-layout-card-row.component';
-import { LuxLayoutFormRowComponent } from './lux-layout/lux-layout-form-row/lux-layout-form-row.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LuxStepperLargeComponent } from './lux-stepper-large/lux-stepper-large.component';
 import { LuxStepperLargeStepComponent } from './lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-step/lux-stepper-large-step.component';
@@ -86,7 +81,6 @@ import { LuxTileComponent } from './lux-tile/lux-tile.component';
   imports: [
     CommonModule,
     RouterModule,
-    FlexLayoutModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
@@ -140,10 +134,6 @@ import { LuxTileComponent } from './lux-tile/lux-tile.component';
     LuxAppHeaderActionNavComponent,
     LuxAppHeaderActionNavItemComponent,
     LuxAppHeaderActionNavItemCustomComponent,
-    LuxLayoutRowItemDirective,
-    LuxLayoutComponent,
-    LuxLayoutCardRowComponent,
-    LuxLayoutFormRowComponent,
     LuxLangSelectComponent,
     LuxStepperLargeComponent,
     LuxStepperLargeStepComponent,
@@ -206,10 +196,6 @@ import { LuxTileComponent } from './lux-tile/lux-tile.component';
     LuxAppHeaderActionNavComponent,
     LuxAppHeaderActionNavItemComponent,
     LuxAppHeaderActionNavItemCustomComponent,
-    LuxLayoutRowItemDirective,
-    LuxLayoutComponent,
-    LuxLayoutCardRowComponent,
-    LuxLayoutFormRowComponent,
     LuxLangSelectComponent,
     LuxStepperLargeComponent,
     LuxStepperLargeStepComponent,

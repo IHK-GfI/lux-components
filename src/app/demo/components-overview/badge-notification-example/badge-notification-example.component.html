@@ -2,8 +2,8 @@
   exampleTitle="Badge-Notification"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/luxbadgenotification"
 >
-  <example-base-content [exampleCentered]="true" fxLayout="column" fxLayoutGap="28px">
-    <div fxLayout="column" fxLayoutAlign="center end" fxLayoutGap="24px">
+  <example-base-content [exampleCentered]="true">
+    <div class="lux-flex lux-flex-col lux-items-end lux-gap-6">
       <span
         [luxBadgeNotification]="notification"
         [luxBadgeColor]="color"
@@ -108,9 +108,8 @@
       </lux-button>
     </div>
   </example-base-content>
-  <example-base-simple-options>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-input-ac
-      class="lux-highlight-section"
       [(luxValue)]="notification"
       luxName="badge-notification_luxBadgeNotification"
       luxLabel="luxBadgeNotification"
@@ -118,7 +117,6 @@
     >
     </lux-input-ac>
     <lux-select-ac
-      class="lux-highlight-section"
       [(luxSelected)]="color"
       luxLabel="luxBadgeColor"
       luxHint="Diese Property definiert die Farbe der Notification"
@@ -126,7 +124,6 @@
     >
     </lux-select-ac>
     <lux-select-ac
-      class="lux-highlight-section"
       [(luxSelected)]="position"
       luxLabel="luxBadgePosition"
       luxHint="Diese Property definiert die Position der Notification"
@@ -134,7 +131,6 @@
     >
     </lux-select-ac>
     <lux-select-ac
-      class="lux-highlight-section"
       [(luxSelected)]="size"
       luxLabel="luxBadgeSize"
       luxHint="Diese Property definiert die Größe der Notification"
@@ -142,7 +138,6 @@
     >
     </lux-select-ac>
     <lux-input-ac
-      class="lux-highlight-section"
       [(luxValue)]="cap"
       luxName="badge-notification_luxBadgeCap"
       luxLabel="luxBadgeCap"
@@ -150,7 +145,6 @@
     >
     </lux-input-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="noBorder"
       luxLabel="luxBadgeNoBorder"
       luxHint="Dieses Flag bestimmt, ob die Border transparent ist."
@@ -158,7 +152,6 @@
     >
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="disabled"
       luxLabel="luxBadgeDisabled"
       luxHint="Dieses Flag bestimmt ob die Notification deaktiviert ist oder nicht."
@@ -166,7 +159,6 @@
     >
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="hidden"
       luxLabel="luxBadgeHidden"
       luxHint="Dieses Flag bestimmt ob die Notification versteckt ist oder nicht."
@@ -174,7 +166,6 @@
     >
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="overlap"
       luxLabel="luxBadgeOverlap"
       luxHint="Dieses Flag bestimmt ob die Notification hinter dem Quellelement liegt oder nicht."

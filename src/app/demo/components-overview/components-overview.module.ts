@@ -2,7 +2,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LuxActionModule } from '../../modules/lux-action/lux-action.module';
@@ -70,8 +69,6 @@ import { HtmlExampleComponent } from './html-example/html-example.component';
 import { LuxHtmlModule } from '../../modules/lux-html/lux-html.module';
 import { MarkdownExampleComponent } from './markdown-example/markdown-example.component';
 import { LuxMarkdownModule } from '../../modules/lux-markdown/lux-markdown.module';
-import { FormRowExampleComponent } from './form-row-example/form-row-example.component';
-import { CardRowExampleComponent } from './card-row-example/card-row-example.component';
 import { FilterExampleComponent } from './filter-example/filter-example.component';
 import { LuxFilterModule } from '../../modules/lux-filter/lux-filter.module';
 import { StepperLargeExampleComponent } from './stepper-large-example/stepper-large-example.component';
@@ -115,7 +112,6 @@ import {TenantLogoExampleConfigComponent} from "./tenant-logo-example/tenant-log
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    FlexLayoutModule,
     LuxLayoutModule,
     LuxIconModule,
     LuxActionModule,
@@ -184,8 +180,6 @@ import {TenantLogoExampleConfigComponent} from "./tenant-logo-example/tenant-log
     RippleExampleComponent,
     HtmlExampleComponent,
     MarkdownExampleComponent,
-    FormRowExampleComponent,
-    CardRowExampleComponent,
     FilterExampleComponent,
     StepperLargeExampleComponent,
     StepperLargeExternStepExampleComponent,

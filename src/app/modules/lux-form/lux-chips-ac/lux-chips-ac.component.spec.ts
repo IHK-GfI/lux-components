@@ -2,7 +2,6 @@
 // noinspection DuplicatedCode
 
 import { Component, ViewChild } from '@angular/core';
-import { expect } from '@angular/flex-layout/_private-utils/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LuxThemePalette } from '../../lux-util/lux-colors.enum';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';

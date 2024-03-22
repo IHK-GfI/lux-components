@@ -16,10 +16,9 @@
   luxTagIdDetail="detailTagId"
   (luxScrolled)="onLoadListTest()"
   (luxSelectedDetailChange)="loadDetail($event)"
-  fxFill
 >
   <lux-master-header-content-ac>
-    <lux-filter-form fxFlex="1 1 auto" [luxShowAsCard]="true" [luxShowChips]="false" [luxButtonFlat]="false">
+    <lux-filter-form class="lux-flex-auto" [luxShowAsCard]="true" [luxShowChips]="false" [luxButtonFlat]="false">
       <lux-select-ac
         luxLabel="Fälligkeit"
         [luxOptions]="options"
@@ -62,14 +61,13 @@
       <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0">
         <lux-tab luxTitle="Konfiguration" luxIconName="lux-interface-setting-tool-box">
           <ng-template>
-            <detail-example [masterDetailConfig]="configuration" [selectedDetail]="detail"></detail-example>
-            <div class="example-tab-content">
+            <detail-example [masterDetailConfig]="configuration" [selectedDetail]="detail">
               <lux-toggle-ac
                 [(luxChecked)]="showCustomDetailHeader"
                 luxLabel="Custom Detail-Header anzeigen"
                 [luxNoLabels]="true"
               ></lux-toggle-ac>
-            </div>
+            </detail-example>
           </ng-template>
         </lux-tab>
         <lux-tab luxTitle="Scroll-Example" luxIconName="lux-amount-down-asc" class="example-tab-content">
@@ -85,8 +83,8 @@
   </lux-detail-view-ac>
 
   <lux-master-footer-ac>
-    <div fxLayout="column">
-      <div fxLayout="row" fxLayoutGap="8px" fxLayoutAlign="end center">
+    <div class="lux-flex lux-flex-col">
+      <div class="lux-flex lux-gap-2 lux-content-end lux-items-center">
         <lux-button luxLabel="#1" [luxFlat]="true" luxColor="primary" (luxClicked)="selectedDetail = masterEntries[0]"> </lux-button>
         <lux-button luxLabel="#5" [luxFlat]="true" luxColor="primary" (luxClicked)="selectedDetail = masterEntries[4]"> </lux-button>
         <lux-menu luxMenuIconName="lux-interface-setting-menu-1" luxTagId="master_footer_menu">

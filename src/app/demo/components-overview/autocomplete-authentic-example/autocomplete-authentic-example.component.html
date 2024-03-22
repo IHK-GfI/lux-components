@@ -41,10 +41,7 @@
         <lux-input-ac-prefix *ngIf="showPrefix"> <lux-icon luxIconName="lux-tasks"></lux-icon>&nbsp; </lux-input-ac-prefix>
         <lux-input-ac-suffix *ngIf="showSuffix">ABC</lux-input-ac-suffix>
       </lux-autocomplete-ac>
-      <div class="lux-highlight-section lux-flex lux-gap-2 lux-mt-3" *ngIf="value">
-        <span class="lux-flex lux-flex-initial lux-flex-shrink-0">Auswahl:</span>
-        <span class="lux-flex-auto">{{ value | json }}</span>
-      </div>
+      <example-value [value]="value"></example-value>
     </div>
     <div class="lux-flex lux-flex-col" [formGroup]="form">
       <h3>Beispiel in Reactive-Form</h3>
@@ -82,39 +79,11 @@
         <lux-input-ac-prefix *ngIf="showPrefix"> <lux-icon [luxIconName]="'lux-tasks'"></lux-icon>&nbsp; </lux-input-ac-prefix>
         <lux-input-ac-suffix *ngIf="showSuffix">ABC</lux-input-ac-suffix>
       </lux-autocomplete-ac>
-      <div class="lux-highlight-section lux-flex lux-gap-2" *ngIf="form.get(controlBinding)!.value">
-        <span class="lux-flex-initial lux-flex-shrink-0">Auswahl:</span>
-        <span class="lux-flex-auto">{{ form.get(controlBinding)!.value | json }}</span>
-      </div>
-    </div>
-    <div class="lux-highlight-section lux-flex lux-flex-col">
-      <div class="lux-p-2 lux-flex lux-gap-2">
-        <div class="lux-flex lux-flex-wrap lux-flex-basis-1/3 lux-gap-2">
-          <span class="lux-flex">Valid:</span>
-          <span class="lux-flex lux-flex-basis-1/3">{{ form.valid }}</span>
-        </div>
-        <div class="lux-flex lux-flex-basis-1/3 lux-gap-2">
-          <span class="lux-flex">Dirty:</span>
-          <span class="lux-flex lux-flex-basis-1/3">{{ form.dirty }}</span>
-        </div>
-        <div class="lux-flex lux-flex-basis-1/3 lux-gap-2">
-          <span class="lux-flex">Touched:</span>
-          <span class="lux-flex lux-flex-basis-1/3">{{ form.touched }}</span>
-        </div>
-      </div>
+      <example-form-value [form]="form" [controlBinding]="controlBinding"></example-form-value>
     </div>
   </example-base-content>
-  <example-base-simple-options>
-    <lux-toggle-ac
-      class="lux-highlight-section"
-      luxLabel="Output-Events loggen"
-      luxHint="(Console --> F12/CMD+ALT+I)"
-      [(luxChecked)]="showOutputEvents"
-      [luxNoTopLabel]="true"
-    ></lux-toggle-ac>
-    <lux-divider [luxInset]="true"></lux-divider>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-input-ac
-      class="lux-highlight-section"
       luxName="autocomplete_luxLabel"
       luxLabel="luxLabel"
       luxHint="Diese Property ermöglicht es, das Label für die Component zu setzen."
@@ -122,23 +91,14 @@
       [luxNoTopLabel]="true"
     >
     </lux-input-ac>
-    <div class="lux-highlight-section column">
-      <lux-input-ac
-        luxName="autocomplete_luxHint"
-        luxLabel="luxHint"
-        luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
-        [(luxValue)]="hint"
-      >
-      </lux-input-ac>
-      <lux-toggle-ac
-        luxLabel="luxHintShowOnlyOnFocus"
-        luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
-        [(luxChecked)]="hintShowOnlyOnFocus"
-        [luxNoTopLabel]="true"
-      ></lux-toggle-ac>
-    </div>
     <lux-input-ac
-      class="lux-highlight-section"
+      luxName="autocomplete_luxHint"
+      luxLabel="luxHint"
+      luxHint="Diese Property ermöglicht es, den Hint für die Component zu setzen."
+      [(luxValue)]="hint"
+    >
+    </lux-input-ac>
+    <lux-input-ac
       luxName="autocomplete_luxPlaceholder"
       luxLabel="luxPlaceholder"
       luxHint="Diese Property ermöglicht es, den Placeholder für die Component zu setzen."
@@ -146,7 +106,6 @@
     >
     </lux-input-ac>
     <lux-select-ac
-      class="lux-highlight-section"
       [luxSelected]="renderProperties[0]"
       (luxSelectedChange)="onRenderProperty($event)"
       [luxOptions]="renderProperties"
@@ -157,7 +116,18 @@
     >
     </lux-select-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
+      luxLabel="Output-Events loggen"
+      luxHint="(Console --> F12/CMD+ALT+I)"
+      [(luxChecked)]="showOutputEvents"
+      [luxNoTopLabel]="true"
+    ></lux-toggle-ac>
+    <lux-toggle-ac
+      luxLabel="luxHintShowOnlyOnFocus"
+      luxHint="Erlaubt es, den Hinweis nur einzublenden, wenn das Element den Fokus hat"
+      [(luxChecked)]="hintShowOnlyOnFocus"
+      [luxNoTopLabel]="true"
+    ></lux-toggle-ac>
+    <lux-toggle-ac
       [(luxChecked)]="useStringValues"
       luxLabel="String-Werte verwenden"
       luxHint="Anstatt Objekte, String-Werte verwenden"
@@ -165,60 +135,32 @@
     >
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
-      [(luxChecked)]="disabled"
-      luxLabel="luxDisabled"
-      luxHint="Erlaubt es, die Component zu deaktivieren."
-      [luxNoTopLabel]="true"
-    >
-    </lux-toggle-ac>
-    <div class="lux-highlight-section column">
-      <div class="lux-flex lux-row-wrap">
-        <lux-button
-          luxLabel="Enable"
-          (luxClicked)="form.get(controlBinding)!.enable()"
-          [luxDisabled]="!form.get(controlBinding)!.disabled"
-          luxColor="primary"
-        ></lux-button>
-        <lux-button
-          luxLabel="Disable"
-          (luxClicked)="form.get(controlBinding)!.disable()"
-          [luxDisabled]="form.get(controlBinding)!.disabled"
-          luxColor="primary"
-        ></lux-button>
-      </div>
-      <div class="lux-hint lux-p-2">Erlaubt es, die Component über das Formular zu deaktivieren.</div>
-    </div>
-    <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="readonly"
       luxLabel="luxReadonly"
       luxHint="Dieser Flag verhindert das Auswählen/die Interaktion mit dieser Component."
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-toggle-ac class="lux-highlight-section" luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
+    <lux-toggle-ac luxLabel="luxRequired" (luxCheckedChange)="changeRequired($event)" [luxNoTopLabel]="true">
       <lux-form-hint>
         Markiert diese Component als Pflichtfeld. Dies funktioniert direkt nur in Components, die nicht in einer Reactive-Form sind.<br />
         <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="denseFormat"
       luxLabel="luxDense"
       luxHint="Diese Property veringert das Padding innerhalb des Controls."
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-toggle-ac class="lux-highlight-section" [(luxChecked)]="strict" luxLabel="luxStrict" [luxNoTopLabel]="true">
+    <lux-toggle-ac [(luxChecked)]="strict" luxLabel="luxStrict" [luxNoTopLabel]="true">
       <lux-form-hint>
         Dieses Flag aktiviert den strikten Modus dieser Component´.<br />
         Das bedeutet, dass nur Eingaben die einer Option entsprechen als valide gelten.
       </lux-form-hint>
     </lux-toggle-ac>
     <lux-toggle-ac
-      class="lux-highlight-section"
       [(luxChecked)]="usePickValueFn"
       luxLabel="luxPickValue"
       [luxDisabled]="!strict || useStringValues"
@@ -230,44 +172,33 @@
         Wenn String-Werte verwendet werden, kann diese Funktion nicht verwendet werden.
       </lux-form-hint>
     </lux-toggle-ac>
-    <lux-toggle-ac class="lux-highlight-section" [(luxChecked)]="useFilterFn" luxLabel="luxFilterFn" [luxNoTopLabel]="true">
+    <lux-toggle-ac [(luxChecked)]="useFilterFn" luxLabel="luxFilterFn" [luxNoTopLabel]="true">
       <lux-form-hint>
         Dieses Flag aktiviert die Filterfunktion. <br />
         Diese Beispielfilterfunktion trennt die Eingabe anhand von Leerzeichen und prüft, ob alle Teile enthalten sind.
       </lux-form-hint>
     </lux-toggle-ac>
-    <lux-toggle-ac class="lux-highlight-section" [(luxChecked)]="toggleOptions" luxLabel="Optionen austauschen" [luxNoTopLabel]="true">
+    <lux-toggle-ac [(luxChecked)]="toggleOptions" luxLabel="Optionen austauschen" [luxNoTopLabel]="true">
       <lux-form-hint> Dieses Toggle tauscht die Optionen aus. </lux-form-hint>
     </lux-toggle-ac>
-    <div class="lux-highlight-section column">
-      <lux-toggle-ac
-        [(luxChecked)]="showPrefix"
-        luxLabel="Präfix einblenden"
-        luxHint="Blendet einen 'lux-input-prefix' ein."
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-      <lux-toggle-ac
-        [(luxChecked)]="showSuffix"
-        luxLabel="Suffix einblenden"
-        luxHint="Blendet einen 'lux-input-suffix' ein."
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-    </div>
-  </example-base-simple-options>
-  <example-base-advanced-options>
     <lux-toggle-ac
-      class="lux-highlight-section"
-      [(luxChecked)]="selectAllOnClick"
-      luxLabel="luxSelectAllOnClick"
-      luxHint="Mit diesem Flag kann aktiviert werden, dass beim Klick auf das Feld der
-                  gesamte Eingabewert direkt selektiert wird."
+      [(luxChecked)]="showPrefix"
+      luxLabel="Präfix einblenden"
+      luxHint="Blendet einen 'lux-input-prefix' ein."
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
+    <lux-toggle-ac
+      [(luxChecked)]="showSuffix"
+      luxLabel="Suffix einblenden"
+      luxHint="Blendet einen 'lux-input-suffix' ein."
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <example-form-disable [form]="form" [controlBinding]="controlBinding" [(disabled)]="disabled"></example-form-disable>
+  </example-base-simple-options>
+  <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-input-ac
-      class="lux-highlight-section"
       luxName="autocomplete_luxDelay"
       luxLabel="luxDelay"
       luxHint="Über diese Property kann die zeitliche Verzögerung für die Filterung eingestellt werden. Kann nur initial gesetzt werden und ist deshalb hier deaktiviert."
@@ -278,55 +209,16 @@
     >
     </lux-input-ac>
     <lux-input-ac
-      class="example-highlight-config-option lux-highlight-section"
       luxName="autocomplete_luxPanelWidth"
       luxLabel="luxPanelWidth"
       luxHint="Über diese Property kann die Optionpanelbreite angepasst werden"
       [(luxValue)]="luxPanelWidth"
     >
     </lux-input-ac>
-    <div class="lux-highlight-section lux-flex lux-flex-col lux-gap-2">
-      <lux-toggle-ac
-        [(luxChecked)]="optionMultiline"
-        [luxNoTopLabel]="true"
-        luxLabel="luxOptionMultiline"
-        luxHint="Mit diesem Flag kann aktiviert werden, dass der Text in einer Option mehrzeilig wird."
-      ></lux-toggle-ac>
-      <lux-input-ac luxLabel="luxOptionBlockSize" [(luxValue)]="optionBlockSize" luxType="number" [luxNumberAlignLeft]="true">
-        <lux-form-hint> Lädt die Optionen in der eingestellten Blockgröße nach, wenn gescrollt wird. </lux-form-hint>
-      </lux-input-ac>
-    </div>
-    <div class="lux-highlight-section column lux-flex lux-flex-col">
-      <lux-input-ac
-        luxName="autocomplete_luxErrorMessageNotAnOption"
-        luxLabel="luxErrorMessageNotAnOption"
-        luxHint="Die Property kann die Fehlermeldung für invalide Optionen einstellen."
-        [(luxValue)]="errorMessageNotAnOption"
-        *ngIf="strict"
-      >
-        <lux-form-hint> Die Property kann die Fehlermeldung für invalide Optionen einstellen. </lux-form-hint>
-      </lux-input-ac>
-
-      <lux-toggle-ac
-        luxLabel="luxErrorMessage verwenden"
-        luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
-        [(luxChecked)]="useErrorMessage"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-      <lux-input-ac
-        luxName="autocomplete_luxErrorMessage"
-        luxLabel="luxErrorMessage"
-        luxHint="Über diese Property lässt sich eine feste Fehlermeldung
-                 (unabhängig vom speziellen Validierungsfehler) einstellen."
-        [(luxValue)]="errorMessage"
-        *ngIf="useErrorMessage"
-      >
-      </lux-input-ac>
-      <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
-    </div>
+    <lux-input-ac luxLabel="luxOptionBlockSize" [(luxValue)]="optionBlockSize" luxType="number" [luxNumberAlignLeft]="true">
+      <lux-form-hint> Lädt die Optionen in der eingestellten Blockgröße nach, wenn gescrollt wird. </lux-form-hint>
+    </lux-input-ac>
     <lux-select-ac
-      class="lux-highlight-section"
       [luxOptions]="validatorOptions"
       luxOptionLabelProp="label"
       [luxMultiple]="true"
@@ -341,8 +233,47 @@
         setzen.
       </lux-form-hint>
     </lux-select-ac>
+    <lux-input-ac
+      luxName="autocomplete_luxErrorMessageNotAnOption"
+      luxLabel="luxErrorMessageNotAnOption"
+      luxHint="Die Property kann die Fehlermeldung für invalide Optionen einstellen."
+      [(luxValue)]="errorMessageNotAnOption"
+      *ngIf="strict"
+    >
+      <lux-form-hint> Die Property kann die Fehlermeldung für invalide Optionen einstellen. </lux-form-hint>
+    </lux-input-ac>
+    <lux-input-ac
+      luxName="autocomplete_luxErrorMessage"
+      luxLabel="luxErrorMessage"
+      luxHint="Über diese Property lässt sich eine feste Fehlermeldung
+                 (unabhängig vom speziellen Validierungsfehler) einstellen."
+      [(luxValue)]="errorMessage"
+      *ngIf="useErrorMessage"
+    >
+    </lux-input-ac>
+    <pre class="lux-label" *ngIf="!useErrorMessage">{{ errorCallbackString }}</pre>
     <lux-toggle-ac
-      class="lux-highlight-section"
+      luxLabel="luxErrorMessage verwenden"
+      luxHint="Wenn 'false', wird luxErrorCallback genutzt. Ist die Message leer, wird der normale Fehlertext genommen."
+      [(luxChecked)]="useErrorMessage"
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <lux-toggle-ac
+      [(luxChecked)]="optionMultiline"
+      [luxNoTopLabel]="true"
+      luxLabel="luxOptionMultiline"
+      luxHint="Mit diesem Flag kann aktiviert werden, dass der Text in einer Option mehrzeilig wird."
+    ></lux-toggle-ac>
+    <lux-toggle-ac
+      [(luxChecked)]="selectAllOnClick"
+      luxLabel="luxSelectAllOnClick"
+      luxHint="Mit diesem Flag kann aktiviert werden, dass beim Klick auf das Feld der
+                  gesamte Eingabewert direkt selektiert wird."
+      [luxNoTopLabel]="true"
+    >
+    </lux-toggle-ac>
+    <lux-toggle-ac
       luxLabel="Lange Labeltexte mit Zeilenumbruch zulassen"
       luxHint="Nur für die Darstellung in Spalten empfohlen, da eine Ausrichtung im Raster nicht gewährleistet werden kann."
       [luxNoTopLabel]="true"

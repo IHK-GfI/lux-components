@@ -8,7 +8,6 @@ import { MatLegacyInputModule as MatInputModule } from '@angular/material/legacy
 import { MatLegacySelectModule as MatSelectModule } from '@angular/material/legacy-select';
 import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxFormModule } from '../lux-form/lux-form.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { LuxLookupLabelComponent } from './lux-lookup-label/lux-lookup-label.component';
 import { LuxComponentsConfigModule } from '../lux-components-config/lux-components-config.module';
 import { LuxLookupAutocompleteAcComponent } from './lux-lookup-autocomplete-ac/lux-lookup-autocomplete-ac.component';
@@ -26,7 +25,6 @@ import { LuxLookupComboboxAcComponent } from './lux-lookup-combobox-ac/lux-looku
     LuxFormModule,
     MatAutocompleteModule,
     MatInputModule,
-    FlexLayoutModule,
     LuxComponentsConfigModule
   ],
   declarations: [LuxLookupLabelComponent, LuxLookupAutocompleteAcComponent, LuxLookupComboboxAcComponent],

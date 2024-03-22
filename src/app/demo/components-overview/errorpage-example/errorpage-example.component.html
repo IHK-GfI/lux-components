@@ -2,11 +2,10 @@
   exampleTitle="Error-Page"
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90error%E2%80%90page"
 >
-  <example-base-simple-options>
-    <div fxLayout="column" fxLayoutGap="0px">
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4 lux-max-width-full">
+    <div class="lux-flex lux-flex-col lux-gap-4">
       <h3>Error Properties</h3>
       <lux-input-ac
-        class="lux-highlight-section"
         luxName="error-page_errorId"
         luxLabel="errorId"
         luxHint="Diese Property enthält die Fehler-ID."
@@ -14,7 +13,6 @@
       >
       </lux-input-ac>
       <lux-input-ac
-        class="lux-highlight-section"
         luxName="error-page_errorMessage"
         luxLabel="errorMessage"
         luxHint="Die Property definiert die Fehlermeldung selbst, welche in dem Panel auf der Fehlerseite dargestellt wird."
@@ -22,10 +20,9 @@
       >
       </lux-input-ac>
     </div>
-    <div fxLayout="column" [formGroup]="configForm">
+    <div class="lux-flex lux-flex-col lux-gap-4" [formGroup]="configForm">
       <h3>Error-Page Properties</h3>
       <lux-input-ac
-        class="lux-highlight-section"
         luxName="error-page_iconName"
         luxLabel="iconName"
         luxHint="Diese Property definiert das Icon, das auf der Fehlerseite dargestellt wird."
@@ -33,7 +30,6 @@
       >
       </lux-input-ac>
       <lux-select-ac
-        class="lux-highlight-section"
         luxLabel="iconSize"
         luxHint="Die Property stellt die (relative) Größe des Icons ein."
         luxControlBinding="iconSize"
@@ -41,7 +37,6 @@
       >
       </lux-select-ac>
       <lux-input-ac
-        class="lux-highlight-section"
         luxName="error-page_errorText"
         luxLabel="errorText"
         luxHint="Diese Property definiert den Fehlertext auf der Seite."
@@ -49,7 +44,6 @@
       >
       </lux-input-ac>
       <lux-input-ac
-        class="lux-highlight-section"
         luxName="error-page_homeRedirectText"
         luxLabel="homeRedirectText"
         luxHint="Über diese Property kann der Text für den Home-Link bestimmt werden."
@@ -57,19 +51,13 @@
       >
       </lux-input-ac>
       <lux-input-ac
-        class="lux-highlight-section"
         luxName="error-page_homeRedirectUrl"
         luxLabel="homeRedirectUrl"
         luxHint="Die Property bestimmt die URL, zu der über den entsprechenden Link gesprungen werden kann."
         luxControlBinding="homeRedirectUrl"
       >
       </lux-input-ac>
-      <lux-input-ac
-        luxName="error-page_errorPageUrl"
-        class="lux-highlight-section"
-        luxLabel="errorPageUrl"
-        luxControlBinding="errorPageUrl"
-      >
+      <lux-input-ac luxName="error-page_errorPageUrl" luxLabel="errorPageUrl" luxControlBinding="errorPageUrl">
         <lux-form-hint>
           Diese Property definiert die eigentliche URL der Fehlerseite innerhalb der Angular-Applikation. Die URL muss in den bekannten
           Routen hinterlegt sein (das Beispiel macht das in diesem Fall selbst).<br />
@@ -78,7 +66,6 @@
       </lux-input-ac>
 
       <lux-toggle-ac
-        class="lux-highlight-section"
         luxLabel="skipLocationChange"
         luxHint="Dieses Flag bestimmt, ob die URL durch das Ansteuern der Fehlerseite geändert wird oder nicht."
         luxControlBinding="skipLocationChange"
@@ -88,16 +75,16 @@
     </div>
   </example-base-simple-options>
   <example-base-options-actions>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="8px" fxLayoutAlign="end start">
+    <div class="lux-flex lux-flex-wrap lux-gap-4">
       <lux-button
-        luxLabel="Konfiguration aktualisieren"
-        [luxRaised]="true"
+        luxLabel="Aktualisieren"
+        [luxStroked]="true"
         luxColor="primary"
         (luxClicked)="updateErrorConfig()"
         [luxDisabled]="updateButtonDisabled"
       >
       </lux-button>
-      <lux-button luxLabel="Fehlerseite öffnen" [luxRaised]="true" (luxClicked)="openErrorpage()"> </lux-button>
+      <lux-button luxLabel="Fehlerseite öffnen" [luxFlat]="true" luxColor="primary" (luxClicked)="openErrorpage()"> </lux-button>
     </div>
   </example-base-options-actions>
 </example-base-structure>

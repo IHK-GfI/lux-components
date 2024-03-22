@@ -11,7 +11,6 @@ import { LuxUtil } from '../../lux-util/lux-util';
 })
 export class LuxMarkdownComponent implements AfterViewInit {
   @Input() luxSanitizeConfig?: LuxSanitizeConfig;
-  @Input() luxFlex = 'flex';
   @Input() luxStyle = '';
   @Input() luxClass = '';
 

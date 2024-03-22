@@ -7,7 +7,6 @@ import { LuxActionModule } from '../../modules/lux-action/lux-action.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LuxIconModule } from '../../modules/lux-icon/lux-icon.module';
 import { LuxLayoutModule } from '../../modules/lux-layout/lux-layout.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { LuxDirectivesModule } from '../../modules/lux-directives/lux-directives.module';
 
 @NgModule({
@@ -19,8 +18,7 @@ import { LuxDirectivesModule } from '../../modules/lux-directives/lux-directives
     LuxActionModule,
     LuxIconModule,
     LuxLayoutModule,
-    LuxDirectivesModule,
-    FlexLayoutModule
+    LuxDirectivesModule
   ],
   declarations: [ConfigurationComponent],
   exports: [ConfigurationComponent]

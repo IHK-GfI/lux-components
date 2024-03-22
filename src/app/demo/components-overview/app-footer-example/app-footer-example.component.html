@@ -4,16 +4,10 @@
 >
   <example-base-simple-options>
     <!-- Optionen für LuxAppFooterButtons -->
-    <div class="lux-highlight-section" fxLayout="column">
-      <div
-        class="lux-mr-3 lux-ml-3"
-        fxLayout="row"
-        fxLayoutGap="5px"
-        fxLayoutAlign="space-between"
-        fxLayout.xs="column"
-      >
+    <div class="lux-flex lux-flex-col">
+      <div class="lux-mr-3 lux-ml-3 lux-flex xs:lux-flex-col lux-gap-3 lux-place-content-between">
         <h3>lux-app-footer-buttons</h3>
-        <div fxLayout="row" fxLayoutGap="5px">
+        <div class="lux-flex lux-gap-3">
           <lux-button
             class="lux-mt-2 lux-mb-2"
             luxIconName="lux-interface-add-1"
@@ -40,9 +34,8 @@
       <lux-accordion class="lux-mr-3 lux-ml-3 lux-mb-3" [luxMulti]="false" luxMode="flat">
         <lux-panel *ngFor="let buttonInfo of buttonService.buttonInfos">
           <lux-panel-header-title> Button "{{ buttonInfo.label }}" </lux-panel-header-title>
-          <lux-panel-content>
+          <lux-panel-content class="lux-flex lux-flex-col lux-gap-4 lux-mt-3">
             <lux-input-ac
-              class="lux-highlight-section"
               luxName="app-footer_cmd"
               luxLabel="cmd"
               luxHint="Diese Property ist eine ID, anhand derer der einzelne Button identifiziert werden kann."
@@ -50,7 +43,6 @@
             >
             </lux-input-ac>
             <lux-input-ac
-              class="lux-highlight-section"
               luxName="app-footer_label"
               luxLabel="label"
               luxHint="Mit dieser Property wird das Label des Footer-Buttons festgelegt."
@@ -58,7 +50,6 @@
             >
             </lux-input-ac>
             <lux-input-ac
-              class="lux-highlight-section"
               luxName="app-footer_prio"
               luxLabel="prio"
               luxType="number"
@@ -67,22 +58,10 @@
               [(luxValue)]="buttonInfo.prio"
             >
             </lux-input-ac>
-            <lux-input-ac
-              class="lux-highlight-section"
-              luxName="app-footer_tooltip"
-              luxLabel="Tooltip (wenn Button)"
-              [(luxValue)]="buttonInfo.tooltip"
-            >
+            <lux-input-ac luxName="app-footer_tooltip" luxLabel="Tooltip (wenn Button)" [(luxValue)]="buttonInfo.tooltip"> </lux-input-ac>
+            <lux-input-ac luxName="app-footer_tooltip_menu" luxLabel="Tooltip (im Menu)" [(luxValue)]="buttonInfo.tooltipMenu">
             </lux-input-ac>
             <lux-input-ac
-              class="lux-highlight-section"
-              luxName="app-footer_tooltip_menu"
-              luxLabel="Tooltip (im Menu)"
-              [(luxValue)]="buttonInfo.tooltipMenu"
-            >
-            </lux-input-ac>
-            <lux-input-ac
-              class="lux-highlight-section"
               luxName="app-footer_iconName"
               luxLabel="iconName"
               luxHint="Diese Property ermöglicht es, ein Icon für den Footer-Button einzurichten."
@@ -90,7 +69,6 @@
             >
             </lux-input-ac>
             <lux-select-ac
-              class="lux-highlight-section"
               luxLabel="color"
               [(luxSelected)]="buttonInfo.color"
               luxHint="Mithilfe der Property wird die Farbpalette des Buttons definiert."
@@ -98,7 +76,6 @@
             >
             </lux-select-ac>
             <lux-toggle-ac
-              class="lux-highlight-section"
               luxLabel="raised"
               luxHint="Dieser Flag hebt den Button hervor."
               [(luxChecked)]="buttonInfo.raised"
@@ -106,7 +83,6 @@
             >
             </lux-toggle-ac>
             <lux-toggle-ac
-              class="lux-highlight-section"
               luxLabel="flat"
               luxHint="Dieser Flag zeigt einen Button ohne Hervorhebung."
               [(luxChecked)]="buttonInfo.flat"
@@ -114,7 +90,6 @@
             >
             </lux-toggle-ac>
             <lux-toggle-ac
-              class="lux-highlight-section"
               luxLabel="stroked"
               luxHint="Dieser Flag zeigt einen Button mit Umrandung."
               [(luxChecked)]="buttonInfo.stroked"
@@ -122,7 +97,6 @@
             >
             </lux-toggle-ac>
             <lux-toggle-ac
-              class="lux-highlight-section"
               luxLabel="disabled"
               luxHint="Mit diesem Flag kann der Button deaktiviert werden."
               [(luxChecked)]="buttonInfo.disabled"
@@ -130,37 +104,27 @@
             >
             </lux-toggle-ac>
             <lux-toggle-ac
-              class="lux-highlight-section"
               luxLabel="hidden"
               luxHint="Mit diesem Flag kann der Button ausgeblendet werden."
               [(luxChecked)]="buttonInfo.hidden"
               [luxNoTopLabel]="true"
             >
             </lux-toggle-ac>
-            <div class="lux-highlight-section" fxLayout="column">
-              <lux-toggle-ac luxLabel="alwaysVisible" [(luxChecked)]="buttonInfo.alwaysVisible" [luxNoTopLabel]="true">
-                <lux-form-hint>
-                  Dieses Flag stellt sicher, das dieser Button immer außerhalb des Menus dargestellt wird, solange der
-                  Platz noch ausreicht.<br />Andere Buttons, die dieses Flag nicht gesetzt haben, werden dann zuerst
-                  ausgeblendet.
-                </lux-form-hint>
-              </lux-toggle-ac>
-            </div>
+            <lux-toggle-ac luxLabel="alwaysVisible" [(luxChecked)]="buttonInfo.alwaysVisible" [luxNoTopLabel]="true">
+              <lux-form-hint>
+                Dieses Flag stellt sicher, das dieser Button immer außerhalb des Menus dargestellt wird, solange der Platz noch
+                ausreicht.<br />Andere Buttons, die dieses Flag nicht gesetzt haben, werden dann zuerst ausgeblendet.
+              </lux-form-hint>
+            </lux-toggle-ac>
           </lux-panel-content>
         </lux-panel>
       </lux-accordion>
     </div>
     <!-- Optionen für LuxAppFooterLinks -->
-    <div class="lux-highlight-section" fxLayout="column">
-      <div
-        class="lux-mr-3 lux-ml-3"
-        fxLayout="row"
-        fxLayoutGap="5px"
-        fxLayoutAlign="space-between"
-        fxLayout.xs="column"
-      >
+    <div class="lux-flex lux-flex-col lux-mt-6">
+      <div class="lux-mr-3 lux-ml-3 lux-flex xs:lux-flex-col lux-gap-3 lux-place-content-between">
         <h3>lux-app-footer-links</h3>
-        <div fxLayout="row" fxLayoutGap="5px">
+        <div class="lux-flex lux-gap-3">
           <lux-button
             class="lux-mt-2 lux-mb-2"
             luxIconName="lux-interface-add-1"
@@ -187,9 +151,8 @@
       <lux-accordion class="lux-mr-3 lux-ml-3 lux-mb-3" [luxMulti]="false" luxMode="flat">
         <lux-panel *ngFor="let linkInfo of linkService.linkInfos">
           <lux-panel-header-title> Link "{{ linkInfo.label }}" </lux-panel-header-title>
-          <lux-panel-content>
+          <lux-panel-content class="lux-flex lux-flex-col lux-gap-4 lux-mt-3">
             <lux-input-ac
-              class="lux-highlight-section"
               luxName="app-footer_label"
               luxLabel="label"
               luxHint="Mit dieser Property wird das Label des Link-Buttons festgelegt."
@@ -197,26 +160,19 @@
             >
             </lux-input-ac>
             <lux-input-ac
-              class="lux-highlight-section"
               luxName="app-footer_path"
               luxLabel="path"
               luxHint="Mit dieser Property wird der Pfad des Links bestimmt."
               [(luxValue)]="linkInfo.path"
             >
             </lux-input-ac>
-            <lux-toggle-ac
-              class="lux-highlight-section"
-              luxLabel="alwaysVisible"
-              [(luxChecked)]="linkInfo.alwaysVisible"
-              [luxNoTopLabel]="true"
-            >
+            <lux-toggle-ac luxLabel="alwaysVisible" [(luxChecked)]="linkInfo.alwaysVisible" [luxNoTopLabel]="true">
               <lux-form-hint>
-                Dieses Flag stellt sicher, das dieser Link immer außerhalb des Menus dargestellt wird, solange der Platz
-                noch ausreicht.<br />Andere Links, die dieses Flag nicht gesetzt haben, werden dann zuerst ausgeblendet.
+                Dieses Flag stellt sicher, das dieser Link immer außerhalb des Menus dargestellt wird, solange der Platz noch ausreicht.<br />Andere
+                Links, die dieses Flag nicht gesetzt haben, werden dann zuerst ausgeblendet.
               </lux-form-hint>
             </lux-toggle-ac>
             <lux-toggle-ac
-              class="lux-highlight-section"
               luxLabel="blank"
               luxHint="Dieser Flag aktiviert das Öffnen des Links in einem neuen Tab (wenn externer Link)."
               [(luxChecked)]="linkInfo.blank"

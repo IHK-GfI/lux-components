@@ -42,7 +42,7 @@ export class InputAuthenticExampleComponent {
   required = false;
   numberLeft = false;
   label = 'Label';
-  hint = '';
+  hint = 'Optionaler Zusatztext';
   hintShowOnlyOnFocus = false;
   placeholder = 'Placeholder';
   controlValidators: ValidatorFn[] = [];
