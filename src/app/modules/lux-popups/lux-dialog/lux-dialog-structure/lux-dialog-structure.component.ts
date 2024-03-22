@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { LuxUtil } from '../../../lux-util/lux-util';
-import { LuxDialogRef } from "../lux-dialog-model/lux-dialog-ref.class";
+import { LuxDialogRef } from '../lux-dialog-model/lux-dialog-ref.class';
 
 /**
  * Diese Component stellt eine Grundstruktur für Dialoge dar und kann von Aufrufern als Alternative
@@ -8,8 +8,7 @@ import { LuxDialogRef } from "../lux-dialog-model/lux-dialog-ref.class";
  */
 @Component({
   selector: 'lux-dialog-structure',
-  templateUrl: './lux-dialog-structure.component.html',
-  styleUrls: ['./lux-dialog-structure.component.scss']
+  templateUrl: './lux-dialog-structure.component.html'
 })
 export class LuxDialogStructureComponent implements OnInit, AfterViewInit {
   @ViewChild('dialogBase', { read: ElementRef, static: true }) dialogBase!: ElementRef;
@@ -18,8 +17,7 @@ export class LuxDialogStructureComponent implements OnInit, AfterViewInit {
 
   private _iconName = '';
   @Input() set luxDialogIcon(name: string | undefined) {
-    if (name)
-      this._iconName = name;
+    if (name) this._iconName = name;
   }
   get luxDialogIcon() {
     return this._iconName;
@@ -39,6 +37,7 @@ export class LuxDialogStructureComponent implements OnInit, AfterViewInit {
   }
 
   onClose() {
+    console.log('####DIALOG-CLOSE');
     this.luxDialogRef.closeDialog();
   }
 }

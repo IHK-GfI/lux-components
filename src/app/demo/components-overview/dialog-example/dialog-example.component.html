@@ -119,15 +119,21 @@
       </lux-form-hint>
     </lux-input-ac>
   </example-base-advanced-options>
-  <example-base-options-actions fxFlex="0 0 100%" fxLayout="row wrap" fxLayoutAlign="end center" fxLayoutGap="8px grid">
-    <lux-button luxLabel="Öffnen [Preset]" [luxRaised]="true" luxColor="primary" (luxClicked)="openDialog()" fxFlex="0 0 auto">
+  <example-base-options-actions class="lux-flex lux-gap-2 lt-md:lux-flex-col lt-md:lux-items-center lt-md:lux-flex-basis-full">
+    <lux-button
+      luxLabel="Öffnen [Preset]"
+      [luxRaised]="true"
+      luxColor="primary"
+      (luxClicked)="openDialog()"
+      class="lux-flex-none lt-md:lux-flex-grow-1 lt-md:lux-flex-basis-full lt-md:lux-flex"
+    >
     </lux-button>
     <lux-button
       luxLabel="Öffnen [Eigene Component]"
       [luxRaised]="true"
       luxColor="primary"
       (luxClicked)="openDialogComponent()"
-      fxFlex="0 0 auto"
+      class="lux-flex-none"
     >
     </lux-button>
   </example-base-options-actions>
