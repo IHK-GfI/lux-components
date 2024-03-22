@@ -6,8 +6,7 @@ import { LuxErrorStoreService } from './lux-error-services/lux-error-store.servi
 
 @Component({
   selector: 'lux-error-page',
-  templateUrl: './lux-error-page.component.html',
-  styleUrls: ['./lux-error-page.component.scss']
+  templateUrl: './lux-error-page.component.html'
 })
 export class LuxErrorPageComponent {
   get error(): ILuxError | null {
@@ -15,6 +14,7 @@ export class LuxErrorPageComponent {
   }
 
   get errorConfig(): ILuxErrorPageConfig {
+    console.log('ERROR-Config ', this.errorStore.config);
     return this.errorStore.config;
   }
 

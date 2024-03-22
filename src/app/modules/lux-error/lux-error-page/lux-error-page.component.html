@@ -1,36 +1,23 @@
-<lux-card ngClass.gt-sm="lux-error-page-desktop" id="ErrorPage" fxFlexFill luxTagId="luxErrorPage">
-  <lux-card-content fxLayout="column" fxLayoutAlign="center center">
-    <lux-icon
-      [luxIconName]="errorConfig.iconName"
-      [luxIconSize]="errorConfig.iconSize"
-      class="lux-color-gray"
-      fxFlex="0 0 auto"
-      ngClass.gt-sm="lux-error-icon"
-      ngClass.sm="lux-error-icon-sm"
-      ngClass.xs="lux-error-icon-xs"
-    ></lux-icon>
+<lux-card class="lux-error-page" id="ErrorPage" luxTagId="luxErrorPage">
+  <lux-card-content class="lux-flex lux-flex-col lux-justify-center lux-items-center">
+    <lux-icon [luxIconName]="errorConfig.iconName" [luxIconSize]="errorConfig.iconSize" class="lux-color-gray lux-flex-none"></lux-icon>
     <h2 class="lux-ml-3 lux-mr-3" style="text-align: center">{{ errorConfig.errorText }}</h2>
     <lux-button
       luxColor="primary"
       [luxLabel]="errorConfig.homeRedirectText"
       (luxClicked)="clickHomeRedirect()"
-      fxFlex="0 0 auto"
+      class="lux-flex-none"
       *ngIf="errorConfig.homeRedirectText && errorConfig.homeRedirectUrl"
     >
     </lux-button>
     <ng-container *ngIf="error">
-      <p
-        i18n="@@luxc.errorpage.error_number"
-        class="lux-semi-transparent lux-black-semi-transparent"
-        fxFlex="0 0 auto"
-        *ngIf="error.errorId"
-      >
+      <p i18n="@@luxc.errorpage.error_number" class="lux-color-dark-secondary-text lux-flex-none" *ngIf="error.errorId">
         Fehlernummer: {{ error.errorId }}
       </p>
-      <lux-panel *ngIf="error.errorMessage">
+      <lux-panel luxExpandedHeaderHeight="50px" luxCollapsedHeaderHeight="50px" *ngIf="error.errorMessage">
         <lux-panel-header-title i18n="@@luxc.errorpage.error_title">Fehlermeldung</lux-panel-header-title>
         <lux-panel-content>
-          {{ error.errorMessage }}
+          <p>{{ error.errorMessage }}</p>
         </lux-panel-content>
       </lux-panel>
     </ng-container>
