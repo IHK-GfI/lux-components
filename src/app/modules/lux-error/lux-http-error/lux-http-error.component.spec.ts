@@ -107,7 +107,7 @@ describe('LuxHttpErrorComponent', () => {
     // Vorbedingungen testen
     let messageContainer = fixture.debugElement.query(By.css('.lux-message-container'));
     let messageText = fixture.debugElement.query(By.css('.lux-message-text'));
-    let messageIcon = fixture.debugElement.query(By.css('.lux-message-icon lux-icon[ng-reflect-lux-icon-name=lux-programming-bug]'));
+    let messageIcon = fixture.debugElement.query(By.css('.lux-message-icon'));
 
     expect(messageContainer).toBeNull();
     expect(messageText).toBeNull();
@@ -120,7 +120,7 @@ describe('LuxHttpErrorComponent', () => {
     // Nachbedingungen prüfen
     messageContainer = fixture.debugElement.query(By.css('.lux-message-container'));
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
-    messageIcon = fixture.debugElement.query(By.css('.lux-message-icon lux-icon[ng-reflect-lux-icon-name=lux-programming-bug]'));
+    messageIcon = fixture.debugElement.query(By.css('.lux-message-icon'));
 
     expect(messageContainer).not.toBeNull();
     expect(messageText.nativeElement.textContent).toBe('Error 0');
@@ -135,7 +135,7 @@ describe('LuxHttpErrorComponent', () => {
     // Vorbedingungen testen
     let messageContainer = fixture.debugElement.query(By.css('.lux-message-container'));
     let messageText = fixture.debugElement.query(By.css('.lux-message-text'));
-    let messageIcon = fixture.debugElement.query(By.css('.lux-message-icon lux-icon[ng-reflect-lux-icon-name=lux-programming-bug]'));
+    let messageIcon = fixture.debugElement.query(By.css('.lux-message-icon'));
 
     expect(messageContainer).toBeNull();
     expect(messageText).toBeNull();
@@ -152,7 +152,7 @@ describe('LuxHttpErrorComponent', () => {
     // Nachbedingungen prüfen
     messageContainer = fixture.debugElement.query(By.css('.lux-message-container'));
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
-    messageIcon = fixture.debugElement.query(By.css('.lux-message-icon lux-icon[ng-reflect-lux-icon-name=lux-programming-bug]'));
+    messageIcon = fixture.debugElement.query(By.css('.lux-message-icon'));
 
     expect(messageContainer).not.toBeNull();
     expect(messageText.nativeElement.textContent).toBe('Error 404');
@@ -167,7 +167,7 @@ describe('LuxHttpErrorComponent', () => {
     // Vorbedingungen testen
     let messageContainer = fixture.debugElement.query(By.css('.lux-message-container'));
     let messageText = fixture.debugElement.query(By.css('.lux-message-text'));
-    let messageIcon = fixture.debugElement.query(By.css('.lux-message-icon lux-icon[ng-reflect-lux-icon-name=lux-programming-bug]'));
+    let messageIcon = fixture.debugElement.query(By.css('.lux-message-icon'));
 
     expect(messageContainer).toBeNull();
     expect(messageText).toBeNull();
@@ -184,7 +184,7 @@ describe('LuxHttpErrorComponent', () => {
     // Nachbedingungen prüfen
     messageContainer = fixture.debugElement.query(By.css('.lux-message-container'));
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
-    messageIcon = fixture.debugElement.query(By.css('.lux-message-icon lux-icon[ng-reflect-lux-icon-name=lux-programming-bug]'));
+    messageIcon = fixture.debugElement.query(By.css('.lux-message-icon'));
 
     expect(messageContainer).not.toBeNull();
     expect(messageText.nativeElement.textContent).toBe('404');

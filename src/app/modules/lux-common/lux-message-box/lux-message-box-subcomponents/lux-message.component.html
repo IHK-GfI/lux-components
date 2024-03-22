@@ -1,26 +1,22 @@
-<div
-  class="lux-message-container {{ backgroundCSSClass }} {{ fontCSSClass }}"
-  fxLayout="row"
-  fxLayoutAlign="start center"
-  luxAriaRole="listitem"
-  *ngIf="luxMessage"
->
-  <div class="lux-message-icon" fxFlex="0 0 50px" fxLayoutAlign="start center">
-    <lux-icon [luxIconName]="luxMessage.iconName" *ngIf="luxMessage.iconName"></lux-icon>
-  </div>
-  <div fxFlex="100" fxFlexFill fxLayoutAlign="space-between center">
-    <div class="lux-message-text" fxFlex="1 1 auto" fxLayoutAlign="start">
-      <p tabindex="0">{{ luxMessage.text }}</p>
-    </div>
-    <lux-button
-      class="lux-close-message-btn"
-      [luxRounded]="true"
-      luxIconName="lux-interface-delete-1"
-      luxTagId="lux-message-box-close-btn"
-      (luxClicked)="close()"
-      i18n-luxAriaLabel="@@luxc.message.btn.close.arialabel"
-      luxAriaLabel="Meldung schließen"
-    >
-    </lux-button>
-  </div>
+<div class="lux-message-container {{ backgroundCSSClass }} {{ fontCSSClass }}" luxAriaRole="listitem" *ngIf="luxMessage">
+  <lux-icon
+    [luxIconName]="luxMessage.iconName"
+    *ngIf="luxMessage.iconName"
+    luxIconSize="20px"
+    luxPadding="4px"
+    class="lux-message-icon"
+  ></lux-icon>
+
+  <p tabindex="0" class="lux-message-text">{{ luxMessage.text }}</p>
+
+  <lux-button
+    class="lux-close-message-btn"
+    [luxRounded]="true"
+    luxIconName="lux-interface-delete-1"
+    luxTagId="lux-message-box-close-btn"
+    (luxClicked)="close()"
+    i18n-luxAriaLabel="@@luxc.message.btn.close.arialabel"
+    luxAriaLabel="Meldung schließen"
+  >
+  </lux-button>
 </div>

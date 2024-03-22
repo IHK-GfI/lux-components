@@ -64,7 +64,6 @@ export * from './src/app/modules/lux-common/lux-label/lux-label.component';
 export * from './src/app/modules/lux-common/lux-message-box/lux-message-box.component';
 export * from './src/app/modules/lux-common/lux-message-box/lux-message-box-subcomponents/lux-message.component';
 export * from './src/app/modules/lux-common/lux-progress/lux-progress.component';
-export * from './src/app/modules/lux-common/lux-spinner/lux-spinner.component';
 export * from './src/app/modules/lux-common/lux-table/lux-table.component';
 export * from './src/app/modules/lux-common/lux-table/lux-table-data-source';
 export * from './src/app/modules/lux-common/lux-table/lux-table-subcomponents/lux-table-column-content.component';
