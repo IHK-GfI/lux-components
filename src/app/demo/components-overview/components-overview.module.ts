@@ -14,6 +14,7 @@ import { LuxLayoutModule } from '../../modules/lux-layout/lux-layout.module';
 import { LuxLookupModule } from '../../modules/lux-lookup/lux-lookup.module';
 import { LuxPipesModule } from '../../modules/lux-pipes/lux-pipes.module';
 import { LuxPopupsModule } from '../../modules/lux-popups/lux-popups.module';
+import { LuxTourHintModule } from '../../modules/lux-tour-hint/lux-tour-hint.module';
 import { LuxConsoleService } from '../../modules/lux-util/lux-console.service';
 import { AccordionExampleComponent } from './accordion-example/accordion-example.component';
 import { BadgeExampleComponent } from './badge-example/badge-example.component';
@@ -100,9 +101,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
 import { CheckboxContainerAcExampleComponent } from './checkbox-container-ac-example/checkbox-container-ac-example.component';
 import { TextboxExampleComponent } from './textbox-example/textbox-example.component';
-import {TenantLogoExampleComponent} from "./tenant-logo-example/tenant-logo-example.component";
-import {LuxTenantLogoModule} from "../../modules/lux-tenant-logo/lux-tenant-logo.module";
-import {TenantLogoExampleConfigComponent} from "./tenant-logo-example/tenant-logo-example-config/tenant-logo-example-config.component";
+import { TenantLogoExampleComponent } from './tenant-logo-example/tenant-logo-example.component';
+import { LuxTenantLogoModule } from '../../modules/lux-tenant-logo/lux-tenant-logo.module';
+import { TenantLogoExampleConfigComponent } from './tenant-logo-example/tenant-logo-example-config/tenant-logo-example-config.component';
+import { TourHintExampleComponent } from './tour-hint-example/tour-hint-example.component';
 
 @NgModule({
   imports: [
@@ -120,6 +122,7 @@ import {TenantLogoExampleConfigComponent} from "./tenant-logo-example/tenant-log
     LuxPipesModule,
     LuxErrorModule,
     LuxPopupsModule,
+    LuxTourHintModule,
     LuxLookupModule,
     LuxCommonModule,
     LuxHtmlModule,
@@ -212,10 +215,10 @@ import {TenantLogoExampleConfigComponent} from "./tenant-logo-example/tenant-log
     CheckboxContainerAcExampleComponent,
     TextboxExampleComponent,
     TenantLogoExampleComponent,
-    TenantLogoExampleConfigComponent
+    TenantLogoExampleConfigComponent,
+    TourHintExampleComponent
   ],
-  providers: [HttpClient],
-  entryComponents: [DialogComponentExampleComponent]
+  providers: [HttpClient]
 })
 export class ComponentsOverviewModule {}
 

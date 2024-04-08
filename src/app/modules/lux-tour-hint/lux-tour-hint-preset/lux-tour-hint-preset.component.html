@@ -1,0 +1,51 @@
+<div class="tour-hint-container">
+  <lux-icon
+    luxTagId="btn-tour-hint-close"
+    class="action-close"
+    luxIconSize="16px"
+    luxIconName="lux-interface-delete-1"
+    (click)="close()"
+  ></lux-icon>
+
+  <div class="tour-hint-inner-container">
+    <div class="tour-hint-data">
+      <h3 class="tour-hint-title">{{ tourRef.data.title }}</h3>
+      <p class="tour-hint-content">
+        {{ tourRef.data.content }}
+      </p>
+    </div>
+
+    <div class="tour-hint-actions">
+      <div class="action-dont-show-again">
+        <lux-checkbox-ac
+          [luxNoLabels]="true"
+          luxLabel="Nicht wieder anzeigen"
+          [(luxChecked)]="dontShowAgainChecked"
+          *ngIf="tourRef.optionDontShowAgain"
+        ></lux-checkbox-ac>
+      </div>
+
+      <div class="action-navigation" *ngIf="tourRef.steps > 1">
+        <lux-button
+          luxTagId="btn-tour-hint-prev"
+          class="action-nav-previous"
+          luxIconName="lux-interface-arrows-button-left"
+          [luxRounded]="true"
+          (luxClicked)="tourRef.prev()"
+          *ngIf="tourRef.hasPrevious()"
+        ></lux-button>
+
+        <span class="nav-label-step">Step {{ tourRef.step + 1 }} / {{ tourRef.steps }}</span>
+
+        <lux-button
+          luxTagId="btn-tour-hint-next"
+          class="action-nav-next"
+          luxIconName="lux-interface-arrows-button-right"
+          [luxRounded]="true"
+          (luxClicked)="tourRef.next()"
+          *ngIf="tourRef.hasNext()"
+        ></lux-button>
+      </div>
+    </div>
+  </div>
+</div>
