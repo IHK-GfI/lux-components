@@ -98,7 +98,6 @@ export class LuxMessageBoxComponent {
    * Wird aufgerufen, wenn der Close-Button für eine MessageBox aufgerufen wurde.
    *
    * Gibt eine Event-Payload mit der betroffenen Nachricht mit Index weiter.
-   *
    * @param closedMessage
    */
   messageClosed(closedMessage: ILuxMessage) {
@@ -114,7 +113,6 @@ export class LuxMessageBoxComponent {
   /**
    * Aktualisiert die angezeigten Nachrichten und den Paginator,
    * gibt außerdem das Change-Event mit den angezeigten/vorherigen Nachrichten.
-   *
    * @param pageEvent
    */
   pageChanged(pageEvent: PageEvent) {
@@ -139,7 +137,6 @@ export class LuxMessageBoxComponent {
 
   /**
    * Aktualisiert die aktuell angezeigten Nachrichten anhand des Index.
-   *
    * @param pageIndex
    */
   updateDisplayedMessages(pageIndex: number) {

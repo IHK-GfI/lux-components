@@ -249,7 +249,6 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
 
   /**
    * Stößt das Nachladen von Elementen an, wenn ein bestimmter Scrollwert erreicht wurde.
-   *
    * @param event - ScrollEvent
    */
   private loadOnScroll(event: Event) {
@@ -284,7 +283,6 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
    * Fügt einen Chip hinzu.
    * Fügt ihn entweder der explizit mitgeteilten newChipList hinzu oder einfach
    * der letzten mitgegebenen Liste.
-   *
    * @param value
    */
   add(value: string) {
@@ -363,7 +361,6 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
   /**
    * Wird bei Eingabe von Werten in das Input-Feld aufgerufen und schreibt einen neuen Wert
    * in das inputValue-Subject.
-   *
    * @param value
    */
   inputChanged(value: string) {
@@ -393,7 +390,6 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
 
   /**
    * Wird beim Selektieren einer Option im Autocomplete ausgeführt.
-   *
    * @param input
    * @param value
    */
@@ -405,7 +401,6 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
   /**
    * Wird beim Input-Event des Eingabefelds ausgeführt, fragt aber vorher ab, ob das Autocomplete offen ist.
    * Wenn ja, wird kein neuer Chip erzeugt, da das Autocomplete dies übernimmt.
-   *
    * @param input
    */
   inputAdd(input: HTMLInputElement) {

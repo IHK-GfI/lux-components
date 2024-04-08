@@ -137,7 +137,6 @@ export class LuxLookupLabelComponent implements OnInit, OnDestroy {
 
   /**
    * liefert die Bezeichnung (Kurz- oder Langbezeichnung) des Entries für den Key zur Tabelle.
-   *
    * @returns string
    */
   getBezeichnung(): string {

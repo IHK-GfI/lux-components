@@ -1,4 +1,3 @@
-import { ConsoleLogger } from '@angular/compiler-cli/ngcc';
 import {
   ChangeDetectorRef,
   ContentChild,
@@ -221,7 +220,6 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
   /**
    * Method-Stub der von ableitenden Klassen genutzt werden kann, um
    * weitergreifende Fehlermeldungen anzugeben.
-   *
    * @param value
    * @param errors
    */
@@ -238,7 +236,6 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
 
   /**
    * Standard-Setter Funktion für den aktuellen Wert in dieser FormComponent.
-   *
    * @param value
    */
   protected setValue(value: T) {
@@ -259,14 +256,12 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
   /**
    * Wird nach der Aktualisierung des Wertes aufgerufen.
    * Hier kann z.B. valueChange.emit() ausgeführt werden.
-   *
    * @param formValue
    */
   protected notifyFormValueChanged(formValue: any) {}
 
   /**
    * Wird nach der Aktualisierung des Status aufgerufen.
-   *
    * @param formStatus
    */
   protected notifyFormStatusChanged(formStatus: any) {
@@ -277,7 +272,6 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
 
   /**
    * Prüft, ob das übergebene Control einen required-Validator besitzt.
-   *
    * @param abstractControl
    */
   protected hasRequiredValidator(abstractControl: AbstractControl) {
@@ -358,7 +352,6 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
    * Für den Fall das luxRequired auf false gesetzt worden ist, wird der Validator entfernt.
    *
    * Hinweis: LuxFormCheckableBase überschreibt diese Funktion, um statt required requiredTrue zu setzen.
-   *
    * @param validators
    */
   protected checkValidatorsContainRequired(validators: ValidatorFnType) {
@@ -391,7 +384,6 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
   /**
    * Versucht die Validatoren für diese Komponente zu setzen.
    * Ist nur erfolgreich, wenn es sich hierbei nicht um eine ReactiveForm-Komponente handelt.
-   *
    * @param validators
    * @param checkRequiredValidator
    */

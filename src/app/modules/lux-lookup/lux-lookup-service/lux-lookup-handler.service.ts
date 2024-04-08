@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class LuxLookupHandlerService {
   private lookupElements: Map<string, Subject<void>> = new Map();
@@ -11,7 +11,6 @@ export class LuxLookupHandlerService {
 
   /**
    * Fügt ein LookupComponent zu der Map hinzu.
-   *
    * @param string name
    * @param name
    */
@@ -21,7 +20,6 @@ export class LuxLookupHandlerService {
 
   /**
    * Gibt das Subject einer LookupComponent als Observable zurück (oder null).
-   *
    * @param string name
    * @param name
    * @returns Observable<any> | null
@@ -36,7 +34,6 @@ export class LuxLookupHandlerService {
 
   /**
    * Gibt das Subject einer LookupComponent zurück (oder null).
-   *
    * @param string name
    * @param name
    * @returns Observable<any> | null
@@ -51,7 +48,6 @@ export class LuxLookupHandlerService {
 
   /**
    * Stößt das Neuladen von Schlüsseltabellendaten einer LookupComponent an.
-   *
    * @param string name
    * @param lookupId
    */

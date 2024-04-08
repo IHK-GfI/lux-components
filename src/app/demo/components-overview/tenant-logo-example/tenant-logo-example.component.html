@@ -1,4 +1,7 @@
-<example-base-structure exampleTitle="Tenant-Logo" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90button">
+<example-base-structure
+  exampleTitle="Tenant-Logo"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90button-v16"
+>
   <example-base-content>
     <lux-tenant-logo
       [luxTenantKey]="localTenantLogoConfig.luxTenantKey"
@@ -10,20 +13,34 @@
     ></lux-tenant-logo>
   </example-base-content>
   <example-base-simple-options>
-
     <h3>Header Konfiguration</h3>
 
-    <lux-toggle-ac [luxNoBottomLabel]="true" (luxCheckedChange)="onChangeUseTenantLogoForHeader($event)" luxLabel="Nutze diese Komponente für den Header" [luxNoTopLabel]="true"></lux-toggle-ac>
+    <lux-toggle-ac
+      [luxNoBottomLabel]="true"
+      (luxCheckedChange)="onChangeUseTenantLogoForHeader($event)"
+      luxLabel="Nutze diese Komponente für den Header"
+      [luxNoTopLabel]="true"
+    ></lux-toggle-ac>
 
     <ng-container *ngIf="useTenantLogoForHeader">
-      <app-tenant-logo-example-config title="Header-Beispiel Konfiguration" [tenantLogoConfig]="headerTenantLogoConfig"></app-tenant-logo-example-config>
+      <app-tenant-logo-example-config
+        title="Header-Beispiel Konfiguration"
+        [tenantLogoConfig]="headerTenantLogoConfig"
+      ></app-tenant-logo-example-config>
     </ng-container>
 
     <h3 class="sectionHeader">Beispiel Konfiguration</h3>
 
-    <lux-toggle-ac [luxNoBottomLabel]="true" [luxNoTopLabel]="true" (luxCheckedChange)="onChangeShowBorderForImages($event)" luxLabel="Zeige Rahmen aller Tenant-Logo-Komponenten"></lux-toggle-ac>
+    <lux-toggle-ac
+      [luxNoBottomLabel]="true"
+      [luxNoTopLabel]="true"
+      (luxCheckedChange)="onChangeShowBorderForImages($event)"
+      luxLabel="Zeige Rahmen aller Tenant-Logo-Komponenten"
+    ></lux-toggle-ac>
 
-    <app-tenant-logo-example-config title="Beispiel Konfiguration" [tenantLogoConfig]="localTenantLogoConfig"></app-tenant-logo-example-config>
-
+    <app-tenant-logo-example-config
+      title="Beispiel Konfiguration"
+      [tenantLogoConfig]="localTenantLogoConfig"
+    ></app-tenant-logo-example-config>
   </example-base-simple-options>
 </example-base-structure>

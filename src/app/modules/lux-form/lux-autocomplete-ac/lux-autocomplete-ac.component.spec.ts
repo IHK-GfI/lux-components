@@ -856,7 +856,6 @@ class LuxAutoCompleteNotAnOptionComponent {
  * Das LUX-Autocomplete muss in manchen Situationen den Fokus verlieren,
  * damit die Änderungen übernommen werden können. Die folgende Methode sorgt dafür,
  * dass das LUX-Autocomplete den Fokus verliert.
- *
  * @param fixture Ein ComponentFixture.
  * @param inputElement Ein Input-Element.
  * @param delay Ein Delay.

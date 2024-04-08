@@ -11,14 +11,12 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlContainer, Validators } from '@angular/forms';
-import { LuxProgressModeType } from "../../lux-common/lux-progress/lux-progress.component";
+import { LuxProgressModeType } from '../../lux-common/lux-progress/lux-progress.component';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
-import { LuxFormComponentBase, LuxValidationErrors, ValidatorFnType } from "./lux-form-component-base.class";
+import { LuxFormComponentBase, LuxValidationErrors, ValidatorFnType } from './lux-form-component-base.class';
 import { ILuxFileError, LuxFileErrorCause } from '../lux-file/lux-file-model/lux-file-error.interface';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import {
-  ILuxFileActionConfig
-} from '../lux-file/lux-file-model/lux-file-action-config.interface';
+import { ILuxFileActionConfig } from '../lux-file/lux-file-model/lux-file-action-config.interface';
 import { isObservable, Observable, throwError } from 'rxjs';
 import { ILuxFileObject } from '../lux-file/lux-file-model/lux-file-object.interface';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -120,7 +118,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Wird beim Fokussieren des Elements aufgerufen und markiert das FormControl als "touched".
-   *
    * @param focusEvent
    */
   onFocusIn(focusEvent: FocusEvent) {
@@ -130,7 +127,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Löst den Download der übergebenen Datei aus.
-   *
    * @param file
    */
   downloadFile(file: ILuxFileObject | ILuxFileObject[]) {
@@ -155,7 +151,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   /**
    * Löst den base64Callback der übergebenen Datei aus.
    * Schreibt dann anschließend den Base64-String in die Datei.
-   *
    * @param file
    */
   viewFile(file: ILuxFileObject) {
@@ -184,7 +179,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   /**
    * Wandelt File-Objekt zu LuxFileObjects um und versucht diese hochzuladen.
    * Gibt ein Promise mit den neuen FileObjects zurück bzw. einen Fehler aus den internen Promises.
-   *
    * @param files
    */
   async updateSelectedFiles(files: FileList | File[]) {
@@ -203,7 +197,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Stößt das Hochladen der Dateien zu einer bestimmten URL an.
-   *
    * @param files
    */
   async uploadFiles(files: ILuxFileObject[] | ILuxFileObject | null) {
@@ -280,7 +273,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   /**
    * Liest die übergebenen Dateien aus und erzeugt daraus ein Promise, welches abgefragt werden kann.
    * Fängt potenzielle Fehler ab und gibt diese als abgelehnte Promises zurück.
-   *
    * @param files
    */
   async mapFilesToFileObjects(files: FileList | File[]) {
@@ -369,7 +361,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   /**
    * Liest (asynchron) den Base64-String aus der übergebenen Datei heraus bzw. gibt den Fehler zurück, wenn einer
    * aufgetreten ist.
-   *
    * @param file
    */
   readFile(file: File) {
@@ -384,7 +375,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Wird beim Drag-Over über dem LuxFormControl aufgerufen.
-   *
    * @param dragEvent
    */
   handleDragOver(dragEvent: DragEvent) {
@@ -401,7 +391,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Wird beim Drag-Leave über dem LuxFormControl aufgerufen.
-   *
    * @param dragEvent
    */
   handleDragLeave(dragEvent: DragEvent) {
@@ -414,7 +403,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   /**
    * Wird beim Drop eines/mehrerer gezogener Elemente über dem LuxFormControl aufgerufen und löst
    * die Auswahl-Methoden für die entsprechenden Dateien aus.
-   *
    * @param dragEvent
    */
   handleDrop(dragEvent: DragEvent) {
@@ -464,7 +452,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
   /**
    * Aktualisiert das Fehlerobjekt am FormControl, damit eine entsprechende Fehlermeldung angezeigt werden kann.
    * Leert die Anzeige und gibt Events mit leerem Array aus.
-   *
    * @param error
    */
   protected setFormControlErrors(error: ILuxFileError) {
@@ -480,7 +467,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Berechnet die Größe der übergebenen Datei in MB.
-   *
    * @param file
    */
   protected getFileSizeInMB(file: File) {
@@ -489,7 +475,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Gibt die Message für Überschreitung der maximalen Dateigröße zurück.
-   *
    * @param file
    */
   protected getMaxSizeErrorMessage(file: File): string {
@@ -500,7 +485,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Gibt die Message für Fehler beim Auslesen einer Datei zurück.
-   *
    * @param file
    */
   protected getReadingFileErrorMessage(file: File): string {
@@ -509,7 +493,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Gibt die Message für Fehler beim Upload einer Datei zurück.
-   *
    * @param files
    */
   protected getUploadFileErrorMessage(files: File[]): string {
@@ -523,7 +506,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Gibt die Message für falsche Dateitypen zurück.
-   *
    * @param file
    */
   protected getFileNotAcceptedMessage(file: File): string {
@@ -539,7 +521,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Meldet dem ScreenReader, dass gerade eine/mehrere Dateien bearbeitet werden (Ladeanzeige).
-   *
    * @param multiple
    */
   protected announceFileProcess(multiple: boolean) {
@@ -565,7 +546,6 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
 
   /**
    * Meldet dem ScreenReader, dass eine bestimmte Datei entfernt werden soll.
-   *
    * @param fileName
    */
   protected announceFileRemove(fileName: string) {

@@ -25,17 +25,14 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
 
   /**
    * Constructor
-   *
    * @param elementRef Ziel-Element dieser Direktive
    */
   constructor(private elementRef: ElementRef) {
     // Die neuen Scroll-Events bündeln und nach der Zeitspanne SCROLL_DEBOUNCE_TIME prüfen, ob ein
     // "luxScrolled" emitten soll oder nicht.
-    this.scrollSubscription = this.scroll$
-      .pipe(debounceTime(LuxInfiniteScrollDirective.SCROLL_DEBOUNCE_TIME))
-      .subscribe(() => {
-        this.performScrollCheck();
-      });
+    this.scrollSubscription = this.scroll$.pipe(debounceTime(LuxInfiniteScrollDirective.SCROLL_DEBOUNCE_TIME)).subscribe(() => {
+      this.performScrollCheck();
+    });
   }
 
   ngOnInit() {
@@ -57,7 +54,6 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
   /**
    * Prüft, ob ein Scroll-Event auf dem Zielelement stattgefunden hat.
    * Wenn ja, wird das Subject scroll$ angestoßen.
-   *
    * @param event
    */
   onScroll(event: any) {
@@ -89,7 +85,6 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
   /**
    * Prüft, ob der User gerade nach unten scrollt.
    * Vergleicht dabei die scrollTop Position des Users mit der des Elements.
-   *
    * @param curPos
    */
   private isUserScrollingDown(curPos: LuxScrollPosition) {
@@ -98,7 +93,6 @@ export class LuxInfiniteScrollDirective implements OnInit, AfterViewInit, OnDest
 
   /**
    * Prüft, ob der Scrollbereich überschritten wurde.
-   *
    * @param position
    * @returns boolean
    */

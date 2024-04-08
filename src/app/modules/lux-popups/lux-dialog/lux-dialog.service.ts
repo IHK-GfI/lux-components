@@ -4,14 +4,11 @@ import { ComponentType } from '@angular/cdk/portal';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxDialogRef } from './lux-dialog-model/lux-dialog-ref.class';
 import { DEFAULT_DIALOG_CONF, ILuxDialogConfig } from './lux-dialog-model/lux-dialog-config.interface';
-import {
-  DEFAULT_DIALOG_PRESET_CONF,
-  ILuxDialogPresetConfig
-} from './lux-dialog-model/lux-dialog-preset-config.interface';
+import { DEFAULT_DIALOG_PRESET_CONF, ILuxDialogPresetConfig } from './lux-dialog-model/lux-dialog-preset-config.interface';
 import { LuxDialogPresetComponent } from './lux-dialog-preset/lux-dialog-preset.component';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class LuxDialogService {
   private static readonly ALREADY_OPENED_ERROR: string = 'Aktuell ist bereits ein Dialog geöffnet';
@@ -22,7 +19,6 @@ export class LuxDialogService {
 
   /**
    * Öffnet einen Dialog basierend auf der übergebenen Component und den entsprechenden Daten.
-   *
    * @param component
    * @param config
    * @param data
@@ -48,7 +44,6 @@ export class LuxDialogService {
 
   /**
    * Öffnet einen Dialog basierend auf der LuxDialogComponent und der LuxDialogConfig.
-   *
    * @param config
    */
   open<T>(config?: ILuxDialogPresetConfig): LuxDialogRef<T> {
@@ -60,7 +55,6 @@ export class LuxDialogService {
   /**
    * Prüft, ob bereits ein Dialog geöffnet ist und etwaige CSS-Klassen für den Dialog gegeben sind.
    * Anschließend wird der Dialog mit den übergebenen Config-Optionen und Data-Informationen geöffnet.
-   *
    * @param component
    * @param config
    * @param data
@@ -88,9 +82,9 @@ export class LuxDialogService {
 
       // Dialog öffnen und Konfiguration übergeben
       const matDialogRef = this.matDialog.open(component, {
-        width       : config.width,
-        height      : config.height,
-        autoFocus   : false,
+        width: config.width,
+        height: config.height,
+        autoFocus: false,
         restoreFocus: true,
         disableClose: config.disableClose,
         panelClass

@@ -5,14 +5,13 @@ import { LuxLookupParameters } from '../lux-lookup-model/lux-lookup-parameters';
 import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class LuxLookupService {
   constructor(private http: HttpClient) {}
 
   /**
    * Liefert die Eintraege einer Schluesseltabelle.
-   *
    * @param tableNo
    * @param parameters
    * @param url
@@ -25,7 +24,6 @@ export class LuxLookupService {
 
   /**
    * Generiert die Standard-Parameter fuer einen Lookup-Request.
-   *
    * @param parameters
    * @returns HttpParams
    */

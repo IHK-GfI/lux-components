@@ -27,7 +27,7 @@ describe('LuxBadgeNotificationDirective', () => {
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    expect(badgeContent.nativeElement.children[0].textContent.trim()).toEqual('1');
+    expect(badgeContent.nativeElement.children[0].children[0].textContent.trim()).toEqual('1');
   }));
 
   it('Sollte die Notification verstecken', fakeAsync(() => {
@@ -64,14 +64,14 @@ describe('LuxBadgeNotificationDirective', () => {
     LuxTestHelper.wait(fixture);
 
     const badgeContent = fixture.debugElement.query(By.css('span'));
-    expect(badgeContent.nativeElement.children[0].textContent.trim()).toEqual('100');
+    expect(badgeContent.nativeElement.children[0].children[0].textContent.trim()).toEqual('100');
 
     // Änderungen durchführen
     mockComp.maxNumber = 90;
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    expect(badgeContent.nativeElement.children[0].textContent.trim()).toEqual('90+');
+    expect(badgeContent.nativeElement.children[0].children[0].textContent.trim()).toEqual('90+');
   }));
 });
 

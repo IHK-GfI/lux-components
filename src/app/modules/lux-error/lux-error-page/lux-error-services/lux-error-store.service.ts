@@ -11,7 +11,6 @@ import { ILuxError } from '../lux-error-interfaces/lux-error.interface';
   providedIn: 'root'
 })
 export class LuxErrorStoreService {
-
   /**
    * Enthält die normale Konfiguration der Fehlerseite, kann bei Bedarf mit setConfig überschrieben werden.
    */
@@ -31,7 +30,6 @@ export class LuxErrorStoreService {
 
   /**
    * Gibt die aktuelle Konfiguration zurück.
-   *
    * @returns ILuxErrorPageConfig
    */
   get config() {
@@ -40,7 +38,6 @@ export class LuxErrorStoreService {
 
   /**
    * Gibt ein Array der letzten Fehler zurück.
-   *
    * @returns Array<ILuxError[]>
    */
   get lastErrors() {
@@ -49,7 +46,6 @@ export class LuxErrorStoreService {
 
   /**
    * Gibt den aktuellen Fehler zurück.
-   *
    * @returns ILuxError
    */
   get error(): ILuxError | null {
@@ -58,7 +54,6 @@ export class LuxErrorStoreService {
 
   /**
    * Sichert den Fehler in der Property und fügt ihn der "lastErrors"-Liste hinzu.
-   *
    * @param newError
    */
   set error(newError: ILuxError | null) {
@@ -83,7 +78,6 @@ export class LuxErrorStoreService {
 
   /**
    * Diese Methode sichert die übergebene Konfiguration.
-   *
    * @param luxErrorPageConfig
    */
   safeNewConfig(luxErrorPageConfig: ILuxErrorPageConfig | null) {

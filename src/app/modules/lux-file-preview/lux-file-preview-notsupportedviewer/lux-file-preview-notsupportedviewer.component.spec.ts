@@ -34,13 +34,7 @@ describe('LuxFilePreviewNotSupportedViewerComponent', () => {
         { provide: LuxFilePreviewRef, useClass: MockLuxFilePreviewRef },
         { provide: LUX_FILE_PREVIEW_DATA, useValue: previewData }
       ]
-    })
-      .overrideModule(BrowserDynamicTestingModule, {
-        set: {
-          entryComponents: [LuxFilePreviewComponent]
-        }
-      })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -55,6 +49,5 @@ describe('LuxFilePreviewNotSupportedViewerComponent', () => {
 });
 
 class MockLuxFilePreviewRef {
-  close() {
-  }
+  close() {}
 }

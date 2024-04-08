@@ -27,7 +27,7 @@ import { MatLegacyOption as MatOption } from '@angular/material/legacy-core';
   templateUrl: './lux-select-ac.component.html',
   styleUrls: ['./lux-select-ac.component.scss']
 })
-export class LuxSelectAcComponent<O = any, V = any, P = any> extends LuxFormSelectableBase<O,V,P> {
+export class LuxSelectAcComponent<O = any, V = any, P = any> extends LuxFormSelectableBase<O, V, P> {
   // Potenziell eingebettetes Template für Darstellung der Labels
   @ContentChild(TemplateRef) tempRef?: TemplateRef<any>;
   @ViewChildren(MatOption) matOptions!: QueryList<MatOption>;
@@ -35,7 +35,6 @@ export class LuxSelectAcComponent<O = any, V = any, P = any> extends LuxFormSele
 
   @Input() luxPlaceholder = '';
   @Input() luxMultiple = false;
-  @Input() luxTagId?: string;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
