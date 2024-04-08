@@ -44,7 +44,7 @@ export class LuxLookupComboboxAcComponent<T = LuxLookupTableEntry> extends LuxLo
   }
 
   ngAfterViewInit() {
-    this.subscription =  this.matSelect.openedChange.subscribe((open: boolean) => {
+    this.subscription = this.matSelect.openedChange.subscribe((open: boolean) => {
       if (open) {
         this.registerPanelScrollEvent(this.matSelect.panel.nativeElement);
       }
@@ -59,7 +59,6 @@ export class LuxLookupComboboxAcComponent<T = LuxLookupTableEntry> extends LuxLo
 
   /**
    * Vergleicht die Optionen anhand der Key-Werte
-   *
    * @param value1
    * @param value2
    * @returns boolean
@@ -81,7 +80,6 @@ export class LuxLookupComboboxAcComponent<T = LuxLookupTableEntry> extends LuxLo
 
   /**
    * Setzt den aktuellen Value-Wert auf den ausgewählten Wert.
-   *
    * @param selectChange
    */
   selected(selectChange: MatSelectChange) {
@@ -90,7 +88,6 @@ export class LuxLookupComboboxAcComponent<T = LuxLookupTableEntry> extends LuxLo
 
   /**
    * Fügt beim Öffnen des Selects einen Scroll-Listener hinzu.
-   *
    * @param panelElement
    */
   private registerPanelScrollEvent(panelElement: Element) {
@@ -99,7 +96,6 @@ export class LuxLookupComboboxAcComponent<T = LuxLookupTableEntry> extends LuxLo
 
   /**
    * Stößt das Nachladen von Elementen an, wenn ein bestimmter Scrollwert erreicht wurde.
-   *
    * @param event - ScrollEvent
    */
   private loadOnScroll(event: Event) {

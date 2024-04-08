@@ -649,6 +649,7 @@ describe('LuxAutocompleteAcComponent', () => {
 });
 
 @Component({
+  selector: 'lux-autocomplete-in-form-with-string-values-component',
   template: `
     <form [formGroup]="formGroup">
       <lux-autocomplete-ac luxLabel="Autocomplete" [luxOptions]="options" luxControlBinding="aufgaben"> </lux-autocomplete-ac>
@@ -670,6 +671,7 @@ class LuxAutoCompleteInFormWithStringValuesComponent {
 }
 
 @Component({
+  selector: 'lux-autocomplete-two-way-binding-with-string-values-component',
   template: `
     <lux-autocomplete-ac luxLabel="Autocomplete" [luxOptions]="options" [(luxValue)]="selected" [luxStrict]="strict"> </lux-autocomplete-ac>
   `
@@ -702,6 +704,7 @@ class LuxScrollComponent {
 }
 
 @Component({
+  selector: 'lux-autocomplete-in-form-attribute-component',
   template: `
     <form [formGroup]="formGroup">
       <lux-autocomplete-ac luxLabel="Autocomplete" [luxOptions]="options" luxControlBinding="aufgaben"> </lux-autocomplete-ac>
@@ -728,6 +731,7 @@ class LuxAutoCompleteInFormAttributeComponent {
 }
 
 @Component({
+  selector: 'lux-value-attribute-component',
   template: `
     <lux-autocomplete-ac luxLabel="Autocomplete" [luxOptions]="options" [(luxValue)]="selected" [luxStrict]="strict"> </lux-autocomplete-ac>
   `
@@ -856,7 +860,6 @@ class LuxAutoCompleteNotAnOptionComponent {
  * Das LUX-Autocomplete muss in manchen Situationen den Fokus verlieren,
  * damit die Änderungen übernommen werden können. Die folgende Methode sorgt dafür,
  * dass das LUX-Autocomplete den Fokus verliert.
- *
  * @param fixture Ein ComponentFixture.
  * @param inputElement Ein Input-Element.
  * @param delay Ein Delay.

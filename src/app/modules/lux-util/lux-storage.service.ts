@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
  * können diese einfach über die Methode 'clearSensitiveItems' gelöscht werden.
  */
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class LuxStorageService implements OnDestroy {
   private readonly postfixSensitive = '.sensitive';
@@ -23,16 +23,15 @@ export class LuxStorageService implements OnDestroy {
   }
 
   private onStorageEvent(event: StorageEvent) {
-      if (event.key) {
-        if (this.itemSources.has(event.key)) {
-          this.itemSources.get(event.key)!.next(event.newValue);
-        }
+    if (event.key) {
+      if (this.itemSources.has(event.key)) {
+        this.itemSources.get(event.key)!.next(event.newValue);
       }
+    }
   }
 
   /**
    * Diese Methode liefert den Wert für den übergebenen Schlüssel zurück.
-   *
    * @param key - Der eindeutige Schlüssel.
    * @returns Liefert den Wert für den übergebenen Schlüssel zurück.
    */
@@ -46,7 +45,6 @@ export class LuxStorageService implements OnDestroy {
 
   /**
    * Diese Methode liefert ein Observable zurück, das über alle Änderungen an dem Schlüssel informiert wird.
-   *
    * @param key - Der eindeutige Schlüssel.
    * @returns Liefert ein Observable zurück, das über alle Änderungen an dem Schlüssel informiert wird.
    */
@@ -61,7 +59,6 @@ export class LuxStorageService implements OnDestroy {
   /**
    * Diese Methode setzt den übergebenen Wert für den Schlüssel. Zusätzlich muss angegeben werden, ob es sich um
    * sensible oder personenbezogene Daten handelt.
-   *
    * @param key - Der eindeutige Schlüssel.
    * @param value - Der neue Wert.
    * @param sensitive - Gibt an, ob es sich um sensible oder personenbezogene Daten handelt. Diese können leicht über
@@ -84,7 +81,6 @@ export class LuxStorageService implements OnDestroy {
 
   /**
    * Diese Methode entfernt den übergebenen Schlüssel.
-   *
    * @param key - Der eindeutige Schlüssel.
    */
   removeItem(key: string): void {
@@ -108,7 +104,7 @@ export class LuxStorageService implements OnDestroy {
     }
 
     // Alle sensiblen Einträge löschen.
-    keys.forEach(key => {
+    keys.forEach((key) => {
       if (key && key.endsWith(this.postfixSensitive)) {
         this.removeItem(key.replace(this.postfixSensitive, ''));
       }

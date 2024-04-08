@@ -6,9 +6,7 @@ import { LuxThemePalette } from '../../../../../lux-util/lux-colors.enum';
   template: `<ng-content></ng-content>`
 })
 export class LuxAppHeaderAcNavMenuItemComponent extends LuxMenuItemComponent {
-  @Input() luxTagId?: string;
   @Input() luxSelected = false;
-  @Input() luxButtonBadge?: string;
   @Input() luxButtonBadgeColor: LuxThemePalette = 'primary';
 
   constructor() {

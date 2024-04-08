@@ -1,10 +1,10 @@
 /* eslint-disable max-classes-per-file */
 // noinspection DuplicatedCode
 
-import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from "@angular/core/testing";
+import { ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ValidatorFnType } from '../../lux-form/lux-form-model/lux-form-component-base.class';
-import { LuxOverlayHelper } from "../../lux-util/testing/lux-test-overlay-helper";
-import { LuxLookupCompareFn, luxLookupCompareKeyFn, luxLookupCompareKurzTextFn } from "../lux-lookup-model/lux-lookup-component";
+import { LuxOverlayHelper } from '../../lux-util/testing/lux-test-overlay-helper';
+import { LuxLookupCompareFn, luxLookupCompareKeyFn, luxLookupCompareKurzTextFn } from '../lux-lookup-model/lux-lookup-component';
 import { LuxLookupAutocompleteAcComponent } from './lux-lookup-autocomplete-ac.component';
 import { Component } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
@@ -133,6 +133,7 @@ describe('LuxLookupAutocompleteAcComponent', () => {
 });
 
 @Component({
+  selector: 'lux-no-form-component',
   template: `
     <lux-lookup-autocomplete-ac
       luxTableNo="1004"
@@ -184,7 +185,7 @@ class MockLookupService {
         key: '1100',
         kurzText: 'Algerien',
         langText1: 'Algerien'
-      },
+      }
     ]);
   }
 }

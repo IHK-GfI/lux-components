@@ -11,7 +11,6 @@ import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { of } from 'rxjs';
 
 describe('LuxLookupLabelComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [{ provide: LuxLookupService, useClass: MockLuxLookupLabelService }, LuxLookupHandlerService, LuxConsoleService],
@@ -80,7 +79,9 @@ describe('LuxLookupLabelComponent', () => {
 });
 
 @Component({
-  template: ` <lux-lookup-label luxLookupId="meineId" luxLookupKnr="101" [luxTableNo]="tableNo" [luxTableKey]="tableKey"> </lux-lookup-label> `
+  template: `
+    <lux-lookup-label luxLookupId="meineId" luxLookupKnr="101" [luxTableNo]="tableNo" [luxTableKey]="tableKey"> </lux-lookup-label>
+  `
 })
 class LuxNoFormComponent {
   tableNo = '500211';
@@ -89,7 +90,10 @@ class LuxNoFormComponent {
 }
 
 @Component({
-  template: ` <lux-lookup-label luxLookupId="meineId" luxLookupKnr="101" [luxTableNo]="tableNo" [luxTableKey]="tableKey"> </lux-lookup-label> `
+  selector: 'lux-table-500-212-component',
+  template: `
+    <lux-lookup-label luxLookupId="meineId" luxLookupKnr="101" [luxTableNo]="tableNo" [luxTableKey]="tableKey"> </lux-lookup-label>
+  `
 })
 class LuxTable500212Component {
   tableNo = '500212';

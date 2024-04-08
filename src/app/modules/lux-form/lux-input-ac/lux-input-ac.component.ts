@@ -12,7 +12,7 @@ import { LuxComponentsConfigService } from '../../lux-components-config/lux-comp
   templateUrl: './lux-input-ac.component.html',
   styleUrls: ['./lux-input-ac.component.scss']
 })
-export class LuxInputAcComponent<T = string> extends LuxFormInputBaseClass<T> implements OnInit{
+export class LuxInputAcComponent<T = string> extends LuxFormInputBaseClass<T> implements OnInit {
   private readonly symbolRegExp = /[,.]/;
 
   @Input() luxType = 'text';
@@ -22,16 +22,17 @@ export class LuxInputAcComponent<T = string> extends LuxFormInputBaseClass<T> im
   @Input() luxNoBottomLabel = false;
   @Input() luxHideCounterLabel = false;
 
-  @Input() set luxMaxLength(maxLength: number){
+  @Input() set luxMaxLength(maxLength: number) {
     this._luxMaxLength = maxLength;
-    if (this.formControl) { //erst nach ngOnInit() vorhanden
+    if (this.formControl) {
+      //erst nach ngOnInit() vorhanden
       this.updateCounterLabel();
     }
-  };
+  }
 
-  get luxMaxLength(){
+  get luxMaxLength() {
     return this._luxMaxLength;
-  };
+  }
 
   @ContentChild(LuxInputAcPrefixComponent) inputPrefix?: LuxInputAcPrefixComponent;
   @ContentChild(LuxInputAcSuffixComponent) inputSuffix?: LuxInputAcSuffixComponent;
@@ -49,7 +50,7 @@ export class LuxInputAcComponent<T = string> extends LuxFormInputBaseClass<T> im
     super(controlContainer, cdr, logger, config);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     super.ngOnInit();
     this.updateCounterLabel();
     LuxUtil.assertNonNull('inputElement', this.inputElement);
@@ -57,7 +58,6 @@ export class LuxInputAcComponent<T = string> extends LuxFormInputBaseClass<T> im
 
   /**
    * Wird bei jedem Tastendruck auf dem Inputfeld aufgerufen.
-   *
    * @param keyboardEvent
    */
   onKeyDown(keyboardEvent: KeyboardEvent) {
@@ -80,8 +80,8 @@ export class LuxInputAcComponent<T = string> extends LuxFormInputBaseClass<T> im
     super.notifyFormValueChanged(formValue);
   }
 
-  private updateCounterLabel(){
-    if (this.luxMaxLength > 0 && this.luxType === 'text'){
+  private updateCounterLabel() {
+    if (this.luxMaxLength > 0 && this.luxType === 'text') {
       if (typeof this.formControl.value === 'string') {
         this.counterLabel = this.formControl.value.length + '/' + this.luxMaxLength;
       } else {

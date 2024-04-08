@@ -45,7 +45,7 @@ import { LuxLayoutModule } from '../../lux-layout/lux-layout.module';
 import { LuxLookupModule } from '../../lux-lookup/lux-lookup.module';
 import { LuxPipesModule } from '../../lux-pipes/lux-pipes.module';
 import { LuxPopupsModule } from '../../lux-popups/lux-popups.module';
-import {LuxTenantLogoModule} from "../../lux-tenant-logo/lux-tenant-logo.module";
+import { LuxTenantLogoModule } from '../../lux-tenant-logo/lux-tenant-logo.module';
 
 export class LuxTestHelper {
   public static COMMON_ANGULAR_MODULES: any[] = [
@@ -112,7 +112,6 @@ export class LuxTestHelper {
 
   /**
    * Wichtig: aus fakeAsync-Block heraus aufrufen, da hier tick() genutzt wird.
-   *
    * @param input
    * @param value
    * @param fixture
@@ -130,7 +129,6 @@ export class LuxTestHelper {
   /**
    * Wichtig: aus fakeAsync-Block heraus aufrufen, da hier tick() genutzt wird.
    * Wartet asynchrone Aufrufe ab und ruft die ChangeDetection auf
-   *
    * @param fixture
    * @param tickDuration
    */
@@ -143,7 +141,6 @@ export class LuxTestHelper {
   /**
    * Wichtig: aus fakeAsync-Block heraus aufrufen, da hier tick() genutzt wird.
    * Sendet ein Klick-Event ab und wartet dann.
-   *
    * @param fixture
    * @param debugElement
    */
@@ -155,7 +152,6 @@ export class LuxTestHelper {
   /**
    * Erstellt eine ComponentFixture für die mitgegebene Komponente, optional ist es möglich
    * weitere Provider und Declarations einzutragen. Diese werden dann im Testmodul eingetragen.
-   *
    * @param component
    * @param providers
    * @param declarations
@@ -174,7 +170,6 @@ export class LuxTestHelper {
 
   /**
    * Utility to dispatch any event on a Node.
-   *
    * @param node
    * @param event
    */
@@ -185,7 +180,6 @@ export class LuxTestHelper {
 
   /**
    * Shorthand to dispatch a fake event on a specified node.
-   *
    * @param node
    * @param type
    * @param canBubble
@@ -196,7 +190,6 @@ export class LuxTestHelper {
 
   /**
    * Shorthand to dispatch a keyboard event with a specified key code.
-   *
    * @param node
    * @param type
    * @param keyCode
@@ -208,7 +201,6 @@ export class LuxTestHelper {
 
   /**
    * Focuses an input and sets its value. Dispatches a fake input event afterwards.
-   *
    * @param element
    * @param value
    * @param noInputEvent
@@ -226,7 +218,6 @@ export class LuxTestHelper {
   /**
    * Inserts data into an input field, that has to update asynchronous before calling a callback-function
    * Allows to use RxJs Interval-Timers within the Target-Components.
-   *
    * @param text
    * @param fixture
    * @param element
@@ -250,7 +241,6 @@ export class LuxTestHelper {
 
   /**
    * Dispatches a keydown event from an element.
-   *
    * @param type
    * @param keyCode
    * @param target
@@ -283,7 +273,6 @@ export class LuxTestHelper {
 
   /**
    * Creates a fake event object with any desired event type.
-   *
    * @param type
    * @param canBubble
    * @param cancelable
@@ -311,7 +300,6 @@ export class LuxTestHelper {
 
   /**
    * Konfiguriert das TestModul für eine Testsuite, kann dabei Provider und Komponenten (Deklarationen) entgegennehmen.
-   *
    * @param providers
    * @param declarations
    * @param imports
@@ -335,7 +323,6 @@ export class LuxTestHelper {
 
   /**
    * Erstellt ein leeres File-Objekt mit Namen und Typ via Blob-Constructor (um Edge/IE-Fehler zu vermeiden).
-   *
    * @param name
    * @param type
    */

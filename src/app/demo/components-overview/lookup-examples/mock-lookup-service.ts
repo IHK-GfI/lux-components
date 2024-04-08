@@ -7,14 +7,12 @@ import { LuxLookupParameters } from '../../../modules/lux-lookup/lux-lookup-mode
 
 @Injectable()
 export class MockLuxLookupService extends LuxLookupService {
-
   getLookupTable(tableNo: string, parameters: LuxLookupParameters) {
     return of(this.filterKeys([...mockResult], parameters));
   }
 
   /**
    * Filtert das Mock Ergebnis anhand evtl. übergebener Key-Werte.
-   *
    * @param array
    * @param parameters
    */
@@ -22,6 +20,6 @@ export class MockLuxLookupService extends LuxLookupService {
     if (!parameters.keys || parameters.keys.length === 0) {
       return array;
     }
-    return array.filter(entry => parameters.keys.indexOf(entry.key) > -1);
+    return array.filter((entry) => parameters.keys.indexOf(entry.key) > -1);
   }
 }

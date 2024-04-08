@@ -170,7 +170,6 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
 
   /**
    * Entfernt eine Datei aus den selektierten Dateien.
-   *
    * @param index
    */
   removeFile(index: number) {
@@ -227,7 +226,6 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
 
   /**
    * Entfernt die aktuell selektierten Dateien und entfernt etwaige (spezifische) Fehler aus dem FormControl.
-   *
    * @param event
    */
   clearFiles(event?: Event) {
@@ -252,7 +250,6 @@ export class LuxFileListComponent extends LuxFormFileBase<ILuxFileObject[] | nul
 
   /**
    * Fügt weitere Dateien zu den bereits vorhandenen hinzu bzw. ersetzt diese.
-   *
    * @param files
    */
   selectFiles(files: FileList | File[]) {

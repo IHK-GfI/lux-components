@@ -65,7 +65,6 @@ export class LuxComponentsConfigService {
   /**
    * Gibt zurück, ob die Labels als Uppercase gekennzeichnet sind und ob
    * die übergebenen Selektoren in den Ausnahmen geführt sind.
-   *
    * @param selector
    */
   isLabelUppercaseForSelector(selector: string): boolean {
@@ -79,7 +78,6 @@ export class LuxComponentsConfigService {
 
   /**
    * Ersetzt die aktuelle Konfiguration mit der übergebenen (wenn gültiger Wert).
-   *
    * @param config
    */
   updateConfiguration(config: LuxComponentsConfigParameters) {
@@ -94,7 +92,6 @@ export class LuxComponentsConfigService {
    * Kombiniert die übergebene Konfiguration mit der Standard-Konfiguration.
    *
    * Übernimmt die Werte aus der Standard-Konfiguration, die nicht im übergebenen gesetzt wurden.
-   *
    * @param config
    */
   private mergeDefaultData(config: LuxComponentsConfigParameters): LuxComponentsConfigParameters {

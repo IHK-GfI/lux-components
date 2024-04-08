@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CanDeactivate } from '@angular/router';
+
 import { IUnsavedDataCheck } from './unsaved-data-check.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UnsavedDataGuard implements CanDeactivate<IUnsavedDataCheck> {
+export class UnsavedDataGuard {
   canDeactivate(component: IUnsavedDataCheck): boolean {
     // hier muss auf die Component zugegriffen und geprüft werden, ob es ungespeicherte Daten gibt
     if (component.hasUnsavedData()) {

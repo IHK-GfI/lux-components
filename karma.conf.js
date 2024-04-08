@@ -43,20 +43,14 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('karma-viewport'),
-      require('@angular-devkit/build-angular/plugins/karma'),
-      require('karma-scss-preprocessor')
+      require('@angular-devkit/build-angular/plugins/karma')
     ],
     files: [
       './node_modules/@ihk-gfi/lux-components-theme/prebuilt-themes/luxtheme-authentic.css',
       './node_modules/@ihk-gfi/lux-components-theme/prebuilt-themes/luxtheme-authentic-min.css',
       './node_modules/@ihk-gfi/lux-components-theme/prebuilt-themes/luxtheme-green.css',
-      './node_modules/@ihk-gfi/lux-components-theme/prebuilt-themes/luxtheme-green-min.css',
-      './node_modules/@ihk-gfi/lux-components-theme/src/base/luxfonts.scss',
-      { pattern: './node_modules/@ihk-gfi/lux-components-theme/src/base/luxfonts.scss', watched: true, included: true, served: true }
+      './node_modules/@ihk-gfi/lux-components-theme/prebuilt-themes/luxtheme-green-min.css'
     ],
-    preprocessors: {
-      './node_modules/@ihk-gfi/lux-components-theme/src/base/luxfonts.scss': ['scss']
-    },
     viewport: {
       breakpoints: [
         {

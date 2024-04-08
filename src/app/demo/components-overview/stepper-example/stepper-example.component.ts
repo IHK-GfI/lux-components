@@ -154,7 +154,6 @@ export class StepperExampleComponent implements OnDestroy {
 
   /**
    * Loggt das luxCurrentStepNumberChange-Event.
-   *
    * @param event
    */
   stepNumberChanged(event: number) {
@@ -163,7 +162,6 @@ export class StepperExampleComponent implements OnDestroy {
 
   /**
    * Loggt das luxStepChanged-Event und aktualisiert die CurrentStepNumber sowie die Footer-Button-Zustände.
-   *
    * @param event
    */
   stepChanged(event: StepperSelectionEvent) {
@@ -206,7 +204,6 @@ export class StepperExampleComponent implements OnDestroy {
 
   /**
    * Aktualisiert die Footer-Buttons passend zum aktuellen Step (wenn Footer-Buttons überhaupt dargestellt werden sollen).
-   *
    * @param showNavigationButtons
    */
   updateNavigationButtons(showNavigationButtons: boolean) {

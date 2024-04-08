@@ -9,14 +9,18 @@ import {
   Optional,
   Output,
   ViewChild
-} from "@angular/core";
+} from '@angular/core';
 import { LuxValidationErrors } from '../../lux-form/lux-form-model/lux-form-component-base.class';
 import { LuxLookupComponent } from '../lux-lookup-model/lux-lookup-component';
 import { LuxLookupErrorStateMatcher } from '../lux-lookup-model/lux-lookup-error-state-matcher';
 import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
-import { MatLegacyAutocomplete as MatAutocomplete, MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent, MatLegacyAutocompleteTrigger as MatAutocompleteTrigger } from '@angular/material/legacy-autocomplete';
+import {
+  MatLegacyAutocomplete as MatAutocomplete,
+  MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent,
+  MatLegacyAutocompleteTrigger as MatAutocompleteTrigger
+} from '@angular/material/legacy-autocomplete';
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -27,7 +31,10 @@ import { LuxAutocompleteErrorStateMatcherAc } from './lux-autocomplete-error-sta
   templateUrl: './lux-lookup-autocomplete-ac.component.html',
   styleUrls: ['./lux-lookup-autocomplete-ac.component.scss']
 })
-export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null> extends LuxLookupComponent<T> implements OnInit, AfterViewInit {
+export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null>
+  extends LuxLookupComponent<T>
+  implements OnInit, AfterViewInit
+{
   filtered: LuxLookupTableEntry[] = [];
   entriesCount = 0;
   latestSearchValue?: string;
@@ -67,17 +74,21 @@ export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null> ex
   ngOnInit() {
     super.ngOnInit();
 
-    this.subscriptions.push(this.formControl.valueChanges.pipe(
-      debounceTime(this.luxDebounceTime),
-      distinctUntilChanged(),
-      startWith<any>(''),
-      map((value: any) => {
-        const searchValue = typeof value === 'string' ? value : this.displayFn(value);
-        return this.findFilteredOptions(searchValue);
-      })
-    ).subscribe((filtered: LuxLookupTableEntry[]) => {
-      this.filtered = filtered;
-    }));
+    this.subscriptions.push(
+      this.formControl.valueChanges
+        .pipe(
+          debounceTime(this.luxDebounceTime),
+          distinctUntilChanged(),
+          startWith<any>(''),
+          map((value: any) => {
+            const searchValue = typeof value === 'string' ? value : this.displayFn(value);
+            return this.findFilteredOptions(searchValue);
+          })
+        )
+        .subscribe((filtered: LuxLookupTableEntry[]) => {
+          this.filtered = filtered;
+        })
+    );
   }
 
   protected setLookupData(entries: LuxLookupTableEntry[]) {
@@ -89,7 +100,6 @@ export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null> ex
 
   /**
    * Vergleicht den eingegebenen Wert mit den Display-Werten der Einträge.
-   *
    * @param filterTerm
    * @returns LuxLookupTableEntry[]
    */
@@ -102,7 +112,6 @@ export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null> ex
 
   /**
    * Bestimmt wie eingegebene Optionen dargestellt werden.
-   *
    * @param option
    * @returns string
    */
@@ -121,7 +130,6 @@ export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null> ex
 
   /**
    * Wird beim Klick auf das Input Feld aufgerufen.
-   *
    * @param clickEvent
    */
   onClick(clickEvent: any) {
@@ -135,7 +143,6 @@ export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null> ex
 
   /**
    * Setzt den aktuellen Value-Wert auf den ausgewählten Wert.
-   *
    * @param MatAutocompleteSelectedEvent event
    * @param event
    */

@@ -100,9 +100,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
 import { CheckboxContainerAcExampleComponent } from './checkbox-container-ac-example/checkbox-container-ac-example.component';
 import { TextboxExampleComponent } from './textbox-example/textbox-example.component';
-import {TenantLogoExampleComponent} from "./tenant-logo-example/tenant-logo-example.component";
-import {LuxTenantLogoModule} from "../../modules/lux-tenant-logo/lux-tenant-logo.module";
-import {TenantLogoExampleConfigComponent} from "./tenant-logo-example/tenant-logo-example-config/tenant-logo-example-config.component";
+import { TenantLogoExampleComponent } from './tenant-logo-example/tenant-logo-example.component';
+import { LuxTenantLogoModule } from '../../modules/lux-tenant-logo/lux-tenant-logo.module';
+import { TenantLogoExampleConfigComponent } from './tenant-logo-example/tenant-logo-example-config/tenant-logo-example-config.component';
 
 @NgModule({
   imports: [
@@ -214,8 +214,7 @@ import {TenantLogoExampleConfigComponent} from "./tenant-logo-example/tenant-log
     TenantLogoExampleComponent,
     TenantLogoExampleConfigComponent
   ],
-  providers: [HttpClient],
-  entryComponents: [DialogComponentExampleComponent]
+  providers: [HttpClient]
 })
 export class ComponentsOverviewModule {}
 

@@ -193,7 +193,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
   /**
    * Wenn in der LuxList ein neuer Selected-Wert gepusht wird, diesen abfangen und
    * ein neues Detail auswählen.
-   *
    * @param index
    */
   onSelectedChange(index: number) {
@@ -218,7 +217,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
 
   /**
    * Bestimmt, ob die Masterliste auf- oder eingeklappt ist.
-   *
    * @param open
    */
   toggleList(open: boolean) {
@@ -235,7 +233,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
 
   /**
    * Prüft, ob die Detailansicht gerade für den User sichtbar ist.
-   *
    * @returns boolean
    */
   isDetailInvisible(): boolean {
@@ -261,7 +258,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
   /**
    * Kapselung von der übergebenen luxCompareWith-Funktion.
    * Fängt undefinierte Objekte ab und returned stattdessen false.
-   *
    * @param o1
    * @param o2
    */
@@ -339,7 +335,6 @@ export class LuxMasterDetailAcComponent<T = any> implements OnInit, AfterContent
   /**
    * Wird aufgerufen, nachdem ein neues Detail-Template gerendert wurde und aktualisiert
    * luxSelectedDetail dementsprechend.
-   *
    * @param detail
    */
   private setNewDetail(detail: any) {

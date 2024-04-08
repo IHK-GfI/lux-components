@@ -89,14 +89,13 @@ export class LuxDateTimePickerAcAdapter extends NativeDateAdapter {
     return startDay;
   }
 
-  getDayOfWeekNames(){
+  getDayOfWeekNames() {
     // Zeige zwei Buchstaben für den Wochentag an (Mo, Di, Mi, ...)
     return super.getDayOfWeekNames('short');
   }
 
   /**
    * UTC Date mit 0-Werten für Time aus einem ddMMYYYY-String erhalten.
-   *
    * @param dateString
    * @param timeString
    * @param separator
@@ -114,7 +113,6 @@ export class LuxDateTimePickerAcAdapter extends NativeDateAdapter {
 
   /**
    * UTC Date mit 0-Werten für Time aus einem YYYYMMdd-String erhalten.
-   *
    * @param dateString
    * @param timeString
    * @param separator
@@ -132,7 +130,6 @@ export class LuxDateTimePickerAcAdapter extends NativeDateAdapter {
 
   /**
    * UTC Date mit 0-Werten für Time aus einem MMddYYYY-String erhalten.
-   *
    * @param dateString
    * @param timeString
    * @param separator
@@ -150,7 +147,6 @@ export class LuxDateTimePickerAcAdapter extends NativeDateAdapter {
 
   /**
    * UTC Date mit 0-Werten für Time aus einem ddMMYYYY-String erhalten.
-   *
    * @param dateString
    * @param timeString
    */
