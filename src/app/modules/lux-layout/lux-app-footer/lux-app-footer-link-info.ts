@@ -21,7 +21,6 @@ export class LuxAppFooterLinkInfo implements ILuxAppFooterLinkInfo {
   /**
    * Statische Methode um ein Info-Objekt zu generieren.
    * Nimmt ein Objekt vom Typ ILuxAppFooterLinkInfo entgegen.
-   *
    * @param data
    * @returns eine Link Info
    */

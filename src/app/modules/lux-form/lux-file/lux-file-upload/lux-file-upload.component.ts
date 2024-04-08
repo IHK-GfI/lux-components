@@ -34,7 +34,6 @@ import { LuxFileReplaceDialogComponent } from '../lux-file-subcomponents/lux-fil
   styleUrls: ['./lux-file-upload.component.scss']
 })
 export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | null> implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('fileUpload', { read: ElementRef, static: true }) fileUploadInput!: ElementRef;
   @ViewChildren('fileEntry', { read: ElementRef }) fileEntries!: QueryList<ElementRef>;
 
   @Input() luxLabel = $localize`:@@luxc.file.upload.label:Zum Hochladen Datei hier ablegen oder `;
@@ -88,8 +87,8 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
     disabled: false,
     hidden: false,
     iconName: 'lux-programming-cloud-upload',
-    label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`,
-  }
+    label: $localize`:@@luxc.file-list.upload.lbl:Hochladen`
+  };
 
   _luxDeleteActionConfig: ILuxFileActionConfig = {
     disabled: false,
@@ -245,9 +244,11 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
           dialogRef.dialogClosed.subscribe(() => {
             this.fileUploadInput.nativeElement.value = '';
 
-            this.subscriptions.push(dialogRef.dialogClosed.subscribe(() => {
-              this.dialogService.restoreDialogRef();
-            }));
+            this.subscriptions.push(
+              dialogRef.dialogClosed.subscribe(() => {
+                this.dialogService.restoreDialogRef();
+              })
+            );
           });
         } else {
           this.updateFilesIntern(files, selectedFilesArray, replaceableFilesMap);
@@ -295,9 +296,11 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
           dialogRef.dialogClosed.subscribe(() => {
             this.fileUploadInput.nativeElement.value = '';
 
-            this.subscriptions.push(dialogRef.dialogClosed.subscribe(() => {
-              this.dialogService.restoreDialogRef();
-            }));
+            this.subscriptions.push(
+              dialogRef.dialogClosed.subscribe(() => {
+                this.dialogService.restoreDialogRef();
+              })
+            );
           });
         }
       }
@@ -321,9 +324,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
         tempSelectedFiles.push(...newFiles);
 
         this.luxSelected =
-          tempSelectedFiles && tempSelectedFiles.length === 1 && !this.useArray()
-            ? tempSelectedFiles[0]
-            : tempSelectedFiles;
+          tempSelectedFiles && tempSelectedFiles.length === 1 && !this.useArray() ? tempSelectedFiles[0] : tempSelectedFiles;
         this.notifyFormValueChanged();
         this.fileUploadInput.nativeElement.value = '';
       },
@@ -347,9 +348,7 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
     this.formControl.markAsDirty();
 
     // Wenn mehrere Dateien selektiert sind, diese nach der entfernten Datei filtern ansonsten "undefined" nutzen
-    const newFiles = Array.isArray(this.luxSelected)
-      ? this.luxSelected.filter((file, searchIndex) => searchIndex !== index)
-      : null;
+    const newFiles = Array.isArray(this.luxSelected) ? this.luxSelected.filter((file, searchIndex) => searchIndex !== index) : null;
 
     // Via LiveAnnouncer mitteilen welche Datei entfernt wird
     const deletedFile = this.luxSelected![index];
@@ -372,18 +371,21 @@ export class LuxFileUploadComponent extends LuxFormFileBase<ILuxFileObject[] | n
     this.dialogService.storeDialogRef();
     const dialogRef = this.dialogService.openComponent(LuxFileDeleteDialogComponent, this.dialogDeleteConfig);
 
-    this.subscriptions.push(dialogRef.dialogClosed.subscribe(() => {
-      this.dialogService.restoreDialogRef();
-    }));
+    this.subscriptions.push(
+      dialogRef.dialogClosed.subscribe(() => {
+        this.dialogService.restoreDialogRef();
+      })
+    );
 
-    this.subscriptions.push(dialogRef.dialogConfirmed.subscribe(() => {
-      this.onRemoveFile(index);
-    }));
+    this.subscriptions.push(
+      dialogRef.dialogConfirmed.subscribe(() => {
+        this.onRemoveFile(index);
+      })
+    );
   }
 
   /**
    * Setzt die Icons für die Elemente in der Auflistung
-   *
    * @param files
    */
   private setFileIcons(files: ILuxFileObject | ILuxFileObject[] | null) {

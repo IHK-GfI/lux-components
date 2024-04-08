@@ -6,16 +6,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { Platform } from '@angular/cdk/platform';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { Component, ViewChild } from '@angular/core';
-import {
-  waitForAsync,
-  ComponentFixture,
-  discardPeriodicTasks,
-  fakeAsync,
-  flush,
-  inject,
-  TestBed,
-  tick
-} from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed, tick } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -26,7 +17,6 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Subject } from 'rxjs';
 
 describe('LuxSelectAcComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule(
       [
@@ -141,8 +131,7 @@ describe('LuxSelectAcComponent', () => {
     it('Sollte required sein', fakeAsync(() => {
       fixture.detectChanges();
       // Vorbedingungen testen
-      const luxSelect: LuxSelectAcComponent = fixture.debugElement.query(By.directive(LuxSelectAcComponent))
-        .componentInstance;
+      const luxSelect: LuxSelectAcComponent = fixture.debugElement.query(By.directive(LuxSelectAcComponent)).componentInstance;
       expect(luxSelect.luxRequired).toBeFalsy();
       expect(luxSelect.formControl.valid).toBe(true);
 
@@ -192,7 +181,7 @@ describe('LuxSelectAcComponent', () => {
     }));
 
     it('Wert über das Popup setzen', fakeAsync(() => {
-      expect(fixture.componentInstance.selectedOption).toBeNull()
+      expect(fixture.componentInstance.selectedOption).toBeNull();
 
       trigger.click();
       fixture.detectChanges();
@@ -209,8 +198,7 @@ describe('LuxSelectAcComponent', () => {
 
     it('Validators setzen und korrekte Fehlermeldung anzeigen', fakeAsync(() => {
       // Vorbedingungen testen
-      const selectComponent: LuxSelectAcComponent = fixture.debugElement.query(By.directive(LuxSelectAcComponent))
-        .componentInstance;
+      const selectComponent: LuxSelectAcComponent = fixture.debugElement.query(By.directive(LuxSelectAcComponent)).componentInstance;
       let errorEl = fixture.debugElement.query(By.css('mat-error'));
       expect(errorEl).toBeFalsy();
 
@@ -274,8 +262,7 @@ describe('LuxSelectAcComponent', () => {
 
     it('Sollte required sein', fakeAsync(() => {
       // Vorbedingungen testen
-      const luxInput: LuxSelectAcComponent = fixture.debugElement.query(By.directive(LuxSelectAcComponent))
-        .componentInstance;
+      const luxInput: LuxSelectAcComponent = fixture.debugElement.query(By.directive(LuxSelectAcComponent)).componentInstance;
       let selectRequired = fixture.debugElement.query(By.css('.mat-select-required'));
       expect(selectRequired).toBeNull();
 
@@ -490,9 +477,7 @@ describe('LuxSelectAcComponent', () => {
 
       clickTrigger();
 
-      const options = overlayContainerElement.querySelectorAll('mat-option .mat-option-text') as NodeListOf<
-        HTMLElement
-        >;
+      const options = overlayContainerElement.querySelectorAll('mat-option .mat-option-text') as NodeListOf<HTMLElement>;
 
       expect(options.length).toBe(testComponent.options.length);
       expect(options.item(0).innerText.trim()).toEqual('');
@@ -675,17 +660,14 @@ describe('LuxSelectAcComponent', () => {
 
       // Nachbedingungen prüfen
       const selectText = fixture.debugElement.query(By.css('.mat-select-value-text > span'));
-      expect(selectText.nativeElement.textContent).toEqual(
-        testComponent.options[0].label + ', ' + testComponent.options[1].label
-      );
+      expect(selectText.nativeElement.textContent).toEqual(testComponent.options[0].label + ', ' + testComponent.options[1].label);
       expect([testComponent.options[0], testComponent.options[1]]).toEqual(fixture.componentInstance.selectedOptions as any);
       discardPeriodicTasks();
     }));
 
     it('Sollte mehrere Werte selektieren können (über Value)', fakeAsync(() => {
       // Vorbedingungen testen
-      const luxSelect: LuxSelectAcComponent = fixture.debugElement.query(By.directive(LuxSelectAcComponent))
-        .componentInstance;
+      const luxSelect: LuxSelectAcComponent = fixture.debugElement.query(By.directive(LuxSelectAcComponent)).componentInstance;
       expect(testComponent.selectedOptions).toEqual([]);
 
       // Änderungen durchführen
@@ -694,9 +676,7 @@ describe('LuxSelectAcComponent', () => {
 
       // Nachbedingungen prüfen
       const selectText = fixture.debugElement.query(By.css('.mat-select-value-text > span'));
-      expect(selectText.nativeElement.textContent).toEqual(
-        testComponent.options[0].label + ', ' + testComponent.options[1].label
-      );
+      expect(selectText.nativeElement.textContent).toEqual(testComponent.options[0].label + ', ' + testComponent.options[1].label);
       expect(luxSelect.luxSelected).toEqual([testComponent.options[0], testComponent.options[1]]);
       discardPeriodicTasks();
     }));
@@ -718,17 +698,14 @@ describe('LuxSelectAcComponent', () => {
 
       // Nachbedingungen prüfen
       const selectText = pickFixture.debugElement.query(By.css('.mat-select-value-text > span'));
-      expect(selectText.nativeElement.textContent).toEqual(
-        pickComponent.options[0].label + ', ' + pickComponent.options[1].label
-      );
+      expect(selectText.nativeElement.textContent).toEqual(pickComponent.options[0].label + ', ' + pickComponent.options[1].label);
       expect(luxSelect.luxSelected).toEqual([pickComponent.options[0].value, pickComponent.options[1].value]);
       discardPeriodicTasks();
     }));
 
     it('Sollte mehrere Werte selektieren können (mit String-Options)', fakeAsync(() => {
       // Vorbedingungen testen
-      const luxSelect: LuxSelectAcComponent = fixture.debugElement.query(By.directive(LuxSelectAcComponent))
-        .componentInstance;
+      const luxSelect: LuxSelectAcComponent = fixture.debugElement.query(By.directive(LuxSelectAcComponent)).componentInstance;
       expect(testComponent.selectedOptions).toEqual([]);
 
       // Änderungen durchführen
@@ -884,8 +861,7 @@ class SelectOutsideFormComponent {
     { label: 'Vertretungsaufgaben', value: 'D' }
   ];
 
-  selectedChange(_selected: Option) {
-  }
+  selectedChange(_selected: Option) {}
 }
 
 @Component({
@@ -935,7 +911,10 @@ class SelectStringArrayComponent {
   options: (string | null | undefined)[] = ['A', 'B', 'C', 'D'];
 }
 
-declare interface Option { label: string; value: string}
+declare interface Option {
+  label: string;
+  value: string;
+}
 
 @Component({
   template: `
@@ -997,6 +976,7 @@ class SelectValueHookFormComponent {
 }
 
 @Component({
+  selector: 'select-multiple-component',
   template: `
     <lux-select-ac
       luxLabel="Aufgaben"
@@ -1022,6 +1002,7 @@ class SelectMultipleComponent {
 }
 
 @Component({
+  selector: 'select-multiple-pick-value-fn-component',
   template: `
     <lux-select-ac
       luxLabel="Aufgaben"

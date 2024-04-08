@@ -54,7 +54,6 @@ export class ExampleRootComponent implements AfterViewInit, OnDestroy {
 
   /**
    * Führt die Click-Funktion der Bsp-Component aus.
-   *
    * @param component
    */
   onComponentClick(component: any) {

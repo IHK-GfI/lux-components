@@ -612,6 +612,7 @@ class LuxStrictNoFormComponent {
 }
 
 @Component({
+  selector: 'lux-strict-form-component',
   template: `
     <div [formGroup]="form">
       <lux-chips-ac
@@ -656,6 +657,7 @@ class LuxFormInitValueComponent {
 }
 
 @Component({
+  selector: 'lux-form-required-value-component',
   template: `
     <div [formGroup]="form">
       <lux-chips-ac

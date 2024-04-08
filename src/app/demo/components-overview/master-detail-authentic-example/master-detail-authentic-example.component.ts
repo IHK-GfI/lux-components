@@ -162,7 +162,6 @@ export class MasterDetailAuthenticExampleComponent implements OnInit, OnDestroy 
 
   /**
    * Master-Detail nutzt die Funktion, um Objekte in der MasterListe miteinander zu vergleichen.
-   *
    * @param o1
    * @param o2
    */

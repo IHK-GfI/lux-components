@@ -342,7 +342,7 @@ describe('LuxTabsComponent', () => {
       expect(fixture.componentInstance.tabCounterCap).toEqual(10);
 
       // Nachbedingungen testen
-      expect(getBadgeElement(fixture).innerHTML).toEqual('0');
+      expect(getBadgeElement(fixture).textContent).toEqual('0');
     }));
 
     it('Anzahl 10', fakeAsync(() => {
@@ -357,7 +357,7 @@ describe('LuxTabsComponent', () => {
       flush();
 
       // Nachbedingungen testen
-      expect(getBadgeElement(fixture).innerHTML).toEqual('10');
+      expect(getBadgeElement(fixture).children[0].textContent).toEqual('10');
     }));
 
     it('Anzahl 10+', fakeAsync(() => {
@@ -372,7 +372,7 @@ describe('LuxTabsComponent', () => {
       flush();
 
       // Nachbedingungen testen
-      expect(getBadgeElement(fixture).innerHTML).toEqual('10+');
+      expect(getBadgeElement(fixture).children[0].textContent).toEqual('10+');
     }));
   });
 

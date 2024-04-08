@@ -45,7 +45,6 @@ export class LuxSnackbarComponent implements OnInit {
   /**
    * Prüft, ob die übergebene Farbe Teil des Enums ist.
    * Wenn nicht, wird standardmäßig "gray" zurückgegeben.
-   *
    * @param colorToCheck
    */
   private checkColorInEnum(colorToCheck: string | undefined): LuxSnackbarColor {

@@ -22,7 +22,6 @@ import { LuxLinkPlainComponent } from './lux-link-plain/lux-link-plain.component
     LuxMenuTriggerComponent,
     LuxLinkPlainComponent
   ],
-  exports: [LuxButtonComponent, LuxLinkComponent, LuxMenuComponent, LuxMenuItemComponent, LuxMenuTriggerComponent, LuxLinkPlainComponent],
-  entryComponents: [LuxButtonComponent]
+  exports: [LuxButtonComponent, LuxLinkComponent, LuxMenuComponent, LuxMenuItemComponent, LuxMenuTriggerComponent, LuxLinkPlainComponent]
 })
 export class LuxActionModule {}

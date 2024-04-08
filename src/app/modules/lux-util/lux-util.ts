@@ -22,7 +22,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode wirft einen Fehler, wenn der Wert nicht gesetzt wurde.
-   *
    * @param name Ein Name.
    * @param value Ein Wert.
    */
@@ -38,7 +37,6 @@ export class LuxUtil {
    * Beispiele für propertyNamePath:
    * "value"
    * "unterobjekt1.unterobjekt2.value"
-   *
    * @param el
    * @param propertyNamePath
    * @returns any
@@ -65,7 +63,6 @@ export class LuxUtil {
   /**
    * Gibt eine von verschiedenen vordefinierten Fehlernachrichten passend zu den
    * vorhandenen Fehlern der übergebenen FormControl zurück.
-   *
    * @param formControl
    * @returns string
    */
@@ -105,7 +102,6 @@ export class LuxUtil {
 
   /**
    * Prüft, ob der übergebene Wert ein JS-Datum ist.
-   *
    * @param value
    * @returns boolean
    */
@@ -119,7 +115,6 @@ export class LuxUtil {
    * die Stunden, Minuten und Sekunden sind jedoch 0.
    *
    * Sollte der Methode kein Date-Objekt übergeben werden, wird ein neues Date-Objekt erzeugt.
-   *
    * @param date oder nichts
    * @returns date
    */
@@ -134,7 +129,6 @@ export class LuxUtil {
    * Zeigt die Validierungsfehler der einzelnen FormControls innerhalb der FormGroup an.
    * Wenn innerhalb der übergebenen FormGroup weitere Formgroups enthalten sind, werden
    * diese ebenfalls validiert.
-   *
    * @param formGroup
    */
   public static showValidationErrors(formGroup: FormGroup | UntypedFormGroup) {
@@ -158,7 +152,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode scrollt zu der übergebenen Id.
-   *
    * @param id Eine Element-Id (z.B. <tag id="myId">...)
    */
   public static goTo(id: string): void {
@@ -172,7 +165,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode scrollt zum übergebenen Selector.
-   *
    * @param selector Ein Selector. Sollte kein Selector übergeben werden, wird nach oben vom Inhaltsbereich gescrollt.
    */
   public static goToTop(selector = 'div.lux-app-content-container') {
@@ -186,7 +178,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode verhindert, dass ein Event weiterverarbeitet wird.
-   *
    * @param event Ein beliebiges Event.
    */
   public static stopEventPropagation(event: Event) {
@@ -233,7 +224,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die ArrowLeft-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyArrowLeft(event: KeyboardEvent) {
@@ -244,7 +234,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die ArrowUp-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyArrowUp(event: KeyboardEvent) {
@@ -255,7 +244,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die ArrowRight-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyArrowRight(event: KeyboardEvent) {
@@ -266,7 +254,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die ArrowDown-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyArrowDown(event: KeyboardEvent) {
@@ -277,7 +264,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die Home-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyHome(event: KeyboardEvent) {
@@ -288,7 +274,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die End-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyEnd(event: KeyboardEvent) {
@@ -299,7 +284,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die PageDown-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyPageDown(event: KeyboardEvent) {
@@ -310,7 +294,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die PageUp-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyPageUp(event: KeyboardEvent) {
@@ -321,7 +304,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die Enter-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyEnter(event: KeyboardEvent) {
@@ -332,7 +314,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die Tab-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyTab(event: KeyboardEvent) {
@@ -343,7 +324,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die Backspace-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyBackspace(event: KeyboardEvent) {
@@ -354,7 +334,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die Space-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeySpace(event: KeyboardEvent) {
@@ -365,7 +344,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die Delete-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyDelete(event: KeyboardEvent) {
@@ -376,7 +354,6 @@ export class LuxUtil {
 
   /**
    * Diese Methode liefert true zurück, wenn es sich um die Escape-Taste handelt, false sonst.
-   *
    * @param event Ein beliebiges KeyboardEvent
    */
   public static isKeyEscape(event: KeyboardEvent) {
@@ -392,7 +369,6 @@ export class LuxUtil {
   /**
    * Entfernt nicht-ASCII-Chars aus dem String (Beim IE wichtig, dieser fügt gerne versteckte Steuerzeichen
    * in Input-Feldern an die Strings).
-   *
    * @param dateString
    */
   public static stringWithoutASCIIChars(dateString: string): string {
@@ -404,9 +380,8 @@ export class LuxUtil {
    * Diese Methode liefert für die akzeptierten Dateitypen einen I18N-Nachrichtenteil zurück.
    *
    * Beispiel: acceptTypes = .pdf,.txt,.png
-   *   de = PDF, TXT oder PNG
-   *   en = PDF, TXT or PNG
-   *
+   * de = PDF, TXT oder PNG
+   * en = PDF, TXT or PNG
    * @param acceptTypes Die akzeptierten Dateitypen (z.b. .pdf,.txt).
    */
   public static getAcceptTypesAsMessagePart(acceptTypes: string): string {

@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { LuxStepperComponent } from './lux-stepper.component';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class LuxStepperHelperService {
   private switchStep: Map<LuxStepperComponent, BehaviorSubject<boolean>> = new Map();
@@ -16,7 +16,6 @@ export class LuxStepperHelperService {
    * bekannten Stepper einen Schritt nach vorne springen.
    *
    * Voraussetzung: luxLinear = false oder aktuell Form ist valide.
-   *
    * @param stepper
    */
   public nextStep(stepper?: LuxStepperComponent) {
@@ -34,7 +33,6 @@ export class LuxStepperHelperService {
    * Springt im Stepper zum vorherigen Step.
    * Alternativ (ohne Stepper als Parameter) lässt die Funktion alle
    * Bekannten Stepper einen Schritt zurückspringen.
-   *
    * @param stepper
    */
   public previousStep(stepper?: LuxStepperComponent) {
@@ -50,7 +48,6 @@ export class LuxStepperHelperService {
 
   /**
    * Gibt das Observable der internen Map für den Stepper zurück.
-   *
    * @param stepper
    * @returns Observable<boolean> | Observable<any>
    */
@@ -61,7 +58,6 @@ export class LuxStepperHelperService {
 
   /**
    * Trägt den Stepper in die Map der dem Service bekannten Stepper ein.
-   *
    * @param stepper
    */
   public registerStepper(stepper: LuxStepperComponent) {

@@ -12,7 +12,6 @@ export class LuxTableDataSource<T> extends MatTableDataSource<T> {
    * Diese Methode liefert eine sortierte Kopie des Datenarrays zurück.
    * Die Sortierung berücksichtigt ist nicht Case-Sensitive und berücksichtigt
    * Sonderzeichen (z.B. öäüßé,...)
-   *
    * @param data
    */
   _orderData(data: T[]): T[] {
@@ -26,8 +25,8 @@ export class LuxTableDataSource<T> extends MatTableDataSource<T> {
 
     if (active === 'multiSelect') {
       // muss checken welche in dem sorted array sind und alle anderen darunter
-      const selected = data.filter(value => this.selectedEntries.has(value));
-      const notSelected = data.filter(value => !selected.some(selectedValue => selectedValue === value));
+      const selected = data.filter((value) => this.selectedEntries.has(value));
+      const notSelected = data.filter((value) => !selected.some((selectedValue) => selectedValue === value));
 
       if (direction === 'asc') {
         return [...selected, ...notSelected];
@@ -71,7 +70,6 @@ export class LuxTableDataSource<T> extends MatTableDataSource<T> {
   /**
    * Override update paginator method
    * to ensure total unfiltered element count is consistent with the http result
-   *
    * @param filteredDataLength
    */
   public _updatePaginator(filteredDataLength: number): void {

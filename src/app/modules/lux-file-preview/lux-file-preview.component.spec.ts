@@ -22,17 +22,8 @@ describe('LuxFilePreviewComponent', () => {
       declarations: [LuxFilePreviewComponent],
       imports: [OverlayModule, PortalModule],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [
-        LuxFilePreviewService,
-        { provide: LUX_FILE_PREVIEW_DATA, useValue: previewData }
-      ]
-    })
-      .overrideModule(BrowserDynamicTestingModule, {
-        set: {
-          entryComponents: [LuxFilePreviewComponent]
-        }
-      })
-      .compileComponents();
+      providers: [LuxFilePreviewService, { provide: LUX_FILE_PREVIEW_DATA, useValue: previewData }]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -46,113 +37,104 @@ describe('LuxFilePreviewComponent', () => {
   }));
 
   it('Sollte den PDF-Viewer anzeigen', fakeAsync(
-    inject(
-      [LuxFilePreviewService, OverlayContainer, Platform],
-      (previewService: LuxFilePreviewService, oc: OverlayContainer) => {
-        // Vorbedingungen testen
-        expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
+    inject([LuxFilePreviewService, OverlayContainer, Platform], (previewService: LuxFilePreviewService, oc: OverlayContainer) => {
+      // Vorbedingungen testen
+      expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
 
-        // Änderungen durchführen
-        const previewRef = previewService.open({
-          previewData: {
-            fileComponent: undefined,
-            fileObject: { name: 'testfile.pdf', content: '', type: 'application/pdf' }
-          }
-        });
-        LuxTestHelper.wait(fixture);
+      // Änderungen durchführen
+      const previewRef = previewService.open({
+        previewData: {
+          fileComponent: undefined,
+          fileObject: { name: 'testfile.pdf', content: '', type: 'application/pdf' }
+        }
+      });
+      LuxTestHelper.wait(fixture);
 
-        expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeDefined();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeDefined();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeDefined();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeDefined();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
 
-        previewRef.close();
-        LuxTestHelper.wait(fixture);
-        flush();
+      previewRef.close();
+      LuxTestHelper.wait(fixture);
+      flush();
 
-        // Nachbedingungen testen
-        expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
-      }
-    )
+      // Nachbedingungen testen
+      expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
+    })
   ));
 
   it('Sollte den Img-Viewer anzeigen', fakeAsync(
-    inject(
-      [LuxFilePreviewService, OverlayContainer, Platform],
-      (previewService: LuxFilePreviewService, oc: OverlayContainer) => {
-        // Vorbedingungen testen
-        expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
+    inject([LuxFilePreviewService, OverlayContainer, Platform], (previewService: LuxFilePreviewService, oc: OverlayContainer) => {
+      // Vorbedingungen testen
+      expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
 
-        // Änderungen durchführen
-        const previewRef = previewService.open({
-          previewData: {
-            fileComponent: undefined,
-            fileObject: { name: 'testfile.png', content: '', type: 'image/png' }
-          }
-        });
-        LuxTestHelper.wait(fixture);
+      // Änderungen durchführen
+      const previewRef = previewService.open({
+        previewData: {
+          fileComponent: undefined,
+          fileObject: { name: 'testfile.png', content: '', type: 'image/png' }
+        }
+      });
+      LuxTestHelper.wait(fixture);
 
-        expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeDefined();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeDefined();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeDefined();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeDefined();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
 
-        previewRef.close();
-        LuxTestHelper.wait(fixture);
-        flush();
+      previewRef.close();
+      LuxTestHelper.wait(fixture);
+      flush();
 
-        // Nachbedingungen testen
-        expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
-      }
-    )
+      // Nachbedingungen testen
+      expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
+    })
   ));
 
   it('Sollte den NotSupported-Viewer anzeigen', fakeAsync(
-    inject(
-      [LuxFilePreviewService, OverlayContainer, Platform],
-      (previewService: LuxFilePreviewService, oc: OverlayContainer) => {
-        // Vorbedingungen testen
-        expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
+    inject([LuxFilePreviewService, OverlayContainer, Platform], (previewService: LuxFilePreviewService, oc: OverlayContainer) => {
+      // Vorbedingungen testen
+      expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
 
-        // Änderungen durchführen
-        const previewRef = previewService.open({
-          previewData: {
-            fileComponent: undefined,
-            fileObject: { name: 'testfile.abc', content: '', type: 'ne/abc' }
-          }
-        });
-        LuxTestHelper.wait(fixture);
+      // Änderungen durchführen
+      const previewRef = previewService.open({
+        previewData: {
+          fileComponent: undefined,
+          fileObject: { name: 'testfile.abc', content: '', type: 'ne/abc' }
+        }
+      });
+      LuxTestHelper.wait(fixture);
 
-        expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeDefined();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeDefined();
+      expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeDefined();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeDefined();
 
-        previewRef.close();
-        LuxTestHelper.wait(fixture);
-        flush();
+      previewRef.close();
+      LuxTestHelper.wait(fixture);
+      flush();
 
-        // Nachbedingungen testen
-        expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
-        expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
-      }
-    )
+      // Nachbedingungen testen
+      expect(oc.getContainerElement().querySelector('lux-file-preview')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-pdfviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-imgviewer')).toBeNull();
+      expect(oc.getContainerElement().querySelector('lux-file-preview-notsupportedviewer')).toBeNull();
+    })
   ));
 });

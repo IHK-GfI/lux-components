@@ -20,16 +20,13 @@ export class LuxSnackbarService implements OnDestroy {
   private resizeSubscription: Subscription;
 
   constructor(private snackBar: MatSnackBar, private appService: LuxAppService) {
-    this.resizeSubscription = appService.resize$
-      .asObservable()
-      .subscribe(() => {
-        this.updateSnackbarPosition(false);
-      });
+    this.resizeSubscription = appService.resize$.asObservable().subscribe(() => {
+      this.updateSnackbarPosition(false);
+    });
   }
 
   /**
    * Diese Methode öffnet eine Snackbar mit einem Text.
-   *
    * @param message Ein Text.
    * @param duration Eine Dauer in Msec (z.B. 2000 = 2 Sekunden). Wenn die Snackbar permanent angezeigt werden soll,
    * muss der Wert 0 angegeben werden.
@@ -52,7 +49,6 @@ export class LuxSnackbarService implements OnDestroy {
 
   /**
    * Diese Methode öffnet eine Snackbar, in der die übergebene Komponente angezeigt wird.
-   *
    * @param component Die Komponente, die angezeigt werden soll.
    * @param duration Eine Dauer in Msec (z.B. 2000 = 2 Sekunden). Wenn die Snackbar permanent angezeigt werden soll,
    * muss der Wert 0 angegeben werden.
@@ -77,7 +73,6 @@ export class LuxSnackbarService implements OnDestroy {
   /**
    * Öffnet eine Snackbar anhand der übergebenen Konfiguration.
    * Ermöglicht eine genaue Konfiguration der Snackbar.
-   *
    * @param duration
    * @param config
    */
@@ -101,7 +96,7 @@ export class LuxSnackbarService implements OnDestroy {
    * geklickt wird.
    */
   public onAction(): Observable<void> {
-    if(!this.snackBar._openedSnackBarRef) {
+    if (!this.snackBar._openedSnackBarRef) {
       throw Error('Snackbar-Ref is not found!');
     }
 
@@ -117,7 +112,7 @@ export class LuxSnackbarService implements OnDestroy {
    * geklickt wird.
    */
   public afterDismissed(): Observable<MatSnackBarDismiss> {
-    if(!this.snackBar._openedSnackBarRef) {
+    if (!this.snackBar._openedSnackBarRef) {
       throw Error('Snackbar-Ref is not found!');
     }
 
@@ -144,7 +139,7 @@ export class LuxSnackbarService implements OnDestroy {
 
     if (snackbarContainerArr.length > 0) {
       const snackbarEl = snackbarContainerArr[0] as HTMLElement;
-      const snackbarElParent = snackbarContainerArr[0].parentElement as HTMLElement; 
+      const snackbarElParent = snackbarContainerArr[0].parentElement as HTMLElement;
       // Die Overlay-Paine für die Snackbar muss verschoben werden, da diese sonst den Header blockiert
       snackbarElParent.style.top = this.appService.getAppTop() + this.appService.getHeaderHeight() + 3 /* Abstand zum Header */ + 'px';
       snackbarElParent.style.right = this.appService.getAppRight() + 3 /* Abstand zum Rand */ + 'px';

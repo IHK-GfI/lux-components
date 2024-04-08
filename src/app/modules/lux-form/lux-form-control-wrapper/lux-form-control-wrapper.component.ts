@@ -28,7 +28,6 @@ export class LuxFormControlWrapperComponent {
 
   /**
    * Dient dazu, bei einer Component den Label-Container auszublenden.
-   *
    * @param noLabel
    */
   @Input() set luxNoTopLabel(noLabel: boolean) {
@@ -41,7 +40,6 @@ export class LuxFormControlWrapperComponent {
 
   /**
    * Dient dazu, bei einer Component den Label-Container und den Misc-Container auszublenden.
-   *
    * @param noLabel
    */
   @Input() set luxNoLabels(noLabel: boolean) {
@@ -54,7 +52,6 @@ export class LuxFormControlWrapperComponent {
 
   /**
    * Dient dazu, bei einer Component den Misc-Container auszublenden.
-   *
    * @param noLabel
    */
   @Input() set luxNoBottomLabel(noLabel: boolean) {

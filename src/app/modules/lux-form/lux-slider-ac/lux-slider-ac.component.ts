@@ -1,4 +1,3 @@
-
 import {
   ChangeDetectorRef,
   Component,
@@ -159,7 +158,6 @@ export class LuxSliderAcComponent extends LuxFormComponentBase<number> implement
 
   /**
    * Wird beim Ändern des Slider-Wertes aufgerufen.
-   *
    * @param changeEvent
    */
   onChange(changeEvent: MatSliderChange) {
@@ -169,7 +167,6 @@ export class LuxSliderAcComponent extends LuxFormComponentBase<number> implement
 
   /**
    * Wird beim Bewegen des Sliders aufgerufen.
-   *
    * @param inputEvent
    */
   onInput(inputEvent: MatSliderChange) {

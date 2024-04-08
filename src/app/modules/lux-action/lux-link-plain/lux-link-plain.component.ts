@@ -9,7 +9,6 @@ import { LuxActionComponentBaseClass } from '../lux-action-model/lux-action-comp
 })
 export class LuxLinkPlainComponent extends LuxActionComponentBaseClass implements OnInit {
   @HostBinding('class') classes = '';
-  @HostBinding('class.lux-disabled') luxDisabled?: boolean | undefined;
   @Input() luxHref = '';
   @Input() luxBlank = false;
 

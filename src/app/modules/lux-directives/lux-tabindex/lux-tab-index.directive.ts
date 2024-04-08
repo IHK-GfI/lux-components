@@ -1,13 +1,4 @@
-import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  Input,
-  OnChanges,
-  OnDestroy,
-  Renderer2,
-  SimpleChanges
-} from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input, OnChanges, OnDestroy, Renderer2, SimpleChanges } from '@angular/core';
 import { ReplaySubject, Subscription } from 'rxjs';
 
 @Directive({
@@ -43,7 +34,6 @@ export class LuxTabIndexDirective implements AfterViewInit, OnChanges, OnDestroy
   /**
    * Eigener Listener für Änderungen, der erst nach dem AfterViewInit-Lifecycle greift.
    * Sicherheitshalber, um evtl. noch unaufgelösten Elementen zu entgehen.
-   *
    * @param simpleChanges
    */
   private onChanges(simpleChanges: SimpleChanges) {

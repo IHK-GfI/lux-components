@@ -103,7 +103,6 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
   /**
    * Wird beim Drücken einer Taste ausgeführt und handelt die Aktionen bei speziellen Tasten
    * (UP_ARROW || DOWN_ARROW werden vom KeyManager selbstständig gepflegt)
-   *
    * @param keyboardEvent
    */
   keydown(keyboardEvent: KeyboardEvent) {
@@ -151,7 +150,6 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
   /**
    * Merkt sich die Position als Selektionsposition und aktualisiert den luxSelected-Wert
    * aller luxItems, die hier bekannt sind.
-   *
    * @param position
    */
   private select(position: number) {
@@ -173,7 +171,6 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
 
   /**
    * Merkt sich die position als Fokus-Position und aktualisiert die CSS-Klassen der ListItems.
-   *
    * @param position
    */
   private focus(position: number) {
@@ -187,7 +184,6 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
 
   /**
    * Scrollt zu dem Element an der position.
-   *
    * @param position
    */
   private scroll(position: number) {
@@ -202,7 +198,6 @@ export class LuxListComponent implements AfterViewInit, OnDestroy {
 
   /**
    * Gibt das ListItem an der position zurück bzw. "null" wenn die luxItems undefined/null sind.
-   *
    * @param position
    */
   private findListItem(position: number): LuxListItemComponent | null {

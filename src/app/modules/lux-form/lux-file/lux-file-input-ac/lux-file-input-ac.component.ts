@@ -1,14 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Optional,
-  Output,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Optional, Output, ViewChild } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxConsoleService } from '../../../lux-util/lux-console.service';
 import { LuxUtil } from '../../../lux-util/lux-util';
@@ -45,7 +35,7 @@ export class LuxFileInputAcComponent extends LuxFormFileBase<ILuxFileObject | nu
     hidden: false,
     iconName: 'lux-programming-cloud-upload',
     label: $localize`:@@luxc.form-file-base.upload.action.lbl:Hochladen`
-  }
+  };
   _luxDeleteActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
@@ -158,7 +148,7 @@ export class LuxFileInputAcComponent extends LuxFormFileBase<ILuxFileObject | nu
 
   handleUploadClick(files: ILuxFileObject[]) {
     if (this.luxUploadActionConfig.onClick) {
-      this.luxUploadActionConfig.onClick(files[ 0 ]);
+      this.luxUploadActionConfig.onClick(files[0]);
     }
   }
 
@@ -166,7 +156,6 @@ export class LuxFileInputAcComponent extends LuxFormFileBase<ILuxFileObject | nu
    * Wird bei der Auswahl von Dateien (Dialog oder DnD) aufgerufen.
    * Aktualisiert die aktuell selektierten Dateien, stößt einen Upload an, handelt Fehlermeldungen und
    * emittet die entsprechenden Events.
-   *
    * @param files
    */
   selectFiles(files: FileList | File[]) {
@@ -187,7 +176,7 @@ export class LuxFileInputAcComponent extends LuxFormFileBase<ILuxFileObject | nu
           this.luxSelected = newFiles[0];
           this.notifyFormValueChanged();
         },
-        error => this.setFormControlErrors(error)
+        (error) => this.setFormControlErrors(error)
       );
     }, this.defaultReadFileDelay);
   }
@@ -219,7 +208,7 @@ export class LuxFileInputAcComponent extends LuxFormFileBase<ILuxFileObject | nu
 
   protected errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
     if (errors.required) {
-      return $localize `:@@luxc.file-input.error_message.required:Es muss eine Datei ausgewählt werden`;
+      return $localize`:@@luxc.file-input.error_message.required:Es muss eine Datei ausgewählt werden`;
     }
     return super.errorMessageModifier(value, errors);
   }
@@ -231,5 +220,4 @@ export class LuxFileInputAcComponent extends LuxFormFileBase<ILuxFileObject | nu
 
     super.setFormControlErrors(error);
   }
-
 }

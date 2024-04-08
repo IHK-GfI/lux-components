@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/member-ordering */
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   AfterViewInit,
@@ -208,7 +207,6 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
   /**
    * Die Auswahl der selektierten Elemente ist eigentlich ein Set,
    * nimmt aber Arrays von Außen entgegen (zur Vereinfachung).
-   *
    * @param selected
    */
   @Input() set luxSelected(selected: Set<T>) {
@@ -262,7 +260,6 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
   /**
    * Eigene Implementierung der Filterung für diese Tabelle.
    * Iteriert über die Values des einzelnen Objektes und prüft dann, ob der Filter-Wert irgendwo vorkommt.
-   *
    * @param data
    * @param filter
    */
@@ -377,7 +374,6 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
   /**
    * Zieht sich die aktuellen CSS-Klassen aus den zugewiesenen
    * CSS-Klassen.
-   *
    * @param row
    * @returns string
    */
@@ -388,7 +384,6 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
 
   /**
    * TrackBy-Funktion um die Tabelle etwas schneller zu machen.
-   *
    * @param index
    * @param item
    */
@@ -405,7 +400,6 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
   /**
    * Wird beim Klick auf eine Row aufgerufen und handelt das Sichern und Entfernen von
    * selektierten Einträgen.
-   *
    * @param entry
    * @param checkboxEvent
    */
@@ -495,7 +489,6 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
   /**
    * Aktualisiert die DataSource und eventuell Subscriptions sowie die CustomCSS-Classes
    * nach einer Änderung.
-   *
    * @param data
    */
   private updateDataSourceAttributes(data: any[]) {
@@ -536,7 +529,6 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
 
   /**
    * Gibt über den liveAnnouncer eine Nachricht aus, dass sich die Sortierung einer Spalte geändert hat.
-   *
    * @param sort
    */
   announceSortChange(sort: Sort) {
@@ -610,7 +602,6 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
 
   /**
    * Prüft, ob die aktuelle MediaQuery mit der übergebenen MediaQuery/den übergebenen MediaQueries übereinstimmt.
-   *
    * @param responsiveAt
    */
   private doesResponsiveAtApply(responsiveAt: string | string[] | null) {
@@ -652,7 +643,6 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
    * Triggert über das DAO die Abfrage nach neuen Daten.
    * Sendet dabei das Request-Conf Objekt, welches Informationen bzgl.
    * page, pageSize, filter, sort, order mitgibt.
-   *
    * @param filteredBy?
    * @param filteredBy
    */

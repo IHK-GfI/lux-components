@@ -19,7 +19,6 @@ export type LuxLookupCompareFn<T = LuxLookupTableEntry> = (a: T, b: T) => number
 
 /**
  * Diese Vergleichsfunktion sortiert die Schlüsseltabelleneinträge nach ihrem Schlüssel.
- *
  * @param a Erster Schlüsseltabelleneintrag.
  * @param b Zweiter Schlüsseltabelleneintrag.
  */
@@ -35,7 +34,6 @@ export const luxLookupCompareKeyFn: LuxLookupCompareFn = (a: LuxLookupTableEntry
 
 /**
  * Diese Vergleichsfunktion sortiert die Schlüsseltabelleneinträge nach ihrem Kurztext.
- *
  * @param a Erster Schlüsseltabelleneintrag.
  * @param b Zweiter Schlüsseltabelleneintrag.
  */
@@ -48,7 +46,6 @@ export const luxLookupCompareKurzTextFn: LuxLookupCompareFn = (a: LuxLookupTable
 
 /**
  * Diese Vergleichsfunktion sortiert die Schlüsseltabelleneinträge nach ihrem Langtext1.
- *
  * @param a Erster Schlüsseltabelleneintrag.
  * @param b Zweiter Schlüsseltabelleneintrag.
  */
@@ -61,7 +58,6 @@ export const luxLookupCompareLangText1Fn: LuxLookupCompareFn = (a: LuxLookupTabl
 
 /**
  * Diese Vergleichsfunktion sortiert die Schlüsseltabelleneinträge nach ihrem Langtext2.
- *
  * @param a Erster Schlüsseltabelleneintrag.
  * @param b Zweiter Schlüsseltabelleneintrag.
  */
@@ -163,7 +159,6 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
 
   /**
    * Gibt zurueck, ob die RenderProperty eine Funktion ist oder nicht.
-   *
    * @returns boolean
    */
   isRenderPropAFunction(): boolean {
@@ -172,7 +167,6 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
 
   /**
    * Gibt zurück ob sich das entsprechende Element in der Liste ungültiger Elemente befindet.
-   *
    * @param LuxLookupTableEntry entry
    * @param entry
    * @returns boolean
@@ -197,7 +191,6 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
 
   /**
    * Gibt zurück ob ungültige Einträge angezeigt werden sollen.
-   *
    * @returns boolean
    */
   showUngueltige() {
@@ -209,7 +202,6 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
 
   /**
    * Gibt zurück ob ungültige Einträge deaktiviert werden sollen.
-   *
    * @returns boolean
    */
   disableUngueltige() {
@@ -218,7 +210,6 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
 
   /**
    * Gibt die mitgegebenen Styles abhaengig ob das Element invalid ist zurueck.
-   *
    * @param boolean invalid
    * @param invalid
    * @returns LuxLookupOptionStyle
@@ -279,7 +270,6 @@ export abstract class LuxLookupComponent<T> extends LuxFormComponentBase<T> impl
 
   /**
    * Setzt die aktuellen Werte auf die mitgegebenen Entries.
-   *
    * @param entries
    */
   protected setLookupData(entries: LuxLookupTableEntry[]) {

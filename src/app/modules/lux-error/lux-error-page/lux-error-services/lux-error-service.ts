@@ -8,7 +8,7 @@ import { LuxErrorPageComponent } from '../lux-error-page.component';
 import { LuxErrorStoreService } from './lux-error-store.service';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class LuxErrorService {
   constructor(private router: Router, private errorStore: LuxErrorStoreService) {
@@ -20,13 +20,12 @@ export class LuxErrorService {
    * Überschreibt die aktuelle Konfiguration für die Fehlerseite.
    * Übernimmt so viele Werte wie möglich aus der übergebenen Konfiguration,
    * sonst werden die Default-Werte genutzt.
-   *
    * @param luxErrorPageConfig
    */
   setConfig(luxErrorPageConfig: ILuxErrorPageConfig | null) {
     this.errorStore.safeNewConfig(luxErrorPageConfig);
     // potentielle alte Route zu LuxErrorPageComponent entfernen
-    this.router.config = this.router.config.filter(entry => entry.component !== LuxErrorPageComponent);
+    this.router.config = this.router.config.filter((entry) => entry.component !== LuxErrorPageComponent);
     // neue Route eintragen
     this.router.config.unshift({ path: this.errorStore.config.errorPageUrl, component: LuxErrorPageComponent });
   }
@@ -34,7 +33,6 @@ export class LuxErrorService {
   /**
    * Navigiert zur Fehlerkomponente und versucht einen Fehler
    * (wenn mitgegeben) zu sichern.
-   *
    * @param error
    * @returns Observable<any>
    */

@@ -182,7 +182,6 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
 
   /**
    * Wird beim Klick auf ein MenuItem aufgerufen.
-   *
    * @param menuItem
    * @param event
    */
@@ -212,7 +211,6 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
    * Der Menü-Trigger in der Filterkomponente wird im Accordion-Panel eingesetzt.
    * Damit sich das Panel bei der Verwendung des Menüs nicht öffnet und schließt,
    * darf das Event nicht weiter gereicht werden.
-   *
    * @param event
    */
   menuTriggerStopPropagation(event: Event) {
@@ -301,7 +299,6 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
    * Gibt die berechnete Breite des MenuItems zurück.
    * Diese setzt sich aus dem Padding (links und rechts, je 16px), dem Icon (wenn vorhanden, 15px) und der berechneten
    * Textbreite zusammen + 25px Sicherheitspuffer.
-   *
    * @param menuItem
    */
   private getMenuItemWidth(menuItem: LuxMenuItemComponent): number {
@@ -321,7 +318,6 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
 
   /**
    * Berechnet mithilfe eines Canvas-Objekts die Breite eines einzelnen Textes
-   *
    * @param text
    */
   private getTextWidth(text: string | null | undefined): number {

@@ -13,7 +13,11 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { MatLegacyAutocomplete as MatAutocomplete, MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent, MatLegacyAutocompleteTrigger as MatAutocompleteTrigger } from '@angular/material/legacy-autocomplete';
+import {
+  MatLegacyAutocomplete as MatAutocomplete,
+  MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent,
+  MatLegacyAutocompleteTrigger as MatAutocompleteTrigger
+} from '@angular/material/legacy-autocomplete';
 import { LuxFormComponentBase, LuxValidationErrors } from '../lux-form-model/lux-form-component-base.class';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 import { ReplaySubject, Subscription } from 'rxjs';
@@ -194,7 +198,6 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
 
   /**
    * Stößt das Nachladen von Elementen an, wenn ein bestimmter Scrollwert erreicht wurde.
-   *
    * @param event - ScrollEvent
    */
   private loadOnScroll(event: Event) {
@@ -232,7 +235,6 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   /**
    * Regelt die Darstellung der gewählten Option im Normalfall.
    * (Ausnahme: Focus-Verlust)
-   *
    * @param value
    * @returns string
    */
@@ -249,7 +251,6 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   /**
    * Filtert das Options-Array nach dem filterTerm und
    * gibt das Ergebnis als Array zurück.
-   *
    * @param filterTerm
    * @returns any[]
    */
@@ -269,7 +270,6 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   /**
    * Click-Event Handling
    * selektiert den gesamten Text im Input, wenn selectAllOnClick = true ist.
-   *
    * @param clickEvent
    */
   onClick(clickEvent: any) {
@@ -281,7 +281,6 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   /**
    * Gibt den darzustellenden Wert einer Option bzw.
    * die Option selbst (wenn string) wider.
-   *
    * @param option
    * @returns any
    */
@@ -370,7 +369,7 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
     this.selected$.next(newValue);
 
     if (this.matInput && this.matInput.nativeElement && newValue) {
-      if ((typeof(newValue) === 'string' || newValue instanceof String) && newValue) {
+      if ((typeof newValue === 'string' || newValue instanceof String) && newValue) {
         this.matInput.nativeElement.value = newValue;
       } else if (newValue[this.luxOptionLabelProp]) {
         this.matInput.nativeElement.value = newValue[this.luxOptionLabelProp];
