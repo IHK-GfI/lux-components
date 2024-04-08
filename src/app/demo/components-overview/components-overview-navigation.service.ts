@@ -25,7 +25,8 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     ['markdown', 'lux-interface-file-text'],
     ['pipes', 'lux-interface-dashboard-layout-circle'],
     ['popup', 'lux-programming-browser-window'],
-    ['tenant-logo', 'lux-image-picture-landscape-1']
+    ['tenant-logo', 'lux-image-picture-landscape-1'],
+    ['tour-hint', 'lux-programming-browser-window']
   ]);
 
   private create(moduleName: string, label: string, news = false) {
@@ -95,7 +96,8 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     this.create('pipes', 'Timestamp'),
     this.create('popup', 'Dialog'),
     this.create('popup', 'Snackbar'),
-    this.create('tenant-logo', 'Tenant-Logo')
+    this.create('tenant-logo', 'Tenant-Logo'),
+    this.create('tour-hint', 'Tour-Hint')
   ];
 
   sortedComponentEntries: Map<string, any[]> = new Map<string, any[]>();
@@ -113,7 +115,8 @@ export class ComponentsOverviewNavigationService implements OnDestroy {
     ['markdown', false],
     ['pipes', false],
     ['popup', false],
-    ['tenant-logo', false]
+    ['tenant-logo', false],
+    ['tour-hint', false]
   ]);
   currentModuleNames: string[] = [];
   selectedComponent: any;

@@ -14,6 +14,7 @@
 - **lux-app-footer**: Aus der Komponente wurde Flex-Layout entfernt. [Issue 400](https://github.com/IHK-GfI/lux-components/issues/400)
 - **lux-popup**: Aus den Komponenten lux-snackbar und lux-dialog wurde Flex-Layout entfernt. [Issue 399](https://github.com/IHK-GfI/lux-components/issues/399)
 - **lux-error-page**: Aus der Komponente wurde Flex-Layout entferne. [Issue 402](https://github.com/IHK-GfI/lux-components/issues/402)
+- **lux-tour-hint**: Speech Bubble Hint/Hinweisbox in Form einer Sprechblase. [Issue 420](https://github.com/IHK-GfI/lux-components/issues/420)
 
 ## Version 15.5.1
 

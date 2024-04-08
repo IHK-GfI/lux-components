@@ -341,6 +341,19 @@ export * from './src/app/modules/lux-popups/lux-dialog/lux-dialog-model/lux-dial
 export * from './src/app/modules/lux-popups/lux-dialog/lux-dialog-model/lux-dialog-preset-config.interface';
 
 /**
+ * LUX-Tour-Hint
+ */
+export * from './src/app/modules/lux-tour-hint/lux-tour-hint.module';
+// Components
+export * from './src/app/modules/lux-tour-hint/lux-tour-hint.component';
+export * from './src/app/modules/lux-tour-hint/lux-tour-hint-preset/lux-tour-hint-preset.component';
+// Services
+export * from './src/app/modules/lux-tour-hint/lux-tour-hint.service';
+// Classes
+export * from './src/app/modules/lux-tour-hint/lux-tour-hint-model/lux-tour-hint-step-config.interface';
+export * from './src/app/modules/lux-tour-hint/lux-tour-hint-model/lux-tour-hint-ref.class';
+
+/**
  * LUX-Util
  */
 export * from './src/app/modules/lux-util/lux-util';

@@ -28,7 +28,8 @@ import 'hammerjs';
 import { DseComponent } from './demo/abstract/dse/dse.component';
 import { LicenseHintComponent } from './demo/base/license-hint/license-hint.component';
 import { ImpressumComponent } from './demo/abstract/impressum/impressum.component';
-import { LuxTenantLogoModule } from "./modules/lux-tenant-logo/lux-tenant-logo.module";
+import { LuxTenantLogoModule } from './modules/lux-tenant-logo/lux-tenant-logo.module';
+import { LuxTourHintModule } from './modules/lux-tour-hint/lux-tour-hint.module';
 
 const myConfiguration: LuxComponentsConfigParameters = {
   generateLuxTagIds: environment.generateLuxTagIds,
@@ -60,7 +61,8 @@ const myConfiguration: LuxComponentsConfigParameters = {
     ExampleBaseModule,
     LuxComponentsConfigModule.forRoot(myConfiguration),
     LuxMarkdownModule,
-    LuxTenantLogoModule
+    LuxTenantLogoModule,
+    LuxTourHintModule
   ],
   providers: [{ provide: LuxLookupService, useClass: MockLuxLookupService }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

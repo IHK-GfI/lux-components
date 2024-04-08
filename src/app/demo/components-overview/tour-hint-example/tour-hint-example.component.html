@@ -1,0 +1,99 @@
+<example-base-structure exampleTitle="Tour-Hint" exampleDocumentationHref="TODO">
+  <example-base-content>
+    <lux-card id="Karte_1" luxTitle="Card 1">
+      <lux-card-content>
+        <p>Hier sind is ein Beispiel Formular zum Testen der lux-tour-hint Komponente.</p>
+        <lux-input-ac id="Input_1" luxLabel="Input 1"></lux-input-ac>
+
+        <div id="Input_2_Und_3" class="lux-grid lux-grid-cols-2 lux-gap-4">
+          <lux-input-ac luxLabel="Input 2"></lux-input-ac>
+          <lux-input-ac luxLabel="Input 3"></lux-input-ac>
+        </div>
+
+        <lux-select-ac luxLabel="Select 1" [luxOptions]="['A', 'B', 'C']"></lux-select-ac>
+      </lux-card-content>
+      <lux-card-actions id="Karte_1_Aktionen">
+        <lux-button id="Karte_1_Aktion_1" luxLabel="Action 1" [luxRaised]="true" luxColor="primary"></lux-button>
+        <lux-button id="Karte_1_Aktion_2" luxLabel="Action 2" [luxRaised]="true" luxColor="warn"></lux-button>
+      </lux-card-actions>
+    </lux-card>
+
+    <lux-card id="Karte_2" luxTitle="Card 2">
+      <lux-card-content>
+        <p>
+          Eine Weitere Karte mit weiterem Inhalt:
+          <br /><br />
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias dolores ab beatae veniam similique dolorum, sapiente quod
+          repudiandae illum reiciendis. Voluptatum nam dolore tenetur! Est, commodi officia. Impedit, cum debitis? Lorem ipsum dolor sit,
+          amet consectetur adipisicing elit. Sit veritatis mollitia molestiae alias, atque tempore odio doloribus iusto reiciendis minus aut
+          obcaecati. Perferendis dicta natus placeat culpa possimus aliquam inventore. Lorem, ipsum dolor sit amet consectetur adipisicing
+          elit. Eum vel aliquam recusandae modi dolorum repellendus aspernatur deleniti natus commodi, voluptatum ea, iure laudantium a at
+          minus vero incidunt velit quidem. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo veniam nesciunt temporibus qui
+          recusandae iure obcaecati. Minima ab, earum, exercitationem soluta autem voluptas molestias laborum quod aspernatur quas tenetur
+          dolorum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, ea quaerat dolorum natus quidem id sint maiores,
+          impedit, commodi rem fugit adipisci? Beatae optio dolor est, quidem amet omnis neque. Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Culpa repudiandae, eos rerum saepe eaque, pariatur distinctio repellendus soluta possimus a vel officia facilis
+          aut molestiae consequatur necessitatibus assumenda autem repellat! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad
+          tempora soluta magnam. Pariatur ipsa consectetur deleniti facilis, maiores fuga itaque suscipit magnam labore officiis natus
+          asperiores, maxime animi dicta alias. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro natus perspiciatis
+          reprehenderit commodi facere tenetur voluptate sint suscipit minima. Quo ut molestias exercitationem. Hic voluptate in iure
+          assumenda, accusantium tempore! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, ipsum impedit animi placeat suscipit
+          eligendi vero quas, quaerat tenetur, tempora facere. Vero quia corporis, fuga et veritatis distinctio optio quis! Lorem ipsum
+          dolor sit amet consectetur adipisicing elit. Reprehenderit nam laudantium voluptates sint reiciendis sed blanditiis vero
+          cupiditate aperiam tempora molestiae alias obcaecati, quae recusandae magnam praesentium minima. Ex, eos. Lorem, ipsum dolor sit
+          amet consectetur adipisicing elit. Ab vel laudantium asperiores voluptatum repellendus vero facilis, quam magnam optio labore cum
+          nulla fugit mollitia? Nulla vitae sequi laudantium reiciendis. Quasi! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Facilis mollitia rerum perspiciatis natus. Quas atque mollitia enim tenetur inventore dicta voluptatibus blanditiis labore quia,
+          iure temporibus sit vel quibusdam debitis?
+        </p>
+      </lux-card-content>
+      <lux-card-actions>
+        <lux-button id="Karte_2_Aktion_1" luxLabel="Action 1" [luxStroked]="true" luxColor="accent"></lux-button>
+      </lux-card-actions>
+    </lux-card>
+  </example-base-content>
+  <example-base-simple-options>
+    <h3>Einfacher Hinweis Konfiguration</h3>
+    <lux-select-ac luxLabel="Hint Ziel (id)" [(luxSelected)]="singleHintTarget" [luxOptions]="singleHintTargetOptions"></lux-select-ac>
+
+    <lux-input-ac luxLabel="Hint Titel" [(luxValue)]="singleHintTitle"></lux-input-ac>
+
+    <lux-textarea-ac luxLabel="Hint Beschreibung" [(luxValue)]="singleHintContent"></lux-textarea-ac>
+
+    <lux-toggle-ac luxLabel="Option 'Nicht wieder zeigen'" [(luxChecked)]="singleHintShowDontShowAgain"></lux-toggle-ac>
+
+    <h3>Tour Konfiguration</h3>
+
+    <lux-toggle-ac luxLabel="Option 'Nicht wieder zeigen'" [(luxChecked)]="tourShowDontShowAgain"></lux-toggle-ac>
+  </example-base-simple-options>
+
+  <example-base-options-actions class="lux-pt-3">
+    <lux-button
+      class="lux-p-2"
+      luxLabel="Öffnen [Hint]"
+      [luxStroked]="true"
+      luxColor="primary"
+      (luxClicked)="openHint()"
+      luxTooltip="Öffnet einen einfachen Hinweis"
+      [luxTooltipShowDelay]="500"
+    ></lux-button>
+    <lux-button
+      class="lux-p-2"
+      luxLabel="Starten [Tour]"
+      [luxStroked]="true"
+      luxColor="primary"
+      (luxClicked)="startTour()"
+      luxTooltip="Öffnet eine Komplexe Tutorial-Tour"
+      [luxTooltipShowDelay]="500"
+    ></lux-button>
+    <lux-button
+      class="lux-p-2"
+      luxLabel="Reset Caches"
+      [luxStroked]="true"
+      luxColor="warn"
+      (luxClicked)="clearCaches()"
+      luxTooltip="Nachdem 'Nicht wieder anzeigen' geklickt wurde kann dieser Button genutzt werden um den Hinweis doch wieder anzuzeigen."
+      [luxTooltipShowDelay]="500"
+    ></lux-button>
+  </example-base-options-actions>
+</example-base-structure>
