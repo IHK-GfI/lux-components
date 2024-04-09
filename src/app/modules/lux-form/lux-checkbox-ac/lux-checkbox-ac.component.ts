@@ -13,6 +13,7 @@ export class LuxCheckboxAcComponent<T = boolean> extends LuxFormCheckableBaseCla
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
 
+  focused = false;
   constructor(
     @Optional() public controlContainer: ControlContainer,
     cdr: ChangeDetectorRef,
@@ -20,5 +21,25 @@ export class LuxCheckboxAcComponent<T = boolean> extends LuxFormCheckableBaseCla
     config: LuxComponentsConfigService
   ) {
     super(controlContainer, cdr, logger, config);
+  }
+
+  onFocusIn(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocusIn.emit(e);
+  }
+
+  onFocusOut(e: FocusEvent) {
+    this.focused = false;
+    this.luxFocusOut.emit(e);
+  }
+
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return (this.formHintComponent || this.luxHint) && (!this.luxHintShowOnlyOnFocus || (this.luxHintShowOnlyOnFocus && this.focused))
+        ? this.uid + '-hint'
+        : undefined;
+    }
   }
 }

@@ -24,10 +24,10 @@
       [id]="uid"
       [value]="(luxSelected?.namePrefix ?? '') + (luxSelected?.name ?? '') + (luxSelected?.nameSuffix ?? '')"
       (blur)="luxBlur.emit($event)"
-      (focus)="luxFocus.emit($event)"
+      (focus)="onFocus($event)"
       (focusin)="onFocusIn($event)"
-      (focusout)="luxFocusOut.emit($event)"
-      [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+      (focusout)="onFocusOut($event)"
+      [luxAriaDescribedby]="descripedBy()"
       #visibleInput
     />
     <div class="lux-file-menu-container">

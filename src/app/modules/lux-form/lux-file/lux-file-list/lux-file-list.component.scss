@@ -148,4 +148,10 @@
   &.lux-file-list-disabled {
     pointer-events: none;
   }
+
+  .lux-error {
+    color: var(--lux-theme-warn-900);
+    background-color: rgb(255, 228, 231);
+    border-radius: 2px;
+  }
 }

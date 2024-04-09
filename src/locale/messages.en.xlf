@@ -199,8 +199,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file-preview.notsupportedviewer.message" datatype="html">
-        <source>Diese Datei kann nicht angezeigt werden.</source>
-        <target>This file cannot be shown.</target>
+        <source>Dieses Dateiformat kann in der Vorschau nicht angezeigt werden.</source>
+        <target>This file format cannot be displayed in the preview.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-file-preview/lux-file-preview-notsupportedviewer/lux-file-preview-notsupportedviewer.component.html</context>
           <context context-type="linenumber">21</context>
@@ -423,7 +423,7 @@
         <target>Below the minimum value</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datetimepicker-ac/lux-datetimepicker-ac.component.ts</context>
-          <context context-type="linenumber">193</context>
+          <context context-type="linenumber">212</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datetimepicker.error_message.max" datatype="html">
@@ -431,7 +431,7 @@
         <target>Above the maximum value</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datetimepicker-ac/lux-datetimepicker-ac.component.ts</context>
-          <context context-type="linenumber">195</context>
+          <context context-type="linenumber">214</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datetimepicker.error_message.invalid" datatype="html">
@@ -439,11 +439,11 @@
         <target>Invalid date or time</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datetimepicker-ac/lux-datetimepicker-ac.component.ts</context>
-          <context context-type="linenumber">197</context>
+          <context context-type="linenumber">216</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datetimepicker-ac/lux-datetimepicker-ac.component.ts</context>
-          <context context-type="linenumber">200</context>
+          <context context-type="linenumber">219</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datetimepicker.error_message.empty" datatype="html">
@@ -451,7 +451,7 @@
         <target>The date should not be empty</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datetimepicker-ac/lux-datetimepicker-ac.component.ts</context>
-          <context context-type="linenumber">202</context>
+          <context context-type="linenumber">221</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.form-file-base.upload.action.lbl" datatype="html">
@@ -519,7 +519,7 @@
         <target>Delete error message</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-list/lux-file-list.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">77</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-form-control-wrapper/lux-form-control-wrapper.component.html</context>

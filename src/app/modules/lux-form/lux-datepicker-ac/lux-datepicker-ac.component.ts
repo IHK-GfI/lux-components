@@ -55,6 +55,7 @@ export class LuxDatepickerAcComponent<T = any> extends LuxFormInputBaseClass<T> 
   min: Date | null = null;
   max: Date | null = null;
   start: Date | null = null;
+  focused = false;
   _luxCustomFilter: LuxDateFilterAcFn = () => true;
 
   @Input() luxStartView: LuxStartAcView = 'month';
@@ -164,6 +165,31 @@ export class LuxDatepickerAcComponent<T = any> extends LuxFormInputBaseClass<T> 
     }
 
     return undefined;
+  }
+
+  onFocus(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocus.emit(e);
+  }
+
+  onFocusIn(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocusIn.emit(e);
+  }
+
+  onFocusOut(e: FocusEvent) {
+    this.focused = false;
+    this.luxFocusOut.emit(e);
+  }
+
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return (this.formHintComponent || this.luxHint) && (!this.luxHintShowOnlyOnFocus || (this.luxHintShowOnlyOnFocus && this.focused))
+        ? this.uid + '-hint'
+        : undefined;
+    }
   }
 
   /**

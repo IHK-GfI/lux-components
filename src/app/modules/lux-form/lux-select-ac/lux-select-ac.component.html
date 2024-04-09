@@ -9,6 +9,14 @@
   [ngClass]="matSelect && matSelect.panelOpen ? 'lux-panel-opened' : ''"
   luxTagId="luxSelectWrapper"
 >
+  <!-- 
+       Material-Workaround: Inccorect use of <label for=FORM_ELEMENT> (Browser-Fehler in der Debug-Console)
+       ------------------------------------------------------------------------------------------------------------------
+       Das mat-select nutzt intern kein echtes HTML-Element wie das select und darum wird der obige Fehler geworfen.
+       Die aktuelle Lösung ist ein zusätliches Select einzufügen und zu verstecken, damit der Fehler verschwindet.
+       Wenn der Fehler in den Material Components behoben wurde, dann das unsichtbare Select wieder entfernt werden.
+  -->
+  <select [id]="uid" style="display: none"></select>
   <mat-select
     luxTagIdHandler
     [luxTagId]="luxTagId"
@@ -24,9 +32,9 @@
     [id]="uid"
     [panelClass]="[luxMultiple ? 'lux-select-panel-ac-multiple' : 'lux-select-panel-ac', luxReadonly ? 'lux-display-none' : '']"
     [luxAriaLabelledby]="uid + '-label'"
-    [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
-    (focusin)="luxFocusIn.emit($event)"
-    (focusout)="luxFocusOut.emit($event)"
+    [luxAriaDescribedby]="descripedBy()"
+    (focusin)="onFocusIn($event)"
+    (focusout)="onFocusOut($event)"
     #select
   >
     <mat-option

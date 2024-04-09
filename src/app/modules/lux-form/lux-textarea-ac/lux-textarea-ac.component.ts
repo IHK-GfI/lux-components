@@ -16,16 +16,18 @@ export class LuxTextareaAcComponent<T = string> extends LuxFormInputBaseClass<T>
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
   @Input() luxHideCounterLabel = false;
-  @Input() set luxMaxLength(maxLength: number){
+  @Input() set luxMaxLength(maxLength: number) {
     this._luxMaxLength = maxLength;
-    if (this.formControl) { // Erst nach ngOnInit() vorhanden
+    if (this.formControl) {
+      // Erst nach ngOnInit() vorhanden
       this.updateCounterLabel();
     }
-  };
-  get luxMaxLength(){
+  }
+  get luxMaxLength() {
     return this._luxMaxLength;
-  };
+  }
 
+  focused = false;
   counterLabel = '';
   _luxMaxLength = 0;
 
@@ -48,8 +50,30 @@ export class LuxTextareaAcComponent<T = string> extends LuxFormInputBaseClass<T>
     super.notifyFormValueChanged(formValue);
   }
 
-  private updateCounterLabel(){
-    if (this.luxMaxLength > 0){
+  onFocus(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocus.emit(e);
+  }
+  onFocusIn(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocusIn.emit(e);
+  }
+  onFocusOut(e: FocusEvent) {
+    this.focused = false;
+    this.luxFocusOut.emit(e);
+  }
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return (this.formHintComponent || this.luxHint) && (!this.luxHintShowOnlyOnFocus || (this.luxHintShowOnlyOnFocus && this.focused))
+        ? this.uid + '-hint'
+        : undefined;
+    }
+  }
+
+  private updateCounterLabel() {
+    if (this.luxMaxLength > 0) {
       if (typeof this.formControl.value === 'string') {
         this.counterLabel = this.formControl.value.length + '/' + this.luxMaxLength;
       } else {

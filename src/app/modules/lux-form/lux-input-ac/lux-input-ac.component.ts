@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnInit, Optional, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnInit, Optional, ViewChild } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxInputAcPrefixComponent } from '../lux-input-ac/lux-input-ac-subcomponents/lux-input-ac-prefix.component';
@@ -6,6 +6,7 @@ import { LuxInputAcSuffixComponent } from '../lux-input-ac/lux-input-ac-subcompo
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxFormInputBaseClass } from '../lux-form-model/lux-form-input-base.class';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
+import { LuxFormControlWrapperComponent } from '../lux-form-control-wrapper/lux-form-control-wrapper.component';
 
 @Component({
   selector: 'lux-input-ac',
@@ -38,6 +39,7 @@ export class LuxInputAcComponent<T = string> extends LuxFormInputBaseClass<T> im
   @ViewChild('input', { read: ElementRef }) inputElement!: ElementRef;
 
   counterLabel = '';
+  focused = false;
   _luxMaxLength = 0;
 
   constructor(
@@ -72,6 +74,31 @@ export class LuxInputAcComponent<T = string> extends LuxFormInputBaseClass<T> im
       ) {
         keyboardEvent.preventDefault();
       }
+    }
+  }
+
+  onFocus(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocus.emit(e);
+  }
+
+  onFocusIn(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocusIn.emit(e);
+  }
+
+  onFocusOut(e: FocusEvent) {
+    this.focused = false;
+    this.luxFocusOut.emit(e);
+  }
+
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return (this.formHintComponent || this.luxHint) && (!this.luxHintShowOnlyOnFocus || (this.luxHintShowOnlyOnFocus && this.focused))
+        ? this.uid + '-hint'
+        : undefined;
     }
   }
 

@@ -41,7 +41,7 @@ export class LuxSelectAcComponent<O = any, V = any, P = any> extends LuxFormSele
   @Input() luxNoBottomLabel = false;
 
   displayedViewValue?: string;
-
+  focused = false;
   constructor(
     @Optional() controlContainer: ControlContainer,
     cdr: ChangeDetectorRef,
@@ -58,6 +58,26 @@ export class LuxSelectAcComponent<O = any, V = any, P = any> extends LuxFormSele
     if (matOption) {
       this.displayedViewValue = matOption.viewValue;
       this.liveAnnouncer.announce(matOption.viewValue, 'assertive');
+    }
+  }
+
+  onFocusIn(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocusIn.emit(e);
+  }
+
+  onFocusOut(e: FocusEvent) {
+    this.focused = false;
+    this.luxFocusOut.emit(e);
+  }
+
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return (this.formHintComponent || this.luxHint) && (!this.luxHintShowOnlyOnFocus || (this.luxHintShowOnlyOnFocus && this.focused))
+        ? this.uid + '-hint'
+        : undefined;
     }
   }
 }

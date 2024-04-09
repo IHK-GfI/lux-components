@@ -36,6 +36,7 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   displayedOptions: O[] = [];
   loadingRunning = false;
   activeIndex = -1;
+  focused = false;
   _luxOptions: O[] = [];
 
   @Input() luxPlaceholder = '';
@@ -302,10 +303,30 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
     }
   }
 
-  onFocusOut(event: any) {
-    this.updateFormControlValue();
+  onFocus(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocus.emit(e);
+  }
 
-    this.luxFocusOut.emit(event);
+  onFocusIn(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocusIn.emit(e);
+  }
+
+  onFocusOut(e: FocusEvent) {
+    this.updateFormControlValue();
+    this.focused = false;
+    this.luxFocusOut.emit(e);
+  }
+
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return (this.formHintComponent || this.luxHint) && (!this.luxHintShowOnlyOnFocus || (this.luxHintShowOnlyOnFocus && this.focused))
+        ? this.uid + '-hint'
+        : undefined;
+    }
   }
 
   private handleErrors() {

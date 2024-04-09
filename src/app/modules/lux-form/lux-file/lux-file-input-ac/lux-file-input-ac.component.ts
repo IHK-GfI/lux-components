@@ -38,6 +38,8 @@ export class LuxFileInputAcComponent extends LuxFormFileBase<ILuxFileObject | nu
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
 
+  focused = false;
+
   _luxUploadActionConfig: ILuxFileActionConfig = {
     disabled: false,
     hidden: false,
@@ -188,6 +190,31 @@ export class LuxFileInputAcComponent extends LuxFormFileBase<ILuxFileObject | nu
         error => this.setFormControlErrors(error)
       );
     }, this.defaultReadFileDelay);
+  }
+
+  onFocus(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocus.emit(e);
+  }
+
+  onFocusIn(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocusIn.emit(e);
+  }
+
+  onFocusOut(e: FocusEvent) {
+    this.focused = false;
+    this.luxFocusOut.emit(e);
+  }
+
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return (this.formHintComponent || this.luxHint) && (!this.luxHintShowOnlyOnFocus || (this.luxHintShowOnlyOnFocus && this.focused))
+        ? this.uid + '-hint'
+        : undefined;
+    }
   }
 
   protected errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
