@@ -24,11 +24,11 @@
       [formControl]="formControl"
       [autocomplete]="luxAutocomplete"
       (blur)="luxBlur.emit($event)"
-      (focus)="luxFocus.emit($event)"
-      (focusin)="luxFocusIn.emit($event)"
-      (focusout)="luxFocusOut.emit($event)"
+      (focus)="onFocus($event)"
+      (focusin)="onFocusIn($event)"
+      (focusout)="onFocusOut($event)"
       [id]="uid"
-      [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
+      [luxAriaDescribedby]="descripedBy()"
       #datepickerInput
     />
     <mat-datepicker-toggle [disabled]="luxDisabled || luxReadonly" [for]="datepicker" [disableRipple]="true" *ngIf="luxShowToggle">

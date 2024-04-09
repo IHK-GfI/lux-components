@@ -177,6 +177,14 @@ export class LuxSliderAcComponent extends LuxFormComponentBase<number> implement
     }
   }
 
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return this.formHintComponent || this.luxHint ? this.uid + '-hint' : undefined;
+    }
+  }
+
   notifyFormValueChanged(formValue: any) {
     if (this.luxValue < this.luxMin) {
       setTimeout(() => {

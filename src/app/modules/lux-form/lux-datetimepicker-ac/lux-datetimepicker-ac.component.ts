@@ -45,9 +45,7 @@ export const APP_DATE_TIME_FORMATS_AC = {
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_TIME_FORMATS_AC }
   ]
 })
-export class LuxDatetimepickerAcComponent<T = any>
-  extends LuxFormInputBaseClass<T>
-  implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export class LuxDatetimepickerAcComponent<T = any> extends LuxFormInputBaseClass<T> implements OnInit, OnChanges, AfterViewInit, OnDestroy {
   @ViewChild(LuxDatetimeOverlayAcComponent) dateTimeOverlayComponent?: LuxDatetimeOverlayAcComponent;
   @ViewChild('dateTimePickerInput', { read: ElementRef }) dateTimePickerInputEl!: ElementRef;
 
@@ -90,6 +88,7 @@ export class LuxDatetimepickerAcComponent<T = any>
   min: Date | null = null;
   max: Date | null = null;
   start: Date | null = null;
+  focused = false;
 
   get selectedDate(): string | undefined {
     return typeof this.formControl.value === 'string' ? this.formControl.value : undefined;
@@ -176,6 +175,16 @@ export class LuxDatetimepickerAcComponent<T = any>
     this.dateTimeInputValue = this.formatDateTime(selected);
   }
 
+  onFocus(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocus.emit(e);
+  }
+
+  onFocusIn(e: FocusEvent) {
+    this.focused = true;
+    this.luxFocusIn.emit(e);
+  }
+
   onFocusOut(event: FocusEvent) {
     if (this.formControl.value) {
       const formattedDate = this.formatDateTime(this.parseDateTime(this.formControl.value as any));
@@ -184,8 +193,18 @@ export class LuxDatetimepickerAcComponent<T = any>
         this.dateTimeInputValue = formattedDate;
       }
     }
-
+    this.focused = false;
     this.luxFocusOut.emit(event);
+  }
+
+  descripedBy() {
+    if (this.errorMessage) {
+      return this.uid + '-error';
+    } else {
+      return (this.formHintComponent || this.luxHint) && (!this.luxHintShowOnlyOnFocus || (this.luxHintShowOnlyOnFocus && this.focused))
+        ? this.uid + '-hint'
+        : undefined;
+    }
   }
 
   errorMessageModifier(value: any, errors: LuxValidationErrors): string | undefined {
