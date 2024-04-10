@@ -312,7 +312,7 @@
         <source>Der eingegebene Wert ist nicht Teil der Auswahl.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-autocomplete-ac/lux-autocomplete-ac.component.ts</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.chips.input.placeholder.lbl" datatype="html">
@@ -326,32 +326,32 @@
         <source>Das Datum unterschreitet den Minimalwert</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datepicker-ac/lux-datepicker-ac.component.ts</context>
-          <context context-type="linenumber">152</context>
+          <context context-type="linenumber">153</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datepicker.error_message.max" datatype="html">
         <source>Das Datum überschreitet den Maximalwert</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datepicker-ac/lux-datepicker-ac.component.ts</context>
-          <context context-type="linenumber">154</context>
+          <context context-type="linenumber">155</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datepicker.error_message.invalid" datatype="html">
         <source>Das Datum ist ungültig</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datepicker-ac/lux-datepicker-ac.component.ts</context>
-          <context context-type="linenumber">156</context>
+          <context context-type="linenumber">157</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datepicker-ac/lux-datepicker-ac.component.ts</context>
-          <context context-type="linenumber">159</context>
+          <context context-type="linenumber">160</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datepicker.error_message.empty" datatype="html">
         <source>Das Datum darf nicht leer sein</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datepicker-ac/lux-datepicker-ac.component.ts</context>
-          <context context-type="linenumber">161</context>
+          <context context-type="linenumber">162</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datetimepicker.invalid.date" datatype="html">
@@ -404,14 +404,14 @@
         <source>Hochladen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-input-ac/lux-file-input-ac.component.ts</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.form-file-base.delete.action.lbl" datatype="html">
         <source>Löschen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-input-ac/lux-file-input-ac.component.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">43</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-upload/lux-file-upload.component.ts</context>
@@ -422,7 +422,7 @@
         <source>Ansehen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-input-ac/lux-file-input-ac.component.ts</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-list/lux-file-list.component.ts</context>
@@ -437,7 +437,7 @@
         <source>Download</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-input-ac/lux-file-input-ac.component.ts</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">55</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-list/lux-file-list.component.ts</context>
@@ -452,7 +452,7 @@
         <source>Es muss eine Datei ausgewählt werden</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-input-ac/lux-file-input-ac.component.ts</context>
-          <context context-type="linenumber">184</context>
+          <context context-type="linenumber">211</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.form.delete.error.button" datatype="html">

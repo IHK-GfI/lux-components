@@ -1,6 +1,6 @@
 {
   "name": "@ihk-gfi/lux-components",
-  "version": "15.5.1",
+  "version": "16.0.0",
   "license": "IHK-GfI Open-Source-Lizenz",
   "private": false,
   "repository": {
@@ -51,7 +51,7 @@
     "@angular/router": "16.2.12",
     "@chiragrupani/karma-chromium-edge-launcher": "2.2.1",
     "@ihk-gfi/lux-components-icons-and-fonts": "1.8.0",
-    "@ihk-gfi/lux-components-theme": "16.0.0-build.2",
+    "@ihk-gfi/lux-components-theme": "16.0.0",
     "@types/jasmine": "4.3.1",
     "@types/marked": "4.0.3",
     "@typescript-eslint/eslint-plugin": "7.5.0",
