@@ -25,8 +25,11 @@
         [luxAriaLabel]="luxAriaTitleImageLabel"
         luxTagId="lux-brand-logo-button"
         (luxClicked)="onBrandLogoClicked($event)"
-        *ngIf="luxBrandLogoSrc"
+        *ngIf="luxBrandLogoSrc; else emptyBrandLogo"
       ></lux-image>
+      <ng-template #emptyBrandLogo>
+        <div class="lux-brand-logo-empty"></div>
+      </ng-template>
 
       <!-- App-Logo -->
       <lux-image
@@ -38,6 +41,7 @@
         (luxClicked)="onAppLogoClicked($event)"
         *ngIf="luxAppLogoSrc && !mobileView"
       ></lux-image>
+      <div *ngIf="!luxAppLogoSrc && !mobileView" class="lux-app-logo-empty"></div>
 
       <!-- Action-Nav / Lang-Select / User-Menu -->
       <div class="header-menu-container lux-flex lux-justify-end lux-items-center" [luxAriaLabel]="luxAriaUserMenuButtonLabel">

@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 16.0.1
+
+### Bug Fixes
+
+- **lux-app-header-ac**: Navigations Menü rückt nach. [Issue 463](https://github.com/IHK-GfI/lux-components/issues/463)
+
 ## Version 16.0.0
 
 ### New
