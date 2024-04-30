@@ -16,7 +16,9 @@ export class MasterDetailExampleDataService {
       data.push({
         id: i,
         title: `Eintrag #${i + 1}`,
+        titleTooltip: `Tooltipp: Eintrag #${i + 1}`,
         subtitle: `Alle Informationen unter https://www.ihk-gfi.de`,
+        subtitleTooltip: `Tooltipp: Alle Informationen unter https://www.ihk-gfi.de`,
         icon: icons[i % 2],
         timestamp: now + i * MasterDetailExampleDataService.DAY,
         content:

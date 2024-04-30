@@ -31,7 +31,9 @@ export class LuxCardComponent implements OnInit, AfterViewInit, OnDestroy {
   private configSubscription?: Subscription;
 
   @Input() luxTitle?: string;
+  @Input() luxTitleTooltip?: string;
   @Input() luxSubTitle?: string;
+  @Input() luxSubTitleTooltip?: string;
   @Input() luxIconName?: string;
   @Input() luxDisabled?: boolean;
   @Input() luxTagId?: string;

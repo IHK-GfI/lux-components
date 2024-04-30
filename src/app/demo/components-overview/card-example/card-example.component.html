@@ -2,7 +2,9 @@
   <example-base-content class="lux-flex lux-flex-col lux-row-gap-8">
     <lux-card
       [luxTitle]="title"
+      [luxTitleTooltip]="titleTooltip"
       [luxSubTitle]="subTitle"
+      [luxSubTitleTooltip]="subTitleTooltip"
       [luxExpanded]="expanded"
       [luxDisabled]="disabled"
       [luxHeading]="heading"
@@ -56,20 +58,16 @@
     </lux-card>
   </example-base-content>
   <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
-    <lux-input-ac luxLabel="luxTitle" luxHint="Diese Property enthält den Textinhalt für den Titel der Card." [(luxValue)]="title">
-    </lux-input-ac>
+    <lux-input-ac luxLabel="luxTitle" [(luxValue)]="title"> </lux-input-ac>
+    <lux-input-ac luxLabel="luxTitleTooltip" [(luxValue)]="titleTooltip"> </lux-input-ac>
+    <lux-input-ac luxLabel="luxSubTitle" [(luxValue)]="subTitle"></lux-input-ac>
+    <lux-input-ac luxLabel="luxSubTitleTooltip" [(luxValue)]="subTitleTooltip"> </lux-input-ac>
     <lux-input-ac
       luxLabel="luxHeading"
       luxHint="Gültige Werte sind 1-6 (verändert nur die Überschriftenstruktur, aber nicht die Darstellung (Barrierefreiheit)."
       [(luxValue)]="heading"
       [luxControlValidators]="headingValidator"
     ></lux-input-ac>
-    <lux-input-ac
-      luxLabel="luxSubTitle"
-      luxHint="Diese Property enthält den Textinhalt für den Untertitel der Card."
-      [(luxValue)]="subTitle"
-    >
-    </lux-input-ac>
     <lux-toggle-ac luxLabel="luxDisabled" [(luxChecked)]="disabled" [luxDisabled]="showActions" [luxNoTopLabel]="true">
       <lux-form-hint>
         Über diese Property werden die Klick-Events der Card unterbunden.<br />

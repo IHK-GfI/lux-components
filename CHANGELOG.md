@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 16.1.0
+
+### New
+
+- **lux-master-list-ac**: Neue Properties "luxTitleTooltipProp" und "luxSubTitleTooltipProp" hinzugefügt. [Issue 465](https://github.com/IHK-GfI/lux-components/issues/465)
+- **lux-list-item**: Neue Properties "luxTitleTooltip" und "luxSubTitleTooltip" hinzugefügt. [Issue 465](https://github.com/IHK-GfI/lux-components/issues/465)
+- **lux-card**: Neue Properties "luxTitleTooltip" und "luxSubTitleTooltip" hinzugefügt. [Issue 465](https://github.com/IHK-GfI/lux-components/issues/465)
+
 ## Version 16.0.1
 
 ### Bug Fixes

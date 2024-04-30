@@ -6,7 +6,9 @@ import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 })
 export class LuxMasterListAcComponent {
   @Input() luxTitleProp?: string;
+  @Input() luxTitleTooltipProp?: string;
   @Input() luxSubTitleProp?: string;
+  @Input() luxSubTitleTooltipProp?: string;
 
   @ContentChild('luxSimpleContent') contentTempRef?: TemplateRef<any>;
   @ContentChild('luxSimpleIcon') iconTempRef?: TemplateRef<any>;
