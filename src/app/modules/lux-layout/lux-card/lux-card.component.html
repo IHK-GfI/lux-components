@@ -23,7 +23,7 @@
             'lux-crop': !luxTitleLineBreak,
             'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
           }"
-          title="{{ luxTitle }}"
+          title="{{ luxTitleTooltip ? luxTitleTooltip : luxTitleLineBreak ? '' : luxTitle }}"
         >
           {{ luxTitle }}
         </h1>
@@ -35,7 +35,7 @@
             'lux-crop': !luxTitleLineBreak,
             'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
           }"
-          title="{{ luxTitle }}"
+          title="{{ luxTitleTooltip ? luxTitleTooltip : luxTitleLineBreak ? '' : luxTitle }}"
         >
           {{ luxTitle }}
         </h2>
@@ -47,7 +47,7 @@
             'lux-crop': !luxTitleLineBreak,
             'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
           }"
-          title="{{ luxTitle }}"
+          title="{{ luxTitleTooltip ? luxTitleTooltip : luxTitleLineBreak ? '' : luxTitle }}"
         >
           {{ luxTitle }}
         </h3>
@@ -59,7 +59,7 @@
             'lux-crop': !luxTitleLineBreak,
             'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
           }"
-          title="{{ luxTitle }}"
+          title="{{ luxTitleTooltip ? luxTitleTooltip : luxTitleLineBreak ? '' : luxTitle }}"
         >
           {{ luxTitle }}
         </h4>
@@ -71,7 +71,7 @@
             'lux-crop': !luxTitleLineBreak,
             'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
           }"
-          title="{{ luxTitle }}"
+          title="{{ luxTitleTooltip ? luxTitleTooltip : luxTitleLineBreak ? '' : luxTitle }}"
         >
           {{ luxTitle }}
         </h5>
@@ -83,7 +83,7 @@
             'lux-crop': !luxTitleLineBreak,
             'lux-display-none': (!luxTitle || luxTitle.length === 0) && !infoComponent
           }"
-          title="{{ luxTitle }}"
+          title="{{ luxTitleTooltip ? luxTitleTooltip : luxTitleLineBreak ? '' : luxTitle }}"
         >
           {{ luxTitle }}
         </h6>
@@ -93,7 +93,7 @@
         <ng-content select="lux-card-info"></ng-content>
       </div>
       <div
-        title="{{ luxSubTitle }}"
+        title="{{ luxSubTitleTooltip ? luxSubTitleTooltip : luxTitleLineBreak ? '' : luxSubTitle }}"
         class="lux-card-subtitle"
         [ngClass]="{
           'lux-hyphenate': luxTitleLineBreak,

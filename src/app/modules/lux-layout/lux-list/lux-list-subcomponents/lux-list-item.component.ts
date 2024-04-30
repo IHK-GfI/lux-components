@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostBinding, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output } from '@angular/core';
 import { FocusableOption } from '@angular/cdk/a11y';
 
 @Component({
@@ -14,6 +14,9 @@ export class LuxListItemComponent implements FocusableOption {
   @HostBinding('attr.aria-selected') ariaSelected?: boolean;
   @HostBinding('attr.role') role = 'option';
   @HostBinding('attr.tabindex') tabindex = '-1';
+
+  @Input() luxTitleTooltip?: string;
+  @Input() luxSubTitleTooltip?: string;
 
   @Output() luxClicked = new EventEmitter<Event>();
 

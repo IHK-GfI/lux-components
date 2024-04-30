@@ -16,8 +16,10 @@ export class CardExampleComponent {
   disabled = false;
   titleLineBreak = true;
   title = `Testkarte - Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
+  titleTooltip = ``;
   subTitle = 'Sed eiusmod tempor incidunt ut labore et dolore magna aliqua.';
-  iconName ="lux-cogs"
+  subTitleTooltip = ``;
+  iconName = 'lux-cogs';
   iconShowRight = true;
   raised = false;
   expanded = false;
@@ -26,8 +28,7 @@ export class CardExampleComponent {
   closeLabel = 'Weniger Inhalt Anzeigen';
   openLabel = 'Mehr Inhalt Anzeigen';
 
-  constructor(private snackbar: LuxSnackbarService) {
-  }
+  constructor(private snackbar: LuxSnackbarService) {}
 
   onCardClicked() {
     console.log('Card clicked');

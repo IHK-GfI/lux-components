@@ -37,7 +37,12 @@
     </lux-filter-form>
   </lux-master-header-content-ac>
 
-  <lux-master-list-ac luxTitleProp="title" luxSubTitleProp="subtitle">
+  <lux-master-list-ac
+    luxTitleProp="title"
+    luxTitleTooltipProp="titleTooltip"
+    luxSubTitleProp="subtitle"
+    luxSubTitleTooltipProp="subtitleTooltip"
+  >
     <!-- Zugriff auf jedes einzelne Master-Element über "master" -->
     <ng-template #luxSimpleIcon let-master>
       <lux-icon [luxIconName]="master.icon" luxIconSize="1x"></lux-icon>

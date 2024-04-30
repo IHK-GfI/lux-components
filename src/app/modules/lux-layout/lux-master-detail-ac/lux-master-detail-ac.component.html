@@ -49,7 +49,9 @@
           *ngFor="let masterElement of luxMasterList"
           [luxTitleLineBreak]="luxTitleLineBreak"
           luxTitle="{{ masterElement | luxPropertyFromObject: masterSimple?.luxTitleProp ?? '' }}"
+          luxTitleTooltip="{{ masterElement | luxPropertyFromObject: masterSimple?.luxTitleTooltipProp ?? '' }}"
           luxSubTitle="{{ masterElement | luxPropertyFromObject: masterSimple?.luxSubTitleProp ?? '' }}"
+          luxSubTitleTooltip="{{ masterElement | luxPropertyFromObject: masterSimple?.luxSubTitleTooltipProp ?? '' }}"
         >
           <lux-list-item-icon>
             <ng-container *ngTemplateOutlet="masterSimple?.iconTempRef ?? null; context: { $implicit: masterElement }"></ng-container>
@@ -103,7 +105,9 @@
       <lux-card
         *ngIf="!detailHeader && luxDefaultDetailHeader"
         luxTitle="{{ luxMasterList[selectedPosition] | luxPropertyFromObject: masterSimple?.luxTitleProp ?? '' }}"
+        luxTitleTooltip="{{ luxMasterList[selectedPosition] | luxPropertyFromObject: masterSimple?.luxTitleTooltipProp ?? '' }}"
         luxSubTitle="{{ luxMasterList[selectedPosition] | luxPropertyFromObject: masterSimple?.luxSubTitleProp ?? '' }}"
+        luxSubTitleTooltip="{{ luxMasterList[selectedPosition] | luxPropertyFromObject: masterSimple?.luxSubTitleTooltipProp ?? '' }}"
         [luxTitleLineBreak]="luxTitleLineBreak"
         class="lux-detail-header-ac lux-mb-4"
         luxTagId="defaultDetailHeader"
