@@ -1,0 +1,50 @@
+{
+  "manifestVersion": "1",
+  "project": {
+    "name": "LUX-Demo",
+    "id": "lux-components-demo",
+    "structure": {
+      "type": "gen",
+      "subprojects": {
+        "lux-components-github-mirror": "lux-components-github-mirror"
+      }
+    },
+    "urls": {
+      "application": {
+        "entw": "https://lux-demo-dev.applicationplatform.gfi.ihk.de/",
+        "prod": "https://lux-demo.applicationplatform.gfi.ihk.de/"
+      },
+      "documentation": {
+        "confluence": "https://github.com/IHK-GfI/lux-components"
+      }
+    },
+    "platforms": {
+      "bitbucket": {
+        "projectKey": "JAST",
+        "repoKey": "lux-components-github-mirror"
+      },
+      "kubernetes": {
+        "id": "lux-components-demo",
+        "argocd": "devportal",
+        "deployments": {
+          "backstage": {
+            "imagePath": "lux-components-demo/lux-components-demo"
+          }
+        }
+      }
+    }
+  },
+  "owner": {
+    "department": "Architektur & Framework",
+    "teamname": "Team Frameworks",
+    "serviceline": "Devops",
+    "members": [
+      {
+        "forename": "Thomas",
+        "surname": "Dickhut",
+        "email": "thomas.dickhut@gfi.ihk.de",
+        "roles": ["DEV"]
+      }
+    ]
+  }
+}
