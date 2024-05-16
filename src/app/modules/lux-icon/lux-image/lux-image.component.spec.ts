@@ -6,7 +6,6 @@ import { By } from '@angular/platform-browser';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxImageComponent', () => {
-
   beforeEach(async () => {
     LuxTestHelper.configureTestModule([], [MockComponent]);
   });
@@ -26,6 +25,24 @@ describe('LuxImageComponent', () => {
     fixture.detectChanges();
     // Then
     expect(component.imageCmp.luxImageSrc).toEqual('assets/png/example.png');
+  });
+
+  it('Sollte den externen Http-Link nicht verändern', () => {
+    // Given
+    component.href = 'http://png/example.png';
+    // When
+    fixture.detectChanges();
+    // Then
+    expect(component.imageCmp.luxImageSrc).toEqual('http://png/example.png');
+  });
+
+  it('Sollte den externen Https-Link nicht verändern', () => {
+    // Given
+    component.href = 'https://png/example.png';
+    // When
+    fixture.detectChanges();
+    // Then
+    expect(component.imageCmp.luxImageSrc).toEqual('https://png/example.png');
   });
 
   it('Sollte mehrfache und anführende Schrägstriche entfernen', () => {
@@ -61,9 +78,7 @@ describe('LuxImageComponent', () => {
 
 @Component({
   selector: 'mock-component',
-  template: `
-    <lux-image [luxImageSrc]="href" [luxRawSrc]="raw"></lux-image>
-  `
+  template: ` <lux-image [luxImageSrc]="href" [luxRawSrc]="raw"></lux-image> `
 })
 class MockComponent {
   href?: string;

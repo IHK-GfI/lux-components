@@ -13,17 +13,17 @@ export class LuxImageComponent implements OnChanges, OnInit {
   @Input() luxAlt = '';
 
   @Output() luxClicked: EventEmitter<Event> = new EventEmitter();
-  
+
   isObserved = false;
 
   constructor() {}
 
   ngOnInit() {
     if (this.luxClicked.observed) {
-      this.isObserved=true;
+      this.isObserved = true;
     }
   }
-  
+
   ngOnChanges(simpleChanges: SimpleChanges) {
     if (simpleChanges.luxImageSrc) {
       if (!this.luxRawSrc) {
@@ -44,7 +44,7 @@ export class LuxImageComponent implements OnChanges, OnInit {
     if (this.luxImageSrc) {
       // Prüfen, ob es sich um ein externes Bild handelt
       if (this.luxImageSrc.startsWith('http')) {
-        this.sanitizeImageSrc();
+        // Externe Links werden nicht verändert.
       } else {
         // Wenn nicht, auf den Assets-Ordner verweisen
         if (this.luxImageSrc.indexOf('asset') === -1) {
