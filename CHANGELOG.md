@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 16.2.0
+
+### New
+
+- **lux-app-header-ac**: Die Properties "luxBrandLogoSrc" und "luxAppLogoSrc" in der LuxAppHeaderAcComponent lassen nur relative Pfade zu. [Issue 472](https://github.com/IHK-GfI/lux-components/issues/472)
+
 ## Version 16.1.0
 
 ### New
