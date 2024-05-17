@@ -7,6 +7,10 @@
 - **lux-app-header-ac**: Die Properties "luxBrandLogoSrc" und "luxAppLogoSrc" in der LuxAppHeaderAcComponent lassen nur relative Pfade zu. [Issue 472](https://github.com/IHK-GfI/lux-components/issues/472)
 - **lux-stepper-large**: Barrierefreiheit Stepper (OZG): Transparenz ändern. [Issue 469](https://github.com/IHK-GfI/lux-components/issues/469)
 
+### Bug Fixes
+
+- **lux-file-upload**: Das Aria-Label wird bei File-Upload nicht gesetzt. [Issue 471](https://github.com/IHK-GfI/lux-components/issues/471)
+
 ## Version 16.1.0
 
 ### New
