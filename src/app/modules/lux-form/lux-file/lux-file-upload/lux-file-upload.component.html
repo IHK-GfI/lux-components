@@ -57,6 +57,7 @@
     </mat-error>
     <lux-button
       [luxTagId]="uid + '-delete-error-message-button'"
+      [luxAriaLabel]="errorMessage"
       class="lux-file-upload-error-button"
       luxIconName="lux-interface-delete-1"
       (luxClicked)="onCloseErrorMessage()"
