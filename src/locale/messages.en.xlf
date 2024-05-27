@@ -655,7 +655,7 @@
         <target>Button to delete the file <x id="INTERPOLATION" equiv-text="{{ file.name }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-upload/lux-file-upload.component.html</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file.upload.error_message.max_file_size" datatype="html">

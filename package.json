@@ -1,6 +1,6 @@
 {
   "name": "@ihk-gfi/lux-components",
-  "version": "16.1.0",
+  "version": "16.2.0",
   "license": "IHK-GfI Open-Source-Lizenz",
   "private": false,
   "repository": {
@@ -28,7 +28,7 @@
     "husky-init": "husky install"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "16.2.13",
+    "@angular-devkit/build-angular": "16.2.14",
     "@angular-eslint/builder": "16.3.1",
     "@angular-eslint/eslint-plugin": "16.3.1",
     "@angular-eslint/eslint-plugin-template": "16.3.1",
@@ -36,7 +36,7 @@
     "@angular-eslint/template-parser": "16.3.1",
     "@angular/animations": "16.2.12",
     "@angular/cdk": "16.2.14",
-    "@angular/cli": "16.2.13",
+    "@angular/cli": "16.2.14",
     "@angular/common": "16.2.12",
     "@angular/compiler": "16.2.12",
     "@angular/compiler-cli": "16.2.12",
@@ -68,7 +68,7 @@
     "hammerjs": "2.0.8",
     "husky": "8.0.3",
     "jasmine-core": "4.6.0",
-    "karma": "6.4.1",
+    "karma": "6.4.3",
     "karma-chrome-launcher": "3.2.0",
     "karma-coverage": "2.2.1",
     "karma-firefox-launcher": "2.1.2",
