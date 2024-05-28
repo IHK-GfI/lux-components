@@ -33,8 +33,7 @@ import { LuxAutocompleteErrorStateMatcherAc } from './lux-autocomplete-error-sta
 })
 export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null>
   extends LuxLookupComponent<T>
-  implements OnInit, AfterViewInit
-{
+  implements OnInit, AfterViewInit {
   filtered: LuxLookupTableEntry[] = [];
   entriesCount = 0;
   latestSearchValue?: string;
