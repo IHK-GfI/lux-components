@@ -33,6 +33,7 @@ import { LuxTourHintModule } from './modules/lux-tour-hint/lux-tour-hint.module'
 
 const myConfiguration: LuxComponentsConfigParameters = {
   generateLuxTagIds: environment.generateLuxTagIds,
+  iconBasePath: 'https://cdn.gfi.ihk.de/lux-components/icons-and-fonts/v1.8.0/',
   labelConfiguration: {
     allUppercase: true,
     notAppliedTo: ['lux-link', 'lux-menu-item', 'lux-side-nav-item', 'lux-tab', 'lux-step']

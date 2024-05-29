@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 16.3.0
+
+- **lux-icon**: Bei konfiguriertem CDN funktionieren die Custom-Icons nicht. [Issue 477](https://github.com/IHK-GfI/lux-components/issues/477)
+
 ## Version 16.2.0
 
 ### New
