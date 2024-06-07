@@ -9,6 +9,7 @@
 ### Bug Fixes
 
 - **lux-icon**: Bei konfiguriertem CDN funktionieren die Custom-Icons nicht. [Issue 477](https://github.com/IHK-GfI/lux-components/issues/477)
+- **lux-dialog**: Close-Button im LUX-Dialog hat keine ARIA-Role. [Issue 480](https://github.com/IHK-GfI/lux-components/issues/480)
 
 ## Version 16.2.0
 
