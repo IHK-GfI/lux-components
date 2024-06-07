@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 17.0.0
+
+### New
+
+- **lux-tooltip**: MDC-Migration: @angular/material/tooltip. [Issue 462](https://github.com/IHK-GfI/lux-components/issues/462)
+
 ## Version 16.3.0
 
 ### New
