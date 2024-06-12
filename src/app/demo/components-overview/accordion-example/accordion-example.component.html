@@ -49,6 +49,15 @@
           sanctus est Lorem ipsum dolor sit amet.
         </lux-panel-content>
       </lux-panel>
+      <app-custom-panel
+        [showOutputEvents]="showOutputEvents"
+        [luxExpanded]="expanded"
+        [luxHideToggle]="hideToggle"
+        [luxDisabled]="disabled"
+        [luxExpandedHeaderHeight]="expandedHeaderHeight"
+        [luxCollapsedHeaderHeight]="collapsedHeaderHeight"
+      ></app-custom-panel>
+      
     </lux-accordion>
   </example-base-content>
   <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">

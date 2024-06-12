@@ -105,6 +105,7 @@ import { TenantLogoExampleComponent } from './tenant-logo-example/tenant-logo-ex
 import { LuxTenantLogoModule } from '../../modules/lux-tenant-logo/lux-tenant-logo.module';
 import { TenantLogoExampleConfigComponent } from './tenant-logo-example/tenant-logo-example-config/tenant-logo-example-config.component';
 import { TourHintExampleComponent } from './tour-hint-example/tour-hint-example.component';
+import { CustomPanelComponent } from './accordion-example/custom-panel/custom-panel.component';
 
 @NgModule({
   imports: [
@@ -216,7 +217,8 @@ import { TourHintExampleComponent } from './tour-hint-example/tour-hint-example.
     TextboxExampleComponent,
     TenantLogoExampleComponent,
     TenantLogoExampleConfigComponent,
-    TourHintExampleComponent
+    TourHintExampleComponent,
+    CustomPanelComponent
   ],
   providers: [HttpClient]
 })
