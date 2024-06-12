@@ -40,7 +40,7 @@ export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
   subscriptions: Subscription[] = [];
   mobile: boolean;
 
-  constructor(@Optional() @Host() @SkipSelf() private parent: LuxAccordionComponent, private mediaQuery: LuxMediaQueryObserverService) {
+  constructor(@Optional() @Host() @SkipSelf() protected parent: LuxAccordionComponent, protected mediaQuery: LuxMediaQueryObserverService) {
     this.mobile = mediaQuery.isSmallerOrEqual('sm');
 
     this.subscriptions.push(
@@ -84,7 +84,7 @@ export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    LuxUtil.assertNonNull('matExpansionPanel', this.matExpansionPanel);
+    LuxUtil.assertNonNull('matExpansionPanel', this.getMatExpansionPanel());
 
     if (this.parent) {
       // Diese Zeile wird benötigt, damit der Multi-Mode (nur ein Abschnitt darf geöffnet sein)
@@ -92,9 +92,13 @@ export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
       // muss einen Zyklus später stattfinden, um einen ExpressionChangedAfterItHasBeenCheckedError
       // zu vermeiden.
       setTimeout(() => {
-        this.matExpansionPanel.accordion = this.parent.matAccordion;
+        this.getMatExpansionPanel().accordion = this.parent.matAccordion;
       });
     }
+  }
+
+  protected getMatExpansionPanel() {
+    return this.matExpansionPanel;
   }
 
   ngOnDestroy() {
