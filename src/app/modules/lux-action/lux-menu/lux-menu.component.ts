@@ -1,6 +1,7 @@
 import {
   AfterContentInit,
   AfterViewChecked,
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ContentChild,
@@ -25,7 +26,7 @@ import { LuxMenuTriggerComponent } from './lux-menu-subcomponents/lux-menu-trigg
   selector: 'lux-menu',
   templateUrl: './lux-menu.component.html'
 })
-export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnDestroy {
+export class LuxMenuComponent implements AfterViewInit, AfterContentInit, AfterViewChecked, OnDestroy {
   // Diese Werte müssen angepasst werden, sollte das Styling dieser Component entsprechend geändert worden sein
   private readonly PADDING_PX: number;
   private readonly MARGIN_PX: number;
@@ -45,6 +46,8 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   private menuItemChangeSubscription!: Subscription;
 
   hideToggle = false;
+  triggerButtonDivEl?: HTMLElement;
+  customTriggerEl?: HTMLElement;
 
   @ViewChild('defaultTrigger', { read: ElementRef }) defaultTriggerElRef?: ElementRef;
   @ViewChild('menuTrigger', { read: ElementRef }) menuTriggerElRef?: ElementRef;
@@ -115,7 +118,7 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     this.cdr.detectChanges();
   }
 
-  constructor(private cdr: ChangeDetectorRef, private themeService: LuxThemeService) {
+  constructor(private cdr: ChangeDetectorRef, private themeService: LuxThemeService, private elementRef: ElementRef) {
     this.canvas = document.createElement('canvas');
 
     // die folgenden Werte sind für die Berechnung der Breite der extended Menüitems
@@ -156,6 +159,18 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
     }
   }
 
+  ngAfterViewInit(): void {
+    this.triggerButtonDivEl = this.elementRef.nativeElement.querySelector('div.lux-menu-trigger');
+    this.customTriggerEl = this.elementRef.nativeElement.querySelector('lux-menu-trigger');
+    this.customTriggerEl?.addEventListener("click", this.onTrigger.bind(this));
+  }
+
+  onTrigger() {
+    if (this.customTriggerEl && this.triggerButtonDivEl) {
+      this.triggerButtonDivEl.click();
+    }
+  }
+
   ngAfterContentInit() {
     this.menuItemChangeSubscription = this.luxMenuItemComponents.changes.subscribe(() => {
       this.menuItems = this.luxMenuItemComponents.toArray();
@@ -171,6 +186,10 @@ export class LuxMenuComponent implements AfterContentInit, AfterViewChecked, OnD
   }
 
   ngOnDestroy(): void {
+    if(this.customTriggerEl && this.triggerButtonDivEl) {
+      this.customTriggerEl?.removeEventListener("click", this.onTrigger);
+    }
+
     if (this.menuItemChangeSubscription) {
       this.menuItemChangeSubscription.unsubscribe();
     }

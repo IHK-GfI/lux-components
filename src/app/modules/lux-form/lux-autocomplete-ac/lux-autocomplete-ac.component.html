@@ -15,6 +15,7 @@
     <input
       type="text"
       matInput
+      [attr.aria-controls]="'mat-autocomplete-' + uidCounter"
       autocomplete="off"
       luxTagIdHandler
       [luxNameAttr]="luxName"

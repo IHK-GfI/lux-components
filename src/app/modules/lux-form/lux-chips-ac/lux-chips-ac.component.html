@@ -12,7 +12,9 @@
         luxOrientation === 'horizontal' && luxInputAllowed ? 'lux-chips-list-offset' : 'lux-chips-list'
       ]"
       [disabled]="luxDisabled"
+      [attr.aria-labelledby]="uid + '-label'"
       [aria-orientation]="luxOrientation"
+      role="listbox"
       [multiple]="luxMultiple"
       #chips
     >
@@ -80,46 +82,48 @@
         </ng-container>
       </ng-container>
 
-      <ng-container *ngIf="luxInputAllowed">
-        <div class="lux-chips-input-container">
-          <input
-            [id]="uid"
-            [placeholder]="luxPlaceholder"
-            [matChipInputFor]="chips"
-            [matChipInputAddOnBlur]="true"
-            [matAutocomplete]="auto"
-            [attr.aria-labelledby]="uid + '-label'"
-            [disabled]="luxDisabled"
-            (matChipInputTokenEnd)="inputAdd(input)"
-            (focusout)="onFocusOut()"
-            (keyup)="inputChanged(input.value)"
-            (click)="onAutocompleteClick()"
-            type="text"
-            class="lux-flex lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-auto"
-            #input
-          />
-          <lux-icon
-            luxIconName="lux-interface-arrows-button-down"
-            luxIconSize="1x"
-            [ngClass]="{ 'lux-disabled': luxDisabled }"
-            class="lux-color-blue lux-chips-autocomplete-icon"
-            aria-hidden="true"
-            (click)="onArrowIcon()"
-          ></lux-icon>
-        </div>
-        <mat-autocomplete
-          [class]="!luxDense ? 'lux-chips-ac-autocomplete-panel' : 'lux-chips-ac-autocomplete-panel-dense'"
-          [disableRipple]="true"
-          (optionSelected)="autoCompleteAdd(input, $event.option.value)"
-          (opened)="onAutoCompleteOpened()"
-          #auto="matAutocomplete"
-        >
-          <mat-option *ngFor="let option of displayedOptions" [value]="option" [ngClass]="{ 'lux-option-multiline': luxOptionMultiline }">
-            {{ option }}
-          </mat-option>
-        </mat-autocomplete>
-      </ng-container>
+
     </mat-chip-list>
+    <ng-container *ngIf="luxInputAllowed">
+      <div class="lux-chips-input-container">
+        <input
+          [id]="uid"
+          [attr.aria-controls]="'mat-autocomplete-' + uidCounter"
+          [placeholder]="luxPlaceholder"
+          [matChipInputFor]="chips"
+          [matChipInputAddOnBlur]="true"
+          [matAutocomplete]="auto"
+          [attr.aria-labelledby]="uid + '-label'"
+          [disabled]="luxDisabled"
+          (matChipInputTokenEnd)="inputAdd(input)"
+          (focusout)="onFocusOut()"
+          (keyup)="inputChanged(input.value)"
+          (click)="onAutocompleteClick()"
+          type="text"
+          class="lux-flex lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-auto"
+          #input
+        />
+        <lux-icon
+          luxIconName="lux-interface-arrows-button-down"
+          luxIconSize="1x"
+          [ngClass]="{ 'lux-disabled': luxDisabled }"
+          class="lux-color-blue lux-chips-autocomplete-icon"
+          aria-hidden="true"
+          (click)="onArrowIcon()"
+        ></lux-icon>
+      </div>
+      <mat-autocomplete
+        [class]="!luxDense ? 'lux-chips-ac-autocomplete-panel' : 'lux-chips-ac-autocomplete-panel-dense'"
+        [disableRipple]="true"
+        (optionSelected)="autoCompleteAdd(input, $event.option.value)"
+        (opened)="onAutoCompleteOpened()"
+        #auto="matAutocomplete"
+      >
+        <mat-option *ngFor="let option of displayedOptions" [value]="option" [ngClass]="{ 'lux-option-multiline': luxOptionMultiline }">
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </ng-container>
   </lux-form-control-wrapper>
 </div>
 
