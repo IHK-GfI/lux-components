@@ -83,30 +83,38 @@
 <ng-template #menuTriggerTemplate>
   <div
     [matMenuTriggerFor]="menu"
+    role="button"
+    [luxAriaLabel]="luxAriaMenuTriggerLabel"
     class="lux-menu-trigger lux-color-primary-500"
     [ngClass]="{ 'lux-display-none-important': hideToggle }"
     #menuTrigger
     (menuOpened)="onMenuOpened()"
     (click)="menuTriggerStopPropagation($event)"
     (keydown.enter)="menuTriggerStopPropagation($event)"
+    #triggerdiv
   >
-    <!-- Custom-Trigger, der über Content-Projection geladen werden kann -->
-    <ng-content select="lux-menu-trigger"> </ng-content>
-    <!-- Default-Trigger -->
-    <lux-button
-      class="lux-menu-trigger-default"
-      luxTagId="lux-menu-default-trigger"
-      [luxLabel]="luxMenuLabel"
-      [luxIconName]="luxMenuIconName"
-      [luxAriaLabel]="luxAriaMenuTriggerLabel"
-      luxAriaLabelSelector="button"
-      luxTabIndex="0"
-      [luxApplyToChildren]="true"
-      [luxIconShowRight]="luxMenuTriggerIconShowRight"
-      [luxDisabled]="luxToggleDisabled"
-      #defaultTrigger
-      *ngIf="!luxMenuTriggerComponent && hasVisibleMenuItems()"
-    >
-    </lux-button>
   </div>
+
+  <!-- Custom-Trigger, der über Content-Projection geladen werden kann -->
+   <ng-container *ngIf="!hideToggle">
+     <ng-content select="lux-menu-trigger"> </ng-content>
+   </ng-container>
+
+  <!-- Default-Trigger -->
+  <lux-button
+    class="lux-menu-trigger-default"
+    luxTagId="lux-menu-default-trigger"
+    [luxLabel]="luxMenuLabel"
+    [luxIconName]="luxMenuIconName"
+    [luxAriaLabel]="luxAriaMenuTriggerLabel"
+    luxAriaLabelSelector="button"
+    luxTabIndex="0"
+    [luxApplyToChildren]="true"
+    [luxIconShowRight]="luxMenuTriggerIconShowRight"
+    [luxDisabled]="luxToggleDisabled"
+    (luxClicked)="triggerdiv.click()"
+    #defaultTrigger
+    *ngIf="!luxMenuTriggerComponent && hasVisibleMenuItems()"
+  >
+  </lux-button>
 </ng-template>

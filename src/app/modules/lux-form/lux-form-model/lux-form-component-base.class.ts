@@ -53,7 +53,8 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
   formGroup!: FormGroup;
   formControl!: FormControl<T>;
 
-  uid: string = 'lux-form-control-' + luxFormControlUID++;
+  uid: string = 'lux-form-control-' + luxFormControlUID;
+  uidCounter = luxFormControlUID++;
 
   @ContentChild(LuxFormLabelComponent) formLabelComponent?: LuxFormLabelComponent;
   @ContentChild(LuxFormHintComponent) formHintComponent?: LuxFormHintComponent;
