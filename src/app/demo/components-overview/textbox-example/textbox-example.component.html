@@ -5,9 +5,8 @@
   <example-base-content class="lux-flex lux-flex-col lux-gap-3">
     <div class="container">
       <lux-textbox [luxTitle]="title" [luxIcon]="icon" [luxColor]="color" [luxHeading]="heading" class="lux-pt-5">
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo itaque accusamus facere labore mollitia at aut nesciunt
-          fugiat, sequi quos, quo quibusdam tempora provident veniam sunt distinctio. Aliquid, magnam dolore.
+        <p *ngIf="content">
+          {{content}}
         </p>
       </lux-textbox>
     </div>
@@ -103,6 +102,7 @@
       [(luxValue)]="title"
       luxHint="Property um den Titel einer Textbox zu setzen."
     ></lux-input-ac>
+    <lux-textarea-ac luxLabel="Inhalt" [(luxValue)]="content"></lux-textarea-ac>
     <lux-input-ac luxLabel="luxIcon" [(luxValue)]="icon" luxHint="Property um das Icon einer Textbox zu setzen."></lux-input-ac>
     <lux-select-ac
       luxLabel="luxColor"

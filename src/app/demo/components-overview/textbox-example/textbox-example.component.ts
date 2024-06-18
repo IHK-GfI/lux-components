@@ -8,6 +8,7 @@ import { LuxTextboxColor } from '../../../modules/lux-util/lux-colors.enum';
 })
 export class TextboxExampleComponent {
   title = 'Information';
+  content = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo itaque accusamus facere labore mollitia at aut nesciunt fugiat, sequi quos, quo quibusdam tempora provident veniam sunt distinctio. Aliquid, magnam dolore.`;
   color: LuxTextboxColor | undefined;
   icon = 'lux-interface-alert-information-circle';
   heading = 2;
