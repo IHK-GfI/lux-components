@@ -64,6 +64,7 @@ export class LuxFilterFormComponent implements OnInit, AfterViewInit, OnDestroy 
   @Input() luxDefaultFilterMessage = $localize`:@@luxc.filter.defaultFilterMessage:Es wird nach den Standardeinstellungen gefiltert.`;
   @Input() luxShowChips = true;
   @Input() luxHideChipsBorder = false;
+  @Input() luxHideMenu = false;
   @Input() luxStoredFilters: LuxFilter[] = [];
   @Input() luxDisableShortcut = false;
   @Input() luxShowAsCard = false;

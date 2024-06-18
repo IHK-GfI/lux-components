@@ -12,6 +12,8 @@
         (luxOnLoad)="onLoad($event)"
         (luxOnReset)="onReset()"
         (luxOnDelete)="onDelete($event)"
+        [luxTitle]="title"
+        [luxHideMenu]="hideMenu"
         [luxShowChips]="showFilterChips"
         [luxHideChipsBorder]="hideChipsBorder"
         [luxStoredFilters]="storedFilters"
@@ -142,6 +144,9 @@
       <!-- Beispiel als Card -->
       <h2>Lux-Filter-Form in einer Card</h2>
       <lux-filter-form
+        [luxTitle]="title"
+        [luxHideMenu]="hideMenu"
+        [luxHideChipsBorder]="hideChipsBorder"
         [luxShowAsCard]="true"
         [luxExpandedLabelOpen]="openLabel"
         [luxExpandedLabelClose]="closeLabel"
@@ -275,10 +280,16 @@
     </div>
   </example-base-content>
   <example-base-simple-options>
+    <h3 class="lux-highlight-section-label">Basis</h3>
+    <lux-input-ac luxLabel="luxTitle" [(luxValue)]="title"></lux-input-ac>
+    <lux-toggle-ac luxLabel="luxHideMenu" [(luxChecked)]="hideMenu" [luxNoLabels]="true"></lux-toggle-ac>
+
     <h3 class="lux-highlight-section-label">Button</h3>
     <div class="lux-flex lux-flex-col lux-gap-4">
-      <lux-toggle-ac luxLabel="luxButtonFilterFlat" [(luxChecked)]="buttonFlat" [luxNoLabels]="true"></lux-toggle-ac>
-      <lux-toggle-ac luxLabel="luxHideChipsBorder" [(luxChecked)]="hideChipsBorder" [luxNoLabels]="true"></lux-toggle-ac>
+      <div>
+        <lux-toggle-ac luxLabel="luxButtonFilterFlat" [(luxChecked)]="buttonFlat" [luxNoLabels]="true"></lux-toggle-ac>
+        <lux-toggle-ac luxLabel="luxHideChipsBorder" [(luxChecked)]="hideChipsBorder" [luxNoLabels]="true"></lux-toggle-ac>
+      </div>
       <lux-select-ac
         luxLabel="luxButtonFilterColor"
         [(luxSelected)]="buttonFilterColor"
@@ -331,11 +342,11 @@
         [luxNoTopLabel]="true"
       ></lux-toggle-ac>
     </div>
-    <h3>Filterwert</h3>
+    <h3>Modell</h3>
     <div class="lux-flex lux-flex-col lux-gap-4 filter-config-item column">
       <lux-textarea-ac
+        luxLabel="Filterwert"
         luxTagId="filter-value"
-        [luxNoTopLabel]="true"
         [(luxValue)]="replaceFilterJson"
         luxHint="JSON-Format"
       ></lux-textarea-ac>

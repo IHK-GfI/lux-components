@@ -57,6 +57,8 @@ export class FilterExampleComponent implements OnInit, OnDestroy {
   "toggle": true
   }`;
 
+  title = 'Filter';
+  hideMenu = false;
   expanded = false;
   showFilterChips = true;
   hideChipsBorder = false;
