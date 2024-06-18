@@ -9,7 +9,7 @@
   >
     <lux-panel-header-title class="lux-filter-panel-header">
       {{ luxTitle }}
-      <ng-container *ngIf="luxFilterExpanded">
+      <ng-container *ngIf="luxFilterExpanded && !luxHideMenu">
         <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container>
       </ng-container>
     </lux-panel-header-title>
@@ -32,7 +32,9 @@
   luxTagId="luxFilterCard"
 >
   <lux-card-info>
-    <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container>
+    <ng-container *ngIf="!luxHideMenu">
+      <ng-container *ngTemplateOutlet="filterActionTemplate"></ng-container>
+    </ng-container>
   </lux-card-info>
   <lux-card-content>
     <ng-container *ngTemplateOutlet="filterFormTemplate"></ng-container>
@@ -113,6 +115,8 @@
 </div>
 <lux-chips-ac
   *ngIf="this.filterItems.length > 0 && !luxFilterExpanded && luxShowChips && initComplete"
+  luxAriaLabel="Filterchips"
+  luxAriaLabelSelector="mat-chip-list"
   [luxHideBorder]="luxHideChipsBorder"
   class="filter-item"
 >
