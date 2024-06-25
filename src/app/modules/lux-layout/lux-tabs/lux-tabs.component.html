@@ -13,6 +13,7 @@
     #matTabs
     luxTagIdHandler
     [luxTagId]="luxTagId"
+    [luxCustomTagId]="luxTagId"
   >
     <ng-container *ngIf="luxTabAnimationActive">
       <!-- Lazy Loading
@@ -36,6 +37,7 @@
             <div
               luxTagIdHandler
               [luxTagId]="luxTab.luxTagIdContent"
+              [luxCustomTagId]="luxTab.luxTagIdContent"
               class="lux-mt-3 lux-tab-content"
               [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }"
             >
@@ -58,6 +60,7 @@
           <div
             luxTagIdHandler
             [luxTagId]="luxTab.luxTagIdContent"
+            [luxCustomTagId]="luxTab.luxTagIdContent"
             class="lux-mt-3 lux-tab-content"
             [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }"
           >
@@ -86,6 +89,7 @@
       <section
         luxTagIdHandler
         [luxTagId]="luxTab.luxTagIdContent"
+        [luxCustomTagId]="luxTab.luxTagIdContent"
         *ngIf="!luxLazyLoading"
         [class.lux-display-none]="i !== luxActiveTab"
         class="lux-mt-3 lux-tab-content"
@@ -97,6 +101,7 @@
       <section
         luxTagIdHandler
         [luxTagId]="luxTab.luxTagIdContent"
+        [luxCustomTagId]="luxTab.luxTagIdContent"
         *ngIf="luxLazyLoading && i === luxActiveTab"
         class="lux-mt-3 lux-tab-content"
         [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }"
@@ -108,7 +113,7 @@
   </ng-container>
 </div>
 <ng-template #tabLabelTemplate let-luxTab>
-  <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdHeader" class="lux-mt-3 lux-mb-3">
+  <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdHeader" [luxCustomTagId]="luxTab.luxTagIdHeader" class="lux-mt-3 lux-mb-3">
     <div class="lux-flex lux-flex-grow-1 lux-flex-shrink-1 lux-flex-basis-auto gt-sm:lux-flex-col xs:lux-flex-row">
       <div class="lux-flex lux-place-content-center lux-items-center lux-flex-grow-0 lux-flex-shrink-0">
         <div

@@ -19,12 +19,14 @@ import { LuxAriaInvalidDirective } from './lux-aria/lux-aria-invalid.directive';
 import { LuxAriaRequiredDirective } from './lux-aria/lux-aria-required.directive';
 import { LuxAriaLabelledbyDirective } from './lux-aria/lux-aria-labelledby.directive';
 import { LuxBadgeNotificationDirective } from './lux-badge-notification/lux-badge-notification.directive';
+import { LuxCustomTagIdDirective } from './lux-tag-id/lux-custom-tag-id.directive';
 
 @NgModule({
   imports: [CommonModule, MatTooltipModule, MatBadgeModule, MatRippleModule, LuxComponentsConfigModule],
   declarations: [
     LuxInfiniteScrollDirective,
     LuxTagIdDirective,
+    LuxCustomTagIdDirective,
     LuxTooltipDirective,
     LuxTabIndexDirective,
     LuxRippleDirective,
@@ -44,6 +46,7 @@ import { LuxBadgeNotificationDirective } from './lux-badge-notification/lux-badg
   exports: [
     LuxInfiniteScrollDirective,
     LuxTagIdDirective,
+    LuxCustomTagIdDirective,
     LuxTooltipDirective,
     LuxTabIndexDirective,
     LuxAriaLabelDirective,

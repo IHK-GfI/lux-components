@@ -12,6 +12,7 @@
       (luxClicked)="onCardClicked()"
       [luxExpandedLabelClose]="closeLabel"
       [luxExpandedLabelOpen]="openLabel"
+      luxCustomTagId="my-card-id" luxCustomTagIdSelector="mat-card"
     >
       <lux-icon luxIconName="lux-cogs" *ngIf="showIcon"></lux-icon>
       <lux-card-info *ngIf="showInfo">
