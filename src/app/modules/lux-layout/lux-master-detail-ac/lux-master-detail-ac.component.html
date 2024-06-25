@@ -9,6 +9,7 @@
     tabindex="1"
     luxTagIdHandler
     [luxTagId]="luxTagIdMaster"
+    [luxCustomTagId]="luxTagIdMaster"
     [ngClass]="{
       'lux-master-ac-container-mobile': isMobile,
       'lux-master-ac-container-medium': isMedium,
@@ -88,6 +89,7 @@
       'lux-empty-detail': selectedPosition < 0
     }"
     [luxTagId]="luxTagIdDetail"
+    [luxCustomTagId]="luxTagIdDetail"
     tabindex="2"
   >
     <!-- Button für die Mobile Ansicht -->
