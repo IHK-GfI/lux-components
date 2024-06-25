@@ -35,6 +35,7 @@ export * from './src/app/modules/lux-directives/lux-directives.module';
 // Directives
 export * from './src/app/modules/lux-directives/lux-infinite-scroll/lux-infinite-scroll.directive';
 export * from './src/app/modules/lux-directives/lux-tag-id/lux-tag-id.directive';
+export * from './src/app/modules/lux-directives/lux-tag-id/lux-custom-tag-id.directive';
 export * from './src/app/modules/lux-directives/lux-tooltip/lux-tooltip.directive';
 export * from './src/app/modules/lux-directives/lux-tabindex/lux-tab-index.directive';
 export * from './src/app/modules/lux-directives/lux-badge-notification/lux-badge-notification.directive';
