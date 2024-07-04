@@ -122,7 +122,7 @@ export class AutocompleteAuthenticExampleComponent {
       { label: 'Optionale Aufgaben', short: 'ZA', value: 'I' }
     ];
 
-    for (let i = 0; i < 20000; i++) {
+    for (let i = 0; i < 2000; i++) {
       const number = `${i}`.padStart(5, '0');
       options.push({ label: 'Lorem ipsum ' + number, short: 'LI_' + number, value: 'Li_' + number });
     }
