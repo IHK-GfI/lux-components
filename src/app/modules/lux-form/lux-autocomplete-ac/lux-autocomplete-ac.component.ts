@@ -42,6 +42,17 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   activeIndex = -1;
   focused = false;
   _luxOptions: O[] = [];
+  autoFillObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (this.luxStrict && mutation.attributeName === 'class') {
+        const targetElement = mutation.target as HTMLElement;
+        if (targetElement.classList) {
+          this.updateFormControlValue();
+          this.formControl.markAsTouched();
+        }
+      }
+    });
+  });
 
   @Input() luxPlaceholder = '';
   @Input() luxOptionLabelProp = 'label';
@@ -145,6 +156,12 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
 
     this.subscriptions.forEach((sub) => sub.unsubscribe());
     this.valueChangeSubscription?.unsubscribe();
+
+    try {
+      this.autoFillObserver.disconnect();
+    } catch (error) {
+      // Nothing to do
+    }
   }
 
   ngAfterViewInit() {
@@ -194,6 +211,12 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
     );
 
     this.registerNewValueChangesListener();
+
+    this.autoFillObserver.observe(this.matInput.nativeElement, {
+      attributes: true,
+      childList: false,
+      characterData: false
+    });
   }
 
   /**
