@@ -46,7 +46,7 @@ describe('LuxFileInputAcComponent', () => {
       } as any;
 
       // Wir mocken hier den FileReader weg, da er nicht mit fakeAsync kompatibel ist
-      spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve('base64-dummy'));
+      spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve(base64Dummy));
       // Den read-Delay für die Ladeanzeige mocken
       fileComponent.defaultReadFileDelay = 0;
       fixture.detectChanges();
@@ -63,7 +63,7 @@ describe('LuxFileInputAcComponent', () => {
       expect(localFileComponent.luxSelected).toBeUndefined();
 
       // Änderungen durchführen
-      const fileObject = { name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' };
+      const fileObject = { name: 'mockfile.txt', type: 'text/txt', content: base64Dummy };
       localTestComponent.formControl.setValue(fileObject);
       LuxTestHelper.wait(localFixture);
 
@@ -84,8 +84,8 @@ describe('LuxFileInputAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(testComponent.formControl.value.content).toEqual('base64-dummy');
-      expect(fileComponent.formControl.value!.content).toEqual('base64-dummy');
+      expect(testComponent.formControl.value.content).toEqual(base64Dummy);
+      expect(fileComponent.formControl.value!.content).toEqual(base64Dummy);
     }));
 
     it('Sollte required sein', fakeAsync(() => {
@@ -124,7 +124,7 @@ describe('LuxFileInputAcComponent', () => {
       } as any;
 
       // Wir mocken hier den FileReader weg, da er nicht mit fakeAsync kompatibel ist
-      spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve('base64-dummy'));
+      spyOn(fileComponent, 'readFile').and.returnValue(Promise.resolve(base64Dummy));
       // Den read-Delay für die Ladeanzeige mocken
       fileComponent.defaultReadFileDelay = 0;
       fixture.detectChanges();
@@ -222,9 +222,9 @@ describe('LuxFileInputAcComponent', () => {
       expect(spyDrag).toHaveBeenCalledTimes(1);
       expect(spyDrop).toHaveBeenCalledTimes(1);
       expect(testComponent.selected!.name).toEqual('mockfile1.txt');
-      expect(testComponent.selected!.content).toEqual('base64-dummy');
+      expect(testComponent.selected!.content).toEqual(base64Dummy);
       expect(fileComponent.luxSelected!.name).toEqual('mockfile1.txt');
-      expect(fileComponent.luxSelected!.content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected!.content).toEqual(base64Dummy);
     }));
 
     it('Sollte die Dateien an die entsprechende luxUploadUrl hochladen', fakeAsync(() => {
@@ -261,7 +261,7 @@ describe('LuxFileInputAcComponent', () => {
       expect(localFileComponent.luxSelected).toBeUndefined();
 
       // Änderungen durchführen
-      const fileObject = { name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' };
+      const fileObject = { name: 'mockfile.txt', type: 'text/txt', content: base64Dummy };
       localTestComponent.selected = fileObject;
       LuxTestHelper.wait(localFixture);
 
@@ -274,7 +274,7 @@ describe('LuxFileInputAcComponent', () => {
 
     it('Sollte beim Klick auf den Entfernen-Button die Selektion leeren', fakeAsync(() => {
       // Vorbedingungen testen
-      testComponent.selected = { name: 'mockfile.txt', type: 'text/txt', content: 'base64-dummy' };
+      testComponent.selected = { name: 'mockfile.txt', type: 'text/txt', content: base64Dummy };
       LuxTestHelper.wait(fixture);
 
       expect(fileComponent.luxSelected).toEqual(testComponent.selected);
@@ -342,7 +342,7 @@ describe('LuxFileInputAcComponent', () => {
       flush();
 
       expect(fileComponent.luxSelected!.name).toEqual('mockfile1.png');
-      expect(fileComponent.luxSelected!.content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected!.content).toEqual(base64Dummy);
       expect(spy).toHaveBeenCalledTimes(1);
 
       // Änderungen durchführen
@@ -359,7 +359,7 @@ describe('LuxFileInputAcComponent', () => {
 
       // Nachbedingungen prüfen
       expect(fileComponent.luxSelected!.name).toEqual('mockfile1.png');
-      expect(fileComponent.luxSelected!.content).toEqual('base64-dummy');
+      expect(fileComponent.luxSelected!.content).toEqual(base64Dummy);
       expect(spy).toHaveBeenCalledTimes(3);
 
       flush();
@@ -920,3 +920,5 @@ class MockStorage {
 
   setItem(key: string, value: string, sensitive: boolean) {}
 }
+
+const base64Dummy = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABLCAIAAAAJerXgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANbSURBVHhe7ZrLkeIwFEUnlolnyqF4RxgkQAqsJgDKWy+cABs2riIAJ0DLepJl/Yyu+TTtvqe0aNwP8XRaelYb/bmRYigLgLIAKAuAsgAoC4CyACgLgLIAKAuAsgAoC+Atsob+Yn56Hiv6HI7V/39/u9a8xMnJaneqX79Vzf5w7c3vy7nu9dv3J/P6Gazr88Wy6qrb76Q1RtnuaiJKkYE1x2dOrnV9vliW96e7vGLY7+SdsjIXfw6fIOtyPU6LVK3c3bn1pl4qxeAtVWffooOrs6qM/aGrXZ9BrcwMe0UmEMgyPOvsg2HLRVvdxmxUmy/VOEVTnm1BbGoXL7JMPxJglGmDltSw12QCghX4qvMLlny8V8X6UzdGuvtAmGJ/GLuqD4N57SHBOt71Gd/74mGvyQRmWVbc1Nx2f+EwGyHIKUyxQJY3ZoW8ZWnYqzKBQZbh1cxtm5MZg5t9punl4K8sL0W3DNtLoCwzHnHhVmIYtjYTEKjABxsck2K6LaboVeJmf5qUZcYj9eiurHT7Nlnyeea6pJhZUBMLKQ6qrJiqbDrJBJfNrAcyKeMRWZlKEXAvRZk1ppN0sJk4cM0KeK8sc39xn5fZ06tVll9Z7W6+7oJxSrCOn/pM/OcQD3tNJjDLsmZbB7dz8QwafWqNNLOaujQLpGcbL7UmKCtNrT+r1gFRh4rUsPFMYJZl+a2J9sSa8S7p6mutcj0NixvIoZ3vzt32XTEFD2oC2hh/Jo5khg1nApKT9U08PJ6XQlkAlAVAWQAfJuuzoSwAygKgLADKAqAsAMoCoCwAygJ4WFZwQKNwCy5h0eOnDycnK/GIpooPhpivHmZPuH6xrPB7Q9W8h3AlzzCTbFGW91C06GAIZVmSF30oyxJdjNWkZfWns32Er5b2ub1sXlbiYEiZLPtVgvcFxNi2JavsYMiyrMQdUzrfmqy4eQdDSmTJtPIODCkkbMvLMDwYUiIr88X65mWNBLsHytJkZMkgp+uUpXmWLP8ow8QvkBUdDCmQlf2XKLj4E1iWde9gSIkse2BovJOOWxC9z2r0XmRbsvwWHwwpkqWYDq2pJpsPbXArskgCygKgLADKAqAsAMoCoCwAygKgLADKAqAsAMoCoCwAygKgLADKAqAsAMoq5nb7AliHaouRRXA9AAAAAElFTkSuQmCC`;
