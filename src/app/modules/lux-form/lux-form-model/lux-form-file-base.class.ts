@@ -22,6 +22,7 @@ import { ILuxFileObject } from '../lux-file/lux-file-model/lux-file-object.inter
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { take } from 'rxjs/operators';
+import { LuxUtil } from '../../lux-util/lux-util';
 
 @Directive() // Angular 9 (Ivy) ignoriert @Input(), @Output() in Klassen ohne @Directive() oder @Component().
 export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
@@ -133,17 +134,30 @@ export abstract class LuxFormFileBase<T = any> extends LuxFormComponentBase<T> {
     this.formControl.markAsTouched();
     const myFile: ILuxFileObject = Array.isArray(file) ? file[0] : file;
     const downloadLink = this.downloadLink.nativeElement as HTMLAnchorElement;
-    downloadLink.download = myFile.name;
 
+    // Workaround: Issue 505
+    // Damit Pdf-Dateien runtergeladen werden, wird der Mime-Type
+    // absichtlich auf 'application/pdf-download' gesetzt. 
+    const downloadType = myFile.type === 'application/pdf' ? 'application/pdf-download' : myFile.type;
+
+    let dataAsBlob: Blob | null = null;
     if (myFile.content instanceof Blob) {
-      const url = window.URL.createObjectURL(myFile.content);
-      downloadLink.href = url;
-      downloadLink.click();
-      window.URL.revokeObjectURL(url);
+      dataAsBlob = new Blob([myFile.content], { type: downloadType });
     } else {
-      downloadLink.href = myFile.content as string;
-      downloadLink.click();
+      let dataAsBase64 = myFile.content as string;
+      const index = dataAsBase64.indexOf(',');
+      if (index > 0) {
+        dataAsBase64 = dataAsBase64.substring(index + 1);
+      }
+      
+      dataAsBlob = new Blob([LuxUtil.base64ToArrayBuffer(dataAsBase64)], { type: downloadType });
     }
+    
+    const url = window.URL.createObjectURL(dataAsBlob);
+    downloadLink.href = url;
+    downloadLink.download = myFile.name;
+    downloadLink.click();
+    window.URL.revokeObjectURL(url);
 
     this.handleDownloadClick(myFile);
   }
