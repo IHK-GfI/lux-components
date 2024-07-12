@@ -1,5 +1,21 @@
 # Changelog
 
+## Version 16.4.0
+
+### New
+
+- **lux-panel**: Komponente im Lux-Accordion ermöglichen. [Issue 486](https://github.com/IHK-GfI/lux-components/issues/486)
+- **lux-filter-form**: Das Filter-Menu kann nicht ausgeblendet werden. [Issue 490](https://github.com/IHK-GfI/lux-components/issues/490)
+- **LuxCustomTagIdDirective**: Directive zum flexiblen Setzen von LUX-TagIds. [Issue 502](https://github.com/IHK-GfI/lux-components/issues/502)
+
+### Bug Fixes
+
+- **lux-chips**: Findings im Kontext der Barrierefreiheit (Axe-Core). [Issue 485](https://github.com/IHK-GfI/lux-components/issues/485)
+- **lux-autocomplete-ac**: Findings im Kontext der Barrierefreiheit (Axe-Core). [Issue 485](https://github.com/IHK-GfI/lux-components/issues/485)
+- **lux-textbox**: Extra Zeile bei einer Textbox ohne Titel. [Issue 488](https://github.com/IHK-GfI/lux-components/issues/488)
+- **lux-autocomplete-ac**: Komponente feuert kein Blur/FocusOut Event bei Nutzung von Microsoft Edge Autofill. [Issue 504](https://github.com/IHK-GfI/lux-components/issues/504)
+- **lux-file-list**: Download von PDF`s aus der File-List funktioniert auf dem iPhone/iPad in Safari nicht. [Issue 505](https://github.com/IHK-GfI/lux-components/issues/505)
+
 ## Version 16.3.0
 
 ### New
