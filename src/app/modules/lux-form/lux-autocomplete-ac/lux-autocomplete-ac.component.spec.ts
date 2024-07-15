@@ -546,6 +546,13 @@ describe('LuxAutocompleteAcComponent', () => {
       });
     });
 
+    it('darf nicht während der Eingabe den Wert vervollständigen, sondern erst bei FocusOut', (done) => {
+      LuxTestHelper.typeInElementAsync('Vertretungsauf', fixture, component.autocomplete.matInput.nativeElement, () => {
+        expect(component.autocomplete.formControl.value).not.toEqual({ label: "Vertretungsaufgaben", value: "D" });
+        done();
+      });
+    });
+
     it('sollte die richtige Anzahl an Ergebnissen haben wenn ein valider Wert eingetippt wird', (done) => {
       LuxTestHelper.typeInElementAsync('Meine Aufgaben', fixture, component.autocomplete.matInput.nativeElement, () => {
         const options = overlayHelper.selectAllFromOverlay('mat-option') as NodeListOf<HTMLElement>;
