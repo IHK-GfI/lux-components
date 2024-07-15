@@ -46,7 +46,7 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
     mutations.forEach((mutation) => {
       if (this.luxStrict && mutation.attributeName === 'class') {
         const targetElement = mutation.target as HTMLElement;
-        if (targetElement.classList) {
+        if (targetElement.classList && targetElement.classList.contains('cdk-text-field-autofilled')) {
           this.updateFormControlValue();
           this.formControl.markAsTouched();
         }
