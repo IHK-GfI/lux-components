@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 16.4.1
+
+### Bug Fixes
+
+- **lux-autocomplete-ac**: Autovervollständigung greift bereits während der Eingabe und nicht erst bei FocusOut. [Issue 508](https://github.com/IHK-GfI/lux-components/issues/508)
+
 ## Version 16.4.0
 
 ### New
