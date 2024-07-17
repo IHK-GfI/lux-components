@@ -25,8 +25,8 @@
         (luxClicked)="onBrandLogoClicked($event)"
         *ngIf="luxBrandLogoSrc; else tenantLogoOrEmptyBrandLogo"
       ></lux-image>
-      <ng-template #tenantLogoOrEmptyBrandLogo *ngIf="tenantLogo; else emptyBrandLogo">
-        <ng-content select="lux-tenant-logo"></ng-content>
+      <ng-template #tenantLogoOrEmptyBrandLogo>
+        <ng-content select="lux-tenant-logo" *ngIf="tenantLogo; else emptyBrandLogo"></ng-content>
       </ng-template>
       <ng-template #emptyBrandLogo>
         <div class="lux-brand-logo-empty"></div>
