@@ -1,6 +1,6 @@
 :host ::ng-deep {
   .example-base-container {
-    ::ng-deep > .mat-card > .lux-card-content-container {
+    ::ng-deep > .mat-mdc-card > .lux-card-content-container {
       overflow-y: auto;
 
       > mat-card-content {

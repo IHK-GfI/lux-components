@@ -186,10 +186,10 @@ describe('LuxInfiniteScrollDirective', () => {
   selector: 'mock-component',
   template:
     `<div style="overflow-y: scroll; height: 50px;" id="toggleMasterFocus-element" luxInfiniteScroll
-         (luxScrolled)="onMockEvent()" [luxScrollPercent]="1" [luxImmediateCallback]="immediateCallback" [luxIsLoading]="isLoading">
-         Text
-         <ul><li *ngFor="let testText of testArr">{{ testText }}</li> </ul>
-         </div>`
+              (luxScrolled)="onMockEvent()" [luxScrollPercent]="1" [luxImmediateCallback]="immediateCallback" [luxIsLoading]="isLoading">
+              Text
+              <ul><li *ngFor="let testText of testArr">{{ testText }}</li> </ul>
+              </div>`
 })
 class MockComponent {
   // Wird benutzt, um einen Y-Overflow und damit eine Scrollbar im Testelement zu forcieren
