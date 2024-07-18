@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 16.4.2
+
+### Bug Fixes
+
+- **lux-app-header-ac**: Benutzermenü rutscht ungewollt in eine zweite Zeile, wenn ein lux-tenant-logo verwendet wird. [Issue 511](https://github.com/IHK-GfI/lux-components/issues/511)
+
 ## Version 16.4.1
 
 ### Bug Fixes
