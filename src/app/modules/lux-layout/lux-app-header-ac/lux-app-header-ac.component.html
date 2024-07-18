@@ -11,11 +11,9 @@
       [ngClass]="{ 'lux-mobile': mobileView, 'lux-centered': luxCenteredView }"
       [ngStyle]="{ 'max-width': luxCenteredView ? luxCenteredWidth : '100%' }"
     >
-      <!-- Zeige lux-tenant-logo falls vorhanden UND Attribut luxBrandLogoSrc nicht gesetzt ist, also das Attribut hat hier vorrang -->
-
-      <ng-content select="lux-tenant-logo" *ngIf="!luxBrandLogoSrc"></ng-content>
 
       <!-- Brand-Logo -->
+      <!-- Zeige lux-tenant-logo falls vorhanden UND Attribut luxBrandLogoSrc nicht gesetzt ist, also das Attribut hat hier vorrang -->
       <lux-image
         [luxImageSrc]="luxBrandLogoSrc"
         [luxImageHeight]="mobileView ? '24px' : '40px'"
@@ -25,8 +23,11 @@
         [luxAriaLabel]="luxAriaTitleImageLabel"
         luxTagId="lux-brand-logo-button"
         (luxClicked)="onBrandLogoClicked($event)"
-        *ngIf="luxBrandLogoSrc; else emptyBrandLogo"
+        *ngIf="luxBrandLogoSrc; else tenantLogoOrEmptyBrandLogo"
       ></lux-image>
+      <ng-template #tenantLogoOrEmptyBrandLogo>
+        <ng-content select="lux-tenant-logo" *ngIf="tenantLogo; else emptyBrandLogo"></ng-content>
+      </ng-template>
       <ng-template #emptyBrandLogo>
         <div class="lux-brand-logo-empty"></div>
       </ng-template>
