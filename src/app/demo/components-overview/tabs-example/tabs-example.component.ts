@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
 
 @Component({
@@ -11,7 +11,6 @@ export class TabsExampleComponent {
   log = logResult;
 
   activeTab = 0;
-  animationActive = false;
   iconSize = '2x';
   displayDivider = true;
   lazyLoading = false;

@@ -10,7 +10,7 @@ import { LuxTabsComponent } from './lux-tabs.component';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { LuxTabComponent } from './lux-tabs-subcomponents/lux-tab.component';
-import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 describe('LuxTabsComponent', () => {
   beforeEach(async () => {
@@ -61,32 +61,6 @@ describe('LuxTabsComponent', () => {
         done();
       });
     });
-
-    it('mit Animation', fakeAsync(() => {
-      // Given
-      expect(component.animated).toBe(false);
-      expect(component.currentTabLabel).toBeUndefined();
-      const spy = spyOn(component, 'tabChanged').and.callThrough();
-
-      // When
-      component.animated = true;
-      fixture.detectChanges();
-
-      const tabArrEl = fixture.debugElement.queryAll(By.directive(LuxIconComponent));
-      tabArrEl[1].nativeElement.click();
-      fixture.detectChanges();
-
-      fixture.whenStable().then(() => {
-        // Then
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(component.animated).toBe(true);
-        expect(component.currentTabIndex).toBe(1);
-        expect(component.currentTabLabel).toBe('Tabname 2');
-      });
-
-      flush();
-      discardPeriodicTasks();
-    }));
   });
 
   describe('Attribute "luxDisabled"', () => {
@@ -101,7 +75,7 @@ describe('LuxTabsComponent', () => {
 
     it('luxDisabled=true ohne Animation', () => {
       // Given
-      let tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
+      let tabEl = fixture.debugElement.query(By.css('.mat-mdc-tab-disabled'));
       expect(component.animationActive).toBeFalsy();
       expect(component.disabled).toBeFalsy();
       expect(tabEl).toBeNull();
@@ -111,7 +85,7 @@ describe('LuxTabsComponent', () => {
       fixture.detectChanges();
 
       // Then
-      tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
+      tabEl = fixture.debugElement.query(By.css('.mat-mdc-tab-disabled'));
       expect(component.animationActive).toBeFalsy();
       expect(component.disabled).toBeTruthy();
       expect(tabEl).not.toBeNull();
@@ -119,7 +93,7 @@ describe('LuxTabsComponent', () => {
 
     it('luxDisabled=true mit Animation', () => {
       // Given
-      let tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
+      let tabEl = fixture.debugElement.query(By.css('.mat-mdc-tab-disabled'));
       expect(component.animationActive).toBeFalsy();
       expect(component.disabled).toBeFalsy();
       expect(tabEl).toBeNull();
@@ -130,7 +104,7 @@ describe('LuxTabsComponent', () => {
       fixture.detectChanges();
 
       // Then
-      tabEl = fixture.debugElement.query(By.css('.mat-tab-disabled'));
+      tabEl = fixture.debugElement.query(By.css('.mat-mdc-tab-disabled'));
       expect(component.animationActive).toBeTruthy();
       expect(component.disabled).toBeTruthy();
       expect(tabEl).not.toBeNull();
@@ -397,7 +371,6 @@ describe('LuxTabsComponent', () => {
 @Component({
   template: `
     <lux-tabs
-      [luxTabAnimationActive]="animated"
       [luxActiveTab]="currentTabIndex"
       luxTagId="tabsID"
       (luxActiveTabChanged)="tabChanged($event)"
@@ -430,7 +403,6 @@ class LuxActiveTabChangedTabsComponent {
 @Component({
   selector: 'lux-mock-tabs',
   template: `<lux-tabs
-    [luxTabAnimationActive]="animated"
     [luxActiveTab]="currentTabIndex"
     luxTagId="tabsID"
     (luxActiveTabChanged)="tabChanged($event)"
@@ -462,7 +434,7 @@ class LuxMockTabsComponent {
 
 @Component({
   template: `
-    <lux-tabs [luxTabAnimationActive]="false" luxTagId="LuxTabNumberComponent123">
+    <lux-tabs luxTagId="LuxTabNumberComponent123">
       <lux-tab luxIconName="lux-ovals" luxTitle="Tabtest" [luxCounter]="tabCounter" [luxCounterCap]="tabCounterCap">
         <ng-template>
           <span>---</span>
@@ -478,7 +450,7 @@ class LuxTabNumberComponent {
 
 @Component({
   template: `
-    <lux-tabs [luxTabAnimationActive]="false" luxTagId="LuxTabNumberComponent234">
+    <lux-tabs luxTagId="LuxTabNumberComponent234">
       <lux-tab luxIconName="lux-ovals" luxTitle="Tabtest">
         <ng-template>
           <span>---</span>
@@ -492,7 +464,6 @@ class LuxTabWithoutNumberComponent {}
 @Component({
   template: `
     <lux-tabs
-      [luxTabAnimationActive]="animationActive"
       [luxActiveTab]="currentTabIndex"
       [luxLazyLoading]="lazyLoading"
       luxTagId="LuxTabNumberComponent234"
@@ -521,7 +492,7 @@ class LuxTabLazyLoadingComponent {
 
 @Component({
   template: `
-    <lux-tabs [luxTabAnimationActive]="animationActive" luxTagId="LuxTabNumberComponent2345">
+    <lux-tabs luxTagId="LuxTabNumberComponent2345">
       <lux-tab luxTitle="Tab 1">
         <ng-template>
           <p>Lorem ipsum</p>

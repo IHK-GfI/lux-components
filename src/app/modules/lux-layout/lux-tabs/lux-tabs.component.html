@@ -1,13 +1,13 @@
 <div [ngClass]="{ 'lux-tabs-show-border': luxShowBorder }">
   <mat-tab-group
+    [mat-stretch-tabs]="false"
     [dynamicHeight]="false"
     [selectedIndex]="luxActiveTab"
     (selectedTabChange)="tabChange$.next($event)"
     [disableRipple]="true"
     class="lux-tab-group"
     [ngClass]="{
-      'lux-tabs-no-divider': !luxDisplayDivider,
-      'lux-tabs-no-anim': !luxTabAnimationActive,
+      'lux-tabs-show-divider': luxDisplayDivider,
       'lux-tabs-mobile': smallDevice
     }"
     #matTabs
@@ -15,76 +15,18 @@
     [luxTagId]="luxTagId"
     [luxCustomTagId]="luxTagId"
   >
-    <ng-container *ngIf="luxTabAnimationActive">
-      <!-- Lazy Loading
-          ============
-          Durch die Property "luxLazyLoading" musste der mat-tab-Teil gedoppelt werden,
-          da ein *ngIf im <ng-template matTabLabel> nicht möglich war.
-          Der Testcase "luxLazyLoading=true mit Animation" war rot, da der Inhalt beim
-          Testen der Nachbedingung noch nicht zur Verfügung stand.
-      -->
-      <ng-container *ngIf="luxLazyLoading">
-        <mat-tab
-          *ngFor="let luxTab of luxTabs"
-          [label]="luxTab.luxTitle"
-          [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []"
-          [disabled]="luxTab.luxDisabled"
-        >
-          <ng-template matTabLabel>
-            <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
-          </ng-template>
-          <ng-template matTabContent>
-            <div
-              luxTagIdHandler
-              [luxTagId]="luxTab.luxTagIdContent"
-              [luxCustomTagId]="luxTab.luxTagIdContent"
-              class="lux-mt-3 lux-tab-content"
-              [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }"
-            >
-              <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
-              <span>&nbsp;</span>
-            </div>
-          </ng-template>
-        </mat-tab>
-      </ng-container>
-      <ng-container *ngIf="!luxLazyLoading">
-        <mat-tab
-          *ngFor="let luxTab of luxTabs"
-          [label]="luxTab.luxTitle"
-          [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []"
-          [disabled]="luxTab.luxDisabled"
-        >
-          <ng-template matTabLabel>
-            <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
-          </ng-template>
-          <div
-            luxTagIdHandler
-            [luxTagId]="luxTab.luxTagIdContent"
-            [luxCustomTagId]="luxTab.luxTagIdContent"
-            class="lux-mt-3 lux-tab-content"
-            [ngClass]="{ 'lux-pl-4': luxShowBorder, 'lux-pr-4': luxShowBorder }"
-          >
-            <ng-container *ngTemplateOutlet="luxTab.contentTemplate"></ng-container>
-            <span>&nbsp;</span>
-          </div>
-        </mat-tab>
-      </ng-container>
-    </ng-container>
-    <ng-container *ngIf="!luxTabAnimationActive">
-      <mat-tab
-        *ngFor="let luxTab of luxTabs"
-        [label]="luxTab.luxTitle"
-        [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []"
-        [disabled]="luxTab.luxDisabled"
-      >
-        <ng-template matTabLabel>
-          <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
-        </ng-template>
-      </mat-tab>
-    </ng-container>
+    <mat-tab
+      *ngFor="let luxTab of luxTabs"
+      [label]="luxTab.luxTitle"
+      [labelClass]="luxTab.luxIconName || luxTab.luxImageSrc ? ['lux-tab-with-icon'] : []"
+      [disabled]="luxTab.luxDisabled"
+    >
+      <ng-template matTabLabel>
+        <ng-container *ngTemplateOutlet="tabLabelTemplate; context: { $implicit: luxTab }"></ng-container>
+      </ng-template>
+    </mat-tab>
   </mat-tab-group>
 
-  <ng-container *ngIf="!luxTabAnimationActive">
     <ng-container *ngFor="let luxTab of luxTabs; trackBy: trackTab; let i = index">
       <section
         luxTagIdHandler
@@ -110,7 +52,6 @@
         <span>&nbsp;</span>
       </section>
     </ng-container>
-  </ng-container>
 </div>
 <ng-template #tabLabelTemplate let-luxTab>
   <div luxTagIdHandler [luxTagId]="luxTab.luxTagIdHeader" [luxCustomTagId]="luxTab.luxTagIdHeader" class="lux-mt-3 lux-mb-3">
