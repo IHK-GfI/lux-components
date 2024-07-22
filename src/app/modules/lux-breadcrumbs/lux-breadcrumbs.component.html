@@ -1,0 +1,13 @@
+<nav class="lux-breadcrumbs">
+  <ol class="lux-breadcrumbs-container" *ngFor="let item of luxEntries; last as islast">
+    <li class="lux-breadcrumbs-item" *ngIf="!islast; else currentPage">
+      <a href="{{item.url}}">{{item.name}}</a>
+      <lux-icon luxIconName="lux-interface-arrows-right"></lux-icon>
+    </li>
+    <ng-template #currentPage>
+      <li class="lux-breadcrumbs-current-item">
+        <a aria-current="page">{{item.name}}</a>
+      </li>
+    </ng-template>
+  </ol>
+</nav>

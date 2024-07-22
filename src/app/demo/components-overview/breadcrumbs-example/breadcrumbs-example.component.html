@@ -1,0 +1,17 @@
+<example-base-structure exampleTitle="Breadcrumbs" exampleDocumentationHref="TODO">
+  <example-base-content>
+    <lux-breadcrumbs [luxEntries]="entries"></lux-breadcrumbs>
+
+  </example-base-content>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
+    <div *ngFor="let item of entries; index as i">
+      <h3>Breadcrumbs Eintrag #{{i+1}}</h3>
+      <lux-input-ac [(luxValue)]="item.name"
+      luxLabel="Name"
+      (luxValueChange)="updateView()"></lux-input-ac>
+      <lux-input-ac [(luxValue)]="item.url"
+      luxLabel="Url"
+      (luxValueChange)="updateView()"></lux-input-ac>
+    </div>
+  </example-base-simple-options>
+</example-base-structure>

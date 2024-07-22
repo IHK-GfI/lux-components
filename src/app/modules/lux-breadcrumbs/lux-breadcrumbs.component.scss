@@ -1,0 +1,23 @@
+  .lux-breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .lux-breadcrumbs-item {
+    font-family: 'Blogger Sans', 'Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif';
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--lux-theme-primary-color);
+    list-style-type: none;
+  }
+
+ .lux-breadcrumbs-current-item {
+    font-family: 'Blogger Sans', 'Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif';
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--lux-theme-primary-color);
+    list-style-type: none;
+ }
+
