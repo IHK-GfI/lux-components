@@ -1,8 +1,14 @@
 <nav class="lux-breadcrumbs">
   <ol class="lux-breadcrumbs-container" *ngFor="let item of luxEntries; last as islast">
     <li class="lux-breadcrumbs-item" *ngIf="!islast; else currentPage">
-      <a href="{{item.url}}">{{item.name}}</a>
-      <lux-icon luxIconName="lux-interface-arrows-right"></lux-icon>
+      <a *ngIf="luxEmitEntry; else normalLink"
+        (click)="clicked(item)"
+        (keydown.enter)="clicked(item)"
+        (keydown.space)="clicked(item)">{{item.name}}</a>
+      <ng-template #normalLink>
+        <a href="{{item.url}}">{{item.name}}</a>
+      </ng-template>
+      <lux-icon luxIconName="lux-interface-arrows-right" luxIconSize="20px"></lux-icon>
     </li>
     <ng-template #currentPage>
       <li class="lux-breadcrumbs-current-item">

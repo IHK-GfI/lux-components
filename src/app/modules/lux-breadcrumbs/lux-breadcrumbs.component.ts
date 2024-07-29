@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ILuxBreadcrumbsEntry } from './lux-breadcrumbs-model/lux-breadcrumbs-entry.interface';
 
 @Component({
@@ -9,10 +9,17 @@ import { ILuxBreadcrumbsEntry } from './lux-breadcrumbs-model/lux-breadcrumbs-en
 })
 export class LuxBreadcrumbsComponent {
   @Input()
-  luxEntries?: ILuxBreadcrumbsEntry [] = [];
+  luxEntries?: ILuxBreadcrumbsEntry[] = [];
 
-  constructor() {
+  @Input()
+  luxEmitEntry?: boolean = false;
 
-   }
+  @Output()
+  luxClicked: EventEmitter<ILuxBreadcrumbsEntry> = new EventEmitter();
 
+  constructor() {}
+
+  clicked(item: ILuxBreadcrumbsEntry) {
+    this.luxClicked.emit(item);
+  }
 }
