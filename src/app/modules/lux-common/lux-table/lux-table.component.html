@@ -30,13 +30,13 @@
   <div
     [ngStyle]="{ 'max-height': tableHeightCSSCalc }"
     class="lux-table"
-    [ngClass]="{ 'lux-block-pointer-events': isLoadingResults, 'lux-hide-borders': luxHideBorders }"
+    [ngClass]="{ 'lux-block-pointer-events': isLoadingResults }"
     #tableContainer
   >
     <!-- Overlay, welches bei der Anzeige des Ladebalkens die Interaktion mit der Tabelle unterbindet -->
     <div class="lux-table-overlay" [ngClass]="{ 'lux-table-overlay-active': isLoadingResults }"></div>
 
-    <div class="lux-table-content">
+    <div class="lux-table-content" [ngClass]="{'lux-hide-borders': luxHideBorders}">
       <table
         mat-table
         [dataSource]="dataSource"
