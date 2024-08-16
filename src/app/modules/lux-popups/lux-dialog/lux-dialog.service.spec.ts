@@ -106,7 +106,7 @@ describe('LuxDialogService', () => {
 
       // Nachbedingungen prüfen
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm')).not.toBeNull();
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .mat-raised-button')).not.toBeNull();
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .mat-mdc-raised-button')).not.toBeNull();
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-confirm .lux-button-label').textContent!.trim()).toEqual('Hallo Welt');
     }));
 
@@ -133,7 +133,7 @@ describe('LuxDialogService', () => {
 
       // Nachbedingungen prüfen
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline')).not.toBeNull();
-      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .mat-raised-button')).not.toBeNull();
+      expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .mat-mdc-raised-button')).not.toBeNull();
       expect(overlayHelper.selectOneFromOverlay('.lux-dialog-preset-decline .lux-button-label').textContent!.trim()).toEqual('Hallo Welt');
     }));
 

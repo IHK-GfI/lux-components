@@ -96,7 +96,7 @@ import { ChipAuthenticExampleComponent } from './chip-authentic-example/chip-aut
 import { SliderAuthenticExampleComponent } from './slider-authentic-example/slider-authentic-example.component';
 import { LookupAutocompleteAcExampleComponent } from './lookup-examples/lookup-autocomplete-ac-example/lookup-autocomplete-ac-example.component';
 import { LookupComboboxAcExampleComponent } from './lookup-examples/lookup-combobox-ac-example/lookup-combobox-ac-example.component';
-import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
 import { CheckboxContainerAcExampleComponent } from './checkbox-container-ac-example/checkbox-container-ac-example.component';
