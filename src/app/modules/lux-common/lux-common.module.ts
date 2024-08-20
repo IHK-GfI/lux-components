@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LuxFormModule } from '../lux-form/lux-form.module';
 import { MatLegacyPaginatorModule as MatPaginatorModule } from '@angular/material/legacy-paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { LuxComponentsConfigModule } from '../lux-components-config/lux-components-config.module';
