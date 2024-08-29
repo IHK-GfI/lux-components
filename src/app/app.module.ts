@@ -30,6 +30,7 @@ import { LicenseHintComponent } from './demo/base/license-hint/license-hint.comp
 import { ImpressumComponent } from './demo/abstract/impressum/impressum.component';
 import { LuxTenantLogoModule } from './modules/lux-tenant-logo/lux-tenant-logo.module';
 import { LuxTourHintModule } from './modules/lux-tour-hint/lux-tour-hint.module';
+import { LuxBreadcrumbModule } from './modules/lux-breadcrumb/lux-breadcrumb.module';
 
 const myConfiguration: LuxComponentsConfigParameters = {
   generateLuxTagIds: environment.generateLuxTagIds,
@@ -63,7 +64,8 @@ const myConfiguration: LuxComponentsConfigParameters = {
     LuxComponentsConfigModule.forRoot(myConfiguration),
     LuxMarkdownModule,
     LuxTenantLogoModule,
-    LuxTourHintModule
+    LuxTourHintModule,
+    LuxBreadcrumbModule
   ],
   providers: [{ provide: LuxLookupService, useClass: MockLuxLookupService }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

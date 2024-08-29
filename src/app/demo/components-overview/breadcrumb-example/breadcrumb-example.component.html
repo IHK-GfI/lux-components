@@ -1,0 +1,70 @@
+<example-base-structure exampleTitle="Breadcrumb" exampleDocumentationHref="TODO">
+  <example-base-content>
+    <h3>Beispiel mit Angular Router</h3>
+    <lux-breadcrumb [luxEntries]="entries" (luxClicked)="onClickedEntry($event)"></lux-breadcrumb>
+    <example-value *ngIf="clickedEntry" [value]="clickedEntry"></example-value>
+    <lux-divider [luxInset]="true"></lux-divider>
+    <h3>Beispiel mit manueller Navigation</h3>
+    <lux-breadcrumb
+      *ngIf="entriesExample.length > 1"
+      [luxEntries]="entriesExample"
+      (luxClicked)="onBreadcrumbClick($event)"
+    ></lux-breadcrumb>
+    <div *ngIf="currentArea === 'Übersicht'">
+      <h4>Übersicht</h4>
+      <ul>
+        <li><lux-link-plain luxLabel="Berufliche Bildung" (luxClicked)="onSwitchArea('Berufliche Bildung')"></lux-link-plain></li>
+        <li>...</li>
+      </ul>
+    </div>
+    <div *ngIf="currentArea === 'Berufliche Bildung'">
+      <h4>Berufliche Bildung</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+        erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
+        est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+        labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      </p>
+
+      Verweise:
+      <ul>
+        <li><lux-link-plain luxLabel="Zur Ausbildung" (luxClicked)="onSwitchArea('Ausbildung')"></lux-link-plain></li>
+      </ul>
+    </div>
+    <div *ngIf="currentArea === 'Ausbildung'">
+      <h4>Ausbildung</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+        erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
+        est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+        labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      </p>
+      <p>
+        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis
+        at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
+        facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+        aliquam erat volutpat.
+      </p>
+      <p>
+        Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis
+        autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at
+        vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla
+        facilisi.
+      </p>
+    </div>
+  </example-base-content>
+  <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
+    <h3>Diese Konfiguration bezieht sich nur auf das Beispiel mit dem Angular Router</h3>
+    <lux-toggle-ac luxLabel="Url aktivieren" [(luxChecked)]="enableUrl" [luxNoTopLabel]="true"></lux-toggle-ac>
+    <div *ngFor="let item of entries; index as i">
+      <h3>Breadcrumb Eintrag #{{ i + 1 }}</h3>
+      <lux-input-ac [(luxValue)]="item.name" luxLabel="Name" (luxValueChange)="updateView()"></lux-input-ac>
+      <lux-input-ac [(luxValue)]="item.url" luxLabel="Url" (luxValueChange)="updateView()"></lux-input-ac>
+    </div>
+    <lux-button luxIconName="lux-interface-add-1" [luxRounded]="true" luxColor="primary" (luxClicked)="addEntry()"></lux-button>
+  </example-base-simple-options>
+</example-base-structure>
