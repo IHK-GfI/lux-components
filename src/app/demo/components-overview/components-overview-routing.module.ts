@@ -64,6 +64,7 @@ import { CheckboxContainerAcExampleComponent } from './checkbox-container-ac-exa
 import { TextboxExampleComponent } from './textbox-example/textbox-example.component';
 import { TenantLogoExampleComponent } from './tenant-logo-example/tenant-logo-example.component';
 import { TourHintExampleComponent } from './tour-hint-example/tour-hint-example.component';
+import { BreadcrumbExampleComponent } from './breadcrumb-example/breadcrumb-example.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -130,7 +131,8 @@ const routes: Routes = [
       { path: 'checkbox-container-ac', component: CheckboxContainerAcExampleComponent },
       { path: 'textbox', component: TextboxExampleComponent },
       { path: 'tenant-logo', component: TenantLogoExampleComponent },
-      { path: 'tour-hint', component: TourHintExampleComponent }
+      { path: 'tour-hint', component: TourHintExampleComponent },
+      { path: 'breadcrumb', component: BreadcrumbExampleComponent }
     ]
   }
 ];

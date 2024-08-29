@@ -355,6 +355,15 @@ export * from './src/app/modules/lux-tour-hint/lux-tour-hint-model/lux-tour-hint
 export * from './src/app/modules/lux-tour-hint/lux-tour-hint-model/lux-tour-hint-ref.class';
 
 /**
+ * LUX-Breadcrumb
+ */
+export * from './src/app/modules/lux-breadcrumb/lux-breadcrumb.module';
+// Components
+export * from './src/app/modules/lux-breadcrumb/lux-breadcrumb.component';
+// Classes
+export * from './src/app/modules/lux-breadcrumb/lux-breadcrumb-model/lux-breadcrumb-entry.interface';
+
+/**
  * LUX-Util
  */
 export * from './src/app/modules/lux-util/lux-util';
