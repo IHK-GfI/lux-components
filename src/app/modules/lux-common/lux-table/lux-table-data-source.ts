@@ -1,4 +1,4 @@
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatTableDataSource } from '@angular/material/table';
 
 /**
  * Diese Ableitung berücksichtigt bei der Sortierung Sonderzeichen (z.B. öäüßé,...)
