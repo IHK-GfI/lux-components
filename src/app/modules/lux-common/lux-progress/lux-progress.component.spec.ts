@@ -6,7 +6,7 @@ import { LuxProgressComponent, LuxProgressModeType, LuxProgressSizeType, LuxProg
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { MatLegacyProgressBar as MatProgressBar } from '@angular/material/legacy-progress-bar';
+import { MatProgressBar } from '@angular/material/progress-bar';
 import { MatLegacyProgressSpinner as MatProgressSpinner } from '@angular/material/legacy-progress-spinner';
 
 describe('LuxProgressComponent', () => {
