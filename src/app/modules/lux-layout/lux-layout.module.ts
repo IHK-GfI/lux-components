@@ -9,7 +9,7 @@ import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/materia
 import { MatIconModule } from '@angular/material/icon';
 import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatLegacyTabsModule as MatTabsModule } from '@angular/material/legacy-tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { LuxActionModule } from '../lux-action/lux-action.module';
 import { LuxDirectivesModule } from '../lux-directives/lux-directives.module';
 import { LuxIconModule } from '../lux-icon/lux-icon.module';

@@ -138,8 +138,8 @@ describe('LuxTooltipDirective', () => {
   selector: 'mock-component',
   template:
     `<span [luxTooltip]="message" [luxTooltipHideDelay]="hideDelay"
-                [luxTooltipShowDelay]="showDelay" [luxTooltipPosition]="position"
-                [luxTooltipDisabled]="disabled">Ich bin ein Demotext</span>`
+                     [luxTooltipShowDelay]="showDelay" [luxTooltipPosition]="position"
+                     [luxTooltipDisabled]="disabled">Ich bin ein Demotext</span>`
 })
 class MockComponent {
   message?: string;
