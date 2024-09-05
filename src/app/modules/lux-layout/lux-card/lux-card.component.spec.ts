@@ -315,14 +315,14 @@ describe('LuxCardComponent', () => {
       // Vorbedingungen testen
       component.testShowAction = true;
       LuxTestHelper.wait(fixture);
-      expect(fixture.debugElement.query(By.css('.mat-card-actions.lux-display-none-important'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-mdc-card-actions.lux-display-none-important'))).toBeNull();
 
       // Änderungen durchführen
       component.testShowAction = false;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      expect(fixture.debugElement.query(By.css('.mat-card-actions.lux-display-none-important'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-mdc-card-actions.lux-display-none-important'))).not.toBeNull();
     }));
 
     it('Sollte Click-Events deaktivieren (luxDisabled)', fakeAsync(() => {
