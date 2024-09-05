@@ -14,10 +14,10 @@ import {
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import {
-  MatLegacyAutocomplete as MatAutocomplete,
-  MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent,
-  MatLegacyAutocompleteTrigger as MatAutocompleteTrigger
-} from '@angular/material/legacy-autocomplete';
+  MatAutocomplete,
+  MatAutocompleteSelectedEvent,
+  MatAutocompleteTrigger
+} from '@angular/material/autocomplete';
 import { LuxFormComponentBase, LuxValidationErrors } from '../lux-form-model/lux-form-component-base.class';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 import { ReplaySubject, Subscription } from 'rxjs';
@@ -69,7 +69,6 @@ export class LuxAutocompleteAcComponent<V = any, O = any> extends LuxFormCompone
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
-  @Input() luxOptionMultiline = false;
   @Input() luxOptionBlockSize = 500;
 
   @Output() luxValueChange = new EventEmitter<V | null>();

@@ -48,9 +48,9 @@ describe('LuxToggleAcComponent', () => {
         fixture.detectChanges();
 
         // Nachbedingungen testen
-        const toggleEl = fixture.debugElement.query(By.css('input'));
+        const toggleEl = fixture.debugElement.query(By.css('button'));
         expect(fixture.componentInstance.formGroup.get('eula')!.value).toBeFalsy();
-        expect(toggleEl.nativeElement.checked).toBeFalsy();
+        expect(toggleEl.nativeElement.classList).toContain('mdc-switch--unselected');
         expect(toggleEl.nativeElement.required).toBeFalsy();
       }));
     });
@@ -74,9 +74,9 @@ describe('LuxToggleAcComponent', () => {
         fixture.detectChanges();
 
         // Nachbedingungen testen
-        const toggleEl = fixture.debugElement.query(By.css('input'));
+        const toggleEl = fixture.debugElement.query(By.css('button'));
         expect(fixture.componentInstance.formGroup.get('eula')!.value).toBeTruthy();
-        expect(toggleEl.nativeElement.checked).toBeTruthy();
+        expect(toggleEl.nativeElement.classList).toContain('mdc-switch--selected');
       }));
 
       it('Label anklicken', fakeAsync(() => {
@@ -98,7 +98,7 @@ describe('LuxToggleAcComponent', () => {
         expect(fixture.componentInstance.formGroup.get('eula')!.value).toBeFalsy();
 
         // Änderungen durchführen
-        const toggleEl = fixture.debugElement.query(By.css('input'));
+        const toggleEl = fixture.debugElement.query(By.css('button'));
         toggleEl.nativeElement.click();
         fixture.detectChanges();
 
@@ -199,8 +199,8 @@ describe('LuxToggleAcComponent', () => {
         fixture.detectChanges();
 
         // Nachbedingungen testen
-        const toggleEl = fixture.debugElement.query(By.css('input'));
-        expect(toggleEl.nativeElement.checked).toBeTruthy();
+        const toggleEl = fixture.debugElement.query(By.css('button'));
+        expect(toggleEl.nativeElement.classList).toContain('mdc-switch--selected');
       }));
 
       it('Label anklicken', fakeAsync(() => {
@@ -222,7 +222,7 @@ describe('LuxToggleAcComponent', () => {
         expect(fixture.componentInstance.eula).toBeFalsy();
 
         // Änderungen durchführen
-        const toggleEl = fixture.debugElement.query(By.css('input'));
+        const toggleEl = fixture.debugElement.query(By.css('button'));
         toggleEl.nativeElement.click();
         fixture.detectChanges();
 
@@ -249,7 +249,7 @@ describe('LuxToggleAcComponent', () => {
         fixture.componentInstance.disabled = true;
         fixture.detectChanges();
 
-        const toggleEl = fixture.debugElement.query(By.css('input'));
+        const toggleEl = fixture.debugElement.query(By.css('button'));
         toggleEl.nativeElement.click();
         fixture.detectChanges();
 
@@ -303,7 +303,7 @@ describe('LuxToggleAcComponent', () => {
 
         // Änderungen durchführen
         // 1. Click => true
-        const toggleEl = fixture.debugElement.query(By.css('input'));
+        const toggleEl = fixture.debugElement.query(By.css('button'));
         toggleEl.nativeElement.click();
         fixture.detectChanges();
 

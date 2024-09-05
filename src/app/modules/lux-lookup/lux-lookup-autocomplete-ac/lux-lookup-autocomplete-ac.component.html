@@ -50,7 +50,7 @@
       <ng-container *ngFor="let entry of filtered">
         <mat-option
           [value]="entry"
-          [ngClass]="{ invalid: entry.isUngueltig, 'lux-option-multiline': luxOptionMultiline }"
+          [ngClass]="{ invalid: entry.isUngueltig}"
           [ngStyle]="getStyles(entry.isUngueltig)"
           [disabled]="entry.isUngueltig && disableUngueltige()"
           *ngIf="!entry.isUngueltig || (entry.isUngueltig && showUngueltige())"
