@@ -61,19 +61,17 @@
         class="lux-menu-item-icon"
         *ngIf="menuItem.luxIconName"
       ></lux-icon>
-      <span class="lux-button-label" [ngClass]="{ 'with-badge': menuItem.luxButtonBadge }">
+      <span class="lux-button-label">
         {{ menuItem.luxLabel }}
       </span>
-      <span
-        class="lux-button-badge lux-bg-color-primary-500 lux-m-2"
-        [ngClass]="{
-          'lux-bg-color-primary-500': menuItem.luxButtonBadgeColor === 'primary',
-          'lux-bg-color-warn-500': menuItem.luxButtonBadgeColor === 'warn',
-          'lux-bg-color-accent-500': menuItem.luxButtonBadgeColor === 'accent'
-        }"
-        *ngIf="menuItem.luxButtonBadge && !menuItem.luxDisabled"
-      >
-        {{ menuItem.luxButtonBadge }}
+      <span class="lux-button-badge-container" *ngIf="menuItem.luxButtonBadge">
+        <span class="lux-button-badge lux-bg-color-primary-500 lux-m-2" [ngClass]="{
+                'lux-bg-color-primary-500': menuItem.luxButtonBadgeColor === 'primary',
+                'lux-bg-color-warn-500': menuItem.luxButtonBadgeColor === 'warn',
+                'lux-bg-color-accent-500': menuItem.luxButtonBadgeColor === 'accent'
+              }" *ngIf="menuItem.luxButtonBadge && !menuItem.luxDisabled">
+          {{ menuItem.luxButtonBadge }}
+        </span>
       </span>
     </button>
   </ng-container>
