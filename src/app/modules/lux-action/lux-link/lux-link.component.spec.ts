@@ -73,7 +73,7 @@ describe('LuxLinkComponent', () => {
 
   it('Sollte raised dargestellt werden', fakeAsync(() => {
     // Vorbedingungen testen
-    let raised = fixture.debugElement.query(By.css('.mat-raised-button'));
+    let raised = fixture.debugElement.query(By.css('.mat-mdc-raised-button'));
     expect(raised).toBeNull();
 
     // Änderungen durchführen
@@ -81,7 +81,7 @@ describe('LuxLinkComponent', () => {
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    raised = fixture.debugElement.query(By.css('.mat-raised-button'));
+    raised = fixture.debugElement.query(By.css('.mat-mdc-raised-button'));
     expect(raised).not.toBeNull();
   }));
 
