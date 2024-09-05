@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { LuxAriaLabelDirective } from './lux-aria/lux-aria-label.directive';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatRippleModule } from '@angular/material/core';
-import { MatLegacyTooltipModule as MatTooltipModule } from '@angular/material/legacy-tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { LuxInfiniteScrollDirective } from './lux-infinite-scroll/lux-infinite-scroll.directive';
 import { LuxTagIdDirective } from './lux-tag-id/lux-tag-id.directive';
 import { LuxTooltipDirective } from './lux-tooltip/lux-tooltip.directive';
