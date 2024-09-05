@@ -7,7 +7,7 @@ import { ILuxMessage } from './lux-message-box-model/lux-message.interface';
 import { By } from '@angular/platform-browser';
 import { ILuxMessageChangeEvent } from './lux-message-box-model/lux-message-events.interface';
 import { LuxMessageComponent } from './lux-message-box-subcomponents/lux-message.component';
-import { MatLegacyPaginator as MatPaginator } from '@angular/material/legacy-paginator';
+import { MatPaginator } from '@angular/material/paginator';
 
 describe('LuxMessageBoxComponent', () => {
   beforeEach(async () => {
