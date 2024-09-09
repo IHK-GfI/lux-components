@@ -74,7 +74,7 @@ export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
-    (window as any).pdfWorkerSrc = '/assets/pdf/pdf.worker.min.js';
+    (window as any).pdfWorkerSrc = '/assets/pdf/pdf.worker.min.mjs';
 
     const ce = createCustomElement(AppComponent, { injector: this.injector });
     customElements.define('lux-components-demo', ce);

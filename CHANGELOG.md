@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 16.5.0
+
+### New
+
+- **allgemein**: Sicherheitsupdates eingespielt.
+  - **lux-file-preview**: Abhängigkeiten _ng2-pdf-viewer@10.3.0_ und _pdfjs-dist@4.6.82_ aktualisiert
+- **lux-breadcrumb**: Neue Komponente: Breadcrumb. [Issue 499](https://github.com/IHK-GfI/lux-components/issues/499)
+
 ## Version 16.4.2
 
 ### Bug Fixes
