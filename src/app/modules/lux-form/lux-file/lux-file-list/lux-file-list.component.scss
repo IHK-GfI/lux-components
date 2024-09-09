@@ -5,19 +5,6 @@
   border-radius: 4px;
   position: relative;
 
-  lux-button {
-    ::ng-deep {
-      button:not([disabled]) {
-        .mat-button-focus-overlay {
-          display: none;
-        }
-      }
-      .mat-button-wrapper {
-        line-height: 30px;
-      }
-    }
-  }
-
   lux-card-actions ::ng-deep,
   .lux-file-icon-hint mat-hint {
     font-size: 12px;
@@ -27,9 +14,6 @@
     lux-icon.lux-button-icon mat-icon.lux-icon {
       height: 16px;
       width: 16px;
-    }
-    .mat-button-wrapper {
-      line-height: 30px;
     }
   }
 
