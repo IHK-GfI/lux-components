@@ -13,7 +13,7 @@ import {
   QueryList,
   ViewChild
 } from '@angular/core';
-import { MatLegacyPaginator as MatPaginator, MatLegacyPaginatorIntl as MatPaginatorIntl } from '@angular/material/legacy-paginator';
+import { MAT_PAGINATOR_DEFAULT_OPTIONS, MatPaginator, MatPaginatorDefaultOptions, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { of, Subject, Subscription } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
@@ -33,10 +33,17 @@ export declare interface LuxTableDoubleClickEventType<T> {
   rowItem: T;
 }
 
+const customPaginatorOptions: MatPaginatorDefaultOptions = {
+  formFieldAppearance: 'fill'
+};
+
 @Component({
   selector: 'lux-table',
   templateUrl: './lux-table.component.html',
-  providers: [{ provide: MatPaginatorIntl, useClass: LuxPaginatorIntl }]
+  providers: [
+    { provide: MatPaginatorIntl, useClass: LuxPaginatorIntl },
+    { provide: MAT_PAGINATOR_DEFAULT_OPTIONS, useValue: customPaginatorOptions }
+  ]
 })
 export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoCheck, OnDestroy {
   static AUTO_PAGINATION_START = 100; // 100 Elemente bis automatisch die Pagination aktiviert wird
