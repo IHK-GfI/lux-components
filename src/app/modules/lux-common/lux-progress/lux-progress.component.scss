@@ -1,48 +1,29 @@
-$animationDuration: 8s;
-
-@mixin lux-progress-animation() {
-  -webkit-animation-duration: $animationDuration !important;
-  -moz-animation-duration: $animationDuration !important;
-  -o-animation-duration: $animationDuration !important;
-  animation-duration: $animationDuration !important;
-}
-
-.lux-ie-dasharray ::ng-deep .mat-progress-spinner > svg > circle {
-  stroke-dasharray: 200px !important;
-}
-
-:host ::ng-deep {
-  .lux-progress-spinner,
-  .lux-progress-bar {
-    @include lux-progress-animation();
-    svg > circle {
-      @include lux-progress-animation();
-    }
-    .mat-progress-bar-background {
-      @include lux-progress-animation();
-    }
-    .mat-progress-bar-primary,
-    .mat-progress-bar-primary:after,
-    .mat-progress-bar-secondary,
-    .mat-progress-bar-secondary:after {
-      @include lux-progress-animation();
-    }
-  }
-}
-
-mat-progress-spinner {
-  background: transparent !important;
-}
-
-/** Einstellung der Höhe des Progresses **/
+// Einstellung der Höhe des Progresses
 $sizes: 'small', 'medium', 'large';
 $sizesPx: '6px', '12px', '24px';
 $sizesPxSpinner: '24px', '48px', '96px';
 
 @for $i from 1 through length($sizes) {
   .lux-progress-#{nth($sizes, $i)} ::ng-deep {
+
     mat-progress-bar {
-      height: #{nth($sizesPx, $i)};
+      min-height: #{nth($sizesPx, $i)};
+    }
+    
+    .mdc-linear-progress__bar {
+      min-height: #{nth($sizesPx, $i)};
+    }
+
+    .mat-mdc-progress-bar .mdc-linear-progress__buffer-bar {
+      background-color: #bcc8d5;
+    }
+
+    .mdc-linear-progress__buffer{
+      min-height: #{nth($sizesPx, $i)};
+    }
+
+    .mat-mdc-progress-bar .mdc-linear-progress__bar-inner {
+      border-top-width: #{nth($sizesPx, $i)};
     }
 
     mat-progress-spinner,
