@@ -1,7 +1,5 @@
 <lux-dialog-structure *ngIf="data" [luxDialogIcon]="data.iconName">
-  <lux-dialog-title>
-    {{ data.title }}
-  </lux-dialog-title>
+  <lux-dialog-title>{{ data.title }}</lux-dialog-title>
   <lux-dialog-content>
     <ng-container *ngIf="data.contentTemplate">
       <ng-container *ngTemplateOutlet="data.contentTemplate"></ng-container>
