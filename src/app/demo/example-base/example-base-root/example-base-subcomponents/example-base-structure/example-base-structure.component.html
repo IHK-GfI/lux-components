@@ -38,7 +38,7 @@
       <ng-container *ngIf="simpleOptionsComponent && !advancedOptionsComponent">
         <ng-container *ngTemplateOutlet="simpleOptionsTemplate"></ng-container>
       </ng-container>
-      <lux-tabs [luxTabAnimationActive]="false" [luxShowBorder]="true" *ngIf="simpleOptionsComponent && advancedOptionsComponent">
+      <lux-tabs [luxShowBorder]="true" *ngIf="simpleOptionsComponent && advancedOptionsComponent">
         <lux-tab
           luxTitle="Allgemein"
           luxTagIdHeader="bsp-tab-allgemein"
