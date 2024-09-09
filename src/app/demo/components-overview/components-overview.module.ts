@@ -82,7 +82,7 @@ import { LinkPlainExampleComponent } from './link-plain-example/link-plain-examp
 import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-authentic-example.component';
 import { FileUploadExampleComponent } from './file-example/file-upload-example/file-upload-example.component';
 import { InputAuthenticExampleComponent } from './input-authentic-example/input-authentic-example.component';
-import { MatLegacyListModule as MatListModule } from '@angular/material/legacy-list';
+import { MatListModule } from '@angular/material/list';
 import { OverviewExampleComponent } from './tile-authentic-example/overview-example/overview-example.component';
 import { CheckboxAuthenticExampleComponent } from './checkbox-authentic-example/checkbox-authentic-example.component';
 import { ToggleAuthenticExampleComponent } from './toggle-authentic-example/toggle-authentic-example.component';
