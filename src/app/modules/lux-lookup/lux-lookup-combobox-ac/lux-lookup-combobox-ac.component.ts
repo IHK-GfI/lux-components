@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy, Optional, ViewChild } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { MatLegacySelect as MatSelect, MatLegacySelectChange as MatSelectChange } from '@angular/material/legacy-select';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { Subscription } from 'rxjs';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';

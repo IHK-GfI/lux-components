@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { LuxThemePalette } from '../../../lux-util/lux-colors.enum';
 import { LuxUtil } from '../../../lux-util/lux-util';
-import { ILuxChipAcSelected } from '../lux-chips-model/lux-chip-ac-selected.interface';
 
 @Component({
   selector: 'lux-chip-ac',
@@ -20,11 +19,9 @@ export class LuxChipAcComponent implements AfterViewInit{
 
   @Output() luxChipRemoved = new EventEmitter<number>();
   @Output() luxChipClicked = new EventEmitter<number>();
-  @Output() luxChipSelected = new EventEmitter<ILuxChipAcSelected>();
 
   @Input() luxDisabled = false;
   @Input() luxRemovable = true;
-  @Input() luxSelected = true;
 
   get luxColor(): LuxThemePalette {
     return this._luxColor;
@@ -52,10 +49,5 @@ export class LuxChipAcComponent implements AfterViewInit{
     if (!this.removeClicked) {
       this.luxChipClicked.emit(index);
     }
-  }
-
-  select(selected: boolean, index: number) {
-    this.luxSelected = selected;
-    this.luxChipSelected.emit({ index, selected });
   }
 }

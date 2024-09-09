@@ -228,7 +228,7 @@ describe('LuxLookupComboboxAcComponent', () => {
 
     it('Sollte die Optionen ausgeben wie sie geladen wurden', fakeAsync(() => {
       fixture.detectChanges();
-      const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
 
       trigger.click();
       fixture.detectChanges();
@@ -250,7 +250,7 @@ describe('LuxLookupComboboxAcComponent', () => {
       fixture.detectChanges();
       fixture.debugElement.injector.get(LuxLookupHandlerService).reloadData('test');
       fixture.detectChanges();
-      const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
 
       trigger.click();
       fixture.detectChanges();
@@ -272,7 +272,7 @@ describe('LuxLookupComboboxAcComponent', () => {
       fixture.detectChanges();
       fixture.debugElement.injector.get(LuxLookupHandlerService).reloadData('test');
       fixture.detectChanges();
-      const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
 
       trigger.click();
       fixture.detectChanges();
@@ -306,7 +306,7 @@ describe('LuxLookupComboboxAcComponent', () => {
 
     it('Sollte die Optionen nachladen', fakeAsync(() => {
       fixture.detectChanges();
-      const trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      const trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
 
       const spy = spyOn(combobox, 'updateDisplayedEntries').and.callThrough();
 
@@ -321,9 +321,9 @@ describe('LuxLookupComboboxAcComponent', () => {
       expect(combobox.displayedEntries.length).toEqual(8);
       expect(combobox.invisibleEntries.length).toEqual(2);
 
-      const panel = fixture.debugElement.query(By.css('div.mat-select-panel'));
+      const panel = fixture.debugElement.query(By.css('div.mat-mdc-select-panel'));
       expect(panel).toBeDefined();
-      panel.nativeElement.scrollTop = 200;
+      panel.nativeElement.scrollTop = 400;
       LuxTestHelper.dispatchFakeEvent(panel.nativeElement, 'scroll');
       LuxTestHelper.wait(fixture);
 

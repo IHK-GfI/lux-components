@@ -10,12 +10,12 @@ import {
   ViewChildren
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { MatLegacySelect as MatSelect } from '@angular/material/legacy-select';
+import { MatSelect } from '@angular/material/select';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxFormSelectableBase } from '../lux-form-model/lux-form-selectable-base.class';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatLegacyOption as MatOption } from '@angular/material/legacy-core';
+import { MatOption } from '@angular/material/core';
 
 /**
  * @param O Optionstyp (z.B Land)

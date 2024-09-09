@@ -28,7 +28,6 @@
         [luxDebounceTime]="debounceTime"
         [luxMaximumDisplayed]="maximumDisplayed"
         [luxLabelLongFormat]="labelLongFormat"
-        [luxOptionMultiline]="optionMultiline"
         [luxDense]="denseFormat"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
@@ -63,7 +62,6 @@
         [luxMaximumDisplayed]="maximumDisplayed"
         [luxControlBinding]="controlBinding"
         [luxLabelLongFormat]="labelLongFormat"
-        [luxOptionMultiline]="optionMultiline"
         [luxDense]="denseFormat"
         [luxCompareFn]="compareFn"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
@@ -180,13 +178,6 @@
       luxHint="Sortiert die Optionen entweder nach dem Kurztext (aktiviert) oder Schlüssel (deaktiviert)."
       (luxCheckedChange)="toggleCompareFn($event)"
       [luxNoTopLabel]="true"
-    >
-    </lux-toggle-ac>
-    <lux-toggle-ac
-      luxLabel="luxOptionMultiline"
-      luxHint="Wenn 'true' wird der Option-Text mehrzeilig angezeigt"
-      [luxNoTopLabel]="true"
-      [(luxChecked)]="optionMultiline"
     >
     </lux-toggle-ac>
     <lux-toggle-ac

@@ -29,7 +29,6 @@
         [luxControlValidators]="controlValidators"
         [luxPanelWidth]="luxPanelWidth"
         [luxLabelLongFormat]="labelLongFormat"
-        [luxOptionMultiline]="optionMultiline"
         (luxValueChange)="log(showOutputEvents, 'luxValueChange', $event)"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
@@ -67,7 +66,6 @@
         [luxControlBinding]="controlBinding"
         [luxPanelWidth]="luxPanelWidth"
         [luxLabelLongFormat]="labelLongFormat"
-        [luxOptionMultiline]="optionMultiline"
         (luxBlur)="log(showOutputEvents, 'luxBlur', $event)"
         (luxFocus)="log(showOutputEvents, 'luxFocus', $event)"
         (luxFocusIn)="log(showOutputEvents, 'luxFocusIn', $event)"
@@ -258,12 +256,6 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-toggle-ac
-      [(luxChecked)]="optionMultiline"
-      [luxNoTopLabel]="true"
-      luxLabel="luxOptionMultiline"
-      luxHint="Mit diesem Flag kann aktiviert werden, dass der Text in einer Option mehrzeilig wird."
-    ></lux-toggle-ac>
     <lux-toggle-ac
       [(luxChecked)]="selectAllOnClick"
       luxLabel="luxSelectAllOnClick"

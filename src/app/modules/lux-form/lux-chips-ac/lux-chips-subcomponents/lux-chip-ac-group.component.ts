@@ -1,6 +1,5 @@
 import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { LuxThemePalette } from '../../../lux-util/lux-colors.enum';
-import { ILuxChipAcSelected } from '../lux-chips-model/lux-chip-ac-selected.interface';
 
 @Component({
   selector: 'lux-chip-ac-group',
@@ -14,12 +13,10 @@ export class LuxChipAcGroupComponent {
   @Output() luxChipClicked = new EventEmitter<number>();
   @Output() luxChipAdded = new EventEmitter<string>();
   @Output() luxChipRemoved = new EventEmitter<number>();
-  @Output() luxChipSelected = new EventEmitter<ILuxChipAcSelected>();
 
   @Input() luxLabels: string[] = [];
   @Input() luxDisabled = false;
   @Input() luxRemovable = true;
-  @Input() luxSelected = true;
 
   get luxColor(): LuxThemePalette {
     return this._luxColor;
@@ -50,9 +47,5 @@ export class LuxChipAcGroupComponent {
 
   click(index: number) {
     this.luxChipClicked.emit(index);
-  }
-
-  select(selected: boolean, index: number) {
-    this.luxChipSelected.emit({ index, selected });
   }
 }
