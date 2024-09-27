@@ -110,17 +110,17 @@
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "lux-components:build"
+            "buildTarget": "lux-components:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "lux-components:build:production"
+              "buildTarget": "lux-components:build:production"
             },
             "development": {
-              "browserTarget": "lux-components:build:development"
+              "buildTarget": "lux-components:build:development"
             },
             "en": {
-              "browserTarget": "lux-components:build:en"
+              "buildTarget": "lux-components:build:en"
             }
           },
           "defaultConfiguration": "development"
@@ -128,7 +128,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lux-components:build:en"
+            "buildTarget": "lux-components:build:en"
           }
         },
         "test": {

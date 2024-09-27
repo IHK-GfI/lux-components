@@ -67,7 +67,7 @@
         <target>There is one message.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-message-box/lux-message-box.component.ts</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.message.announce.x_messages" datatype="html">
@@ -75,7 +75,7 @@
         <target>There are <x id="messageCount" equiv-text="messages.length"/> messages.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-message-box/lux-message-box.component.ts</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.message.announce.0_messages" datatype="html">
@@ -83,7 +83,7 @@
         <target>There are no Messages.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-message-box/lux-message-box.component.ts</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.multiselect.chk.arialabel" datatype="html">
@@ -91,7 +91,7 @@
         <target>Row <x id="INTERPOLATION" equiv-text="{{ i }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.html</context>
-          <context context-type="linenumber">72,73</context>
+          <context context-type="linenumber">70,71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.multiselect.all.chk.arialabel" datatype="html">
@@ -99,7 +99,7 @@
         <target>All entries</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.html</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.sort.descending" datatype="html">
@@ -363,7 +363,7 @@
         <target>enter or select</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-chips-ac/lux-chips-ac.component.ts</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datepicker.error_message.min" datatype="html">
@@ -655,7 +655,7 @@
         <target>Button to delete the file <x id="INTERPOLATION" equiv-text="{{ file.name }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-file/lux-file-upload/lux-file-upload.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.file.upload.error_message.max_file_size" datatype="html">
@@ -1028,7 +1028,7 @@
         <target>The entered Value is not part of the key table.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-lookup/lux-lookup-autocomplete-ac/lux-lookup-autocomplete-ac.component.ts</context>
-          <context context-type="linenumber">167</context>
+          <context context-type="linenumber">169</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.lookup.error_message.invalid" datatype="html">
@@ -1149,6 +1149,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-popups/lux-dialog/lux-dialog-structure/lux-dialog-structure.component.html</context>
           <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-tour-hint/lux-tour-hint-preset/lux-tour-hint-preset.component.html</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.paginator.elements_on_page" datatype="html">

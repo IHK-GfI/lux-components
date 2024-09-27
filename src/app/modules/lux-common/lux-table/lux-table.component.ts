@@ -520,9 +520,9 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
    * für die einzelnen Rows.
    */
   private insertCustomCSSClasses() {
-    if (this.luxClasses && this.dataSource.data) {
+    if (this.luxClasses && this.luxData) {
       this.currentCustomClasses = [];
-      this.dataSource.data.forEach((entry: any) => {
+      this.luxData.forEach((entry: any) => {
         let classes = '';
         (this.luxClasses as ICustomCSSConfig[]).forEach((cssClass: ICustomCSSConfig) => {
           if (cssClass.check(entry)) {
@@ -677,6 +677,7 @@ export class LuxTableComponent<T = any> implements OnInit, AfterViewInit, DoChec
               this.dataSource.totalElements = 0;
               this.luxData = [];
             }
+            this.insertCustomCSSClasses()
           }),
           catchError((error) => {
             this.isLoadingResults = false;

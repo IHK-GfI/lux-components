@@ -14,10 +14,11 @@
     [placeholder]="luxPlaceholder"
     [multiple]="luxMultiple"
     [required]="luxRequired"
+    
     [formControl]="formControl"
     luxTagIdHandler
     [luxTagId]="luxTagId"
-    [panelClass]="luxMultiple ? 'lux-select-panel-ac-multiple': 'lux-select-panel-ac'"
+    [panelClass]="[luxMultiple ? 'lux-select-panel-ac-multiple' : 'lux-select-panel-ac', luxReadonly ? 'lux-display-none' : '']"
     [disableRipple]="true"
     [errorStateMatcher]="stateMatcher"
     [compareWith]="compareByKey"
@@ -27,6 +28,7 @@
     [luxAriaDescribedby]="uid + '-error ' + uid + '-hint'"
     [attr.aria-invalid]="formControl.invalid"
     [attr.aria-required]="luxRequired"
+    [attr.aria-readonly]="luxReadonly"
   >
     <ng-container *ngIf='luxWithEmptyEntry && !luxMultiple'>
       <mat-option [value]="undefined" class="option-height"></mat-option>

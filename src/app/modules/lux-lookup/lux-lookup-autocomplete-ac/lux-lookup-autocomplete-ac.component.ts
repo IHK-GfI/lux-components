@@ -131,11 +131,13 @@ export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null>
    * @param clickEvent
    */
   onClick(clickEvent: any) {
-    clickEvent.target.setSelectionRange(0, clickEvent.target.value.length);
-    // Beim Klick, wenn kein Wert gesetzt ist, das Panel öffnen
-    if (!this.luxValue && this.matAutocompleteTrigger) {
-      this.matAutocompleteTrigger._onChange('');
-      this.matAutocompleteTrigger.openPanel();
+    if (!this.luxReadonly  && !this.luxDisabled) {
+      clickEvent.target.setSelectionRange(0, clickEvent.target.value.length);
+      // Beim Klick, wenn kein Wert gesetzt ist, das Panel öffnen
+      if (!this.luxValue && this.matAutocompleteTrigger) {
+        this.matAutocompleteTrigger._onChange('');
+        this.matAutocompleteTrigger.openPanel();
+      }
     }
   }
 

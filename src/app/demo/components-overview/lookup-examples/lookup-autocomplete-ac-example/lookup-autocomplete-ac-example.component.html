@@ -1,6 +1,6 @@
 <example-base-structure
   exampleTitle="Lookup-Autocomplete-Authentic"
-  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90lookup%E2%80%90autocomplete-v16"
+  exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90lookup%E2%80%90autocomplete-v18"
 >
   <example-base-content>
     <div class="lux-flex lux-flex-col">
@@ -137,7 +137,8 @@
     <lux-input-ac
       luxName="lookup_autocomplete_luxDebounceTime"
       luxLabel="luxDebounceTime"
-      luxHint="Diese Property setzt die zeitliche Verzögerung, bevor die Daten nach einem neuen Suchbegriff gefiltert werden."
+      [luxDisabled]="true"
+      luxHint="Diese Property setzt die zeitliche Verzögerung, bevor die Daten nach einem neuen Suchbegriff gefiltert werden. Kann nur initial gesetzt werden."
       [(luxValue)]="debounceTime"
     >
     </lux-input-ac>
