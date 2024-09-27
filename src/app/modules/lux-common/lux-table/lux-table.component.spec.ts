@@ -49,9 +49,9 @@ describe('LuxTableComponent', () => {
 
     it('Die Zeilen darstellen (inklusive Header und Footer)', fakeAsync(() => {
       // Vorbedingungen testen
-      let contentRows = document.querySelectorAll('.mat-row'); // fixture...selectAll not working....
-      let headerRow = document.querySelector('.mat-header-row');
-      let footerRow = document.querySelector('.mat-footer-row');
+      let contentRows = document.querySelectorAll('.mat-mdc-row'); // fixture...selectAll not working....
+      let headerRow = document.querySelector('.mat-mdc-header-row');
+      let footerRow = document.querySelector('.mat-mdc-footer-row');
       expect(contentRows.length).toEqual(0);
       expect(luxTableComponent.dataSource.data.length).toEqual(0);
       expect(headerRow).toBeDefined();
@@ -65,9 +65,9 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      contentRows = document.querySelectorAll('.mat-row');
-      headerRow = document.querySelector('.mat-header-row');
-      footerRow = document.querySelector('.mat-footer-row');
+      contentRows = document.querySelectorAll('.mat-mdc-row');
+      headerRow = document.querySelector('.mat-mdc-header-row');
+      footerRow = document.querySelector('.mat-mdc-footer-row');
 
       expect(contentRows.length).toEqual(2);
       expect(luxTableComponent.dataSource.data.length).toEqual(2);
@@ -88,7 +88,7 @@ describe('LuxTableComponent', () => {
       component.showFilter = true;
 
       LuxTestHelper.wait(fixture);
-      let contentRows = document.querySelectorAll('.mat-row');
+      let contentRows = document.querySelectorAll('.mat-mdc-row');
       expect(contentRows.length).toEqual(4);
       expect(luxTableComponent.dataSource.data.length).toEqual(4);
 
@@ -97,7 +97,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture, 550);
 
       // Nachbedingungen testen
-      contentRows = document.querySelectorAll('.mat-row');
+      contentRows = document.querySelectorAll('.mat-mdc-row');
       expect(contentRows.length).toEqual(1);
       expect(luxTableComponent.dataSource.data.length).toEqual(4);
 
@@ -106,7 +106,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture, 550);
 
       // Nachbedingungen testen
-      contentRows = document.querySelectorAll('.mat-row');
+      contentRows = document.querySelectorAll('.mat-mdc-row');
       expect(contentRows.length).toEqual(0);
       expect(luxTableComponent.dataSource.data.length).toEqual(4);
     }));
@@ -136,7 +136,7 @@ describe('LuxTableComponent', () => {
       component.pageSize = 5;
 
       LuxTestHelper.wait(fixture, 300);
-      let contentRows = document.querySelectorAll('.mat-row');
+      let contentRows = document.querySelectorAll('.mat-mdc-row');
       expect(contentRows.length).toEqual(5);
       expect(luxTableComponent.dataSource.data.length).toEqual(17);
       expect(luxTableComponent.paginator).toBeDefined();
@@ -151,7 +151,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      contentRows = document.querySelectorAll('.mat-row');
+      contentRows = document.querySelectorAll('.mat-mdc-row');
       expect(contentRows.length).toEqual(2);
       expect(luxTableComponent.dataSource.data.length).toEqual(17);
       expect(luxTableComponent.paginator!.hasNextPage()).toBeFalsy();
@@ -170,7 +170,7 @@ describe('LuxTableComponent', () => {
       component.pageSize = 2;
 
       LuxTestHelper.wait(fixture);
-      let contentRows = document.querySelectorAll('.mat-row');
+      let contentRows = document.querySelectorAll('.mat-mdc-row');
       expect(contentRows.length).toEqual(4);
       expect(luxTableComponent.dataSource.data.length).toEqual(4);
       expect(luxTableComponent.paginator).toBeDefined();
@@ -180,7 +180,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      contentRows = document.querySelectorAll('.mat-row');
+      contentRows = document.querySelectorAll('.mat-mdc-row');
       expect(contentRows.length).toEqual(2);
       expect(luxTableComponent.dataSource.data.length).toEqual(4);
     }));
@@ -300,7 +300,7 @@ describe('LuxTableComponent', () => {
         { c1: 4, c2: 'Alpha' }
       ];
       LuxTestHelper.wait(fixture);
-      let tableHeaders = document.querySelectorAll('.mat-header-row:not(.lux-table-header-no-data) th');
+      let tableHeaders = document.querySelectorAll('.mat-mdc-header-row:not(.lux-table-header-no-data) th');
       expect(tableHeaders.length).toBe(2);
 
       // Änderungen durchführen
@@ -308,7 +308,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      tableHeaders = document.querySelectorAll('.mat-header-row:not(.lux-table-header-no-data) th');
+      tableHeaders = document.querySelectorAll('.mat-mdc-header-row:not(.lux-table-header-no-data) th');
       expect(tableHeaders.length).toBe(2);
       expect((tableHeaders.item(0) as HTMLElement).style.width).toEqual('5%');
       expect((tableHeaders.item(1) as HTMLElement).style.width).toEqual('25%');
@@ -321,7 +321,7 @@ describe('LuxTableComponent', () => {
         { c1: 2, c2: 'Helium' }
       ];
       LuxTestHelper.wait(fixture);
-      let stickyElements = document.querySelectorAll('.mat-row .mat-table-sticky');
+      let stickyElements = document.querySelectorAll('.mat-mdc-row .mat-mdc-table-sticky');
       expect(stickyElements.length).toBe(0);
 
       // Änderungen durchführen
@@ -329,7 +329,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      stickyElements = document.querySelectorAll('.mat-row .mat-table-sticky');
+      stickyElements = document.querySelectorAll('.mat-mdc-row .mat-mdc-table-sticky');
       expect(stickyElements.length).toBe(2);
 
       // Änderungen durchführen
@@ -337,7 +337,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      stickyElements = document.querySelectorAll('.mat-row .mat-table-sticky');
+      stickyElements = document.querySelectorAll('.mat-mdc-row .mat-mdc-table-sticky');
       expect(stickyElements.length).toBe(4);
     }));
 
@@ -348,7 +348,7 @@ describe('LuxTableComponent', () => {
         { c1: 2, c2: 'Helium' }
       ];
       LuxTestHelper.wait(fixture);
-      let rows = document.getElementsByClassName('mat-row');
+      let rows = document.getElementsByClassName('mat-mdc-row');
       expect(rows.item(0)!.classList.toString().indexOf('my-custom-class')).toBe(-1);
       expect(rows.item(1)!.classList.toString().indexOf('my-custom-class')).toBe(-1);
 
@@ -360,7 +360,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      rows = document.getElementsByClassName('mat-row');
+      rows = document.getElementsByClassName('mat-mdc-row');
       expect(rows.item(0)!.classList.toString().indexOf('my-custom-class')).toBeGreaterThan(-1);
       expect(rows.item(1)!.classList.toString().indexOf('my-custom-class')).toBeGreaterThan(-1);
 
@@ -378,7 +378,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      rows = document.getElementsByClassName('mat-row');
+      rows = document.getElementsByClassName('mat-mdc-row');
       expect(rows.item(0)!.classList.toString().indexOf('my-custom-class-2')).toBeGreaterThan(-1);
       expect(rows.item(1)!.classList.toString().indexOf('my-custom-class-2')).toBeGreaterThan(-1);
     }));
@@ -393,7 +393,7 @@ describe('LuxTableComponent', () => {
         component.c1RespAt = ['xs', 'sm'];
         component.c1RespBeh = 'hide';
         LuxTestHelper.wait(fixture);
-        let cells = document.getElementsByClassName('mat-cell');
+        let cells = document.getElementsByClassName('mat-mdc-cell');
         expect(cells.length).toBe(4);
 
         // Änderungen durchführen
@@ -401,7 +401,7 @@ describe('LuxTableComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen testen
-        cells = document.getElementsByClassName('mat-cell');
+        cells = document.getElementsByClassName('mat-mdc-cell');
         expect(cells.length).toBe(2);
 
         // Änderungen durchführen
@@ -409,7 +409,7 @@ describe('LuxTableComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen testen
-        cells = document.getElementsByClassName('mat-cell');
+        cells = document.getElementsByClassName('mat-mdc-cell');
         expect(cells.length).toBe(2);
 
         // Änderungen durchführen
@@ -417,7 +417,7 @@ describe('LuxTableComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen testen
-        cells = document.getElementsByClassName('mat-cell');
+        cells = document.getElementsByClassName('mat-mdc-cell');
         expect(cells.length).toBe(4);
       })
     ));
@@ -432,7 +432,7 @@ describe('LuxTableComponent', () => {
         component.c1RespAt = ['xs', 'sm'];
         component.c1RespBeh = 'c2';
         LuxTestHelper.wait(fixture);
-        let cells = document.getElementsByClassName('mat-cell');
+        let cells = document.getElementsByClassName('mat-mdc-cell');
         let movedCells = document.getElementsByClassName('lux-moved-header-title');
         expect(cells.length).toBe(4);
         expect(movedCells.length).toBe(0);
@@ -442,7 +442,7 @@ describe('LuxTableComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen testen
-        cells = document.getElementsByClassName('mat-cell');
+        cells = document.getElementsByClassName('mat-mdc-cell');
         movedCells = document.getElementsByClassName('lux-moved-header-title');
         expect(cells.length).toBe(2);
         expect(movedCells.length).toBe(2);
@@ -452,7 +452,7 @@ describe('LuxTableComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen testen
-        cells = document.getElementsByClassName('mat-cell');
+        cells = document.getElementsByClassName('mat-mdc-cell');
         movedCells = document.getElementsByClassName('lux-moved-header-title');
         expect(cells.length).toBe(2);
         expect(movedCells.length).toBe(2);
@@ -462,7 +462,7 @@ describe('LuxTableComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen testen
-        cells = document.getElementsByClassName('mat-cell');
+        cells = document.getElementsByClassName('mat-mdc-cell');
         movedCells = document.getElementsByClassName('lux-moved-header-title');
         expect(cells.length).toBe(4);
         expect(movedCells.length).toBe(0);
@@ -482,7 +482,7 @@ describe('LuxTableComponent', () => {
         component.c1RespBeh = 'c2';
         component.hideHeaders = true;
         LuxTestHelper.wait(fixture);
-        let cells = document.getElementsByClassName('mat-cell');
+        let cells = document.getElementsByClassName('mat-mdc-cell');
         let movedCells = document.getElementsByClassName('lux-moved-header-title');
         expect(cells.length).toBe(4);
         expect(movedCells.length).toBe(0);
@@ -492,7 +492,7 @@ describe('LuxTableComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen testen
-        cells = document.getElementsByClassName('mat-cell');
+        cells = document.getElementsByClassName('mat-mdc-cell');
         movedCells = document.getElementsByClassName('lux-moved-header-title');
         expect(cells.length).toBe(2);
         expect(movedCells.length).toBe(2);
@@ -502,7 +502,7 @@ describe('LuxTableComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen testen
-        cells = document.getElementsByClassName('mat-cell');
+        cells = document.getElementsByClassName('mat-mdc-cell');
         movedCells = document.getElementsByClassName('lux-moved-header-title');
         expect(cells.length).toBe(2);
         expect(movedCells.length).toBe(2);
@@ -512,7 +512,7 @@ describe('LuxTableComponent', () => {
         LuxTestHelper.wait(fixture);
 
         // Nachbedingungen testen
-        cells = document.getElementsByClassName('mat-cell');
+        cells = document.getElementsByClassName('mat-mdc-cell');
         movedCells = document.getElementsByClassName('lux-moved-header-title');
         expect(cells.length).toBe(4);
         expect(movedCells.length).toBe(0);
@@ -673,7 +673,7 @@ describe('LuxTableComponent', () => {
 
     it('Die load-Data Funktion des übergebenen DAOs aufrufen', fakeAsync(() => {
       // Vorbedingungen testen
-      let contentRows = document.querySelectorAll('.mat-row');
+      let contentRows = document.querySelectorAll('.mat-mdc-row');
       let headerRow = document.querySelector('.mat-header-row');
       let footerRow = document.querySelector('.mat-footer-row');
 
@@ -687,7 +687,7 @@ describe('LuxTableComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen testen
-      contentRows = document.querySelectorAll('.mat-row');
+      contentRows = document.querySelectorAll('.mat-mdc-row');
       headerRow = document.querySelector('.mat-header-row');
       footerRow = document.querySelector('.mat-footer-row');
 
@@ -703,7 +703,7 @@ describe('LuxTableComponent', () => {
       // Vorbedingungen testen
       // Abwarten bis das DAO geladen hat (ist asynchron)
       LuxTestHelper.wait(fixture);
-      let contentRows = document.querySelectorAll('.mat-row');
+      let contentRows = document.querySelectorAll('.mat-mdc-row');
 
       expect(contentRows.length).toBe(2);
       expect(luxTableComponent.dataSource.data.length).toEqual(2);
@@ -736,7 +736,7 @@ describe('LuxTableComponent', () => {
       // Nachbedingungen testen.
       // Hier muss das Resultat dem der neueren Filterung entsprechend und der alte Request ("old_filter...") darf
       // keine Auswirkungen gehabt haben.
-      contentRows = document.querySelectorAll('.mat-row');
+      contentRows = document.querySelectorAll('.mat-mdc-row');
 
       expect(contentRows.length).toBe(1);
       expect(luxTableComponent.dataSource.data.length).toEqual(1);

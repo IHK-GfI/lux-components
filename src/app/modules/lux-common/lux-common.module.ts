@@ -5,7 +5,7 @@ import { MatLegacyPaginatorModule as MatPaginatorModule } from '@angular/materia
 import { MatLegacyProgressBarModule as MatProgressBarModule } from '@angular/material/legacy-progress-bar';
 import { MatLegacyProgressSpinnerModule as MatProgressSpinnerModule } from '@angular/material/legacy-progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
-import { MatLegacyTableModule as MatTableModule } from '@angular/material/legacy-table';
+import { MatTableModule } from '@angular/material/table';
 import { LuxComponentsConfigModule } from '../lux-components-config/lux-components-config.module';
 import { LuxLabelComponent } from './lux-label/lux-label.component';
 import { LuxBadgeComponent } from './lux-badge/lux-badge.component';
