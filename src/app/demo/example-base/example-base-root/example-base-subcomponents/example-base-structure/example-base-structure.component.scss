@@ -27,7 +27,7 @@ lux-card ::ng-deep mat-card-content .lux-card-content {
   min-width: 50%;
   max-width: 50%;
 
-  ::ng-deep > .mat-card > .lux-card-content-container {
+  ::ng-deep > .mat-mdc-card > .lux-card-content-container {
     overflow-y: auto;
   }
 }

@@ -1,12 +1,12 @@
 ::ng-deep .lux-datetimepicker-overlay {
+  
   & lux-card {
-    & mat-card {
+    & mat-card.mat-mdc-card {
       padding: 0 8px 0 0;
       min-width: 300px;
       min-height: 480px;
-
-      mat-card-content {
-        padding: 0 0 0px 0;
+      mat-card-content.mat-mdc-card-content {
+        padding: 0 0 0 0;
         margin: 0;
       }
     }
