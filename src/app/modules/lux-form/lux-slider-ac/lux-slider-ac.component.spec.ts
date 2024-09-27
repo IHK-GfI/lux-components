@@ -228,32 +228,32 @@ describe('LuxSliderAcComponent', () => {
 
     it('Sollte die displayWith-Funktion korrekt ausführen', fakeAsync(() => {
       // Vorbedingungen testen
-      let thumbLabelText = fixture.debugElement.query(By.css('.mat-slider-thumb-label-text'));
+      let thumbLabelText = fixture.debugElement.query(By.css('.mdc-slider__value-indicator-text'));
       expect(thumbLabelText.nativeElement.textContent).toEqual('0');
 
       // Änderungen durchführen
       component.max = 10000;
       component.showThumbLabel = true;
-      component.displayWith = (value) => {
-        value = value ?? 0;
+      component.displayWith = (value: number) => {
+        let result = value ? ('' + value) : '0';
         if (value && value >= 1000) {
           return Math.round(value / 1000) + 'k';
         }
-        return value;
+        return result;
       };
       LuxTestHelper.wait(fixture);
       component.value = 1000;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      thumbLabelText = fixture.debugElement.query(By.css('.mat-slider-thumb-label-text'));
+      thumbLabelText = fixture.debugElement.query(By.css('.mdc-slider__value-indicator-text'));
       expect(thumbLabelText.nativeElement.textContent).toEqual('1k');
 
       component.value = 5600;
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      thumbLabelText = fixture.debugElement.query(By.css('.mat-slider-thumb-label-text'));
+      thumbLabelText = fixture.debugElement.query(By.css('.mdc-slider__value-indicator-text'));
       expect(thumbLabelText.nativeElement.textContent).toEqual('6k');
     }));
   });

@@ -76,7 +76,7 @@ describe('LuxSelectAcComponent', () => {
 
     it('Wert über das FormControl setzen', fakeAsync(() => {
       fixture.detectChanges();
-      trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
 
       expect(testComponent.formGroup.get('hobbies')!.value).toBeNull();
 
@@ -89,12 +89,12 @@ describe('LuxSelectAcComponent', () => {
       flush();
 
       const options = overlayContainerElement.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
-      expect(options[0].classList).toContain('mat-selected');
+      expect(options[0].classList).toContain('mdc-list-item--selected');
     }));
 
     it('Wert über das Popup setzen', fakeAsync(() => {
       fixture.detectChanges();
-      trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
 
       expect(testComponent.formGroup.get('hobbies')!.value).toBeNull();
 
@@ -160,7 +160,7 @@ describe('LuxSelectAcComponent', () => {
       fixture = TestBed.createComponent(SelectOutsideFormComponent);
       fixture.detectChanges();
       testComponent = fixture.componentInstance;
-      trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
       select = fixture.debugElement.query(By.css('mat-select')).nativeElement;
     }));
 
@@ -177,7 +177,7 @@ describe('LuxSelectAcComponent', () => {
       flush();
 
       const options = overlayContainerElement.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
-      expect(options[3].classList).toContain('mat-selected');
+      expect(options[3].classList).toContain('mdc-list-item--selected');
     }));
 
     it('Wert über das Popup setzen', fakeAsync(() => {
@@ -263,7 +263,7 @@ describe('LuxSelectAcComponent', () => {
     it('Sollte required sein', fakeAsync(() => {
       // Vorbedingungen testen
       const luxInput: LuxSelectAcComponent = fixture.debugElement.query(By.directive(LuxSelectAcComponent)).componentInstance;
-      let selectRequired = fixture.debugElement.query(By.css('.mat-select-required'));
+      let selectRequired = fixture.debugElement.query(By.css('.mat-mdc-select-required'));
       expect(selectRequired).toBeNull();
 
       // Änderungen durchführen
@@ -271,7 +271,7 @@ describe('LuxSelectAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      selectRequired = fixture.debugElement.query(By.css('.mat-select-required'));
+      selectRequired = fixture.debugElement.query(By.css('.mat-mdc-select-required'));
       expect(selectRequired).not.toBeNull();
 
       // Änderungen durchführen
@@ -329,7 +329,7 @@ describe('LuxSelectAcComponent', () => {
 
     it('Sollte den Placeholder darstellen', fakeAsync(() => {
       // Vorbedingungen testen
-      let placeholder = fixture.debugElement.query(By.css('.mat-select-placeholder'));
+      let placeholder = fixture.debugElement.query(By.css('.mat-mdc-select-placeholder'));
       expect(placeholder.nativeElement.textContent.trim()).toEqual('');
 
       // Änderungen durchführen
@@ -337,7 +337,7 @@ describe('LuxSelectAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      placeholder = fixture.debugElement.query(By.css('.mat-select-placeholder'));
+      placeholder = fixture.debugElement.query(By.css('.mat-mdc-select-placeholder'));
       expect(placeholder.nativeElement.textContent.trim()).toEqual('Placeholder');
     }));
 
@@ -368,7 +368,7 @@ describe('LuxSelectAcComponent', () => {
       fixture = TestBed.createComponent(SelectCustomCompareComponent);
       fixture.detectChanges();
       testComponent = fixture.componentInstance;
-      trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
       select = fixture.debugElement.query(By.css('mat-select')).nativeElement;
     }));
 
@@ -384,7 +384,7 @@ describe('LuxSelectAcComponent', () => {
       flush();
 
       const options = overlayContainerElement.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
-      expect(options[3].classList).toContain('mat-selected');
+      expect(options[3].classList).toContain('mdc-list-item--selected');
       discardPeriodicTasks();
     }));
   });
@@ -401,7 +401,7 @@ describe('LuxSelectAcComponent', () => {
       fixture = TestBed.createComponent(SelectStringArrayComponent);
       fixture.detectChanges();
       testComponent = fixture.componentInstance;
-      trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
       select = fixture.debugElement.query(By.css('mat-select')).nativeElement;
     }));
 
@@ -419,7 +419,7 @@ describe('LuxSelectAcComponent', () => {
       flush();
 
       const options = overlayContainerElement.querySelectorAll('mat-option') as NodeListOf<HTMLElement>;
-      expect(options[3].classList).toContain('mat-selected');
+      expect(options[3].classList).toContain('mdc-list-item--selected');
     }));
 
     it('Wert über das Popup setzen', fakeAsync(() => {
@@ -477,7 +477,7 @@ describe('LuxSelectAcComponent', () => {
 
       clickTrigger();
 
-      const options = overlayContainerElement.querySelectorAll('mat-option .mat-option-text') as NodeListOf<HTMLElement>;
+      const options = overlayContainerElement.querySelectorAll('mat-option .mdc-list-item__primary-text') as NodeListOf<HTMLElement>;
 
       expect(options.length).toBe(testComponent.options.length);
       expect(options.item(0).innerText.trim()).toEqual('');
@@ -493,8 +493,8 @@ describe('LuxSelectAcComponent', () => {
 
       // Nachbedingungen prüfen
       expect(testComponent.selectedOption).toBeNull();
-      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).toBeNull();
-      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-mdc-select-value-text'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-mdc-select-placeholder'))).not.toBeNull();
 
       // Änderungen durchführen
       clickTrigger();
@@ -502,8 +502,8 @@ describe('LuxSelectAcComponent', () => {
 
       // Nachbedingungen prüfen
       expect(testComponent.selectedOption).toBe('');
-      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).not.toBeNull();
-      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-mdc-select-value-text'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-mdc-select-placeholder'))).toBeNull();
 
       // Änderungen durchführen
       clickTrigger();
@@ -511,8 +511,8 @@ describe('LuxSelectAcComponent', () => {
 
       // Nachbedingungen prüfen
       expect(testComponent.selectedOption).toBeUndefined();
-      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).toBeNull();
-      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-mdc-select-value-text'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-mdc-select-placeholder'))).not.toBeNull();
 
       // Änderungen durchführen
       clickTrigger();
@@ -520,8 +520,8 @@ describe('LuxSelectAcComponent', () => {
 
       // Nachbedingungen prüfen
       expect(testComponent.selectedOption).toBe('A');
-      expect(fixture.debugElement.query(By.css('.mat-select-value-text'))).not.toBeNull();
-      expect(fixture.debugElement.query(By.css('.mat-select-placeholder'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-mdc-select-value-text'))).not.toBeNull();
+      expect(fixture.debugElement.query(By.css('.mat-mdc-select-placeholder'))).toBeNull();
     }));
   });
 
@@ -537,7 +537,7 @@ describe('LuxSelectAcComponent', () => {
       fixture = TestBed.createComponent(SelectValueHookComponent);
       fixture.detectChanges();
       testComponent = fixture.componentInstance;
-      trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
       select = fixture.debugElement.query(By.css('mat-select')).nativeElement;
     }));
 
@@ -596,7 +596,7 @@ describe('LuxSelectAcComponent', () => {
       fixture = TestBed.createComponent(SelectValueHookFormComponent);
       fixture.detectChanges();
       testComponent = fixture.componentInstance;
-      trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
       select = fixture.debugElement.query(By.css('mat-select')).nativeElement;
     }));
 
@@ -632,7 +632,7 @@ describe('LuxSelectAcComponent', () => {
       fixture = TestBed.createComponent(SelectMultipleComponent);
       fixture.detectChanges();
       testComponent = fixture.componentInstance;
-      trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
       select = fixture.debugElement.query(By.css('mat-select')).nativeElement;
     }));
 
@@ -659,7 +659,7 @@ describe('LuxSelectAcComponent', () => {
       flush();
 
       // Nachbedingungen prüfen
-      const selectText = fixture.debugElement.query(By.css('.mat-select-value-text > span'));
+      const selectText = fixture.debugElement.query(By.css('.mat-mdc-select-value-text > span'));
       expect(selectText.nativeElement.textContent).toEqual(testComponent.options[0].label + ', ' + testComponent.options[1].label);
       expect([testComponent.options[0], testComponent.options[1]]).toEqual(fixture.componentInstance.selectedOptions as any);
       discardPeriodicTasks();
@@ -675,7 +675,7 @@ describe('LuxSelectAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      const selectText = fixture.debugElement.query(By.css('.mat-select-value-text > span'));
+      const selectText = fixture.debugElement.query(By.css('.mat-mdc-select-value-text > span'));
       expect(selectText.nativeElement.textContent).toEqual(testComponent.options[0].label + ', ' + testComponent.options[1].label);
       expect(luxSelect.luxSelected).toEqual([testComponent.options[0], testComponent.options[1]]);
       discardPeriodicTasks();
@@ -697,7 +697,7 @@ describe('LuxSelectAcComponent', () => {
       LuxTestHelper.wait(pickFixture);
 
       // Nachbedingungen prüfen
-      const selectText = pickFixture.debugElement.query(By.css('.mat-select-value-text > span'));
+      const selectText = pickFixture.debugElement.query(By.css('.mat-mdc-select-value-text > span'));
       expect(selectText.nativeElement.textContent).toEqual(pickComponent.options[0].label + ', ' + pickComponent.options[1].label);
       expect(luxSelect.luxSelected).toEqual([pickComponent.options[0].value, pickComponent.options[1].value]);
       discardPeriodicTasks();
@@ -715,7 +715,7 @@ describe('LuxSelectAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      const selectText = fixture.debugElement.query(By.css('.mat-select-value-text > span'));
+      const selectText = fixture.debugElement.query(By.css('.mat-mdc-select-value-text > span'));
       expect(selectText.nativeElement.textContent).toEqual(testComponent.options[0] + ', ' + testComponent.options[1]);
       expect(luxSelect.luxSelected).toEqual([testComponent.options[0], testComponent.options[1]]);
       discardPeriodicTasks();
@@ -730,7 +730,7 @@ describe('LuxSelectAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      const selectText = fixture.debugElement.query(By.css('.mat-select-value-text > span'));
+      const selectText = fixture.debugElement.query(By.css('.mat-mdc-select-value-text > span'));
       expect(selectText.nativeElement.textContent).toEqual(testComponent.options[1].label);
       discardPeriodicTasks();
     }));
@@ -748,13 +748,13 @@ describe('LuxSelectAcComponent', () => {
       fixture = TestBed.createComponent(SelectWithTemplateComponent);
       fixture.detectChanges();
       testComponent = fixture.componentInstance;
-      trigger = fixture.debugElement.query(By.css('.mat-select-trigger')).nativeElement;
+      trigger = fixture.debugElement.query(By.css('.mat-mdc-select-trigger')).nativeElement;
       select = fixture.debugElement.query(By.css('mat-select')).nativeElement;
     }));
 
     it('Sollte die Options richtig darstellen', fakeAsync(() => {
       // Vorbedingungen testen
-      let optionTexts = overlayContainerElement.querySelectorAll('.mat-option-text');
+      let optionTexts = overlayContainerElement.querySelectorAll('.mdc-list-item__primary-text');
       expect(optionTexts.length).toBe(0);
 
       // Änderungen durchführen
@@ -763,7 +763,7 @@ describe('LuxSelectAcComponent', () => {
       flush();
 
       // Nachbedingungen prüfen
-      optionTexts = overlayContainerElement.querySelectorAll('.mat-option-text');
+      optionTexts = overlayContainerElement.querySelectorAll('.mdc-list-item__primary-text');
       expect(optionTexts.length).toBe(4);
       expect(optionTexts[0].textContent!.trim()).toEqual('Option: A');
       expect(optionTexts[1].textContent!.trim()).toEqual('Option: B');
@@ -773,7 +773,7 @@ describe('LuxSelectAcComponent', () => {
 
     it('Sollte ngTemplate luxOptionLabelProp vorziehen', fakeAsync(() => {
       // Vorbedingungen testen
-      let optionTexts = overlayContainerElement.querySelectorAll('.mat-option-text');
+      let optionTexts = overlayContainerElement.querySelectorAll('.mdc-list-item__primary-text');
       expect(optionTexts.length).toBe(0);
 
       // Änderungen durchführen
@@ -785,7 +785,7 @@ describe('LuxSelectAcComponent', () => {
       flush();
 
       // Nachbedingungen prüfen
-      optionTexts = overlayContainerElement.querySelectorAll('.mat-option-text');
+      optionTexts = overlayContainerElement.querySelectorAll('.mdc-list-item__primary-text');
       expect(optionTexts.length).toBe(4);
       expect(optionTexts[0].textContent!.trim()).toEqual('Option: A');
       expect(optionTexts[1].textContent!.trim()).toEqual('Option: B');

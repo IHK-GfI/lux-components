@@ -13,11 +13,9 @@
         [luxInputLabel]="inputLabel"
         [luxPlaceholder]="placeholder"
         [luxOrientation]="chipOrientation"
-        [luxMultiple]="multiple"
         [luxAutocompleteOptions]="autocomplete ? autocompleteNoGroupOptions : []"
         [luxOptionBlockSize]="optionBlockSize"
         [luxLabelLongFormat]="labelLongFormat"
-        [luxOptionMultiline]="optionMultiline"
         [luxDense]="denseFormat"
         [luxHideBorder]="hideBorder"
         (luxChipAdded)="chipAdded($event)"
@@ -26,7 +24,6 @@
           [luxDisabled]="chip.disabled"
           [luxColor]="chip.color"
           [luxRemovable]="chip.removable"
-          [luxSelected]="chip.selected"
           (luxChipSelected)="log(showOutputEvents, 'Chip selected', $event)"
           (luxChipClicked)="log(showOutputEvents, 'Chip clicked', $event)"
           (luxChipRemoved)="chipRemoved($event)"
@@ -47,9 +44,7 @@
         [luxInputLabel]="inputLabel"
         [luxPlaceholder]="placeholder"
         [luxOrientation]="chipOrientation"
-        [luxMultiple]="multiple"
         [luxNewChipGroup]="chipGroup"
-        [luxOptionMultiline]="optionMultiline"
         (luxChipAdded)="chipAdded($event)"
         [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
         [luxOptionBlockSize]="optionBlockSize"
@@ -62,7 +57,6 @@
           [luxColor]="groupColor"
           [luxLabels]="groupLabels"
           [luxDisabled]="groupDisabled"
-          [luxSelected]="groupSelected"
           (luxChipRemoved)="log(showOutputEvents, '[GROUP] Chip removed', $event)"
           (luxChipAdded)="log(showOutputEvents, '[GROUP] Chip added', $event)"
           (luxChipClicked)="log(showOutputEvents, '[GROUP] Chip clicked', $event)"
@@ -82,9 +76,7 @@
           [luxInputLabel]="inputLabel"
           [luxPlaceholder]="placeholder"
           [luxOrientation]="chipOrientation"
-          [luxMultiple]="multiple"
           [luxNewChipGroup]="chipGroupForm"
-          [luxOptionMultiline]="optionMultiline"
           [luxAutocompleteOptions]="autocomplete ? autocompleteOptions : []"
           [luxOptionBlockSize]="optionBlockSize"
           [luxLabelLongFormat]="labelLongFormat"
@@ -96,7 +88,6 @@
             [luxColor]="groupColor"
             [luxLabels]="groupLabels"
             [luxDisabled]="groupDisabled"
-            [luxSelected]="groupSelected"
             (luxChipRemoved)="log(showOutputEvents, '[GROUP] Chip removed', $event)"
             (luxChipAdded)="log(showOutputEvents, '[GROUP] Chip added', $event)"
             (luxChipClicked)="log(showOutputEvents, '[GROUP] Chip clicked', $event)"
@@ -162,14 +153,6 @@
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
-    <lux-toggle-ac
-      [(luxChecked)]="optionMultiline"
-      [luxNoTopLabel]="true"
-      [luxDisabled]="!inputAllowed"
-      luxLabel="luxOptionMultiline"
-      luxHint="Erlaubt es, mehrzeilige Texte in der Auswahlliste des Select-Panels anzuzeigen."
-    >
-    </lux-toggle-ac>
     <lux-input-ac
       luxLabel="luxOptionBlockSize"
       [luxDisabled]="!inputAllowed"
@@ -200,13 +183,6 @@
         sind. D.h. das luxRequired funktioniert nicht für das erste Beispiel "Chips (ohne Group)".<br />
         <b>In diesem Beispiel wird stattdessen für die Reactive-Form Component der Validator.required für das Form-Control gesetzt.</b>
       </lux-form-hint>
-    </lux-toggle-ac>
-    <lux-toggle-ac
-      [(luxChecked)]="multiple"
-      luxLabel="luxMultiple"
-      luxHint="Erlaubt es, mehrere Chips zu selektieren (mithilfe der Leertaste)."
-      [luxNoTopLabel]="true"
-    >
     </lux-toggle-ac>
     <lux-toggle-ac
       [(luxChecked)]="denseFormat"
@@ -251,13 +227,6 @@
               [luxNoTopLabel]="true"
             >
             </lux-toggle-ac>
-            <lux-toggle-ac
-              luxLabel="luxSelected"
-              luxHint="Diese Property selektiert die Chip."
-              [(luxChecked)]="chip.selected"
-              [luxNoTopLabel]="true"
-            >
-            </lux-toggle-ac>
           </lux-panel-content>
         </lux-panel>
       </lux-accordion>
@@ -282,13 +251,6 @@
         luxLabel="luxRemovable"
         luxHint="Diese Property markiert die Chips in einer Group als entfernbar."
         [(luxChecked)]="groupRemovable"
-        [luxNoTopLabel]="true"
-      >
-      </lux-toggle-ac>
-      <lux-toggle-ac
-        luxLabel="luxSelected"
-        luxHint="Diese Property selektiert die Chips in dieser Group."
-        [(luxChecked)]="groupSelected"
         [luxNoTopLabel]="true"
       >
       </lux-toggle-ac>

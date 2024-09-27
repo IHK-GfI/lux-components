@@ -12,15 +12,11 @@
         [luxControlValidators]="controlValidators"
         [luxColor]="color"
         [(luxDisabled)]="disabled"
-        [luxVertical]="vertical"
-        [luxInvert]="invert"
         [luxShowThumbLabel]="showThumbLabel"
-        [luxTickInterval]="tickInterval"
         [(luxValue)]="value"
         [luxMax]="max"
         [luxMin]="min"
         [luxStep]="step"
-        [luxShowThumbLabelAlways]="alwaysVisible"
         [luxReadonly]="readonly"
         [luxDense]="denseFormat"
         [luxDisplayWith]="useDisplayFn ? displayFn : undefined"
@@ -45,14 +41,10 @@
         [luxControlBinding]="controlBinding"
         [luxColor]="color"
         [(luxDisabled)]="disabled"
-        [luxVertical]="vertical"
-        [luxInvert]="invert"
         [luxShowThumbLabel]="showThumbLabel"
-        [luxTickInterval]="tickInterval"
         [luxMax]="max"
         [luxMin]="min"
         [luxStep]="step"
-        [luxShowThumbLabelAlways]="alwaysVisible"
         [luxReadonly]="readonly"
         [luxDense]="denseFormat"
         [luxDisplayWith]="useDisplayFn ? displayFn : undefined"
@@ -105,23 +97,9 @@
     >
     </lux-toggle-ac>
     <lux-toggle-ac
-      [(luxChecked)]="vertical"
-      luxLabel="luxVertical"
-      luxHint="Diese Property schaltet die vertikale Darstellung des Sliders ein."
-      [luxNoTopLabel]="true"
-    >
-    </lux-toggle-ac>
-    <lux-toggle-ac
       [(luxChecked)]="denseFormat"
       luxLabel="luxDense"
       luxHint="Diese Property veringert das Padding innerhalb des Controls."
-      [luxNoTopLabel]="true"
-    >
-    </lux-toggle-ac>
-    <lux-toggle-ac
-      [(luxChecked)]="invert"
-      luxLabel="luxInvert"
-      luxHint="Über diesen Flag kann die Ausrichtung des Sliders gespiegelt werden."
       [luxNoTopLabel]="true"
     >
     </lux-toggle-ac>
@@ -160,28 +138,6 @@
       luxHint="Über die Property wird die Schrittgröße, in denen der Slider die Werte ändert bestimmt."
     >
     </lux-input-ac>
-    <lux-toggle-ac
-      [luxChecked]="tickIntervalAuto"
-      (luxCheckedChange)="tickIntervalChanged($event)"
-      luxLabel="luxTickInterval - 'auto'"
-      [luxNoTopLabel]="true"
-    >
-      <lux-form-hint>
-        luxTickInterval kann den Wert 'auto' erhalten, um automatisch die Anzahl an Abstandanzeigen darzustellen.<br />
-        Diese sind nur visuell und haben keine Auswirkung auf die Schrittgröße (luxStep).
-      </lux-form-hint>
-    </lux-toggle-ac>
-    <lux-input-ac
-      luxType="number"
-      [luxNumberAlignLeft]="true"
-      [luxValue]="tickIntervalNumber"
-      luxName="slider_luxTickInterval"
-      luxLabel="luxTickInterval - 'number'"
-      luxHint="Die Property kann ebenfalls einen Zahlenwert erhalten, um so die Abstände festzulegen."
-      (luxValueChange)="tickIntervalNumberChanged($event)"
-      *ngIf="!tickIntervalAuto"
-    >
-    </lux-input-ac>
   </example-base-simple-options>
   <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
@@ -189,14 +145,6 @@
       luxLabel="luxShowThumbLabel"
       luxHint="Dieser Flag schaltet die 'ThumbLabel'-Anzeige des aktuellen Wertes ein."
       [luxNoTopLabel]="true"
-    >
-    </lux-toggle-ac>
-    <lux-toggle-ac
-      [(luxChecked)]="alwaysVisible"
-      luxLabel="luxShowThumbLabelAlways"
-      luxHint="Diese Property schaltet den 'ThumbLabel' unabhängig vom Fokus immer ein."
-      [luxNoTopLabel]="true"
-      *ngIf="showThumbLabel"
     >
     </lux-toggle-ac>
     <lux-toggle-ac

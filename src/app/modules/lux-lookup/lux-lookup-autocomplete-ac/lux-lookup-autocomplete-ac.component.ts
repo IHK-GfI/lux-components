@@ -17,10 +17,10 @@ import { LuxLookupService } from '../lux-lookup-service/lux-lookup.service';
 import { ControlContainer } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 import {
-  MatLegacyAutocomplete as MatAutocomplete,
-  MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent,
-  MatLegacyAutocompleteTrigger as MatAutocompleteTrigger
-} from '@angular/material/legacy-autocomplete';
+  MatAutocomplete,
+  MatAutocompleteSelectedEvent,
+  MatAutocompleteTrigger
+} from '@angular/material/autocomplete';
 import { LuxLookupHandlerService } from '../lux-lookup-service/lux-lookup-handler.service';
 import { LuxLookupTableEntry } from '../lux-lookup-model/lux-lookup-table-entry';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
@@ -44,7 +44,6 @@ export class LuxLookupAutocompleteAcComponent<T = LuxLookupTableEntry | null>
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
   @Input() luxNoBottomLabel = false;
-  @Input() luxOptionMultiline = true;
 
   @Output() luxBlur = new EventEmitter<FocusEvent>();
   @Output() luxFocus = new EventEmitter<FocusEvent>();
