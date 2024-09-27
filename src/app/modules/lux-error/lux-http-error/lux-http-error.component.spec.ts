@@ -209,8 +209,8 @@ describe('LuxHttpErrorComponent', () => {
     LuxTestHelper.wait(fixture);
 
     // Nachbedingungen prüfen
-    const paginatorPrev = fixture.debugElement.query(By.css('.mat-paginator-navigation-previous'));
-    const paginatorNext = fixture.debugElement.query(By.css('.mat-paginator-navigation-next'));
+    const paginatorPrev = fixture.debugElement.query(By.css('.mat-mdc-paginator-navigation-previous'));
+    const paginatorNext = fixture.debugElement.query(By.css('.mat-mdc-paginator-navigation-next'));
     messageText = fixture.debugElement.query(By.css('.lux-message-text'));
     expect(messageText.nativeElement.textContent).toBe('404');
 
