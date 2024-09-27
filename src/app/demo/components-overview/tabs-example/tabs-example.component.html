@@ -1,7 +1,7 @@
 <example-base-structure exampleTitle="Tabs" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tabs-v16">
   <example-base-content>
     <div [ngStyle]="{ backgroundColor: backgroundColor }" class="lux-flex lux-flex-col lux-gap-4">
-      <h3>Standard-Tab mit Border und Animation</h3>
+      <h3>Standard-Tab mit Border</h3>
       <lux-tabs [luxShowBorder]="true">
         <lux-tab luxTitle="Beispiel 1" luxTagIdHeader="tab-beispiel1-header" luxTagIdContent="tab-beispiel1-content">
           <ng-template>
@@ -33,7 +33,6 @@
       <h3>Demo-Tab für Testzwecke</h3>
       <lux-tabs
         [luxActiveTab]="activeTab"
-        [luxTabAnimationActive]="animationActive"
         [luxIconSize]="iconSize"
         [luxDisplayDivider]="displayDivider"
         [luxLazyLoading]="lazyLoading"
@@ -105,13 +104,6 @@
       [luxOptions]="['1x', '2x', '3x', '4x', '5x']"
     >
     </lux-select-ac>
-    <lux-toggle-ac
-      luxLabel="luxTabAnimationActive"
-      luxHint="Dieser Flag aktiviert die horizontale Animation des Tab-Contents."
-      [(luxChecked)]="animationActive"
-      [luxNoTopLabel]="true"
-    >
-    </lux-toggle-ac>
     <lux-toggle-ac
       luxLabel="luxDisplayDivider"
       luxHint="Dieser Flag schaltet die Trennlinie zwischen Tab-Header und Tab-Content ein."

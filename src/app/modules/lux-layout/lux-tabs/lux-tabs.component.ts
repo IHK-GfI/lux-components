@@ -14,7 +14,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { LuxTabComponent } from './lux-tabs-subcomponents/lux-tab.component';
-import { MatLegacyTabChangeEvent as MatTabChangeEvent } from '@angular/material/legacy-tabs';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ReplaySubject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
@@ -36,7 +36,6 @@ export class LuxTabsComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   labelUppercase?: boolean;
   smallDevice?: boolean;
 
-  @Input() luxTabAnimationActive = true;
   @Input() luxActiveTab = 0;
   @Input() luxIconSize = '2x';
   @Input() luxDisplayDivider = true;

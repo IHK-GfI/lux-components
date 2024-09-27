@@ -63,7 +63,7 @@
   <lux-detail-view-ac>
     <!-- Zugriff auf das aktuell selektierte Element über "detail" -->
     <ng-template let-detail>
-      <lux-tabs [luxTabAnimationActive]="false" [luxActiveTab]="0">
+      <lux-tabs [luxActiveTab]="0">
         <lux-tab luxTitle="Konfiguration" luxIconName="lux-interface-setting-tool-box">
           <ng-template>
             <detail-example [masterDetailConfig]="configuration" [selectedDetail]="detail">
