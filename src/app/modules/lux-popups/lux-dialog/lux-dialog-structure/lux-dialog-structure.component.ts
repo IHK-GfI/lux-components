@@ -37,7 +37,6 @@ export class LuxDialogStructureComponent implements OnInit, AfterViewInit {
   }
 
   onClose() {
-    console.log('####DIALOG-CLOSE');
     this.luxDialogRef.closeDialog();
   }
 }

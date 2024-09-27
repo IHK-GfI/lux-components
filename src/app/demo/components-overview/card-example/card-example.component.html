@@ -67,6 +67,8 @@
       luxLabel="luxHeading"
       luxHint="Gültige Werte sind 1-6 (verändert nur die Überschriftenstruktur, aber nicht die Darstellung (Barrierefreiheit)."
       [(luxValue)]="heading"
+      luxType="number"
+      [luxNumberAlignLeft]="true"
       [luxControlValidators]="headingValidator"
     ></lux-input-ac>
     <lux-toggle-ac luxLabel="luxDisabled" [(luxChecked)]="disabled" [luxDisabled]="showActions" [luxNoTopLabel]="true">

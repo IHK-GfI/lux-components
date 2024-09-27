@@ -1,6 +1,6 @@
 import { SPACE } from '@angular/cdk/keycodes';
 import { CommonModule } from '@angular/common';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement, Injectable, NO_ERRORS_SCHEMA, OnDestroy, Provider } from '@angular/core';
 import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -46,6 +46,7 @@ import { LuxLookupModule } from '../../lux-lookup/lux-lookup.module';
 import { LuxPipesModule } from '../../lux-pipes/lux-pipes.module';
 import { LuxPopupsModule } from '../../lux-popups/lux-popups.module';
 import { LuxTenantLogoModule } from '../../lux-tenant-logo/lux-tenant-logo.module';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 export class LuxTestHelper {
   public static COMMON_ANGULAR_MODULES: any[] = [
@@ -306,17 +307,14 @@ export class LuxTestHelper {
    */
   public static configureTestModule(providers: Provider[] = [], declarations: any[] = [], imports: any[] = []) {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        ...LuxTestHelper.COMMON_ANGULAR_MODULES,
+    declarations: [...declarations],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+    imports: [...LuxTestHelper.COMMON_ANGULAR_MODULES,
         ...LuxTestHelper.MATERIAL_MODULES,
         ...LuxTestHelper.LUX_MODULES,
-        ...imports
-      ],
-      declarations: [...declarations],
-      providers: [...providers],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
-    });
+        ...imports],
+    providers: [...providers, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
 
     TestBed.compileComponents();
   }

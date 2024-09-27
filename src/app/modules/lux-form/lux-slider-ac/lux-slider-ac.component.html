@@ -10,6 +10,8 @@
   luxTagId="luxSliderWrapper"
 >
   <mat-slider
+    [luxTabIndex]="luxReadonly ? '-1' : '0'"
+    [luxPotentialChildren]="['input']"
     luxTagIdHandler
     [luxTagId]="luxTagId"
     [color]="luxColor"
@@ -24,7 +26,7 @@
     [luxAriaInvalid]="'' + formControl.invalid"
     [luxAriaRequired]="luxRequired"
     [luxAriaLabel]="luxLabel"
-    tabIndex="{{ luxReadonly ? -1 : 0 }}"
+    tabIndex="-1"
    #ngSlider><input matSliderThumb [ngClass]="{'lux-readonly': luxReadonly}"  [formControl]="formControl" [value]="luxValue" (valueChange)="onChange($event)" #ngSliderThumb="matSliderThumb" (input)="onInput(ngSliderThumb.value)" [readOnly]="luxReadonly" />
   </mat-slider>
 </lux-form-control-wrapper>

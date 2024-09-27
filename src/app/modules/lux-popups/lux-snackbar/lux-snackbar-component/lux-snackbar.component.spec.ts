@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Component, NgModule, Injectable } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -12,12 +12,14 @@ import { LuxTestHelper } from '../../../lux-util/testing/lux-test-helper';
 import { LuxPopupsModule } from '../../lux-popups.module';
 import { LuxSnackbarService } from '../lux-snackbar.service';
 import { LuxSnackbarComponent } from './lux-snackbar.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('LuxSnackbarComponent', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [MockSnackbarModule, HttpClientTestingModule]
-    });
+    imports: [MockSnackbarModule],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
   });
 
   let fixture: ComponentFixture<MockSnackbarComponent>;

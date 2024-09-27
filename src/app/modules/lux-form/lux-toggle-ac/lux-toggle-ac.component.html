@@ -27,8 +27,9 @@
     [luxAriaInvalid]="'' + formControl.invalid"
     luxAriaInvalidSelector=".mat-slide-toggle-input"
     tabIndex="{{ luxReadonly ? -1 : 0 }}"
+    #slidetoggle
   >
-    <label class="lux-form-label" [for]="uid + '-input'" *ngIf="formLabelComponent || luxLabel">
+    <label class="lux-form-label" [for]="uid + '-input'" *ngIf="formLabelComponent || luxLabel" (click)="slidetoggle.toggle()">
       <ng-container *ngIf="luxLabel; else formLabelTemplate">
         {{ luxLabel }}
       </ng-container>

@@ -6,7 +6,8 @@ import { LuxTableComponent } from '../../../modules/lux-common/lux-table/lux-tab
 
 @Component({
   selector: 'app-table-server-example',
-  templateUrl: './table-server-example.component.html'
+  templateUrl: './table-server-example.component.html',
+  styleUrls: ['./table-server-example.component.scss']
 })
 export class TableServerExampleComponent extends TableExampleBaseClass {
   @ViewChild('myTable') tableComponent!: LuxTableComponent;

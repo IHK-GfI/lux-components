@@ -77,7 +77,6 @@ export class LuxChipsAcComponent extends LuxFormComponentBase<string[]> implemen
   @Input() luxOrientation: LuxChipsAcOrientation = 'horizontal';
   @Input() luxInputAllowed = false;
   @Input() luxNewChipGroup?: LuxChipAcGroupComponent;
-  @Input() luxMultiple = true;
   @Input() luxStrict = false;
   @Input() luxLabelLongFormat = false;
   @Input() luxPlaceholder = $localize`:@@luxc.chips.input.placeholder.lbl:eingeben oder auswählen`;

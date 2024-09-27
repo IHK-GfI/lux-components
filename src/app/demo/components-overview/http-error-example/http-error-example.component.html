@@ -3,15 +3,15 @@
   exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90http%E2%80%90error-v16"
 >
   <example-base-content>
-    <lux-http-error></lux-http-error>
+    <lux-http-error (luxMessageBoxClosed)="disabled = true"></lux-http-error>
   </example-base-content>
   <example-base-simple-options>
     <div class="lux-flex lux-flex-col lux-gap-4">
       <lux-button
         luxLabel="Fehler ausblenden"
         [luxStroked]="true"
-        [luxDisabled]="(getErrorsObservable() | async) === null"
         (luxClicked)="clearErrors()"
+        [luxDisabled]="disabled"
       >
       </lux-button>
       <h3>Fehler einblenden</h3>
