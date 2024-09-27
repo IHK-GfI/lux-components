@@ -452,8 +452,8 @@ class LuxMockTextareaComponent {
   selector: 'lux-mock-form-textarea',
   template:
     `<form [formGroup]="form"><lux-textarea-ac [(luxValue)]="value" [luxLabel]="label" [luxPlaceholder]="placeholder"
-                   [luxReadonly]="readonly" [luxRequired]="required" [luxMaxRows]="maxRows"
-                   [luxMinRows]="minRows" luxControlBinding="control"></lux-textarea-ac></form>`
+                        [luxReadonly]="readonly" [luxRequired]="required" [luxMaxRows]="maxRows"
+                        [luxMinRows]="minRows" luxControlBinding="control"></lux-textarea-ac></form>`
 })
 class LuxMockFormTextareaComponent {
   value?: string;
