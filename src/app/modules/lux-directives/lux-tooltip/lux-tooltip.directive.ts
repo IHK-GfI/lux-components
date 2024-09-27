@@ -17,12 +17,12 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {
-  MAT_LEGACY_TOOLTIP_DEFAULT_OPTIONS as MAT_TOOLTIP_DEFAULT_OPTIONS,
-  MAT_LEGACY_TOOLTIP_SCROLL_STRATEGY as MAT_TOOLTIP_SCROLL_STRATEGY,
-  MatLegacyTooltip as MatTooltip,
-  MatLegacyTooltipDefaultOptions as MatTooltipDefaultOptions,
-  LegacyTooltipPosition as TooltipPosition
-} from '@angular/material/legacy-tooltip';
+  MAT_TOOLTIP_DEFAULT_OPTIONS,
+  MAT_TOOLTIP_SCROLL_STRATEGY,
+  MatTooltip,
+  MatTooltipDefaultOptions,
+  TooltipPosition
+} from '@angular/material/tooltip';
 
 @Directive({
   selector: '[luxTooltip]',
