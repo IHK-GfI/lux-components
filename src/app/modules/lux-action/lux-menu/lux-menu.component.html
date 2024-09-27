@@ -95,7 +95,9 @@
 
   <!-- Custom-Trigger, der über Content-Projection geladen werden kann -->
    <ng-container *ngIf="!hideToggle">
-     <ng-content select="lux-menu-trigger"> </ng-content>
+    <div (click)="menuTriggerStopPropagation($event)">
+       <ng-content select="lux-menu-trigger"> </ng-content>
+    </div>
    </ng-container>
 
   <!-- Default-Trigger -->

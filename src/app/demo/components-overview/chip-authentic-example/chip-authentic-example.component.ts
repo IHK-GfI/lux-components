@@ -12,15 +12,15 @@ export class ChipAuthenticExampleComponent {
   showOutputEvents = false;
   log = logResult;
   colors = ['Keine Farbe', 'warn', 'accent', 'primary'];
-  chips: { label: string; color: LuxThemePalette; removable: boolean; disabled: boolean; selected: boolean }[] = [
-    { label: 'Chip #1', color: undefined, removable: true, disabled: false, selected: true },
-    { label: 'Chip #2', color: 'primary', removable: true, disabled: false, selected: true },
-    { label: 'Chip #3', color: 'warn', removable: true, disabled: false, selected: true },
-    { label: 'Chip #4', color: 'accent', removable: true, disabled: false, selected: true }
+  chips: { label: string; color: LuxThemePalette; removable: boolean; disabled: boolean}[] = [
+    { label: 'Chip #1', color: undefined, removable: true, disabled: false},
+    { label: 'Chip #2', color: 'primary', removable: true, disabled: false},
+    { label: 'Chip #3', color: 'warn', removable: true, disabled: false},
+    { label: 'Chip #4', color: 'accent', removable: true, disabled: false}
   ];
   openedPanel = 0;
   longOptionLabel =
-    'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
+    'Lorem ipsum dolor \n sit amet consectetur adipisicing elit.  ';
   disabled = false;
   inputAllowed = true;
   inputLabel = 'Neu';
@@ -30,15 +30,12 @@ export class ChipAuthenticExampleComponent {
   autocompleteOptions = this.createOptions();
   autocompleteNoGroupAllOptions = ['Neuer Chip #1', 'Neuer Chip #2', 'Neuer Chip #3'];
   autocompleteNoGroupOptions = [...this.autocompleteNoGroupAllOptions];
-  multiple = true;
-  optionMultiline = false;
   optionBlockSize = 500;
   strict = false;
   required = false;
   form: FormGroup;
   controlBinding = 'names';
   requiredValidatorFn = Validators.required;
-  groupSelected = true;
   groupRemovable = true;
   groupDisabled = false;
   groupColor?: LuxThemePalette;
@@ -61,8 +58,7 @@ export class ChipAuthenticExampleComponent {
         label: newChip,
         color: 'warn',
         removable: true,
-        disabled: false,
-        selected: true
+        disabled: false
       });
       this.log(this.showOutputEvents, `Der Chip "${newChip}" wurde hinzugefügt.`);
 

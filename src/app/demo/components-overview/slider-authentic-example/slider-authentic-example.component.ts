@@ -33,17 +33,11 @@ export class SliderAuthenticExampleComponent {
   log = logResult;
   percent = 0;
   percentReactive = 0;
-  tickIntervalNumber = 0;
-  tickIntervalAuto = true;
   labelLongFormat = false;
   value = 0;
   displayWithFnString: string = this.displayFn + '';
   color: LuxSliderAcColor = 'primary';
-  vertical = false;
-  invert = false;
   showThumbLabel = true;
-  alwaysVisible = true;
-  tickInterval: any = 'auto';
   step = 1;
   controlBinding = 'sliderExample';
   disabled = false;
@@ -63,22 +57,8 @@ export class SliderAuthenticExampleComponent {
 
   constructor() {
     this.form = new FormGroup<SliderDummyForm>({
-      sliderExample: new FormControl<number | null>(0)
+      sliderExample: new FormControl<number>(0)
     });
-  }
-
-  tickIntervalChanged(checked: boolean) {
-    this.tickIntervalAuto = checked;
-    if (checked) {
-      this.tickInterval = 'auto';
-    } else {
-      this.tickInterval = this.tickIntervalNumber;
-    }
-  }
-
-  tickIntervalNumberChanged(interval: any) {
-    this.tickInterval = interval;
-    this.tickIntervalNumber = interval;
   }
 
   colorChanged(color: { label: string; value: LuxSliderAcColor }) {
@@ -95,11 +75,11 @@ export class SliderAuthenticExampleComponent {
     this.log(this.showOutputEvents, 'Percent (Reactive Example) changed', percent);
   }
 
-  displayFn(value: number | null): string | number {
+  displayFn(value: number): string {
     if (value && value >= 1000) {
       return Math.round(value / 1000) + 'k';
     }
-    return value ?? 0;
+    return value ? ('' + value) : '0';
   }
 
   changeRequired(required: boolean) {

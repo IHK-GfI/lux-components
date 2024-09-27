@@ -12,13 +12,13 @@ import {
   ViewChild
 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { MatLegacySlider as MatSlider, MatLegacySliderChange as MatSliderChange } from '@angular/material/legacy-slider';
+import { MatSlider } from '@angular/material/slider';
 import { LuxFormComponentBase } from '../lux-form-model/lux-form-component-base.class';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxComponentsConfigService } from '../../lux-components-config/lux-components-config.service';
 import { Subscription } from 'rxjs';
 
-export declare type LuxDisplayWithAcFnType = (value: number | null) => string | number;
+export declare type LuxDisplayWithAcFnType = (value: number) => string;
 export declare type LuxSliderAcTickInterval = 'auto' | number;
 export declare type LuxSliderAcColor = 'primary' | 'accent' | 'warn';
 
@@ -31,17 +31,13 @@ export declare type LuxSliderAcColor = 'primary' | 'accent' | 'warn';
 export class LuxSliderAcComponent extends LuxFormComponentBase<number> implements OnInit, OnChanges, OnDestroy {
   @ViewChild(MatSlider) matSlider?: MatSlider;
 
-  @Output() luxChange = new EventEmitter<MatSliderChange>();
-  @Output() luxInput = new EventEmitter<MatSliderChange>();
+  @Output() luxChange = new EventEmitter<number>();
+  @Output() luxInput = new EventEmitter<number>();
   @Output() luxValueChange = new EventEmitter<number>();
   @Output() luxValuePercent = new EventEmitter<number>();
 
   @Input() luxColor: LuxSliderAcColor = 'primary';
-  @Input() luxVertical = false;
-  @Input() luxInvert = false;
   @Input() luxShowThumbLabel = true;
-  @Input() luxShowThumbLabelAlways = true;
-  @Input() luxTickInterval: LuxSliderAcTickInterval = 0;
   @Input() luxTagId?: string;
   @Input() luxNoLabels = false;
   @Input() luxNoTopLabel = false;
@@ -62,7 +58,7 @@ export class LuxSliderAcComponent extends LuxFormComponentBase<number> implement
   _luxRequired = false;
   _luxMin = 0;
   _luxStep = 1;
-  _luxDisplayWith: LuxDisplayWithAcFnType = (value) => value ?? 0;
+  _luxDisplayWith: LuxDisplayWithAcFnType = (value: number) => value ? ('' + value) : '0';
 
   subscription?: Subscription;
 
@@ -72,7 +68,7 @@ export class LuxSliderAcComponent extends LuxFormComponentBase<number> implement
 
   @Input()
   set luxDisplayWith(displayFn: LuxDisplayWithAcFnType | undefined) {
-    this._luxDisplayWith = displayFn ?? ((value) => value ?? 0);
+    this._luxDisplayWith = displayFn ?? ((value) => value ? ('' + value) : '0');
   }
 
   get luxMax() {
@@ -158,20 +154,20 @@ export class LuxSliderAcComponent extends LuxFormComponentBase<number> implement
 
   /**
    * Wird beim Ändern des Slider-Wertes aufgerufen.
-   * @param changeEvent
+   * @param value
    */
-  onChange(changeEvent: MatSliderChange) {
-    this.luxValue = changeEvent.value ?? 0;
-    this.luxChange.emit(changeEvent);
+  onChange(value: number) {
+    this.luxValue = value;
+    this.luxChange.emit(value);
   }
 
   /**
    * Wird beim Bewegen des Sliders aufgerufen.
-   * @param inputEvent
+   * @param value
    */
-  onInput(inputEvent: MatSliderChange) {
-    this.luxValue = inputEvent.value ?? 0;
-    this.luxInput.emit(inputEvent);
+  onInput(value: number) {
+    this.luxValue = value;
+    this.luxInput.emit(value);
     if (!this.formControl.touched) {
       this.formControl.markAsTouched();
     }

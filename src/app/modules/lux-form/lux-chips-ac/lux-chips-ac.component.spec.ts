@@ -43,7 +43,7 @@ describe('LuxChipComponent-Authentic', () => {
 
     it('Sollte Chips und ChipGroups darstellen', fakeAsync(() => {
       // Vorbedingungen testen
-      let chipElements = fixture.debugElement.queryAll(By.css('mat-chip'));
+      let chipElements = fixture.debugElement.queryAll(By.css('mat-chip-row'));
       expect(chipElements.length).toBe(0);
 
       // Änderungen durchführen
@@ -51,7 +51,7 @@ describe('LuxChipComponent-Authentic', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      chipElements = fixture.debugElement.queryAll(By.css('mat-chip'));
+      chipElements = fixture.debugElement.queryAll(By.css('mat-chip-row'));
       expect(chipElements.length).toBe(4);
 
       // Änderungen durchführen
@@ -59,7 +59,7 @@ describe('LuxChipComponent-Authentic', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      chipElements = fixture.debugElement.queryAll(By.css('mat-chip'));
+      chipElements = fixture.debugElement.queryAll(By.css('mat-chip-row'));
       expect(chipElements.length).toBe(7);
       discardPeriodicTasks();
       flush();
@@ -74,7 +74,7 @@ describe('LuxChipComponent-Authentic', () => {
       testComponent.addMockChips();
       LuxTestHelper.wait(fixture);
 
-      let disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-disabled'));
+      let disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-disabled'));
       expect(disabledChipElements.length).toBe(0);
 
       // Änderungen durchführen
@@ -82,7 +82,7 @@ describe('LuxChipComponent-Authentic', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-disabled'));
+      disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-disabled'));
       expect(disabledChipElements.length).toBe(7);
       discardPeriodicTasks();
       flush();
@@ -97,7 +97,7 @@ describe('LuxChipComponent-Authentic', () => {
       testComponent.addMockChips();
       LuxTestHelper.wait(fixture);
 
-      let disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-disabled'));
+      let disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-disabled'));
       expect(disabledChipElements.length).toBe(0);
 
       // Änderungen durchführen
@@ -105,7 +105,7 @@ describe('LuxChipComponent-Authentic', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-disabled'));
+      disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-disabled'));
       expect(disabledChipElements.length).toBe(3);
       discardPeriodicTasks();
       flush();
@@ -120,7 +120,7 @@ describe('LuxChipComponent-Authentic', () => {
       testComponent.addMockChips();
       LuxTestHelper.wait(fixture);
 
-      let disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-disabled'));
+      let disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-disabled'));
       expect(disabledChipElements.length).toBe(0);
 
       // Änderungen durchführen
@@ -129,7 +129,7 @@ describe('LuxChipComponent-Authentic', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-disabled'));
+      disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-disabled'));
       expect(disabledChipElements.length).toBe(2);
       discardPeriodicTasks();
       flush();
@@ -144,7 +144,7 @@ describe('LuxChipComponent-Authentic', () => {
       testComponent.addMockChips();
       LuxTestHelper.wait(fixture);
 
-      let disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-remove'));
+      let disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-remove'));
       expect(disabledChipElements.length).toBe(7);
 
       // Änderungen durchführen
@@ -152,7 +152,7 @@ describe('LuxChipComponent-Authentic', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-remove'));
+      disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-remove'));
       expect(disabledChipElements.length).toBe(4);
       discardPeriodicTasks();
       flush();
@@ -167,7 +167,7 @@ describe('LuxChipComponent-Authentic', () => {
       testComponent.addMockChips();
       LuxTestHelper.wait(fixture);
 
-      let disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-remove'));
+      let disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-remove'));
       expect(disabledChipElements.length).toBe(7);
 
       // Änderungen durchführen
@@ -176,7 +176,7 @@ describe('LuxChipComponent-Authentic', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-chip-remove'));
+      disabledChipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-remove'));
       expect(disabledChipElements.length).toBe(5);
       discardPeriodicTasks();
       flush();
@@ -185,7 +185,7 @@ describe('LuxChipComponent-Authentic', () => {
     it('Sollte neue Chips über das Input hinzufügen', fakeAsync(() => {
       // Vorbedingungen testen
       const spy = spyOn(testComponent, 'chipAdded').and.callThrough();
-      let chipElements = fixture.debugElement.queryAll(By.css('mat-chip'));
+      let chipElements = fixture.debugElement.queryAll(By.css('mat-chip-row'));
       expect(chipElements.length).toBe(0);
 
       // Änderungen durchführen
@@ -195,7 +195,7 @@ describe('LuxChipComponent-Authentic', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      chipElements = fixture.debugElement.queryAll(By.css('mat-chip'));
+      chipElements = fixture.debugElement.queryAll(By.css('mat-chip-row'));
       expect(chipElements.length).toBe(1);
       expect(spy).toHaveBeenCalledTimes(1);
       discardPeriodicTasks();
@@ -205,7 +205,7 @@ describe('LuxChipComponent-Authentic', () => {
     it('Sollte neue Grouped-Chips über das Input hinzufügen', fakeAsync(() => {
       // Vorbedingungen testen
       const spy = spyOn(testComponent, 'groupChipAdded');
-      let chipElements = fixture.debugElement.queryAll(By.css('mat-chip'));
+      let chipElements = fixture.debugElement.queryAll(By.css('mat-chip-row'));
       expect(chipElements.length).toBe(0);
 
       // Änderungen durchführen
@@ -217,7 +217,7 @@ describe('LuxChipComponent-Authentic', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      chipElements = fixture.debugElement.queryAll(By.css('mat-chip'));
+      chipElements = fixture.debugElement.queryAll(By.css('mat-chip-row'));
       expect(chipElements.length).toBe(1);
       expect(spy).toHaveBeenCalledTimes(1);
       discardPeriodicTasks();
@@ -229,16 +229,16 @@ describe('LuxChipComponent-Authentic', () => {
       testComponent.addMockChips();
       LuxTestHelper.wait(fixture);
 
-      let chipElements = fixture.debugElement.queryAll(By.css('.mat-chip'));
+      let chipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip'));
       expect(chipElements.length).toBe(4);
 
       // Änderungen durchführen
-      const removeButtonElements = fixture.debugElement.queryAll(By.css('.mat-chip-remove'));
+      const removeButtonElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-remove'));
       removeButtonElements[0].nativeElement.click();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      chipElements = fixture.debugElement.queryAll(By.css('.mat-chip'));
+      chipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip'));
       expect(chipElements.length).toBe(3);
       discardPeriodicTasks();
       flush();
@@ -252,16 +252,16 @@ describe('LuxChipComponent-Authentic', () => {
       testComponent.addMockGroupLabels();
       LuxTestHelper.wait(fixture);
 
-      let chipElements = fixture.debugElement.queryAll(By.css('.mat-chip'));
+      let chipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip'));
       expect(chipElements.length).toBe(3);
 
       // Änderungen durchführen
-      const removeButtonElements = fixture.debugElement.queryAll(By.css('.mat-chip-remove'));
+      const removeButtonElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip-remove'));
       removeButtonElements[0].nativeElement.click();
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      chipElements = fixture.debugElement.queryAll(By.css('.mat-chip'));
+      chipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip'));
       expect(chipElements.length).toBe(2);
       discardPeriodicTasks();
       flush();
@@ -275,7 +275,7 @@ describe('LuxChipComponent-Authentic', () => {
       testComponent.autocompleteOptions = ['Option 1', 'Option 2', 'Option 3'];
       LuxTestHelper.wait(fixture);
 
-      let chipElements = fixture.debugElement.queryAll(By.css('.mat-chip'));
+      let chipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip'));
       expect(chipElements.length).toBe(4);
 
       // Änderungen durchführen
@@ -286,7 +286,7 @@ describe('LuxChipComponent-Authentic', () => {
         LuxTestHelper.wait(fixture, 500);
 
         // Nachbedingungen prüfen
-        chipElements = fixture.debugElement.queryAll(By.css('.mat-chip'));
+        chipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip'));
         expect(chipElements.length).toBe(5);
         expect(inputElement.nativeElement.textContent).toBe('');
       });
@@ -303,7 +303,7 @@ describe('LuxChipComponent-Authentic', () => {
       testComponent.autocompleteOptions = ['Option 1', 'Option 2', 'Option 3'];
       LuxTestHelper.wait(fixture);
 
-      let chipElements = fixture.debugElement.queryAll(By.css('.mat-chip'));
+      let chipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip'));
       expect(chipElements.length).toBe(4);
 
       // Änderungen durchführen
@@ -317,7 +317,7 @@ describe('LuxChipComponent-Authentic', () => {
         LuxTestHelper.wait(fixture, 500);
 
         // Nachbedingungen prüfen
-        chipElements = fixture.debugElement.queryAll(By.css('.mat-chip'));
+        chipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip'));
         expect(chipElements.length).toBe(5);
         expect(inputElement.nativeElement.textContent).toBe('');
         expect(chipElements[chipElements.length - 1].nativeElement.textContent.trim()).toContain('Option 1');
@@ -337,7 +337,7 @@ describe('LuxChipComponent-Authentic', () => {
       LuxTestHelper.wait(fixture);
       const spy = spyOn(testComponent, 'chipClicked');
 
-      const chipElements = fixture.debugElement.queryAll(By.css('.mat-chip'));
+      const chipElements = fixture.debugElement.queryAll(By.css('.mat-mdc-chip'));
       expect(chipElements.length).toBe(7);
 
       // Änderungen durchführen
@@ -362,7 +362,7 @@ describe('LuxChipComponent-Authentic', () => {
       expect(testComponent.form.get('names')!.value![0]).toContain('Emma');
       expect(testComponent.form.get('names')!.value![1]).toContain('Marie');
 
-      const chipElements = localFixture.debugElement.queryAll(By.css('mat-chip'));
+      const chipElements = localFixture.debugElement.queryAll(By.css('mat-chip-row'));
 
       expect(chipElements.length).toEqual(2);
       flush();
@@ -409,14 +409,14 @@ describe('LuxChipComponent-Authentic', () => {
       testComponent.form.get('names')!.setValue(['Emma', 'Marie', 'Martha']);
       LuxTestHelper.wait(localFixture);
 
-      let chipElements = localFixture.debugElement.queryAll(By.css('mat-chip'));
+      let chipElements = localFixture.debugElement.queryAll(By.css('mat-chip-row'));
 
       expect(chipElements.length).toEqual(3);
 
       testComponent.form.get('names')!.setValue(null);
       LuxTestHelper.wait(localFixture);
 
-      chipElements = localFixture.debugElement.queryAll(By.css('mat-chip'));
+      chipElements = localFixture.debugElement.queryAll(By.css('mat-chip-row'));
 
       expect(chipElements.length).toEqual(0);
     }));
@@ -545,7 +545,7 @@ describe('LuxChipComponent-Authentic', () => {
       expect(autocomplete.filteredOptions.length).toEqual(2);
 
       const spy = spyOn(autocomplete, 'updateDisplayedEntries').and.callThrough();
-      const panel = fixture.debugElement.query(By.css('div.mat-autocomplete-panel'));
+      const panel = fixture.debugElement.query(By.css('div.mat-mdc-autocomplete-panel'));
       expect(panel).toBeDefined();
       panel.nativeElement.scrollTop = 200;
       LuxTestHelper.dispatchFakeEvent(panel.nativeElement, 'scroll');

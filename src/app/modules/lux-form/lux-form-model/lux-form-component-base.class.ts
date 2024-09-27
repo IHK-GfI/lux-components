@@ -18,8 +18,7 @@ import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxFormHintComponent } from '../lux-form-control/lux-form-control-subcomponents/lux-form-hint.component';
 import { LuxFormLabelComponent } from '../lux-form-control/lux-form-control-subcomponents/lux-form-label.component';
-
-let luxFormControlUID = 0;
+import { v4 as uuidv4 } from 'uuid';
 
 export declare type LuxValidationErrors = ValidationErrors;
 export declare type ValidatorFnType = ValidatorFn | ValidatorFn[] | null | undefined;
@@ -53,8 +52,7 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
   formGroup!: FormGroup;
   formControl!: FormControl<T>;
 
-  uid: string = 'lux-form-control-' + luxFormControlUID;
-  uidCounter = luxFormControlUID++;
+  uid: string = '';
 
   @ContentChild(LuxFormLabelComponent) formLabelComponent?: LuxFormLabelComponent;
   @ContentChild(LuxFormHintComponent) formHintComponent?: LuxFormHintComponent;
@@ -65,6 +63,7 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
   @Output() luxFocusOut = new EventEmitter<FocusEvent>();
   @Output() luxDisabledChange = new EventEmitter<boolean>();
 
+  @Input() luxId = '';
   @Input() luxHint = '';
   @Input() luxHintShowOnlyOnFocus = false;
   @Input() luxLabel = '';
@@ -142,6 +141,12 @@ export abstract class LuxFormComponentBase<T = any> implements OnInit, DoCheck, 
   }
 
   ngOnInit() {
+    if (this.luxId) {
+      this.uid = this.luxId;
+    } else {
+      this.uid = 'lux-form-control-' + uuidv4();
+    }
+
     this.initFormControl();
     this.initFormValueSubscription();
     this.initFormStateSubscription();

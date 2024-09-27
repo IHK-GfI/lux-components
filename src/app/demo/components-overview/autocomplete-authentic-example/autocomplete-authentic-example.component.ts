@@ -29,7 +29,6 @@ export class AutocompleteAuthenticExampleComponent {
   longOptionLabel =
     'Lorem ipsum dolor \n sit amet consectetur adipisicing elit. Nulla officiis consectetur natus id iusto asperiores cum eum sint esse in?';
   toggleOptions = true;
-  optionMultiline = false;
   optionBlockSize = 500;
   options: AutocompleteAcExampleOption[] = this.createOption();
   options2: AutocompleteAcExampleOption[] = [

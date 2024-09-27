@@ -4,7 +4,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatLegacyError as MatError } from '@angular/material/legacy-form-field';
+import { MatError } from '@angular/material/form-field';
 import { By } from '@angular/platform-browser';
 import { LuxConsoleService } from '../../lux-util/lux-console.service';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
@@ -123,7 +123,7 @@ describe('LuxRadioAcComponent', () => {
 
     it('Werte aus Options darstellen (Object-Array und String-Array)', fakeAsync(() => {
       // Vorbedingungen testen
-      let radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
+      let radioLabels = fixture.debugElement.queryAll(By.css('.mdc-label'));
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
       expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Gruppenaufgaben');
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben');
@@ -133,7 +133,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
+      radioLabels = fixture.debugElement.queryAll(By.css('.mdc-label'));
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Option 1');
       expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Option 2');
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Option 3');
@@ -143,7 +143,7 @@ describe('LuxRadioAcComponent', () => {
 
     it('Werte selektieren (Object-Array)', fakeAsync(() => {
       // Vorbedingungen testen
-      const radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
+      const radioLabels = fixture.debugElement.queryAll(By.css('.mdc-label'));
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
       expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Gruppenaufgaben');
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben');
@@ -153,7 +153,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      let checkedRadioLabel = fixture.debugElement.query(By.css('.mat-radio-checked .mat-radio-label-content'));
+      let checkedRadioLabel = fixture.debugElement.query(By.css('.mat-mdc-radio-checked .mdc-label'));
       expect(radioComponent.luxSelected).toEqual(testComponent.options[0]);
       expect(testComponent.selected).toEqual(testComponent.options[0]);
       expect(checkedRadioLabel.nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
@@ -163,7 +163,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      checkedRadioLabel = fixture.debugElement.query(By.css('.mat-radio-checked .mat-radio-label-content'));
+      checkedRadioLabel = fixture.debugElement.query(By.css('.mat-mdc-radio-checked .mdc-label'));
       expect(radioComponent.luxSelected).toEqual(testComponent.options[2]);
       expect(testComponent.selected).toEqual(testComponent.options[2]);
       expect(checkedRadioLabel.nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben');
@@ -173,7 +173,7 @@ describe('LuxRadioAcComponent', () => {
       testComponent.options = ['Option 1', ' Option 2', ' Option 3'] as any;
       LuxTestHelper.wait(fixture);
       // Vorbedingungen testen
-      const radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
+      const radioLabels = fixture.debugElement.queryAll(By.css('.mdc-label'));
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Option 1');
       expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Option 2');
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Option 3');
@@ -183,7 +183,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      let checkedRadioLabel = fixture.debugElement.query(By.css('.mat-radio-checked .mat-radio-label-content'));
+      let checkedRadioLabel = fixture.debugElement.query(By.css('.mat-mdc-radio-checked .mdc-label'));
       expect(radioComponent.luxSelected).toEqual(testComponent.options[0]);
       expect(testComponent.selected).toEqual(testComponent.options[0]);
       expect(checkedRadioLabel.nativeElement.innerText.trim()).toEqual('Option 1');
@@ -193,7 +193,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      checkedRadioLabel = fixture.debugElement.query(By.css('.mat-radio-checked .mat-radio-label-content'));
+      checkedRadioLabel = fixture.debugElement.query(By.css('.mat-mdc-radio-checked .mdc-label'));
       expect(radioComponent.luxSelected).toEqual(testComponent.options[2]);
       expect(testComponent.selected).toEqual(testComponent.options[2]);
       expect(checkedRadioLabel.nativeElement.innerText.trim()).toEqual('Option 3');
@@ -204,7 +204,7 @@ describe('LuxRadioAcComponent', () => {
       testComponent.options = [null, undefined, '', 'A'] as any;
       LuxTestHelper.wait(fixture);
 
-      const optionLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
+      const optionLabels = fixture.debugElement.queryAll(By.css('.mdc-label'));
       const radioButtons = fixture.debugElement.queryAll(By.css('mat-radio-button input'));
 
       expect(optionLabels.length).toBe(testComponent.options.length);
@@ -247,7 +247,7 @@ describe('LuxRadioAcComponent', () => {
       testComponent.pickValueFn = (o1: Option) => (o1 ? o1.value : '');
       fixture.detectChanges();
 
-      const radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
+      const radioLabels = fixture.debugElement.queryAll(By.css('.mdc-label'));
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
       expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Gruppenaufgaben');
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben');
@@ -257,7 +257,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      let checkedRadioLabel = fixture.debugElement.query(By.css('.mat-radio-checked .mat-radio-label-content'));
+      let checkedRadioLabel = fixture.debugElement.query(By.css('.mat-mdc-radio-checked .mdc-label'));
       expect(radioComponent.luxSelected).toEqual(testComponent.options[0].value);
       expect(testComponent.selected).toEqual(testComponent.options[0].value);
       expect(checkedRadioLabel.nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
@@ -267,7 +267,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      checkedRadioLabel = fixture.debugElement.query(By.css('.mat-radio-checked .mat-radio-label-content'));
+      checkedRadioLabel = fixture.debugElement.query(By.css('.mat-mdc-radio-checked .mdc-label'));
       expect(radioComponent.luxSelected).toEqual(testComponent.options[2].value);
       expect(testComponent.selected).toEqual(testComponent.options[2].value);
       expect(checkedRadioLabel.nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben');
@@ -311,7 +311,7 @@ describe('LuxRadioAcComponent', () => {
 
     it('Deaktivieren', fakeAsync(() => {
       // Vorbedingungen testen
-      let disabledRadioButtons = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
+      let disabledRadioButtons = fixture.debugElement.queryAll(By.css('.mdc-radio--disabled'));
       expect(disabledRadioButtons.length).toBe(0);
 
       // Änderungen durchführen
@@ -319,13 +319,13 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      disabledRadioButtons = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
+      disabledRadioButtons = fixture.debugElement.queryAll(By.css('.mdc-radio--disabled'));
       expect(disabledRadioButtons.length).toBe(4);
     }));
 
     it('Readonly', fakeAsync(() => {
       // Vorbedingungen testen
-      let disabledRadioButtons = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
+      let disabledRadioButtons = fixture.debugElement.queryAll(By.css('.mdc-radio--disabled'));
       let readonlyRadioGroup = fixture.debugElement.query(By.css('.lux-readonly-authentic'));
 
       expect(disabledRadioButtons.length).toBe(0);
@@ -336,7 +336,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      disabledRadioButtons = fixture.debugElement.queryAll(By.css('.mat-radio-disabled'));
+      disabledRadioButtons = fixture.debugElement.queryAll(By.css('.mdc-radio--disabled'));
       readonlyRadioGroup = fixture.debugElement.query(By.css('.lux-readonly-authentic'));
 
       expect(disabledRadioButtons.length).toBe(0);
@@ -376,7 +376,7 @@ describe('LuxRadioAcComponent', () => {
 
     it('Sollte das Template korrekt rendern', fakeAsync(() => {
       // Vorbedingungen testen
-      let radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
+      let radioLabels = fixture.debugElement.queryAll(By.css('.mdc-label'));
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
       expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Gruppenaufgaben');
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben');
@@ -386,7 +386,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
+      radioLabels = fixture.debugElement.queryAll(By.css('.mdc-label'));
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Option 1');
       expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Option 2');
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Option 3');
@@ -407,7 +407,7 @@ describe('LuxRadioAcComponent', () => {
 
     it('Sollte die Werte korrekt ins Formular übertragen', fakeAsync(() => {
       // Vorbedingungen testen
-      const radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
+      const radioLabels = fixture.debugElement.queryAll(By.css('.mdc-label'));
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
       expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Gruppenaufgaben');
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben');
@@ -418,7 +418,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      const checkedRadioLabel = fixture.debugElement.query(By.css('.mat-radio-checked .mat-radio-label-content'));
+      const checkedRadioLabel = fixture.debugElement.query(By.css('.mat-mdc-radio-checked .mdc-label'));
       expect(radioComponent.luxSelected).toEqual(testComponent.options[0]);
       expect(testComponent.selected).toEqual(testComponent.options[0]);
       expect(checkedRadioLabel.nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
@@ -427,7 +427,7 @@ describe('LuxRadioAcComponent', () => {
 
     it('Sollte eine Option deaktivieren können', fakeAsync(() => {
       // Vorbedingungen testen
-      const radioLabels = fixture.debugElement.queryAll(By.css('.mat-radio-label-content'));
+      const radioLabels = fixture.debugElement.queryAll(By.css('.mdc-label'));
       expect(radioLabels[0].nativeElement.innerText.trim()).toEqual('Meine Aufgaben');
       expect(radioLabels[1].nativeElement.innerText.trim()).toEqual('Gruppenaufgaben');
       expect(radioLabels[2].nativeElement.innerText.trim()).toEqual('Zurückgestellte Aufgaben');
@@ -459,7 +459,7 @@ describe('LuxRadioAcComponent', () => {
       LuxTestHelper.wait(fixture);
 
       // Nachbedingungen prüfen
-      errorMessage = fixture.debugElement.query(By.css('.mat-error'));
+      errorMessage = fixture.debugElement.query(By.css('mat-error'));
       expect(errorMessage.nativeElement.innerText.trim()).toEqual('* Pflichtfeld');
     }));
   });

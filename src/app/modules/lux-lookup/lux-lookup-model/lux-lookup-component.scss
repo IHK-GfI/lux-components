@@ -5,7 +5,7 @@ mat-hint {
   top: 0;
 }
 
-.mat-form-field-invalid + .hint-error-box .mat-hint {
+.mat-form-field-invalid + .hint-error-box .mat-mdc-form-field-hint {
   display: none;
 }
 

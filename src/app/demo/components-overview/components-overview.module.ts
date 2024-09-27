@@ -47,7 +47,7 @@ import { MessageBoxExampleComponent } from './message-box-example/message-box-ex
 import { MenuExampleComponent } from './menu-example/menu-example.component';
 import { AppFooterExampleComponent } from './app-footer-example/app-footer-example.component';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatLegacyFormFieldModule as MatFormFieldModule } from '@angular/material/legacy-form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { TableExampleSimpleOptionsComponent } from './table-example/table-example-simple-options/table-example-simple-options.component';
 import { TableExampleAdvancedOptionsComponent } from './table-example/table-example-advanced-options/table-example-advanced-options.component';
 import { ListExampleComponent } from './list-example/list-example.component';

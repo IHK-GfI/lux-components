@@ -15,7 +15,6 @@
     <input
       type="text"
       matInput
-      [attr.aria-controls]="'mat-autocomplete-' + uidCounter"
       autocomplete="off"
       luxTagIdHandler
       [luxNameAttr]="luxName"
@@ -45,7 +44,7 @@
       [displayWith]="displayFn.bind(this)"
       (optionSelected)="selected($event)"
     >
-      <mat-option *ngFor="let option of displayedOptions" [value]="option" [ngClass]="{ 'lux-option-multiline': luxOptionMultiline }">
+      <mat-option *ngFor="let option of displayedOptions" [value]="option">
         <ng-container *ngTemplateOutlet="optionTemplate; context: { $implicit: option }"></ng-container>
       </mat-option>
     </mat-autocomplete>

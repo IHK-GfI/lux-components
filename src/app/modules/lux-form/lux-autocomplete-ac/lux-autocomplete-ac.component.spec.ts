@@ -530,7 +530,7 @@ describe('LuxAutocompleteAcComponent', () => {
         fixture.detectChanges();
 
         const options = overlayHelper.selectAllFromOverlay('mat-option');
-        const optionsOverlay = overlayHelper.selectOneFromOverlay('.mat-autocomplete-panel');
+        const optionsOverlay = overlayHelper.selectOneFromOverlay('.mat-mdc-autocomplete-panel');
 
         expect(optionsOverlay).toBeTruthy();
         expect(options.length).toBeGreaterThan(0);
@@ -639,7 +639,7 @@ describe('LuxAutocompleteAcComponent', () => {
       expect(autocomplete.filteredOptions.length).toEqual(2);
 
       const spy = spyOn(autocomplete, 'updateDisplayedEntries').and.callThrough();
-      const panel = fixture.debugElement.query(By.css('div.mat-autocomplete-panel'));
+      const panel = fixture.debugElement.query(By.css('div.mat-mdc-autocomplete-panel'));
       expect(panel).toBeDefined();
       panel.nativeElement.scrollTop = 200;
       LuxTestHelper.dispatchFakeEvent(panel.nativeElement, 'scroll');
