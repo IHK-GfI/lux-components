@@ -81,7 +81,7 @@
   class="lux-button lux-button-rounded"
   luxTagIdHandler
   [luxTagId]="luxTagId"
-  [ngClass]="{ 'lux-icon-button': !!luxIconName }"
+  [ngClass]="{ 'lux-icon-button': !!luxIconName, 'lux-fab-rounded-default': !luxColor  }"
   [attr.aria-label]="luxLabel ? luxLabel : luxIconName"
 >
   <lux-icon [luxIconName]="luxIconName" luxPadding="0px" luxMargin="0px" luxIconSize="18px" class="lux-button-icon-round"></lux-icon>
@@ -99,7 +99,7 @@
   class="lux-button lux-button-rounded lux-stroked"
   luxTagIdHandler
   [luxTagId]="luxTagId"
-  [ngClass]="{ 'lux-icon-button': !!luxIconName }"
+  [ngClass]="{ 'lux-icon-button': !!luxIconName, 'lux-fab-stroked-default': !luxColor  }"
   [attr.aria-label]="luxLabel ? luxLabel : luxIconName"
 >
   <lux-icon [luxIconName]="luxIconName" luxPadding="0px" luxMargin="0px" luxIconSize="18px" class="lux-button-icon-round"></lux-icon>
