@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 16.6.0
+
+### New
+
+- **allgemein**: Sicherheitsupdates eingespielt.
+  - **angular**: Die Abhängigkeiten _"@angular-devkit/build-angular_ und _@angular/cli_ aktualisiert.
+  - **lux-html**: DOMPurify allows tampering by prototype pollution (CVE-2024-45801) [Issue 535](https://github.com/IHK-GfI/lux-components/issues/535)
+
 ## Version 16.5.0
 
 ### New
