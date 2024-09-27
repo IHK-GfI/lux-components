@@ -1,6 +1,6 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { Injectable, OnDestroy } from '@angular/core';
-import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarDismiss as MatSnackBarDismiss } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar, MatSnackBarDismiss } from '@angular/material/snack-bar';
 import { Observable, Subscription } from 'rxjs';
 import { LuxAppService } from '../../lux-util/lux-app.service';
 import { LuxSnackbarComponent } from './lux-snackbar-component/lux-snackbar.component';
@@ -135,19 +135,21 @@ export class LuxSnackbarService implements OnDestroy {
   }
 
   private updateSnackbarPosition(logError: boolean) {
-    const snackbarContainerArr = document.getElementsByClassName('mat-snack-bar-container');
+    const snackbarContainerArr = document.getElementsByClassName('mat-mdc-snack-bar-container');
 
     if (snackbarContainerArr.length > 0) {
       const snackbarEl = snackbarContainerArr[0] as HTMLElement;
       const snackbarElParent = snackbarContainerArr[0].parentElement as HTMLElement;
+      const snackbarLabelEL = snackbarEl.getElementsByClassName('mat-mdc-snack-bar-label')[0] as HTMLElement;
       // Die Overlay-Paine für die Snackbar muss verschoben werden, da diese sonst den Header blockiert
       snackbarElParent.style.top = this.appService.getAppTop() + this.appService.getHeaderHeight() + 3 /* Abstand zum Header */ + 'px';
       snackbarElParent.style.right = this.appService.getAppRight() + 3 /* Abstand zum Rand */ + 'px';
       snackbarElParent.style.position = 'absolute';
       snackbarEl.style.visibility = 'visible';
+      snackbarLabelEL.style.visibility = 'visible';
     } else {
       if (logError) {
-        console.error('Snackbar (mat-snack-bar-container) could not be found! The snackbar is not shown.');
+        console.error('Snackbar (mat-mdc-snack-bar-container) could not be found! The snackbar is not shown.');
       }
     }
   }
