@@ -2,7 +2,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, NgModule, Injectable } from '@angular/core';
 import { ComponentFixture, discardPeriodicTasks, fakeAsync, flush, inject, TestBed } from '@angular/core/testing';
-import { MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LuxActionModule } from '../../../lux-action/lux-action.module';
@@ -94,7 +94,7 @@ const findToggleElement = (toggleElement: any) => {
   `,
   providers: []
 })
-class MockSnackbarComponent {}
+class MockSnackbarComponent { }
 
 @Injectable()
 class MockStorageService {
@@ -109,4 +109,4 @@ class MockStorageService {
   providers: [{ provide: LuxStorageService, useClass: MockStorageService }],
   declarations: [MockSnackbarComponent]
 })
-class MockSnackbarModule {}
+class MockSnackbarModule { }
