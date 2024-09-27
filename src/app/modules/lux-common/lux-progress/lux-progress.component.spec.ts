@@ -7,7 +7,7 @@ import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MatProgressBar } from '@angular/material/progress-bar';
-import { MatLegacyProgressSpinner as MatProgressSpinner } from '@angular/material/legacy-progress-spinner';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 describe('LuxProgressComponent', () => {
 
