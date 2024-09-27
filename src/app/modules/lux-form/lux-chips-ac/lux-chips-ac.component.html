@@ -8,7 +8,7 @@
   >
     <mat-chip-grid
       [ngClass]="[
-        luxOrientation.toLocaleLowerCase() === 'vertical' ? 'mat-chip-list-stacked' : 'mat-chip-list-horizontal',
+        luxOrientation.toLocaleLowerCase() === 'vertical' ? 'mat-mdc-chip-set-stacked' : 'mat-mdc-chip-list-horizontal',
         luxOrientation === 'horizontal' && luxInputAllowed ? 'lux-chips-list-offset' : 'lux-chips-list'
       ]"
       [disabled]="luxDisabled"
@@ -18,63 +18,67 @@
     >
       <!-- Direkte Chip-Components -->
       <ng-container *ngFor="let chip of chipComponents; let i = index">
-        <mat-chip-row
-          class="lux-chip"
-          [ngClass]="{ 'lux-chip-disabled': chip.luxDisabled, 'lux-chip-color-default': !chip.luxColor, 'lux-chip-color-primary': chip.luxColor === 'primary', 'lux-chip-color-accent': chip.luxColor === 'accent', 'lux-chip-color-warn': chip.luxColor === 'warn' }"
-          [removable]="chip.luxRemovable"
-          [disabled]="chip.luxDisabled"
-          [color]="chip.luxColor"
-          [disableRipple]="true"
-          (keydown.delete)="chip.remove(i)"
-          (click)="chip.click(i)"
-        >
-          <ng-template *ngTemplateOutlet="chip.templateRef"></ng-template>
-          <lux-icon
-            class="lux-chip-icon"
-            [ngClass]="{ 'lux-chip-icon-disabled': chip.luxDisabled }"
-            matChipRemove
-            luxIconName="lux-interface-delete-circle"
-            luxMargin="0 0 0 6px"
-            luxPadding="0px"
-            class="lux-chip-icon lux-cursor"
-            (click)="chip.remove(i)"
-            (keydown.enter)="chip.remove(i)"
-            (keydown.space)="chip.remove(i)"
-            *ngIf="chip.luxRemovable"
-          ></lux-icon>
-        </mat-chip-row>
-      </ng-container>
-
-      <!-- Chips via ChipGroup-Components -->
-      <ng-container *ngFor="let chipGroup of chipGroupComponents">
-        <ng-container *ngFor="let label of chipGroup.luxLabels; let i = index">
+        <div class="lux-chip-container">
           <mat-chip-row
             class="lux-chip"
-            [ngClass]="{ 'lux-chip-disabled': chipGroup.luxDisabled, 'lux-chip-color-default': !chipGroup.luxColor, 'lux-chip-color-primary': chipGroup.luxColor === 'primary', 'lux-chip-color-accent': chipGroup.luxColor === 'accent', 'lux-chip-color-warn': chipGroup.luxColor === 'warn' }"
-            [removable]="chipGroup.luxRemovable"
-            [disabled]="chipGroup.luxDisabled"
+            [ngClass]="{ 'lux-chip-disabled': chip.luxDisabled, 'lux-chip-color-default': !chip.luxColor, 'lux-chip-color-primary': chip.luxColor === 'primary', 'lux-chip-color-accent': chip.luxColor === 'accent', 'lux-chip-color-warn': chip.luxColor === 'warn' }"
+            [removable]="chip.luxRemovable"
+            [disabled]="chip.luxDisabled"
+            [color]="chip.luxColor"
             [disableRipple]="true"
-            [color]="chipGroup.luxColor"
-            (keydown.delete)="onChipGroupRemove(chipGroup, i)"
-            (click)="chipGroup.click(i)"
+            (keydown.delete)="chip.remove(i)"
+            (click)="chip.click(i)"
           >
-            <ng-container
-              *ngTemplateOutlet="chipGroup.tempRef ? chipGroup.tempRef : noTemplateRef; context: { $implicit: label }"
-            ></ng-container>
+            <ng-template *ngTemplateOutlet="chip.templateRef"></ng-template>
             <lux-icon
               class="lux-chip-icon"
-              [ngClass]="{ 'lux-chip-icon-disabled': chipGroup.luxDisabled}"
+              [ngClass]="{ 'lux-chip-icon-disabled': chip.luxDisabled }"
               matChipRemove
               luxIconName="lux-interface-delete-circle"
               luxMargin="0 0 0 6px"
               luxPadding="0px"
               class="lux-chip-icon lux-cursor"
-              (click)="onChipGroupRemove(chipGroup, i)"
-              (keydown.enter)="onChipGroupRemove(chipGroup, i)"
-              (keydown.space)="onChipGroupRemove(chipGroup, i)"
-              *ngIf="chipGroup.luxRemovable"
+              (click)="chip.remove(i)"
+              (keydown.enter)="chip.remove(i)"
+              (keydown.space)="chip.remove(i)"
+              *ngIf="chip.luxRemovable"
             ></lux-icon>
           </mat-chip-row>
+      </div>
+      </ng-container>
+
+      <!-- Chips via ChipGroup-Components -->
+      <ng-container *ngFor="let chipGroup of chipGroupComponents">
+        <ng-container *ngFor="let label of chipGroup.luxLabels; let i = index">
+          <div class="lux-chip-container">
+            <mat-chip-row
+              class="lux-chip"
+              [ngClass]="{ 'lux-chip-disabled': chipGroup.luxDisabled, 'lux-chip-color-default': !chipGroup.luxColor, 'lux-chip-color-primary': chipGroup.luxColor === 'primary', 'lux-chip-color-accent': chipGroup.luxColor === 'accent', 'lux-chip-color-warn': chipGroup.luxColor === 'warn' }"
+              [removable]="chipGroup.luxRemovable"
+              [disabled]="chipGroup.luxDisabled"
+              [disableRipple]="true"
+              [color]="chipGroup.luxColor"
+              (keydown.delete)="onChipGroupRemove(chipGroup, i)"
+              (click)="chipGroup.click(i)"
+            >
+              <ng-container
+                *ngTemplateOutlet="chipGroup.tempRef ? chipGroup.tempRef : noTemplateRef; context: { $implicit: label }"
+              ></ng-container>
+              <lux-icon
+                class="lux-chip-icon"
+                [ngClass]="{ 'lux-chip-icon-disabled': chipGroup.luxDisabled}"
+                matChipRemove
+                luxIconName="lux-interface-delete-circle"
+                luxMargin="0 0 0 6px"
+                luxPadding="0px"
+                class="lux-chip-icon lux-cursor"
+                (click)="onChipGroupRemove(chipGroup, i)"
+                (keydown.enter)="onChipGroupRemove(chipGroup, i)"
+                (keydown.space)="onChipGroupRemove(chipGroup, i)"
+                *ngIf="chipGroup.luxRemovable"
+              ></lux-icon>
+            </mat-chip-row>
+          </div>
         </ng-container>
       </ng-container>
     </mat-chip-grid>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,23 +16,16 @@ import { LuxCommonModule } from '../../modules/lux-common/lux-common.module';
 
 const routes: Routes = [{ path: '', component: BaselineExampleComponent }];
 
-@NgModule({
-  imports: [
-    CommonModule,
-    LuxLayoutModule,
-    LuxIconModule,
-    LuxDirectivesModule,
-    HttpClientModule,
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    ReactiveFormsModule,
-    LuxFormModule,
-    LuxActionModule,
-    LuxCommonModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [BaselineExampleComponent, BaselineComponent, BaselineCardComponent, BaselineAccordionComponent],
-  providers: [HttpClient]
-})
+@NgModule({ declarations: [BaselineExampleComponent, BaselineComponent, BaselineCardComponent, BaselineAccordionComponent], imports: [CommonModule,
+        LuxLayoutModule,
+        LuxIconModule,
+        LuxDirectivesModule,
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        ReactiveFormsModule,
+        LuxFormModule,
+        LuxActionModule,
+        LuxCommonModule,
+        RouterModule.forChild(routes)], providers: [HttpClient, provideHttpClient(withInterceptorsFromDi())] })
 export class BaselineModule {}

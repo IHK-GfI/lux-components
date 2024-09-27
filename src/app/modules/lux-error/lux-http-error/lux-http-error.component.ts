@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { LuxMessageBoxComponent } from '../../lux-common/lux-message-box/lux-message-box.component';
 import { LuxHttpErrorInterceptor } from './lux-http-error-interceptor';
@@ -12,6 +12,8 @@ import { ILuxMessage } from '../../lux-common/lux-message-box/lux-message-box-mo
 })
 export class LuxHttpErrorComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(LuxMessageBoxComponent) messageComponent!: LuxMessageBoxComponent;
+
+  @Output() luxMessageBoxClosed = new EventEmitter<void>();
 
   private subs: Subscription[] = [];
 

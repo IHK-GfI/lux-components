@@ -96,6 +96,7 @@
       </div>
       <span class="lux-file-upload-label-file-size" *ngIf="file.size">{{ Math.ceil(file.size / 1024) + ' KB' }}</span>
       <lux-button
+        *ngIf="!luxReadonly"
         luxAriaLabel="Button zum Löschen der Datei {{ file.name }}"
         i18n-luxAriaLabel="@@luxc.file.upload.delete.btn.arialabel"
         [luxTagId]="uid + '-delete-button_' + i"

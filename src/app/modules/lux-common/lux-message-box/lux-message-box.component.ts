@@ -26,6 +26,7 @@ export class LuxMessageBoxComponent {
   @Output() luxMessageChanged = new EventEmitter<ILuxMessageChangeEvent>();
   @Output() luxMessageClosed = new EventEmitter<ILuxMessageCloseEvent>();
   @Output() luxMessageBoxClosed = new EventEmitter<void>();
+  @Output() luxMessagesChange = new EventEmitter<ILuxMessage[]>();
 
   @Input() luxGrabFocus = false;
   @Input() set luxIndex(index: number) {
@@ -86,6 +87,8 @@ export class LuxMessageBoxComponent {
       this._luxMessages = [];
       this.liveAnnouncer.announce($localize`:@@luxc.message.announce.0_messages:Es gibt keine Meldungen.`);
     }
+
+    this.luxMessagesChange.emit(this._luxMessages);
   }
 
   get luxMessages(): ILuxMessage[] {

@@ -1,4 +1,3 @@
-import { Platform } from '@angular/cdk/platform';
 import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { MAT_DATE_LOCALE, NativeDateAdapter } from '@angular/material/core';
@@ -17,8 +16,8 @@ export class LuxDateTimePickerAcAdapter extends NativeDateAdapter {
   // ddMMyyyy
   private readonly noSeparatorRegExp = new RegExp(/\d{1,2}\d{1,2}\d{4},\W*\d{1,2}:\d{1,2}/);
 
-  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale: string, private platform: Platform) {
-    super(matDateLocale, platform);
+  constructor(@Inject(MAT_DATE_LOCALE) private matDateLocale: string) {
+    super(matDateLocale);
   }
 
   format(date: Date | string, displayFormat: Object): string {

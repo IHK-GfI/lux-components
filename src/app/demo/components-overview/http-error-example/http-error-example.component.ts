@@ -29,18 +29,18 @@ export class HttpErrorExampleComponent {
     ])
   };
 
-  getErrorsObservable() {
-    return LuxHttpErrorInterceptor.dataStream.asObservable();
-  }
+  disabled = true;
 
   constructor() {}
 
   createErrors() {
     LuxHttpErrorInterceptor.dataStream.next(this.sampleErrorStructure.errors);
+    this.disabled = false;
   }
 
   createErrorMessageStrings() {
     LuxHttpErrorInterceptor.dataStream.next(['An error has occured.', 'Content couldn\'t be loaded.']);
+    this.disabled = false;
   }
 
   createErrorToStringObjects() {
@@ -48,10 +48,12 @@ export class HttpErrorExampleComponent {
       { toString: () => 'Permission denied.' },
       { toString: () => 'An error has occured.' }
     ]);
+    this.disabled = false;
   }
 
   clearErrors() {
     LuxHttpErrorInterceptor.dataStream.next(null);
+    this.disabled = true;
   }
 
   private mapErrors(args: Array<[string, string]>): Errors {
