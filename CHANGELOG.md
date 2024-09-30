@@ -1,5 +1,25 @@
 # Changelog
 
+## Version 18.0.0
+
+### New
+
+- **allgemein**: Update auf Angular 18. [Issue 529](https://github.com/IHK-GfI/lux-components/issues/529)
+- **form-field**: MDC-Migration: @angular/material/form-field. [Issue 448](https://github.com/IHK-GfI/lux-components/issues/448)
+- **menu**: MDC-Migration: @angular/material/menu. [Issue 451](https://github.com/IHK-GfI/lux-components/issues/451)
+- **paginator**: MDC-Migration: @angular/material/paginator. [Issue 452](https://github.com/IHK-GfI/lux-components/issues/452)
+- **progress-spinner**: MDC-Migration: @angular/material/progress-spinner. [Issue 454](https://github.com/IHK-GfI/lux-components/issues/454)
+- **progress-bar**: MDC-Migration: @angular/material/progress-bar. [Issue 453](https://github.com/IHK-GfI/lux-components/issues/453)
+- **button**: MDC-Migration: @angular/material/button. [Issue 443](https://github.com/IHK-GfI/lux-components/issues/443)
+- **snack-bar**: MDC-Migration: @angular/material/snack-bar. [Issue 459](https://github.com/IHK-GfI/lux-components/issues/459)
+- **dialog**: MDC-Migration: @angular/material/dialog. [Issue 447](https://github.com/IHK-GfI/lux-components/issues/447)
+- **table**: MDC-Migration: @angular/material/table. [Issue 460](https://github.com/IHK-GfI/lux-components/issues/460)
+- **list**: MDC-Migration: @angular/material/list. [Issue 450](https://github.com/IHK-GfI/lux-components/issues/450)
+- **tabs**: MDC-Migration: @angular/material/tabs. [Issue 461](https://github.com/IHK-GfI/lux-components/issues/461)
+- **tile**: MDC-Migration: @angular/material/card. [Issue 444](https://github.com/IHK-GfI/lux-components/issues/444)
+- **card**: MDC-Migration: @angular/material/card. [Issue 444](https://github.com/IHK-GfI/lux-components/issues/444)
+- **tooltip**: MDC-Migration: @angular/material/tooltip. [Issue 462](https://github.com/IHK-GfI/lux-components/issues/462)
+
 ## Version 16.6.0
 
 ### New
