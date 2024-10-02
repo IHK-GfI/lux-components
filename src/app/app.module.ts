@@ -31,6 +31,7 @@ import { ImpressumComponent } from './demo/abstract/impressum/impressum.componen
 import { LuxTenantLogoModule } from './modules/lux-tenant-logo/lux-tenant-logo.module';
 import { LuxTourHintModule } from './modules/lux-tour-hint/lux-tour-hint.module';
 import { LuxBreadcrumbModule } from './modules/lux-breadcrumb/lux-breadcrumb.module';
+import { LuxImageGalleryModule } from './modules/lux-image-gallery/lux-image-gallery.module';
 
 const myConfiguration: LuxComponentsConfigParameters = {
   generateLuxTagIds: environment.generateLuxTagIds,
@@ -66,6 +67,8 @@ const myConfiguration: LuxComponentsConfigParameters = {
     LuxTenantLogoModule,
     LuxTourHintModule,
     LuxBreadcrumbModule
+    LuxTourHintModule,
+    LuxImageGalleryModule
   ],
   providers: [{ provide: LuxLookupService, useClass: MockLuxLookupService }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

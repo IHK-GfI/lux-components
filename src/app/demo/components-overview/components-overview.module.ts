@@ -108,6 +108,8 @@ import { TenantLogoExampleConfigComponent } from './tenant-logo-example/tenant-l
 import { TourHintExampleComponent } from './tour-hint-example/tour-hint-example.component';
 import { CustomPanelComponent } from './accordion-example/custom-panel/custom-panel.component';
 import { BreadcrumbExampleComponent } from './breadcrumb-example/breadcrumb-example.component';
+import { LuxImageGalleryModule } from 'src/app/modules/lux-image-gallery/lux-image-gallery.module';
+import { ImageGalleryExampleComponent } from './image-gallery-example/image-gallery-example.component';
 
 @NgModule({ declarations: [
         DetailExampleComponent,
@@ -189,7 +191,8 @@ import { BreadcrumbExampleComponent } from './breadcrumb-example/breadcrumb-exam
         TenantLogoExampleConfigComponent,
         TourHintExampleComponent,
         CustomPanelComponent,
-        BreadcrumbExampleComponent
+        BreadcrumbExampleComponent,
+        ImageGalleryExampleComponent
     ], imports: [ComponentsOverviewRoutingModule,
         CommonModule,
         FormsModule,
@@ -218,7 +221,8 @@ import { BreadcrumbExampleComponent } from './breadcrumb-example/breadcrumb-exam
         MatListModule,
         MatButtonModule,
         MatIconModule,
-        LuxTenantLogoModule], providers: [HttpClient, provideHttpClient(withInterceptorsFromDi())] })
+        LuxTenantLogoModule,
+        LuxImageGalleryModule], providers: [HttpClient, provideHttpClient(withInterceptorsFromDi())] })
 export class ComponentsOverviewModule {}
 
 LuxConsoleService.LOG('Modul "ComponentsOverviewModule" geladen...');

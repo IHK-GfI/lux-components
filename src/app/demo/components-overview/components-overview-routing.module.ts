@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 /* eslint-disable max-len */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -65,6 +66,7 @@ import { TextboxExampleComponent } from './textbox-example/textbox-example.compo
 import { TenantLogoExampleComponent } from './tenant-logo-example/tenant-logo-example.component';
 import { TourHintExampleComponent } from './tour-hint-example/tour-hint-example.component';
 import { BreadcrumbExampleComponent } from './breadcrumb-example/breadcrumb-example.component';
+import { ImageGalleryExampleComponent } from './image-gallery-example/image-gallery-example.component';
 
 const routes: Routes = [
   { path: '', component: ComponentsOverviewComponent },
@@ -132,7 +134,8 @@ const routes: Routes = [
       { path: 'textbox', component: TextboxExampleComponent },
       { path: 'tenant-logo', component: TenantLogoExampleComponent },
       { path: 'tour-hint', component: TourHintExampleComponent },
-      { path: 'breadcrumb', component: BreadcrumbExampleComponent }
+      { path: 'breadcrumb', component: BreadcrumbExampleComponent },
+      { path: 'image-gallery', component: ImageGalleryExampleComponent}
     ]
   }
 ];

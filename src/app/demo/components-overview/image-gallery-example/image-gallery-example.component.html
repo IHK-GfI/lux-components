@@ -1,0 +1,17 @@
+<example-base-structure
+  exampleTitle="Image-Gallery"
+  exampleDocumentationHref="TODO"
+  >
+<example-base-content>
+  <lux-image-gallery [luxImageSrcPreview]="galleryPreview" [luxImageSrc]="gallerySources" ></lux-image-gallery>
+</example-base-content>
+<example-base-simple-options>
+  <lux-input-ac [(luxValue)]="galleryPreview" luxLabel="Vorschau"></lux-input-ac>
+  <div *ngFor="let item of gallerySources; index as i">
+    <h3>Konfiguration Bild #{{i+1}}</h3>
+    <lux-select-ac [luxOptions]="imgSrcArr" [(luxSelected)]="item.imageSrc" luxLabel="Bild Quelle"></lux-select-ac>
+    <lux-input-ac [(luxValue)]="item.altText" luxLabel="Bild alternativer Text"></lux-input-ac>
+  </div>
+</example-base-simple-options>
+
+</example-base-structure>
