@@ -4,11 +4,11 @@
     <lux-image [luxImageSrc]="luxImageSrcPreview"></lux-image>
   </div>
   <ng-template cdkPortal>
-    <div class="lux-image-gallery-extended">
+    <div class="lux-image-gallery-content">
       <div class="lux-image-gallery-progress" >{{currentImgIndex+1}}/{{luxImageSrc.length}}</div>
       <lux-button class="lux-image-gallery-close" luxIconName="lux-interface-delete-1" [luxRounded]="true" (luxClicked)="onImageClose()" ></lux-button>
       <lux-button class="lux-image-gallery-prev" luxIconName="lux-interface-arrows-left" [luxRounded]="true" (luxClicked)="onPrevImage()" ></lux-button>
-      <lux-image [luxImageSrc]="luxImageSrc[currentImgIndex].imageSrc"></lux-image>
+      <lux-image class="lux-image-gallery-img" [luxImageSrc]="luxImageSrc[currentImgIndex].imageSrc"></lux-image>
       <lux-button class="lux-image-gallery-next" luxIconName="lux-interface-arrows-right" [luxRounded]="true" (luxClicked)="onNextImage()" ></lux-button>
     </div>
   </ng-template>

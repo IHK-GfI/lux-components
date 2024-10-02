@@ -1,6 +1,6 @@
 import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
 import { CdkPortal } from '@angular/cdk/portal';
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewChild } from '@angular/core';
 import { ILuxImageGallerySources } from './lux-image-gallery-model/lux-image-gallery-source.interface';
 
 @Component({
@@ -29,8 +29,9 @@ export class LuxImageGalleryComponent {
   onOpenGallery() {
     const config = new OverlayConfig({
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
-      width: '60%',
-      hasBackdrop: true
+      hasBackdrop: true,
+      panelClass: 'lux-image-gallery-content',
+      backdropClass: 'lux-image-gallery-backdrop'
     });
 
     this.currentImgIndex = 0;
