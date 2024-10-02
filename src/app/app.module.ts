@@ -66,8 +66,7 @@ const myConfiguration: LuxComponentsConfigParameters = {
     LuxMarkdownModule,
     LuxTenantLogoModule,
     LuxTourHintModule,
-    LuxBreadcrumbModule
-    LuxTourHintModule,
+    LuxBreadcrumbModule,
     LuxImageGalleryModule
   ],
   providers: [{ provide: LuxLookupService, useClass: MockLuxLookupService }],
