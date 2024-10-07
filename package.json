@@ -79,6 +79,7 @@
     "marked": "4.0.15",
     "ng-packagr": "^18.2.1",
     "ng2-pdf-viewer": "10.3.1",
+    "pdfjs-dist": "4.6.82",
     "ngx-build-plus": "^18.0.0",
     "ngx-cookie-service": "^18.0.0",
     "prettier": "3.3.3",
