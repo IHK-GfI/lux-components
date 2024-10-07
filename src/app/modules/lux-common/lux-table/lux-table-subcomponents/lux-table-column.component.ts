@@ -20,6 +20,7 @@ export class LuxTableColumnComponent implements OnInit, OnChanges {
   @Input() luxSticky = false;
   @Input() luxResponsiveBehaviour = '';
   @Input() luxResponsiveAt: string | string[] | null = '';
+  @Input() luxAlignTextTop = false;
 
   @ContentChild(LuxTableColumnHeaderComponent) header?: LuxTableColumnHeaderComponent;
   @ContentChild(LuxTableColumnContentComponent) content?: LuxTableColumnContentComponent;

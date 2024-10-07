@@ -3,6 +3,7 @@ import { ResponsiveBehaviour } from './responsive-behaviour';
 export class ColumnConfig {
   label = '';
   sortable = true;
+  textAlignTop = false;
   sticky = false;
   _responsiveAt: string | string[] | null = null;
   _responsiveBehaviour: ResponsiveBehaviour = ResponsiveBehaviour.NOT_RESPONSIVE;

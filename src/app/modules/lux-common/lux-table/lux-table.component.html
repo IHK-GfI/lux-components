@@ -17,9 +17,9 @@
         <lux-icon luxIconName="lux-interface-search"></lux-icon>
       </lux-input-ac-prefix>
       <lux-input-ac-suffix>
-        <lux-icon 
-          luxIconName="lux-interface-delete-circle" 
-          class="lux-reset-icon lux-color-blue" 
+        <lux-icon
+          luxIconName="lux-interface-delete-circle"
+          class="lux-reset-icon lux-color-blue"
           (click)="filter.luxValue = ''"></lux-icon>
       </lux-input-ac-suffix>
     </lux-input-ac>
@@ -132,6 +132,7 @@
                 [ngStyle]="{
                   width: luxColWidthsPercent && luxColWidthsPercent[i] ? luxColWidthsPercent[i] + '%' : 'unset'
                 }"
+                [ngClass]="{ 'lux-text-align-top': tableColumn.luxAlignTextTop }"
               >
                 <div class="lux-header-title lux-label" *ngIf="hasMovedColumnsMap.has(tableColumn.luxColumnDef)">
                   <ng-container *ngTemplateOutlet="tableColumn.header?.tempRef ?? null"></ng-container>

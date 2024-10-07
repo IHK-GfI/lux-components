@@ -53,6 +53,7 @@
         >
           <lux-form-label>Sticky</lux-form-label>
         </lux-toggle-ac>
+        <lux-toggle-ac luxLabel="Text Oben ausrichten" [(luxChecked)]="config.textAlignTop" [luxNoTopLabel]="true"> </lux-toggle-ac>
         <lux-select-ac
           luxLabel="Responsive Verhalten"
           [luxOptions]="BEHAVIOURS | responsiveBehaviourFiltered: config"
