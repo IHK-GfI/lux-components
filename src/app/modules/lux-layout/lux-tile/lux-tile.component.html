@@ -1,13 +1,12 @@
 <mat-card
-  appearance="outlined"
   (click)="clicked()"
   (keydown.enter)="clicked()"
   (keydown.space)="clicked()"
   luxTagIdHandler
   [luxTagId]="luxTagId"
   tabindex="0"
-  class="lux-cursor lux-highlight lux-tile-small-font lux-m-2 gt-sm:lux-m-3"
-  [ngClass]="{ 'lux-tile-normal-font': !mobileView }"
+  class="lux-cursor lux-tile lux-tile-mobile-view"
+  [ngClass]="{ 'lux-tile-desktop-view': !mobileView, 'lux-tile-mobile' : mobileView, 'lux-tile-shadow' : luxShowShadow}"
   [luxBadgeNotification]="luxCounter ? '' + luxCounter : ''"
   luxBadgeColor="accent"
   [luxBadgeCap]="luxCounterCap"
@@ -15,11 +14,10 @@
 >
   <mat-card-content>
     <div class="lux-tile-content-container lux-flex lux-flex-col">
-      <div class="lux-tile-content lux-flex lux-place-content-center lux-items-center">
+      <div class="lux-tile-icon lux-flex lux-place-content-center lux-items-center" [ngClass]="{'lux-tile-mobile' : mobileView }">
         <ng-content select="lux-icon"></ng-content>
         <ng-content select="lux-image"></ng-content>
       </div>
-      <lux-divider *ngIf="luxLabel" aria-hidden="true"></lux-divider>
 
       <h2 class="lux-tile-label lux-flex lux-place-content-center lux-items-center" [attr.aria-label]="luxLabel">
         <span>{{ luxLabel }}</span>
