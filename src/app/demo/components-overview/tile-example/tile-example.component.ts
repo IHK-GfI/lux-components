@@ -13,6 +13,7 @@ export class TileExampleComponent {
   label = 'Tile Example';
   log = logResult;
   _showNotification = false;
+  showShadow = true;
 
   get showNotification() {
     return this._showNotification;

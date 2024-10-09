@@ -15,6 +15,7 @@ export class LuxTileComponent implements OnInit, OnDestroy {
   @Input() luxShowNotification?: boolean;
   @Input() luxCounter?: number;
   @Input() luxCounterCap = 10;
+  @Input() luxShowShadow = true;
 
   @Output() luxClicked = new EventEmitter<Event>();
 

@@ -1,16 +1,20 @@
-<example-base-structure exampleTitle="Tile" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tile-v18">
-  <example-base-content [exampleCentered]="true">
-    <lux-tile
-      [luxLabel]="label"
-      [luxCounter]="counter"
-      [luxCounterCap]="counterCap"
-      [luxShowNotification]="showNotification"
-      luxTagId="example-tile"
-      (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
-    >
-      <lux-icon luxIconName="lux-camera-video" luxIconSize="1x" *ngIf="showIcon"></lux-icon>
-      <lux-image luxImageSrc="assets/svg/red_power_button.svg" luxImageWidth="50px" luxImageHeight="50px" *ngIf="!showIcon"></lux-image>
-    </lux-tile>
+<example-base-structure exampleTitle="Tile" exampleDocumentationHref="https://github.com/IHK-GfI/lux-components/wiki/lux%E2%80%90tile%E2%80%90green-v18">
+  <example-base-content [exampleCentered]="true" class="lux-flex lux-flex-col">
+    <div style="width: 100%; padding: 64px;" class="lux-flex lux-justify-center"
+    [ngStyle]="!showShadow ? {'background-color': '#E3EBF5'} : {'background-color':'white'}">
+      <lux-tile
+        [luxLabel]="label"
+        [luxCounter]="counter"
+        [luxCounterCap]="counterCap"
+        [luxShowNotification]="showNotification"
+        luxTagId="example-tile"
+        (luxClicked)="log(showOutputEvents, 'Tile clicked', $event)"
+        [luxShowShadow]="showShadow"
+      >
+        <lux-icon luxIconName="lux-camera-video" luxIconSize="1x" *ngIf="showIcon"></lux-icon>
+        <lux-image luxImageSrc="assets/svg/red_power_button.svg" luxImageWidth="50px" luxImageHeight="50px" *ngIf="!showIcon"></lux-image>
+      </lux-tile>
+    </div>
   </example-base-content>
   <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
@@ -31,6 +35,9 @@
         Ein LuxIconComponent in dem Tile anzeigen.<br />
         Wenn 'false' wird stattdessen in dem Beispiel ein LuxImageComponent genutzt.
       </lux-form-hint>
+    </lux-toggle-ac>
+    <lux-toggle-ac luxLabel="luxShowShadow" [(luxChecked)]="showShadow" [luxNoTopLabel]="true">
+      <lux-form-hint>Um die Kachel wird ein Schatten gezeichnet.</lux-form-hint>
     </lux-toggle-ac>
   </example-base-simple-options>
   <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
