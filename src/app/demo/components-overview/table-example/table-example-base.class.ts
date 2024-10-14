@@ -54,6 +54,7 @@ export abstract class TableExampleBaseClass implements OnDestroy {
   dblClickSub?: Subscription;
   _multiSelect = true;
   _doubleClickActive = false;
+  alignElementsTop = false;
 
   get doubleClickActive() {
     return this._doubleClickActive;

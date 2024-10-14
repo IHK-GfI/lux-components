@@ -17,9 +17,9 @@
         <lux-icon luxIconName="lux-interface-search"></lux-icon>
       </lux-input-ac-prefix>
       <lux-input-ac-suffix>
-        <lux-icon 
-          luxIconName="lux-interface-delete-circle" 
-          class="lux-reset-icon lux-color-blue" 
+        <lux-icon
+          luxIconName="lux-interface-delete-circle"
+          class="lux-reset-icon lux-color-blue"
           (click)="filter.luxValue = ''"></lux-icon>
       </lux-input-ac-suffix>
     </lux-input-ac>
@@ -60,6 +60,7 @@
               (click)="changeSelectedEntry(element, true)"
               (keydown.space)="changeSelectedEntry(element, true)"
               (keydown.enter)="changeSelectedEntry(element, true)"
+              [ngClass]="{ 'lux-element-align-top': luxAlignElementsTop }"
             >
               <lux-checkbox-ac
                 luxTagId="lux-table-multiselect-content-{{ i }}"
@@ -132,6 +133,7 @@
                 [ngStyle]="{
                   width: luxColWidthsPercent && luxColWidthsPercent[i] ? luxColWidthsPercent[i] + '%' : 'unset'
                 }"
+                [ngClass]="{ 'lux-element-align-top': luxAlignElementsTop }"
               >
                 <div class="lux-header-title lux-label" *ngIf="hasMovedColumnsMap.has(tableColumn.luxColumnDef)">
                   <ng-container *ngTemplateOutlet="tableColumn.header?.tempRef ?? null"></ng-container>
@@ -194,7 +196,8 @@
             class="lux-footer-row"
             [ngClass]="{
               'lux-display-none': !anyFootersAvailable(),
-              'lux-cursor': luxMultiSelect && !luxHttpDAO
+              'lux-cursor': luxMultiSelect && !luxHttpDAO,
+              'lux-element-align-top': luxAlignElementsTop
             }"
             tabindex="0"
             (click)="changeSelectedEntries()"
