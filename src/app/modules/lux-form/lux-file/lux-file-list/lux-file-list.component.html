@@ -64,7 +64,7 @@
       </div>
     </div>
   </lux-card-content>
-  <lux-card-actions class="lux-file-actions lux-error" *ngIf="errorMessage && formControl?.touched">
+  <lux-card-actions class="lux-file-actions lux-error" *ngIf="errorMessage && formControl?.touched && !forceProgressIndeterminate">
     <lux-icon class="lux-color-red lux-alert-icon" luxIconName="lux-interface-alert-warning-triangle" luxIconSize="18px"></lux-icon>
     <mat-error [id]="uid + '-misc'" class="">
       {{ errorMessage }}
