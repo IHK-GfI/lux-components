@@ -91,7 +91,7 @@
         <target>Row <x id="INTERPOLATION" equiv-text="{{ i }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.html</context>
-          <context context-type="linenumber">70,71</context>
+          <context context-type="linenumber">71,72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.multiselect.all.chk.arialabel" datatype="html">
@@ -99,7 +99,7 @@
         <target>All entries</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.sort.descending" datatype="html">
@@ -107,7 +107,7 @@
         <target>descending</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
-          <context context-type="linenumber">551</context>
+          <context context-type="linenumber">552</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.sort.ascending" datatype="html">
@@ -115,7 +115,7 @@
         <target>ascending</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
-          <context context-type="linenumber">554</context>
+          <context context-type="linenumber">555</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.sort.no_longer" datatype="html">
@@ -123,7 +123,7 @@
         <target>no longer</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
-          <context context-type="linenumber">557</context>
+          <context context-type="linenumber">558</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.table.sort.announce" datatype="html">
@@ -131,7 +131,7 @@
         <target>Column <x id="column" equiv-text="columnDef"/> now sorts <x id="direction" equiv-text="directionDescription"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-common/lux-table/lux-table.component.ts</context>
-          <context context-type="linenumber">562</context>
+          <context context-type="linenumber">563</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.errorpage.error_number" datatype="html">

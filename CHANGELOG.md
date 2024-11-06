@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 18.1.0
+
+### New
+
+- **allgemein**: Update auf LUX-Components-Theme [18.1.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/18.1.0).
+  - **allgemein**: Alte Material-Abhängigkeit 16.2.14 durch ^18.0.0 ersetzen. [Issue 94](https://github.com/IHK-GfI/lux-components/issues/94)
+  - **tabs**: Styling: Hintergrundfarbe bei luxShowBorder definieren. [Issue 520](https://github.com/IHK-GfI/lux-components/issues/520)
+  - **tile**: Styles angepasst. [Issue 496](https://github.com/IHK-GfI/lux-components/issues/496)
+  - **table**: Der Inhalt der Zellen ist immer Zentriert ausgericht, bitte auch eine Option für "align-Top" anbieten. [Issue 533](https://github.com/IHK-GfI/lux-components/issues/533)
+
+### Bug Fixes
+
+- **lux-file-preview**: Error: node_modules/pdfjs-dist/types/web/pdf_viewer.d.ts. [Issue 542](https://github.com/IHK-GfI/lux-components/issues/542)
+- **lux-file-list**: Required Fehlermeldung beim Upload entfernen.. [Issue 531](https://github.com/IHK-GfI/lux-components/issues/531)
+
 ## Version 18.0.0
 
 ### New
