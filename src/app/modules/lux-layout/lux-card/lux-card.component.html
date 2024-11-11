@@ -90,7 +90,7 @@
         </h6>
       </ng-container>
 
-      <div class="lux-card-info-container lux-justify-self-end" *ngIf="infoComponent">
+      <div class="lux-card-info-container lux-justify-self-end" [ngClass]="{'lux-title': (luxTitle || showIcon)  , 'lux-subtitle': luxSubTitle}"  *ngIf="infoComponent">
         <ng-content select="lux-card-info"></ng-content>
       </div>
       <div

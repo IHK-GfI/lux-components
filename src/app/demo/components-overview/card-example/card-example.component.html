@@ -18,7 +18,7 @@
       <lux-card-info *ngIf="showInfo">
         <lux-icon luxIconName="lux-interface-home-3"></lux-icon>
       </lux-card-info>
-      <lux-card-content>
+      <lux-card-content *ngIf="!hideCardContent">
         <h3>H3 - Lorem ipsum</h3>
         <p>
           Diese Karte enthält für Testzwecke alle möglichen Konfigurationen auf einmal. Auch wenn dieses technisch möglich ist, soll es
@@ -84,6 +84,7 @@
       </lux-form-hint>
     </lux-toggle-ac>
     <lux-toggle-ac luxLabel="luxRaised (Button 2)" [(luxChecked)]="btn2Raised" [luxNoLabels]="true"></lux-toggle-ac>
+    <lux-toggle-ac luxLabel="lux-card-content ausblenden"  [(luxChecked)]="hideCardContent" [luxNoLabels]="true"></lux-toggle-ac>
   </example-base-simple-options>
   <example-base-advanced-options class="lux-flex lux-flex-col lux-gap-4">
     <lux-toggle-ac
