@@ -13,6 +13,7 @@ export class CardExampleComponent {
   showInfo = true;
   useExpandableContent = false;
   btn2Raised = true;
+  hideCardContent = false;
   disabled = false;
   titleLineBreak = true;
   title = `Testkarte - Lorem ipsum dolor sit amet, consectetur adipisici elit.`;
