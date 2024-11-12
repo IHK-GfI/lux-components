@@ -203,17 +203,19 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
   }
 
   onNavLink(stepIndex: number) {
-    const event: LuxStepperLargeClickEvent = { stepper: this, newIndex: stepIndex, newStep: this.steps.get(stepIndex)!, source: 'nav' };
-    const vetoPromise = this.steps.get(this.luxCurrentStepNumber)!.luxVetoFn(event);
+    if ((!this.luxStepValidationActive) || (this.steps.get(this.luxCurrentStepNumber)!.luxCompleted === true )) {
+      const event: LuxStepperLargeClickEvent = { stepper: this, newIndex: stepIndex, newStep: this.steps.get(stepIndex)!, source: 'nav' };
+      const vetoPromise = this.steps.get(this.luxCurrentStepNumber)!.luxVetoFn(event);
 
-    vetoPromise
-      .then((veto) => {
-        if (veto === LuxVetoState.navigationAccepted) {
-          this.luxCurrentStepNumber = stepIndex;
-          this.cursorPos = -1;
-        }
-      })
-      .catch((err) => console.error(err));
+      vetoPromise
+        .then((veto) => {
+          if (veto === LuxVetoState.navigationAccepted) {
+            this.luxCurrentStepNumber = stepIndex;
+            this.cursorPos = -1;
+          }
+        })
+        .catch((err) => console.error(err));
+    }
   }
 
   onOpenMobileOverlay() {
