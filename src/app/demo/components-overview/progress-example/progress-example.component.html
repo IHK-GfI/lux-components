@@ -18,10 +18,11 @@
         </lux-progress>
       </div>
       <div class="lux-hover-bg lux-highlight-section lux-flex lux-flex-col lux-gap-3">
-        <h3 class="lux-highlight-section-label">Hover</h3>
+        <h3 class="lux-highlight-section-label lux-color-light-primary-text">Hover</h3>
         <lux-progress
           *ngFor="let color of colors; let i = index"
           luxType="Progressbar"
+          luxAriaLabel="Custom Aria Label"
           luxTagId="pb-example-hover{{ i }}"
           [luxColor]="color"
           [luxValue]="value"

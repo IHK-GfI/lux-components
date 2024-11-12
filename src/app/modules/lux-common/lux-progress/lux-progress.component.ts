@@ -21,6 +21,7 @@ export class LuxProgressComponent {
   typeCSS = '';
 
   @Input() luxValue = 0;
+  @Input() luxAriaLabel = $localize`:@@luxc.progress.arialabel:Ladeanzeige`;
   // Nur für ProgressBar
   @Input() luxSize: LuxProgressSizeType = 'medium';
   @Input() luxTagId?: string;

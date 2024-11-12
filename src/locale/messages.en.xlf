@@ -86,6 +86,14 @@
           <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="luxc.progress.arialabel" datatype="html">
+        <source>Ladeanzeige</source>
+        <target>Loading indicator</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-common/lux-progress/lux-progress.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="luxc.table.multiselect.chk.arialabel" datatype="html">
         <source>Reihe <x id="INTERPOLATION" equiv-text="{{ i }}"/></source>
         <target>Row <x id="INTERPOLATION" equiv-text="{{ i }}"/></target>

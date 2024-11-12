@@ -19,11 +19,12 @@
       </div>
     </div>
     <div class="lux-hover-bg lux-highlight-section lux-flex lux-flex-col lux-gap-4">
-      <h3 class="lux-highlight-section-label">Hover</h3>
+      <h3 class="lux-highlight-section-label lux-color-light-primary-text">Hover</h3>
       <div class="lux-flex lux-flex-wrap lux-gap-3">
         <lux-progress
           *ngFor="let color of colors; let i = index"
           luxType="Spinner"
+          luxAriaLabel="Custom Aria Label"
           luxTagId="sp-example-hover{{ i }}"
           [luxColor]="color"
           [luxValue]="value"

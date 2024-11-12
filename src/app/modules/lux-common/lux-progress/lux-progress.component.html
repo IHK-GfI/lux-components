@@ -5,6 +5,7 @@
 >
   <ng-container *ngSwitchCase="'Progressbar'">
     <mat-progress-bar
+      [luxAriaLabel]="luxAriaLabel"
       luxTagIdHandler
       [luxTagId]="luxTagId"
       [luxCustomTagId]="luxTagId"
@@ -16,6 +17,7 @@
   </ng-container>
   <ng-container *ngSwitchCase="'Spinner'">
     <mat-progress-spinner
+      [luxAriaLabel]="luxAriaLabel"
       luxTagIdHandler
       [luxTagId]="luxTagId"
       [luxCustomTagId]="luxTagId"
