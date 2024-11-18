@@ -45,13 +45,21 @@
         [luxDisabled]="!currentConfig.labelConfiguration!.allUppercase"
         [luxNoBottomLabel]="true"
       ></lux-select-ac>
-      <lux-input-ac luxLabel="Lookup URL" [(luxValue)]="currentConfig.lookupServiceUrl" [luxNoBottomLabel]="true"></lux-input-ac>
+      <lux-input-ac luxLabel="Lookup URL" [(luxValue)]="currentConfig.lookupServiceUrl" [luxNoBottomLabel]="true"  (luxValueChange)="updateConfig()"></lux-input-ac>
       <lux-input-ac
         luxLabel="throttleTimeMs der Buttons (Verhinderung von ungewollten Doppelklicks)"
         [(luxValue)]="currentConfig.buttonConfiguration!.throttleTimeMs"
         (luxValueChange)="updateConfig()"
         [luxNoBottomLabel]="true"
       ></lux-input-ac>
+
+      <div>
+        <h3>Footer</h3>
+        <lux-checkbox-container-ac>
+          <lux-toggle-ac luxLabel="fixedDesktop" [luxNoLabels]="true" [(luxChecked)]="currentConfig.appFooter!.fixedDesktop" (luxCheckedChange)="updateConfig()"></lux-toggle-ac>
+          <lux-toggle-ac luxLabel="fixedMobile" [luxNoLabels]="true" [(luxChecked)]="currentConfig.appFooter!.fixedMobile" (luxCheckedChange)="updateConfig()"></lux-toggle-ac>
+        </lux-checkbox-container-ac>
+      </div>
 
       <h3>Ripples</h3>
       <lux-input-ac

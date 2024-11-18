@@ -72,4 +72,9 @@ export interface LuxComponentsConfigParameters {
     centeredView?: boolean;
     centeredWidth?: string;
   };
+
+  appFooter?: {
+    fixedDesktop?: boolean;
+    fixedMobile?: boolean;
+  };
 }

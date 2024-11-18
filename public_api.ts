@@ -274,6 +274,7 @@ export * from './src/app/modules/lux-layout/lux-checkbox-container-ac/lux-checkb
 // Services
 export * from './src/app/modules/lux-layout/lux-app-footer/lux-app-footer-button.service';
 export * from './src/app/modules/lux-layout/lux-app-footer/lux-app-footer-link.service';
+export * from './src/app/modules/lux-layout/lux-app-footer/lux-app-footer-fixed.service';
 export * from './src/app/modules/lux-layout/lux-stepper/lux-stepper-helper.service';
 export * from './src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay.service';
 // Classes

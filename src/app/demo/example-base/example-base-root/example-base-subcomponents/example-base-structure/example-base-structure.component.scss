@@ -1,16 +1,13 @@
 :host {
   display: flex;
   width: 100%;
-  height: 100%;
   > * {
     max-width: 100%;
   }
 }
 
 lux-card ::ng-deep > mat-card {
-  height: 100%;
   width: 100%;
-  max-height: 100%;
   margin: 0 !important;
 }
 
@@ -33,8 +30,6 @@ lux-card ::ng-deep mat-card-content .lux-card-content {
 }
 
 .example-base-options {
-  max-height: 100%;
-
   ::ng-deep {
     lux-card-actions {
       width: 100%;
@@ -51,7 +46,6 @@ lux-card ::ng-deep mat-card-content .lux-card-content {
 ::ng-deep {
   .example-content-centered {
     width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

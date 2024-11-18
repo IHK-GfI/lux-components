@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-license-hint',
-  styles: [':host { display: flex; justify-content: center}'],
+  styles: [':host { display: flex; align-items: start; justify-content: center; flex: 1 1 auto;}'],
   templateUrl: './license-hint.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

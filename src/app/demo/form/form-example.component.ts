@@ -14,7 +14,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-example',
-  templateUrl: './form-example.component.html'
+  templateUrl: './form-example.component.html',
+  styles: [':host { display: flex; flex-direction: column; flex: 1 1 auto;}']
 })
 export class FormExampleComponent implements IUnsavedDataCheck, OnInit, AfterViewInit, OnDestroy {
   @ViewChild(FormCommonComponent) formCommon!: FormCommonComponent;

@@ -1,3 +1,9 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
 lux-card.lux-card-mobile ::ng-deep mat-card {
   margin-left: 0 !important;
   margin-right: 0 !important;

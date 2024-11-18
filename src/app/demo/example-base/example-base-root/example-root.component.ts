@@ -1,17 +1,17 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { ComponentsOverviewNavigationService } from '../../components-overview/components-overview-navigation.service';
 import { LuxMediaQueryObserverService } from '../../../modules/lux-util/lux-media-query-observer.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { LuxUtil } from '../../../modules/lux-util/lux-util';
 
 @Component({
   selector: 'example-root',
   templateUrl: './example-root.component.html',
   styleUrls: ['./example-root.component.scss']
 })
-export class ExampleRootComponent implements AfterViewInit, OnDestroy {
+export class ExampleRootComponent implements OnDestroy {
   private routerSubscription: Subscription;
-  private blockScrolling = false;
   private subscription: Subscription;
 
   desktopView: boolean;
@@ -25,11 +25,7 @@ export class ExampleRootComponent implements AfterViewInit, OnDestroy {
   ) {
     this.routerSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        if (this.blockScrolling) {
-          this.blockScrolling = false;
-        } else {
-          this.findSelectedExampleEntry();
-        }
+        LuxUtil.goToTop();
       }
     });
 
@@ -38,10 +34,6 @@ export class ExampleRootComponent implements AfterViewInit, OnDestroy {
     this.subscription = this.mediaQueryService.getMediaQueryChangedAsObservable().subscribe((query) => {
       this.desktopView = !this.mediaQueryService.isXS() && !this.mediaQueryService.isSM();
     });
-  }
-
-  ngAfterViewInit() {
-    this.findSelectedExampleEntry();
   }
 
   ngOnDestroy() {
@@ -58,15 +50,5 @@ export class ExampleRootComponent implements AfterViewInit, OnDestroy {
    */
   onComponentClick(component: any) {
     component.onclick();
-    this.blockScrolling = true;
-  }
-
-  private findSelectedExampleEntry() {
-    setTimeout(() => {
-      const activeItem = document.querySelector('.example-component-list-item-active');
-      if (activeItem) {
-        activeItem.scrollIntoView({ block: 'start', behavior: 'smooth' });
-      }
-    });
   }
 }

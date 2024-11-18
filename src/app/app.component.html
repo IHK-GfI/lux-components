@@ -207,7 +207,7 @@
         luxLabel="Iconsuche"
         luxAriaLabel="Lux-Icons suchen"
         luxTagId="navItem4"
-        [luxSelected]="url.endsWith('components-overview/example/icon-overview')"
+        [luxSelected]="url.endsWith('icon-overview')"
         (luxClicked)="goToIconSearch()"
       ></lux-app-header-ac-nav-menu-item>
       <lux-app-header-ac-nav-menu-item
@@ -293,6 +293,8 @@
       ></lux-app-header-ac-action-nav-item>
     </lux-app-header-ac-action-nav>
   </lux-app-header-ac>
-  <lux-app-content luxAriaRoleMainLabel=""></lux-app-content>
-  <lux-app-footer *ngIf="this.luxAppFooter !== 'none'" luxVersion="18.1.0"></lux-app-footer>
+  <lux-app-content luxAriaRoleMainLabel="">
+    <lux-app-footer *ngIf="this.luxAppFooter !== 'none' && ((fixedFooterService.fixedModeAsObservable | async) === false)" luxVersion="18.1.0"></lux-app-footer>
+  </lux-app-content>
+  <lux-app-footer *ngIf="this.luxAppFooter !== 'none' && ((fixedFooterService.fixedModeAsObservable | async) === true)" luxVersion="18.1.0"></lux-app-footer>
 </div>
