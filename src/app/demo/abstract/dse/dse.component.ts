@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'lux-dse',
   templateUrl: './dse.component.html',
-  styles: [':host { display: flex; justify-content: center}'],
+  styles: [':host { display: flex; align-items: start; justify-content: center; flex: 1 1 auto;}'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DseComponent implements OnInit {

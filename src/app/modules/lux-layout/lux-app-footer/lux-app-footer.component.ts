@@ -40,6 +40,7 @@ export class LuxAppFooterComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.desktopView = this.mediaObserver.isSM() || this.mediaObserver.isMD() || this.mediaObserver.isLG() || this.mediaObserver.isXL();
     this.subscriptions.push(
       this.mediaObserver.getMediaQueryChangedAsObservable().subscribe(() => {
         this.desktopView = this.mediaObserver.isSM() || this.mediaObserver.isMD() || this.mediaObserver.isLG() || this.mediaObserver.isXL();

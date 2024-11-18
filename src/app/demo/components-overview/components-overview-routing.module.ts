@@ -59,7 +59,6 @@ import { TextareaAuthenticExampleComponent } from './textarea-authentic-example/
 import { FileInputAuthenticExampleComponent } from './file-example/file-input-authentic-example/file-input-authentic-example.component';
 import { ChipAuthenticExampleComponent } from './chip-authentic-example/chip-authentic-example.component';
 import { SliderAuthenticExampleComponent } from './slider-authentic-example/slider-authentic-example.component';
-import { IconOverviewComponent } from './icon-example/icon-overview/icon-overview.component';
 import { CheckboxContainerAcExampleComponent } from './checkbox-container-ac-example/checkbox-container-ac-example.component';
 import { TextboxExampleComponent } from './textbox-example/textbox-example.component';
 import { TenantLogoExampleComponent } from './tenant-logo-example/tenant-logo-example.component';
@@ -126,7 +125,6 @@ const routes: Routes = [
       { path: 'input-ac', component: InputAuthenticExampleComponent },
       { path: 'checkbox-ac', component: CheckboxAuthenticExampleComponent },
       { path: 'tile-overview', component: OverviewExampleComponent },
-      { path: 'icon-overview', component: IconOverviewComponent },
       { path: 'master-detail-ac', component: MasterDetailAuthenticExampleComponent },
       { path: 'checkbox-container-ac', component: CheckboxContainerAcExampleComponent },
       { path: 'textbox', component: TextboxExampleComponent },

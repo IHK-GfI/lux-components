@@ -1,15 +1,11 @@
 :host {
   display: flex;
+  flex: 1 1 auto;
   width: 100%;
-  height: 100%;
-  max-height: calc(100% - 32px);
 }
 
 .example-base-structure {
   position: relative;
-  height: 100%;
-  min-height: 100%;
-  max-height: 100%;
   width: 100%;
   min-width: 100%;
 
@@ -18,7 +14,6 @@
     border-right: 1px solid;
     min-width: 253px;
     padding: 16px 8px;
-    height: 100% !important;
 
     lux-panel {
       padding: 0 0 16px 0;
@@ -59,21 +54,9 @@
     position: relative;
     display: flex;
     flex: 0 0 calc(100% - 302px);
-    max-height: 100%;
-    height: 100%;
 
     router-outlet + ::ng-deep * {
       width: 100%;
-    }
-  }
-
-  .example-base-options {
-    max-height: 100%;
-  }
-
-  &.example-mobile {
-    ::ng-deep .example-base-options {
-      max-height: unset;
     }
   }
 }

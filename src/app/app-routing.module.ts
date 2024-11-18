@@ -8,6 +8,7 @@ import { DseComponent } from './demo/abstract/dse/dse.component';
 import { DseResolver } from './demo/abstract/dse/dse.resolver';
 import { ImpressumComponent } from './demo/abstract/impressum/impressum.component';
 import { ImpressumResolver } from './demo/abstract/impressum/impressum.resolver';
+import { IconOverviewComponent } from './demo/components-overview/icon-example/icon-overview/icon-overview.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   },
   { path: 'form', loadChildren: () => import('./demo/form/form-example.module').then((m) => m.FormExampleModule) },
   { path: 'configuration', component: ConfigurationComponent },
+  { path: 'icon-overview', component: IconOverviewComponent },
   { path: 'baseline', loadChildren: () => import('./demo/baseline/baseline.module').then((m) => m.BaselineModule) }
 ];
 

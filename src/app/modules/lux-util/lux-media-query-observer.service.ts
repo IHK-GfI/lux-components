@@ -1,13 +1,18 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { LuxConsoleService } from './lux-console.service';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, filter, Observable, Subscription } from 'rxjs';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 @Injectable({
   providedIn: "root"
 })
 export class LuxMediaQueryObserverService implements OnDestroy {
+  
+  public static BREAKPOINTS_DEFAULT: string[] = ['xs', 'sm', 'md', 'lg', 'xl'];
+  public static BREAKPOINTS_ALL: string[] = ['xs', 'sm', 'md', 'lg', 'xl', 'Handset', 'Tablet', 'Web', 'HandsetPortrait', 'TabletPortrait', 'WebPortrait', 'HandsetLandscape', 'TabletLandscape', 'WebLandscape'];
+  
   protected _mediaQueryChanged: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  protected _mediaQueryAllChanged: BehaviorSubject<string> = new BehaviorSubject<string>('');
   protected _subscriptions: Subscription[] = [];
 
   constructor(private breakpointObserver: BreakpointObserver, private logger: LuxConsoleService) {
@@ -16,6 +21,15 @@ export class LuxMediaQueryObserverService implements OnDestroy {
     this.addQuerySubscription(Breakpoints.Medium, 'md');
     this.addQuerySubscription(Breakpoints.Large, 'lg');
     this.addQuerySubscription(Breakpoints.XLarge, 'xl');
+    this.addQuerySubscription(Breakpoints.Handset, 'Handset');
+    this.addQuerySubscription(Breakpoints.Tablet, 'Tablet');
+    this.addQuerySubscription(Breakpoints.Web, 'Web');
+    this.addQuerySubscription(Breakpoints.HandsetPortrait, 'HandsetPortrait');
+    this.addQuerySubscription(Breakpoints.TabletPortrait, 'TabletPortrait');
+    this.addQuerySubscription(Breakpoints.WebPortrait, 'WebPortrait');
+    this.addQuerySubscription(Breakpoints.HandsetLandscape, 'HandsetLandscape');
+    this.addQuerySubscription(Breakpoints.TabletLandscape, 'TabletLandscape');
+    this.addQuerySubscription(Breakpoints.WebLandscape, 'WebLandscape');
   }
 
   public get activeMediaQuery() {
@@ -27,8 +41,11 @@ export class LuxMediaQueryObserverService implements OnDestroy {
     this._mediaQueryChanged.complete();
   }
 
-  public getMediaQueryChangedAsObservable(): Observable<string> {
-    return this._mediaQueryChanged.asObservable();
+  public getMediaQueryChangedAsObservable(...breakpoints: string[]): Observable<string> {
+    if (breakpoints.length === 0) {
+      return this._mediaQueryChanged.asObservable();
+    }
+    return this._mediaQueryAllChanged.asObservable().pipe(filter((value: string) => breakpoints.includes(value)));
   }
 
   public isSmaller(query: string): boolean {
@@ -65,31 +82,70 @@ export class LuxMediaQueryObserverService implements OnDestroy {
   }
 
   public isXS(): boolean {
-    return this.activeMediaQuery === 'xs';
+    return this.breakpointObserver.isMatched(Breakpoints.XSmall);
   }
 
   public isSM(): boolean {
-    return this.activeMediaQuery === 'sm';
+    return this.breakpointObserver.isMatched(Breakpoints.Small);
   }
 
   public isMD(): boolean {
-    return this.activeMediaQuery === 'md';
+    return this.breakpointObserver.isMatched(Breakpoints.Medium);
   }
 
   public isLG(): boolean {
-    return this.activeMediaQuery === 'lg';
+    return this.breakpointObserver.isMatched(Breakpoints.Large);
   }
 
   public isXL(): boolean {
-    return this.activeMediaQuery === 'xl';
+    return this.breakpointObserver.isMatched(Breakpoints.XLarge);
   }
 
-  private addQuerySubscription(breakpoint: any, breakpointString: string) {
+  public isHandset(): boolean {
+    return this.breakpointObserver.isMatched(Breakpoints.Handset);
+  }
+
+  public isTablet(): boolean {
+    return this.breakpointObserver.isMatched(Breakpoints.Tablet);
+  }
+
+  public isWeb(): boolean {
+    return this.breakpointObserver.isMatched(Breakpoints.Web);
+  }
+
+  public isHandsetPortrait(): boolean {
+    return this.breakpointObserver.isMatched(Breakpoints.HandsetPortrait);
+  }
+
+  public isTabletPortrait(): boolean {
+    return this.breakpointObserver.isMatched(Breakpoints.TabletPortrait);
+  } 
+
+  public isWebPortrait(): boolean {
+    return this.breakpointObserver.isMatched(Breakpoints.WebPortrait);
+  }
+
+  public isHandsetLandscape(): boolean {
+    return this.breakpointObserver.isMatched(Breakpoints.HandsetLandscape);
+  }
+
+  public isTabletLandscape(): boolean {
+    return this.breakpointObserver.isMatched(Breakpoints.TabletLandscape);
+  }
+
+  public isWebLandscape(): boolean {
+    return this.breakpointObserver.isMatched(Breakpoints.WebLandscape);
+  }
+
+  private addQuerySubscription(breakpoint: string, breakpointString: string) {
     this._subscriptions.push(
       this.breakpointObserver.observe([breakpoint]).subscribe((state: BreakpointState) => {
         if (state.matches) {
-          this._mediaQueryChanged.next(breakpointString);
-          this.logger.log(`MediaQuery [${this.activeMediaQuery}] activated.`);
+          if (LuxMediaQueryObserverService.BREAKPOINTS_DEFAULT.includes(breakpointString)) {
+            this._mediaQueryChanged.next(breakpointString);
+          }
+          this._mediaQueryAllChanged.next(breakpointString);
+          this.logger.log(`MediaQuery [${breakpointString}] activated.`);
         }
       })
     );

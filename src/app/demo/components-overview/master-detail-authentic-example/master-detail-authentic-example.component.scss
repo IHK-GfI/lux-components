@@ -1,6 +1,38 @@
+::ng-deep {
+  
+  .example-base-content {
+    max-width: calc(100% - 302px);
+  }
+
+  .example-mobile .example-base-content {
+    max-width: 100%;
+  }
+
+  .lux-theme-authentic {
+    .example-base-structure{
+      max-height: calc(100vh - 178px);
+    }
+
+    .example-mobile .example-base-content {
+      max-height: calc(100vh - 210px);
+    }
+  }
+
+  .lux-theme-green {
+    .example-base-structure {
+      max-height: calc(100vh - 131px);
+    }
+
+    .example-mobile .example-base-content {
+      max-height: calc(100vh - 165px);
+    }
+  }
+} 
+
 detail-example ::ng-deep lux-card mat-card.mat-mdc-card {
   border: none;
 }
+
 .example-header, .example-tab-content {
   padding: 20px;
   margin-bottom: 20px;

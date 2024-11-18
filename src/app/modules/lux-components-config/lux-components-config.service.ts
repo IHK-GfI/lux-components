@@ -32,6 +32,10 @@ export class LuxComponentsConfigService {
     viewConfiguration: {
       centeredView: false,
       centeredWidth: '1500px'
+    },
+    appFooter: {
+      fixedDesktop: true,
+      fixedMobile: true
     }
   };
 
