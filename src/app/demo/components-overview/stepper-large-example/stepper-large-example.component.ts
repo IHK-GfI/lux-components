@@ -21,6 +21,7 @@ export class StepperLargeExampleComponent {
   maxWidth = this.options[0];
   completed = true;
   theme = '';
+  luxA11YMode = false;
 
   constructor(public dataService: StepperLargeExampleDataService, private router: Router, private snackbar: LuxSnackbarService, private themeService: LuxThemeService) {
     this.theme = themeService.getTheme().name;
@@ -49,5 +50,14 @@ export class StepperLargeExampleComponent {
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigate([currentUrl]);
     }, snackbarDuration);
+  }
+
+  onStepNotComplete(currentStepNumber: number) {
+    this.snackbar.open(5000, {
+      iconName: 'lux-error',
+      iconSize: '2x',
+      iconColor: 'red',
+      text: `Schritt ${currentStepNumber + 1} kann nicht abgeschlossen werden!`
+    });
   }
 }

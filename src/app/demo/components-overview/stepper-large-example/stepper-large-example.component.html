@@ -2,12 +2,14 @@
 <div class="example-lux-stepper-large" [ngStyle]="{ maxWidth: maxWidth }" [ngClass]="{ 'authentic-example': theme === 'authentic' }">
   <lux-stepper-large
     [luxStepValidationActive]="stepValidationActive"
+    [luxA11YMode]="luxA11YMode"
     [(luxCurrentStepNumber)]="currentStepIndex"
     [luxPrevButtonConfig]="dataService.prevButtonConfig"
     [luxNextButtonConfig]="dataService.nextButtonConfig"
     [luxFinButtonConfig]="dataService.finButtonConfig"
     (luxStepChanged)="onStepChanged($event)"
     (luxStepperFinished)="onFinish()"
+    (luxStepNotComplete)="onStepNotComplete($event)"
     [ngClass]="{ 'authentic-example': theme === 'authentic' }"
   >
     <lux-stepper-large-step luxTitle="Allgemein" [luxCompleted]="allowed">
@@ -18,6 +20,10 @@
         Weiter-Button immer aktiv und nur die Veto-Funktionen können das Navigieren zum nächsten Schritt verhindern.
       </p>
       <lux-toggle-ac luxLabel="Validierung der Schritte aktivieren" [(luxChecked)]="stepValidationActive"></lux-toggle-ac>
+      <lux-toggle-ac luxLabel="luxA11YMode aktivieren" [(luxChecked)]="luxA11YMode"></lux-toggle-ac>
+      <p>
+        Um die Barrierefreiheit zu verbessern kann anstatt den Weiter Button zu deaktivieren, das Attribut <code>aria-disabled</code> verwendet werden. Der Button bleibt immer aktiv, es wird jedoch bei einem Fehler im Schritt nicht weiter navigiert und ein Output-Event wird geworfen.
+      </p>
 
       <h3>Füllschritte 1 bis 5</h3>
       <p style="margin-bottom: 0">
