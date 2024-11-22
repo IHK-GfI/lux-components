@@ -24,9 +24,7 @@
         [for]="luxFormComponent.uid"
         *ngIf="luxFormComponent.formLabelComponent || luxFormComponent.luxLabel"
       >
-        <ng-container *ngIf="luxFormComponent.luxLabel; else formLabelTemplate">
-          {{ luxFormComponent.luxLabel }}
-        </ng-container>
+        <ng-container *ngIf="luxFormComponent.luxLabel; else formLabelTemplate">{{ luxFormComponent.luxLabel }}</ng-container>
         <ng-template #formLabelTemplate>
           <ng-container *ngTemplateOutlet="luxFormComponent.formLabelComponent?.templateRef ?? null"></ng-container>
         </ng-template>
