@@ -79,8 +79,11 @@ export class StepperLargeExampleStepPrevButtonComponent extends LuxStepperLargeS
             component.luxCompleted = false;
             // LuxUtil.showValidationErrors(component.form);
           }
-
-          resolve(component.luxCompleted ? LuxVetoState.navigationAccepted : LuxVetoState.navigationRejected);
+          if (component.dataService.luxStepValidationActive) {
+            resolve(component.luxCompleted ? LuxVetoState.navigationAccepted : LuxVetoState.navigationRejected);
+          } else {
+            resolve(LuxVetoState.navigationAccepted);
+          }
         } else {
           // Man darf zu jedem Schritt springen, wenn dieser bereits besucht wurde.
           LuxUtil.showValidationErrors(component.form);

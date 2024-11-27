@@ -31,6 +31,9 @@ export class StepperLargeExampleComponent {
       `Event 'luxStepChanged': Von \nSchritt "${event.prevStep.luxTitle}" (index = ${event.prevIndex}) nach \nSchritt "${event.currentStep.luxTitle}" (index = ${event.currentIndex})`
     );
     console.log(`Stepper-Index': ${event.stepper.luxCurrentStepNumber}`);
+    if (this.currentStepIndex == 1) {
+      this.dataService.luxStepValidationActive = this.stepValidationActive;
+    }
   }
 
   onFinish() {

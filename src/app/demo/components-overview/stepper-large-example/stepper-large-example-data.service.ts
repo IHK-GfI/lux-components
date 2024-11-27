@@ -13,6 +13,7 @@ export class StepperLargeExampleDataService {
   prevButtonConfig: LuxStepperLargeButtonInfo = JSON.parse(JSON.stringify(LUX_STEPPER_LARGE_DEFAULT_PREV_BTN_CONF));
   nextButtonConfig: LuxStepperLargeButtonInfo = JSON.parse(JSON.stringify(LUX_STEPPER_LARGE_DEFAULT_NEXT_BTN_CONF));
   finButtonConfig: LuxStepperLargeButtonInfo = JSON.parse(JSON.stringify(LUX_STEPPER_LARGE_DEFAULT_FIN_BTN_CONF));
+  luxStepValidationActive = true;
 
   constructor() {}
 }
