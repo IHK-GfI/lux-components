@@ -1,5 +1,22 @@
 # Changelog
 
+## Version 18.2.0
+
+### New
+
+- **allgemein**: Update auf LUX-Components-Theme [18.2.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/18.2.0).
+  - **lux-app-footer**: Der footer soll optional nicht sticky sein. [Issue 534](https://github.com/IHK-GfI/lux-components/issues/534)
+  - **lux-card**: LUX-Card content height fixen. [Issue 552](https://github.com/IHK-GfI/lux-components/issues/552)
+  - **lux-radio-ac**: Hitboxen von Radio-Buttons sind in vertikaler Anordnung ungenau. [Issue 565](https://github.com/IHK-GfI/lux-components/issues/565)
+- **lux-progressbar**: ARIA-label für lux-progressbar und lux-spinner hinzufügen. [Issue 551](https://github.com/IHK-GfI/lux-components/issues/551)
+
+### Bug Fixes
+
+- **lux-card**: LUX-Card content height fixen. [Issue 552](https://github.com/IHK-GfI/lux-components/issues/552)
+- **lux-stepper-large**: Durch zurücknavigieren können valide Steps verändert werden und troztdem wieder verlassen werden.. [Issue 532](https://github.com/IHK-GfI/lux-components/issues/532)
+- **lux-form-controls**: Zeilenumbruch bei Pflichtfeldstern. [Issue 501](https://github.com/IHK-GfI/lux-components/issues/501)
+- **lux-app-footer**: Der footer soll optional nicht sticky sein. [Issue 534](https://github.com/IHK-GfI/lux-components/issues/534)
+
 ## Version 18.1.0
 
 ### New
