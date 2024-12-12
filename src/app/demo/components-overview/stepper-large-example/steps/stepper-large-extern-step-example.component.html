@@ -14,5 +14,7 @@
     dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
     sea takimata sanctus est Lorem ipsum dolor sit amet.
   </p>
-  <lux-toggle-ac luxLabel="Zustimmung erforderlich" [(luxChecked)]="luxCompleted" [luxRequired]="true"></lux-toggle-ac>
+  <lux-toggle-ac luxLabel="Zustimmung erforderlich" [(luxChecked)]="luxCompleted" [luxRequired]="true" #requiredCheck></lux-toggle-ac>
+  <lux-stepper-large-example-error-message-box class="lux-mt-5" [luxTitle]="luxTitle" [luxCompleted]="luxCompleted">
+  </lux-stepper-large-example-error-message-box>
 </ng-template>
