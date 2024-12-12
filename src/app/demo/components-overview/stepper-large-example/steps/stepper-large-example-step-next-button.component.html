@@ -30,4 +30,13 @@
     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
     volutpat.
   </p>
+  <lux-textbox
+        class="lux-mt-5"
+        [luxTitle]="'Step ' + (currentStepIndex + 1) + ' kann nicht abgeschlossen werden.'"
+        luxIcon="lux-interface-alert-warning-diamond"
+        luxColor="red"
+        *ngIf="showErrorMessage && !luxCompleted"
+      >
+        <p>Bitte korrigieren oder vervollständigen Sie Ihre Angaben in den gekennzeichneten Feldern, um diesen Step abzuschließen.</p>
+      </lux-textbox>
 </ng-template>
