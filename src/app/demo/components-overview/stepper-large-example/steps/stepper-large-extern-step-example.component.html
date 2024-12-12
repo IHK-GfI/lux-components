@@ -15,4 +15,13 @@
     sea takimata sanctus est Lorem ipsum dolor sit amet.
   </p>
   <lux-toggle-ac luxLabel="Zustimmung erforderlich" [(luxChecked)]="luxCompleted" [luxRequired]="true"></lux-toggle-ac>
+  <lux-textbox
+        class="lux-mt-5"
+        [luxTitle]="'Step ' + luxTitle + ' kann nicht abgeschlossen werden.'"
+        luxIcon="lux-interface-alert-warning-diamond"
+        luxColor="red"
+        *ngIf="showErrorMessage && !luxCompleted"
+      >
+        <p>Bitte korrigieren oder vervollständigen Sie Ihre Angaben in den gekennzeichneten Feldern, um diesen Step abzuschließen.</p>
+      </lux-textbox>
 </ng-template>

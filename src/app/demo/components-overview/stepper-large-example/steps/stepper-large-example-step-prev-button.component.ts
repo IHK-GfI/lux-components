@@ -23,6 +23,8 @@ interface StepperLargePrevButtonDummyForm {
 })
 export class StepperLargeExampleStepPrevButtonComponent extends LuxStepperLargeStepComponent implements OnInit, OnDestroy {
   form: FormGroup<StepperLargePrevButtonDummyForm>;
+  showErrorMessage = false;
+  currentStepIndex = 1;
 
   subscriptions: Subscription[] = [];
 
@@ -49,6 +51,12 @@ export class StepperLargeExampleStepPrevButtonComponent extends LuxStepperLargeS
     this.subscriptions.push(
       this.form.statusChanges.subscribe(() => {
         this.luxCompleted = this.form.valid;
+      })
+    );
+
+    this.subscriptions.push(
+      this.dataService.showErrorMessage.subscribe((value) => {
+        this.showErrorMessage = value;
       })
     );
   }
