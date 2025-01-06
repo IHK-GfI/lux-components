@@ -34,17 +34,16 @@ export class LuxHttpErrorInterceptor implements HttpInterceptor {
   }
 
   static extractErrors(error: any | null) {
-    let errors;
-    if (typeof error === 'object') {
-      if (error.hasOwnProperty('errors')) {
-        errors = error['errors'];
-      } else if (error.hasOwnProperty('violations')) {
-        errors = error['violations'];
-      } else {
-        errors = [];
+    let errors = [];
+
+    if (error && typeof error === 'object') {
+      if (error.errors && Array.isArray(error.errors)) {
+        errors = error.errors;
+      } else if (error.violations && Array.isArray(error.violations)) {
+        errors = error.violations;
       }
     }
-
+    
     return errors;
   }
 }
