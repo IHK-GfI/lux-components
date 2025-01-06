@@ -1,12 +1,19 @@
 <div class="lux-datepicker-custom-header-component">
-  <button type="button" class="mat-calendar-previous-button mat-icon-button" (click)="previousClicked('month')"></button>
-  <button
-    mat-button
-    type="button"
-    class="mat-calendar-period-button mat-button mat-button-base"
-    (click)="currentPeriodClicked()"
-  >
-      <span>{{ periodLabel }}</span>
-  </button>
-  <button type="button" class="mat-calendar-next-button mat-icon-button" (click)="nextClicked('month')"></button>
+  <lux-button
+    luxLabel="&lt;"
+    [luxThrottleTime]="1"
+    class="lux-datepicker-prev-month"
+    (luxClicked)="previousClicked('month')"
+    luxAriaLabel="vorheriger Monat"
+    i18n-luxAriaLabel="@@luxc.datepicker.prev.month.arialabel"
+  ></lux-button>
+  <lux-button luxLabel="{{ periodLabel }}" class="lux-datepicker-year" (luxClicked)="currentPeriodClicked()"> </lux-button>
+  <lux-button
+    luxLabel="&gt;"
+    [luxThrottleTime]="1"
+    class="lux-datepicker-next-month"
+    (luxClicked)="nextClicked('month')"
+    luxAriaLabel="nächster Monat"
+    i18n-luxAriaLabel="@@luxc.datepicker.next.month.arialabel"
+  ></lux-button>
 </div>
