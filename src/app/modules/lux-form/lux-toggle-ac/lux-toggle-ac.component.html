@@ -29,7 +29,7 @@
     tabIndex="{{ luxReadonly ? -1 : 0 }}"
     #slidetoggle
   >
-    <label class="lux-form-label" [for]="uid + '-input'" *ngIf="formLabelComponent || luxLabel" (click)="slidetoggle.toggle()">
+    <span class="lux-form-label" *ngIf="formLabelComponent || luxLabel">
       <ng-container *ngIf="luxLabel; else formLabelTemplate">
         {{ luxLabel }}
       </ng-container>
@@ -37,6 +37,6 @@
         <ng-container *ngTemplateOutlet="formLabelComponent?.templateRef ?? null"></ng-container>
       </ng-template>
       {{ luxRequired ? ' *' : '' }}
-    </label>
+    </span>
   </mat-slide-toggle>
 </lux-form-control-wrapper>
