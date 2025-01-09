@@ -1,5 +1,19 @@
 # Changelog
 
+## Version 18.3.0
+
+### New
+
+- **allgemein**: Update auf LUX-Components-Theme [18.3.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/18.3.0).
+  - **lux-message-box**: Falsche Farbe beim Close-Button. [Issue 557](https://github.com/IHK-GfI/lux-components/issues/557)
+
+### Bug Fixes
+
+- **lux-datepicker-ac**: Green Theme Bug. [Issue 567](https://github.com/IHK-GfI/lux-components/issues/567)
+- **lux-http-error**: Falsche Prüfung auf "not null" im LuxHttpErrorInterceptor. [Issue 568](https://github.com/IHK-GfI/lux-components/issues/568)
+- **lux-checkbox-ac**: Barrierefreiheit - label in label bei Checkbox. [Issue 566](https://github.com/IHK-GfI/lux-components/issues/566)
+- **lux-toggle-ac**: Barrierefreiheit - label in label bei Checkbox. [Issue 566](https://github.com/IHK-GfI/lux-components/issues/566)
+
 ## Version 18.2.0
 
 ### New
