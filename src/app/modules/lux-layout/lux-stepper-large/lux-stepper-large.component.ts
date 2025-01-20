@@ -13,6 +13,7 @@ import { LuxStepperLargeSelectionEvent } from './lux-stepper-large-model/lux-ste
 import { ILuxStepperLargeStep, LuxVetoState } from './lux-stepper-large-model/lux-stepper-large-step.interface';
 import { LuxStepperLargeMobileOverlayService } from './lux-stepper-large-subcomponents/lux-stepper-large-mobile-overlay/lux-stepper-large-mobile-overlay.service';
 import { LuxStepperLargeStepComponent } from './lux-stepper-large-subcomponents/lux-stepper-large-step/lux-stepper-large-step.component';
+import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 
 @Component({
   selector: 'lux-stepper-large',
@@ -32,7 +33,6 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
   @Output() luxStepChanged = new EventEmitter<LuxStepperLargeSelectionEvent>();
   @Output() luxCurrentStepNumberChange = new EventEmitter<number>();
   @Output() luxOnNextStepNotComplete = new EventEmitter<number>();
-  @Output() luxOnPrevStepNotComplete = new EventEmitter<number>();
 
   _luxCurrentStepNumber = 0;
 
@@ -84,7 +84,8 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
   constructor(
     private mobileOverlayService: LuxStepperLargeMobileOverlayService,
     private queryService: LuxMediaQueryObserverService,
-    private liveAnnouncer: LiveAnnouncer
+    private liveAnnouncer: LiveAnnouncer,
+    private snackbar: LuxSnackbarService
   ) {}
 
   ngOnInit() {
@@ -108,10 +109,6 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
   }
 
   onPrevStep() {
-    if (this.luxStepValidationActive && this.luxA11YMode && !this.steps.get(this.luxCurrentStepNumber)!.luxCompleted) {
-      this.luxOnPrevStepNotComplete.emit(this._luxCurrentStepNumber);
-    }
-
     const newIndex = this.getPrevIndex(this.luxCurrentStepNumber);
 
     const event: LuxStepperLargeClickEvent = {
@@ -133,8 +130,7 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
 
   onNextStep() {
     if (this.luxStepValidationActive && this.luxA11YMode && !this.steps.get(this.luxCurrentStepNumber)!.luxCompleted) {
-      this.luxOnNextStepNotComplete.emit(this._luxCurrentStepNumber);
-      return;
+      this.luxOnNextStepNotComplete.emit(this.luxCurrentStepNumber);
     }
 
     const newIndex = this.getNextIndex(this.luxCurrentStepNumber);
@@ -146,6 +142,14 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
       source: 'next_button'
     };
     const vetoPromise = this.steps.get(this.luxCurrentStepNumber)!.luxVetoFn(event);
+
+    if (this.luxStepValidationActive && (this.luxCurrentStepNumber < newIndex) && (newIndex < this.steps.length)) {
+    for (let i = this.luxCurrentStepNumber; i < newIndex ; i++) {
+      if (this.steps.get(i)!.luxCompleted === false) {
+        return;
+      }
+    }
+  }
 
     vetoPromise
       .then((veto) => {
@@ -220,12 +224,20 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
   }
 
   onNavLink(stepIndex: number) {
-    if (!this.luxStepValidationActive || this.steps.get(this.luxCurrentStepNumber)!.luxCompleted === true) {
-      if (this.luxStepValidationActive && this.luxA11YMode && !this.steps.get(this.luxCurrentStepNumber)!.luxCompleted) {
-        if (stepIndex > this.luxCurrentStepNumber) {
-          return;
+      if (this.luxStepValidationActive && (this.luxCurrentStepNumber <= stepIndex)) {
+        for (let i = this.luxCurrentStepNumber; i < stepIndex ; i++) {
+          if (this.steps.get(i)!.luxCompleted === false) {
+            this.snackbar.open(0, {
+              text: 'Bitte füllen Sie alle Felder aus.',
+              action: 'Schließen',
+              iconName: 'lux-interface-alert-warning-triangle'
+            });
+            return;
+          }
+
         }
       }
+
       const event: LuxStepperLargeClickEvent = { stepper: this, newIndex: stepIndex, newStep: this.steps.get(stepIndex)!, source: 'nav' };
       const vetoPromise = this.steps.get(this.luxCurrentStepNumber)!.luxVetoFn(event);
 
@@ -237,7 +249,6 @@ export class LuxStepperLargeComponent implements OnInit, AfterContentInit, OnDes
           }
         })
         .catch((err) => console.error(err));
-    }
   }
 
   onOpenMobileOverlay() {

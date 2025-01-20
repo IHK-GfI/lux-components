@@ -10,7 +10,6 @@
     (luxStepChanged)="onStepChanged($event)"
     (luxStepperFinished)="onFinish()"
     (luxOnNextStepNotComplete)="onStepNotComplete($event)"
-    (luxOnPrevStepNotComplete)="onStepNotComplete($event)"
     [ngClass]="{ 'authentic-example': theme === 'authentic' }"
   >
     <lux-stepper-large-step luxTitle="Allgemein" [luxCompleted]="allowed">
@@ -25,7 +24,7 @@
       <p>
         Um die Barrierefreiheit zu verbessern kann anstatt den Weiter Button zu deaktivieren, das Attribut
         <code>aria-disabled</code> verwendet werden. Der Button bleibt immer aktiv, es wird jedoch bei einem Fehler im Schritt nicht weiter
-        navigiert und ein Output-Event wird geworfen.
+        navigiert und ein Output-Event wird geworfen. Dies funktioniert jedoch nur, wenn die Validierung aktiviert wurde.
       </p>
 
       <h3>Füllschritte 1 bis 5</h3>
