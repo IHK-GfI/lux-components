@@ -5,6 +5,8 @@ import { LuxStepperLargeSelectionEvent } from '../../../modules/lux-layout/lux-s
 import { LuxStepperLargeComponent } from '../../../modules/lux-layout/lux-stepper-large/lux-stepper-large.component';
 import { LuxSnackbarService } from '../../../modules/lux-popups/lux-snackbar/lux-snackbar.service';
 import { StepperLargeExampleDataService } from './stepper-large-example-data.service';
+import { LuxToggleAcComponent } from '../../../modules/lux-form/lux-toggle-ac/lux-toggle-ac.component';
+import { LuxVetoState } from 'public_api';
 
 @Component({
   selector: 'lux-stepper-large-example',
@@ -13,6 +15,7 @@ import { StepperLargeExampleDataService } from './stepper-large-example-data.ser
 })
 export class StepperLargeExampleComponent {
   @ViewChild(LuxStepperLargeComponent) stepper!: LuxStepperLargeComponent;
+  @ViewChild('requiredCheck') toggle!: LuxToggleAcComponent;
 
   allowed = false;
   stepValidationActive = true;
@@ -21,6 +24,8 @@ export class StepperLargeExampleComponent {
   maxWidth = this.options[0];
   completed = true;
   theme = '';
+  luxA11YMode = false;
+  showError = false;
 
   constructor(public dataService: StepperLargeExampleDataService, private router: Router, private snackbar: LuxSnackbarService, private themeService: LuxThemeService) {
     this.theme = themeService.getTheme().name;
@@ -34,6 +39,8 @@ export class StepperLargeExampleComponent {
     if (this.currentStepIndex == 1) {
       this.dataService.luxStepValidationActive = this.stepValidationActive;
     }
+
+    this.dataService.showErrorMessage.next(false);
   }
 
   onFinish() {
@@ -53,4 +60,13 @@ export class StepperLargeExampleComponent {
       this.router.navigate([currentUrl]);
     }, snackbarDuration);
   }
+
+  onStepNotComplete(currentStepNumber: number) {
+    this.toggle.formControl.markAsTouched();
+    this.showError = true;
+
+    this.dataService.showErrorMessage.next(true);
+
+  }
+
 }

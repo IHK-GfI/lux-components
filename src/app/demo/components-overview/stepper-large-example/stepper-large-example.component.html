@@ -2,12 +2,15 @@
 <div class="example-lux-stepper-large" [ngStyle]="{ maxWidth: maxWidth }" [ngClass]="{ 'authentic-example': theme === 'authentic' }">
   <lux-stepper-large
     [luxStepValidationActive]="stepValidationActive"
+    [luxA11YMode]="luxA11YMode"
     [(luxCurrentStepNumber)]="currentStepIndex"
     [luxPrevButtonConfig]="dataService.prevButtonConfig"
     [luxNextButtonConfig]="dataService.nextButtonConfig"
     [luxFinButtonConfig]="dataService.finButtonConfig"
     (luxStepChanged)="onStepChanged($event)"
     (luxStepperFinished)="onFinish()"
+    (luxOnNextStepNotComplete)="onStepNotComplete($event)"
+    (luxOnPrevStepNotComplete)="onStepNotComplete($event)"
     [ngClass]="{ 'authentic-example': theme === 'authentic' }"
   >
     <lux-stepper-large-step luxTitle="Allgemein" [luxCompleted]="allowed">
@@ -18,6 +21,12 @@
         Weiter-Button immer aktiv und nur die Veto-Funktionen können das Navigieren zum nächsten Schritt verhindern.
       </p>
       <lux-toggle-ac luxLabel="Validierung der Schritte aktivieren" [(luxChecked)]="stepValidationActive"></lux-toggle-ac>
+      <lux-toggle-ac luxLabel="luxA11YMode aktivieren" [(luxChecked)]="luxA11YMode"></lux-toggle-ac>
+      <p>
+        Um die Barrierefreiheit zu verbessern kann anstatt den Weiter Button zu deaktivieren, das Attribut
+        <code>aria-disabled</code> verwendet werden. Der Button bleibt immer aktiv, es wird jedoch bei einem Fehler im Schritt nicht weiter
+        navigiert und ein Output-Event wird geworfen.
+      </p>
 
       <h3>Füllschritte 1 bis 5</h3>
       <p style="margin-bottom: 0">
@@ -44,7 +53,15 @@
         class="lux-max-width-96"
       ></lux-select-ac>
 
-      <lux-toggle-ac luxLabel="Ich habe verstanden und möchte fortfahren" [(luxChecked)]="allowed" [luxRequired]="true"></lux-toggle-ac>
+      <lux-toggle-ac
+        luxLabel="Ich habe verstanden und möchte fortfahren"
+        [(luxChecked)]="allowed"
+        [luxRequired]="true"
+        #requiredCheck
+      ></lux-toggle-ac>
+
+      <lux-stepper-large-example-error-message-box class="lux-mt-5" luxTitle="Allgemein" [luxCompleted]="allowed">
+      </lux-stepper-large-example-error-message-box>
     </lux-stepper-large-step>
 
     <app-stepper-large-example-step-prev-button></app-stepper-large-example-step-prev-button>

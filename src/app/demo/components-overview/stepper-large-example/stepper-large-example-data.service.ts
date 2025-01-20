@@ -5,6 +5,7 @@ import {
   LUX_STEPPER_LARGE_DEFAULT_NEXT_BTN_CONF,
   LUX_STEPPER_LARGE_DEFAULT_PREV_BTN_CONF
 } from '../../../modules/lux-layout/lux-stepper-large/lux-stepper-large-model/lux-stepper-large-button-info';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class StepperLargeExampleDataService {
   nextButtonConfig: LuxStepperLargeButtonInfo = JSON.parse(JSON.stringify(LUX_STEPPER_LARGE_DEFAULT_NEXT_BTN_CONF));
   finButtonConfig: LuxStepperLargeButtonInfo = JSON.parse(JSON.stringify(LUX_STEPPER_LARGE_DEFAULT_FIN_BTN_CONF));
   luxStepValidationActive = true;
+  showErrorMessage = new BehaviorSubject<boolean>(false);
 
   constructor() {}
 }
