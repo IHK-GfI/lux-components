@@ -116,6 +116,8 @@ export class AutocompleteAuthenticExampleComponent {
       { label: 'Zurückgestellte Aufgaben', short: 'ZA', value: 'C' },
       { label: this.longOptionLabel, short: 'LI', value: 'D' },
       { label: 'Vertretungsaufgaben', short: 'VA', value: 'F' },
+      { label: this.longOptionLabel, short: 'L2', value: 'L2' },
+      { label: this.longOptionLabel, short: 'L3', value: 'L3' },
       { label: 'Neue Aufgaben', short: 'NA', value: 'G' },
       { label: 'Extraaufgaben', short: 'EA', value: 'H' },
       { label: 'Optionale Aufgaben', short: 'ZA', value: 'I' }

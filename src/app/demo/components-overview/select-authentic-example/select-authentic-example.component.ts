@@ -31,9 +31,9 @@ export class SelectAuthenticExampleComponent {
         'Argentinien, Bolivien, Chile, Costa Rica, Dominikanische Republik, Ecuador, El Salvador, Guatemala, Honduras, Kolumbien, Kuba, Mexiko',
       value: 0
     },
-    { label: 'Afghanistan', value: 1 },
+    { label: 'Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afghanistan, Afghanistan', value: 1 },
     { label: 'Albanien', value: 2 },
-    { label: 'Algerien', value: 3 },
+    { label: 'Algerien, Algerien, Algerien, Algerien, Algerien, Algerien, Algerien, Algerien, Algerien', value: 3 },
     { label: 'Bahamas', value: 4 },
     { label: 'Belgien', value: 5 },
     { label: 'Brasilien', value: 6 },

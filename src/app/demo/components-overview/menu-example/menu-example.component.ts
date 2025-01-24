@@ -74,6 +74,20 @@ export class MenuExampleComponent {
       buttonBadge: '+99999',
       buttonBadgeColor: 'warn',
       prio: 4
+    },
+    {
+      iconName: 'lux-programming-bug',
+      raised: false,
+      color: 'primary',
+      disabled: false,
+      hidden: false,
+      label: 'Extralanges Beispiellabel zum Testen 2',
+      tooltip: '',
+      tooltipMenu: '',
+      alwaysVisible: false,
+      round: false,
+      hideLabelIfExtended: false,
+      prio: 4
     }
   ];
 
