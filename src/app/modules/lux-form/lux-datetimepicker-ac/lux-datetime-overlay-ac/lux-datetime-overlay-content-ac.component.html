@@ -18,6 +18,9 @@
           <lux-input-ac
             luxLabel=""
             class="lux-datetime-hour"
+            luxAriaLabel="Stunden"
+            luxAriaLabelSelector="input"
+            i18n-luxAriaLabel="@@luxc.datetimepicker.panel.hours.arialabel"
             luxAutocomplete="off"
             [(luxValue)]="hours"
             (luxFocusIn)="selectHours()"
@@ -27,11 +30,15 @@
             [luxMaxLength]="2"
             [luxHideCounterLabel]="true"
             [luxNoLabels]="true"
+            luxTagId="lux-datetimepicker-hours"
             #hoursInput
           ></lux-input-ac>
           <div style="text-align: center; flex: 1 1 15px; box-sizing: border-box; max-width: 15px; min-width: 15px">:</div>
           <lux-input-ac
             luxLabel=""
+            luxAriaLabel="Minuten"
+            i18n-luxAriaLabel="@@luxc.datetimepicker.panel.minutes.arialabel"
+            luxAriaLabelSelector="input"
             class="lux-datetime-minute"
             luxAutocomplete="off"
             [(luxValue)]="minutes"
@@ -42,6 +49,7 @@
             [luxMaxLength]="2"
             [luxHideCounterLabel]="true"
             [luxNoLabels]="true"
+            luxTagId="lux-datetimepicker-minutes"
             #minutesInput
           ></lux-input-ac>
         </div>
