@@ -379,7 +379,7 @@
         <target>previous month</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datepicker-ac/lux-datepicker-ac-custom-header/lux-datepicker-ac-custom-header.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datepicker.next.month.arialabel" datatype="html">
@@ -387,7 +387,7 @@
         <target>next month</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datepicker-ac/lux-datepicker-ac-custom-header/lux-datepicker-ac-custom-header.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datepicker.error_message.min" datatype="html">
@@ -426,12 +426,28 @@
           <context context-type="linenumber">162</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="luxc.datetimepicker.panel.hours.arialabel" datatype="html">
+        <source>Stunden</source>
+        <target>Hours</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-datetimepicker-ac/lux-datetime-overlay-ac/lux-datetime-overlay-content-ac.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="luxc.datetimepicker.panel.minutes.arialabel" datatype="html">
+        <source>Minuten</source>
+        <target>Minutes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-datetimepicker-ac/lux-datetime-overlay-ac/lux-datetime-overlay-content-ac.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="luxc.datetimepicker.invalid.date" datatype="html">
         <source>Bitte wählen Sie ein Datum aus</source>
         <target>Please enter a date</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datetimepicker-ac/lux-datetime-overlay-ac/lux-datetime-overlay-content-ac.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datetimepicker.invalid.time" datatype="html">
@@ -439,7 +455,7 @@
         <target>Please enter a time</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-form/lux-datetimepicker-ac/lux-datetime-overlay-ac/lux-datetime-overlay-content-ac.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="luxc.datetimepicker.error_message.min" datatype="html">

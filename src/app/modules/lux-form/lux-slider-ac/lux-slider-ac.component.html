@@ -27,6 +27,6 @@
     [luxAriaRequired]="luxRequired"
     [luxAriaLabel]="luxLabel"
     tabIndex="-1"
-   #ngSlider><input matSliderThumb [ngClass]="{'lux-readonly': luxReadonly}"  [formControl]="formControl" [value]="luxValue" (valueChange)="onChange($event)" #ngSliderThumb="matSliderThumb" (input)="onInput(ngSliderThumb.value)" [readOnly]="luxReadonly" />
+   #ngSlider><input [id]="uid" matSliderThumb [ngClass]="{'lux-readonly': luxReadonly}" [formControl]="formControl" [value]="luxValue" (valueChange)="onChange($event)" #ngSliderThumb="matSliderThumb" (input)="onInput(ngSliderThumb.value)" [readOnly]="luxReadonly" />
   </mat-slider>
 </lux-form-control-wrapper>
