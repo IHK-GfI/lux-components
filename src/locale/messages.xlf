@@ -941,6 +941,13 @@
           <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="luxc.stepper-large.error_message.steps_not_completed" datatype="html">
+        <source>Die Angaben in Schritt <x id="PH" equiv-text="i+1"/> sind unvollständig oder fehlerhaft. Bitte korrigieren Sie erst Ihre Angaben in diesem Schritt.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large.component.ts</context>
+          <context context-type="linenumber">231</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="luxc.lookup-autocomplete.error_message.not_available" datatype="html">
         <source>Der eingegebene Eintrag ist nicht Teil der Schlüsseltabelle.</source>
         <context-group purpose="location">
