@@ -78,6 +78,7 @@ import { StepperLargeExampleStepPrevButtonComponent } from './stepper-large-exam
 import { StepperLargeExampleStepNextButtonComponent } from './stepper-large-example/steps/stepper-large-example-step-next-button.component';
 import { StepperLargeExampleStepFinButtonComponent } from './stepper-large-example/steps/stepper-large-example-step-fin-button.component';
 import { StepperLargeExampleStepVetoComponent } from './stepper-large-example/steps/stepper-large-example-step-veto.component';
+import { StepperLargeExampleErrorMessageBoxComponent } from './stepper-large-example/stepper-large-example-error-message-box/stepper-large-example-error-message-box.component';
 import { LinkPlainExampleComponent } from './link-plain-example/link-plain-example.component';
 import { TileAuthenticExampleComponent } from './tile-authentic-example/tile-authentic-example.component';
 import { FileUploadExampleComponent } from './file-example/file-upload-example/file-upload-example.component';
@@ -161,6 +162,7 @@ import { BreadcrumbExampleComponent } from './breadcrumb-example/breadcrumb-exam
         StepperLargeExampleStepNextButtonComponent,
         StepperLargeExampleStepFinButtonComponent,
         StepperLargeExampleStepVetoComponent,
+        StepperLargeExampleErrorMessageBoxComponent,
         LinkPlainExampleComponent,
         TileExampleComponent,
         TileAuthenticExampleComponent,

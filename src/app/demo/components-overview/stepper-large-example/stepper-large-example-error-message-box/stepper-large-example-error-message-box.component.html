@@ -1,0 +1,8 @@
+<lux-textbox
+    [luxTitle]="'Schritt ' + luxTitle + ' kann nicht abgeschlossen werden.'"
+    luxIcon="lux-interface-alert-warning-triangle"
+    luxColor="red"
+    *ngIf="showErrorMessage && !luxCompleted"
+  >
+    <p>Bitte korrigieren oder vervollständigen Sie Ihre Angaben in den gekennzeichneten Feldern, um diesen Schritt abzuschließen.</p>
+  </lux-textbox>

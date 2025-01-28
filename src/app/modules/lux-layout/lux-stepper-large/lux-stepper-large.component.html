@@ -87,7 +87,8 @@
     [luxIconShowRight]="luxNextButtonConfig.iconShowRight"
     [luxColor]="luxNextButtonConfig.color"
     [luxRaised]="true"
-    [luxDisabled]="luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber)!.luxCompleted)"
+    [luxDisabled]="luxA11YMode ? false : (luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber)!.luxCompleted))"
+    [attr.aria-disabled] = "luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber)!.luxCompleted)"
     (luxClicked)="onNextStep()"
     *ngIf="!isLastStep"
   ></lux-button>
@@ -99,8 +100,9 @@
     [luxColor]="luxFinButtonConfig.color"
     [luxRaised]="true"
     [luxDisabled]="
-      luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber)!.luxCompleted || isFinished)
+      luxA11YMode ? false : (luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber)!.luxCompleted || isFinished))
     "
+    [attr.aria-disabled] = "luxStepValidationActive && (!steps.get(luxCurrentStepNumber) || !steps.get(luxCurrentStepNumber)!.luxCompleted || isFinished)"
     (luxClicked)="onFinStep()"
     *ngIf="isLastStep"
   ></lux-button>
