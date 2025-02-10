@@ -30,13 +30,10 @@
     #slidetoggle
   >
     <span class="lux-form-label" *ngIf="formLabelComponent || luxLabel">
-      <ng-container *ngIf="luxLabel; else formLabelTemplate">
-        {{ luxLabel }}
-      </ng-container>
+      <ng-container *ngIf="luxLabel; else formLabelTemplate">{{ luxLabel }}</ng-container><!-- Einzeilig lassen, sonst bricht das Label an dem Leerzeichen um. -->
       <ng-template #formLabelTemplate>
         <ng-container *ngTemplateOutlet="formLabelComponent?.templateRef ?? null"></ng-container>
-      </ng-template>
-      {{ luxRequired ? ' *' : '' }}
+      </ng-template>{{ luxRequired ? '&nbsp;*' : '' }}<!-- Nicht in die nächste Zeile verschieben, sonst bricht das Label an dem Leerzeichen um. -->
     </span>
   </mat-slide-toggle>
 </lux-form-control-wrapper>
