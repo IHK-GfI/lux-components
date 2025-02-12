@@ -1,3 +1,8 @@
-<mat-accordion [displayMode]="luxMode" [multi]="luxMulti">
+<mat-accordion [displayMode]="luxMode" [multi]="luxMulti" [togglePosition]="luxTogglePosition" [ngClass]="{
+  'lux-primary': luxColor === 'primary',
+  'lux-accent': luxColor === 'accent',
+  'lux-warn': luxColor === 'warn',
+  'lux-neutral': luxColor === 'neutral'
+}">
   <ng-content></ng-content>
 </mat-accordion>
