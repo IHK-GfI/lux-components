@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { LuxModeType } from '../../../modules/lux-layout/lux-accordion/lux-accordion.component';
+import { LuxModeType, LuxTogglePosition } from '../../../modules/lux-layout/lux-accordion/lux-accordion.component';
 import { logResult } from '../../example-base/example-base-util/example-base-helper';
+import { LuxAccordionColor } from 'src/app/modules/lux-util/lux-colors.enum';
 
 @Component({
   selector: 'app-accordion-example',
@@ -25,8 +26,14 @@ export class AccordionExampleComponent {
   expandedHeaderHeight2Panel = '4em';
   collapsedHeaderHeight2Panel = '4em';
   _displayMode: LuxModeType = 'default';
+  colorOptions = ['primary', 'accent', 'warn', 'neutral'];
+  color: LuxAccordionColor = 'primary';
+  togglePositions = ['after', 'before'];
+  _togglePosition: LuxTogglePosition = 'after';
 
   set displayMode(mode: LuxModeType) {
+    // Der Multimode muss auf true gesetzt werden damit immer alle Panels aufgeklappt werden. Sonst wird nur das Custom Panel aufgeklappt wenn der Multimode vorher deaktiviert wurde.
+    this.multiMode = true;
     this.expanded = false;
     this._displayMode = mode;
     setTimeout(() => (this.expanded = true));
@@ -35,6 +42,18 @@ export class AccordionExampleComponent {
   get displayMode() {
     return this._displayMode;
   }
+
+  set togglePosition(position: LuxTogglePosition) {
+    this._togglePosition = position;
+  }
+
+  get togglePosition(){
+    return this._togglePosition;
+  }
+
+  onColorChanged(_color: LuxAccordionColor ) {
+      this.color = _color;
+    }
 
   panelConfigArr: { title: string; description: string }[] = [
     { title: 'Panel #1 -  Hauptüberschrift im Panel', description: 'Optionale zusätzliche Beschreibung' },

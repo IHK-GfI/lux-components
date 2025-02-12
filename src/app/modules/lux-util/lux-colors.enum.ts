@@ -8,6 +8,7 @@ export declare type LuxMessageBoxColor = LuxBgBaseColor | 'white';
 export declare type LuxProgressColor = LuxBgBaseColor;
 export declare type LuxSnackbarColor = LuxBgBaseColor | 'white';
 export declare type LuxTextboxColor = 'red' | 'blue' | 'green' | 'yellow';
+export declare type LuxAccordionColor = 'primary' | 'accent' | 'warn' | 'neutral';
 
 export const LuxBgAllColors: LuxBgAllColor[] = [
   'red',
@@ -53,3 +54,4 @@ export const LuxMessageBoxColors: LuxMessageBoxColor[] = ['red', 'green', 'purpl
 export const LuxProgressColors: LuxProgressColor[] = ['red', 'green', 'purple', 'blue', 'gray', 'orange', 'brown'];
 export const LuxSnackbarColors: LuxSnackbarColor[] = ['red', 'green', 'purple', 'blue', 'gray', 'orange', 'brown', 'white'];
 export const LuxTextboxColors: LuxTextboxColor[] = ['red', 'blue', 'green', 'yellow'];
+export const LuxAccordionColors: LuxAccordionColor[] = ['primary', 'accent', 'warn', 'neutral'];

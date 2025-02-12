@@ -11,6 +11,8 @@
       [luxCollapsedHeaderHeight]="collapsedHeaderHeight"
       [luxHideToggle]="hideToggle"
       [luxMulti]="multiMode"
+      [luxTogglePosition]="togglePosition"
+      [luxColor]="color"
     >
       <!-- Mehrere Panels mit ihren Input-/Output-Properties -->
       <lux-panel
@@ -56,8 +58,8 @@
         [luxDisabled]="disabled"
         [luxExpandedHeaderHeight]="expandedHeaderHeight"
         [luxCollapsedHeaderHeight]="collapsedHeaderHeight"
+        [luxTogglePosition]="togglePosition"
       ></app-custom-panel>
-      
     </lux-accordion>
   </example-base-content>
   <example-base-simple-options class="lux-flex lux-flex-col lux-gap-4">
@@ -84,6 +86,20 @@
         luxMode: 'default' => Leichter Abstand zwischen den Panels
       </lux-form-hint>
     </lux-radio-ac>
+    <lux-radio-ac luxLabel="luxTogglePosition" [luxGroupName]="togglePosition" [luxOptions]="togglePositions" [(luxSelected)]="togglePosition" [luxOrientationVertical]="false">
+      <lux-form-hint>
+        Diese Property bestimmt die Position des Toggle-Icons.<br />
+        luxTogglePosition: 'before' => Toggle-Icon wird auf der linken Seite angezeigt<br />
+        luxTogglePosition: 'after' => Toggle-Icon wird auf der rechten Seite angezeigt
+      </lux-form-hint>
+    </lux-radio-ac>
+    <lux-select-ac
+      luxLabel="luxColor"
+      luxHint="Setzt die Farbe des lux-Accordions"
+      [luxOptions]="colorOptions"
+      [(luxSelected)]="color"
+      (luxSelectedChange)="onColorChanged($event)"
+    ></lux-select-ac>
     <lux-input-ac
       luxName="accordion_luxExpandedHeaderHeight"
       luxLabel="luxExpandedHeaderHeight"
