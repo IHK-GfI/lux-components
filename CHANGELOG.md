@@ -1,10 +1,29 @@
 # Changelog
 
+## Version 18.4.0
+
+### New
+
+- **allgemein**: Update auf LUX-Components-Theme [18.4.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/18.4.0)
+  - **lux-accordion**: Weitere Farben für Header/Toggleposition auch rechts. [Issue 556](https://github.com/IHK-GfI/lux-components/issues/556)
+- **lux-stepper-large**: die weiter/zurück-Buttons des Steppers sollen auf "aria-disabled" umgestellt werden. [Issue 521](https://github.com/IHK-GfI/lux-components/issues/521)
+
+### Bug Fixes
+
+- **lux-datetimepicker-ac**: Barrierefreiheit - Critical Finding behoben. [Issue 574](https://github.com/IHK-GfI/lux-components/issues/574)
+- **lux-slider-ac**: Barrierefreiheit - Critical Finding behoben. [Issue 574](https://github.com/IHK-GfI/lux-components/issues/574)
+- **lux-select-ac**: Abstände in Selects mit mehrzeiligen Inhalt schwer lesbar. [Issue 573](https://github.com/IHK-GfI/lux-components/issues/573)
+- **lux-checkbox-ac**: Zeilenumbruch bei Pflichtstern bei verschiedenen Komponenten. [Issue 578](https://github.com/IHK-GfI/lux-components/issues/578)
+- **lux-toggle-ac**: Zeilenumbruch bei Pflichtstern bei verschiedenen Komponenten. [Issue 578](https://github.com/IHK-GfI/lux-components/issues/578)
+- **lux-file-list**: Zeilenumbruch bei Pflichtstern bei verschiedenen Komponenten. [Issue 578](https://github.com/IHK-GfI/lux-components/issues/578)
+- **lux-file-upload**: Zeilenumbruch bei Pflichtstern bei verschiedenen Komponenten. [Issue 578](https://github.com/IHK-GfI/lux-components/issues/578)
+- **lux-accordion**: Lux-Card übernimmt line-height von Lux-Accordion (Scrollbar am Lux-Card Title)Komponenten. [Issue 558](https://github.com/IHK-GfI/lux-components/issues/558)
+
 ## Version 18.3.0
 
 ### New
 
-- **allgemein**: Update auf LUX-Components-Theme [18.3.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/18.3.0).
+- **allgemein**: Update auf LUX-Components-Theme [18.3.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/18.3.0)
   - **lux-message-box**: Falsche Farbe beim Close-Button. [Issue 557](https://github.com/IHK-GfI/lux-components/issues/557)
 
 ### Bug Fixes
