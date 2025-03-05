@@ -366,6 +366,18 @@
           <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="luxc.chips.remove" datatype="html">
+        <source>entfernen</source>
+        <target>remove</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-chips-ac/lux-chips-ac.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-form/lux-chips-ac/lux-chips-ac.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="luxc.chips.input.placeholder.lbl" datatype="html">
         <source>eingeben oder auswählen</source>
         <target>enter or select</target>
@@ -1063,6 +1075,14 @@
           <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="luxc.stepper-large.error_message.steps_not_completed" datatype="html">
+        <source>Die Angaben in Schritt <x id="PH" equiv-text=" i + 1"/> sind unvollständig oder fehlerhaft. Bitte korrigieren Sie erst Ihre Angaben in diesem Schritt.</source>
+        <target>The information in step <x id="PH" equiv-text="i + 1"/> is incomplete or incorrect. Please correct your information in this step first.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large.component.ts</context>
+          <context context-type="linenumber">231</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="luxc.lookup-autocomplete.error_message.not_available" datatype="html">
         <source>Der eingegebene Eintrag ist nicht Teil der Schlüsseltabelle.</source>
         <target>The entered Value is not part of the key table.</target>
@@ -1313,14 +1333,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modules/lux-util/lux-util.ts</context>
           <context context-type="linenumber">402</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="luxc.stepper-large.error_message.steps_not_completed" datatype="html">
-        <source>Die Angaben in Schritt <x id="PH" equiv-text="i+1"/> sind unvollständig oder fehlerhaft. Bitte korrigieren Sie erst Ihre Angaben in diesem Schritt.</source>
-        <target> The information in step <x id="PH" equiv-text="i+1"/> is incomplete or incorrect. Please correct your information in this step first</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modules/lux-layout/lux-stepper-large/lux-stepper-large.component.ts</context>
-          <context context-type="linenumber">231</context>
         </context-group>
       </trans-unit>
     </body>

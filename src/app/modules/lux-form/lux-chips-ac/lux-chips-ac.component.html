@@ -13,7 +13,7 @@
       ]"
       [disabled]="luxDisabled"
       [attr.aria-labelledby]="uid + '-label'"
-      role="listbox"
+      role="grid"
       #chips
     >
       <!-- Direkte Chip-Components -->
@@ -34,6 +34,8 @@
               class="lux-chip-icon"
               [ngClass]="{ 'lux-chip-icon-disabled': chip.luxDisabled }"
               matChipRemove
+              aria-label="entfernen"
+              i18n-aria-label="@@luxc.chips.remove"
               luxIconName="lux-interface-delete-circle"
               luxMargin="0 0 0 6px"
               luxPadding="0px"
@@ -68,6 +70,8 @@
                 class="lux-chip-icon"
                 [ngClass]="{ 'lux-chip-icon-disabled': chipGroup.luxDisabled}"
                 matChipRemove
+                aria-label="entfernen"
+                i18n-aria-label="@@luxc.chips.remove"
                 luxIconName="lux-interface-delete-circle"
                 luxMargin="0 0 0 6px"
                 luxPadding="0px"
