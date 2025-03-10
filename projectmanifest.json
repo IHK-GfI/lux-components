@@ -11,8 +11,8 @@
     },
     "urls": {
       "application": {
-        "entw": "https://lux-demo-dev.applicationplatform.gfi.ihk.de/",
-        "prod": "https://lux-demo.applicationplatform.gfi.ihk.de/"
+        "entw": "https://lux-demo-dev.gfi.ihk.de/",
+        "prod": "https://lux-demo.gfi.ihk.de/"
       },
       "documentation": {
         "confluence": "https://github.com/IHK-GfI/lux-components"
