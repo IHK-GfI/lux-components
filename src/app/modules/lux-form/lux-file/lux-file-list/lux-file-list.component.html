@@ -65,14 +65,14 @@
     </div>
   </lux-card-content>
   <lux-card-actions class="lux-file-actions lux-error" *ngIf="errorMessage && formControl?.touched && !forceProgressIndeterminate">
-    <lux-icon class="lux-color-red lux-alert-icon" luxIconName="lux-interface-alert-warning-triangle" luxIconSize="18px"></lux-icon>
+    <lux-icon class="lux-color-red lux-alert-icon" luxIconName="lux-interface-alert-warning-triangle" luxIconSize="1.125rem"></lux-icon>
     <mat-error [id]="uid + '-misc'" class="">
       {{ errorMessage }}
     </mat-error>
     <lux-icon
       *ngIf="displayClearErrorButton"
       luxIconName="lux-interface-delete-1"
-      luxIconSize="18px"
+      luxIconSize="1.125rem"
       luxMargin="0 0 0 8px"
       luxAriaLabel="Fehlermeldung löschen"
       i18n-luxAriaLabel="@@luxc.form.delete.error.button"

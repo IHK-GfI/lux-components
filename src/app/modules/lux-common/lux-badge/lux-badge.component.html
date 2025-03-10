@@ -3,6 +3,6 @@
   [ngClass]="[backgroundCSSClass, fontCSSClass, luxUppercase ? 'lux-badge-uppercase' : '']"
   *ngIf="backgroundCSSClass"
 >
-  <lux-icon [luxIconName]="luxIconName" luxPadding="0" [luxIconSize]="ICON_SIZE" luxMargin="0 8px 0 0" *ngIf="luxIconName"></lux-icon>
+  <lux-icon [luxIconName]="luxIconName" luxPadding="0" [luxIconSize]="ICON_SIZE" luxMargin="0 0.5rem 0 0" *ngIf="luxIconName"></lux-icon>
   <ng-content select="lux-label"></ng-content>
 </div>

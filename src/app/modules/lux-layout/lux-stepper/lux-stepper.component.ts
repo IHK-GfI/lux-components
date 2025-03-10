@@ -1,3 +1,4 @@
+import { CdkStepHeader, StepperSelectionEvent } from '@angular/cdk/stepper';
 import {
   AfterViewInit,
   ChangeDetectorRef,
@@ -15,17 +16,16 @@ import {
   QueryList,
   ViewContainerRef
 } from '@angular/core';
-import { ILuxStepperButtonConfig } from './lux-stepper-model/lux-stepper-button-config.interface';
-import { LuxStepperHelperService } from './lux-stepper-helper.service';
-import { LuxStepComponent } from './lux-stepper-subcomponents/lux-step.component';
-import { ILuxStepperConfiguration } from './lux-stepper-model/lux-stepper-configuration.interface';
 import { MatStepper } from '@angular/material/stepper';
-import { LuxIconComponent } from '../../lux-icon/lux-icon/lux-icon.component';
-import { LuxUtil } from '../../lux-util/lux-util';
-import { CdkStepHeader, StepperSelectionEvent } from '@angular/cdk/stepper';
-import { skip } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { skip } from 'rxjs/operators';
+import { LuxIconComponent } from '../../lux-icon/lux-icon/lux-icon.component';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
+import { LuxUtil } from '../../lux-util/lux-util';
+import { LuxStepperHelperService } from './lux-stepper-helper.service';
+import { ILuxStepperButtonConfig } from './lux-stepper-model/lux-stepper-button-config.interface';
+import { ILuxStepperConfiguration } from './lux-stepper-model/lux-stepper-configuration.interface';
+import { LuxStepComponent } from './lux-stepper-subcomponents/lux-step.component';
 
 @Component({
   selector: 'lux-stepper',
@@ -233,19 +233,19 @@ export class LuxStepperComponent implements AfterViewInit, OnDestroy, OnInit {
       const instanceIconEdited: LuxIconComponent = componentIconEdited.instance;
 
       instanceIconEdited.luxIconName = this.luxEditedIconName;
-      instanceIconEdited.luxIconSize = '20px';
+      instanceIconEdited.luxIconSize = '1.25rem';
       instanceIconEdited.luxRounded = true;
-      instanceIconEdited.luxMargin = '0 8px 0 0';
-      instanceIconEdited.luxPadding = '10px';
+      instanceIconEdited.luxMargin = '0 0.5rem 0 0';
+      instanceIconEdited.luxPadding = '0.625rem';
       componentIconEdited.location.nativeElement.className += ' lux-stepper-edited-icon';
 
       const componentIconNormal: ComponentRef<LuxIconComponent> = stepLabel.createComponent(factory);
       const instanceIconNormal: LuxIconComponent = componentIconNormal.instance;
       instanceIconNormal.luxIconName = luxStep.luxIconName;
-      instanceIconNormal.luxIconSize = '20px';
+      instanceIconNormal.luxIconSize = '1.25rem';
       instanceIconNormal.luxRounded = true;
-      instanceIconNormal.luxMargin = '0 8px 0 0';
-      instanceIconNormal.luxPadding = '10px';
+      instanceIconNormal.luxMargin = '0 0.5rem 0 0';
+      instanceIconNormal.luxPadding = '0.625rem';
       componentIconNormal.location.nativeElement.className += ' lux-stepper-normal-icon';
     }
   }

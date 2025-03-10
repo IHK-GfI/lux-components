@@ -2,7 +2,7 @@
   <ol class="lux-breadcrumb-container" *ngFor="let item of luxEntries; last as islast">
     <li class="lux-breadcrumb-item" [ngClass]="{ 'lux-breadcrumb-item-mobile': mobileView }" *ngIf="!islast; else currentPage">
       <a (click)="clicked(item)" (keydown.enter)="clicked(item)" (keydown.space)="clicked(item)" tabindex="0">{{ item.name }}</a>
-      <lux-icon luxIconName="lux-interface-arrows-right" [luxIconSize]="getIconSize()" luxPadding="4px 3px 4px 6px"></lux-icon>
+      <lux-icon luxIconName="lux-interface-arrows-right" [luxIconSize]="getIconSize()" luxPadding="0.25rem 0.1875rem 0.25rem 0.375rem"></lux-icon>
     </li>
     <ng-template #currentPage>
       <li class="lux-breadcrumb-current-item" [ngClass]="{ 'lux-breadcrumb-current-item-mobile': mobileView }">
