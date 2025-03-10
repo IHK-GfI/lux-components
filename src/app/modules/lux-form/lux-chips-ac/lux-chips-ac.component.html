@@ -35,8 +35,8 @@
               [ngClass]="{ 'lux-chip-icon-disabled': chip.luxDisabled }"
               matChipRemove
               luxIconName="lux-interface-delete-circle"
-              luxMargin="0 0 0 6px"
-              luxPadding="0px"
+              luxMargin="0 0 0 0.375rem"
+              luxPadding="0"
               class="lux-chip-icon lux-cursor"
               (click)="chip.remove(i)"
               (keydown.enter)="chip.remove(i)"
@@ -102,7 +102,7 @@
           />
           <lux-icon
             luxIconName="lux-interface-arrows-button-down"
-            luxIconSize="1x"
+            luxIconSize="1.5rem"
             [ngClass]="{ 'lux-disabled': luxDisabled }"
             class="lux-color-blue lux-chips-autocomplete-icon"
             aria-hidden="true"
