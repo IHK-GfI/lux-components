@@ -4,7 +4,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { LuxAccordionComponent } from './lux-accordion.component';
 import { LuxTestHelper } from '../../lux-util/testing/lux-test-helper';
 
 describe('LuxAccordionComponent', () => {
@@ -17,9 +16,17 @@ describe('LuxAccordionComponent', () => {
         LuxAccordionPanelOverrideHeightComponent,
         LuxAccordionPanelMultiComponent,
         LuxAccordionHideToggleComponent,
+        LuxAccordionHideToggleTrueComponent,
         LuxAccordionOverrideHideToggleComponent,
         LuxAccordionDisabledComponent,
-        LuxAccordionOverrideDisabledComponent
+        LuxAccordionDisabledTrueComponent,
+        LuxAccordionOverrideDisabledComponent,
+        LuxAccordionOverrideDisabledReversedComponent,
+        LuxAccordionluxTogglePositionComponent,
+        LuxAccordionluxTogglePositionBeforeComponent,
+        LuxAccordionOverrideluxTogglePositionComponent,
+        LuxAccordionOverridePanelReversedluxTogglePositionComponent,
+        LuxAccordionColorComponent
       ]
     );
   });
@@ -215,7 +222,7 @@ describe('LuxAccordionComponent', () => {
   });
 
   describe('Attribut "luxHideToggle"', () => {
-    describe('Toggle über das Accordion gesetzt"', () => {
+    describe('Toggle über das Accordion gesetzt', () => {
       let fixture: ComponentFixture<LuxAccordionHideToggleComponent>;
       let testComponent: LuxAccordionHideToggleComponent;
 
@@ -242,7 +249,34 @@ describe('LuxAccordionComponent', () => {
       }));
     });
 
-    describe('Toggle des Accordions im Panel überschreiben"', () => {
+    describe('Toggle initial true über Accordion gesetzt', () => {
+      let fixture: ComponentFixture<LuxAccordionHideToggleTrueComponent>;
+      let testComponent: LuxAccordionHideToggleTrueComponent;
+
+      beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(LuxAccordionHideToggleTrueComponent);
+        fixture.detectChanges();
+        testComponent = fixture.componentInstance;
+        tick();
+      }));
+
+      it('Toggle prüfen', fakeAsync(() => {
+        // Vorbedingungen testen
+        expect(fixture.componentInstance.hide).toBeTruthy();
+        const toggleEl = fixture.debugElement.query(By.css('.mat-expansion-indicator'));
+        expect(toggleEl).toBeNull();
+
+        // Änderungen durchführen
+        fixture.componentInstance.hide = false;
+        LuxTestHelper.wait(fixture);
+
+        // Nachbedingungen testen
+        const newToggleEl = fixture.debugElement.query(By.css('.mat-expansion-indicator'));
+        expect(newToggleEl).not.toBeNull();
+      }));
+    });
+
+    describe('Toggle des Accordions im Panel überschreiben', () => {
       let fixture: ComponentFixture<LuxAccordionOverrideHideToggleComponent>;
       let testComponent: LuxAccordionOverrideHideToggleComponent;
 
@@ -254,14 +288,16 @@ describe('LuxAccordionComponent', () => {
       }));
 
       it('Toggle prüfen', fakeAsync(() => {
-        const toggleEl = fixture.debugElement.query(By.css('.mat-expansion-indicator'));
+        const toggleEl = fixture.debugElement.query(By.css('#panel1 .mat-expansion-indicator'));
         expect(toggleEl).not.toBeNull();
+        const toggle2El = fixture.debugElement.query(By.css('#panel2 .mat-expansion-indicator'));
+        expect(toggle2El).toBeNull();
       }));
     });
   });
 
   describe('Attribut "luxDisabled"', () => {
-    describe('Disabled über das Accordion gesetzt"', () => {
+    describe('Disabled über das Accordion gesetzt', () => {
       let fixture: ComponentFixture<LuxAccordionDisabledComponent>;
       let testComponent: LuxAccordionDisabledComponent;
 
@@ -287,7 +323,33 @@ describe('LuxAccordionComponent', () => {
       }));
     });
 
-    describe('Disabled des Accordions im Panel überschreiben"', () => {
+    describe('Disabled initial true über das Accordion gesetzt', () => {
+      let fixture: ComponentFixture<LuxAccordionDisabledTrueComponent>;
+      let testComponent: LuxAccordionDisabledTrueComponent;
+
+      beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(LuxAccordionDisabledTrueComponent);
+        fixture.detectChanges();
+        testComponent = fixture.componentInstance;
+        tick();
+      }));
+
+      it('Disabled prüfen', fakeAsync(() => {
+        // Vorbedingungen testen
+        expect(fixture.componentInstance.disabled).toBeTruthy();
+        const headerEl = fixture.debugElement.query(By.css('.mat-expansion-panel-header'));
+        expect(headerEl.nativeElement.attributes['aria-disabled'].value).toEqual('true');
+
+        // Änderungen durchführen
+        fixture.componentInstance.disabled = false;
+        LuxTestHelper.wait(fixture);
+
+        // Nachbedingungen testen
+        expect(headerEl.nativeElement.attributes['aria-disabled'].value).toEqual('false');
+      }));
+    });
+
+    describe('Disabled des Accordions im Panel überschreiben', () => {
       let fixture: ComponentFixture<LuxAccordionOverrideDisabledComponent>;
       let testComponent: LuxAccordionOverrideDisabledComponent;
 
@@ -299,8 +361,168 @@ describe('LuxAccordionComponent', () => {
       }));
 
       it('Disabled prüfen', fakeAsync(() => {
-        const headerEl = fixture.debugElement.query(By.css('.mat-expansion-panel-header'));
+        const headerEl = fixture.debugElement.query(By.css('#panel1 .mat-expansion-panel-header'));
         expect(headerEl.nativeElement.attributes['aria-disabled'].value).toEqual('false');
+        const header2El = fixture.debugElement.query(By.css('#panel2 .mat-expansion-panel-header'));
+        expect(header2El.nativeElement.attributes['aria-disabled'].value).toEqual('true');
+      }));
+    });
+
+    describe('Disabled des Accordions im Panel umgedreht überschreiben', () => {
+      let fixture: ComponentFixture<LuxAccordionOverrideDisabledReversedComponent>;
+      let testComponent: LuxAccordionOverrideDisabledReversedComponent;
+
+      beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(LuxAccordionOverrideDisabledReversedComponent);
+        fixture.detectChanges();
+        testComponent = fixture.componentInstance;
+        tick();
+      }));
+
+      it('Disabled prüfen', fakeAsync(() => {
+        const headerEl = fixture.debugElement.query(By.css('#panel1 .mat-expansion-panel-header'));
+        expect(headerEl.nativeElement.attributes['aria-disabled'].value).toEqual('true');
+        const header2El = fixture.debugElement.query(By.css('#panel2 .mat-expansion-panel-header'));
+        expect(header2El.nativeElement.attributes['aria-disabled'].value).toEqual('false');
+      }));
+    });
+  });
+
+  describe('Attribut "luxTogglePosition"', () => {
+    describe('TogglePosition über das Accordion gesetzt', () => {
+      let fixture: ComponentFixture<LuxAccordionluxTogglePositionComponent>;
+      let testComponent: LuxAccordionluxTogglePositionComponent;
+
+      beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(LuxAccordionluxTogglePositionComponent);
+        fixture.detectChanges();
+        testComponent = fixture.componentInstance;
+        tick();
+      }));
+
+      it('TogglePosition prüfen', fakeAsync(() => {
+        // Vorbedingungen testen
+        expect(fixture.componentInstance.togglePosition).toBe('after');
+        const positionEl = fixture.debugElement.query(By.css('.mat-expansion-toggle-indicator-after'));
+        expect(positionEl).not.toBeNull();
+
+        // Änderungen durchführen
+        fixture.componentInstance.togglePosition = 'before';
+        LuxTestHelper.wait(fixture);
+
+        // Nachbedingungen testen
+        const newPositionEl = fixture.debugElement.query(By.css('.mat-expansion-toggle-indicator-before'));
+        expect(newPositionEl).not.toBeNull();
+      }));
+    });
+
+    describe('TogglePosition initial "before" über das Accordion gesetzt', () => {
+      let fixture: ComponentFixture<LuxAccordionluxTogglePositionBeforeComponent>;
+      let testComponent: LuxAccordionluxTogglePositionBeforeComponent;
+
+      beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(LuxAccordionluxTogglePositionBeforeComponent);
+        fixture.detectChanges();
+        testComponent = fixture.componentInstance;
+        tick();
+      }));
+
+      it('TogglePosition prüfen', fakeAsync(() => {
+        // Vorbedingungen testen
+        expect(fixture.componentInstance.togglePosition).toBe('before');
+        const positionEl = fixture.debugElement.query(By.css('.mat-expansion-toggle-indicator-before'));
+        expect(positionEl).not.toBeNull();
+
+        // Änderungen durchführen
+        fixture.componentInstance.togglePosition = 'after';
+        LuxTestHelper.wait(fixture);
+
+        // Nachbedingungen testen
+        const newPositionEl = fixture.debugElement.query(By.css('.mat-expansion-toggle-indicator-after'));
+        expect(newPositionEl).not.toBeNull();
+      }));
+    });
+
+    describe('TogglePosition in Panels überschrieben', () => {
+      let fixture: ComponentFixture<LuxAccordionOverrideluxTogglePositionComponent>;
+      let testComponent: LuxAccordionOverrideluxTogglePositionComponent;
+
+      beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(LuxAccordionOverrideluxTogglePositionComponent);
+        fixture.detectChanges();
+        testComponent = fixture.componentInstance;
+        tick();
+      }));
+
+      it('TogglePosition prüfen', fakeAsync(() => {
+        const positionEl = fixture.debugElement.query(By.css('#panel1 .mat-expansion-toggle-indicator-after'));
+        expect(positionEl).not.toBeNull();
+        const positionTwoEl = fixture.debugElement.query(By.css('#panel2 .mat-expansion-toggle-indicator-before'));
+        expect(positionTwoEl).not.toBeNull();
+      }));
+    });
+
+    describe('TogglePosition in Panels überschrieben umgedreht', () => {
+      let fixture: ComponentFixture<LuxAccordionOverridePanelReversedluxTogglePositionComponent>;
+      let testComponent: LuxAccordionOverridePanelReversedluxTogglePositionComponent;
+
+      beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(LuxAccordionOverridePanelReversedluxTogglePositionComponent);
+        fixture.detectChanges();
+        testComponent = fixture.componentInstance;
+        tick();
+      }));
+
+      it('TogglePosition prüfen', fakeAsync(() => {
+        const positionEl = fixture.debugElement.query(By.css('#panel1 .mat-expansion-toggle-indicator-before'));
+        expect(positionEl).not.toBeNull();
+        const positionTwoEl = fixture.debugElement.query(By.css('#panel2 .mat-expansion-toggle-indicator-after'));
+        expect(positionTwoEl).not.toBeNull();
+      }));
+    });
+  });
+
+  describe('Attribut "luxColor"', () => {
+    describe('Color im Accordion gesetzt', () => {
+      let fixture: ComponentFixture<LuxAccordionColorComponent>;
+      let testComponent: LuxAccordionColorComponent;
+
+      beforeEach(fakeAsync(() => {
+        fixture = TestBed.createComponent(LuxAccordionColorComponent);
+        fixture.detectChanges();
+        testComponent = fixture.componentInstance;
+        tick();
+      }));
+
+      it('Color prüfen', fakeAsync(() => {
+        // Vorbedingungen testen
+        expect(fixture.componentInstance.color).toBe('primary');
+        const toggleEl = fixture.debugElement.query(By.css('.lux-primary'));
+        expect(toggleEl).not.toBeNull();
+
+        // Änderungen auf accent durchführen
+        fixture.componentInstance.color = 'accent';
+        LuxTestHelper.wait(fixture);
+
+        // Nachbedingungen testen
+        const newToggleEl = fixture.debugElement.query(By.css('.lux-accent'));
+        expect(newToggleEl).not.toBeNull();
+
+        // Änderungen auf warn durchführen
+        fixture.componentInstance.color = 'warn';
+        LuxTestHelper.wait(fixture);
+
+        // Nachbedingungen testen
+        const newToggleEl2 = fixture.debugElement.query(By.css('.lux-warn'));
+        expect(newToggleEl2).not.toBeNull();
+
+        // Änderungen auf neutral durchführen
+        fixture.componentInstance.color = 'neutral';
+        LuxTestHelper.wait(fixture);
+
+        // Nachbedingungen testen
+        const newToggleEl3 = fixture.debugElement.query(By.css('.lux-neutral'));
+        expect(newToggleEl3).not.toBeNull();
       }));
     });
   });
@@ -381,6 +603,7 @@ class LuxAccordionPanelMultiComponent {
 }
 
 @Component({
+  selector: 'LuxAccordionHideToggleFalse',
   template: `
     <lux-accordion [luxHideToggle]="hide">
       <lux-panel>
@@ -397,9 +620,32 @@ class LuxAccordionHideToggleComponent {
 }
 
 @Component({
+  selector: 'LuxAccordionHideToggleTrue',
+  template: `
+    <lux-accordion [luxHideToggle]="hide">
+      <lux-panel>
+        <lux-panel-header-title>Titel 1</lux-panel-header-title>
+        <lux-panel-content>
+          111111
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  `
+})
+class LuxAccordionHideToggleTrueComponent {
+  hide = true;
+}
+
+@Component({
   template: `
     <lux-accordion [luxHideToggle]="true">
-      <lux-panel [luxHideToggle]="false">
+      <lux-panel id="panel1" [luxHideToggle]="false">
+        <lux-panel-header-title>Titel 1</lux-panel-header-title>
+        <lux-panel-content>
+          111111
+        </lux-panel-content>
+      </lux-panel>
+      <lux-panel id="panel2">
         <lux-panel-header-title>Titel 1</lux-panel-header-title>
         <lux-panel-content>
           111111
@@ -411,6 +657,7 @@ class LuxAccordionHideToggleComponent {
 class LuxAccordionOverrideHideToggleComponent {}
 
 @Component({
+  selector: 'LuxAccordionDisabledFalse',
   template: `
     <lux-accordion [luxDisabled]="disabled">
       <lux-panel>
@@ -427,9 +674,10 @@ class LuxAccordionDisabledComponent {
 }
 
 @Component({
+  selector: 'LuxAccordionDisabledTrue',
   template: `
-    <lux-accordion [luxDisabled]="true">
-      <lux-panel [luxDisabled]="false">
+    <lux-accordion [luxDisabled]="disabled">
+      <lux-panel>
         <lux-panel-header-title>Titel 1</lux-panel-header-title>
         <lux-panel-content>
           111111
@@ -438,4 +686,142 @@ class LuxAccordionDisabledComponent {
     </lux-accordion>
   `
 })
+class LuxAccordionDisabledTrueComponent {
+  disabled = true;
+}
+
+@Component({
+  selector: 'LuxAccordionOverrideDisabled',
+  template: `
+    <lux-accordion [luxDisabled]="true">
+      <lux-panel id="panel1" [luxDisabled]="false">
+        <lux-panel-header-title>Titel 1</lux-panel-header-title>
+        <lux-panel-content>
+          111111
+        </lux-panel-content>
+      </lux-panel>
+      <lux-panel id="panel2">
+        <lux-panel-header-title>Titel 2</lux-panel-header-title>
+        <lux-panel-content>
+          22222222
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  `
+})
 class LuxAccordionOverrideDisabledComponent {}
+
+@Component({
+  selector: 'LuxAccordionOverrideDisabledReversed',
+  template: `
+    <lux-accordion [luxDisabled]="false">
+      <lux-panel id="panel1" [luxDisabled]="true">
+        <lux-panel-header-title>Titel 1</lux-panel-header-title>
+        <lux-panel-content>
+          111111
+        </lux-panel-content>
+      </lux-panel>
+      <lux-panel id="panel2">
+        <lux-panel-header-title>Titel 2</lux-panel-header-title>
+        <lux-panel-content>
+          22222222
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  `
+})
+class LuxAccordionOverrideDisabledReversedComponent {}
+
+
+@Component({
+  selector:'LuxTogglePositionAfter',
+  template: `
+    <lux-accordion [luxTogglePosition]="togglePosition">
+      <lux-panel>
+        <lux-panel-header-title>Titel 1</lux-panel-header-title>
+        <lux-panel-content>
+          111111
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  `
+})
+class LuxAccordionluxTogglePositionComponent {
+  togglePosition = 'after';
+}
+
+@Component({
+  selector:'LuxTogglePositionBefore',
+  template: `
+    <lux-accordion [luxTogglePosition]="togglePosition">
+      <lux-panel>
+        <lux-panel-header-title>Titel 1</lux-panel-header-title>
+        <lux-panel-content>
+          111111
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  `
+})
+class LuxAccordionluxTogglePositionBeforeComponent {
+  togglePosition = 'before';
+}
+
+@Component({
+  selector: 'LuxAccordionOverrideluxTogglePositionComponent',
+  template: `
+    <lux-accordion [luxTogglePosition]="'after'">
+      <lux-panel id="panel1">
+        <lux-panel-header-title>Titel 1</lux-panel-header-title>
+        <lux-panel-content>
+          111111
+        </lux-panel-content>
+      </lux-panel>
+      <lux-panel [luxTogglePosition]="'before'" id="panel2">
+        <lux-panel-header-title>Titel 2</lux-panel-header-title>
+        <lux-panel-content>
+          22222222
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  `
+})
+class LuxAccordionOverrideluxTogglePositionComponent {}
+
+@Component({
+  selector: 'LuxAccordionOverridePanelReversedluxTogglePositionComponent',
+  template: `
+    <lux-accordion [luxTogglePosition]="'before'">
+      <lux-panel id="panel1">
+        <lux-panel-header-title>Titel 1</lux-panel-header-title>
+        <lux-panel-content>
+          111111
+        </lux-panel-content>
+      </lux-panel>
+      <lux-panel [luxTogglePosition]="'after'" id="panel2">
+        <lux-panel-header-title>Titel 2</lux-panel-header-title>
+        <lux-panel-content>
+          22222222
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  `
+})
+class LuxAccordionOverridePanelReversedluxTogglePositionComponent {}
+
+@Component({
+  selector: 'lux-accordion-override-panel-reversed-luxtoggleposition-component',
+  template: `
+    <lux-accordion [luxColor] = color>
+      <lux-panel>
+        <lux-panel-header-title>Titel 1</lux-panel-header-title>
+        <lux-panel-content>
+          111111
+        </lux-panel-content>
+      </lux-panel>
+    </lux-accordion>
+  `
+})
+class LuxAccordionColorComponent {
+  color = 'primary';
+}

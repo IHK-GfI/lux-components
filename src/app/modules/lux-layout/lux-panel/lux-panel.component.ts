@@ -12,9 +12,9 @@ import {
   SkipSelf,
   ViewChild
 } from '@angular/core';
-import { MatAccordionTogglePosition, MatExpansionPanel } from '@angular/material/expansion';
+import { MatExpansionPanel } from '@angular/material/expansion';
 import { LuxUtil } from '../../lux-util/lux-util';
-import { LuxAccordionComponent } from '../lux-accordion/lux-accordion.component';
+import { LuxAccordionComponent, LuxTogglePosition } from '../lux-accordion/lux-accordion.component';
 import { Subscription } from 'rxjs';
 import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-observer.service';
 
@@ -24,10 +24,10 @@ import { LuxMediaQueryObserverService } from '../../lux-util/lux-media-query-obs
   styleUrls: ['./lux-panel.component.scss']
 })
 export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
-  @Input() luxDisabled = false;
+  @Input() luxDisabled?: boolean;
   @Input() luxExpanded = false;
-  @Input() luxHideToggle = false;
-  @Input() luxTogglePosition: MatAccordionTogglePosition = 'after';
+  @Input() luxHideToggle?: boolean;
+  @Input() luxTogglePosition?: LuxTogglePosition;
 
   @Input() luxCollapsedHeaderHeight?: string;
   @Input() luxExpandedHeaderHeight?: string;
@@ -66,7 +66,11 @@ export class LuxPanelComponent implements OnInit, AfterViewInit, OnDestroy {
         this.luxCollapsedHeaderHeight = this.parent.luxCollapsedHeaderHeight;
       }
       if (this.luxTogglePosition === undefined) {
-        this.luxTogglePosition = this.parent.luxTogglePosition;
+        if (this.parent.luxTogglePosition === undefined) {
+          this.luxTogglePosition = 'after';
+        } else {
+          this.luxTogglePosition = this.parent.luxTogglePosition;
+        }
       }
 
       // Um eine zyklische Abhängigkeit mit dem lux-accordion zu vermeiden,
