@@ -5,7 +5,7 @@ import { LuxUtil } from '../../lux-util/lux-util';
 import { LuxAccordionColor, LuxAccordionColors } from '../../lux-util/lux-colors.enum';
 
 export declare type LuxModeType = MatAccordionDisplayMode;
-export declare type LuxTogglePosition = MatAccordionTogglePosition;
+export declare type LuxTogglePosition = MatAccordionTogglePosition | undefined;
 
 @Component({
   selector: 'lux-accordion',
@@ -22,18 +22,18 @@ export class LuxAccordionComponent implements AfterViewInit, OnDestroy {
       this._luxColor = LuxAccordionColors.find((entry) => entry === value) ?? undefined;
     }
 
-  _luxDisabled = false;
-  _luxHideToggle = false;
+  _luxDisabled?: boolean;
+  _luxHideToggle?: boolean;
   _luxExpandedHeaderHeight?: string;
   _luxCollapsedHeaderHeight?: string;
-  _luxTogglePosition: LuxTogglePosition = 'after';
+  _luxTogglePosition?: LuxTogglePosition;
 
   @Input()
   get luxDisabled() {
     return this._luxDisabled;
   }
 
-  set luxDisabled(disabled: boolean) {
+  set luxDisabled(disabled: boolean | undefined) {
     this._luxDisabled = disabled;
 
     this.changed$.next('luxDisabled');
@@ -44,7 +44,7 @@ export class LuxAccordionComponent implements AfterViewInit, OnDestroy {
     return this._luxHideToggle;
   }
 
-  set luxHideToggle(hideToggle: boolean) {
+  set luxHideToggle(hideToggle: boolean | undefined) {
     this._luxHideToggle = hideToggle;
 
     this.changed$.next('luxHideToggle');
@@ -77,7 +77,7 @@ export class LuxAccordionComponent implements AfterViewInit, OnDestroy {
     return this._luxTogglePosition;
   }
 
-  set luxTogglePosition(position: MatAccordionTogglePosition) {
+  set luxTogglePosition(position: LuxTogglePosition) {
     this._luxTogglePosition = position;
 
     this.changed$.next('luxTogglePosition');
@@ -88,7 +88,7 @@ export class LuxAccordionComponent implements AfterViewInit, OnDestroy {
   constructor() {}
 
   ngAfterViewInit() {
-    LuxUtil.assertNonNull('matAccordion', this.matAccordion)
+    LuxUtil.assertNonNull('matAccordion', this.matAccordion);
   }
 
   ngOnDestroy() {
