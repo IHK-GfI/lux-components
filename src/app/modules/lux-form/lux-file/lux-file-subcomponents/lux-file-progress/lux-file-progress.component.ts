@@ -16,5 +16,7 @@ export class LuxFileProgressComponent {
   @Input() luxProgress = 0;
   @Input() luxMode: LuxProgressModeType = 'indeterminate';
 
+  ariaLabelProgress = $localize`:@@luxc.progress.arialabel:Ladeanzeige`;
+
   constructor() {}
 }
