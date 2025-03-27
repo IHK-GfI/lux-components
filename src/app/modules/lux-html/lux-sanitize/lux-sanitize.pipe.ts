@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 //@ts-ignore ToDo: Wenn man wieder auf NpmJs zugreifen kann, dass Package "@types/dompurify" ergänzen
-import DOMPurify from 'dompurify';
+import DOMPurify, { Config } from 'dompurify';
 import { LuxSanitizeConfig } from './lux-sanitize-config';
 
 @Pipe({
@@ -18,33 +18,39 @@ export class LuxSanitizePipe implements PipeTransform {
     Object.assign(newConfig, config);
 
     if (value) {
-      if (newConfig && newConfig.allowedTags) {
-        (newConfig as any)['ALLOWED_TAGS'] = newConfig.allowedTags;
-      }
-
-      if (newConfig && newConfig.allowedAttrs) {
-        (newConfig as any)['ALLOWED_ATTR'] = newConfig.allowedAttrs;
-      }
-
-      if (newConfig && newConfig.addAllowedTags) {
-        (newConfig as any)['ADD_TAGS'] = newConfig.addAllowedTags;
-      }
-
-      if (newConfig && newConfig.addAllowedAttrs) {
-        (newConfig as any)['ADD_ATTR'] = newConfig.addAllowedAttrs;
-      }
-
-      if (newConfig && newConfig.forbiddenTags) {
-        (newConfig as any)['FORBID_TAGS'] = newConfig.forbiddenTags;
-      }
-
-      if (newConfig && newConfig.forbiddenAttrs) {
-        (newConfig as any)['FORBID_ATTR'] = newConfig.forbiddenAttrs;
-      }
-
-      return this.sanitizer.bypassSecurityTrustHtml(DOMPurify.sanitize(value, newConfig));
+      return this.sanitizer.bypassSecurityTrustHtml(DOMPurify.sanitize(value, this.createConfig(newConfig)));
     } else {
       return '';
     }
+  }
+
+  createConfig(config: LuxSanitizeConfig): Config & { RETURN_DOM_FRAGMENT?: false; RETURN_DOM?: false } {
+    const domPurifyConfig: Config & { RETURN_DOM_FRAGMENT?: false; RETURN_DOM?: false } = { RETURN_DOM: false, RETURN_DOM_FRAGMENT: false };
+
+    if (config && config.allowedTags) {
+      domPurifyConfig.ALLOWED_TAGS = config.allowedTags;
+    }
+
+    if (config && config.allowedAttrs) {
+      domPurifyConfig.ALLOWED_ATTR = config.allowedAttrs;
+    }
+
+    if (config && config.addAllowedTags) {
+      domPurifyConfig.ADD_TAGS = config.addAllowedTags;
+    }
+
+    if (config && config.addAllowedAttrs) {
+      domPurifyConfig.ADD_ATTR = config.addAllowedAttrs;
+    }
+
+    if (config && config.forbiddenTags) {
+      domPurifyConfig.FORBID_TAGS = config.forbiddenTags;
+    }
+
+    if (config && config.forbiddenAttrs) {
+      domPurifyConfig.FORBID_ATTR = config.forbiddenAttrs;
+    }
+
+    return domPurifyConfig;
   }
 }

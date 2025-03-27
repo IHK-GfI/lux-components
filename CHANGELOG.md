@@ -1,5 +1,19 @@
 # Changelog
 
+## Version 18.5.0
+
+### New
+
+- **allgemein**: Update auf LUX-Components-Theme [18.5.0](https://github.com/IHK-GfI/lux-components-theme/releases/tag/18.5.0)
+
+### Bug Fixes
+
+- **allgemein**: A11y - Textgrößen müssen anpassbar sein. [Issue 588](https://github.com/IHK-GfI/lux-components/issues/588)
+- **lux-app-header-ac**: Anzeige "Eingeloggter User" im User-Menu anpassen. [Issue 579](https://github.com/IHK-GfI/lux-components/issues/579)
+- **lux-accordion**: Property LuxTogglePosition wird nicht richtig übernommen. [Issue 584](https://github.com/IHK-GfI/lux-components/issues/584)
+- **lux-chips**: Probleme in der Barrierefreiheit der Lux-Chips Component. [Issue 585](https://github.com/IHK-GfI/lux-components/issues/585)
+- **lux-file-upload**: ARIA-label für File-Upload-Komponenten. [Issue 586](https://github.com/IHK-GfI/lux-components/issues/586)
+
 ## Version 18.4.0
 
 ### New
