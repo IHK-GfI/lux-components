@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@ihk-gfi/lux-components-theme/src/base/luxfonts' as luxfonts;
 
-$basepath: 'https://cdn.gfi.ihk.de/lux-components/icons-and-fonts/v1.8.0/';
+$basepath: 'https://cdn.gfi.ihk.de/lux-components/icons-and-fonts/v1.10.0/';
 
 @include luxfonts.web-fonts($basepath);

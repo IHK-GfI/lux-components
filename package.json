@@ -50,7 +50,7 @@
     "@angular/platform-browser-dynamic": "^18.2.13",
     "@angular/router": "^18.2.13",
     "@chiragrupani/karma-chromium-edge-launcher": "2.4.1",
-    "@ihk-gfi/lux-components-icons-and-fonts": "1.8.0",
+    "@ihk-gfi/lux-components-icons-and-fonts": "1.10.0",
     "@ihk-gfi/lux-components-theme": "18.5.0",
     "@types/jasmine": "~5.1.5",
     "@types/marked": "4.0.3",
