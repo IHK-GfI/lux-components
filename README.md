@@ -1,3 +1,12 @@
+
+---
+
+:no_entry: **Dieses Projekt wurde archiviert** :no_entry:
+
+Die Weiterentwicklung der _LUX-Components_ findet [hier](https://github.com/IHK-GfI/lux-components-workspace) statt.
+
+---
+
 # LUX-Components
 
 Die LUX-Components bestehen aus einer Sammlung von "Angular Material"-Komponenten, die speziell für den JAST-Stack (Java Angular SQL Tomcat)
